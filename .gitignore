@@ -8,9 +8,9 @@
 /obj
 /out-tsc
 /packages
-/*/obj
+/ipsFormsDesign/obj
+/ipsFormsDesign/bin
 /lib
-/*/bin
 
 # dependencies
 /node_modules
