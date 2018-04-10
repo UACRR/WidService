@@ -1,0 +1,16 @@
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\ipsFormsDesign.deps.json
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\ipsFormsDesign.dll
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\ipsFormsDesign.pdb
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\System.Windows.Forms.dll
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\System.Security.dll
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\System.Configuration.dll
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\Accessibility.dll
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\System.Deployment.dll
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\bin\Debug\netstandard2.0\System.Runtime.Serialization.Formatters.Soap.dll
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\obj\Debug\netstandard2.0\ipsFormsDesign.csprojResolveAssemblyReference.cache
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\obj\Debug\netstandard2.0\ipsFormsDesign.csproj.CoreCompileInputs.cache
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\obj\Debug\netstandard2.0\ipsFormsDesign.AssemblyInfoInputs.cache
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\obj\Debug\netstandard2.0\ipsFormsDesign.AssemblyInfo.cs
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\obj\Debug\netstandard2.0\ipsFormsDesign.csproj.CopyComplete
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\obj\Debug\netstandard2.0\ipsFormsDesign.dll
+D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\obj\Debug\netstandard2.0\ipsFormsDesign.pdb
