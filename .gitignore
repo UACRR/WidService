@@ -8,6 +8,9 @@
 /obj
 /out-tsc
 /packages
+/*/obj
+/lib
+/*/bin
 
 # dependencies
 /node_modules
