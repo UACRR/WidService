@@ -8,9 +8,8 @@
 /obj
 /out-tsc
 /packages
-/ipsFormsDesign/obj
-/ipsFormsDesign/bin
-/sysAdminwp/obj
+**/obj/
+**/bin/
 /lib
 
 # dependencies
