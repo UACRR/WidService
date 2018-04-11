@@ -9,3 +9,14 @@ D:\work\MediaSercice\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.A
 D:\work\MediaSercice\ipsmedserviceapp\bin\Debug\netcoreapp2.0\ipsmedserviceapp.pdb
 D:\work\MediaSercice\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.dll
 D:\work\MediaSercice\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.pdb
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\bin\Debug\netcoreapp2.0\ipsmedserviceapp.deps.json
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\bin\Debug\netcoreapp2.0\ipsmedserviceapp.runtimeconfig.json
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\bin\Debug\netcoreapp2.0\ipsmedserviceapp.runtimeconfig.dev.json
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\bin\Debug\netcoreapp2.0\ipsmedserviceapp.dll
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\bin\Debug\netcoreapp2.0\ipsmedserviceapp.pdb
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.csprojResolveAssemblyReference.cache
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.csproj.CoreCompileInputs.cache
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.AssemblyInfoInputs.cache
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.AssemblyInfo.cs
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.dll
+C:\Users\vpysmennyi\ipssysadmin\ipsmedserviceapp\obj\Debug\netcoreapp2.0\ipsmedserviceapp.pdb

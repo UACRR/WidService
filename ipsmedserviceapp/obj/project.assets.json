@@ -12919,24 +12919,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\opatliakevych\\.nuget\\packages\\": {},
+    "C:\\Users\\vpysmennyi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\work\\MediaSercice\\ipssysadmin\\ipsmedserviceapp\\ipsmedserviceapp.csproj",
+      "projectUniqueName": "C:\\Users\\vpysmennyi\\ipssysadmin\\ipsmedserviceapp\\ipsmedserviceapp.csproj",
       "projectName": "ipsmedserviceapp",
-      "projectPath": "D:\\work\\MediaSercice\\ipssysadmin\\ipsmedserviceapp\\ipsmedserviceapp.csproj",
-      "packagesPath": "C:\\Users\\opatliakevych\\.nuget\\packages\\",
-      "outputPath": "D:\\work\\MediaSercice\\ipssysadmin\\ipsmedserviceapp\\obj\\",
+      "projectPath": "C:\\Users\\vpysmennyi\\ipssysadmin\\ipsmedserviceapp\\ipsmedserviceapp.csproj",
+      "packagesPath": "C:\\Users\\vpysmennyi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vpysmennyi\\ipssysadmin\\ipsmedserviceapp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\opatliakevych\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\vpysmennyi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
