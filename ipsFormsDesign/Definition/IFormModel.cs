@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Definition
 {
-    interface IFormModel
+    public interface IFormModel<T>
     {
+        Task<List<T>> getData();
     }
 }
