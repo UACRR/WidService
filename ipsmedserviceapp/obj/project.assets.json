@@ -12925,11 +12925,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\work\\MediaSercice\\ipsmedserviceapp\\ipsmedserviceapp.csproj",
+      "projectUniqueName": "D:\\work\\MediaSercice\\ipssysadmin\\ipsmedserviceapp\\ipsmedserviceapp.csproj",
       "projectName": "ipsmedserviceapp",
-      "projectPath": "D:\\work\\MediaSercice\\ipsmedserviceapp\\ipsmedserviceapp.csproj",
+      "projectPath": "D:\\work\\MediaSercice\\ipssysadmin\\ipsmedserviceapp\\ipsmedserviceapp.csproj",
       "packagesPath": "C:\\Users\\opatliakevych\\.nuget\\packages\\",
-      "outputPath": "D:\\work\\MediaSercice\\ipsmedserviceapp\\obj\\",
+      "outputPath": "D:\\work\\MediaSercice\\ipssysadmin\\ipsmedserviceapp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
