@@ -4,6 +4,7 @@
 /dist
 /tmp
 /wwwroot
+**/wwwroot
 /bin
 /obj
 /out-tsc
