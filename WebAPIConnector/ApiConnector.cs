@@ -25,18 +25,19 @@ namespace WebAPIConnector
 
         }
 
+        /// <summary>
+        /// Получити список об'єктів з серверу додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public List<T> GetList<T>( string url )
         {
             string retApiString = client.GetStringAsync(url).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
-            // List<object> list = JObject.Parse(retApiString).ToObject<List<object>>();
-            List<T> list = new List<T>();
 
-            foreach( var item in array )
-            {
-                T newItem = item.ToObject<T>();
-                list.Add(newItem);
-            }
+            List<T> list = array.Select( rec => rec.ToObject<T>()).ToList<T>();
+
             return list;
         }
     }
