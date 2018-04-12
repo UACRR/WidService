@@ -31,7 +31,7 @@ namespace sysAdminwp
             radGridView1.DataSource = list;
             radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
             Upd();
-            
+            LoadData();
         }
 
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
@@ -90,6 +90,26 @@ namespace sysAdminwp
         private void radBtnCancel_Click(object sender, EventArgs e)
         {
             Upd();
+        }
+
+        public void LoadData()
+        {
+            foreach (var node in list)
+            {
+                RadTreeNode rtn = radTreeViewList.Nodes.Add(node.CategoryCode.ToString());
+                rtn.Nodes.Add(node.CategoryName);
+            }
+            
+        }
+
+        private void radTxtBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            radTreeViewList.Filter = radTxtBoxFilter.Text;
+        }
+
+        private void radTxtBoxSearchData_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
