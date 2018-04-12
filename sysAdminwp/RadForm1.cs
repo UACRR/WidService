@@ -10,7 +10,6 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using sysAdminwp.model;
 using ipsmedserviceapp.Model;
 using Telerik.WinControls.UI;
 using System.IO;
@@ -26,12 +25,22 @@ namespace sysAdminwp
 
         public RadForm1()
         {
-            list = connector.GetList<Category>("api/dictionary/category");
             InitializeComponent();
-            radGridView1.DataSource = list;
+            setDataSource();
             radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
             Upd();
-            LoadData();
+        }
+
+        private void setDataSource()
+        {
+            var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");
+            list = connector.GetList<Category>("api/dictionary/base/category");
+            radGridView1.DataSource = list;
+            radTreeView1.DataSource = dictCategory;
+            radTreeView1.ChildMember = "DictCategory\\DicCategoryItems";
+            radTreeView1.DisplayMember = "Name\\Name";
+
+
         }
 
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)

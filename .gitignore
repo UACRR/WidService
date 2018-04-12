@@ -4,6 +4,7 @@
 /dist
 /tmp
 /wwwroot
+**/wwwroot
 /bin
 /obj
 /out-tsc
@@ -11,6 +12,10 @@
 **/obj/
 **/bin/
 /lib
+/ipsmedserviceapp/obj
+/ipsmedserviceapp/bin
+
+
 
 # dependencies
 /node_modules

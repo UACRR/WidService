@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using sysAdminwp.model;
-using sysAdminwp.Properties;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;

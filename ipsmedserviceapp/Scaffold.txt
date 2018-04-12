@@ -1,6 +1,32 @@
 [string[]] $tables=@(
+"DictCategory",
+"DicCategoryItems",
+"ActivityType",
+"ActivityTypeTr",
+"AnketaStatus",
+"AnketaStatusTr",
 "Category",
-"CategoryTr"
+"CategoryTr",
+"Country",
+"CountryTr",
+"CustomerStatus",
+"CustomerStatusTr",
+"CustomerType",
+"CustomerTypeTr",
+"KL_R030",
+"KL_R030Tr",
+"Region",
+"RegionTr",
+"ResidentType",
+"ResidentTypeTr",
+"SexType",
+"SexTypeTr",
+"TypeMethodGet",
+"TypeMethodGetTr",
+"TypePlace",
+"TypePlaceTr",
+"TypeVAT",
+"TypeVATTr"
 );
 
 Scaffold-DbContext -Context MediaServiceContext -Provider Microsoft.EntityFrameworkCore.SqlServer -Connection "Data Source=192.168.1.252,60675;Initial Catalog=MediaService;User ID=robot;Password=robot11235813" -OutputDir Model -Tables $tables -Force -ErrorAction Ignore
