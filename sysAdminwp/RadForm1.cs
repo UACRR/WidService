@@ -28,7 +28,59 @@ namespace sysAdminwp
             InitializeComponent();
             setDataSource();
             radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
+            radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
+            radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             Upd();
+        }
+
+        private void RadTxtBoxSearchData_TextChanged(object sender, EventArgs e)
+        {
+            radGridView1.MasterTemplate.Refresh();
+        }
+
+        private void RadGridView1_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
+        {
+            if (string.IsNullOrEmpty(radTxtBoxSearchData.Text))
+            {
+                radGridView1.BeginUpdate();
+                e.Visible = true;
+                for (int i = 0; i < radGridView1.ColumnCount; i++)
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                radGridView1.EndUpdate(false);
+                return;
+            }
+            //
+
+            radGridView1.BeginUpdate();
+            e.Visible = false;
+            for (int i = 0; i < radGridView1.ColumnCount; i++)
+            {
+                try
+                {
+                    string text = e.Row.Cells[i].Value.ToString();
+                    if (text.IndexOf(radTxtBoxSearchData.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                    {
+                        e.Visible = true;
+                        e.Row.Cells[i].Style.CustomizeFill = true;
+                        e.Row.Cells[i].Style.DrawFill = true;
+                        e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
+                    }
+                    else
+                    {
+                        e.Row.Cells[i].Style.Reset();
+                    }
+
+                    radGridView1.EndUpdate(false);
+                }
+                catch (Exception)
+                {
+                    
+                }
+                
+            }
+            //
         }
 
         private void setDataSource()
@@ -36,10 +88,10 @@ namespace sysAdminwp
             var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");
             list = connector.GetList<Category>("api/dictionary/base/category");
             radGridView1.DataSource = list;
-            radTreeView1.DataSource = dictCategory;
-            radTreeView1.ChildMember = "DictCategory\\DicCategoryItems";
-            radTreeView1.DisplayMember = "Name\\Name";
-
+            radTreeViewList.DataSource = dictCategory;
+            radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
+            radTreeViewList.DisplayMember = "Name\\Name";
+            
 
         }
 
@@ -101,15 +153,6 @@ namespace sysAdminwp
             Upd();
         }
 
-        public void LoadData()
-        {
-            foreach (var node in list)
-            {
-                RadTreeNode rtn = radTreeViewList.Nodes.Add(node.CategoryCode.ToString());
-                rtn.Nodes.Add(node.CategoryName);
-            }
-            
-        }
 
         private void radTxtBoxFilter_TextChanged(object sender, EventArgs e)
         {
@@ -118,7 +161,36 @@ namespace sysAdminwp
 
         private void radTxtBoxSearchData_TextChanged(object sender, EventArgs e)
         {
+            // = radTxtBoxSearchData.Text;
+        }
 
+
+
+        private void radTreeViewList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        {
+            var urlCategories = connector.GetList<DictCategory>("api/dictionary/list");
+            
+             foreach (var item in urlCategories)
+             {
+                 foreach (var catItem in item.DicCategoryItems)
+                 {
+                    if (catItem.Name == e.Node.Name)
+                     {
+                         try
+                         {
+                             list = connector.GetList<Category>(catItem.Url);
+                             radGridView1.DataSource = list;
+                             radPanelChange.Enabled = true;
+                         }
+                         catch (Exception)
+                         {
+                             radGridView1.DataSource = default(DataGrid);
+                             Upd();
+                             radPanelChange.Enabled = false;
+                         }
+                     }
+                 }
+             }            
         }
     }
 }
