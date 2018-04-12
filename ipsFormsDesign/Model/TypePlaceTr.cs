@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class TypePlaceTr
     {
-        public int PlCode { get; set; }
+        public int CodeI { get; set; }
         public string Lang { get; set; }
-        public string PlName { get; set; }
+        public string Name { get; set; }
 
-        public TypePlace PlCodeNavigation { get; set; }
+        public TypePlace CodeINavigation { get; set; }
     }
 }

@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             SexTypeTr = new HashSet<SexTypeTr>();
         }
 
-        public int SexCode { get; set; }
-        public string SexName { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<SexTypeTr> SexTypeTr { get; set; }
     }

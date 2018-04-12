@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             TypeVattr = new HashSet<TypeVattr>();
         }
 
-        public int VType { get; set; }
-        public string VTypeName { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<TypeVattr> TypeVattr { get; set; }
     }

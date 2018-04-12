@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using sysAdminwp.model;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
@@ -34,7 +33,8 @@ namespace sysAdminwp
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewMaskBoxColumn gridViewMaskBoxColumn1 = new Telerik.WinControls.UI.GridViewMaskBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radBtnAdd = new Telerik.WinControls.UI.RadButton();
             this.radBtnRemove = new Telerik.WinControls.UI.RadButton();
@@ -86,7 +86,13 @@ namespace sysAdminwp
             // 
             this.radGridView1.MasterTemplate.AllowAddNewRow = false;
             this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            gridViewMaskBoxColumn1.HeaderText = "Код";
+            gridViewMaskBoxColumn1.Mask = "000-000-111";
+            gridViewMaskBoxColumn1.Name = "column1";
+            gridViewMaskBoxColumn1.Width = 815;
+            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewMaskBoxColumn1});
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(836, 311);
             this.radGridView1.TabIndex = 0;

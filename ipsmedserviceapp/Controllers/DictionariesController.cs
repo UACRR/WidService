@@ -35,13 +35,13 @@ namespace ipsmedserviceapp.Controllers
             baseEng = new Dictionary<string, baseDictionaryEng>();
 
 
-            baseEng.Add("category", new baseDictionaryEng
-            {
-                getList = async () => await _dbContext.Category.Include(rec => rec.CategoryTr).AsNoTracking().ToListAsync(),
-                toObject = obj => obj.ToObject<Category>(),
-                getObjectById = async id => await _dbContext.Category.Where(rec => rec.CategoryCode == Convert.ToInt32(id)).Include(rec => rec.CategoryTr).SingleOrDefaultAsync(),
-                insertObject = newItem => { var addItem = newItem.ToObject<Category>(); _dbContext.Category.Add(addItem); }
-            }
+            //baseEng.Add("category", new baseDictionaryEng
+            //{
+            //    getList = async () => await _dbContext.Category.Include(rec => rec.CategoryTr).AsNoTracking().ToListAsync(),
+            //    toObject = obj => obj.ToObject<Category>(),
+            //    getObjectById = async id => await _dbContext.Category.Where(rec => rec.CategoryCode == Convert.ToInt32(id)).Include(rec => rec.CategoryTr).SingleOrDefaultAsync(),
+            //    insertObject = newItem => { var addItem = newItem.ToObject<Category>(); _dbContext.Category.Add(addItem); }
+            //}
         );
         }
 

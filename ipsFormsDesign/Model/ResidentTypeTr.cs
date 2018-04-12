@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class ResidentTypeTr
     {
-        public int ResidentCode { get; set; }
+        public int CodeI { get; set; }
         public string Lang { get; set; }
-        public string ResidentName { get; set; }
+        public string Name { get; set; }
 
-        public ResidentType ResidentCodeNavigation { get; set; }
+        public ResidentType CodeINavigation { get; set; }
     }
 }

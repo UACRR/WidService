@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             ActivityTypeTr = new HashSet<ActivityTypeTr>();
         }
 
-        public int ActivityCode { get; set; }
-        public string ActivityName { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<ActivityTypeTr> ActivityTypeTr { get; set; }
     }

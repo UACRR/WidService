@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             TypePlaceTr = new HashSet<TypePlaceTr>();
         }
 
-        public int PlCode { get; set; }
-        public string PlName { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<TypePlaceTr> TypePlaceTr { get; set; }
     }

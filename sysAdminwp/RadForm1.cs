@@ -14,14 +14,16 @@ using ipsmedserviceapp.Model;
 using Telerik.WinControls.UI;
 using System.IO;
 using WebAPIConnector;
+using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp
 {
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
 
-        private ApiConnector connector = new ApiConnector("http://localhost:54867/");
+
         private List<Category> list;
+        DictionaryBaseControl control = new DictionaryBaseControl();
 
         public RadForm1()
         {
@@ -33,14 +35,13 @@ namespace sysAdminwp
 
         private void setDataSource()
         {
-            var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");
-            list = connector.GetList<Category>("api/dictionary/base/category");
-            radGridView1.DataSource = list;
-            radTreeView1.DataSource = dictCategory;
-            radTreeView1.ChildMember = "DictCategory\\DicCategoryItems";
-            radTreeView1.DisplayMember = "Name\\Name";
+            var dictCategory = control.GetDefaultDicData("api/dictionary/list");
+           
 
-
+            // radTreeViewList.DataSource = list;
+            radTreeViewList.DataSource = dictCategory;
+            radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
+            radTreeViewList.DisplayMember = "Name\\Name";
         }
 
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)

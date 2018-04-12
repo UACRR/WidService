@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class RegionTr
     {
-        public int RegionCode { get; set; }
+        public int CodeI { get; set; }
         public string Lang { get; set; }
-        public string RegionName { get; set; }
+        public string Name { get; set; }
 
-        public Region RegionCodeNavigation { get; set; }
+        public Region CodeINavigation { get; set; }
     }
 }
