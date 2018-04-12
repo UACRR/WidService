@@ -28,19 +28,22 @@ namespace sysAdminwp
         {
             list = connector.GetList<Category>("api/dictionary/category");
             InitializeComponent();
-
             radGridView1.DataSource = list;
             radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
+            Upd();
+            
         }
 
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            radTBNameUa.Text = e.CurrentRow.Cells[1].Value.ToString();
+            Upd();
         }
 
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
+            radGridView1.AllowEditRow = !radGridView1.AllowEditRow;
             radGridView1.AllowAddNewRow = !radGridView1.AllowAddNewRow;
+
         }
 
         private void radBtnRemove_Click(object sender, EventArgs e)
@@ -51,12 +54,42 @@ namespace sysAdminwp
                 {
                     radGridView1.Rows.Remove(gvdri);
                     
-                    //this.UpdatePanelInfo(radGridView1.CurrentRow);
                 }
             }
+        }
 
-            //GridViewDataRowInfo gvdri = this.radGridView1.CurrentRow as GridViewDataRowInfo;
+        private void radBtnSave_Click(object sender, EventArgs e)
+        {
             
+            try
+            {
+                radGridView1.CurrentRow.Cells[0].Value = Convert.ToInt32(radTBCode.Text);
+            }
+            catch (Exception)
+            {
+                radTBCode.Text = radGridView1.CurrentRow.Cells[0].Value.ToString();
+            }
+            
+            radGridView1.CurrentRow.Cells[1].Value = radTBNameUa.Text;
+        }
+
+        private void Upd()
+        {
+            try
+            {
+                radTBCode.Text = radGridView1.CurrentRow.Cells[0].Value.ToString();
+                radTBNameUa.Text = radGridView1.CurrentRow.Cells[1].Value.ToString();
+            }
+            catch (Exception)
+            {
+                radTBCode.Text = default(string);
+                radTBNameUa.Text = default(string);
+            }
+        }
+
+        private void radBtnCancel_Click(object sender, EventArgs e)
+        {
+            Upd();
         }
     }
 }

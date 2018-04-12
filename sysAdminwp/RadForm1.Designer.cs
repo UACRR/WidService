@@ -47,8 +47,8 @@ namespace sysAdminwp
             this.radLabelNameEn = new Telerik.WinControls.UI.RadLabel();
             this.radLabelNameUa = new Telerik.WinControls.UI.RadLabel();
             this.radLabelCode = new Telerik.WinControls.UI.RadLabel();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.radBtnCancel = new Telerik.WinControls.UI.RadButton();
+            this.radBtnSave = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAdd)).BeginInit();
@@ -64,8 +64,8 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radLabelNameEn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelNameUa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,8 +128,8 @@ namespace sysAdminwp
             this.radPanelChange.Controls.Add(this.radLabelNameEn);
             this.radPanelChange.Controls.Add(this.radLabelNameUa);
             this.radPanelChange.Controls.Add(this.radLabelCode);
-            this.radPanelChange.Controls.Add(this.radButton2);
-            this.radPanelChange.Controls.Add(this.radButton1);
+            this.radPanelChange.Controls.Add(this.radBtnCancel);
+            this.radPanelChange.Controls.Add(this.radBtnSave);
             this.radPanelChange.Location = new System.Drawing.Point(205, 445);
             this.radPanelChange.Name = "radPanelChange";
             this.radPanelChange.Size = new System.Drawing.Size(836, 178);
@@ -224,21 +224,23 @@ namespace sysAdminwp
             this.radLabelCode.Text = "Код:";
             this.radLabelCode.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // radButton2
+            // radBtnCancel
             // 
-            this.radButton2.Location = new System.Drawing.Point(278, 135);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(110, 24);
-            this.radButton2.TabIndex = 1;
-            this.radButton2.Text = "Відміна";
+            this.radBtnCancel.Location = new System.Drawing.Point(278, 135);
+            this.radBtnCancel.Name = "radBtnCancel";
+            this.radBtnCancel.Size = new System.Drawing.Size(110, 24);
+            this.radBtnCancel.TabIndex = 1;
+            this.radBtnCancel.Text = "Відміна";
+            this.radBtnCancel.Click += new System.EventHandler(this.radBtnCancel_Click);
             // 
-            // radButton1
+            // radBtnSave
             // 
-            this.radButton1.Location = new System.Drawing.Point(162, 135);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 24);
-            this.radButton1.TabIndex = 0;
-            this.radButton1.Text = "Зберегти";
+            this.radBtnSave.Location = new System.Drawing.Point(162, 135);
+            this.radBtnSave.Name = "radBtnSave";
+            this.radBtnSave.Size = new System.Drawing.Size(110, 24);
+            this.radBtnSave.TabIndex = 0;
+            this.radBtnSave.Text = "Зберегти";
+            this.radBtnSave.Click += new System.EventHandler(this.radBtnSave_Click);
             // 
             // RadForm1
             // 
@@ -272,8 +274,8 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radLabelNameEn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelNameUa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -286,8 +288,8 @@ namespace sysAdminwp
         private Telerik.WinControls.UI.RadButton radBtnRemove;
         private Telerik.WinControls.UI.RadTreeView radTreeView1;
         private Telerik.WinControls.UI.RadPanel radPanelChange;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton radBtnSave;
+        private Telerik.WinControls.UI.RadButton radBtnCancel;
         private Telerik.WinControls.UI.RadTextBox radTBCode;
         private Telerik.WinControls.UI.RadLabel radLabelNameRu;
         private Telerik.WinControls.UI.RadLabel radLabelNameEn;
