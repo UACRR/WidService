@@ -45,6 +45,16 @@ namespace ipsmedserviceapp.Controllers
         );
         }
 
+        [HttpGet("list")]
+        public async Task<IActionResult> GetDictrionaryList()
+        {
+            var list = await _dbContext.DictCategory.Include(rec => rec.DicCategoryItems).AsNoTracking().ToListAsync();
+            var listOut = list.Where(rec => rec.DicCategoryItems.Count > 0).ToList();
+            return Json(listOut);
+        }
+
+
+
         [HttpGet("base/{dictionay}")]
         public async Task<ActionResult> GetBaseDictionaryList(string dictionay)
         {
