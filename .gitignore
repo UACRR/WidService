@@ -12,6 +12,10 @@
 **/obj/
 **/bin/
 /lib
+/ipsmedserviceapp/obj
+/ipsmedserviceapp/bin
+
+
 
 # dependencies
 /node_modules
