@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ipsmedserviceapp.Model
+{
+    public partial class KlR030
+    {
+        public KlR030()
+        {
+            KlR030tr = new HashSet<KlR030tr>();
+        }
+
+        public string R030 { get; set; }
+        public short? R031 { get; set; }
+        public string CountryCode { get; set; }
+        public string A3 { get; set; }
+        public string R030Name { get; set; }
+        public int? NOmin { get; set; }
+        public string NAim { get; set; }
+        public short? PrWork { get; set; }
+
+        public Country CountryCodeNavigation { get; set; }
+        public ICollection<KlR030tr> KlR030tr { get; set; }
+    }
+}

@@ -2,20 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ipsFormsDesign.Dictionary;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
+using ipsmedserviceapp.Controllers;
+using System.Linq.Expressions;
 
 namespace ipsmedserviceapp.Controllers
 {
-    public class baseDictionaryEng
+    public interface TypedDict
     {
-        public Func<Task<object>> getList;
+        Type dicType;
+    }
+    public class BaseDictionaryEng<T>
+    {
+        public Type dicType;
+        public Func<List<T>> getList;
         public Func<JObject, object> toObject;
-        public Func<int, Task<object>> getObjectById;
+        public Func<string, Task<object>> getObjectById;
         public Action<JObject> insertObject;
+        public Action<object, object> updateObject;
     }
 
     [Produces("application/json")]
@@ -23,26 +32,47 @@ namespace ipsmedserviceapp.Controllers
     public class DictionariesController : Controller
     {
         private MediaServiceContext _dbContext;
-        private Dictionary<string, baseDictionaryEng> baseEng;
+        private Dictionary<string, object> baseEng;
         public DictionariesController(MediaServiceContext context)
         {
             _dbContext = context;
-            setEng();
+            SetEng();
         }
 
-        private void setEng()
+
+        private List<TEntity> getList<TEntity>(params Expression<Func<TEntity, object>>[] children)  where TEntity : class
         {
-            baseEng = new Dictionary<string, baseDictionaryEng>();
+            DbSet<TEntity> dbSet = _dbContext.Set<TEntity>();
+            children.ToList().ForEach(x => dbSet.Include(x).Load());
+
+            return dbSet.ToList();
+
+        }
+
+        private void SetEng()
+        {
+            baseEng = new Dictionary<string, object>();
 
 
-            //baseEng.Add("category", new baseDictionaryEng
-            //{
-            //    getList = async () => await _dbContext.Category.Include(rec => rec.CategoryTr).AsNoTracking().ToListAsync(),
-            //    toObject = obj => obj.ToObject<Category>(),
-            //    getObjectById = async id => await _dbContext.Category.Where(rec => rec.CategoryCode == Convert.ToInt32(id)).Include(rec => rec.CategoryTr).SingleOrDefaultAsync(),
-            //    insertObject = newItem => { var addItem = newItem.ToObject<Category>(); _dbContext.Category.Add(addItem); }
-            //}
-        );
+            baseEng.Add("category", new BaseDictionaryEng<Category>
+            {
+                dicType = typeof(Category),
+                getList = () => getList<Category>(r=>r.CategoryTr),
+                toObject = obj => (Category)obj.ToObject<DictBaseTypeI>(),
+                getObjectById = async id => await _dbContext.Category.Where(rec => rec.CategoryCode == Convert.ToInt32(id)).Include(rec => rec.CategoryTr).SingleOrDefaultAsync(),
+                insertObject = newItem => { var addItem = newItem.ToObject<DictBaseTypeI>(); _dbContext.Category.Add((Category)addItem); },
+                updateObject = ( sors, dest) => {
+                    Category left = (Category)dest, right = (Category)sors;
+                    left.SetFields(right);
+                    List<CategoryTr> tempItems = left.CategoryTr.Where( rec => !right.CategoryTr.Any( item => item.CategoryCode == rec.CategoryCode && item.Lang == rec.Lang )).ToList();
+                    tempItems.ForEach( item => left.CategoryTr.Remove(item));
+
+                    tempItems = right.CategoryTr.Where(rec => !left.CategoryTr.Any(item => item.CategoryCode == rec.CategoryCode)).ToList();
+                    tempItems.ForEach( rec => { left.CategoryTr.Add(rec); right.CategoryTr.Remove(rec); });
+                    right.CategoryTr.ToList().ForEach(rec => left.CategoryTr.First(item => item.CategoryCode == rec.CategoryCode && rec.Lang == item.Lang).CategoryName = rec.CategoryName);
+                } 
+            }
+            );
         }
 
         [HttpGet("list")]
@@ -64,14 +94,14 @@ namespace ipsmedserviceapp.Controllers
                 return BadRequest();
 
             object list = null;
-            baseDictionaryEng eng = baseEng[dictionay.ToLower()];
+            object eng = baseEng[dictionay.ToLower()];
             list = await eng.getList();
 
             return Json(list);
         }
 
         [HttpGet("base/{dictionary}/{id}")]
-        public async Task<ActionResult> GetBaseDictionaryById(string dictionary, int id)
+        public async Task<ActionResult> GetBaseDictionaryById(string dictionary, string id)
         {
 
             string normalizeName = dictionary.ToLower();
@@ -79,7 +109,7 @@ namespace ipsmedserviceapp.Controllers
             if (!baseEng.Keys.Contains(normalizeName))
                 return BadRequest();
 
-            baseDictionaryEng eng = baseEng[normalizeName];
+            BaseDictionaryEng eng = baseEng[normalizeName];
             object obj = null;
             obj = await eng.getObjectById( id );
 
@@ -94,8 +124,28 @@ namespace ipsmedserviceapp.Controllers
             if (!baseEng.Keys.Contains(normalizeName))
                 return BadRequest();
 
-            baseDictionaryEng eng = baseEng[normalizeName];
+            BaseDictionaryEng eng = baseEng[normalizeName];
             eng.insertObject(data);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+
+        }
+
+        [HttpPut("base/{dictionay}/{id}")]
+        public async Task<ActionResult> UpdateBaseItem(string dictionary, string id, JObject data)
+        {
+            string normalizeName = dictionary.ToLower();
+
+            if (!baseEng.Keys.Contains(normalizeName))
+                return BadRequest();
+
+            BaseDictionaryEng eng = baseEng[normalizeName];
+            var dest = eng.getObjectById(id);
+            var sors = eng.toObject(data);
+
+
 
             await _dbContext.SaveChangesAsync();
 

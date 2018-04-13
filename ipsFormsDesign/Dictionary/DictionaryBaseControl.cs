@@ -18,15 +18,9 @@ namespace ipsFormsDesign.Dictionary
         }
 
 
-        public IList<object> GetDefaultDicData(DicCategoryItems item )
+        public IList<object> GetDefaultDicData(DicCategoryItems item)
         {
-            List<object> retList = null;
-            switch( item.DicType )
-            {
-
-            }
-            //var list  = connector.GetList<object>(url);
-            return list;
+            return null;
         }
     }
 }

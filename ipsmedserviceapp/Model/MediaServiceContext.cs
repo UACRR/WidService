@@ -8,12 +8,23 @@ namespace ipsmedserviceapp.Model
     {
         public virtual DbSet<ActivityType> ActivityType { get; set; }
         public virtual DbSet<ActivityTypeTr> ActivityTypeTr { get; set; }
+        public virtual DbSet<AnketaStatus> AnketaStatus { get; set; }
+        public virtual DbSet<AnketaStatusTr> AnketaStatusTr { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<CategoryTr> CategoryTr { get; set; }
+        public virtual DbSet<Country> Country { get; set; }
+        public virtual DbSet<CountryTr> CountryTr { get; set; }
         public virtual DbSet<CustomerStatus> CustomerStatus { get; set; }
         public virtual DbSet<CustomerStatusTr> CustomerStatusTr { get; set; }
         public virtual DbSet<CustomerType> CustomerType { get; set; }
         public virtual DbSet<CustomerTypeTr> CustomerTypeTr { get; set; }
         public virtual DbSet<DicCategoryItems> DicCategoryItems { get; set; }
         public virtual DbSet<DictCategory> DictCategory { get; set; }
+        public virtual DbSet<KlR030> KlR030 { get; set; }
+        public virtual DbSet<KlR030tr> KlR030tr { get; set; }
+        public virtual DbSet<Lang> Lang { get; set; }
+        public virtual DbSet<PositionType> PositionType { get; set; }
+        public virtual DbSet<PositionTypeTr> PositionTypeTr { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<RegionTr> RegionTr { get; set; }
         public virtual DbSet<ResidentType> ResidentType { get; set; }
@@ -76,6 +87,160 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ACTIVITY_REFERENCE_ACTIVITY");
+            });
+
+            modelBuilder.Entity<AnketaStatus>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("AnketaStatus", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<AnketaStatusTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("AnketaStatusTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.AnketaStatusTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ANKETAST_REFERENCE_ANKETAST");
+            });
+
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.HasKey(e => e.CategoryCode);
+
+                entity.ToTable("Category", "dbo");
+
+                entity.Property(e => e.CategoryCode)
+                    .HasColumnName("categoryCode")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.CategoryName)
+                    .HasColumnName("categoryName")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CategoryStatus).HasColumnName("categoryStatus");
+
+                entity.Property(e => e.TableObj)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<CategoryTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CategoryCode, e.Lang });
+
+                entity.ToTable("CategoryTr", "dbo");
+
+                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.CategoryName)
+                    .HasColumnName("categoryName")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CategoryCodeNavigation)
+                    .WithMany(p => p.CategoryTr)
+                    .HasForeignKey(d => d.CategoryCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CATEGtr_REFERENCE_CATEGORY");
+            });
+
+            modelBuilder.Entity<Country>(entity =>
+            {
+                entity.HasKey(e => e.CountryCode);
+
+                entity.ToTable("Country", "dbo");
+
+                entity.Property(e => e.CountryCode)
+                    .HasColumnName("countryCode")
+                    .HasColumnType("char(3)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.A2)
+                    .HasColumnName("a2")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.ContinentCode).HasColumnName("continentCode");
+
+                entity.Property(e => e.CountryName)
+                    .HasColumnName("countryName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CountryNameShort)
+                    .HasColumnName("countryNameShort")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.KOdLit)
+                    .HasColumnName("kOD_LIT")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.OrderBy).HasColumnName("orderBy");
+
+                entity.Property(e => e.ShortChoise).HasColumnName("shortChoise");
+            });
+
+            modelBuilder.Entity<CountryTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CountryCode, e.Lang })
+                    .ForSqlServerIsClustered(false);
+
+                entity.ToTable("CountryTr", "dbo");
+
+                entity.Property(e => e.CountryCode)
+                    .HasColumnName("countryCode")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.CountryName)
+                    .HasColumnName("countryName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CountryNameShort)
+                    .HasColumnName("countryNameShort")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CountryCodeNavigation)
+                    .WithMany(p => p.CountryTr)
+                    .HasForeignKey(d => d.CountryCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COUNTRYT_REFERENCE_COUNTRY");
             });
 
             modelBuilder.Entity<CustomerStatus>(entity =>
@@ -202,6 +367,140 @@ namespace ipsmedserviceapp.Model
                     .IsRequired()
                     .HasMaxLength(100)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<KlR030>(entity =>
+            {
+                entity.HasKey(e => e.R030);
+
+                entity.ToTable("KL_R030", "dbo");
+
+                entity.Property(e => e.R030)
+                    .HasColumnName("r030")
+                    .HasColumnType("char(3)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.A3)
+                    .HasColumnName("a3")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.CountryCode)
+                    .HasColumnName("countryCode")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.NAim)
+                    .HasColumnName("nAIM")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NOmin).HasColumnName("nOMIN");
+
+                entity.Property(e => e.PrWork).HasColumnName("pr_work");
+
+                entity.Property(e => e.R030Name)
+                    .HasColumnName("r030Name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.R031).HasColumnName("r031");
+
+                entity.HasOne(d => d.CountryCodeNavigation)
+                    .WithMany(p => p.KlR030)
+                    .HasForeignKey(d => d.CountryCode)
+                    .HasConstraintName("FK_KL_R030_REFERENCE_COUNTRY");
+            });
+
+            modelBuilder.Entity<KlR030tr>(entity =>
+            {
+                entity.HasKey(e => new { e.R030, e.Lang });
+
+                entity.ToTable("KL_R030Tr", "dbo");
+
+                entity.Property(e => e.R030)
+                    .HasColumnName("r030")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.R030Name)
+                    .HasColumnName("r030Name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.R030Navigation)
+                    .WithMany(p => p.KlR030tr)
+                    .HasForeignKey(d => d.R030)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_R030TR_REFERENCE_KL_R030");
+            });
+
+            modelBuilder.Entity<Lang>(entity =>
+            {
+                entity.HasKey(e => e.CodeS);
+
+                entity.ToTable("Lang", "dbo");
+
+                entity.Property(e => e.CodeS)
+                    .HasColumnName("codeS")
+                    .HasColumnType("char(3)")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PositionType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("PositionType", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PositionNameEn)
+                    .HasColumnName("positionNameEn")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PositionNameRu)
+                    .HasColumnName("positionNameRu")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PositionTypeTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("PositionTypeTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.PositionTypeTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_POSITION_REFERENCE_POSITION");
             });
 
             modelBuilder.Entity<Region>(entity =>
