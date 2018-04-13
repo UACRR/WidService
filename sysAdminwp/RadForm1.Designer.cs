@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 using sysAdminwp;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
@@ -53,6 +54,11 @@ namespace sysAdminwp
             this.radTxtBoxFilter = new Telerik.WinControls.UI.RadTextBox();
             this.radTxtBoxSearchData = new Telerik.WinControls.UI.RadTextBox();
             this.radLblSearch = new System.Windows.Forms.Label();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemSaveConfig = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAdd)).BeginInit();
@@ -72,6 +78,7 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTxtBoxFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTxtBoxSearchData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -283,11 +290,46 @@ namespace sysAdminwp
             this.radLblSearch.TabIndex = 7;
             this.radLblSearch.Text = "Search:";
             // 
+            // radMenu1
+            // 
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItem1,
+            this.radMenuItem2});
+            this.radMenu1.Location = new System.Drawing.Point(0, 0);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(1160, 20);
+            this.radMenu1.TabIndex = 8;
+            // 
+            // radMenuItem1
+            // 
+            this.radMenuItem1.Name = "radMenuItem1";
+            this.radMenuItem1.Text = "Файл";
+            // 
+            // radMenuItem2
+            // 
+            this.radMenuItem2.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemSaveConfig,
+            this.radMenuItem4});
+            this.radMenuItem2.Name = "radMenuItem2";
+            this.radMenuItem2.Text = "Конфігурація";
+            // 
+            // radMenuItemSaveConfig
+            // 
+            this.radMenuItemSaveConfig.Name = "radMenuItemSaveConfig";
+            this.radMenuItemSaveConfig.Text = "Зберегти поточну";
+            this.radMenuItemSaveConfig.Click += new System.EventHandler(this.radMenuItemSaveConfig_Click);
+            // 
+            // radMenuItem4
+            // 
+            this.radMenuItem4.Name = "radMenuItem4";
+            this.radMenuItem4.Text = "Відновити початкові налаштуавння";
+            // 
             // RadForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 635);
+            this.Controls.Add(this.radMenu1);
             this.Controls.Add(this.radLblSearch);
             this.Controls.Add(this.radTxtBoxSearchData);
             this.Controls.Add(this.radTxtBoxFilter);
@@ -302,6 +344,7 @@ namespace sysAdminwp
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "RadForm1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAdd)).EndInit();
@@ -322,6 +365,7 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTxtBoxFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTxtBoxSearchData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -348,5 +392,10 @@ namespace sysAdminwp
         private RadTextBox radTxtBoxFilter;
         private RadTextBox radTxtBoxSearchData;
         private System.Windows.Forms.Label radLblSearch;
+        private RadMenu radMenu1;
+        private RadMenuItem radMenuItem1;
+        private RadMenuItem radMenuItem2;
+        private RadMenuItem radMenuItemSaveConfig;
+        private RadMenuItem radMenuItem4;
     }
 }

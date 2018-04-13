@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
 using Telerik.WinControls.UI;
 using System.IO;
+using sysAdminwp.Properties;
 using WebAPIConnector;
 
 namespace sysAdminwp
@@ -30,6 +31,7 @@ namespace sysAdminwp
             radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
             radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             UpdateEditPanel();
+            InitializeColumnSize();
         }
 
         #region Методи
@@ -83,6 +85,15 @@ namespace sysAdminwp
             this.radTBNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
             this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
 
+        }
+
+        private void InitializeColumnSize()
+        {
+            radGridView1.Columns[0].Width = 50;
+            radGridView1.Columns[1].Width = 300;
+            radGridView1.Columns[2].Width = 200;
+            radGridView1.Columns[3].Width = 200;
+            //подумать...
         }
         #endregion
 
@@ -153,7 +164,6 @@ namespace sysAdminwp
                 if (gvdri!=null)
                 {
                     radGridView1.Rows.Remove(gvdri);
-                    
                 }
             }
         }
@@ -179,7 +189,6 @@ namespace sysAdminwp
         {
             radTreeViewList.Filter = radTxtBoxFilter.Text;
         }
-
         //зміни при виборі елементу з дерева
         private void radTreeViewList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
@@ -237,7 +246,7 @@ namespace sysAdminwp
         }
 
         /// <summary>
-        /// Метод зміни стану включеності компонентів
+        /// Метод зміни стану увімкненості компонентів
         /// </summary>
         /// <param name="isEnable">Якщо true - компонент активний</param>
         private void ChangeEnableElements(bool isEnable)
@@ -250,7 +259,18 @@ namespace sysAdminwp
             radTxtBoxFilter.Enabled = isEnable;
         }
 
+
+
         #endregion
 
+        private void radMenuItemSaveConfig_Click(object sender, EventArgs e)
+        {
+            radGridView1.Columns[0].Width = Properties.Settings.Default.column0_width;
+
+
+            DataGridView gv = new DataGridView();
+            gv.Columns[0].DisplayIndex = Properties.Settings.Default.column0_width;
+            radGridView1.Columns.Move(radGridView1.Columns["col"], Properties.Settings.Default.col_dis_index0);
+        }
     }
 }
