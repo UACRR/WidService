@@ -34,7 +34,7 @@ namespace sysAdminwp
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radBtnAdd = new Telerik.WinControls.UI.RadButton();
             this.radBtnRemove = new Telerik.WinControls.UI.RadButton();
@@ -80,6 +80,7 @@ namespace sysAdminwp
             this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radGridView1.EnableCustomFiltering = true;
             this.radGridView1.Location = new System.Drawing.Point(243, 64);
             this.radGridView1.Margin = new System.Windows.Forms.Padding(1);
             // 
@@ -87,15 +88,13 @@ namespace sysAdminwp
             // 
             this.radGridView1.MasterTemplate.AllowAddNewRow = false;
             this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.MasterTemplate.EnableCustomFiltering = true;
+            this.radGridView1.MasterTemplate.EnableFiltering = true;
+            this.radGridView1.MasterTemplate.ShowFilteringRow = false;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(907, 340);
             this.radGridView1.TabIndex = 0;
-
-            this.radGridView1.EnableHotTracking = true;
-            this.radGridView1.ShowFilteringRow = false;
-            this.radGridView1.EnableFiltering = true;
-            this.radGridView1.EnableCustomFiltering = true;
             // 
             // radBtnAdd
             // 
@@ -164,6 +163,7 @@ namespace sysAdminwp
             this.radTBNameRu.Name = "radTBNameRu";
             this.radTBNameRu.Size = new System.Drawing.Size(727, 20);
             this.radTBNameRu.TabIndex = 9;
+            this.radTBNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
             // 
             // radTBNameEn
             // 
@@ -173,6 +173,7 @@ namespace sysAdminwp
             this.radTBNameEn.Name = "radTBNameEn";
             this.radTBNameEn.Size = new System.Drawing.Size(727, 20);
             this.radTBNameEn.TabIndex = 8;
+            this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
             // 
             // radTBNameUa
             // 
@@ -182,6 +183,7 @@ namespace sysAdminwp
             this.radTBNameUa.Name = "radTBNameUa";
             this.radTBNameUa.Size = new System.Drawing.Size(727, 20);
             this.radTBNameUa.TabIndex = 7;
+            this.radTBNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
             // 
             // radTBCode
             // 
@@ -191,6 +193,7 @@ namespace sysAdminwp
             this.radTBCode.Name = "radTBCode";
             this.radTBCode.Size = new System.Drawing.Size(727, 20);
             this.radTBCode.TabIndex = 6;
+            this.radTBCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
             // 
             // radLabelNameRu
             // 

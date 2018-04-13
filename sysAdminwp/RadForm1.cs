@@ -19,25 +19,81 @@ namespace sysAdminwp
 {
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
-
         private ApiConnector connector = new ApiConnector("http://localhost:54867/");
         private List<Category> list;
 
         public RadForm1()
         {
             InitializeComponent();
-            setDataSource();
+            SetDataSource();
             radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
             radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
             radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
-            Upd();
+            UpdateEditPanel();
         }
 
+        #region Методи
+        
+        //метод встановлення джерела даних
+        private void SetDataSource()
+        {
+            var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");
+            list = connector.GetList<Category>("api/dictionary/base/category");
+            radGridView1.DataSource = list;
+            radTreeViewList.DataSource = dictCategory;
+            radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
+            radTreeViewList.DisplayMember = "Name\\Name";
+        }
+
+        //метод збереження змін
+        private void SaveChanges()
+        {
+            try
+            {
+                radGridView1.CurrentRow.Cells[0].Value = Convert.ToInt32(radTBCode.Text);
+            }
+            catch (Exception)
+            {
+                radTBCode.Text = radGridView1.CurrentRow.Cells[0].Value.ToString();
+            }
+
+            radGridView1.CurrentRow.Cells[1].Value = radTBNameUa.Text;
+        }
+
+        //метод оновлення для панелі редагування
+        private void UpdateEditPanel()
+        {
+            //відписуємось від події - обрали інший рядок, зміни не внесено
+            this.radTBCode.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
+            this.radTBNameUa.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
+            this.radTBNameRu.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
+            this.radTBNameEn.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
+                 try
+                 {
+                     radTBCode.Text = radGridView1.CurrentRow.Cells[0].Value.ToString();
+                     radTBNameUa.Text = radGridView1.CurrentRow.Cells[1].Value.ToString();
+                 }
+                 catch (Exception)
+                 {
+                     radTBCode.Text = default(string);
+                     radTBNameUa.Text = default(string);
+                 }
+            this.radTBCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
+            this.radTBNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
+            this.radTBNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
+            this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
+
+        }
+        #endregion
+
+
+        //зміна даних в grid при написанні пошукового слова
         private void RadTxtBoxSearchData_TextChanged(object sender, EventArgs e)
         {
             radGridView1.MasterTemplate.Refresh();
         }
 
+        //пошук по записах в grid
         private void RadGridView1_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
         {
             if (string.IsNullOrEmpty(radTxtBoxSearchData.Text))
@@ -51,14 +107,15 @@ namespace sysAdminwp
                 radGridView1.EndUpdate(false);
                 return;
             }
-            //
 
             radGridView1.BeginUpdate();
             e.Visible = false;
             for (int i = 0; i < radGridView1.ColumnCount; i++)
-            {
-                try
-                {
+            {   
+                //якщо поле пусте
+                if (e.Row.Cells[i].Value == null)
+                    continue;
+                    
                     string text = e.Row.Cells[i].Value.ToString();
                     if (text.IndexOf(radTxtBoxSearchData.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
                     {
@@ -71,42 +128,24 @@ namespace sysAdminwp
                     {
                         e.Row.Cells[i].Style.Reset();
                     }
-
                     radGridView1.EndUpdate(false);
-                }
-                catch (Exception)
-                {
-                    
-                }
-                
             }
-            //
         }
 
-        private void setDataSource()
-        {
-            var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");
-            list = connector.GetList<Category>("api/dictionary/base/category");
-            radGridView1.DataSource = list;
-            radTreeViewList.DataSource = dictCategory;
-            radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
-            radTreeViewList.DisplayMember = "Name\\Name";
-            
 
-        }
-
+        //оновлення панелі редагування
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            Upd();
+                UpdateEditPanel();
         }
 
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
             radGridView1.AllowEditRow = !radGridView1.AllowEditRow;
             radGridView1.AllowAddNewRow = !radGridView1.AllowAddNewRow;
-
         }
 
+        //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
             using (GridViewDataRowInfo gvdri = radGridView1.CurrentRow as GridViewDataRowInfo)
@@ -119,53 +158,29 @@ namespace sysAdminwp
             }
         }
 
+        //кнопка збереження
         private void radBtnSave_Click(object sender, EventArgs e)
         {
-            
-            try
-            {
-                radGridView1.CurrentRow.Cells[0].Value = Convert.ToInt32(radTBCode.Text);
-            }
-            catch (Exception)
-            {
-                radTBCode.Text = radGridView1.CurrentRow.Cells[0].Value.ToString();
-            }
-            
-            radGridView1.CurrentRow.Cells[1].Value = radTBNameUa.Text;
+            SaveChanges();
+            ChangeEnableElements(true);
         }
 
-        private void Upd()
-        {
-            try
-            {
-                radTBCode.Text = radGridView1.CurrentRow.Cells[0].Value.ToString();
-                radTBNameUa.Text = radGridView1.CurrentRow.Cells[1].Value.ToString();
-            }
-            catch (Exception)
-            {
-                radTBCode.Text = default(string);
-                radTBNameUa.Text = default(string);
-            }
-        }
 
+
+        //кнопка відміни внесених змін
         private void radBtnCancel_Click(object sender, EventArgs e)
         {
-            Upd();
+            UpdateEditPanel();
+            ChangeEnableElements(true);
         }
 
-
+        //фільтр елементів дерева
         private void radTxtBoxFilter_TextChanged(object sender, EventArgs e)
         {
             radTreeViewList.Filter = radTxtBoxFilter.Text;
         }
 
-        private void radTxtBoxSearchData_TextChanged(object sender, EventArgs e)
-        {
-            // = radTxtBoxSearchData.Text;
-        }
-
-
-
+        //зміни при виборі елементу з дерева
         private void radTreeViewList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             var urlCategories = connector.GetList<DictCategory>("api/dictionary/list");
@@ -181,16 +196,61 @@ namespace sysAdminwp
                              list = connector.GetList<Category>(catItem.Url);
                              radGridView1.DataSource = list;
                              radPanelChange.Enabled = true;
+                             radTxtBoxSearchData.Enabled = true;
+                             radBtnAdd.Enabled = true;
+                             radBtnRemove.Enabled = true;
                          }
                          catch (Exception)
                          {
                              radGridView1.DataSource = default(DataGrid);
-                             Upd();
+                             UpdateEditPanel();
                              radPanelChange.Enabled = false;
+                             radTxtBoxSearchData.Enabled = false;
+                             radBtnAdd.Enabled = false;
+                             radBtnRemove.Enabled = false;
                          }
                      }
                  }
              }            
         }
+
+
+        #region події при редагуванні даних на панелі
+        private void radTBCode_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
+        {
+            ChangeEnableElements(false);
+        }
+
+        private void radTBNameUa_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
+        {
+            ChangeEnableElements(false);
+        }
+
+        private void radTBNameEn_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
+        {
+            ChangeEnableElements(false);
+        }
+
+        private void radTBNameRu_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
+        {
+            ChangeEnableElements(false);
+        }
+
+        /// <summary>
+        /// Метод зміни стану включеності компонентів
+        /// </summary>
+        /// <param name="isEnable">Якщо true - компонент активний</param>
+        private void ChangeEnableElements(bool isEnable)
+        {
+            radGridView1.Enabled = isEnable;
+            radTreeViewList.Enabled = isEnable;
+            radBtnAdd.Enabled = isEnable;
+            radBtnRemove.Enabled = isEnable;
+            radTxtBoxSearchData.Enabled = isEnable;
+            radTxtBoxFilter.Enabled = isEnable;
+        }
+
+        #endregion
+
     }
 }
