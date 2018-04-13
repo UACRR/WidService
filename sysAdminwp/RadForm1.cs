@@ -270,7 +270,7 @@ namespace sysAdminwp
 
             DataGridView gv = new DataGridView();
             gv.Columns[0].DisplayIndex = Properties.Settings.Default.column0_width;
-            radGridView1.Columns.Move(radGridView1.Columns["col"], Properties.Settings.Default.col_dis_index0);
+            //radGridView1.Columns.Move(radGridView1.Columns["col"], Properties.Settings.Default.col_dis_index0);
         }
     }
 }
