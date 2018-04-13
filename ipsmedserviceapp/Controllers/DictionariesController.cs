@@ -13,13 +13,13 @@ using System.Linq.Expressions;
 
 namespace ipsmedserviceapp.Controllers
 {
-    public interface TypedDict
+    public interface ITypedDict
     {
-        Type dicType;
+        Type dicType { get;  }
     }
-    public class BaseDictionaryEng<T>
+    public class BaseDictionaryEng<T> : ITypedDict
     {
-        public Type dicType;
+        public Type dicType { get; } = typeof(T);
         public Func<List<T>> getList;
         public Func<JObject, object> toObject;
         public Func<string, Task<object>> getObjectById;
@@ -56,8 +56,7 @@ namespace ipsmedserviceapp.Controllers
 
             baseEng.Add("category", new BaseDictionaryEng<Category>
             {
-                dicType = typeof(Category),
-                getList = () => getList<Category>(r=>r.CategoryTr),
+                  getList = () => getList<Category>(r=>r.CategoryTr),
                 toObject = obj => (Category)obj.ToObject<DictBaseTypeI>(),
                 getObjectById = async id => await _dbContext.Category.Where(rec => rec.CategoryCode == Convert.ToInt32(id)).Include(rec => rec.CategoryTr).SingleOrDefaultAsync(),
                 insertObject = newItem => { var addItem = newItem.ToObject<DictBaseTypeI>(); _dbContext.Category.Add((Category)addItem); },
@@ -94,7 +93,7 @@ namespace ipsmedserviceapp.Controllers
                 return BadRequest();
 
             object list = null;
-            object eng = baseEng[dictionay.ToLower()];
+            ITypedDict eng = baseEng[dictionay.ToLower()];
             list = await eng.getList();
 
             return Json(list);
