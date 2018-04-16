@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace WebAPIConnector
 {
@@ -35,11 +36,17 @@ namespace WebAPIConnector
         {
             string retApiString = client.GetStringAsync(url).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
-
-            List<T> list = array.Select( rec => rec.ToObject<T>()).ToList<T>();
-
+            List<T> list = array.Select( rec => rec.ToObject<T>()).ToList();
+            
             return list;
         }
+
+        public List<T> GetData<T>(string url)
+        {
+
+            return new List<T>();
+        }
+
 
         /// <summary>
         /// Получити об'єкт з серверу додатків по ID

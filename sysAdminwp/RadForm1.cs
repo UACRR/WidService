@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
 using Telerik.WinControls.UI;
 using System.IO;
+using ipsFormsDesign.Dictionary;
 using sysAdminwp.Properties;
 using WebAPIConnector;
 
@@ -21,7 +22,7 @@ namespace sysAdminwp
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
         private ApiConnector connector = new ApiConnector("http://localhost:54867/");
-        private List<ActivityType> list, list2;
+        private List<DictBaseTypeI> list, list2;
 
         public RadForm1()
         {
@@ -45,7 +46,19 @@ namespace sysAdminwp
             radTreeViewList.DisplayMember = "Name\\Name";
 
             //на грід
-            list = connector.GetList<ActivityType>("api/dictionary/base/activitytype");
+            
+            list = connector.GetList<DictBaseTypeI>("api/dictionary/base/activitytype");
+            foreach (var items in list)
+            {
+                foreach (var itemName in items.DictTrI)
+                {
+                    if (itemName.Lang == "Ru")
+                    {
+                        
+                    }
+                }
+            }
+
             radGridView1.DataSource = list;
 
         }
@@ -198,7 +211,7 @@ namespace sysAdminwp
                      {
                          try
                          {
-                             list = connector.GetList<ActivityType>(catItem.Url);
+                             list = connector.GetList<DictBaseTypeI>(catItem.Url);
                              radGridView1.DataSource = list;
                              radPanelChange.Enabled = true;
                              radTxtBoxSearchData.Enabled = true;
