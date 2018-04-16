@@ -15,22 +15,66 @@ namespace ipsmedserviceapp.Controllers
 {
     public interface ITypedDict
     {
-        Type dicType { get;  }
+        Type dicType { get; }
     }
-    public class BaseDictionaryEng<T> : ITypedDict
+    public class BaseDictionaryEng<T,TBase> where T : class where TBase : class
     {
+        private MediaServiceContext _dbContext;
+        private Func<T, string, bool> _compareId;
+        private Expression<Func<T, object>>[] _includes;
+
+
+        public BaseDictionaryEng(
+            MediaServiceContext dbContext,
+            Func<T, string, bool> compareId,
+            params Expression<Func<T, object>>[] includes
+            )
+        {
+            _dbContext = dbContext;
+            _compareId = compareId;
+            _includes = includes;
+        }
+
         public Type dicType { get; } = typeof(T);
-        public Func<List<T>> getList;
-        public Func<JObject, object> toObject;
-        public Func<string, Task<object>> getObjectById;
-        public Action<JObject> insertObject;
-        public Action<object, object> updateObject;
+        public Type dicBaseType { get; } = typeof(TBase);
+        private IQueryable<T> addInclude(IQueryable<T> set)
+        {
+            if (_includes.Any())
+            {
+                foreach (var item in _includes)
+                    set = set.Include(item);
+
+            }
+
+            return set;
+        }
+
+        public async Task<List<T>> GetList()
+        {
+
+            IQueryable<T> set = _dbContext.Set<T>();
+            set = addInclude(set);
+            return await set.ToListAsync();
+        }
+
+        public async Task<T> GetById( string id )
+        {
+
+            IQueryable<T> set = _dbContext.Set<T>().Where( r => _compareId(r, id) );
+            set = addInclude(set);
+
+            return await set.SingleOrDefaultAsync();
+        }
+
     }
+
+
 
     [Produces("application/json")]
     [Route("api/dictionary")]
     public class DictionariesController : Controller
     {
+
         private MediaServiceContext _dbContext;
         private Dictionary<string, object> baseEng;
         public DictionariesController(MediaServiceContext context)
@@ -39,38 +83,15 @@ namespace ipsmedserviceapp.Controllers
             SetEng();
         }
 
-
-        private List<TEntity> getList<TEntity>(params Expression<Func<TEntity, object>>[] children)  where TEntity : class
-        {
-            DbSet<TEntity> dbSet = _dbContext.Set<TEntity>();
-            children.ToList().ForEach(x => dbSet.Include(x).Load());
-
-            return dbSet.ToList();
-
-        }
+        //MediaServiceContext dbContext,
+        //Func<T, string, bool> compareId,
+        //params Expression<Func<T, object>>[] includes
 
         private void SetEng()
         {
             baseEng = new Dictionary<string, object>();
-
-
-            baseEng.Add("category", new BaseDictionaryEng<Category>
-            {
-                  getList = () => getList<Category>(r=>r.CategoryTr),
-                toObject = obj => (Category)obj.ToObject<DictBaseTypeI>(),
-                getObjectById = async id => await _dbContext.Category.Where(rec => rec.CategoryCode == Convert.ToInt32(id)).Include(rec => rec.CategoryTr).SingleOrDefaultAsync(),
-                insertObject = newItem => { var addItem = newItem.ToObject<DictBaseTypeI>(); _dbContext.Category.Add((Category)addItem); },
-                updateObject = ( sors, dest) => {
-                    Category left = (Category)dest, right = (Category)sors;
-                    left.SetFields(right);
-                    List<CategoryTr> tempItems = left.CategoryTr.Where( rec => !right.CategoryTr.Any( item => item.CategoryCode == rec.CategoryCode && item.Lang == rec.Lang )).ToList();
-                    tempItems.ForEach( item => left.CategoryTr.Remove(item));
-
-                    tempItems = right.CategoryTr.Where(rec => !left.CategoryTr.Any(item => item.CategoryCode == rec.CategoryCode)).ToList();
-                    tempItems.ForEach( rec => { left.CategoryTr.Add(rec); right.CategoryTr.Remove(rec); });
-                    right.CategoryTr.ToList().ForEach(rec => left.CategoryTr.First(item => item.CategoryCode == rec.CategoryCode && rec.Lang == item.Lang).CategoryName = rec.CategoryName);
-                } 
-            }
+            baseEng.Add("activitytype".ToLower(), 
+                new BaseDictionaryEng<ActivityType, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id), rec => rec.ActivityTypeTr)
             );
         }
 
@@ -82,8 +103,6 @@ namespace ipsmedserviceapp.Controllers
             return Json(listOut);
         }
 
-
-
         [HttpGet("base/{dictionay}")]
         public async Task<ActionResult> GetBaseDictionaryList(string dictionay)
         {
@@ -92,9 +111,8 @@ namespace ipsmedserviceapp.Controllers
             if (!baseEng.Keys.Contains(normalizeName))
                 return BadRequest();
 
-            object list = null;
-            ITypedDict eng = baseEng[dictionay.ToLower()];
-            list = await eng.getList();
+            dynamic eng = baseEng[dictionay.ToLower()];
+            var list = await eng.GetList();
 
             return Json(list);
         }
@@ -108,48 +126,46 @@ namespace ipsmedserviceapp.Controllers
             if (!baseEng.Keys.Contains(normalizeName))
                 return BadRequest();
 
-            BaseDictionaryEng eng = baseEng[normalizeName];
-            object obj = null;
-            obj = await eng.getObjectById( id );
-
+            dynamic eng = baseEng[normalizeName];
+            var obj = await eng.GetById(id);
             return Json(obj);
         }
 
-        [HttpPost("base/{dictionay}")]
-        public async Task<ActionResult> NewBaseItem(string dictionary, JObject data)
-        {
-            string normalizeName = dictionary.ToLower();
+        //[HttpPost("base/{dictionay}")]
+        //public async Task<ActionResult> NewBaseItem(string dictionary, JObject data)
+        //{
+        //    string normalizeName = dictionary.ToLower();
 
-            if (!baseEng.Keys.Contains(normalizeName))
-                return BadRequest();
+        //    if (!baseEng.Keys.Contains(normalizeName))
+        //        return BadRequest();
 
-            BaseDictionaryEng eng = baseEng[normalizeName];
-            eng.insertObject(data);
+        //    //BaseDictionaryEng eng = baseEng[normalizeName];
+        //    //eng.insertObject(data);
 
-            await _dbContext.SaveChangesAsync();
+        //    //await _dbContext.SaveChangesAsync();
 
-            return Ok();
+        //    return Ok();
 
-        }
+        //}
 
-        [HttpPut("base/{dictionay}/{id}")]
-        public async Task<ActionResult> UpdateBaseItem(string dictionary, string id, JObject data)
-        {
-            string normalizeName = dictionary.ToLower();
+        //[HttpPut("base/{dictionay}/{id}")]
+        //public async Task<ActionResult> UpdateBaseItem(string dictionary, string id, JObject data)
+        //{
+        //    string normalizeName = dictionary.ToLower();
 
-            if (!baseEng.Keys.Contains(normalizeName))
-                return BadRequest();
+        //    if (!baseEng.Keys.Contains(normalizeName))
+        //        return BadRequest();
 
-            BaseDictionaryEng eng = baseEng[normalizeName];
-            var dest = eng.getObjectById(id);
-            var sors = eng.toObject(data);
+        //    //BaseDictionaryEng eng = baseEng[normalizeName];
+        //    //var dest = eng.getObjectById(id);
+        //    //var sors = eng.toObject(data);
 
 
 
-            await _dbContext.SaveChangesAsync();
+        //    await _dbContext.SaveChangesAsync();
 
-            return Ok();
+        //    return Ok();
 
-        }
+        //}
     }
 }
