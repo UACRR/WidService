@@ -17,44 +17,67 @@ namespace ipsmedserviceapp.Controllers
     {
         Type dicType { get; }
     }
-    public class BaseDictionaryEng<T,TBase> where T : class where TBase : class
+    public class BaseDictionaryEng<T,TTr, TBase> where T : class where TBase : class
     {
         private MediaServiceContext _dbContext;
         private Func<T, string, bool> _compareId;
-        private Expression<Func<T, object>>[] _includes;
+        private Expression<Func<T, object>> _includes;
+        public Func<T, TBase> ConvertToBase;
+        public Func<TBase, T> ConvertFromBase;
+        public Func<T, IList<TTr>> GetTr;
+        public Func<object, object, bool> CompareTr;
 
 
         public BaseDictionaryEng(
             MediaServiceContext dbContext,
             Func<T, string, bool> compareId,
-            params Expression<Func<T, object>>[] includes
+            Func<T, TBase> convertToBase,
+            Func<TBase, T> convertFromBase,
+            Func<T, IList<TTr>> getTr,
+            Func<object, object, bool> compareTr,
+        Expression<Func<T, object>> includes
             )
         {
             _dbContext = dbContext;
             _compareId = compareId;
             _includes = includes;
+            ConvertToBase = convertToBase;
+            GetTr = getTr;
+            CompareTr = compareTr;
+            ConvertFromBase = convertFromBase;
         }
 
         public Type dicType { get; } = typeof(T);
+        public Type dicTrType { get; } = typeof(TTr);
         public Type dicBaseType { get; } = typeof(TBase);
+        public IQueryable<T> entity()
+        {
+            return _dbContext.Set<T>();
+        }
+
+        public TBase ToObject(JObject data )
+        {
+            return data.ToObject<TBase>();
+        }
+
         private IQueryable<T> addInclude(IQueryable<T> set)
         {
-            if (_includes.Any())
+            if (_includes != null)
             {
-                foreach (var item in _includes)
-                    set = set.Include(item);
+                set = set.Include(_includes);
 
             }
 
             return set;
         }
 
-        public async Task<List<T>> GetList()
+        public async Task<List<TBase>> GetList()
         {
 
             IQueryable<T> set = _dbContext.Set<T>();
             set = addInclude(set);
-            return await set.ToListAsync();
+            var list = await set.ToListAsync();
+            return list.Select( rec => ConvertToBase(rec)).ToList();
         }
 
         public async Task<T> GetById( string id )
@@ -62,13 +85,28 @@ namespace ipsmedserviceapp.Controllers
 
             IQueryable<T> set = _dbContext.Set<T>().Where( r => _compareId(r, id) );
             set = addInclude(set);
-
-            return await set.SingleOrDefaultAsync();
+            var item = await set.SingleOrDefaultAsync();
+            return item;
         }
 
+        public void DeleteAbsent(List<TTr> dest, List<TTr> sors)
+        {
+            var listTemp = dest.Where(rec => !sors.Any(item => CompareTr(rec, item))).ToList();
+            listTemp.ForEach(item => dest.Remove(item));
+        }
+        public void InserNew(List<TTr> dest, List<TTr> sors)
+        {
+            var listTemp = sors.Where(rec => !dest.Any(item => CompareTr(rec, item))).ToList();
+            listTemp.ForEach(item => { dest.Add(item); sors.Remove(item); });
+        }
+        public void Update(List<TTr> dest, List<TTr> sors)
+        {
+            var listTemp = sors.ToList();
+            listTemp.ForEach(item => { dest.First(destItem => CompareTr(item, destItem)).SetFields(item); });
+        }
+
+
     }
-
-
 
     [Produces("application/json")]
     [Route("api/dictionary")]
@@ -90,8 +128,13 @@ namespace ipsmedserviceapp.Controllers
         private void SetEng()
         {
             baseEng = new Dictionary<string, object>();
-            baseEng.Add("activitytype".ToLower(), 
-                new BaseDictionaryEng<ActivityType, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id), rec => rec.ActivityTypeTr)
+
+            baseEng.Add("activitytype".ToLower(),
+                new BaseDictionaryEng<ActivityType, ActivityTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                sors => (DictBaseTypeI)sors, sors => (ActivityType)sors, 
+                sors => sors.ActivityTypeTr.ToList(),
+                (sors, dest) => ((ActivityTypeTr)sors).CodeI == ((ActivityTypeTr)dest).CodeI && ((ActivityTypeTr)sors).Lang == ((ActivityTypeTr)dest).Lang,
+                rec => rec.ActivityTypeTr)
             );
         }
 
@@ -128,44 +171,59 @@ namespace ipsmedserviceapp.Controllers
 
             dynamic eng = baseEng[normalizeName];
             var obj = await eng.GetById(id);
-            return Json(obj);
+
+            return Json(eng.ConvertToBase(obj));
         }
 
-        //[HttpPost("base/{dictionay}")]
-        //public async Task<ActionResult> NewBaseItem(string dictionary, JObject data)
-        //{
-        //    string normalizeName = dictionary.ToLower();
+        [HttpPost("base/{dictionay}")]
+        public async Task<ActionResult> NewBaseItem(string dictionary, JObject data)
+        {
+            string normalizeName = dictionary.ToLower();
 
-        //    if (!baseEng.Keys.Contains(normalizeName))
-        //        return BadRequest();
+            if (!baseEng.Keys.Contains(normalizeName))
+                return BadRequest();
 
-        //    //BaseDictionaryEng eng = baseEng[normalizeName];
-        //    //eng.insertObject(data);
+            dynamic eng = baseEng[normalizeName];
+            // BaseDictionaryEng<ActivityType, DictBaseTypeI> eng = (BaseDictionaryEng<ActivityType, DictBaseTypeI>)baseEng[normalizeName];
+            var entity = eng.entity();
+            var newItem = eng.ConvertFromBase( eng.ToObject(data) );
+            entity.ToList().Add(newItem);
+            //eng.insertObject(data);
 
-        //    //await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
-        //    return Ok();
+            return Json(eng.ConvertToBase( newItem ));
 
-        //}
+        }
 
-        //[HttpPut("base/{dictionay}/{id}")]
-        //public async Task<ActionResult> UpdateBaseItem(string dictionary, string id, JObject data)
-        //{
-        //    string normalizeName = dictionary.ToLower();
+        [HttpPut("base/{dictionay}/{id}")]
+        public async Task<ActionResult> UpdateBaseItem(string dictionay, string id, [FromBody]JObject data)
+        {
+            string normalizeName = dictionay.ToLower();
 
-        //    if (!baseEng.Keys.Contains(normalizeName))
-        //        return BadRequest();
+            if (!baseEng.Keys.Contains(normalizeName))
+                return BadRequest();
 
-        //    //BaseDictionaryEng eng = baseEng[normalizeName];
-        //    //var dest = eng.getObjectById(id);
-        //    //var sors = eng.toObject(data);
+            // BaseDictionaryEng<ActivityType, ActivityTypeTr, DictBaseTypeI> eng = (BaseDictionaryEng<ActivityType, ActivityTypeTr, DictBaseTypeI>)baseEng[normalizeName];
+            dynamic eng = baseEng[normalizeName];
+            var dest = await eng.GetById(id);
+            var sors = eng.ConvertFromBase( eng.ToObject(data) );
+
+            ((object)dest).SetFields((object)sors);
+            Type trType = (Type) eng.dicTrType;
+
+            var listDst = eng.GetTr(dest);
+            var listSrs = eng.GetTr(sors);
+
+            eng.DeleteAbsent(listDst, listSrs);
+            eng.InserNew(listDst, listSrs);
+            eng.Update(listDst, listSrs);
 
 
+            await _dbContext.SaveChangesAsync();
 
-        //    await _dbContext.SaveChangesAsync();
+            return Ok();
 
-        //    return Ok();
-
-        //}
+        }
     }
 }
