@@ -22,7 +22,7 @@ namespace sysAdminwp
     {
 
 
-        private List<Category> list;
+        private List<ActivityType> list;
         DictionaryBaseControl control = new DictionaryBaseControl();
 
         public RadForm1()
@@ -35,7 +35,7 @@ namespace sysAdminwp
 
         private void setDataSource()
         {
-            var dictCategory = control.GetDefaultDicData("api/dictionary/list");
+            var dictCategory = control.GetDefaultDicData(@"api/dictionary/list");
            
 
             // radTreeViewList.DataSource = list;
@@ -103,13 +103,7 @@ namespace sysAdminwp
         }
 
         public void LoadData()
-        {
-            foreach (var node in list)
-            {
-                RadTreeNode rtn = radTreeViewList.Nodes.Add(node.CategoryCode.ToString());
-                rtn.Nodes.Add(node.CategoryName);
-            }
-            
+        {            
         }
 
         private void radTxtBoxFilter_TextChanged(object sender, EventArgs e)

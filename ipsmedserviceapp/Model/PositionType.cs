@@ -12,8 +12,6 @@ namespace ipsmedserviceapp.Model
 
         public int CodeI { get; set; }
         public string Name { get; set; }
-        public string PositionNameRu { get; set; }
-        public string PositionNameEn { get; set; }
 
         public ICollection<PositionTypeTr> PositionTypeTr { get; set; }
     }

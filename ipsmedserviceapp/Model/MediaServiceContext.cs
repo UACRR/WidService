@@ -10,23 +10,38 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<ActivityTypeTr> ActivityTypeTr { get; set; }
         public virtual DbSet<AnketaStatus> AnketaStatus { get; set; }
         public virtual DbSet<AnketaStatusTr> AnketaStatusTr { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<CategoryTr> CategoryTr { get; set; }
-        public virtual DbSet<Country> Country { get; set; }
-        public virtual DbSet<CountryTr> CountryTr { get; set; }
+        public virtual DbSet<CategoryStatusType> CategoryStatusType { get; set; }
+        public virtual DbSet<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
+        public virtual DbSet<CopyrightType> CopyrightType { get; set; }
+        public virtual DbSet<CopyrightTypeTr> CopyrightTypeTr { get; set; }
         public virtual DbSet<CustomerStatus> CustomerStatus { get; set; }
         public virtual DbSet<CustomerStatusTr> CustomerStatusTr { get; set; }
         public virtual DbSet<CustomerType> CustomerType { get; set; }
         public virtual DbSet<CustomerTypeTr> CustomerTypeTr { get; set; }
         public virtual DbSet<DicCategoryItems> DicCategoryItems { get; set; }
         public virtual DbSet<DictCategory> DictCategory { get; set; }
-        public virtual DbSet<KlR030> KlR030 { get; set; }
-        public virtual DbSet<KlR030tr> KlR030tr { get; set; }
-        public virtual DbSet<Lang> Lang { get; set; }
+        public virtual DbSet<DocumentKind> DocumentKind { get; set; }
+        public virtual DbSet<DocumentKindTr> DocumentKindTr { get; set; }
+        public virtual DbSet<LegalBasis> LegalBasis { get; set; }
+        public virtual DbSet<LegalBasisTr> LegalBasisTr { get; set; }
+        public virtual DbSet<LicenseType> LicenseType { get; set; }
+        public virtual DbSet<LicenseTypeTr> LicenseTypeTr { get; set; }
+        public virtual DbSet<ObjectStatus> ObjectStatus { get; set; }
+        public virtual DbSet<ObjectStatusTr> ObjectStatusTr { get; set; }
+        public virtual DbSet<PaymentKind> PaymentKind { get; set; }
+        public virtual DbSet<PaymentKindTr> PaymentKindTr { get; set; }
+        public virtual DbSet<PaymentStatus> PaymentStatus { get; set; }
+        public virtual DbSet<PaymentStatusTr> PaymentStatusTr { get; set; }
+        public virtual DbSet<PayMethodType> PayMethodType { get; set; }
+        public virtual DbSet<PayMethodTypeTr> PayMethodTypeTr { get; set; }
+        public virtual DbSet<Period> Period { get; set; }
+        public virtual DbSet<PeriodTr> PeriodTr { get; set; }
         public virtual DbSet<PositionType> PositionType { get; set; }
         public virtual DbSet<PositionTypeTr> PositionTypeTr { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<RegionTr> RegionTr { get; set; }
+        public virtual DbSet<RegisterStatus> RegisterStatus { get; set; }
+        public virtual DbSet<RegisterStatusTr> RegisterStatusTr { get; set; }
         public virtual DbSet<ResidentType> ResidentType { get; set; }
         public virtual DbSet<ResidentTypeTr> ResidentTypeTr { get; set; }
         public virtual DbSet<SexType> SexType { get; set; }
@@ -41,8 +56,7 @@ namespace ipsmedserviceapp.Model
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer(@"Data Source=192.168.1.252,60675;Initial Catalog=MediaService;User ID=robot;Password=robot11235813");
-                optionsBuilder.UseSqlServer(@"Data Source=62.216.38.178,60674;Initial Catalog=MediaService;User ID=robot;Password=robot11235813");
+                optionsBuilder.UseSqlServer(@"Data Source=192.168.1.252,60675;Initial Catalog=MediaService;User ID=robot;Password=robot11235813");
             }
         }
 
@@ -86,7 +100,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.CodeINavigation)
                     .WithMany(p => p.ActivityTypeTr)
                     .HasForeignKey(d => d.CodeI)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ACTIVITY_REFERENCE_ACTIVITY");
             });
 
@@ -130,118 +143,84 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_ANKETAST_REFERENCE_ANKETAST");
             });
 
-            modelBuilder.Entity<Category>(entity =>
+            modelBuilder.Entity<CategoryStatusType>(entity =>
             {
-                entity.HasKey(e => e.CategoryCode);
+                entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("Category", "dbo");
+                entity.ToTable("CategoryStatusType", "dbo");
 
-                entity.Property(e => e.CategoryCode)
-                    .HasColumnName("categoryCode")
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryName)
-                    .HasColumnName("categoryName")
-                    .HasMaxLength(256)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CategoryStatus).HasColumnName("categoryStatus");
-
-                entity.Property(e => e.TableObj)
-                    .HasMaxLength(50)
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<CategoryTr>(entity =>
+            modelBuilder.Entity<CategoryStatusTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CategoryCode, e.Lang });
+                entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("CategoryTr", "dbo");
+                entity.ToTable("CategoryStatusTypeTr", "dbo");
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
                     .HasColumnType("char(2)");
 
-                entity.Property(e => e.CategoryName)
-                    .HasColumnName("categoryName")
-                    .HasMaxLength(256)
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
-                    .WithMany(p => p.CategoryTr)
-                    .HasForeignKey(d => d.CategoryCode)
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.CategoryStatusTypeTr)
+                    .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CATEGtr_REFERENCE_CATEGORY");
+                    .HasConstraintName("FK_CATEGORY_REFERENCE_CATSTTR");
             });
 
-            modelBuilder.Entity<Country>(entity =>
+            modelBuilder.Entity<CopyrightType>(entity =>
             {
-                entity.HasKey(e => e.CountryCode);
+                entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("Country", "dbo");
+                entity.ToTable("CopyrightType", "dbo");
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
-                    .HasColumnType("char(3)")
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.A2)
-                    .HasColumnName("a2")
-                    .HasColumnType("char(2)");
-
-                entity.Property(e => e.ContinentCode).HasColumnName("continentCode");
-
-                entity.Property(e => e.CountryName)
-                    .HasColumnName("countryName")
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
-
-                entity.Property(e => e.CountryNameShort)
-                    .HasColumnName("countryNameShort")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.KOdLit)
-                    .HasColumnName("kOD_LIT")
-                    .HasColumnType("char(3)");
-
-                entity.Property(e => e.OrderBy).HasColumnName("orderBy");
-
-                entity.Property(e => e.ShortChoise).HasColumnName("shortChoise");
             });
 
-            modelBuilder.Entity<CountryTr>(entity =>
+            modelBuilder.Entity<CopyrightTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CountryCode, e.Lang })
-                    .ForSqlServerIsClustered(false);
+                entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("CountryTr", "dbo");
+                entity.ToTable("CopyrightTypeTr", "dbo");
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
                     .HasColumnType("char(2)");
 
-                entity.Property(e => e.CountryName)
-                    .HasColumnName("countryName")
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CountryNameShort)
-                    .HasColumnName("countryNameShort")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.CountryCodeNavigation)
-                    .WithMany(p => p.CountryTr)
-                    .HasForeignKey(d => d.CountryCode)
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.CopyrightTypeTr)
+                    .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_COUNTRYT_REFERENCE_COUNTRY");
+                    .HasConstraintName("FK_COPYRIGH_REFERENCE_COPYRIGH");
             });
 
             modelBuilder.Entity<CustomerStatus>(entity =>
@@ -336,10 +315,15 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.DicType).HasColumnType("char(1)");
+                entity.Property(e => e.Code).HasColumnName("code");
+
+                entity.Property(e => e.DicType)
+                    .HasColumnName("dicType")
+                    .HasColumnType("char(1)");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
+                    .HasColumnName("name")
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
@@ -362,96 +346,346 @@ namespace ipsmedserviceapp.Model
 
                 entity.ToTable("DictCategory", "dbo");
 
-                entity.Property(e => e.Code).ValueGeneratedNever();
+                entity.Property(e => e.Code)
+                    .HasColumnName("code")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
+                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<KlR030>(entity =>
+            modelBuilder.Entity<DocumentKind>(entity =>
             {
-                entity.HasKey(e => e.R030);
+                entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("KL_R030", "dbo");
+                entity.ToTable("DocumentKind", "dbo");
 
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
-                    .HasColumnType("char(3)")
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.A3)
-                    .HasColumnName("a3")
-                    .HasColumnType("char(3)");
+                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
-
-                entity.Property(e => e.NAim)
-                    .HasColumnName("nAIM")
-                    .HasMaxLength(100)
+                entity.Property(e => e.DocMaker)
+                    .HasColumnName("docMaker")
+                    .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NOmin).HasColumnName("nOMIN");
-
-                entity.Property(e => e.PrWork).HasColumnName("pr_work");
-
-                entity.Property(e => e.R030Name)
-                    .HasColumnName("r030Name")
-                    .HasMaxLength(100)
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(200)
                     .IsUnicode(false);
-
-                entity.Property(e => e.R031).HasColumnName("r031");
-
-                entity.HasOne(d => d.CountryCodeNavigation)
-                    .WithMany(p => p.KlR030)
-                    .HasForeignKey(d => d.CountryCode)
-                    .HasConstraintName("FK_KL_R030_REFERENCE_COUNTRY");
             });
 
-            modelBuilder.Entity<KlR030tr>(entity =>
+            modelBuilder.Entity<DocumentKindTr>(entity =>
             {
-                entity.HasKey(e => new { e.R030, e.Lang });
+                entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("KL_R030Tr", "dbo");
+                entity.ToTable("DocumentKindTr", "dbo");
 
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
                     .HasColumnType("char(2)");
 
-                entity.Property(e => e.R030Name)
-                    .HasColumnName("r030Name")
-                    .HasMaxLength(100)
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.R030Navigation)
-                    .WithMany(p => p.KlR030tr)
-                    .HasForeignKey(d => d.R030)
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.DocumentKindTr)
+                    .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_R030TR_REFERENCE_KL_R030");
+                    .HasConstraintName("FK_DOCUMENT_REFERENCE_DOCUM");
             });
 
-            modelBuilder.Entity<Lang>(entity =>
+            modelBuilder.Entity<LegalBasis>(entity =>
             {
-                entity.HasKey(e => e.CodeS);
+                entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("Lang", "dbo");
+                entity.ToTable("LegalBasis", "dbo");
 
-                entity.Property(e => e.CodeS)
-                    .HasColumnName("codeS")
-                    .HasColumnType("char(3)")
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<LegalBasisTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("LegalBasisTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.LegalBasisTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LEGALBAS_REFERENCE_LEGALBAS");
+            });
+
+            modelBuilder.Entity<LicenseType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("LicenseType", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<LicenseTypeTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("LicenseTypeTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.LicenseTypeTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LICENSET_REFERENCE_LICENSET");
+            });
+
+            modelBuilder.Entity<ObjectStatus>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("ObjectStatus", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ObjectStatusTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("ObjectStatusTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.ObjectStatusTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_OBJECTST_REFERENCE_OBJECTST");
+            });
+
+            modelBuilder.Entity<PaymentKind>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("PaymentKind", "dbo");
+
+                entity.HasIndex(e => e.CodeI)
+                    .HasName("AK_KEY_1_PAYMENTK")
+                    .IsUnique();
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PaymentKindTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("PaymentKindTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.PaymentKindTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PAYMENTK_REFERENCE_PAYMENTK");
+            });
+
+            modelBuilder.Entity<PaymentStatus>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("PaymentStatus", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PaymentStatusTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("PaymentStatusTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.PaymentStatusTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PAYMENTS_REFERENCE_PAYMENTS");
+            });
+
+            modelBuilder.Entity<PayMethodType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("PayMethodType", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PayMethodTypeTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("PayMethodTypeTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.PayMethodTypeTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PAYMETHO_REFERENCE_PAYMETHO");
+            });
+
+            modelBuilder.Entity<Period>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("Period", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PeriodTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("PeriodTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.PeriodTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PERIODTR_REFERENCE_PERIOD");
             });
 
             modelBuilder.Entity<PositionType>(entity =>
@@ -466,16 +700,6 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PositionNameEn)
-                    .HasColumnName("positionNameEn")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PositionNameRu)
-                    .HasColumnName("positionNameRu")
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
@@ -542,6 +766,46 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGIONTR_REFERENCE_REGION");
+            });
+
+            modelBuilder.Entity<RegisterStatus>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("RegisterStatus", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<RegisterStatusTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("RegisterStatusTr", "dbo");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.RegisterStatusTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_REGISTER_REFERENCE_REGISTER");
             });
 
             modelBuilder.Entity<ResidentType>(entity =>

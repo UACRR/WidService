@@ -135,14 +135,177 @@ namespace ipsmedserviceapp.Controllers
         private void SetEng()
         {
             baseEng = new Dictionary<string, object>();
+            #region Init Dictionary
 
             baseEng.Add("activitytype".ToLower(),
-                new BaseDictionaryEng<ActivityType, ActivityTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
-                sors => (DictBaseTypeI)sors, sors => (ActivityType)sors, 
-                sors => sors.ActivityTypeTr.ToList(),
-                (sors, dest) => ((ActivityTypeTr)sors).CodeI == ((ActivityTypeTr)dest).CodeI && ((ActivityTypeTr)sors).Lang == ((ActivityTypeTr)dest).Lang,
-                rec => rec.ActivityTypeTr)
-            );
+                            new BaseDictionaryEng<ActivityType, ActivityTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (ActivityType)sors,
+                            sors => sors.ActivityTypeTr.ToList(),
+                            (sors, dest) => ((ActivityTypeTr)sors).CodeI == ((ActivityTypeTr)dest).CodeI && ((ActivityTypeTr)sors).Lang == ((ActivityTypeTr)dest).Lang,
+                            rec => rec.ActivityTypeTr)
+                        );
+            baseEng.Add("anketastatus".ToLower(),
+                            new BaseDictionaryEng<AnketaStatus, AnketaStatusTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (AnketaStatus)sors,
+                            sors => sors.AnketaStatusTr.ToList(),
+                            (sors, dest) => ((AnketaStatusTr)sors).CodeI == ((AnketaStatusTr)dest).CodeI && ((AnketaStatusTr)sors).Lang == ((AnketaStatusTr)dest).Lang,
+                            rec => rec.AnketaStatusTr)
+                        );
+            baseEng.Add("categorystatustype".ToLower(),
+                            new BaseDictionaryEng<CategoryStatusType, CategoryStatusTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (CategoryStatusType)sors,
+                            sors => sors.CategoryStatusTypeTr.ToList(),
+                            (sors, dest) => ((CategoryStatusTypeTr)sors).CodeI == ((CategoryStatusTypeTr)dest).CodeI && ((CategoryStatusTypeTr)sors).Lang == ((CategoryStatusTypeTr)dest).Lang,
+                            rec => rec.CategoryStatusTypeTr)
+                        );
+            baseEng.Add("copyrighttype".ToLower(),
+                            new BaseDictionaryEng<CopyrightType, CopyrightTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (CopyrightType)sors,
+                            sors => sors.CopyrightTypeTr.ToList(),
+                            (sors, dest) => ((CopyrightTypeTr)sors).CodeI == ((CopyrightTypeTr)dest).CodeI && ((CopyrightTypeTr)sors).Lang == ((CopyrightTypeTr)dest).Lang,
+                            rec => rec.CopyrightTypeTr)
+                        );
+            baseEng.Add("customerstatus".ToLower(),
+                            new BaseDictionaryEng<CustomerStatus, CustomerStatusTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (CustomerStatus)sors,
+                            sors => sors.CustomerStatusTr.ToList(),
+                            (sors, dest) => ((CustomerStatusTr)sors).CodeI == ((CustomerStatusTr)dest).CodeI && ((CustomerStatusTr)sors).Lang == ((CustomerStatusTr)dest).Lang,
+                            rec => rec.CustomerStatusTr)
+                        );
+            baseEng.Add("customertype".ToLower(),
+                            new BaseDictionaryEng<CustomerType, CustomerTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (CustomerType)sors,
+                            sors => sors.CustomerTypeTr.ToList(),
+                            (sors, dest) => ((CustomerTypeTr)sors).CodeI == ((CustomerTypeTr)dest).CodeI && ((CustomerTypeTr)sors).Lang == ((CustomerTypeTr)dest).Lang,
+                            rec => rec.CustomerTypeTr)
+                        );
+            baseEng.Add("documentkind".ToLower(),
+                            new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (DocumentKind)sors,
+                            sors => sors.DocumentKindTr.ToList(),
+                            (sors, dest) => ((DocumentKindTr)sors).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)sors).Lang == ((DocumentKindTr)dest).Lang,
+                            rec => rec.DocumentKindTr)
+                        );
+            baseEng.Add("legalbasis".ToLower(),
+                            new BaseDictionaryEng<LegalBasis, LegalBasisTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (LegalBasis)sors,
+                            sors => sors.LegalBasisTr.ToList(),
+                            (sors, dest) => ((LegalBasisTr)sors).CodeI == ((LegalBasisTr)dest).CodeI && ((LegalBasisTr)sors).Lang == ((LegalBasisTr)dest).Lang,
+                            rec => rec.LegalBasisTr)
+                        );
+            baseEng.Add("licensetype".ToLower(),
+                            new BaseDictionaryEng<LicenseType, LicenseTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (LicenseType)sors,
+                            sors => sors.LicenseTypeTr.ToList(),
+                            (sors, dest) => ((LicenseTypeTr)sors).CodeI == ((LicenseTypeTr)dest).CodeI && ((LicenseTypeTr)sors).Lang == ((LicenseTypeTr)dest).Lang,
+                            rec => rec.LicenseTypeTr)
+                        );
+            baseEng.Add("objectstatus".ToLower(),
+                            new BaseDictionaryEng<ObjectStatus, ObjectStatusTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (ObjectStatus)sors,
+                            sors => sors.ObjectStatusTr.ToList(),
+                            (sors, dest) => ((ObjectStatusTr)sors).CodeI == ((ObjectStatusTr)dest).CodeI && ((ObjectStatusTr)sors).Lang == ((ObjectStatusTr)dest).Lang,
+                            rec => rec.ObjectStatusTr)
+                        );
+            baseEng.Add("paymentkind".ToLower(),
+                            new BaseDictionaryEng<PaymentKind, PaymentKindTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (PaymentKind)sors,
+                            sors => sors.PaymentKindTr.ToList(),
+                            (sors, dest) => ((PaymentKindTr)sors).CodeI == ((PaymentKindTr)dest).CodeI && ((PaymentKindTr)sors).Lang == ((PaymentKindTr)dest).Lang,
+                            rec => rec.PaymentKindTr)
+                        );
+            baseEng.Add("paymentstatus".ToLower(),
+                            new BaseDictionaryEng<PaymentStatus, PaymentStatusTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (PaymentStatus)sors,
+                            sors => sors.PaymentStatusTr.ToList(),
+                            (sors, dest) => ((PaymentStatusTr)sors).CodeI == ((PaymentStatusTr)dest).CodeI && ((PaymentStatusTr)sors).Lang == ((PaymentStatusTr)dest).Lang,
+                            rec => rec.PaymentStatusTr)
+                        );
+            baseEng.Add("paymethodtype".ToLower(),
+                            new BaseDictionaryEng<PayMethodType, PayMethodTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (PayMethodType)sors,
+                            sors => sors.PayMethodTypeTr.ToList(),
+                            (sors, dest) => ((PayMethodTypeTr)sors).CodeI == ((PayMethodTypeTr)dest).CodeI && ((PayMethodTypeTr)sors).Lang == ((PayMethodTypeTr)dest).Lang,
+                            rec => rec.PayMethodTypeTr)
+                        );
+            baseEng.Add("period".ToLower(),
+                            new BaseDictionaryEng<Period, PeriodTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (Period)sors,
+                            sors => sors.PeriodTr.ToList(),
+                            (sors, dest) => ((PeriodTr)sors).CodeI == ((PeriodTr)dest).CodeI && ((PeriodTr)sors).Lang == ((PeriodTr)dest).Lang,
+                            rec => rec.PeriodTr)
+                        );
+            baseEng.Add("positiontype".ToLower(),
+                            new BaseDictionaryEng<PositionType, PositionTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (PositionType)sors,
+                            sors => sors.PositionTypeTr.ToList(),
+                            (sors, dest) => ((PositionTypeTr)sors).CodeI == ((PositionTypeTr)dest).CodeI && ((PositionTypeTr)sors).Lang == ((PositionTypeTr)dest).Lang,
+                            rec => rec.PositionTypeTr)
+                        );
+            baseEng.Add("region".ToLower(),
+                            new BaseDictionaryEng<Region, RegionTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (Region)sors,
+                            sors => sors.RegionTr.ToList(),
+                            (sors, dest) => ((RegionTr)sors).CodeI == ((RegionTr)dest).CodeI && ((RegionTr)sors).Lang == ((RegionTr)dest).Lang,
+                            rec => rec.RegionTr)
+                        );
+            baseEng.Add("registerstatus".ToLower(),
+                            new BaseDictionaryEng<RegisterStatus, RegisterStatusTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (RegisterStatus)sors,
+                            sors => sors.RegisterStatusTr.ToList(),
+                            (sors, dest) => ((RegisterStatusTr)sors).CodeI == ((RegisterStatusTr)dest).CodeI && ((RegisterStatusTr)sors).Lang == ((RegisterStatusTr)dest).Lang,
+                            rec => rec.RegisterStatusTr)
+                        );
+            baseEng.Add("residenttype".ToLower(),
+                            new BaseDictionaryEng<ResidentType, ResidentTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (ResidentType)sors,
+                            sors => sors.ResidentTypeTr.ToList(),
+                            (sors, dest) => ((ResidentTypeTr)sors).CodeI == ((ResidentTypeTr)dest).CodeI && ((ResidentTypeTr)sors).Lang == ((ResidentTypeTr)dest).Lang,
+                            rec => rec.ResidentTypeTr)
+                        );
+            baseEng.Add("sextype".ToLower(),
+                            new BaseDictionaryEng<SexType, SexTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (SexType)sors,
+                            sors => sors.SexTypeTr.ToList(),
+                            (sors, dest) => ((SexTypeTr)sors).CodeI == ((SexTypeTr)dest).CodeI && ((SexTypeTr)sors).Lang == ((SexTypeTr)dest).Lang,
+                            rec => rec.SexTypeTr)
+                        );
+            baseEng.Add("typeplace".ToLower(),
+                            new BaseDictionaryEng<TypePlace, TypePlaceTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (TypePlace)sors,
+                            sors => sors.TypePlaceTr.ToList(),
+                            (sors, dest) => ((TypePlaceTr)sors).CodeI == ((TypePlaceTr)dest).CodeI && ((TypePlaceTr)sors).Lang == ((TypePlaceTr)dest).Lang,
+                            rec => rec.TypePlaceTr)
+                        );
+            baseEng.Add("typevat".ToLower(),
+                            new BaseDictionaryEng<TypeVat, TypeVattr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (TypeVat)sors,
+                            sors => sors.TypeVattr.ToList(),
+                            (sors, dest) => ((TypeVattr)sors).CodeI == ((TypeVattr)dest).CodeI && ((TypeVattr)sors).Lang == ((TypeVattr)dest).Lang,
+                            rec => rec.TypeVattr)
+                            );
+            #endregion
         }
 
         [HttpGet("list")]
