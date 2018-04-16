@@ -9,7 +9,6 @@ namespace ipsmedserviceapp.Model
         {
             CountryTr = new HashSet<CountryTr>();
             KlR030 = new HashSet<KlR030>();
-            Region = new HashSet<Region>();
         }
 
         public int? ContinentCode { get; set; }
@@ -23,6 +22,5 @@ namespace ipsmedserviceapp.Model
 
         public ICollection<CountryTr> CountryTr { get; set; }
         public ICollection<KlR030> KlR030 { get; set; }
-        public ICollection<Region> Region { get; set; }
     }
 }

@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class SexTypeTr
     {
-        public int SexCode { get; set; }
+        public int CodeI { get; set; }
         public string Lang { get; set; }
-        public string SexName { get; set; }
+        public string Name { get; set; }
 
-        public SexType SexCodeNavigation { get; set; }
+        public SexType CodeINavigation { get; set; }
     }
 }

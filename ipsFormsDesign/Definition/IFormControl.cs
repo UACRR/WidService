@@ -8,10 +8,6 @@ namespace ipsFormsDesign.Definition
 {
     public interface IFormControl
     {
-        void SetForm( IForm form );
-        void GetDefaultTreeData();
-        void GetFilteredTreeData(string search);
-        void GetDefaultDicData();
-        void GetFilteredDicData(string search);
+
     }
 }

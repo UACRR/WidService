@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             AnketaStatusTr = new HashSet<AnketaStatusTr>();
         }
 
-        public int AnkStatus { get; set; }
-        public string AnkStatusName { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<AnketaStatusTr> AnketaStatusTr { get; set; }
     }

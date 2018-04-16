@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class ActivityTypeTr
     {
-        public int ActivityCode { get; set; }
+        public int CodeI { get; set; }
         public string Lang { get; set; }
-        public string ActivityName { get; set; }
+        public string Name { get; set; }
 
-        public ActivityType ActivityCodeNavigation { get; set; }
+        public ActivityType CodeINavigation { get; set; }
     }
 }

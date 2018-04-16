@@ -10,11 +10,9 @@ namespace ipsmedserviceapp.Model
             RegionTr = new HashSet<RegionTr>();
         }
 
-        public int RegionCode { get; set; }
-        public string CountryCode { get; set; }
-        public string RegionName { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
-        public Country CountryCodeNavigation { get; set; }
         public ICollection<RegionTr> RegionTr { get; set; }
     }
 }
