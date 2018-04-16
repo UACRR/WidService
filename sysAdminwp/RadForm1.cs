@@ -21,7 +21,7 @@ namespace sysAdminwp
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
         private ApiConnector connector = new ApiConnector("http://localhost:54867/");
-        private List<Category> list;
+        private List<ActivityType> list, list2;
 
         public RadForm1()
         {
@@ -31,7 +31,6 @@ namespace sysAdminwp
             radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
             radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             UpdateEditPanel();
-            InitializeColumnSize();
 
         }
 
@@ -40,12 +39,15 @@ namespace sysAdminwp
         //метод встановлення джерела даних
         private void SetDataSource()
         {
-            var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");
-            list = connector.GetList<Category>("api/dictionary/base/category");
-            radGridView1.DataSource = list;
+            var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");//дерево
             radTreeViewList.DataSource = dictCategory;
             radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             radTreeViewList.DisplayMember = "Name\\Name";
+
+            //на грід
+            list = connector.GetList<ActivityType>("api/dictionary/base/activitytype");
+            radGridView1.DataSource = list;
+
         }
 
         //метод збереження змін
@@ -88,14 +90,7 @@ namespace sysAdminwp
 
         }
 
-        private void InitializeColumnSize()
-        {
-            radGridView1.Columns[0].Width = 50;
-            radGridView1.Columns[1].Width = 300;
-            radGridView1.Columns[2].Width = 200;
-            radGridView1.Columns[3].Width = 200;
-            //подумать...
-        }
+
         #endregion
 
 
@@ -203,7 +198,7 @@ namespace sysAdminwp
                      {
                          try
                          {
-                             list = connector.GetList<Category>(catItem.Url);
+                             list = connector.GetList<ActivityType>(catItem.Url);
                              radGridView1.DataSource = list;
                              radPanelChange.Enabled = true;
                              radTxtBoxSearchData.Enabled = true;
@@ -366,4 +361,5 @@ namespace sysAdminwp
             OpenSettings();
         }
     }
+
 }
