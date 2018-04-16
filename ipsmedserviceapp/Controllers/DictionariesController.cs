@@ -50,7 +50,7 @@ namespace ipsmedserviceapp.Controllers
         public Type dicType { get; } = typeof(T);
         public Type dicTrType { get; } = typeof(TTr);
         public Type dicBaseType { get; } = typeof(TBase);
-        public IQueryable<T> entity()
+        public DbSet<T> entity()
         {
             return _dbContext.Set<T>();
         }
@@ -104,6 +104,13 @@ namespace ipsmedserviceapp.Controllers
             var listTemp = sors.ToList();
             listTemp.ForEach(item => { dest.First(destItem => CompareTr(item, destItem)).SetFields(item); });
         }
+        public void runActionByTr( T rec, Action<object> exec )
+        {
+            var listTr = GetTr(rec);
+            foreach (var item in listTr)
+                exec(item);
+        }
+
 
 
     }
@@ -175,8 +182,30 @@ namespace ipsmedserviceapp.Controllers
             return Json(eng.ConvertToBase(obj));
         }
 
-        [HttpPost("base/{dictionay}")]
-        public async Task<ActionResult> NewBaseItem(string dictionary, JObject data)
+
+        [HttpDelete("base/{dictionary}/{id}")]
+        public async Task<ActionResult> DeleteBaseDictionaryById(string dictionary, string id)
+        {
+
+            string normalizeName = dictionary.ToLower();
+
+            if (!baseEng.Keys.Contains(normalizeName))
+                return BadRequest();
+
+            dynamic eng = baseEng[normalizeName];
+            var obj = await eng.GetById(id);
+            Action<object> delAct = item => _dbContext.Entry(item).State = EntityState.Deleted;
+            eng.runActionByTr(obj, delAct ); 
+            _dbContext.Entry(obj).State = EntityState.Deleted;
+
+            await _dbContext.SaveChangesAsync();
+
+            return Json(eng.ConvertToBase(obj));
+        }
+
+
+        [HttpPost("base/{dictionary}")]
+        public async Task<ActionResult> NewBaseItem(string dictionary, [FromBody]JObject data)
         {
             string normalizeName = dictionary.ToLower();
 
@@ -187,7 +216,8 @@ namespace ipsmedserviceapp.Controllers
             // BaseDictionaryEng<ActivityType, DictBaseTypeI> eng = (BaseDictionaryEng<ActivityType, DictBaseTypeI>)baseEng[normalizeName];
             var entity = eng.entity();
             var newItem = eng.ConvertFromBase( eng.ToObject(data) );
-            entity.ToList().Add(newItem);
+            
+            entity.Add(newItem);
             //eng.insertObject(data);
 
             await _dbContext.SaveChangesAsync();

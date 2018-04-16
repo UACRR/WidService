@@ -40,5 +40,69 @@ namespace WebAPIConnector
 
             return list;
         }
+
+        /// <summary>
+        /// Получити об'єкт з серверу додатків по ID
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public T GetItemById<T>(string url, string id )
+        {
+            string idUrl = $"{url}/{id}";
+            string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
+            JObject retObj = JObject.Parse(retApiString);
+
+            return retObj.ToObject<T>();
+        }
+
+
+        /// <summary>
+        /// Створити об'єкт на сервері додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public HttpResponseMessage NewItem<T>(string url, T data)
+        {
+
+            StringContent content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var result = client.PostAsync( url, content ).GetAwaiter().GetResult();
+
+            return result;
+        }
+
+        /// <summary>
+        /// змінити об'єкт на сервері додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public HttpResponseMessage UpdateItem<T>(string url, string id, T data)
+        {
+
+            string idUrl = $"{url}/{id}";
+            StringContent content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Видалити об'єкт на сервері додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public HttpResponseMessage DeleteItem<T>(string url, string id)
+        {
+
+            string idUrl = $"{url}/{id}";
+            var result = client.DeleteAsync(idUrl).GetAwaiter().GetResult();
+
+            return result;
+        }
+
+
     }
 }
