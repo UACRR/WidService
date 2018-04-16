@@ -32,6 +32,7 @@ namespace sysAdminwp
             radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             UpdateEditPanel();
             InitializeColumnSize();
+
         }
 
         #region Методи
@@ -220,7 +221,34 @@ namespace sysAdminwp
                          }
                      }
                  }
-             }            
+             }
+
+            //перевірити!
+            //foreach (dynamic item in urlCategories)
+            //{
+            //    if (item.Name == e.Node.Name)
+            //    {
+            //        try
+            //        {
+            //            list = connector.GetList<Category>(item.Url);
+            //            radGridView1.DataSource = list;
+            //            radPanelChange.Enabled = true;
+            //            radTxtBoxSearchData.Enabled = true;
+            //            radBtnAdd.Enabled = true;
+            //            radBtnRemove.Enabled = true;
+            //        }
+            //        catch (Exception)
+            //        {
+            //            radGridView1.DataSource = default(DataGrid);
+            //            UpdateEditPanel();
+            //            radPanelChange.Enabled = false;
+            //            radTxtBoxSearchData.Enabled = false;
+            //            radBtnAdd.Enabled = false;
+            //            radBtnRemove.Enabled = false;
+            //        }
+            //    }
+            //}
+            
         }
 
 
@@ -265,12 +293,77 @@ namespace sysAdminwp
 
         private void radMenuItemSaveConfig_Click(object sender, EventArgs e)
         {
-            radGridView1.Columns[0].Width = Properties.Settings.Default.column0_width;
 
 
-            DataGridView gv = new DataGridView();
-            gv.Columns[0].DisplayIndex = Properties.Settings.Default.column0_width;
+            string s = "overviewconfig.xml";
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            dialog.Title = "Select a xml file";
+            
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                s = dialog.FileName;
+            }
+            radGridView1.SaveLayout(s);
+
+            //radGridView1.Columns[0].Width = Properties.Settings.Default.column0_width;
+            //DataGridView gv = new DataGridView();
+            //gv.Columns[0].DisplayIndex = Properties.Settings.Default.column0_width;
             //radGridView1.Columns.Move(radGridView1.Columns["col"], Properties.Settings.Default.col_dis_index0);
+        }
+
+        private void OpenSettings()
+        {
+            string s = "overviewconfig.xml", def = "defaultoverviewconfig.xml";
+            using (OpenFileDialog dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+                dialog.Title = "Select a xml file";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    s = dialog.FileName;
+                }
+
+                if (s != null)
+                    radGridView1.LoadLayout(s);
+                else
+                    radGridView1.LoadLayout(def);
+            }
+
+            //OpenFileDialog dialog = new OpenFileDialog();
+            //dialog.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+            //dialog.Title = "Select a xml file";
+            //if (dialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    s = dialog.FileName;
+            //}
+            //
+            //if (s!=null)
+            //    radGridView1.LoadLayout(s);
+            //else 
+            //    radGridView1.LoadLayout(def);
+            //
+        }
+
+        private void LoadOverviewCfg()
+        {
+            string s = "overviewconfig.xml", def = "defaultoverviewconfig.xml";
+            try
+            {
+                radGridView1.LoadLayout(s);
+            }
+            catch (Exception e)
+            {
+                radGridView1.SaveLayout(def);
+                radGridView1.LoadLayout(def);
+                //MessageBox.Show(e.Message, "Error load overview!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void radMenuItemsSetDefaultSett_Click(object sender, EventArgs e)
+        {
+            OpenSettings();
         }
     }
 }

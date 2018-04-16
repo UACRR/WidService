@@ -35,7 +35,7 @@ namespace sysAdminwp
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radBtnAdd = new Telerik.WinControls.UI.RadButton();
             this.radBtnRemove = new Telerik.WinControls.UI.RadButton();
@@ -58,7 +58,7 @@ namespace sysAdminwp
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemSaveConfig = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItem4 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemsSetDefaultSett = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAdd)).BeginInit();
@@ -98,7 +98,7 @@ namespace sysAdminwp
             this.radGridView1.MasterTemplate.EnableCustomFiltering = true;
             this.radGridView1.MasterTemplate.EnableFiltering = true;
             this.radGridView1.MasterTemplate.ShowFilteringRow = false;
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
             this.radGridView1.Size = new System.Drawing.Size(907, 340);
             this.radGridView1.TabIndex = 0;
@@ -309,20 +309,21 @@ namespace sysAdminwp
             // 
             this.radMenuItem2.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemSaveConfig,
-            this.radMenuItem4});
+            this.radMenuItemsSetDefaultSett});
             this.radMenuItem2.Name = "radMenuItem2";
             this.radMenuItem2.Text = "Конфігурація";
             // 
             // radMenuItemSaveConfig
             // 
             this.radMenuItemSaveConfig.Name = "radMenuItemSaveConfig";
-            this.radMenuItemSaveConfig.Text = "Зберегти поточну";
+            this.radMenuItemSaveConfig.Text = "Зберегти поточну конфігурацію";
             this.radMenuItemSaveConfig.Click += new System.EventHandler(this.radMenuItemSaveConfig_Click);
             // 
-            // radMenuItem4
+            // radMenuItemsSetDefaultSett
             // 
-            this.radMenuItem4.Name = "radMenuItem4";
-            this.radMenuItem4.Text = "Відновити початкові налаштуавння";
+            this.radMenuItemsSetDefaultSett.Name = "radMenuItemsSetDefaultSett";
+            this.radMenuItemsSetDefaultSett.Text = "Відновити початкові налаштуавння";
+            this.radMenuItemsSetDefaultSett.Click += new System.EventHandler(this.radMenuItemsSetDefaultSett_Click);
             // 
             // RadForm1
             // 
@@ -396,6 +397,6 @@ namespace sysAdminwp
         private RadMenuItem radMenuItem1;
         private RadMenuItem radMenuItem2;
         private RadMenuItem radMenuItemSaveConfig;
-        private RadMenuItem radMenuItem4;
+        private RadMenuItem radMenuItemsSetDefaultSett;
     }
 }
