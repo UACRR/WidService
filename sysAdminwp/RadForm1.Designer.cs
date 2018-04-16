@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
+using sysAdminwp;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
@@ -33,8 +35,7 @@ namespace sysAdminwp
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewMaskBoxColumn gridViewMaskBoxColumn1 = new Telerik.WinControls.UI.GridViewMaskBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radBtnAdd = new Telerik.WinControls.UI.RadButton();
             this.radBtnRemove = new Telerik.WinControls.UI.RadButton();
@@ -52,6 +53,12 @@ namespace sysAdminwp
             this.radBtnSave = new Telerik.WinControls.UI.RadButton();
             this.radTxtBoxFilter = new Telerik.WinControls.UI.RadTextBox();
             this.radTxtBoxSearchData = new Telerik.WinControls.UI.RadTextBox();
+            this.radLblSearch = new System.Windows.Forms.Label();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemSaveConfig = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemsSetDefaultSett = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAdd)).BeginInit();
@@ -71,6 +78,7 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTxtBoxFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTxtBoxSearchData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,28 +87,26 @@ namespace sysAdminwp
             this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.Location = new System.Drawing.Point(205, 93);
+            this.radGridView1.EnableCustomFiltering = true;
+            this.radGridView1.Location = new System.Drawing.Point(243, 64);
             this.radGridView1.Margin = new System.Windows.Forms.Padding(1);
             // 
             // 
             // 
             this.radGridView1.MasterTemplate.AllowAddNewRow = false;
             this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewMaskBoxColumn1.HeaderText = "Код";
-            gridViewMaskBoxColumn1.Mask = "000-000-111";
-            gridViewMaskBoxColumn1.Name = "column1";
-            gridViewMaskBoxColumn1.Width = 815;
-            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewMaskBoxColumn1});
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.MasterTemplate.EnableCustomFiltering = true;
+            this.radGridView1.MasterTemplate.EnableFiltering = true;
+            this.radGridView1.MasterTemplate.ShowFilteringRow = false;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(836, 311);
+            this.radGridView1.Size = new System.Drawing.Size(907, 340);
             this.radGridView1.TabIndex = 0;
             // 
             // radBtnAdd
             // 
             this.radBtnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radBtnAdd.Location = new System.Drawing.Point(205, 408);
+            this.radBtnAdd.Location = new System.Drawing.Point(243, 408);
             this.radBtnAdd.Name = "radBtnAdd";
             this.radBtnAdd.Size = new System.Drawing.Size(110, 24);
             this.radBtnAdd.TabIndex = 1;
@@ -110,7 +116,7 @@ namespace sysAdminwp
             // radBtnRemove
             // 
             this.radBtnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radBtnRemove.Location = new System.Drawing.Point(335, 408);
+            this.radBtnRemove.Location = new System.Drawing.Point(373, 408);
             this.radBtnRemove.Name = "radBtnRemove";
             this.radBtnRemove.Size = new System.Drawing.Size(110, 24);
             this.radBtnRemove.TabIndex = 2;
@@ -123,9 +129,10 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Left)));
             this.radTreeViewList.Location = new System.Drawing.Point(8, 64);
             this.radTreeViewList.Name = "radTreeViewList";
-            this.radTreeViewList.Size = new System.Drawing.Size(187, 559);
+            this.radTreeViewList.Size = new System.Drawing.Size(229, 559);
             this.radTreeViewList.SpacingBetweenNodes = -1;
             this.radTreeViewList.TabIndex = 3;
+            this.radTreeViewList.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.radTreeViewList_SelectedNodeChanged);
             // 
             // radPanelChange
             // 
@@ -141,9 +148,9 @@ namespace sysAdminwp
             this.radPanelChange.Controls.Add(this.radLabelCode);
             this.radPanelChange.Controls.Add(this.radBtnCancel);
             this.radPanelChange.Controls.Add(this.radBtnSave);
-            this.radPanelChange.Location = new System.Drawing.Point(205, 445);
+            this.radPanelChange.Location = new System.Drawing.Point(243, 445);
             this.radPanelChange.Name = "radPanelChange";
-            this.radPanelChange.Size = new System.Drawing.Size(836, 178);
+            this.radPanelChange.Size = new System.Drawing.Size(907, 178);
             this.radPanelChange.TabIndex = 4;
             this.radPanelChange.Text = "Дані довідника";
             this.radPanelChange.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
@@ -161,8 +168,9 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radTBNameRu.Location = new System.Drawing.Point(162, 109);
             this.radTBNameRu.Name = "radTBNameRu";
-            this.radTBNameRu.Size = new System.Drawing.Size(656, 20);
+            this.radTBNameRu.Size = new System.Drawing.Size(727, 20);
             this.radTBNameRu.TabIndex = 9;
+            this.radTBNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
             // 
             // radTBNameEn
             // 
@@ -170,8 +178,9 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radTBNameEn.Location = new System.Drawing.Point(162, 82);
             this.radTBNameEn.Name = "radTBNameEn";
-            this.radTBNameEn.Size = new System.Drawing.Size(656, 20);
+            this.radTBNameEn.Size = new System.Drawing.Size(727, 20);
             this.radTBNameEn.TabIndex = 8;
+            this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
             // 
             // radTBNameUa
             // 
@@ -179,8 +188,9 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radTBNameUa.Location = new System.Drawing.Point(162, 55);
             this.radTBNameUa.Name = "radTBNameUa";
-            this.radTBNameUa.Size = new System.Drawing.Size(656, 20);
+            this.radTBNameUa.Size = new System.Drawing.Size(727, 20);
             this.radTBNameUa.TabIndex = 7;
+            this.radTBNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
             // 
             // radTBCode
             // 
@@ -188,14 +198,15 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radTBCode.Location = new System.Drawing.Point(162, 28);
             this.radTBCode.Name = "radTBCode";
-            this.radTBCode.Size = new System.Drawing.Size(656, 20);
+            this.radTBCode.Size = new System.Drawing.Size(727, 20);
             this.radTBCode.TabIndex = 6;
+            this.radTBCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
             // 
             // radLabelNameRu
             // 
             this.radLabelNameRu.AutoSize = false;
             this.radLabelNameRu.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelNameRu.Location = new System.Drawing.Point(55, 103);
+            this.radLabelNameRu.Location = new System.Drawing.Point(55, 109);
             this.radLabelNameRu.Name = "radLabelNameRu";
             this.radLabelNameRu.Size = new System.Drawing.Size(90, 18);
             this.radLabelNameRu.TabIndex = 5;
@@ -206,7 +217,7 @@ namespace sysAdminwp
             // 
             this.radLabelNameEn.AutoSize = false;
             this.radLabelNameEn.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelNameEn.Location = new System.Drawing.Point(55, 78);
+            this.radLabelNameEn.Location = new System.Drawing.Point(55, 82);
             this.radLabelNameEn.Name = "radLabelNameEn";
             this.radLabelNameEn.Size = new System.Drawing.Size(90, 18);
             this.radLabelNameEn.TabIndex = 4;
@@ -217,7 +228,7 @@ namespace sysAdminwp
             // 
             this.radLabelNameUa.AutoSize = false;
             this.radLabelNameUa.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelNameUa.Location = new System.Drawing.Point(55, 53);
+            this.radLabelNameUa.Location = new System.Drawing.Point(55, 55);
             this.radLabelNameUa.Name = "radLabelNameUa";
             this.radLabelNameUa.Size = new System.Drawing.Size(90, 18);
             this.radLabelNameUa.TabIndex = 3;
@@ -258,24 +269,69 @@ namespace sysAdminwp
             this.radTxtBoxFilter.Location = new System.Drawing.Point(8, 38);
             this.radTxtBoxFilter.Name = "radTxtBoxFilter";
             this.radTxtBoxFilter.NullText = "Фільтр";
-            this.radTxtBoxFilter.Size = new System.Drawing.Size(187, 20);
+            this.radTxtBoxFilter.Size = new System.Drawing.Size(229, 20);
             this.radTxtBoxFilter.TabIndex = 5;
             this.radTxtBoxFilter.TextChanged += new System.EventHandler(this.radTxtBoxFilter_TextChanged);
             // 
             // radTxtBoxSearchData
             // 
-            this.radTxtBoxSearchData.Location = new System.Drawing.Point(205, 64);
+            this.radTxtBoxSearchData.Location = new System.Drawing.Point(305, 37);
             this.radTxtBoxSearchData.Name = "radTxtBoxSearchData";
-            this.radTxtBoxSearchData.NullText = "Пошук";
-            this.radTxtBoxSearchData.Size = new System.Drawing.Size(430, 20);
+            this.radTxtBoxSearchData.Size = new System.Drawing.Size(845, 20);
             this.radTxtBoxSearchData.TabIndex = 6;
-            this.radTxtBoxSearchData.TextChanged += new System.EventHandler(this.radTxtBoxSearchData_TextChanged);
+            this.radTxtBoxSearchData.TabStop = false;
+            // 
+            // radLblSearch
+            // 
+            this.radLblSearch.AutoSize = true;
+            this.radLblSearch.Location = new System.Drawing.Point(255, 40);
+            this.radLblSearch.Name = "radLblSearch";
+            this.radLblSearch.Size = new System.Drawing.Size(44, 13);
+            this.radLblSearch.TabIndex = 7;
+            this.radLblSearch.Text = "Search:";
+            // 
+            // radMenu1
+            // 
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItem1,
+            this.radMenuItem2});
+            this.radMenu1.Location = new System.Drawing.Point(0, 0);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(1160, 20);
+            this.radMenu1.TabIndex = 8;
+            // 
+            // radMenuItem1
+            // 
+            this.radMenuItem1.Name = "radMenuItem1";
+            this.radMenuItem1.Text = "Файл";
+            // 
+            // radMenuItem2
+            // 
+            this.radMenuItem2.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemSaveConfig,
+            this.radMenuItemsSetDefaultSett});
+            this.radMenuItem2.Name = "radMenuItem2";
+            this.radMenuItem2.Text = "Конфігурація";
+            // 
+            // radMenuItemSaveConfig
+            // 
+            this.radMenuItemSaveConfig.Name = "radMenuItemSaveConfig";
+            this.radMenuItemSaveConfig.Text = "Зберегти поточну конфігурацію";
+            this.radMenuItemSaveConfig.Click += new System.EventHandler(this.radMenuItemSaveConfig_Click);
+            // 
+            // radMenuItemsSetDefaultSett
+            // 
+            this.radMenuItemsSetDefaultSett.Name = "radMenuItemsSetDefaultSett";
+            this.radMenuItemsSetDefaultSett.Text = "Відновити початкові налаштуавння";
+            this.radMenuItemsSetDefaultSett.Click += new System.EventHandler(this.radMenuItemsSetDefaultSett_Click);
             // 
             // RadForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1051, 635);
+            this.ClientSize = new System.Drawing.Size(1160, 635);
+            this.Controls.Add(this.radMenu1);
+            this.Controls.Add(this.radLblSearch);
             this.Controls.Add(this.radTxtBoxSearchData);
             this.Controls.Add(this.radTxtBoxFilter);
             this.Controls.Add(this.radPanelChange);
@@ -289,6 +345,7 @@ namespace sysAdminwp
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "RadForm1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAdd)).EndInit();
@@ -309,6 +366,7 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTxtBoxFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTxtBoxSearchData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -334,5 +392,11 @@ namespace sysAdminwp
         private Telerik.WinControls.UI.RadTextBox radTBNameUa;
         private RadTextBox radTxtBoxFilter;
         private RadTextBox radTxtBoxSearchData;
+        private System.Windows.Forms.Label radLblSearch;
+        private RadMenu radMenu1;
+        private RadMenuItem radMenuItem1;
+        private RadMenuItem radMenuItem2;
+        private RadMenuItem radMenuItemSaveConfig;
+        private RadMenuItem radMenuItemsSetDefaultSett;
     }
 }
