@@ -66,13 +66,13 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public HttpResponseMessage NewItem<T>(string url, T data)
+        public bool NewItem<T>(string url, T data)
         {
 
-            StringContent content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             var result = client.PostAsync( url, content ).GetAwaiter().GetResult();
 
-            return result;
+            return result.IsSuccessStatusCode;
         }
 
         /// <summary>
@@ -81,14 +81,16 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public HttpResponseMessage UpdateItem<T>(string url, string id, T data)
+        public bool UpdateItem<T>(string url, string id, T data)
         {
 
             string idUrl = $"{url}/{id}";
-            StringContent content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            var result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
 
-            return result;
+            var retCode = result.IsSuccessStatusCode;
+
+            return retCode;
         }
 
         /// <summary>
@@ -97,13 +99,13 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public HttpResponseMessage DeleteItem<T>(string url, string id)
+        public bool DeleteItem(string url, string id)
         {
 
             string idUrl = $"{url}/{id}";
             var result = client.DeleteAsync(idUrl).GetAwaiter().GetResult();
 
-            return result;
+            return result.IsSuccessStatusCode;
         }
 
 
