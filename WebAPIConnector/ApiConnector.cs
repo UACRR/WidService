@@ -81,14 +81,12 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public HttpResponseMessage UpdateItem<T>(string url, string id, T data)
+        public void UpdateItem<T>(string url, string id, T data)
         {
 
             string idUrl = $"{url}/{id}";
             StringContent content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             var result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
-
-            return result;
         }
 
         /// <summary>
