@@ -112,8 +112,8 @@ namespace sysAdminwp
                 dataTrI[0],dataTrI[1],dataTrI[2]
             };
 
-            connector.UpdateItem<DictBaseTypeI>(Url, dataI.CodeI.ToString(), (DictBaseTypeI) dataI);
 
+            bool retCode = connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
         }
 
         //метод оновлення для панелі редагування
