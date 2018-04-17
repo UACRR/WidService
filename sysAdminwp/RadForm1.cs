@@ -22,7 +22,8 @@ namespace sysAdminwp
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
         private ApiConnector connector = new ApiConnector("http://localhost:54867/");
-        private List<DictBaseTypeI> list, list2;
+        private List<DictBaseTypeI> list;
+        private List<ViewTable> view;
 
         public RadForm1()
         {
@@ -32,7 +33,7 @@ namespace sysAdminwp
             radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
             radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             UpdateEditPanel();
-
+            
         }
 
         #region Методи
@@ -46,21 +47,37 @@ namespace sysAdminwp
             radTreeViewList.DisplayMember = "Name\\Name";
 
             //на грід
-            
-            list = connector.GetList<DictBaseTypeI>("api/dictionary/base/activitytype");
-            foreach (var items in list)
+            //list = connector.GetList<DictBaseTypeI>("api/dictionary/base/activitytype");
+            //radGridView1.DataSource = GetData(list);
+
+        }
+
+        /// <summary>
+        /// Отримати дані у вигляді виведення на grid
+        /// </summary>
+        /// <param name="l"></param>
+        /// <returns></returns>
+        private List<ViewTable> GetData(List<DictBaseTypeI> l)
+        {
+            List<ViewTable> view = new List<ViewTable>();
+            ViewTable temp;
+            foreach (var items in l)
             {
+                temp = new ViewTable();
+                temp.Code = items.CodeI;
                 foreach (var itemName in items.DictTrI)
                 {
+                    if (itemName.Lang == "Uk")
+                        temp.NameUk = itemName.Name;
                     if (itemName.Lang == "Ru")
-                    {
-                        
-                    }
+                        temp.NameRu = itemName.Name;
+                    if (itemName.Lang == "En")
+                        temp.NameEn = itemName.Name;
                 }
+                view.Add(temp);
             }
 
-            radGridView1.DataSource = list;
-
+            return view;
         }
 
         //метод збереження змін
@@ -68,14 +85,16 @@ namespace sysAdminwp
         {
             try
             {
-                radGridView1.CurrentRow.Cells[0].Value = Convert.ToInt32(radTBCode.Text);
+                radGridView1.CurrentRow.Cells["Code"].Value = Convert.ToInt32(radTBCode.Text);
             }
             catch (Exception)
             {
-                radTBCode.Text = radGridView1.CurrentRow.Cells[0].Value.ToString();
+                radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
             }
-
-            radGridView1.CurrentRow.Cells[1].Value = radTBNameUa.Text;
+            radGridView1.CurrentRow.Cells["NameUk"].Value = radTBNameUa.Text;
+            radGridView1.CurrentRow.Cells["NameEn"].Value = radTBNameEn.Text;
+            radGridView1.CurrentRow.Cells["NameRu"].Value = radTBNameRu.Text;
+            //connector.UpdateItem()
         }
 
         //метод оновлення для панелі редагування
@@ -88,19 +107,22 @@ namespace sysAdminwp
             this.radTBNameEn.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
                  try
                  {
-                     radTBCode.Text = radGridView1.CurrentRow.Cells[0].Value.ToString();
-                     radTBNameUa.Text = radGridView1.CurrentRow.Cells[1].Value.ToString();
+                     radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
+                     radTBNameUa.Text = radGridView1.CurrentRow.Cells["NameUk"].Value.ToString();
+                     radTBNameRu.Text = radGridView1.CurrentRow.Cells["NameRu"].Value.ToString();
+                     radTBNameEn.Text = radGridView1.CurrentRow.Cells["NameEn"].Value.ToString();
                  }
                  catch (Exception)
                  {
                      radTBCode.Text = default(string);
                      radTBNameUa.Text = default(string);
+                     radTBNameRu.Text = default(string);
+                     radTBNameEn.Text = default(string);
                  }
             this.radTBCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
             this.radTBNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
             this.radTBNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
             this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
-
         }
 
 
@@ -152,13 +174,13 @@ namespace sysAdminwp
             }
         }
 
-
         //оновлення панелі редагування
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
                 UpdateEditPanel();
         }
 
+        //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
             radGridView1.AllowEditRow = !radGridView1.AllowEditRow;
@@ -184,8 +206,6 @@ namespace sysAdminwp
             ChangeEnableElements(true);
         }
 
-
-
         //кнопка відміни внесених змін
         private void radBtnCancel_Click(object sender, EventArgs e)
         {
@@ -198,6 +218,7 @@ namespace sysAdminwp
         {
             radTreeViewList.Filter = radTxtBoxFilter.Text;
         }
+        
         //зміни при виборі елементу з дерева
         private void radTreeViewList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
@@ -212,12 +233,13 @@ namespace sysAdminwp
                          try
                          {
                              list = connector.GetList<DictBaseTypeI>(catItem.Url);
-                             radGridView1.DataSource = list;
+                             radGridView1.DataSource = GetData(list);
                              radPanelChange.Enabled = true;
                              radTxtBoxSearchData.Enabled = true;
                              radBtnAdd.Enabled = true;
                              radBtnRemove.Enabled = true;
-                         }
+                             LoadOverviewCfg();
+                        }
                          catch (Exception)
                          {
                              radGridView1.DataSource = default(DataGrid);
@@ -230,33 +252,12 @@ namespace sysAdminwp
                      }
                  }
              }
+        }
 
-            //перевірити!
-            //foreach (dynamic item in urlCategories)
-            //{
-            //    if (item.Name == e.Node.Name)
-            //    {
-            //        try
-            //        {
-            //            list = connector.GetList<Category>(item.Url);
-            //            radGridView1.DataSource = list;
-            //            radPanelChange.Enabled = true;
-            //            radTxtBoxSearchData.Enabled = true;
-            //            radBtnAdd.Enabled = true;
-            //            radBtnRemove.Enabled = true;
-            //        }
-            //        catch (Exception)
-            //        {
-            //            radGridView1.DataSource = default(DataGrid);
-            //            UpdateEditPanel();
-            //            radPanelChange.Enabled = false;
-            //            radTxtBoxSearchData.Enabled = false;
-            //            radBtnAdd.Enabled = false;
-            //            radBtnRemove.Enabled = false;
-            //        }
-            //    }
-            //}
+        private string GetUrl(List<DictCategory> dictCat )
+        {
             
+            return "";
         }
 
 
@@ -299,80 +300,49 @@ namespace sysAdminwp
 
         #endregion
 
+        //збереження конфігурації
         private void radMenuItemSaveConfig_Click(object sender, EventArgs e)
         {
-
-
             string s = "overviewconfig.xml";
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
-            dialog.Title = "Select a xml file";
-            
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                s = dialog.FileName;
-            }
             radGridView1.SaveLayout(s);
-
-            //radGridView1.Columns[0].Width = Properties.Settings.Default.column0_width;
-            //DataGridView gv = new DataGridView();
-            //gv.Columns[0].DisplayIndex = Properties.Settings.Default.column0_width;
-            //radGridView1.Columns.Move(radGridView1.Columns["col"], Properties.Settings.Default.col_dis_index0);
         }
 
-        private void OpenSettings()
-        {
-            string s = "overviewconfig.xml", def = "defaultoverviewconfig.xml";
-            using (OpenFileDialog dialog = new OpenFileDialog())
-            {
-                dialog.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
-                dialog.Title = "Select a xml file";
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    s = dialog.FileName;
-                }
-
-                if (s != null)
-                    radGridView1.LoadLayout(s);
-                else
-                    radGridView1.LoadLayout(def);
-            }
-
-            //OpenFileDialog dialog = new OpenFileDialog();
-            //dialog.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
-            //dialog.Title = "Select a xml file";
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    s = dialog.FileName;
-            //}
-            //
-            //if (s!=null)
-            //    radGridView1.LoadLayout(s);
-            //else 
-            //    radGridView1.LoadLayout(def);
-            //
-        }
-
+        //завантаження конфігурації вигляду в грід
         private void LoadOverviewCfg()
         {
-            string s = "overviewconfig.xml", def = "defaultoverviewconfig.xml";
-            try
-            {
+            string s = "overviewconfig.xml", 
+                   def = "defaultoverviewconfig.xml";
+            if(File.Exists(s))
                 radGridView1.LoadLayout(s);
+            else if (File.Exists(def))
+            {
+                radGridView1.LoadLayout(def);
             }
-            catch (Exception e)
+            else
             {
                 radGridView1.SaveLayout(def);
                 radGridView1.LoadLayout(def);
-                //MessageBox.Show(e.Message, "Error load overview!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
 
+        //встановлення стандартних налаштувань вигляду грід
         private void radMenuItemsSetDefaultSett_Click(object sender, EventArgs e)
         {
-            OpenSettings();
+            if (File.Exists("defaultoverviewconfig.xml"))
+            {
+                radGridView1.LoadLayout("defaultoverviewconfig.xml");
+                radGridView1.SaveLayout("overviewconfig.xml");
+            }
+            else
+            {
+                MessageBox.Show("Неможливо автоматично відновити стандартні налаштування! " +
+                                "Видаліть файл конфігурації '"+Path.GetFullPath("overviewconfig.xml") +"' та перезапустіть програму.",
+                                "Error!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
         }
     }
 
 }
+

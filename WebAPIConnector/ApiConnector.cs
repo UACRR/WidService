@@ -41,11 +41,7 @@ namespace WebAPIConnector
             return list;
         }
 
-        public List<T> GetData<T>(string url)
-        {
-
-            return new List<T>();
-        }
+       
 
 
         /// <summary>
