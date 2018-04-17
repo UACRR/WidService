@@ -21,9 +21,10 @@ namespace sysAdminwp
 {
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
-        private ApiConnector connector = new ApiConnector("http://localhost:54867/");
+        private readonly ApiConnector connector = new ApiConnector("http://localhost:54867/");
         private List<DictBaseTypeI> list;
         private List<ViewTable> view;
+        public string Url { get; set; }
 
         public RadForm1()
         {
@@ -80,8 +81,10 @@ namespace sysAdminwp
             return view;
         }
 
+
+
         //метод збереження змін
-        private void SaveChanges()
+        public void SaveChangesTest()
         {
             try
             {
@@ -94,7 +97,23 @@ namespace sysAdminwp
             radGridView1.CurrentRow.Cells["NameUk"].Value = radTBNameUa.Text;
             radGridView1.CurrentRow.Cells["NameEn"].Value = radTBNameEn.Text;
             radGridView1.CurrentRow.Cells["NameRu"].Value = radTBNameRu.Text;
-            //connector.UpdateItem()
+
+            
+            DictBaseTypeI dataI = new DictBaseTypeI();
+                var dataTrI = new DictTrI[3];
+                dataTrI[0] = new DictTrI() {CodeI = Convert.ToInt32(radTBCode.Text),Lang = "En",Name = radTBNameEn.Text};
+                dataTrI[1] = new DictTrI() {CodeI = Convert.ToInt32(radTBCode.Text),Lang = "Ru",Name = radTBNameRu.Text};
+                dataTrI[2] = new DictTrI() {CodeI = Convert.ToInt32(radTBCode.Text),Lang = "Uk",Name = radTBNameUa.Text};
+
+            dataI.CodeI = dataTrI[0].CodeI;
+            dataI.Name = radTBNameUa.Text;
+            dataI.DictTrI = new List<DictTrI>
+            {
+                dataTrI[0],dataTrI[1],dataTrI[2]
+            };
+
+
+            connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
         }
 
         //метод оновлення для панелі редагування
@@ -202,7 +221,7 @@ namespace sysAdminwp
         //кнопка збереження
         private void radBtnSave_Click(object sender, EventArgs e)
         {
-            SaveChanges();
+            this.SaveChangesTest();
             ChangeEnableElements(true);
         }
 
@@ -232,6 +251,7 @@ namespace sysAdminwp
                      {
                          try
                          {
+                             Url = catItem.Url;
                              list = connector.GetList<DictBaseTypeI>(catItem.Url);
                              radGridView1.DataSource = GetData(list);
                              radPanelChange.Enabled = true;
@@ -240,7 +260,7 @@ namespace sysAdminwp
                              radBtnRemove.Enabled = true;
                              LoadOverviewCfg();
                         }
-                         catch (Exception)
+                         catch (Exception ex)
                          {
                              radGridView1.DataSource = default(DataGrid);
                              UpdateEditPanel();
@@ -254,11 +274,7 @@ namespace sysAdminwp
              }
         }
 
-        private string GetUrl(List<DictCategory> dictCat )
-        {
-            
-            return "";
-        }
+
 
 
         #region події при редагуванні даних на панелі
