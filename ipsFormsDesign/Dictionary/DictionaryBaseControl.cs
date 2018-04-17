@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Dictionary
         }
 
 
-        public IList<object> GetDefaultDicData(DicCategoryItems item)
+        public IList<object> GetDefaultDicData(string item)
         {
             return null;
         }
