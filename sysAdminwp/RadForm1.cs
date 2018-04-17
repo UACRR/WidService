@@ -34,7 +34,12 @@ namespace sysAdminwp
             radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
             radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             UpdateEditPanel();
-            
+
+            radPanelChange.Enabled = false;
+            radTxtBoxSearchData.Enabled = false;
+            radBtnAdd.Enabled = false;
+            radBtnRemove.Enabled = false;
+
         }
 
         #region Методи
@@ -46,11 +51,6 @@ namespace sysAdminwp
             radTreeViewList.DataSource = dictCategory;
             radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             radTreeViewList.DisplayMember = "Name\\Name";
-
-            //на грід
-            //list = connector.GetList<DictBaseTypeI>("api/dictionary/base/activitytype");
-            //radGridView1.DataSource = GetData(list);
-
         }
 
         /// <summary>
@@ -82,28 +82,13 @@ namespace sysAdminwp
         }
 
 
-
-        //метод збереження змін
-        public void SaveChangesTest()
+        private DictBaseTypeI PackDataI()
         {
-            try
-            {
-                radGridView1.CurrentRow.Cells["Code"].Value = Convert.ToInt32(radTBCode.Text);
-            }
-            catch (Exception)
-            {
-                radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
-            }
-            radGridView1.CurrentRow.Cells["NameUk"].Value = radTBNameUa.Text;
-            radGridView1.CurrentRow.Cells["NameEn"].Value = radTBNameEn.Text;
-            radGridView1.CurrentRow.Cells["NameRu"].Value = radTBNameRu.Text;
-
-            
             DictBaseTypeI dataI = new DictBaseTypeI();
-                var dataTrI = new DictTrI[3];
-                dataTrI[0] = new DictTrI() {CodeI = Convert.ToInt32(radTBCode.Text),Lang = "En",Name = radTBNameEn.Text};
-                dataTrI[1] = new DictTrI() {CodeI = Convert.ToInt32(radTBCode.Text),Lang = "Ru",Name = radTBNameRu.Text};
-                dataTrI[2] = new DictTrI() {CodeI = Convert.ToInt32(radTBCode.Text),Lang = "Uk",Name = radTBNameUa.Text};
+            var dataTrI = new DictTrI[3];
+            dataTrI[0] = new DictTrI() { CodeI = Convert.ToInt32(radTBCode.Text), Lang = "En", Name = radTBNameEn.Text };
+            dataTrI[1] = new DictTrI() { CodeI = Convert.ToInt32(radTBCode.Text), Lang = "Ru", Name = radTBNameRu.Text };
+            dataTrI[2] = new DictTrI() { CodeI = Convert.ToInt32(radTBCode.Text), Lang = "Uk", Name = radTBNameUa.Text };
 
             dataI.CodeI = dataTrI[0].CodeI;
             dataI.Name = radTBNameUa.Text;
@@ -111,14 +96,58 @@ namespace sysAdminwp
             {
                 dataTrI[0],dataTrI[1],dataTrI[2]
             };
+            return dataI;
+        }
 
+        //метод збереження змін !! null code
+        public void SaveUpdate()
+        {
+            if ((radTBCode.TextLength == 0) && (Convert.ToInt32(radTBCode.Text)).GetType()!=typeof(int))
+                radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
 
+            DictBaseTypeI dataI = PackDataI();
             bool retCode = connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
+            list = connector.GetList<DictBaseTypeI>(Url);
+            radGridView1.DataSource = GetData(list);
+            UpdateEditPanel();
+        }
+
+        public void SaveAddNewRow()
+        {
+            if (radTBCode.TextLength != 0)
+            {
+                if ((Convert.ToInt32(radTBCode.Text)).GetType() != typeof(int))
+                    radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
+                radBtnSave.Text = "Зберегти";
+                try
+                {
+                    DictBaseTypeI dataI = PackDataI();
+                    bool retCode = connector.NewItem(Url, dataI);
+                    list = connector.GetList<DictBaseTypeI>(Url);
+                    radGridView1.DataSource = GetData(list);
+                    UpdateEditPanel();
+                    ChangeEnableElementsWhenAdd(true);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Поле '" + radLabelCode.Text + "' не повинно бути пустим!", 
+                    "Заповніть поле!", 
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            
         }
 
         //метод оновлення для панелі редагування
         private void UpdateEditPanel()
         {
+       
             //відписуємось від події - обрали інший рядок, зміни не внесено
             this.radTBCode.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
             this.radTBNameUa.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
@@ -144,6 +173,29 @@ namespace sysAdminwp
             this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
         }
 
+        /// <summary>
+        /// Метод зміни стану увімкненості компонентів
+        /// </summary>
+        /// <param name="isEnable">Якщо true - компонент активний</param>
+        private void ChangeEnableElementsWhenEdit(bool isEnable)
+        {
+            radGridView1.Enabled = isEnable;
+            radTreeViewList.Enabled = isEnable;
+            radBtnAdd.Enabled = isEnable;
+            radBtnRemove.Enabled = isEnable;
+            radTxtBoxSearchData.Enabled = isEnable;
+            radTxtBoxFilter.Enabled = isEnable;
+        }
+
+        private void ChangeEnableElementsWhenAdd(bool isEnable)
+        {
+            radBtnAdd.Enabled = isEnable;
+            radTxtBoxSearchData.Enabled = isEnable;
+            radTreeViewList.Enabled = isEnable;
+            radTxtBoxFilter.Enabled = isEnable;
+            radGridView1.Enabled = isEnable;
+            radBtnRemove.Enabled = isEnable;
+        }
 
         #endregion
 
@@ -202,34 +254,43 @@ namespace sysAdminwp
         //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
-            radGridView1.AllowEditRow = !radGridView1.AllowEditRow;
-            radGridView1.AllowAddNewRow = !radGridView1.AllowAddNewRow;
+            radBtnSave.Text = "Додати";
+            ChangeEnableElementsWhenAdd(false);
+            radTBCode.Clear();
+            radTBNameEn.Clear();
+            radTBNameRu.Clear();
+            radTBNameUa.Clear();
         }
 
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
-            using (GridViewDataRowInfo gvdri = radGridView1.CurrentRow as GridViewDataRowInfo)
-            {
-                if (gvdri!=null)
-                {
-                    radGridView1.Rows.Remove(gvdri);
-                }
-            }
+            bool retCode = connector.DeleteItem(Url, radGridView1.CurrentRow.Cells["code"].Value.ToString());
+            list = connector.GetList<DictBaseTypeI>(Url);
+            radGridView1.DataSource = GetData(list);
+            UpdateEditPanel();
         }
 
         //кнопка збереження
         private void radBtnSave_Click(object sender, EventArgs e)
         {
-            this.SaveChangesTest();
-            ChangeEnableElements(true);
+            if (radBtnSave.Text == "Додати")
+            {
+                SaveAddNewRow();
+                
+            }
+            else
+            {
+                SaveUpdate();
+                ChangeEnableElementsWhenEdit(true);
+            }
         }
 
         //кнопка відміни внесених змін
         private void radBtnCancel_Click(object sender, EventArgs e)
         {
             UpdateEditPanel();
-            ChangeEnableElements(true);
+            ChangeEnableElementsWhenEdit(true);
         }
 
         //фільтр елементів дерева
@@ -259,6 +320,7 @@ namespace sysAdminwp
                              radBtnAdd.Enabled = true;
                              radBtnRemove.Enabled = true;
                              LoadOverviewCfg();
+                             return;
                         }
                          catch (Exception ex)
                          {
@@ -271,48 +333,40 @@ namespace sysAdminwp
                          }
                      }
                  }
-             }
+
+                 radGridView1.DataSource = null;
+                 UpdateEditPanel();
+                 radPanelChange.Enabled = false;
+                 radTxtBoxSearchData.Enabled = false;
+                 radBtnAdd.Enabled = false;
+                 radBtnRemove.Enabled = false;
+            }
         }
 
 
 
 
         #region події при редагуванні даних на панелі
+
         private void radTBCode_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
-            ChangeEnableElements(false);
+            ChangeEnableElementsWhenEdit(false);
         }
 
         private void radTBNameUa_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
-            ChangeEnableElements(false);
+            ChangeEnableElementsWhenEdit(false);
         }
 
         private void radTBNameEn_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
-            ChangeEnableElements(false);
+            ChangeEnableElementsWhenEdit(false);
         }
 
         private void radTBNameRu_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
-            ChangeEnableElements(false);
+            ChangeEnableElementsWhenEdit(false);
         }
-
-        /// <summary>
-        /// Метод зміни стану увімкненості компонентів
-        /// </summary>
-        /// <param name="isEnable">Якщо true - компонент активний</param>
-        private void ChangeEnableElements(bool isEnable)
-        {
-            radGridView1.Enabled = isEnable;
-            radTreeViewList.Enabled = isEnable;
-            radBtnAdd.Enabled = isEnable;
-            radBtnRemove.Enabled = isEnable;
-            radTxtBoxSearchData.Enabled = isEnable;
-            radTxtBoxFilter.Enabled = isEnable;
-        }
-
-
 
         #endregion
 
