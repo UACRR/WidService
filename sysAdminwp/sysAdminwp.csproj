@@ -72,11 +72,11 @@
     <Compile Include="RadForm1.Designer.cs">
       <DependentUpon>RadForm1.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControlTest.cs">
+    <Compile Include="DataEditControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControlTest.Designer.cs">
-      <DependentUpon>UserControlTest.cs</DependentUpon>
+    <Compile Include="DataEditControl.Designer.cs">
+      <DependentUpon>DataEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewTable.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -94,8 +94,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UserControlTest.resx">
-      <DependentUpon>UserControlTest.cs</DependentUpon>
+    <EmbeddedResource Include="DataEditControl.resx">
+      <DependentUpon>DataEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

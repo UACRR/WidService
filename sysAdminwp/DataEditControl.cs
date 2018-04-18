@@ -11,9 +11,9 @@ using Telerik.WinControls.UI;
 
 namespace sysAdminwp
 {
-    public partial class UserControlTest : UserControl
+    public partial class DataEditControl : UserControl
     {
-        public UserControlTest()
+        public DataEditControl()
         {
             InitializeComponent();
             rBtnAdd.Click += RBtnAdd_Click;

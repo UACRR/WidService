@@ -34,7 +34,7 @@ namespace ipsTestExp
             this.radPageViewMain = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPMain = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPVPageDictTest = new Telerik.WinControls.UI.RadPageViewPage();
-            this.uct = new sysAdminwp.UserControlTest();
+            this.dataEditControl = new sysAdminwp.DataEditControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
             this.radPageViewMain.SuspendLayout();
             this.radPVPageDictTest.SuspendLayout();
@@ -52,7 +52,7 @@ namespace ipsTestExp
             this.radPageViewMain.Location = new System.Drawing.Point(-2, 2);
             this.radPageViewMain.Name = "radPageViewMain";
             this.radPageViewMain.SelectedPage = this.radPVPageDictTest;
-            this.radPageViewMain.Size = new System.Drawing.Size(1153, 540);
+            this.radPageViewMain.Size = new System.Drawing.Size(1172, 614);
             this.radPageViewMain.TabIndex = 0;
             this.radPageViewMain.ThemeName = "ControlDefault";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageViewMain.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -67,29 +67,29 @@ namespace ipsTestExp
             // 
             // radPVPageDictTest
             // 
-            this.radPVPageDictTest.Controls.Add(this.uct);
+            this.radPVPageDictTest.Controls.Add(this.dataEditControl);
             this.radPVPageDictTest.ItemSize = new System.Drawing.SizeF(75F, 24F);
             this.radPVPageDictTest.Location = new System.Drawing.Point(10, 33);
             this.radPVPageDictTest.Name = "radPVPageDictTest";
-            this.radPVPageDictTest.Size = new System.Drawing.Size(1132, 496);
+            this.radPVPageDictTest.Size = new System.Drawing.Size(1151, 570);
             this.radPVPageDictTest.Text = "Довідники+";
             // 
-            // uct
+            // dataEditControl
             // 
-            this.uct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataEditControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uct.Location = new System.Drawing.Point(-2, 0);
-            this.uct.Name = "uct";
-            this.uct.Size = new System.Drawing.Size(1136, 502);
-            this.uct.TabIndex = 0;
-            this.uct.TreeSourse = null;
+            this.dataEditControl.Location = new System.Drawing.Point(197, 0);
+            this.dataEditControl.Name = "dataEditControl";
+            this.dataEditControl.Size = new System.Drawing.Size(956, 572);
+            this.dataEditControl.TabIndex = 0;
+            this.dataEditControl.TreeSourse = null;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 539);
+            this.ClientSize = new System.Drawing.Size(1166, 613);
             this.Controls.Add(this.radPageViewMain);
             this.Name = "MainForm";
             // 
@@ -110,7 +110,7 @@ namespace ipsTestExp
         private Telerik.WinControls.UI.RadPageView radPageViewMain;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPMain;
         private Telerik.WinControls.UI.RadPageViewPage radPVPageDictTest;
-        private sysAdminwp.UserControlTest uct;
+        private sysAdminwp.DataEditControl dataEditControl;
 
     }
 }

@@ -21,13 +21,13 @@ namespace ipsTestExp
         public MainForm()
         {
             InitializeComponent();
-            uct.UpdateData();
+            
             
         }
 
         public void Control()
         {
-            uct.TreeSourse = null;
+            
         }
     }
 }
