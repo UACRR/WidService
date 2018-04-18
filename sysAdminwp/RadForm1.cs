@@ -30,9 +30,7 @@ namespace sysAdminwp
         {
             InitializeComponent();
             SetDataSource();
-            radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
-            radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
-            radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
+            
             UpdateEditPanel();
 
             radPanelChange.Enabled = false;
@@ -41,6 +39,17 @@ namespace sysAdminwp
             radBtnRemove.Enabled = false;
 
         }
+
+        public RadGridView ReturnGrid()
+        {
+            return radGridView1;
+        }
+
+        public RadTreeView ReturnRTV()
+        {
+            return radTreeViewList;
+        }
+
 
         #region Методи
         
