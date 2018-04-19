@@ -46,9 +46,10 @@
             this.rBtnAdd = new Telerik.WinControls.UI.RadButton();
             this.rGridViewData = new Telerik.WinControls.UI.RadGridView();
             this.rMenuItemCfg = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemSaveConfig = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemsSetDefaultSett = new Telerik.WinControls.UI.RadMenuItem();
+            this.rMItemSaveConfig = new Telerik.WinControls.UI.RadMenuItem();
+            this.rMItemsSetDefaultSett = new Telerik.WinControls.UI.RadMenuItem();
             this.rMainMenu = new Telerik.WinControls.UI.RadMenu();
+            this.rLblStatus = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBSearchData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rPanelChange)).BeginInit();
             this.rPanelChange.SuspendLayout();
@@ -67,6 +68,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewData.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rMainMenu)).BeginInit();
+            this.rMainMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rLblStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // radLblSearch
@@ -74,14 +77,15 @@
             this.radLblSearch.AutoSize = true;
             this.radLblSearch.Location = new System.Drawing.Point(3, 35);
             this.radLblSearch.Name = "radLblSearch";
-            this.radLblSearch.Size = new System.Drawing.Size(44, 13);
+            this.radLblSearch.Size = new System.Drawing.Size(43, 13);
             this.radLblSearch.TabIndex = 15;
-            this.radLblSearch.Text = "Search:";
+            this.radLblSearch.Text = "Пошук:";
             // 
             // rTxtBSearchData
             // 
             this.rTxtBSearchData.Location = new System.Drawing.Point(53, 33);
             this.rTxtBSearchData.Name = "rTxtBSearchData";
+            this.rTxtBSearchData.NullText = "Введіть слово для пошуку...";
             this.rTxtBSearchData.Size = new System.Drawing.Size(338, 20);
             this.rTxtBSearchData.TabIndex = 14;
             this.rTxtBSearchData.TabStop = false;
@@ -252,36 +256,60 @@
             // 
             // rMenuItemCfg
             // 
+            this.rMenuItemCfg.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            this.rMenuItemCfg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.rMenuItemCfg.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemSaveConfig,
-            this.radMenuItemsSetDefaultSett});
+            this.rMItemSaveConfig,
+            this.rMItemsSetDefaultSett});
             this.rMenuItemCfg.Name = "rMenuItemCfg";
+            this.rMenuItemCfg.PopupDirection = Telerik.WinControls.UI.RadDirection.Right;
             this.rMenuItemCfg.Text = "Конфігурація";
             this.rMenuItemCfg.UseCompatibleTextRendering = false;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.rMenuItemCfg.GetChildAt(0))).Alignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.rMenuItemCfg.GetChildAt(1))).BorderDrawMode = Telerik.WinControls.BorderDrawModes.VerticalOverHorizontal;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.rMenuItemCfg.GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.TopLeft;
             // 
-            // radMenuItemSaveConfig
+            // rMItemSaveConfig
             // 
-            this.radMenuItemSaveConfig.Name = "radMenuItemSaveConfig";
-            this.radMenuItemSaveConfig.Text = "Зберегти поточну конфігурацію";
-            this.radMenuItemSaveConfig.UseCompatibleTextRendering = false;
+            this.rMItemSaveConfig.Name = "rMItemSaveConfig";
+            this.rMItemSaveConfig.Text = "Зберегти поточну конфігурацію";
+            this.rMItemSaveConfig.UseCompatibleTextRendering = false;
             // 
-            // radMenuItemsSetDefaultSett
+            // rMItemsSetDefaultSett
             // 
-            this.radMenuItemsSetDefaultSett.Name = "radMenuItemsSetDefaultSett";
-            this.radMenuItemsSetDefaultSett.Text = "Відновити початкові налаштуавння";
-            this.radMenuItemsSetDefaultSett.UseCompatibleTextRendering = false;
+            this.rMItemsSetDefaultSett.Name = "rMItemsSetDefaultSett";
+            this.rMItemsSetDefaultSett.Text = "Відновити початкові налаштуавння";
+            this.rMItemsSetDefaultSett.UseCompatibleTextRendering = false;
             // 
             // rMainMenu
             // 
-            this.rMainMenu.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.rMainMenu.AutoSize = false;
+            this.rMainMenu.BackColor = System.Drawing.Color.Transparent;
+            this.rMainMenu.Controls.Add(this.rLblStatus);
+            this.rMainMenu.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rMainMenu.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.rMenuItemCfg});
             this.rMainMenu.Location = new System.Drawing.Point(0, 0);
             this.rMainMenu.Name = "rMainMenu";
-            this.rMainMenu.Size = new System.Drawing.Size(975, 20);
+            this.rMainMenu.Size = new System.Drawing.Size(975, 27);
             this.rMainMenu.TabIndex = 16;
+            ((Telerik.WinControls.UI.RadMenuElement)(this.rMainMenu.GetChildAt(0))).Alignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.UI.RadMenuElement)(this.rMainMenu.GetChildAt(0))).RightToLeft = true;
+            ((Telerik.WinControls.Layout.WrapLayoutPanel)(this.rMainMenu.GetChildAt(0).GetChildAt(0))).Alignment = System.Drawing.ContentAlignment.TopRight;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.rMainMenu.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.rMainMenu.GetChildAt(0).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.TopRight;
+            ((Telerik.WinControls.Layouts.StackLayoutPanel)(this.rMainMenu.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.TopRight;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.rMainMenu.GetChildAt(0).GetChildAt(3))).Alignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // UserControlTest
+            // rLblStatus
+            // 
+            this.rLblStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.rLblStatus.Location = new System.Drawing.Point(13, 4);
+            this.rLblStatus.Name = "rLblStatus";
+            this.rLblStatus.Size = new System.Drawing.Size(2, 2);
+            this.rLblStatus.TabIndex = 0;
+            // 
+            // DataEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -292,7 +320,7 @@
             this.Controls.Add(this.rBtnRemove);
             this.Controls.Add(this.rBtnAdd);
             this.Controls.Add(this.rGridViewData);
-            this.Name = "UserControlTest";
+            this.Name = "DataEditControl";
             this.Size = new System.Drawing.Size(975, 599);
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBSearchData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rPanelChange)).EndInit();
@@ -313,6 +341,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewData.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rMainMenu)).EndInit();
+            this.rMainMenu.ResumeLayout(false);
+            this.rMainMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rLblStatus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,8 +368,9 @@
         private Telerik.WinControls.UI.RadButton rBtnAdd;
         private Telerik.WinControls.UI.RadGridView rGridViewData;
         private Telerik.WinControls.UI.RadMenuItem rMenuItemCfg;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemSaveConfig;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemsSetDefaultSett;
+        private Telerik.WinControls.UI.RadMenuItem rMItemSaveConfig;
+        private Telerik.WinControls.UI.RadMenuItem rMItemsSetDefaultSett;
         private Telerik.WinControls.UI.RadMenu rMainMenu;
+        private Telerik.WinControls.UI.RadLabel rLblStatus;
     }
 }

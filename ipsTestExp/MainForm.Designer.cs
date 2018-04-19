@@ -62,7 +62,7 @@ namespace ipsTestExp
             this.radPageViewPMain.ItemSize = new System.Drawing.SizeF(55F, 24F);
             this.radPageViewPMain.Location = new System.Drawing.Point(10, 33);
             this.radPageViewPMain.Name = "radPageViewPMain";
-            this.radPageViewPMain.Size = new System.Drawing.Size(1132, 496);
+            this.radPageViewPMain.Size = new System.Drawing.Size(1151, 570);
             this.radPageViewPMain.Text = "Головна";
             // 
             // radPVPageDictTest
@@ -76,14 +76,12 @@ namespace ipsTestExp
             // 
             // dataEditControl
             // 
-            this.dataEditControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataEditControl.Location = new System.Drawing.Point(197, 0);
+            this.dataEditControl.Enabled = false;
+            this.dataEditControl.Location = new System.Drawing.Point(203, 3);
             this.dataEditControl.Name = "dataEditControl";
-            this.dataEditControl.Size = new System.Drawing.Size(956, 572);
+            this.dataEditControl.Size = new System.Drawing.Size(943, 559);
             this.dataEditControl.TabIndex = 0;
-            this.dataEditControl.TreeSourse = null;
+            this.dataEditControl.Url = null;
             // 
             // MainForm
             // 

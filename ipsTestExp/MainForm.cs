@@ -11,23 +11,30 @@ using System.Windows.Forms;
 using sysAdminwp;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using WebAPIConnector;
 
 
 namespace ipsTestExp
 {
     public partial class MainForm:RadForm
     {
+        private readonly ApiConnector conn = new ApiConnector("http://localhost:54867/");
+
 
         public MainForm()
         {
+            
             InitializeComponent();
-            
-            
+            LoadControls();
         }
 
-        public void Control()
+        private void LoadControls()
         {
-            
+            dataEditControl.InitializeConnector(conn);
+            dataEditControl.Url = "api/dictionary/base/activitytype";
+            dataEditControl.ViewData();
+            dataEditControl.LoadOverviewCfg();
+
         }
     }
 }
