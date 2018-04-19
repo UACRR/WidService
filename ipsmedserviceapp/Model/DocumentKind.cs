@@ -15,6 +15,7 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string DocMaker { get; set; }
 
+        public Category CategoryCodeNavigation { get; set; }
         public ICollection<DocumentKindTr> DocumentKindTr { get; set; }
     }
 }
