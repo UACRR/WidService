@@ -125,6 +125,7 @@ namespace sysAdminwp
             this.radGridView1.EnableCustomFiltering = true;
             this.radGridView1.Location = new System.Drawing.Point(243, 64);
             this.radGridView1.Margin = new System.Windows.Forms.Padding(1);
+            //
             // 
             // 
             // 
