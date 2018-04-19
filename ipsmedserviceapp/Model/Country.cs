@@ -20,6 +20,7 @@ namespace ipsmedserviceapp.Model
         public short? ShortChoise { get; set; }
         public int? OrderBy { get; set; }
 
+        public Continent ContinentCodeNavigation { get; set; }
         public ICollection<CountryTr> CountryTr { get; set; }
         public ICollection<KlR030> KlR030 { get; set; }
     }
