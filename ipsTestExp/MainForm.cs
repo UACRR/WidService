@@ -35,6 +35,10 @@ namespace ipsTestExp
             dataEditControl.ViewData();
             dataEditControl.LoadOverviewCfg();
 
+            comDirControl.InitializeConnector(conn);
+            comDirControl.Url = "api/Dictionary/extra/crkindgroup";
+            comDirControl.ViewData();
+            comDirControl.CreateUnboundHierarchy();
         }
     }
 }

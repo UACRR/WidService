@@ -10,6 +10,7 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string Url { get; set; }
         public string DicType { get; set; }
+        public int? DicLevel { get; set; }
 
         public DictCategory CodeNavigation { get; set; }
     }

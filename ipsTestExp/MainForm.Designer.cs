@@ -34,10 +34,13 @@ namespace ipsTestExp
             this.radPageViewMain = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPMain = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPVPageDictTest = new Telerik.WinControls.UI.RadPageViewPage();
+            this.rPViewPageComDir = new Telerik.WinControls.UI.RadPageViewPage();
             this.dataEditControl = new sysAdminwp.DataEditControl();
+            this.comDirControl = new ipsTestExp.ComDirControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
             this.radPageViewMain.SuspendLayout();
             this.radPVPageDictTest.SuspendLayout();
+            this.rPViewPageComDir.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,10 +51,11 @@ namespace ipsTestExp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radPageViewMain.Controls.Add(this.radPageViewPMain);
             this.radPageViewMain.Controls.Add(this.radPVPageDictTest);
+            this.radPageViewMain.Controls.Add(this.rPViewPageComDir);
             this.radPageViewMain.DefaultPage = this.radPageViewPMain;
             this.radPageViewMain.Location = new System.Drawing.Point(-2, 2);
             this.radPageViewMain.Name = "radPageViewMain";
-            this.radPageViewMain.SelectedPage = this.radPVPageDictTest;
+            this.radPageViewMain.SelectedPage = this.rPViewPageComDir;
             this.radPageViewMain.Size = new System.Drawing.Size(1172, 614);
             this.radPageViewMain.TabIndex = 0;
             this.radPageViewMain.ThemeName = "ControlDefault";
@@ -69,10 +73,19 @@ namespace ipsTestExp
             // 
             this.radPVPageDictTest.Controls.Add(this.dataEditControl);
             this.radPVPageDictTest.ItemSize = new System.Drawing.SizeF(75F, 24F);
-            this.radPVPageDictTest.Location = new System.Drawing.Point(10, 33);
+            this.radPVPageDictTest.Location = new System.Drawing.Point(10, 37);
             this.radPVPageDictTest.Name = "radPVPageDictTest";
-            this.radPVPageDictTest.Size = new System.Drawing.Size(1151, 570);
+            this.radPVPageDictTest.Size = new System.Drawing.Size(1151, 566);
             this.radPVPageDictTest.Text = "Довідники+";
+            // 
+            // rPViewPageComDir
+            // 
+            this.rPViewPageComDir.Controls.Add(this.comDirControl);
+            this.rPViewPageComDir.ItemSize = new System.Drawing.SizeF(112F, 24F);
+            this.rPViewPageComDir.Location = new System.Drawing.Point(10, 33);
+            this.rPViewPageComDir.Name = "rPViewPageComDir";
+            this.rPViewPageComDir.Size = new System.Drawing.Size(1151, 570);
+            this.rPViewPageComDir.Text = "Складний довідник";
             // 
             // dataEditControl
             // 
@@ -82,6 +95,15 @@ namespace ipsTestExp
             this.dataEditControl.Size = new System.Drawing.Size(943, 559);
             this.dataEditControl.TabIndex = 0;
             this.dataEditControl.Url = null;
+            // 
+            // comDirControl
+            // 
+            this.comDirControl.BackColor = System.Drawing.Color.Linen;
+            this.comDirControl.Location = new System.Drawing.Point(4, 4);
+            this.comDirControl.Name = "comDirControl";
+            this.comDirControl.Size = new System.Drawing.Size(1142, 558);
+            this.comDirControl.TabIndex = 0;
+            this.comDirControl.Url = null;
             // 
             // MainForm
             // 
@@ -98,6 +120,7 @@ namespace ipsTestExp
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).EndInit();
             this.radPageViewMain.ResumeLayout(false);
             this.radPVPageDictTest.ResumeLayout(false);
+            this.rPViewPageComDir.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -109,7 +132,8 @@ namespace ipsTestExp
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPMain;
         private Telerik.WinControls.UI.RadPageViewPage radPVPageDictTest;
         private sysAdminwp.DataEditControl dataEditControl;
-
+        private Telerik.WinControls.UI.RadPageViewPage rPViewPageComDir;
+        private ComDirControl comDirControl;
     }
 }
 
