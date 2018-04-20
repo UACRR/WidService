@@ -216,7 +216,7 @@ namespace ipsmedserviceapp.Controllers
                             sors => (CrkindGroup)sors,
                             sors => sors.CrkindGroupTr.ToList(),
                             (sors, dest) => ((CrkindGroupTr)sors).CodeI == ((CrkindGroupTr)dest).CodeI && ((CrkindGroupTr)sors).Lang == ((CrkindGroupTr)dest).Lang,
-                            rec=>rec.CrkindGroupTr, rec=>rec.CopyrightKind )
+                            rec => rec.CrkindGroupTr, rec => rec.CopyrightKind)
                         );
             baseEng.Add("customerstatus".ToLower(),
                             new BaseDictionaryEng<CustomerStatus, CustomerStatusTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
@@ -382,22 +382,6 @@ namespace ipsmedserviceapp.Controllers
             return Json(listOut);
         }
 
-        [HttpGet("extra/crkindgroup")]
-        public async Task<ActionResult> GetCrkindgroup()
-        {
-            var crkindgroup = await _dbContext.CrkindGroup
-                .Include(rec => rec.CrkindGroupTr)
-                .Include( rec => rec.CopyrightKind )
-                .ToListAsync();
-
-            crkindgroup.ForEach( rec => {
-                foreach (var tr in rec.CopyrightKind)
-                    _dbContext.Entry(tr).Collection(trItem => trItem.CopyrightKindTr).Load();
-            });
-
-
-            return Json(crkindgroup);
-        }
 
 
 
@@ -504,5 +488,196 @@ namespace ipsmedserviceapp.Controllers
             return Ok();
 
         }
+
+        //CrkindGroup
+
+             
+        [HttpGet("extra/crkindgroup")]
+        public async Task<ActionResult> GetCrkindgroup()
+        {
+            var crkindgroup = await _dbContext.CrkindGroup
+                .Include(rec => rec.CrkindGroupTr)
+                .Include(rec => rec.CopyrightKind)
+                .ToListAsync();
+
+            crkindgroup.ForEach(rec =>
+            {
+                foreach (var tr in rec.CopyrightKind)
+                    _dbContext.Entry(tr).Collection(trItem => trItem.CopyrightKindTr).Load();
+            });
+
+            return Json(crkindgroup);
+        }
+
+        // Получити запис довідника по ключу
+        private async Task<CrkindGroup> getCrkindGroup( int id )
+        {
+            var crkindgroup = await _dbContext.CrkindGroup.Where(rec => rec.CodeI == id)
+                .Include(rec => rec.CrkindGroupTr)
+                .Include(rec => rec.CopyrightKind)
+                .SingleOrDefaultAsync();
+
+            if (crkindgroup == null)
+                return null;
+
+                foreach (var tr in crkindgroup.CopyrightKind)
+                    _dbContext.Entry(tr).Collection(trItem => trItem.CopyrightKindTr).Load();
+
+            return crkindgroup;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("extra/crkindgroup/{id}")]
+        public async Task<ActionResult> GetCrkindgroupById( int id )
+        {
+            var crkindgroup = await getCrkindGroup(id);
+            if (crkindgroup == null)
+                return BadRequest();
+
+            return Json(crkindgroup);
+        }
+
+        [HttpPost("extra/crkindgroup")]
+        public async Task<ActionResult> NewCrkindgroup([FromBody] JObject data)
+        {
+            CrkindGroup newItem = data.ToObject<CrkindGroup>();
+            if (newItem == null)
+                return BadRequest();
+            // для кожного виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
+            foreach (var row in newItem.CopyrightKind)
+            {
+                _dbContext.Entry(row).State = row.CodeI == 0 ? EntityState.Added : EntityState.Modified;
+                // Для записів перекладу назви  виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
+                foreach (var trRow in row.CopyrightKindTr)
+                    _dbContext.Entry(trRow).State = trRow.CodeI == 0 ? EntityState.Added : EntityState.Modified;
+            }
+
+            // Для запису довідника встановлюємо статус 
+            _dbContext.Entry(newItem).State = EntityState.Added;
+
+            var transaction = _dbContext.Database.BeginTransaction();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return BadRequest(ex.InnerException.Message);
+            }
+
+            transaction.Commit();
+
+
+            return Json(newItem);
+        }
+
+
+        private void UpdateList<T>( List<T> sors, List<T> dest, Func<T, T, bool> compId ) where T: class
+        {
+            // Видалення
+            List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => _dbContext.Entry(item).State = EntityState.Deleted);
+            // Додаємо нові
+            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => { sors.Remove(item); dest.Add(item); });
+            // Змінюємо спільні записи
+            sors.ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
+
+        }
+        [HttpPut("extra/crkindgroup/{id}")]
+        public async Task<ActionResult> UpdateCrkindgroup(int id, [FromBody] JObject data)
+        {
+            CrkindGroup sorsItem = data.ToObject<CrkindGroup>();
+            if (sorsItem == null)
+                return BadRequest();
+            var destItem = await getCrkindGroup(id);
+            if (destItem == null)
+                return BadRequest();
+
+            List<CrkindGroupTr> dest = destItem.CrkindGroupTr.ToList();
+            List<CrkindGroupTr> sors = sorsItem.CrkindGroupTr.ToList();
+
+            UpdateList<CrkindGroupTr>(sors, dest, (sorsI,destI)=>sorsI.CodeI==destI.CodeI);
+
+            // List<>
+
+
+            // для кожного виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
+            foreach (var row in sorsItem.CopyrightKind)
+            {
+                _dbContext.Entry(row).State = row.CodeI == 0 ? EntityState.Added : EntityState.Modified;
+                // Для записів перекладу назви  виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
+                foreach (var trRow in row.CopyrightKindTr)
+                    _dbContext.Entry(trRow).State = trRow.CodeI == 0 ? EntityState.Added : EntityState.Modified;
+            }
+
+            // Для запису довідника встановлюємо статус 
+            _dbContext.Entry(sorsItem).State = EntityState.Added;
+
+            var transaction = _dbContext.Database.BeginTransaction();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return BadRequest(ex.InnerException.Message);
+            }
+
+            transaction.Commit();
+
+
+            return Json(sorsItem);
+        }
+
+
+        [HttpDelete("extra/crkindgroup/{id}")]
+        public async Task<ActionResult> DeleteCrkindgroup( int id )
+        {
+            var delItem = await _dbContext.CrkindGroup.Where(row => row.CodeI == id)
+                .Include( rec => rec.CrkindGroupTr )
+                .Include( rec => rec.CopyrightKind)
+                .SingleOrDefaultAsync();
+            
+            
+            // Помилковий Ід
+            if (delItem == null)
+                return BadRequest();
+
+            // Видаляємо Вии права
+            foreach (var row in delItem.CopyrightKind)
+            {
+                foreach( var item in row.CopyrightKindTr )
+                    _dbContext.Entry(item).State = EntityState.Deleted;
+                _dbContext.Entry(row).State = EntityState.Deleted;
+            }
+            // Видаляємо Трянсляцію
+            foreach( var row in delItem.CrkindGroupTr)
+                _dbContext.Entry(row).State = EntityState.Deleted;
+
+
+            var transaction = _dbContext.Database.BeginTransaction();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return BadRequest(ex.InnerException.Message);
+            }
+
+            transaction.Commit();
+
+
+            return Ok();
+        }
+
     }
 }
