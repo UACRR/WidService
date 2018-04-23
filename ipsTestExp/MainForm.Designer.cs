@@ -34,13 +34,17 @@ namespace ipsTestExp
             this.radPageViewMain = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPMain = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPVPageDictTest = new Telerik.WinControls.UI.RadPageViewPage();
-            this.rPViewPageComDir = new Telerik.WinControls.UI.RadPageViewPage();
             this.dataEditControl = new sysAdminwp.DataEditControl();
+            this.rPViewPageComDir = new Telerik.WinControls.UI.RadPageViewPage();
+            this.rBtnEditOrSave = new Telerik.WinControls.UI.RadButton();
+            this.rBtnAddOrCancel = new Telerik.WinControls.UI.RadButton();
             this.comDirControl = new ipsTestExp.ComDirControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
             this.radPageViewMain.SuspendLayout();
             this.radPVPageDictTest.SuspendLayout();
             this.rPViewPageComDir.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnEditOrSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnAddOrCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,32 +67,26 @@ namespace ipsTestExp
             // 
             // radPageViewPMain
             // 
-            this.radPageViewPMain.ItemSize = new System.Drawing.SizeF(55F, 24F);
-            this.radPageViewPMain.Location = new System.Drawing.Point(10, 33);
+            this.radPageViewPMain.ItemSize = new System.Drawing.SizeF(59F, 28F);
+            this.radPageViewPMain.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPMain.Name = "radPageViewPMain";
-            this.radPageViewPMain.Size = new System.Drawing.Size(1151, 570);
+            this.radPageViewPMain.Size = new System.Drawing.Size(1151, 566);
             this.radPageViewPMain.Text = "Головна";
             // 
             // radPVPageDictTest
             // 
             this.radPVPageDictTest.Controls.Add(this.dataEditControl);
-            this.radPVPageDictTest.ItemSize = new System.Drawing.SizeF(75F, 24F);
-            this.radPVPageDictTest.Location = new System.Drawing.Point(10, 37);
+            this.radPVPageDictTest.ItemSize = new System.Drawing.SizeF(79F, 28F);
+            this.radPVPageDictTest.Location = new System.Drawing.Point(10, 33);
             this.radPVPageDictTest.Name = "radPVPageDictTest";
-            this.radPVPageDictTest.Size = new System.Drawing.Size(1151, 566);
+            this.radPVPageDictTest.Size = new System.Drawing.Size(1151, 570);
             this.radPVPageDictTest.Text = "Довідники+";
-            // 
-            // rPViewPageComDir
-            // 
-            this.rPViewPageComDir.Controls.Add(this.comDirControl);
-            this.rPViewPageComDir.ItemSize = new System.Drawing.SizeF(112F, 24F);
-            this.rPViewPageComDir.Location = new System.Drawing.Point(10, 33);
-            this.rPViewPageComDir.Name = "rPViewPageComDir";
-            this.rPViewPageComDir.Size = new System.Drawing.Size(1151, 570);
-            this.rPViewPageComDir.Text = "Складний довідник";
             // 
             // dataEditControl
             // 
+            this.dataEditControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataEditControl.Enabled = false;
             this.dataEditControl.Location = new System.Drawing.Point(203, 3);
             this.dataEditControl.Name = "dataEditControl";
@@ -96,12 +94,46 @@ namespace ipsTestExp
             this.dataEditControl.TabIndex = 0;
             this.dataEditControl.Url = null;
             // 
+            // rPViewPageComDir
+            // 
+            this.rPViewPageComDir.Controls.Add(this.rBtnEditOrSave);
+            this.rPViewPageComDir.Controls.Add(this.rBtnAddOrCancel);
+            this.rPViewPageComDir.Controls.Add(this.comDirControl);
+            this.rPViewPageComDir.ItemSize = new System.Drawing.SizeF(116F, 28F);
+            this.rPViewPageComDir.Location = new System.Drawing.Point(10, 37);
+            this.rPViewPageComDir.Name = "rPViewPageComDir";
+            this.rPViewPageComDir.Size = new System.Drawing.Size(1151, 566);
+            this.rPViewPageComDir.Text = "Складний довідник";
+            // 
+            // rBtnEditOrSave
+            // 
+            this.rBtnEditOrSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.rBtnEditOrSave.Location = new System.Drawing.Point(3, 538);
+            this.rBtnEditOrSave.Name = "rBtnEditOrSave";
+            this.rBtnEditOrSave.Size = new System.Drawing.Size(110, 24);
+            this.rBtnEditOrSave.TabIndex = 1;
+            this.rBtnEditOrSave.Text = "Змінити";
+            this.rBtnEditOrSave.Click += new System.EventHandler(this.rBtnEdit_Click);
+            // 
+            // rBtnAddOrCancel
+            // 
+            this.rBtnAddOrCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.rBtnAddOrCancel.Location = new System.Drawing.Point(1036, 538);
+            this.rBtnAddOrCancel.Name = "rBtnAddOrCancel";
+            this.rBtnAddOrCancel.Size = new System.Drawing.Size(110, 24);
+            this.rBtnAddOrCancel.TabIndex = 2;
+            this.rBtnAddOrCancel.Text = "Додати";
+            this.rBtnAddOrCancel.Click += new System.EventHandler(this.rBtnAdd_Click);
+            // 
             // comDirControl
             // 
+            this.comDirControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comDirControl.BackColor = System.Drawing.Color.Linen;
-            this.comDirControl.Location = new System.Drawing.Point(4, 4);
+            this.comDirControl.Location = new System.Drawing.Point(0, 0);
             this.comDirControl.Name = "comDirControl";
-            this.comDirControl.Size = new System.Drawing.Size(1142, 558);
+            this.comDirControl.Size = new System.Drawing.Size(1151, 532);
             this.comDirControl.TabIndex = 0;
             this.comDirControl.Url = null;
             // 
@@ -121,10 +153,30 @@ namespace ipsTestExp
             this.radPageViewMain.ResumeLayout(false);
             this.radPVPageDictTest.ResumeLayout(false);
             this.rPViewPageComDir.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnEditOrSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnAddOrCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
         }
+
+        private void InitializeDataChangeControl()
+        {
+            this.dataChangeControl = new ipsTestExp.DataChangeControl();
+            this.dataChangeControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                                                               | System.Windows.Forms.AnchorStyles.Left)
+                                                                              | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataChangeControl.BackColor = System.Drawing.Color.Linen;
+            this.dataChangeControl.Location = new System.Drawing.Point(0, 0);
+            this.dataChangeControl.Name = "comDirControl";
+            
+            this.dataChangeControl.Size = new System.Drawing.Size(rPViewPageComDir.Size.Width, rPViewPageComDir.Size.Height-30);
+            this.dataChangeControl.TabIndex = 0;
+
+
+            this.rPViewPageComDir.Controls.Add(this.dataChangeControl);
+        }
+
 
         #endregion
 
@@ -134,6 +186,9 @@ namespace ipsTestExp
         private sysAdminwp.DataEditControl dataEditControl;
         private Telerik.WinControls.UI.RadPageViewPage rPViewPageComDir;
         private ComDirControl comDirControl;
+        private Telerik.WinControls.UI.RadButton rBtnAddOrCancel;
+        private Telerik.WinControls.UI.RadButton rBtnEditOrSave;
+        private DataChangeControl dataChangeControl;
     }
 }
 

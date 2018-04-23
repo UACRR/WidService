@@ -18,6 +18,7 @@ namespace ipsTestExp
 {
     public partial class ComDirControl : UserControl
     {
+        private CurrentRowChangedEventArgs tempE;
         private ApiConnector connector;
         public string Url { get; set; }
         public ComDirControl()
@@ -29,13 +30,10 @@ namespace ipsTestExp
 
         #region ALL METHODS
 
-        private void SetupParent()
-        {
 
-        }
 
         /// <summary>
-        /// Отримує дані з сервера та повертає у потрібному вигляді для контрола DataEditControl
+        /// Дані для верхнього рівня ієрархії
         /// </summary>
         /// <param name="l"></param>
         /// <returns></returns>
@@ -61,6 +59,11 @@ namespace ipsTestExp
             return view;
         }
 
+        /// <summary>
+        /// Дані для нижнього рівня ієрархії
+        /// </summary>
+        /// <param name="l"></param>
+        /// <returns></returns>
         private List<ViewTableExt> GetDataChildren(List<CrkindGroup> l)
         {
             List<ViewTableExt> view = new List<ViewTableExt>();
@@ -90,43 +93,49 @@ namespace ipsTestExp
             return view;
         }
 
+        /// <summary>
+        /// Виклик серії методів в класах, що використовують контрол для формування і виведення даних на грід 
+        /// </summary>
         public void ViewData()
         {
             try
             {
-                //rGViewComDir.DataSource = connector.GetList<CrkindGroup>(Url);
-                //rGViewComDir.MasterTemplate.Columns["CodeI"].HeaderText = "Код";
-                //rGViewComDir.MasterTemplate.Columns.Last().IsVisible = false;
-
-                //rGViewComDir.DataSource = GetDataParent(connector.GetList<CrkindGroup>(Url));
-
-
-                rGViewComDir.DataSource = GetDataChildren(connector.GetList<CrkindGroup>(Url));
-
-                //Enabled = true;
+                CreateHierarchy();
             }
             catch (Exception e)
             {
-                //Enabled = false;
+                MessageBox.Show(e.Message, "Exception!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
+        /// <summary>
+        /// Ініціалізатор конектора
+        /// </summary>
+        /// <param name="apiCon"></param>
         public void InitializeConnector(ApiConnector apiCon)
         {
             connector = apiCon;
         }
 
+        public void GetDataForChange()
+        {
+            
+        }
+
         #endregion
 
-        public void CreateUnboundHierarchy()
+        /// <summary>
+        /// Створення ієрархії 
+        /// </summary>
+        private void CreateHierarchy()
         {
             using (this.rGViewComDir.DeferRefresh())
             {
                 this.rGViewComDir.MasterTemplate.Reset();
 
-                SetupMasterForUnbound();
+                SetupMaster();
 
-                GridViewTemplate template = SetupChildForUnbound();
+                GridViewTemplate template = SetupChild();
                 
                 GridViewRelation relation = new GridViewRelation(this.rGViewComDir.MasterTemplate, template);
                 relation.RelationName = "Relation";
@@ -139,11 +148,12 @@ namespace ipsTestExp
                 this.rGViewComDir.ChildRows[0].IsExpanded = true;
         }
 
-        private void SetupMasterForUnbound()
+        /// <summary>
+        /// Верхній рівень ієрархії - заголовки
+        /// </summary>
+        private void SetupMaster()
         {
-            this.rGViewComDir.TableElement.RowHeight = 50;
-            //rGViewComDir.TableElement.BackColor=Color.DarkGray;
-            rGViewComDir.TableElement.BorderColor=Color.Aqua;
+            this.rGViewComDir.TableElement.RowHeight = 40;
 
             GridViewTextBoxColumn textColumnCode = new GridViewTextBoxColumn("Code");
             textColumnCode.Width = 10;
@@ -172,7 +182,11 @@ namespace ipsTestExp
 
         }
 
-        private GridViewTemplate SetupChildForUnbound()
+        /// <summary>
+        /// Дочірній рівень ієрархії - заголовки
+        /// </summary>
+        /// <returns></returns>
+        private GridViewTemplate SetupChild()
         {
             GridViewTemplate template = new GridViewTemplate();
             template.AllowAddNewRow = true;
@@ -207,27 +221,25 @@ namespace ipsTestExp
             textColumnNameEnCh.Multiline = true;
             textColumnNameRuCh.Multiline = true;
             textColumnNameUkCh.Multiline = true;
-
-            //textColumnNameEnCh.Width = 
-            //textColumnNameRuCh
-            //textColumnNameUkCh
-
-            //((GridViewTextBoxColumn)template.Columns["CodeCh"]).Multiline = true;
-            //((GridViewTextBoxColumn)template.Columns["NameEnCh"]).Multiline = true;
-            //((GridViewTextBoxColumn)template.Columns["NameRuCh"]).Multiline = true;
-            //((GridViewTextBoxColumn)template.Columns["NameUkCh"]).Multiline = true;
-
-
+            
             this.rGViewComDir.Templates.Add(template);
 
-            LoadDataForUnbound();
+            LoadData();
             
             template.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.Fill;
+
+            foreach (var row in template.Rows)
+            {
+                row.Height = 100;
+            }
             
             return template;
         }
 
-        private void LoadDataForUnbound()
+        /// <summary>
+        /// Заповнення даними ієрархії
+        /// </summary>
+        private void LoadData()
         {
             List<ViewTable> listParent;
             List<ViewTableExt>listChild;
@@ -252,16 +264,7 @@ namespace ipsTestExp
 
         #region ALL EVENTS
 
-        private void rBtnAdd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rBtnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
         #endregion
+
     }
 }
