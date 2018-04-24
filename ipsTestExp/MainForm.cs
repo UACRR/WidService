@@ -58,6 +58,7 @@ namespace ipsTestExp
                 InitializeDataChangeControl();
                 dataChangeControl.InitializeConnectorAndUrl(conn, "api/Dictionary/extra/crkindgroup");
                 dataChangeControl.SetGroupDropList();
+                isAdd = true;
 
             }
             else
@@ -80,7 +81,15 @@ namespace ipsTestExp
 
         private void rBtnEdit_Click(object sender, EventArgs e)
         {
-            var v = dataChangeControl.PackageData();
+            if (isAdd)
+            {
+                var v = dataChangeControl.PackageData();
+                isAdd = false;
+            }
+            else
+            {
+                
+            }
         }
     }
 

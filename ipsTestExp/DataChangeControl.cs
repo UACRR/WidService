@@ -84,7 +84,7 @@ namespace ipsTestExp
             CopyrightKind tempCopyrightKind = new CopyrightKind();
             CopyrightKindTr[] tempCopyrightKindTr = new CopyrightKindTr[3];
             CrkindGroupTr[] tempCrkindGroupTr = new CrkindGroupTr[3];
-            int codeP, codeChild;
+            int codeP, codeChild = 0;
             if (isNewGroup)
             {
                 codeP = Convert.ToInt32(dropList.Keys.Last()) + 1;
@@ -97,27 +97,37 @@ namespace ipsTestExp
                 codeP = Convert.ToInt32(dropList
                     .FirstOrDefault(x => x.Value == rDropDownListGroup.SelectedItem.Value.ToString()).Key);
 
-                tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = codeP, Lang = "En", Name = rTxtBoxNameEn.Text };
-                tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = codeP, Lang = "Uk", Name = rTxtBoxNameUk.Text };
-                tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = codeP, Lang = "Ru", Name = rTxtBoxNameRu.Text };
+                foreach (var itemsTr in temp)
+                {
+                    foreach (var tr in itemsTr.CrkindGroupTr)
+                    {
+                        if (tr.CodeI == codeP && tr.Lang == "En")
+                            tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = codeP, Lang = "En", Name = tr.Name };
+
+                        if (tr.CodeI == codeP && tr.Lang == "Uk")
+                            tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = codeP, Lang = "Uk", Name = tr.Name };
+
+                        if (tr.CodeI == codeP && tr.Lang == "Ru")
+                            tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = codeP, Lang = "Ru", Name = tr.Name };
+                    }
+                }
             }
 
             foreach (var items in temp)
             {
                 if (items.CodeI == codeP)
                 {
-                    var ScodeChild = items.CopyrightKind.Count + 1;
+                    codeChild = items.CopyrightKind.Count + 1;
                 }
             }
-
-            codeChild = 0;
+            
 
             tempCopyrightKindTr[0] = new CopyrightKindTr() { CodeI = codeChild, Lang = "En", Name = rTxtBoxKindEn.Text};
             tempCopyrightKindTr[1] = new CopyrightKindTr() { CodeI = codeChild, Lang = "Uk", Name = rTxtBoxKindUk.Text};
             tempCopyrightKindTr[2] = new CopyrightKindTr() { CodeI = codeChild, Lang = "Ru", Name = rTxtBoxKindRu.Text};
 
-            tempCopyrightKind.CodeI = 1;
-            tempCopyrightKind.Name = "";
+            tempCopyrightKind.CodeI = codeChild;
+            tempCopyrightKind.Name = rTxtBoxKindUk.Text;
             tempCopyrightKind.CrGroupCode = codeP;
             tempCopyrightKind.AgrLicenseType = null;
             tempCopyrightKind.CopyrightKindTr = new List<CopyrightKindTr>
@@ -126,7 +136,7 @@ namespace ipsTestExp
             };
 
             crkindGroup.CodeI = codeP;
-            crkindGroup.Name = "";
+            crkindGroup.Name = tempCrkindGroupTr[1].Name;
             crkindGroup.CopyrightKind.Add(tempCopyrightKind);
             crkindGroup.CrkindGroupTr = new List<CrkindGroupTr>
             {
