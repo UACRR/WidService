@@ -13,6 +13,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
         public int? KindCode { get; set; }
+        public int? CategoryCode { get; set; }
 
         public CopyrightKind KindCodeNavigation { get; set; }
         public ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
