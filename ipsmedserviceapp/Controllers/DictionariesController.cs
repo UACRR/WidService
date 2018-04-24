@@ -547,10 +547,14 @@ namespace ipsmedserviceapp.Controllers
             CrkindGroup newItem = data.ToObject<CrkindGroup>();
             if (newItem == null)
                 return BadRequest();
+            var dicCode = _dbContext.CopyrightKind.AsNoTracking().ToDictionary(row => row.CodeI);
+            int MaxCodeI = dicCode.Keys.Max() + 1;
+
             // для кожного виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
             foreach (var row in newItem.CopyrightKind)
             {
                 _dbContext.Entry(row).State = row.CodeI == 0 ? EntityState.Added : EntityState.Modified;
+                row.CodeI = row.CodeI == 0 ? MaxCodeI++ : row.CodeI;
                 // Для записів перекладу назви  виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
                 foreach (var trRow in row.CopyrightKindTr)
                     _dbContext.Entry(trRow).State = trRow.CodeI == 0 ? EntityState.Added : EntityState.Modified;
