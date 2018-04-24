@@ -175,6 +175,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
+
                 entity.Property(e => e.KindCode).HasColumnName("kindCode");
 
                 entity.Property(e => e.Name)
@@ -395,7 +397,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
-                    .HasMaxLength(400)
+                    .HasMaxLength(600)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.CrGroupCodeNavigation)
@@ -418,7 +420,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
-                    .HasMaxLength(400)
+                    .HasMaxLength(600)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.CodeINavigation)
