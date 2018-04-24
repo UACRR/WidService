@@ -13,6 +13,7 @@ using sysAdminwp;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using WebAPIConnector;
+using ipsmedserviceapp;
 using ipsmedserviceapp.Model;
 
 
@@ -51,7 +52,31 @@ namespace ipsTestExp
 
         private void rBtnAdd_Click(object sender, EventArgs e)
         {
+            ChangePanelComponents();
+        }
 
+        private void rBtnEdit_Click(object sender, EventArgs e)
+        {
+            if (isAdd)
+            {
+                //var v = dataChangeControl.PackageData();
+                //conn.NewItem(comDirControl.Url,  v);
+                dataChangeControl.AddNewItem();
+                isAdd = false;
+                ChangePanelComponents();
+            }
+            else
+            {
+                
+            }
+        }
+
+
+        /// <summary>
+        /// Зміна компонентів
+        /// </summary>
+        private void ChangePanelComponents()
+        {
             comDirControl.Visible = !comDirControl.Visible;
             if (dataChangeControl == null)
             {
@@ -65,9 +90,10 @@ namespace ipsTestExp
             {
                 dataChangeControl.Dispose();
                 dataChangeControl = null;
+                isAdd = false;
             }
 
-            if(rBtnAddOrCancel.Text != "Відміна" && rBtnEditOrSave.Text!="Зберегти")
+            if (rBtnAddOrCancel.Text != "Відміна" && rBtnEditOrSave.Text != "Зберегти")
             {
                 rBtnAddOrCancel.Text = "Відміна";
                 rBtnEditOrSave.Text = "Зберегти";
@@ -76,19 +102,6 @@ namespace ipsTestExp
             {
                 rBtnAddOrCancel.Text = "Додати";
                 rBtnEditOrSave.Text = "Змінити";
-            }
-        }
-
-        private void rBtnEdit_Click(object sender, EventArgs e)
-        {
-            if (isAdd)
-            {
-                var v = dataChangeControl.PackageData();
-                isAdd = false;
-            }
-            else
-            {
-                
             }
         }
     }

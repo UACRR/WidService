@@ -78,7 +78,7 @@ namespace ipsTestExp
             }
         }
 
-        public CrkindGroup PackageData()
+        private CrkindGroup PackageData()
         {
             CrkindGroup crkindGroup = new CrkindGroup();
             CopyrightKind tempCopyrightKind = new CopyrightKind();
@@ -143,6 +143,15 @@ namespace ipsTestExp
                 tempCrkindGroupTr[0], tempCrkindGroupTr[1], tempCrkindGroupTr[2]
             };
             return crkindGroup;
+        }
+
+        public void AddNewItem()
+        {
+            bool act = _connector.NewItem(_url, PackageData());
+            if (!act)
+            {
+                //MessageBox.Show("NO");
+            }
         }
     }
 }
