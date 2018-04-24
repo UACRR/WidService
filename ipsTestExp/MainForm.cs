@@ -22,7 +22,7 @@ namespace ipsTestExp
     public partial class MainForm:RadForm
     {
         private readonly ApiConnector conn = new ApiConnector("http://localhost:54867/");
-        private bool isAdd = false;
+        private bool isAdd = false, isEdit = false, isSaveEdit = false;
 
         
         public MainForm()
@@ -31,6 +31,9 @@ namespace ipsTestExp
             LoadControls();
         }
 
+        /// <summary>
+        /// Завантаження контролів
+        /// </summary>
         private void LoadControls()
         {
             dataEditControl.InitializeConnector(conn);
@@ -43,39 +46,54 @@ namespace ipsTestExp
             comDirControl.ViewData();
         }
 
-        private CrkindGroup PackageData()
-        {
-            
 
-            return new CrkindGroup();
-        }
 
         private void rBtnAdd_Click(object sender, EventArgs e)
         {
-            ChangePanelComponents();
+            isAdd = true;
+            isSaveEdit = false;
+            ChangePanelComponents(0);
         }
 
         private void rBtnEdit_Click(object sender, EventArgs e)
         {
             if (isAdd)
             {
-                //var v = dataChangeControl.PackageData();
-                //conn.NewItem(comDirControl.Url,  v);
-                dataChangeControl.AddNewItem();
-                isAdd = false;
-                ChangePanelComponents();
+                dataChangeControl.AddNewItem();//додає новий елемент 
+                ChangePanelComponents(0);
             }
             else
             {
-                
+                isEdit = true;
             }
+
+            if (isSaveEdit)
+            {
+                //method
+
+                isSaveEdit = false;
+                ChangePanelComponents(0);
+            }
+
+            if (isEdit)
+            {
+                ChangePanelComponents(1);
+                dataChangeControl.SetEditData();
+                isSaveEdit = true;
+                isEdit = false;
+            }
+            
+
+
+            if(dataChangeControl!=null)
+                comDirControl.ViewData();
         }
 
 
         /// <summary>
         /// Зміна компонентів
         /// </summary>
-        private void ChangePanelComponents()
+        private void ChangePanelComponents(byte typeVisible)
         {
             comDirControl.Visible = !comDirControl.Visible;
             if (dataChangeControl == null)
@@ -83,8 +101,7 @@ namespace ipsTestExp
                 InitializeDataChangeControl();
                 dataChangeControl.InitializeConnectorAndUrl(conn, "api/Dictionary/extra/crkindgroup");
                 dataChangeControl.SetGroupDropList();
-                isAdd = true;
-
+                dataChangeControl.SetVisible(typeVisible);
             }
             else
             {
@@ -93,6 +110,8 @@ namespace ipsTestExp
                 isAdd = false;
             }
 
+
+            //зміна тексту на кнопках
             if (rBtnAddOrCancel.Text != "Відміна" && rBtnEditOrSave.Text != "Зберегти")
             {
                 rBtnAddOrCancel.Text = "Відміна";

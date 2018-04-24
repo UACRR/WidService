@@ -21,11 +21,15 @@ namespace ipsTestExp
         private CurrentRowChangedEventArgs tempE;
         private ApiConnector connector;
         public string Url { get; set; }
+        private string s;
         public ComDirControl()
         {
             InitializeComponent();
+            rGViewComDir.CurrentRowChanged += RGViewComDir_CurrentRowChanged;
             //CreateUnboundHierarchy();
         }
+
+
 
 
         #region ALL METHODS
@@ -117,9 +121,14 @@ namespace ipsTestExp
             connector = apiCon;
         }
 
-        public void GetDataForChange()
+
+
+        public string[] GetDataForChange()
         {
+            string[] str = new string[1];
+
             
+            return str;
         }
 
         #endregion
@@ -263,6 +272,39 @@ namespace ipsTestExp
         }
 
         #region ALL EVENTS
+
+        private void RGViewComDir_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            s = "";
+            try
+            {
+                s += " : " + e.CurrentRow.Cells[0].Value.ToString();
+                s += " : " + e.CurrentRow.Cells[1].Value.ToString();
+                s += " : " + e.CurrentRow.Cells[2].Value.ToString();
+                s += " : " + e.CurrentRow.Cells[3].Value.ToString();
+
+                for (int j = 0; j < e.CurrentRow.ChildRows.Count; j++)
+                {
+                    s += " : " + e.CurrentRow.ChildRows[j].Cells["CodeCh"].Value;
+                    s += " : " + e.CurrentRow.ChildRows[j].Cells["NameEnCh"].Value;
+                    s += " : " + e.CurrentRow.ChildRows[j].Cells["NameRuCh"].Value;
+                    s += " : " + e.CurrentRow.ChildRows[j].Cells["NameUkCh"].Value;
+                }
+
+            }
+            catch (Exception exception)
+            {
+             
+            }
+
+                
+
+
+
+            
+            
+        }
+
 
         #endregion
 

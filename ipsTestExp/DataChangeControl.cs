@@ -17,6 +17,8 @@ namespace ipsTestExp
 {
     public partial class DataChangeControl : UserControl
     {
+        public bool VisibleDropBox { get; set; }
+        private const byte code = 0;
         private bool isNewGroup = false;
         private ApiConnector _connector;
         private string _url;
@@ -25,8 +27,9 @@ namespace ipsTestExp
         public DataChangeControl()
         {
             InitializeComponent();
-            rPanelKindName.Enabled = false;
-            rPanelGroupName.Enabled = false;
+            //rPanelKindName.Enabled = false;
+            //rPanelGroupName.Enabled = false;
+            
         }
 
         public void InitializeConnectorAndUrl(ApiConnector aConn, string url)
@@ -41,13 +44,43 @@ namespace ipsTestExp
             temp = _connector.GetList<CrkindGroup>(_url);
             dropList = new Dictionary<string, string>();
             dropList.Add(string.Empty, string.Empty);
-            dropList.Add("0", "Нова група");
+            dropList.Add("-1", "Нова група");
 
             foreach (var item in temp)
             {
                 dropList.Add(item.CodeI.ToString(),item.Name);
             }
             rDropDownListGroup.DataSource = dropList.Values;
+        }
+
+        
+        /// <summary>
+        /// Включеність компонентів; 0 - додавання нового елемента; 1 - редагування існуючого
+        /// </summary>
+        /// <param name="visible"></param>
+        /// <param name="type"></param>
+        public void SetVisible(byte type)
+        {
+            switch (type)
+            {
+                case 0:
+                {
+                    rDropDownListGroup.Enabled = true;
+                    rPanelKindName.Enabled = false;
+                    rPanelGroupName.Enabled = false;
+
+                } break;
+
+                case 1:
+                {
+                    rDropDownListGroup.Enabled = false;
+                    rPanelKindName.Enabled = true;
+                    rPanelGroupName.Enabled = true;
+
+                } break;
+            }
+            
+
         }
 
         private void rDropDownListGroup_SelectedValueChanged(object sender, EventArgs e)
@@ -84,13 +117,12 @@ namespace ipsTestExp
             CopyrightKind tempCopyrightKind = new CopyrightKind();
             CopyrightKindTr[] tempCopyrightKindTr = new CopyrightKindTr[3];
             CrkindGroupTr[] tempCrkindGroupTr = new CrkindGroupTr[3];
-            int codeP, codeChild = 0;
+            int codeP;
             if (isNewGroup)
             {
-                codeP = Convert.ToInt32(dropList.Keys.Last()) + 1;
-                tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = codeP, Lang = "En", Name = rTxtBoxNameEn.Text };
-                tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = codeP, Lang = "Uk", Name = rTxtBoxNameUk.Text };
-                tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = codeP, Lang = "Ru", Name = rTxtBoxNameRu.Text };
+                tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = code, Lang = "En", Name = rTxtBoxNameEn.Text };
+                tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = code, Lang = "Uk", Name = rTxtBoxNameUk.Text };
+                tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = code, Lang = "Ru", Name = rTxtBoxNameRu.Text };
             }
             else
             {
@@ -103,39 +135,33 @@ namespace ipsTestExp
                     {
                         if (tr.CodeI == codeP && tr.Lang == "En")
                             tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = codeP, Lang = "En", Name = tr.Name };
-
-                        if (tr.CodeI == codeP && tr.Lang == "Uk")
+                                                                                     
+                        if (tr.CodeI == codeP && tr.Lang == "Uk")                    
                             tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = codeP, Lang = "Uk", Name = tr.Name };
-
-                        if (tr.CodeI == codeP && tr.Lang == "Ru")
+                                                                                     
+                        if (tr.CodeI == codeP && tr.Lang == "Ru")                    
                             tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = codeP, Lang = "Ru", Name = tr.Name };
                     }
                 }
             }
 
-            foreach (var items in temp)
-            {
-                if (items.CodeI == codeP)
-                {
-                    codeChild = items.CopyrightKind.Count + 1;
-                }
-            }
+
             
 
-            tempCopyrightKindTr[0] = new CopyrightKindTr() { CodeI = codeChild, Lang = "En", Name = rTxtBoxKindEn.Text};
-            tempCopyrightKindTr[1] = new CopyrightKindTr() { CodeI = codeChild, Lang = "Uk", Name = rTxtBoxKindUk.Text};
-            tempCopyrightKindTr[2] = new CopyrightKindTr() { CodeI = codeChild, Lang = "Ru", Name = rTxtBoxKindRu.Text};
+            tempCopyrightKindTr[0] = new CopyrightKindTr() { CodeI = code, Lang = "En", Name = rTxtBoxKindEn.Text};
+            tempCopyrightKindTr[1] = new CopyrightKindTr() { CodeI = code, Lang = "Uk", Name = rTxtBoxKindUk.Text};
+            tempCopyrightKindTr[2] = new CopyrightKindTr() { CodeI = code, Lang = "Ru", Name = rTxtBoxKindRu.Text};
 
-            tempCopyrightKind.CodeI = codeChild;
+            tempCopyrightKind.CodeI = code;
             tempCopyrightKind.Name = rTxtBoxKindUk.Text;
-            tempCopyrightKind.CrGroupCode = codeP;
+            tempCopyrightKind.CrGroupCode = tempCrkindGroupTr[0].CodeI;
             tempCopyrightKind.AgrLicenseType = null;
             tempCopyrightKind.CopyrightKindTr = new List<CopyrightKindTr>
             {
                 tempCopyrightKindTr[0], tempCopyrightKindTr[1], tempCopyrightKindTr[2]
             };
 
-            crkindGroup.CodeI = codeP;
+            crkindGroup.CodeI = tempCrkindGroupTr[1].CodeI;
             crkindGroup.Name = tempCrkindGroupTr[1].Name;
             crkindGroup.CopyrightKind.Add(tempCopyrightKind);
             crkindGroup.CrkindGroupTr = new List<CrkindGroupTr>
@@ -153,5 +179,16 @@ namespace ipsTestExp
                 //MessageBox.Show("NO");
             }
         }
+
+        public void SetEditData()
+        {
+            rDropDownListGroup.SelectedValueChanged -= rDropDownListGroup_SelectedValueChanged;
+            rDropDownListGroup.Items[2].Selected = true;
+            rDropDownListGroup.SelectedValueChanged += rDropDownListGroup_SelectedValueChanged;
+
+
+
+        }
     }
 }
+

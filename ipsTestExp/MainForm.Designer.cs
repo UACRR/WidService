@@ -162,19 +162,19 @@ namespace ipsTestExp
 
         private void InitializeDataChangeControl()
         {
-            this.dataChangeControl = new ipsTestExp.DataChangeControl();
-            this.dataChangeControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                                               | System.Windows.Forms.AnchorStyles.Left)
-                                                                              | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataChangeControl.BackColor = System.Drawing.Color.Linen;
-            this.dataChangeControl.Location = new System.Drawing.Point(0, 0);
-            this.dataChangeControl.Name = "comDirControl";
-            
-            this.dataChangeControl.Size = new System.Drawing.Size(rPViewPageComDir.Size.Width, rPViewPageComDir.Size.Height-30);
-            this.dataChangeControl.TabIndex = 0;
+                    this.dataChangeControl = new ipsTestExp.DataChangeControl();
+                    this.dataChangeControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                                                                                           | System.Windows.Forms.AnchorStyles.Left)
+                                                                                          | System.Windows.Forms.AnchorStyles.Right)));
+                    this.dataChangeControl.BackColor = System.Drawing.Color.Linen;
+                    this.dataChangeControl.Location = new System.Drawing.Point(0, 0);
+                    this.dataChangeControl.Name = "comDirControl";
 
+                    this.dataChangeControl.Size = new System.Drawing.Size(rPViewPageComDir.Size.Width, rPViewPageComDir.Size.Height - 30);
+                    this.dataChangeControl.TabIndex = 0;
+                    this.dataChangeControl.VisibleDropBox = true;
 
-            this.rPViewPageComDir.Controls.Add(this.dataChangeControl);
+                    this.rPViewPageComDir.Controls.Add(this.dataChangeControl);
         }
 
 
