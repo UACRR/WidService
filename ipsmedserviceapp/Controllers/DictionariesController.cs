@@ -491,7 +491,7 @@ namespace ipsmedserviceapp.Controllers
 
         //CrkindGroup
 
-             
+
         [HttpGet("extra/crkindgroup")]
         public async Task<ActionResult> GetCrkindgroup()
         {
@@ -510,7 +510,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         // Получити запис довідника по ключу
-        private async Task<CrkindGroup> getCrkindGroup( int id )
+        private async Task<CrkindGroup> getCrkindGroup(int id)
         {
             var crkindgroup = await _dbContext.CrkindGroup.Where(rec => rec.CodeI == id)
                 .Include(rec => rec.CrkindGroupTr)
@@ -520,8 +520,8 @@ namespace ipsmedserviceapp.Controllers
             if (crkindgroup == null)
                 return null;
 
-                foreach (var tr in crkindgroup.CopyrightKind)
-                    _dbContext.Entry(tr).Collection(trItem => trItem.CopyrightKindTr).Load();
+            foreach (var tr in crkindgroup.CopyrightKind)
+                _dbContext.Entry(tr).Collection(trItem => trItem.CopyrightKindTr).Load();
 
             return crkindgroup;
 
@@ -532,7 +532,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("extra/crkindgroup/{id}")]
-        public async Task<ActionResult> GetCrkindgroupById( int id )
+        public async Task<ActionResult> GetCrkindgroupById(int id)
         {
             var crkindgroup = await getCrkindGroup(id);
             if (crkindgroup == null)
@@ -572,6 +572,15 @@ namespace ipsmedserviceapp.Controllers
                 if (isNew) MaxCodeI++;
             }
 
+            foreach (var item in newItem.CrkindGroupTr)
+            {
+                bool isNew = item.CodeI == 0;
+
+                _dbContext.Entry(item).State = isNew ? EntityState.Added : EntityState.Modified;
+                item.CodeI = isNew ? MaxCodeI : item.CodeI;
+                if (isNew) MaxCodeI++;
+            }
+
             // Для запису довідника встановлюємо статус 
             _dbContext.Entry(newItem).State = EntityState.Added;
 
@@ -593,7 +602,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
 
-        private void UpdateList<T>( List<T> sors, List<T> dest, Func<T, T, bool> compId ) where T: class
+        private void UpdateList<T>(List<T> sors, List<T> dest, Func<T, T, bool> compId) where T : class
         {
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
@@ -615,33 +624,68 @@ namespace ipsmedserviceapp.Controllers
             if (destItem == null)
                 return BadRequest();
 
+            var dicCode = _dbContext.CopyrightKind.AsNoTracking().ToDictionary(row => row.CodeI);
+            int MaxCodeI = dicCode.Keys.Max() + 1;
+            var maxGroupId = _dbContext.CrkindGroup.AsNoTracking().OrderByDescending(row => row.CodeI).First()
+                                 .CodeI + 1;
+
+            // sorsItem.CodeI = maxGroupId;
+
             List<CrkindGroupTr> dest = destItem.CrkindGroupTr.ToList();
             List<CrkindGroupTr> sors = sorsItem.CrkindGroupTr.ToList();
 
-            UpdateList<CrkindGroupTr>(sors, dest, (sorsI,destI)=>sorsI.CodeI==destI.CodeI);
+            UpdateList<CrkindGroupTr>(sors, dest, (sorsI, destI) => sorsI.CodeI == destI.CodeI);
 
             // List<>
-
-
-            // для кожного виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
-            foreach (var row in sorsItem.CopyrightKind)
-            {
-                _dbContext.Entry(row).State = row.CodeI == 0 ? EntityState.Added : EntityState.Modified;
-                // Для записів перекладу назви  виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
-                foreach (var trRow in row.CopyrightKindTr)
-                    _dbContext.Entry(trRow).State = trRow.CodeI == 0 ? EntityState.Added : EntityState.Modified;
-            }
-
-            // Для запису довідника встановлюємо статус 
-            _dbContext.Entry(sorsItem).State = EntityState.Added;
-
-            var transaction = _dbContext.Database.BeginTransaction();
             try
             {
+                foreach (var row in sorsItem.CopyrightKind)
+                {
+                    bool isNew = row.CodeI == 0;
+
+                    _dbContext.Entry(row).State = isNew ? EntityState.Added : EntityState.Modified;
+                    row.CodeI = isNew ? MaxCodeI : row.CodeI;
+                    // Для записів перекладу назви  виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
+                    foreach (var trRow in row.CopyrightKindTr)
+                    {
+                        _dbContext.Entry(trRow).State = trRow.CodeI == 0 ? EntityState.Added : EntityState.Modified;
+                        trRow.CodeI = isNew ? MaxCodeI : trRow.CodeI;
+                    }
+
+                    if (isNew) MaxCodeI++;
+                }
+
+                //---
+
+                foreach (var item in sorsItem.CrkindGroupTr)
+                {
+                    bool isNew = item.CodeI == 0;
+
+                    _dbContext.Entry(item).State = isNew ? EntityState.Added : EntityState.Modified;
+                    item.CodeI = isNew ? MaxCodeI : item.CodeI;
+                    if (isNew) MaxCodeI++;
+                }
+
+                // Для запису довідника встановлюємо статус 
+                _dbContext.Entry(sorsItem).State = EntityState.Modified;
+                
+            }
+            catch (Exception e)
+            {
+                ;
+            }
+
+            var transaction = _dbContext.Database.BeginTransaction();
+
+            try
+            {
+                
                 await _dbContext.SaveChangesAsync();
+                //_dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
+
                 transaction.Rollback();
                 return BadRequest(ex.InnerException.Message);
             }
@@ -649,19 +693,23 @@ namespace ipsmedserviceapp.Controllers
             transaction.Commit();
 
 
+            
+       
+
+
             return Json(sorsItem);
         }
 
 
         [HttpDelete("extra/crkindgroup/{id}")]
-        public async Task<ActionResult> DeleteCrkindgroup( int id )
+        public async Task<ActionResult> DeleteCrkindgroup(int id)
         {
             var delItem = await _dbContext.CrkindGroup.Where(row => row.CodeI == id)
-                .Include( rec => rec.CrkindGroupTr )
-                .Include( rec => rec.CopyrightKind)
+                .Include(rec => rec.CrkindGroupTr)
+                .Include(rec => rec.CopyrightKind)
                 .SingleOrDefaultAsync();
-            
-            
+
+
             // Помилковий Ід
             if (delItem == null)
                 return BadRequest();
@@ -669,19 +717,19 @@ namespace ipsmedserviceapp.Controllers
             // Видаляємо Вии права
             foreach (var row in delItem.CopyrightKind)
             {
-                foreach( var item in row.CopyrightKindTr )
+                foreach (var item in row.CopyrightKindTr)
                     _dbContext.Entry(item).State = EntityState.Deleted;
                 _dbContext.Entry(row).State = EntityState.Deleted;
             }
             // Видаляємо Трянсляцію
-            foreach( var row in delItem.CrkindGroupTr)
+            foreach (var row in delItem.CrkindGroupTr)
                 _dbContext.Entry(row).State = EntityState.Deleted;
 
 
             var transaction = _dbContext.Database.BeginTransaction();
             try
             {
-                await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync(); //помілка
             }
             catch (Exception ex)
             {

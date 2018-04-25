@@ -29,6 +29,7 @@ namespace ipsTestExp
         {
             InitializeComponent();
             LoadControls();
+            LoadGridControl();
         }
 
         /// <summary>
@@ -41,6 +42,11 @@ namespace ipsTestExp
             dataEditControl.ViewData();
             dataEditControl.LoadOverviewCfg();
 
+            
+        }
+
+        private void LoadGridControl()
+        {
             comDirControl.InitializeConnector(conn);
             comDirControl.Url = "api/Dictionary/extra/crkindgroup";
             comDirControl.ViewData();
@@ -54,6 +60,8 @@ namespace ipsTestExp
             isSaveEdit = false;
             ChangePanelComponents(0);
         }
+
+
 
         private void rBtnEdit_Click(object sender, EventArgs e)
         {
@@ -70,20 +78,22 @@ namespace ipsTestExp
             if (isSaveEdit)
             {
                 //method
-
+                dataChangeControl.SaveEditItem();
                 isSaveEdit = false;
                 ChangePanelComponents(0);
             }
 
             if (isEdit)
             {
-                ChangePanelComponents(1);
-                dataChangeControl.SetEditData();
-                isSaveEdit = true;
-                isEdit = false;
+                var data = comDirControl.GetDataForChange();
+                if (data != null)
+                {
+                    ChangePanelComponents(1);
+                    dataChangeControl.SetEditData(data);
+                    isSaveEdit = true;
+                    isEdit = false;
+                }
             }
-            
-
 
             if(dataChangeControl!=null)
                 comDirControl.ViewData();
@@ -105,6 +115,7 @@ namespace ipsTestExp
             }
             else
             {
+                comDirControl.ViewData();
                 dataChangeControl.Dispose();
                 dataChangeControl = null;
                 isAdd = false;

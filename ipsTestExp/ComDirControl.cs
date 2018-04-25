@@ -21,7 +21,9 @@ namespace ipsTestExp
         private CurrentRowChangedEventArgs tempE;
         private ApiConnector connector;
         public string Url { get; set; }
-        private string s;
+
+        private int codeParent = -1, codeChild = -1;
+
         public ComDirControl()
         {
             InitializeComponent();
@@ -122,13 +124,48 @@ namespace ipsTestExp
         }
 
 
-
-        public string[] GetDataForChange()
+        /// <summary>
+        /// Формує клас для передачі даних на редагування
+        /// </summary>
+        /// <returns></returns>
+        public DataChangeCtrlClass GetDataForChange()
         {
-            string[] str = new string[1];
+            DataChangeCtrlClass temp;
 
-            
-            return str;
+            if (codeParent > -1 && codeChild > -1)
+            {
+                var listParent = GetDataParent(connector.GetList<CrkindGroup>(Url));
+                var listChild = GetDataChildren(connector.GetList<CrkindGroup>(Url));
+                temp = new DataChangeCtrlClass()
+                {
+                    CodeParent = codeParent,
+                    CodeChild = codeChild,
+                };
+
+                foreach (var parent in listParent)
+                {
+                    if (parent.Code == codeParent)
+                    {
+                        temp.NameGroupEn = parent.NameEn;
+                        temp.NameGroupRu = parent.NameRu;
+                        temp.NameGroupUk = parent.NameUk;
+                        break;
+                    }
+                }
+                
+                foreach (var child in listChild)
+                {
+                    if (child.Code == codeChild)
+                    {
+                        temp.NameKindEn = child.NameEn;
+                        temp.NameKindUk = child.NameUk;
+                        temp.NameKindRu = child.NameRu;
+                        break;
+                    }
+                }
+                return temp;
+            }
+            return null;
         }
 
         #endregion
@@ -271,42 +308,25 @@ namespace ipsTestExp
             }
         }
 
+
         #region ALL EVENTS
 
+        //при зміні обраного рядка
         private void RGViewComDir_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            s = "";
             try
             {
-                s += " : " + e.CurrentRow.Cells[0].Value.ToString();
-                s += " : " + e.CurrentRow.Cells[1].Value.ToString();
-                s += " : " + e.CurrentRow.Cells[2].Value.ToString();
-                s += " : " + e.CurrentRow.Cells[3].Value.ToString();
-
-                for (int j = 0; j < e.CurrentRow.ChildRows.Count; j++)
-                {
-                    s += " : " + e.CurrentRow.ChildRows[j].Cells["CodeCh"].Value;
-                    s += " : " + e.CurrentRow.ChildRows[j].Cells["NameEnCh"].Value;
-                    s += " : " + e.CurrentRow.ChildRows[j].Cells["NameRuCh"].Value;
-                    s += " : " + e.CurrentRow.ChildRows[j].Cells["NameUkCh"].Value;
-                }
-
+                codeParent =  Convert.ToInt32(e.CurrentRow.Cells[0].Value);
+                codeChild = Convert.ToInt32(e.CurrentRow.Cells[1].Value);
             }
             catch (Exception exception)
             {
-             
+                codeParent = -1;
+                codeChild = -1;
             }
-
-                
-
-
-
-            
-            
         }
 
 
         #endregion
-
     }
 }

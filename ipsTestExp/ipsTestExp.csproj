@@ -201,6 +201,7 @@
     <Compile Include="DataChangeControl.Designer.cs">
       <DependentUpon>DataChangeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataChangeCtrlClass.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

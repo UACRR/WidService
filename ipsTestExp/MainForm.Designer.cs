@@ -39,12 +39,14 @@ namespace ipsTestExp
             this.rBtnEditOrSave = new Telerik.WinControls.UI.RadButton();
             this.rBtnAddOrCancel = new Telerik.WinControls.UI.RadButton();
             this.comDirControl = new ipsTestExp.ComDirControl();
+            this.rBtnDelete = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
             this.radPageViewMain.SuspendLayout();
             this.radPVPageDictTest.SuspendLayout();
             this.rPViewPageComDir.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnEditOrSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAddOrCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,6 +98,7 @@ namespace ipsTestExp
             // 
             // rPViewPageComDir
             // 
+            this.rPViewPageComDir.Controls.Add(this.rBtnDelete);
             this.rPViewPageComDir.Controls.Add(this.rBtnEditOrSave);
             this.rPViewPageComDir.Controls.Add(this.rBtnAddOrCancel);
             this.rPViewPageComDir.Controls.Add(this.comDirControl);
@@ -137,6 +140,14 @@ namespace ipsTestExp
             this.comDirControl.TabIndex = 0;
             this.comDirControl.Url = null;
             // 
+            // rBtnDelete
+            // 
+            this.rBtnDelete.Location = new System.Drawing.Point(129, 538);
+            this.rBtnDelete.Name = "rBtnDelete";
+            this.rBtnDelete.Size = new System.Drawing.Size(110, 24);
+            this.rBtnDelete.TabIndex = 3;
+            this.rBtnDelete.Text = "radButton1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +166,7 @@ namespace ipsTestExp
             this.rPViewPageComDir.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rBtnEditOrSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAddOrCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -189,6 +201,7 @@ namespace ipsTestExp
         private Telerik.WinControls.UI.RadButton rBtnAddOrCancel;
         private Telerik.WinControls.UI.RadButton rBtnEditOrSave;
         private DataChangeControl dataChangeControl;
+        private Telerik.WinControls.UI.RadButton rBtnDelete;
     }
 }
 

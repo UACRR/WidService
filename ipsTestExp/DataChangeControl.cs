@@ -18,7 +18,9 @@ namespace ipsTestExp
     public partial class DataChangeControl : UserControl
     {
         public bool VisibleDropBox { get; set; }
-        private const byte code = 0;
+        private int IdItem { get; set; }
+        private int IdItemChild { get; set; }
+        private const sbyte code = 0;
         private bool isNewGroup = false;
         private ApiConnector _connector;
         private string _url;
@@ -171,6 +173,42 @@ namespace ipsTestExp
             return crkindGroup;
         }
 
+        private CrkindGroup PackageDataForUpdate()
+        {
+            CrkindGroup crkindGroup = new CrkindGroup();
+            CopyrightKind tempCopyrightKind = new CopyrightKind();
+            CopyrightKindTr[] tempCopyrightKindTr = new CopyrightKindTr[3];
+            CrkindGroupTr[] tempCrkindGroupTr = new CrkindGroupTr[3];
+            
+            
+            
+            tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = IdItem, Lang = "En", Name = rTxtBoxNameEn.Text };
+            tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = IdItem, Lang = "Uk", Name = rTxtBoxNameUk.Text };
+            tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = IdItem, Lang = "Ru", Name = rTxtBoxNameRu.Text };
+            
+            tempCopyrightKindTr[0] = new CopyrightKindTr() { CodeI = IdItem, Lang = "En", Name = rTxtBoxKindEn.Text };
+            tempCopyrightKindTr[1] = new CopyrightKindTr() { CodeI = IdItem, Lang = "Uk", Name = rTxtBoxKindUk.Text };
+            tempCopyrightKindTr[2] = new CopyrightKindTr() { CodeI = IdItem, Lang = "Ru", Name = rTxtBoxKindRu.Text };
+
+            tempCopyrightKind.CodeI = IdItemChild;
+            tempCopyrightKind.Name = rTxtBoxKindUk.Text;
+            tempCopyrightKind.CrGroupCode = tempCrkindGroupTr[0].CodeI;
+            tempCopyrightKind.AgrLicenseType = null;
+            tempCopyrightKind.CopyrightKindTr = new List<CopyrightKindTr>
+            {
+                tempCopyrightKindTr[0], tempCopyrightKindTr[1], tempCopyrightKindTr[2]
+            };
+
+            crkindGroup.CodeI = IdItem;
+            crkindGroup.Name = tempCrkindGroupTr[1].Name;
+            crkindGroup.CopyrightKind.Add(tempCopyrightKind);
+            crkindGroup.CrkindGroupTr = new List<CrkindGroupTr>
+            {
+                tempCrkindGroupTr[0], tempCrkindGroupTr[1], tempCrkindGroupTr[2]
+            };
+            return crkindGroup;
+        }
+
         public void AddNewItem()
         {
             bool act = _connector.NewItem(_url, PackageData());
@@ -180,14 +218,31 @@ namespace ipsTestExp
             }
         }
 
-        public void SetEditData()
+        public void SetEditData(DataChangeCtrlClass change)
         {
+            IdItem = change.CodeParent;
+            IdItemChild = change.CodeChild;
             rDropDownListGroup.SelectedValueChanged -= rDropDownListGroup_SelectedValueChanged;
-            rDropDownListGroup.Items[2].Selected = true;
+            rDropDownListGroup.Items[change.CodeParent + 1].Selected = true;
             rDropDownListGroup.SelectedValueChanged += rDropDownListGroup_SelectedValueChanged;
 
+            rTxtBoxNameEn.Text = change.NameGroupEn;
+            rTxtBoxNameRu.Text = change.NameGroupRu;
+            rTxtBoxNameUk.Text = change.NameGroupUk;
 
+            rTxtBoxKindEn.Text = change.NameKindEn;
+            rTxtBoxKindRu.Text = change.NameKindRu;
+            rTxtBoxKindUk.Text = change.NameKindUk;
+        }
 
+        public void SaveEditItem()
+        {
+            bool act = _connector.UpdateItem(_url, IdItem.ToString(), PackageDataForUpdate());
+        }
+
+        public void DeleteItem()
+        {
+            bool act = _connector.DeleteItem(_url, "0");
         }
     }
 }
