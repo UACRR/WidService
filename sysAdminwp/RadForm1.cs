@@ -30,10 +30,12 @@ namespace sysAdminwp
         {
             InitializeComponent();
             SetDataSource();
-            radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
-            radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
-            radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
+            
             UpdateEditPanel();
+
+            radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
+            radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
+            radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
 
             radPanelChange.Enabled = false;
             radTxtBoxSearchData.Enabled = false;
@@ -42,9 +44,11 @@ namespace sysAdminwp
 
         }
 
+
+
         #region Методи
         
-        //метод встановлення джерела даних
+        //метод встановлення джерела даних для дерева
         private void SetDataSource()
         {
             var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");//дерево
@@ -114,7 +118,7 @@ namespace sysAdminwp
 
         public void SaveAddNewRow()
         {
-            if (radTBCode.TextLength != 0)
+            if (radTBCode.Text != string.Empty)
             {
                 if ((Convert.ToInt32(radTBCode.Text)).GetType() != typeof(int))
                     radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
@@ -140,8 +144,6 @@ namespace sysAdminwp
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
-
-            
         }
 
         //метод оновлення для панелі редагування
@@ -260,15 +262,13 @@ namespace sysAdminwp
             radTBNameEn.Clear();
             radTBNameRu.Clear();
             radTBNameUa.Clear();
+            
         }
 
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
-            bool retCode = connector.DeleteItem(Url, radGridView1.CurrentRow.Cells["code"].Value.ToString());
-            list = connector.GetList<DictBaseTypeI>(Url);
-            radGridView1.DataSource = GetData(list);
-            UpdateEditPanel();
+            
         }
 
         //кнопка збереження
@@ -292,6 +292,7 @@ namespace sysAdminwp
             UpdateEditPanel();
             ChangeEnableElementsWhenEdit(true);
         }
+
 
         //фільтр елементів дерева
         private void radTxtBoxFilter_TextChanged(object sender, EventArgs e)

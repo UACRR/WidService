@@ -55,7 +55,14 @@
       <HintPath>..\lib\RCWF\2018.1.220.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.1.220.40\Telerik.WinControls.GridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.1.220.40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Telerik.WinControls.UI, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2018.1.220.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
@@ -71,6 +78,12 @@
     </Compile>
     <Compile Include="RadForm1.Designer.cs">
       <DependentUpon>RadForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataEditControl.Designer.cs">
+      <DependentUpon>DataEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewTable.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -88,6 +101,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DataEditControl.resx">
+      <DependentUpon>DataEditControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
