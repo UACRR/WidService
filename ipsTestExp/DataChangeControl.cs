@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,6 @@ namespace ipsTestExp
         public bool VisibleDropBox { get; set; }
         private int IdItem { get; set; }
         private int IdItemChild { get; set; }
-        private const sbyte code = 0;
         private bool isNewGroup = false;
         private ApiConnector _connector;
         private string _url;
@@ -45,8 +45,8 @@ namespace ipsTestExp
             
             temp = _connector.GetList<CrkindGroup>(_url);
             dropList = new Dictionary<string, string>();
-            dropList.Add(string.Empty, string.Empty);
-            dropList.Add("-1", "Нова група");
+            dropList.Add("-1", string.Empty);
+            dropList.Add("0", "Нова група");
 
             foreach (var item in temp)
             {
@@ -87,6 +87,8 @@ namespace ipsTestExp
 
         private void rDropDownListGroup_SelectedValueChanged(object sender, EventArgs e)
         {
+            IdItem = Convert.ToInt32(dropList
+                .FirstOrDefault(x => x.Value == rDropDownListGroup.SelectedItem.Value.ToString()).Key);
             var v = rDropDownListGroup.SelectedItem.Value.ToString();
             foreach (var item in temp)
             {
@@ -108,69 +110,86 @@ namespace ipsTestExp
                     return;
                 }
                     rPanelKindName.Enabled = false;
-
-                
             }
         }
 
         private CrkindGroup PackageData()
         {
-            CrkindGroup crkindGroup = new CrkindGroup();
-            CopyrightKind tempCopyrightKind = new CopyrightKind();
-            CopyrightKindTr[] tempCopyrightKindTr = new CopyrightKindTr[3];
-            CrkindGroupTr[] tempCrkindGroupTr = new CrkindGroupTr[3];
-            int codeP;
-            if (isNewGroup)
-            {
-                tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = code, Lang = "En", Name = rTxtBoxNameEn.Text };
-                tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = code, Lang = "Uk", Name = rTxtBoxNameUk.Text };
-                tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = code, Lang = "Ru", Name = rTxtBoxNameRu.Text };
-            }
-            else
-            {
-                codeP = Convert.ToInt32(dropList
-                    .FirstOrDefault(x => x.Value == rDropDownListGroup.SelectedItem.Value.ToString()).Key);
-
-                foreach (var itemsTr in temp)
-                {
-                    foreach (var tr in itemsTr.CrkindGroupTr)
-                    {
-                        if (tr.CodeI == codeP && tr.Lang == "En")
-                            tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = codeP, Lang = "En", Name = tr.Name };
-                                                                                     
-                        if (tr.CodeI == codeP && tr.Lang == "Uk")                    
-                            tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = codeP, Lang = "Uk", Name = tr.Name };
-                                                                                     
-                        if (tr.CodeI == codeP && tr.Lang == "Ru")                    
-                            tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = codeP, Lang = "Ru", Name = tr.Name };
-                    }
-                }
-            }
-
-
+            //IdItem = Convert.ToInt32(dropList
+            //    .FirstOrDefault(x => x.Value == rDropDownListGroup.SelectedItem.Value.ToString()).Key);
             
+            //додати нову групу?
+            if (IdItem == 0)
+            {
+                //упаковка для нової групи
+                CrkindGroup crkindGroup = new CrkindGroup();
+                CopyrightKind tempCopyrightKind = new CopyrightKind();
+                CopyrightKindTr[] tempCopyrightKindTr = new CopyrightKindTr[3];
+                CrkindGroupTr[] tempCrkindGroupTr = new CrkindGroupTr[3];
+                
+                    tempCrkindGroupTr[0] = new CrkindGroupTr() { CodeI = IdItem, Lang = "En", Name = rTxtBoxNameEn.Text };
+                    tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = IdItem, Lang = "Uk", Name = rTxtBoxNameUk.Text };
+                    tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = IdItem, Lang = "Ru", Name = rTxtBoxNameRu.Text };
+                
 
-            tempCopyrightKindTr[0] = new CopyrightKindTr() { CodeI = code, Lang = "En", Name = rTxtBoxKindEn.Text};
-            tempCopyrightKindTr[1] = new CopyrightKindTr() { CodeI = code, Lang = "Uk", Name = rTxtBoxKindUk.Text};
-            tempCopyrightKindTr[2] = new CopyrightKindTr() { CodeI = code, Lang = "Ru", Name = rTxtBoxKindRu.Text};
+                tempCopyrightKindTr[0] = new CopyrightKindTr() { CodeI = IdItem, Lang = "En", Name = rTxtBoxKindEn.Text };
+                tempCopyrightKindTr[1] = new CopyrightKindTr() { CodeI = IdItem, Lang = "Uk", Name = rTxtBoxKindUk.Text };
+                tempCopyrightKindTr[2] = new CopyrightKindTr() { CodeI = IdItem, Lang = "Ru", Name = rTxtBoxKindRu.Text };
 
-            tempCopyrightKind.CodeI = code;
-            tempCopyrightKind.Name = rTxtBoxKindUk.Text;
-            tempCopyrightKind.CrGroupCode = tempCrkindGroupTr[0].CodeI;
-            tempCopyrightKind.AgrLicenseType = null;
-            tempCopyrightKind.CopyrightKindTr = new List<CopyrightKindTr>
+                tempCopyrightKind.CodeI = IdItem;
+                tempCopyrightKind.Name = rTxtBoxKindUk.Text;
+                tempCopyrightKind.CrGroupCode = tempCrkindGroupTr[0].CodeI;
+                tempCopyrightKind.AgrLicenseType = null;
+                tempCopyrightKind.CopyrightKindTr = new List<CopyrightKindTr>
             {
                 tempCopyrightKindTr[0], tempCopyrightKindTr[1], tempCopyrightKindTr[2]
             };
 
-            crkindGroup.CodeI = tempCrkindGroupTr[1].CodeI;
-            crkindGroup.Name = tempCrkindGroupTr[1].Name;
-            crkindGroup.CopyrightKind.Add(tempCopyrightKind);
-            crkindGroup.CrkindGroupTr = new List<CrkindGroupTr>
+                crkindGroup.CodeI = tempCrkindGroupTr[1].CodeI;
+                crkindGroup.Name = tempCrkindGroupTr[1].Name;
+                crkindGroup.CopyrightKind.Add(tempCopyrightKind);
+                crkindGroup.CrkindGroupTr = new List<CrkindGroupTr>
             {
                 tempCrkindGroupTr[0], tempCrkindGroupTr[1], tempCrkindGroupTr[2]
             };
-            return crkindGroup;
+                return crkindGroup;
+            }
+                
+            //додати новий вид?
+            else
+            {
+                //упаковка для нового виду, що знаходиться в групі
+                var groupItem = temp.Where(row => row.CodeI == IdItem).SingleOrDefault();
+
+                groupItem.CopyrightKind.Add( new CopyrightKind
+                {
+                    CodeI = 0,
+                    Name = rTxtBoxKindUk.Text,
+                    CrGroupCode = IdItem,
+                    CopyrightKindTr = new List<CopyrightKindTr>
+                    {
+                        new CopyrightKindTr
+                        {
+                            CodeI = 0,
+                            Lang = "En",
+                            Name = rTxtBoxKindEn.Text,
+                        },
+                        new CopyrightKindTr
+                        {
+                            CodeI = 0,
+                            Lang = "Uk",
+                            Name = rTxtBoxKindUk.Text,
+                        },
+                        new CopyrightKindTr
+                        {
+                            CodeI = 0,
+                            Lang = "Ru",
+                            Name = rTxtBoxKindRu.Text
+                        }
+                    }
+                });
+                return groupItem;
+            }
         }
 
         private CrkindGroup PackageDataForUpdate()
@@ -200,9 +219,8 @@ namespace ipsTestExp
                 groupItem.CrkindGroupTr.Add(new CrkindGroupTr { CodeI = IdItem, Lang = "Uk", Name = rTxtBoxNameUk.Text });
             }
             else
-            {
                 editGroup.Name = rTxtBoxNameUk.Text;
-            }
+            
 
             editGroup = groupItem.CrkindGroupTr.Where(item => item.Lang == "Ru").SingleOrDefault();
             if (editGroup == null)
@@ -284,10 +302,13 @@ namespace ipsTestExp
 
         public void AddNewItem()
         {
-            bool act = _connector.NewItem(_url, PackageData());
-            if (!act)
+            if (isNewGroup)
             {
-                //MessageBox.Show("NO");
+                bool act = _connector.NewItem(_url, PackageData());
+            }
+            else
+            {
+                bool newAct = _connector.UpdateItem(_url, IdItem.ToString(), PackageData());
             }
         }
 
