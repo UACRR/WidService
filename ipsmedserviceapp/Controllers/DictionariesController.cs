@@ -627,7 +627,7 @@ namespace ipsmedserviceapp.Controllers
         {
             IDbContextTransaction transaction = null;
 
-            var copyrightKindItem = _dbContext.CopyrightKind.AsNoTracking().OrderByDescending(row => row.CodeI).SingleOrDefault();
+            var copyrightKindItem = _dbContext.CopyrightKind.OrderByDescending(row => row.CodeI).AsNoTracking().FirstOrDefault();
             int maxcopyrightKindCodeI = copyrightKindItem != null ? copyrightKindItem.CodeI + 1 : 1;
 
 
