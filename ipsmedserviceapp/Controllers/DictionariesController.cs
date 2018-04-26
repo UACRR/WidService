@@ -680,8 +680,8 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 
-                await _dbContext.SaveChangesAsync();
-                //_dbContext.SaveChanges();
+                //await _dbContext.SaveChangesAsync();
+                _dbContext.SaveChanges();
             }
             catch (Exception ex)
             {

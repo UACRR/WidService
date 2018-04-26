@@ -186,9 +186,9 @@ namespace ipsTestExp
             tempCrkindGroupTr[1] = new CrkindGroupTr() { CodeI = IdItem, Lang = "Uk", Name = rTxtBoxNameUk.Text };
             tempCrkindGroupTr[2] = new CrkindGroupTr() { CodeI = IdItem, Lang = "Ru", Name = rTxtBoxNameRu.Text };
             
-            tempCopyrightKindTr[0] = new CopyrightKindTr() { CodeI = IdItem, Lang = "En", Name = rTxtBoxKindEn.Text };
-            tempCopyrightKindTr[1] = new CopyrightKindTr() { CodeI = IdItem, Lang = "Uk", Name = rTxtBoxKindUk.Text };
-            tempCopyrightKindTr[2] = new CopyrightKindTr() { CodeI = IdItem, Lang = "Ru", Name = rTxtBoxKindRu.Text };
+            tempCopyrightKindTr[0] = new CopyrightKindTr() { CodeI = IdItemChild, Lang = "En", Name = rTxtBoxKindEn.Text };
+            tempCopyrightKindTr[1] = new CopyrightKindTr() { CodeI = IdItemChild, Lang = "Uk", Name = rTxtBoxKindUk.Text };
+            tempCopyrightKindTr[2] = new CopyrightKindTr() { CodeI = IdItemChild, Lang = "Ru", Name = rTxtBoxKindRu.Text };
 
             tempCopyrightKind.CodeI = IdItemChild;
             tempCopyrightKind.Name = rTxtBoxKindUk.Text;
