@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using ipsmedserviceapp.Controllers;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -617,87 +618,62 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("extra/crkindgroup/{id}")]
         public async Task<ActionResult> UpdateCrkindgroup(int id, [FromBody] JObject data)
         {
-            CrkindGroup sorsItem = data.ToObject<CrkindGroup>();
-            if (sorsItem == null)
-                return BadRequest();
-            var destItem = await getCrkindGroup(id);
-            if (destItem == null)
-                return BadRequest();
-
-            var dicCode = _dbContext.CopyrightKind.AsNoTracking().ToDictionary(row => row.CodeI);
-            int MaxCodeI = dicCode.Keys.Max() + 1;
-            var maxGroupId = _dbContext.CrkindGroup.AsNoTracking().OrderByDescending(row => row.CodeI).First()
-                                 .CodeI + 1;
-
-            // sorsItem.CodeI = maxGroupId;
-
-            List<CrkindGroupTr> dest = destItem.CrkindGroupTr.ToList();
-            List<CrkindGroupTr> sors = sorsItem.CrkindGroupTr.ToList();
-
-            UpdateList<CrkindGroupTr>(sors, dest, (sorsI, destI) => sorsI.CodeI == destI.CodeI);
-
-            // List<>
+            IDbContextTransaction transaction = null;
             try
             {
-                foreach (var row in sorsItem.CopyrightKind)
+                CrkindGroup sorsItem = data.ToObject<CrkindGroup>();
+                if (sorsItem == null)
+                    return BadRequest();
+                var destItem = await getCrkindGroup(id);
+                if (destItem == null)
+                    return BadRequest();
+
+
+                // Змінюємо запис CrkindGroup
+                destItem.SetFields(sorsItem);
+
+                // Змінюємо список записів CrkindGroupTr
+                List<CrkindGroupTr> dest = destItem.CrkindGroupTr.ToList();
+                List<CrkindGroupTr> sors = sorsItem.CrkindGroupTr.ToList();
+
+                UpdateList<CrkindGroupTr>(sors, dest, (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
+
+                // Змінюємо список записів CopyrightKind
+                List<CopyrightKind> sorsRghtKind = sorsItem.CopyrightKind.ToList();
+                List<CopyrightKind> destRghtKind = destItem.CopyrightKind.ToList();
+
+                UpdateList<CopyrightKind>(sorsRghtKind, destRghtKind, (sorsI, destI) => sorsI.CodeI == destI.CodeI);
+
+                // Змінюємо CopyrightKindTr для кожного CopyrightKind
+                sorsRghtKind.ForEach(sorsRow =>
                 {
-                    bool isNew = row.CodeI == 0;
+                    var destRow = destRghtKind.Where(item => item.CodeI == sorsRow.CodeI).SingleOrDefault();
+                    if (destRow == null) throw new Exception($"Error update CopyrightKind with CodeI = {sorsRow.CodeI}");
 
-                    _dbContext.Entry(row).State = isNew ? EntityState.Added : EntityState.Modified;
-                    row.CodeI = isNew ? MaxCodeI : row.CodeI;
-                    // Для записів перекладу назви  виду права, якщо проставлено Ід встановлюємо статус запису Модіфіковано
-                    foreach (var trRow in row.CopyrightKindTr)
-                    {
-                        _dbContext.Entry(trRow).State = trRow.CodeI == 0 ? EntityState.Added : EntityState.Modified;
-                        trRow.CodeI = isNew ? MaxCodeI : trRow.CodeI;
-                    }
+                    List<CopyrightKindTr> sorsTr = sorsRow.CopyrightKindTr.ToList();
+                    List<CopyrightKindTr> destTr = destRow.CopyrightKindTr.ToList();
+                    UpdateList<CopyrightKindTr>(sorsTr, destTr, (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
-                    if (isNew) MaxCodeI++;
-                }
+                });
 
-                //---
 
-                foreach (var item in sorsItem.CrkindGroupTr)
-                {
-                    bool isNew = item.CodeI == 0;
+                transaction = _dbContext.Database.BeginTransaction();
 
-                    _dbContext.Entry(item).State = isNew ? EntityState.Added : EntityState.Modified;
-                    item.CodeI = isNew ? MaxCodeI : item.CodeI;
-                    if (isNew) MaxCodeI++;
-                }
 
-                // Для запису довідника встановлюємо статус 
-                _dbContext.Entry(sorsItem).State = EntityState.Modified;
-                
-            }
-            catch (Exception e)
-            {
-                ;
-            }
-
-            var transaction = _dbContext.Database.BeginTransaction();
-
-            try
-            {
-                
-                //await _dbContext.SaveChangesAsync();
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
+                //_dbContext.SaveChanges();
+                transaction.Commit();
+                return Json(sorsItem);
             }
             catch (Exception ex)
             {
+                if (transaction != null)
+                    transaction.Rollback();
+                Console.WriteLine(ex.InnerException.Message);
 
-                transaction.Rollback();
                 return BadRequest(ex.InnerException.Message);
             }
 
-            transaction.Commit();
-
-
-            
-       
-
-
-            return Json(sorsItem);
         }
 
 
