@@ -603,7 +603,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
 
-        private void UpdateList<T>(List<T> sors, List<T> dest, Func<T, T, bool> compId) where T : class
+        private void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Func<T, T, bool> compId) where T : class
         {
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
@@ -612,7 +612,7 @@ namespace ipsmedserviceapp.Controllers
             tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
             tempList.ForEach(item => { sors.Remove(item); dest.Add(item); });
             // Змінюємо спільні записи
-            sors.ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
+            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
 
         }
         [HttpPut("extra/crkindgroup/{id}")]
@@ -633,25 +633,25 @@ namespace ipsmedserviceapp.Controllers
                 destItem.SetFields(sorsItem);
 
                 // Змінюємо список записів CrkindGroupTr
-                List<CrkindGroupTr> dest = destItem.CrkindGroupTr.ToList();
-                List<CrkindGroupTr> sors = sorsItem.CrkindGroupTr.ToList();
+                var dest = destItem.CrkindGroupTr;
+                var sors = sorsItem.CrkindGroupTr;
 
                 UpdateList<CrkindGroupTr>(sors, dest, (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
                 // Змінюємо список записів CopyrightKind
-                List<CopyrightKind> sorsRghtKind = sorsItem.CopyrightKind.ToList();
-                List<CopyrightKind> destRghtKind = destItem.CopyrightKind.ToList();
+                var sorsRghtKind = sorsItem.CopyrightKind;
+                var destRghtKind = destItem.CopyrightKind;
 
                 UpdateList<CopyrightKind>(sorsRghtKind, destRghtKind, (sorsI, destI) => sorsI.CodeI == destI.CodeI);
 
                 // Змінюємо CopyrightKindTr для кожного CopyrightKind
-                sorsRghtKind.ForEach(sorsRow =>
+                sorsRghtKind.ToList().ForEach(sorsRow =>
                 {
                     var destRow = destRghtKind.Where(item => item.CodeI == sorsRow.CodeI).SingleOrDefault();
                     if (destRow == null) throw new Exception($"Error update CopyrightKind with CodeI = {sorsRow.CodeI}");
 
-                    List<CopyrightKindTr> sorsTr = sorsRow.CopyrightKindTr.ToList();
-                    List<CopyrightKindTr> destTr = destRow.CopyrightKindTr.ToList();
+                    var sorsTr = sorsRow.CopyrightKindTr;
+                    var destTr = destRow.CopyrightKindTr;
                     UpdateList<CopyrightKindTr>(sorsTr, destTr, (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
                 });
