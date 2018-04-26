@@ -36,17 +36,17 @@ namespace ipsTestExp
             this.radPVPageDictTest = new Telerik.WinControls.UI.RadPageViewPage();
             this.dataEditControl = new sysAdminwp.DataEditControl();
             this.rPViewPageComDir = new Telerik.WinControls.UI.RadPageViewPage();
+            this.rBtnDelete = new Telerik.WinControls.UI.RadButton();
             this.rBtnEditOrSave = new Telerik.WinControls.UI.RadButton();
             this.rBtnAddOrCancel = new Telerik.WinControls.UI.RadButton();
             this.comDirControl = new ipsTestExp.ComDirControl();
-            this.rBtnDelete = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
             this.radPageViewMain.SuspendLayout();
             this.radPVPageDictTest.SuspendLayout();
             this.rPViewPageComDir.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnEditOrSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAddOrCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,6 +108,14 @@ namespace ipsTestExp
             this.rPViewPageComDir.Size = new System.Drawing.Size(1151, 566);
             this.rPViewPageComDir.Text = "Складний довідник";
             // 
+            // rBtnDelete
+            // 
+            this.rBtnDelete.Location = new System.Drawing.Point(129, 538);
+            this.rBtnDelete.Name = "rBtnDelete";
+            this.rBtnDelete.Size = new System.Drawing.Size(110, 24);
+            this.rBtnDelete.TabIndex = 3;
+            this.rBtnDelete.Text = "radButton1";
+            // 
             // rBtnEditOrSave
             // 
             this.rBtnEditOrSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -140,14 +148,6 @@ namespace ipsTestExp
             this.comDirControl.TabIndex = 0;
             this.comDirControl.Url = null;
             // 
-            // rBtnDelete
-            // 
-            this.rBtnDelete.Location = new System.Drawing.Point(129, 538);
-            this.rBtnDelete.Name = "rBtnDelete";
-            this.rBtnDelete.Size = new System.Drawing.Size(110, 24);
-            this.rBtnDelete.TabIndex = 3;
-            this.rBtnDelete.Text = "radButton1";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,9 +164,9 @@ namespace ipsTestExp
             this.radPageViewMain.ResumeLayout(false);
             this.radPVPageDictTest.ResumeLayout(false);
             this.rPViewPageComDir.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnEditOrSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAddOrCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
