@@ -603,14 +603,21 @@ namespace ipsmedserviceapp.Controllers
         }
 
 
-        private void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Func<T, T, bool> compId) where T : class
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sors"></param>
+        /// <param name="dest"></param>
+        /// <param name="compId"></param>
+        private void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId,Func<T, T, bool> compId) where T : class
         {
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
             tempList.ForEach(item => _dbContext.Entry(item).State = EntityState.Deleted);
             // Додаємо нові
             tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => { sors.Remove(item); dest.Add(item); });
+            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
             // Змінюємо спільні записи
             sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
 
@@ -619,6 +626,11 @@ namespace ipsmedserviceapp.Controllers
         public async Task<ActionResult> UpdateCrkindgroup(int id, [FromBody] JObject data)
         {
             IDbContextTransaction transaction = null;
+
+            var copyrightKindItem = _dbContext.CopyrightKind.AsNoTracking().OrderByDescending(row => row.CodeI).SingleOrDefault();
+            int maxcopyrightKindCodeI = copyrightKindItem != null ? copyrightKindItem.CodeI + 1 : 1;
+
+
             try
             {
                 CrkindGroup sorsItem = data.ToObject<CrkindGroup>();
@@ -636,13 +648,17 @@ namespace ipsmedserviceapp.Controllers
                 var dest = destItem.CrkindGroupTr;
                 var sors = sorsItem.CrkindGroupTr;
 
-                UpdateList<CrkindGroupTr>(sors, dest, (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
+                UpdateList(sors, dest,
+                    row => row.CodeI = destItem.CodeI,
+                    (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
                 // Змінюємо список записів CopyrightKind
                 var sorsRghtKind = sorsItem.CopyrightKind;
                 var destRghtKind = destItem.CopyrightKind;
 
-                UpdateList<CopyrightKind>(sorsRghtKind, destRghtKind, (sorsI, destI) => sorsI.CodeI == destI.CodeI);
+                UpdateList(sorsRghtKind, destRghtKind,
+                    row => row.CodeI = maxcopyrightKindCodeI++,
+                    (sorsI, destI) => sorsI.CodeI == destI.CodeI);
 
                 // Змінюємо CopyrightKindTr для кожного CopyrightKind
                 sorsRghtKind.ToList().ForEach(sorsRow =>
@@ -652,7 +668,9 @@ namespace ipsmedserviceapp.Controllers
 
                     var sorsTr = sorsRow.CopyrightKindTr;
                     var destTr = destRow.CopyrightKindTr;
-                    UpdateList<CopyrightKindTr>(sorsTr, destTr, (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
+                    UpdateList(sorsTr, destTr, 
+                        row => row.CodeI = destRow.CodeI,
+                        (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
                 });
 
