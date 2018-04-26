@@ -179,11 +179,38 @@ namespace ipsTestExp
             var groupItem = temp.Where(row => row.CodeI == IdItem).SingleOrDefault();
             if (groupItem == null)
                 throw new Exception("Error 01");
-
+            
             // Знайти Вид
             var kindList = groupItem.CopyrightKind.Where(item => item.CodeI == IdItemChild ).SingleOrDefault();
             if (kindList == null)
                 throw new Exception("Error 02");
+
+            //змінити групу
+            var editGroup = groupItem.CrkindGroupTr.Where(item => item.Lang == "En").SingleOrDefault();
+            if (editGroup == null)
+            {
+                groupItem.CrkindGroupTr.Add(new CrkindGroupTr {CodeI = IdItem, Lang = "En", Name = rTxtBoxNameEn.Text});
+            }
+            else
+                editGroup.Name = rTxtBoxNameEn.Text;
+
+            editGroup = groupItem.CrkindGroupTr.Where(item => item.Lang == "Uk").SingleOrDefault();
+            if (editGroup == null)
+            {
+                groupItem.CrkindGroupTr.Add(new CrkindGroupTr { CodeI = IdItem, Lang = "Uk", Name = rTxtBoxNameUk.Text });
+            }
+            else
+            {
+                editGroup.Name = rTxtBoxNameUk.Text;
+            }
+
+            editGroup = groupItem.CrkindGroupTr.Where(item => item.Lang == "Ru").SingleOrDefault();
+            if (editGroup == null)
+            {
+                groupItem.CrkindGroupTr.Add(new CrkindGroupTr { CodeI = IdItem, Lang = "Ru", Name = rTxtBoxNameRu.Text });
+            }
+            else
+                editGroup.Name = rTxtBoxNameRu.Text;
 
             // Змінити вид
             var editRow = kindList.CopyrightKindTr.Where(item => item.Lang == "En").SingleOrDefault();
@@ -210,8 +237,13 @@ namespace ipsTestExp
             else
                 editRow.Name = rTxtBoxKindRu.Text;
 
+            var name = groupItem.CrkindGroupTr.Where(item => item.Lang == "Uk").SingleOrDefault();
+            if (name!=null)
+                groupItem.Name = name.Name;
+
             return groupItem;
 
+            #region OLD
             // Вернути запис групи
 
             //CrkindGroup crkindGroup = new CrkindGroup();
@@ -246,6 +278,8 @@ namespace ipsTestExp
             //    tempCrkindGroupTr[0], tempCrkindGroupTr[1], tempCrkindGroupTr[2]
             //};
             // return crkindGroup;
+            #endregion
+
         }
 
         public void AddNewItem()

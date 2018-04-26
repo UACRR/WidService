@@ -132,7 +132,7 @@ namespace ipsTestExp
         {
             DataChangeCtrlClass temp;
 
-            if (codeParent > -1 && codeChild > -1)
+            if (codeParent > 0 && codeChild > 0)
             {
                 var listParent = GetDataParent(connector.GetList<CrkindGroup>(Url));
                 var listChild = GetDataChildren(connector.GetList<CrkindGroup>(Url));

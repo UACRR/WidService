@@ -663,7 +663,7 @@ namespace ipsmedserviceapp.Controllers
                 await _dbContext.SaveChangesAsync();
                 //_dbContext.SaveChanges();
                 transaction.Commit();
-                return Json(sorsItem);
+                return Json(destItem);
             }
             catch (Exception ex)
             {
