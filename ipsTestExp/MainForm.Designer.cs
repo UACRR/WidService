@@ -31,8 +31,13 @@ namespace ipsTestExp
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radPageViewMain = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPMain = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
             this.radPVPageDictTest = new Telerik.WinControls.UI.RadPageViewPage();
             this.dataEditControl = new sysAdminwp.DataEditControl();
             this.rPViewPageComDir = new Telerik.WinControls.UI.RadPageViewPage();
@@ -42,6 +47,9 @@ namespace ipsTestExp
             this.comDirControl = new ipsTestExp.ComDirControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
             this.radPageViewMain.SuspendLayout();
+            this.radPageViewPMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).BeginInit();
             this.radPVPageDictTest.SuspendLayout();
             this.rPViewPageComDir.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).BeginInit();
@@ -55,13 +63,14 @@ namespace ipsTestExp
             this.radPageViewMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPageViewMain.CausesValidation = false;
             this.radPageViewMain.Controls.Add(this.radPageViewPMain);
             this.radPageViewMain.Controls.Add(this.radPVPageDictTest);
             this.radPageViewMain.Controls.Add(this.rPViewPageComDir);
             this.radPageViewMain.DefaultPage = this.radPageViewPMain;
             this.radPageViewMain.Location = new System.Drawing.Point(-2, 2);
             this.radPageViewMain.Name = "radPageViewMain";
-            this.radPageViewMain.SelectedPage = this.rPViewPageComDir;
+            this.radPageViewMain.SelectedPage = this.radPageViewPMain;
             this.radPageViewMain.Size = new System.Drawing.Size(1172, 614);
             this.radPageViewMain.TabIndex = 0;
             this.radPageViewMain.ThemeName = "ControlDefault";
@@ -69,19 +78,74 @@ namespace ipsTestExp
             // 
             // radPageViewPMain
             // 
+            this.radPageViewPMain.Controls.Add(this.radGridView2);
             this.radPageViewPMain.ItemSize = new System.Drawing.SizeF(59F, 28F);
             this.radPageViewPMain.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPMain.Name = "radPageViewPMain";
             this.radPageViewPMain.Size = new System.Drawing.Size(1151, 566);
             this.radPageViewPMain.Text = "Головна";
             // 
+            // radGridView2
+            // 
+            this.radGridView2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(240)))), ((int)(((byte)(249)))));
+            this.radGridView2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.radGridView2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radGridView2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.radGridView2.ForeColor = System.Drawing.Color.Black;
+            this.radGridView2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.radGridView2.Location = new System.Drawing.Point(0, 0);
+            this.radGridView2.Margin = new System.Windows.Forms.Padding(4);
+            // 
+            // 
+            // 
+            this.radGridView2.MasterTemplate.AutoGenerateColumns = false;
+            gridViewDecimalColumn1.EnableExpressionEditor = false;
+            gridViewDecimalColumn1.FieldName = "Code";
+            gridViewDecimalColumn1.HeaderText = "Code";
+            gridViewDecimalColumn1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            gridViewDecimalColumn1.MinWidth = 6;
+            gridViewDecimalColumn1.Name = "Code";
+            gridViewDecimalColumn1.Width = 145;
+            gridViewDecimalColumn2.EnableExpressionEditor = false;
+            gridViewDecimalColumn2.FieldName = "ParentCode";
+            gridViewDecimalColumn2.HeaderText = "ParentCode";
+            gridViewDecimalColumn2.IsVisible = false;
+            gridViewDecimalColumn2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            gridViewDecimalColumn2.MinWidth = 6;
+            gridViewDecimalColumn2.Name = "ParentCode";
+            gridViewDecimalColumn2.Width = 178;
+            gridViewTextBoxColumn1.EnableExpressionEditor = false;
+            gridViewTextBoxColumn1.FieldName = "NameEn";
+            gridViewTextBoxColumn1.HeaderText = "NameEn";
+            gridViewTextBoxColumn1.MinWidth = 6;
+            gridViewTextBoxColumn1.Name = "NameEn";
+            gridViewTextBoxColumn1.Width = 509;
+            this.radGridView2.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn1,
+            gridViewDecimalColumn2,
+            gridViewTextBoxColumn1});
+            this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView2.Name = "radGridView2";
+            this.radGridView2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radGridView2.Size = new System.Drawing.Size(1151, 321);
+            this.radGridView2.TabIndex = 0;
+            this.radGridView2.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.radGridView2_CellFormatting);
+            // 
             // radPVPageDictTest
             // 
             this.radPVPageDictTest.Controls.Add(this.dataEditControl);
             this.radPVPageDictTest.ItemSize = new System.Drawing.SizeF(79F, 28F);
-            this.radPVPageDictTest.Location = new System.Drawing.Point(10, 33);
+            this.radPVPageDictTest.Location = new System.Drawing.Point(10, 37);
             this.radPVPageDictTest.Name = "radPVPageDictTest";
-            this.radPVPageDictTest.Size = new System.Drawing.Size(1151, 570);
+            this.radPVPageDictTest.Size = new System.Drawing.Size(1151, 566);
             this.radPVPageDictTest.Text = "Довідники+";
             // 
             // dataEditControl
@@ -91,8 +155,9 @@ namespace ipsTestExp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataEditControl.Enabled = false;
             this.dataEditControl.Location = new System.Drawing.Point(203, 3);
+            this.dataEditControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataEditControl.Name = "dataEditControl";
-            this.dataEditControl.Size = new System.Drawing.Size(943, 559);
+            this.dataEditControl.Size = new System.Drawing.Size(943, 555);
             this.dataEditControl.TabIndex = 0;
             this.dataEditControl.Url = null;
             // 
@@ -143,6 +208,7 @@ namespace ipsTestExp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comDirControl.BackColor = System.Drawing.Color.Linen;
             this.comDirControl.Location = new System.Drawing.Point(0, 0);
+            this.comDirControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comDirControl.Name = "comDirControl";
             this.comDirControl.Size = new System.Drawing.Size(1151, 532);
             this.comDirControl.TabIndex = 0;
@@ -150,7 +216,7 @@ namespace ipsTestExp
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 613);
             this.Controls.Add(this.radPageViewMain);
@@ -162,6 +228,9 @@ namespace ipsTestExp
             this.Text = "IPS";
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).EndInit();
             this.radPageViewMain.ResumeLayout(false);
+            this.radPageViewPMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).EndInit();
             this.radPVPageDictTest.ResumeLayout(false);
             this.rPViewPageComDir.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).EndInit();
@@ -202,6 +271,7 @@ namespace ipsTestExp
         private Telerik.WinControls.UI.RadButton rBtnEditOrSave;
         private DataChangeControl dataChangeControl;
         private Telerik.WinControls.UI.RadButton rBtnDelete;
+        private Telerik.WinControls.UI.RadGridView radGridView2;
     }
 }
 
