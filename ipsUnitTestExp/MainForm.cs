@@ -122,7 +122,7 @@ namespace ipsTestExp
         {
             var list = conn.GetList<CrkindGroup>("api/Dictionary/extra/crkindgroup");
             var bindForList = from item in list
-                              select (row => new BindExtraGrpRow(row));
+                              select  new BindExtraGrpRow(item);
 
 
             radGridViewSelfRef.Relations.AddSelfReference(radGridViewSelfRef.MasterTemplate, "CodeI", "CrGroupCode");
