@@ -45,6 +45,7 @@ namespace ipsTestExp
             this.rBtnEditOrSave = new Telerik.WinControls.UI.RadButton();
             this.rBtnAddOrCancel = new Telerik.WinControls.UI.RadButton();
             this.comDirControl = new ipsTestExp.ComDirControl();
+            this.ipsAddressControl1 = new IpsViewComponentLibrary.IpsAddressControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPageViewMain)).BeginInit();
             this.radPageViewMain.SuspendLayout();
             this.radPageViewPMain.SuspendLayout();
@@ -55,6 +56,9 @@ namespace ipsTestExp
             ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnEditOrSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAddOrCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radTextBoxAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,6 +82,7 @@ namespace ipsTestExp
             // 
             // radPageViewPMain
             // 
+            this.radPageViewPMain.Controls.Add(this.ipsAddressControl1);
             this.radPageViewPMain.Controls.Add(this.radGridView2);
             this.radPageViewPMain.ItemSize = new System.Drawing.SizeF(59F, 28F);
             this.radPageViewPMain.Location = new System.Drawing.Point(10, 37);
@@ -155,7 +160,7 @@ namespace ipsTestExp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataEditControl.Enabled = false;
             this.dataEditControl.Location = new System.Drawing.Point(203, 3);
-            this.dataEditControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataEditControl.Margin = new System.Windows.Forms.Padding(4);
             this.dataEditControl.Name = "dataEditControl";
             this.dataEditControl.Size = new System.Drawing.Size(943, 555);
             this.dataEditControl.TabIndex = 0;
@@ -208,15 +213,47 @@ namespace ipsTestExp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comDirControl.BackColor = System.Drawing.Color.Linen;
             this.comDirControl.Location = new System.Drawing.Point(0, 0);
-            this.comDirControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comDirControl.Margin = new System.Windows.Forms.Padding(4);
             this.comDirControl.Name = "comDirControl";
             this.comDirControl.Size = new System.Drawing.Size(1151, 532);
             this.comDirControl.TabIndex = 0;
             this.comDirControl.Url = null;
             // 
+            // ipsAddressControl1
+            // 
+            this.ipsAddressControl1.Location = new System.Drawing.Point(4, 342);
+            this.ipsAddressControl1.Name = "ipsAddressControl1";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radDropDownListCity.Location = new System.Drawing.Point(289, 6);
+            this.ipsAddressControl1.radDropDownListCity.Name = "radDropDownList2";
+            this.ipsAddressControl1.radDropDownListCity.Size = new System.Drawing.Size(349, 20);
+            this.ipsAddressControl1.radDropDownListCity.TabIndex = 4;
+            this.ipsAddressControl1.radDropDownListCity.Text = "radDropDownList2";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radDropDownListCountry.Location = new System.Drawing.Point(4, 6);
+            this.ipsAddressControl1.radDropDownListCountry.Name = "radDropDownList1";
+            this.ipsAddressControl1.radDropDownListCountry.Size = new System.Drawing.Size(268, 20);
+            this.ipsAddressControl1.radDropDownListCountry.TabIndex = 3;
+            this.ipsAddressControl1.radDropDownListCountry.Text = "radDropDownList1";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radTextBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsAddressControl1.radTextBoxAddress.Location = new System.Drawing.Point(4, 35);
+            this.ipsAddressControl1.radTextBoxAddress.Name = "radTextBox1";
+            this.ipsAddressControl1.radTextBoxAddress.Size = new System.Drawing.Size(1133, 20);
+            this.ipsAddressControl1.radTextBoxAddress.TabIndex = 2;
+            this.ipsAddressControl1.Size = new System.Drawing.Size(1142, 68);
+            this.ipsAddressControl1.TabIndex = 1;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1166, 613);
             this.Controls.Add(this.radPageViewMain);
@@ -236,6 +273,9 @@ namespace ipsTestExp
             ((System.ComponentModel.ISupportInitialize)(this.rBtnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnEditOrSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAddOrCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radTextBoxAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -272,6 +312,7 @@ namespace ipsTestExp
         private DataChangeControl dataChangeControl;
         private Telerik.WinControls.UI.RadButton rBtnDelete;
         private Telerik.WinControls.UI.RadGridView radGridView2;
+        private IpsViewComponentLibrary.IpsAddressControl ipsAddressControl1;
     }
 }
 

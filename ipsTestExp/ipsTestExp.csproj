@@ -248,6 +248,10 @@
       <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
       <Name>ipsFormsDesign</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
+      <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
+      <Name>IpsViewComponentLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\sysAdminwp\sysAdminwp.csproj">
       <Project>{c08cd8f1-bc04-4eb9-99d1-be924649f23a}</Project>
       <Name>sysAdminwp</Name>

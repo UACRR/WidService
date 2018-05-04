@@ -69,7 +69,7 @@
             this.Controls.Add(this.radDropDownList1);
             this.Controls.Add(this.radTextBox1);
             this.Name = "IpsAddressControl";
-            this.Size = new System.Drawing.Size(949, 72);
+            this.Size = new System.Drawing.Size(949, 68);
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList2)).EndInit();
