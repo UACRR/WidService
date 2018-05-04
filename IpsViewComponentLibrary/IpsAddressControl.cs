@@ -17,23 +17,7 @@ namespace IpsViewComponentLibrary
         /// Підключення до обїекту анкети
         /// </summary>
         /// <param name="value"></param>
-        private void setDataSource( object value )
-        {
-            radDropDownList1.ValueMember = value.GetType().GetProperty(CountryCodeFieldName).GetValue(value, null).ToString();
-            radDropDownList2.ValueMember = value.GetType().GetProperty(CityCodeFieldName).GetValue(value, null).ToString();
 
-        }
-        [Bindable(true)]
-        public string AddressField { get; set; }
-        [Bindable(true)]
-        public string CountryCodeFieldName { get; set; }
-        [Bindable(true)]
-        public string CityCodeFieldName { get; set; }
-        private object _dataSource;
-        [Bindable(true)]
-        public object DataSource { get { return _dataSource; }
-                                   set {  }
-                                 }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadDropDownList radDropDownListCountry
         {
@@ -42,6 +26,7 @@ namespace IpsViewComponentLibrary
                 return radDropDownList1;
             }
         }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadDropDownList radDropDownListCity
         {
@@ -51,6 +36,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox radTextBoxAddress
+        {
+            get
+            {
+                return radTextBox1;
+            }
+        }
 
         public IpsAddressControl()
         {
