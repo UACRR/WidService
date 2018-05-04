@@ -8,6 +8,10 @@ namespace ipsmedserviceapp.Model
         public Genre()
         {
             GenreTr = new HashSet<GenreTr>();
+            RelGenreAdapt = new HashSet<RelGenreAdapt>();
+            RelGenreMovie = new HashSet<RelGenreMovie>();
+            RelGenreSerial = new HashSet<RelGenreSerial>();
+            RelObjGenre = new HashSet<RelObjGenre>();
         }
 
         public int CategoryCode { get; set; }
@@ -16,5 +20,9 @@ namespace ipsmedserviceapp.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public ICollection<GenreTr> GenreTr { get; set; }
+        public ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
+        public ICollection<RelGenreMovie> RelGenreMovie { get; set; }
+        public ICollection<RelGenreSerial> RelGenreSerial { get; set; }
+        public ICollection<RelObjGenre> RelObjGenre { get; set; }
     }
 }

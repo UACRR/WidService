@@ -7,12 +7,16 @@ namespace ipsmedserviceapp.Model
     {
         public TypeVat()
         {
+            AnketaCompany = new HashSet<AnketaCompany>();
+            AnketaPerson = new HashSet<AnketaPerson>();
             TypeVattr = new HashSet<TypeVattr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        public ICollection<AnketaCompany> AnketaCompany { get; set; }
+        public ICollection<AnketaPerson> AnketaPerson { get; set; }
         public ICollection<TypeVattr> TypeVattr { get; set; }
     }
 }
