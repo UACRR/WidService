@@ -31,11 +31,11 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.BankAccount)
                         .Include(item => item.AnketaAddName).SingleOrDefaultAsync();
 
+
             foreach (var relEmp in cust.Company.RelEmployee)
             {
                 _dbContext.Entry(relEmp).Reference(item => item.Empl).Load();
             }
-
 
             return cust;
 
