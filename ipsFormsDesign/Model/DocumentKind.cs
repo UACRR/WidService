@@ -7,6 +7,8 @@ namespace ipsmedserviceapp.Model
     {
         public DocumentKind()
         {
+            DocTemplate = new HashSet<DocTemplate>();
+            Document = new HashSet<Document>();
             DocumentKindTr = new HashSet<DocumentKindTr>();
         }
 
@@ -16,6 +18,8 @@ namespace ipsmedserviceapp.Model
         public string DocMaker { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
+        public ICollection<DocTemplate> DocTemplate { get; set; }
+        public ICollection<Document> Document { get; set; }
         public ICollection<DocumentKindTr> DocumentKindTr { get; set; }
     }
 }

@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Defitition\**" />
+    <Compile Remove="Model\with attributes\**" />
     <Content Remove="Defitition\**" />
+    <Content Remove="Model\with attributes\**" />
     <EmbeddedResource Remove="Defitition\**" />
+    <EmbeddedResource Remove="Model\with attributes\**" />
     <None Remove="Defitition\**" />
+    <None Remove="Model\with attributes\**" />
   </ItemGroup>
 
   <ItemGroup>
