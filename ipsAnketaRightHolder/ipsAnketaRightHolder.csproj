@@ -72,15 +72,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnketaCompany.cs">
+    <Compile Include="AnketaCompanyView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnketaCompany.Designer.cs">
-      <DependentUpon>AnketaCompany.cs</DependentUpon>
+    <Compile Include="AnketaCompanyView.Designer.cs">
+      <DependentUpon>AnketaCompanyView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AnketaCompany.resx">
-      <DependentUpon>AnketaCompany.cs</DependentUpon>
+    <EmbeddedResource Include="AnketaCompanyView.resx">
+      <DependentUpon>AnketaCompanyView.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="AnketaCompanyPresenter.cs" />
+    <Compile Include="Data\AnketaCompanyModel.cs" />
+    <Compile Include="Data\AnketaPersonModel.cs" />
+    <Compile Include="Data\BankAccountModel.cs" />
+    <Compile Include="Data\CompanyModel.cs" />
+    <Compile Include="Data\CustomerModel.cs" />
+    <Compile Include="Data\CustomerTypeModel.cs" />
+    <Compile Include="Data\PersonModel.cs" />
+    <Compile Include="Data\RightHolderModel.cs" />
+    <Compile Include="Interfaces\IAnketaCompanyModel.cs" />
+    <Compile Include="Interfaces\IAnketaCompanyView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -93,6 +104,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\ipsAnketaRightHolder.Data.CustomerModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,6 +130,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
+      <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
+      <Name>IpsViewComponentLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

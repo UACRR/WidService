@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsAnketaRightHolder.Data;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,7 +15,17 @@ namespace ipsAnketaRightHolder
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AnketaCompany());
+
+            CustomerModel model = new CustomerModel();
+            model.AnketaCompany.Add(new AnketaCompanyModel {
+                ShortName = "Short name",
+                FaAddress = "Fact address"
+            });
+
+            AnketaCompanyView view = new AnketaCompanyView();
+            new AnketaCompanyPresenter(model, view);
+
+            Application.Run(view);
         }
     }
 }

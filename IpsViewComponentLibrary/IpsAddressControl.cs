@@ -26,6 +26,7 @@ namespace IpsViewComponentLibrary
                 return radDropDownList1;
             }
         }
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadDropDownList radDropDownListCity
         {
@@ -43,6 +44,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox radTextBoxAddress
+        {
+            get
+            {
+                return radTextBox1;
+            }
+        }
 
         public IpsAddressControl()
         {
