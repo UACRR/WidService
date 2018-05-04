@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ipsmedserviceapp.Model
+{
+    public partial class DocText
+    {
+        public int Id { get; set; }
+        public int? DocTypeCode { get; set; }
+        public string Code { get; set; }
+        public string TextUk { get; set; }
+        public string TextRu { get; set; }
+        public string TextEn { get; set; }
+    }
+}

@@ -7,12 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public CustomerStatus()
         {
+            Customer = new HashSet<Customer>();
             CustomerStatusTr = new HashSet<CustomerStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        public ICollection<Customer> Customer { get; set; }
         public ICollection<CustomerStatusTr> CustomerStatusTr { get; set; }
     }
 }

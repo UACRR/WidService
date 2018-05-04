@@ -7,6 +7,7 @@ namespace ipsmedserviceapp.Model
     {
         public CreativeRoleType()
         {
+            CopyRight = new HashSet<CopyRight>();
             CreativeRoleTypeTr = new HashSet<CreativeRoleTypeTr>();
         }
 
@@ -17,6 +18,7 @@ namespace ipsmedserviceapp.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public CopyrightType CrtypeNavigation { get; set; }
+        public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
     }
 }

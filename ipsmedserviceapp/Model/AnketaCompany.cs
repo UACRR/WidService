@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -30,13 +31,21 @@ namespace ipsmedserviceapp.Model
 
         public ActivityType ActivityCodeNavigation { get; set; }
         public BankAccount BanAcc { get; set; }
+        [JsonIgnore]
         public Company Cust { get; set; }
+        [JsonIgnore]
         public Customer CustNavigation { get; set; }
+        [JsonIgnore]
         public Country FaCountryNavigation { get; set; }
+        [JsonIgnore]
         public Region FaRegionNavigation { get; set; }
+        [JsonIgnore]
         public Country JaCountryNavigation { get; set; }
+        [JsonIgnore]
         public Region JaRegionNavigation { get; set; }
+        [JsonIgnore]
         public AnketaStatus StatusNavigation { get; set; }
+        [JsonIgnore]
         public TypeVat TypeVatNavigation { get; set; }
     }
 }
