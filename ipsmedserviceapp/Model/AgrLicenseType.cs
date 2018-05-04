@@ -8,6 +8,8 @@ namespace ipsmedserviceapp.Model
         public AgrLicenseType()
         {
             AgrLicenseTypeTr = new HashSet<AgrLicenseTypeTr>();
+            LicenseAgreement = new HashSet<LicenseAgreement>();
+            RelLicCopyR = new HashSet<RelLicCopyR>();
         }
 
         public int CodeI { get; set; }
@@ -17,5 +19,7 @@ namespace ipsmedserviceapp.Model
 
         public CopyrightKind KindCodeNavigation { get; set; }
         public ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
+        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public ICollection<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }

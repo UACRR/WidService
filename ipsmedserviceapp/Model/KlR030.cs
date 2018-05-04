@@ -7,6 +7,8 @@ namespace ipsmedserviceapp.Model
     {
         public KlR030()
         {
+            BankAccount = new HashSet<BankAccount>();
+            CurrencyCourse = new HashSet<CurrencyCourse>();
             KlR030tr = new HashSet<KlR030tr>();
         }
 
@@ -20,6 +22,9 @@ namespace ipsmedserviceapp.Model
         public short? PrWork { get; set; }
 
         public Country CountryCodeNavigation { get; set; }
+        public KlR031 R031Navigation { get; set; }
+        public ICollection<BankAccount> BankAccount { get; set; }
+        public ICollection<CurrencyCourse> CurrencyCourse { get; set; }
         public ICollection<KlR030tr> KlR030tr { get; set; }
     }
 }
