@@ -5,36 +5,29 @@ using System.Text;
 namespace ipsFormsDesign.Interfaces
 {
     interface ILicPlace
-	{
+    {
         int LicId { get; set; }
         int PlaceId { get; set; }
-        ILicenseAgreement Lic { get; set; }
-        IClnBusinessPlace Place { get; set; }
-        ICollection<ILicPlaceHoll> LicPlaceHoll { get; set; }
-	}
-	interface ILicPlaceHoll
-	{
+    }
+    interface ILicPlaceHoll
+    {
         int LicId { get; set; }
         int PlaceId { get; set; }
         int HollId { get; set; }
 
-        IClnPlaceHoll Holl { get; set; }
-        ILicPlace LicPlace { get; set; }
-
-	}
-	interface IClnPlaceHoll
-	{
+    }
+    interface IClnPlaceHoll
+    {
         int HollId { get; set; }
         int? PlaceId { get; set; }
         string HollName { get; set; }
         int? HollNum { get; set; }
         bool? СalcNum { get; set; }
         decimal? SqHoll { get; set; }
-        ICollection<ILicPlaceHoll> LicPlaceHoll { get; set; }
 
-	}
-	interface IClnBusinessPlace
-	{
+    }
+    interface IClnBusinessPlace
+    {
         int PlaceId { get; set; }
         int? CustId { get; set; }
         int? PlCode { get; set; }
@@ -45,24 +38,20 @@ namespace ipsFormsDesign.Interfaces
         string PlaceAddress { get; set; }
         string PlacePhone { get; set; }
         bool? FreeEntry { get; set; }
+    }
 
-        ICollection<IClnPlaceHoll> ClnPlaceHoll { get; set; }
-        ICollection<ILicPlace> LicPlace { get; set; }
-
-	}
-
-	interface IMediaFile
-	{
+    interface IMediaFile
+    {
         int MediaFileId { get; set; }
         string FileType { get; set; }
         string Path { get; set; }
         double? Compress { get; set; }
         double? PlayTime { get; set; }
         int? ObjId { get; set; }
-		
-	}
-	interface IMediaTrack
-	{
+
+    }
+    interface IMediaTrack
+    {
         int ObjId { get; set; }
         string Iswc { get; set; }
         string Name { get; set; }
@@ -77,12 +66,9 @@ namespace ipsFormsDesign.Interfaces
         DateTime? ModifyDate { get; set; }
         string ModifyLogin { get; set; }
         double? Duration { get; set; }
-
-        ICollection<IMediaFile> MediaFile { get; set; }
-		
-	}
-	interface IObjectRight
-	{
+    }
+    interface IObjectRight
+    {
         int CategoryCode { get; set; }
         int ObjId { get; set; }
         int? ReqId { get; set; }
@@ -96,11 +82,9 @@ namespace ipsFormsDesign.Interfaces
         DateTime? CreateDate { get; set; }
         string ObjImg { get; set; }
         int? Loadid { get; set; }
-
-        // ObjectType ObjectType { get; set; }
-	}
-	interface ILicenseBigR
-	{
+    }
+    interface ILicenseBigR
+    {
         int LicId { get; set; }
         DateTime? DatePremiere { get; set; }
         int? ObjId { get; set; }
@@ -110,18 +94,18 @@ namespace ipsFormsDesign.Interfaces
         decimal? TicketPriceUsd { get; set; }
         bool? IsTour { get; set; }
         string WhereTour { get; set; }
-	}
-	interface IMoneyPeriodLink
-	{
+    }
+    interface IMoneyPeriodLink
+    {
         int PeriodId { get; set; }
         int PaidId { get; set; }
         int LicId { get; set; }
         DateTime ModifyDate { get; set; }
         decimal Amount { get; set; }
 
-	}
-	interface ILicenseAgreement
-	{
+    }
+    interface ILicenseAgreement
+    {
         int LicId { get; set; }
         int? LicCode { get; set; }
         int? LicType { get; set; }
@@ -139,9 +123,9 @@ namespace ipsFormsDesign.Interfaces
         int? ParentLicId { get; set; }
         int? LicStatus { get; set; }
         int? DayForPay { get; set; }
-	}
-	interface IMoneyReceived
-	{
+    }
+    interface IMoneyReceived
+    {
         int PaidId { get; set; }
         int CustId { get; set; }
         int MoneyType { get; set; }
@@ -150,20 +134,19 @@ namespace ipsFormsDesign.Interfaces
         string GoalInvoice { get; set; }
         decimal Amount { get; set; }
         decimal DestribAmount { get; set; }
-	
-	}
+    }
 
-	interface IDistributionItem
-	{
+    interface IDistributionItem
+    {
         int DistId { get; set; }
         int RegId { get; set; }
         int RegIitemId { get; set; }
         decimal? Amount { get; set; }
         int? Status { get; set; }
-		
-	}
-	interface IDistribution
-	{
+
+    }
+    interface IDistribution
+    {
         int DistId { get; set; }
         int RegId { get; set; }
         int? PeriodId { get; set; }
@@ -175,11 +158,9 @@ namespace ipsFormsDesign.Interfaces
         decimal CourtFee { get; set; }
         int? PartnerId { get; set; }
         bool? IsCourt { get; set; }
-
-	
-	}
-	interface IPaidPeriod
-	{
+    }
+    interface IPaidPeriod
+    {
         int PeriodId { get; set; }
         int CustId { get; set; }
         int PeriodType { get; set; }
@@ -192,96 +173,90 @@ namespace ipsFormsDesign.Interfaces
         decimal Distribamount { get; set; }
         string PeriodName { get; set; }
         bool? FagFirst { get; set; }
-		
-	}
+    }
 
-	interface IClient
-	{
+    interface IClient
+    {
         int CustId { get; set; }
-        ICollection<IClnBusinessPlace> ClnBusinessPlace { get; set; }
-        ICollection<ILicenseAgreement> LicenseAgreement { get; set; }
-        ICollection<IMoneyReceived> MoneyReceived { get; set; }
-        ICollection<IPaidPeriod> PaidPeriod { get; set; }
+    }
 
-	}
-	
-	interface ICommunity
-	{
+    interface ICommunity
+    {
         int CustId { get; set; }
-		
-	}
-	interface IRelEmployee
-	{
+
+    }
+    interface IRelEmployee
+    {
         int Emplid { get; set; }
         int CustId { get; set; }
         int PositionCode { get; set; }
         string RelDocument { get; set; }
-	}
-	interface ICompany
-	{
+    }
+    interface ICompany
+    {
         int CustId { get; set; }
         int Version { get; set; }
-	}
+        ICollection<IRelEmployee> RelEmployee { get; set; }
+    }
 
-	interface IMyAnketa
-	{
-	}
+    interface IMyAnketa
+    {
+    }
 
-	interface IPartner
-	{
+    interface IPartner
+    {
         int CustId { get; set; }
-	}
-	interface IPerson
-	{
+    }
+    interface IPerson
+    {
         int CustId { get; set; }
         int Version { get; set; }
-	
-	}
-	interface IRightHolder
-	{
+
+    }
+    interface IRightHolder
+    {
         int CustId { get; set; }
         byte? SignP { get; set; }
         bool? AroundWord { get; set; }
         string InterCode { get; set; }
         string InnerCode { get; set; }
         int? GetCode { get; set; }
-	
-	}
-    
-	interface ITerritoryInclude
-	{
+    }
+
+    interface ITerritoryInclude
+    {
         int CustId { get; set; }
         string CountryCode { get; set; }
 
-	}
-	interface ITerritoryExclude
-	{
+    }
+    interface ITerritoryExclude
+    {
         int CustId { get; set; }
         string CountryCode { get; set; }
-	}
-	interface ITermsOfService
-	{
+    }
+    interface ITermsOfService
+    {
         int CustId { get; set; }
         int CrkindCode { get; set; }
-	}
-	interface IAnketaAddNick
-	{
+    }
+    interface IAnketaAddNick
+    {
         int AddId { get; set; }
         int CustId { get; set; }
         string NikName { get; set; }
-		
-	}
-	interface IAgreementAddRh
-	{
+
+    }
+    interface IAgreementAddRh
+    {
         int AgrId { get; set; }
         decimal? RateCourt { get; set; }
         decimal? RateCommiss { get; set; }
         string ResponsUser { get; set; }
         int? CustId { get; set; }
 
-	}
-	interface IAgreementMaster
-	{
+    }
+    interface IAgreementMaster
+    {
         int AgrId { get; set; }
         int CustId { get; set; }
         int? ParentAgrId { get; set; }
@@ -293,10 +268,10 @@ namespace ipsFormsDesign.Interfaces
         DateTime? ModifyDate { get; set; }
         string ModifyLogin { get; set; }
         int? AgrType { get; set; }
-		
-	}
-	interface IAnketaAddName
-	{
+
+    }
+    interface IAnketaAddName
+    {
         int CustId { get; set; }
         string Lang { get; set; }
         string NikName { get; set; }
@@ -305,18 +280,18 @@ namespace ipsFormsDesign.Interfaces
         string LastName { get; set; }
         string Name { get; set; }
         string ShortName { get; set; }
-		
-	}
-	interface IAnketaAddParam
-	{
+
+    }
+    interface IAnketaAddParam
+    {
         int ParamCode { get; set; }
         string LangCode { get; set; }
         string ParamName { get; set; }
         int? CustId { get; set; }
         string ParamValue { get; set; }
-	}
-	interface IAnketaCompany
-	{
+    }
+    interface IAnketaCompany
+    {
         int CustId { get; set; }
         int Version { get; set; }
         int? ActivityCode { get; set; }
@@ -339,10 +314,10 @@ namespace ipsFormsDesign.Interfaces
         int? BanAccId { get; set; }
         int? JaRegion { get; set; }
         int? FaRegion { get; set; }
-		
-	}
-	interface IAnketaPerson
-	{
+
+    }
+    interface IAnketaPerson
+    {
         int CustId { get; set; }
         int Version { get; set; }
         int? IsCurrent { get; set; }
@@ -390,10 +365,10 @@ namespace ipsFormsDesign.Interfaces
         string LeCity { get; set; }
         string LeAddress { get; set; }
         string LePostIndex { get; set; }
-		
-	}
-	interface IBankAccount
-	{
+
+    }
+    interface IBankAccount
+    {
         int BanAccId { get; set; }
         int? CustId { get; set; }
         string AccountNumber { get; set; }
@@ -402,10 +377,10 @@ namespace ipsFormsDesign.Interfaces
         int? Mfo { get; set; }
         string MfoName { get; set; }
         string MfoOkpo { get; set; }
-		
-	}
-	interface IEmployee
-	{
+
+    }
+    interface IEmployee
+    {
         int Emplid { get; set; }
         int? CustId { get; set; }
         string UserId { get; set; }
@@ -415,9 +390,9 @@ namespace ipsFormsDesign.Interfaces
         string PhoneNumber { get; set; }
         string Email { get; set; }
 
-	}
-	interface IRegister
-	{
+    }
+    interface IRegister
+    {
         int RegId { get; set; }
         int? CustId { get; set; }
         int? CountRows { get; set; }
@@ -431,10 +406,9 @@ namespace ipsFormsDesign.Interfaces
         decimal? FullAmount { get; set; }
         decimal? FullRate { get; set; }
         int? NumTiket { get; set; }
-		
-	}
-	interface IReqAgreement
-	{
+    }
+    interface IReqAgreement
+    {
         int RAgrId { get; set; }
         int CustId { get; set; }
         int? CustIdRh { get; set; }
@@ -450,10 +424,9 @@ namespace ipsFormsDesign.Interfaces
         string R030Offer { get; set; }
         DateTime? StatusDate { get; set; }
         string RAgrComment { get; set; }
-		
-	}
-	interface IReqCustomer
-	{
+    }
+    interface IReqCustomer
+    {
         int ReqCustId { get; set; }
         int? CustId { get; set; }
         string Name { get; set; }
@@ -462,10 +435,9 @@ namespace ipsFormsDesign.Interfaces
         string NickName { get; set; }
         int? ActivityCode { get; set; }
         string Comment { get; set; }
-		
-	}
-	interface IRequest
-	{
+    }
+    interface IRequest
+    {
         int ReqId { get; set; }
         int? CategoryCode { get; set; }
         int ReqType { get; set; }
@@ -490,19 +462,18 @@ namespace ipsFormsDesign.Interfaces
         string R030 { get; set; }
         decimal? ReqAmount { get; set; }
         string WorkName { get; set; }
-                
-	}
-	interface IUserRole
-	{
+
+    }
+    interface IUserRole
+    {
         int CustId { get; set; }
         int RoleType { get; set; }
         string UserId { get; set; }
         int? Status { get; set; }
+    }
 
-	}
-    
-	
-	interface ICustomer
+
+    interface ICustomer
     {
         int CustId { get; set; }
         int? CustType { get; set; }
