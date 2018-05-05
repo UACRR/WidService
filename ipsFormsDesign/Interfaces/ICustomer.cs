@@ -120,6 +120,76 @@ namespace ipsFormsDesign.Interfaces
         decimal Amount { get; set; }
 
 	}
+
+	interface IMediaFile
+	{
+        int MediaFileId { get; set; }
+        string FileType { get; set; }
+        string Path { get; set; }
+        double? Compress { get; set; }
+        double? PlayTime { get; set; }
+        int? ObjId { get; set; }
+		
+	}
+	interface IMediaTrack
+	{
+        int ObjId { get; set; }
+        string Iswc { get; set; }
+        string Name { get; set; }
+        string Lyrics { get; set; }
+        string Composers { get; set; }
+        string Performers { get; set; }
+        string Album { get; set; }
+        string Genre { get; set; }
+        int? NumberInAlbum { get; set; }
+        int? Year { get; set; }
+        string Label { get; set; }
+        DateTime? ModifyDate { get; set; }
+        string ModifyLogin { get; set; }
+        double? Duration { get; set; }
+
+        ICollection<IMediaFile> MediaFile { get; set; }
+		
+	}
+	interface IObjectRight
+	{
+        int CategoryCode { get; set; }
+        int ObjId { get; set; }
+        int? ReqId { get; set; }
+        int? ObjType { get; set; }
+        string Name { get; set; }
+        string Author { get; set; }
+        string Performer { get; set; }
+        int? Status { get; set; }
+        DateTime? ModifyDate { get; set; }
+        string ModifyLogin { get; set; }
+        DateTime? CreateDate { get; set; }
+        string ObjImg { get; set; }
+        int? Loadid { get; set; }
+
+        // ObjectType ObjectType { get; set; }
+	}
+	interface ILicenseBigR
+	{
+        int LicId { get; set; }
+        DateTime? DatePremiere { get; set; }
+        int? ObjId { get; set; }
+        decimal? FillingRate { get; set; }
+        int? PerfomNumb { get; set; }
+        decimal? TicketPriceNc { get; set; }
+        decimal? TicketPriceUsd { get; set; }
+        bool? IsTour { get; set; }
+        string WhereTour { get; set; }
+	}
+	interface IMoneyPeriodLink
+	{
+        int PeriodId { get; set; }
+        int PaidId { get; set; }
+        int LicId { get; set; }
+        DateTime ModifyDate { get; set; }
+        decimal Amount { get; set; }
+
+	}
 	interface ILicenseAgreement
 	{
         int LicId { get; set; }
