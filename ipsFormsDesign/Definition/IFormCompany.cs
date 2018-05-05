@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ipsFormsDesign.Definition
 {
-    interface IFormCompany : ICustCompany
+    public interface IFormCompany : ICustCompany
     {
         // Подія при зміні значення поля форми
         event EventHandler FieldsValueChanged ;

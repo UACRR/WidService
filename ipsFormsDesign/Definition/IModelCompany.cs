@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Definition
 {
-    interface IModelCompany : ICustCompany
+    public interface IModelCompany : ICustCompany
     {
         void FieldChanging(object sender, EventHandler e);
     }
