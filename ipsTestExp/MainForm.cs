@@ -15,12 +15,13 @@ using Telerik.WinControls.UI;
 using WebAPIConnector;
 using ipsmedserviceapp;
 using ipsmedserviceapp.Model;
+using ipsFormsDesign.Interfaces;
 
 
 namespace ipsTestExp
 {
 
-    public partial class MainForm : RadForm
+    public partial class MainForm : RadForm, ICustCompany
     {
         private readonly ApiConnector conn = new ApiConnector("http://localhost:54867/");
         private bool isAdd = false, isEdit = false, isSaveEdit = false;
@@ -29,158 +30,37 @@ namespace ipsTestExp
         public MainForm()
         {
             InitializeComponent();
-            LoadControls();
-            LoadGridControl();
-            LoadSelfRefData();
+
+        }
+
+        public IAnketaCompany AnketaCompany { get => _curAnketa;  }
+        public int CustId { get => _data.CustId; set => _data.CustId = value; }
+        public int? CustType { get => _data.CustType; set => _data.CustType = value; }
+        public int Status { get => _data.Status; set => _data.Status = value; }
+        public int? AnkVersion { get => _data.AnkVersion; set => _data.AnkVersion = value; }
+        public byte? AnkMy { get => _data.AnkMy; set => _data.AnkMy = value; }
+        public byte? AnkPublish { get => _data.AnkPublish; set => _data.AnkPublish = value; }
+        public byte? AnkTech { get => _data.AnkTech; set => _data.AnkTech = value; }
+
+        private Customer _data;
+        private AnketaCompany _curAnketa;
+        public void SetData(Customer data)
+        {
+            _data = data;
+            _curAnketa = _data.AnketaCompany.Where(row => row.Version == _data.AnkVersion).SingleOrDefault();
+            if(_curAnketa == null)
+            {
+                _curAnketa = new AnketaCompany { Version = _data.AnkVersion ?? 1 };
+                _data.AnketaCompany.Add(_curAnketa);
+                _data.AnkVersion = _curAnketa.Version;
+            }
         }
 
         /// <summary>
         /// Завантаження контролів
         /// </summary>
-        private void LoadControls()
-        {
-            dataEditControl.InitializeConnector(conn);
-            dataEditControl.Url = "api/dictionary/base/activitytype";
-            dataEditControl.ViewData();
-            dataEditControl.LoadOverviewCfg();
-        }
-
-        private void LoadGridControl()
-        {
-            comDirControl.InitializeConnector(conn);
-            comDirControl.Url = "api/Dictionary/extra/crkindgroup";
-            comDirControl.ViewData();
-        }
-
-        void ExpandAllRows(GridViewTemplate template, bool expanded)
-        {
-            foreach (GridViewRowInfo row in template.Rows)
-            {
-                row.IsExpanded = expanded;
-            }
-            if (template.Templates.Count > 0)
-            {
-                foreach (GridViewTemplate childTemplate in template.Templates)
-                {
-                    ExpandAllRows(childTemplate, true);
-                }
-            }
-        }
-
-        private void LoadSelfRefData()
-        {
-            var originList = conn.GetList<CrkindGroup>("api/Dictionary/extra/crkindgroup");
-            BindingList<IDicRow> listItems = new BindingList<IDicRow>();
-            (from itemGrp in originList
-             select new DicGroup(itemGrp))
-                    .ToList()
-                    .ForEach(item => item.getDicItems().ForEach(dicRow => listItems.Add(dicRow)));
-
-            this.radGridView2.Relations.AddSelfReference(this.radGridView2.MasterTemplate, "Code", "ParentCode");
-            this.radGridView2.MasterTemplate.SelfReferenceExpanderColumn = this.radGridView2.Columns["ParentCode"];
-            radGridView2.DataSource = listItems;
-
-            ExpandAllRows(radGridView2.MasterTemplate, true);
-        }
 
 
-
-        private void rBtnAdd_Click(object sender, EventArgs e)
-        {
-            isAdd = true;
-            isSaveEdit = false;
-            ChangePanelComponents(0);
-        }
-
-
-        private void radGridView2_CellFormatting(object sender, CellFormattingEventArgs e)
-        {
-            if (e.Row.DataBoundItem != null 
-                && e.Row.DataBoundItem is DicKind 
-                && e.CellElement.ColumnInfo.FieldName.Contains("Name")
-                && e.CellElement.Padding.Left != 20 )
-            {
-                e.CellElement.Padding = new Padding( 20,0,0,0);
-            }
-            if (e.Row.DataBoundItem != null && e.Row.DataBoundItem is DicGroup && e.CellElement.Padding.Left != 0)
-            {
-                e.CellElement.Padding = new Padding(0,0,0,0);
-            }
-        }
-
- 
-
-        private void rBtnEdit_Click(object sender, EventArgs e)
-        {
-            if (isAdd)
-            {
-                dataChangeControl.AddNewItem();//додає новий елемент 
-                ChangePanelComponents(0);
-            }
-            else
-            {
-                isEdit = true;
-            }
-
-            if (isSaveEdit)
-            {
-                //method
-                dataChangeControl.SaveEditItem();
-                isSaveEdit = false;
-                ChangePanelComponents(0);
-            }
-
-            if (isEdit)
-            {
-                var data = comDirControl.GetDataForChange();
-                if (data != null)
-                {
-                    ChangePanelComponents(1);
-                    dataChangeControl.SetEditData(data);
-                    isSaveEdit = true;
-                    isEdit = false;
-                }
-            }
-
-            if (dataChangeControl != null)
-                comDirControl.ViewData();
-        }
-
-
-        /// <summary>
-        /// Зміна компонентів
-        /// </summary>
-        private void ChangePanelComponents(byte typeVisible)
-        {
-            comDirControl.Visible = !comDirControl.Visible;
-            if (dataChangeControl == null)
-            {
-                InitializeDataChangeControl();
-                dataChangeControl.InitializeConnectorAndUrl(conn, "api/Dictionary/extra/crkindgroup");
-                dataChangeControl.SetGroupDropList();
-                dataChangeControl.SetVisible(typeVisible);
-            }
-            else
-            {
-                comDirControl.ViewData();
-                dataChangeControl.Dispose();
-                dataChangeControl = null;
-                isAdd = false;
-            }
-
-
-            //зміна тексту на кнопках
-            if (rBtnAddOrCancel.Text != "Відміна" && rBtnEditOrSave.Text != "Зберегти")
-            {
-                rBtnAddOrCancel.Text = "Відміна";
-                rBtnEditOrSave.Text = "Зберегти";
-            }
-            else
-            {
-                rBtnAddOrCancel.Text = "Додати";
-                rBtnEditOrSave.Text = "Змінити";
-            }
-        }
     }
 
 }

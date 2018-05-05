@@ -1,12 +1,14 @@
-﻿using System;
+﻿using ipsmedserviceapp.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ipsFormsDesign.Interfaces
 {
-    interface ICustCompany : ICustomer
+    public interface ICustCompany : ICustomer
     {
-        IAnketaCompany AnketaCompany { get; set; }
+        void SetData(Customer data);
+        IAnketaCompany AnketaCompany { get }
 
     }
 }

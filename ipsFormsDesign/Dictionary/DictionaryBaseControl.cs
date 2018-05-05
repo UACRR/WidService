@@ -7,14 +7,13 @@ using ipsmedserviceapp.Model;
 
 namespace ipsFormsDesign.Dictionary
 {
-    public class DictionaryBaseControl : IFormControl
+    public class DictionaryBaseControl 
 
     {
         private ApiConnector connector = new ApiConnector("http://localhost:54867/");
 
         public DictionaryBaseControl()
         {
-
         }
 
 

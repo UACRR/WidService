@@ -45,6 +45,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox radTextBoxAddress
+        {
+            get
+            {
+                return radTextBox1;
+            }
+        }
 
 
 
