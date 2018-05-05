@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ipsmedserviceapp.Model;
 namespace ipsTestExp
 {
     static class Program
@@ -16,7 +16,10 @@ namespace ipsTestExp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            var form = new MainForm();
+            var mainModel = new MainModel();
+            var presenter = new Presenter(form, mainModel);
+            Application.Run(form);
         }
     }
 }

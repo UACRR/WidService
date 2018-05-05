@@ -190,7 +190,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdicRow.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +197,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainModel.cs" />
+    <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
@@ -215,7 +215,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
-    <None Include="Properties\DataSources\MainForm.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICustomer.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

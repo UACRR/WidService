@@ -32,16 +32,16 @@ namespace ipsTestExp
         {
             this.components = new System.ComponentModel.Container();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
-            this.mainFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iCustomerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +54,7 @@ namespace ipsTestExp
             this.radTextBox1.Name = "radTextBox1";
             this.radTextBox1.Size = new System.Drawing.Size(862, 24);
             this.radTextBox1.TabIndex = 0;
+            this.radTextBox1.TextChanged += new System.EventHandler(this.data_changed);
             // 
             // radLabel1
             // 
@@ -74,15 +75,20 @@ namespace ipsTestExp
             // 
             // radTextBox2
             // 
-            this.radTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mainFormBindingSource, "CustId", true));
+            this.radTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iCustomerBindingSource, "CustId", true));
             this.radTextBox2.Location = new System.Drawing.Point(100, 45);
             this.radTextBox2.Name = "radTextBox2";
             this.radTextBox2.Size = new System.Drawing.Size(125, 24);
             this.radTextBox2.TabIndex = 4;
+            this.radTextBox2.TextChanged += new System.EventHandler(this.data_changed);
             // 
-            // mainFormBindingSource
+            // iCustomerBindingSource
             // 
-            this.mainFormBindingSource.DataSource = typeof(ipsTestExp.MainForm);
+            this.iCustomerBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ICustomer);
+            // 
+            // iAnketaCompanyBindingSource
+            // 
+            this.iAnketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // MainForm
             // 
@@ -100,10 +106,10 @@ namespace ipsTestExp
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "IPS";
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iCustomerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -117,10 +123,10 @@ namespace ipsTestExp
 
         private Telerik.WinControls.UI.RadTextBox radTextBox1;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private System.Windows.Forms.BindingSource iAnketaCompanyBindingSource;
         private System.Windows.Forms.Label label1;
         private Telerik.WinControls.UI.RadTextBox radTextBox2;
-        private System.Windows.Forms.BindingSource mainFormBindingSource;
+        private System.Windows.Forms.BindingSource iAnketaCompanyBindingSource;
+        private System.Windows.Forms.BindingSource iCustomerBindingSource;
     }
 }
 

@@ -8,6 +8,6 @@ namespace ipsFormsDesign.Definition
 {
     public interface IModelCompany : ICustCompany
     {
-        void FieldChanging(object sender, EventHandler e);
+        void FieldChanging(object sender, EventArgs e);
     }
 }

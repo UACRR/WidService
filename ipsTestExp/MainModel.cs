@@ -21,9 +21,10 @@ namespace ipsTestExp
         public byte? AnkPublish {get;set;}
         public byte? AnkTech {get;set;}
 
-        public void FieldChanging(object sender, EventHandler e)
+        public void FieldChanging(object sender, EventArgs e)
         {
-            
+            string NameProperty = sender.GetType().GetProperty("Name").GetValue(sender).ToString();
+            string Text = sender.GetType().GetProperty("Text").GetValue(sender).ToString();
         }
 
         private Customer _data;

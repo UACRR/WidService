@@ -49,6 +49,7 @@ namespace ipsTestExp
         private AnketaCompany _curAnketa;
 
         public event EventHandler FieldsValueChanged;
+
         private void data_changed( object sender, EventArgs e)
         {
             FieldsValueChanged?.Invoke(sender, e);
@@ -64,6 +65,8 @@ namespace ipsTestExp
                 _data.AnketaCompany.Add(_curAnketa);
                 _data.AnkVersion = _curAnketa.Version;
             }
+            iCustomerBindingSource.DataSource = this;
+            iAnketaCompanyBindingSource.DataSource = _curAnketa;
         }
 
         /// <summary>
