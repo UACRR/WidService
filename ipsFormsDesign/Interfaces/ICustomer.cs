@@ -139,12 +139,6 @@ namespace ipsFormsDesign.Interfaces
         int? ParentLicId { get; set; }
         int? LicStatus { get; set; }
         int? DayForPay { get; set; }
-
-        ICollection<ILicenseAgreement> InverseParentLic { get; set; }
-        ICollection<ILicPlace> LicPlace { get; set; }
-        ICollection<IMoneyPeriodLink> MoneyPeriodLink { get; set; }
-        ICollection<IPaidPeriod> PaidPeriod { get; set; }
-
 	}
 	interface IMoneyReceived
 	{
@@ -156,8 +150,7 @@ namespace ipsFormsDesign.Interfaces
         string GoalInvoice { get; set; }
         decimal Amount { get; set; }
         decimal DestribAmount { get; set; }
-        ICollection<IMoneyPeriodLink> MoneyPeriodLink { get; set; }
-		
+	
 	}
 
 	interface IDistributionItem
@@ -183,8 +176,7 @@ namespace ipsFormsDesign.Interfaces
         int? PartnerId { get; set; }
         bool? IsCourt { get; set; }
 
-        ICollection<IDistributionItem> DistributionItem { get; set; }
-		
+	
 	}
 	interface IPaidPeriod
 	{
@@ -200,8 +192,6 @@ namespace ipsFormsDesign.Interfaces
         decimal Distribamount { get; set; }
         string PeriodName { get; set; }
         bool? FagFirst { get; set; }
-        ICollection<IDistribution> Distribution { get; set; }
-        ICollection<IMoneyPeriodLink> MoneyPeriodLink { get; set; }
 		
 	}
 
@@ -218,8 +208,6 @@ namespace ipsFormsDesign.Interfaces
 	interface ICommunity
 	{
         int CustId { get; set; }
-        // ICollection<CustCmRight> CustCmRight { get; set; }
-        // ICollection<RegisterCount> RegisterCount { get; set; }
 		
 	}
 	interface IRelEmployee
@@ -233,9 +221,6 @@ namespace ipsFormsDesign.Interfaces
 	{
         int CustId { get; set; }
         int Version { get; set; }
-
-        ICollection<IRelEmployee> RelEmployee { get; set; }
-		
 	}
 
 	interface IMyAnketa
@@ -260,14 +245,7 @@ namespace ipsFormsDesign.Interfaces
         string InterCode { get; set; }
         string InnerCode { get; set; }
         int? GetCode { get; set; }
-
-        ICollection<IAgreementAddRh> AgreementAddRh { get; set; }
-        ICollection<IAnketaAddNick> AnketaAddNick { get; set; }
-        ICollection<IReqAgreement> ReqAgreement { get; set; }
-        ICollection<ITermsOfService> TermsOfService { get; set; }
-        ICollection<ITerritoryExclude> TerritoryExclude { get; set; }
-        ICollection<ITerritoryInclude> TerritoryInclude { get; set; }
-		
+	
 	}
     
 	interface ITerritoryInclude
@@ -488,9 +466,39 @@ namespace ipsFormsDesign.Interfaces
 	}
 	interface IRequest
 	{
+        int ReqId { get; set; }
+        int? CategoryCode { get; set; }
+        int ReqType { get; set; }
+        DateTime? ReqDate { get; set; }
+        int? CountUse { get; set; }
+        DateTime? BeginDate { get; set; }
+        DateTime? EndDate { get; set; }
+        double? DurationUse { get; set; }
+        int Reqstatus { get; set; }
+        int? CustId { get; set; }
+        string UserId { get; set; }
+        int ReqAimCode { get; set; }
+        int? ObjId { get; set; }
+        int? KindCompCode { get; set; }
+        int? TermUseCode { get; set; }
+        DateTime? CreateDate { get; set; }
+        DateTime? ModifyDate { get; set; }
+        string ModifyLogin { get; set; }
+        int? LicCode { get; set; }
+        int? ReqCustId { get; set; }
+        string ReqComment { get; set; }
+        string R030 { get; set; }
+        decimal? ReqAmount { get; set; }
+        string WorkName { get; set; }
+                
 	}
 	interface IUserRole
 	{
+        int CustId { get; set; }
+        int RoleType { get; set; }
+        string UserId { get; set; }
+        int? Status { get; set; }
+
 	}
     
 	
@@ -503,29 +511,6 @@ namespace ipsFormsDesign.Interfaces
         byte? AnkMy { get; set; }
         byte? AnkPublish { get; set; }
         byte? AnkTech { get; set; }
-
-        IClient Client { get; set; }
-        ICommunity Community { get; set; }
-        ICompany Company { get; set; }
-		
-        IMyAnketa MyAnketa { get; set; }
-        IPartner Partner { get; set; }
-        IPerson Person { get; set; }
-        IRightHolder RightHolder { get; set; }
-        
-		ICollection<IAccount> Account { get; set; }
-        ICollection<IAgreementMaster> AgreementMaster { get; set; }
-        ICollection<IAnketaAddName> AnketaAddName { get; set; }
-        ICollection<IAnketaAddParam> AnketaAddParam { get; set; }
-        ICollection<IAnketaCompany> AnketaCompany { get; set; }
-        ICollection<IAnketaPerson> AnketaPerson { get; set; }
-        ICollection<IBankAccount> BankAccount { get; set; }
-        ICollection<IEmployee> Employee { get; set; }
-        ICollection<IRegister> Register { get; set; }
-        ICollection<IReqAgreement> ReqAgreement { get; set; }
-        ICollection<IReqCustomer> ReqCustomer { get; set; }
-        ICollection<IRequest> Request { get; set; }
-        ICollection<IUserRole> UserRole { get; set; }
 
     }
 }
