@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Interfaces
     public interface ICustCompany : ICustomer
     {
         void SetData(Customer data);
-        IAnketaCompany AnketaCompany { get }
+        IAnketaCompany AnketaCompany { get; }
 
     }
 }
