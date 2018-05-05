@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Model\MediaServiceContextExtra.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Model\MediaServiceContextExtra.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj" />
   </ItemGroup>
 
