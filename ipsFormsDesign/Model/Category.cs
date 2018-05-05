@@ -11,7 +11,17 @@ namespace ipsmedserviceapp.Model
             CreativeRoleType = new HashSet<CreativeRoleType>();
             DocumentKind = new HashSet<DocumentKind>();
             Genre = new HashSet<Genre>();
+            KindComposition = new HashSet<KindComposition>();
+            ModifyMusicType = new HashSet<ModifyMusicType>();
+            ModifyTextType = new HashSet<ModifyTextType>();
+            ModifyType = new HashSet<ModifyType>();
+            MyCategory = new HashSet<MyCategory>();
             ObjectType = new HashSet<ObjectType>();
+            Request = new HashSet<Request>();
+            RequestAim = new HashSet<RequestAim>();
+            RequestType = new HashSet<RequestType>();
+            UseAreaType = new HashSet<UseAreaType>();
+            UseMediaType = new HashSet<UseMediaType>();
         }
 
         public int CodeI { get; set; }
@@ -24,6 +34,16 @@ namespace ipsmedserviceapp.Model
         public ICollection<CreativeRoleType> CreativeRoleType { get; set; }
         public ICollection<DocumentKind> DocumentKind { get; set; }
         public ICollection<Genre> Genre { get; set; }
+        public ICollection<KindComposition> KindComposition { get; set; }
+        public ICollection<ModifyMusicType> ModifyMusicType { get; set; }
+        public ICollection<ModifyTextType> ModifyTextType { get; set; }
+        public ICollection<ModifyType> ModifyType { get; set; }
+        public ICollection<MyCategory> MyCategory { get; set; }
         public ICollection<ObjectType> ObjectType { get; set; }
+        public ICollection<Request> Request { get; set; }
+        public ICollection<RequestAim> RequestAim { get; set; }
+        public ICollection<RequestType> RequestType { get; set; }
+        public ICollection<UseAreaType> UseAreaType { get; set; }
+        public ICollection<UseMediaType> UseMediaType { get; set; }
     }
 }

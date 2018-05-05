@@ -8,11 +8,13 @@ namespace ipsmedserviceapp.Model
         public PositionType()
         {
             PositionTypeTr = new HashSet<PositionTypeTr>();
+            RelEmployee = new HashSet<RelEmployee>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
         public ICollection<PositionTypeTr> PositionTypeTr { get; set; }
+        public ICollection<RelEmployee> RelEmployee { get; set; }
     }
 }

@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ipsmedserviceapp.Model
+{
+    public partial class TableColumnTech
+    {
+        public decimal Id { get; set; }
+        public string Cname { get; set; }
+        public string Tname { get; set; }
+        public string DnameUk { get; set; }
+        public string DnameRu { get; set; }
+        public string DnameEn { get; set; }
+        public short? TypeTab { get; set; }
+    }
+}

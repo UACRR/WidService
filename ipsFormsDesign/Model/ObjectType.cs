@@ -7,6 +7,7 @@ namespace ipsmedserviceapp.Model
     {
         public ObjectType()
         {
+            ObjectRight = new HashSet<ObjectRight>();
             ObjectTypeTr = new HashSet<ObjectTypeTr>();
         }
 
@@ -15,6 +16,7 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
+        public ICollection<ObjectRight> ObjectRight { get; set; }
         public ICollection<ObjectTypeTr> ObjectTypeTr { get; set; }
     }
 }

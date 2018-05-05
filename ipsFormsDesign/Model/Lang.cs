@@ -5,7 +5,16 @@ namespace ipsmedserviceapp.Model
 {
     public partial class Lang
     {
+        public Lang()
+        {
+            AnketaPerson = new HashSet<AnketaPerson>();
+            LangTr = new HashSet<LangTr>();
+        }
+
         public string CodeS { get; set; }
         public string Name { get; set; }
+
+        public ICollection<AnketaPerson> AnketaPerson { get; set; }
+        public ICollection<LangTr> LangTr { get; set; }
     }
 }
