@@ -30,10 +30,9 @@ namespace ipsTestExp
         public MainForm()
         {
             InitializeComponent();
-            var cust = conn.GetItemById<Customer>("api/RH/detail", "139");
-            SetData(cust);
-            iAnketaCompanyBindingSource.DataSource = AnketaCompany;
-            mainFormBindingSource.DataSource = this;
+            // var cust = conn.GetItemById<Customer>("api/RH/detail", "139");
+            // SetData(cust);
+            // iAnketaCompanyBindingSource.DataSource = AnketaCompany;
 
         }
 
