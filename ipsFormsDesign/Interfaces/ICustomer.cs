@@ -301,40 +301,190 @@ namespace ipsFormsDesign.Interfaces
         string ResponsUser { get; set; }
         int? CustId { get; set; }
 
-		
-	}
-	interface IAccount
-	{
 	}
 	interface IAgreementMaster
 	{
+        int AgrId { get; set; }
+        int CustId { get; set; }
+        int? ParentAgrId { get; set; }
+        int? AgrStatus { get; set; }
+        string AgrNumber { get; set; }
+        DateTime? AgrDate { get; set; }
+        DateTime? DateBegin { get; set; }
+        DateTime? DateEnd { get; set; }
+        DateTime? ModifyDate { get; set; }
+        string ModifyLogin { get; set; }
+        int? AgrType { get; set; }
+		
 	}
 	interface IAnketaAddName
 	{
+        int CustId { get; set; }
+        string Lang { get; set; }
+        string NikName { get; set; }
+        string FirstName { get; set; }
+        string SurName { get; set; }
+        string LastName { get; set; }
+        string Name { get; set; }
+        string ShortName { get; set; }
+		
 	}
 	interface IAnketaAddParam
 	{
+        int ParamCode { get; set; }
+        string LangCode { get; set; }
+        string ParamName { get; set; }
+        int? CustId { get; set; }
+        string ParamValue { get; set; }
 	}
 	interface IAnketaCompany
 	{
+        int CustId { get; set; }
+        int Version { get; set; }
+        int? ActivityCode { get; set; }
+        int? IsCurrent { get; set; }
+        int Status { get; set; }
+        string Name { get; set; }
+        string ShortName { get; set; }
+        string FaAddress { get; set; }
+        string JaAddress { get; set; }
+        string Okpo { get; set; }
+        DateTime? RegistrDate { get; set; }
+        int? TypeVat { get; set; }
+        string NumberVat { get; set; }
+        DateTime? ModifyDate { get; set; }
+        string ModifyLogin { get; set; }
+        string JaCity { get; set; }
+        string FaCity { get; set; }
+        string JaCountry { get; set; }
+        string FaCountry { get; set; }
+        int? BanAccId { get; set; }
+        int? JaRegion { get; set; }
+        int? FaRegion { get; set; }
+		
 	}
 	interface IAnketaPerson
 	{
+        int CustId { get; set; }
+        int Version { get; set; }
+        int? IsCurrent { get; set; }
+        int Status { get; set; }
+        string FirstName { get; set; }
+        string SurName { get; set; }
+        string LastName { get; set; }
+        string NikName { get; set; }
+        int? Sex { get; set; }
+        DateTime? BirthDate { get; set; }
+        string PhoneMobileMain { get; set; }
+        string PhoneMobileExtra { get; set; }
+        string PhoneHome { get; set; }
+        string EMail { get; set; }
+        string Citizenship { get; set; }
+        int? Residency { get; set; }
+        string ReCountry { get; set; }
+        string ReAddress { get; set; }
+        string Inn { get; set; }
+        string PUseries { get; set; }
+        string PUnumber { get; set; }
+        string PUissuedWho { get; set; }
+        DateTime? PUissuedWhen { get; set; }
+        string PFseries { get; set; }
+        string PFnumber { get; set; }
+        DateTime? PFissuedDate { get; set; }
+        DateTime? PFvalidity { get; set; }
+        string BuisNumberRegistration { get; set; }
+        DateTime? BuisDateRegistration { get; set; }
+        string BuisNumberPayer { get; set; }
+        string BuisSertNumberPayer { get; set; }
+        DateTime? ModifyDate { get; set; }
+        string ModifyLogin { get; set; }
+        int? TypeVat { get; set; }
+        string ReCity { get; set; }
+        string FaCountry { get; set; }
+        string FaCity { get; set; }
+        string FaAddress { get; set; }
+        int? BanAccId { get; set; }
+        int? FaRegion { get; set; }
+        string Lang { get; set; }
+        int? ReRegion { get; set; }
+        string LeCountry { get; set; }
+        int? LeRegion { get; set; }
+        string LeCity { get; set; }
+        string LeAddress { get; set; }
+        string LePostIndex { get; set; }
+		
 	}
 	interface IBankAccount
 	{
+        int BanAccId { get; set; }
+        int? CustId { get; set; }
+        string AccountNumber { get; set; }
+        string Currency { get; set; }
+        string TransitNumber { get; set; }
+        int? Mfo { get; set; }
+        string MfoName { get; set; }
+        string MfoOkpo { get; set; }
+		
 	}
 	interface IEmployee
 	{
+        int Emplid { get; set; }
+        int? CustId { get; set; }
+        string UserId { get; set; }
+        string FirstName { get; set; }
+        string SurName { get; set; }
+        string LastName { get; set; }
+        string PhoneNumber { get; set; }
+        string Email { get; set; }
+
 	}
 	interface IRegister
 	{
+        int RegId { get; set; }
+        int? CustId { get; set; }
+        int? CountRows { get; set; }
+        double? DurationItems { get; set; }
+        string Login { get; set; }
+        int? RgStatus { get; set; }
+        DateTime? CreateDate { get; set; }
+        int? PeriodId { get; set; }
+        string UserId { get; set; }
+        string FileName { get; set; }
+        decimal? FullAmount { get; set; }
+        decimal? FullRate { get; set; }
+        int? NumTiket { get; set; }
+		
 	}
 	interface IReqAgreement
 	{
+        int RAgrId { get; set; }
+        int CustId { get; set; }
+        int? CustIdRh { get; set; }
+        int? ReqId { get; set; }
+        string R030 { get; set; }
+        decimal? Amount { get; set; }
+        decimal? CostOffer { get; set; }
+        int Status { get; set; }
+        DateTime? AgrDate { get; set; }
+        string UserId { get; set; }
+        DateTime? ModifyDate { get; set; }
+        int? TradeId { get; set; }
+        string R030Offer { get; set; }
+        DateTime? StatusDate { get; set; }
+        string RAgrComment { get; set; }
+		
 	}
 	interface IReqCustomer
 	{
+        int ReqCustId { get; set; }
+        int? CustId { get; set; }
+        string Name { get; set; }
+        string CountryCode { get; set; }
+        string Okpo { get; set; }
+        string NickName { get; set; }
+        int? ActivityCode { get; set; }
+        string Comment { get; set; }
+		
 	}
 	interface IRequest
 	{
