@@ -11,5 +11,6 @@ namespace ipsFormsDesign.Definition
     {
         // Подія при зміні значення поля форми
         event EventHandler FieldsValueChanged ;
+
     }
 }
