@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -36,7 +35,6 @@
             this.tbShortName = new Telerik.WinControls.UI.RadTextBox();
             this.ddl = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.customerModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ipsAddressControl1 = new IpsViewComponentLibrary.IpsAddressControl();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -45,9 +43,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbShortName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radTextBoxAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -105,40 +103,59 @@
             this.radLabel4.TabIndex = 3;
             this.radLabel4.Text = "Юридична адреса";
             // 
-            // customerModelBindingSource
-            // 
-            this.customerModelBindingSource.DataSource = typeof(ipsAnketaRightHolder.Data.CustomerModel);
-            // 
             // ipsAddressControl1
             // 
-            this.ipsAddressControl1.Location = new System.Drawing.Point(9, 120);
+            this.ipsAddressControl1.Location = new System.Drawing.Point(129, 117);
             this.ipsAddressControl1.Name = "ipsAddressControl1";
             // 
             // 
             // 
-            this.ipsAddressControl1.radDropDownListCity.Location = new System.Drawing.Point(289, 6);
-            this.ipsAddressControl1.radDropDownListCity.Name = "radDropDownList2";
-            this.ipsAddressControl1.radDropDownListCity.Size = new System.Drawing.Size(349, 20);
-            this.ipsAddressControl1.radDropDownListCity.TabIndex = 4;
-            this.ipsAddressControl1.radDropDownListCity.Text = "radDropDownList2";
-            // 
-            // 
-            // 
-            this.ipsAddressControl1.radDropDownListCountry.Location = new System.Drawing.Point(4, 6);
-            this.ipsAddressControl1.radDropDownListCountry.Name = "radDropDownList1";
-            this.ipsAddressControl1.radDropDownListCountry.Size = new System.Drawing.Size(268, 20);
-            this.ipsAddressControl1.radDropDownListCountry.TabIndex = 3;
-            this.ipsAddressControl1.radDropDownListCountry.Text = "radDropDownList1";
-            // 
-            // 
-            // 
-            this.ipsAddressControl1.radTextBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ipsAddressControl1.radDropDownListCity.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControl1.radTextBoxAddress.Location = new System.Drawing.Point(4, 35);
+            this.ipsAddressControl1.radDropDownListCity.AutoSize = false;
+            this.ipsAddressControl1.radDropDownListCity.Location = new System.Drawing.Point(190, 0);
+            this.ipsAddressControl1.radDropDownListCity.Margin = new System.Windows.Forms.Padding(0);
+            this.ipsAddressControl1.radDropDownListCity.Name = "radDropDownList2";
+            this.ipsAddressControl1.radDropDownListCity.Size = new System.Drawing.Size(170, 20);
+            this.ipsAddressControl1.radDropDownListCity.TabIndex = 7;
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radDropDownListCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsAddressControl1.radDropDownListCountry.AutoSize = false;
+            this.ipsAddressControl1.radDropDownListCountry.Location = new System.Drawing.Point(0, 0);
+            this.ipsAddressControl1.radDropDownListCountry.Margin = new System.Windows.Forms.Padding(0);
+            this.ipsAddressControl1.radDropDownListCountry.Name = "radDropDownList1";
+            this.ipsAddressControl1.radDropDownListCountry.Size = new System.Drawing.Size(170, 20);
+            this.ipsAddressControl1.radDropDownListCountry.TabIndex = 4;
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radDropDownListRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsAddressControl1.radDropDownListRegion.AutoSize = false;
+            this.ipsAddressControl1.radDropDownListRegion.Location = new System.Drawing.Point(380, 0);
+            this.ipsAddressControl1.radDropDownListRegion.Margin = new System.Windows.Forms.Padding(0);
+            this.ipsAddressControl1.radDropDownListRegion.Name = "radDropDownList3";
+            this.ipsAddressControl1.radDropDownListRegion.Size = new System.Drawing.Size(171, 20);
+            this.ipsAddressControl1.radDropDownListRegion.TabIndex = 8;
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radTextBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsAddressControl1.radTextBoxAddress.AutoSize = false;
+            this.ipsAddressControl1.radTextBoxAddress.Location = new System.Drawing.Point(0, 25);
+            this.ipsAddressControl1.radTextBoxAddress.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radTextBoxAddress.Name = "radTextBox1";
-            this.ipsAddressControl1.radTextBoxAddress.Size = new System.Drawing.Size(669, 20);
-            this.ipsAddressControl1.radTextBoxAddress.TabIndex = 2;
-            this.ipsAddressControl1.Size = new System.Drawing.Size(678, 56);
+            this.ipsAddressControl1.radTextBoxAddress.Size = new System.Drawing.Size(551, 20);
+            this.ipsAddressControl1.radTextBoxAddress.TabIndex = 10;
+            this.ipsAddressControl1.Size = new System.Drawing.Size(551, 45);
             this.ipsAddressControl1.TabIndex = 6;
             // 
             // AnketaCompanyView
@@ -167,9 +184,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbShortName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radTextBoxAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -186,7 +203,6 @@
         private Telerik.WinControls.UI.RadTextBox tbShortName;
         private Telerik.WinControls.UI.RadDropDownList ddl;
         private Telerik.WinControls.UI.RadLabel radLabel4;
-        private System.Windows.Forms.BindingSource customerModelBindingSource;
         private IpsViewComponentLibrary.IpsAddressControl ipsAddressControl1;
     }
 }

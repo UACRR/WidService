@@ -79,9 +79,9 @@ namespace ipsAnketaRightHolder
             }
 
             // TODO
-            var anketa = this._model.AnketaCompany.First();
-            this._view.ShortName = anketa.ShortName;
-            this._view.FaAddress = anketa.FaAddress;
+            //var anketa = this._model.AnketaCompany.First();
+            //this._view.ShortName = anketa.ShortName;
+            //this._view.FaAddress = anketa.FaAddress;
         }
 
         private void _view_DataChanged(object sender, EventArgs e)

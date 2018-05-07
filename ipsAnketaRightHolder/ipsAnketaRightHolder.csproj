@@ -81,7 +81,7 @@
     <EmbeddedResource Include="AnketaCompanyView.resx">
       <DependentUpon>AnketaCompanyView.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="AnketaCompanyPresenter.cs" />
+    <Compile Include="Interfaces\AnketaCompanyPresenter.cs" />
     <Compile Include="Data\AnketaCompanyModel.cs" />
     <Compile Include="Data\AnketaPersonModel.cs" />
     <Compile Include="Data\BankAccountModel.cs" />
@@ -104,6 +104,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ipsFormsDesign.Interfaces.ICustomer.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -131,10 +132,21 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
       <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
       <Name>IpsViewComponentLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
+      <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
+      <Name>WebAPIConnector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
