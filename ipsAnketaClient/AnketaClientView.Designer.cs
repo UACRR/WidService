@@ -42,6 +42,8 @@
             this.rBtnAddCaffeOrBar = new Telerik.WinControls.UI.RadMenuItem();
             this.rBtnSave = new Telerik.WinControls.UI.RadButton();
             this.rBtnCancel = new Telerik.WinControls.UI.RadButton();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.addressControl = new IpsViewComponentLibrary.IpsAddressExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rPanelAdd)).BeginInit();
@@ -66,14 +68,13 @@
             // 
             this.rGridViewInstitution.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.rGridViewInstitution.Name = "rGridViewInstitution";
-            this.rGridViewInstitution.Size = new System.Drawing.Size(1279, 244);
+            this.rGridViewInstitution.Size = new System.Drawing.Size(889, 244);
             this.rGridViewInstitution.TabIndex = 0;
             // 
             // rPanelAdd
             // 
-            this.rPanelAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rPanelAdd.Controls.Add(this.lblLocation);
+            this.rPanelAdd.Controls.Add(this.addressControl);
             this.rPanelAdd.Controls.Add(this.rBtnCancel);
             this.rPanelAdd.Controls.Add(this.rBtnSave);
             this.rPanelAdd.Controls.Add(this.rLblTypeInst);
@@ -82,7 +83,7 @@
             this.rPanelAdd.Controls.Add(this.rTxtBoxNameInst);
             this.rPanelAdd.Location = new System.Drawing.Point(13, 303);
             this.rPanelAdd.Name = "rPanelAdd";
-            this.rPanelAdd.Size = new System.Drawing.Size(1279, 340);
+            this.rPanelAdd.Size = new System.Drawing.Size(889, 201);
             this.rPanelAdd.TabIndex = 2;
             this.rPanelAdd.Visible = false;
             // 
@@ -164,7 +165,7 @@
             // rBtnSave
             // 
             this.rBtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnSave.Location = new System.Drawing.Point(4, 313);
+            this.rBtnSave.Location = new System.Drawing.Point(4, 174);
             this.rBtnSave.Name = "rBtnSave";
             this.rBtnSave.Size = new System.Drawing.Size(110, 24);
             this.rBtnSave.TabIndex = 4;
@@ -174,18 +175,34 @@
             // rBtnCancel
             // 
             this.rBtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnCancel.Location = new System.Drawing.Point(120, 313);
+            this.rBtnCancel.Location = new System.Drawing.Point(120, 174);
             this.rBtnCancel.Name = "rBtnCancel";
             this.rBtnCancel.Size = new System.Drawing.Size(110, 24);
             this.rBtnCancel.TabIndex = 5;
             this.rBtnCancel.Text = "Скасувати";
             this.rBtnCancel.Click += new System.EventHandler(this.rBtnCancel_Click);
             // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Location = new System.Drawing.Point(10, 154);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(38, 13);
+            this.lblLocation.TabIndex = 7;
+            this.lblLocation.Text = "label1";
+            // 
+            // addressControl
+            // 
+            this.addressControl.Location = new System.Drawing.Point(13, 62);
+            this.addressControl.Name = "addressControl";
+            this.addressControl.Size = new System.Drawing.Size(873, 89);
+            this.addressControl.TabIndex = 6;
+            // 
             // AnketaClientView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1304, 655);
+            this.ClientSize = new System.Drawing.Size(914, 516);
             this.Controls.Add(this.rDropDownBtnAddInst);
             this.Controls.Add(this.rPanelAdd);
             this.Controls.Add(this.rGridViewInstitution);
@@ -227,5 +244,7 @@
         private Telerik.WinControls.UI.RadTextBox rTxtBoxNameInst;
         private Telerik.WinControls.UI.RadButton rBtnCancel;
         private Telerik.WinControls.UI.RadButton rBtnSave;
+        private IpsViewComponentLibrary.IpsAddressExpandedControl addressControl;
+        private System.Windows.Forms.Label lblLocation;
     }
 }

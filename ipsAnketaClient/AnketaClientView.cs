@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
 
 namespace ipsAnketaClient
@@ -48,7 +49,7 @@ namespace ipsAnketaClient
         private void rBtnCancel_Click(object sender, EventArgs e)
         {
             rPanelAdd.Visible = false;
-            this.ClientSize = new System.Drawing.Size(Width, Height-330);
+            this.ClientSize = new System.Drawing.Size(Width, Height-rPanelAdd.Height);
             ClearTxtBoxes();
         }
 
@@ -59,8 +60,16 @@ namespace ipsAnketaClient
 
         private void InitializeAdditionalComponents()
         {
-            RadGridView premisesInstGridView = new RadGridView();
-            this.ClientSize = new System.Drawing.Size(Width,Height+330);
+            lblLocation.Text = string.Empty;
+            IpsPremisesTypeControl premisesType = new IpsPremisesTypeControl();
+            premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            premisesType.Location = lblLocation.Location;
+            premisesType.Width = addressControl.Width;
+            this.ClientSize = new System.Drawing.Size(Width, Height + premisesType.Height + rPanelAdd.Height);
+            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height + premisesType.Height);
+
+
+            rPanelAdd.Controls.Add(premisesType);
         }
 
         private void rBtnSave_Click(object sender, EventArgs e)
