@@ -32,16 +32,18 @@ namespace ipsTestExp
         {
             this.components = new System.ComponentModel.Container();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.label1 = new System.Windows.Forms.Label();
-            this.mainFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
+            this.iCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iCustomerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,51 +54,64 @@ namespace ipsTestExp
             this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "Name", true));
             this.radTextBox1.Location = new System.Drawing.Point(100, 12);
             this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(862, 20);
+            this.radTextBox1.Size = new System.Drawing.Size(1042, 24);
             this.radTextBox1.TabIndex = 0;
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(23, 15);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(37, 18);
-            this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Назва";
+            this.radTextBox1.TextChanged += new System.EventHandler(this.data_changed);
             // 
             // iAnketaCompanyBindingSource
             // 
             this.iAnketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
-            // radTextBox2
+            // radLabel1
             // 
-            this.radTextBox2.Location = new System.Drawing.Point(100, 38);
-            this.radTextBox2.Name = "radTextBox2";
-            this.radTextBox2.Size = new System.Drawing.Size(100, 20);
-            this.radTextBox2.TabIndex = 2;
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.radLabel1.Location = new System.Drawing.Point(23, 15);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(56, 25);
+            this.radLabel1.TabIndex = 1;
+            this.radLabel1.Text = "Назва";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mainFormBindingSource, "CustId", true));
             this.label1.Location = new System.Drawing.Point(22, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(17, 13);
+            this.label1.Size = new System.Drawing.Size(22, 19);
             this.label1.TabIndex = 3;
             this.label1.Text = "Id";
             // 
-            // mainFormBindingSource
+            // radTextBox2
             // 
-            this.mainFormBindingSource.DataSource = typeof(ipsTestExp.MainForm);
+            this.radTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iCustomerBindingSource, "CustId", true));
+            this.radTextBox2.Location = new System.Drawing.Point(100, 45);
+            this.radTextBox2.Name = "radTextBox2";
+            this.radTextBox2.Size = new System.Drawing.Size(125, 24);
+            this.radTextBox2.TabIndex = 4;
+            this.radTextBox2.TextChanged += new System.EventHandler(this.data_changed);
+            // 
+            // iCustomerBindingSource
+            // 
+            this.iCustomerBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ICustomer);
+            // 
+            // radButton1
+            // 
+            this.radButton1.Location = new System.Drawing.Point(860, 233);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(137, 30);
+            this.radButton1.TabIndex = 5;
+            this.radButton1.Text = "radButton1";
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1166, 613);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(1166, 275);
+            this.Controls.Add(this.radButton1);
             this.Controls.Add(this.radTextBox2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radTextBox1);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.Name = "MainForm";
             // 
             // 
@@ -104,10 +119,11 @@ namespace ipsTestExp
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "IPS";
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iCustomerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -121,10 +137,11 @@ namespace ipsTestExp
 
         private Telerik.WinControls.UI.RadTextBox radTextBox1;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private System.Windows.Forms.BindingSource iAnketaCompanyBindingSource;
-        private Telerik.WinControls.UI.RadTextBox radTextBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.BindingSource mainFormBindingSource;
+        private Telerik.WinControls.UI.RadTextBox radTextBox2;
+        private System.Windows.Forms.BindingSource iAnketaCompanyBindingSource;
+        private System.Windows.Forms.BindingSource iCustomerBindingSource;
+        private Telerik.WinControls.UI.RadButton radButton1;
     }
 }
 

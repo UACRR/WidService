@@ -23,48 +23,95 @@ namespace ipsTestExp
 
     public partial class MainForm : RadForm, IFormCompany
     {
-        private readonly ApiConnector conn = new ApiConnector("http://localhost:54867/");
-        private bool isAdd = false, isEdit = false, isSaveEdit = false;
+        private Customer _data;
+        private AnketaCompany _curAnketa;
+        private RelEmployee _relBoss;
 
+        public IAnketaCompany AnketaCompany => _curAnketa;
 
+        public ICustomer Customer => _data;
+        public IRelEmployee RelEmployer => _relBoss;
+        public IEmployee Employee => _relBoss.Empl;
+
+        public event EventHandler FieldsValueChanged;
+        public event Func<bool> Save;
+
+        // Сінхронізація 
+        private void SetObjectValues( object sors, object dest )
+        {
+            // Поля цілі
+            var destProperties = dest.GetType().GetProperties().ToDictionary(rec => rec.Name);
+            // Для кожного поля джерела
+            sors.GetType().GetProperties().ToList().ForEach(sorsItem => {
+                if (sorsItem.PropertyType.IsAbstract) // для примитивних полів
+                {
+                    // Получить поле цілі
+                    var destItem = destProperties[sorsItem.Name];
+                    // Получити значення поля цілі
+                    var destValue = destItem.GetValue(destItem);
+                    // Получити значення джерела
+                    var sorsValue = sorsItem.GetValue(sorsItem);
+                    // Якщо значення не співпадають
+                    if (destValue != sorsValue)
+                        destItem.SetValue(destItem, sorsValue);
+
+                }
+            });
+        }
+
+        // Створити об'єкти форми
+        private void createFormData()
+        {
+            _data = new Customer
+            {
+                Company = new Company { RelEmployee = new HashSet<RelEmployee>() },
+                AnketaCompany = new HashSet<AnketaCompany>(),
+                AnkVersion = 1
+            };
+            _curAnketa = new AnketaCompany { Version = 1 };
+            _relBoss = new RelEmployee { Empl = new Employee() };
+            _data.AnketaCompany.Add(_curAnketa);
+            _data.Company.RelEmployee.Add(_relBoss);
+
+        }
         public MainForm()
         {
             InitializeComponent();
-            var cust = conn.GetItemById<Customer>("api/RH/detail", "139");
-            SetData(cust);
-            iAnketaCompanyBindingSource.DataSource = AnketaCompany;
-            mainFormBindingSource.DataSource = this;
-
         }
 
-        public IAnketaCompany AnketaCompany { get => _curAnketa;  }
-        public int CustId { get => _data.CustId; set => _data.CustId = value; }
-        public int? CustType { get => _data.CustType; set => _data.CustType = value; }
-        public int Status { get => _data.Status; set => _data.Status = value; }
-        public int? AnkVersion { get => _data.AnkVersion; set => _data.AnkVersion = value; }
-        public byte? AnkMy { get => _data.AnkMy; set => _data.AnkMy = value; }
-        public byte? AnkPublish { get => _data.AnkPublish; set => _data.AnkPublish = value; }
-        public byte? AnkTech { get => _data.AnkTech; set => _data.AnkTech = value; }
 
-        private Customer _data;
-        private AnketaCompany _curAnketa;
-
-        public event EventHandler FieldsValueChanged;
         private void data_changed( object sender, EventArgs e)
         {
             FieldsValueChanged?.Invoke(sender, e);
         }
 
+        /// <summary>
+        /// Встановити дані форми
+        /// </summary>
+        /// <param name="data"></param>
         public void SetData(Customer data)
         {
-            _data = data;
-            _curAnketa = _data.AnketaCompany.Where(row => row.Version == _data.AnkVersion).SingleOrDefault();
-            if(_curAnketa == null)
+
+            SetObjectValues(data, _data);
+            SetObjectValues(data.Company, _data.Company);
+            var anketa = data.AnketaCompany.Where(row => row.Version == data.AnkVersion).SingleOrDefault();
+            if (anketa != null)
+                SetObjectValues(_curAnketa, anketa);
+            else
+                _data.AnkVersion = 1;
+
+            var relEmpl = data.Company.RelEmployee.Where(item => item.PositionCode == 1).SingleOrDefault();
+            if( relEmpl != null )
             {
-                _curAnketa = new AnketaCompany { Version = _data.AnkVersion ?? 1 };
-                _data.AnketaCompany.Add(_curAnketa);
-                _data.AnkVersion = _curAnketa.Version;
+                SetObjectValues(relEmpl, _relBoss);
+                SetObjectValues(relEmpl.Empl, _relBoss.Empl);
             }
+
+        }
+
+        public void getData(Customer data)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

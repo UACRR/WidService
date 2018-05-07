@@ -9,7 +9,8 @@ namespace ipsFormsDesign.Definition
 {
     public interface IFormCompany : ICustCompany
     {
-        // Подія при зміні значення поля форми
-        event EventHandler FieldsValueChanged ;
+        // Подія збереження
+        event Func<bool> Save;
+
     }
 }
