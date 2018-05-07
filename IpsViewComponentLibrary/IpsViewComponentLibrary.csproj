@@ -41,6 +41,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="TelerikCommon, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
@@ -51,11 +52,20 @@
     <Compile Include="IpsAddressControl.Designer.cs">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="IpsPremisesTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsPremisesTypeControl.Designer.cs">
+      <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpsPremisesTypeControl.resx">
+      <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
