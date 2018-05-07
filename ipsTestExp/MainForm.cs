@@ -16,12 +16,12 @@ using WebAPIConnector;
 using ipsmedserviceapp;
 using ipsmedserviceapp.Model;
 using ipsFormsDesign.Interfaces;
-
+using ipsFormsDesign.Definition;
 
 namespace ipsTestExp
 {
 
-    public partial class MainForm : RadForm, ICustCompany
+    public partial class MainForm : RadForm, IFormCompany
     {
         private readonly ApiConnector conn = new ApiConnector("http://localhost:54867/");
         private bool isAdd = false, isEdit = false, isSaveEdit = false;
@@ -30,6 +30,10 @@ namespace ipsTestExp
         public MainForm()
         {
             InitializeComponent();
+            var cust = conn.GetItemById<Customer>("api/RH/detail", "139");
+            SetData(cust);
+            iAnketaCompanyBindingSource.DataSource = AnketaCompany;
+            mainFormBindingSource.DataSource = this;
 
         }
 
@@ -44,6 +48,13 @@ namespace ipsTestExp
 
         private Customer _data;
         private AnketaCompany _curAnketa;
+
+        public event EventHandler FieldsValueChanged;
+        private void data_changed( object sender, EventArgs e)
+        {
+            FieldsValueChanged?.Invoke(sender, e);
+        }
+
         public void SetData(Customer data)
         {
             _data = data;
