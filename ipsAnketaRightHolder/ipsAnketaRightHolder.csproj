@@ -104,7 +104,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
     <None Include="ipsFormsDesign.Interfaces.ICustomer.datasource" />
+    <None Include="ipsFormsDesign.Interfaces.IEmployee.datasource" />
+    <None Include="ipsFormsDesign.Interfaces.IRelEmployee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

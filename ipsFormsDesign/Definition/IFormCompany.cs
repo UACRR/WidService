@@ -1,4 +1,5 @@
 ﻿using ipsFormsDesign.Interfaces;
+using ipsmedserviceapp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace ipsFormsDesign.Definition
     {
         // Подія збереження
         event Func<bool> Save;
+        void SetData(Customer data);
+        void getData(Customer data);
 
     }
 }

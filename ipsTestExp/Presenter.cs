@@ -13,17 +13,14 @@ namespace ipsTestExp
         private IFormCompany _view;
         private IModelCompany _model;
 
-        public Presenter(IFormCompany form, IModelCompany model )
+        public Presenter(IFormCompany form, IModelCompany model, int custId )
         {
-            Customer sors = new Customer { AnkVersion = 1, AnketaCompany = new List<AnketaCompany> { new AnketaCompany { Version = 1, Name = "Test row for Ankets" } } };
-            Customer modelSource = new Customer { AnkVersion = 1, AnketaCompany = new List<AnketaCompany> { new AnketaCompany { Version = 1 } } };
 
             _view = form;
             _model = model;
+            var sors = _model.GetData(custId);
             _view.SetData(sors);
-            _model.SetData( modelSource );
 
-            _view.FieldsValueChanged += _model.FieldChanging;
         }
     }
 }

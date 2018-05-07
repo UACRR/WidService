@@ -18,7 +18,7 @@ namespace ipsTestExp
             Application.SetCompatibleTextRenderingDefault(false);
             var form = new MainForm();
             var mainModel = new MainModel();
-            var presenter = new Presenter(form, mainModel);
+            var presenter = new Presenter(form, mainModel, 139);
             Application.Run(form);
         }
     }

@@ -43,7 +43,7 @@ namespace ipsTestExp
             var destProperties = dest.GetType().GetProperties().ToDictionary(rec => rec.Name);
             // Для кожного поля джерела
             sors.GetType().GetProperties().ToList().ForEach(sorsItem => {
-                if (sorsItem.PropertyType.IsAbstract) // для примитивних полів
+                if (sorsItem.PropertyType.IsPrimitive) // для примитивних полів
                 {
                     // Получить поле цілі
                     var destItem = destProperties[sorsItem.Name];
@@ -92,6 +92,7 @@ namespace ipsTestExp
         public void SetData(Customer data)
         {
 
+            createFormData();
             SetObjectValues(data, _data);
             SetObjectValues(data.Company, _data.Company);
             var anketa = data.AnketaCompany.Where(row => row.Version == data.AnkVersion).SingleOrDefault();
