@@ -23,16 +23,7 @@ namespace IpsViewComponentLibrary
         {
             get
             {
-                return radDropDownList1;
-            }
-        }
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadDropDownList radDropDownListCity
-        {
-            get
-            {
-                return radDropDownList2;
+                return ddlCountry;
             }
         }
 
@@ -41,7 +32,16 @@ namespace IpsViewComponentLibrary
         {
             get
             {
-                return radDropDownList3;
+                return ddlRegion;
+            }
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox radTextBoxCity
+        {
+            get
+            {
+                return txtCity;
             }
         }
 
@@ -50,13 +50,36 @@ namespace IpsViewComponentLibrary
         {
             get
             {
-                return radTextBox1;
+                return txtAddress;
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox radTextBoxPhone
+        {
+            get
+            {
+                return txtPhone;
+            }
+        }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox radTextBoxFax
+        {
+            get
+            {
+                return txtFax;
+            }
+        }
 
-
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox radTextBoxEmail
+        {
+            get
+            {
+                return txtEmail;
+            }
+        }
 
         public IpsAddressControl()
         {
