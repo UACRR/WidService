@@ -21,9 +21,6 @@ namespace ipsmedserviceapp.Model
         public int? PeriodId { get; set; }
         public string UserId { get; set; }
         public string FileName { get; set; }
-        public decimal? FullAmount { get; set; }
-        public decimal? FullRate { get; set; }
-        public int? NumTiket { get; set; }
 
         public Customer Cust { get; set; }
         public RegisterStatus RgStatusNavigation { get; set; }

@@ -28,6 +28,8 @@ namespace ipsmedserviceapp.Model
         public int? BanAccId { get; set; }
         public int? JaRegion { get; set; }
         public int? FaRegion { get; set; }
+        public string RegistrNumber { get; set; }
+        public string RegistrWho { get; set; }
 
         public ActivityType ActivityCodeNavigation { get; set; }
         public BankAccount BanAcc { get; set; }

@@ -15,5 +15,7 @@ namespace ipsFormsDesign.Definition
         void SetData(Customer data);
         void getData(Customer data);
 
+        void SetDictionary(AnketaDictionaties dic);
+
     }
 }

@@ -851,6 +851,16 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("registrDate")
                     .HasColumnType("date");
 
+                entity.Property(e => e.RegistrNumber)
+                    .HasColumnName("registrNumber")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RegistrWho)
+                    .HasColumnName("registrWho")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ShortName)
                     .HasColumnName("shortName")
                     .HasMaxLength(254)
@@ -2479,6 +2489,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
+                entity.Property(e => e.RegIdBr).HasColumnName("regIdBr");
+
                 entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.HasOne(d => d.CRkindCodeNavigation)
@@ -2500,7 +2512,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.Reg)
                     .WithMany(p => p.Distribution)
                     .HasForeignKey(d => d.RegId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIB_REF_REGISTER");
 
                 entity.HasOne(d => d.StatusNavigation)
@@ -2512,19 +2523,25 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<DistributionItem>(entity =>
             {
-                entity.HasKey(e => new { e.DistId, e.RegId, e.RegIitemId });
+                entity.HasKey(e => e.DistItemId);
 
                 entity.ToTable("DistributionItem", "dbo");
+
+                entity.Property(e => e.DistItemId).HasColumnName("distItemId");
+
+                entity.Property(e => e.Amount)
+                    .HasColumnName("amount")
+                    .HasColumnType("numeric(20, 2)");
 
                 entity.Property(e => e.DistId).HasColumnName("distId");
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
+                entity.Property(e => e.RegIdBr).HasColumnName("regIdBr");
+
                 entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.RegItemIdBr).HasColumnName("regItemIdBr");
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
@@ -3782,6 +3799,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.PeriodId).HasColumnName("periodId");
 
+                entity.Property(e => e.AgrId).HasColumnName("agrId");
+
                 entity.Property(e => e.Amount)
                     .HasColumnName("amount")
                     .HasColumnType("money");
@@ -3792,10 +3811,14 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("modifyDate")
                     .HasColumnType("date");
 
+                entity.HasOne(d => d.Agr)
+                    .WithMany(p => p.MoneyPeriodLink)
+                    .HasForeignKey(d => d.AgrId)
+                    .HasConstraintName("FK_MONEYPER_REFERENCE_AGREEMEN");
+
                 entity.HasOne(d => d.Lic)
                     .WithMany(p => p.MoneyPeriodLink)
                     .HasForeignKey(d => d.LicId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYPER_REFERENCE_LICENSEA");
 
                 entity.HasOne(d => d.Paid)
@@ -4147,6 +4170,10 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.PeriodId).HasColumnName("periodId");
 
+                entity.Property(e => e.AgrId).HasColumnName("agrId");
+
+                entity.Property(e => e.AlgType).HasColumnName("algType");
+
                 entity.Property(e => e.Amount)
                     .HasColumnName("amount")
                     .HasColumnType("money");
@@ -4182,6 +4209,11 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Undistribamount)
                     .HasColumnName("undistribamount")
                     .HasColumnType("money");
+
+                entity.HasOne(d => d.Agr)
+                    .WithMany(p => p.PaidPeriod)
+                    .HasForeignKey(d => d.AgrId)
+                    .HasConstraintName("FK_PAIDPERI_REFERENCE_AGREEMEN");
 
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.PaidPeriod)
@@ -4769,20 +4801,10 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FullAmount)
-                    .HasColumnName("fullAmount")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.FullRate)
-                    .HasColumnName("fullRate")
-                    .HasColumnType("numeric(10, 5)");
-
                 entity.Property(e => e.Login)
                     .HasColumnName("login")
                     .HasMaxLength(32)
                     .IsUnicode(false);
-
-                entity.Property(e => e.NumTiket).HasColumnName("numTiket");
 
                 entity.Property(e => e.PeriodId).HasColumnName("periodId");
 
@@ -4839,7 +4861,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
+                entity.Property(e => e.RegIdBr).HasColumnName("regIdBr");
+
                 entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
+
+                entity.Property(e => e.RegItemIdBr).HasColumnName("regItemIdBr");
 
                 entity.HasOne(d => d.CRkindCodeNavigation)
                     .WithMany(p => p.RegisterCount)

@@ -11,5 +11,6 @@ namespace ipsFormsDesign.Definition
     {
         Customer GetData(int custId);
         bool Save(Customer cust);
+        AnketaDictionaties GetDictionary();
     }
 }

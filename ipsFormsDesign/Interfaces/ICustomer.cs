@@ -315,6 +315,8 @@ namespace ipsFormsDesign.Interfaces
         int? BanAccId { get; set; }
         int? JaRegion { get; set; }
         int? FaRegion { get; set; }
+        string RegistrNumber { get; set; }
+        string RegistrWho { get; set; }
 
     }
     public interface IAnketaPerson

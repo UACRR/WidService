@@ -23,7 +23,10 @@ namespace ipsmedserviceapp.Model
         public decimal Distribamount { get; set; }
         public string PeriodName { get; set; }
         public bool? FagFirst { get; set; }
+        public int? AgrId { get; set; }
+        public int? AlgType { get; set; }
 
+        public AgreementMaster Agr { get; set; }
         public Client Cust { get; set; }
         public LicenseAgreement Lic { get; set; }
         public Period PeriodTypeNavigation { get; set; }

@@ -11,7 +11,7 @@ namespace ipsmedserviceapp.Model
         }
 
         public int DistId { get; set; }
-        public int RegId { get; set; }
+        public int? RegId { get; set; }
         public int? PeriodId { get; set; }
         public int CRkindCode { get; set; }
         public int Status { get; set; }
@@ -21,6 +21,7 @@ namespace ipsmedserviceapp.Model
         public decimal CourtFee { get; set; }
         public int? PartnerId { get; set; }
         public bool? IsCourt { get; set; }
+        public int? RegIdBr { get; set; }
 
         public CopyrightKind CRkindCodeNavigation { get; set; }
         public Partner Partner { get; set; }

@@ -19,6 +19,9 @@ namespace ipsTestExp
             _view = form;
             _model = model;
             var sors = _model.GetData(custId);
+            var dic = _model.GetDictionary();
+            form.SetDictionary(dic);
+
             _view.SetData(sors);
 
         }

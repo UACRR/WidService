@@ -32,9 +32,12 @@ namespace ipsTestExp
         public ICustomer Customer => _data;
         public IRelEmployee RelEmployer => _relBoss;
         public IEmployee Employee => _relBoss.Empl;
+        private AnketaDictionaties _dictionaries;
+
 
         public event EventHandler FieldsValueChanged;
         public event Func<bool> Save;
+
 
         // Сінхронізація 
         private void SetObjectValues( object source, object dest )
@@ -123,6 +126,20 @@ namespace ipsTestExp
         public void getData(Customer data)
         {
             throw new NotImplementedException();
+        }
+
+        private void bindDictionaries()
+        {
+            ddl.DataSource = _dictionaries.activityType;
+            // ddl.DataMember = "CodeI";
+            ddl.ValueMember = "CodeI";
+            ddl.DisplayMember = "name";
+        }
+        public void SetDictionary(AnketaDictionaties dic)
+        {
+            _dictionaries = dic;
+            if (_dictionaries != null)
+                bindDictionaries();
         }
 
         /// <summary>

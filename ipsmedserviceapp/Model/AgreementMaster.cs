@@ -8,6 +8,8 @@ namespace ipsmedserviceapp.Model
         public AgreementMaster()
         {
             InverseParentAgr = new HashSet<AgreementMaster>();
+            MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
+            PaidPeriod = new HashSet<PaidPeriod>();
         }
 
         public int AgrId { get; set; }
@@ -28,5 +30,7 @@ namespace ipsmedserviceapp.Model
         public AgreementAddPartner AgreementAddPartner { get; set; }
         public AgreementAddRh AgreementAddRh { get; set; }
         public ICollection<AgreementMaster> InverseParentAgr { get; set; }
+        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public ICollection<PaidPeriod> PaidPeriod { get; set; }
     }
 }
