@@ -218,6 +218,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICustomer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRelEmployee.datasource" />
+    <None Include="Properties\DataSources\MainForm.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

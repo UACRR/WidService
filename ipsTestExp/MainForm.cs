@@ -37,26 +37,35 @@ namespace ipsTestExp
         public event Func<bool> Save;
 
         // Сінхронізація 
-        private void SetObjectValues( object sors, object dest )
+        private void SetObjectValues( object source, object dest )
         {
-            // Поля цілі
-            var destProperties = dest.GetType().GetProperties().ToDictionary(rec => rec.Name);
-            // Для кожного поля джерела
-            sors.GetType().GetProperties().ToList().ForEach(sorsItem => {
-                if (sorsItem.PropertyType.IsPrimitive) // для примитивних полів
-                {
-                    // Получить поле цілі
-                    var destItem = destProperties[sorsItem.Name];
-                    // Получити значення поля цілі
-                    var destValue = destItem.GetValue(destItem);
-                    // Получити значення джерела
-                    var sorsValue = sorsItem.GetValue(sorsItem);
-                    // Якщо значення не співпадають
-                    if (destValue != sorsValue)
-                        destItem.SetValue(destItem, sorsValue);
+            if (ReferenceEquals(dest, source)) return;
+            if ((dest == null) || (source == null)) return;
+            if (dest.GetType() != source.GetType()) return;
 
+            foreach (var property in dest.GetType().GetProperties())
+            {
+
+                // If nullable
+                Type checkType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+
+                if (!(source.GetType().IsPrimitive == true
+                  || checkType == typeof(string)
+                  || checkType == typeof(Decimal)
+                  || checkType == typeof(DateTime)))
+                    continue;
+
+                var objValue = property.GetValue(dest);
+                var anotherValue = property.GetValue(source);
+                //Recursion
+                if (anotherValue == null)
+                {
+                    if (objValue != null)
+                        property.SetValue(dest, anotherValue, null);
                 }
-            });
+                else if (objValue == null || !objValue.Equals(anotherValue))
+                    property.SetValue(dest, anotherValue, null);
+            }
         }
 
         // Створити об'єкти форми
@@ -97,7 +106,7 @@ namespace ipsTestExp
             SetObjectValues(data.Company, _data.Company);
             var anketa = data.AnketaCompany.Where(row => row.Version == data.AnkVersion).SingleOrDefault();
             if (anketa != null)
-                SetObjectValues(_curAnketa, anketa);
+                SetObjectValues(anketa,_curAnketa);
             else
                 _data.AnkVersion = 1;
 
@@ -108,6 +117,7 @@ namespace ipsTestExp
                 SetObjectValues(relEmpl.Empl, _relBoss.Empl);
             }
 
+            iAnketaCompanyBindingSource.DataSource = _curAnketa;    
         }
 
         public void getData(Customer data)

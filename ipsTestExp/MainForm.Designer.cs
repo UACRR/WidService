@@ -31,10 +31,7 @@ namespace ipsTestExp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.iCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ipsAddressControl1 = new IpsViewComponentLibrary.IpsAddressControl();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.ddl = new Telerik.WinControls.UI.RadDropDownList();
             this.tbShortName = new Telerik.WinControls.UI.RadTextBox();
@@ -42,13 +39,11 @@ namespace ipsTestExp
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.iCustomerBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
+            this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radTextBoxAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbShortName)).BeginInit();
@@ -56,16 +51,9 @@ namespace ipsTestExp
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // iCustomerBindingSource
-            // 
-            this.iCustomerBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ICustomer);
-            // 
-            // iAnketaCompanyBindingSource
-            // 
-            this.iAnketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // ipsAddressControl1
             // 
@@ -126,7 +114,7 @@ namespace ipsTestExp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ipsAddressControl1.radTextBoxAddress.AutoSize = false;
-            this.ipsAddressControl1.radTextBoxAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "JaAddress", true));
+            this.ipsAddressControl1.radTextBoxAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "JaAddress", true));
             this.ipsAddressControl1.radTextBoxAddress.Location = new System.Drawing.Point(0, 25);
             this.ipsAddressControl1.radTextBoxAddress.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radTextBoxAddress.Name = "radTextBox1";
@@ -138,10 +126,6 @@ namespace ipsTestExp
             this.ipsAddressControl1.radTextBoxAddress.TabIndex = 10;
             this.ipsAddressControl1.Size = new System.Drawing.Size(551, 45);
             this.ipsAddressControl1.TabIndex = 14;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // radLabel4
             // 
@@ -160,7 +144,7 @@ namespace ipsTestExp
             // 
             // tbShortName
             // 
-            this.tbShortName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "ShortName", true));
+            this.tbShortName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "ShortName", true));
             this.tbShortName.Location = new System.Drawing.Point(129, 34);
             this.tbShortName.Name = "tbShortName";
             this.tbShortName.Size = new System.Drawing.Size(551, 20);
@@ -168,7 +152,7 @@ namespace ipsTestExp
             // 
             // tbName
             // 
-            this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource1, "Name", true));
+            this.tbName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "Name", true));
             this.tbName.Location = new System.Drawing.Point(129, 10);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(551, 20);
@@ -198,6 +182,10 @@ namespace ipsTestExp
             this.radLabel1.TabIndex = 7;
             this.radLabel1.Text = "Назва клієнту:";
             // 
+            // iAnketaCompanyBindingSource
+            // 
+            this.iAnketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -218,13 +206,10 @@ namespace ipsTestExp
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "IPS";
-            ((System.ComponentModel.ISupportInitialize)(this.iCustomerBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radDropDownListRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.radTextBoxAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbShortName)).EndInit();
@@ -232,6 +217,7 @@ namespace ipsTestExp
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -242,10 +228,7 @@ namespace ipsTestExp
         {
 
         }
-        private System.Windows.Forms.BindingSource iAnketaCompanyBindingSource;
-        private System.Windows.Forms.BindingSource iCustomerBindingSource;
         private IpsViewComponentLibrary.IpsAddressControl ipsAddressControl1;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadDropDownList ddl;
         private Telerik.WinControls.UI.RadTextBox tbShortName;
@@ -253,6 +236,7 @@ namespace ipsTestExp
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
+        private System.Windows.Forms.BindingSource iAnketaCompanyBindingSource;
     }
 }
 
