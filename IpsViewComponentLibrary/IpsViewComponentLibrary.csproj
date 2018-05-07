@@ -52,6 +52,12 @@
     <Compile Include="IpsAddressControl.Designer.cs">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="IpsAddressExpandedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsAddressExpandedControl.Designer.cs">
+      <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="IpsPremisesTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -63,6 +69,9 @@
   <ItemGroup>
     <EmbeddedResource Include="IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpsAddressExpandedControl.resx">
+      <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsPremisesTypeControl.resx">
       <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
