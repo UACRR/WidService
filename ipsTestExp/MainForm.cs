@@ -34,6 +34,7 @@ namespace ipsTestExp
         public IEmployee Employee => _relBoss.Empl;
 
         public event EventHandler FieldsValueChanged;
+        public event Func<bool> Save;
 
         // Сінхронізація 
         private void SetObjectValues( object sors, object dest )
