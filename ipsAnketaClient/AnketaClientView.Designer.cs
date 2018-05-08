@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.rGridViewInstitution = new Telerik.WinControls.UI.RadGridView();
             this.rPanelAdd = new Telerik.WinControls.UI.RadPanel();
             this.rLblTypeInst = new Telerik.WinControls.UI.RadLabel();
@@ -43,6 +43,9 @@
             this.rBtnSave = new Telerik.WinControls.UI.RadButton();
             this.rBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.lblLocation = new System.Windows.Forms.Label();
+            this.rTxtBoxCountOrMeters = new Telerik.WinControls.UI.RadTextBox();
+            this.rBtnAddNightClubFree = new Telerik.WinControls.UI.RadMenuItem();
+            this.rBtnAddTheaterOrOpera = new Telerik.WinControls.UI.RadMenuItem();
             this.addressControl = new IpsViewComponentLibrary.IpsAddressExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution.MasterTemplate)).BeginInit();
@@ -55,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.rDropDownBtnAddInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,13 +70,14 @@
             // 
             // 
             // 
-            this.rGridViewInstitution.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.rGridViewInstitution.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewInstitution.Name = "rGridViewInstitution";
-            this.rGridViewInstitution.Size = new System.Drawing.Size(889, 244);
+            this.rGridViewInstitution.Size = new System.Drawing.Size(1028, 244);
             this.rGridViewInstitution.TabIndex = 0;
             // 
             // rPanelAdd
             // 
+            this.rPanelAdd.Controls.Add(this.rTxtBoxCountOrMeters);
             this.rPanelAdd.Controls.Add(this.lblLocation);
             this.rPanelAdd.Controls.Add(this.addressControl);
             this.rPanelAdd.Controls.Add(this.rBtnCancel);
@@ -83,7 +88,7 @@
             this.rPanelAdd.Controls.Add(this.rTxtBoxNameInst);
             this.rPanelAdd.Location = new System.Drawing.Point(13, 303);
             this.rPanelAdd.Name = "rPanelAdd";
-            this.rPanelAdd.Size = new System.Drawing.Size(889, 201);
+            this.rPanelAdd.Size = new System.Drawing.Size(889, 214);
             this.rPanelAdd.TabIndex = 2;
             this.rPanelAdd.Visible = false;
             // 
@@ -106,7 +111,7 @@
             this.rLblName.Name = "rLblName";
             this.rLblName.Size = new System.Drawing.Size(115, 25);
             this.rLblName.TabIndex = 2;
-            this.rLblName.Text = "<html>Назва закладу</html>";
+            this.rLblName.Text = "Назва закладу";
             this.rLblName.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // rTxtBoxTypeInst
@@ -119,6 +124,7 @@
             // 
             // rTxtBoxNameInst
             // 
+            this.rTxtBoxNameInst.BackColor = System.Drawing.Color.White;
             this.rTxtBoxNameInst.Location = new System.Drawing.Point(134, 11);
             this.rTxtBoxNameInst.Name = "rTxtBoxNameInst";
             this.rTxtBoxNameInst.Size = new System.Drawing.Size(456, 20);
@@ -127,10 +133,12 @@
             // rDropDownBtnAddInst
             // 
             this.rDropDownBtnAddInst.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.rBtnAddRestaurant,
             this.rBtnAddHotel,
+            this.rBtnAddRestaurant,
             this.rBtnAddNightClub,
-            this.rBtnAddCaffeOrBar});
+            this.rBtnAddNightClubFree,
+            this.rBtnAddCaffeOrBar,
+            this.rBtnAddTheaterOrOpera});
             this.rDropDownBtnAddInst.Location = new System.Drawing.Point(13, 264);
             this.rDropDownBtnAddInst.Name = "rDropDownBtnAddInst";
             this.rDropDownBtnAddInst.Size = new System.Drawing.Size(140, 24);
@@ -153,19 +161,19 @@
             // rBtnAddNightClub
             // 
             this.rBtnAddNightClub.Name = "rBtnAddNightClub";
-            this.rBtnAddNightClub.Text = "Нічний клуб";
+            this.rBtnAddNightClub.Text = "Нічні клуби/Платний вхід";
             this.rBtnAddNightClub.Click += new System.EventHandler(this.rBtnAddNightClub_Click);
             // 
             // rBtnAddCaffeOrBar
             // 
             this.rBtnAddCaffeOrBar.Name = "rBtnAddCaffeOrBar";
-            this.rBtnAddCaffeOrBar.Text = "Кафе/Бар";
+            this.rBtnAddCaffeOrBar.Text = "Кафе / Бар - Їдальня";
             this.rBtnAddCaffeOrBar.Click += new System.EventHandler(this.rBtnAddCaffeOrBar_Click);
             // 
             // rBtnSave
             // 
             this.rBtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnSave.Location = new System.Drawing.Point(4, 174);
+            this.rBtnSave.Location = new System.Drawing.Point(4, 187);
             this.rBtnSave.Name = "rBtnSave";
             this.rBtnSave.Size = new System.Drawing.Size(110, 24);
             this.rBtnSave.TabIndex = 4;
@@ -175,7 +183,7 @@
             // rBtnCancel
             // 
             this.rBtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnCancel.Location = new System.Drawing.Point(120, 174);
+            this.rBtnCancel.Location = new System.Drawing.Point(120, 187);
             this.rBtnCancel.Name = "rBtnCancel";
             this.rBtnCancel.Size = new System.Drawing.Size(110, 24);
             this.rBtnCancel.TabIndex = 5;
@@ -184,12 +192,32 @@
             // 
             // lblLocation
             // 
-            this.lblLocation.AutoSize = true;
+            this.lblLocation.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblLocation.Location = new System.Drawing.Point(10, 154);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(38, 13);
+            this.lblLocation.Size = new System.Drawing.Size(118, 22);
             this.lblLocation.TabIndex = 7;
             this.lblLocation.Text = "label1";
+            this.lblLocation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // rTxtBoxCountOrMeters
+            // 
+            this.rTxtBoxCountOrMeters.Location = new System.Drawing.Point(134, 157);
+            this.rTxtBoxCountOrMeters.Name = "rTxtBoxCountOrMeters";
+            this.rTxtBoxCountOrMeters.Size = new System.Drawing.Size(96, 20);
+            this.rTxtBoxCountOrMeters.TabIndex = 8;
+            // 
+            // rBtnAddNightClubFree
+            // 
+            this.rBtnAddNightClubFree.Name = "rBtnAddNightClubFree";
+            this.rBtnAddNightClubFree.Text = "Нічні клуби/Безкоштовний вхід";
+            this.rBtnAddNightClubFree.Click += new System.EventHandler(this.rBtnAddNightClubFree_Click);
+            // 
+            // rBtnAddTheaterOrOpera
+            // 
+            this.rBtnAddTheaterOrOpera.Name = "rBtnAddTheaterOrOpera";
+            this.rBtnAddTheaterOrOpera.Text = "Театр/Оперета";
+            this.rBtnAddTheaterOrOpera.Click += new System.EventHandler(this.rBtnAddTheaterOrOpera_Click);
             // 
             // addressControl
             // 
@@ -202,7 +230,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 516);
+            this.ClientSize = new System.Drawing.Size(1053, 659);
             this.Controls.Add(this.rDropDownBtnAddInst);
             this.Controls.Add(this.rPanelAdd);
             this.Controls.Add(this.rGridViewInstitution);
@@ -224,6 +252,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.rDropDownBtnAddInst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -246,5 +275,8 @@
         private Telerik.WinControls.UI.RadButton rBtnSave;
         private IpsViewComponentLibrary.IpsAddressExpandedControl addressControl;
         private System.Windows.Forms.Label lblLocation;
+        private Telerik.WinControls.UI.RadTextBox rTxtBoxCountOrMeters;
+        private Telerik.WinControls.UI.RadMenuItem rBtnAddNightClubFree;
+        private Telerik.WinControls.UI.RadMenuItem rBtnAddTheaterOrOpera;
     }
 }
