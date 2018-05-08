@@ -64,31 +64,43 @@ namespace IpsViewComponentLibrary
         /// <returns></returns>
         public bool ValidatorAddressCtrl()
         {
+            bool valid = true;
             if (rTxtBoxTownName.Text == string.Empty)
             {
-                
-                return false;
+                lblTown.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                valid = false;
             }
 
-            if (rDropListRegion.SelectedItem.Index == 0)
+            if (rDropListRegion.SelectedItem == null||rDropListRegion.SelectedItem.Index == 0)
             {
-
-                return false;
+                lblRegion.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                valid = false;
             }
 
             if (rTxtBoxNameStreet.Text == string.Empty)
             {
-                
-                return false;
+                lblStreet.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                valid = false;
             }
 
             if (rTxtBoxNumberBldng.Text == string.Empty)
             {
-
-                return false;
+                lblBuild.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                valid = false;
             }
 
-            return true;
+            if (valid)
+                DefaultColorLabels();
+
+            return valid;
+        }
+
+        public void DefaultColorLabels()
+        {
+            lblTown.ForeColor = Color.Black;
+            lblRegion.ForeColor = Color.Black;
+            lblStreet.ForeColor = Color.Black;
+            lblBuild.ForeColor = Color.Black;
         }
 
         private void rDropListRegion_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

@@ -12,5 +12,6 @@ namespace ipsFormsDesign.Interfaces
         ICustomer Customer { get;  }
         IRelEmployee RelEmployer { get;  }
         IEmployee Employee { get;  }
+        IClient Client { get; }
     }
 }

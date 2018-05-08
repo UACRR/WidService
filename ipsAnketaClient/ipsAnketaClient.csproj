@@ -68,6 +68,7 @@
       <DependentUpon>AnketaClientView.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="ConsumerModel.cs" />
+    <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -80,6 +81,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IClnBusinessPlace.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IClnPlaceHoll.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

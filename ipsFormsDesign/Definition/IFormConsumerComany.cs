@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ipsFormsDesign.Definition
 {
-    interface IFormConsumerComany : IConsumerCompany
+    public interface IFormConsumerComany : IConsumerCompany
     {
         // Подія збереження
         event Func<bool> Save;
