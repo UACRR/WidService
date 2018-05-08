@@ -55,6 +55,7 @@
             this.txtNumberVat = new Telerik.WinControls.UI.RadTextBox();
             this.txtDirectorPhoneNumber = new Telerik.WinControls.UI.RadTextBox();
             this.ddlDirectorPositionType = new Telerik.WinControls.UI.RadDropDownList();
+            this.iRelEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtDirectorLastName = new Telerik.WinControls.UI.RadTextBox();
             this.txtDirectorFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.txtDirectorSurName = new Telerik.WinControls.UI.RadTextBox();
@@ -65,7 +66,6 @@
             this.ipsAddressControlJa = new IpsViewComponentLibrary.IpsAddressControl();
             this.ipsAddressControlFa = new IpsViewComponentLibrary.IpsAddressControl();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.iRelEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -92,6 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorPhoneNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlDirectorPositionType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iRelEmployeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorSurName)).BeginInit();
@@ -113,7 +114,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxFax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iRelEmployeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -287,6 +287,7 @@
             // 
             // txtRegisterWho
             // 
+            this.txtRegisterWho.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "RegistrWho", true));
             this.txtRegisterWho.Location = new System.Drawing.Point(475, 352);
             this.txtRegisterWho.Name = "txtRegisterWho";
             this.txtRegisterWho.Size = new System.Drawing.Size(205, 20);
@@ -294,6 +295,7 @@
             // 
             // txtRegisterNumber
             // 
+            this.txtRegisterNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "RegistrNumber", true));
             this.txtRegisterNumber.Location = new System.Drawing.Point(129, 352);
             this.txtRegisterNumber.Name = "txtRegisterNumber";
             this.txtRegisterNumber.Size = new System.Drawing.Size(151, 20);
@@ -320,6 +322,10 @@
             this.ddlDirectorPositionType.Name = "ddlDirectorPositionType";
             this.ddlDirectorPositionType.Size = new System.Drawing.Size(183, 20);
             this.ddlDirectorPositionType.TabIndex = 25;
+            // 
+            // iRelEmployeeBindingSource
+            // 
+            this.iRelEmployeeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IRelEmployee);
             // 
             // txtDirectorLastName
             // 
@@ -607,10 +613,6 @@
             this.radLabel6.TabIndex = 8;
             this.radLabel6.Text = "ПІБ:";
             // 
-            // iRelEmployeeBindingSource
-            // 
-            this.iRelEmployeeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IRelEmployee);
-            // 
             // AnketaCompanyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -682,6 +684,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorPhoneNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlDirectorPositionType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iRelEmployeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorSurName)).EndInit();
@@ -703,7 +706,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxFax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iRelEmployeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
