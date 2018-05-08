@@ -48,17 +48,11 @@
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.txtOkpo = new Telerik.WinControls.UI.RadTextBox();
             this.dtRegisterDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.txtRegisterWho = new Telerik.WinControls.UI.RadTextBox();
             this.txtRegisterNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtNumberVat = new Telerik.WinControls.UI.RadTextBox();
-            this.txtBankName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtBankMfo = new Telerik.WinControls.UI.RadTextBox();
-            this.txtBankAccountNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtDirectorPhoneNumber = new Telerik.WinControls.UI.RadTextBox();
             this.ddlDirectorPositionType = new Telerik.WinControls.UI.RadDropDownList();
             this.txtDirectorLastName = new Telerik.WinControls.UI.RadTextBox();
@@ -70,6 +64,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.ipsAddressControl1 = new IpsViewComponentLibrary.IpsAddressControl();
             this.ipsAddressControl2 = new IpsViewComponentLibrary.IpsAddressControl();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -89,17 +84,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtRegisterDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterWho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankMfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorPhoneNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlDirectorPositionType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorLastName)).BeginInit();
@@ -122,6 +111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl2.radTextBoxEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl2.radTextBoxFax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl2.radTextBoxPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -171,7 +161,7 @@
             // 
             // ddlActivityCode
             // 
-            this.ddlActivityCode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.iAnketaCompanyBindingSource, "ActivityCode", true));
+            this.ddlActivityCode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaCompanyBindingSource, "ActivityCode", true));
             this.ddlActivityCode.Location = new System.Drawing.Point(129, 58);
             this.ddlActivityCode.Name = "ddlActivityCode";
             this.ddlActivityCode.Size = new System.Drawing.Size(551, 20);
@@ -274,30 +264,6 @@
             this.radLabel16.TabIndex = 9;
             this.radLabel16.Text = "Бухгалтер:";
             // 
-            // radLabel17
-            // 
-            this.radLabel17.Location = new System.Drawing.Point(12, 552);
-            this.radLabel17.Name = "radLabel17";
-            this.radLabel17.Size = new System.Drawing.Size(72, 18);
-            this.radLabel17.TabIndex = 10;
-            this.radLabel17.Text = "Назва банку:";
-            // 
-            // radLabel18
-            // 
-            this.radLabel18.Location = new System.Drawing.Point(129, 580);
-            this.radLabel18.Name = "radLabel18";
-            this.radLabel18.Size = new System.Drawing.Size(36, 18);
-            this.radLabel18.TabIndex = 11;
-            this.radLabel18.Text = "МФО:";
-            // 
-            // radLabel19
-            // 
-            this.radLabel19.Location = new System.Drawing.Point(383, 578);
-            this.radLabel19.Name = "radLabel19";
-            this.radLabel19.Size = new System.Drawing.Size(26, 18);
-            this.radLabel19.TabIndex = 12;
-            this.radLabel19.Text = "р/р:";
-            // 
             // txtOkpo
             // 
             this.txtOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "Okpo", true));
@@ -338,27 +304,6 @@
             this.txtNumberVat.Size = new System.Drawing.Size(151, 20);
             this.txtNumberVat.TabIndex = 17;
             // 
-            // txtBankName
-            // 
-            this.txtBankName.Location = new System.Drawing.Point(129, 552);
-            this.txtBankName.Name = "txtBankName";
-            this.txtBankName.Size = new System.Drawing.Size(551, 20);
-            this.txtBankName.TabIndex = 18;
-            // 
-            // txtBankMfo
-            // 
-            this.txtBankMfo.Location = new System.Drawing.Point(181, 578);
-            this.txtBankMfo.Name = "txtBankMfo";
-            this.txtBankMfo.Size = new System.Drawing.Size(183, 20);
-            this.txtBankMfo.TabIndex = 19;
-            // 
-            // txtBankAccountNumber
-            // 
-            this.txtBankAccountNumber.Location = new System.Drawing.Point(442, 578);
-            this.txtBankAccountNumber.Name = "txtBankAccountNumber";
-            this.txtBankAccountNumber.Size = new System.Drawing.Size(238, 20);
-            this.txtBankAccountNumber.TabIndex = 20;
-            // 
             // txtDirectorPhoneNumber
             // 
             this.txtDirectorPhoneNumber.Location = new System.Drawing.Point(442, 485);
@@ -396,21 +341,21 @@
             // 
             // txtBuhgalterLastName
             // 
-            this.txtBuhgalterLastName.Location = new System.Drawing.Point(129, 518);
+            this.txtBuhgalterLastName.Location = new System.Drawing.Point(129, 548);
             this.txtBuhgalterLastName.Name = "txtBuhgalterLastName";
             this.txtBuhgalterLastName.Size = new System.Drawing.Size(171, 20);
             this.txtBuhgalterLastName.TabIndex = 29;
             // 
             // txtBuhgalterFirstName
             // 
-            this.txtBuhgalterFirstName.Location = new System.Drawing.Point(317, 518);
+            this.txtBuhgalterFirstName.Location = new System.Drawing.Point(317, 548);
             this.txtBuhgalterFirstName.Name = "txtBuhgalterFirstName";
             this.txtBuhgalterFirstName.Size = new System.Drawing.Size(167, 20);
             this.txtBuhgalterFirstName.TabIndex = 30;
             // 
             // txtBuhgalterSurName
             // 
-            this.txtBuhgalterSurName.Location = new System.Drawing.Point(500, 518);
+            this.txtBuhgalterSurName.Location = new System.Drawing.Point(500, 548);
             this.txtBuhgalterSurName.Name = "txtBuhgalterSurName";
             this.txtBuhgalterSurName.Size = new System.Drawing.Size(180, 20);
             this.txtBuhgalterSurName.TabIndex = 31;
@@ -429,6 +374,10 @@
             this.ipsAddressControl1.radDropDownListCountry.Location = new System.Drawing.Point(0, 0);
             this.ipsAddressControl1.radDropDownListCountry.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radDropDownListCountry.Name = "ddlCountry";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radDropDownListCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 186, 20);
             this.ipsAddressControl1.radDropDownListCountry.Size = new System.Drawing.Size(170, 20);
             this.ipsAddressControl1.radDropDownListCountry.TabIndex = 18;
             // 
@@ -441,6 +390,10 @@
             this.ipsAddressControl1.radDropDownListRegion.Location = new System.Drawing.Point(190, 0);
             this.ipsAddressControl1.radDropDownListRegion.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radDropDownListRegion.Name = "ddlRegion";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radDropDownListRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(206, 0, 186, 20);
             this.ipsAddressControl1.radDropDownListRegion.Size = new System.Drawing.Size(170, 20);
             this.ipsAddressControl1.radDropDownListRegion.TabIndex = 22;
             // 
@@ -454,6 +407,10 @@
             this.ipsAddressControl1.radTextBoxAddress.Location = new System.Drawing.Point(0, 25);
             this.ipsAddressControl1.radTextBoxAddress.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radTextBoxAddress.Name = "txtAddress";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radTextBoxAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 600, 20);
             this.ipsAddressControl1.radTextBoxAddress.Size = new System.Drawing.Size(551, 20);
             this.ipsAddressControl1.radTextBoxAddress.TabIndex = 10;
             // 
@@ -465,6 +422,10 @@
             this.ipsAddressControl1.radTextBoxCity.Location = new System.Drawing.Point(380, 0);
             this.ipsAddressControl1.radTextBoxCity.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radTextBoxCity.Name = "txtCity";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radTextBoxCity.RootElement.ControlBounds = new System.Drawing.Rectangle(412, 0, 188, 20);
             this.ipsAddressControl1.radTextBoxCity.Size = new System.Drawing.Size(171, 20);
             this.ipsAddressControl1.radTextBoxCity.TabIndex = 23;
             // 
@@ -476,6 +437,10 @@
             this.ipsAddressControl1.radTextBoxEmail.Location = new System.Drawing.Point(440, 50);
             this.ipsAddressControl1.radTextBoxEmail.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radTextBoxEmail.Name = "txtEmail";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radTextBoxEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(472, 50, 128, 20);
             this.ipsAddressControl1.radTextBoxEmail.Size = new System.Drawing.Size(111, 20);
             this.ipsAddressControl1.radTextBoxEmail.TabIndex = 27;
             // 
@@ -487,6 +452,10 @@
             this.ipsAddressControl1.radTextBoxFax.Location = new System.Drawing.Point(250, 50);
             this.ipsAddressControl1.radTextBoxFax.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radTextBoxFax.Name = "txtFax";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radTextBoxFax.RootElement.ControlBounds = new System.Drawing.Rectangle(266, 50, 126, 20);
             this.ipsAddressControl1.radTextBoxFax.Size = new System.Drawing.Size(110, 20);
             this.ipsAddressControl1.radTextBoxFax.TabIndex = 26;
             // 
@@ -498,6 +467,10 @@
             this.ipsAddressControl1.radTextBoxPhone.Location = new System.Drawing.Point(60, 50);
             this.ipsAddressControl1.radTextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl1.radTextBoxPhone.Name = "txtPhone";
+            // 
+            // 
+            // 
+            this.ipsAddressControl1.radTextBoxPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(60, 50, 126, 20);
             this.ipsAddressControl1.radTextBoxPhone.Size = new System.Drawing.Size(110, 20);
             this.ipsAddressControl1.radTextBoxPhone.TabIndex = 21;
             this.ipsAddressControl1.Size = new System.Drawing.Size(551, 70);
@@ -517,6 +490,10 @@
             this.ipsAddressControl2.radDropDownListCountry.Location = new System.Drawing.Point(0, 0);
             this.ipsAddressControl2.radDropDownListCountry.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl2.radDropDownListCountry.Name = "ddlCountry";
+            // 
+            // 
+            // 
+            this.ipsAddressControl2.radDropDownListCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 186, 20);
             this.ipsAddressControl2.radDropDownListCountry.Size = new System.Drawing.Size(170, 20);
             this.ipsAddressControl2.radDropDownListCountry.TabIndex = 18;
             // 
@@ -529,6 +506,10 @@
             this.ipsAddressControl2.radDropDownListRegion.Location = new System.Drawing.Point(190, 0);
             this.ipsAddressControl2.radDropDownListRegion.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl2.radDropDownListRegion.Name = "ddlRegion";
+            // 
+            // 
+            // 
+            this.ipsAddressControl2.radDropDownListRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(206, 0, 186, 20);
             this.ipsAddressControl2.radDropDownListRegion.Size = new System.Drawing.Size(170, 20);
             this.ipsAddressControl2.radDropDownListRegion.TabIndex = 22;
             // 
@@ -542,6 +523,10 @@
             this.ipsAddressControl2.radTextBoxAddress.Location = new System.Drawing.Point(0, 25);
             this.ipsAddressControl2.radTextBoxAddress.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl2.radTextBoxAddress.Name = "txtAddress";
+            // 
+            // 
+            // 
+            this.ipsAddressControl2.radTextBoxAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 600, 20);
             this.ipsAddressControl2.radTextBoxAddress.Size = new System.Drawing.Size(551, 20);
             this.ipsAddressControl2.radTextBoxAddress.TabIndex = 10;
             // 
@@ -553,6 +538,10 @@
             this.ipsAddressControl2.radTextBoxCity.Location = new System.Drawing.Point(380, 0);
             this.ipsAddressControl2.radTextBoxCity.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl2.radTextBoxCity.Name = "txtCity";
+            // 
+            // 
+            // 
+            this.ipsAddressControl2.radTextBoxCity.RootElement.ControlBounds = new System.Drawing.Rectangle(412, 0, 188, 20);
             this.ipsAddressControl2.radTextBoxCity.Size = new System.Drawing.Size(171, 20);
             this.ipsAddressControl2.radTextBoxCity.TabIndex = 23;
             // 
@@ -564,6 +553,10 @@
             this.ipsAddressControl2.radTextBoxEmail.Location = new System.Drawing.Point(440, 50);
             this.ipsAddressControl2.radTextBoxEmail.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl2.radTextBoxEmail.Name = "txtEmail";
+            // 
+            // 
+            // 
+            this.ipsAddressControl2.radTextBoxEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(472, 50, 128, 20);
             this.ipsAddressControl2.radTextBoxEmail.Size = new System.Drawing.Size(111, 20);
             this.ipsAddressControl2.radTextBoxEmail.TabIndex = 27;
             // 
@@ -575,6 +568,10 @@
             this.ipsAddressControl2.radTextBoxFax.Location = new System.Drawing.Point(250, 50);
             this.ipsAddressControl2.radTextBoxFax.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl2.radTextBoxFax.Name = "txtFax";
+            // 
+            // 
+            // 
+            this.ipsAddressControl2.radTextBoxFax.RootElement.ControlBounds = new System.Drawing.Rectangle(266, 50, 126, 20);
             this.ipsAddressControl2.radTextBoxFax.Size = new System.Drawing.Size(110, 20);
             this.ipsAddressControl2.radTextBoxFax.TabIndex = 26;
             // 
@@ -586,16 +583,29 @@
             this.ipsAddressControl2.radTextBoxPhone.Location = new System.Drawing.Point(60, 50);
             this.ipsAddressControl2.radTextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
             this.ipsAddressControl2.radTextBoxPhone.Name = "txtPhone";
+            // 
+            // 
+            // 
+            this.ipsAddressControl2.radTextBoxPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(60, 50, 126, 20);
             this.ipsAddressControl2.radTextBoxPhone.Size = new System.Drawing.Size(110, 20);
             this.ipsAddressControl2.radTextBoxPhone.TabIndex = 21;
             this.ipsAddressControl2.Size = new System.Drawing.Size(551, 70);
             this.ipsAddressControl2.TabIndex = 37;
             // 
+            // radLabel6
+            // 
+            this.radLabel6.Location = new System.Drawing.Point(53, 550);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(26, 18);
+            this.radLabel6.TabIndex = 8;
+            this.radLabel6.Text = "ПІБ:";
+            // 
             // AnketaCompanyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 608);
+            this.ClientSize = new System.Drawing.Size(692, 584);
+            this.Controls.Add(this.radLabel6);
             this.Controls.Add(this.ipsAddressControl2);
             this.Controls.Add(this.ipsAddressControl1);
             this.Controls.Add(this.txtBuhgalterSurName);
@@ -606,17 +616,11 @@
             this.Controls.Add(this.txtDirectorLastName);
             this.Controls.Add(this.ddlDirectorPositionType);
             this.Controls.Add(this.txtDirectorPhoneNumber);
-            this.Controls.Add(this.txtBankAccountNumber);
-            this.Controls.Add(this.txtBankMfo);
-            this.Controls.Add(this.txtBankName);
             this.Controls.Add(this.txtNumberVat);
             this.Controls.Add(this.txtRegisterNumber);
             this.Controls.Add(this.txtRegisterWho);
             this.Controls.Add(this.dtRegisterDate);
             this.Controls.Add(this.txtOkpo);
-            this.Controls.Add(this.radLabel19);
-            this.Controls.Add(this.radLabel18);
-            this.Controls.Add(this.radLabel17);
             this.Controls.Add(this.radLabel16);
             this.Controls.Add(this.radLabel15);
             this.Controls.Add(this.radLabel14);
@@ -660,17 +664,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtRegisterDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterWho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankMfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorPhoneNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlDirectorPositionType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDirectorLastName)).EndInit();
@@ -693,6 +691,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl2.radTextBoxEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl2.radTextBoxFax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl2.radTextBoxPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -720,17 +719,11 @@
         private Telerik.WinControls.UI.RadLabel radLabel14;
         private Telerik.WinControls.UI.RadLabel radLabel15;
         private Telerik.WinControls.UI.RadLabel radLabel16;
-        private Telerik.WinControls.UI.RadLabel radLabel17;
-        private Telerik.WinControls.UI.RadLabel radLabel18;
-        private Telerik.WinControls.UI.RadLabel radLabel19;
         private Telerik.WinControls.UI.RadTextBox txtOkpo;
         private Telerik.WinControls.UI.RadTextBox txtRegisterWho;
         private Telerik.WinControls.UI.RadDateTimePicker dtRegisterDate;
         private Telerik.WinControls.UI.RadTextBox txtRegisterNumber;
         private Telerik.WinControls.UI.RadTextBox txtNumberVat;
-        private Telerik.WinControls.UI.RadTextBox txtBankName;
-        private Telerik.WinControls.UI.RadTextBox txtBankMfo;
-        private Telerik.WinControls.UI.RadTextBox txtBankAccountNumber;
         private Telerik.WinControls.UI.RadTextBox txtDirectorPhoneNumber;
         private Telerik.WinControls.UI.RadDropDownList ddlDirectorPositionType;
         private Telerik.WinControls.UI.RadTextBox txtDirectorLastName;
@@ -742,5 +735,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private IpsViewComponentLibrary.IpsAddressControl ipsAddressControl1;
         private IpsViewComponentLibrary.IpsAddressControl ipsAddressControl2;
+        private Telerik.WinControls.UI.RadLabel radLabel6;
     }
 }

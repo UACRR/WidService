@@ -17,6 +17,10 @@ namespace ipsAnketaRightHolder
         {
             _view = form;
             _model = model;
+
+            var dictionaries = _model.GetDictionary();
+            form.SetDictionary(dictionaries);
+
             var data = _model.GetData(custId);
             _view.SetData(data);
         }

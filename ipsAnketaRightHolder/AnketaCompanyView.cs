@@ -18,6 +18,7 @@ namespace ipsAnketaRightHolder
         private Customer _data;
         private AnketaCompany _curAnketa;
         private RelEmployee _relBoss;
+        private AnketaDictionaties _dictionaries;
 
         public IAnketaCompany AnketaCompany { get => _curAnketa; }
         public ICustomer Customer { get => _data; }
@@ -45,10 +46,11 @@ namespace ipsAnketaRightHolder
                 // If nullable
                 Type checkType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
 
-                if (!(source.GetType().IsPrimitive == true
+                if (!(checkType.IsPrimitive == true
                   || checkType == typeof(string)
                   || checkType == typeof(Decimal)
-                  || checkType == typeof(DateTime)))
+                  || checkType == typeof(DateTime))
+                   )
                     continue;
 
                 var objValue = property.GetValue(dest);
@@ -84,6 +86,13 @@ namespace ipsAnketaRightHolder
             FieldsValueChanged?.Invoke(sender, e);
         }
 
+        private void BindDictionaries()
+        {
+            ddlActivityCode.DataSource = _dictionaries.activityType;
+            ddlActivityCode.ValueMember = "CodeI";
+            ddlActivityCode.DisplayMember = "name";
+        }
+
         /// <summary>
         /// Встановити дані форми
         /// </summary>
@@ -112,6 +121,13 @@ namespace ipsAnketaRightHolder
         public void getData(Customer data)
         {
             throw new NotImplementedException();
+        }
+
+        public void SetDictionary(AnketaDictionaties dic)
+        {
+            _dictionaries = dic;
+            if (_dictionaries != null)
+                BindDictionaries();
         }
     }
 }
