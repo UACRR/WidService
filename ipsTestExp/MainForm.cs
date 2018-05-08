@@ -32,6 +32,7 @@ namespace ipsTestExp
         public ICustomer Customer => _data;
         public IRelEmployee RelEmployer => _relBoss;
         public IEmployee Employee => _relBoss.Empl;
+        public IClient Client => _data.Client;
         private AnketaDictionaties _dictionaries;
 
 
@@ -78,7 +79,8 @@ namespace ipsTestExp
             {
                 Company = new Company { RelEmployee = new HashSet<RelEmployee>() },
                 AnketaCompany = new HashSet<AnketaCompany>(),
-                AnkVersion = 1
+                AnkVersion = 1,
+                Client = new Client { ClnBusinessPlace = new HashSet<ClnBusinessPlace>()}
             };
             _curAnketa = new AnketaCompany { Version = 1 };
             _relBoss = new RelEmployee { Empl = new Employee() };

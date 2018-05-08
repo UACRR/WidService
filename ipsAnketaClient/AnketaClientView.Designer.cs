@@ -28,37 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.rGridViewInstitution = new Telerik.WinControls.UI.RadGridView();
             this.rPanelAdd = new Telerik.WinControls.UI.RadPanel();
+            this.rTxtBoxCountOrMeters = new Telerik.WinControls.UI.RadTextBox();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.rBtnCancel = new Telerik.WinControls.UI.RadButton();
+            this.rBtnSave = new Telerik.WinControls.UI.RadButton();
             this.rLblTypeInst = new Telerik.WinControls.UI.RadLabel();
             this.rLblName = new Telerik.WinControls.UI.RadLabel();
             this.rTxtBoxTypeInst = new Telerik.WinControls.UI.RadTextBox();
             this.rTxtBoxNameInst = new Telerik.WinControls.UI.RadTextBox();
             this.rDropDownBtnAddInst = new Telerik.WinControls.UI.RadDropDownButton();
-            this.rBtnAddRestaurant = new Telerik.WinControls.UI.RadMenuItem();
             this.rBtnAddHotel = new Telerik.WinControls.UI.RadMenuItem();
+            this.rBtnAddRestaurant = new Telerik.WinControls.UI.RadMenuItem();
             this.rBtnAddNightClub = new Telerik.WinControls.UI.RadMenuItem();
-            this.rBtnAddCaffeOrBar = new Telerik.WinControls.UI.RadMenuItem();
-            this.rBtnSave = new Telerik.WinControls.UI.RadButton();
-            this.rBtnCancel = new Telerik.WinControls.UI.RadButton();
-            this.lblLocation = new System.Windows.Forms.Label();
-            this.rTxtBoxCountOrMeters = new Telerik.WinControls.UI.RadTextBox();
             this.rBtnAddNightClubFree = new Telerik.WinControls.UI.RadMenuItem();
+            this.rBtnAddCaffeOrBar = new Telerik.WinControls.UI.RadMenuItem();
             this.rBtnAddTheaterOrOpera = new Telerik.WinControls.UI.RadMenuItem();
             this.addressControl = new IpsViewComponentLibrary.IpsAddressExpandedControl();
+            this.iClnBusinessPlaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iConsumerCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rPanelAdd)).BeginInit();
             this.rPanelAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxTypeInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxNameInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rDropDownBtnAddInst)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iClnBusinessPlaceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iConsumerCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +86,77 @@
             // 
             // 
             // 
+            gridViewDecimalColumn1.DataType = typeof(int);
+            gridViewDecimalColumn1.FieldName = "PlaceId";
+            gridViewDecimalColumn1.HeaderText = "PlaceId";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.Name = "PlaceId";
+            gridViewDecimalColumn2.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn2.FieldName = "CustId";
+            gridViewDecimalColumn2.HeaderText = "CustId";
+            gridViewDecimalColumn2.IsAutoGenerated = true;
+            gridViewDecimalColumn2.IsVisible = false;
+            gridViewDecimalColumn2.Name = "CustId";
+            gridViewTextBoxColumn1.FieldName = "PlaceName";
+            gridViewTextBoxColumn1.HeaderText = "PlaceName";
+            gridViewTextBoxColumn1.IsAutoGenerated = true;
+            gridViewTextBoxColumn1.Name = "PlaceName";
+            gridViewTextBoxColumn2.FieldName = "PlaceCountry";
+            gridViewTextBoxColumn2.HeaderText = "PlaceCountry";
+            gridViewTextBoxColumn2.IsAutoGenerated = true;
+            gridViewTextBoxColumn2.IsVisible = false;
+            gridViewTextBoxColumn2.Name = "PlaceCountry";
+            gridViewDecimalColumn3.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn3.FieldName = "PlaceRegion";
+            gridViewDecimalColumn3.HeaderText = "PlaceRegion";
+            gridViewDecimalColumn3.IsAutoGenerated = true;
+            gridViewDecimalColumn3.IsVisible = false;
+            gridViewDecimalColumn3.Name = "PlaceRegion";
+            gridViewTextBoxColumn3.FieldName = "PlaceCity";
+            gridViewTextBoxColumn3.HeaderText = "PlaceCity";
+            gridViewTextBoxColumn3.IsAutoGenerated = true;
+            gridViewTextBoxColumn3.IsVisible = false;
+            gridViewTextBoxColumn3.Name = "PlaceCity";
+            gridViewTextBoxColumn4.FieldName = "PlaceAddress";
+            gridViewTextBoxColumn4.HeaderText = "PlaceAddress";
+            gridViewTextBoxColumn4.IsAutoGenerated = true;
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.Name = "PlaceAddress";
+            gridViewTextBoxColumn5.FieldName = "PlacePhone";
+            gridViewTextBoxColumn5.HeaderText = "PlacePhone";
+            gridViewTextBoxColumn5.IsAutoGenerated = true;
+            gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.Name = "PlacePhone";
+            gridViewCheckBoxColumn1.DataType = typeof(System.Nullable<bool>);
+            gridViewCheckBoxColumn1.FieldName = "FreeEntry";
+            gridViewCheckBoxColumn1.HeaderText = "FreeEntry";
+            gridViewCheckBoxColumn1.IsAutoGenerated = true;
+            gridViewCheckBoxColumn1.IsVisible = false;
+            gridViewCheckBoxColumn1.Name = "FreeEntry";
+            gridViewDecimalColumn4.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn4.FieldName = "PlCode";
+            gridViewDecimalColumn4.HeaderText = "PlCode";
+            gridViewDecimalColumn4.IsAutoGenerated = true;
+            gridViewDecimalColumn4.IsVisible = false;
+            gridViewDecimalColumn4.Name = "PlCode";
+            gridViewTextBoxColumn6.FieldName = "PlCodeNavigation.Name";
+            gridViewTextBoxColumn6.HeaderText = "PlCodeNavigation";
+            gridViewTextBoxColumn6.IsAutoGenerated = true;
+            gridViewTextBoxColumn6.Name = "PlCodeNavigation";
+            gridViewTextBoxColumn6.ReadOnly = true;
+            this.rGridViewInstitution.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn1,
+            gridViewDecimalColumn2,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewDecimalColumn3,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewCheckBoxColumn1,
+            gridViewDecimalColumn4,
+            gridViewTextBoxColumn6});
+            this.rGridViewInstitution.MasterTemplate.DataSource = this.iClnBusinessPlaceBindingSource;
             this.rGridViewInstitution.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewInstitution.Name = "rGridViewInstitution";
             this.rGridViewInstitution.Size = new System.Drawing.Size(1028, 244);
@@ -91,6 +178,43 @@
             this.rPanelAdd.Size = new System.Drawing.Size(889, 214);
             this.rPanelAdd.TabIndex = 2;
             this.rPanelAdd.Visible = false;
+            // 
+            // rTxtBoxCountOrMeters
+            // 
+            this.rTxtBoxCountOrMeters.Location = new System.Drawing.Point(134, 157);
+            this.rTxtBoxCountOrMeters.Name = "rTxtBoxCountOrMeters";
+            this.rTxtBoxCountOrMeters.Size = new System.Drawing.Size(96, 20);
+            this.rTxtBoxCountOrMeters.TabIndex = 8;
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblLocation.Location = new System.Drawing.Point(10, 154);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(118, 22);
+            this.lblLocation.TabIndex = 7;
+            this.lblLocation.Text = "label1";
+            this.lblLocation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // rBtnCancel
+            // 
+            this.rBtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.rBtnCancel.Location = new System.Drawing.Point(120, 187);
+            this.rBtnCancel.Name = "rBtnCancel";
+            this.rBtnCancel.Size = new System.Drawing.Size(110, 24);
+            this.rBtnCancel.TabIndex = 5;
+            this.rBtnCancel.Text = "Скасувати";
+            this.rBtnCancel.Click += new System.EventHandler(this.rBtnCancel_Click);
+            // 
+            // rBtnSave
+            // 
+            this.rBtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.rBtnSave.Location = new System.Drawing.Point(4, 187);
+            this.rBtnSave.Name = "rBtnSave";
+            this.rBtnSave.Size = new System.Drawing.Size(110, 24);
+            this.rBtnSave.TabIndex = 4;
+            this.rBtnSave.Text = "Зберегти";
+            this.rBtnSave.Click += new System.EventHandler(this.rBtnSave_Click);
             // 
             // rLblTypeInst
             // 
@@ -145,6 +269,12 @@
             this.rDropDownBtnAddInst.TabIndex = 3;
             this.rDropDownBtnAddInst.Text = "Додати заклад";
             // 
+            // rBtnAddHotel
+            // 
+            this.rBtnAddHotel.Name = "rBtnAddHotel";
+            this.rBtnAddHotel.Text = "Готель";
+            this.rBtnAddHotel.Click += new System.EventHandler(this.rBtnAddHotel_Click);
+            // 
             // rBtnAddRestaurant
             // 
             this.rBtnAddRestaurant.AccessibleDescription = "Додати ресторан";
@@ -152,66 +282,23 @@
             this.rBtnAddRestaurant.Text = "Ресторан";
             this.rBtnAddRestaurant.Click += new System.EventHandler(this.rBtnAddRestaurant_Click);
             // 
-            // rBtnAddHotel
-            // 
-            this.rBtnAddHotel.Name = "rBtnAddHotel";
-            this.rBtnAddHotel.Text = "Готель";
-            this.rBtnAddHotel.Click += new System.EventHandler(this.rBtnAddHotel_Click);
-            // 
             // rBtnAddNightClub
             // 
             this.rBtnAddNightClub.Name = "rBtnAddNightClub";
             this.rBtnAddNightClub.Text = "Нічні клуби/Платний вхід";
             this.rBtnAddNightClub.Click += new System.EventHandler(this.rBtnAddNightClub_Click);
             // 
-            // rBtnAddCaffeOrBar
-            // 
-            this.rBtnAddCaffeOrBar.Name = "rBtnAddCaffeOrBar";
-            this.rBtnAddCaffeOrBar.Text = "Кафе / Бар - Їдальня";
-            this.rBtnAddCaffeOrBar.Click += new System.EventHandler(this.rBtnAddCaffeOrBar_Click);
-            // 
-            // rBtnSave
-            // 
-            this.rBtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnSave.Location = new System.Drawing.Point(4, 187);
-            this.rBtnSave.Name = "rBtnSave";
-            this.rBtnSave.Size = new System.Drawing.Size(110, 24);
-            this.rBtnSave.TabIndex = 4;
-            this.rBtnSave.Text = "Зберегти";
-            this.rBtnSave.Click += new System.EventHandler(this.rBtnSave_Click);
-            // 
-            // rBtnCancel
-            // 
-            this.rBtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnCancel.Location = new System.Drawing.Point(120, 187);
-            this.rBtnCancel.Name = "rBtnCancel";
-            this.rBtnCancel.Size = new System.Drawing.Size(110, 24);
-            this.rBtnCancel.TabIndex = 5;
-            this.rBtnCancel.Text = "Скасувати";
-            this.rBtnCancel.Click += new System.EventHandler(this.rBtnCancel_Click);
-            // 
-            // lblLocation
-            // 
-            this.lblLocation.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblLocation.Location = new System.Drawing.Point(10, 154);
-            this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(118, 22);
-            this.lblLocation.TabIndex = 7;
-            this.lblLocation.Text = "label1";
-            this.lblLocation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // rTxtBoxCountOrMeters
-            // 
-            this.rTxtBoxCountOrMeters.Location = new System.Drawing.Point(134, 157);
-            this.rTxtBoxCountOrMeters.Name = "rTxtBoxCountOrMeters";
-            this.rTxtBoxCountOrMeters.Size = new System.Drawing.Size(96, 20);
-            this.rTxtBoxCountOrMeters.TabIndex = 8;
-            // 
             // rBtnAddNightClubFree
             // 
             this.rBtnAddNightClubFree.Name = "rBtnAddNightClubFree";
             this.rBtnAddNightClubFree.Text = "Нічні клуби/Безкоштовний вхід";
             this.rBtnAddNightClubFree.Click += new System.EventHandler(this.rBtnAddNightClubFree_Click);
+            // 
+            // rBtnAddCaffeOrBar
+            // 
+            this.rBtnAddCaffeOrBar.Name = "rBtnAddCaffeOrBar";
+            this.rBtnAddCaffeOrBar.Text = "Кафе / Бар - Їдальня";
+            this.rBtnAddCaffeOrBar.Click += new System.EventHandler(this.rBtnAddCaffeOrBar_Click);
             // 
             // rBtnAddTheaterOrOpera
             // 
@@ -225,6 +312,14 @@
             this.addressControl.Name = "addressControl";
             this.addressControl.Size = new System.Drawing.Size(873, 89);
             this.addressControl.TabIndex = 6;
+            // 
+            // iClnBusinessPlaceBindingSource
+            // 
+            this.iClnBusinessPlaceBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IClnBusinessPlace);
+            // 
+            // iConsumerCompanyBindingSource
+            // 
+            this.iConsumerCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IConsumerCompany);
             // 
             // AnketaClientView
             // 
@@ -245,14 +340,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.rPanelAdd)).EndInit();
             this.rPanelAdd.ResumeLayout(false);
             this.rPanelAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxTypeInst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxNameInst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rDropDownBtnAddInst)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iClnBusinessPlaceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iConsumerCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -278,5 +375,7 @@
         private Telerik.WinControls.UI.RadTextBox rTxtBoxCountOrMeters;
         private Telerik.WinControls.UI.RadMenuItem rBtnAddNightClubFree;
         private Telerik.WinControls.UI.RadMenuItem rBtnAddTheaterOrOpera;
+        private System.Windows.Forms.BindingSource iClnBusinessPlaceBindingSource;
+        private System.Windows.Forms.BindingSource iConsumerCompanyBindingSource;
     }
 }

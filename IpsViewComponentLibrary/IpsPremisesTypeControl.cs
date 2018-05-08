@@ -12,6 +12,10 @@ namespace IpsViewComponentLibrary
 {
     public partial class IpsPremisesTypeControl : UserControl
     {
+        public delegate void AddPremisses();
+
+        public event AddPremisses OnBtnAddPremisesClick;
+
         public IpsPremisesTypeControl()
         {
             InitializeComponent();
@@ -19,7 +23,7 @@ namespace IpsViewComponentLibrary
 
         private void rBtnAddPremises_Click(object sender, EventArgs e)
         {
-
+            OnBtnAddPremisesClick?.Invoke();
         }
     }
 }

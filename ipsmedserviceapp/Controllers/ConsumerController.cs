@@ -34,6 +34,8 @@ namespace ipsmedserviceapp.Controllers
             foreach( var place in cust.Client.ClnBusinessPlace )
             {
                 _dbContext.Entry(place).Collection(item => item.ClnPlaceHoll).Load();
+                _dbContext.Entry(place).Reference(item=>item.PlCodeNavigation).Load();
+
             }
 
 
