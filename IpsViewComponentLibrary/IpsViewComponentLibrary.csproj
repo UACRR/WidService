@@ -51,6 +51,12 @@
     <Compile Include="IpsAddressControl.Designer.cs">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="IpsBankAccountControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsBankAccountControl.Designer.cs">
+      <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
