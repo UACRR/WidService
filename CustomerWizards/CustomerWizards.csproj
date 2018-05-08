@@ -57,14 +57,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WizardRightholderView.cs">
+    <Compile Include="WizardCustomerModel.cs" />
+    <Compile Include="WizardCustomerPresenter.cs" />
+    <Compile Include="WizardCustomerView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WizardRightholderView.Designer.cs">
-      <DependentUpon>WizardRightholderView.cs</DependentUpon>
+    <Compile Include="WizardCustomerView.Designer.cs">
+      <DependentUpon>WizardCustomerView.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="WizardRightholderView.resx">
-      <DependentUpon>WizardRightholderView.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="WizardCustomerView.resx">
+      <DependentUpon>WizardCustomerView.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +80,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICustomer.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRelEmployee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,6 +99,14 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{64D0405A-FDC7-46C8-B9FD-10CC0FD19E42}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
+      <Project>{FA6CAA86-7F51-4EB9-948F-EE81D384ED56}</Project>
+      <Name>WebAPIConnector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

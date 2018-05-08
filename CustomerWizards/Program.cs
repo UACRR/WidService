@@ -14,7 +14,12 @@ namespace CustomerWizards
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WizardRightholderView());
+
+            var view = new WizardCustomerView();
+            var model = new WizardCustomerModel();
+            var presenter = new WizardCustomerPresenter(view, model, 139);
+
+            Application.Run(view);
         }
     }
 }
