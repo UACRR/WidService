@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class BankAccount
+    public partial class BankAccount : IBankAccount
     {
         public BankAccount()
         {
