@@ -65,6 +65,12 @@
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IpsServiceComissionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsServiceComissionControl.Designer.cs">
+      <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="IpsAddressControl.resx">
@@ -77,6 +83,9 @@
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="IpsServiceComissionControl.resx">
+      <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\DataSources\" />
