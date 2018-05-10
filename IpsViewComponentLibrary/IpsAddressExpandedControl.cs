@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsmedserviceapp.Model;
 
 namespace IpsViewComponentLibrary
 {
@@ -101,6 +103,22 @@ namespace IpsViewComponentLibrary
             lblRegion.ForeColor = Color.Black;
             lblStreet.ForeColor = Color.Black;
             lblBuild.ForeColor = Color.Black;
+        }
+
+        public void SetAddressForEditCustomer(Customer data, int id)
+        {
+           _nameTown = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item => item.PlaceCity).SingleOrDefault();
+           _regionCode = (int)data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item=>item.PlaceRegion).SingleOrDefault();
+            rDropListRegion.SelectedIndex = _regionCode;
+            _nameRegion = rDropListRegion.SelectedItem.Text;
+            _streetAddress = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item => item.PlaceAddress).SingleOrDefault();
+
+
+            //_nubmerBuild;
+            //_numberOffice;
+
+            rTxtBoxTownName.Text = _nameTown;
+            rTxtBoxNameStreet.Text = _streetAddress;
         }
 
         private void rDropListRegion_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

@@ -22,10 +22,36 @@ namespace ipsAnketaClient
         private AnketaCompany _curAnketa;
         private RelEmployee _relBoss;
 
+        public IAnketaCompany AnketaCompany => _curAnketa;
+
+        public ICustomer Customer => _data;
+        public IRelEmployee RelEmployer => _relBoss;
+        public IEmployee Employee => _relBoss.Empl;
+        public IClient Client => _data.Client;
+        private AnketaDictionaties _dictionaries;
+        private List<IClnBusinessPlace> listBisPlace;
+        private List<IClnPlaceHoll> listPlaceHole;
+
+        public IList<IClnBusinessPlace> clnBusinessPlaceList
+        {
+            get => clnBusinessPlaceList;
+            set => clnBusinessPlaceList = (List<IClnBusinessPlace>)value;
+        }
+        public IList<IClnPlaceHoll> clnPlaceHoll
+        {
+            get => listPlaceHole;
+            set => listPlaceHole = (List<IClnPlaceHoll>)value;
+        }
+        public IList<ILicPlaceHoll> licPlaceHoll { get; set; }
+        public event Func<bool> Save;
+
+        public int IdItemOfSelectRow { get; set; }
         public AnketaClientView()
         {
             InitializeComponent();
         }
+
+
         // Сінхронізація 
         private void SetObjectValues(object source, object dest)
         {
@@ -39,11 +65,14 @@ namespace ipsAnketaClient
                 // If nullable
                 Type checkType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
 
-                if (!(source.GetType().IsPrimitive == true
+                if (!(source.GetType().IsPrimitive
                       || checkType == typeof(string)
                       || checkType == typeof(Decimal)
-                      || checkType == typeof(DateTime)))
+                      || checkType == typeof(DateTime)
+                      //|| checkType == typeof(Int32)
+                      || checkType.IsPrimitive))//+числові значення
                     continue;
+
 
                 var objValue = property.GetValue(dest);
                 var anotherValue = property.GetValue(source);
@@ -57,13 +86,29 @@ namespace ipsAnketaClient
                     property.SetValue(dest, anotherValue, null);
             }
         }
+
+
         private void PremisesType_OnBtnAddPremisesClick()
         {
-            RadForm rf = new RadForm();
-            rf.ShowDialog();
+            AddPremisesForm newPremises = new AddPremisesForm();
+            newPremises.ShowDialog();
+            GC.Collect();
         }
 
-        #region Кнопки додавання нових закладів
+
+        private void PremisesType_OnBtnEditPremisesClick()
+        {
+            AddPremisesForm editPremises = new AddPremisesForm(premisesType.GetData());
+            MessageBox.Show(premisesType.IdSelectedRow.ToString());
+
+        }
+
+        private void PremisesType_OnBtnDeletePremisesClick()
+        {
+            MessageBox.Show(premisesType.IdSelectedRow.ToString());
+        }
+
+        #region [ -- Кнопки додавання нових закладів -- ]
 
         private void rBtnAddRestaurant_Click(object sender, EventArgs e)
         {
@@ -72,6 +117,8 @@ namespace ipsAnketaClient
             InitializeAdditionalComponents();
             rDropDownBtnAddInst.Enabled = false;
             IsNeedPremissesType = true;
+            rBtnEditInst.Enabled = false;
+            rGridViewInstitution.Enabled = false;
         }
 
         private void rBtnAddHotel_Click(object sender, EventArgs e)
@@ -80,6 +127,8 @@ namespace ipsAnketaClient
             rPanelAdd.Visible = true;
             rDropDownBtnAddInst.Enabled = false;
             IsNeedPremissesType = true;
+            rGridViewInstitution.Enabled = false;
+            rBtnEditInst.Enabled = false;
             InitializeAdditionalComponents();
         }
 
@@ -91,6 +140,8 @@ namespace ipsAnketaClient
             lblLocation.Visible = true;
             lblLocation.Text = "Кількість місць";
             rDropDownBtnAddInst.Enabled = false;
+            rBtnEditInst.Enabled = false;
+            rGridViewInstitution.Enabled = false;
             rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
         }
 
@@ -102,6 +153,8 @@ namespace ipsAnketaClient
             lblLocation.Visible = true;
             lblLocation.Text = "Метраж";
             rDropDownBtnAddInst.Enabled = false;
+            rBtnEditInst.Enabled = false;
+            rGridViewInstitution.Enabled = false;
             rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
         }
 
@@ -113,25 +166,56 @@ namespace ipsAnketaClient
             rTxtBoxCountOrMeters.Visible = true;
             lblLocation.Text = "Кількість місць";
             rDropDownBtnAddInst.Enabled = false;
+            rBtnEditInst.Enabled = false;
+            rGridViewInstitution.Enabled = false;
             rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
         }
 
-
-
         private void rBtnAddTheaterOrOpera_Click(object sender, EventArgs e)
         {
-            rTxtBoxTypeInst.Text = rBtnAddCaffeOrBar.Text;
+            rTxtBoxTypeInst.Text = rBtnAddTheaterOrOpera.Text;
             rPanelAdd.Visible = true;
             lblLocation.Visible = true;
             rTxtBoxCountOrMeters.Visible = true;
             lblLocation.Text = "Кількість місць";
             rDropDownBtnAddInst.Enabled = false;
+            rBtnEditInst.Enabled = false;
+            rGridViewInstitution.Enabled = false;
             rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
-
         }
 
         #endregion
 
+        /// <summary>
+        /// кнопка "Редагувати заклад"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rBtnEditInst_Click(object sender, EventArgs e)
+        {
+            if(rGridViewInstitution.CurrentRow.Cells[0].Value.GetType()!=typeof(Int32))
+                return;
+            IdItemOfSelectRow = (int) rGridViewInstitution.CurrentRow.Cells[0].Value;
+            var typePlace = _data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlCodeNavigation).SingleOrDefault();
+            if(typePlace!=null)
+                if (typePlace.CodeI == 1 || typePlace.CodeI == 2)
+                {
+                    InitializeAdditionalComponents();
+                    IsNeedPremissesType = true;
+                    premisesType.SetDataSource(_data, IdItemOfSelectRow);
+                }
+
+            rTxtBoxNameInst.Text = _data.Client.ClnBusinessPlace.Where(itemId=>itemId.PlaceId == IdItemOfSelectRow).Select(item=>item.PlaceName).SingleOrDefault();
+            var type = _data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlCodeNavigation).SingleOrDefault();
+            if(type !=null)
+                rTxtBoxTypeInst.Text = type.Name;
+            addressControl.SetAddressForEditCustomer(_data,IdItemOfSelectRow);
+
+            rPanelAdd.Visible = true;
+            rDropDownBtnAddInst.Enabled = false;
+            rGridViewInstitution.Enabled = false;
+            rBtnEditInst.Enabled = false;
+        }
 
         private void rBtnCancel_Click(object sender, EventArgs e)
         {
@@ -143,14 +227,19 @@ namespace ipsAnketaClient
             if (premisesType != null)
             {
                 rPanelAdd.Controls.Remove(premisesType);
+                rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height-235);//   - 240
                 rPanelAdd.Refresh();
                 premisesType.OnBtnAddPremisesClick -= PremisesType_OnBtnAddPremisesClick;
+                premisesType.OnBtnDeletePremisesClick -= PremisesType_OnBtnDeletePremisesClick;
+                premisesType.OnBtnEditPremisesClick -= PremisesType_OnBtnEditPremisesClick;
                 premisesType.Dispose();
                 premisesType = null;
                 GC.Collect();
             }
             DefaultColorLabels();
+            rGridViewInstitution.Enabled = true;
             IsNeedPremissesType = false;
+            rBtnEditInst.Enabled = true;
         }
 
         /// <summary>
@@ -171,18 +260,20 @@ namespace ipsAnketaClient
         {
             rTxtBoxCountOrMeters.Visible = false;
             lblLocation.Visible = false;
-            rTxtBoxCountOrMeters.Visible = false;
             lblLocation.Text = string.Empty;
 
             premisesType = new IpsPremisesTypeControl();
             premisesType.OnBtnAddPremisesClick += PremisesType_OnBtnAddPremisesClick;
+            premisesType.OnBtnDeletePremisesClick += PremisesType_OnBtnDeletePremisesClick;
+            premisesType.OnBtnEditPremisesClick += PremisesType_OnBtnEditPremisesClick;
             premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
             premisesType.Location = new Point(10, 155); ;
             premisesType.Width = addressControl.Width;
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 340);//215
-            
+            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height+235);//   + 240
+
             rPanelAdd.Controls.Add(premisesType);
         }
+
 
         private void rBtnSave_Click(object sender, EventArgs e)
         {
@@ -200,13 +291,8 @@ namespace ipsAnketaClient
                 //some code
             }
 
-            string s = "  ||  ";
-            MessageBox.Show(addressControl.TownName + s +
-                            addressControl.StreetName + s +
-                            addressControl.BuildNumber + s +
-                            addressControl.OfficeNumber + s +
-                            addressControl.RegionCode + s +
-                            addressControl.RegionName);
+            //some code
+
             IsNeedPremissesType = false;
 
             //ClearTxtBoxes();
@@ -300,42 +386,19 @@ namespace ipsAnketaClient
                 ClnBusinessPlace place = new ClnBusinessPlace { ClnPlaceHoll = new HashSet<ClnPlaceHoll>()};
                 place.PlCodeNavigation = new TypePlace();
                 SetObjectValues(clnBusinessPlace.PlCodeNavigation, place.PlCodeNavigation);
-                _data.Client.ClnBusinessPlace.Add( place );
                 SetObjectValues(clnBusinessPlace, place);
                 foreach (var holle in clnBusinessPlace.ClnPlaceHoll)
                 {
                     ClnPlaceHoll newHolle = new ClnPlaceHoll();
                     SetObjectValues( holle, newHolle);
                     place.ClnPlaceHoll.Add( newHolle );
-
                 }
-
-
+                _data.Client.ClnBusinessPlace.Add(place);
             }
 
             iClnBusinessPlaceBindingSource.DataSource = _data.Client.ClnBusinessPlace;
-
         }
 
-        public IAnketaCompany AnketaCompany => _curAnketa;
-
-        public ICustomer Customer => _data;
-        public IRelEmployee RelEmployer => _relBoss;
-        public IEmployee Employee => _relBoss.Empl;
-        public IClient Client => _data.Client;
-        private AnketaDictionaties _dictionaries;
-        private List<IClnBusinessPlace> listBisPlace;
-        private List<IClnPlaceHoll> listPlaceHole;
-
-        public IList<IClnBusinessPlace> clnBusinessPlaceList { get => clnBusinessPlaceList;
-            set => clnBusinessPlaceList = (List<IClnBusinessPlace>)value;
-        }
-        public IList<IClnPlaceHoll> clnPlaceHoll { get => listPlaceHole;
-            set => listPlaceHole = (List<IClnPlaceHoll>)value;
-        }
-        public IList<ILicPlaceHoll> licPlaceHoll { get; set; }
-        public event Func<bool> Save;
- 
 
         public void getData(Customer data)
         {
