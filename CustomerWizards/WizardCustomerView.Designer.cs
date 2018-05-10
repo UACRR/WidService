@@ -32,36 +32,39 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WizardCustomerView));
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radWizard = new Telerik.WinControls.UI.RadWizard();
             this.wizardCompletionPage1 = new Telerik.WinControls.UI.WizardCompletionPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ipsExclusionsLimitations = new IpsViewComponentLibrary.IpsExclusionsLimitationsControl();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.ipsServiceComissionControl1 = new IpsViewComponentLibrary.IpsServiceComissionControl();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.ipsBankAccountControl = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.BankAccountSource = new System.Windows.Forms.BindingSource(this.components);
             this.wizardPage1 = new Telerik.WinControls.UI.WizardPage();
             this.wizardPage2 = new Telerik.WinControls.UI.WizardPage();
             this.wizardPage3 = new Telerik.WinControls.UI.WizardPage();
             this.wizardPage4 = new Telerik.WinControls.UI.WizardPage();
             this.AnketaCompanySource = new System.Windows.Forms.BindingSource(this.components);
-            this.ipsBankAccountControl = new IpsViewComponentLibrary.IpsBankAccountControl();
-            this.ipsExclusionsLimitations = new IpsViewComponentLibrary.IpsExclusionsLimitationsControl();
             ((System.ComponentModel.ISupportInitialize)(this.radWizard)).BeginInit();
             this.radWizard.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsExclusionsLimitations.GridExclusionsLimitations)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsServiceComissionControl1.TxtRateCommission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsServiceComissionControl1.TxtRateCourt)).BeginInit();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtAccountNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtTransitNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsExclusionsLimitations.GridExclusionsLimitations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,8 +73,8 @@
             this.radWizard.CompletionPage = this.wizardCompletionPage1;
             this.radWizard.Controls.Add(this.panel2);
             this.radWizard.Controls.Add(this.panel1);
-            this.radWizard.Controls.Add(this.panel3);
             this.radWizard.Controls.Add(this.panel4);
+            this.radWizard.Controls.Add(this.panel3);
             this.radWizard.Controls.Add(this.panel5);
             this.radWizard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radWizard.Location = new System.Drawing.Point(0, 0);
@@ -107,7 +110,7 @@
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Location = new System.Drawing.Point(150, 56);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(542, 609);
+            this.panel3.Size = new System.Drawing.Size(542, 500);
             this.panel3.TabIndex = 2;
             // 
             // panel2
@@ -127,13 +130,85 @@
             this.panel1.Size = new System.Drawing.Size(692, 475);
             this.panel1.TabIndex = 3;
             // 
+            // ipsExclusionsLimitations
+            // 
+            // 
+            // 
+            // 
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.BackColor = System.Drawing.SystemColors.Control;
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.Location = new System.Drawing.Point(28, 30);
+            // 
+            // 
+            // 
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.ShowColumnHeaders = false;
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.ShowRowHeaderColumn = false;
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.Name = "gvExlusionsLimitations";
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            // 
+            // 
+            // 
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.RootElement.ControlBounds = new System.Drawing.Rectangle(28, 30, 240, 150);
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.Size = new System.Drawing.Size(509, 414);
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.TabIndex = 0;
+            this.ipsExclusionsLimitations.Location = new System.Drawing.Point(12, 0);
+            this.ipsExclusionsLimitations.Name = "ipsExclusionsLimitations";
+            this.ipsExclusionsLimitations.Size = new System.Drawing.Size(563, 469);
+            this.ipsExclusionsLimitations.TabIndex = 0;
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.ipsServiceComissionControl1);
             this.panel4.Location = new System.Drawing.Point(0, 81);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(692, 475);
             this.panel4.TabIndex = 4;
+            // 
+            // ipsServiceComissionControl1
+            // 
+            this.ipsServiceComissionControl1.Location = new System.Drawing.Point(3, 3);
+            this.ipsServiceComissionControl1.Name = "ipsServiceComissionControl1";
+            this.ipsServiceComissionControl1.Size = new System.Drawing.Size(342, 80);
+            this.ipsServiceComissionControl1.TabIndex = 0;
+            // 
+            // 
+            // 
+            this.ipsServiceComissionControl1.TxtRateCommission.Location = new System.Drawing.Point(270, 18);
+            this.ipsServiceComissionControl1.TxtRateCommission.Mask = "00.00 %";
+            this.ipsServiceComissionControl1.TxtRateCommission.MaskType = Telerik.WinControls.UI.MaskType.Standard;
+            this.ipsServiceComissionControl1.TxtRateCommission.Name = "mtxtRateCommission";
+            this.ipsServiceComissionControl1.TxtRateCommission.PromptChar = '0';
+            // 
+            // 
+            // 
+            this.ipsServiceComissionControl1.TxtRateCommission.RootElement.ControlBounds = new System.Drawing.Rectangle(270, 18, 69, 20);
+            this.ipsServiceComissionControl1.TxtRateCommission.RootElement.StretchVertically = true;
+            this.ipsServiceComissionControl1.TxtRateCommission.Size = new System.Drawing.Size(69, 20);
+            this.ipsServiceComissionControl1.TxtRateCommission.TabIndex = 5;
+            this.ipsServiceComissionControl1.TxtRateCommission.TabStop = false;
+            this.ipsServiceComissionControl1.TxtRateCommission.Text = "00,00 %";
+            // 
+            // 
+            // 
+            this.ipsServiceComissionControl1.TxtRateCourt.Location = new System.Drawing.Point(270, 57);
+            this.ipsServiceComissionControl1.TxtRateCourt.Mask = "00.00 %";
+            this.ipsServiceComissionControl1.TxtRateCourt.MaskType = Telerik.WinControls.UI.MaskType.Standard;
+            this.ipsServiceComissionControl1.TxtRateCourt.Name = "mtxtRateCourt";
+            this.ipsServiceComissionControl1.TxtRateCourt.PromptChar = '0';
+            // 
+            // 
+            // 
+            this.ipsServiceComissionControl1.TxtRateCourt.RootElement.ControlBounds = new System.Drawing.Rectangle(270, 57, 69, 20);
+            this.ipsServiceComissionControl1.TxtRateCourt.RootElement.StretchVertically = true;
+            this.ipsServiceComissionControl1.TxtRateCourt.Size = new System.Drawing.Size(69, 20);
+            this.ipsServiceComissionControl1.TxtRateCourt.TabIndex = 6;
+            this.ipsServiceComissionControl1.TxtRateCourt.TabStop = false;
+            this.ipsServiceComissionControl1.TxtRateCourt.Text = "00,00 %";
             // 
             // panel5
             // 
@@ -143,42 +218,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(692, 475);
             this.panel5.TabIndex = 5;
-            // 
-            // BankAccountSource
-            // 
-            this.BankAccountSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
-            // 
-            // wizardPage1
-            // 
-            this.wizardPage1.ContentArea = this.panel2;
-            this.wizardPage1.Header = "Анкета правовласника (юридична особа)";
-            this.wizardPage1.Name = "wizardPage1";
-            this.wizardPage1.Title = "Анкета";
-            // 
-            // wizardPage2
-            // 
-            this.wizardPage2.ContentArea = this.panel1;
-            this.wizardPage2.Header = "Page header ...";
-            this.wizardPage2.Name = "wizardPage2";
-            this.wizardPage2.Title = "Виключення та обмеження";
-            // 
-            // wizardPage3
-            // 
-            this.wizardPage3.ContentArea = this.panel4;
-            this.wizardPage3.Header = "Page header ...";
-            this.wizardPage3.Name = "wizardPage3";
-            this.wizardPage3.Title = "Комісії обслуговування";
-            // 
-            // wizardPage4
-            // 
-            this.wizardPage4.ContentArea = this.panel5;
-            this.wizardPage4.Header = "Page header ...";
-            this.wizardPage4.Name = "wizardPage4";
-            this.wizardPage4.Title = "Банківські реквізити";
-            // 
-            // AnketaCompanySource
-            // 
-            this.AnketaCompanySource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // ipsBankAccountControl
             // 
@@ -269,29 +308,41 @@
             this.ipsBankAccountControl.TxtTransitNumber.Size = new System.Drawing.Size(544, 20);
             this.ipsBankAccountControl.TxtTransitNumber.TabIndex = 6;
             // 
-            // ipsExclusionsLimitations
+            // BankAccountSource
             // 
+            this.BankAccountSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
             // 
+            // wizardPage1
             // 
+            this.wizardPage1.ContentArea = this.panel2;
+            this.wizardPage1.Header = "Анкета правовласника (юридична особа)";
+            this.wizardPage1.Name = "wizardPage1";
+            this.wizardPage1.Title = "Анкета";
             // 
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.BackColor = System.Drawing.SystemColors.Control;
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.Location = new System.Drawing.Point(28, 30);
+            // wizardPage2
             // 
+            this.wizardPage2.ContentArea = this.panel1;
+            this.wizardPage2.Header = "Page header ...";
+            this.wizardPage2.Name = "wizardPage2";
+            this.wizardPage2.Title = "Виключення та обмеження";
             // 
+            // wizardPage3
             // 
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.Name = "gvExlusionsLimitations";
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.Size = new System.Drawing.Size(509, 414);
-            this.ipsExclusionsLimitations.GridExclusionsLimitations.TabIndex = 0;
-            this.ipsExclusionsLimitations.Location = new System.Drawing.Point(12, 0);
-            this.ipsExclusionsLimitations.Name = "ipsExclusionsLimitations";
-            this.ipsExclusionsLimitations.Size = new System.Drawing.Size(563, 469);
-            this.ipsExclusionsLimitations.TabIndex = 0;
+            this.wizardPage3.ContentArea = this.panel4;
+            this.wizardPage3.Header = "Page header ...";
+            this.wizardPage3.Name = "wizardPage3";
+            this.wizardPage3.Title = "Комісії обслуговування";
+            // 
+            // wizardPage4
+            // 
+            this.wizardPage4.ContentArea = this.panel5;
+            this.wizardPage4.Header = "Page header ...";
+            this.wizardPage4.Name = "wizardPage4";
+            this.wizardPage4.Title = "Банківські реквізити";
+            // 
+            // AnketaCompanySource
+            // 
+            this.AnketaCompanySource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // WizardCustomerView
             // 
@@ -309,16 +360,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.radWizard)).EndInit();
             this.radWizard.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsExclusionsLimitations.GridExclusionsLimitations)).EndInit();
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ipsServiceComissionControl1.TxtRateCommission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsServiceComissionControl1.TxtRateCourt)).EndInit();
             this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtAccountNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtTransitNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsExclusionsLimitations.GridExclusionsLimitations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -341,5 +395,6 @@
         private IpsViewComponentLibrary.IpsBankAccountControl ipsBankAccountControl;
         private System.Windows.Forms.BindingSource BankAccountSource;
         private IpsViewComponentLibrary.IpsExclusionsLimitationsControl ipsExclusionsLimitations;
+        private IpsViewComponentLibrary.IpsServiceComissionControl ipsServiceComissionControl1;
     }
 }
