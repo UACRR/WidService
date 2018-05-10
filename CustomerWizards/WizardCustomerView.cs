@@ -18,11 +18,13 @@ namespace CustomerWizards
         private AnketaCompany _curAnketa;
         private RelEmployee _relBoss;
         private AnketaDictionaties _dictionaries;
+        private BankAccount _bankAccount;
 
         public IAnketaCompany AnketaCompany { get => _curAnketa; }
         public ICustomer Customer { get => _data; }
         public IRelEmployee RelEmployer { get => _relBoss; }
         public IEmployee Employee { get => _relBoss.Empl; }
+        public IBankAccount BankAccount { get => _bankAccount; }
 
         public event EventHandler FieldsValueChanged;
         public event Func<bool> Save;
@@ -78,6 +80,7 @@ namespace CustomerWizards
             _relBoss = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
             _data.AnketaCompany.Add(_curAnketa);
             _data.Company.RelEmployee.Add(_relBoss);
+            _bankAccount = new BankAccount();
         }
 
         private void DataChanged(object sender, EventArgs e)
@@ -123,7 +126,14 @@ namespace CustomerWizards
             SetObjectValues(data.Company, _data.Company);
             var anketa = data.AnketaCompany.Where(row => row.Version == data.AnkVersion).SingleOrDefault();
             if (anketa != null)
+            {
                 SetObjectValues(anketa, _curAnketa);
+
+                if (anketa.BanAcc != null)
+                {
+                    SetObjectValues(anketa.BanAcc, _bankAccount);
+                }
+            }
             else
                 _data.AnkVersion = 1;
 
@@ -135,6 +145,9 @@ namespace CustomerWizards
             }
 
             AnketaCompanySource.DataSource = _curAnketa;
+            BankAccountSource.DataSource = _bankAccount;
+            //_curAnketa.BanAcc = _bankAccount;
+            //ipsBankAccountControl.TxtMfoName.DataBindings.Add("Text", AnketaCompanySource.DataSource, "BanAcc.MfoName");
         }
 
         public void getData(Customer data)

@@ -81,6 +81,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICustomer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRelEmployee.datasource" />
@@ -102,6 +103,10 @@
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{64D0405A-FDC7-46C8-B9FD-10CC0FD19E42}</Project>
       <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
+      <Project>{C0C413B4-086C-422C-82D6-A02E6284ABDF}</Project>
+      <Name>IpsViewComponentLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
       <Project>{FA6CAA86-7F51-4EB9-948F-EE81D384ED56}</Project>

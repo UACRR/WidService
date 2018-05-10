@@ -37,6 +37,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.ipsBankAccountControl = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.BankAccountSource = new System.Windows.Forms.BindingSource(this.components);
             this.wizardPage1 = new Telerik.WinControls.UI.WizardPage();
             this.wizardPage2 = new Telerik.WinControls.UI.WizardPage();
             this.wizardPage3 = new Telerik.WinControls.UI.WizardPage();
@@ -44,6 +46,13 @@
             this.AnketaCompanySource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radWizard)).BeginInit();
             this.radWizard.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtAccountNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoOkpo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtTransitNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -52,9 +61,9 @@
             // 
             this.radWizard.CompletionPage = this.wizardCompletionPage1;
             this.radWizard.Controls.Add(this.panel2);
-            this.radWizard.Controls.Add(this.panel3);
             this.radWizard.Controls.Add(this.panel1);
             this.radWizard.Controls.Add(this.panel4);
+            this.radWizard.Controls.Add(this.panel3);
             this.radWizard.Controls.Add(this.panel5);
             this.radWizard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radWizard.Location = new System.Drawing.Point(0, 0);
@@ -70,15 +79,15 @@
             this.radWizard.WelcomePage = null;
             ((Telerik.WinControls.UI.Wizard97CommandArea)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3))).IsWelcomePage = false;
             ((Telerik.WinControls.UI.Wizard97CommandArea)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3))).IsCompletionPage = false;
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(0))).IsFocusedWizardButton = true;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(0))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(0))).Text = "Відміна";
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(1))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(1))).Text = "Зберегти";
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(2))).IsFocusedWizardButton = false;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(2))).IsFocusedWizardButton = true;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(2))).Text = "Далі   >";
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Text = "<   Назад";
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Enabled = false;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Enabled = true;
             // 
             // wizardCompletionPage1
             // 
@@ -106,7 +115,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(0, 81);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(692, 584);
+            this.panel1.Size = new System.Drawing.Size(692, 475);
             this.panel1.TabIndex = 3;
             // 
             // panel4
@@ -114,16 +123,105 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Location = new System.Drawing.Point(0, 81);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(692, 584);
+            this.panel4.Size = new System.Drawing.Size(692, 475);
             this.panel4.TabIndex = 4;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.ipsBankAccountControl);
             this.panel5.Location = new System.Drawing.Point(0, 81);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(692, 584);
+            this.panel5.Size = new System.Drawing.Size(692, 475);
             this.panel5.TabIndex = 5;
+            // 
+            // ipsBankAccountControl
+            // 
+            this.ipsBankAccountControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsBankAccountControl.Location = new System.Drawing.Point(13, 4);
+            this.ipsBankAccountControl.Name = "ipsBankAccountControl";
+            this.ipsBankAccountControl.Size = new System.Drawing.Size(667, 127);
+            this.ipsBankAccountControl.TabIndex = 0;
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsBankAccountControl.TxtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "AccountNumber", true));
+            this.ipsBankAccountControl.TxtAccountNumber.Location = new System.Drawing.Point(118, 103);
+            this.ipsBankAccountControl.TxtAccountNumber.Name = "txtAccountNumber";
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtAccountNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 103, 100, 20);
+            this.ipsBankAccountControl.TxtAccountNumber.RootElement.StretchVertically = true;
+            this.ipsBankAccountControl.TxtAccountNumber.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtAccountNumber.TabIndex = 5;
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsBankAccountControl.TxtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "Mfo", true));
+            this.ipsBankAccountControl.TxtMfo.Location = new System.Drawing.Point(118, 28);
+            this.ipsBankAccountControl.TxtMfo.Name = "txtMfo";
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtMfo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 28, 100, 20);
+            this.ipsBankAccountControl.TxtMfo.RootElement.StretchVertically = true;
+            this.ipsBankAccountControl.TxtMfo.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtMfo.TabIndex = 8;
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsBankAccountControl.TxtMfoName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "MfoName", true));
+            this.ipsBankAccountControl.TxtMfoName.Location = new System.Drawing.Point(118, 3);
+            this.ipsBankAccountControl.TxtMfoName.Name = "txtMfoName";
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtMfoName.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 3, 100, 20);
+            this.ipsBankAccountControl.TxtMfoName.RootElement.StretchVertically = true;
+            this.ipsBankAccountControl.TxtMfoName.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtMfoName.TabIndex = 9;
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtMfoOkpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsBankAccountControl.TxtMfoOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "MfoOkpo", true));
+            this.ipsBankAccountControl.TxtMfoOkpo.Location = new System.Drawing.Point(118, 53);
+            this.ipsBankAccountControl.TxtMfoOkpo.Name = "txtMfoOkpo";
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtMfoOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 53, 100, 20);
+            this.ipsBankAccountControl.TxtMfoOkpo.RootElement.StretchVertically = true;
+            this.ipsBankAccountControl.TxtMfoOkpo.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtMfoOkpo.TabIndex = 7;
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsBankAccountControl.TxtTransitNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "TransitNumber", true));
+            this.ipsBankAccountControl.TxtTransitNumber.Location = new System.Drawing.Point(118, 78);
+            this.ipsBankAccountControl.TxtTransitNumber.Name = "txtTransitNumber";
+            // 
+            // 
+            // 
+            this.ipsBankAccountControl.TxtTransitNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 78, 100, 20);
+            this.ipsBankAccountControl.TxtTransitNumber.RootElement.StretchVertically = true;
+            this.ipsBankAccountControl.TxtTransitNumber.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtTransitNumber.TabIndex = 6;
+            // 
+            // BankAccountSource
+            // 
+            this.BankAccountSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
             // 
             // wizardPage1
             // 
@@ -172,6 +270,13 @@
             this.Text = "Wizard Rightholder";
             ((System.ComponentModel.ISupportInitialize)(this.radWizard)).EndInit();
             this.radWizard.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtAccountNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoOkpo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtTransitNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -192,5 +297,7 @@
         private Telerik.WinControls.UI.WizardPage wizardPage3;
         private Telerik.WinControls.UI.WizardPage wizardPage4;
         private System.Windows.Forms.BindingSource AnketaCompanySource;
+        private IpsViewComponentLibrary.IpsBankAccountControl ipsBankAccountControl;
+        private System.Windows.Forms.BindingSource BankAccountSource;
     }
 }
