@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Telerik.WinControls.Data;
 
 namespace CustomerWizards
 {
@@ -148,6 +149,26 @@ namespace CustomerWizards
             BankAccountSource.DataSource = _bankAccount;
             //_curAnketa.BanAcc = _bankAccount;
             //ipsBankAccountControl.TxtMfoName.DataBindings.Add("Text", AnketaCompanySource.DataSource, "BanAcc.MfoName");
+
+            SetDataForExlusionsLlimitationsTest();
+        }
+
+        private void SetDataForExlusionsLlimitationsTest()
+        {
+            var copyrightKinds = new List<CopyrightKind>
+            {
+                new CopyrightKind { CodeI = 1, Name = "Copyright kind 1", CrGroupCode = 1 },
+                new CopyrightKind { CodeI = 2, Name = "Copyright kind 2", CrGroupCode = 1 },
+                new CopyrightKind { CodeI = 3, Name = "Copyright kind 3", CrGroupCode = 1 },
+                new CopyrightKind { CodeI = 3, Name = "Copyright kind 4", CrGroupCode = 2 },
+            };
+
+            ipsExclusionsLimitations.GridExclusionsLimitations.DataSource = copyrightKinds;
+            ipsExclusionsLimitations.GridExclusionsLimitations.Columns["column1"].FieldName = "Name";
+
+            var descriptor = new GroupDescriptor();
+            descriptor.GroupNames.Add("CrGroupCode", ListSortDirection.Ascending);
+            ipsExclusionsLimitations.GridExclusionsLimitations.GroupDescriptors.Add(descriptor);
         }
 
         public void getData(Customer data)
