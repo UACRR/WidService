@@ -63,7 +63,13 @@
     <EmbeddedResource Include="IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="IpsBankAccountControl.resx">
+      <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
