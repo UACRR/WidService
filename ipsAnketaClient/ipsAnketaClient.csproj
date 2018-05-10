@@ -58,12 +58,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPremisesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPremisesForm.Designer.cs">
+      <DependentUpon>AddPremisesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AnketaClientView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AnketaClientView.Designer.cs">
       <DependentUpon>AnketaClientView.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddPremisesForm.resx">
+      <DependentUpon>AddPremisesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnketaClientView.resx">
       <DependentUpon>AnketaClientView.cs</DependentUpon>
     </EmbeddedResource>
