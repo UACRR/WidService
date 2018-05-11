@@ -19,13 +19,12 @@ namespace CustomerWizards
         private AnketaCompany _curAnketa;
         private RelEmployee _relBoss;
         private AnketaDictionaties _dictionaries;
-        private BankAccount _bankAccount;
 
         public IAnketaCompany AnketaCompany { get => _curAnketa; }
         public ICustomer Customer { get => _data; }
         public IRelEmployee RelEmployer { get => _relBoss; }
         public IEmployee Employee { get => _relBoss.Empl; }
-        public IBankAccount BankAccount { get => _bankAccount; }
+        public IBankAccount BankAccount { get; set; }
 
         public event EventHandler FieldsValueChanged;
         public event Func<bool> Save;
@@ -77,11 +76,11 @@ namespace CustomerWizards
                 AnketaCompany = new HashSet<AnketaCompany>(),
                 AnkVersion = 1
             };
-            _curAnketa = new AnketaCompany { Version = 1 };
+            _curAnketa = new AnketaCompany { Version = 1, BanAcc = new BankAccount() };
             _relBoss = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
             _data.AnketaCompany.Add(_curAnketa);
             _data.Company.RelEmployee.Add(_relBoss);
-            _bankAccount = new BankAccount();
+            //_bankAccount = new BankAccount();
         }
 
         private void DataChanged(object sender, EventArgs e)
@@ -132,7 +131,7 @@ namespace CustomerWizards
 
                 if (anketa.BanAcc != null)
                 {
-                    SetObjectValues(anketa.BanAcc, _bankAccount);
+                    SetObjectValues(anketa.BanAcc, _curAnketa.BanAcc);
                 }
             }
             else
@@ -146,9 +145,13 @@ namespace CustomerWizards
             }
 
             AnketaCompanySource.DataSource = _curAnketa;
-            BankAccountSource.DataSource = _bankAccount;
+            //BankAccountSource.DataSource = _bankAccount;
+     
             //_curAnketa.BanAcc = _bankAccount;
             //ipsBankAccountControl.TxtMfoName.DataBindings.Add("Text", AnketaCompanySource.DataSource, "BanAcc.MfoName");
+
+            ipsBankAccountControl.DataSource = AnketaCompanySource;
+            ipsBankAccountControl.DataMember = "BanAcc";
 
             SetDataForExlusionsLlimitationsTest();
         }
