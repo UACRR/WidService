@@ -87,8 +87,15 @@
       <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

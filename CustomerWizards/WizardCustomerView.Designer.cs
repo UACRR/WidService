@@ -43,12 +43,12 @@
             this.ipsServiceComissionControl1 = new IpsViewComponentLibrary.IpsServiceComissionControl();
             this.panel5 = new System.Windows.Forms.Panel();
             this.ipsBankAccountControl = new IpsViewComponentLibrary.IpsBankAccountControl();
-            this.BankAccountSource = new System.Windows.Forms.BindingSource(this.components);
             this.wizardPage1 = new Telerik.WinControls.UI.WizardPage();
             this.wizardPage2 = new Telerik.WinControls.UI.WizardPage();
             this.wizardPage3 = new Telerik.WinControls.UI.WizardPage();
             this.wizardPage4 = new Telerik.WinControls.UI.WizardPage();
             this.AnketaCompanySource = new System.Windows.Forms.BindingSource(this.components);
+            this.BankAccountSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radWizard)).BeginInit();
             this.radWizard.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,8 +63,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtTransitNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,7 +186,7 @@
             // 
             // 
             // 
-            this.ipsServiceComissionControl1.TxtRateCommission.RootElement.ControlBounds = new System.Drawing.Rectangle(270, 18, 69, 20);
+            this.ipsServiceComissionControl1.TxtRateCommission.RootElement.ControlBounds = new System.Drawing.Rectangle(270, 18, 125, 20);
             this.ipsServiceComissionControl1.TxtRateCommission.RootElement.StretchVertically = true;
             this.ipsServiceComissionControl1.TxtRateCommission.Size = new System.Drawing.Size(69, 20);
             this.ipsServiceComissionControl1.TxtRateCommission.TabIndex = 5;
@@ -203,7 +203,7 @@
             // 
             // 
             // 
-            this.ipsServiceComissionControl1.TxtRateCourt.RootElement.ControlBounds = new System.Drawing.Rectangle(270, 57, 69, 20);
+            this.ipsServiceComissionControl1.TxtRateCourt.RootElement.ControlBounds = new System.Drawing.Rectangle(270, 57, 125, 20);
             this.ipsServiceComissionControl1.TxtRateCourt.RootElement.StretchVertically = true;
             this.ipsServiceComissionControl1.TxtRateCourt.Size = new System.Drawing.Size(69, 20);
             this.ipsServiceComissionControl1.TxtRateCourt.TabIndex = 6;
@@ -221,96 +221,82 @@
             // 
             // ipsBankAccountControl
             // 
-            this.ipsBankAccountControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsBankAccountControl.Location = new System.Drawing.Point(13, 4);
+            this.ipsBankAccountControl.DataMember = "";
+            this.ipsBankAccountControl.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
+            this.ipsBankAccountControl.Location = new System.Drawing.Point(12, 4);
             this.ipsBankAccountControl.Name = "ipsBankAccountControl";
-            this.ipsBankAccountControl.Size = new System.Drawing.Size(667, 127);
+            this.ipsBankAccountControl.Size = new System.Drawing.Size(668, 127);
             this.ipsBankAccountControl.TabIndex = 0;
             // 
             // 
             // 
             this.ipsBankAccountControl.TxtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsBankAccountControl.TxtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "AccountNumber", true));
-            this.ipsBankAccountControl.TxtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ipsBankAccountControl.TxtAccountNumber.Location = new System.Drawing.Point(118, 103);
             this.ipsBankAccountControl.TxtAccountNumber.Name = "txtAccountNumber";
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtAccountNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 103, 100, 20);
+            this.ipsBankAccountControl.TxtAccountNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 103, 286, 0);
             this.ipsBankAccountControl.TxtAccountNumber.RootElement.StretchVertically = true;
-            this.ipsBankAccountControl.TxtAccountNumber.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtAccountNumber.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtAccountNumber.TabIndex = 5;
             // 
             // 
             // 
             this.ipsBankAccountControl.TxtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsBankAccountControl.TxtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "Mfo", true));
-            this.ipsBankAccountControl.TxtMfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ipsBankAccountControl.TxtMfo.Location = new System.Drawing.Point(118, 28);
             this.ipsBankAccountControl.TxtMfo.Name = "txtMfo";
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtMfo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 28, 100, 20);
+            this.ipsBankAccountControl.TxtMfo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 28, 286, 0);
             this.ipsBankAccountControl.TxtMfo.RootElement.StretchVertically = true;
-            this.ipsBankAccountControl.TxtMfo.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtMfo.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtMfo.TabIndex = 8;
             // 
             // 
             // 
             this.ipsBankAccountControl.TxtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsBankAccountControl.TxtMfoName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "MfoName", true));
-            this.ipsBankAccountControl.TxtMfoName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ipsBankAccountControl.TxtMfoName.Location = new System.Drawing.Point(118, 3);
             this.ipsBankAccountControl.TxtMfoName.Name = "txtMfoName";
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtMfoName.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 3, 100, 20);
+            this.ipsBankAccountControl.TxtMfoName.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 3, 286, 0);
             this.ipsBankAccountControl.TxtMfoName.RootElement.StretchVertically = true;
-            this.ipsBankAccountControl.TxtMfoName.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtMfoName.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtMfoName.TabIndex = 9;
             // 
             // 
             // 
             this.ipsBankAccountControl.TxtMfoOkpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsBankAccountControl.TxtMfoOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "MfoOkpo", true));
-            this.ipsBankAccountControl.TxtMfoOkpo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ipsBankAccountControl.TxtMfoOkpo.Location = new System.Drawing.Point(118, 53);
             this.ipsBankAccountControl.TxtMfoOkpo.Name = "txtMfoOkpo";
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtMfoOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 53, 100, 20);
+            this.ipsBankAccountControl.TxtMfoOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 53, 286, 0);
             this.ipsBankAccountControl.TxtMfoOkpo.RootElement.StretchVertically = true;
-            this.ipsBankAccountControl.TxtMfoOkpo.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtMfoOkpo.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtMfoOkpo.TabIndex = 7;
             // 
             // 
             // 
             this.ipsBankAccountControl.TxtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsBankAccountControl.TxtTransitNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountSource, "TransitNumber", true));
-            this.ipsBankAccountControl.TxtTransitNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ipsBankAccountControl.TxtTransitNumber.Location = new System.Drawing.Point(118, 78);
             this.ipsBankAccountControl.TxtTransitNumber.Name = "txtTransitNumber";
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtTransitNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 78, 100, 20);
+            this.ipsBankAccountControl.TxtTransitNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 78, 286, 0);
             this.ipsBankAccountControl.TxtTransitNumber.RootElement.StretchVertically = true;
-            this.ipsBankAccountControl.TxtTransitNumber.Size = new System.Drawing.Size(544, 20);
+            this.ipsBankAccountControl.TxtTransitNumber.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtTransitNumber.TabIndex = 6;
-            // 
-            // BankAccountSource
-            // 
-            this.BankAccountSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
             // 
             // wizardPage1
             // 
@@ -344,6 +330,10 @@
             // 
             this.AnketaCompanySource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
+            // BankAccountSource
+            // 
+            this.BankAccountSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
+            // 
             // WizardCustomerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -371,8 +361,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtMfoOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsBankAccountControl.TxtTransitNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -392,9 +382,9 @@
         private Telerik.WinControls.UI.WizardPage wizardPage3;
         private Telerik.WinControls.UI.WizardPage wizardPage4;
         private System.Windows.Forms.BindingSource AnketaCompanySource;
-        private IpsViewComponentLibrary.IpsBankAccountControl ipsBankAccountControl;
         private System.Windows.Forms.BindingSource BankAccountSource;
         private IpsViewComponentLibrary.IpsExclusionsLimitationsControl ipsExclusionsLimitations;
         private IpsViewComponentLibrary.IpsServiceComissionControl ipsServiceComissionControl1;
+        private IpsViewComponentLibrary.IpsBankAccountControl ipsBankAccountControl;
     }
 }

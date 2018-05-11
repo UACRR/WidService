@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -37,6 +38,7 @@
             this.txtTransitNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfoOkpo = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfo = new Telerik.WinControls.UI.RadTextBox();
+            this.BankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtMfoName = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -47,6 +49,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTransitNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoName)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,6 +97,7 @@
             // 
             this.txtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "AccountNumber", true));
             this.txtAccountNumber.Location = new System.Drawing.Point(118, 103);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(286, 20);
@@ -103,6 +107,7 @@
             // 
             this.txtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTransitNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "TransitNumber", true));
             this.txtTransitNumber.Location = new System.Drawing.Point(118, 78);
             this.txtTransitNumber.Name = "txtTransitNumber";
             this.txtTransitNumber.Size = new System.Drawing.Size(286, 20);
@@ -112,6 +117,7 @@
             // 
             this.txtMfoOkpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMfoOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "MfoOkpo", true));
             this.txtMfoOkpo.Location = new System.Drawing.Point(118, 53);
             this.txtMfoOkpo.Name = "txtMfoOkpo";
             this.txtMfoOkpo.Size = new System.Drawing.Size(286, 20);
@@ -121,15 +127,21 @@
             // 
             this.txtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "Mfo", true));
             this.txtMfo.Location = new System.Drawing.Point(118, 28);
             this.txtMfo.Name = "txtMfo";
             this.txtMfo.Size = new System.Drawing.Size(286, 20);
             this.txtMfo.TabIndex = 8;
             // 
+            // BankAccountBindingSource
+            // 
+            this.BankAccountBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
+            // 
             // txtMfoName
             // 
             this.txtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMfoName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "MfoName", true));
             this.txtMfoName.Location = new System.Drawing.Point(118, 3);
             this.txtMfoName.Name = "txtMfoName";
             this.txtMfoName.Size = new System.Drawing.Size(286, 20);
@@ -160,6 +172,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTransitNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -178,5 +191,6 @@
         private Telerik.WinControls.UI.RadTextBox txtTransitNumber;
         private Telerik.WinControls.UI.RadTextBox txtMfo;
         private Telerik.WinControls.UI.RadTextBox txtMfoName;
+        private System.Windows.Forms.BindingSource BankAccountBindingSource;
     }
 }
