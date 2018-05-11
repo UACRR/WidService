@@ -33,7 +33,7 @@
             this.lblTypePremisses = new Telerik.WinControls.UI.RadLabel();
             this.lblCountPlaces = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxTypePremisses = new Telerik.WinControls.UI.RadTextBox();
-            this.rtxtBoxCountOrMeterage = new Telerik.WinControls.UI.RadTextBox();
+            this.rtxtBoxCountPlaces = new Telerik.WinControls.UI.RadTextBox();
             this.rtxtBoxMeterage = new Telerik.WinControls.UI.RadTextBox();
             this.lblMeterage = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAdd)).BeginInit();
@@ -41,7 +41,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblTypePremisses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCountPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxTypePremisses)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxCountOrMeterage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxCountPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMeterage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMeterage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -92,14 +92,14 @@
             this.rtxtBoxTypePremisses.Size = new System.Drawing.Size(382, 20);
             this.rtxtBoxTypePremisses.TabIndex = 4;
             // 
-            // rtxtBoxCountOrMeterage
+            // rtxtBoxCountPlaces
             // 
-            this.rtxtBoxCountOrMeterage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.rtxtBoxCountPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtBoxCountOrMeterage.Location = new System.Drawing.Point(56, 36);
-            this.rtxtBoxCountOrMeterage.Name = "rtxtBoxCountOrMeterage";
-            this.rtxtBoxCountOrMeterage.Size = new System.Drawing.Size(97, 20);
-            this.rtxtBoxCountOrMeterage.TabIndex = 5;
+            this.rtxtBoxCountPlaces.Location = new System.Drawing.Point(56, 36);
+            this.rtxtBoxCountPlaces.Name = "rtxtBoxCountPlaces";
+            this.rtxtBoxCountPlaces.Size = new System.Drawing.Size(97, 20);
+            this.rtxtBoxCountPlaces.TabIndex = 5;
             // 
             // rtxtBoxMeterage
             // 
@@ -125,7 +125,7 @@
             this.ClientSize = new System.Drawing.Size(506, 102);
             this.Controls.Add(this.rtxtBoxMeterage);
             this.Controls.Add(this.lblMeterage);
-            this.Controls.Add(this.rtxtBoxCountOrMeterage);
+            this.Controls.Add(this.rtxtBoxCountPlaces);
             this.Controls.Add(this.rtxtBoxTypePremisses);
             this.Controls.Add(this.lblCountPlaces);
             this.Controls.Add(this.lblTypePremisses);
@@ -144,7 +144,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblTypePremisses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCountPlaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxTypePremisses)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxCountOrMeterage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxCountPlaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMeterage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMeterage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -160,7 +160,7 @@
         private Telerik.WinControls.UI.RadLabel lblTypePremisses;
         private Telerik.WinControls.UI.RadLabel lblCountPlaces;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxTypePremisses;
-        private Telerik.WinControls.UI.RadTextBox rtxtBoxCountOrMeterage;
+        private Telerik.WinControls.UI.RadTextBox rtxtBoxCountPlaces;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxMeterage;
         private Telerik.WinControls.UI.RadLabel lblMeterage;
     }

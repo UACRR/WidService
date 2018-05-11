@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary
         private Customer dataTemp;
         private int _idSelectedRow;
 
+        //id рядка приміщення закладу
         public int IdSelectedRow
         {
             get => _idSelectedRow;
@@ -64,6 +65,8 @@ namespace IpsViewComponentLibrary
 
         private void rBtnEditPremises_Click(object sender, EventArgs e)
         {
+            if (rGridViewPremises.CurrentRow.Cells[0].Value != null)
+                _idSelectedRow = Convert.ToInt32(rGridViewPremises.CurrentRow.Cells["IdItem"].Value);
             OnBtnEditPremisesClick?.Invoke();
         }
 
@@ -74,12 +77,19 @@ namespace IpsViewComponentLibrary
             OnBtnDeletePremisesClick?.Invoke();
         }
 
-        public List<ClnPlaceHoll> GetData()
+        public List<ClnPlaceHoll> GetData(int idRowInst)
         {
             List<ClnPlaceHoll> list = new List<ClnPlaceHoll>();
-            var v = dataTemp.Client.ClnBusinessPlace.Select(item => item.ClnPlaceHoll).SingleOrDefault();
-            list = (List<ClnPlaceHoll>)v;
-
+            if (dataTemp != null && dataTemp.Client.ClnBusinessPlace.Select(item => item.ClnPlaceHoll).Any())
+            {
+                var v = dataTemp.Client.ClnBusinessPlace.Where(id=>id.PlaceId==idRowInst).Select(item => item.ClnPlaceHoll).SingleOrDefault();//
+                
+                if (v != null)
+                    foreach (var item in v)
+                    {
+                        list.Add(item);
+                    }
+            }
             return list;
         }
     }
