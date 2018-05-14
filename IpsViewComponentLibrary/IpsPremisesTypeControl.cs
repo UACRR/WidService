@@ -65,6 +65,8 @@ namespace IpsViewComponentLibrary
 
         private void rBtnEditPremises_Click(object sender, EventArgs e)
         {
+                if(rGridViewPremises.Rows.Count == 0) return;
+            
             if (rGridViewPremises.CurrentRow.Cells[0].Value != null)
                 _idSelectedRow = Convert.ToInt32(rGridViewPremises.CurrentRow.Cells["IdItem"].Value);
             OnBtnEditPremisesClick?.Invoke();
@@ -72,6 +74,8 @@ namespace IpsViewComponentLibrary
 
         private void radBtnDeletePremises_Click(object sender, EventArgs e)
         {
+                if (rGridViewPremises.Rows.Count == 0) return;
+
             if (rGridViewPremises.CurrentRow.Cells[0].Value != null)
                 _idSelectedRow = Convert.ToInt32(rGridViewPremises.CurrentRow.Cells["IdItem"].Value);
             OnBtnDeletePremisesClick?.Invoke();

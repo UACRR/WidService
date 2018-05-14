@@ -43,8 +43,6 @@ namespace IpsViewComponentLibrary
             _nameTown = rTxtBoxTownName.Text;
             _nameDistrict = rTxtBoxDistrict.Text;
             _streetAddress = rTxtBoxNameStreet.Text;
-            _nubmerBuild = rTxtBoxNumberBldng.Text;
-            _numberOffice = rTxtBoxNumberOffice.Text;
         }
 
         /// <summary>
@@ -56,8 +54,6 @@ namespace IpsViewComponentLibrary
             rDropListRegion.SelectedItem = rDropListRegion.Items[0];
             rTxtBoxDistrict.Clear();
             rTxtBoxNameStreet.Clear();
-            rTxtBoxNumberBldng.Clear();
-            rTxtBoxNumberOffice.Clear();
         }
 
         /// <summary>
@@ -85,11 +81,6 @@ namespace IpsViewComponentLibrary
                 valid = false;
             }
 
-            if (rTxtBoxNumberBldng.Text == string.Empty)
-            {
-                lblBuild.ForeColor = Color.FromArgb(180, 255, 0, 2);
-                valid = false;
-            }
 
             if (valid)
                 DefaultColorLabels();
@@ -102,7 +93,6 @@ namespace IpsViewComponentLibrary
             lblTown.ForeColor = Color.Black;
             lblRegion.ForeColor = Color.Black;
             lblStreet.ForeColor = Color.Black;
-            lblBuild.ForeColor = Color.Black;
         }
 
         public void SetAddressForEditCustomer(Customer data, int id)
