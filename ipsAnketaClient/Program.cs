@@ -17,6 +17,8 @@ namespace ipsAnketaClient
             AnketaClientView form = new AnketaClientView();
             ConsumerModel model = new ConsumerModel();
             Presenter control = new Presenter(form,model,134);
+            //Presenter control = new Presenter(form, model, 142);
+
             Application.Run(form);
         }
     }

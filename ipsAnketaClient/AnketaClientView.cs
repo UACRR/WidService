@@ -101,6 +101,7 @@ namespace ipsAnketaClient
             {
                 newPremises = new AddPremisesForm();
                 newPremises.OnInsertData += NewPremises_OnInsertData;
+                newPremises.StartPosition = FormStartPosition.CenterScreen;
                 newPremises.ShowDialog();
                 newPremises.OnInsertData -= NewPremises_OnInsertData;
                 newPremises = null;
@@ -111,6 +112,7 @@ namespace ipsAnketaClient
                 newPremises = new AddPremisesForm(premisesType.GetData(idRow), idRow);
                 //premisesType.IdSelectedRow;
                 newPremises.OnInsertData += NewPremises_OnInsertData;
+                newPremises.StartPosition = FormStartPosition.CenterScreen;
                 newPremises.ShowDialog();
                 newPremises.OnInsertData -= NewPremises_OnInsertData;
                 newPremises = null;
@@ -118,6 +120,9 @@ namespace ipsAnketaClient
             GC.Collect();
         }
 
+        /// <summary>
+        /// Збереження нового приміщення
+        /// </summary>
         private void NewPremises_OnInsertData()
         {
             var temp = newPremises.DataFotInsert();
@@ -125,26 +130,39 @@ namespace ipsAnketaClient
             if (isNewInst)//новий заклад
             {
                 newPlace.Add(temp.SingleOrDefault());
+                premisesType.SetDataSource(_data, IdItemOfSelectRow);
+
+                
+                //* * * ЗБЕРЕГТИ ЗМІНИ
             }
             else//існуючий заклад
             {
                 var editdata = _data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
 
                 editdata.Add(temp.LastOrDefault());
+                premisesType.SetDataSource(_data, IdItemOfSelectRow);
+
+                //* * * ЗБЕРЕГТИ ЗМІНИ
             }
         }
 
+        /// <summary>
+        /// Редагування приміщення закладу
+        /// </summary>
         private void PremisesType_OnBtnEditPremisesClick()
         {
             int idRow = Convert.ToInt32(rGridViewInstitution.CurrentRow.Cells[0].Value);
+
+                if(idRow==0|| premisesType.IdSelectedRow == 0) return;
+
             editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow);
             editPremises.OnUpdateData += EditPremises_OnUpdateData;
+            editPremises.StartPosition = FormStartPosition.CenterScreen;
             editPremises.ShowDialog();
             editPremises.OnUpdateData -= EditPremises_OnUpdateData;
             editPremises = null;
             GC.Collect();
             //MessageBox.Show(premisesType.IdSelectedRow.ToString());
-
         }
 
         /// <summary>
@@ -153,7 +171,7 @@ namespace ipsAnketaClient
         /// </summary>
         private void EditPremises_OnUpdateData()
         {
-            
+
             //premisesType
             //var temp = editPremises.DataForUpdate();
 
@@ -163,6 +181,9 @@ namespace ipsAnketaClient
 
         }
 
+        /// <summary>
+        /// Видалення обраного приміщення
+        /// </summary>
         private void PremisesType_OnBtnDeletePremisesClick()
         {
             MessageBox.Show(premisesType.IdSelectedRow.ToString());
@@ -415,14 +436,13 @@ namespace ipsAnketaClient
             if (!Validator())
                 return;
 
-            if (IsNeedPremissesType)
+            if (IsNeedPremissesType)//з додаванням приміщення
             {
-                if (isNewInst)
+                int idRow = Convert.ToInt32(rGridViewInstitution.CurrentRow.Cells[0].Value);
+                var item = _data.Client.ClnBusinessPlace.SingleOrDefault(idItem => idItem.PlaceId == idRow);
+                if (item!=null)
                 {
-                    int idRow = Convert.ToInt32(rGridViewInstitution.CurrentRow.Cells[0].Value);
-                    var item = _data.Client.ClnBusinessPlace.SingleOrDefault(idItem => idItem.PlaceId == idRow);
-
-                    if (item != null)
+                    if (isNewInst) //новий заклад
                     {
                         item.PlaceId = 0;
                         item.CustId = _data.Client.CustId;
@@ -435,16 +455,22 @@ namespace ipsAnketaClient
                         item.FreeEntry = true;
                         item.PlCodeNavigation = typePlace;
                         item.ClnPlaceHoll = newPlace; //temp,
-                    }
 
-                    _data.Client.ClnBusinessPlace.Add(item);
+                        _data.Client.ClnBusinessPlace.Add(item);
+                    }
+                    else//існуючий заклад
+                    {
+                        //item.PlCode = тип закладу,
+                        item.PlaceName = rTxtBoxNameInst.Text;
+                        item.PlaceRegion = addressControl.RegionCode;
+                        item.PlaceCity = addressControl.TownName;
+                        item.PlaceAddress = addressControl.StreetName; // + " " + addressControl.BuildNumber;
+                    }
                 }
                 //some code
                 var v = _data.Client.ClnBusinessPlace;
-
-
             }
-            else 
+            else //без додавання приміщення
             {
                 //some code
             }

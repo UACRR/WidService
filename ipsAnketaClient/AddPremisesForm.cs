@@ -53,6 +53,7 @@ namespace ipsAnketaClient
             }
             catch (Exception e)
             {
+
                 MessageBox.Show(e.Message, e.HResult.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
