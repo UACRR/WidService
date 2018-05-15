@@ -61,9 +61,7 @@
             this.lblTown = new Telerik.WinControls.UI.RadLabel();
             this.lblRegion = new Telerik.WinControls.UI.RadLabel();
             this.lblStreet = new Telerik.WinControls.UI.RadLabel();
-            this.rTxtBoxDistrict = new Telerik.WinControls.UI.RadTextBox();
             this.rDropListRegion = new Telerik.WinControls.UI.RadDropDownList();
-            this.lblDistrict = new Telerik.WinControls.UI.RadLabel();
             this.rTxtBoxNameStreet = new Telerik.WinControls.UI.RadTextBox();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxTownName)).BeginInit();
@@ -71,9 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblTown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStreet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxDistrict)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rDropListRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblDistrict)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxNameStreet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rTxtBoxTownName.Location = new System.Drawing.Point(123, 37);
             this.rTxtBoxTownName.Name = "rTxtBoxTownName";
-            this.rTxtBoxTownName.Size = new System.Drawing.Size(222, 20);
+            this.rTxtBoxTownName.Size = new System.Drawing.Size(258, 20);
             this.rTxtBoxTownName.TabIndex = 0;
             // 
             // rLblMainHeader
@@ -110,7 +106,7 @@
             // lblRegion
             // 
             this.lblRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRegion.Location = new System.Drawing.Point(351, 38);
+            this.lblRegion.Location = new System.Drawing.Point(387, 38);
             this.lblRegion.Name = "lblRegion";
             this.lblRegion.Size = new System.Drawing.Size(49, 18);
             this.lblRegion.TabIndex = 3;
@@ -125,14 +121,6 @@
             this.lblStreet.TabIndex = 4;
             this.lblStreet.Text = "Вулиця";
             this.lblStreet.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // rTxtBoxDistrict
-            // 
-            this.rTxtBoxDistrict.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rTxtBoxDistrict.Location = new System.Drawing.Point(665, 36);
-            this.rTxtBoxDistrict.Name = "rTxtBoxDistrict";
-            this.rTxtBoxDistrict.Size = new System.Drawing.Size(169, 20);
-            this.rTxtBoxDistrict.TabIndex = 1;
             // 
             // rDropListRegion
             // 
@@ -194,20 +182,12 @@
             this.rDropListRegion.Items.Add(radListDataItem26);
             this.rDropListRegion.Items.Add(radListDataItem27);
             this.rDropListRegion.Items.Add(radListDataItem28);
-            this.rDropListRegion.Location = new System.Drawing.Point(406, 38);
+            this.rDropListRegion.Location = new System.Drawing.Point(442, 38);
             this.rDropListRegion.Name = "rDropListRegion";
+            this.rDropListRegion.NullText = "Оберіть область";
             this.rDropListRegion.Size = new System.Drawing.Size(209, 20);
             this.rDropListRegion.TabIndex = 6;
             this.rDropListRegion.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rDropListRegion_SelectedIndexChanged);
-            // 
-            // lblDistrict
-            // 
-            this.lblDistrict.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDistrict.Location = new System.Drawing.Point(621, 38);
-            this.lblDistrict.Name = "lblDistrict";
-            this.lblDistrict.Size = new System.Drawing.Size(38, 18);
-            this.lblDistrict.TabIndex = 7;
-            this.lblDistrict.Text = "Район";
             // 
             // rTxtBoxNameStreet
             // 
@@ -215,8 +195,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rTxtBoxNameStreet.Location = new System.Drawing.Point(123, 62);
             this.rTxtBoxNameStreet.Name = "rTxtBoxNameStreet";
-            this.rTxtBoxNameStreet.NullText = " вулиця / № будинку ";
-            this.rTxtBoxNameStreet.Size = new System.Drawing.Size(492, 20);
+            this.rTxtBoxNameStreet.NullText = " Назва вулиці / № будинку ";
+            this.rTxtBoxNameStreet.Size = new System.Drawing.Size(528, 20);
             this.rTxtBoxNameStreet.TabIndex = 10;
             // 
             // radSeparator1
@@ -225,7 +205,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(156, 3);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(678, 30);
+            this.radSeparator1.Size = new System.Drawing.Size(499, 30);
             this.radSeparator1.TabIndex = 11;
             // 
             // IpsAddressExpandedControl
@@ -234,24 +214,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radSeparator1);
             this.Controls.Add(this.rTxtBoxNameStreet);
-            this.Controls.Add(this.lblDistrict);
             this.Controls.Add(this.rDropListRegion);
-            this.Controls.Add(this.rTxtBoxDistrict);
             this.Controls.Add(this.lblStreet);
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblTown);
             this.Controls.Add(this.rLblMainHeader);
             this.Controls.Add(this.rTxtBoxTownName);
             this.Name = "IpsAddressExpandedControl";
-            this.Size = new System.Drawing.Size(841, 89);
+            this.Size = new System.Drawing.Size(662, 89);
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxTownName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblMainHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStreet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxDistrict)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rDropListRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblDistrict)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxNameStreet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             this.ResumeLayout(false);
@@ -266,9 +242,7 @@
         private Telerik.WinControls.UI.RadLabel lblTown;
         private Telerik.WinControls.UI.RadLabel lblRegion;
         private Telerik.WinControls.UI.RadLabel lblStreet;
-        private Telerik.WinControls.UI.RadTextBox rTxtBoxDistrict;
         private Telerik.WinControls.UI.RadDropDownList rDropListRegion;
-        private Telerik.WinControls.UI.RadLabel lblDistrict;
         private Telerik.WinControls.UI.RadTextBox rTxtBoxNameStreet;
         private Telerik.WinControls.UI.RadSeparator radSeparator1;
     }
