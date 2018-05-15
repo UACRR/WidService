@@ -60,7 +60,52 @@ namespace IpsViewComponentLibrary
                     data.Add(temp);
                 }
 
+            SetGridType(sourceData.Client.ClnBusinessPlace.SingleOrDefault(idItem => idItem.PlaceId == id).PlCode == 1
+                ? (byte) 1
+                : (byte) 2);
+
             rGridViewPremises.DataSource = data;
+        }
+
+        public void SetDataSource(List<ClnPlaceHoll> sourceData)
+        {
+            List<PremisesInstitution> data = new List<PremisesInstitution>();
+            PremisesInstitution temp;
+            foreach (var item in sourceData)
+            {
+                temp = new PremisesInstitution
+                {
+                    IdItem = item.HollId,
+                    TypePremisesName = item.HollName,
+                    CountPlace = item.HollNum,
+                    Meterage = item.SqHoll
+                };
+                data.Add(temp);
+            }
+            rGridViewPremises.DataSource = data;
+        }
+
+
+        /// <summary>
+        /// Вибір типу гріда: 1 - готель, 2 - ресторан
+        /// </summary>
+        /// <param name="type"></param>
+        public void SetGridType(byte type)
+        {
+            switch (type)
+            {
+                case 1:
+                {
+                    rGridViewPremises.Columns["CountPlace"].IsVisible = false;
+                    rGridViewPremises.Columns["Meterage"].IsVisible = true;
+                }break;
+
+                case 2:
+                {
+                    rGridViewPremises.Columns["Meterage"].IsVisible = false;
+                    rGridViewPremises.Columns["CountPlace"].IsVisible = true;
+                }break;
+            }
         }
 
         private void rBtnEditPremises_Click(object sender, EventArgs e)

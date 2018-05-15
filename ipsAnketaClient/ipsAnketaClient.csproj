@@ -77,9 +77,18 @@
       <DependentUpon>AnketaClientView.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="ConsumerModel.cs" />
+    <Compile Include="ConsumerPlacesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerPlacesControl.Designer.cs">
+      <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConsumerPlacesControl.resx">
+      <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

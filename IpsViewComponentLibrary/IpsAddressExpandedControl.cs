@@ -41,7 +41,6 @@ namespace IpsViewComponentLibrary
         public void SetValues()
         {
             _nameTown = rTxtBoxTownName.Text;
-            _nameDistrict = rTxtBoxDistrict.Text;
             _streetAddress = rTxtBoxNameStreet.Text;
         }
 
@@ -52,7 +51,6 @@ namespace IpsViewComponentLibrary
         {
             rTxtBoxTownName.Clear();
             rDropListRegion.SelectedItem = rDropListRegion.Items[0];
-            rTxtBoxDistrict.Clear();
             rTxtBoxNameStreet.Clear();
         }
 
@@ -68,18 +66,24 @@ namespace IpsViewComponentLibrary
                 lblTown.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 valid = false;
             }
+            else
+                lblTown.ForeColor = Color.Black;
 
             if (rDropListRegion.SelectedItem == null||rDropListRegion.SelectedItem.Index == 0)
             {
                 lblRegion.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 valid = false;
             }
+            else
+                lblRegion.ForeColor = Color.Black;
 
-            if (rTxtBoxNameStreet.Text == string.Empty)
+            if (rTxtBoxNameStreet.Text == string.Empty || rTxtBoxNameStreet.Text == rTxtBoxNameStreet.NullText)
             {
                 lblStreet.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 valid = false;
             }
+            else
+                lblStreet.ForeColor = Color.Black;
 
 
             if (valid)

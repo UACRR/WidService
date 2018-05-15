@@ -16,6 +16,7 @@ namespace ipsAnketaClient
         private List<ClnPlaceHoll> _data;
         private int _idEditItem;
         private int _idPlace;
+        private byte typePremises;
         private bool _isEdit = false;
 
         public delegate void SaveDataForUpdate();
@@ -58,6 +59,25 @@ namespace ipsAnketaClient
             }
         }
 
+        public void SetTypePremises(byte type)
+        {
+            if(type!=0)
+            switch (type)
+            {
+                case 1:
+                {
+                    lblMetrsPlaceTxt.Text = "Метраж";
+                    typePremises = 1;
+                }break;
+
+                case 2:
+                {
+                    lblMetrsPlaceTxt.Text = "Кількість місць";
+                    typePremises = 2;
+                }break;
+            }
+        }
+
         private void rBtnAdd_Click(object sender, EventArgs e)
         {
             if (Validator())
@@ -74,7 +94,7 @@ namespace ipsAnketaClient
                     OnInsertData?.Invoke();
                     
                 }
-                if (MessageBox.Show("Дані додано!","",MessageBoxButtons.OK,MessageBoxIcon.Asterisk) == DialogResult.OK)
+                if (MessageBox.Show("Дані додано!","",MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
                     Close();
             }
         }
@@ -101,40 +121,22 @@ namespace ipsAnketaClient
             else
                 lblTypePremisses.ForeColor = Color.Black;
 
-            if (rtxtBoxCountPlaces.Text == string.Empty)
+            if (rtxtBoxMetersPlaces.Text == string.Empty)
             {
                 isNotEmpty = false;
-                lblCountPlaces.ForeColor = Color.Crimson;
+                lblMetrsPlaceTxt.ForeColor = Color.Crimson;
             }
             else
-                lblCountPlaces.ForeColor = Color.Black;
+                lblMetrsPlaceTxt.ForeColor = Color.Black;
 
 
-            if (rtxtBoxMeterage.Text == string.Empty)
+            if (!Int32.TryParse(rtxtBoxMetersPlaces.Text, out tryparse))
             {
-                isNotEmpty = false;
-                lblMeterage.ForeColor = Color.Crimson;
-            }
-            else
-                lblMeterage.ForeColor = Color.Black;
-
-
-            if (!Int32.TryParse(rtxtBoxMeterage.Text, out tryparse))
-            {
-                lblMeterage.ForeColor = Color.Crimson;
+                lblMetrsPlaceTxt.ForeColor = Color.Crimson;
                 isNumber = false;
             }
             else
-                lblMeterage.ForeColor = Color.Black;
-
-
-            if (!Int32.TryParse(rtxtBoxCountPlaces.Text, out tryparse))
-            {
-                lblCountPlaces.ForeColor = Color.Crimson;
-                isNumber = false;
-            }
-            else
-                lblCountPlaces.ForeColor = Color.Black;
+                lblMetrsPlaceTxt.ForeColor = Color.Black;
 
 
 
@@ -159,8 +161,7 @@ namespace ipsAnketaClient
         private void SetEditData()
         {
             rtxtBoxTypePremisses.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item =>item.HollName).SingleOrDefault();
-            rtxtBoxMeterage.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.SqHoll).SingleOrDefault().ToString();
-            rtxtBoxCountPlaces.Text = _data.Where(idItem=>idItem.HollId == _idEditItem).Select(item=>item.HollNum).SingleOrDefault().ToString();
+            rtxtBoxMetersPlaces.Text = _data.Where(idItem=>idItem.HollId == _idEditItem).Select(item=>item.HollNum).SingleOrDefault().ToString();
         }
 
         public List<ClnPlaceHoll> DataFotInsert()
@@ -169,8 +170,8 @@ namespace ipsAnketaClient
             {
                 //HollId = автоінкримент
                 HollName = rtxtBoxTypePremisses.Text,
-                HollNum = Convert.ToInt32(rtxtBoxCountPlaces.Text),
-                SqHoll = Convert.ToInt32(rtxtBoxMeterage.Text),
+                HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
+                SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
                 PlaceId = _idPlace
             };
             if (_data!=null)
@@ -190,8 +191,8 @@ namespace ipsAnketaClient
             if (editRow!=null)
             {
                 editRow.HollName = rtxtBoxTypePremisses.Text;
-                editRow.HollNum = Convert.ToInt32(rtxtBoxCountPlaces.Text);
-                editRow.SqHoll = Convert.ToInt32(rtxtBoxMeterage.Text);
+                editRow.HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
+                editRow.SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
             }
             return _data;
         }
