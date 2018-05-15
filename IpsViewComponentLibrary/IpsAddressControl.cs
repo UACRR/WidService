@@ -13,13 +13,15 @@ namespace IpsViewComponentLibrary
 {
     public partial class IpsAddressControl : UserControl
     {
-        /// <summary>
-        /// Підключення до обїекту анкети
-        /// </summary>
-        /// <param name="value"></param>
+        public IpsAddressControl()
+        {
+            InitializeComponent();
+        }
+
+        #region Edit controls
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadDropDownList radDropDownListCountry
+        public RadDropDownList DdlCountry
         {
             get
             {
@@ -28,7 +30,7 @@ namespace IpsViewComponentLibrary
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadDropDownList radDropDownListRegion
+        public RadDropDownList DdlRegion
         {
             get
             {
@@ -37,7 +39,7 @@ namespace IpsViewComponentLibrary
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox radTextBoxCity
+        public RadTextBox TxtCity
         {
             get
             {
@@ -46,7 +48,7 @@ namespace IpsViewComponentLibrary
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox radTextBoxAddress
+        public RadTextBox TxtAddress
         {
             get
             {
@@ -55,7 +57,7 @@ namespace IpsViewComponentLibrary
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox radTextBoxPhone
+        public RadTextBox TxtPhone
         {
             get
             {
@@ -64,7 +66,7 @@ namespace IpsViewComponentLibrary
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox radTextBoxFax
+        public RadTextBox TxtFax
         {
             get
             {
@@ -73,7 +75,7 @@ namespace IpsViewComponentLibrary
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox radTextBoxEmail
+        public RadTextBox TxtEmail
         {
             get
             {
@@ -81,9 +83,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        public IpsAddressControl()
-        {
-            InitializeComponent();
-        }
+        #endregion
     }
 }
