@@ -81,9 +81,9 @@
             this.radWizard.Name = "radWizard";
             this.radWizard.PageHeaderIcon = ((System.Drawing.Image)(resources.GetObject("radWizard.PageHeaderIcon")));
             this.radWizard.Pages.Add(this.wizardPage1);
+            this.radWizard.Pages.Add(this.wizardPage4);
             this.radWizard.Pages.Add(this.wizardPage2);
             this.radWizard.Pages.Add(this.wizardPage3);
-            this.radWizard.Pages.Add(this.wizardPage4);
             this.radWizard.Pages.Add(this.wizardCompletionPage1);
             this.radWizard.Size = new System.Drawing.Size(692, 604);
             this.radWizard.TabIndex = 0;
@@ -92,18 +92,19 @@
             ((Telerik.WinControls.UI.Wizard97CommandArea)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3))).IsCompletionPage = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(0))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(0))).Text = "Відміна";
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(1))).IsFocusedWizardButton = false;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(1))).IsFocusedWizardButton = true;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(1))).Text = "Зберегти";
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(2))).IsFocusedWizardButton = true;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(2))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(2))).Text = "Далі   >";
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).IsFocusedWizardButton = false;
             ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Text = "<   Назад";
-            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Enabled = true;
+            ((Telerik.WinControls.UI.WizardCommandAreaButtonElement)(this.radWizard.GetChildAt(0).GetChildAt(0).GetChildAt(3).GetChildAt(4))).Enabled = false;
             // 
             // wizardCompletionPage1
             // 
             this.wizardCompletionPage1.ContentArea = this.panel3;
             this.wizardCompletionPage1.Name = "wizardCompletionPage1";
+            this.wizardCompletionPage1.Title = "Зберегти зміни";
             // 
             // panel3
             // 
@@ -237,7 +238,7 @@
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtAccountNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 103, 286, 0);
+            this.ipsBankAccountControl.TxtAccountNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 103, 100, 20);
             this.ipsBankAccountControl.TxtAccountNumber.RootElement.StretchVertically = true;
             this.ipsBankAccountControl.TxtAccountNumber.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtAccountNumber.TabIndex = 5;
@@ -251,7 +252,7 @@
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtMfo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 28, 286, 0);
+            this.ipsBankAccountControl.TxtMfo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 28, 100, 20);
             this.ipsBankAccountControl.TxtMfo.RootElement.StretchVertically = true;
             this.ipsBankAccountControl.TxtMfo.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtMfo.TabIndex = 8;
@@ -265,7 +266,7 @@
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtMfoName.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 3, 286, 0);
+            this.ipsBankAccountControl.TxtMfoName.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 3, 100, 20);
             this.ipsBankAccountControl.TxtMfoName.RootElement.StretchVertically = true;
             this.ipsBankAccountControl.TxtMfoName.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtMfoName.TabIndex = 9;
@@ -279,7 +280,7 @@
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtMfoOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 53, 286, 0);
+            this.ipsBankAccountControl.TxtMfoOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 53, 100, 20);
             this.ipsBankAccountControl.TxtMfoOkpo.RootElement.StretchVertically = true;
             this.ipsBankAccountControl.TxtMfoOkpo.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtMfoOkpo.TabIndex = 7;
@@ -293,7 +294,7 @@
             // 
             // 
             // 
-            this.ipsBankAccountControl.TxtTransitNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 78, 286, 0);
+            this.ipsBankAccountControl.TxtTransitNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 78, 100, 20);
             this.ipsBankAccountControl.TxtTransitNumber.RootElement.StretchVertically = true;
             this.ipsBankAccountControl.TxtTransitNumber.Size = new System.Drawing.Size(545, 20);
             this.ipsBankAccountControl.TxtTransitNumber.TabIndex = 6;
