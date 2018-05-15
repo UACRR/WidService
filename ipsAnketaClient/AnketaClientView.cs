@@ -621,11 +621,18 @@ namespace ipsAnketaClient
             }
 
             iClnBusinessPlaceBindingSource.DataSource = _data.Client.ClnBusinessPlace;
+            //consumerPlacesControl.SetGridDataSource(iClnBusinessPlaceBindingSource.DataSource);
         }
 
+        
         public void getData(Customer data)
         {
             throw new NotImplementedException();
+        }
+
+        private void AnketaClientView_Load(object sender, EventArgs e)
+        {
+
         }
 
         public void SetDictionary(AnketaDictionaties dic)
