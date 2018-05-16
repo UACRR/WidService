@@ -46,6 +46,12 @@
     <Reference Include="TelerikCommon, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IpsAnketaCompanyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsAnketaCompanyControl.Designer.cs">
+      <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="IpsAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,6 +79,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="IpsAnketaCompanyControl.resx">
+      <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </EmbeddedResource>
