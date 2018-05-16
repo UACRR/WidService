@@ -90,6 +90,10 @@ namespace CustomerWizards
 
         private void BindDictionaries()
         {
+            ipsAnketaCompanyControl1.ActivityCodeDataSource = _dictionaries.activityType;
+            ipsAnketaCompanyControl1.ActivityCodeValueMember = "CodeI";
+            ipsAnketaCompanyControl1.ActivityCodeDisplayMember = "Name";
+
             ipsAddressControl1.CountriesDataSource = _dictionaries.country;
             ipsAddressControl1.CountriesValueMember = "CountryCode";
             ipsAddressControl1.CountriesDisplayMember = "CountryName";
