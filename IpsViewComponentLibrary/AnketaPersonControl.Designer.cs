@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.lblLastName = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxLastName = new Telerik.WinControls.UI.RadTextBox();
-            this.rRadioBtnSexMale = new Telerik.WinControls.UI.RadRadioButton();
+            this.iAnketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rdtPickerBirth = new Telerik.WinControls.UI.RadDateTimePicker();
             this.rtxtBoxFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.lblFirstName = new Telerik.WinControls.UI.RadLabel();
@@ -39,11 +39,10 @@
             this.lblMidleName = new Telerik.WinControls.UI.RadLabel();
             this.lblBirthDate = new Telerik.WinControls.UI.RadLabel();
             this.lblSex = new Telerik.WinControls.UI.RadLabel();
-            this.rRadioBtnSexFemale = new Telerik.WinControls.UI.RadRadioButton();
-            this.iAnketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radDropDownListSex = new Telerik.WinControls.UI.RadDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxLastName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rRadioBtnSexMale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerBirth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFirstName)).BeginInit();
@@ -51,8 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblMidleName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rRadioBtnSexFemale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListSex)).BeginInit();
             this.SuspendLayout();
             // 
             // lblLastName
@@ -73,14 +71,9 @@
             this.rtxtBoxLastName.Size = new System.Drawing.Size(464, 20);
             this.rtxtBoxLastName.TabIndex = 1;
             // 
-            // rRadioBtnSexMale
+            // iAnketaPersonBindingSource
             // 
-            this.rRadioBtnSexMale.Location = new System.Drawing.Point(333, 76);
-            this.rRadioBtnSexMale.Name = "rRadioBtnSexMale";
-            this.rRadioBtnSexMale.Size = new System.Drawing.Size(43, 18);
-            this.rRadioBtnSexMale.TabIndex = 2;
-            this.rRadioBtnSexMale.Text = "Чол.";
-            this.rRadioBtnSexMale.CheckStateChanged += new System.EventHandler(this.rRadioBtnSexMale_CheckStateChanged);
+            this.iAnketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
             // 
             // rdtPickerBirth
             // 
@@ -120,6 +113,7 @@
             // 
             this.rtxtBoxMidleName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtxtBoxMidleName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "SurName", true));
             this.rtxtBoxMidleName.Location = new System.Drawing.Point(110, 51);
             this.rtxtBoxMidleName.Name = "rtxtBoxMidleName";
             this.rtxtBoxMidleName.Size = new System.Drawing.Size(464, 20);
@@ -149,24 +143,21 @@
             this.lblSex.TabIndex = 10;
             this.lblSex.Text = "Стать:";
             // 
-            // rRadioBtnSexFemale
+            // radDropDownListSex
             // 
-            this.rRadioBtnSexFemale.Location = new System.Drawing.Point(382, 76);
-            this.rRadioBtnSexFemale.Name = "rRadioBtnSexFemale";
-            this.rRadioBtnSexFemale.Size = new System.Drawing.Size(42, 18);
-            this.rRadioBtnSexFemale.TabIndex = 11;
-            this.rRadioBtnSexFemale.Text = "Жін.";
-            this.rRadioBtnSexFemale.CheckStateChanged += new System.EventHandler(this.rRadioBtnSexFemale_CheckStateChanged);
-            // 
-            // iAnketaPersonBindingSource
-            // 
-            this.iAnketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.radDropDownListSex.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.iAnketaPersonBindingSource, "Sex", true));
+            this.radDropDownListSex.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.radDropDownListSex.Location = new System.Drawing.Point(315, 76);
+            this.radDropDownListSex.Name = "radDropDownListSex";
+            this.radDropDownListSex.Size = new System.Drawing.Size(125, 20);
+            this.radDropDownListSex.TabIndex = 11;
+            ((Telerik.WinControls.UI.RadDropDownListElement)(this.radDropDownListSex.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             // 
             // AnketaPersonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.rRadioBtnSexFemale);
+            this.Controls.Add(this.radDropDownListSex);
             this.Controls.Add(this.lblSex);
             this.Controls.Add(this.lblBirthDate);
             this.Controls.Add(this.rtxtBoxMidleName);
@@ -174,7 +165,6 @@
             this.Controls.Add(this.rtxtBoxFirstName);
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.rdtPickerBirth);
-            this.Controls.Add(this.rRadioBtnSexMale);
             this.Controls.Add(this.rtxtBoxLastName);
             this.Controls.Add(this.lblLastName);
             this.MaximumSize = new System.Drawing.Size(900, 105);
@@ -182,7 +172,7 @@
             this.Size = new System.Drawing.Size(577, 105);
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxLastName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rRadioBtnSexMale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerBirth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFirstName)).EndInit();
@@ -190,8 +180,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblMidleName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rRadioBtnSexFemale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListSex)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,7 +190,6 @@
 
         private Telerik.WinControls.UI.RadLabel lblLastName;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxLastName;
-        private Telerik.WinControls.UI.RadRadioButton rRadioBtnSexMale;
         private Telerik.WinControls.UI.RadDateTimePicker rdtPickerBirth;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxFirstName;
         private Telerik.WinControls.UI.RadLabel lblFirstName;
@@ -209,7 +197,7 @@
         private Telerik.WinControls.UI.RadLabel lblMidleName;
         private Telerik.WinControls.UI.RadLabel lblBirthDate;
         private Telerik.WinControls.UI.RadLabel lblSex;
-        private Telerik.WinControls.UI.RadRadioButton rRadioBtnSexFemale;
         private System.Windows.Forms.BindingSource iAnketaPersonBindingSource;
+        private Telerik.WinControls.UI.RadDropDownList radDropDownListSex;
     }
 }
