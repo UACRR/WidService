@@ -25,6 +25,7 @@ namespace CustomerWizards
 
             // test bank account
             var anketa = data.AnketaCompany.SingleOrDefault();
+            anketa.FaRegion = 9;
             anketa.BanAcc = new BankAccount
             {
                 MfoName = "Приватбанк ПАТ",

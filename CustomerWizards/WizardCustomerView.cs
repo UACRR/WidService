@@ -90,29 +90,13 @@ namespace CustomerWizards
 
         private void BindDictionaries()
         {
-            //ddlActivityCode.DataSource = _dictionaries.activityType;
-            //ddlActivityCode.ValueMember = "CodeI";
-            //ddlActivityCode.DisplayMember = "name";
+            ipsAddressControl1.CountriesDataSource = _dictionaries.country;
+            ipsAddressControl1.CountriesValueMember = "CountryCode";
+            ipsAddressControl1.CountriesDisplayMember = "CountryName";
 
-            //ipsAddressControlJa.radDropDownListCountry.DataSource = _dictionaries.country;
-            //ipsAddressControlJa.radDropDownListCountry.ValueMember = "CountryCode";
-            //ipsAddressControlJa.radDropDownListCountry.DisplayMember = "CountryName";
-
-            //ipsAddressControlFa.radDropDownListCountry.DataSource = _dictionaries.country;
-            //ipsAddressControlFa.radDropDownListCountry.ValueMember = "CountryCode";
-            //ipsAddressControlFa.radDropDownListCountry.DisplayMember = "CountryName";
-
-            //ipsAddressControlJa.radDropDownListRegion.DataSource = _dictionaries.region;
-            //ipsAddressControlJa.radDropDownListRegion.ValueMember = "CodeI";
-            //ipsAddressControlJa.radDropDownListRegion.DisplayMember = "Name";
-
-            //ipsAddressControlFa.radDropDownListRegion.DataSource = _dictionaries.region;
-            //ipsAddressControlFa.radDropDownListRegion.ValueMember = "CodeI";
-            //ipsAddressControlFa.radDropDownListRegion.DisplayMember = "Name";
-
-            //ddlDirectorPositionType.DataSource = _dictionaries.positionType;
-            //ddlDirectorPositionType.ValueMember = "CodeI";
-            //ddlDirectorPositionType.DisplayMember = "Name";
+            ipsAddressControl1.RegionsDataSource = _dictionaries.region;
+            ipsAddressControl1.RegionsValueMember = "CodeI";
+            ipsAddressControl1.RegionsDisplayMember = "Name";
         }
 
         /// <summary>
