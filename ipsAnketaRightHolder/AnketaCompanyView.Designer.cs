@@ -63,8 +63,6 @@
             this.txtBuhgalterFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.txtBuhgalterSurName = new Telerik.WinControls.UI.RadTextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.ipsAddressControlJa = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ipsAddressControlFa = new IpsViewComponentLibrary.IpsAddressControl();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -99,20 +97,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBuhgalterLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBuhgalterFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBuhgalterSurName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radDropDownListCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radDropDownListRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxFax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxPhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radDropDownListCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radDropDownListRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxFax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -369,242 +353,6 @@
             this.txtBuhgalterSurName.Size = new System.Drawing.Size(180, 20);
             this.txtBuhgalterSurName.TabIndex = 31;
             // 
-            // ipsAddressControlJa
-            // 
-            this.ipsAddressControlJa.Location = new System.Drawing.Point(129, 117);
-            this.ipsAddressControlJa.Name = "ipsAddressControlJa";
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radDropDownListCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlJa.radDropDownListCountry.AutoSize = false;
-            this.ipsAddressControlJa.radDropDownListCountry.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaCompanyBindingSource, "JaCountry", true));
-            this.ipsAddressControlJa.radDropDownListCountry.Location = new System.Drawing.Point(0, 0);
-            this.ipsAddressControlJa.radDropDownListCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlJa.radDropDownListCountry.Name = "ddlCountry";
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radDropDownListCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 186, 20);
-            this.ipsAddressControlJa.radDropDownListCountry.Size = new System.Drawing.Size(170, 20);
-            this.ipsAddressControlJa.radDropDownListCountry.TabIndex = 18;
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radDropDownListRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlJa.radDropDownListRegion.AutoSize = false;
-            this.ipsAddressControlJa.radDropDownListRegion.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaCompanyBindingSource, "JaRegion", true));
-            this.ipsAddressControlJa.radDropDownListRegion.Location = new System.Drawing.Point(190, 0);
-            this.ipsAddressControlJa.radDropDownListRegion.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlJa.radDropDownListRegion.Name = "ddlRegion";
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radDropDownListRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(206, 0, 186, 20);
-            this.ipsAddressControlJa.radDropDownListRegion.Size = new System.Drawing.Size(170, 20);
-            this.ipsAddressControlJa.radDropDownListRegion.TabIndex = 22;
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlJa.radTextBoxAddress.AutoSize = false;
-            this.ipsAddressControlJa.radTextBoxAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "JaAddress", true));
-            this.ipsAddressControlJa.radTextBoxAddress.Location = new System.Drawing.Point(0, 25);
-            this.ipsAddressControlJa.radTextBoxAddress.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlJa.radTextBoxAddress.Name = "txtAddress";
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 600, 20);
-            this.ipsAddressControlJa.radTextBoxAddress.Size = new System.Drawing.Size(551, 20);
-            this.ipsAddressControlJa.radTextBoxAddress.TabIndex = 10;
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxCity.AutoSize = false;
-            this.ipsAddressControlJa.radTextBoxCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "JaCity", true));
-            this.ipsAddressControlJa.radTextBoxCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ipsAddressControlJa.radTextBoxCity.Location = new System.Drawing.Point(380, 0);
-            this.ipsAddressControlJa.radTextBoxCity.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlJa.radTextBoxCity.Name = "txtCity";
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxCity.RootElement.ControlBounds = new System.Drawing.Rectangle(412, 0, 188, 20);
-            this.ipsAddressControlJa.radTextBoxCity.Size = new System.Drawing.Size(171, 20);
-            this.ipsAddressControlJa.radTextBoxCity.TabIndex = 23;
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlJa.radTextBoxEmail.AutoSize = false;
-            this.ipsAddressControlJa.radTextBoxEmail.Location = new System.Drawing.Point(440, 50);
-            this.ipsAddressControlJa.radTextBoxEmail.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlJa.radTextBoxEmail.Name = "txtEmail";
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(472, 50, 128, 20);
-            this.ipsAddressControlJa.radTextBoxEmail.Size = new System.Drawing.Size(111, 20);
-            this.ipsAddressControlJa.radTextBoxEmail.TabIndex = 27;
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxFax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlJa.radTextBoxFax.AutoSize = false;
-            this.ipsAddressControlJa.radTextBoxFax.Location = new System.Drawing.Point(250, 50);
-            this.ipsAddressControlJa.radTextBoxFax.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlJa.radTextBoxFax.Name = "txtFax";
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxFax.RootElement.ControlBounds = new System.Drawing.Rectangle(266, 50, 126, 20);
-            this.ipsAddressControlJa.radTextBoxFax.Size = new System.Drawing.Size(110, 20);
-            this.ipsAddressControlJa.radTextBoxFax.TabIndex = 26;
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlJa.radTextBoxPhone.AutoSize = false;
-            this.ipsAddressControlJa.radTextBoxPhone.Location = new System.Drawing.Point(60, 50);
-            this.ipsAddressControlJa.radTextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlJa.radTextBoxPhone.Name = "txtPhone";
-            // 
-            // 
-            // 
-            this.ipsAddressControlJa.radTextBoxPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(60, 50, 126, 20);
-            this.ipsAddressControlJa.radTextBoxPhone.Size = new System.Drawing.Size(110, 20);
-            this.ipsAddressControlJa.radTextBoxPhone.TabIndex = 21;
-            this.ipsAddressControlJa.Size = new System.Drawing.Size(551, 70);
-            this.ipsAddressControlJa.TabIndex = 36;
-            // 
-            // ipsAddressControlFa
-            // 
-            this.ipsAddressControlFa.Location = new System.Drawing.Point(129, 220);
-            this.ipsAddressControlFa.Name = "ipsAddressControlFa";
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radDropDownListCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlFa.radDropDownListCountry.AutoSize = false;
-            this.ipsAddressControlFa.radDropDownListCountry.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaCompanyBindingSource, "FaCountry", true));
-            this.ipsAddressControlFa.radDropDownListCountry.Location = new System.Drawing.Point(0, 0);
-            this.ipsAddressControlFa.radDropDownListCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlFa.radDropDownListCountry.Name = "ddlCountry";
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radDropDownListCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 186, 20);
-            this.ipsAddressControlFa.radDropDownListCountry.Size = new System.Drawing.Size(170, 20);
-            this.ipsAddressControlFa.radDropDownListCountry.TabIndex = 18;
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radDropDownListRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlFa.radDropDownListRegion.AutoSize = false;
-            this.ipsAddressControlFa.radDropDownListRegion.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaCompanyBindingSource, "FaRegion", true));
-            this.ipsAddressControlFa.radDropDownListRegion.Location = new System.Drawing.Point(190, 0);
-            this.ipsAddressControlFa.radDropDownListRegion.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlFa.radDropDownListRegion.Name = "ddlRegion";
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radDropDownListRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(206, 0, 186, 20);
-            this.ipsAddressControlFa.radDropDownListRegion.Size = new System.Drawing.Size(170, 20);
-            this.ipsAddressControlFa.radDropDownListRegion.TabIndex = 22;
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlFa.radTextBoxAddress.AutoSize = false;
-            this.ipsAddressControlFa.radTextBoxAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "FaAddress", true));
-            this.ipsAddressControlFa.radTextBoxAddress.Location = new System.Drawing.Point(0, 25);
-            this.ipsAddressControlFa.radTextBoxAddress.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlFa.radTextBoxAddress.Name = "txtAddress";
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 600, 20);
-            this.ipsAddressControlFa.radTextBoxAddress.Size = new System.Drawing.Size(551, 20);
-            this.ipsAddressControlFa.radTextBoxAddress.TabIndex = 10;
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxCity.AutoSize = false;
-            this.ipsAddressControlFa.radTextBoxCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaCompanyBindingSource, "FaCity", true));
-            this.ipsAddressControlFa.radTextBoxCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ipsAddressControlFa.radTextBoxCity.Location = new System.Drawing.Point(380, 0);
-            this.ipsAddressControlFa.radTextBoxCity.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlFa.radTextBoxCity.Name = "txtCity";
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxCity.RootElement.ControlBounds = new System.Drawing.Rectangle(412, 0, 188, 20);
-            this.ipsAddressControlFa.radTextBoxCity.Size = new System.Drawing.Size(171, 20);
-            this.ipsAddressControlFa.radTextBoxCity.TabIndex = 23;
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlFa.radTextBoxEmail.AutoSize = false;
-            this.ipsAddressControlFa.radTextBoxEmail.Location = new System.Drawing.Point(440, 50);
-            this.ipsAddressControlFa.radTextBoxEmail.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlFa.radTextBoxEmail.Name = "txtEmail";
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(472, 50, 128, 20);
-            this.ipsAddressControlFa.radTextBoxEmail.Size = new System.Drawing.Size(111, 20);
-            this.ipsAddressControlFa.radTextBoxEmail.TabIndex = 27;
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxFax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlFa.radTextBoxFax.AutoSize = false;
-            this.ipsAddressControlFa.radTextBoxFax.Location = new System.Drawing.Point(250, 50);
-            this.ipsAddressControlFa.radTextBoxFax.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlFa.radTextBoxFax.Name = "txtFax";
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxFax.RootElement.ControlBounds = new System.Drawing.Rectangle(266, 50, 126, 20);
-            this.ipsAddressControlFa.radTextBoxFax.Size = new System.Drawing.Size(110, 20);
-            this.ipsAddressControlFa.radTextBoxFax.TabIndex = 26;
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ipsAddressControlFa.radTextBoxPhone.AutoSize = false;
-            this.ipsAddressControlFa.radTextBoxPhone.Location = new System.Drawing.Point(60, 50);
-            this.ipsAddressControlFa.radTextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
-            this.ipsAddressControlFa.radTextBoxPhone.Name = "txtPhone";
-            // 
-            // 
-            // 
-            this.ipsAddressControlFa.radTextBoxPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(60, 50, 126, 20);
-            this.ipsAddressControlFa.radTextBoxPhone.Size = new System.Drawing.Size(110, 20);
-            this.ipsAddressControlFa.radTextBoxPhone.TabIndex = 21;
-            this.ipsAddressControlFa.Size = new System.Drawing.Size(551, 70);
-            this.ipsAddressControlFa.TabIndex = 37;
-            // 
             // radLabel6
             // 
             this.radLabel6.Location = new System.Drawing.Point(53, 550);
@@ -619,8 +367,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 584);
             this.Controls.Add(this.radLabel6);
-            this.Controls.Add(this.ipsAddressControlFa);
-            this.Controls.Add(this.ipsAddressControlJa);
             this.Controls.Add(this.txtBuhgalterSurName);
             this.Controls.Add(this.txtBuhgalterFirstName);
             this.Controls.Add(this.txtBuhgalterLastName);
@@ -691,20 +437,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBuhgalterLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBuhgalterFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBuhgalterSurName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radDropDownListCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radDropDownListRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxFax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlJa.radTextBoxPhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radDropDownListCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radDropDownListRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxFax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControlFa.radTextBoxPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -747,8 +479,6 @@
         private Telerik.WinControls.UI.RadTextBox txtBuhgalterFirstName;
         private Telerik.WinControls.UI.RadTextBox txtBuhgalterSurName;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private IpsViewComponentLibrary.IpsAddressControl ipsAddressControlJa;
-        private IpsViewComponentLibrary.IpsAddressControl ipsAddressControlFa;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private System.Windows.Forms.BindingSource iRelEmployeeBindingSource;
     }
