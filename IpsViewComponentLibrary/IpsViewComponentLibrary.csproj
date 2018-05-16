@@ -104,6 +104,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
