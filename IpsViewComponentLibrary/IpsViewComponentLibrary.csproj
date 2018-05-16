@@ -46,6 +46,30 @@
     <Reference Include="TelerikCommon, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnketaPersonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AnketaPersonControl.Designer.cs">
+      <DependentUpon>AnketaPersonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnketaPersonRightHolderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AnketaPersonRightHolderControl.Designer.cs">
+      <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContactsPersonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContactsPersonControl.Designer.cs">
+      <DependentUpon>ContactsPersonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContractControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContractControl.Designer.cs">
+      <DependentUpon>ContractControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="IpsAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,6 +97,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AnketaPersonControl.resx">
+      <DependentUpon>AnketaPersonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
+      <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactsPersonControl.resx">
+      <DependentUpon>ContactsPersonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContractControl.resx">
+      <DependentUpon>ContractControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,6 +138,9 @@
       <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
       <Name>ipsFormsDesign</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

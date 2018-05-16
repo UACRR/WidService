@@ -20,8 +20,11 @@ namespace DebugFormForControls
         public string LastName => rtxtBoxLastName.Text;
         public string MidleName => rtxtBoxMidleName.Text;
         public DateTime BirthDate => rdtPickerBirth.Value;
+
+        
         public string Sex { get; private set; }
 
+        public object DataSource { get; set; }
 
         public AnketaPersonControl()
         {

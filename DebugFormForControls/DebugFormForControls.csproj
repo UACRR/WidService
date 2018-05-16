@@ -57,48 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnketaPersonControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AnketaPersonControl.Designer.cs">
-      <DependentUpon>AnketaPersonControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AnketaPersonRightHolderControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AnketaPersonRightHolderControl.Designer.cs">
-      <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ContactsPersonControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContactsPersonControl.Designer.cs">
-      <DependentUpon>ContactsPersonControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ContractControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContractControl.Designer.cs">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="DebugOrTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DebugOrTestForm.Designer.cs">
       <DependentUpon>DebugOrTestForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AnketaPersonControl.resx">
-      <DependentUpon>AnketaPersonControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
-      <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ContactsPersonControl.resx">
-      <DependentUpon>ContactsPersonControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ContractControl.resx">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DebugOrTestForm.resx">
       <DependentUpon>DebugOrTestForm.cs</DependentUpon>
     </EmbeddedResource>
