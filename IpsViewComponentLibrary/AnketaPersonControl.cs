@@ -83,35 +83,9 @@ namespace DebugFormForControls
             rtxtBoxLastName.Clear();
             rtxtBoxMidleName.Clear();
             rdtPickerBirth.SetToNullValue();
-            rRadioBtnSexMale.IsChecked = false;
-            rRadioBtnSexFemale.IsChecked = false;
             _sexSelected = false;
             _birthDateSelected = false;
         }
-
-        #region Радіокнопки вибору статі
-        
-        private void rRadioBtnSexMale_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (rRadioBtnSexMale.IsChecked)
-            {
-                _sexSelected = true;
-                rRadioBtnSexFemale.IsChecked = false;
-                Sex = "Male";
-            }
-        }
-        
-        private void rRadioBtnSexFemale_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (rRadioBtnSexFemale.IsChecked)
-            {
-                _sexSelected = true;
-                rRadioBtnSexMale.IsChecked = false;
-                Sex = "Female";
-            }
-        }
-
-        #endregion
 
         // * * * вибір дати народження
         private void rdtPickerBirth_ValueChanged(object sender, EventArgs e)
