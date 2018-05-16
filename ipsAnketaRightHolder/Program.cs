@@ -1,7 +1,4 @@
-﻿using ipsAnketaRightHolder.Data;
-using ipsmedserviceapp.Model;
-using System;
-using System.Linq;
+﻿using System;
 using System.Windows.Forms;
 using WebAPIConnector;
 
@@ -20,18 +17,9 @@ namespace ipsAnketaRightHolder
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //CustomerModel model = new CustomerModel();
-            //model.AnketaCompany.Add(new AnketaCompanyModel {
-            //    ShortName = "Short name",
-            //    FaAddress = "Fact address"
-            //});
-
-            //AnketaCompanyView view = new AnketaCompanyView();
-            //new AnketaCompanyPresenter(model, view);
-
-            var customer = connector.GetItemById<Customer>("api/rh/detail", "139");
-            AnketaCompanyView view = new AnketaCompanyView();
-            //view.SetData(customer);
+            var view = new AnketaCompanyView();
+            var model = new ModelCompany();
+            var presenter = new AnketaCompanyPresenter(view, model, 139);
 
             Application.Run(view);
         }

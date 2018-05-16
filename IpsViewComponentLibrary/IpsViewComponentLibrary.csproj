@@ -46,74 +46,48 @@
     <Reference Include="TelerikCommon, Version=2018.1.220.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnketaPersonControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AnketaPersonControl.Designer.cs">
-      <DependentUpon>AnketaPersonControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AnketaPersonRightHolderControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AnketaPersonRightHolderControl.Designer.cs">
-      <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ContactsPersonControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContactsPersonControl.Designer.cs">
-      <DependentUpon>ContactsPersonControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ContractControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ContractControl.Designer.cs">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="IpsAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="IpsAddressControl.Designer.cs">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsAddressExpandedControl.cs">
+    <Compile Include="IpsBankAccountControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsAddressExpandedControl.Designer.cs">
-      <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
+    <Compile Include="IpsBankAccountControl.Designer.cs">
+      <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsPremisesTypeControl.cs">
+    <Compile Include="IpsExclusionsLimitationsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsPremisesTypeControl.Designer.cs">
-      <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
+    <Compile Include="IpsExclusionsLimitationsControl.Designer.cs">
+      <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IpsServiceComissionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsServiceComissionControl.Designer.cs">
+      <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AnketaPersonControl.resx">
-      <DependentUpon>AnketaPersonControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
-      <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ContactsPersonControl.resx">
-      <DependentUpon>ContactsPersonControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ContractControl.resx">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsAddressExpandedControl.resx">
-      <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
+    <EmbeddedResource Include="IpsBankAccountControl.resx">
+      <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsPremisesTypeControl.resx">
-      <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
+    <EmbeddedResource Include="IpsExclusionsLimitationsControl.resx">
+      <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="IpsServiceComissionControl.resx">
+      <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
@@ -121,7 +95,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
