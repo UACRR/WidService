@@ -108,6 +108,10 @@ namespace CustomerWizards
             ipsAddressControl1.RegionsDataSource = _dictionaries.region;
             ipsAddressControl1.RegionsValueMember = "CodeI";
             ipsAddressControl1.RegionsDisplayMember = "Name";
+
+            ipsRegistrationsCompanyControl1.TypesVatDataSource = _dictionaries.typeVat;
+            ipsRegistrationsCompanyControl1.TypesVatValueMember = "CodeI";
+            ipsRegistrationsCompanyControl1.TypesVatDisplayMember = "Name";
         }
 
         /// <summary>

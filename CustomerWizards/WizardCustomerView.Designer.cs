@@ -37,9 +37,10 @@
             this.wizardCompletionPage1 = new Telerik.WinControls.UI.WizardCompletionPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ipsRegistrationsCompanyControl1 = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
+            this.AnketaCompanySource = new System.Windows.Forms.BindingSource(this.components);
             this.ipsServiceComissionControl1 = new IpsViewComponentLibrary.IpsServiceComissionControl();
             this.ipsAnketaCompanyControl1 = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
-            this.AnketaCompanySource = new System.Windows.Forms.BindingSource(this.components);
             this.ipsAddressControl1 = new IpsViewComponentLibrary.IpsAddressControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ipsExclusionsLimitations = new IpsViewComponentLibrary.IpsExclusionsLimitationsControl();
@@ -54,9 +55,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.radWizard)).BeginInit();
             this.radWizard.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.DdlTypeVat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.DtRegisterDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.TxtNumberVat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.TxtOkpo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.TxtRegisterNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.TxtRegisterWho)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsServiceComissionControl1.TxtRateCommission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsServiceComissionControl1.TxtRateCourt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.DdlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.TxtAddress)).BeginInit();
@@ -79,8 +86,8 @@
             this.radWizard.CompletionPage = this.wizardCompletionPage1;
             this.radWizard.Controls.Add(this.panel2);
             this.radWizard.Controls.Add(this.panel1);
-            this.radWizard.Controls.Add(this.panel4);
             this.radWizard.Controls.Add(this.panel3);
+            this.radWizard.Controls.Add(this.panel4);
             this.radWizard.Controls.Add(this.panel5);
             this.radWizard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radWizard.Location = new System.Drawing.Point(0, 0);
@@ -123,6 +130,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.ipsRegistrationsCompanyControl1);
             this.panel2.Controls.Add(this.ipsServiceComissionControl1);
             this.panel2.Controls.Add(this.ipsAnketaCompanyControl1);
             this.panel2.Controls.Add(this.ipsAddressControl1);
@@ -130,6 +138,106 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(692, 475);
             this.panel2.TabIndex = 1;
+            // 
+            // ipsRegistrationsCompanyControl1
+            // 
+            this.ipsRegistrationsCompanyControl1.DataMember = "";
+            this.ipsRegistrationsCompanyControl1.DataSource = this.AnketaCompanySource;
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.DdlTypeVat.Location = new System.Drawing.Point(120, 85);
+            this.ipsRegistrationsCompanyControl1.DdlTypeVat.Name = "ddlTypeVat";
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.DdlTypeVat.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 85, 120, 20);
+            this.ipsRegistrationsCompanyControl1.DdlTypeVat.RootElement.StretchVertically = true;
+            this.ipsRegistrationsCompanyControl1.DdlTypeVat.Size = new System.Drawing.Size(120, 20);
+            this.ipsRegistrationsCompanyControl1.DdlTypeVat.TabIndex = 28;
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.Location = new System.Drawing.Point(278, 38);
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.Name = "dtRegisterDate";
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.RootElement.ControlBounds = new System.Drawing.Rectangle(278, 38, 92, 20);
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.RootElement.StretchVertically = true;
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.Size = new System.Drawing.Size(92, 20);
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.TabIndex = 24;
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.TabStop = false;
+            this.ipsRegistrationsCompanyControl1.DtRegisterDate.Value = new System.DateTime(((long)(0)));
+            this.ipsRegistrationsCompanyControl1.Location = new System.Drawing.Point(51, 150);
+            this.ipsRegistrationsCompanyControl1.Name = "ipsRegistrationsCompanyControl1";
+            this.ipsRegistrationsCompanyControl1.NumberVatDataMember = "NumberVat";
+            this.ipsRegistrationsCompanyControl1.OkpoDataMember = "Okpo";
+            this.ipsRegistrationsCompanyControl1.RegisterDateDataMember = "RegistrDate";
+            this.ipsRegistrationsCompanyControl1.RegisterNumberDataMember = "RegistrNumber";
+            this.ipsRegistrationsCompanyControl1.RegisterWhoDataMember = "RegistrWho";
+            this.ipsRegistrationsCompanyControl1.Size = new System.Drawing.Size(600, 110);
+            this.ipsRegistrationsCompanyControl1.TabIndex = 5;
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.TxtNumberVat.Location = new System.Drawing.Point(436, 85);
+            this.ipsRegistrationsCompanyControl1.TxtNumberVat.Name = "txtNumberVat";
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.TxtNumberVat.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 85, 164, 20);
+            this.ipsRegistrationsCompanyControl1.TxtNumberVat.RootElement.StretchVertically = true;
+            this.ipsRegistrationsCompanyControl1.TxtNumberVat.Size = new System.Drawing.Size(164, 20);
+            this.ipsRegistrationsCompanyControl1.TxtNumberVat.TabIndex = 27;
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.TxtOkpo.Location = new System.Drawing.Point(120, 1);
+            this.ipsRegistrationsCompanyControl1.TxtOkpo.Name = "txtOkpo";
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.TxtOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 1, 120, 20);
+            this.ipsRegistrationsCompanyControl1.TxtOkpo.RootElement.StretchVertically = true;
+            this.ipsRegistrationsCompanyControl1.TxtOkpo.Size = new System.Drawing.Size(120, 20);
+            this.ipsRegistrationsCompanyControl1.TxtOkpo.TabIndex = 23;
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.TxtRegisterNumber.Location = new System.Drawing.Point(120, 38);
+            this.ipsRegistrationsCompanyControl1.TxtRegisterNumber.Name = "txtRegisterNumber";
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.TxtRegisterNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 38, 120, 20);
+            this.ipsRegistrationsCompanyControl1.TxtRegisterNumber.RootElement.StretchVertically = true;
+            this.ipsRegistrationsCompanyControl1.TxtRegisterNumber.Size = new System.Drawing.Size(120, 20);
+            this.ipsRegistrationsCompanyControl1.TxtRegisterNumber.TabIndex = 26;
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.TxtRegisterWho.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ipsRegistrationsCompanyControl1.TxtRegisterWho.Location = new System.Drawing.Point(436, 38);
+            this.ipsRegistrationsCompanyControl1.TxtRegisterWho.Name = "txtRegisterWho";
+            // 
+            // 
+            // 
+            this.ipsRegistrationsCompanyControl1.TxtRegisterWho.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 38, 164, 0);
+            this.ipsRegistrationsCompanyControl1.TxtRegisterWho.RootElement.StretchVertically = true;
+            this.ipsRegistrationsCompanyControl1.TxtRegisterWho.Size = new System.Drawing.Size(164, 20);
+            this.ipsRegistrationsCompanyControl1.TxtRegisterWho.TabIndex = 25;
+            this.ipsRegistrationsCompanyControl1.TypesVatDataMember = "";
+            this.ipsRegistrationsCompanyControl1.TypesVatDataSource = null;
+            this.ipsRegistrationsCompanyControl1.TypesVatDisplayMember = "";
+            this.ipsRegistrationsCompanyControl1.TypesVatValueMember = "";
+            this.ipsRegistrationsCompanyControl1.TypeVatDataMember = "TypeVat";
+            // 
+            // AnketaCompanySource
+            // 
+            this.AnketaCompanySource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // ipsServiceComissionControl1
             // 
@@ -186,10 +294,6 @@
             this.ipsAnketaCompanyControl1.Name = "ipsAnketaCompanyControl1";
             this.ipsAnketaCompanyControl1.Size = new System.Drawing.Size(600, 71);
             this.ipsAnketaCompanyControl1.TabIndex = 1;
-            // 
-            // AnketaCompanySource
-            // 
-            this.AnketaCompanySource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // ipsAddressControl1
             // 
@@ -297,6 +401,20 @@
             // 
             // 
             // 
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.AutoExpandGroups = true;
+            gridViewTextBoxColumn1.EnableExpressionEditor = false;
+            gridViewTextBoxColumn1.HeaderText = "column1";
+            gridViewTextBoxColumn1.MinWidth = 100;
+            gridViewTextBoxColumn1.Name = "column1";
+            gridViewTextBoxColumn1.Width = 300;
+            gridViewCheckBoxColumn1.EnableExpressionEditor = false;
+            gridViewCheckBoxColumn1.HeaderText = "column2";
+            gridViewCheckBoxColumn1.MinWidth = 20;
+            gridViewCheckBoxColumn1.Name = "column2";
+            gridViewCheckBoxColumn1.Width = 66;
+            this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewCheckBoxColumn1});
             this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.ShowColumnHeaders = false;
             this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.ShowRowHeaderColumn = false;
             this.ipsExclusionsLimitations.GridExclusionsLimitations.MasterTemplate.ViewDefinition = tableViewDefinition1;
@@ -457,9 +575,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.radWizard)).EndInit();
             this.radWizard.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.DdlTypeVat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.DtRegisterDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.TxtNumberVat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.TxtOkpo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.TxtRegisterNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsRegistrationsCompanyControl1.TxtRegisterWho)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsServiceComissionControl1.TxtRateCommission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsServiceComissionControl1.TxtRateCourt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AnketaCompanySource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.DdlCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.DdlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsAddressControl1.TxtAddress)).EndInit();
@@ -499,5 +623,6 @@
         private IpsViewComponentLibrary.IpsAddressControl ipsAddressControl1;
         private IpsViewComponentLibrary.IpsAnketaCompanyControl ipsAnketaCompanyControl1;
         private IpsViewComponentLibrary.IpsServiceComissionControl ipsServiceComissionControl1;
+        private IpsViewComponentLibrary.IpsRegistrationsCompanyControl ipsRegistrationsCompanyControl1;
     }
 }

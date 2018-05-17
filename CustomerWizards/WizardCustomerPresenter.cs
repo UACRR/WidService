@@ -26,6 +26,9 @@ namespace CustomerWizards
             // test bank account
             var anketa = data.AnketaCompany.SingleOrDefault();
             anketa.FaRegion = 9;
+            anketa.RegistrNumber = "918273645";
+            anketa.RegistrWho = "<registrator>";
+            anketa.NumberVat = "105105105";
             anketa.BanAcc = new BankAccount
             {
                 MfoName = "Приватбанк ПАТ",
