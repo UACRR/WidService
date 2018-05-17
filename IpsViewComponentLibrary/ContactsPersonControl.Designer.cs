@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblMobPhone = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxMobPhone = new Telerik.WinControls.UI.RadTextBox();
             this.rtxtBoxMobPhoneSecond = new Telerik.WinControls.UI.RadTextBox();
@@ -36,6 +37,7 @@
             this.lblEmail = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxHomePhone = new Telerik.WinControls.UI.RadTextBox();
             this.lblHomePhone = new Telerik.WinControls.UI.RadLabel();
+            this.iAnketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblMobPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMobPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMobPhoneSecond)).BeginInit();
@@ -44,6 +46,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxHomePhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblHomePhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMobPhone
@@ -56,6 +59,7 @@
             // 
             // rtxtBoxMobPhone
             // 
+            this.rtxtBoxMobPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "PhoneMobileMain", true));
             this.rtxtBoxMobPhone.Location = new System.Drawing.Point(122, 2);
             this.rtxtBoxMobPhone.Name = "rtxtBoxMobPhone";
             this.rtxtBoxMobPhone.Size = new System.Drawing.Size(150, 20);
@@ -63,6 +67,7 @@
             // 
             // rtxtBoxMobPhoneSecond
             // 
+            this.rtxtBoxMobPhoneSecond.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "PhoneMobileExtra", true));
             this.rtxtBoxMobPhoneSecond.Location = new System.Drawing.Point(415, 2);
             this.rtxtBoxMobPhoneSecond.Name = "rtxtBoxMobPhoneSecond";
             this.rtxtBoxMobPhoneSecond.Size = new System.Drawing.Size(150, 20);
@@ -78,6 +83,7 @@
             // 
             // rtxtBoxEmail
             // 
+            this.rtxtBoxEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "EMail", true));
             this.rtxtBoxEmail.Location = new System.Drawing.Point(415, 28);
             this.rtxtBoxEmail.Name = "rtxtBoxEmail";
             this.rtxtBoxEmail.Size = new System.Drawing.Size(206, 20);
@@ -93,6 +99,7 @@
             // 
             // rtxtBoxHomePhone
             // 
+            this.rtxtBoxHomePhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "PhoneHome", true));
             this.rtxtBoxHomePhone.Location = new System.Drawing.Point(122, 28);
             this.rtxtBoxHomePhone.Name = "rtxtBoxHomePhone";
             this.rtxtBoxHomePhone.Size = new System.Drawing.Size(150, 20);
@@ -105,6 +112,10 @@
             this.lblHomePhone.Size = new System.Drawing.Size(108, 18);
             this.lblHomePhone.TabIndex = 4;
             this.lblHomePhone.Text = "Домашній телефон:";
+            // 
+            // iAnketaPersonBindingSource
+            // 
+            this.iAnketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
             // 
             // ContactsPersonControl
             // 
@@ -129,6 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxHomePhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblHomePhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,5 +156,6 @@
         private Telerik.WinControls.UI.RadLabel lblEmail;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxHomePhone;
         private Telerik.WinControls.UI.RadLabel lblHomePhone;
+        private System.Windows.Forms.BindingSource iAnketaPersonBindingSource;
     }
 }

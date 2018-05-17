@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,23 @@ namespace DebugFormForControls
         private bool _birthDateSelected = false,
                      _sexSelected = false;
 
-        public object DataSource { get; set; }
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get => iAnketaPersonBindingSource.DataSource;
+            set
+            {
+                if (iAnketaPersonBindingSource.DataSource != value)
+                    iAnketaPersonBindingSource.DataSource = value;
+            }
+        }
+
+        public int DataSourceDropList
+        {
+            get => radDropDownListSex.SelectedIndex;
+            set => radDropDownListSex.SelectedIndex = value;
+        }
 
         public AnketaPersonControl()
         {
@@ -78,6 +95,13 @@ namespace DebugFormForControls
             _sexSelected = false;
             _birthDateSelected = false;
         }
+
+        private void radDropDownListSex_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            _sexSelected = radDropDownListSex.SelectedItem.Index != 0;
+
+        }
+
 
         // * * * вибір дати народження
         private void rdtPickerBirth_ValueChanged(object sender, EventArgs e)
