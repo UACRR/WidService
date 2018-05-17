@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -24,6 +25,7 @@ namespace ipsmedserviceapp.Model
         public int? GetCode { get; set; }
 
         public Customer Cust { get; set; }
+        [JsonIgnore]
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }

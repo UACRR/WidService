@@ -23,19 +23,28 @@ namespace ipsmedserviceapp.Controllers
         private async Task<Customer> GetRightHolderAllData( int id )
         {
             var cust = await _dbContext.Customer.Where(row => row.CustId == id)
-                        .Include(item => item.Company).ThenInclude(comp => comp.RelEmployee)
+                        .Include(item => item.Company)
+                            .ThenInclude(comp => comp.RelEmployee)
                         .Include(item => item.AnketaCompany)
                         .Include(item => item.Person)
                         .Include(item => item.AnketaPerson)
                         .Include(item => item.Community)
                         .Include(item => item.BankAccount)
-                        .Include(item => item.AnketaAddName).SingleOrDefaultAsync();
+                        .Include(item => item.AnketaAddName)
+                        .SingleOrDefaultAsync();
 
 
             foreach (var relEmp in cust.Company.RelEmployee)
             {
                 _dbContext.Entry(relEmp).Reference(item => item.Empl).Load();
             }
+
+            // load only one active agreement with AgreementAddRh for customer
+            await _dbContext.Entry(cust).Collection(rec => rec.AgreementMaster)
+                .Query()
+                .Where(item => item.AgrStatus != 4)
+                .Include(item => item.AgreementAddRh)
+                .LoadAsync();
 
             return cust;
 
