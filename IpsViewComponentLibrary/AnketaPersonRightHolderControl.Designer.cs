@@ -41,6 +41,10 @@
             this.lblLastName = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxPseudonym = new Telerik.WinControls.UI.RadTextBox();
             this.lblPseudonym = new Telerik.WinControls.UI.RadLabel();
+            this.rBtnMoreLastName = new Telerik.WinControls.UI.RadButton();
+            this.rBtnMoreName = new Telerik.WinControls.UI.RadButton();
+            this.rBtnMoreSurName = new Telerik.WinControls.UI.RadButton();
+            this.rBtnMorePseudonym = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.rRadioBtnSexFemale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).BeginInit();
@@ -54,6 +58,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxPseudonym)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPseudonym)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreLastName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreSurName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnMorePseudonym)).BeginInit();
             this.SuspendLayout();
             // 
             // rRadioBtnSexFemale
@@ -87,7 +95,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtBoxMidleName.Location = new System.Drawing.Point(109, 52);
             this.rtxtBoxMidleName.Name = "rtxtBoxMidleName";
-            this.rtxtBoxMidleName.Size = new System.Drawing.Size(513, 20);
+            this.rtxtBoxMidleName.Size = new System.Drawing.Size(437, 20);
             this.rtxtBoxMidleName.TabIndex = 19;
             // 
             // lblMidleName
@@ -104,7 +112,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtBoxFirstName.Location = new System.Drawing.Point(109, 27);
             this.rtxtBoxFirstName.Name = "rtxtBoxFirstName";
-            this.rtxtBoxFirstName.Size = new System.Drawing.Size(513, 20);
+            this.rtxtBoxFirstName.Size = new System.Drawing.Size(437, 20);
             this.rtxtBoxFirstName.TabIndex = 17;
             // 
             // lblFirstName
@@ -145,7 +153,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtBoxLastName.Location = new System.Drawing.Point(109, 2);
             this.rtxtBoxLastName.Name = "rtxtBoxLastName";
-            this.rtxtBoxLastName.Size = new System.Drawing.Size(513, 20);
+            this.rtxtBoxLastName.Size = new System.Drawing.Size(437, 20);
             this.rtxtBoxLastName.TabIndex = 13;
             // 
             // lblLastName
@@ -162,7 +170,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtBoxPseudonym.Location = new System.Drawing.Point(109, 78);
             this.rtxtBoxPseudonym.Name = "rtxtBoxPseudonym";
-            this.rtxtBoxPseudonym.Size = new System.Drawing.Size(513, 20);
+            this.rtxtBoxPseudonym.Size = new System.Drawing.Size(437, 20);
             this.rtxtBoxPseudonym.TabIndex = 24;
             // 
             // lblPseudonym
@@ -174,10 +182,50 @@
             this.lblPseudonym.TabIndex = 23;
             this.lblPseudonym.Text = "Псевдонім (сценічне ім\'я):";
             // 
+            // rBtnMoreLastName
+            // 
+            this.rBtnMoreLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rBtnMoreLastName.Location = new System.Drawing.Point(553, 2);
+            this.rBtnMoreLastName.Name = "rBtnMoreLastName";
+            this.rBtnMoreLastName.Size = new System.Drawing.Size(87, 20);
+            this.rBtnMoreLastName.TabIndex = 25;
+            this.rBtnMoreLastName.Text = "Ще, інша мова";
+            // 
+            // rBtnMoreName
+            // 
+            this.rBtnMoreName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rBtnMoreName.Location = new System.Drawing.Point(553, 27);
+            this.rBtnMoreName.Name = "rBtnMoreName";
+            this.rBtnMoreName.Size = new System.Drawing.Size(87, 20);
+            this.rBtnMoreName.TabIndex = 26;
+            this.rBtnMoreName.Text = "Ще, інша мова";
+            // 
+            // rBtnMoreSurName
+            // 
+            this.rBtnMoreSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rBtnMoreSurName.Location = new System.Drawing.Point(553, 52);
+            this.rBtnMoreSurName.Name = "rBtnMoreSurName";
+            this.rBtnMoreSurName.Size = new System.Drawing.Size(87, 20);
+            this.rBtnMoreSurName.TabIndex = 27;
+            this.rBtnMoreSurName.Text = "Ще, інша мова";
+            // 
+            // rBtnMorePseudonym
+            // 
+            this.rBtnMorePseudonym.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rBtnMorePseudonym.Location = new System.Drawing.Point(553, 78);
+            this.rBtnMorePseudonym.Name = "rBtnMorePseudonym";
+            this.rBtnMorePseudonym.Size = new System.Drawing.Size(87, 20);
+            this.rBtnMorePseudonym.TabIndex = 28;
+            this.rBtnMorePseudonym.Text = "Ще, інша мова";
+            // 
             // AnketaPersonRightHolderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.rBtnMorePseudonym);
+            this.Controls.Add(this.rBtnMoreSurName);
+            this.Controls.Add(this.rBtnMoreName);
+            this.Controls.Add(this.rBtnMoreLastName);
             this.Controls.Add(this.rtxtBoxPseudonym);
             this.Controls.Add(this.lblPseudonym);
             this.Controls.Add(this.rRadioBtnSexFemale);
@@ -193,7 +241,7 @@
             this.Controls.Add(this.lblLastName);
             this.MaximumSize = new System.Drawing.Size(900, 128);
             this.Name = "AnketaPersonRightHolderControl";
-            this.Size = new System.Drawing.Size(625, 128);
+            this.Size = new System.Drawing.Size(643, 128);
             ((System.ComponentModel.ISupportInitialize)(this.rRadioBtnSexFemale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).EndInit();
@@ -207,6 +255,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxPseudonym)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPseudonym)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreLastName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreSurName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rBtnMorePseudonym)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,5 +279,9 @@
         private Telerik.WinControls.UI.RadLabel lblLastName;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxPseudonym;
         private Telerik.WinControls.UI.RadLabel lblPseudonym;
+        private Telerik.WinControls.UI.RadButton rBtnMoreLastName;
+        private Telerik.WinControls.UI.RadButton rBtnMoreName;
+        private Telerik.WinControls.UI.RadButton rBtnMoreSurName;
+        private Telerik.WinControls.UI.RadButton rBtnMorePseudonym;
     }
 }
