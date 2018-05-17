@@ -24,6 +24,7 @@ namespace CustomerWizards
         public ICustomer Customer { get => _data; }
         public IRelEmployee RelEmployer { get => _relBoss; }
         public IEmployee Employee { get => _relBoss.Empl; }
+        public IClient Client { get; }
         public IBankAccount BankAccount { get; set; }
 
         public event EventHandler FieldsValueChanged;
@@ -87,6 +88,7 @@ namespace CustomerWizards
         {
             FieldsValueChanged?.Invoke(sender, e);
         }
+
 
         private void BindDictionaries()
         {

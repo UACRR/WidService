@@ -7,20 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpsViewComponentLibrary;
+using Telerik.WinControls.UI;
 
 namespace DebugFormForControls
 {
     public partial class AnketaPersonRightHolderControl : UserControl
     {
         private bool _birthDateSelected = false,
-            _sexSelected = false;
+                     _sexSelected = false;
 
-        public string FirstName => rtxtBoxFirstName.Text;
-        public string LastName => rtxtBoxLastName.Text;
-        public string MidleName => rtxtBoxMidleName.Text;
-        public DateTime BirthDate => rdtPickerBirth.Value;
-        public string Sex { get; private set; }
-        public string Pseudonym => rtxtBoxPseudonym.Text;
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get => iAnketaPersonBindingSource.DataSource;
+            set
+            {
+                if (iAnketaPersonBindingSource.DataSource != value)
+                    iAnketaPersonBindingSource.DataSource = value;
+            }
+        }
+
+        public int DataSourceDropList
+        {
+            get => radDropDownListSex.SelectedIndex;
+            set => radDropDownListSex.SelectedIndex = value;
+        }
+
 
         public AnketaPersonRightHolderControl()
         {
@@ -80,30 +94,44 @@ namespace DebugFormForControls
             rtxtBoxMidleName.Clear();
             rtxtBoxPseudonym.Clear();
             rdtPickerBirth.SetToNullValue();
-            rRadioBtnSexMale.IsChecked = false;
-            rRadioBtnSexFemale.IsChecked = false;
             _sexSelected = false;
             _birthDateSelected = false;
         }
 
-        private void rRadioBtnSexMale_CheckStateChanged(object sender, EventArgs e)
+        private void radDropDownListSex_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            if (rRadioBtnSexMale.IsChecked)
-            {
-                _sexSelected = true;
-                rRadioBtnSexFemale.IsChecked = false;
-                Sex = "Male";
-            }
+            _sexSelected = radDropDownListSex.SelectedItem.Index != 0;
         }
 
-        private void rRadioBtnSexFemale_CheckStateChanged(object sender, EventArgs e)
+
+        private void rBtnMoreName_Click(object sender, EventArgs e)
         {
-            if (rRadioBtnSexFemale.IsChecked)
-            {
-                _sexSelected = true;
-                rRadioBtnSexMale.IsChecked = false;
-                Sex = "Female";
-            }
+            ExpandedFormForAnketaPersonRightHolder more = new ExpandedFormForAnketaPersonRightHolder("firstname");
+            more.StartPosition = FormStartPosition.CenterScreen;
+            more.ShowDialog();
+        }
+
+
+        private void rBtnMoreLastName_Click(object sender, EventArgs e)
+        {
+            ExpandedFormForAnketaPersonRightHolder more = new ExpandedFormForAnketaPersonRightHolder("lastname");
+            more.StartPosition = FormStartPosition.CenterScreen;
+            more.ShowDialog();
+
+        }
+
+        private void rBtnMoreSurName_Click(object sender, EventArgs e)
+        {
+            ExpandedFormForAnketaPersonRightHolder more = new ExpandedFormForAnketaPersonRightHolder("surname");
+            more.StartPosition = FormStartPosition.CenterScreen;
+            more.ShowDialog();
+        }
+
+        private void rBtnMorePseudonym_Click(object sender, EventArgs e)
+        {
+            ExpandedFormForAnketaPersonRightHolder more = new ExpandedFormForAnketaPersonRightHolder("pseudonym");
+            more.StartPosition = FormStartPosition.CenterScreen;
+            more.ShowDialog();
         }
 
         private void rdtPickerBirth_ValueChanged(object sender, EventArgs e)

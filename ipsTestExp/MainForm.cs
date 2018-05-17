@@ -27,6 +27,7 @@ namespace ipsTestExp
         private AnketaCompany _curAnketa;
         private RelEmployee _relBoss;
 
+        public IBankAccount BankAccount { get; }
         public IAnketaCompany AnketaCompany => _curAnketa;
 
         public ICustomer Customer => _data;
