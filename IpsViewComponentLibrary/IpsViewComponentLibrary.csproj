@@ -64,6 +64,12 @@
     <Compile Include="IpsBankAccountControl.Designer.cs">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="IpsBossNameContactsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsBossNameContactsControl.Designer.cs">
+      <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="IpsExclusionsLimitationsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IpsBankAccountControl.resx">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpsBossNameContactsControl.resx">
+      <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsExclusionsLimitationsControl.resx">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
