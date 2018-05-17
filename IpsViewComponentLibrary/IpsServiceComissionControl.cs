@@ -18,6 +18,28 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get { return agreementAddRhBindingSource.DataSource; }
+            set
+            {
+                if (agreementAddRhBindingSource.DataSource != value)
+                    agreementAddRhBindingSource.DataSource = value;
+            }
+        }
+
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string DataMember
+        {
+            get { return agreementAddRhBindingSource.DataMember; }
+            set { agreementAddRhBindingSource.DataMember = value; }
+        }
+
+        #region Edit controls
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadMaskedEditBox TxtRateCommission
         {
@@ -35,5 +57,7 @@ namespace IpsViewComponentLibrary
                 return mtxtRateCourt;
             }
         }
+
+        #endregion
     }
 }
