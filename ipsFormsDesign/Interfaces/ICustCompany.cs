@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Interfaces
     public interface ICustCompany
     {
         IBankAccount BankAccount { get; }
+        IAgreementMaster AgreementMaster { get; }
 
         IAnketaCompany AnketaCompany { get; }
         ICustomer Customer { get;  }

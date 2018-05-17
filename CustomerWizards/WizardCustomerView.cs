@@ -17,6 +17,7 @@ namespace CustomerWizards
     {
         private Customer _data;
         private AnketaCompany _curAnketa;
+        private AgreementMaster _curAgreementMaster;
         private RelEmployee _relBoss;
         private AnketaDictionaties _dictionaries;
 
@@ -25,6 +26,7 @@ namespace CustomerWizards
         public IRelEmployee RelEmployer { get => _relBoss; }
         public IEmployee Employee { get => _relBoss.Empl; }
         public IBankAccount BankAccount { get; set; }
+        public IAgreementMaster AgreementMaster { get => _curAgreementMaster; }
 
         public event EventHandler FieldsValueChanged;
         public event Func<bool> Save;
@@ -73,7 +75,6 @@ namespace CustomerWizards
             _data = new Customer
             {
                 Company = new Company { RelEmployee = new HashSet<RelEmployee>() },
-                AnketaCompany = new HashSet<AnketaCompany>(),
                 AnkVersion = 1
             };
             _curAnketa = new AnketaCompany { Version = 1, BanAcc = new BankAccount() };
@@ -81,6 +82,12 @@ namespace CustomerWizards
             _data.AnketaCompany.Add(_curAnketa);
             _data.Company.RelEmployee.Add(_relBoss);
             //_bankAccount = new BankAccount();
+
+            _curAgreementMaster = new AgreementMaster
+            {
+                AgreementAddRh = new AgreementAddRh()
+            };
+            _data.AgreementMaster.Add(_curAgreementMaster);
         }
 
         private void DataChanged(object sender, EventArgs e)
@@ -132,6 +139,17 @@ namespace CustomerWizards
                 SetObjectValues(relEmpl.Empl, _relBoss.Empl);
             }
 
+            var agreement = data.AgreementMaster.FirstOrDefault();
+            if (agreement != null)
+            {
+                SetObjectValues(agreement, _curAgreementMaster);
+
+                if (agreement.AgreementAddRh != null)
+                {
+                    SetObjectValues(agreement.AgreementAddRh, _curAgreementMaster.AgreementAddRh);
+                }
+            }
+
             AnketaCompanySource.DataSource = _curAnketa;
             //BankAccountSource.DataSource = _bankAccount;
      
@@ -140,6 +158,8 @@ namespace CustomerWizards
 
             ipsBankAccountControl.DataSource = AnketaCompanySource;
             ipsBankAccountControl.DataMember = "BanAcc";
+
+            ipsServiceComissionControl1.DataSource = _curAgreementMaster.AgreementAddRh;
 
             SetDataForExlusionsLlimitationsTest();
         }
