@@ -143,6 +143,12 @@
     <Compile Include="IpsServiceComissionControl.Designer.cs">
       <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="WizardButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WizardButtons.designer.cs">
+      <DependentUpon>WizardButtons.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AnketaPersonControl.resx">
@@ -187,6 +193,9 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="IpsServiceComissionControl.resx">
       <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardButtons.resx">
+      <DependentUpon>WizardButtons.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
