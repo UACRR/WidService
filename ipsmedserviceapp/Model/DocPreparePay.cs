@@ -22,6 +22,7 @@ namespace ipsmedserviceapp.Model
         public DateTime DateOper { get; set; }
         public int? PayStatus { get; set; }
         public int? Paidid { get; set; }
+        public byte? FlCourt { get; set; }
 
         public PaymentStatus PayStatusNavigation { get; set; }
     }

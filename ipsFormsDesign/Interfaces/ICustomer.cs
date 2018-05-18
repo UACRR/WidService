@@ -26,6 +26,12 @@ namespace ipsFormsDesign.Interfaces
         decimal? SqHoll { get; set; }
 
     }
+
+    public interface ITypePlace
+    {
+        int CodeI { get; }
+        string name { get; }
+    }
     public interface IClnBusinessPlace
     {
         int PlaceId { get; set; }
@@ -38,6 +44,7 @@ namespace ipsFormsDesign.Interfaces
         string PlaceAddress { get; set; }
         string PlacePhone { get; set; }
         bool? FreeEntry { get; set; }
+        ITypePlace PlCodeNavigation { get;  }
     }
 
     public interface IMediaFile
@@ -315,6 +322,8 @@ namespace ipsFormsDesign.Interfaces
         int? BanAccId { get; set; }
         int? JaRegion { get; set; }
         int? FaRegion { get; set; }
+        string RegistrNumber { get; set; }
+        string RegistrWho { get; set; }
 
     }
     public interface IAnketaPerson

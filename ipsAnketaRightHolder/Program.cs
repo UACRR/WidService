@@ -1,12 +1,13 @@
-﻿using ipsAnketaRightHolder.Data;
-using System;
-using System.Linq;
+﻿using System;
 using System.Windows.Forms;
+using WebAPIConnector;
 
 namespace ipsAnketaRightHolder
 {
     static class Program
     {
+        private static readonly ApiConnector connector = new ApiConnector("http://localhost:54867/");
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,14 +17,9 @@ namespace ipsAnketaRightHolder
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            CustomerModel model = new CustomerModel();
-            model.AnketaCompany.Add(new AnketaCompanyModel {
-                ShortName = "Short name",
-                FaAddress = "Fact address"
-            });
-
-            AnketaCompanyView view = new AnketaCompanyView();
-            new AnketaCompanyPresenter(model, view);
+            var view = new AnketaCompanyView();
+            var model = new ModelCompany();
+            var presenter = new AnketaCompanyPresenter(view, model, 139);
 
             Application.Run(view);
         }

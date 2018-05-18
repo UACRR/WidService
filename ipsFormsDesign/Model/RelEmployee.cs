@@ -1,10 +1,9 @@
-﻿using ipsFormsDesign.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RelEmployee : IRelEmployee
+    public partial class RelEmployee
     {
         public int Emplid { get; set; }
         public int CustId { get; set; }

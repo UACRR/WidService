@@ -1,10 +1,9 @@
-﻿using ipsFormsDesign.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class Customer : ICustomer
+    public partial class Customer
     {
         public Customer()
         {

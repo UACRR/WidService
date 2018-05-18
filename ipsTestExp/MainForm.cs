@@ -27,36 +27,50 @@ namespace ipsTestExp
         private AnketaCompany _curAnketa;
         private RelEmployee _relBoss;
 
+        public IBankAccount BankAccount { get; }
         public IAnketaCompany AnketaCompany => _curAnketa;
 
         public ICustomer Customer => _data;
         public IRelEmployee RelEmployer => _relBoss;
         public IEmployee Employee => _relBoss.Empl;
+        public IClient Client => _data.Client;
+        private AnketaDictionaties _dictionaries;
+
 
         public event EventHandler FieldsValueChanged;
         public event Func<bool> Save;
 
-        // Сінхронізація 
-        private void SetObjectValues( object sors, object dest )
-        {
-            // Поля цілі
-            var destProperties = dest.GetType().GetProperties().ToDictionary(rec => rec.Name);
-            // Для кожного поля джерела
-            sors.GetType().GetProperties().ToList().ForEach(sorsItem => {
-                if (sorsItem.PropertyType.IsAbstract) // для примитивних полів
-                {
-                    // Получить поле цілі
-                    var destItem = destProperties[sorsItem.Name];
-                    // Получити значення поля цілі
-                    var destValue = destItem.GetValue(destItem);
-                    // Получити значення джерела
-                    var sorsValue = sorsItem.GetValue(sorsItem);
-                    // Якщо значення не співпадають
-                    if (destValue != sorsValue)
-                        destItem.SetValue(destItem, sorsValue);
 
+        // Сінхронізація 
+        private void SetObjectValues( object source, object dest )
+        {
+            if (ReferenceEquals(dest, source)) return;
+            if ((dest == null) || (source == null)) return;
+            if (dest.GetType() != source.GetType()) return;
+
+            foreach (var property in dest.GetType().GetProperties())
+            {
+
+                // If nullable
+                Type checkType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+
+                if (!(source.GetType().IsPrimitive == true
+                  || checkType == typeof(string)
+                  || checkType == typeof(Decimal)
+                  || checkType == typeof(DateTime)))
+                    continue;
+
+                var objValue = property.GetValue(dest);
+                var anotherValue = property.GetValue(source);
+                //Recursion
+                if (anotherValue == null)
+                {
+                    if (objValue != null)
+                        property.SetValue(dest, anotherValue, null);
                 }
-            });
+                else if (objValue == null || !objValue.Equals(anotherValue))
+                    property.SetValue(dest, anotherValue, null);
+            }
         }
 
         // Створити об'єкти форми
@@ -66,7 +80,8 @@ namespace ipsTestExp
             {
                 Company = new Company { RelEmployee = new HashSet<RelEmployee>() },
                 AnketaCompany = new HashSet<AnketaCompany>(),
-                AnkVersion = 1
+                AnkVersion = 1,
+                Client = new Client { ClnBusinessPlace = new HashSet<ClnBusinessPlace>()}
             };
             _curAnketa = new AnketaCompany { Version = 1 };
             _relBoss = new RelEmployee { Empl = new Employee() };
@@ -92,11 +107,12 @@ namespace ipsTestExp
         public void SetData(Customer data)
         {
 
+            createFormData();
             SetObjectValues(data, _data);
             SetObjectValues(data.Company, _data.Company);
             var anketa = data.AnketaCompany.Where(row => row.Version == data.AnkVersion).SingleOrDefault();
             if (anketa != null)
-                SetObjectValues(_curAnketa, anketa);
+                SetObjectValues(anketa,_curAnketa);
             else
                 _data.AnkVersion = 1;
 
@@ -107,11 +123,26 @@ namespace ipsTestExp
                 SetObjectValues(relEmpl.Empl, _relBoss.Empl);
             }
 
+            iAnketaCompanyBindingSource.DataSource = _curAnketa;    
         }
 
         public void getData(Customer data)
         {
             throw new NotImplementedException();
+        }
+
+        private void bindDictionaries()
+        {
+            ddl.DataSource = _dictionaries.activityType;
+            // ddl.DataMember = "CodeI";
+            ddl.ValueMember = "CodeI";
+            ddl.DisplayMember = "name";
+        }
+        public void SetDictionary(AnketaDictionaties dic)
+        {
+            _dictionaries = dic;
+            if (_dictionaries != null)
+                bindDictionaries();
         }
 
         /// <summary>

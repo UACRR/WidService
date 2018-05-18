@@ -1,10 +1,9 @@
-﻿using ipsFormsDesign.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AnketaCompany : IAnketaCompany
+    public partial class AnketaCompany
     {
         public int CustId { get; set; }
         public int Version { get; set; }
@@ -28,6 +27,8 @@ namespace ipsmedserviceapp.Model
         public int? BanAccId { get; set; }
         public int? JaRegion { get; set; }
         public int? FaRegion { get; set; }
+        public string RegistrNumber { get; set; }
+        public string RegistrWho { get; set; }
 
         public ActivityType ActivityCodeNavigation { get; set; }
         public BankAccount BanAcc { get; set; }

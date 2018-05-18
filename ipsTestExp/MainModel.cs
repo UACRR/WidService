@@ -6,33 +6,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPIConnector;
 
 namespace ipsTestExp
 {
     class MainModel : IModelCompany
     {
-        public IAnketaCompany AnketaCompany => throw new NotImplementedException();
 
-        public int CustId {get;set;}
-        public int? CustType {get;set;}
-        public int Status {get;set;}
-        public int? AnkVersion {get;set;}
-        public byte? AnkMy {get;set;}
-        public byte? AnkPublish {get;set;}
-        public byte? AnkTech {get;set;}
-
-        public void FieldChanging(object sender, EventArgs e)
+        private static readonly ApiConnector connector = new ApiConnector("http://localhost:54867/");
+        private AnketaDictionaties _dictionary = null;
+        public Customer GetData(int custId)
         {
-            string NameProperty = sender.GetType().GetProperty("Name").GetValue(sender).ToString();
-            string Text = sender.GetType().GetProperty("Text").GetValue(sender).ToString();
+            var customer = connector.GetItemById<Customer>("api/rh/detail", custId.ToString());
+            return customer;
         }
 
-        private Customer _data;
-        private AnketaCompany _anketa;
-        public void SetData(Customer data)
+        public AnketaDictionaties GetDictionary()
         {
-            _data = data;
-            _anketa = _data.AnketaCompany.Where(item => item.Version == _data.AnkVersion).SingleOrDefault();
+            if (_dictionary == null)
+                _dictionary = connector.GetItemById<AnketaDictionaties>("api/Dictionary", "anketa");
+
+            return _dictionary;
+        }
+
+        public bool Save(Customer cust)
+        {
+            throw new NotImplementedException();
         }
     }
 }

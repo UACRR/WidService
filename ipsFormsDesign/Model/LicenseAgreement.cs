@@ -7,6 +7,7 @@ namespace ipsmedserviceapp.Model
     {
         public LicenseAgreement()
         {
+            BrRegItem = new HashSet<BrRegItem>();
             InverseParentLic = new HashSet<LicenseAgreement>();
             LicPlace = new HashSet<LicPlace>();
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
@@ -14,7 +15,7 @@ namespace ipsmedserviceapp.Model
         }
 
         public int LicId { get; set; }
-        public int? LicCode { get; set; }
+        public int LicCode { get; set; }
         public int? LicType { get; set; }
         public int? CustId { get; set; }
         public string LicNum { get; set; }
@@ -30,7 +31,11 @@ namespace ipsmedserviceapp.Model
         public int? ParentLicId { get; set; }
         public int? LicStatus { get; set; }
         public int? DayForPay { get; set; }
+        public int LicClass { get; set; }
+        public int AgrId { get; set; }
+        public int? LicSize { get; set; }
 
+        public AgreementMaster Agr { get; set; }
         public Client Cust { get; set; }
         public AgrLicenseType LicCodeNavigation { get; set; }
         public AgreementStatus LicStatusNavigation { get; set; }
@@ -38,6 +43,7 @@ namespace ipsmedserviceapp.Model
         public LicenseAgreement ParentLic { get; set; }
         public Period PeriodCodeNavigation { get; set; }
         public LicenseBigR LicenseBigR { get; set; }
+        public ICollection<BrRegItem> BrRegItem { get; set; }
         public ICollection<LicenseAgreement> InverseParentLic { get; set; }
         public ICollection<LicPlace> LicPlace { get; set; }
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
