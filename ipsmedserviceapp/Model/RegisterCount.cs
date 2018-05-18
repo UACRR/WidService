@@ -22,5 +22,6 @@ namespace ipsmedserviceapp.Model
         public Community CmCust { get; set; }
         public RightHolder Cust { get; set; }
         public RegisterItem RegI { get; set; }
+        public BrRegItem RegINavigation { get; set; }
     }
 }

@@ -25,6 +25,10 @@ namespace ipsAnketaRightHolder
         public IRelEmployee RelEmployer { get => _relBoss; }
         public IEmployee Employee { get => _relBoss.Empl; }
 
+        public IBankAccount BankAccount => throw new NotImplementedException();
+
+        public IClient Client => throw new NotImplementedException();
+
         public event EventHandler FieldsValueChanged;
         public event Func<bool> Save;
 

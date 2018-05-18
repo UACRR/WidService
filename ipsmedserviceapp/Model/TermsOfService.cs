@@ -12,6 +12,7 @@ namespace ipsmedserviceapp.Model
 
         public int CustId { get; set; }
         public int CrkindCode { get; set; }
+        public bool OurService { get; set; }
 
         public CopyrightKind CrkindCodeNavigation { get; set; }
         public RightHolder Cust { get; set; }

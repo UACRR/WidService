@@ -10,12 +10,12 @@ namespace ipsmedserviceapp.Model
         public DateTime DateEnd { get; set; }
         public string R030 { get; set; }
         public decimal? Rest { get; set; }
-        public decimal? RestCur { get; set; }
+        public decimal? RestCourt { get; set; }
         public decimal? Deboborot { get; set; }
         public decimal? KrdOborot { get; set; }
-        public decimal? DeboborotCur { get; set; }
-        public decimal? KrdOborotCur { get; set; }
+        public decimal? DeboborotCourt { get; set; }
+        public decimal? KrdOborotCourt { get; set; }
         public decimal? RestBegin { get; set; }
-        public decimal? RestBeginCur { get; set; }
+        public decimal? RestBeginCourt { get; set; }
     }
 }
