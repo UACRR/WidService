@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using ipsFormsDesign.Interfaces;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class Client
+    public partial class Client : IClient
     {
         public Client()
         {

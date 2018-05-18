@@ -28,30 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtCity = new Telerik.WinControls.UI.RadTextBox();
+            this.ddlRegion = new Telerik.WinControls.UI.RadDropDownList();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
-            this.radDropDownList2 = new Telerik.WinControls.UI.RadDropDownList();
-            this.radDropDownList3 = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
+            this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).BeginInit();
             this.SuspendLayout();
+            // 
+            // txtCity
+            // 
+            this.txtCity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCity.Location = new System.Drawing.Point(412, 0);
+            this.txtCity.Margin = new System.Windows.Forms.Padding(0);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(188, 20);
+            this.txtCity.TabIndex = 23;
+            // 
+            // ddlRegion
+            // 
+            this.ddlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlRegion.Location = new System.Drawing.Point(206, 0);
+            this.ddlRegion.Margin = new System.Windows.Forms.Padding(0);
+            this.ddlRegion.Name = "ddlRegion";
+            this.ddlRegion.Size = new System.Drawing.Size(186, 20);
+            this.ddlRegion.TabIndex = 22;
             // 
             // tableLayoutPanel
             // 
             this.tableLayoutPanel.ColumnCount = 5;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33457F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33345F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel.Controls.Add(this.radTextBox1, 0, 2);
-            this.tableLayoutPanel.Controls.Add(this.radDropDownList1, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.radDropDownList2, 2, 0);
-            this.tableLayoutPanel.Controls.Add(this.radDropDownList3, 4, 0);
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33197F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.Controls.Add(this.txtAddress, 0, 2);
+            this.tableLayoutPanel.Controls.Add(this.ddlCountry, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.ddlRegion, 2, 0);
+            this.tableLayoutPanel.Controls.Add(this.txtCity, 4, 0);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
@@ -63,50 +84,28 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(600, 45);
             this.tableLayoutPanel.TabIndex = 6;
             // 
-            // radTextBox1
+            // ddlCountry
             // 
-            this.radTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ddlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel.SetColumnSpan(this.radTextBox1, 5);
-            this.radTextBox1.Location = new System.Drawing.Point(0, 25);
-            this.radTextBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(600, 20);
-            this.radTextBox1.TabIndex = 10;
+            this.ddlCountry.Location = new System.Drawing.Point(0, 0);
+            this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
+            this.ddlCountry.Name = "ddlCountry";
+            this.ddlCountry.Size = new System.Drawing.Size(186, 20);
+            this.ddlCountry.TabIndex = 18;
             // 
-            // radDropDownList1
+            // txtAddress
             // 
-            this.radDropDownList1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radDropDownList1.Location = new System.Drawing.Point(0, 0);
-            this.radDropDownList1.Margin = new System.Windows.Forms.Padding(0);
-            this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(186, 20);
-            this.radDropDownList1.TabIndex = 4;
-            // 
-            // radDropDownList2
-            // 
-            this.radDropDownList2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radDropDownList2.Location = new System.Drawing.Point(206, 0);
-            this.radDropDownList2.Margin = new System.Windows.Forms.Padding(0);
-            this.radDropDownList2.Name = "radDropDownList2";
-            this.radDropDownList2.Size = new System.Drawing.Size(186, 20);
-            this.radDropDownList2.TabIndex = 7;
-            // 
-            // radDropDownList3
-            // 
-            this.radDropDownList3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radDropDownList3.Location = new System.Drawing.Point(412, 0);
-            this.radDropDownList3.Margin = new System.Windows.Forms.Padding(0);
-            this.radDropDownList3.Name = "radDropDownList3";
-            this.radDropDownList3.Size = new System.Drawing.Size(188, 20);
-            this.radDropDownList3.TabIndex = 8;
+            this.tableLayoutPanel.SetColumnSpan(this.txtAddress, 5);
+            this.txtAddress.Location = new System.Drawing.Point(0, 25);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(0);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(600, 20);
+            this.txtAddress.TabIndex = 10;
             // 
             // IpsAddressControl
             // 
@@ -115,21 +114,22 @@
             this.Controls.Add(this.tableLayoutPanel);
             this.Name = "IpsAddressControl";
             this.Size = new System.Drawing.Size(600, 45);
+            ((System.ComponentModel.ISupportInitialize)(this.txtCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Telerik.WinControls.UI.RadTextBox txtCity;
+        private Telerik.WinControls.UI.RadDropDownList ddlRegion;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList1;
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList2;
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList3;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
+        private Telerik.WinControls.UI.RadTextBox txtAddress;
+        private Telerik.WinControls.UI.RadDropDownList ddlCountry;
     }
 }

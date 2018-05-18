@@ -14,7 +14,12 @@ namespace ipsAnketaClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AnketaClientView());
+            AnketaClientView form = new AnketaClientView();
+            ConsumerModel model = new ConsumerModel();
+            Presenter control = new Presenter(form,model,134);
+            //Presenter control = new Presenter(form, model, 142);
+
+            Application.Run(form);
         }
     }
 }

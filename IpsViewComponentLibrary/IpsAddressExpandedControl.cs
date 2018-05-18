@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsmedserviceapp.Model;
 
 namespace IpsViewComponentLibrary
 {
@@ -39,10 +41,7 @@ namespace IpsViewComponentLibrary
         public void SetValues()
         {
             _nameTown = rTxtBoxTownName.Text;
-            _nameDistrict = rTxtBoxDistrict.Text;
             _streetAddress = rTxtBoxNameStreet.Text;
-            _nubmerBuild = rTxtBoxNumberBldng.Text;
-            _numberOffice = rTxtBoxNumberOffice.Text;
         }
 
         /// <summary>
@@ -52,10 +51,7 @@ namespace IpsViewComponentLibrary
         {
             rTxtBoxTownName.Clear();
             rDropListRegion.SelectedItem = rDropListRegion.Items[0];
-            rTxtBoxDistrict.Clear();
             rTxtBoxNameStreet.Clear();
-            rTxtBoxNumberBldng.Clear();
-            rTxtBoxNumberOffice.Clear();
         }
 
         /// <summary>
@@ -64,31 +60,59 @@ namespace IpsViewComponentLibrary
         /// <returns></returns>
         public bool ValidatorAddressCtrl()
         {
+            bool valid = true;
             if (rTxtBoxTownName.Text == string.Empty)
             {
-                
-                return false;
+                lblTown.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                valid = false;
             }
+            else
+                lblTown.ForeColor = Color.Black;
 
-            if (rDropListRegion.SelectedItem.Index == 0)
+            if (rDropListRegion.SelectedItem == null||rDropListRegion.SelectedItem.Index == 0)
             {
-
-                return false;
+                lblRegion.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                valid = false;
             }
+            else
+                lblRegion.ForeColor = Color.Black;
 
-            if (rTxtBoxNameStreet.Text == string.Empty)
+            if (rTxtBoxNameStreet.Text == string.Empty || rTxtBoxNameStreet.Text == rTxtBoxNameStreet.NullText)
             {
-                
-                return false;
+                lblStreet.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                valid = false;
             }
+            else
+                lblStreet.ForeColor = Color.Black;
 
-            if (rTxtBoxNumberBldng.Text == string.Empty)
-            {
 
-                return false;
-            }
+            if (valid)
+                DefaultColorLabels();
 
-            return true;
+            return valid;
+        }
+
+        public void DefaultColorLabels()
+        {
+            lblTown.ForeColor = Color.Black;
+            lblRegion.ForeColor = Color.Black;
+            lblStreet.ForeColor = Color.Black;
+        }
+
+        public void SetAddressForEditCustomer(Customer data, int id)
+        {
+           _nameTown = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item => item.PlaceCity).SingleOrDefault();
+           _regionCode = (int)data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item=>item.PlaceRegion).SingleOrDefault();
+            rDropListRegion.SelectedIndex = _regionCode;
+            _nameRegion = rDropListRegion.SelectedItem.Text;
+            _streetAddress = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item => item.PlaceAddress).SingleOrDefault();
+
+
+            //_nubmerBuild;
+            //_numberOffice;
+
+            rTxtBoxTownName.Text = _nameTown;
+            rTxtBoxNameStreet.Text = _streetAddress;
         }
 
         private void rDropListRegion_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

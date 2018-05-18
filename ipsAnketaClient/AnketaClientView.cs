@@ -8,184 +8,152 @@ using System.Text;
 using System.Windows.Forms;
 using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
+using ipsFormsDesign.Definition;
+using ipsFormsDesign.Interfaces;
+using ipsmedserviceapp.Model;
 
 namespace ipsAnketaClient
 {
-    public partial class AnketaClientView : Telerik.WinControls.UI.RadForm
+    public partial class AnketaClientView : Telerik.WinControls.UI.RadForm, IFormConsumerComany
     {
-        private IpsPremisesTypeControl premisesType;
-        private bool IsNeedPremissesType = false;
+        private Customer _data;
+        private AnketaCompany _curAnketa;
+        private RelEmployee _relBoss;
 
+        public IAnketaCompany AnketaCompany => _curAnketa;
+
+        public ICustomer Customer => _data;
+        public IRelEmployee RelEmployer => _relBoss;
+        public IEmployee Employee => _relBoss.Empl;
+        public IClient Client => _data.Client;
+        private AnketaDictionaties _dictionaries;
+        private List<IClnBusinessPlace> listBisPlace;
+        private List<IClnPlaceHoll> listPlaceHole;
+
+        public IList<IClnBusinessPlace> clnBusinessPlaceList
+        {
+            get => clnBusinessPlaceList;
+            set => clnBusinessPlaceList = (List<IClnBusinessPlace>)value;
+        }
+        public IList<IClnPlaceHoll> clnPlaceHoll
+        {
+            get => listPlaceHole;
+            set => listPlaceHole = (List<IClnPlaceHoll>)value;
+        }
+        public IList<ILicPlaceHoll> licPlaceHoll { get; set; }
+        public event Func<bool> Save;
+
+        public int IdItemOfSelectRow { get; set; }
         public AnketaClientView()
         {
             InitializeComponent();
-        }
-
-        #region Кнопки додавання нових закладів
-
-        private void rBtnAddRestaurant_Click(object sender, EventArgs e)
-        {
-            rTxtBoxTypeInst.Text = rBtnAddRestaurant.Text;
-            rPanelAdd.Visible = true;
-            InitializeAdditionalComponents();
-            rDropDownBtnAddInst.Enabled = false;
-            IsNeedPremissesType = true;
-        }
-
-        private void rBtnAddHotel_Click(object sender, EventArgs e)
-        {
-            rTxtBoxTypeInst.Text = rBtnAddHotel.Text;
-            rPanelAdd.Visible = true;
-            rDropDownBtnAddInst.Enabled = false;
-            IsNeedPremissesType = true;
-            InitializeAdditionalComponents();
-        }
-
-        private void rBtnAddNightClub_Click(object sender, EventArgs e)
-        {
-            rTxtBoxTypeInst.Text = rBtnAddNightClub.Text;
-            rPanelAdd.Visible = true;
-            rTxtBoxCountOrMeters.Visible = true;
-            lblLocation.Visible = true;
-            lblLocation.Text = "Кількість місць";
-            rDropDownBtnAddInst.Enabled = false;
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
-        }
-
-        private void rBtnAddNightClubFree_Click(object sender, EventArgs e)
-        {
-            rTxtBoxTypeInst.Text = rBtnAddNightClub.Text;
-            rPanelAdd.Visible = true;
-            rTxtBoxCountOrMeters.Visible = true;
-            lblLocation.Visible = true;
-            lblLocation.Text = "Метраж";
-            rDropDownBtnAddInst.Enabled = false;
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
-        }
-
-        private void rBtnAddCaffeOrBar_Click(object sender, EventArgs e)
-        {
-            rTxtBoxTypeInst.Text = rBtnAddCaffeOrBar.Text;
-            rPanelAdd.Visible = true;
-            lblLocation.Visible = true;
-            rTxtBoxCountOrMeters.Visible = true;
-            lblLocation.Text = "Кількість місць";
-            rDropDownBtnAddInst.Enabled = false;
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
-        }
-
-
-
-        private void rBtnAddTheaterOrOpera_Click(object sender, EventArgs e)
-        {
-            rTxtBoxTypeInst.Text = rBtnAddCaffeOrBar.Text;
-            rPanelAdd.Visible = true;
-            lblLocation.Visible = true;
-            rTxtBoxCountOrMeters.Visible = true;
-            lblLocation.Text = "Кількість місць";
-            rDropDownBtnAddInst.Enabled = false;
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
-
-        }
-
-        #endregion
-
-
-        private void rBtnCancel_Click(object sender, EventArgs e)
-        {
-            rPanelAdd.Visible = false;
-            rDropDownBtnAddInst.Enabled = true;
-            //this.ClientSize = new System.Drawing.Size(Width, Height-rPanelAdd.Height);
-            ClearTxtBoxes();
-
-            if (premisesType != null)
-            {
-                rPanelAdd.Controls.Remove(premisesType);
-                rPanelAdd.Refresh();
-                premisesType.Dispose();
-                premisesType = null;
-                GC.Collect();
-            }
-
-            IsNeedPremissesType = false;
-        }
-
-        private void ClearTxtBoxes()
-        {
-            rTxtBoxNameInst.Clear();
-            rTxtBoxTypeInst.Clear();
-            addressControl.SetEmpty();
-        }
-
-        private void InitializeAdditionalComponents()
-        {
-            rTxtBoxCountOrMeters.Visible = false;
-            lblLocation.Visible = false;
-            rTxtBoxCountOrMeters.Visible = false;
-            lblLocation.Text = string.Empty;
-
-            premisesType = new IpsPremisesTypeControl();
-            premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            premisesType.Location = new Point(10, 155); ;
-            premisesType.Width = addressControl.Width;
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 340);//215
             
-            rPanelAdd.Controls.Add(premisesType);
         }
 
-        private void rBtnSave_Click(object sender, EventArgs e)
+
+        // Сінхронізація 
+        private void SetObjectValues(object source, object dest)
         {
-            addressControl.SetValues();
+            if (ReferenceEquals(dest, source)) return;
+            if ((dest == null) || (source == null)) return;
+            if (dest.GetType() != source.GetType()) return;
 
-            if (!Validator())
-                return;
-
-            if (IsNeedPremissesType)
+            foreach (var property in dest.GetType().GetProperties())
             {
-                //some code
+
+                // If nullable
+                Type checkType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+
+                if (!(source.GetType().IsPrimitive
+                      || checkType == typeof(string)
+                      || checkType == typeof(Decimal)
+                      || checkType == typeof(DateTime)
+                      //|| checkType == typeof(Int32)
+                      || checkType.IsPrimitive))//+числові значення
+                    continue;
+
+
+                var objValue = property.GetValue(dest);
+                var anotherValue = property.GetValue(source);
+                //Recursion
+                if (anotherValue == null)
+                {
+                    if (objValue != null)
+                        property.SetValue(dest, anotherValue, null);
+                }
+                else if (objValue == null || !objValue.Equals(anotherValue))
+                    property.SetValue(dest, anotherValue, null);
             }
+        }
+
+        // Створити об'єкти форми
+        private void createFormData()
+        {
+            _data = new Customer
+            {
+                Company = new Company { RelEmployee = new HashSet<RelEmployee>() },
+                AnketaCompany = new HashSet<AnketaCompany>(),
+                AnkVersion = 1,
+                Client = new Client { ClnBusinessPlace = new HashSet<ClnBusinessPlace>() }
+            };
+            _curAnketa = new AnketaCompany { Version = 1 };
+            _relBoss = new RelEmployee { Empl = new Employee() };
+            _data.AnketaCompany.Add(_curAnketa);
+            _data.Company.RelEmployee.Add(_relBoss);
+
+
+        }
+
+        public void SetData(Customer data)
+        {
+
+            createFormData();
+            SetObjectValues(data, _data);
+            SetObjectValues(data.Company, _data.Company);
+            SetObjectValues(data.Client, _data.Client);
+
+            var anketa = data.AnketaCompany.SingleOrDefault(row => row.Version == data.AnkVersion);
+            if (anketa != null)
+                SetObjectValues(anketa, _curAnketa);
             else
+                _data.AnkVersion = 1;
+
+            var relEmpl = data.Company.RelEmployee.SingleOrDefault(item => item.PositionCode == 1);
+            if (relEmpl != null)
             {
-                //some code
+                SetObjectValues(relEmpl, _relBoss);
+                SetObjectValues(relEmpl.Empl, _relBoss.Empl);
             }
 
-            string s = "  ||  ";
-            MessageBox.Show(addressControl.TownName + s +
-                            addressControl.StreetName + s +
-                            addressControl.BuildNumber + s +
-                            addressControl.OfficeNumber + s +
-                            addressControl.RegionCode + s +
-                            addressControl.RegionName);
+            foreach (var clnBusinessPlace in data.Client.ClnBusinessPlace)
+            {
+                ClnBusinessPlace place = new ClnBusinessPlace { ClnPlaceHoll = new HashSet<ClnPlaceHoll>()};
+                place.PlCodeNavigation = new TypePlace();
+                SetObjectValues(clnBusinessPlace.PlCodeNavigation, place.PlCodeNavigation);
+                SetObjectValues(clnBusinessPlace, place);
+                foreach (var holle in clnBusinessPlace.ClnPlaceHoll)
+                {
+                    ClnPlaceHoll newHolle = new ClnPlaceHoll();
+                    SetObjectValues( holle, newHolle);
+                    place.ClnPlaceHoll.Add( newHolle );
+                }
+                _data.Client.ClnBusinessPlace.Add(place);
+            }
+
+            iClnBusinessPlaceBindingSource.DataSource = _data.Client.ClnBusinessPlace;
+            consumerPlacesCtrl.SetGridDataSource(iClnBusinessPlaceBindingSource.DataSource);
+            consumerPlacesCtrl.SetData(_data);
         }
 
-        private bool Validator()
+        
+        public void getData(Customer data)
         {
-            bool empty = false;
-            if (rTxtBoxNameInst.Text == string.Empty)
-            {
-                empty = true;
-                rLblName.ForeColor = Color.FromArgb(180, 255, 0, 2);
-            }
-
-            if (rTxtBoxCountOrMeters.Text == string.Empty)
-            {
-                empty = true;
-                lblLocation.ForeColor = Color.FromArgb(180, 255, 0, 2);
-            }
-
-            if (empty)
-            {
-                MessageBox.Show("Деякі поля не можуть бути пустими!", "Заповніть всі поля!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            rLblName.ForeColor = Color.Black;
-            lblLocation.ForeColor = Color.Black;
-
-            return true;
+            throw new NotImplementedException();
         }
 
-
+        public void SetDictionary(AnketaDictionaties dic)
+        {
+            _dictionaries = dic;
+        }
     }
 }

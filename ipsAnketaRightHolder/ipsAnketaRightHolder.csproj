@@ -81,17 +81,8 @@
     <EmbeddedResource Include="AnketaCompanyView.resx">
       <DependentUpon>AnketaCompanyView.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="Interfaces\AnketaCompanyPresenter.cs" />
-    <Compile Include="Data\AnketaCompanyModel.cs" />
-    <Compile Include="Data\AnketaPersonModel.cs" />
-    <Compile Include="Data\BankAccountModel.cs" />
-    <Compile Include="Data\CompanyModel.cs" />
-    <Compile Include="Data\CustomerModel.cs" />
-    <Compile Include="Data\CustomerTypeModel.cs" />
-    <Compile Include="Data\PersonModel.cs" />
-    <Compile Include="Data\RightHolderModel.cs" />
-    <Compile Include="Interfaces\IAnketaCompanyModel.cs" />
-    <Compile Include="Interfaces\IAnketaCompanyView.cs" />
+    <Compile Include="AnketaCompanyPresenter.cs" />
+    <Compile Include="ModelCompany.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
