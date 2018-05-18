@@ -237,10 +237,10 @@
             this.pageAllAnketa.Controls.Add(this.pvConsumerPlaces);
             this.pageAllAnketa.Controls.Add(this.pvConsumerBankRequisites);
             this.pageAllAnketa.Controls.Add(this.pvConsumerContracts);
-            this.pageAllAnketa.Location = new System.Drawing.Point(3, 4);
+            this.pageAllAnketa.Location = new System.Drawing.Point(0, 4);
             this.pageAllAnketa.Name = "pageAllAnketa";
             this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
-            this.pageAllAnketa.Size = new System.Drawing.Size(1114, 467);
+            this.pageAllAnketa.Size = new System.Drawing.Size(1117, 467);
             this.pageAllAnketa.TabIndex = 2;
             this.pageAllAnketa.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -253,7 +253,7 @@
             this.pvConsumerClientName.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerClientName.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerClientName.Name = "pvConsumerClientName";
-            this.pvConsumerClientName.Size = new System.Drawing.Size(970, 446);
+            this.pvConsumerClientName.Size = new System.Drawing.Size(973, 446);
             this.pvConsumerClientName.Text = "Назва клієнта";
             // 
             // pvConsumerLicenseType
