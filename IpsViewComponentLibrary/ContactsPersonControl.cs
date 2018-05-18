@@ -12,10 +12,14 @@ namespace DebugFormForControls
 {
     public partial class ContactsPersonControl : UserControl
     {
-        public string MobilePhone => rtxtBoxMobPhone.Text;
-        public string MobilePhoneSecond => rtxtBoxMobPhoneSecond.Text;
-        public string HomePhone => rtxtBoxHomePhone.Text;
-        public string Email => rtxtBoxEmail.Text;
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get => iAnketaPersonBindingSource.DataSource;
+            set => iAnketaPersonBindingSource.DataSource = value;
+        }
 
         public ContactsPersonControl()
         {

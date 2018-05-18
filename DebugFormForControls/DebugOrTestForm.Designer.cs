@@ -30,8 +30,11 @@
         {
             this.BtnActionOne = new Telerik.WinControls.UI.RadButton();
             this.BtnActionSecond = new Telerik.WinControls.UI.RadButton();
-            this.anketaPersonRightHolderControl1 = new DebugFormForControls.AnketaPersonRightHolderControl();
+            this.passportControl1 = new IpsViewComponentLibrary.PassportControl();
+            this.contractConsumerMainControl1 = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.contactsPersonControl1 = new DebugFormForControls.ContactsPersonControl();
+            this.anketaPersonControl1 = new DebugFormForControls.AnketaPersonControl();
+            this.anketaPersonRightHolderControl1 = new DebugFormForControls.AnketaPersonRightHolderControl();
             ((System.ComponentModel.ISupportInitialize)(this.BtnActionOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnActionSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -40,7 +43,7 @@
             // BtnActionOne
             // 
             this.BtnActionOne.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnActionOne.Location = new System.Drawing.Point(13, 407);
+            this.BtnActionOne.Location = new System.Drawing.Point(13, 536);
             this.BtnActionOne.Name = "BtnActionOne";
             this.BtnActionOne.Size = new System.Drawing.Size(110, 24);
             this.BtnActionOne.TabIndex = 1;
@@ -50,36 +53,70 @@
             // BtnActionSecond
             // 
             this.BtnActionSecond.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnActionSecond.Location = new System.Drawing.Point(140, 407);
+            this.BtnActionSecond.Location = new System.Drawing.Point(140, 536);
             this.BtnActionSecond.Name = "BtnActionSecond";
             this.BtnActionSecond.Size = new System.Drawing.Size(110, 24);
             this.BtnActionSecond.TabIndex = 2;
             this.BtnActionSecond.Text = "Додаткова кнопка";
             this.BtnActionSecond.Click += new System.EventHandler(this.BtnActionSecond_Click);
             // 
-            // anketaPersonRightHolderControl1
+            // passportControl1
             // 
-            this.anketaPersonRightHolderControl1.Location = new System.Drawing.Point(13, 13);
-            this.anketaPersonRightHolderControl1.MaximumSize = new System.Drawing.Size(900, 128);
-            this.anketaPersonRightHolderControl1.Name = "anketaPersonRightHolderControl1";
-            this.anketaPersonRightHolderControl1.Size = new System.Drawing.Size(625, 128);
-            this.anketaPersonRightHolderControl1.TabIndex = 3;
+            this.passportControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.passportControl1.Location = new System.Drawing.Point(12, 371);
+            this.passportControl1.MaximumSize = new System.Drawing.Size(410, 94);
+            this.passportControl1.Name = "passportControl1";
+            this.passportControl1.Size = new System.Drawing.Size(410, 94);
+            this.passportControl1.TabIndex = 7;
+            // 
+            // contractConsumerMainControl1
+            // 
+            this.contractConsumerMainControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
+            this.contractConsumerMainControl1.Location = new System.Drawing.Point(12, 315);
+            this.contractConsumerMainControl1.MaximumSize = new System.Drawing.Size(477, 49);
+            this.contractConsumerMainControl1.Name = "contractConsumerMainControl1";
+            this.contractConsumerMainControl1.Size = new System.Drawing.Size(477, 49);
+            this.contractConsumerMainControl1.TabIndex = 6;
             // 
             // contactsPersonControl1
             // 
-            this.contactsPersonControl1.Location = new System.Drawing.Point(13, 200);
+            this.contactsPersonControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.contactsPersonControl1.Location = new System.Drawing.Point(12, 258);
             this.contactsPersonControl1.MaximumSize = new System.Drawing.Size(625, 50);
             this.contactsPersonControl1.Name = "contactsPersonControl1";
             this.contactsPersonControl1.Size = new System.Drawing.Size(625, 50);
             this.contactsPersonControl1.TabIndex = 4;
             // 
+            // anketaPersonControl1
+            // 
+            this.anketaPersonControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.anketaPersonControl1.DataSourceDropList = 0;
+            this.anketaPersonControl1.Location = new System.Drawing.Point(13, 13);
+            this.anketaPersonControl1.MaximumSize = new System.Drawing.Size(900, 105);
+            this.anketaPersonControl1.Name = "anketaPersonControl1";
+            this.anketaPersonControl1.Size = new System.Drawing.Size(645, 105);
+            this.anketaPersonControl1.TabIndex = 3;
+            // 
+            // anketaPersonRightHolderControl1
+            // 
+            this.anketaPersonRightHolderControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.anketaPersonRightHolderControl1.DataSourceDropList = 0;
+            this.anketaPersonRightHolderControl1.Location = new System.Drawing.Point(13, 125);
+            this.anketaPersonRightHolderControl1.MaximumSize = new System.Drawing.Size(900, 128);
+            this.anketaPersonRightHolderControl1.Name = "anketaPersonRightHolderControl1";
+            this.anketaPersonRightHolderControl1.Size = new System.Drawing.Size(645, 128);
+            this.anketaPersonRightHolderControl1.TabIndex = 8;
+            // 
             // DebugOrTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 443);
-            this.Controls.Add(this.contactsPersonControl1);
+            this.ClientSize = new System.Drawing.Size(1028, 572);
             this.Controls.Add(this.anketaPersonRightHolderControl1);
+            this.Controls.Add(this.passportControl1);
+            this.Controls.Add(this.contractConsumerMainControl1);
+            this.Controls.Add(this.contactsPersonControl1);
+            this.Controls.Add(this.anketaPersonControl1);
             this.Controls.Add(this.BtnActionSecond);
             this.Controls.Add(this.BtnActionOne);
             this.Name = "DebugOrTestForm";
@@ -98,7 +135,10 @@
         #endregion
         private Telerik.WinControls.UI.RadButton BtnActionOne;
         private Telerik.WinControls.UI.RadButton BtnActionSecond;
-        private AnketaPersonRightHolderControl anketaPersonRightHolderControl1;
+        private AnketaPersonControl anketaPersonControl1;
         private ContactsPersonControl contactsPersonControl1;
+        private IpsViewComponentLibrary.ContractConsumerMainControl contractConsumerMainControl1;
+        private IpsViewComponentLibrary.PassportControl passportControl1;
+        private AnketaPersonRightHolderControl anketaPersonRightHolderControl1;
     }
 }

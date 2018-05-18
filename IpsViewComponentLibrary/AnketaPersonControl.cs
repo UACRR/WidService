@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,15 +17,23 @@ namespace DebugFormForControls
         private bool _birthDateSelected = false,
                      _sexSelected = false;
 
-        public string FirstName => rtxtBoxFirstName.Text;
-        public string LastName => rtxtBoxLastName.Text;
-        public string MidleName => rtxtBoxMidleName.Text;
-        public DateTime BirthDate => rdtPickerBirth.Value;
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get => iAnketaPersonBindingSource.DataSource;
+            set
+            {
+                if (iAnketaPersonBindingSource.DataSource != value)
+                    iAnketaPersonBindingSource.DataSource = value;
+            }
+        }
 
-        
-        public string Sex { get; private set; }
-
-        public object DataSource { get; set; }
+        public int DataSourceDropList
+        {
+            get => radDropDownListSex.SelectedIndex;
+            set => radDropDownListSex.SelectedIndex = value;
+        }
 
         public AnketaPersonControl()
         {
@@ -83,35 +92,16 @@ namespace DebugFormForControls
             rtxtBoxLastName.Clear();
             rtxtBoxMidleName.Clear();
             rdtPickerBirth.SetToNullValue();
-            rRadioBtnSexMale.IsChecked = false;
-            rRadioBtnSexFemale.IsChecked = false;
             _sexSelected = false;
             _birthDateSelected = false;
         }
 
-        #region Радіокнопки вибору статі
-        
-        private void rRadioBtnSexMale_CheckStateChanged(object sender, EventArgs e)
+        private void radDropDownListSex_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            if (rRadioBtnSexMale.IsChecked)
-            {
-                _sexSelected = true;
-                rRadioBtnSexFemale.IsChecked = false;
-                Sex = "Male";
-            }
-        }
-        
-        private void rRadioBtnSexFemale_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (rRadioBtnSexFemale.IsChecked)
-            {
-                _sexSelected = true;
-                rRadioBtnSexMale.IsChecked = false;
-                Sex = "Female";
-            }
+            _sexSelected = radDropDownListSex.SelectedItem.Index != 0;
+
         }
 
-        #endregion
 
         // * * * вибір дати народження
         private void rdtPickerBirth_ValueChanged(object sender, EventArgs e)
