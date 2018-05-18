@@ -124,6 +124,12 @@
     <Compile Include="IpsBankAccountControl.Designer.cs">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="IpsBossNameContactsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsBossNameContactsControl.Designer.cs">
+      <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="IpsExclusionsLimitationsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -135,6 +141,12 @@
     </Compile>
     <Compile Include="PassportControl.Designer.cs">
       <DependentUpon>PassportControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpsRegistrationsCompanyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IpsRegistrationsCompanyControl.Designer.cs">
+      <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IpsServiceComissionControl.cs">
@@ -184,11 +196,17 @@
     <EmbeddedResource Include="IpsBankAccountControl.resx">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="IpsBossNameContactsControl.resx">
+      <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IpsExclusionsLimitationsControl.resx">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PassportControl.resx">
       <DependentUpon>PassportControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpsRegistrationsCompanyControl.resx">
+      <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="IpsServiceComissionControl.resx">
@@ -207,8 +225,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
