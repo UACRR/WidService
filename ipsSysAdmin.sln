@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsUnitTestExp", "ipsUnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsAnketaRightHolder", "ipsAnketaRightHolder\ipsAnketaRightHolder.csproj", "{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerWizards", "CustomerWizards\CustomerWizards.csproj", "{707A45C7-561E-42BE-8FE2-01A752A1BCC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerWizards", "CustomerWizards\ConsumerWizards.csproj", "{707A45C7-561E-42BE-8FE2-01A752A1BCC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
