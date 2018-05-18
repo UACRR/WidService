@@ -23,12 +23,14 @@ namespace CustomerWizards
 
             var data = _model.GetData(custId);
 
-            // test bank account
+            #region Fake data
+
             var anketa = data.AnketaCompany.SingleOrDefault();
             anketa.FaRegion = 9;
             anketa.RegistrNumber = "918273645";
             anketa.RegistrWho = "<registrator>";
             anketa.NumberVat = "105105105";
+
             anketa.BanAcc = new BankAccount
             {
                 MfoName = "Приватбанк ПАТ",
@@ -37,6 +39,36 @@ namespace CustomerWizards
                 TransitNumber = "tr56966666666",
                 AccountNumber = "an23567879547"
             };
+
+            data.Company.RelEmployee = new List<RelEmployee>
+            {
+                // Director
+                new RelEmployee {
+                    PositionCode = 1,
+                    Empl = new Employee
+                    {
+                        LastName = "Directorenko",
+                        FirstName = "Dir",
+                        SurName = "Dirovych",
+                        PhoneNumber = "(000) 000 00 07",
+                        Email = "dir@example.com",
+                    }
+                },
+                // Accountant
+                new RelEmployee {
+                    PositionCode = 2,
+                    Empl = new Employee
+                    {
+                        LastName = "Accountiuk",
+                        FirstName = "Acc",
+                        SurName = "Accovych",
+                        PhoneNumber = "(000) 000 50 00",
+                        Email = "acc@example.com",
+                    }
+                },
+            };
+
+            #endregion
 
             _view.SetData(data);
 
