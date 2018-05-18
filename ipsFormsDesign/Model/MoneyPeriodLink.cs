@@ -10,9 +10,11 @@ namespace ipsmedserviceapp.Model
         public int LicId { get; set; }
         public DateTime ModifyDate { get; set; }
         public decimal Amount { get; set; }
+        public int? Status { get; set; }
 
         public LicenseAgreement Lic { get; set; }
         public MoneyReceived Paid { get; set; }
         public PaidPeriod Period { get; set; }
+        public MoneyLinkStatus StatusNavigation { get; set; }
     }
 }

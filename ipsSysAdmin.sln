@@ -135,6 +135,14 @@ Global
 		{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}.Release|x64.ActiveCfg = Release|x86
 		{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}.Release|x86.ActiveCfg = Release|x86
 		{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}.Release|x86.Build.0 = Release|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug|x64.ActiveCfg = Debug|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug|x86.ActiveCfg = Debug|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug|x86.Build.0 = Debug|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|Any CPU.ActiveCfg = Release|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x64.ActiveCfg = Release|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.ActiveCfg = Release|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

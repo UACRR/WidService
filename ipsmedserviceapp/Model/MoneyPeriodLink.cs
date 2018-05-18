@@ -7,14 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public int PeriodId { get; set; }
         public int PaidId { get; set; }
-        public int? LicId { get; set; }
+        public int LicId { get; set; }
         public DateTime ModifyDate { get; set; }
         public decimal Amount { get; set; }
-        public int? AgrId { get; set; }
+        public int? Status { get; set; }
 
-        public AgreementMaster Agr { get; set; }
         public LicenseAgreement Lic { get; set; }
         public MoneyReceived Paid { get; set; }
         public PaidPeriod Period { get; set; }
+        public MoneyLinkStatus StatusNavigation { get; set; }
     }
 }
