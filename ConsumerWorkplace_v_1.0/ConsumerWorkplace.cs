@@ -32,5 +32,11 @@ namespace ConsumerWorkplace_v_1._0
         {
             rpvConsumers.SelectedPage = pageConsumersGrid;
         }
+
+        private void rbtnNextLicType_Click(object sender, EventArgs e)
+        {
+            pageAllAnketa.SelectedPage = pvConsumerLicenseType;
+        }
+
     }
 }
