@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsUnitTestExp", "ipsUnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsAnketaRightHolder", "ipsAnketaRightHolder\ipsAnketaRightHolder.csproj", "{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerWorkplace_v_1._0", "ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj", "{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
