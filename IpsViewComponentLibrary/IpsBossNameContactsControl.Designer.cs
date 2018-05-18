@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.txtPhone = new Telerik.WinControls.UI.RadTextBox();
             this.txtSurName = new Telerik.WinControls.UI.RadTextBox();
@@ -37,6 +38,7 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtEmail = new Telerik.WinControls.UI.RadTextBox();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSurName)).BeginInit();
@@ -46,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -79,37 +82,41 @@
             // txtPhone
             // 
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(30, 34);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.txtPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "PhoneNumber", true));
+            this.txtPhone.Location = new System.Drawing.Point(33, 34);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(176, 20);
+            this.txtPhone.Size = new System.Drawing.Size(173, 20);
             this.txtPhone.TabIndex = 27;
             // 
             // txtSurName
             // 
             this.txtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSurName.Location = new System.Drawing.Point(422, 3);
-            this.txtSurName.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.txtSurName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "SurName", true));
+            this.txtSurName.Location = new System.Drawing.Point(425, 3);
+            this.txtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtSurName.Name = "txtSurName";
-            this.txtSurName.Size = new System.Drawing.Size(178, 20);
+            this.txtSurName.Size = new System.Drawing.Size(175, 20);
             this.txtSurName.TabIndex = 23;
             // 
             // txtFirstName
             // 
             this.txtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFirstName.Location = new System.Drawing.Point(226, 3);
-            this.txtFirstName.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.txtFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "FirstName", true));
+            this.txtFirstName.Location = new System.Drawing.Point(229, 3);
+            this.txtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(176, 20);
+            this.txtFirstName.Size = new System.Drawing.Size(173, 20);
             this.txtFirstName.TabIndex = 25;
             // 
             // txtLastName
             // 
             this.txtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLastName.Location = new System.Drawing.Point(30, 3);
-            this.txtLastName.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.txtLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "LastName", true));
+            this.txtLastName.Location = new System.Drawing.Point(33, 3);
+            this.txtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(176, 20);
+            this.txtLastName.Size = new System.Drawing.Size(173, 20);
             this.txtLastName.TabIndex = 26;
             // 
             // radLabel1
@@ -143,11 +150,16 @@
             // txtEmail
             // 
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEmail.Location = new System.Drawing.Point(422, 34);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.txtEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Email", true));
+            this.txtEmail.Location = new System.Drawing.Point(425, 34);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(178, 20);
+            this.txtEmail.Size = new System.Drawing.Size(175, 20);
             this.txtEmail.TabIndex = 24;
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             // 
             // IpsBossNameContactsControl
             // 
@@ -166,6 +178,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -181,5 +194,6 @@
         private Telerik.WinControls.UI.RadTextBox txtPhone;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadTextBox txtEmail;
+        private System.Windows.Forms.BindingSource employeeBindingSource;
     }
 }
