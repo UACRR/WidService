@@ -80,7 +80,7 @@ namespace IpsViewComponentLibrary
 
         private void Setter()
         {
-            rDropListCitizenship.Items[0].
+            //rDropListCitizenship.Items[0].
         }
     }
 }
