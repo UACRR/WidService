@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugFormForControls", "Deb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerWizards", "CustomerWizards\CustomerWizards.csproj", "{707A45C7-561E-42BE-8FE2-01A752A1BCC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerWorkplace_v_1._0", "ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj", "{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -164,6 +166,14 @@ Global
 		{707A45C7-561E-42BE-8FE2-01A752A1BCC5}.Release|x64.ActiveCfg = Release|x86
 		{707A45C7-561E-42BE-8FE2-01A752A1BCC5}.Release|x86.ActiveCfg = Release|x86
 		{707A45C7-561E-42BE-8FE2-01A752A1BCC5}.Release|x86.Build.0 = Release|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug|x64.ActiveCfg = Debug|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug|x86.ActiveCfg = Debug|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug|x86.Build.0 = Debug|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|Any CPU.ActiveCfg = Release|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x64.ActiveCfg = Release|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.ActiveCfg = Release|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
