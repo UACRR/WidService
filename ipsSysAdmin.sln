@@ -17,11 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpsViewComponentLibrary", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsTestExp", "ipsTestExp\ipsTestExp.csproj", "{5A8912BE-69BD-46CE-B3C9-07FD9627A2CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsUnitTestExp", "ipsUnitTestExp\ipsUnitTestExp.csproj", "{7976D180-2BD7-400D-989C-40FA0F9CEDC8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsAnketaRightHolder", "ipsAnketaRightHolder\ipsAnketaRightHolder.csproj", "{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerWorkplace_v_1._0", "ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj", "{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testConfigureControl", "testConfigureControl\testConfigureControl.csproj", "{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -114,18 +114,6 @@ Global
 		{5A8912BE-69BD-46CE-B3C9-07FD9627A2CF}.Release|x64.Build.0 = Release|Any CPU
 		{5A8912BE-69BD-46CE-B3C9-07FD9627A2CF}.Release|x86.ActiveCfg = Release|Any CPU
 		{5A8912BE-69BD-46CE-B3C9-07FD9627A2CF}.Release|x86.Build.0 = Release|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Debug|x64.Build.0 = Debug|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Debug|x86.Build.0 = Debug|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Release|x64.ActiveCfg = Release|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Release|x64.Build.0 = Release|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Release|x86.ActiveCfg = Release|Any CPU
-		{7976D180-2BD7-400D-989C-40FA0F9CEDC8}.Release|x86.Build.0 = Release|Any CPU
 		{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}.Debug|Any CPU.Build.0 = Debug|x86
 		{11C3491C-EE1B-4B24-91D4-F0B178BCFD18}.Debug|x64.ActiveCfg = Debug|x86
@@ -143,6 +131,14 @@ Global
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x64.ActiveCfg = Release|x86
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.ActiveCfg = Release|x86
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.Build.0 = Release|x86
+		{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}.Debug|x64.ActiveCfg = Debug|x86
+		{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}.Debug|x86.ActiveCfg = Debug|x86
+		{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}.Debug|x86.Build.0 = Debug|x86
+		{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}.Release|Any CPU.ActiveCfg = Release|x86
+		{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}.Release|x64.ActiveCfg = Release|x86
+		{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}.Release|x86.ActiveCfg = Release|x86
+		{F5BA88B0-7590-433F-AF67-FD4ED1FB7B33}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
