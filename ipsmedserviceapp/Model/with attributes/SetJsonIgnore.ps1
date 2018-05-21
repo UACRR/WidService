@@ -1,4 +1,4 @@
-﻿[string]$sorsPath = "D:\work\MediaService\ipssysadmin\ipsmedserviceapp\Model";
+﻿[string]$sorsPath = "D:\work\MediaSercice\ipssysadmin\ipsmedserviceapp\Model";
 [xml]$XmlDoc = Get-Content "JsonIgnore.xml";
 foreach( $file in $XmlDoc.item )
 {

@@ -214,6 +214,8 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<UseMediaType> UseMediaType { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<UserRoleType> UserRoleType { get; set; }
+        public virtual DbSet<UsesKind> UsesKind { get; set; }
+        public virtual DbSet<UsesType> UsesType { get; set; }
 
         // Unable to generate entity type for table 'dbo.Form1'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.MusicalDesign'. Please see the warning messages.
@@ -649,8 +651,6 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
                 entity.Property(e => e.KindCode).HasColumnName("kindCode");
 
                 entity.Property(e => e.Name)
@@ -658,10 +658,17 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.UsesKind).HasColumnName("usesKind");
+
                 entity.HasOne(d => d.KindCodeNavigation)
                     .WithMany(p => p.AgrLicenseType)
                     .HasForeignKey(d => d.KindCode)
                     .HasConstraintName("FK_AGRLICEN_REFERENCE_COPYRIGH");
+
+                entity.HasOne(d => d.UsesKindNavigation)
+                    .WithMany(p => p.AgrLicenseType)
+                    .HasForeignKey(d => d.UsesKind)
+                    .HasConstraintName("FK_AGRLICEN_REFERENCE_USESKIND");
             });
 
             modelBuilder.Entity<AgrLicenseTypeTr>(entity =>
@@ -7097,6 +7104,47 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.TypeNameUk)
                     .HasColumnName("typeNameUk")
                     .HasMaxLength(250)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<UsesKind>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("UsesKind", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UsesType).HasColumnName("usesType");
+
+                entity.HasOne(d => d.UsesTypeNavigation)
+                    .WithMany(p => p.UsesKind)
+                    .HasForeignKey(d => d.UsesType)
+                    .HasConstraintName("FK_USESKIND_REFERENCE_USESTYPE");
+            });
+
+            modelBuilder.Entity<UsesType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("UsesType", "dbo");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
                     .IsUnicode(false);
             });
         }

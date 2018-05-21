@@ -76,11 +76,46 @@ namespace ipsmedserviceapp.Controllers
             return Json(cust);
         }
 
+        /// <summary>
+        /// Отримати список Споживачів малих прав
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("listSR")]
         public async Task<IActionResult> GetListSR()
         {
             var List = await _dbContext.getViewData("select * from vTsk_1_ListConsumer01", null);
             return Json(List);
         }
+
+        /// <summary>
+        /// Отримати список Споживачів малих прав
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("dictionaries")]
+        public async Task<IActionResult> GetDictionaries()
+        {
+            Dictionary<string, object> listDictionaries = new Dictionary<string, object>();
+            listDictionaries.Add("CrkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
+            listDictionaries.Add("CopyrightKind", await _dbContext.CopyrightKind.AsNoTracking().ToListAsync());
+            listDictionaries.Add("UsesType", await _dbContext.UsesType.AsNoTracking().ToListAsync());
+            listDictionaries.Add("UsesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());
+            listDictionaries.Add("AgrLicenseType", await _dbContext.AgrLicenseType.AsNoTracking().ToListAsync());
+            listDictionaries.Add("AgreementStatus", await _dbContext.AgreementStatus.AsNoTracking().ToListAsync());
+            listDictionaries.Add("AgreementType", await _dbContext.AgreementType.AsNoTracking().ToListAsync());
+            listDictionaries.Add("Period", await _dbContext.Period.AsNoTracking().ToListAsync());
+            listDictionaries.Add("PeriodStatus", await _dbContext.PeriodStatus.AsNoTracking().ToListAsync());
+            listDictionaries.Add("LicenseType", await _dbContext.LicenseType.AsNoTracking().ToListAsync());
+            listDictionaries.Add("LicenseClass", await _dbContext.LicenseClass.AsNoTracking().ToListAsync());
+            listDictionaries.Add("TypePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
+            listDictionaries.Add("PositionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
+            listDictionaries.Add("CustomerType", await _dbContext.CustomerType.AsNoTracking().ToListAsync());
+            listDictionaries.Add("CustomerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
+            listDictionaries.Add("UserRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
+
+            return Ok();
+        }
+
+
+
     }
 }

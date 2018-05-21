@@ -214,7 +214,9 @@
 "UseAreaType",
 "UseMediaType",
 "userRole",
-"UserRoleType"
+"UserRoleType",
+"UsesKind",
+"UsesType"
 );
 
 Scaffold-DbContext -Context MediaServiceContext -Provider Microsoft.EntityFrameworkCore.SqlServer -Connection "Data Source=192.168.1.252,60675;Initial Catalog=MediaService;User ID=robot;Password=robot11235813" -OutputDir Model -Tables $tables -Force -ErrorAction Ignore

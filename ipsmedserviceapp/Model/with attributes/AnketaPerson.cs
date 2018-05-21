@@ -55,37 +55,34 @@ namespace ipsmedserviceapp.Model
         public string LePostIndex { get; set; }
 
         public BankAccount BanAcc { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Country CitizenshipNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Customer Cust { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Person CustNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Country FaCountryNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Region FaRegionNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Lang LangNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Region LeRegionNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Country ReCountryNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public Region ReRegionNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public ResidentType ResidencyNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public SexType SexNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public AnketaStatus StatusNavigation { get; set; }
-[JsonIgnore]
+        [JsonIgnore]
         public TypeVat TypeVatNavigation { get; set; }
     }
 }
-
-
-
 
 
 
