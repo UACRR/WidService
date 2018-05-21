@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ddlActivityCode = new Telerik.WinControls.UI.RadDropDownList();
-            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource();
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtShortName = new Telerik.WinControls.UI.RadTextBox();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -51,7 +52,7 @@
             this.ddlActivityCode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anketaCompanyBindingSource, "ActivityCode", true));
             this.ddlActivityCode.Location = new System.Drawing.Point(119, 49);
             this.ddlActivityCode.Name = "ddlActivityCode";
-            this.ddlActivityCode.Size = new System.Drawing.Size(261, 20);
+            this.ddlActivityCode.Size = new System.Drawing.Size(324, 20);
             this.ddlActivityCode.TabIndex = 11;
             // 
             // anketaCompanyBindingSource
@@ -65,7 +66,7 @@
             this.txtShortName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "ShortName", true));
             this.txtShortName.Location = new System.Drawing.Point(119, 25);
             this.txtShortName.Name = "txtShortName";
-            this.txtShortName.Size = new System.Drawing.Size(261, 20);
+            this.txtShortName.Size = new System.Drawing.Size(324, 20);
             this.txtShortName.TabIndex = 10;
             // 
             // txtName
@@ -75,7 +76,7 @@
             this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true));
             this.txtName.Location = new System.Drawing.Point(119, 1);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(261, 20);
+            this.txtName.Size = new System.Drawing.Size(324, 20);
             this.txtName.TabIndex = 9;
             // 
             // radLabel3
@@ -112,8 +113,9 @@
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.radLabel1);
+            this.MaximumSize = new System.Drawing.Size(900, 71);
             this.Name = "IpsAnketaCompanyControl";
-            this.Size = new System.Drawing.Size(380, 71);
+            this.Size = new System.Drawing.Size(446, 71);
             ((System.ComponentModel.ISupportInitialize)(this.ddlActivityCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShortName)).EndInit();

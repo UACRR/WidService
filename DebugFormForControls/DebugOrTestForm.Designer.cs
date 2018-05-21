@@ -30,11 +30,12 @@
         {
             this.BtnActionOne = new Telerik.WinControls.UI.RadButton();
             this.BtnActionSecond = new Telerik.WinControls.UI.RadButton();
+            this.anketaPersonRightHolderControl1 = new DebugFormForControls.AnketaPersonRightHolderControl();
             this.passportControl1 = new IpsViewComponentLibrary.PassportControl();
             this.contractConsumerMainControl1 = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.contactsPersonControl1 = new DebugFormForControls.ContactsPersonControl();
             this.anketaPersonControl1 = new DebugFormForControls.AnketaPersonControl();
-            this.anketaPersonRightHolderControl1 = new DebugFormForControls.AnketaPersonRightHolderControl();
+            this.registrationPersonsControl1 = new IpsViewComponentLibrary.RegistrationPersonsControl();
             ((System.ComponentModel.ISupportInitialize)(this.BtnActionOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnActionSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -59,6 +60,16 @@
             this.BtnActionSecond.TabIndex = 2;
             this.BtnActionSecond.Text = "Додаткова кнопка";
             this.BtnActionSecond.Click += new System.EventHandler(this.BtnActionSecond_Click);
+            // 
+            // anketaPersonRightHolderControl1
+            // 
+            this.anketaPersonRightHolderControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.anketaPersonRightHolderControl1.DataSourceDropList = 0;
+            this.anketaPersonRightHolderControl1.Location = new System.Drawing.Point(13, 125);
+            this.anketaPersonRightHolderControl1.MaximumSize = new System.Drawing.Size(900, 128);
+            this.anketaPersonRightHolderControl1.Name = "anketaPersonRightHolderControl1";
+            this.anketaPersonRightHolderControl1.Size = new System.Drawing.Size(645, 128);
+            this.anketaPersonRightHolderControl1.TabIndex = 8;
             // 
             // passportControl1
             // 
@@ -97,21 +108,19 @@
             this.anketaPersonControl1.Size = new System.Drawing.Size(645, 105);
             this.anketaPersonControl1.TabIndex = 3;
             // 
-            // anketaPersonRightHolderControl1
+            // registrationPersonsControl1
             // 
-            this.anketaPersonRightHolderControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
-            this.anketaPersonRightHolderControl1.DataSourceDropList = 0;
-            this.anketaPersonRightHolderControl1.Location = new System.Drawing.Point(13, 125);
-            this.anketaPersonRightHolderControl1.MaximumSize = new System.Drawing.Size(900, 128);
-            this.anketaPersonRightHolderControl1.Name = "anketaPersonRightHolderControl1";
-            this.anketaPersonRightHolderControl1.Size = new System.Drawing.Size(645, 128);
-            this.anketaPersonRightHolderControl1.TabIndex = 8;
+            this.registrationPersonsControl1.Location = new System.Drawing.Point(495, 315);
+            this.registrationPersonsControl1.Name = "registrationPersonsControl1";
+            this.registrationPersonsControl1.Size = new System.Drawing.Size(416, 53);
+            this.registrationPersonsControl1.TabIndex = 9;
             // 
             // DebugOrTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 572);
+            this.Controls.Add(this.registrationPersonsControl1);
             this.Controls.Add(this.anketaPersonRightHolderControl1);
             this.Controls.Add(this.passportControl1);
             this.Controls.Add(this.contractConsumerMainControl1);
@@ -140,5 +149,6 @@
         private IpsViewComponentLibrary.ContractConsumerMainControl contractConsumerMainControl1;
         private IpsViewComponentLibrary.PassportControl passportControl1;
         private AnketaPersonRightHolderControl anketaPersonRightHolderControl1;
+        private IpsViewComponentLibrary.RegistrationPersonsControl registrationPersonsControl1;
     }
 }

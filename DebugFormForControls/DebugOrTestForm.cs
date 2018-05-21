@@ -31,7 +31,11 @@ namespace DebugFormForControls
             PUseries = "HE",
             PUnumber = "123456",
             PUissuedWho = "звідктсь там його може колись і видали ",
-            PUissuedWhen = new DateTime(2013,10,21)
+            PUissuedWhen = new DateTime(2013,10,21),
+
+            Citizenship = "804",
+            Residency = 2,
+            Inn = "3484225416",
         };
 
         AgreementMaster agreementMaster = new AgreementMaster
@@ -58,6 +62,7 @@ namespace DebugFormForControls
             anketaPersonRightHolderControl1.DataSource = anketaPerson;
             contractConsumerMainControl1.DataSource = agreementMaster;
             passportControl1.DataSource = anketaPerson;
+            registrationPersonsControl1.DataSource = anketaPerson;
             //contractConsumerMainControl1.DataSource = agreementMaster;
 
             //MessageBox.Show(contractControl1.Number + " || " + contractControl1.NumberFromDate.ToString("dd.MM.yyyy"));
@@ -73,10 +78,10 @@ namespace DebugFormForControls
 
         private void BtnActionSecond_Click(object sender, EventArgs e)
         {
-            anketaPersonRightHolderControl1.Validator();
-            anketaPersonControl1.Validator();
+            //anketaPersonRightHolderControl1.Validator();
+            //anketaPersonControl1.Validator();
             //anketaPersonRightHolderControl1.DataSourceDropList = anketaPersonRightHolderControl1.DataSourceDropList == 1? 2 : 1;
-
+            registrationPersonsControl1.Validator();
         }
     }
 }

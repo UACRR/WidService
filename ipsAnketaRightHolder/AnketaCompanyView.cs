@@ -96,22 +96,6 @@ namespace ipsAnketaRightHolder
             ddlActivityCode.ValueMember = "CodeI";
             ddlActivityCode.DisplayMember = "name";
 
-            ipsAddressControlJa.radDropDownListCountry.DataSource = _dictionaries.country;
-            ipsAddressControlJa.radDropDownListCountry.ValueMember = "CountryCode";
-            ipsAddressControlJa.radDropDownListCountry.DisplayMember = "CountryName";
-
-            ipsAddressControlFa.radDropDownListCountry.DataSource = _dictionaries.country;
-            ipsAddressControlFa.radDropDownListCountry.ValueMember = "CountryCode";
-            ipsAddressControlFa.radDropDownListCountry.DisplayMember = "CountryName";
-
-            ipsAddressControlJa.radDropDownListRegion.DataSource = _dictionaries.region;
-            ipsAddressControlJa.radDropDownListRegion.ValueMember = "CodeI";
-            ipsAddressControlJa.radDropDownListRegion.DisplayMember = "Name";
-
-            ipsAddressControlFa.radDropDownListRegion.DataSource = _dictionaries.region;
-            ipsAddressControlFa.radDropDownListRegion.ValueMember = "CodeI";
-            ipsAddressControlFa.radDropDownListRegion.DisplayMember = "Name";
-
             ddlDirectorPositionType.DataSource = _dictionaries.positionType;
             ddlDirectorPositionType.ValueMember = "CodeI";
             ddlDirectorPositionType.DisplayMember = "Name";

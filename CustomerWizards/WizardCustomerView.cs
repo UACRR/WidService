@@ -17,7 +17,11 @@ namespace CustomerWizards
     {
         private Customer _data;
         private AnketaCompany _curAnketa;
+        private AgreementMaster _curAgreementMaster;
         private RelEmployee _relBoss;
+        private RelEmployee _relAccountant;
+        private Employee _boss;
+        private Employee _accountant;
         private AnketaDictionaties _dictionaries;
 
         public IAnketaCompany AnketaCompany { get => _curAnketa; }
@@ -26,6 +30,7 @@ namespace CustomerWizards
         public IEmployee Employee { get => _relBoss.Empl; }
         public IClient Client { get; }
         public IBankAccount BankAccount { get; set; }
+        public IAgreementMaster AgreementMaster { get => _curAgreementMaster; }
 
         public event EventHandler FieldsValueChanged;
         public event Func<bool> Save;
@@ -74,14 +79,23 @@ namespace CustomerWizards
             _data = new Customer
             {
                 Company = new Company { RelEmployee = new HashSet<RelEmployee>() },
-                AnketaCompany = new HashSet<AnketaCompany>(),
                 AnkVersion = 1
             };
             _curAnketa = new AnketaCompany { Version = 1, BanAcc = new BankAccount() };
-            _relBoss = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
+            _boss = new Employee();
+            _accountant = new Employee();
+            _relBoss = new RelEmployee { Empl = _boss, PositionCode = 1 };
+            _relAccountant = new RelEmployee { Empl = _accountant, PositionCode = 2 };
             _data.AnketaCompany.Add(_curAnketa);
             _data.Company.RelEmployee.Add(_relBoss);
+            _data.Company.RelEmployee.Add(_relAccountant);
             //_bankAccount = new BankAccount();
+
+            _curAgreementMaster = new AgreementMaster
+            {
+                AgreementAddRh = new AgreementAddRh()
+            };
+            _data.AgreementMaster.Add(_curAgreementMaster);
         }
 
         private void DataChanged(object sender, EventArgs e)
@@ -103,6 +117,10 @@ namespace CustomerWizards
             ipsAddressControl1.RegionsDataSource = _dictionaries.region;
             ipsAddressControl1.RegionsValueMember = "CodeI";
             ipsAddressControl1.RegionsDisplayMember = "Name";
+
+            ipsRegistrationsCompanyControl1.TypesVatDataSource = _dictionaries.typeVat;
+            ipsRegistrationsCompanyControl1.TypesVatValueMember = "CodeI";
+            ipsRegistrationsCompanyControl1.TypesVatDisplayMember = "Name";
         }
 
         /// <summary>
@@ -127,11 +145,31 @@ namespace CustomerWizards
             else
                 _data.AnkVersion = 1;
 
-            var relEmpl = data.Company.RelEmployee.Where(item => item.PositionCode == 1).SingleOrDefault();
-            if (relEmpl != null)
+            var relEmplB = data.Company.RelEmployee.Where(item => item.PositionCode == 1).SingleOrDefault();
+            if (relEmplB != null)
             {
-                SetObjectValues(relEmpl, _relBoss);
-                SetObjectValues(relEmpl.Empl, _relBoss.Empl);
+                SetObjectValues(relEmplB, _relBoss);
+                SetObjectValues(relEmplB.Empl, _relBoss.Empl);
+                _boss = _relBoss.Empl;
+            }
+
+            var relEmplA = data.Company.RelEmployee.Where(item => item.PositionCode == 2).SingleOrDefault();
+            if (relEmplA != null)
+            {
+                SetObjectValues(relEmplA, _relAccountant);
+                SetObjectValues(relEmplA.Empl, _relAccountant.Empl);
+                _accountant = _relAccountant.Empl;
+            }
+
+            var agreement = data.AgreementMaster.FirstOrDefault();
+            if (agreement != null)
+            {
+                SetObjectValues(agreement, _curAgreementMaster);
+
+                if (agreement.AgreementAddRh != null)
+                {
+                    SetObjectValues(agreement.AgreementAddRh, _curAgreementMaster.AgreementAddRh);
+                }
             }
 
             AnketaCompanySource.DataSource = _curAnketa;
@@ -142,6 +180,10 @@ namespace CustomerWizards
 
             ipsBankAccountControl.DataSource = AnketaCompanySource;
             ipsBankAccountControl.DataMember = "BanAcc";
+
+            ipsServiceComissionControl1.DataSource = _curAgreementMaster.AgreementAddRh;
+
+            ipsBossNameContactsControl1.DataSource = _boss;
 
             SetDataForExlusionsLlimitationsTest();
         }
