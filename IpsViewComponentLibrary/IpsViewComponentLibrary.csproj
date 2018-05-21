@@ -58,6 +58,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPremisesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPremisesForm.Designer.cs">
+      <DependentUpon>AddPremisesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerPlacesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerPlacesControl.Designer.cs">
+      <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerTitleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerTitleControl.Designer.cs">
+      <DependentUpon>ConsumerTitleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContractConsumerDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContractConsumerDetailControl.Designer.cs">
+      <DependentUpon>ContractConsumerDetailControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ContractConsumerMainControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -163,14 +187,26 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddPremisesForm.resx">
+      <DependentUpon>AddPremisesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnketaPersonControl.resx">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerPlacesControl.resx">
+      <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerTitleControl.resx">
+      <DependentUpon>ConsumerTitleControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ContactsPersonControl.resx">
       <DependentUpon>ContactsPersonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContractConsumerDetailControl.resx">
+      <DependentUpon>ContractConsumerDetailControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ContractConsumerMainControl.resx">
       <DependentUpon>ContractConsumerMainControl.cs</DependentUpon>

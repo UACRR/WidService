@@ -73,6 +73,8 @@ namespace IpsViewComponentLibrary
             set { ddlActivityCode.ValueMember = value; }
         }
 
+        public string CompanyFullName => txtName.Text;
+
         #endregion
     }
 }

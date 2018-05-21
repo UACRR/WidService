@@ -20,6 +20,16 @@ namespace IpsViewComponentLibrary
             set => iAgreementMasterBindingSource.DataSource = value;
         }
 
+        public string ContractNumber
+        {
+            get => rtxtBoxContrNumber.Text;
+        }
+
+        public string ContractBeginDate
+        {
+            get => rdtPickerAgrDate.Value.ToString("dd.MM.yyyy");
+        }
+
         public ContractConsumerMainControl()
         {
             InitializeComponent();

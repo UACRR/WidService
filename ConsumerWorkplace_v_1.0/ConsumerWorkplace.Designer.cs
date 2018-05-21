@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsumerWorkplace));
             this.rMainPageView = new Telerik.WinControls.UI.RadPageView();
             this.rMainPageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
             this.rPageViewSmallRights = new Telerik.WinControls.UI.RadPageView();
@@ -42,22 +43,53 @@
             this.clientNameCtrlRegistrationsCompany = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
             this.clientNameCtrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
             this.pvConsumerLicenseType = new Telerik.WinControls.UI.RadPageViewPage();
-            this.contractConsumerMainControl1 = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.licenseTypeCtrlContractConsumerDetail = new IpsViewComponentLibrary.ContractConsumerDetailControl();
+            this.lblTabLicenseTypeClientName = new Telerik.WinControls.UI.RadLabel();
             this.rbtnBackClientName = new Telerik.WinControls.UI.RadButton();
             this.rbtnNextAnketa = new Telerik.WinControls.UI.RadButton();
+            this.licenseTypeCtrlContractConsumerMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.pvConsumerAnketa = new Telerik.WinControls.UI.RadPageViewPage();
+            this.anketaCtrlAddressFactual = new IpsViewComponentLibrary.IpsAddressControl();
+            this.anketaCtrlAddressLegal = new IpsViewComponentLibrary.IpsAddressControl();
+            this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.rbtnBackLicType = new Telerik.WinControls.UI.RadButton();
             this.rbtnNextManagers = new Telerik.WinControls.UI.RadButton();
+            this.anketaCtrlTitleLbl = new IpsViewComponentLibrary.ConsumerTitleControl();
             this.pvConsumerManagers = new Telerik.WinControls.UI.RadPageViewPage();
+            this.managersRddListPositionContactPerson = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.managersRddListPositionHead = new Telerik.WinControls.UI.RadDropDownList();
+            this.managersTxtBoxOnBasics = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator5 = new Telerik.WinControls.UI.RadSeparator();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator4 = new Telerik.WinControls.UI.RadSeparator();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.rbtnBackAnketa = new Telerik.WinControls.UI.RadButton();
             this.rbtnNextPlaces = new Telerik.WinControls.UI.RadButton();
+            this.managersCtrlBossNameContactsContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.managersCtrlBossNameContactsBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.managersCtrlBossNameContactsHead = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.managersCtrlTitleLbl = new IpsViewComponentLibrary.ConsumerTitleControl();
             this.pvConsumerPlaces = new Telerik.WinControls.UI.RadPageViewPage();
-            this.rbtnBackManagers = new Telerik.WinControls.UI.RadButton();
             this.rbtnNextBankRequisites = new Telerik.WinControls.UI.RadButton();
+            this.rbtnBackManagers = new Telerik.WinControls.UI.RadButton();
+            this.placesCtrlConsumerPlaces = new ipsAnketaClient.ConsumerPlacesControl();
+            this.placesCtrlTitleLbl = new IpsViewComponentLibrary.ConsumerTitleControl();
             this.pvConsumerBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
+            this.bankRequisitesCtrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.bankRequisitesCtrlTitleLbl = new IpsViewComponentLibrary.ConsumerTitleControl();
             this.rbtnBackPlaces = new Telerik.WinControls.UI.RadButton();
             this.rbtnNextContract = new Telerik.WinControls.UI.RadButton();
             this.pvConsumerContracts = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
+            this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
             this.rbtnBackBankRequisites = new Telerik.WinControls.UI.RadButton();
             this.rbtnConsumerSave = new Telerik.WinControls.UI.RadButton();
             this.rbtnCancelAnketa = new Telerik.WinControls.UI.RadButton();
@@ -91,21 +123,68 @@
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtRegisterWho)).BeginInit();
             this.pvConsumerLicenseType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).BeginInit();
             this.pvConsumerAnketa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressFactual.DdlCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressFactual.DdlRegion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressFactual.TxtAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressFactual.TxtCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.DdlCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.DdlRegion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.TxtAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.TxtCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextManagers)).BeginInit();
             this.pvConsumerManagers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.managersRddListPositionContactPerson)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersRddListPositionHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersTxtBoxOnBasics)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextPlaces)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtFirstName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtLastName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtSurName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtFirstName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtLastName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtSurName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtEmail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtFirstName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtLastName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtSurName)).BeginInit();
             this.pvConsumerPlaces.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackManagers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextBankRequisites)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackManagers)).BeginInit();
             this.pvConsumerBankRequisites.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtAccountNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtMfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtMfoName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtMfoOkpo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtTransitNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextContract)).BeginInit();
             this.pvConsumerContracts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackBankRequisites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnConsumerSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnCancelAnketa)).BeginInit();
@@ -128,7 +207,7 @@
             this.rMainPageView.Margin = new System.Windows.Forms.Padding(0);
             this.rMainPageView.Name = "rMainPageView";
             this.rMainPageView.SelectedPage = this.rMainPageSmallRights;
-            this.rMainPageView.Size = new System.Drawing.Size(1307, 599);
+            this.rMainPageView.Size = new System.Drawing.Size(1346, 671);
             this.rMainPageView.TabIndex = 0;
             this.rMainPageView.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rMainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -145,7 +224,7 @@
             this.rMainPageSmallRights.ItemSize = new System.Drawing.SizeF(85F, 26F);
             this.rMainPageSmallRights.Location = new System.Drawing.Point(10, 35);
             this.rMainPageSmallRights.Name = "rMainPageSmallRights";
-            this.rMainPageSmallRights.Size = new System.Drawing.Size(1286, 553);
+            this.rMainPageSmallRights.Size = new System.Drawing.Size(1325, 625);
             this.rMainPageSmallRights.Text = "Малі права";
             // 
             // rPageViewSmallRights
@@ -157,10 +236,10 @@
             this.rPageViewSmallRights.Controls.Add(this.rpwsrPageProfilesContracts);
             this.rPageViewSmallRights.Controls.Add(this.rpwsrPageRepresentatives);
             this.rPageViewSmallRights.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
-            this.rPageViewSmallRights.Location = new System.Drawing.Point(0, 4);
+            this.rPageViewSmallRights.Location = new System.Drawing.Point(0, -1);
             this.rPageViewSmallRights.Name = "rPageViewSmallRights";
             this.rPageViewSmallRights.SelectedPage = this.rpwsrPageConsumers;
-            this.rPageViewSmallRights.Size = new System.Drawing.Size(1286, 551);
+            this.rPageViewSmallRights.Size = new System.Drawing.Size(1326, 628);
             this.rPageViewSmallRights.TabIndex = 0;
             this.rPageViewSmallRights.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rPageViewSmallRights.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -176,7 +255,7 @@
             this.rpwsrPageConsumers.ItemSize = new System.Drawing.SizeF(115F, 26F);
             this.rpwsrPageConsumers.Location = new System.Drawing.Point(124, 10);
             this.rpwsrPageConsumers.Name = "rpwsrPageConsumers";
-            this.rpwsrPageConsumers.Size = new System.Drawing.Size(1151, 530);
+            this.rpwsrPageConsumers.Size = new System.Drawing.Size(1191, 607);
             this.rpwsrPageConsumers.Text = "Споживачі";
             // 
             // rpvConsumers
@@ -189,7 +268,7 @@
             this.rpvConsumers.DefaultPage = this.pageConsumersGrid;
             this.rpvConsumers.Font = new System.Drawing.Font("Segoe UI", 2.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rpvConsumers.ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.Individual;
-            this.rpvConsumers.Location = new System.Drawing.Point(0, -10);
+            this.rpvConsumers.Location = new System.Drawing.Point(0, 0);
             this.rpvConsumers.Margin = new System.Windows.Forms.Padding(0);
             this.rpvConsumers.Name = "rpvConsumers";
             // 
@@ -197,7 +276,7 @@
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
             this.rpvConsumers.SelectedPage = this.pageConsumersAnketa;
-            this.rpvConsumers.Size = new System.Drawing.Size(1167, 551);
+            this.rpvConsumers.Size = new System.Drawing.Size(1196, 607);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rpvConsumers.GetChildAt(0))).ShowItemPinButton = false;
@@ -218,17 +297,17 @@
             this.pageConsumersAnketa.Controls.Add(this.lblConsumerTitle);
             this.pageConsumersAnketa.Controls.Add(this.pageAllAnketa);
             this.pageConsumersAnketa.Controls.Add(this.rbtnCancelAnketa);
-            this.pageConsumersAnketa.ItemSize = new System.Drawing.SizeF(12F, 269F);
+            this.pageConsumersAnketa.ItemSize = new System.Drawing.SizeF(12F, 297F);
             this.pageConsumersAnketa.Location = new System.Drawing.Point(21, 10);
             this.pageConsumersAnketa.Name = "pageConsumersAnketa";
-            this.pageConsumersAnketa.Size = new System.Drawing.Size(1135, 530);
+            this.pageConsumersAnketa.Size = new System.Drawing.Size(1164, 586);
             // 
             // lblConsumerTitle
             // 
             this.lblConsumerTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblConsumerTitle.AutoSize = false;
             this.lblConsumerTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblConsumerTitle.Location = new System.Drawing.Point(375, 3);
+            this.lblConsumerTitle.Location = new System.Drawing.Point(388, 3);
             this.lblConsumerTitle.Name = "lblConsumerTitle";
             this.lblConsumerTitle.Size = new System.Drawing.Size(396, 18);
             this.lblConsumerTitle.TabIndex = 4;
@@ -239,6 +318,7 @@
             this.pageAllAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pageAllAnketa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pageAllAnketa.Controls.Add(this.pvConsumerClientName);
             this.pageAllAnketa.Controls.Add(this.pvConsumerLicenseType);
             this.pageAllAnketa.Controls.Add(this.pvConsumerAnketa);
@@ -249,10 +329,12 @@
             this.pageAllAnketa.DefaultPage = this.pvConsumerClientName;
             this.pageAllAnketa.Location = new System.Drawing.Point(0, 26);
             this.pageAllAnketa.Name = "pageAllAnketa";
-            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
-            this.pageAllAnketa.Size = new System.Drawing.Size(1130, 471);
+            this.pageAllAnketa.SelectedPage = this.pvConsumerContracts;
+            this.pageAllAnketa.SelectionWrap = false;
+            this.pageAllAnketa.Size = new System.Drawing.Size(1164, 527);
             this.pageAllAnketa.TabIndex = 2;
             this.pageAllAnketa.ThemeName = "Office2007Silver";
+            this.pageAllAnketa.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.pageAllAnketa_SelectedPageChanging);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
@@ -266,13 +348,14 @@
             this.pvConsumerClientName.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerClientName.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerClientName.Name = "pvConsumerClientName";
-            this.pvConsumerClientName.Size = new System.Drawing.Size(986, 450);
+            this.pvConsumerClientName.Size = new System.Drawing.Size(1020, 506);
+            this.pvConsumerClientName.TabStop = true;
             this.pvConsumerClientName.Text = "Назва клієнта";
             // 
             // rbtnNextLicType
             // 
             this.rbtnNextLicType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextLicType.Location = new System.Drawing.Point(808, 423);
+            this.rbtnNextLicType.Location = new System.Drawing.Point(842, 479);
             this.rbtnNextLicType.Name = "rbtnNextLicType";
             this.rbtnNextLicType.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextLicType.TabIndex = 3;
@@ -282,7 +365,7 @@
             // 
             // clientNameCheckBoxPlaces
             // 
-            this.clientNameCheckBoxPlaces.Location = new System.Drawing.Point(4, 82);
+            this.clientNameCheckBoxPlaces.Location = new System.Drawing.Point(123, 81);
             this.clientNameCheckBoxPlaces.Name = "clientNameCheckBoxPlaces";
             this.clientNameCheckBoxPlaces.Size = new System.Drawing.Size(86, 18);
             this.clientNameCheckBoxPlaces.TabIndex = 2;
@@ -319,7 +402,7 @@
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.TabIndex = 24;
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.TabStop = false;
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Value = new System.DateTime(((long)(0)));
-            this.clientNameCtrlRegistrationsCompany.Location = new System.Drawing.Point(4, 114);
+            this.clientNameCtrlRegistrationsCompany.Location = new System.Drawing.Point(4, 105);
             this.clientNameCtrlRegistrationsCompany.Name = "clientNameCtrlRegistrationsCompany";
             this.clientNameCtrlRegistrationsCompany.NumberVatDataMember = null;
             this.clientNameCtrlRegistrationsCompany.OkpoDataMember = null;
@@ -400,28 +483,40 @@
             // 
             // pvConsumerLicenseType
             // 
-            this.pvConsumerLicenseType.Controls.Add(this.contractConsumerMainControl1);
+            this.pvConsumerLicenseType.Controls.Add(this.licenseTypeCtrlContractConsumerDetail);
+            this.pvConsumerLicenseType.Controls.Add(this.lblTabLicenseTypeClientName);
             this.pvConsumerLicenseType.Controls.Add(this.rbtnBackClientName);
             this.pvConsumerLicenseType.Controls.Add(this.rbtnNextAnketa);
+            this.pvConsumerLicenseType.Controls.Add(this.licenseTypeCtrlContractConsumerMain);
             this.pvConsumerLicenseType.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerLicenseType.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerLicenseType.Name = "pvConsumerLicenseType";
-            this.pvConsumerLicenseType.Size = new System.Drawing.Size(986, 450);
+            this.pvConsumerLicenseType.Size = new System.Drawing.Size(1020, 506);
             this.pvConsumerLicenseType.Text = "Тип ліцензії";
             // 
-            // contractConsumerMainControl1
+            // licenseTypeCtrlContractConsumerDetail
             // 
-            this.contractConsumerMainControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
-            this.contractConsumerMainControl1.Location = new System.Drawing.Point(4, 34);
-            this.contractConsumerMainControl1.MaximumSize = new System.Drawing.Size(477, 49);
-            this.contractConsumerMainControl1.Name = "contractConsumerMainControl1";
-            this.contractConsumerMainControl1.Size = new System.Drawing.Size(477, 49);
-            this.contractConsumerMainControl1.TabIndex = 6;
+            this.licenseTypeCtrlContractConsumerDetail.DataSource = null;
+            this.licenseTypeCtrlContractConsumerDetail.Location = new System.Drawing.Point(4, 90);
+            this.licenseTypeCtrlContractConsumerDetail.MaximumSize = new System.Drawing.Size(494, 105);
+            this.licenseTypeCtrlContractConsumerDetail.MinimumSize = new System.Drawing.Size(494, 105);
+            this.licenseTypeCtrlContractConsumerDetail.Name = "licenseTypeCtrlContractConsumerDetail";
+            this.licenseTypeCtrlContractConsumerDetail.Size = new System.Drawing.Size(494, 105);
+            this.licenseTypeCtrlContractConsumerDetail.TabIndex = 8;
+            // 
+            // lblTabLicenseTypeClientName
+            // 
+            this.lblTabLicenseTypeClientName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblTabLicenseTypeClientName.Location = new System.Drawing.Point(79, 6);
+            this.lblTabLicenseTypeClientName.Name = "lblTabLicenseTypeClientName";
+            this.lblTabLicenseTypeClientName.Size = new System.Drawing.Size(114, 22);
+            this.lblTabLicenseTypeClientName.TabIndex = 7;
+            this.lblTabLicenseTypeClientName.Text = "Client \"Name\"";
             // 
             // rbtnBackClientName
             // 
             this.rbtnBackClientName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackClientName.Location = new System.Drawing.Point(627, 423);
+            this.rbtnBackClientName.Location = new System.Drawing.Point(661, 479);
             this.rbtnBackClientName.Name = "rbtnBackClientName";
             this.rbtnBackClientName.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackClientName.TabIndex = 5;
@@ -432,7 +527,7 @@
             // rbtnNextAnketa
             // 
             this.rbtnNextAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextAnketa.Location = new System.Drawing.Point(808, 423);
+            this.rbtnNextAnketa.Location = new System.Drawing.Point(842, 479);
             this.rbtnNextAnketa.Name = "rbtnNextAnketa";
             this.rbtnNextAnketa.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextAnketa.TabIndex = 4;
@@ -440,20 +535,238 @@
             this.rbtnNextAnketa.ThemeName = "Aqua";
             this.rbtnNextAnketa.Click += new System.EventHandler(this.rbtnNextAnketa_Click);
             // 
+            // licenseTypeCtrlContractConsumerMain
+            // 
+            this.licenseTypeCtrlContractConsumerMain.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
+            this.licenseTypeCtrlContractConsumerMain.Location = new System.Drawing.Point(4, 34);
+            this.licenseTypeCtrlContractConsumerMain.MaximumSize = new System.Drawing.Size(477, 49);
+            this.licenseTypeCtrlContractConsumerMain.Name = "licenseTypeCtrlContractConsumerMain";
+            this.licenseTypeCtrlContractConsumerMain.Size = new System.Drawing.Size(477, 49);
+            this.licenseTypeCtrlContractConsumerMain.TabIndex = 6;
+            // 
             // pvConsumerAnketa
             // 
+            this.pvConsumerAnketa.Controls.Add(this.anketaCtrlAddressFactual);
+            this.pvConsumerAnketa.Controls.Add(this.anketaCtrlAddressLegal);
+            this.pvConsumerAnketa.Controls.Add(this.radSeparator2);
+            this.pvConsumerAnketa.Controls.Add(this.radLabel3);
+            this.pvConsumerAnketa.Controls.Add(this.radSeparator1);
+            this.pvConsumerAnketa.Controls.Add(this.radLabel2);
             this.pvConsumerAnketa.Controls.Add(this.rbtnBackLicType);
             this.pvConsumerAnketa.Controls.Add(this.rbtnNextManagers);
+            this.pvConsumerAnketa.Controls.Add(this.anketaCtrlTitleLbl);
             this.pvConsumerAnketa.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerAnketa.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerAnketa.Name = "pvConsumerAnketa";
-            this.pvConsumerAnketa.Size = new System.Drawing.Size(991, 450);
+            this.pvConsumerAnketa.Size = new System.Drawing.Size(1020, 506);
             this.pvConsumerAnketa.Text = "Анкета";
+            // 
+            // anketaCtrlAddressFactual
+            // 
+            this.anketaCtrlAddressFactual.AddressDataMember = null;
+            this.anketaCtrlAddressFactual.CityDataMember = null;
+            this.anketaCtrlAddressFactual.CountriesDataMember = "";
+            this.anketaCtrlAddressFactual.CountriesDataSource = null;
+            this.anketaCtrlAddressFactual.CountriesDisplayMember = "";
+            this.anketaCtrlAddressFactual.CountriesValueMember = "";
+            this.anketaCtrlAddressFactual.CountryDataMember = null;
+            this.anketaCtrlAddressFactual.DataMember = "";
+            this.anketaCtrlAddressFactual.DataSource = null;
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressFactual.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.anketaCtrlAddressFactual.DdlCountry.Location = new System.Drawing.Point(0, 0);
+            this.anketaCtrlAddressFactual.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
+            this.anketaCtrlAddressFactual.DdlCountry.Name = "ddlCountry";
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressFactual.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 351, 20);
+            this.anketaCtrlAddressFactual.DdlCountry.RootElement.StretchVertically = true;
+            this.anketaCtrlAddressFactual.DdlCountry.Size = new System.Drawing.Size(186, 20);
+            this.anketaCtrlAddressFactual.DdlCountry.TabIndex = 18;
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressFactual.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.anketaCtrlAddressFactual.DdlRegion.Location = new System.Drawing.Point(206, 0);
+            this.anketaCtrlAddressFactual.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
+            this.anketaCtrlAddressFactual.DdlRegion.Name = "ddlRegion";
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressFactual.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(358, 0, 338, 20);
+            this.anketaCtrlAddressFactual.DdlRegion.RootElement.StretchVertically = true;
+            this.anketaCtrlAddressFactual.DdlRegion.Size = new System.Drawing.Size(186, 20);
+            this.anketaCtrlAddressFactual.DdlRegion.TabIndex = 22;
+            this.anketaCtrlAddressFactual.Location = new System.Drawing.Point(21, 185);
+            this.anketaCtrlAddressFactual.Name = "anketaCtrlAddressFactual";
+            this.anketaCtrlAddressFactual.RegionDataMember = null;
+            this.anketaCtrlAddressFactual.RegionsDataMember = "";
+            this.anketaCtrlAddressFactual.RegionsDataSource = null;
+            this.anketaCtrlAddressFactual.RegionsDisplayMember = "";
+            this.anketaCtrlAddressFactual.RegionsValueMember = "";
+            this.anketaCtrlAddressFactual.Size = new System.Drawing.Size(600, 45);
+            this.anketaCtrlAddressFactual.TabIndex = 14;
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressFactual.TxtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.anketaCtrlAddressFactual.TxtAddress.Location = new System.Drawing.Point(0, 25);
+            this.anketaCtrlAddressFactual.TxtAddress.Margin = new System.Windows.Forms.Padding(0);
+            this.anketaCtrlAddressFactual.TxtAddress.Name = "txtAddress";
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressFactual.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 600, 20);
+            this.anketaCtrlAddressFactual.TxtAddress.RootElement.StretchVertically = true;
+            this.anketaCtrlAddressFactual.TxtAddress.Size = new System.Drawing.Size(600, 20);
+            this.anketaCtrlAddressFactual.TxtAddress.TabIndex = 10;
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressFactual.TxtCity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.anketaCtrlAddressFactual.TxtCity.Location = new System.Drawing.Point(412, 0);
+            this.anketaCtrlAddressFactual.TxtCity.Margin = new System.Windows.Forms.Padding(0);
+            this.anketaCtrlAddressFactual.TxtCity.Name = "txtCity";
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressFactual.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(412, 0, 188, 20);
+            this.anketaCtrlAddressFactual.TxtCity.RootElement.StretchVertically = true;
+            this.anketaCtrlAddressFactual.TxtCity.Size = new System.Drawing.Size(188, 20);
+            this.anketaCtrlAddressFactual.TxtCity.TabIndex = 23;
+            // 
+            // anketaCtrlAddressLegal
+            // 
+            this.anketaCtrlAddressLegal.AddressDataMember = null;
+            this.anketaCtrlAddressLegal.CityDataMember = null;
+            this.anketaCtrlAddressLegal.CountriesDataMember = "";
+            this.anketaCtrlAddressLegal.CountriesDataSource = null;
+            this.anketaCtrlAddressLegal.CountriesDisplayMember = "";
+            this.anketaCtrlAddressLegal.CountriesValueMember = "";
+            this.anketaCtrlAddressLegal.CountryDataMember = null;
+            this.anketaCtrlAddressLegal.DataMember = "";
+            this.anketaCtrlAddressLegal.DataSource = null;
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressLegal.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.anketaCtrlAddressLegal.DdlCountry.Location = new System.Drawing.Point(0, 0);
+            this.anketaCtrlAddressLegal.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
+            this.anketaCtrlAddressLegal.DdlCountry.Name = "ddlCountry";
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressLegal.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 351, 20);
+            this.anketaCtrlAddressLegal.DdlCountry.RootElement.StretchVertically = true;
+            this.anketaCtrlAddressLegal.DdlCountry.Size = new System.Drawing.Size(186, 20);
+            this.anketaCtrlAddressLegal.DdlCountry.TabIndex = 18;
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressLegal.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.anketaCtrlAddressLegal.DdlRegion.Location = new System.Drawing.Point(206, 0);
+            this.anketaCtrlAddressLegal.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
+            this.anketaCtrlAddressLegal.DdlRegion.Name = "ddlRegion";
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressLegal.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(358, 0, 338, 20);
+            this.anketaCtrlAddressLegal.DdlRegion.RootElement.StretchVertically = true;
+            this.anketaCtrlAddressLegal.DdlRegion.Size = new System.Drawing.Size(186, 20);
+            this.anketaCtrlAddressLegal.DdlRegion.TabIndex = 22;
+            this.anketaCtrlAddressLegal.Location = new System.Drawing.Point(21, 99);
+            this.anketaCtrlAddressLegal.Name = "anketaCtrlAddressLegal";
+            this.anketaCtrlAddressLegal.RegionDataMember = null;
+            this.anketaCtrlAddressLegal.RegionsDataMember = "";
+            this.anketaCtrlAddressLegal.RegionsDataSource = null;
+            this.anketaCtrlAddressLegal.RegionsDisplayMember = "";
+            this.anketaCtrlAddressLegal.RegionsValueMember = "";
+            this.anketaCtrlAddressLegal.Size = new System.Drawing.Size(600, 45);
+            this.anketaCtrlAddressLegal.TabIndex = 13;
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressLegal.TxtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.anketaCtrlAddressLegal.TxtAddress.Location = new System.Drawing.Point(0, 25);
+            this.anketaCtrlAddressLegal.TxtAddress.Margin = new System.Windows.Forms.Padding(0);
+            this.anketaCtrlAddressLegal.TxtAddress.Name = "txtAddress";
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressLegal.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 600, 20);
+            this.anketaCtrlAddressLegal.TxtAddress.RootElement.StretchVertically = true;
+            this.anketaCtrlAddressLegal.TxtAddress.Size = new System.Drawing.Size(600, 20);
+            this.anketaCtrlAddressLegal.TxtAddress.TabIndex = 10;
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressLegal.TxtCity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.anketaCtrlAddressLegal.TxtCity.Location = new System.Drawing.Point(412, 0);
+            this.anketaCtrlAddressLegal.TxtCity.Margin = new System.Windows.Forms.Padding(0);
+            this.anketaCtrlAddressLegal.TxtCity.Name = "txtCity";
+            // 
+            // 
+            // 
+            this.anketaCtrlAddressLegal.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(412, 0, 188, 20);
+            this.anketaCtrlAddressLegal.TxtCity.RootElement.StretchVertically = true;
+            this.anketaCtrlAddressLegal.TxtCity.Size = new System.Drawing.Size(188, 20);
+            this.anketaCtrlAddressLegal.TxtCity.TabIndex = 23;
+            // 
+            // radSeparator2
+            // 
+            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator2.Location = new System.Drawing.Point(121, 157);
+            this.radSeparator2.Name = "radSeparator2";
+            this.radSeparator2.Size = new System.Drawing.Size(896, 21);
+            this.radSeparator2.TabIndex = 12;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel3.Location = new System.Drawing.Point(4, 157);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(111, 21);
+            this.radLabel3.TabIndex = 11;
+            this.radLabel3.Text = "Фактична адреса";
+            // 
+            // radSeparator1
+            // 
+            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator1.Location = new System.Drawing.Point(129, 71);
+            this.radSeparator1.Name = "radSeparator1";
+            this.radSeparator1.Size = new System.Drawing.Size(888, 21);
+            this.radSeparator1.TabIndex = 10;
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel2.Location = new System.Drawing.Point(4, 71);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(119, 21);
+            this.radLabel2.TabIndex = 9;
+            this.radLabel2.Text = "Юридична адреса";
             // 
             // rbtnBackLicType
             // 
             this.rbtnBackLicType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackLicType.Location = new System.Drawing.Point(632, 423);
+            this.rbtnBackLicType.Location = new System.Drawing.Point(661, 479);
             this.rbtnBackLicType.Name = "rbtnBackLicType";
             this.rbtnBackLicType.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackLicType.TabIndex = 7;
@@ -464,7 +777,7 @@
             // rbtnNextManagers
             // 
             this.rbtnNextManagers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextManagers.Location = new System.Drawing.Point(813, 423);
+            this.rbtnNextManagers.Location = new System.Drawing.Point(842, 479);
             this.rbtnNextManagers.Name = "rbtnNextManagers";
             this.rbtnNextManagers.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextManagers.TabIndex = 6;
@@ -472,20 +785,146 @@
             this.rbtnNextManagers.ThemeName = "Aqua";
             this.rbtnNextManagers.Click += new System.EventHandler(this.rbtnNextManagers_Click);
             // 
+            // anketaCtrlTitleLbl
+            // 
+            this.anketaCtrlTitleLbl.Location = new System.Drawing.Point(21, 5);
+            this.anketaCtrlTitleLbl.MaximumSize = new System.Drawing.Size(448, 60);
+            this.anketaCtrlTitleLbl.MinimumSize = new System.Drawing.Size(448, 60);
+            this.anketaCtrlTitleLbl.Name = "anketaCtrlTitleLbl";
+            this.anketaCtrlTitleLbl.Size = new System.Drawing.Size(448, 60);
+            this.anketaCtrlTitleLbl.TabIndex = 8;
+            // 
             // pvConsumerManagers
             // 
+            this.pvConsumerManagers.Controls.Add(this.managersRddListPositionContactPerson);
+            this.pvConsumerManagers.Controls.Add(this.radLabel9);
+            this.pvConsumerManagers.Controls.Add(this.managersRddListPositionHead);
+            this.pvConsumerManagers.Controls.Add(this.managersTxtBoxOnBasics);
+            this.pvConsumerManagers.Controls.Add(this.radLabel8);
+            this.pvConsumerManagers.Controls.Add(this.radLabel7);
+            this.pvConsumerManagers.Controls.Add(this.radSeparator5);
+            this.pvConsumerManagers.Controls.Add(this.radLabel6);
+            this.pvConsumerManagers.Controls.Add(this.radSeparator4);
+            this.pvConsumerManagers.Controls.Add(this.radLabel5);
+            this.pvConsumerManagers.Controls.Add(this.radSeparator3);
+            this.pvConsumerManagers.Controls.Add(this.radLabel4);
             this.pvConsumerManagers.Controls.Add(this.rbtnBackAnketa);
             this.pvConsumerManagers.Controls.Add(this.rbtnNextPlaces);
+            this.pvConsumerManagers.Controls.Add(this.managersCtrlBossNameContactsContactPerson);
+            this.pvConsumerManagers.Controls.Add(this.managersCtrlBossNameContactsBookkeeper);
+            this.pvConsumerManagers.Controls.Add(this.managersCtrlBossNameContactsHead);
+            this.pvConsumerManagers.Controls.Add(this.managersCtrlTitleLbl);
             this.pvConsumerManagers.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerManagers.Location = new System.Drawing.Point(133, 10);
+            this.pvConsumerManagers.MinimumSize = new System.Drawing.Size(700, 480);
             this.pvConsumerManagers.Name = "pvConsumerManagers";
-            this.pvConsumerManagers.Size = new System.Drawing.Size(991, 450);
+            this.pvConsumerManagers.Size = new System.Drawing.Size(1020, 506);
             this.pvConsumerManagers.Text = "Керівники";
+            // 
+            // managersRddListPositionContactPerson
+            // 
+            this.managersRddListPositionContactPerson.Location = new System.Drawing.Point(89, 339);
+            this.managersRddListPositionContactPerson.Name = "managersRddListPositionContactPerson";
+            this.managersRddListPositionContactPerson.Size = new System.Drawing.Size(206, 20);
+            this.managersRddListPositionContactPerson.TabIndex = 24;
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(39, 339);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(44, 18);
+            this.radLabel9.TabIndex = 23;
+            this.radLabel9.Text = "Посада";
+            // 
+            // managersRddListPositionHead
+            // 
+            this.managersRddListPositionHead.Location = new System.Drawing.Point(89, 95);
+            this.managersRddListPositionHead.Name = "managersRddListPositionHead";
+            this.managersRddListPositionHead.Size = new System.Drawing.Size(206, 20);
+            this.managersRddListPositionHead.TabIndex = 20;
+            // 
+            // managersTxtBoxOnBasics
+            // 
+            this.managersTxtBoxOnBasics.Location = new System.Drawing.Point(231, 132);
+            this.managersTxtBoxOnBasics.Name = "managersTxtBoxOnBasics";
+            this.managersTxtBoxOnBasics.Size = new System.Drawing.Size(426, 20);
+            this.managersTxtBoxOnBasics.TabIndex = 19;
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.AutoSize = false;
+            this.radLabel8.Location = new System.Drawing.Point(89, 119);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(150, 36);
+            this.radLabel8.TabIndex = 18;
+            this.radLabel8.Text = "На основі чого діє якщо посада «директор»";
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Location = new System.Drawing.Point(39, 95);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(44, 18);
+            this.radLabel7.TabIndex = 17;
+            this.radLabel7.Text = "Посада";
+            // 
+            // radSeparator5
+            // 
+            this.radSeparator5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator5.Location = new System.Drawing.Point(119, 312);
+            this.radSeparator5.Name = "radSeparator5";
+            this.radSeparator5.Size = new System.Drawing.Size(892, 21);
+            this.radSeparator5.TabIndex = 16;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel6.Location = new System.Drawing.Point(4, 312);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(109, 21);
+            this.radLabel6.TabIndex = 15;
+            this.radLabel6.Text = "Контактна особа";
+            // 
+            // radSeparator4
+            // 
+            this.radSeparator4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator4.Location = new System.Drawing.Point(119, 223);
+            this.radSeparator4.Name = "radSeparator4";
+            this.radSeparator4.Size = new System.Drawing.Size(892, 21);
+            this.radSeparator4.TabIndex = 14;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel5.Location = new System.Drawing.Point(4, 223);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(66, 21);
+            this.radLabel5.TabIndex = 13;
+            this.radLabel5.Text = "Бухгалтер";
+            // 
+            // radSeparator3
+            // 
+            this.radSeparator3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator3.Location = new System.Drawing.Point(119, 70);
+            this.radSeparator3.Name = "radSeparator3";
+            this.radSeparator3.Size = new System.Drawing.Size(892, 21);
+            this.radSeparator3.TabIndex = 12;
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel4.Location = new System.Drawing.Point(4, 70);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(62, 21);
+            this.radLabel4.TabIndex = 11;
+            this.radLabel4.Text = "Керівник";
             // 
             // rbtnBackAnketa
             // 
             this.rbtnBackAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackAnketa.Location = new System.Drawing.Point(632, 423);
+            this.rbtnBackAnketa.Location = new System.Drawing.Point(661, 479);
             this.rbtnBackAnketa.Name = "rbtnBackAnketa";
             this.rbtnBackAnketa.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackAnketa.TabIndex = 7;
@@ -496,7 +935,7 @@
             // rbtnNextPlaces
             // 
             this.rbtnNextPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextPlaces.Location = new System.Drawing.Point(813, 423);
+            this.rbtnNextPlaces.Location = new System.Drawing.Point(842, 479);
             this.rbtnNextPlaces.Name = "rbtnNextPlaces";
             this.rbtnNextPlaces.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextPlaces.TabIndex = 6;
@@ -504,31 +943,269 @@
             this.rbtnNextPlaces.ThemeName = "Aqua";
             this.rbtnNextPlaces.Click += new System.EventHandler(this.rbtnNextPlaces_Click);
             // 
+            // managersCtrlBossNameContactsContactPerson
+            // 
+            this.managersCtrlBossNameContactsContactPerson.DataMember = "";
+            this.managersCtrlBossNameContactsContactPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
+            this.managersCtrlBossNameContactsContactPerson.Location = new System.Drawing.Point(57, 367);
+            this.managersCtrlBossNameContactsContactPerson.Name = "managersCtrlBossNameContactsContactPerson";
+            this.managersCtrlBossNameContactsContactPerson.Size = new System.Drawing.Size(600, 56);
+            this.managersCtrlBossNameContactsContactPerson.TabIndex = 22;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.Location = new System.Drawing.Point(425, 34);
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.Name = "txtEmail";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 36, 175, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.Size = new System.Drawing.Size(175, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.TabIndex = 24;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.Location = new System.Drawing.Point(229, 3);
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.Name = "txtFirstName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 4, 173, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.TabIndex = 25;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.Location = new System.Drawing.Point(33, 3);
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.Name = "txtLastName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 173, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.TabIndex = 26;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.Location = new System.Drawing.Point(33, 34);
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.Name = "txtPhone";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 173, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.TabIndex = 27;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.Location = new System.Drawing.Point(425, 3);
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.Name = "txtSurName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 3, 175, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.Size = new System.Drawing.Size(175, 20);
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.TabIndex = 23;
+            // 
+            // managersCtrlBossNameContactsBookkeeper
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.DataMember = "";
+            this.managersCtrlBossNameContactsBookkeeper.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
+            this.managersCtrlBossNameContactsBookkeeper.Location = new System.Drawing.Point(57, 250);
+            this.managersCtrlBossNameContactsBookkeeper.Name = "managersCtrlBossNameContactsBookkeeper";
+            this.managersCtrlBossNameContactsBookkeeper.Size = new System.Drawing.Size(600, 56);
+            this.managersCtrlBossNameContactsBookkeeper.TabIndex = 21;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.Location = new System.Drawing.Point(425, 34);
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.Name = "txtEmail";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 36, 175, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.Size = new System.Drawing.Size(175, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.TabIndex = 24;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.Location = new System.Drawing.Point(229, 3);
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.Name = "txtFirstName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 4, 173, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.TabIndex = 25;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.Location = new System.Drawing.Point(33, 3);
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.Name = "txtLastName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 173, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.TabIndex = 26;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.Location = new System.Drawing.Point(33, 34);
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.Name = "txtPhone";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 173, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.TabIndex = 27;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.Location = new System.Drawing.Point(425, 3);
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.Name = "txtSurName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 3, 175, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.Size = new System.Drawing.Size(175, 20);
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.TabIndex = 23;
+            // 
+            // managersCtrlBossNameContactsHead
+            // 
+            this.managersCtrlBossNameContactsHead.DataMember = "";
+            this.managersCtrlBossNameContactsHead.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
+            this.managersCtrlBossNameContactsHead.Location = new System.Drawing.Point(57, 161);
+            this.managersCtrlBossNameContactsHead.Name = "managersCtrlBossNameContactsHead";
+            this.managersCtrlBossNameContactsHead.Size = new System.Drawing.Size(600, 56);
+            this.managersCtrlBossNameContactsHead.TabIndex = 9;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsHead.TxtEmail.Location = new System.Drawing.Point(425, 34);
+            this.managersCtrlBossNameContactsHead.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsHead.TxtEmail.Name = "txtEmail";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 36, 175, 20);
+            this.managersCtrlBossNameContactsHead.TxtEmail.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsHead.TxtEmail.Size = new System.Drawing.Size(175, 20);
+            this.managersCtrlBossNameContactsHead.TxtEmail.TabIndex = 24;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsHead.TxtFirstName.Location = new System.Drawing.Point(229, 3);
+            this.managersCtrlBossNameContactsHead.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsHead.TxtFirstName.Name = "txtFirstName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 4, 173, 20);
+            this.managersCtrlBossNameContactsHead.TxtFirstName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsHead.TxtFirstName.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsHead.TxtFirstName.TabIndex = 25;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsHead.TxtLastName.Location = new System.Drawing.Point(33, 3);
+            this.managersCtrlBossNameContactsHead.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsHead.TxtLastName.Name = "txtLastName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 173, 20);
+            this.managersCtrlBossNameContactsHead.TxtLastName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsHead.TxtLastName.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsHead.TxtLastName.TabIndex = 26;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsHead.TxtPhone.Location = new System.Drawing.Point(33, 34);
+            this.managersCtrlBossNameContactsHead.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsHead.TxtPhone.Name = "txtPhone";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 173, 20);
+            this.managersCtrlBossNameContactsHead.TxtPhone.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsHead.TxtPhone.Size = new System.Drawing.Size(173, 20);
+            this.managersCtrlBossNameContactsHead.TxtPhone.TabIndex = 27;
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.managersCtrlBossNameContactsHead.TxtSurName.Location = new System.Drawing.Point(425, 3);
+            this.managersCtrlBossNameContactsHead.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.managersCtrlBossNameContactsHead.TxtSurName.Name = "txtSurName";
+            // 
+            // 
+            // 
+            this.managersCtrlBossNameContactsHead.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 3, 175, 20);
+            this.managersCtrlBossNameContactsHead.TxtSurName.RootElement.StretchVertically = true;
+            this.managersCtrlBossNameContactsHead.TxtSurName.Size = new System.Drawing.Size(175, 20);
+            this.managersCtrlBossNameContactsHead.TxtSurName.TabIndex = 23;
+            // 
+            // managersCtrlTitleLbl
+            // 
+            this.managersCtrlTitleLbl.Location = new System.Drawing.Point(21, 5);
+            this.managersCtrlTitleLbl.MaximumSize = new System.Drawing.Size(448, 60);
+            this.managersCtrlTitleLbl.MinimumSize = new System.Drawing.Size(448, 60);
+            this.managersCtrlTitleLbl.Name = "managersCtrlTitleLbl";
+            this.managersCtrlTitleLbl.Size = new System.Drawing.Size(448, 60);
+            this.managersCtrlTitleLbl.TabIndex = 8;
+            // 
             // pvConsumerPlaces
             // 
-            this.pvConsumerPlaces.Controls.Add(this.rbtnBackManagers);
+            this.pvConsumerPlaces.AutoScroll = true;
             this.pvConsumerPlaces.Controls.Add(this.rbtnNextBankRequisites);
+            this.pvConsumerPlaces.Controls.Add(this.rbtnBackManagers);
+            this.pvConsumerPlaces.Controls.Add(this.placesCtrlConsumerPlaces);
+            this.pvConsumerPlaces.Controls.Add(this.placesCtrlTitleLbl);
             this.pvConsumerPlaces.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerPlaces.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerPlaces.Name = "pvConsumerPlaces";
-            this.pvConsumerPlaces.Size = new System.Drawing.Size(991, 450);
+            this.pvConsumerPlaces.Size = new System.Drawing.Size(1020, 506);
             this.pvConsumerPlaces.Text = "Майданчики";
-            // 
-            // rbtnBackManagers
-            // 
-            this.rbtnBackManagers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackManagers.Location = new System.Drawing.Point(632, 423);
-            this.rbtnBackManagers.Name = "rbtnBackManagers";
-            this.rbtnBackManagers.Size = new System.Drawing.Size(175, 24);
-            this.rbtnBackManagers.TabIndex = 7;
-            this.rbtnBackManagers.Text = "< Керівники";
-            this.rbtnBackManagers.ThemeName = "Aqua";
-            this.rbtnBackManagers.Click += new System.EventHandler(this.rbtnBackManagers_Click);
             // 
             // rbtnNextBankRequisites
             // 
             this.rbtnNextBankRequisites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextBankRequisites.Location = new System.Drawing.Point(813, 423);
+            this.rbtnNextBankRequisites.Location = new System.Drawing.Point(842, 479);
             this.rbtnNextBankRequisites.Name = "rbtnNextBankRequisites";
             this.rbtnNextBankRequisites.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextBankRequisites.TabIndex = 6;
@@ -536,20 +1213,142 @@
             this.rbtnNextBankRequisites.ThemeName = "Aqua";
             this.rbtnNextBankRequisites.Click += new System.EventHandler(this.rbtnNextBankRequisites_Click);
             // 
+            // rbtnBackManagers
+            // 
+            this.rbtnBackManagers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbtnBackManagers.Location = new System.Drawing.Point(661, 479);
+            this.rbtnBackManagers.Name = "rbtnBackManagers";
+            this.rbtnBackManagers.Size = new System.Drawing.Size(175, 24);
+            this.rbtnBackManagers.TabIndex = 7;
+            this.rbtnBackManagers.Text = "< Керівники";
+            this.rbtnBackManagers.ThemeName = "Aqua";
+            this.rbtnBackManagers.Click += new System.EventHandler(this.rbtnBackManagers_Click);
+            // 
+            // placesCtrlConsumerPlaces
+            // 
+            this.placesCtrlConsumerPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.placesCtrlConsumerPlaces.AutoSize = true;
+            this.placesCtrlConsumerPlaces.IdItemOfSelectRow = 0;
+            this.placesCtrlConsumerPlaces.Location = new System.Drawing.Point(4, 71);
+            this.placesCtrlConsumerPlaces.Name = "placesCtrlConsumerPlaces";
+            this.placesCtrlConsumerPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
+            this.placesCtrlConsumerPlaces.Size = new System.Drawing.Size(870, 317);
+            this.placesCtrlConsumerPlaces.TabIndex = 9;
+            // 
+            // placesCtrlTitleLbl
+            // 
+            this.placesCtrlTitleLbl.Location = new System.Drawing.Point(21, 5);
+            this.placesCtrlTitleLbl.MaximumSize = new System.Drawing.Size(448, 60);
+            this.placesCtrlTitleLbl.MinimumSize = new System.Drawing.Size(448, 60);
+            this.placesCtrlTitleLbl.Name = "placesCtrlTitleLbl";
+            this.placesCtrlTitleLbl.Size = new System.Drawing.Size(448, 60);
+            this.placesCtrlTitleLbl.TabIndex = 8;
+            // 
             // pvConsumerBankRequisites
             // 
+            this.pvConsumerBankRequisites.Controls.Add(this.bankRequisitesCtrlBankAccount);
+            this.pvConsumerBankRequisites.Controls.Add(this.bankRequisitesCtrlTitleLbl);
             this.pvConsumerBankRequisites.Controls.Add(this.rbtnBackPlaces);
             this.pvConsumerBankRequisites.Controls.Add(this.rbtnNextContract);
             this.pvConsumerBankRequisites.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerBankRequisites.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerBankRequisites.Name = "pvConsumerBankRequisites";
-            this.pvConsumerBankRequisites.Size = new System.Drawing.Size(991, 450);
+            this.pvConsumerBankRequisites.Size = new System.Drawing.Size(1020, 506);
             this.pvConsumerBankRequisites.Text = "Банківські реквізити";
+            // 
+            // bankRequisitesCtrlBankAccount
+            // 
+            this.bankRequisitesCtrlBankAccount.DataMember = "";
+            this.bankRequisitesCtrlBankAccount.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
+            this.bankRequisitesCtrlBankAccount.Location = new System.Drawing.Point(3, 71);
+            this.bankRequisitesCtrlBankAccount.Name = "bankRequisitesCtrlBankAccount";
+            this.bankRequisitesCtrlBankAccount.Size = new System.Drawing.Size(409, 127);
+            this.bankRequisitesCtrlBankAccount.TabIndex = 9;
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.Location = new System.Drawing.Point(118, 103);
+            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.Name = "txtAccountNumber";
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 103, 100, 20);
+            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.RootElement.StretchVertically = true;
+            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.Size = new System.Drawing.Size(286, 20);
+            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.TabIndex = 5;
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankRequisitesCtrlBankAccount.TxtMfo.Location = new System.Drawing.Point(118, 28);
+            this.bankRequisitesCtrlBankAccount.TxtMfo.Name = "txtMfo";
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtMfo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 28, 100, 20);
+            this.bankRequisitesCtrlBankAccount.TxtMfo.RootElement.StretchVertically = true;
+            this.bankRequisitesCtrlBankAccount.TxtMfo.Size = new System.Drawing.Size(286, 20);
+            this.bankRequisitesCtrlBankAccount.TxtMfo.TabIndex = 8;
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankRequisitesCtrlBankAccount.TxtMfoName.Location = new System.Drawing.Point(118, 3);
+            this.bankRequisitesCtrlBankAccount.TxtMfoName.Name = "txtMfoName";
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtMfoName.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 3, 100, 20);
+            this.bankRequisitesCtrlBankAccount.TxtMfoName.RootElement.StretchVertically = true;
+            this.bankRequisitesCtrlBankAccount.TxtMfoName.Size = new System.Drawing.Size(286, 20);
+            this.bankRequisitesCtrlBankAccount.TxtMfoName.TabIndex = 9;
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.Location = new System.Drawing.Point(118, 53);
+            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.Name = "txtMfoOkpo";
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 53, 100, 20);
+            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.RootElement.StretchVertically = true;
+            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.Size = new System.Drawing.Size(286, 20);
+            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.TabIndex = 7;
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.Location = new System.Drawing.Point(118, 78);
+            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.Name = "txtTransitNumber";
+            // 
+            // 
+            // 
+            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 78, 100, 20);
+            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.RootElement.StretchVertically = true;
+            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.Size = new System.Drawing.Size(286, 20);
+            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.TabIndex = 6;
+            // 
+            // bankRequisitesCtrlTitleLbl
+            // 
+            this.bankRequisitesCtrlTitleLbl.Location = new System.Drawing.Point(21, 5);
+            this.bankRequisitesCtrlTitleLbl.MaximumSize = new System.Drawing.Size(448, 60);
+            this.bankRequisitesCtrlTitleLbl.MinimumSize = new System.Drawing.Size(448, 60);
+            this.bankRequisitesCtrlTitleLbl.Name = "bankRequisitesCtrlTitleLbl";
+            this.bankRequisitesCtrlTitleLbl.Size = new System.Drawing.Size(448, 60);
+            this.bankRequisitesCtrlTitleLbl.TabIndex = 8;
             // 
             // rbtnBackPlaces
             // 
             this.rbtnBackPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackPlaces.Location = new System.Drawing.Point(632, 423);
+            this.rbtnBackPlaces.Location = new System.Drawing.Point(661, 479);
             this.rbtnBackPlaces.Name = "rbtnBackPlaces";
             this.rbtnBackPlaces.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackPlaces.TabIndex = 7;
@@ -560,7 +1359,7 @@
             // rbtnNextContract
             // 
             this.rbtnNextContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextContract.Location = new System.Drawing.Point(813, 423);
+            this.rbtnNextContract.Location = new System.Drawing.Point(842, 479);
             this.rbtnNextContract.Name = "rbtnNextContract";
             this.rbtnNextContract.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextContract.TabIndex = 6;
@@ -570,18 +1369,61 @@
             // 
             // pvConsumerContracts
             // 
+            this.pvConsumerContracts.Controls.Add(this.radPdfViewerNavigator);
+            this.pvConsumerContracts.Controls.Add(this.radPdfViewer);
             this.pvConsumerContracts.Controls.Add(this.rbtnBackBankRequisites);
             this.pvConsumerContracts.Controls.Add(this.rbtnConsumerSave);
             this.pvConsumerContracts.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerContracts.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerContracts.Name = "pvConsumerContracts";
-            this.pvConsumerContracts.Size = new System.Drawing.Size(986, 448);
+            this.pvConsumerContracts.Size = new System.Drawing.Size(1020, 506);
             this.pvConsumerContracts.Text = "Договір";
+            // 
+            // radPdfViewerNavigator
+            // 
+            this.radPdfViewerNavigator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
+            this.radPdfViewerNavigator.Location = new System.Drawing.Point(4, 3);
+            this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1016, 38);
+            this.radPdfViewerNavigator.TabIndex = 11;
+            this.radPdfViewerNavigator.ThemeName = "Office2007Silver";
+            ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
+            ((Telerik.WinControls.Layouts.StackLayoutPanel)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).MinSize = new System.Drawing.Size(34, 34);
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Text = "Open";
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).ToolTipText = "Open";
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).MinSize = new System.Drawing.Size(34, 34);
+            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).Text = "Signature Panel";
+            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).ToolTipText = "Signature Panel";
+            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).Enabled = true;
+            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.RadCommandBarOverflowButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Hidden;
+            // 
+            // radPdfViewer
+            // 
+            this.radPdfViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPdfViewer.EnableThumbnails = false;
+            this.radPdfViewer.Location = new System.Drawing.Point(3, 47);
+            this.radPdfViewer.Name = "radPdfViewer";
+            this.radPdfViewer.Size = new System.Drawing.Size(1017, 426);
+            this.radPdfViewer.TabIndex = 10;
+            this.radPdfViewer.ThemeName = "Office2007Silver";
+            this.radPdfViewer.ThumbnailsScaleFactor = 0.15F;
+            ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            ((Telerik.WinControls.UI.ThumbnailListElement)(this.radPdfViewer.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // rbtnBackBankRequisites
             // 
             this.rbtnBackBankRequisites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackBankRequisites.Location = new System.Drawing.Point(627, 421);
+            this.rbtnBackBankRequisites.Location = new System.Drawing.Point(661, 479);
             this.rbtnBackBankRequisites.Name = "rbtnBackBankRequisites";
             this.rbtnBackBankRequisites.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackBankRequisites.TabIndex = 9;
@@ -592,7 +1434,7 @@
             // rbtnConsumerSave
             // 
             this.rbtnConsumerSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnConsumerSave.Location = new System.Drawing.Point(808, 421);
+            this.rbtnConsumerSave.Location = new System.Drawing.Point(842, 479);
             this.rbtnConsumerSave.Name = "rbtnConsumerSave";
             this.rbtnConsumerSave.Size = new System.Drawing.Size(175, 24);
             this.rbtnConsumerSave.TabIndex = 8;
@@ -603,7 +1445,7 @@
             // rbtnCancelAnketa
             // 
             this.rbtnCancelAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rbtnCancelAnketa.Location = new System.Drawing.Point(0, 503);
+            this.rbtnCancelAnketa.Location = new System.Drawing.Point(0, 559);
             this.rbtnCancelAnketa.Name = "rbtnCancelAnketa";
             this.rbtnCancelAnketa.Size = new System.Drawing.Size(110, 24);
             this.rbtnCancelAnketa.TabIndex = 3;
@@ -615,15 +1457,15 @@
             // 
             this.pageConsumersGrid.Controls.Add(this.rbtnNext);
             this.pageConsumersGrid.Controls.Add(this.radLabel1);
-            this.pageConsumersGrid.ItemSize = new System.Drawing.SizeF(12F, 269F);
+            this.pageConsumersGrid.ItemSize = new System.Drawing.SizeF(12F, 297F);
             this.pageConsumersGrid.Location = new System.Drawing.Point(21, 10);
             this.pageConsumersGrid.Name = "pageConsumersGrid";
-            this.pageConsumersGrid.Size = new System.Drawing.Size(1135, 530);
+            this.pageConsumersGrid.Size = new System.Drawing.Size(1164, 586);
             // 
             // rbtnNext
             // 
             this.rbtnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rbtnNext.Location = new System.Drawing.Point(0, 503);
+            this.rbtnNext.Location = new System.Drawing.Point(0, 559);
             this.rbtnNext.Name = "rbtnNext";
             this.rbtnNext.Size = new System.Drawing.Size(110, 24);
             this.rbtnNext.TabIndex = 1;
@@ -644,7 +1486,7 @@
             this.rpwsrPageProfilesContracts.ItemSize = new System.Drawing.SizeF(115F, 26F);
             this.rpwsrPageProfilesContracts.Location = new System.Drawing.Point(124, 10);
             this.rpwsrPageProfilesContracts.Name = "rpwsrPageProfilesContracts";
-            this.rpwsrPageProfilesContracts.Size = new System.Drawing.Size(1151, 530);
+            this.rpwsrPageProfilesContracts.Size = new System.Drawing.Size(1191, 607);
             this.rpwsrPageProfilesContracts.Text = "Анкети / Договора";
             // 
             // rpwsrPageRepresentatives
@@ -652,23 +1494,24 @@
             this.rpwsrPageRepresentatives.ItemSize = new System.Drawing.SizeF(115F, 26F);
             this.rpwsrPageRepresentatives.Location = new System.Drawing.Point(124, 10);
             this.rpwsrPageRepresentatives.Name = "rpwsrPageRepresentatives";
-            this.rpwsrPageRepresentatives.Size = new System.Drawing.Size(1151, 528);
+            this.rpwsrPageRepresentatives.Size = new System.Drawing.Size(1191, 605);
             this.rpwsrPageRepresentatives.Text = "Представники (25)";
             // 
             // rMainPageBigRights
             // 
             this.rMainPageBigRights.ItemSize = new System.Drawing.SizeF(85F, 26F);
-            this.rMainPageBigRights.Location = new System.Drawing.Point(10, 33);
+            this.rMainPageBigRights.Location = new System.Drawing.Point(10, 35);
             this.rMainPageBigRights.Name = "rMainPageBigRights";
-            this.rMainPageBigRights.Size = new System.Drawing.Size(1286, 555);
+            this.rMainPageBigRights.Size = new System.Drawing.Size(1325, 625);
             this.rMainPageBigRights.Text = "Великі права";
             // 
             // ConsumerWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1304, 598);
+            this.ClientSize = new System.Drawing.Size(1343, 670);
             this.Controls.Add(this.rMainPageView);
+            this.MinimumSize = new System.Drawing.Size(1280, 700);
             this.Name = "ConsumerWorkplace";
             // 
             // 
@@ -698,21 +1541,73 @@
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtRegisterWho)).EndInit();
             this.pvConsumerLicenseType.ResumeLayout(false);
+            this.pvConsumerLicenseType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).EndInit();
             this.pvConsumerAnketa.ResumeLayout(false);
+            this.pvConsumerAnketa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressFactual.DdlCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressFactual.DdlRegion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressFactual.TxtAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressFactual.TxtCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.DdlCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.DdlRegion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.TxtAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.TxtCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextManagers)).EndInit();
             this.pvConsumerManagers.ResumeLayout(false);
+            this.pvConsumerManagers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.managersRddListPositionContactPerson)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersRddListPositionHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersTxtBoxOnBasics)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextPlaces)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtFirstName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtLastName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtSurName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtFirstName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtLastName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsBookkeeper.TxtSurName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtEmail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtFirstName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtLastName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsHead.TxtSurName)).EndInit();
             this.pvConsumerPlaces.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackManagers)).EndInit();
+            this.pvConsumerPlaces.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextBankRequisites)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackManagers)).EndInit();
             this.pvConsumerBankRequisites.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtAccountNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtMfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtMfoName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtMfoOkpo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bankRequisitesCtrlBankAccount.TxtTransitNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackPlaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextContract)).EndInit();
             this.pvConsumerContracts.ResumeLayout(false);
+            this.pvConsumerContracts.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackBankRequisites)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnConsumerSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnCancelAnketa)).EndInit();
@@ -766,7 +1661,38 @@
         private Telerik.WinControls.UI.RadButton rbtnNextContract;
         private Telerik.WinControls.UI.RadButton rbtnBackBankRequisites;
         private Telerik.WinControls.UI.RadButton rbtnConsumerSave;
-        private IpsViewComponentLibrary.ContractConsumerMainControl contractConsumerMainControl1;
+        private IpsViewComponentLibrary.ContractConsumerMainControl licenseTypeCtrlContractConsumerMain;
         private Telerik.WinControls.UI.RadLabel lblConsumerTitle;
+        private Telerik.WinControls.UI.RadLabel lblTabLicenseTypeClientName;
+        private IpsViewComponentLibrary.IpsAddressControl anketaCtrlAddressFactual;
+        private IpsViewComponentLibrary.IpsAddressControl anketaCtrlAddressLegal;
+        private Telerik.WinControls.UI.RadSeparator radSeparator2;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadSeparator radSeparator1;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private IpsViewComponentLibrary.ConsumerTitleControl anketaCtrlTitleLbl;
+        private IpsViewComponentLibrary.ContractConsumerDetailControl licenseTypeCtrlContractConsumerDetail;
+        private IpsViewComponentLibrary.IpsBossNameContactsControl managersCtrlBossNameContactsContactPerson;
+        private IpsViewComponentLibrary.IpsBossNameContactsControl managersCtrlBossNameContactsBookkeeper;
+        private Telerik.WinControls.UI.RadDropDownList managersRddListPositionHead;
+        private Telerik.WinControls.UI.RadTextBox managersTxtBoxOnBasics;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
+        private Telerik.WinControls.UI.RadSeparator radSeparator5;
+        private Telerik.WinControls.UI.RadLabel radLabel6;
+        private Telerik.WinControls.UI.RadSeparator radSeparator4;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadSeparator radSeparator3;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private IpsViewComponentLibrary.IpsBossNameContactsControl managersCtrlBossNameContactsHead;
+        private IpsViewComponentLibrary.ConsumerTitleControl managersCtrlTitleLbl;
+        private Telerik.WinControls.UI.RadDropDownList managersRddListPositionContactPerson;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private IpsViewComponentLibrary.ConsumerTitleControl placesCtrlTitleLbl;
+        private ipsAnketaClient.ConsumerPlacesControl placesCtrlConsumerPlaces;
+        private IpsViewComponentLibrary.IpsBankAccountControl bankRequisitesCtrlBankAccount;
+        private IpsViewComponentLibrary.ConsumerTitleControl bankRequisitesCtrlTitleLbl;
+        private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator;
+        private Telerik.WinControls.UI.RadPdfViewer radPdfViewer;
     }
 }
