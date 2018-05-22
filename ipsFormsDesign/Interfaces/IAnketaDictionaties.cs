@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ipsFormsDesign.Dictionary;
 using ipsmedserviceapp.Model;
 
 namespace ipsFormsDesign.Interfaces
@@ -20,5 +21,6 @@ namespace ipsFormsDesign.Interfaces
         public IList<Lang> lang { get; set; }
         public IList<AnketaStatus> anketaStatus { get; set; }
         public IList<TypePlace> typePlace { get; set;  }
+        public IList<CommunityInfo> Communities { get; set; }
     }
 }

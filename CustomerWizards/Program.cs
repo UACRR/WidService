@@ -17,7 +17,7 @@ namespace CustomerWizards
 
             var view = new WizardCustomerView();
             var model = new WizardCustomerModel();
-            var presenter = new WizardCustomerPresenter(view, model, 139);
+            var presenter = new WizardCustomerPresenter(view, model, 140);//136
 
             Application.Run(view);
         }

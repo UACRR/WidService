@@ -1,15 +1,11 @@
 ﻿using ipsFormsDesign.Definition;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsmedserviceapp.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Telerik.WinControls.Data;
 
 namespace CustomerWizards
 {
@@ -23,6 +19,7 @@ namespace CustomerWizards
         private Employee _boss;
         private Employee _accountant;
         private AnketaDictionaties _dictionaries;
+        private List<TermsOfServiceWrapper> _rightholderTermOfServicesList;
 
         public IAnketaCompany AnketaCompany { get => _curAnketa; }
         public ICustomer Customer { get => _data; }
@@ -90,12 +87,14 @@ namespace CustomerWizards
             _data.Company.RelEmployee.Add(_relBoss);
             _data.Company.RelEmployee.Add(_relAccountant);
             //_bankAccount = new BankAccount();
+            _data.RightHolder = new RightHolder();
 
             _curAgreementMaster = new AgreementMaster
             {
                 AgreementAddRh = new AgreementAddRh()
             };
             _data.AgreementMaster.Add(_curAgreementMaster);
+            _rightholderTermOfServicesList = new List<TermsOfServiceWrapper>();
         }
 
         private void DataChanged(object sender, EventArgs e)
@@ -121,6 +120,8 @@ namespace CustomerWizards
             ipsRegistrationsCompanyControl1.TypesVatDataSource = _dictionaries.typeVat;
             ipsRegistrationsCompanyControl1.TypesVatValueMember = "CodeI";
             ipsRegistrationsCompanyControl1.TypesVatDisplayMember = "Name";
+
+            ipsExclusionsLimitationsControl1.CommunitiesDataSource = _dictionaries.Communities;
         }
 
         /// <summary>
@@ -145,20 +146,23 @@ namespace CustomerWizards
             else
                 _data.AnkVersion = 1;
 
-            var relEmplB = data.Company.RelEmployee.Where(item => item.PositionCode == 1).SingleOrDefault();
-            if (relEmplB != null)
+            if (data.Company != null)
             {
-                SetObjectValues(relEmplB, _relBoss);
-                SetObjectValues(relEmplB.Empl, _relBoss.Empl);
-                _boss = _relBoss.Empl;
-            }
+                var relEmplB = data.Company.RelEmployee.Where(item => item.PositionCode == 1).SingleOrDefault();
+                if (relEmplB != null)
+                {
+                    SetObjectValues(relEmplB, _relBoss);
+                    SetObjectValues(relEmplB.Empl, _relBoss.Empl);
+                    _boss = _relBoss.Empl;
+                }
 
-            var relEmplA = data.Company.RelEmployee.Where(item => item.PositionCode == 2).SingleOrDefault();
-            if (relEmplA != null)
-            {
-                SetObjectValues(relEmplA, _relAccountant);
-                SetObjectValues(relEmplA.Empl, _relAccountant.Empl);
-                _accountant = _relAccountant.Empl;
+                var relEmplA = data.Company.RelEmployee.Where(item => item.PositionCode == 2).SingleOrDefault();
+                if (relEmplA != null)
+                {
+                    SetObjectValues(relEmplA, _relAccountant);
+                    SetObjectValues(relEmplA.Empl, _relAccountant.Empl);
+                    _accountant = _relAccountant.Empl;
+                }
             }
 
             var agreement = data.AgreementMaster.FirstOrDefault();
@@ -172,38 +176,29 @@ namespace CustomerWizards
                 }
             }
 
-            AnketaCompanySource.DataSource = _curAnketa;
+            if (data.RightHolder != null)
+            {
+                SetObjectValues(data.RightHolder, _data.RightHolder);
+                _data.RightHolder.TermsOfService = new List<TermsOfService>(data.RightHolder.TermsOfService);
+
+                _rightholderTermOfServicesList = _data.RightHolder.TermsOfService.Select(tos => new TermsOfServiceWrapper(tos)).ToList();
+            }
+
+            //AnketaCompanySource.DataSource = _curAnketa;
+            
             //BankAccountSource.DataSource = _bankAccount;
      
             //_curAnketa.BanAcc = _bankAccount;
             //ipsBankAccountControl.TxtMfoName.DataBindings.Add("Text", AnketaCompanySource.DataSource, "BanAcc.MfoName");
 
-            ipsBankAccountControl.DataSource = AnketaCompanySource;
-            ipsBankAccountControl.DataMember = "BanAcc";
+            //ipsBankAccountControl.DataSource = AnketaCompanySource;
+            //ipsBankAccountControl.DataMember = "BanAcc";
 
             ipsServiceComissionControl1.DataSource = _curAgreementMaster.AgreementAddRh;
 
             ipsBossNameContactsControl1.DataSource = _boss;
 
-            SetDataForExlusionsLlimitationsTest();
-        }
-
-        private void SetDataForExlusionsLlimitationsTest()
-        {
-            var copyrightKinds = new List<CopyrightKind>
-            {
-                new CopyrightKind { CodeI = 1, Name = "Copyright kind 1", CrGroupCode = 1 },
-                new CopyrightKind { CodeI = 2, Name = "Copyright kind 2", CrGroupCode = 1 },
-                new CopyrightKind { CodeI = 3, Name = "Copyright kind 3", CrGroupCode = 1 },
-                new CopyrightKind { CodeI = 3, Name = "Copyright kind 4", CrGroupCode = 2 },
-            };
-
-            ipsExclusionsLimitations.GridExclusionsLimitations.DataSource = copyrightKinds;
-            ipsExclusionsLimitations.GridExclusionsLimitations.Columns["column1"].FieldName = "Name";
-
-            var descriptor = new GroupDescriptor();
-            descriptor.GroupNames.Add("CrGroupCode", ListSortDirection.Ascending);
-            ipsExclusionsLimitations.GridExclusionsLimitations.GroupDescriptors.Add(descriptor);
+            ipsExclusionsLimitationsControl1.DataSource = _rightholderTermOfServicesList;
         }
 
         public void getData(Customer data)
