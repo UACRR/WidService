@@ -1501,7 +1501,7 @@
             this.rpwsrPageRepresentatives.ItemSize = new System.Drawing.SizeF(115F, 26F);
             this.rpwsrPageRepresentatives.Location = new System.Drawing.Point(124, 10);
             this.rpwsrPageRepresentatives.Name = "rpwsrPageRepresentatives";
-            this.rpwsrPageRepresentatives.Size = new System.Drawing.Size(1191, 605);
+            this.rpwsrPageRepresentatives.Size = new System.Drawing.Size(1191, 607);
             this.rpwsrPageRepresentatives.Text = "Представники (25)";
             // 
             // rMainPageBigRights
