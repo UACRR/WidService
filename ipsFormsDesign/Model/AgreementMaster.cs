@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AgreementMaster
+    public partial class AgreementMaster : IAgreementMaster
     {
         public AgreementMaster()
         {

@@ -758,6 +758,7 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("Country", await _dbContext.Country.AsNoTracking().ToListAsync());
             retDictionary.Add("Lang", await _dbContext.Lang.AsNoTracking().ToListAsync());
             retDictionary.Add("AnketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("TypePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
 
 
             return Json(retDictionary);

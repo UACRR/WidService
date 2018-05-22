@@ -19,5 +19,6 @@ namespace ipsFormsDesign.Interfaces
         public IList<Country> country { get; set; }
         public IList<Lang> lang { get; set; }
         public IList<AnketaStatus> anketaStatus { get; set; }
+        public IList<TypePlace> typePlace { get; set;  }
     }
 }
