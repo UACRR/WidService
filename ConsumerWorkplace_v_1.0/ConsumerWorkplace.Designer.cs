@@ -329,7 +329,7 @@
             this.pageAllAnketa.DefaultPage = this.pvConsumerClientName;
             this.pageAllAnketa.Location = new System.Drawing.Point(0, 26);
             this.pageAllAnketa.Name = "pageAllAnketa";
-            this.pageAllAnketa.SelectedPage = this.pvConsumerBankRequisites;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1164, 527);
             this.pageAllAnketa.TabIndex = 2;
@@ -1391,6 +1391,7 @@
             this.radPdfViewerNavigator.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
             ((Telerik.WinControls.Layouts.StackLayoutPanel)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            ((Telerik.WinControls.UI.CommandBarRowElement)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0))).MinSize = new System.Drawing.Size(25, 25);
             ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).MinSize = new System.Drawing.Size(34, 34);
             ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Text = "Open";
