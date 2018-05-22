@@ -13,7 +13,9 @@ namespace ipsmedserviceapp.Model
         public int? RegIdBr { get; set; }
         public int? RegItemIdBr { get; set; }
         public int DistItemId { get; set; }
+        public int? ObjId { get; set; }
 
         public Distribution Dist { get; set; }
+        public ObjectRight Obj { get; set; }
     }
 }

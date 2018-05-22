@@ -13,6 +13,8 @@
 "AgreementTypeTr",
 "AgrLicenseType",
 "AgrLicenseTypeTr",
+"AlgorithmType",
+"AlgorithmTypeTr",
 "AnketaAddName",
 "AnketaAddNick",
 "AnketaAddParam",
@@ -29,6 +31,8 @@
 "AspNetUserTokens",
 "AtreementStatusTr",
 "BankAccount",
+"BrRegister",
+"BrRegItem",
 "Category",
 "CategoryStatusType",
 "CategoryStatusTypeTr",
@@ -64,6 +68,8 @@
 "DicList",
 "DictCategory",
 "DistribStatus",
+"DistribStatusOld",
+"DistribType",
 "Distribution",
 "DistributionItem",
 "DocPreparePay",
@@ -80,6 +86,7 @@
 "Genre",
 "GenreTr",
 "Invoice",
+"ItemStatus",
 "KindComposition",
 "KindFilm",
 "KindSerial",
@@ -92,6 +99,7 @@
 "LegalBasisTr",
 "LicenseAgreement",
 "LicenseBigR",
+"LicenseClass",
 "LicenseType",
 "LicenseTypeTr",
 "licPlace",
@@ -102,6 +110,7 @@
 "ModifyMusicType",
 "ModifyTextType",
 "ModifyType",
+"MoneyLinkStatus",
 "MoneyPeriodLink",
 "MoneyReceived",
 "MoneyType",
@@ -205,6 +214,9 @@
 "UseAreaType",
 "UseMediaType",
 "userRole",
-"UserRoleType");
+"UserRoleType",
+"UsesKind",
+"UsesType"
+);
 
 Scaffold-DbContext -Context MediaServiceContext -Provider Microsoft.EntityFrameworkCore.SqlServer -Connection "Data Source=192.168.1.252,60675;Initial Catalog=MediaService;User ID=robot;Password=robot11235813" -OutputDir Model -Tables $tables -Force -ErrorAction Ignore

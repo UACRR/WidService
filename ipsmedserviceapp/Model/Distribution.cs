@@ -22,11 +22,15 @@ namespace ipsmedserviceapp.Model
         public int? PartnerId { get; set; }
         public bool? IsCourt { get; set; }
         public int? RegIdBr { get; set; }
+        public int? DistType { get; set; }
+        public int? CustId { get; set; }
 
         public CopyrightKind CRkindCodeNavigation { get; set; }
+        public Client Cust { get; set; }
         public Partner Partner { get; set; }
         public PaidPeriod Period { get; set; }
         public Register Reg { get; set; }
+        public BrRegister RegIdBrNavigation { get; set; }
         public DistribStatus StatusNavigation { get; set; }
         public ICollection<DistributionItem> DistributionItem { get; set; }
     }

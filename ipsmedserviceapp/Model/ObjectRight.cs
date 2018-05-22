@@ -8,6 +8,8 @@ namespace ipsmedserviceapp.Model
         public ObjectRight()
         {
             Account = new HashSet<Account>();
+            BrRegItem = new HashSet<BrRegItem>();
+            DistributionItem = new HashSet<DistributionItem>();
             LicenseBigR = new HashSet<LicenseBigR>();
             PortalObjectRights = new HashSet<PortalObjectRights>();
             RegisterItem = new HashSet<RegisterItem>();
@@ -34,6 +36,8 @@ namespace ipsmedserviceapp.Model
         public ObjectStatus StatusNavigation { get; set; }
         public MediaTrack MediaTrack { get; set; }
         public ICollection<Account> Account { get; set; }
+        public ICollection<BrRegItem> BrRegItem { get; set; }
+        public ICollection<DistributionItem> DistributionItem { get; set; }
         public ICollection<LicenseBigR> LicenseBigR { get; set; }
         public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
         public ICollection<RegisterItem> RegisterItem { get; set; }
