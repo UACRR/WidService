@@ -10,13 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 
-/* CONTROLS LIST
- * clientNameCtrlAnketaCompany
- * clientNameCheckBoxPlaces
- * clientNameCtrlRegistrationsCompany
- *
- *
- */
+
 
 namespace ConsumerWorkplace_v_1._0
 {
@@ -29,7 +23,7 @@ namespace ConsumerWorkplace_v_1._0
             InitializeComponent();
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
 
-
+            Tets();
         }
 
         public void Tets()
