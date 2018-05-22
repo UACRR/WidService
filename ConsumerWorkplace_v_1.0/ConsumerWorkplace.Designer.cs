@@ -329,7 +329,7 @@
             this.pageAllAnketa.DefaultPage = this.pvConsumerClientName;
             this.pageAllAnketa.Location = new System.Drawing.Point(0, 26);
             this.pageAllAnketa.Name = "pageAllAnketa";
-            this.pageAllAnketa.SelectedPage = this.pvConsumerContracts;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerBankRequisites;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1164, 527);
             this.pageAllAnketa.TabIndex = 2;

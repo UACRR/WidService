@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -147,7 +149,9 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (Validation(6))
             {
-                
+
+
+                radPdfViewer.LoadDocument("InteractiveForms.pdf");
                 nextPage = true;
                 pageAllAnketa.SelectedPage = pvConsumerContracts;
             }
