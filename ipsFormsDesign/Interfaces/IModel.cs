@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ipsFormsDesign.Definition
+namespace ipsFormsDesign.Interfaces
 {
-    public interface IModelCompany 
+    public interface IModel 
     {
+        Customer NewCustomer(int custType);
         Customer GetData(int custId);
         bool Save(Customer cust);
         AnketaDictionaties GetDictionary();

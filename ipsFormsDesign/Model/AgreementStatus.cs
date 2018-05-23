@@ -10,7 +10,6 @@ namespace ipsmedserviceapp.Model
         {
             AgreementMaster = new HashSet<AgreementMaster>();
             AgreementStatusTr = new HashSet<AgreementStatusTr>();
-            AtreementStatusTr = new HashSet<AtreementStatusTr>();
             LicenseAgreement = new HashSet<LicenseAgreement>();
         }
 
@@ -19,7 +18,6 @@ namespace ipsmedserviceapp.Model
 
         public ICollection<AgreementMaster> AgreementMaster { get; set; }
         public ICollection<AgreementStatusTr> AgreementStatusTr { get; set; }
-        public ICollection<AtreementStatusTr> AtreementStatusTr { get; set; }
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
