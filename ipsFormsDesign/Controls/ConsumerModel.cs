@@ -22,9 +22,9 @@ namespace ipsFormsDesign.Controls
             return anketaDic;
         }
 
-        public IList<IConsumerMainView> getMainView()
+        public IList<ConsumerMainView> getMainView()
         {
-            var anketaDic = _webApi.GetItemById<IList<IConsumerMainView>>("consumer", "listSR");
+            var anketaDic = _webApi.GetList<ConsumerMainView>("consumer/listSR");
             return anketaDic;
         }
 

@@ -4,16 +4,35 @@ using System.Text;
 
 namespace ipsFormsDesign.Interfaces
 {
-    public interface IConsumerMainView
+    /*
+     +		array	{[
+  {
+    "custId": 134,
+    "innokpo": "3334445557",
+    "name": "Ресторанний комплекс на Дніпрі",
+    "countAgree": 1,
+    "undistribamount": 0.0
+  },
+  {
+    "custId": 135,
+    "innokpo": "09876543",
+    "name": "Дрім Тоун",
+    "countAgree": 1,
+    "undistribamount": 0.0
+  }
+]}	Newtonsoft.Json.Linq.JArray
+
+         */
+    public class ConsumerMainView
     {
-        int custID { get; }
-        int innokpo { get; }
-        int name { get; }
-        int countAgree { get; }
-        int undistribamount { get; }
+        public int custId { get; set; }
+        public string innokpo { get; set; }
+        public string name { get; set;  }
+        public int countAgree { get; set; }
+        public decimal undistribamount { get; set; }
     }
     public interface IConsumerModel : IModel
     {
-        IList<IConsumerMainView> getMainView();
+        IList<ConsumerMainView> getMainView();
     }
 }
