@@ -1392,7 +1392,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(4, 3);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1016, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1016, 38);
             this.radPdfViewerNavigator.TabIndex = 11;
             this.radPdfViewerNavigator.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -1501,7 +1501,7 @@
             this.rpwsrPageRepresentatives.ItemSize = new System.Drawing.SizeF(115F, 26F);
             this.rpwsrPageRepresentatives.Location = new System.Drawing.Point(124, 10);
             this.rpwsrPageRepresentatives.Name = "rpwsrPageRepresentatives";
-            this.rpwsrPageRepresentatives.Size = new System.Drawing.Size(1191, 607);
+            this.rpwsrPageRepresentatives.Size = new System.Drawing.Size(1191, 605);
             this.rpwsrPageRepresentatives.Text = "Представники (25)";
             // 
             // rMainPageBigRights
