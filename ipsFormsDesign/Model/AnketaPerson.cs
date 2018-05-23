@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -56,31 +55,18 @@ namespace ipsmedserviceapp.Model
         public string LePostIndex { get; set; }
 
         public BankAccount BanAcc { get; set; }
-        [JsonIgnore]
         public Country CitizenshipNavigation { get; set; }
-        [JsonIgnore]
         public Customer Cust { get; set; }
-        [JsonIgnore]
         public Person CustNavigation { get; set; }
-        [JsonIgnore]
         public Country FaCountryNavigation { get; set; }
-        [JsonIgnore]
         public Region FaRegionNavigation { get; set; }
-        [JsonIgnore]
         public Lang LangNavigation { get; set; }
-        [JsonIgnore]
         public Region LeRegionNavigation { get; set; }
-        [JsonIgnore]
         public Country ReCountryNavigation { get; set; }
-        [JsonIgnore]
         public Region ReRegionNavigation { get; set; }
-        [JsonIgnore]
         public ResidentType ResidencyNavigation { get; set; }
-        [JsonIgnore]
         public SexType SexNavigation { get; set; }
-        [JsonIgnore]
         public AnketaStatus StatusNavigation { get; set; }
-        [JsonIgnore]
         public TypeVat TypeVatNavigation { get; set; }
     }
 }
