@@ -334,7 +334,7 @@
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerLicenseType;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1164, 527);
             this.pageAllAnketa.TabIndex = 2;
