@@ -104,12 +104,28 @@ namespace RightholderWorkplace
                 Inn = "1234567890",
                 Citizenship = "1",
                 Residency = 1,
+                PUseries = "ПС",
+                PUnumber = "973179",
+                PUissuedWho = "PUissuedWho",
+                PUissuedWhen = new DateTime(2005, 7, 10),
             };
 
             anketaPersonRightHolderControl1.DataSource = _anketa;
             ctrlContacts.DataSource = _anketa;
             ctrlRegistrations.DataSource = _anketa;
             //TODO: ctrlRegistrations.ResidentTypeDataSource = _anketa;
+            ctrlInternalPassport.DataSource = _anketa;
+        }
+
+        private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (newCreateRightholderPageView.SelectedPage == createRightholderPassportPage)
+            {
+                if (_anketa.Residency == 1)
+                    createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
+                else
+                    createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
+            }
         }
     }
 }

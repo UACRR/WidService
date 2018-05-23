@@ -74,6 +74,9 @@
             this.createRightholderPassportPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderInternalPasportPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderForeignPassportPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
@@ -125,6 +128,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderPassportPageView)).BeginInit();
             this.createRightholderPassportPageView.SuspendLayout();
+            this.createRightholderInternalPasportPage.SuspendLayout();
+            this.createRightholderForeignPassportPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -264,6 +271,8 @@
             // 
             // newCreateRightholderPageView
             // 
+            this.newCreateRightholderPageView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.newCreateRightholderPageView.Controls.Add(this.createRightholderFullNameComissionPage);
             this.newCreateRightholderPageView.Controls.Add(this.createRightholderAnketaPage);
             this.newCreateRightholderPageView.Controls.Add(this.createRightholderPassportPage);
@@ -276,6 +285,7 @@
             this.newCreateRightholderPageView.Size = new System.Drawing.Size(1002, 543);
             this.newCreateRightholderPageView.TabIndex = 1;
             this.newCreateRightholderPageView.ThemeName = "Office2007Silver";
+            this.newCreateRightholderPageView.SelectedPageChanged += new System.EventHandler(this.newCreateRightholderPageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.newCreateRightholderPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.newCreateRightholderPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.newCreateRightholderPageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
@@ -778,13 +788,13 @@
             this.createRightholderRoyaltyPage.ItemSize = new System.Drawing.SizeF(159F, 26F);
             this.createRightholderRoyaltyPage.Location = new System.Drawing.Point(168, 10);
             this.createRightholderRoyaltyPage.Name = "createRightholderRoyaltyPage";
-            this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(829, 559);
+            this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(823, 522);
             this.createRightholderRoyaltyPage.Text = "Як отримувати роялті";
             // 
             // btnPrevPassport
             // 
             this.btnPrevPassport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevPassport.Location = new System.Drawing.Point(470, 532);
+            this.btnPrevPassport.Location = new System.Drawing.Point(464, 495);
             this.btnPrevPassport.Name = "btnPrevPassport";
             this.btnPrevPassport.Size = new System.Drawing.Size(175, 24);
             this.btnPrevPassport.TabIndex = 13;
@@ -795,7 +805,7 @@
             // btnNextExclusionLimitation
             // 
             this.btnNextExclusionLimitation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextExclusionLimitation.Location = new System.Drawing.Point(651, 532);
+            this.btnNextExclusionLimitation.Location = new System.Drawing.Point(645, 495);
             this.btnNextExclusionLimitation.Name = "btnNextExclusionLimitation";
             this.btnNextExclusionLimitation.Size = new System.Drawing.Size(175, 24);
             this.btnNextExclusionLimitation.TabIndex = 12;
@@ -850,6 +860,8 @@
             // 
             // createRightholderInternalPasportPage
             // 
+            this.createRightholderInternalPasportPage.Controls.Add(this.radLabel6);
+            this.createRightholderInternalPasportPage.Controls.Add(this.ctrlInternalPassport);
             this.createRightholderInternalPasportPage.ItemSize = new System.Drawing.SizeF(26F, 209F);
             this.createRightholderInternalPasportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderInternalPasportPage.Name = "createRightholderInternalPasportPage";
@@ -858,11 +870,41 @@
             // 
             // createRightholderForeignPassportPage
             // 
+            this.createRightholderForeignPassportPage.Controls.Add(this.radLabel7);
             this.createRightholderForeignPassportPage.ItemSize = new System.Drawing.SizeF(26F, 215F);
             this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
             this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(777, 468);
             this.createRightholderForeignPassportPage.Text = "createRightholderForeignPassportPage";
+            // 
+            // ctrlInternalPassport
+            // 
+            this.ctrlInternalPassport.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.ctrlInternalPassport.Location = new System.Drawing.Point(3, 34);
+            this.ctrlInternalPassport.MaximumSize = new System.Drawing.Size(410, 94);
+            this.ctrlInternalPassport.Name = "ctrlInternalPassport";
+            this.ctrlInternalPassport.Size = new System.Drawing.Size(410, 94);
+            this.ctrlInternalPassport.TabIndex = 0;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel6.Location = new System.Drawing.Point(3, 3);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(134, 25);
+            this.radLabel6.TabIndex = 9;
+            this.radLabel6.Text = "Паспорт України";
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel7.Location = new System.Drawing.Point(3, 3);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(175, 25);
+            this.radLabel7.TabIndex = 10;
+            this.radLabel7.Text = "Закордонний паспорт";
             // 
             // RightholderWorkplace
             // 
@@ -932,6 +974,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderPassportPageView)).EndInit();
             this.createRightholderPassportPageView.ResumeLayout(false);
+            this.createRightholderInternalPasportPage.ResumeLayout(false);
+            this.createRightholderInternalPasportPage.PerformLayout();
+            this.createRightholderForeignPassportPage.ResumeLayout(false);
+            this.createRightholderForeignPassportPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -985,5 +1033,8 @@
         private Telerik.WinControls.UI.RadPageView createRightholderPassportPageView;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderInternalPasportPage;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderForeignPassportPage;
+        private Telerik.WinControls.UI.RadLabel radLabel6;
+        private IpsViewComponentLibrary.PassportControl ctrlInternalPassport;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
     }
 }
