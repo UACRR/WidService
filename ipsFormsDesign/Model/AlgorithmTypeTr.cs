@@ -1,10 +1,9 @@
-using ipsFormsDesign.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AlgorithmTypeTr : IAlgorithmTypeTr
+    public partial class AlgorithmTypeTr
     {
         public int CodeI { get; set; }
         public string Lang { get; set; }
@@ -13,4 +12,3 @@ namespace ipsmedserviceapp.Model
         public AlgorithmType CodeINavigation { get; set; }
     }
 }
-

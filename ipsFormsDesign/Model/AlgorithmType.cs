@@ -1,10 +1,9 @@
-using ipsFormsDesign.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AlgorithmType : IAlgorithmType
+    public partial class AlgorithmType
     {
         public AlgorithmType()
         {
@@ -17,4 +16,3 @@ namespace ipsmedserviceapp.Model
         public ICollection<AlgorithmTypeTr> AlgorithmTypeTr { get; set; }
     }
 }
-

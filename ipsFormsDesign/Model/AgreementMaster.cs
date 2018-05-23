@@ -1,10 +1,9 @@
-using ipsFormsDesign.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AgreementMaster : IAgreementMaster
+    public partial class AgreementMaster
     {
         public AgreementMaster()
         {
@@ -36,4 +35,3 @@ namespace ipsmedserviceapp.Model
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
-

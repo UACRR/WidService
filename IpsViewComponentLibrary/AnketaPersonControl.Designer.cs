@@ -58,7 +58,8 @@
             // 
             // lblLastName
             // 
-            this.lblLastName.Location = new System.Drawing.Point(4, 4);
+            this.lblLastName.Location = new System.Drawing.Point(5, 5);
+            this.lblLastName.Margin = new System.Windows.Forms.Padding(4);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(59, 18);
             this.lblLastName.TabIndex = 0;
@@ -66,12 +67,14 @@
             // 
             // rtxtBoxLastName
             // 
+            this.rtxtBoxLastName.AccessibleName = "FN";
             this.rtxtBoxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtBoxLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "LastName", true));
-            this.rtxtBoxLastName.Location = new System.Drawing.Point(110, 3);
+            this.rtxtBoxLastName.Location = new System.Drawing.Point(147, 4);
+            this.rtxtBoxLastName.Margin = new System.Windows.Forms.Padding(4);
             this.rtxtBoxLastName.Name = "rtxtBoxLastName";
-            this.rtxtBoxLastName.Size = new System.Drawing.Size(464, 20);
+            this.rtxtBoxLastName.Size = new System.Drawing.Size(619, 24);
             this.rtxtBoxLastName.TabIndex = 1;
             // 
             // iAnketaPersonBindingSource
@@ -83,13 +86,14 @@
             this.rdtPickerBirth.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "BirthDate", true));
             this.rdtPickerBirth.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAnketaPersonBindingSource, "BirthDate", true));
             this.rdtPickerBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerBirth.Location = new System.Drawing.Point(110, 75);
+            this.rdtPickerBirth.Location = new System.Drawing.Point(147, 92);
+            this.rdtPickerBirth.Margin = new System.Windows.Forms.Padding(4);
             this.rdtPickerBirth.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.rdtPickerBirth.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerBirth.Name = "rdtPickerBirth";
             this.rdtPickerBirth.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerBirth.NullText = "Оберіть дату";
-            this.rdtPickerBirth.Size = new System.Drawing.Size(127, 20);
+            this.rdtPickerBirth.Size = new System.Drawing.Size(169, 24);
             this.rdtPickerBirth.TabIndex = 4;
             this.rdtPickerBirth.TabStop = false;
             this.rdtPickerBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -100,14 +104,16 @@
             this.rtxtBoxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "FirstName", true));
-            this.rtxtBoxFirstName.Location = new System.Drawing.Point(110, 27);
+            this.rtxtBoxFirstName.Location = new System.Drawing.Point(147, 33);
+            this.rtxtBoxFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.rtxtBoxFirstName.Name = "rtxtBoxFirstName";
-            this.rtxtBoxFirstName.Size = new System.Drawing.Size(464, 20);
+            this.rtxtBoxFirstName.Size = new System.Drawing.Size(619, 24);
             this.rtxtBoxFirstName.TabIndex = 6;
             // 
             // lblFirstName
             // 
-            this.lblFirstName.Location = new System.Drawing.Point(4, 28);
+            this.lblFirstName.Location = new System.Drawing.Point(5, 34);
+            this.lblFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(28, 18);
             this.lblFirstName.TabIndex = 5;
@@ -118,14 +124,16 @@
             this.rtxtBoxMidleName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtBoxMidleName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "SurName", true));
-            this.rtxtBoxMidleName.Location = new System.Drawing.Point(110, 51);
+            this.rtxtBoxMidleName.Location = new System.Drawing.Point(147, 63);
+            this.rtxtBoxMidleName.Margin = new System.Windows.Forms.Padding(4);
             this.rtxtBoxMidleName.Name = "rtxtBoxMidleName";
-            this.rtxtBoxMidleName.Size = new System.Drawing.Size(464, 20);
+            this.rtxtBoxMidleName.Size = new System.Drawing.Size(619, 24);
             this.rtxtBoxMidleName.TabIndex = 8;
             // 
             // lblMidleName
             // 
-            this.lblMidleName.Location = new System.Drawing.Point(4, 52);
+            this.lblMidleName.Location = new System.Drawing.Point(5, 64);
+            this.lblMidleName.Margin = new System.Windows.Forms.Padding(4);
             this.lblMidleName.Name = "lblMidleName";
             this.lblMidleName.Size = new System.Drawing.Size(72, 18);
             this.lblMidleName.TabIndex = 7;
@@ -133,7 +141,8 @@
             // 
             // lblBirthDate
             // 
-            this.lblBirthDate.Location = new System.Drawing.Point(4, 76);
+            this.lblBirthDate.Location = new System.Drawing.Point(5, 94);
+            this.lblBirthDate.Margin = new System.Windows.Forms.Padding(4);
             this.lblBirthDate.Name = "lblBirthDate";
             this.lblBirthDate.Size = new System.Drawing.Size(101, 18);
             this.lblBirthDate.TabIndex = 9;
@@ -141,7 +150,8 @@
             // 
             // lblSex
             // 
-            this.lblSex.Location = new System.Drawing.Point(272, 76);
+            this.lblSex.Location = new System.Drawing.Point(363, 94);
+            this.lblSex.Margin = new System.Windows.Forms.Padding(4);
             this.lblSex.Name = "lblSex";
             this.lblSex.Size = new System.Drawing.Size(36, 18);
             this.lblSex.TabIndex = 10;
@@ -150,22 +160,24 @@
             // radDropDownListSex
             // 
             this.radDropDownListSex.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.iAnketaPersonBindingSource, "Sex", true));
+            this.radDropDownListSex.DropDownHeight = 141;
             this.radDropDownListSex.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             radListDataItem2.Text = "Жін.";
             radListDataItem3.Text = "Чол.";
             this.radDropDownListSex.Items.Add(radListDataItem1);
             this.radDropDownListSex.Items.Add(radListDataItem2);
             this.radDropDownListSex.Items.Add(radListDataItem3);
-            this.radDropDownListSex.Location = new System.Drawing.Point(315, 76);
+            this.radDropDownListSex.Location = new System.Drawing.Point(420, 94);
+            this.radDropDownListSex.Margin = new System.Windows.Forms.Padding(4);
             this.radDropDownListSex.Name = "radDropDownListSex";
-            this.radDropDownListSex.Size = new System.Drawing.Size(125, 20);
+            this.radDropDownListSex.Size = new System.Drawing.Size(167, 24);
             this.radDropDownListSex.TabIndex = 11;
             this.radDropDownListSex.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.radDropDownListSex_SelectedIndexChanged);
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.radDropDownListSex.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             // 
             // AnketaPersonControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radDropDownListSex);
             this.Controls.Add(this.lblSex);
@@ -177,9 +189,11 @@
             this.Controls.Add(this.rdtPickerBirth);
             this.Controls.Add(this.rtxtBoxLastName);
             this.Controls.Add(this.lblLastName);
-            this.MaximumSize = new System.Drawing.Size(900, 105);
+            this.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximumSize = new System.Drawing.Size(1200, 129);
             this.Name = "AnketaPersonControl";
-            this.Size = new System.Drawing.Size(577, 105);
+            this.Size = new System.Drawing.Size(769, 129);
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).EndInit();
@@ -199,7 +213,6 @@
         #endregion
 
         private Telerik.WinControls.UI.RadLabel lblLastName;
-        private Telerik.WinControls.UI.RadTextBox rtxtBoxLastName;
         private Telerik.WinControls.UI.RadDateTimePicker rdtPickerBirth;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxFirstName;
         private Telerik.WinControls.UI.RadLabel lblFirstName;
@@ -209,5 +222,6 @@
         private Telerik.WinControls.UI.RadLabel lblSex;
         private System.Windows.Forms.BindingSource iAnketaPersonBindingSource;
         private Telerik.WinControls.UI.RadDropDownList radDropDownListSex;
+        public Telerik.WinControls.UI.RadTextBox rtxtBoxLastName;
     }
 }

@@ -1,4 +1,13 @@
-﻿namespace ipsmedserviceapp.Model
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+
+namespace ipsmedserviceapp.Model
 {
     public partial class MediaServiceContext : DbContext
     {
