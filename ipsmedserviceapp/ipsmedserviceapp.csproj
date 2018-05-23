@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Model\MediaServiceContextExtra.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -31,12 +32,28 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Community)
                         .Include(item => item.BankAccount)
                         .Include(item => item.AnketaAddName)
+                        .Include(item => item.RightHolder)
+                            .ThenInclude(rh => rh.TermsOfService)
                         .SingleOrDefaultAsync();
 
+            var currDate = DateTime.Now.Date;
 
-            foreach (var relEmp in cust.Company.RelEmployee)
+            await _dbContext.TermsOfService
+                .Include(tos => tos.CrkindCodeNavigation)
+                    .ThenInclude(ck => ck.CrGroupCodeNavigation)
+                .Where(tos => tos.CustId == id)
+                .LoadAsync();
+
+            await _dbContext.CustCmRight
+                .Where(cr => cr.CustId == id && currDate >= cr.DateBegin && currDate <= cr.DateEnd)
+                .LoadAsync();
+
+            if (cust.Company != null)
             {
-                _dbContext.Entry(relEmp).Reference(item => item.Empl).Load();
+                foreach (var relEmp in cust.Company.RelEmployee)
+                {
+                    _dbContext.Entry(relEmp).Reference(item => item.Empl).Load();
+                }
             }
 
             // load only one active agreement with AgreementAddRh for customer

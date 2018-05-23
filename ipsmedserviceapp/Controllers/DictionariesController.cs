@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using ipsmedserviceapp.Controllers;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Data.SqlClient;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -745,8 +746,8 @@ namespace ipsmedserviceapp.Controllers
         public async Task<ActionResult> GetAnketaDictionary()
         {
             Dictionary<string, object> retDictionary = new Dictionary<string, object>();
-
-            retDictionary.Add ("CustomerType",  await _dbContext.CustomerType.AsNoTracking().ToListAsync());
+            
+            retDictionary.Add("CustomerType",  await _dbContext.CustomerType.AsNoTracking().ToListAsync());
             retDictionary.Add("CustomerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("PositionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
             retDictionary.Add("KlR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
@@ -759,7 +760,8 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("Lang", await _dbContext.Lang.AsNoTracking().ToListAsync());
             retDictionary.Add("AnketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("TypePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
-
+            retDictionary.Add("Communities",
+                await _dbContext.getViewData("select t2.name, t2.custId from community t1 join vCustomer t2 on t2.custId = t1.custId", new SqlParameter[0]));
 
             return Json(retDictionary);
         }

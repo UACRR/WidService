@@ -261,7 +261,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.CommunityInfo.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.TermsOfServiceWrapper.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
