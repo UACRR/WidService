@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Telerik.WinControls;
 
 namespace RightholderWorkplace
 {
@@ -14,6 +15,62 @@ namespace RightholderWorkplace
         public RightholderWorkplace()
         {
             InitializeComponent();
+
+            newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+        }
+
+        private void btnNewRightholder_Click(object sender, EventArgs e)
+        {
+            newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+        }
+
+        #region Next / Prev buttons
+
+        private void btnNextAnketa_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
+        }
+
+        private void btnPrevFullNameComission_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
+        }
+
+        private void btnNextPassport_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderPassportPage;
+        }
+
+        private void btnPrevAnketa_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
+        }
+
+        private void btnNextRoyalty_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderRoyaltyPage;
+        }
+
+        private void btnPrevPassport_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderPassportPage;
+        }
+
+        private void btnNextExclusionLimitation_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderExclusionLimitationPage;
+        }
+
+        private void btnPrevRoyalty_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderRoyaltyPage;
+        }
+
+        #endregion
+
+        private void btnSaveRightholder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
