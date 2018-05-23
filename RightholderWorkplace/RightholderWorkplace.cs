@@ -43,7 +43,17 @@ namespace RightholderWorkplace
 
         private void btnNextPassport_Click(object sender, EventArgs e)
         {
-            newCreateRightholderPageView.SelectedPage = createRightholderPassportPage;
+            // TODO: implement validation
+            //ctrlJaAddress.Validator()
+            //ctrlFaAddress.Validator()
+            //ctrlLeAddress.Validator()
+
+            if (ctrlContacts.Validator()
+                & ctrlRegistrations.Validator())
+            {
+                newCreateRightholderPageView.SelectedPage = createRightholderPassportPage;
+            }
+
         }
 
         private void btnPrevAnketa_Click(object sender, EventArgs e)
@@ -89,9 +99,16 @@ namespace RightholderWorkplace
                 NikName = "NikName",
                 BirthDate = new DateTime(2000, 08, 17),
                 Sex = 2,
+                PhoneMobileMain = "+380501111111",
+                Inn = "1234567890",
+                Citizenship = "1",
+                Residency = 1,
             };
 
             anketaPersonRightHolderControl1.DataSource = _anketa;
+            ctrlContacts.DataSource = _anketa;
+            ctrlRegistrations.DataSource = _anketa;
+            //TODO: ctrlRegistrations.ResidentTypeDataSource = _anketa;
         }
     }
 }
