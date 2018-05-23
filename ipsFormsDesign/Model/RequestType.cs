@@ -11,22 +11,20 @@ namespace ipsmedserviceapp.Model
             DocTemplate = new HashSet<DocTemplate>();
             RelReqObj = new HashSet<RelReqObj>();
             Request = new HashSet<Request>();
-            RequestAim = new HashSet<RequestAim>();
+            RequestTypeTr = new HashSet<RequestTypeTr>();
             UseAreaType = new HashSet<UseAreaType>();
             UseMediaType = new HashSet<UseMediaType>();
         }
 
-        public int ReqType { get; set; }
+        public int CodeI { get; set; }
         public int CategoryCode { get; set; }
-        public string ReqTypeNameUk { get; set; }
-        public string ReqTypeNameRu { get; set; }
-        public string ReqTypeNameEn { get; set; }
+        public string Name { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
         public ICollection<DocTemplate> DocTemplate { get; set; }
         public ICollection<RelReqObj> RelReqObj { get; set; }
         public ICollection<Request> Request { get; set; }
-        public ICollection<RequestAim> RequestAim { get; set; }
+        public ICollection<RequestTypeTr> RequestTypeTr { get; set; }
         public ICollection<UseAreaType> UseAreaType { get; set; }
         public ICollection<UseMediaType> UseMediaType { get; set; }
     }

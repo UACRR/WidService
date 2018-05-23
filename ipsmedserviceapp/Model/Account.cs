@@ -23,6 +23,7 @@ namespace ipsmedserviceapp.Model
         public short? AccDk { get; set; }
         public DateTime? DateModify { get; set; }
 
+        public AccountStatus AccStatusNavigation { get; set; }
         public AccountBals BalsCodeNavigation { get; set; }
         public Customer Cust { get; set; }
         public ObjectRight Obj { get; set; }

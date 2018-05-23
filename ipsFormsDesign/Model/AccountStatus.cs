@@ -6,10 +6,17 @@ namespace ipsmedserviceapp.Model
 {
     public partial class AccountStatus : IAccountStatus
     {
-        public int StatusCode { get; set; }
-        public string StatusNameUk { get; set; }
-        public string StatusNameRu { get; set; }
-        public string StatusNameEn { get; set; }
+        public AccountStatus()
+        {
+            Account = new HashSet<Account>();
+            AccountStatusTr = new HashSet<AccountStatusTr>();
+        }
+
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+
+        public ICollection<Account> Account { get; set; }
+        public ICollection<AccountStatusTr> AccountStatusTr { get; set; }
     }
 }
 

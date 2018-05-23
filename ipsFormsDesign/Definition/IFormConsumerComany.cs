@@ -9,10 +9,8 @@ namespace ipsFormsDesign.Definition
     public interface IFormConsumerComany : IConsumerCompany
     {
         // Подія збереження
-        event Func<bool> Save;
         void SetData(Customer data);
         void getData(Customer data);
 
-        void SetDictionary(AnketaDictionaties dic);
     }
 }

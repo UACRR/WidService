@@ -3,7 +3,7 @@
 $modelPath=[string]::Concat( $modelPath,"\ipsmedserviceapp\Model");
 $files = Get-ChildItem -Path $modelPath  -Exclude MediaServiceContext*.cs  -Name -Filter "*.cs";
 $i = 0;
-[string]$outBuffer = "namespace ipsFormsDesign.Interfaces`n{`n";
+[string]$outBuffer = "using System;`nnamespace ipsFormsDesign.Interfaces`n{`n";
 
 
 foreach( $fileName in $files )
