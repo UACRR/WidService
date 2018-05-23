@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class Document
+    public partial class Document : IDocument
     {
         public Document()
         {
@@ -22,3 +23,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<DocReq> DocReq { get; set; }
     }
 }
+

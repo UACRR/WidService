@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class ReqTrade
+    public partial class ReqTrade : IReqTrade
     {
         public int TradeId { get; set; }
         public int ReqId { get; set; }
@@ -24,3 +25,4 @@ namespace ipsmedserviceapp.Model
         public TradeStatus StatusNavigation { get; set; }
     }
 }
+

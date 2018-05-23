@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class KlR030
+    public partial class KlR030 : IKlR030
     {
         public KlR030()
         {
@@ -28,3 +29,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<KlR030tr> KlR030tr { get; set; }
     }
 }
+

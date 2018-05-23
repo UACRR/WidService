@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class DocText
+    public partial class DocText : IDocText
     {
         public int Id { get; set; }
         public int? DocTypeCode { get; set; }
@@ -13,3 +14,4 @@ namespace ipsmedserviceapp.Model
         public string TextEn { get; set; }
     }
 }
+

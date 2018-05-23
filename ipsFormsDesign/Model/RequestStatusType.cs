@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RequestStatusType
+    public partial class RequestStatusType : IRequestStatusType
     {
         public RequestStatusType()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<Request> Request { get; set; }
     }
 }
+

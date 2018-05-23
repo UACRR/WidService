@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class Person
+    public partial class Person : IPerson
     {
         public Person()
         {
@@ -17,3 +18,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<AnketaPerson> AnketaPerson { get; set; }
     }
 }
+

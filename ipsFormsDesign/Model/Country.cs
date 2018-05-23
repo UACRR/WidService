@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class Country
+    public partial class Country : ICountry
     {
         public Country()
         {
@@ -43,3 +44,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
+

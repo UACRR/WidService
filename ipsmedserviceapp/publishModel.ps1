@@ -1,20 +1,33 @@
-[string]$modelPath="D:\work\MediaSercice\ipssysadmin\ipsmedserviceapp\Model";
+[string]$modelPath="D:\work\MediaService\ipssysadmin\ipsmedserviceapp\Model";
+[string]$formDesignPath="D:\work\MediaService\ipssysadmin\ipsFormsDesign";
 $files = Get-ChildItem -Path $modelPath  -Exclude MediaServiceContext*.cs  -Name -Filter "*.cs";
 $i = 0;
-$outBuffer = "";
+[string]$outBuffer = "namespace ipsFormsDesign.Interfaces`n{`n";
+
+
 foreach( $fileName in $files )
 {
     $fullName = [string]::Concat( $modelPath, "\", $fileName );
-    $content = Get-Content -Path $fullName;
-    $content = $content -replace "using.*?{\n\s+(.+)}.+}", "$1}";
-    # $content = $content -replace "public\s(\w+)\(\)\n\s+{.*?}\n\n","" -replace "(\n)\n.*}", "$1}" -replace "(\s+)public\s", "$1";
+    $formDesignFile = [string]::Concat( $formDesignPath, '\Model\', $fileName );
+    $content = [System.IO.File]::ReadAllText($fullName);
+    $designContent = [regex]::Replace($content, 'public partial class (\w+)', 'public partial class $1 : I$1', [System.Text.RegularExpressions.RegexOptions]::Singleline );  
+    $designContent = "using ipsFormsDesign.Interfaces;`n" + $designContent;
+    $designContent | Set-Content $formDesignFile;
+    $content = [regex]::Replace($content, 'using.*?{\s+(.*)}.*}', '$1}', [System.Text.RegularExpressions.RegexOptions]::Singleline );
+    $content = [regex]::Replace($content, 'public partial class (\w+)', 'public interface I$1', [System.Text.RegularExpressions.RegexOptions]::Singleline );
+    $content = [regex]::Replace($content, '\s+public\s\w+\(\)\s+{\s+.+?}\s+','   ', [System.Text.RegularExpressions.RegexOptions]::Singleline );
+    $content = [regex]::Replace($content, '(\n)\r.*}', '$1}', [System.Text.RegularExpressions.RegexOptions]::Singleline );
+    $content = [regex]::Replace($content, '(\s+)public', '$1', [System.Text.RegularExpressions.RegexOptions]::Singleline );
 
-    $outBuffer = $outBuffer  + $content;
+    $outBuffer=$outBuffer+$content;
     $i = $i + 1;
-    if( $i -ge 2 ) 
-    {
-        break;
-    } 
-
-    Write-Host $outBuffer;
+    # if($i -ge 2 )
+    # {
+    #     break;
+    # }
 }
+
+$outBuffer=$outBuffer+"`n}`n";
+
+$formInterface = [string]::Concat($formDesignPath, "\", "Interfaces\EFInterfaces.cs");
+$outBuffer | Set-Content $formInterface;

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class CopyRight
+    public partial class CopyRight : ICopyRight
     {
         public int CRightId { get; set; }
         public int CustId { get; set; }
@@ -24,3 +25,4 @@ namespace ipsmedserviceapp.Model
         public CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }
+

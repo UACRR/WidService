@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AgreementStatus
+    public partial class AgreementStatus : IAgreementStatus
     {
         public AgreementStatus()
         {
@@ -22,3 +23,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
+

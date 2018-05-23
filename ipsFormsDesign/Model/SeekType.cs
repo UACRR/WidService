@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class SeekType
+    public partial class SeekType : ISeekType
     {
         public SeekType()
         {
@@ -16,3 +17,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<SeekObject> SeekObject { get; set; }
     }
 }
+

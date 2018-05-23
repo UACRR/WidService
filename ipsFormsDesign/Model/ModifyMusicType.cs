@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class ModifyMusicType
+    public partial class ModifyMusicType : IModifyMusicType
     {
         public ModifyMusicType()
         {
@@ -22,3 +23,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RequestAdapt> RequestAdapt { get; set; }
     }
 }
+

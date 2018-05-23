@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class ActivityType
+    public partial class ActivityType : IActivityType
     {
         public ActivityType()
         {
@@ -20,3 +21,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<ReqCustomer> ReqCustomer { get; set; }
     }
 }
+

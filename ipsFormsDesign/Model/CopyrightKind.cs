@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class CopyrightKind
+    public partial class CopyrightKind : ICopyrightKind
     {
         public CopyrightKind()
         {
@@ -29,3 +30,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<TermsOfService> TermsOfService { get; set; }
     }
 }
+

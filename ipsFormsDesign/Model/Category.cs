@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class Category
+    public partial class Category : ICategory
     {
         public Category()
         {
@@ -47,3 +48,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<UseMediaType> UseMediaType { get; set; }
     }
 }
+

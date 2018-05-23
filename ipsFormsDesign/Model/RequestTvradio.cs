@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RequestTvradio
+    public partial class RequestTvradio : IRequestTvradio
     {
         public RequestTvradio()
         {
@@ -19,3 +20,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RelTvepisode> RelTvepisode { get; set; }
     }
 }
+

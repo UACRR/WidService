@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RequestType
+    public partial class RequestType : IRequestType
     {
         public RequestType()
         {
@@ -30,3 +31,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<UseMediaType> UseMediaType { get; set; }
     }
 }
+

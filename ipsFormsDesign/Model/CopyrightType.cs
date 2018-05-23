@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class CopyrightType
+    public partial class CopyrightType : ICopyrightType
     {
         public CopyrightType()
         {
@@ -20,3 +21,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }
+

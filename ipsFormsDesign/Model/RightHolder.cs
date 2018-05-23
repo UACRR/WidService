@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RightHolder
+    public partial class RightHolder : IRightHolder
     {
         public RightHolder()
         {
@@ -33,3 +34,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
+

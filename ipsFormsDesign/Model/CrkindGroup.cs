@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class CrkindGroup
+    public partial class CrkindGroup : ICrkindGroup
     {
         public CrkindGroup()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<CrkindGroupTr> CrkindGroupTr { get; set; }
     }
 }
+

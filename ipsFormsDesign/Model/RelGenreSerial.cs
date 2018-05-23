@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RelGenreSerial
+    public partial class RelGenreSerial : IRelGenreSerial
     {
         public int ReqId { get; set; }
         public int GenreId { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public RequestSerial Req { get; set; }
     }
 }
+

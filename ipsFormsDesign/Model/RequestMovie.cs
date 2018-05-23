@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RequestMovie
+    public partial class RequestMovie : IRequestMovie
     {
         public RequestMovie()
         {
@@ -23,3 +24,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RelMovieEpisode> RelMovieEpisode { get; set; }
     }
 }
+

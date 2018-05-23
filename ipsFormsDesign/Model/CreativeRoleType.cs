@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class CreativeRoleType
+    public partial class CreativeRoleType : ICreativeRoleType
     {
         public CreativeRoleType()
         {
@@ -22,3 +23,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
     }
 }
+

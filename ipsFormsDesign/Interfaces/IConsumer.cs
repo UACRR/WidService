@@ -5,29 +5,6 @@ using System.Text;
 namespace ipsFormsDesign.Interfaces
 {
 
-    public interface IActivityType
-    {
-        int CodeI { get; set; }
-        string Name { get; set; }
-    }
-    public interface IAgrLicenseType
-    {
-
-        int CodeI { get; set; }
-        string Name { get; set; }
-        int? KindCode { get; set; }
-        int? UsesKind { get; set; }
-
-    }
-
-    public interface IAgreementStatus
-    {
-
-        int CodeI { get; set; }
-        string Name { get; set; }
-
-    }
-
 
     public interface ICunsomerDic
     {

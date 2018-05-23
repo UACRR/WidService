@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AnketaAddNick
+    public partial class AnketaAddNick : IAnketaAddNick
     {
         public int AddId { get; set; }
         public int CustId { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public RightHolder Cust { get; set; }
     }
 }
+

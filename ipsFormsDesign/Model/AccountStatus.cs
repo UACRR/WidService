@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AccountStatus
+    public partial class AccountStatus : IAccountStatus
     {
         public int StatusCode { get; set; }
         public string StatusNameUk { get; set; }
@@ -11,3 +12,4 @@ namespace ipsmedserviceapp.Model
         public string StatusNameEn { get; set; }
     }
 }
+

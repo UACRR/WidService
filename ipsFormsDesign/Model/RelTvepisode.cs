@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RelTvepisode
+    public partial class RelTvepisode : IRelTvepisode
     {
         public int ReqId { get; set; }
         public int EpisodeTypeCode { get; set; }
@@ -13,3 +14,4 @@ namespace ipsmedserviceapp.Model
         public RequestTvradio Req { get; set; }
     }
 }
+

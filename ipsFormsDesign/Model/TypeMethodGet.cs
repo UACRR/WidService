@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class TypeMethodGet
+    public partial class TypeMethodGet : ITypeMethodGet
     {
         public TypeMethodGet()
         {
@@ -16,3 +17,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<TypeMethodGetTr> TypeMethodGetTr { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AnketaAddName
+    public partial class AnketaAddName : IAnketaAddName
     {
         public int CustId { get; set; }
         public string Lang { get; set; }
@@ -17,3 +18,4 @@ namespace ipsmedserviceapp.Model
         public Customer Cust { get; set; }
     }
 }
+

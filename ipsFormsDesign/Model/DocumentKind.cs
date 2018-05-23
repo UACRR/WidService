@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class DocumentKind
+    public partial class DocumentKind : IDocumentKind
     {
         public DocumentKind()
         {
@@ -23,3 +24,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<DocumentKindTr> DocumentKindTr { get; set; }
     }
 }
+

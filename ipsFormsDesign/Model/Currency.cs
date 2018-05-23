@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class Currency
+    public partial class Currency : ICurrency
     {
         public Currency()
         {
@@ -25,3 +26,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<Account> Account { get; set; }
     }
 }
+

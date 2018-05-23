@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class ExternalPay
+    public partial class ExternalPay : IExternalPay
     {
         public int PaidId { get; set; }
         public DateTime? InputDate { get; set; }
@@ -27,3 +28,4 @@ namespace ipsmedserviceapp.Model
         public DateTime? DateOper { get; set; }
     }
 }
+

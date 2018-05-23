@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class Genre
+    public partial class Genre : IGenre
     {
         public Genre()
         {
@@ -26,3 +27,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RelObjGenre> RelObjGenre { get; set; }
     }
 }
+

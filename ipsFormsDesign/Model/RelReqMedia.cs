@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RelReqMedia
+    public partial class RelReqMedia : IRelReqMedia
     {
         public int UseMediaTypeCode { get; set; }
         public int ReqId { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public UseMediaType UseMediaTypeCodeNavigation { get; set; }
     }
 }
+

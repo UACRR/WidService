@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class DocPreparePay
+    public partial class DocPreparePay : IDocPreparePay
     {
         public int DocPayId { get; set; }
         public DateTime DateWork { get; set; }
@@ -22,7 +23,9 @@ namespace ipsmedserviceapp.Model
         public DateTime DateOper { get; set; }
         public int? PayStatus { get; set; }
         public int? Paidid { get; set; }
+        public byte? FlCourt { get; set; }
 
         public PaymentStatus PayStatusNavigation { get; set; }
     }
 }
+

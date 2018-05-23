@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class PaymentStatus
+    public partial class PaymentStatus : IPaymentStatus
     {
         public PaymentStatus()
         {
@@ -20,3 +21,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<PaymentStatusTr> PaymentStatusTr { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AgrLicenseType
+    public partial class AgrLicenseType : IAgrLicenseType
     {
         public AgrLicenseType()
         {
@@ -15,11 +16,13 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
         public int? KindCode { get; set; }
-        public int? CategoryCode { get; set; }
+        public int? UsesKind { get; set; }
 
         public CopyrightKind KindCodeNavigation { get; set; }
+        public UsesKind UsesKindNavigation { get; set; }
         public ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
         public ICollection<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }
+

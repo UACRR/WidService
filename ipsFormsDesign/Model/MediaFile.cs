@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class MediaFile
+    public partial class MediaFile : IMediaFile
     {
         public int MediaFileId { get; set; }
         public string FileType { get; set; }
@@ -15,3 +16,4 @@ namespace ipsmedserviceapp.Model
         public MediaTrack Obj { get; set; }
     }
 }
+

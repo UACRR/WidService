@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class MyAnketa
+    public partial class MyAnketa : IMyAnketa
     {
         public MyAnketa()
         {
@@ -22,3 +23,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }
+

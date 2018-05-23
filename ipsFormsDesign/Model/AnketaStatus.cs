@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AnketaStatus
+    public partial class AnketaStatus : IAnketaStatus
     {
         public AnketaStatus()
         {
@@ -20,3 +21,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<AnketaStatusTr> AnketaStatusTr { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class KlR030tr
+    public partial class KlR030tr : IKlR030tr
     {
         public string R030 { get; set; }
         public string Lang { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public KlR030 R030Navigation { get; set; }
     }
 }
+

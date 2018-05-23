@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class CommentCause
+    public partial class CommentCause : ICommentCause
     {
         public CommentCause()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<ReqTrade> ReqTrade { get; set; }
     }
 }
+

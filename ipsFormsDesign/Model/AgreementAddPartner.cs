@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AgreementAddPartner
+    public partial class AgreementAddPartner : IAgreementAddPartner
     {
         public int AgrId { get; set; }
         public int? CustId { get; set; }
@@ -19,3 +20,4 @@ namespace ipsmedserviceapp.Model
         public Partner Cust { get; set; }
     }
 }
+

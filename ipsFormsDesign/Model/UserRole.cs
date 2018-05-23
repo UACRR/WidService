@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class UserRole
+    public partial class UserRole : IUserRole
     {
         public int CustId { get; set; }
         public int RoleType { get; set; }
@@ -15,3 +16,4 @@ namespace ipsmedserviceapp.Model
         public AspNetUsers User { get; set; }
     }
 }
+

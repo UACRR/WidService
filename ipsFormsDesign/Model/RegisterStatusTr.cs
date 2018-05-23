@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RegisterStatusTr
+    public partial class RegisterStatusTr : IRegisterStatusTr
     {
         public int CodeI { get; set; }
         public string Lang { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public RegisterStatus CodeINavigation { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RequestOther
+    public partial class RequestOther : IRequestOther
     {
         public int ReqId { get; set; }
         public string UseDesc { get; set; }
@@ -11,3 +12,4 @@ namespace ipsmedserviceapp.Model
         public Request Req { get; set; }
     }
 }
+

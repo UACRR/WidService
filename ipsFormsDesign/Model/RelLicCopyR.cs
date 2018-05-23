@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RelLicCopyR
+    public partial class RelLicCopyR : IRelLicCopyR
     {
         public int AgrLlicCode { get; set; }
         public int CRkindCode { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public CopyrightKind CRkindCodeNavigation { get; set; }
     }
 }
+

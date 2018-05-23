@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class PaymentKind
+    public partial class PaymentKind : IPaymentKind
     {
         public PaymentKind()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<PaymentKindTr> PaymentKindTr { get; set; }
     }
 }
+

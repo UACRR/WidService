@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RegisterCount
+    public partial class RegisterCount : IRegisterCount
     {
         public decimal RegCntId { get; set; }
         public int? RegId { get; set; }
@@ -15,10 +16,14 @@ namespace ipsmedserviceapp.Model
         public decimal? Rate { get; set; }
         public decimal? RateCommiss { get; set; }
         public int? CmCustId { get; set; }
+        public int? RegIdBr { get; set; }
+        public int? RegItemIdBr { get; set; }
 
         public CopyrightKind CRkindCodeNavigation { get; set; }
         public Community CmCust { get; set; }
         public RightHolder Cust { get; set; }
         public RegisterItem RegI { get; set; }
+        public BrRegItem RegINavigation { get; set; }
     }
 }
+

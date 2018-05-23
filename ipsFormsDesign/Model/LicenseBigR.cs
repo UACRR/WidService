@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class LicenseBigR
+    public partial class LicenseBigR : ILicenseBigR
     {
         public int LicId { get; set; }
         public DateTime? DatePremiere { get; set; }
@@ -19,3 +20,4 @@ namespace ipsmedserviceapp.Model
         public ObjectRight Obj { get; set; }
     }
 }
+

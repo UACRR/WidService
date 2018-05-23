@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class UserRoleType
+    public partial class UserRoleType : IUserRoleType
     {
         public UserRoleType()
         {
@@ -19,3 +20,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<UserRole> UserRole { get; set; }
     }
 }
+

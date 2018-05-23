@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class EpisodeType
+    public partial class EpisodeType : IEpisodeType
     {
         public EpisodeType()
         {
@@ -22,3 +23,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RelTvepisode> RelTvepisode { get; set; }
     }
 }
+

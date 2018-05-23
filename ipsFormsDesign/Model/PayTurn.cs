@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class PayTurn
+    public partial class PayTurn : IPayTurn
     {
         public int TurnId { get; set; }
         public DateTime DateWork { get; set; }
@@ -26,3 +27,4 @@ namespace ipsmedserviceapp.Model
         public PaymentStatus PayStatusNavigation { get; set; }
     }
 }
+

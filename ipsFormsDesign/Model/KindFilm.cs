@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class KindFilm
+    public partial class KindFilm : IKindFilm
     {
         public KindFilm()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RequestMovie> RequestMovie { get; set; }
     }
 }
+

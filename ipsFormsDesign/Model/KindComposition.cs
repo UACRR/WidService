@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class KindComposition
+    public partial class KindComposition : IKindComposition
     {
         public KindComposition()
         {
@@ -26,3 +27,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<Request> Request { get; set; }
     }
 }
+

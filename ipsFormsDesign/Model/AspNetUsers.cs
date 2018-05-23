@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AspNetUsers
+    public partial class AspNetUsers : IAspNetUsers
     {
         public AspNetUsers()
         {
@@ -46,3 +47,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<UserRole> UserRole { get; set; }
     }
 }
+

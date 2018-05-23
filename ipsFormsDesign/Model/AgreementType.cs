@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AgreementType
+    public partial class AgreementType : IAgreementType
     {
         public AgreementType()
         {
@@ -16,3 +17,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<AgreementTypeTr> AgreementTypeTr { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AccountBals
+    public partial class AccountBals : IAccountBals
     {
         public AccountBals()
         {
@@ -19,3 +20,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<Account> Account { get; set; }
     }
 }
+

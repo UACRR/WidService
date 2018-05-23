@@ -1,12 +1,14 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RegisterStatus
+    public partial class RegisterStatus : IRegisterStatus
     {
         public RegisterStatus()
         {
+            BrRegister = new HashSet<BrRegister>();
             Register = new HashSet<Register>();
             RegisterStatusTr = new HashSet<RegisterStatusTr>();
         }
@@ -14,7 +16,9 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<Register> Register { get; set; }
         public ICollection<RegisterStatusTr> RegisterStatusTr { get; set; }
     }
 }
+

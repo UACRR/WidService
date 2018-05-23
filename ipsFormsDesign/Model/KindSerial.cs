@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class KindSerial
+    public partial class KindSerial : IKindSerial
     {
         public KindSerial()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RequestSerial> RequestSerial { get; set; }
     }
 }
+

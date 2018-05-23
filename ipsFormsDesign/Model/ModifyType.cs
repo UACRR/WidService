@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class ModifyType
+    public partial class ModifyType : IModifyType
     {
         public ModifyType()
         {
@@ -22,3 +23,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RequestAdapt> RequestAdapt { get; set; }
     }
 }
+

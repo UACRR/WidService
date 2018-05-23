@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class UseMediaType
+    public partial class UseMediaType : IUseMediaType
     {
         public UseMediaType()
         {
@@ -22,3 +23,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RelReqMedia> RelReqMedia { get; set; }
     }
 }
+

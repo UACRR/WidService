@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RegisterItem
+    public partial class RegisterItem : IRegisterItem
     {
         public RegisterItem()
         {
@@ -29,3 +30,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RegisterCount> RegisterCount { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AspNetRoles
+    public partial class AspNetRoles : IAspNetRoles
     {
         public AspNetRoles()
         {
@@ -21,3 +22,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
     }
 }
+

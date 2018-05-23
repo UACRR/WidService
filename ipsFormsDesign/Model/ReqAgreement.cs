@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class ReqAgreement
+    public partial class ReqAgreement : IReqAgreement
     {
         public ReqAgreement()
         {
@@ -33,3 +34,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<ReqTrade> ReqTrade { get; set; }
     }
 }
+
