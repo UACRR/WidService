@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsmedserviceapp.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,9 @@ namespace RightholderWorkplace
 {
     public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm
     {
+        AnketaPerson _anketa;
+
+
         public RightholderWorkplace()
         {
             InitializeComponent();
@@ -28,7 +32,8 @@ namespace RightholderWorkplace
 
         private void btnNextAnketa_Click(object sender, EventArgs e)
         {
-            newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
+            if (anketaPersonRightHolderControl1.Validator())
+                newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
         }
 
         private void btnPrevFullNameComission_Click(object sender, EventArgs e)
@@ -71,6 +76,22 @@ namespace RightholderWorkplace
         private void btnSaveRightholder_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void RightholderWorkplace_Load(object sender, EventArgs e)
+        {
+            // fake data
+            _anketa = new AnketaPerson
+            {
+                LastName = "LastName",
+                FirstName = "FirstName",
+                SurName = "SurName",
+                NikName = "NikName",
+                BirthDate = new DateTime(2000, 08, 17),
+                Sex = 2,
+            };
+
+            anketaPersonRightHolderControl1.DataSource = _anketa;
         }
     }
 }
