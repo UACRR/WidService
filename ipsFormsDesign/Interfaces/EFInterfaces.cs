@@ -1,3 +1,5 @@
+using System;
+
 namespace ipsFormsDesign.Interfaces
 {
 public interface IAccount
