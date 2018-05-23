@@ -14,7 +14,7 @@ namespace RightholderWorkplace
     public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm
     {
         AnketaPerson _anketa;
-
+        BankAccount _bankAccount;
 
         public RightholderWorkplace()
         {
@@ -111,11 +111,21 @@ namespace RightholderWorkplace
                 PUissuedWhen = new DateTime(2005, 7, 10),
             };
 
+            _bankAccount = new BankAccount
+            {
+                AccountNumber = "ac",
+                Mfo = 380380,
+                MfoName = "Mfo name",
+                MfoOkpo = "okpo",
+                TransitNumber = "tr num",
+            };
+
             anketaPersonRightHolderControl1.DataSource = _anketa;
             ctrlContacts.DataSource = _anketa;
             ctrlRegistrations.DataSource = _anketa;
             //TODO: ctrlRegistrations.ResidentTypeDataSource = _anketa;
             ctrlInternalPassport.DataSource = _anketa;
+            ctrlBankAccount.DataSource = _bankAccount;
         }
 
         private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)
