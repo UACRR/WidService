@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.txtPhone = new Telerik.WinControls.UI.RadTextBox();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtSurName = new Telerik.WinControls.UI.RadTextBox();
             this.txtFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.txtLastName = new Telerik.WinControls.UI.RadTextBox();
@@ -38,9 +39,9 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtEmail = new Telerik.WinControls.UI.RadTextBox();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSurName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).BeginInit();
@@ -48,7 +49,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -88,6 +88,10 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(173, 20);
             this.txtPhone.TabIndex = 27;
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             // 
             // txtSurName
             // 
@@ -157,10 +161,6 @@
             this.txtEmail.Size = new System.Drawing.Size(175, 20);
             this.txtEmail.TabIndex = 24;
             // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
-            // 
             // IpsBossNameContactsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -171,6 +171,7 @@
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSurName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).EndInit();
@@ -178,7 +179,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

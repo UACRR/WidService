@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsumerWorkplace));
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.rMainPageView = new Telerik.WinControls.UI.RadPageView();
             this.rMainPageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
             this.rPageViewSmallRights = new Telerik.WinControls.UI.RadPageView();
@@ -94,8 +101,10 @@
             this.rbtnConsumerSave = new Telerik.WinControls.UI.RadButton();
             this.rbtnCancelAnketa = new Telerik.WinControls.UI.RadButton();
             this.pageConsumersGrid = new Telerik.WinControls.UI.RadPageViewPage();
-            this.rbtnNext = new Telerik.WinControls.UI.RadButton();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radDropDownButton = new Telerik.WinControls.UI.RadDropDownButton();
+            this.btnAddJuridicalPerson = new Telerik.WinControls.UI.RadMenuItem();
+            this.btnAddNaturalPerson = new Telerik.WinControls.UI.RadMenuItem();
+            this.rGridViewConsumers = new Telerik.WinControls.UI.RadGridView();
             this.rpwsrPageProfilesContracts = new Telerik.WinControls.UI.RadPageViewPage();
             this.rpwsrPageRepresentatives = new Telerik.WinControls.UI.RadPageViewPage();
             this.rMainPageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
@@ -189,8 +198,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.rbtnConsumerSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnCancelAnketa)).BeginInit();
             this.pageConsumersGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnNext)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDropDownButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -207,7 +217,7 @@
             this.rMainPageView.Margin = new System.Windows.Forms.Padding(0);
             this.rMainPageView.Name = "rMainPageView";
             this.rMainPageView.SelectedPage = this.rMainPageSmallRights;
-            this.rMainPageView.Size = new System.Drawing.Size(1346, 671);
+            this.rMainPageView.Size = new System.Drawing.Size(1275, 671);
             this.rMainPageView.TabIndex = 0;
             this.rMainPageView.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rMainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -224,7 +234,7 @@
             this.rMainPageSmallRights.ItemSize = new System.Drawing.SizeF(85F, 26F);
             this.rMainPageSmallRights.Location = new System.Drawing.Point(10, 35);
             this.rMainPageSmallRights.Name = "rMainPageSmallRights";
-            this.rMainPageSmallRights.Size = new System.Drawing.Size(1325, 625);
+            this.rMainPageSmallRights.Size = new System.Drawing.Size(1254, 625);
             this.rMainPageSmallRights.Text = "Малі права";
             // 
             // rPageViewSmallRights
@@ -239,7 +249,7 @@
             this.rPageViewSmallRights.Location = new System.Drawing.Point(0, -1);
             this.rPageViewSmallRights.Name = "rPageViewSmallRights";
             this.rPageViewSmallRights.SelectedPage = this.rpwsrPageConsumers;
-            this.rPageViewSmallRights.Size = new System.Drawing.Size(1326, 628);
+            this.rPageViewSmallRights.Size = new System.Drawing.Size(1255, 628);
             this.rPageViewSmallRights.TabIndex = 0;
             this.rPageViewSmallRights.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rPageViewSmallRights.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -255,7 +265,7 @@
             this.rpwsrPageConsumers.ItemSize = new System.Drawing.SizeF(115F, 26F);
             this.rpwsrPageConsumers.Location = new System.Drawing.Point(124, 10);
             this.rpwsrPageConsumers.Name = "rpwsrPageConsumers";
-            this.rpwsrPageConsumers.Size = new System.Drawing.Size(1191, 607);
+            this.rpwsrPageConsumers.Size = new System.Drawing.Size(1120, 607);
             this.rpwsrPageConsumers.Text = "Споживачі";
             // 
             // rpvConsumers
@@ -275,8 +285,8 @@
             // 
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
-            this.rpvConsumers.SelectedPage = this.pageConsumersAnketa;
-            this.rpvConsumers.Size = new System.Drawing.Size(1196, 607);
+            this.rpvConsumers.SelectedPage = this.pageConsumersGrid;
+            this.rpvConsumers.Size = new System.Drawing.Size(1125, 607);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rpvConsumers.GetChildAt(0))).ShowItemPinButton = false;
@@ -343,7 +353,17 @@
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(3)))), ((int)(((byte)(3)))));
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).ShadowColor = System.Drawing.Color.Black;
+            ((Telerik.WinControls.UI.StripViewItemContainer)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0))).Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            ((Telerik.WinControls.UI.StripViewItemLayout)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0).GetChildAt(0))).CanFocus = true;
+            ((Telerik.WinControls.UI.StripViewItemLayout)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0).GetChildAt(0))).CustomFontStyle = System.Drawing.FontStyle.Bold;
+            ((Telerik.WinControls.UI.StripViewItemLayout)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Alignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.UI.StripViewItemLayout)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Enabled = true;
+            ((Telerik.WinControls.UI.StripViewButtonsPanel)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0).GetChildAt(1))).Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            ((Telerik.WinControls.UI.StripViewButtonsPanel)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.RadPageViewStripButtonElement)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(1))).ToolTipText = "Scroll Strip Right";
+            ((Telerik.WinControls.UI.RadPageViewStripButtonElement)(this.pageAllAnketa.GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(1))).Enabled = false;
             // 
             // pvConsumerClientName
             // 
@@ -1462,31 +1482,113 @@
             // 
             // pageConsumersGrid
             // 
-            this.pageConsumersGrid.Controls.Add(this.rbtnNext);
-            this.pageConsumersGrid.Controls.Add(this.radLabel1);
+            this.pageConsumersGrid.Controls.Add(this.radDropDownButton);
+            this.pageConsumersGrid.Controls.Add(this.rGridViewConsumers);
             this.pageConsumersGrid.ItemSize = new System.Drawing.SizeF(12F, 297F);
             this.pageConsumersGrid.Location = new System.Drawing.Point(21, 10);
             this.pageConsumersGrid.Name = "pageConsumersGrid";
-            this.pageConsumersGrid.Size = new System.Drawing.Size(1164, 586);
+            this.pageConsumersGrid.Size = new System.Drawing.Size(1093, 586);
             // 
-            // rbtnNext
+            // radDropDownButton
             // 
-            this.rbtnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rbtnNext.Location = new System.Drawing.Point(0, 559);
-            this.rbtnNext.Name = "rbtnNext";
-            this.rbtnNext.Size = new System.Drawing.Size(110, 24);
-            this.rbtnNext.TabIndex = 1;
-            this.rbtnNext.Text = "Кнопка";
-            this.rbtnNext.ThemeName = "Office2007Silver";
-            this.rbtnNext.Click += new System.EventHandler(this.rbtnNext_Click);
+            this.radDropDownButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radDropDownButton.DropDownDirection = Telerik.WinControls.UI.RadDirection.Right;
+            this.radDropDownButton.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnAddJuridicalPerson,
+            this.btnAddNaturalPerson});
+            this.radDropDownButton.Location = new System.Drawing.Point(4, 543);
+            this.radDropDownButton.Name = "radDropDownButton";
+            this.radDropDownButton.Size = new System.Drawing.Size(140, 24);
+            this.radDropDownButton.TabIndex = 3;
+            this.radDropDownButton.Text = "Новий споживач";
+            this.radDropDownButton.ThemeName = "Office2007Silver";
+            ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.radDropDownButton.GetChildAt(0))).Text = "Новий споживач";
+            ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.radDropDownButton.GetChildAt(0))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+            ((Telerik.WinControls.UI.RadDropDownButtonElement)(this.radDropDownButton.GetChildAt(0))).CanFocus = true;
+            ((Telerik.WinControls.UI.DropDownEditorLayoutPanel)(this.radDropDownButton.GetChildAt(0).GetChildAt(1))).ArrowPosition = Telerik.WinControls.UI.DropDownButtonArrowPosition.Right;
             // 
-            // radLabel1
+            // btnAddJuridicalPerson
             // 
-            this.radLabel1.Location = new System.Drawing.Point(4, 4);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(50, 18);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "ТУТ ГРІД";
+            this.btnAddJuridicalPerson.Name = "btnAddJuridicalPerson";
+            this.btnAddJuridicalPerson.Text = "Юридична особа";
+            this.btnAddJuridicalPerson.Click += new System.EventHandler(this.btnAddJuridicalPerson_Click);
+            // 
+            // btnAddNaturalPerson
+            // 
+            this.btnAddNaturalPerson.Name = "btnAddNaturalPerson";
+            this.btnAddNaturalPerson.Text = "Фізична особа";
+            this.btnAddNaturalPerson.Click += new System.EventHandler(this.btnAddNaturalPerson_Click);
+            // 
+            // rGridViewConsumers
+            // 
+            this.rGridViewConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rGridViewConsumers.Location = new System.Drawing.Point(4, 4);
+            // 
+            // 
+            // 
+            this.rGridViewConsumers.MasterTemplate.AllowAddNewRow = false;
+            this.rGridViewConsumers.MasterTemplate.AllowColumnReorder = false;
+            this.rGridViewConsumers.MasterTemplate.AllowDeleteRow = false;
+            this.rGridViewConsumers.MasterTemplate.AllowDragToGroup = false;
+            this.rGridViewConsumers.MasterTemplate.AllowEditRow = false;
+            this.rGridViewConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.DataType = typeof(int);
+            gridViewTextBoxColumn1.FieldName = "Innokpo";
+            gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
+            gridViewTextBoxColumn1.Name = "Innokpo";
+            gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn1.Width = 139;
+            gridViewTextBoxColumn2.FieldName = "Name";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Multiline = true;
+            gridViewTextBoxColumn2.Name = "Name";
+            gridViewTextBoxColumn2.Width = 555;
+            gridViewTextBoxColumn2.WrapText = true;
+            gridViewTextBoxColumn3.DataType = typeof(int);
+            gridViewTextBoxColumn3.FieldName = "CountAgree";
+            gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
+            gridViewTextBoxColumn3.Name = "CountAgree";
+            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn3.Width = 139;
+            gridViewTextBoxColumn3.WrapText = true;
+            gridViewTextBoxColumn4.DataType = typeof(double);
+            gridViewTextBoxColumn4.FieldName = "Undistribamount";
+            gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
+            gridViewTextBoxColumn4.Name = "Undistribamount";
+            gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn4.Width = 139;
+            gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.DataType = typeof(int);
+            gridViewTextBoxColumn5.FieldName = "CustId";
+            gridViewTextBoxColumn5.HeaderText = "ID";
+            gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.Name = "CustId";
+            gridViewCommandColumn1.AllowResize = false;
+            gridViewCommandColumn1.AllowSort = false;
+            gridViewCommandColumn1.DefaultText = "Edit";
+            gridViewCommandColumn1.FieldName = "btnsEdit";
+            gridViewCommandColumn1.HeaderText = "Редагувати";
+            gridViewCommandColumn1.Name = "btnsEdit";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.UseDefaultText = true;
+            gridViewCommandColumn1.Width = 97;
+            this.rGridViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewCommandColumn1});
+            this.rGridViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.rGridViewConsumers.Name = "rGridViewConsumers";
+            this.rGridViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.rGridViewConsumers.ReadOnly = true;
+            this.rGridViewConsumers.Size = new System.Drawing.Size(1086, 533);
+            this.rGridViewConsumers.TabIndex = 2;
+            this.rGridViewConsumers.ThemeName = "Office2007Silver";
+            this.rGridViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
             // 
             // rpwsrPageProfilesContracts
             // 
@@ -1516,7 +1618,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1343, 670);
+            this.ClientSize = new System.Drawing.Size(1272, 670);
             this.Controls.Add(this.rMainPageView);
             this.MinimumSize = new System.Drawing.Size(1280, 700);
             this.Name = "ConsumerWorkplace";
@@ -1619,9 +1721,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.rbtnConsumerSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnCancelAnketa)).EndInit();
             this.pageConsumersGrid.ResumeLayout(false);
-            this.pageConsumersGrid.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnNext)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radDropDownButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1640,8 +1742,6 @@
         private Telerik.WinControls.UI.RadPageViewPage rpwsrPageProfilesContracts;
         private Telerik.WinControls.UI.RadPageViewPage rpwsrPageRepresentatives;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadButton rbtnNext;
         private Telerik.WinControls.UI.RadPageView pageAllAnketa;
         private Telerik.WinControls.UI.RadPageViewPage pvConsumerClientName;
         private Telerik.WinControls.UI.RadPageViewPage pvConsumerLicenseType;
@@ -1701,5 +1801,9 @@
         private IpsViewComponentLibrary.ConsumerTitleControl bankRequisitesCtrlTitleLbl;
         private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator;
         private Telerik.WinControls.UI.RadPdfViewer radPdfViewer;
+        private Telerik.WinControls.UI.RadDropDownButton radDropDownButton;
+        private Telerik.WinControls.UI.RadMenuItem btnAddJuridicalPerson;
+        private Telerik.WinControls.UI.RadMenuItem btnAddNaturalPerson;
+        private Telerik.WinControls.UI.RadGridView rGridViewConsumers;
     }
 }
