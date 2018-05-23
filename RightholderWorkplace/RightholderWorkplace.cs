@@ -22,6 +22,7 @@ namespace RightholderWorkplace
 
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+            createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
         }
 
         private void btnNewRightholder_Click(object sender, EventArgs e)
@@ -126,6 +127,17 @@ namespace RightholderWorkplace
                 else
                     createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
             }
+        }
+
+        private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            //TODO: move to selected value changed event
+            if (ddlTypeMethodGet.SelectedIndex == 0)
+                createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyBankPage;
+            else if (ddlTypeMethodGet.SelectedIndex == 1)
+                createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyCashPage;
+            else if (ddlTypeMethodGet.SelectedIndex == 2)
+                createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
         }
     }
 }
