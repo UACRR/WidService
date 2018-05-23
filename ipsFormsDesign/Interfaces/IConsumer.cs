@@ -5,7 +5,14 @@ using System.Text;
 namespace ipsFormsDesign.Interfaces
 {
 
+    public interface IConsumerCompany
+    {
+        event Func<bool> Save;
+        void SetData(ICustomer data);
+        void getData(ICustomer data);
 
+        void SetDictionary(AnketaDictionaties dic);
+    }
     public interface ICunsomerDic
     {
         IList<IActivityType> activityType { get; set; }
