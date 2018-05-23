@@ -34,7 +34,7 @@ namespace RightholderWorkplace
 
         private void btnNextAnketa_Click(object sender, EventArgs e)
         {
-            if (anketaPersonRightHolderControl1.Validator())
+            if (ctrlAnketaPerson.Validator())
                 newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
         }
 
@@ -120,7 +120,7 @@ namespace RightholderWorkplace
                 TransitNumber = "tr num",
             };
 
-            anketaPersonRightHolderControl1.DataSource = _anketa;
+            ctrlAnketaPerson.DataSource = _anketa;
             ctrlContacts.DataSource = _anketa;
             ctrlRegistrations.DataSource = _anketa;
             //TODO: ctrlRegistrations.ResidentTypeDataSource = _anketa;

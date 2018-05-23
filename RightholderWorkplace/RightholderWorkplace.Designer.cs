@@ -47,7 +47,7 @@
             this.createRightholderFullNameComissionPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.contractControl1 = new DebugFormForControls.ContractControl();
             this.ipsServiceComissionControl1 = new IpsViewComponentLibrary.IpsServiceComissionControl();
-            this.anketaPersonRightHolderControl1 = new DebugFormForControls.AnketaPersonRightHolderControl();
+            this.ctrlAnketaPerson = new DebugFormForControls.AnketaPersonRightHolderControl();
             this.btnNextAnketa = new Telerik.WinControls.UI.RadButton();
             this.createRightholderAnketaPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRegistrations = new IpsViewComponentLibrary.RegistrationPersonsControl();
@@ -301,7 +301,7 @@
             this.newCreateRightholderPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.newCreateRightholderPageView.Location = new System.Drawing.Point(3, 34);
             this.newCreateRightholderPageView.Name = "newCreateRightholderPageView";
-            this.newCreateRightholderPageView.SelectedPage = this.createRightholderRoyaltyPage;
+            this.newCreateRightholderPageView.SelectedPage = this.createRightholderFullNameComissionPage;
             this.newCreateRightholderPageView.Size = new System.Drawing.Size(1002, 543);
             this.newCreateRightholderPageView.TabIndex = 1;
             this.newCreateRightholderPageView.ThemeName = "Office2007Silver";
@@ -314,7 +314,7 @@
             // 
             this.createRightholderFullNameComissionPage.Controls.Add(this.contractControl1);
             this.createRightholderFullNameComissionPage.Controls.Add(this.ipsServiceComissionControl1);
-            this.createRightholderFullNameComissionPage.Controls.Add(this.anketaPersonRightHolderControl1);
+            this.createRightholderFullNameComissionPage.Controls.Add(this.ctrlAnketaPerson);
             this.createRightholderFullNameComissionPage.Controls.Add(this.btnNextAnketa);
             this.createRightholderFullNameComissionPage.ItemSize = new System.Drawing.SizeF(159F, 26F);
             this.createRightholderFullNameComissionPage.Location = new System.Drawing.Point(168, 10);
@@ -374,17 +374,17 @@
             this.ipsServiceComissionControl1.TxtRateCourt.TabStop = false;
             this.ipsServiceComissionControl1.TxtRateCourt.Text = "0,00";
             // 
-            // anketaPersonRightHolderControl1
+            // ctrlAnketaPerson
             // 
-            this.anketaPersonRightHolderControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ctrlAnketaPerson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.anketaPersonRightHolderControl1.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
-            this.anketaPersonRightHolderControl1.DataSourceDropList = 0;
-            this.anketaPersonRightHolderControl1.Location = new System.Drawing.Point(3, 42);
-            this.anketaPersonRightHolderControl1.MaximumSize = new System.Drawing.Size(900, 128);
-            this.anketaPersonRightHolderControl1.Name = "anketaPersonRightHolderControl1";
-            this.anketaPersonRightHolderControl1.Size = new System.Drawing.Size(812, 128);
-            this.anketaPersonRightHolderControl1.TabIndex = 5;
+            this.ctrlAnketaPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.ctrlAnketaPerson.DataSourceDropList = 0;
+            this.ctrlAnketaPerson.Location = new System.Drawing.Point(3, 42);
+            this.ctrlAnketaPerson.MaximumSize = new System.Drawing.Size(900, 128);
+            this.ctrlAnketaPerson.Name = "ctrlAnketaPerson";
+            this.ctrlAnketaPerson.Size = new System.Drawing.Size(812, 128);
+            this.ctrlAnketaPerson.TabIndex = 5;
             // 
             // btnNextAnketa
             // 
@@ -1165,7 +1165,7 @@
         private Telerik.WinControls.UI.RadButton btnNextExclusionLimitation;
         private Telerik.WinControls.UI.RadButton btnPrevRoyalty;
         private Telerik.WinControls.UI.RadButton btnSaveRightholder;
-        private DebugFormForControls.AnketaPersonRightHolderControl anketaPersonRightHolderControl1;
+        private DebugFormForControls.AnketaPersonRightHolderControl ctrlAnketaPerson;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private DebugFormForControls.ContractControl contractControl1;
         private IpsViewComponentLibrary.IpsServiceComissionControl ipsServiceComissionControl1;
