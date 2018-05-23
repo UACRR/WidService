@@ -7,14 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public KindFilm()
         {
+            KindFilmTr = new HashSet<KindFilmTr>();
             RequestMovie = new HashSet<RequestMovie>();
         }
 
-        public int KindFilmCode { get; set; }
-        public string KindFilmNameUk { get; set; }
-        public string KindFilmNameRu { get; set; }
-        public string KindFilmNameEn { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
+        public ICollection<KindFilmTr> KindFilmTr { get; set; }
         public ICollection<RequestMovie> RequestMovie { get; set; }
     }
 }

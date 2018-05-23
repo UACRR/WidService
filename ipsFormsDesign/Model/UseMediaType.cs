@@ -9,18 +9,18 @@ namespace ipsmedserviceapp.Model
         public UseMediaType()
         {
             RelReqMedia = new HashSet<RelReqMedia>();
+            UseMediaTypeTr = new HashSet<UseMediaTypeTr>();
         }
 
-        public int UseMediaTypeCode { get; set; }
+        public int CodeI { get; set; }
         public int ReqType { get; set; }
-        public string UseMediaTypeNameUk { get; set; }
-        public string UseMediaTypeNameRu { get; set; }
-        public string UseMediaTypeNameEn { get; set; }
+        public string Name { get; set; }
         public int CategoryCode { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
         public RequestType ReqTypeNavigation { get; set; }
         public ICollection<RelReqMedia> RelReqMedia { get; set; }
+        public ICollection<UseMediaTypeTr> UseMediaTypeTr { get; set; }
     }
 }
 

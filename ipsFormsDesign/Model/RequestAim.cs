@@ -9,18 +9,17 @@ namespace ipsmedserviceapp.Model
         public RequestAim()
         {
             Request = new HashSet<Request>();
+            RequestAimTr = new HashSet<RequestAimTr>();
         }
 
-        public int ReqAimCode { get; set; }
+        public int CodeI { get; set; }
         public int ReqType { get; set; }
-        public string ReqAimNameUk { get; set; }
-        public string ReqAimNameRu { get; set; }
-        public string ReqAimNameEn { get; set; }
+        public string Name { get; set; }
         public int CategoryCode { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public RequestType ReqTypeNavigation { get; set; }
         public ICollection<Request> Request { get; set; }
+        public ICollection<RequestAimTr> RequestAimTr { get; set; }
     }
 }
 

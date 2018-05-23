@@ -8,6 +8,7 @@ namespace ipsmedserviceapp.Model
         public UsesKind()
         {
             AgrLicenseType = new HashSet<AgrLicenseType>();
+            UsesKindTr = new HashSet<UsesKindTr>();
         }
 
         public int CodeI { get; set; }
@@ -16,5 +17,6 @@ namespace ipsmedserviceapp.Model
 
         public UsesType UsesTypeNavigation { get; set; }
         public ICollection<AgrLicenseType> AgrLicenseType { get; set; }
+        public ICollection<UsesKindTr> UsesKindTr { get; set; }
     }
 }
