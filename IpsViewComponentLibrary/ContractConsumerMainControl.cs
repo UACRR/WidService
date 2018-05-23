@@ -34,5 +34,28 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
         }
+
+        public bool Validator()
+        {
+            bool isValid = true;
+
+            if (rtxtBoxContrNumber.Text == string.Empty)
+            {
+                lblContrNumb.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                isValid = false;
+            }
+            else
+                lblContrNumb.ForeColor = Color.Black;
+
+            return isValid;
+        }
+
+        public void ClearData()
+        {
+            rtxtBoxContrNumber.Text = string.Empty;
+            rdtPickerAgrDate.Text = string.Empty;
+            rdtPickerDateBegin.Text = string.Empty;
+            rdtPickerDateEnd.Text = string.Empty;
+        }
     }
 }
