@@ -34,7 +34,7 @@ namespace ipsmedserviceapp
         public void ConfigureServices(IServiceCollection services)
         {
             // options => options.UseSqlServer(Configuration.GetConnectionString("MediaServiceContext"))
-            services.AddDbContext<MediaServiceContext>(  );
+            services.AddDbContext<MediaServiceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MediaServiceContext")) );
             services.AddMvc()
                 .AddJsonOptions(options =>
                 {

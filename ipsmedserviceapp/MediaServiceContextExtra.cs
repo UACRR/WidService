@@ -11,6 +11,9 @@ namespace ipsmedserviceapp.Model
 {
     public partial class MediaServiceContext : DbContext
     {
+        public MediaServiceContext(DbContextOptions<MediaServiceContext> options) : base(options)
+        {
+        }
 
         /// <summary>
         /// Raw Запрос данных из базы данных
