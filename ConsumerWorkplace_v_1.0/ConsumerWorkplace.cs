@@ -55,6 +55,7 @@ namespace ConsumerWorkplace_v_1._0
             ClearDataConsumersControls();
             rpvConsumers.SelectedPage = pageConsumersGrid;
             validTabs = 0;
+            nextPage = false;
         }
 
 
@@ -279,14 +280,24 @@ namespace ConsumerWorkplace_v_1._0
         /// <param name="e"></param>
         private void pageAllAnketa_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
         {
-
-            if ( (e.Page.TabIndex <= validTabs + 1) && Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
+            // У М О В У
+            if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
             {
-                if (pageAllAnketa.SelectedPage.TabIndex == validTabs && nextPage)
+                if (e.Page.TabIndex <= validTabs)
                 {
-                    validTabs++;
                     e.Cancel = false;
                     nextPage = false;
+                }
+                else if (pageAllAnketa.SelectedPage.TabIndex == validTabs && nextPage)
+                {
+                    validTabs++;
+                    //pageAllAnketa.Pages[validTabs].Item.TextParams.foreColor = Color.DarkGray;
+                    e.Cancel = false;
+                    nextPage = false;
+                }
+                else
+                {
+                    e.Cancel = true;
                 }
             }
             else
