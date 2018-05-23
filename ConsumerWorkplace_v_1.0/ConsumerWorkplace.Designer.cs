@@ -327,8 +327,13 @@
             this.pageAllAnketa.Controls.Add(this.pvConsumerBankRequisites);
             this.pageAllAnketa.Controls.Add(this.pvConsumerContracts);
             this.pageAllAnketa.DefaultPage = this.pvConsumerClientName;
+            this.pageAllAnketa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.pageAllAnketa.Location = new System.Drawing.Point(0, 26);
             this.pageAllAnketa.Name = "pageAllAnketa";
+            // 
+            // 
+            // 
+            this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1164, 527);
@@ -338,6 +343,7 @@
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAllAnketa.GetChildAt(0))).ShadowColor = System.Drawing.Color.Black;
             // 
             // pvConsumerClientName
             // 
