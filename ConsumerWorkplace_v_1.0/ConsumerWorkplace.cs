@@ -28,20 +28,63 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
-        public void Tets()
+        public void TestMehod()
         {
+            //
+            List<ListConsumers> ds = new List<ListConsumers>
+            {
+                new ListConsumers
+                {
+                    Name = "Ресторан",
+                    CustId = 121,
+                    CountAgree = 1,
+                    Innokpo = 58946449,
+                    Undistribamount = 154.554
+                },
+                new ListConsumers{
+                    Name = "Готель",
+                    CustId = 154,
+                    CountAgree = 2,
+                    Innokpo = 12313213,
+                    Undistribamount = 12.54
+                },
+                new ListConsumers{
+                    Name = "Забігайлівка",
+                    CustId = 101,
+                    CountAgree = 3,
+                    Innokpo = 415146465,
+                    Undistribamount = 1.0544
+                },
+            };
 
+            rGridViewConsumers.DataSource = ds;
+            //
         }
 
         /// <summary>
-        /// Кнопка створення нової анкети юр особи
+        /// Кнопка створення нової анкети ЮРИДИЧНОЇ особи
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rbtnNext_Click(object sender, EventArgs e)
+        private void btnAddJuridicalPerson_Click(object sender, EventArgs e)
         {
             rpvConsumers.SelectedPage = pageConsumersAnketa;
             pageAllAnketa.SelectedPage = pvConsumerClientName;
+            foreach (var page in pageAllAnketa.Pages)
+            {
+                page.Item.ForeColor = Color.DarkGray;
+            }
+            pageAllAnketa.Pages[0].Item.ForeColor = DefaultForeColor;
+        }
+
+        /// <summary>
+        /// Кнопка створення нової анктеи ФІЗИЧНОЇ особи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddNaturalPerson_Click(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -184,8 +227,9 @@ namespace ConsumerWorkplace_v_1._0
             {
                 case 1:
                 {
-                    if (!clientNameCtrlAnketaCompany.Validator()||
-                        !clientNameCtrlRegistrationsCompany.Validator())
+                    if (!clientNameCtrlAnketaCompany.Validator())
+                        isValid = false;
+                    if(!clientNameCtrlRegistrationsCompany.Validator())
                         isValid = false;
                 }
                     break;
@@ -194,36 +238,50 @@ namespace ConsumerWorkplace_v_1._0
                 {
                     if (!licenseTypeCtrlContractConsumerMain.Validator())
                         isValid = false;
+                    if (!licenseTypeCtrlContractConsumerDetail.Validator())
+                        isValid = false;
                 }
                     break;
 
                 case 3:
                 {
-                        
+                    if (!anketaCtrlAddressFactual.Validator())
+                        isValid = false;
+                    if (!anketaCtrlAddressLegal.Validator())
+                        isValid = false;
+                    //додаткові поля
                 }
                     break;
 
                 case 4:
                 {
-                        
+                    if (!managersCtrlBossNameContactsBookkeeper.Validator())
+                        isValid = false;
+                    if (!managersCtrlBossNameContactsContactPerson.Validator())
+                        isValid = false;
+                    if (!managersCtrlBossNameContactsHead.Validator())
+                        isValid = false;
+
+                    //додаткові поля
                 }
                     break;
 
                 case 5:
                 {
-
+                        // майданчики
                 }
                     break;
 
                 case 6:
                 {
-
+                    if (!bankRequisitesCtrlBankAccount.Validator())
+                        isValid = false;
                 }
                     break;
 
                 case 7:
                 {
-
+                        //друк PDF
                 }
                     break;
 
@@ -280,7 +338,6 @@ namespace ConsumerWorkplace_v_1._0
         /// <param name="e"></param>
         private void pageAllAnketa_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
         {
-            // У М О В У
             if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
             {
                 if (e.Page.TabIndex <= validTabs)
@@ -291,7 +348,7 @@ namespace ConsumerWorkplace_v_1._0
                 else if (pageAllAnketa.SelectedPage.TabIndex == validTabs && nextPage)
                 {
                     validTabs++;
-                    //pageAllAnketa.Pages[validTabs].Item.TextParams.foreColor = Color.DarkGray;
+                    pageAllAnketa.Pages[validTabs].Item.ForeColor = DefaultForeColor;
                     e.Cancel = false;
                     nextPage = false;
                 }
@@ -302,6 +359,16 @@ namespace ConsumerWorkplace_v_1._0
             }
             else
                 e.Cancel = true;
+        }
+
+        /// <summary>
+        /// Натискання по кнопкі редагування в грід
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            MessageBox.Show(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value.ToString());
         }
     }
 }
