@@ -184,8 +184,9 @@ namespace ConsumerWorkplace_v_1._0
             {
                 case 1:
                 {
-                    if (!clientNameCtrlAnketaCompany.Validator()||
-                        !clientNameCtrlRegistrationsCompany.Validator())
+                    if (!clientNameCtrlAnketaCompany.Validator())
+                        isValid = false;
+                    if(!clientNameCtrlRegistrationsCompany.Validator())
                         isValid = false;
                 }
                     break;
@@ -194,36 +195,50 @@ namespace ConsumerWorkplace_v_1._0
                 {
                     if (!licenseTypeCtrlContractConsumerMain.Validator())
                         isValid = false;
+                    if (!licenseTypeCtrlContractConsumerDetail.Validator())
+                        isValid = false;
                 }
                     break;
 
                 case 3:
                 {
-                        
+                    if (!anketaCtrlAddressFactual.Validator())
+                        isValid = false;
+                    if (!anketaCtrlAddressLegal.Validator())
+                        isValid = false;
+                    //додаткові поля
                 }
                     break;
 
                 case 4:
                 {
-                        
+                    if (!managersCtrlBossNameContactsBookkeeper.Validator())
+                        isValid = false;
+                    if (!managersCtrlBossNameContactsContactPerson.Validator())
+                        isValid = false;
+                    if (!managersCtrlBossNameContactsHead.Validator())
+                        isValid = false;
+
+                    //додаткові поля
                 }
                     break;
 
                 case 5:
                 {
-
+                        // майданчики
                 }
                     break;
 
                 case 6:
                 {
-
+                    if (!bankRequisitesCtrlBankAccount.Validator())
+                        isValid = false;
                 }
                     break;
 
                 case 7:
                 {
-
+                        //друк PDF
                 }
                     break;
 
