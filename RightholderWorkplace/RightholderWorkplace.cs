@@ -21,6 +21,7 @@ namespace RightholderWorkplace
             InitializeComponent();
 
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+            createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
         }
 
         private void btnNewRightholder_Click(object sender, EventArgs e)

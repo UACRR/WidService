@@ -71,6 +71,9 @@
             this.btnSaveRightholder = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
+            this.createRightholderPassportPageView = new Telerik.WinControls.UI.RadPageView();
+            this.createRightholderInternalPasportPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.createRightholderForeignPassportPage = new Telerik.WinControls.UI.RadPageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
@@ -120,6 +123,8 @@
             this.createRightholderExclusionLimitationPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createRightholderPassportPageView)).BeginInit();
+            this.createRightholderPassportPageView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -735,6 +740,7 @@
             // 
             // createRightholderPassportPage
             // 
+            this.createRightholderPassportPage.Controls.Add(this.createRightholderPassportPageView);
             this.createRightholderPassportPage.Controls.Add(this.btnPrevAnketa);
             this.createRightholderPassportPage.Controls.Add(this.btnNextRoyalty);
             this.createRightholderPassportPage.ItemSize = new System.Drawing.SizeF(159F, 26F);
@@ -829,6 +835,35 @@
             this.btnSaveRightholder.ThemeName = "Aqua";
             this.btnSaveRightholder.Click += new System.EventHandler(this.btnSaveRightholder_Click);
             // 
+            // createRightholderPassportPageView
+            // 
+            this.createRightholderPassportPageView.Controls.Add(this.createRightholderInternalPasportPage);
+            this.createRightholderPassportPageView.Controls.Add(this.createRightholderForeignPassportPage);
+            this.createRightholderPassportPageView.Location = new System.Drawing.Point(0, 0);
+            this.createRightholderPassportPageView.Name = "createRightholderPassportPageView";
+            this.createRightholderPassportPageView.SelectedPage = this.createRightholderInternalPasportPage;
+            this.createRightholderPassportPageView.Size = new System.Drawing.Size(823, 489);
+            this.createRightholderPassportPageView.TabIndex = 12;
+            this.createRightholderPassportPageView.ThemeName = "Office2007Silver";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.createRightholderPassportPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.createRightholderPassportPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
+            // 
+            // createRightholderInternalPasportPage
+            // 
+            this.createRightholderInternalPasportPage.ItemSize = new System.Drawing.SizeF(26F, 209F);
+            this.createRightholderInternalPasportPage.Location = new System.Drawing.Point(35, 10);
+            this.createRightholderInternalPasportPage.Name = "createRightholderInternalPasportPage";
+            this.createRightholderInternalPasportPage.Size = new System.Drawing.Size(777, 468);
+            this.createRightholderInternalPasportPage.Text = "createRightholderInternalPasportPage";
+            // 
+            // createRightholderForeignPassportPage
+            // 
+            this.createRightholderForeignPassportPage.ItemSize = new System.Drawing.SizeF(26F, 215F);
+            this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(35, 10);
+            this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
+            this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(777, 468);
+            this.createRightholderForeignPassportPage.Text = "createRightholderForeignPassportPage";
+            // 
             // RightholderWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -895,6 +930,8 @@
             this.createRightholderExclusionLimitationPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.createRightholderPassportPageView)).EndInit();
+            this.createRightholderPassportPageView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -945,5 +982,8 @@
         private IpsViewComponentLibrary.IpsAddressControl ctrlJaAddress;
         private DebugFormForControls.ContactsPersonControl ctrlContacts;
         private IpsViewComponentLibrary.RegistrationPersonsControl ctrlRegistrations;
+        private Telerik.WinControls.UI.RadPageView createRightholderPassportPageView;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderInternalPasportPage;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderForeignPassportPage;
     }
 }
