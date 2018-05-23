@@ -1,5 +1,6 @@
-[string]$modelPath="D:\work\MediaService\ipssysadmin\ipsmedserviceapp\Model";
-[string]$formDesignPath="D:\work\MediaService\ipssysadmin\ipsFormsDesign";
+[string]$modelPath=Get-Location;
+[string]$formDesignPath=[string]::Concat( $modelPath, "\ipsFormsDesign");
+$modelPath=[string]::Concat( $modelPath,"\ipsmedserviceapp\Model");
 $files = Get-ChildItem -Path $modelPath  -Exclude MediaServiceContext*.cs  -Name -Filter "*.cs";
 $i = 0;
 [string]$outBuffer = "namespace ipsFormsDesign.Interfaces`n{`n";
