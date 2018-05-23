@@ -1,4 +1,5 @@
-﻿using ipsmedserviceapp.Model;
+﻿using ipsFormsDesign.Dictionary;
+using ipsmedserviceapp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace RightholderWorkplace
     {
         AnketaPerson _anketa;
         BankAccount _bankAccount;
+        List<TermsOfServiceWrapper> _termsOfServices;
 
         public RightholderWorkplace()
         {
@@ -120,12 +122,22 @@ namespace RightholderWorkplace
                 TransitNumber = "tr num",
             };
 
+            _termsOfServices = new List<TermsOfServiceWrapper>
+            {
+                new TermsOfServiceWrapper(new TermsOfService { OurService = true,
+                    CrkindCodeNavigation = new CopyrightKind { Name = "Name 1",
+                        CrGroupCodeNavigation = new CrkindGroup { Name = "Groupe 1" },
+                    },
+                }),
+            };
+
             ctrlAnketaPerson.DataSource = _anketa;
             ctrlContacts.DataSource = _anketa;
             ctrlRegistrations.DataSource = _anketa;
             //TODO: ctrlRegistrations.ResidentTypeDataSource = _anketa;
             ctrlInternalPassport.DataSource = _anketa;
             ctrlBankAccount.DataSource = _bankAccount;
+            ctrlExclusionsLimitations.DataSource = _termsOfServices;
         }
 
         private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)

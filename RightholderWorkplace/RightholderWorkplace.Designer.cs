@@ -73,8 +73,10 @@
             this.btnPrevAnketa = new Telerik.WinControls.UI.RadButton();
             this.btnNextRoyalty = new Telerik.WinControls.UI.RadButton();
             this.createRightholderRoyaltyPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.createRightholderRoyaltyPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderRoyaltyBankPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.createRightholderRoyaltyCashPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderRoyaltyPostalTransfer = new Telerik.WinControls.UI.RadPageViewPage();
             this.ddlTypeMethodGet = new Telerik.WinControls.UI.RadDropDownList();
@@ -85,8 +87,7 @@
             this.btnSaveRightholder = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.ctrlExclusionsLimitations = new IpsViewComponentLibrary.IpsExclusionsLimitationsControl();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
@@ -137,21 +138,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextRoyalty)).BeginInit();
             this.createRightholderRoyaltyPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderRoyaltyPageView)).BeginInit();
             this.createRightholderRoyaltyPageView.SuspendLayout();
             this.createRightholderRoyaltyBankPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtAccountNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoOkpo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtTransitNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeMethodGet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevPassport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextExclusionLimitation)).BeginInit();
             this.createRightholderExclusionLimitationPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtAccountNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoOkpo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtTransitNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -291,7 +292,8 @@
             // 
             // newCreateRightholderPageView
             // 
-            this.newCreateRightholderPageView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.newCreateRightholderPageView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.newCreateRightholderPageView.Controls.Add(this.createRightholderFullNameComissionPage);
             this.newCreateRightholderPageView.Controls.Add(this.createRightholderAnketaPage);
@@ -301,7 +303,7 @@
             this.newCreateRightholderPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.newCreateRightholderPageView.Location = new System.Drawing.Point(3, 34);
             this.newCreateRightholderPageView.Name = "newCreateRightholderPageView";
-            this.newCreateRightholderPageView.SelectedPage = this.createRightholderFullNameComissionPage;
+            this.newCreateRightholderPageView.SelectedPage = this.createRightholderExclusionLimitationPage;
             this.newCreateRightholderPageView.Size = new System.Drawing.Size(1002, 543);
             this.newCreateRightholderPageView.TabIndex = 1;
             this.newCreateRightholderPageView.ThemeName = "Office2007Silver";
@@ -796,6 +798,7 @@
             // 
             this.createRightholderInternalPasportPage.Controls.Add(this.radLabel6);
             this.createRightholderInternalPasportPage.Controls.Add(this.ctrlInternalPassport);
+            this.createRightholderInternalPasportPage.ItemSize = new System.Drawing.SizeF(26F, 209F);
             this.createRightholderInternalPasportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderInternalPasportPage.Name = "createRightholderInternalPasportPage";
             this.createRightholderInternalPasportPage.Size = new System.Drawing.Size(777, 468);
@@ -823,6 +826,7 @@
             // createRightholderForeignPassportPage
             // 
             this.createRightholderForeignPassportPage.Controls.Add(this.radLabel7);
+            this.createRightholderForeignPassportPage.ItemSize = new System.Drawing.SizeF(26F, 215F);
             this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
             this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(777, 468);
@@ -873,6 +877,14 @@
             this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(823, 522);
             this.createRightholderRoyaltyPage.Text = "Як отримувати роялті";
             // 
+            // radLabel8
+            // 
+            this.radLabel8.Location = new System.Drawing.Point(46, 3);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(102, 18);
+            this.radLabel8.TabIndex = 16;
+            this.radLabel8.Text = "Метод отримання:";
+            // 
             // createRightholderRoyaltyPageView
             // 
             this.createRightholderRoyaltyPageView.Controls.Add(this.createRightholderRoyaltyBankPage);
@@ -895,6 +907,85 @@
             this.createRightholderRoyaltyBankPage.Name = "createRightholderRoyaltyBankPage";
             this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(774, 439);
             this.createRightholderRoyaltyBankPage.Text = "createRightholderRoyaltyBankPage";
+            // 
+            // ctrlBankAccount
+            // 
+            this.ctrlBankAccount.DataMember = "";
+            this.ctrlBankAccount.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
+            this.ctrlBankAccount.Location = new System.Drawing.Point(3, 3);
+            this.ctrlBankAccount.Name = "ctrlBankAccount";
+            this.ctrlBankAccount.Size = new System.Drawing.Size(598, 127);
+            this.ctrlBankAccount.TabIndex = 0;
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlBankAccount.TxtAccountNumber.Location = new System.Drawing.Point(118, 103);
+            this.ctrlBankAccount.TxtAccountNumber.Name = "txtAccountNumber";
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtAccountNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 103, 286, 0);
+            this.ctrlBankAccount.TxtAccountNumber.RootElement.StretchVertically = true;
+            this.ctrlBankAccount.TxtAccountNumber.Size = new System.Drawing.Size(475, 20);
+            this.ctrlBankAccount.TxtAccountNumber.TabIndex = 5;
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlBankAccount.TxtMfo.Location = new System.Drawing.Point(118, 28);
+            this.ctrlBankAccount.TxtMfo.Name = "txtMfo";
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtMfo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 28, 286, 0);
+            this.ctrlBankAccount.TxtMfo.RootElement.StretchVertically = true;
+            this.ctrlBankAccount.TxtMfo.Size = new System.Drawing.Size(475, 20);
+            this.ctrlBankAccount.TxtMfo.TabIndex = 8;
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlBankAccount.TxtMfoName.Location = new System.Drawing.Point(118, 3);
+            this.ctrlBankAccount.TxtMfoName.Name = "txtMfoName";
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtMfoName.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 3, 286, 0);
+            this.ctrlBankAccount.TxtMfoName.RootElement.StretchVertically = true;
+            this.ctrlBankAccount.TxtMfoName.Size = new System.Drawing.Size(475, 20);
+            this.ctrlBankAccount.TxtMfoName.TabIndex = 9;
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtMfoOkpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlBankAccount.TxtMfoOkpo.Location = new System.Drawing.Point(118, 53);
+            this.ctrlBankAccount.TxtMfoOkpo.Name = "txtMfoOkpo";
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtMfoOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 53, 286, 0);
+            this.ctrlBankAccount.TxtMfoOkpo.RootElement.StretchVertically = true;
+            this.ctrlBankAccount.TxtMfoOkpo.Size = new System.Drawing.Size(475, 20);
+            this.ctrlBankAccount.TxtMfoOkpo.TabIndex = 7;
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlBankAccount.TxtTransitNumber.Location = new System.Drawing.Point(118, 78);
+            this.ctrlBankAccount.TxtTransitNumber.Name = "txtTransitNumber";
+            // 
+            // 
+            // 
+            this.ctrlBankAccount.TxtTransitNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 78, 286, 0);
+            this.ctrlBankAccount.TxtTransitNumber.RootElement.StretchVertically = true;
+            this.ctrlBankAccount.TxtTransitNumber.Size = new System.Drawing.Size(475, 20);
+            this.ctrlBankAccount.TxtTransitNumber.TabIndex = 6;
             // 
             // createRightholderRoyaltyCashPage
             // 
@@ -953,18 +1044,19 @@
             // 
             // createRightholderExclusionLimitationPage
             // 
+            this.createRightholderExclusionLimitationPage.Controls.Add(this.ctrlExclusionsLimitations);
             this.createRightholderExclusionLimitationPage.Controls.Add(this.btnPrevRoyalty);
             this.createRightholderExclusionLimitationPage.Controls.Add(this.btnSaveRightholder);
             this.createRightholderExclusionLimitationPage.ItemSize = new System.Drawing.SizeF(159F, 26F);
             this.createRightholderExclusionLimitationPage.Location = new System.Drawing.Point(168, 10);
             this.createRightholderExclusionLimitationPage.Name = "createRightholderExclusionLimitationPage";
-            this.createRightholderExclusionLimitationPage.Size = new System.Drawing.Size(829, 559);
+            this.createRightholderExclusionLimitationPage.Size = new System.Drawing.Size(823, 522);
             this.createRightholderExclusionLimitationPage.Text = "Виключення та обмеження";
             // 
             // btnPrevRoyalty
             // 
             this.btnPrevRoyalty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevRoyalty.Location = new System.Drawing.Point(470, 532);
+            this.btnPrevRoyalty.Location = new System.Drawing.Point(464, 495);
             this.btnPrevRoyalty.Name = "btnPrevRoyalty";
             this.btnPrevRoyalty.Size = new System.Drawing.Size(175, 24);
             this.btnPrevRoyalty.TabIndex = 13;
@@ -975,7 +1067,7 @@
             // btnSaveRightholder
             // 
             this.btnSaveRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveRightholder.Location = new System.Drawing.Point(651, 532);
+            this.btnSaveRightholder.Location = new System.Drawing.Point(645, 495);
             this.btnSaveRightholder.Name = "btnSaveRightholder";
             this.btnSaveRightholder.Size = new System.Drawing.Size(175, 24);
             this.btnSaveRightholder.TabIndex = 12;
@@ -983,67 +1075,19 @@
             this.btnSaveRightholder.ThemeName = "Aqua";
             this.btnSaveRightholder.Click += new System.EventHandler(this.btnSaveRightholder_Click);
             // 
-            // ctrlBankAccount
+            // ctrlExclusionsLimitations
             // 
-            this.ctrlBankAccount.DataMember = "";
-            this.ctrlBankAccount.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
-            this.ctrlBankAccount.Location = new System.Drawing.Point(3, 3);
-            this.ctrlBankAccount.Name = "ctrlBankAccount";
-            this.ctrlBankAccount.Size = new System.Drawing.Size(598, 127);
-            this.ctrlBankAccount.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ctrlBankAccount.TxtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ctrlExclusionsLimitations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBankAccount.TxtAccountNumber.Location = new System.Drawing.Point(118, 103);
-            this.ctrlBankAccount.TxtAccountNumber.Name = "txtAccountNumber";
-            this.ctrlBankAccount.TxtAccountNumber.Size = new System.Drawing.Size(475, 20);
-            this.ctrlBankAccount.TxtAccountNumber.TabIndex = 5;
-            // 
-            // 
-            // 
-            this.ctrlBankAccount.TxtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBankAccount.TxtMfo.Location = new System.Drawing.Point(118, 28);
-            this.ctrlBankAccount.TxtMfo.Name = "txtMfo";
-            this.ctrlBankAccount.TxtMfo.Size = new System.Drawing.Size(475, 20);
-            this.ctrlBankAccount.TxtMfo.TabIndex = 8;
-            // 
-            // 
-            // 
-            this.ctrlBankAccount.TxtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBankAccount.TxtMfoName.Location = new System.Drawing.Point(118, 3);
-            this.ctrlBankAccount.TxtMfoName.Name = "txtMfoName";
-            this.ctrlBankAccount.TxtMfoName.Size = new System.Drawing.Size(475, 20);
-            this.ctrlBankAccount.TxtMfoName.TabIndex = 9;
-            // 
-            // 
-            // 
-            this.ctrlBankAccount.TxtMfoOkpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBankAccount.TxtMfoOkpo.Location = new System.Drawing.Point(118, 53);
-            this.ctrlBankAccount.TxtMfoOkpo.Name = "txtMfoOkpo";
-            this.ctrlBankAccount.TxtMfoOkpo.Size = new System.Drawing.Size(475, 20);
-            this.ctrlBankAccount.TxtMfoOkpo.TabIndex = 7;
-            // 
-            // 
-            // 
-            this.ctrlBankAccount.TxtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBankAccount.TxtTransitNumber.Location = new System.Drawing.Point(118, 78);
-            this.ctrlBankAccount.TxtTransitNumber.Name = "txtTransitNumber";
-            this.ctrlBankAccount.TxtTransitNumber.Size = new System.Drawing.Size(475, 20);
-            this.ctrlBankAccount.TxtTransitNumber.TabIndex = 6;
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.Location = new System.Drawing.Point(46, 3);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(102, 18);
-            this.radLabel8.TabIndex = 16;
-            this.radLabel8.Text = "Метод отримання:";
+            this.ctrlExclusionsLimitations.CommunitiesDataMember = "";
+            this.ctrlExclusionsLimitations.CommunitiesDataSource = typeof(ipsFormsDesign.Dictionary.CommunityInfo);
+            this.ctrlExclusionsLimitations.DataMember = "";
+            this.ctrlExclusionsLimitations.DataSource = typeof(ipsFormsDesign.Dictionary.TermsOfServiceWrapper);
+            this.ctrlExclusionsLimitations.Location = new System.Drawing.Point(3, 3);
+            this.ctrlExclusionsLimitations.Name = "ctrlExclusionsLimitations";
+            this.ctrlExclusionsLimitations.Size = new System.Drawing.Size(817, 486);
+            this.ctrlExclusionsLimitations.TabIndex = 14;
             // 
             // RightholderWorkplace
             // 
@@ -1115,21 +1159,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnNextRoyalty)).EndInit();
             this.createRightholderRoyaltyPage.ResumeLayout(false);
             this.createRightholderRoyaltyPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderRoyaltyPageView)).EndInit();
             this.createRightholderRoyaltyPageView.ResumeLayout(false);
             this.createRightholderRoyaltyBankPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtAccountNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoOkpo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtTransitNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeMethodGet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevPassport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextExclusionLimitation)).EndInit();
             this.createRightholderExclusionLimitationPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtAccountNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoOkpo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtTransitNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1193,5 +1237,6 @@
         private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyPostalTransfer;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private IpsViewComponentLibrary.IpsBankAccountControl ctrlBankAccount;
+        private IpsViewComponentLibrary.IpsExclusionsLimitationsControl ctrlExclusionsLimitations;
     }
 }
