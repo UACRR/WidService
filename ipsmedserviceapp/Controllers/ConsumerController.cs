@@ -91,39 +91,39 @@ namespace ipsmedserviceapp.Controllers
         /// Отримати список Споживачів малих прав
         /// </summary>
         /// <returns></returns>
-        [HttpGet("dictionaries")]
-        public async Task<IActionResult> GetDictionaries()
-        {
-            Dictionary<string, object> listDictionaries = new Dictionary<string, object>();
+        //[HttpGet("dictionaries")]
+        //public async Task<IActionResult> GetDictionaries()
+        //{
+        //    Dictionary<string, object> listDictionaries = new Dictionary<string, object>();
 
-            listDictionaries.Add("activityType", await _dbContext.ActivityType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("agrLicenseType", await _dbContext.AgrLicenseType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("agreementStatus", await _dbContext.AgreementStatus.AsNoTracking().ToListAsync());
-            listDictionaries.Add("agreementType", await _dbContext.AgreementType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("anketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
-            listDictionaries.Add("copyrightKind", await _dbContext.CopyrightKind.AsNoTracking().ToListAsync());
-            listDictionaries.Add("copyrightType", await _dbContext.CopyrightType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("country", await _dbContext.Country.AsNoTracking().ToListAsync());
-            listDictionaries.Add("crkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
-            listDictionaries.Add("customerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
-            listDictionaries.Add("customerType", await _dbContext.CustomerType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("klR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
-            listDictionaries.Add("licenseClass", await _dbContext.LicenseClass.AsNoTracking().ToListAsync());
-            listDictionaries.Add("licenseType", await _dbContext.LicenseType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("period", await _dbContext.Period.AsNoTracking().ToListAsync());
-            listDictionaries.Add("periodStatus", await _dbContext.PeriodStatus.AsNoTracking().ToListAsync());
-            listDictionaries.Add("positionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("region", await _dbContext.Region.AsNoTracking().ToListAsync());
-            listDictionaries.Add("residentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("typePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
-            listDictionaries.Add("typeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
-            listDictionaries.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
-            listDictionaries.Add("usesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());
-            listDictionaries.Add("usesType", await _dbContext.UsesType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("activityType", await _dbContext.ActivityType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("agrLicenseType", await _dbContext.AgrLicenseType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("agreementStatus", await _dbContext.AgreementStatus.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("agreementType", await _dbContext.AgreementType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("anketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("copyrightKind", await _dbContext.CopyrightKind.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("copyrightType", await _dbContext.CopyrightType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("country", await _dbContext.Country.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("crkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("customerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("customerType", await _dbContext.CustomerType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("klR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("licenseClass", await _dbContext.LicenseClass.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("licenseType", await _dbContext.LicenseType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("period", await _dbContext.Period.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("periodStatus", await _dbContext.PeriodStatus.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("positionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("region", await _dbContext.Region.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("residentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("typePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("typeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("usesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());
+        //    listDictionaries.Add("usesType", await _dbContext.UsesType.AsNoTracking().ToListAsync());
 
-            return Json(listDictionaries);
-        }
+        //    return Json(listDictionaries);
+        //}
 
 
 
