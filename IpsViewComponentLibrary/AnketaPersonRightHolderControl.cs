@@ -14,8 +14,8 @@ namespace DebugFormForControls
 {
     public partial class AnketaPersonRightHolderControl : UserControl
     {
-        private bool _birthDateSelected = false,
-                     _sexSelected = false;
+        private bool _birthDateSelected = false;
+        //_sexSelected = false;
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -29,12 +29,42 @@ namespace DebugFormForControls
             }
         }
 
-        public int DataSourceDropList
+        #region Sex type dictionary
+
+        [Category("Dictionaries")]
+        [AttributeProvider(typeof(IListSource))]
+        public object SexTypeDataSource
         {
-            get => radDropDownListSex.SelectedIndex;
-            set => radDropDownListSex.SelectedIndex = value;
+            get { return radDropDownListSex.DataSource; }
+            set
+            {
+                if (radDropDownListSex.DataSource != value)
+                    radDropDownListSex.DataSource = value;
+            }
         }
 
+        [Category("Dictionaries")]
+        public string SexTypeDataMember
+        {
+            get { return radDropDownListSex.DataMember; }
+            set { radDropDownListSex.DataMember = value; }
+        }
+
+        [Category("Dictionaries")]
+        public string SexTypeDisplayMember
+        {
+            get { return radDropDownListSex.DisplayMember; }
+            set { radDropDownListSex.DisplayMember = value; }
+        }
+
+        [Category("Dictionaries")]
+        public string SexTypeValueMember
+        {
+            get { return radDropDownListSex.ValueMember; }
+            set { radDropDownListSex.ValueMember = value; }
+        }
+
+        #endregion
 
         public AnketaPersonRightHolderControl()
         {
@@ -73,13 +103,13 @@ namespace DebugFormForControls
             else
                 lblLastName.ForeColor = Color.Black;
 
-            if (!_sexSelected)
-            {
-                lblSex.ForeColor = Color.FromArgb(180, 255, 0, 2);
-                isValid = false;
-            }
-            else
-                lblSex.ForeColor = Color.Black;
+            //if (!_sexSelected)
+            //{
+            //    lblSex.ForeColor = Color.FromArgb(180, 255, 0, 2);
+            //    isValid = false;
+            //}
+            //else
+            //    lblSex.ForeColor = Color.Black;
 
             return isValid;
         }
@@ -94,14 +124,14 @@ namespace DebugFormForControls
             rtxtBoxMidleName.Clear();
             rtxtBoxPseudonym.Clear();
             rdtPickerBirth.SetToNullValue();
-            _sexSelected = false;
+            //_sexSelected = false;
             _birthDateSelected = false;
         }
 
-        private void radDropDownListSex_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            _sexSelected = radDropDownListSex.SelectedItem.Index != 0;
-        }
+        //private void radDropDownListSex_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        //{
+        //    _sexSelected = radDropDownListSex.SelectedItem.Index != 0;
+        //}
 
 
         private void rBtnMoreName_Click(object sender, EventArgs e)

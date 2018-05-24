@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
             this.lblSex = new Telerik.WinControls.UI.RadLabel();
             this.lblBirthDate = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxMidleName = new Telerik.WinControls.UI.RadTextBox();
@@ -220,19 +217,11 @@
             // 
             // radDropDownListSex
             // 
-            this.radDropDownListSex.DataBindings.Add(new System.Windows.Forms.Binding("SelectedIndex", this.iAnketaPersonBindingSource, "Sex", true));
-            this.radDropDownListSex.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem2.Text = "Жін.";
-            radListDataItem3.Text = "Чол.";
-            this.radDropDownListSex.Items.Add(radListDataItem1);
-            this.radDropDownListSex.Items.Add(radListDataItem2);
-            this.radDropDownListSex.Items.Add(radListDataItem3);
-            this.radDropDownListSex.Location = new System.Drawing.Point(313, 104);
+            this.radDropDownListSex.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaPersonBindingSource, "Sex", true));
+            this.radDropDownListSex.Location = new System.Drawing.Point(313, 105);
             this.radDropDownListSex.Name = "radDropDownListSex";
             this.radDropDownListSex.Size = new System.Drawing.Size(125, 20);
             this.radDropDownListSex.TabIndex = 29;
-            this.radDropDownListSex.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.radDropDownListSex_SelectedIndexChanged);
-            ((Telerik.WinControls.UI.RadDropDownListElement)(this.radDropDownListSex.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             // 
             // AnketaPersonRightHolderControl
             // 
@@ -295,7 +284,7 @@
         private Telerik.WinControls.UI.RadButton rBtnMoreName;
         private Telerik.WinControls.UI.RadButton rBtnMoreSurName;
         private Telerik.WinControls.UI.RadButton rBtnMorePseudonym;
-        private Telerik.WinControls.UI.RadDropDownList radDropDownListSex;
         private System.Windows.Forms.BindingSource iAnketaPersonBindingSource;
+        private Telerik.WinControls.UI.RadDropDownList radDropDownListSex;
     }
 }
