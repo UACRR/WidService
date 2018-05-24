@@ -75,6 +75,7 @@ namespace IpsViewComponentLibrary
             {
                 return txtPhone;
             }
+            set => txtPhone = value;
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]

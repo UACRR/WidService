@@ -142,7 +142,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             nextPage = true;
 
-            managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+                managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
                 managersCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
                 managersCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
                 pageAllAnketa.SelectedPage = pvConsumerManagers;
@@ -210,9 +210,9 @@ namespace ConsumerWorkplace_v_1._0
             if (Validation(7) && MessageBox.Show("Do you want save data?", "Save data?", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                ClearDataConsumersControls();
                 SetDataSources();
                 rpvConsumers.SelectedPage = pageConsumersGrid;
-                ClearDataConsumersControls();
             }
         }
 
@@ -308,10 +308,9 @@ namespace ConsumerWorkplace_v_1._0
         /// </summary>
         private void ClearDataConsumersControls()
         {
-            clientNameCtrlAnketaCompany.ClearData();
-            clientNameCtrlRegistrationsCompany.ClearData();
-            licenseTypeCtrlContractConsumerMain.ClearData();
-            
+            //clientNameCtrlAnketaCompany.ClearData();
+            //clientNameCtrlRegistrationsCompany.ClearData();
+            //licenseTypeCtrlContractConsumerMain.ClearData();
         }
 
         public void SetDataSources()
@@ -320,25 +319,51 @@ namespace ConsumerWorkplace_v_1._0
                 return;
             if( _cust.CustType == 3) // Юр. особа
             {
-                //    //1
-                //    clientNameCtrlAnketaCompany.DataSource,
-                //    clientNameCtrlRegistrationsCompany.DataSource,
-                //    clientNameCheckBoxPlaces.Checked,
+
                 AnketaCompany anketa = _cust.Company.AnketaCompany.Where(rec => rec.Version == _cust.AnkVersion).SingleOrDefault();
-                BankAccount bankAccount = _cust.BankAccount.FirstOrDefault();
+                if(_cust.BankAccount.Count == 0)
+                    _cust.BankAccount.Add(new BankAccount{CustId = _cust.CustId});
+                var bankAccount = _cust.BankAccount.FirstOrDefault();
+
+                if (_cust.Company.RelEmployee.Count == 0)
+                {
+                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 1 });
+                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 2 });
+                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 3 });
+                }
+
                 var relBoss = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 1).SingleOrDefault();
+
+                var relBookkeeper =_cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 2).SingleOrDefault();
+
+                var relContactPerson = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 3).SingleOrDefault();
+
+                
+
                 var agrMaster = _cust.AgreementMaster?.Where(rec => rec.AgrStatus < 4).FirstOrDefault();
-                var licAgr = agrMaster?.LicenseAgreement.Where(rec => rec.LicStatus < 4).FirstOrDefault();
+
+                var licAgr = (agrMaster?.LicenseAgreement)?.FirstOrDefault(rec => rec.LicStatus < 4);
 
 
                 anketaCtrlAddressFactual.CountriesDataSource = _dic.country;
                 anketaCtrlAddressFactual.DataSource = this.iAnketaCompanyBindingSource;
                 anketaCtrlAddressFactual.RegionsDataSource = _dic.region;
+                anketaCtrlAddressFactual.CountriesValueMember = "countryCode";
+                anketaCtrlAddressFactual.CountriesDisplayMember = "countryName";
+                anketaCtrlAddressFactual.RegionsValueMember = "codeI";
+                anketaCtrlAddressFactual.RegionsDisplayMember = "name";
+
                 anketaCtrlAddressLegal.CountriesDataSource = _dic.country;
                 anketaCtrlAddressLegal.DataSource = this.iAnketaCompanyBindingSource;
                 anketaCtrlAddressLegal.RegionsDataSource = _dic.region;
+                anketaCtrlAddressLegal.CountriesValueMember = "countryCode";
+                anketaCtrlAddressLegal.CountriesDisplayMember = "countryName";
+                anketaCtrlAddressLegal.RegionsValueMember = "codeI";
+                anketaCtrlAddressLegal.RegionsDisplayMember = "name";
+
                 anketaDictionatiesBindingSource.DataSource = _dic;
-                bankRequisitesCtrlBankAccount.DataSource = bankAccount;
+                if(bankAccount != null)
+                    bankRequisitesCtrlBankAccount.DataSource = bankAccount;
                 clientNameCtrlAnketaCompany.ActivityCodeDataSource = _dic.activityType;
                 clientNameCtrlAnketaCompany.ActivityCodeValueMember = "CodeI";
                 clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "Name";
@@ -348,43 +373,31 @@ namespace ConsumerWorkplace_v_1._0
                 consumerWorkplaceBindingSource.DataSource = this;
                 iAnketaCompanyBindingSource.DataSource = anketa;
                 iPositionTypeBindingSource.DataSource = _dic.positionType;
-                iRelEmployeeBindingSource.DataSource = relBoss;
+                if (relBoss != null)
+                    iRelEmployeeBindingSource.DataSource = relBoss;
                 licenseTypeCtrlContractConsumerDetail.DataSource = _dic.licenseType;
                 licenseTypeCtrlContractConsumerMain.DataSource = agrMaster;
-                managersCtrlBossNameContactsBookkeeper.DataSource = relBoss?.Empl;
-                managersCtrlBossNameContactsContactPerson.DataSource = relBoss?.Empl;
-                managersCtrlBossNameContactsHead.DataSource = relBoss?.Empl;
 
+                placesCtrlConsumerPlaces.SetData(_cust);
+                if (_cust.Client.ClnBusinessPlace.Count != 0)
+                    placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
 
+                //iEmployeeBindingSource.DataSource = relBoss?.Empl;
 
+                if (relBoss?.Empl != null)
+                    managersCtrlBossNameContactsHead.DataSource = relBoss?.Empl;
+                
+                if(relBookkeeper?.Empl != null)
+                    managersCtrlBossNameContactsBookkeeper.DataSource = relBookkeeper?.Empl;
 
+                if(relContactPerson?.Empl != null)
+                    managersCtrlBossNameContactsContactPerson.DataSource = relContactPerson?.Empl;
 
+                
+                //managersRddListPositionHead.DataSource
+                ;
 
-
-
-
-                //    //2
-                //    licenseTypeCtrlContractConsumerMain.DataSource,
-                //    licenseTypeCtrlContractConsumerDetail.DataSource,
             }
-            //List<object> objList =new List<object>
-            //{
-            //    //3
-            //    anketaCtrlAddressFactual.DataSource,
-            //    anketaCtrlAddressLegal.DataSource,
-            //    //4
-            //    managersCtrlBossNameContactsHead.DataSource,
-            //    managersCtrlBossNameContactsBookkeeper.DataSource,
-            //    managersCtrlBossNameContactsContactPerson.DataSource,
-            //    //5
-            //    placesCtrlConsumerPlaces.GetData(),
-            //    //6
-            //    bankRequisitesCtrlBankAccount.DataSource
-
-            //};
-
-            //var list = objList.ToList();
-
         }
 
 
@@ -480,4 +493,6 @@ namespace ConsumerWorkplace_v_1._0
             }
         }
     }
+
+
 }
