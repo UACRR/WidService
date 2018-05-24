@@ -54,7 +54,7 @@
             this.ctrlRegistrations = new IpsViewComponentLibrary.RegistrationPersonsControl();
             this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
             this.ctrlLeAddress = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
+            this.anketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlFaAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
@@ -89,7 +89,7 @@
             this.btnSaveRightholder = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
-            this.anketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
@@ -114,10 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlLeAddress.DdlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlLeAddress.TxtAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlLeAddress.TxtCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.DdlCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.DdlRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.TxtAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.TxtCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.DdlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.TxtAddress)).BeginInit();
@@ -155,7 +152,10 @@
             this.createRightholderExclusionLimitationPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.DdlCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.DdlRegion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.TxtAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.TxtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -407,10 +407,10 @@
             // 
             // createRightholderAnketaPage
             // 
+            this.createRightholderAnketaPage.Controls.Add(this.ctrlReAddress);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlRegistrations);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlContacts);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlLeAddress);
-            this.createRightholderAnketaPage.Controls.Add(this.ctrlReAddress);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlFaAddress);
             this.createRightholderAnketaPage.Controls.Add(this.radSeparator3);
             this.createRightholderAnketaPage.Controls.Add(this.radLabel5);
@@ -511,7 +511,7 @@
             // 
             // 
             // 
-            this.ctrlLeAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 692, 20);
+            this.ctrlLeAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 677, 20);
             this.ctrlLeAddress.TxtAddress.RootElement.StretchVertically = true;
             this.ctrlLeAddress.TxtAddress.Size = new System.Drawing.Size(677, 20);
             this.ctrlLeAddress.TxtAddress.TabIndex = 10;
@@ -525,24 +525,28 @@
             // 
             // 
             // 
-            this.ctrlLeAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(474, 0, 218, 20);
+            this.ctrlLeAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(464, 0, 213, 20);
             this.ctrlLeAddress.TxtCity.RootElement.StretchVertically = true;
             this.ctrlLeAddress.TxtCity.Size = new System.Drawing.Size(213, 20);
             this.ctrlLeAddress.TxtCity.TabIndex = 23;
             // 
-            // ctrlReAddress
+            // anketaPersonBindingSource
             // 
-            this.ctrlReAddress.AddressDataMember = "ReAddress";
-            this.ctrlReAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.anketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            // 
+            // ctrlFaAddress
+            // 
+            this.ctrlFaAddress.AddressDataMember = "FaAddress";
+            this.ctrlFaAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlReAddress.CityDataMember = "ReCity";
-            this.ctrlReAddress.CountriesDataMember = "";
-            this.ctrlReAddress.CountriesDataSource = null;
-            this.ctrlReAddress.CountriesDisplayMember = "";
-            this.ctrlReAddress.CountriesValueMember = "";
-            this.ctrlReAddress.CountryDataMember = "ReCountry";
-            this.ctrlReAddress.DataMember = "";
-            this.ctrlReAddress.DataSource = this.anketaPersonBindingSource;
+            this.ctrlFaAddress.CityDataMember = "FaCity";
+            this.ctrlFaAddress.CountriesDataMember = "";
+            this.ctrlFaAddress.CountriesDataSource = null;
+            this.ctrlFaAddress.CountriesDisplayMember = "";
+            this.ctrlFaAddress.CountriesValueMember = "";
+            this.ctrlFaAddress.CountryDataMember = "FaCountry";
+            this.ctrlFaAddress.DataMember = "";
+            this.ctrlFaAddress.DataSource = this.anketaPersonBindingSource;
             // 
             // 
             // 
@@ -555,7 +559,7 @@
             // 
             // 
             // 
-            this.ctrlFaAddress.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 402, 20);
+            this.ctrlFaAddress.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 186, 20);
             this.ctrlFaAddress.DdlCountry.RootElement.StretchVertically = true;
             this.ctrlFaAddress.DdlCountry.Size = new System.Drawing.Size(212, 20);
             this.ctrlFaAddress.DdlCountry.TabIndex = 18;
@@ -571,19 +575,19 @@
             // 
             // 
             // 
-            this.ctrlFaAddress.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(410, 0, 390, 20);
+            this.ctrlFaAddress.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(206, 0, 186, 20);
             this.ctrlFaAddress.DdlRegion.RootElement.StretchVertically = true;
             this.ctrlFaAddress.DdlRegion.Size = new System.Drawing.Size(212, 20);
             this.ctrlFaAddress.DdlRegion.TabIndex = 22;
-            this.ctrlReAddress.Location = new System.Drawing.Point(143, 112);
-            this.ctrlReAddress.Name = "ctrlReAddress";
-            this.ctrlReAddress.RegionDataMember = "ReRegion";
-            this.ctrlReAddress.RegionsDataMember = "";
-            this.ctrlReAddress.RegionsDataSource = null;
-            this.ctrlReAddress.RegionsDisplayMember = "";
-            this.ctrlReAddress.RegionsValueMember = "";
-            this.ctrlReAddress.Size = new System.Drawing.Size(677, 45);
-            this.ctrlReAddress.TabIndex = 19;
+            this.ctrlFaAddress.Location = new System.Drawing.Point(143, 30);
+            this.ctrlFaAddress.Name = "ctrlFaAddress";
+            this.ctrlFaAddress.RegionDataMember = "FaRegion";
+            this.ctrlFaAddress.RegionsDataMember = "";
+            this.ctrlFaAddress.RegionsDataSource = null;
+            this.ctrlFaAddress.RegionsDisplayMember = "";
+            this.ctrlFaAddress.RegionsValueMember = "";
+            this.ctrlFaAddress.Size = new System.Drawing.Size(677, 45);
+            this.ctrlFaAddress.TabIndex = 18;
             // 
             // 
             // 
@@ -613,91 +617,6 @@
             // 
             // 
             this.ctrlFaAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(464, 0, 213, 20);
-            this.ctrlFaAddress.TxtCity.RootElement.StretchVertically = true;
-            this.ctrlFaAddress.TxtCity.Size = new System.Drawing.Size(213, 20);
-            this.ctrlFaAddress.TxtCity.TabIndex = 23;
-            // 
-            // ctrlFaAddress
-            // 
-            this.ctrlFaAddress.AddressDataMember = "FaAddress";
-            this.ctrlFaAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlFaAddress.CityDataMember = "FaCity";
-            this.ctrlFaAddress.CountriesDataMember = "";
-            this.ctrlFaAddress.CountriesDataSource = null;
-            this.ctrlFaAddress.CountriesDisplayMember = "";
-            this.ctrlFaAddress.CountriesValueMember = "";
-            this.ctrlFaAddress.CountryDataMember = "FaCountry";
-            this.ctrlFaAddress.DataMember = "";
-            this.ctrlFaAddress.DataSource = this.anketaPersonBindingSource;
-            // 
-            // 
-            // 
-            this.ctrlFaAddress.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlFaAddress.DdlCountry.Location = new System.Drawing.Point(0, 0);
-            this.ctrlFaAddress.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlFaAddress.DdlCountry.Name = "ddlCountry";
-            // 
-            // 
-            // 
-            this.ctrlFaAddress.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 351, 20);
-            this.ctrlFaAddress.DdlCountry.RootElement.StretchVertically = true;
-            this.ctrlFaAddress.DdlCountry.Size = new System.Drawing.Size(212, 20);
-            this.ctrlFaAddress.DdlCountry.TabIndex = 18;
-            // 
-            // 
-            // 
-            this.ctrlFaAddress.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlFaAddress.DdlRegion.Location = new System.Drawing.Point(232, 0);
-            this.ctrlFaAddress.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlFaAddress.DdlRegion.Name = "ddlRegion";
-            // 
-            // 
-            // 
-            this.ctrlFaAddress.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(358, 0, 338, 20);
-            this.ctrlFaAddress.DdlRegion.RootElement.StretchVertically = true;
-            this.ctrlFaAddress.DdlRegion.Size = new System.Drawing.Size(212, 20);
-            this.ctrlFaAddress.DdlRegion.TabIndex = 22;
-            this.ctrlFaAddress.Location = new System.Drawing.Point(143, 30);
-            this.ctrlFaAddress.Name = "ctrlFaAddress";
-            this.ctrlFaAddress.RegionDataMember = "FaRegion";
-            this.ctrlFaAddress.RegionsDataMember = "";
-            this.ctrlFaAddress.RegionsDataSource = null;
-            this.ctrlFaAddress.RegionsDisplayMember = "";
-            this.ctrlFaAddress.RegionsValueMember = "";
-            this.ctrlFaAddress.Size = new System.Drawing.Size(677, 45);
-            this.ctrlFaAddress.TabIndex = 18;
-            // 
-            // 
-            // 
-            this.ctrlFaAddress.TxtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlFaAddress.TxtAddress.Location = new System.Drawing.Point(0, 25);
-            this.ctrlFaAddress.TxtAddress.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlFaAddress.TxtAddress.Name = "txtAddress";
-            // 
-            // 
-            // 
-            this.ctrlFaAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 692, 20);
-            this.ctrlFaAddress.TxtAddress.RootElement.StretchVertically = true;
-            this.ctrlFaAddress.TxtAddress.Size = new System.Drawing.Size(677, 20);
-            this.ctrlFaAddress.TxtAddress.TabIndex = 10;
-            // 
-            // 
-            // 
-            this.ctrlFaAddress.TxtCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlFaAddress.TxtCity.Location = new System.Drawing.Point(464, 0);
-            this.ctrlFaAddress.TxtCity.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlFaAddress.TxtCity.Name = "txtCity";
-            // 
-            // 
-            // 
-            this.ctrlFaAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(474, 0, 218, 20);
             this.ctrlFaAddress.TxtCity.RootElement.StretchVertically = true;
             this.ctrlFaAddress.TxtCity.Size = new System.Drawing.Size(213, 20);
             this.ctrlFaAddress.TxtCity.TabIndex = 23;
@@ -1092,9 +1011,70 @@
             this.btnSaveRightholder.ThemeName = "Aqua";
             this.btnSaveRightholder.Click += new System.EventHandler(this.btnSaveRightholder_Click);
             // 
-            // anketaPersonBindingSource
+            // ctrlReAddress
             // 
-            this.anketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.ctrlReAddress.AddressDataMember = "ReAddress";
+            this.ctrlReAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlReAddress.CityDataMember = "ReCity";
+            this.ctrlReAddress.CountriesDataMember = "";
+            this.ctrlReAddress.CountriesDataSource = null;
+            this.ctrlReAddress.CountriesDisplayMember = "";
+            this.ctrlReAddress.CountriesValueMember = "";
+            this.ctrlReAddress.CountryDataMember = "ReCountry";
+            this.ctrlReAddress.DataMember = "";
+            this.ctrlReAddress.DataSource = this.anketaPersonBindingSource;
+            // 
+            // 
+            // 
+            this.ctrlReAddress.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlReAddress.DdlCountry.Location = new System.Drawing.Point(0, 0);
+            this.ctrlReAddress.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
+            this.ctrlReAddress.DdlCountry.Name = "ddlCountry";
+            this.ctrlReAddress.DdlCountry.Size = new System.Drawing.Size(212, 20);
+            this.ctrlReAddress.DdlCountry.TabIndex = 18;
+            // 
+            // 
+            // 
+            this.ctrlReAddress.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlReAddress.DdlRegion.Location = new System.Drawing.Point(232, 0);
+            this.ctrlReAddress.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
+            this.ctrlReAddress.DdlRegion.Name = "ddlRegion";
+            this.ctrlReAddress.DdlRegion.Size = new System.Drawing.Size(212, 20);
+            this.ctrlReAddress.DdlRegion.TabIndex = 22;
+            this.ctrlReAddress.Location = new System.Drawing.Point(143, 113);
+            this.ctrlReAddress.Name = "ctrlReAddress";
+            this.ctrlReAddress.RegionDataMember = "ReRegion";
+            this.ctrlReAddress.RegionsDataMember = "";
+            this.ctrlReAddress.RegionsDataSource = null;
+            this.ctrlReAddress.RegionsDisplayMember = "";
+            this.ctrlReAddress.RegionsValueMember = "";
+            this.ctrlReAddress.Size = new System.Drawing.Size(677, 45);
+            this.ctrlReAddress.TabIndex = 23;
+            // 
+            // 
+            // 
+            this.ctrlReAddress.TxtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlReAddress.TxtAddress.Location = new System.Drawing.Point(0, 25);
+            this.ctrlReAddress.TxtAddress.Margin = new System.Windows.Forms.Padding(0);
+            this.ctrlReAddress.TxtAddress.Name = "txtAddress";
+            this.ctrlReAddress.TxtAddress.Size = new System.Drawing.Size(677, 20);
+            this.ctrlReAddress.TxtAddress.TabIndex = 10;
+            // 
+            // 
+            // 
+            this.ctrlReAddress.TxtCity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlReAddress.TxtCity.Location = new System.Drawing.Point(464, 0);
+            this.ctrlReAddress.TxtCity.Margin = new System.Windows.Forms.Padding(0);
+            this.ctrlReAddress.TxtCity.Name = "txtCity";
+            this.ctrlReAddress.TxtCity.Size = new System.Drawing.Size(213, 20);
+            this.ctrlReAddress.TxtCity.TabIndex = 23;
             // 
             // RightholderWorkplace
             // 
@@ -1137,10 +1117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlLeAddress.DdlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlLeAddress.TxtAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlLeAddress.TxtCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.DdlCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.DdlRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.TxtAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.TxtCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.DdlCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.DdlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlFaAddress.TxtAddress)).EndInit();
@@ -1181,7 +1158,10 @@
             this.createRightholderExclusionLimitationPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.DdlCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.DdlRegion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.TxtAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.TxtCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1227,7 +1207,6 @@
         private Telerik.WinControls.UI.RadSeparator radSeparator1;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private IpsViewComponentLibrary.IpsAddressControl ctrlLeAddress;
-        private IpsViewComponentLibrary.IpsAddressControl ctrlReAddress;
         private IpsViewComponentLibrary.IpsAddressControl ctrlFaAddress;
         private DebugFormForControls.ContactsPersonControl ctrlContacts;
         private IpsViewComponentLibrary.RegistrationPersonsControl ctrlRegistrations;
@@ -1247,5 +1226,6 @@
         private IpsViewComponentLibrary.IpsExclusionsLimitationsControl ctrlExclusionsLimitations;
         private DebugFormForControls.AnketaPersonRightHolderControl ctrlAnketaPerson;
         private System.Windows.Forms.BindingSource anketaPersonBindingSource;
+        private IpsViewComponentLibrary.IpsAddressControl ctrlReAddress;
     }
 }
