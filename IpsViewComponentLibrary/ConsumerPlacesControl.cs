@@ -122,6 +122,8 @@ namespace ipsAnketaClient
             rBtnEditInst.Enabled = true;
             isNewInst = false;
             newPlace?.Clear();
+
+            SetGridDataSource(data.Client.ClnBusinessPlace);
         }
 
         /// <summary>
@@ -530,6 +532,7 @@ namespace ipsAnketaClient
                 if (MessageBox.Show("Зберегти дані?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     SetDefaultState();
+                    //SetGridDataSource(data.Client.ClnBusinessPlace);
                     //some code
                 }
             }
@@ -546,7 +549,5 @@ namespace ipsAnketaClient
         }
 
         #endregion
-
-
     }
 }

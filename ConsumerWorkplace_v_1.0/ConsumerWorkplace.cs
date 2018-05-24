@@ -15,10 +15,13 @@ using Telerik.WinControls;
 
 namespace ConsumerWorkplace_v_1._0
 {
-    public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm
+    public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
     {
         private bool nextPage = false;
         private sbyte validTabs = 0;
+
+
+        public event Func<bool> Save;
 
         public ConsumerWorkplace()
         {
@@ -27,20 +30,73 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
-        public void Tets()
-        {
+        //public void TestMehod()
+        //{
+        //    //
+        //    List<ListConsumers> ds = new List<ListConsumers>
+        //    {
+        //        new ListConsumers
+        //        {
+        //            Name = "Ресторан",
+        //            CustId = 121,
+        //            CountAgree = 1,
+        //            Innokpo = 58946449,
+        //            Undistribamount = 154.554
+        //        },
+        //        new ListConsumers{
+        //            Name = "Готель",
+        //            CustId = 154,
+        //            CountAgree = 2,
+        //            Innokpo = 12313213,
+        //            Undistribamount = 12.54
+        //        },
+        //        new ListConsumers{
+        //            Name = "Забігайлівка",
+        //            CustId = 101,
+        //            CountAgree = 3,
+        //            Innokpo = 415146465,
+        //            Undistribamount = 1.0544
+        //        },
+        //    };
 
-        }
+        //    // rGridViewConsumers.DataSource = ds;
+        //    //
+        //}
 
         /// <summary>
-        /// Кнопка створення нової анкети юр особи
+        /// Перехід на редагування Споживача
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void rbtnNext_Click(object sender, EventArgs e)
+        private void SetConsumerPageView()
         {
             rpvConsumers.SelectedPage = pageConsumersAnketa;
             pageAllAnketa.SelectedPage = pvConsumerClientName;
+            foreach (var page in pageAllAnketa.Pages)
+            {
+                page.Item.ForeColor = Color.DarkGray;
+            }
+            pageAllAnketa.Pages[0].Item.ForeColor = DefaultForeColor;
+        }
+        /// <summary>
+        /// Кнопка створення нової анкети ЮРИДИЧНОЇ особи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddJuridicalPerson_Click(object sender, EventArgs e)
+        {
+            int custType = 3; // Юридична особа
+            _cust = NewCustomer(custType);
+            SetDataSources();
+            SetConsumerPageView();
+        }
+
+        /// <summary>
+        /// Кнопка створення нової анктеи ФІЗИЧНОЇ особи
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddNaturalPerson_Click(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -85,7 +141,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             nextPage = true;
 
-            managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+                managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
                 managersCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
                 managersCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
                 pageAllAnketa.SelectedPage = pvConsumerManagers;
@@ -153,9 +209,9 @@ namespace ConsumerWorkplace_v_1._0
             if (Validation(7) && MessageBox.Show("Do you want save data?", "Save data?", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                GetDataSources();
-                rpvConsumers.SelectedPage = pageConsumersGrid;
                 ClearDataConsumersControls();
+                SetDataSources();
+                rpvConsumers.SelectedPage = pageConsumersGrid;
             }
         }
 
@@ -183,8 +239,9 @@ namespace ConsumerWorkplace_v_1._0
             {
                 case 1:
                 {
-                    if (!clientNameCtrlAnketaCompany.Validator()||
-                        !clientNameCtrlRegistrationsCompany.Validator())
+                    if (!clientNameCtrlAnketaCompany.Validator())
+                        isValid = false;
+                    if(!clientNameCtrlRegistrationsCompany.Validator())
                         isValid = false;
                 }
                     break;
@@ -193,36 +250,50 @@ namespace ConsumerWorkplace_v_1._0
                 {
                     if (!licenseTypeCtrlContractConsumerMain.Validator())
                         isValid = false;
+                    if (!licenseTypeCtrlContractConsumerDetail.Validator())
+                        isValid = false;
                 }
                     break;
 
                 case 3:
                 {
-                        
+                    if (!anketaCtrlAddressFactual.Validator())
+                        isValid = false;
+                    if (!anketaCtrlAddressLegal.Validator())
+                        isValid = false;
+                    //додаткові поля
                 }
                     break;
 
                 case 4:
                 {
-                        
+                    if (!managersCtrlBossNameContactsBookkeeper.Validator())
+                        isValid = false;
+                    if (!managersCtrlBossNameContactsContactPerson.Validator())
+                        isValid = false;
+                    if (!managersCtrlBossNameContactsHead.Validator())
+                        isValid = false;
+
+                    //додаткові поля
                 }
                     break;
 
                 case 5:
                 {
-
+                        // майданчики
                 }
                     break;
 
                 case 6:
                 {
-
+                    if (!bankRequisitesCtrlBankAccount.Validator())
+                        isValid = false;
                 }
                     break;
 
                 case 7:
                 {
-
+                        //друк PDF
                 }
                     break;
 
@@ -236,38 +307,96 @@ namespace ConsumerWorkplace_v_1._0
         /// </summary>
         private void ClearDataConsumersControls()
         {
-            clientNameCtrlAnketaCompany.ClearData();
-            clientNameCtrlRegistrationsCompany.ClearData();
-            licenseTypeCtrlContractConsumerMain.ClearData();
-            
+            //clientNameCtrlAnketaCompany.ClearData();
+            //clientNameCtrlRegistrationsCompany.ClearData();
+            //licenseTypeCtrlContractConsumerMain.ClearData();
         }
 
-        public void GetDataSources()
+        public void SetDataSources()
         {
-            List<object> objList =new List<object>
+            if (_cust == null)
+                return;
+            if( _cust.CustType == 3) // Юр. особа
             {
-                //1
-                clientNameCtrlAnketaCompany.DataSource,
-                clientNameCtrlRegistrationsCompany.DataSource,
-                clientNameCheckBoxPlaces.Checked,
-                //2
-                licenseTypeCtrlContractConsumerMain.DataSource,
-                licenseTypeCtrlContractConsumerDetail.DataSource,
-                //3
-                anketaCtrlAddressFactual.DataSource,
-                anketaCtrlAddressLegal.DataSource,
-                //4
-                managersCtrlBossNameContactsHead.DataSource,
-                managersCtrlBossNameContactsBookkeeper.DataSource,
-                managersCtrlBossNameContactsContactPerson.DataSource,
-                //5
-                // placesCtrlConsumerPlaces.SetData(),
-                //6
-                bankRequisitesCtrlBankAccount.DataSource
 
-            };
+                AnketaCompany anketa = _cust.Company.AnketaCompany.Where(rec => rec.Version == _cust.AnkVersion).SingleOrDefault();
+                if(_cust.BankAccount.Count == 0)
+                    _cust.BankAccount.Add(new BankAccount{CustId = _cust.CustId});
+                var bankAccount = _cust.BankAccount.FirstOrDefault();
 
-            var list = objList.ToList();
+                if (_cust.Company.RelEmployee.Count == 0)
+                {
+                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 1 });
+                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 2 });
+                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 3 });
+                }
+
+                var relBoss = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 1).SingleOrDefault();
+
+                var relBookkeeper =_cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 2).SingleOrDefault();
+
+                var relContactPerson = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 3).SingleOrDefault();
+
+                
+
+                var agrMaster = _cust.AgreementMaster?.Where(rec => rec.AgrStatus < 4).FirstOrDefault();
+
+                var licAgr = (agrMaster?.LicenseAgreement)?.FirstOrDefault(rec => rec.LicStatus < 4);
+
+
+                anketaCtrlAddressFactual.CountriesDataSource = _dic.country;
+                anketaCtrlAddressFactual.DataSource = this.iAnketaCompanyBindingSource;
+                anketaCtrlAddressFactual.RegionsDataSource = _dic.region;
+                anketaCtrlAddressFactual.CountriesValueMember = "countryCode";
+                anketaCtrlAddressFactual.CountriesDisplayMember = "countryName";
+                anketaCtrlAddressFactual.RegionsValueMember = "codeI";
+                anketaCtrlAddressFactual.RegionsDisplayMember = "name";
+
+                anketaCtrlAddressLegal.CountriesDataSource = _dic.country;
+                anketaCtrlAddressLegal.DataSource = this.iAnketaCompanyBindingSource;
+                anketaCtrlAddressLegal.RegionsDataSource = _dic.region;
+                anketaCtrlAddressLegal.CountriesValueMember = "countryCode";
+                anketaCtrlAddressLegal.CountriesDisplayMember = "countryName";
+                anketaCtrlAddressLegal.RegionsValueMember = "codeI";
+                anketaCtrlAddressLegal.RegionsDisplayMember = "name";
+
+                anketaDictionatiesBindingSource.DataSource = _dic;
+                if(bankAccount != null)
+                    bankRequisitesCtrlBankAccount.DataSource = bankAccount;
+                clientNameCtrlAnketaCompany.ActivityCodeDataSource = _dic.activityType;
+                clientNameCtrlAnketaCompany.ActivityCodeValueMember = "CodeI";
+                clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "Name";
+                clientNameCtrlAnketaCompany.DataSource = anketa;
+                clientNameCtrlRegistrationsCompany.DataSource = this.iAnketaCompanyBindingSource;
+                // consumerMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
+                consumerWorkplaceBindingSource.DataSource = this;
+                iAnketaCompanyBindingSource.DataSource = anketa;
+                iPositionTypeBindingSource.DataSource = _dic.positionType;
+                if (relBoss != null)
+                    iRelEmployeeBindingSource.DataSource = relBoss;
+                licenseTypeCtrlContractConsumerDetail.DataSource = _dic.licenseType;
+                licenseTypeCtrlContractConsumerMain.DataSource = agrMaster;
+
+                placesCtrlConsumerPlaces.SetData(_cust);
+                if (_cust.Client.ClnBusinessPlace.Count != 0)
+                    placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
+
+                //iEmployeeBindingSource.DataSource = relBoss?.Empl;
+
+                if (relBoss?.Empl != null)
+                    managersCtrlBossNameContactsHead.DataSource = relBoss?.Empl;
+                
+                if(relBookkeeper?.Empl != null)
+                    managersCtrlBossNameContactsBookkeeper.DataSource = relBookkeeper?.Empl;
+
+                if(relContactPerson?.Empl != null)
+                    managersCtrlBossNameContactsContactPerson.DataSource = relContactPerson?.Empl;
+
+                
+                //managersRddListPositionHead.DataSource
+                ;
+
+            }
         }
 
 
@@ -279,7 +408,6 @@ namespace ConsumerWorkplace_v_1._0
         /// <param name="e"></param>
         private void pageAllAnketa_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
         {
-            // У М О В У
             if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
             {
                 if (e.Page.TabIndex <= validTabs)
@@ -290,7 +418,7 @@ namespace ConsumerWorkplace_v_1._0
                 else if (pageAllAnketa.SelectedPage.TabIndex == validTabs && nextPage)
                 {
                     validTabs++;
-                    //pageAllAnketa.Pages[validTabs].Item.TextParams.foreColor = Color.DarkGray;
+                    pageAllAnketa.Pages[validTabs].Item.ForeColor = DefaultForeColor;
                     e.Cancel = false;
                     nextPage = false;
                 }
@@ -302,5 +430,68 @@ namespace ConsumerWorkplace_v_1._0
             else
                 e.Cancel = true;
         }
+
+        /// <summary>
+        /// Натискання по кнопкі редагування в грід
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            MessageBox.Show(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value.ToString());
+            int custId = Convert.ToInt32(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value);
+            _cust = GetCustomer(custId);
+            SetDataSources();
+            SetConsumerPageView();
+        }
+
+        Customer _cust = null;
+        public void SetData(ICustomer data)
+        {
+            _cust = (Customer)data;
+        }
+
+        public void GetData(ICustomer data)
+        {
+            throw new NotImplementedException();
+        }
+
+        private AnketaDictionaties _dic = null;
+        public void SetDictionary(AnketaDictionaties dic)
+        {
+            _dic = dic;
+        }
+
+        /// <summary>
+        /// Признак, що є майданчик
+        /// </summary>
+        public bool IsPlaceIn
+        {
+            get { if (_cust == null || _cust.Client.ClnBusinessPlace.Count == 0)
+                    return false;
+                return true;
+            }
+        }
+
+        public Func<IList<ConsumerMainView>> getMainViewData { get; set; }
+        public Func<int, Customer> NewCustomer { get; set; }
+        public Func<int, Customer> GetCustomer { get; set; }
+        public Func<Customer, bool> SaveCustomer { get; set; }
+
+        private void rpvConsumers_SelectedPageChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void EndPresenterLink()
+        {
+            if (getMainViewData != null)
+            {
+                var list = getMainViewData();
+                consumerMainViewBindingSource.DataSource = list;
+            }
+        }
     }
+
+
 }
