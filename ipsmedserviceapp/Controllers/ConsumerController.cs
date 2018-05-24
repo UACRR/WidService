@@ -71,7 +71,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
         [HttpGet("detail/{id}")]
-        public async Task<IActionResult> GetCunsumerById(int id)
+        public async Task<IActionResult> GetConsumerById(int id)
         {
             var cust = await GetConsumerAllData(id);
             return Json(cust);
@@ -213,7 +213,7 @@ namespace ipsmedserviceapp.Controllers
                 tran.Commit();
                 tran = null;
 
-                return await GetCunsumerById(newCustomer.CustId);
+                return await GetConsumerById(newCustomer.CustId);
             }
             catch (Exception ex)
             {
