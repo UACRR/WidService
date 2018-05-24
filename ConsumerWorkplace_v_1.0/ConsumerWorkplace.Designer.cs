@@ -364,7 +364,7 @@
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerPlaces;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerAnketa;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1103, 531);
             this.pageAllAnketa.TabIndex = 2;
@@ -1476,7 +1476,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(4, 3);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(955, 38);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(955, 0);
             this.radPdfViewerNavigator.TabIndex = 11;
             this.radPdfViewerNavigator.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;

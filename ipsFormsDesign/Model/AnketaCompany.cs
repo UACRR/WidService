@@ -27,7 +27,7 @@ namespace ipsFormsDesign.Model
         public string FaCountry { get; set; }
         public int? BanAccId { get; set; }
         public int? JaRegion { get; set; }
-        public int? FaRegion { get; set; }
+        public int FaRegion { get; set; }
         public string RegistrNumber { get; set; }
         public string RegistrWho { get; set; }
 

@@ -168,7 +168,7 @@ public interface IAnketaCompany
          string FaCountry { get; set; }
          int? BanAccId { get; set; }
          int? JaRegion { get; set; }
-         int? FaRegion { get; set; }
+         int FaRegion { get; set; }
          string RegistrNumber { get; set; }
          string RegistrWho { get; set; }
 }
@@ -213,7 +213,7 @@ public interface IAnketaPerson
          string FaCity { get; set; }
          string FaAddress { get; set; }
          int? BanAccId { get; set; }
-         int? FaRegion { get; set; }
+         int FaRegion { get; set; }
          string Lang { get; set; }
          int? ReRegion { get; set; }
          string LeCountry { get; set; }
