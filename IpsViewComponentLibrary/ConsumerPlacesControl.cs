@@ -45,8 +45,10 @@ namespace ipsAnketaClient
         /// <param name="data"></param>
         public void SetGridDataSource(object dataSource)
         {
+            rGridViewInstitution.Refresh();
             if (dataSource!=null)
                 rGridViewInstitution.DataSource = dataSource;
+            
         }
 
         /// <summary>
@@ -532,7 +534,7 @@ namespace ipsAnketaClient
                 if (MessageBox.Show("Зберегти дані?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     SetDefaultState();
-                    //SetGridDataSource(data.Client.ClnBusinessPlace);
+                    SetGridDataSource(data.Client.ClnBusinessPlace);
                     //some code
                 }
             }

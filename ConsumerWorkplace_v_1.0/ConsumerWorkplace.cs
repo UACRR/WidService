@@ -381,7 +381,10 @@ namespace ConsumerWorkplace_v_1._0
                 placesCtrlConsumerPlaces.SetData(_cust);
                 if (_cust.Client.ClnBusinessPlace.Count != 0)
                     placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
+                else
+                    placesCtrlConsumerPlaces.SetGridDataSource(new List<ClnBusinessPlace>());
 
+                //{CustId = _cust.CustId,ClnPlaceHoll = new List<ClnPlaceHoll>()}
                 //iEmployeeBindingSource.DataSource = relBoss?.Empl;
 
                 if (relBoss?.Empl != null)
