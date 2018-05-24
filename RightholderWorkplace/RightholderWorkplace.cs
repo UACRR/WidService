@@ -1,4 +1,5 @@
 ﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using ipsmedserviceapp.Model;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using WebAPIConnector;
 
 namespace RightholderWorkplace
 {
@@ -16,6 +18,7 @@ namespace RightholderWorkplace
     {
         AnketaPerson _anketa;
         BankAccount _bankAccount;
+        AnketaDictionaties _dictionaries;
         List<TermsOfServiceWrapper> _termsOfServices;
 
         public RightholderWorkplace()
@@ -27,6 +30,10 @@ namespace RightholderWorkplace
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             ThemeResolutionService.ApplicationThemeName = "Office2007Silver";
+
+            //debug
+            //rightholdersPageView.SelectedPage = newRightholdersPage;
+            //newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
         }
 
         private void btnNewRightholder_Click(object sender, EventArgs e)
@@ -96,6 +103,9 @@ namespace RightholderWorkplace
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
+            var connector = new ApiConnector("http://localhost:54867/");
+            _dictionaries = connector.GetItemById<AnketaDictionaties>("api/Dictionary", "anketa");
+
             // fake data
             _anketa = new AnketaPerson
             {
@@ -132,6 +142,10 @@ namespace RightholderWorkplace
                     },
                 }),
             };
+
+            ctrlAnketaPerson.SexTypeDataSource = _dictionaries.sexType;
+            ctrlAnketaPerson.SexTypeValueMember = "CodeI";
+            ctrlAnketaPerson.SexTypeDisplayMember = "Name";
 
             ctrlAnketaPerson.DataSource = _anketa;
             ctrlContacts.DataSource = _anketa;

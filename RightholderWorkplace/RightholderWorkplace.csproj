@@ -105,6 +105,10 @@
       <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
       <Name>IpsViewComponentLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
+      <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
+      <Name>WebAPIConnector</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
