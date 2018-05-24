@@ -25,6 +25,8 @@ namespace RightholderWorkplace
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+
+            ThemeResolutionService.ApplicationThemeName = "Office2007Silver";
         }
 
         private void btnNewRightholder_Click(object sender, EventArgs e)
