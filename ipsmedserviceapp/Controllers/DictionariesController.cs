@@ -747,19 +747,7 @@ namespace ipsmedserviceapp.Controllers
         {
             Dictionary<string, object> retDictionary = new Dictionary<string, object>();
 
-            //retDictionary.Add("CustomerType",  await _dbContext.CustomerType.AsNoTracking().ToListAsync());
-            //retDictionary.Add("CustomerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
-            //retDictionary.Add("PositionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
-            //retDictionary.Add("KlR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
-            //retDictionary.Add("ActivityType", await _dbContext.ActivityType.AsNoTracking().ToListAsync());
-            //retDictionary.Add("Region", await _dbContext.Region.AsNoTracking().ToListAsync());
-            //retDictionary.Add("TypeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
-            //retDictionary.Add("ResidentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
-            //retDictionary.Add("SexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
-            //retDictionary.Add("Country", await _dbContext.Country.AsNoTracking().ToListAsync());
-            //retDictionary.Add("Lang", await _dbContext.Lang.AsNoTracking().ToListAsync());
-            //retDictionary.Add("AnketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
-            //retDictionary.Add("TypePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
+
             retDictionary.Add("activityType", await _dbContext.ActivityType.AsNoTracking().ToListAsync());
             retDictionary.Add("agrLicenseType", await _dbContext.AgrLicenseType.AsNoTracking().ToListAsync());
             retDictionary.Add("agreementStatus", await _dbContext.AgreementStatus.AsNoTracking().ToListAsync());
@@ -780,6 +768,7 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("region", await _dbContext.Region.AsNoTracking().ToListAsync());
             retDictionary.Add("residentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
             retDictionary.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
+            retDictionary.Add("typeMethodGet", await _dbContext.TypeMethodGet.AsNoTracking().ToListAsync());
             retDictionary.Add("typePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
             retDictionary.Add("typeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
             retDictionary.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());

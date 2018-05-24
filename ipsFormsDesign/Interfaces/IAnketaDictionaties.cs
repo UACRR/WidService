@@ -28,6 +28,7 @@ namespace ipsFormsDesign.Interfaces
         IList<Region> region { get; set; }
         IList<ResidentType> residentType { get; set; }
         IList<SexType> sexType { get; set; }
+        IList<TypeMethodGet> typeMethodGet { get; set; }
         IList<TypePlace> typePlace { get; set; }
         IList<TypeVat> typeVat { get; set; }
         IList<UserRoleType> userRoleType { get; set; }
@@ -63,5 +64,6 @@ namespace ipsFormsDesign.Interfaces
         public IList<UserRoleType> userRoleType {get; set;}
         public IList<UsesKind> usesKind {get; set;}
         public IList<UsesType> usesType {get; set;}
+        public IList<TypeMethodGet> typeMethodGet { get; set; }
     }
 }
