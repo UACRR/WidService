@@ -1,52 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ipsmedserviceapp.Model;
 
 namespace ipsFormsDesign.Interfaces
 {
 
-    public interface IConsumerCompany
+    public interface IConsumerForm
     {
-        event Func<bool> Save;
+        event Func<bool> Save; 
+        Func<IList<ConsumerMainView>> getMainViewData { get; set; }
+        Func<int, Customer> NewCustomer { get; set; }
+        Func<int, Customer> GetCustomer { get; set; }
+        Func<Customer, bool> SaveCustomer { get; set; }
+        void EndPresenterLink();
+
         void SetData(ICustomer data);
-        void getData(ICustomer data);
+        void GetData(ICustomer data);
 
         void SetDictionary(AnketaDictionaties dic);
     }
-    public interface ICunsomerDic
-    {
-        IList<IActivityType> activityType { get; set; }
-        IList<IAgrLicenseType> agrLicenseType { get; set; }
-        IList<IAgreementStatus> agreementStatus { get; set; }
-        IList<IAgreementType> agreementType { get; set; }
-        IList<IAnketaStatus> anketaStatus { get; set; }
-        IList<ICopyrightKind> copyrightKind { get; set; }
-        IList<ICopyrightType> copyrightType { get; set; }
-        IList<ICountry> country { get; set; }
-        IList<ICrkindGroup> crkindGroup { get; set; }
-        IList<ICustomerStatus> customerStatus { get; set; }
-        IList<ICustomerType> customerType { get; set; }
-        IList<IKlR030> klR030 { get; set; }
-        IList<ILicenseClass> licenseClass { get; set; }
-        IList<ILicenseType> licenseType { get; set; }
-        IList<IPeriod> period { get; set; }
-        IList<IPeriodStatus> periodStatus { get; set; }
-        IList<IPositionType> positionType { get; set; }
-        IList<IRegion> region { get; set; }
-        IList<IResidentType> residentType { get; set; }
-        IList<ISexType> sexType { get; set; }
-        IList<ITypePlace> typePlace { get; set; }
-        IList<ITypeVat> typeVat { get; set; }
-        IList<IUserRoleType> userRoleType { get; set; }
-        IList<IUsesKind> usesKind { get; set; }
-        IList<IUsesType> usesType { get; set; }
 
-    }
-
-    public interface IConsumer : ICustCompany
-    {
-        IList<IClnBusinessPlace> clnBusinessPlaceList { get; set; }
-        IList<IClnPlaceHoll> clnPlaceHoll { get; set; }
-        IList<ILicPlaceHoll> licPlaceHoll { get; set; }
-    }
 }

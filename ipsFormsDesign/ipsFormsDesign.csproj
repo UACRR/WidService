@@ -8,4 +8,8 @@
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Definition\" />
+  </ItemGroup>
+
 </Project>
