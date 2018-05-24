@@ -86,12 +86,22 @@ namespace RightholderWorkplace
 
         private void btnNextExclusionLimitation_Click(object sender, EventArgs e)
         {
-            newCreateRightholderPageView.SelectedPage = createRightholderExclusionLimitationPage;
+            newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
         }
 
         private void btnPrevRoyalty_Click(object sender, EventArgs e)
         {
             newCreateRightholderPageView.SelectedPage = createRightholderRoyaltyPage;
+        }
+
+        private void btnNextTerritoryLimitation_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderTerritoryLimitationsPage;
+        }
+
+        private void btnPrevRightLimitation_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
         }
 
         #endregion
