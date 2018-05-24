@@ -14,6 +14,7 @@ namespace ipsFormsDesign.Model
             LicenseAgreement = new HashSet<LicenseAgreement>();
             MoneyReceived = new HashSet<MoneyReceived>();
             PaidPeriod = new HashSet<PaidPeriod>();
+            PartnerClient = new HashSet<PartnerClient>();
         }
 
         public int CustId { get; set; }
@@ -25,6 +26,7 @@ namespace ipsFormsDesign.Model
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
         public ICollection<MoneyReceived> MoneyReceived { get; set; }
         public ICollection<PaidPeriod> PaidPeriod { get; set; }
+        public ICollection<PartnerClient> PartnerClient { get; set; }
     }
 }
 

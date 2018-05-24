@@ -29,6 +29,8 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public int? Status { get; set; }
         public string TableObj { get; set; }
+        public int? Utype { get; set; }
+        public string Comment { get; set; }
 
         public CategoryStatusType StatusNavigation { get; set; }
         public ICollection<CategoryTr> CategoryTr { get; set; }
