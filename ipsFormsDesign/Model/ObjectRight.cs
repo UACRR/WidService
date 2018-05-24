@@ -2,7 +2,7 @@ using ipsFormsDesign.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
     public partial class ObjectRight : IObjectRight
     {
@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
             LicenseBigR = new HashSet<LicenseBigR>();
             PortalObjectRights = new HashSet<PortalObjectRights>();
             RegisterItem = new HashSet<RegisterItem>();
-            RelObjGenre = new HashSet<RelObjGenre>();
+            RelPopGenre = new HashSet<RelPopGenre>();
             Request = new HashSet<Request>();
             SeekObject = new HashSet<SeekObject>();
         }
@@ -22,7 +22,7 @@ namespace ipsmedserviceapp.Model
         public int CategoryCode { get; set; }
         public int ObjId { get; set; }
         public int? ReqId { get; set; }
-        public int? ObjType { get; set; }
+        public int? GenreType { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
         public string Performer { get; set; }
@@ -32,8 +32,10 @@ namespace ipsmedserviceapp.Model
         public DateTime? CreateDate { get; set; }
         public string ObjImg { get; set; }
         public int? Loadid { get; set; }
+        public int? SpecType { get; set; }
 
-        public ObjectType ObjectType { get; set; }
+        public GenreType GenreTypeNavigation { get; set; }
+        public SpecType SpecTypeNavigation { get; set; }
         public ObjectStatus StatusNavigation { get; set; }
         public MediaTrack MediaTrack { get; set; }
         public ICollection<Account> Account { get; set; }
@@ -42,7 +44,7 @@ namespace ipsmedserviceapp.Model
         public ICollection<LicenseBigR> LicenseBigR { get; set; }
         public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
         public ICollection<RegisterItem> RegisterItem { get; set; }
-        public ICollection<RelObjGenre> RelObjGenre { get; set; }
+        public ICollection<RelPopGenre> RelPopGenre { get; set; }
         public ICollection<Request> Request { get; set; }
         public ICollection<SeekObject> SeekObject { get; set; }
     }
