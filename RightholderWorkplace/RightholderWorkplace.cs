@@ -157,6 +157,7 @@ namespace RightholderWorkplace
                 }),
             };
 
+            // dictionaries
             ctrlAnketaPerson.SexTypeDataSource = _dictionaries.sexType;
             ctrlAnketaPerson.SexTypeValueMember = "CodeI";
             ctrlAnketaPerson.SexTypeDisplayMember = "Name";
@@ -185,6 +186,15 @@ namespace RightholderWorkplace
             ctrlLeAddress.RegionsValueMember = "CodeI";
             ctrlLeAddress.RegionsDisplayMember = "Name";
 
+            ctrlRegistrations.CountriesDataSource = _dictionaries.country;
+            ctrlRegistrations.CountriesValueMember = "CountryCode";
+            ctrlRegistrations.CountriesDisplayMember = "CountryName";
+
+            ctrlRegistrations.ResidentTypesDataSource = _dictionaries.residentType;
+            ctrlRegistrations.ResidentTypesValueMember = "CodeI";
+            ctrlRegistrations.ResidentTypesDisplayMember = "Name";
+
+            // data
             anketaPersonBindingSource.DataSource = _anketa;
 
             ctrlAnketaPerson.DataSource = _anketa;
