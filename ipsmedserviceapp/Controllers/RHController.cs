@@ -244,6 +244,25 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sors"></param>
+        /// <param name="dest"></param>
+        /// <param name="maxId"></param>
+        /// <param name="compId"></param>
+        private void AppendList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId) where T : class
+        {
+            // Додаємо нові
+            List<T> tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
+            // Змінюємо спільні записи
+            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
+
+        }
+
+
+        /// <summary>
         /// Отримати всю інформацію по Правовласнику
         /// </summary>
         /// <param name="rhId"> Ид Правовласника </param>
@@ -290,8 +309,6 @@ namespace ipsmedserviceapp.Controllers
                         foreach (var subItem in license.LicenseBigR.LicAuthor)
                             _dbContext.Entry(subItem).State = EntityState.Deleted;
 
-                        foreach (var subItem in license.LicPlace)
-                            _dbContext.Entry(subItem).State = EntityState.Deleted;
                         // LicPlaceHoll
                         _dbContext.Entry(license.LicenseBigR).State = EntityState.Deleted;
                         _dbContext.Entry(license).State = EntityState.Deleted;
@@ -310,42 +327,24 @@ namespace ipsmedserviceapp.Controllers
                     // Delete LicenseAgreement
                     var agreeItemDest = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
                     var agreeItemSors = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+
+                    agreeItemDest.SetFields(agreeItemSors);
+
                     foreach (var license in agreeItemDest.LicenseAgreement)
                     {
                         var sorsLic = agreeItemSors.LicenseAgreement.Where(rec => rec.LicId == license.LicId).SingleOrDefault();
-                        var musicDes = sorsLic.LicenseBigR.MusicalDesign.ToDictionary(rec => rec.MdId);
-                        // LicAutor
-                        foreach (var subItem in license.LicenseBigR.MusicalDesign)
-                        {
-                            subItem.SetFields(musicDes[subItem.MdId]);
-                            _dbContext.Entry(subItem).State = EntityState.Modified;
-                        }
-                        // LicenseBr
-                        var LicAuthorDic = sorsLic.LicenseBigR.LicAuthor.ToDictionary(rec => rec.LicAutorId);
-                        foreach (var subItem in license.LicenseBigR.LicAuthor)
-                        {
-                            subItem.SetFields(LicAuthorDic[subItem.LicAutorId] );
-                            _dbContext.Entry(subItem).State = EntityState.Added;
-                        }
+                        license.SetFields(sorsLic);
 
-                        foreach (var subItem in license.LicPlace)
-                        { 
-                            _dbContext.Entry(subItem).State = EntityState.Added;
-                        
-                            // LicPlaceHoll
-                        _dbContext.Entry(license.LicenseBigR).State = EntityState.Added;
-                        _dbContext.Entry(license).State = EntityState.Added;
+                        UpdateList(sorsLic.LicenseBigR.MusicalDesign, license.LicenseBigR.MusicalDesign, rec => { }, (sorsItem, destItem) => sorsItem.MdId == destItem.MdId);
+                        UpdateList(sorsLic.LicenseBigR.LicAuthor, license.LicenseBigR.LicAuthor, rec => { }, (sorsItem, destItem) => sorsItem.LicAutorId == destItem.LicAutorId);
+                        // AgreementMaster
                     }
-                    // AgreementMaster
-                    _dbContext.Entry(item).State = EntityState.Added;
-                    _dbContext.Entry(agreeItem).State = EntityState.Added;
-                }
-                );
+                });
                 // Add
                 tempList = updCustomer.RightHolder.AgreementAddRh.Where(row => !dest.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
                 tempList.ForEach(item =>
                 {
-                    
+
                     // Delete LicenseAgreement
                     var agreeItem = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
                     updCustomer.RightHolder.AgreementAddRh.Remove(item);
@@ -378,18 +377,30 @@ namespace ipsmedserviceapp.Controllers
                 if (dest.CustType == 3) // Company
                 {
                     //.Include(item => item.Company)
-                    //.Include(comp => comp.RelEmployee)
-                    //.Include(item => item.AnketaCompany)
+                    if (dest.Company == null)
+                        dest.Company = new Company();
 
+                    //.Include(item => item.AnketaCompany)
+                    var sorsList = updCustomer.Company.AnketaCompany.ToList();
+                    UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                    //.Include(comp => comp.RelEmployee)
+                    UpdateList(updCustomer.Company.RelEmployee, dest.Company.RelEmployee, rec => { },
+                                        (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
+
+                    foreach (var emplRel in dest.Company.RelEmployee)
+                    {
+                        if (emplRel.Empl.Emplid == 0)
+                            _dbContext.Entry(emplRel.Empl).State = EntityState.Added;
+                    }
                 }
                 else
                 {
                     //.Include(item => item.Person)
+                    if (dest.Person == null)
+                        dest.Person = new Person();
+                    AppendList(updCustomer.Person.AnketaPerson, dest.Person.AnketaPerson, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
                     //.Include(item => item.AnketaPerson)
-
                 }
-
-
 
                 //.Include(item => item.Community)
 
