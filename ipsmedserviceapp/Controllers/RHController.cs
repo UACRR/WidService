@@ -275,6 +275,7 @@ namespace ipsmedserviceapp.Controllers
                 UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
                 UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
 
+                // Delete
                 List<AgreementAddRh> tempList = dest.RightHolder.AgreementAddRh.Where(row => !updCustomer.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
                 tempList.ForEach(item =>
                 {
@@ -283,18 +284,95 @@ namespace ipsmedserviceapp.Controllers
                     foreach (var license in agreeItem.LicenseAgreement)
                     {
                         // LicAutor
-                        foreach( var licBr in license.LicenseBigR.M )
-                        {
-
-                        }
-                        // MusicalDesign
+                        foreach (var subItem in license.LicenseBigR.MusicalDesign)
+                            _dbContext.Entry(subItem).State = EntityState.Deleted;
                         // LicenseBr
+                        foreach (var subItem in license.LicenseBigR.LicAuthor)
+                            _dbContext.Entry(subItem).State = EntityState.Deleted;
+
+                        foreach (var subItem in license.LicPlace)
+                            _dbContext.Entry(subItem).State = EntityState.Deleted;
                         // LicPlaceHoll
+                        _dbContext.Entry(license.LicenseBigR).State = EntityState.Deleted;
+                        _dbContext.Entry(license).State = EntityState.Deleted;
                     }
                     // AgreementMaster
+                    _dbContext.Entry(item).State = EntityState.Deleted;
+                    _dbContext.Entry(agreeItem).State = EntityState.Deleted;
                 }
                 );
 
+                // Modify
+                tempList = updCustomer.RightHolder.AgreementAddRh.Where(row => dest.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
+                tempList.ForEach(item =>
+                {
+
+                    // Delete LicenseAgreement
+                    var agreeItemDest = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var agreeItemSors = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    foreach (var license in agreeItemDest.LicenseAgreement)
+                    {
+                        var sorsLic = agreeItemSors.LicenseAgreement.Where(rec => rec.LicId == license.LicId).SingleOrDefault();
+                        var musicDes = sorsLic.LicenseBigR.MusicalDesign.ToDictionary(rec => rec.MdId);
+                        // LicAutor
+                        foreach (var subItem in license.LicenseBigR.MusicalDesign)
+                        {
+                            subItem.SetFields(musicDes[subItem.MdId]);
+                            _dbContext.Entry(subItem).State = EntityState.Modified;
+                        }
+                        // LicenseBr
+                        var LicAuthorDic = sorsLic.LicenseBigR.LicAuthor.ToDictionary(rec => rec.LicAutorId);
+                        foreach (var subItem in license.LicenseBigR.LicAuthor)
+                        {
+                            subItem.SetFields(LicAuthorDic[subItem.LicAutorId] );
+                            _dbContext.Entry(subItem).State = EntityState.Added;
+                        }
+
+                        foreach (var subItem in license.LicPlace)
+                        { 
+                            _dbContext.Entry(subItem).State = EntityState.Added;
+                        
+                            // LicPlaceHoll
+                        _dbContext.Entry(license.LicenseBigR).State = EntityState.Added;
+                        _dbContext.Entry(license).State = EntityState.Added;
+                    }
+                    // AgreementMaster
+                    _dbContext.Entry(item).State = EntityState.Added;
+                    _dbContext.Entry(agreeItem).State = EntityState.Added;
+                }
+                );
+                // Add
+                tempList = updCustomer.RightHolder.AgreementAddRh.Where(row => !dest.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
+                tempList.ForEach(item =>
+                {
+                    
+                    // Delete LicenseAgreement
+                    var agreeItem = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    updCustomer.RightHolder.AgreementAddRh.Remove(item);
+                    updCustomer.AgreementMaster.Remove(agreeItem);
+                    dest.AgreementMaster.Add(agreeItem);
+                    dest.RightHolder.AgreementAddRh.Add(item);
+
+                    foreach (var license in agreeItem.LicenseAgreement)
+                    {
+                        // LicAutor
+                        foreach (var subItem in license.LicenseBigR.MusicalDesign)
+                            _dbContext.Entry(subItem).State = EntityState.Added;
+                        // LicenseBr
+                        foreach (var subItem in license.LicenseBigR.LicAuthor)
+                            _dbContext.Entry(subItem).State = EntityState.Added;
+
+                        foreach (var subItem in license.LicPlace)
+                            _dbContext.Entry(subItem).State = EntityState.Added;
+                        // LicPlaceHoll
+                        _dbContext.Entry(license.LicenseBigR).State = EntityState.Added;
+                        _dbContext.Entry(license).State = EntityState.Added;
+                    }
+                    // AgreementMaster
+                    _dbContext.Entry(item).State = EntityState.Added;
+                    _dbContext.Entry(agreeItem).State = EntityState.Added;
+                }
+                );
 
 
                 if (dest.CustType == 3) // Company
