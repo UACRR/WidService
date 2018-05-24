@@ -12,6 +12,7 @@ namespace ipsFormsDesign.Model
             BrRegItem = new HashSet<BrRegItem>();
             DistributionItem = new HashSet<DistributionItem>();
             LicenseBigR = new HashSet<LicenseBigR>();
+            MusicalDesign = new HashSet<MusicalDesign>();
             PortalObjectRights = new HashSet<PortalObjectRights>();
             RegisterItem = new HashSet<RegisterItem>();
             RelPopGenre = new HashSet<RelPopGenre>();
@@ -42,6 +43,7 @@ namespace ipsFormsDesign.Model
         public ICollection<BrRegItem> BrRegItem { get; set; }
         public ICollection<DistributionItem> DistributionItem { get; set; }
         public ICollection<LicenseBigR> LicenseBigR { get; set; }
+        public ICollection<MusicalDesign> MusicalDesign { get; set; }
         public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
         public ICollection<RegisterItem> RegisterItem { get; set; }
         public ICollection<RelPopGenre> RelPopGenre { get; set; }

@@ -346,6 +346,8 @@ public interface ICategory
          string Name { get; set; }
          int? Status { get; set; }
          string TableObj { get; set; }
+         int? Utype { get; set; }
+         string Comment { get; set; }
 }
 public interface ICategoryStatusType
     {    int CodeI { get; set; }
@@ -841,6 +843,23 @@ public interface ILegalBasisTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface ILicAuthor
+    {
+         int LicAutorId { get; set; }
+         int? LicId { get; set; }
+         int? CustId { get; set; }
+         int? RoleType { get; set; }
+         string NameAuthor { get; set; }
+         DateTime? DateCreate { get; set; }
+         DateTime? DateClose { get; set; }
+         DateTime? DateModify { get; set; }
+         DateTime? DateAccept { get; set; }
+         decimal? Rate { get; set; }
+         decimal? LumpSum { get; set; }
+         decimal? R030LumpSum { get; set; }
+         decimal? PrePay { get; set; }
+         decimal? R030PrePay { get; set; }
+}
 public interface ILicenseAgreement
     {    int LicId { get; set; }
          int LicCode { get; set; }
@@ -864,8 +883,7 @@ public interface ILicenseAgreement
          int? LicSize { get; set; }
 }
 public interface ILicenseBigR
-    {
-         int LicId { get; set; }
+    {    int LicId { get; set; }
          DateTime? DatePremiere { get; set; }
          int? ObjId { get; set; }
          decimal? FillingRate { get; set; }
@@ -1008,6 +1026,18 @@ public interface IMoneyTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IMusicalDesign
+    {
+         int MdId { get; set; }
+         int LicId { get; set; }
+         int? Objid { get; set; }
+         int? ActNumb { get; set; }
+         string ObjName { get; set; }
+         string NameMusician { get; set; }
+         string NameSinger { get; set; }
+         decimal? Duration { get; set; }
+         int? NumbPerfom { get; set; }
+}
 public interface IMyAnketa
     {    int CustId { get; set; }
          string AccCompany { get; set; }
@@ -1080,6 +1110,11 @@ public interface IPaidPeriod
 public interface IPartner
     {    int CustId { get; set; }
 }
+public interface IPartnerClient
+    {
+         int CustId { get; set; }
+         int ClCustId { get; set; }
+}
 public interface IPaymentCase
     {
          int ReqId { get; set; }
@@ -1145,6 +1180,7 @@ public interface IPayTurn
 public interface IPeriod
     {    int CodeI { get; set; }
          string Name { get; set; }
+         string NameR { get; set; }
 }
 public interface IPeriodStatus
     {    int CodeI { get; set; }
@@ -1161,6 +1197,7 @@ public interface IPeriodTr
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
+         string NameR { get; set; }
 }
 public interface IPermitType
     {    bool CodeB { get; set; }
@@ -1552,6 +1589,12 @@ public interface ISeekObject
 }
 public interface ISeekType
     {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface ISeekTypeTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
          string Name { get; set; }
 }
 public interface ISexType

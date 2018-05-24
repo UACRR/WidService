@@ -109,6 +109,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<LangTr> LangTr { get; set; }
         public virtual DbSet<LegalBasis> LegalBasis { get; set; }
         public virtual DbSet<LegalBasisTr> LegalBasisTr { get; set; }
+        public virtual DbSet<LicAuthor> LicAuthor { get; set; }
         public virtual DbSet<LicenseAgreement> LicenseAgreement { get; set; }
         public virtual DbSet<LicenseBigR> LicenseBigR { get; set; }
         public virtual DbSet<LicenseClass> LicenseClass { get; set; }
@@ -131,6 +132,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<MoneyReceived> MoneyReceived { get; set; }
         public virtual DbSet<MoneyType> MoneyType { get; set; }
         public virtual DbSet<MoneyTypeTr> MoneyTypeTr { get; set; }
+        public virtual DbSet<MusicalDesign> MusicalDesign { get; set; }
         public virtual DbSet<MyAnketa> MyAnketa { get; set; }
         public virtual DbSet<MyCategory> MyCategory { get; set; }
         public virtual DbSet<MyCopyRightType> MyCopyRightType { get; set; }
@@ -139,6 +141,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<ObjectStatusTr> ObjectStatusTr { get; set; }
         public virtual DbSet<PaidPeriod> PaidPeriod { get; set; }
         public virtual DbSet<Partner> Partner { get; set; }
+        public virtual DbSet<PartnerClient> PartnerClient { get; set; }
         public virtual DbSet<PaymentCase> PaymentCase { get; set; }
         public virtual DbSet<PaymentKind> PaymentKind { get; set; }
         public virtual DbSet<PaymentKindTr> PaymentKindTr { get; set; }
@@ -205,6 +208,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<SaldoDay> SaldoDay { get; set; }
         public virtual DbSet<SeekObject> SeekObject { get; set; }
         public virtual DbSet<SeekType> SeekType { get; set; }
+        public virtual DbSet<SeekTypeTr> SeekTypeTr { get; set; }
         public virtual DbSet<SexType> SexType { get; set; }
         public virtual DbSet<SexTypeTr> SexTypeTr { get; set; }
         public virtual DbSet<SpecType> SpecType { get; set; }
@@ -238,13 +242,6 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<UsesKindTr> UsesKindTr { get; set; }
         public virtual DbSet<UsesType> UsesType { get; set; }
         public virtual DbSet<UsesTypeTr> UsesTypeTr { get; set; }
-
-        // Unable to generate entity type for table 'dbo.MusicalDesign'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.PostTransfer'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.SeekTypeTr'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.testshell'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.DistribStatusOld'. Please see the warning messages.
-        // Unable to generate entity type for table 'dbo.PartnerClient'. Please see the warning messages.
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -1686,6 +1683,11 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(256)
@@ -1696,6 +1698,8 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.TableObj)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Utype).HasColumnName("utype");
 
                 entity.HasOne(d => d.StatusNavigation)
                     .WithMany(p => p.Category)
@@ -3545,6 +3549,75 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_LEGALBAS_REFERENCE_LEGALBAS");
             });
 
+            modelBuilder.Entity<LicAuthor>(entity =>
+            {
+                entity.HasKey(e => e.LicAutorId);
+
+                entity.Property(e => e.LicAutorId).HasColumnName("licAutorId");
+
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.DateAccept)
+                    .HasColumnName("dateAccept")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateClose)
+                    .HasColumnName("dateClose")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateCreate)
+                    .HasColumnName("dateCreate")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateModify)
+                    .HasColumnName("dateModify")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
+                entity.Property(e => e.LumpSum)
+                    .HasColumnName("lumpSum")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.NameAuthor)
+                    .HasColumnName("nameAuthor")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PrePay)
+                    .HasColumnName("prePay")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.R030LumpSum)
+                    .HasColumnName("r030LumpSum")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.R030PrePay)
+                    .HasColumnName("r030PrePay")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.Rate)
+                    .HasColumnName("rate")
+                    .HasColumnType("numeric(10, 5)");
+
+                entity.Property(e => e.RoleType).HasColumnName("roleType");
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.LicAuthor)
+                    .HasForeignKey(d => d.CustId)
+                    .HasConstraintName("FK_LICAUTHO_REFERENCE_RIGHTHOL");
+
+                entity.HasOne(d => d.Lic)
+                    .WithMany(p => p.LicAuthor)
+                    .HasForeignKey(d => d.LicId)
+                    .HasConstraintName("FK_LICAUTHO_REFERENCE_LICENSEB");
+
+                entity.HasOne(d => d.RoleTypeNavigation)
+                    .WithMany(p => p.LicAuthor)
+                    .HasForeignKey(d => d.RoleType)
+                    .HasConstraintName("FK_LICAUTHO_REFERENCE_CREATIVE");
+            });
+
             modelBuilder.Entity<LicenseAgreement>(entity =>
             {
                 entity.HasKey(e => e.LicId);
@@ -4228,6 +4301,51 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_MONEYTYP_REFERENCE_MONEYTYP");
             });
 
+            modelBuilder.Entity<MusicalDesign>(entity =>
+            {
+                entity.HasKey(e => e.MdId);
+
+                entity.Property(e => e.MdId).HasColumnName("mdId");
+
+                entity.Property(e => e.ActNumb).HasColumnName("actNumb");
+
+                entity.Property(e => e.Duration)
+                    .HasColumnName("duration")
+                    .HasColumnType("numeric(7, 2)");
+
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
+                entity.Property(e => e.NameMusician)
+                    .HasColumnName("nameMusician")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NameSinger)
+                    .HasColumnName("nameSinger")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NumbPerfom).HasColumnName("numbPerfom");
+
+                entity.Property(e => e.ObjName)
+                    .HasColumnName("objName")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Objid).HasColumnName("objid");
+
+                entity.HasOne(d => d.Lic)
+                    .WithMany(p => p.MusicalDesign)
+                    .HasForeignKey(d => d.LicId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MUSICALD_REFERENCE_LICENSEB");
+
+                entity.HasOne(d => d.Obj)
+                    .WithMany(p => p.MusicalDesign)
+                    .HasForeignKey(d => d.Objid)
+                    .HasConstraintName("FK_MUSICALD_REFERENCE_OBJECTRI");
+            });
+
             modelBuilder.Entity<MyAnketa>(entity =>
             {
                 entity.HasKey(e => e.CustId);
@@ -4494,6 +4612,27 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_PARTNER_REFERENCE_CUSTOMER");
             });
 
+            modelBuilder.Entity<PartnerClient>(entity =>
+            {
+                entity.HasKey(e => new { e.CustId, e.ClCustId });
+
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.ClCustId).HasColumnName("clCustId");
+
+                entity.HasOne(d => d.ClCust)
+                    .WithMany(p => p.PartnerClient)
+                    .HasForeignKey(d => d.ClCustId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PARTNERC_REFERENCE_CLIENT");
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.PartnerClient)
+                    .HasForeignKey(d => d.CustId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PARTNERC_REFERENCE_PARTNER");
+            });
+
             modelBuilder.Entity<PaymentCase>(entity =>
             {
                 entity.HasKey(e => e.ReqId);
@@ -4743,6 +4882,11 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.NameR)
+                    .HasColumnName("nameR")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<PeriodStatus>(entity =>
@@ -4797,6 +4941,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NameR)
+                    .HasColumnName("nameR")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
@@ -6401,6 +6550,28 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<SeekTypeTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.SeekTypeTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SEEKTYPE_REFERENCE_SEEKTYPE");
+            });
+
             modelBuilder.Entity<SexType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
@@ -6665,11 +6836,11 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CustId, e.CountryCode });
 
-                entity.ToTable("territoryExclude");
-
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
-                entity.Property(e => e.CountryCode).HasColumnType("char(3)");
+                entity.Property(e => e.CountryCode)
+                    .HasColumnName("countryCode")
+                    .HasColumnType("char(3)");
 
                 entity.HasOne(d => d.CountryCodeNavigation)
                     .WithMany(p => p.TerritoryExclude)
@@ -6688,11 +6859,11 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CustId, e.CountryCode });
 
-                entity.ToTable("territoryInclude");
-
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
-                entity.Property(e => e.CountryCode).HasColumnType("char(3)");
+                entity.Property(e => e.CountryCode)
+                    .HasColumnName("countryCode")
+                    .HasColumnType("char(3)");
 
                 entity.HasOne(d => d.CountryCodeNavigation)
                     .WithMany(p => p.TerritoryInclude)

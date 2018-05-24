@@ -16,6 +16,7 @@ namespace ipsFormsDesign.Model
 
         public int CodeI { get; set; }
         public string Name { get; set; }
+        public string NameR { get; set; }
 
         public ICollection<AgreementMaster> AgreementMaster { get; set; }
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }

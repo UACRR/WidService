@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         {
             AgreementAddRh = new HashSet<AgreementAddRh>();
             AnketaAddNick = new HashSet<AnketaAddNick>();
+            LicAuthor = new HashSet<LicAuthor>();
             RegisterCount = new HashSet<RegisterCount>();
             ReqAgreement = new HashSet<ReqAgreement>();
             TermsOfService = new HashSet<TermsOfService>();
@@ -27,6 +28,7 @@ namespace ipsFormsDesign.Model
         public Customer Cust { get; set; }
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
+        public ICollection<LicAuthor> LicAuthor { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
         public ICollection<ReqAgreement> ReqAgreement { get; set; }
         public ICollection<TermsOfService> TermsOfService { get; set; }
