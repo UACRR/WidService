@@ -123,6 +123,18 @@ namespace RightholderWorkplace
                 PUnumber = "973179",
                 PUissuedWho = "PUissuedWho",
                 PUissuedWhen = new DateTime(2005, 7, 10),
+                FaCountry = "804",
+                FaRegion = 25,
+                FaCity = "FaCity",
+                FaAddress = "FaAddress",
+                ReCountry = "804",
+                ReRegion = 25,
+                ReCity = "ReCity",
+                ReAddress = "ReAddress",
+                LeCountry = "804",
+                LeRegion = 25,
+                LeCity = "LeCity",
+                LeAddress = "LeAddress",
             };
 
             _bankAccount = new BankAccount
@@ -147,7 +159,34 @@ namespace RightholderWorkplace
             ctrlAnketaPerson.SexTypeValueMember = "CodeI";
             ctrlAnketaPerson.SexTypeDisplayMember = "Name";
 
+            ctrlFaAddress.CountriesDataSource = _dictionaries.country;
+            ctrlFaAddress.CountriesValueMember = "CountryCode";
+            ctrlFaAddress.CountriesDisplayMember = "CountryName";
+
+            ctrlFaAddress.RegionsDataSource = _dictionaries.region;
+            ctrlFaAddress.RegionsValueMember = "CodeI";
+            ctrlFaAddress.RegionsDisplayMember = "Name";
+
+            ctrlReAddress.CountriesDataSource = _dictionaries.country;
+            ctrlReAddress.CountriesValueMember = "CountryCode";
+            ctrlReAddress.CountriesDisplayMember = "CountryName";
+
+            ctrlReAddress.RegionsDataSource = _dictionaries.region;
+            ctrlReAddress.RegionsValueMember = "CodeI";
+            ctrlReAddress.RegionsDisplayMember = "Name";
+
+            ctrlLeAddress.CountriesDataSource = _dictionaries.country;
+            ctrlLeAddress.CountriesValueMember = "CountryCode";
+            ctrlLeAddress.CountriesDisplayMember = "CountryName";
+
+            ctrlLeAddress.RegionsDataSource = _dictionaries.region;
+            ctrlLeAddress.RegionsValueMember = "CodeI";
+            ctrlLeAddress.RegionsDisplayMember = "Name";
+
+            anketaPersonBindingSource.DataSource = _anketa;
+
             ctrlAnketaPerson.DataSource = _anketa;
+            ctrlFaAddress.DataSource = _anketa;
             ctrlContacts.DataSource = _anketa;
             ctrlRegistrations.DataSource = _anketa;
             //TODO: ctrlRegistrations.ResidentTypeDataSource = _anketa;
