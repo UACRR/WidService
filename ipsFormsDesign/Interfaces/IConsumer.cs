@@ -1,7 +1,8 @@
-﻿using System;
+﻿using ipsFormsDesign.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using ipsmedserviceapp.Model;
+
 
 namespace ipsFormsDesign.Interfaces
 {

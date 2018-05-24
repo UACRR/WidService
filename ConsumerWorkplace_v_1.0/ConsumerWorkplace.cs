@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using Telerik.WinControls;
 
 
