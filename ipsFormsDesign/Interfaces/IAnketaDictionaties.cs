@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ipsFormsDesign.Dictionary;
-using ipsmedserviceapp.Model;
+using ipsFormsDesign.Model;
 
 namespace ipsFormsDesign.Interfaces
 {

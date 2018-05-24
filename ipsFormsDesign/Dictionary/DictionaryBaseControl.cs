@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WebAPIConnector;
-using ipsmedserviceapp.Model;
 
 namespace ipsFormsDesign.Dictionary
 {

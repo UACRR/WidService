@@ -1,6 +1,6 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
-using ipsmedserviceapp.Model;
+using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

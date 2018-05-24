@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsmedserviceapp.Model;
+
 using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
+using ipsFormsDesign.Model;
 
 namespace ipsAnketaClient
 {

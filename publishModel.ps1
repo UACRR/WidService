@@ -15,6 +15,8 @@ foreach( $fileName in $files )
     $designContent = [regex]::Replace($designContent, 'public partial class (\w+)', 'public partial class $1 : I$1', [System.Text.RegularExpressions.RegexOptions]::Singleline );  
     $designContent = "using ipsFormsDesign.Interfaces;`n" + $designContent;
     $designContent | Set-Content $formDesignFile;
+
+    $content = [regex]::Replace($content, 'namespace ipsmedserviceapp.Model', 'namespace ipsFormsDesign.Model', [System.Text.RegularExpressions.RegexOptions]::Singleline );  
     $content = [regex]::Replace($content, 'using.*?{\s+(.*)}.*}', '$1}', [System.Text.RegularExpressions.RegexOptions]::Singleline );
     $content = [regex]::Replace($content, 'public partial class (\w+)', 'public interface I$1', [System.Text.RegularExpressions.RegexOptions]::Singleline );
     $content = [regex]::Replace($content, '\s+public\s\w+\(\)\s+{\s+.+?}\s+','   ', [System.Text.RegularExpressions.RegexOptions]::Singleline );

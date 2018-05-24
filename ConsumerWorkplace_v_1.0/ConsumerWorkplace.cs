@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
-using ipsmedserviceapp.Model;
 using Telerik.WinControls;
 
 
@@ -262,7 +261,7 @@ namespace ConsumerWorkplace_v_1._0
                 managersCtrlBossNameContactsBookkeeper.DataSource,
                 managersCtrlBossNameContactsContactPerson.DataSource,
                 //5
-                placesCtrlConsumerPlaces.GetData(),
+                // placesCtrlConsumerPlaces.SetData(),
                 //6
                 bankRequisitesCtrlBankAccount.DataSource
 

@@ -8,7 +8,7 @@ using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsmedserviceapp.Model;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
