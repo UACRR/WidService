@@ -611,7 +611,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="sors"></param>
         /// <param name="dest"></param>
         /// <param name="compId"></param>
-        private void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId,Func<T, T, bool> compId) where T : class
+        private void _dbContext.UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId,Func<T, T, bool> compId) where T : class
         {
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
@@ -649,7 +649,7 @@ namespace ipsmedserviceapp.Controllers
                 var dest = destItem.CrkindGroupTr;
                 var sors = sorsItem.CrkindGroupTr;
 
-                UpdateList(sors, dest,
+                _dbContext.UpdateList(sors, dest,
                     row => row.CodeI = destItem.CodeI,
                     (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
@@ -657,7 +657,7 @@ namespace ipsmedserviceapp.Controllers
                 var sorsRghtKind = sorsItem.CopyrightKind;
                 var destRghtKind = destItem.CopyrightKind;
 
-                UpdateList(sorsRghtKind, destRghtKind,
+                _dbContext.UpdateList(sorsRghtKind, destRghtKind,
                     row => row.CodeI = maxcopyrightKindCodeI++,
                     (sorsI, destI) => sorsI.CodeI == destI.CodeI);
 
@@ -669,7 +669,7 @@ namespace ipsmedserviceapp.Controllers
 
                     var sorsTr = sorsRow.CopyrightKindTr;
                     var destTr = destRow.CopyrightKindTr;
-                    UpdateList(sorsTr, destTr, 
+                    _dbContext.UpdateList(sorsTr, destTr, 
                         row => row.CodeI = destRow.CodeI,
                         (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 

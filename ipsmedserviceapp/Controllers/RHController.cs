@@ -86,17 +86,6 @@ namespace ipsmedserviceapp.Controllers
 
                 _dbContext.Customer.Add(newRightHolder);
 
-                //.Include(item => item.Company)
-                //.Include(comp => comp.RelEmployee)
-                //.Include(item => item.AnketaCompany)
-                //.Include(item => item.Person)
-                //.Include(item => item.AnketaPerson)
-                //.Include(item => item.Community)
-                //.Include(item => item.BankAccount)
-                //.Include(item => item.AnketaAddName)
-                //.Include(item => item.RightHolder)
-                //    .ThenInclude(rh => rh.TermsOfService)
-
                 // Збереження Customer
                 _dbContext.Entry(newRightHolder).State = EntityState.Added;
                 // Збереження RightHolder
@@ -222,44 +211,7 @@ namespace ipsmedserviceapp.Controllers
             return Json(customer);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sors"></param>
-        /// <param name="dest"></param>
-        /// <param name="maxId"></param>
-        /// <param name="compId"></param>
-        private void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId) where T : class
-        {
-            // Видалення
-            List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => _dbContext.Entry(item).State = EntityState.Deleted);
-            // Додаємо нові
-            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
-            // Змінюємо спільні записи
-            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
 
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sors"></param>
-        /// <param name="dest"></param>
-        /// <param name="maxId"></param>
-        /// <param name="compId"></param>
-        private void AppendList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId) where T : class
-        {
-            // Додаємо нові
-            List<T> tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
-            // Змінюємо спільні записи
-            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
-
-        }
 
 
         /// <summary>
@@ -276,23 +228,21 @@ namespace ipsmedserviceapp.Controllers
 
             try
             {
-
-
                 var dest = await GetRightHolderAllData(rhId);
                 // Customer
                 dest.SetFields(updCustomer);
                 //.Include(item => item.BankAccount)
-                UpdateList(updCustomer.BankAccount, dest.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
+                _dbContext.UpdateList(updCustomer.BankAccount, dest.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
                 //.Include(item => item.AnketaAddName)
-                UpdateList(updCustomer.AnketaAddName, dest.AnketaAddName, row => { }, (sorsItem, destItem) => sorsItem.Lang == destItem.Lang);
+                _dbContext.UpdateList(updCustomer.AnketaAddName, dest.AnketaAddName, row => { }, (sorsItem, destItem) => sorsItem.Lang == destItem.Lang);
                 //.Include(item => item.RightHolder)
                 dest.RightHolder.SetFields(updCustomer.RightHolder);
                 //.Include(item => item.AnketaAddName)
-                UpdateList(updCustomer.RightHolder.AnketaAddNick, dest.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
+                _dbContext.UpdateList(updCustomer.RightHolder.AnketaAddNick, dest.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
                 //.Include(rh => rh.TermsOfService)
-                UpdateList(updCustomer.RightHolder.TermsOfService, dest.RightHolder.TermsOfService, row => { }, (sorsItem, destItem) => sorsItem.CrkindCode == destItem.CrkindCode);
-                UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
-                UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TermsOfService, dest.RightHolder.TermsOfService, row => { }, (sorsItem, destItem) => sorsItem.CrkindCode == destItem.CrkindCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
 
                 // Delete
                 List<AgreementAddRh> tempList = dest.RightHolder.AgreementAddRh.Where(row => !updCustomer.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
@@ -335,8 +285,8 @@ namespace ipsmedserviceapp.Controllers
                         var sorsLic = agreeItemSors.LicenseAgreement.Where(rec => rec.LicId == license.LicId).SingleOrDefault();
                         license.SetFields(sorsLic);
 
-                        UpdateList(sorsLic.LicenseBigR.MusicalDesign, license.LicenseBigR.MusicalDesign, rec => { }, (sorsItem, destItem) => sorsItem.MdId == destItem.MdId);
-                        UpdateList(sorsLic.LicenseBigR.LicAuthor, license.LicenseBigR.LicAuthor, rec => { }, (sorsItem, destItem) => sorsItem.LicAutorId == destItem.LicAutorId);
+                        _dbContext.UpdateList(sorsLic.LicenseBigR.MusicalDesign, license.LicenseBigR.MusicalDesign, rec => { }, (sorsItem, destItem) => sorsItem.MdId == destItem.MdId);
+                        _dbContext.UpdateList(sorsLic.LicenseBigR.LicAuthor, license.LicenseBigR.LicAuthor, rec => { }, (sorsItem, destItem) => sorsItem.LicAutorId == destItem.LicAutorId);
                         // AgreementMaster
                     }
                 });
@@ -382,9 +332,9 @@ namespace ipsmedserviceapp.Controllers
 
                     //.Include(item => item.AnketaCompany)
                     var sorsList = updCustomer.Company.AnketaCompany.ToList();
-                    UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                    _dbContext.UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
                     //.Include(comp => comp.RelEmployee)
-                    UpdateList(updCustomer.Company.RelEmployee, dest.Company.RelEmployee, rec => { },
+                    _dbContext.UpdateList(updCustomer.Company.RelEmployee, dest.Company.RelEmployee, rec => { },
                                         (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
 
                     foreach (var emplRel in dest.Company.RelEmployee)
@@ -398,7 +348,7 @@ namespace ipsmedserviceapp.Controllers
                     //.Include(item => item.Person)
                     if (dest.Person == null)
                         dest.Person = new Person();
-                    AppendList(updCustomer.Person.AnketaPerson, dest.Person.AnketaPerson, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                    _dbContext.AppendList(updCustomer.Person.AnketaPerson, dest.Person.AnketaPerson, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
                     //.Include(item => item.AnketaPerson)
                 }
 

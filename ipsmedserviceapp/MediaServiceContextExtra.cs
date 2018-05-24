@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using ipsmedserviceapp.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -14,6 +15,38 @@ namespace ipsmedserviceapp.Model
         public MediaServiceContext(DbContextOptions<MediaServiceContext> options) : base(options)
         {
         }
+
+        public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId) where T : class
+        {
+            // Видалення
+            List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => Entry(item).State = EntityState.Deleted);
+            // Додаємо нові
+            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
+            // Змінюємо спільні записи
+            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sors"></param>
+        /// <param name="dest"></param>
+        /// <param name="maxId"></param>
+        /// <param name="compId"></param>
+        public void AppendList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId) where T : class
+        {
+            // Додаємо нові
+            List<T> tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
+            // Змінюємо спільні записи
+            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
+
+        }
+
 
         /// <summary>
         /// Raw Запрос данных из базы данных
