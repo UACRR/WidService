@@ -146,6 +146,11 @@ namespace RightholderWorkplace
                 MfoName = "Mfo name",
                 MfoOkpo = "okpo",
                 TransitNumber = "tr num",
+                PCountry = "804",
+                PRegion = 25,
+                PCity = "PCity",
+                PAddress = "PAddress",
+                PIndex = "20800",
             };
 
             _termsOfServices = new List<TermsOfServiceWrapper>
@@ -194,14 +199,30 @@ namespace RightholderWorkplace
             ctrlRegistrations.ResidentTypesValueMember = "CodeI";
             ctrlRegistrations.ResidentTypesDisplayMember = "Name";
 
+            ddlTypeMethodGet.DataSource = _dictionaries.typeMethodGet;
+            ddlTypeMethodGet.ValueMember = "getCode";
+            ddlTypeMethodGet.DisplayMember = "getName";
+
+            ctrlBaAddress.RegionsDataSource = _dictionaries.region;
+            ctrlBaAddress.RegionsValueMember = "CodeI";
+            ctrlBaAddress.RegionsDisplayMember = "Name";
+
+            ctrlBaAddress.CountriesDataSource = _dictionaries.country;
+            ctrlBaAddress.CountriesValueMember = "CountryCode";
+            ctrlBaAddress.CountriesDisplayMember = "CountryName";
+
+            ctrlBaAddress.RegionsDataSource = _dictionaries.region;
+            ctrlBaAddress.RegionsValueMember = "CodeI";
+            ctrlBaAddress.RegionsDisplayMember = "Name";
+
             // data
             anketaPersonBindingSource.DataSource = _anketa;
+            bankAccountBindingSource.DataSource = _bankAccount;
 
             ctrlAnketaPerson.DataSource = _anketa;
             ctrlFaAddress.DataSource = _anketa;
             ctrlContacts.DataSource = _anketa;
             ctrlRegistrations.DataSource = _anketa;
-            //TODO: ctrlRegistrations.ResidentTypeDataSource = _anketa;
             ctrlInternalPassport.DataSource = _anketa;
             ctrlBankAccount.DataSource = _bankAccount;
             ctrlExclusionsLimitations.DataSource = _termsOfServices;
@@ -220,13 +241,28 @@ namespace RightholderWorkplace
 
         private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            //TODO: move to selected value changed event
-            if (ddlTypeMethodGet.SelectedIndex == 0)
-                createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyBankPage;
-            else if (ddlTypeMethodGet.SelectedIndex == 1)
-                createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyCashPage;
-            else if (ddlTypeMethodGet.SelectedIndex == 2)
-                createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
+            ////TODO: move to selected value changed event
+            //if (ddlTypeMethodGet.SelectedIndex == 0)
+            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyCashPage;
+            //else if (ddlTypeMethodGet.SelectedIndex == 1)
+            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyBankPage;
+            //else if (ddlTypeMethodGet.SelectedIndex == 2 || ddlTypeMethodGet.SelectedIndex == 3)
+            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
+        }
+
+        private void ddlTypeMethodGet_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (ddlTypeMethodGet.SelectedValue is int)
+            {
+                var value = (int)ddlTypeMethodGet.SelectedValue;
+
+                if (value == 1)
+                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyCashPage;
+                else if (value == 2)
+                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyBankPage;
+                else if (value == 3 || value == 4)
+                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
+            }
         }
     }
 }
