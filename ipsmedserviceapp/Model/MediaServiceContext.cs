@@ -248,11 +248,11 @@ namespace ipsmedserviceapp.Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
-//            }
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -1517,6 +1517,27 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.MfoOkpo)
                     .HasColumnName("mfoOkpo")
                     .HasColumnType("char(10)");
+
+                entity.Property(e => e.PAddress)
+                    .HasColumnName("pAddress")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PCity)
+                    .HasColumnName("pCity")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PCountry)
+                    .HasColumnName("pCountry")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.PIndex)
+                    .HasColumnName("pIndex")
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PRegion).HasColumnName("pRegion");
 
                 entity.Property(e => e.TransitNumber)
                     .HasColumnName("transitNumber")

@@ -307,6 +307,11 @@ public interface IBankAccount
          int? Mfo { get; set; }
          string MfoName { get; set; }
          string MfoOkpo { get; set; }
+         string PIndex { get; set; }
+         string PAddress { get; set; }
+         string PCity { get; set; }
+         string PCountry { get; set; }
+         int? PRegion { get; set; }
 }
 public interface IBrRegister
     {    int RegId { get; set; }
