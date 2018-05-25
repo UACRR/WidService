@@ -19,6 +19,9 @@ namespace RightholderWorkplace
 {
     public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm
     {
+        Customer _customer;
+
+
         AnketaPerson _anketa;
         BankAccount _bankAccount;
         AnketaDictionaties _dictionaries;
@@ -69,10 +72,6 @@ namespace RightholderWorkplace
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             ThemeResolutionService.ApplicationThemeName = "Office2007Silver";
-
-            //debug
-            //rightholdersPageView.SelectedPage = newRightholdersPage;
-            //newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
         }
 
         #region Next / Prev buttons
@@ -343,5 +342,19 @@ namespace RightholderWorkplace
         }
 
         #endregion
+
+        private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            int custId = Convert.ToInt32(e.Row.Cells["CustId"].Value);
+            _customer = GetCustomer(custId);
+            _anketa = _customer.AnketaPerson.SingleOrDefault();
+
+            anketaPersonBindingSource.DataSource = _anketa;
+
+            newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+
+            //SetDataSources();
+            //SetConsumerPageView();
+        }
     }
 }
