@@ -604,25 +604,6 @@ namespace ipsmedserviceapp.Controllers
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sors"></param>
-        /// <param name="dest"></param>
-        /// <param name="compId"></param>
-        private void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId,Func<T, T, bool> compId) where T : class
-        {
-            // Видалення
-            List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => _dbContext.Entry(item).State = EntityState.Deleted);
-            // Додаємо нові
-            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
-            // Змінюємо спільні записи
-            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
-
-        }
         [HttpPut("extra/crkindgroup/{id}")]
         public async Task<ActionResult> UpdateCrkindgroup(int id, [FromBody] JObject data)
         {
