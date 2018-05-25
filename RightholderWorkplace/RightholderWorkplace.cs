@@ -40,11 +40,6 @@ namespace RightholderWorkplace
             //newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
         }
 
-        private void btnNewRightholder_Click(object sender, EventArgs e)
-        {
-            newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
-        }
-
         #region Next / Prev buttons
 
         private void btnNextAnketa_Click(object sender, EventArgs e)
@@ -109,11 +104,6 @@ namespace RightholderWorkplace
         }
 
         #endregion
-
-        private void btnSaveRightholder_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
@@ -304,5 +294,19 @@ namespace RightholderWorkplace
         {
             gvTerritoryExclusions.Enabled = !cbAroundWorld.Checked;
         }
+
+        #region Rightolders list commands
+
+        private void miNewRightholderPerson_Click(object sender, EventArgs e)
+        {
+            newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+        }
+
+        private void btnNewRightholderCancel1_Click(object sender, EventArgs e)
+        {
+            newRightholdersPageView.SelectedPage = newRightholdersListPage;
+        }
+
+        #endregion
     }
 }
