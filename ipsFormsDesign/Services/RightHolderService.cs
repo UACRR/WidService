@@ -25,7 +25,7 @@ namespace ipsFormsDesign.Services
 
         public IList<RightholderMainView> GetMainView()
         {
-            var anketaDic = _webApi.GetList<RightholderMainView>("rh/listSR");
+            var anketaDic = _webApi.GetList<RightholderMainView>("rh/listrh");
             return anketaDic;
         }
 

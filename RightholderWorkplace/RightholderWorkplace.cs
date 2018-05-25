@@ -36,7 +36,11 @@ namespace RightholderWorkplace
 
         public void EndPresenterLink()
         {
-            //throw new NotImplementedException();
+            if (GetMainViewData != null)
+            {
+                var list = GetMainViewData();
+                rightHolderMainViewBindingSource.DataSource = list;
+            }
         }
 
         public void SetData(ICustomer data)
