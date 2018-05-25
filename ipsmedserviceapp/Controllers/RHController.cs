@@ -69,6 +69,17 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Отримати список Споживачів малих прав
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("listRH")]
+        public async Task<IActionResult> GetListSR()
+        {
+            var List = await _dbContext.getViewData("select * from vTsk_1_ListRightHolder01", null);
+            return Json(List);
+        }
+
+        /// <summary>
         /// Збереження нового Споживача
         /// </summary>
         /// <param name="newRightHolder"></param>
