@@ -35,8 +35,9 @@ namespace IpsViewComponentLibrary
             get => _pickerAgrDate;
             set
             {
-                    rdtPickerAgrDate.DataBindings.Clear();
-                    rdtPickerAgrDate.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerAgrDate, true);
+                _pickerAgrDate = value;
+                rdtPickerAgrDate.DataBindings.Clear();
+                rdtPickerAgrDate.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerAgrDate, true,DataSourceUpdateMode.OnPropertyChanged, DateTime.Today );
             }
         }
 
@@ -47,8 +48,9 @@ namespace IpsViewComponentLibrary
             get => _pickerDateBegin;
             set
             {
+                _pickerDateBegin = value;
                 rdtPickerDateBegin.DataBindings.Clear();
-                rdtPickerDateBegin.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerDateBegin, true);
+                rdtPickerDateBegin.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerDateBegin , true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
             }
         }
 
@@ -59,8 +61,9 @@ namespace IpsViewComponentLibrary
             get => _pickerDateEnd;
             set
             {
+                _pickerDateEnd = value;
                 rdtPickerDateEnd.DataBindings.Clear();
-                rdtPickerDateEnd.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerDateEnd, true);
+                rdtPickerDateEnd.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerDateEnd, true,  DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
             }
         }
 
@@ -71,8 +74,9 @@ namespace IpsViewComponentLibrary
             get => _contrNumber;
             set
             {
+                _contrNumber = value;
                 rtxtBoxContrNumber.DataBindings.Clear();
-                rtxtBoxContrNumber.DataBindings.Add("Text", iAgreementMasterBindingSource, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+                rtxtBoxContrNumber.DataBindings.Add("Text", iAgreementMasterBindingSource, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, "Договір №");
             }
         }
 

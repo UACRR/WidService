@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.ddlActivityCode = new Telerik.WinControls.UI.RadDropDownList();
-            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource();
             this.txtShortName = new Telerik.WinControls.UI.RadTextBox();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -50,6 +49,7 @@
             this.ddlActivityCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlActivityCode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anketaCompanyBindingSource, "ActivityCode", true));
+            this.ddlActivityCode.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlActivityCode.Location = new System.Drawing.Point(119, 49);
             this.ddlActivityCode.Name = "ddlActivityCode";
             this.ddlActivityCode.Size = new System.Drawing.Size(324, 20);

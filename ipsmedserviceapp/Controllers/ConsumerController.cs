@@ -95,7 +95,7 @@ namespace ipsmedserviceapp.Controllers
                 // Споживач
                 newCust.Client = new Client();
                 // Договор з Споживачем
-                var addAgr = new AgreementMaster();
+                var addAgr = new AgreementMaster {AgrStatus = 0};
                 addAgr.LicenseAgreement.Add(new LicenseAgreement());
                 newCust.AgreementMaster.Add( addAgr );
                 if( custType == 3 ) // юр особа
