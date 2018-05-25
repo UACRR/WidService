@@ -45,7 +45,7 @@ namespace ipsFormsDesign.Model
         public string FaCity { get; set; }
         public string FaAddress { get; set; }
         public int? BanAccId { get; set; }
-        public int FaRegion { get; set; }
+        public int? FaRegion { get; set; }
         public string Lang { get; set; }
         public int? ReRegion { get; set; }
         public string LeCountry { get; set; }

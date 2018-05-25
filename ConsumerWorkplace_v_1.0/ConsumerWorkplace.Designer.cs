@@ -308,7 +308,6 @@
             this.rpvConsumers.Size = new System.Drawing.Size(1135, 611);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
-            this.rpvConsumers.SelectedPageChanged += new System.EventHandler(this.rpvConsumers_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rpvConsumers.GetChildAt(0))).ShowItemPinButton = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rpvConsumers.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rpvConsumers.GetChildAt(0))).ItemAlignment = Telerik.WinControls.UI.StripViewItemAlignment.Center;
@@ -364,7 +363,7 @@
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerAnketa;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1103, 531);
             this.pageAllAnketa.TabIndex = 2;

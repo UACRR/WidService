@@ -325,12 +325,6 @@ namespace ConsumerWorkplace_v_1._0
                 anketaCtrlAddressFactual.RegionsValueMember = "codeI";
                 anketaCtrlAddressFactual.RegionsDisplayMember = "name";
 
-                anketaCtrlAddressFactual.DdlRegion.SelectedValueChanged += DdlRegion_SelectedValueChanged;
-                anketaCtrlAddressFactual.DdlRegion.SelectedIndexChanging += DdlRegion_SelectedIndexChanging;
-
-
-
-
                 anketaCtrlAddressLegal.CountriesDataSource = _dic.country;
                 anketaCtrlAddressLegal.RegionsDataSource = _dic.region;
                 anketaCtrlAddressLegal.DataSource = this.iAnketaCompanyBindingSource.DataSource;
@@ -381,18 +375,7 @@ namespace ConsumerWorkplace_v_1._0
             }
         }
 
-        private void DdlRegion_SelectedIndexChanging(object sender, Telerik.WinControls.UI.Data.PositionChangingCancelEventArgs e)
-        {
-            ;
-        }
 
-        private void DdlRegion_SelectedValueChanged(object sender, EventArgs e)
-        {   
-            var v = _cust.Company.AnketaCompany.SingleOrDefault(rec => rec.Version == _cust.AnkVersion);
-            var item = v.FaRegion;
-
-            ;
-        }
 
 
 
@@ -474,11 +457,6 @@ namespace ConsumerWorkplace_v_1._0
         public Func<int, Customer> NewCustomer { get; set; }
         public Func<int, Customer> GetCustomer { get; set; }
         public Func<Customer, bool> SaveCustomer { get; set; }
-
-        private void rpvConsumers_SelectedPageChanged(object sender, EventArgs e)
-        {
-
-        }
 
         public void EndPresenterLink()
         {
