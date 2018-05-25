@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 using WebAPIConnector;
 
-namespace ipsFormsDesign.Controls
+namespace ipsFormsDesign.Services
 {
-    public class ConsumerModel : IConsumerModel
+    public class ConsumerService : IConsumerModel
     {
         private ApiConnector _webApi = new ApiConnector("http://localhost:54867/api/");
         public Customer GetData(int custId)
@@ -30,7 +30,7 @@ namespace ipsFormsDesign.Controls
 
         public Customer NewCustomer(int custType)
         {
-            var anketaDic = _webApi.GetItemById<Customer>("newconsumer", custType.ToString());
+            var anketaDic = _webApi.GetItemById<Customer>("consumer/newconsumer", custType.ToString());
             return anketaDic;
         }
 
@@ -38,7 +38,7 @@ namespace ipsFormsDesign.Controls
         {
             if( cust.CustId == 0 ) // Новий споживач
             {
-                return _webApi.NewItem<Customer>("newconsumer", cust);
+                return _webApi.NewItem<Customer>("consumer/newconsumer", cust);
             }
 
             return _webApi.UpdateItem<Customer>("detail", cust.CustId.ToString(), cust);
