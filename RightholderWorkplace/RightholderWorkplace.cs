@@ -129,6 +129,21 @@ namespace RightholderWorkplace
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             ThemeResolutionService.ApplicationThemeName = "Office2007Silver";
+            RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
+
+            // data
+            //anketaPersonBindingSource.DataSource = _anketa;
+            //bankAccountBindingSource.DataSource = _bankAccount;
+
+            ctrlAnketaPerson.DataSource = anketaPersonBindingSource;
+            ctrlFaAddress.DataSource = anketaPersonBindingSource;
+            ctrlContacts.DataSource = anketaPersonBindingSource;
+            ctrlRegistrations.DataSource = anketaPersonBindingSource;
+            ctrlInternalPassport.DataSource = anketaPersonBindingSource;
+            //ctrlBankAccount.DataSource = _bankAccount;
+            //ctrlExclusionsLimitations.DataSource = _termsOfServices;
+            //gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
+            //cbAroundWorld.DataBindings.Add("Checked", _rightHolder, "AroundWord", true, DataSourceUpdateMode.OnPropertyChanged, false);
         }
 
         #region Next / Prev buttons
@@ -267,21 +282,7 @@ namespace RightholderWorkplace
 
 
 
-            // data
-            anketaPersonBindingSource.DataSource = _anketa;
-            bankAccountBindingSource.DataSource = _bankAccount;
 
-            ctrlAnketaPerson.DataSource = _anketa;
-            ctrlFaAddress.DataSource = _anketa;
-            ctrlContacts.DataSource = _anketa;
-            ctrlRegistrations.DataSource = _anketa;
-            ctrlInternalPassport.DataSource = _anketa;
-            ctrlBankAccount.DataSource = _bankAccount;
-            ctrlExclusionsLimitations.DataSource = _termsOfServices;
-            gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
-            cbAroundWorld.DataBindings.Add("Checked", _rightHolder, "AroundWord", true, DataSourceUpdateMode.OnPropertyChanged, false);
-
-            RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
         }
 
         private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)
@@ -330,6 +331,10 @@ namespace RightholderWorkplace
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
+            _customer = NewCustomer(1);//3 - юр.
+
+            UpdateDataSources();
+
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
         }
 
@@ -342,16 +347,30 @@ namespace RightholderWorkplace
         {
             int custId = Convert.ToInt32(e.Row.Cells["CustId"].Value);
             _customer = GetCustomer(custId);
-            _anketa = _customer.AnketaPerson.SingleOrDefault();
 
-            anketaPersonBindingSource.DataSource = _anketa;
-
-            newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
-
+            UpdateDataSources();
             //SetDataSources();
             //SetConsumerPageView();
+
+            newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
         }
 
         #endregion
+
+        private void UpdateDataSources()
+        {
+            _anketa = _customer.Person.AnketaPerson.Where( row => row.Version == _customer.AnkVersion ).SingleOrDefault();
+            if (_customer.BankAccount.Count > 0)
+                _bankAccount = _customer.BankAccount.FirstOrDefault();
+            else
+            {
+                _bankAccount = new BankAccount();
+                _customer.BankAccount.Add(_bankAccount);
+            }
+
+            anketaPersonBindingSource.DataSource = _anketa;
+            bankAccountBindingSource.DataSource = _bankAccount;
+            ctrlExclusionsLimitations.DataSource = _customer.RightHolder.TermsOfService.Select( rec => new TermsOfServiceWrapper(rec));
+        }
     }
 }

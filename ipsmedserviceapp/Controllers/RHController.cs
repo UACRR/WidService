@@ -79,13 +79,42 @@ namespace ipsmedserviceapp.Controllers
             return Json(List);
         }
 
+        [HttpGet("newrightholder/{custType}")]
+        public async Task<IActionResult> Newrightholder( int custType )
+        {
+            Customer newCust = new Customer { CustType = custType, AnkVersion = 1 };
+            newCust.RightHolder = new RightHolder { AroundWord = true};
+            newCust.BankAccount.Add(  new BankAccount() );
+            if(custType < 3) // jur
+            {
+                newCust.Person = new Person();
+                newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, NikName=string.Empty });
+            }
+
+            var copyrightList = await _dbContext.CopyrightKind
+                .Include(rec => rec.CrGroupCodeNavigation)
+                // .Include(rec => rec.)
+                .AsNoTracking().ToListAsync();
+
+            copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec  }));
+            var agrMaster = new AgreementMaster();
+            agrMaster.AgreementAddRh = new AgreementAddRh();
+
+            newCust.AgreementMaster.Add(agrMaster);
+
+
+            return Json(newCust);
+
+        }
+
+
         /// <summary>
         /// Збереження нового Споживача
         /// </summary>
         /// <param name="newRightHolder"></param>
         /// <returns></returns>
         [HttpPost("newrightholder")]
-        public async Task<IActionResult> Newrightholder([FromBody] Customer newRightHolder)
+        public async Task<IActionResult> Insertrightholder([FromBody] Customer newRightHolder)
         {
             IDbContextTransaction tran = null;
             try
