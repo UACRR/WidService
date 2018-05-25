@@ -7,7 +7,7 @@ using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
 {
-    public class ConsumerService : IConsumerModel
+    public class ConsumerService : IConsumerService
     {
         private ApiConnector _webApi = new ApiConnector("http://localhost:54867/api/");
         public Customer GetData(int custId)

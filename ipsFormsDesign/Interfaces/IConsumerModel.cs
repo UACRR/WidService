@@ -31,7 +31,8 @@ namespace ipsFormsDesign.Interfaces
         public int countAgree { get; set; }
         public decimal undistribamount { get; set; }
     }
-    public interface IConsumerModel : IModel
+
+    public interface IConsumerService : IModel
     {
         IList<ConsumerMainView> getMainView();
     }
