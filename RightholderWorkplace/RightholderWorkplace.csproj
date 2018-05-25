@@ -69,6 +69,7 @@
     <Compile Include="RightholderWorkplace.Designer.cs">
       <DependentUpon>RightholderWorkplace.cs</DependentUpon>
     </Compile>
+    <Compile Include="RightholderWorkplacePresenter.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="RightholderWorkplace.resx">
       <DependentUpon>RightholderWorkplace.cs</DependentUpon>

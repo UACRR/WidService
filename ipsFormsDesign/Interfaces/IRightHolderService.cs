@@ -4,18 +4,18 @@ using System.Text;
 
 namespace ipsFormsDesign.Interfaces
 {
-    public class RightHolderMainView
+    public class RightholderMainView
     {
-        public string innerCode { get; set;  }
-        public string interCode { get; set; }
-        public string name { get; set; }
-        public DateTime registrDate { get; set; }
-        public int  cntObj { get; set; }
-        public int yearProfit { get; set; }
+        public string InnerCode { get; set;  }
+        public string InterCode { get; set; }
+        public string Name { get; set; }
+        public DateTime RegistrDate { get; set; }
+        public int  CntObj { get; set; }
+        public int YearProfit { get; set; }
     }
 
-    interface IRightHolderService : IModel
+    public interface IRightHolderService : IModel
     {
-        IList<ConsumerMainView> getMainView();
+        IList<RightholderMainView> GetMainView();
     }
 }

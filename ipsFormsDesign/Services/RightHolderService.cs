@@ -7,9 +7,10 @@ using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
 {
-    public class RightHolderService : IRightHolderService
+    public class RightholderService : IRightHolderService
     {
         private ApiConnector _webApi = new ApiConnector("http://localhost:54867/api/");
+
         public Customer GetData(int custId)
         {
             var anketaDic = _webApi.GetItemById<Customer>("rh/detail", custId.ToString() );
@@ -22,9 +23,9 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
-        public IList<ConsumerMainView> getMainView()
+        public IList<RightholderMainView> GetMainView()
         {
-            var anketaDic = _webApi.GetList<ConsumerMainView>("rh/listSR");
+            var anketaDic = _webApi.GetList<RightholderMainView>("rh/listSR");
             return anketaDic;
         }
 

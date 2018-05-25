@@ -17,13 +17,44 @@ using WebAPIConnector;
 
 namespace RightholderWorkplace
 {
-    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm
+    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm
     {
         AnketaPerson _anketa;
         BankAccount _bankAccount;
         AnketaDictionaties _dictionaries;
         List<TermsOfServiceWrapper> _termsOfServices;
         RightHolder _rightHolder;
+
+        #region IRightholderForm immplementation
+
+        public Func<IList<RightholderMainView>> GetMainViewData { get; set; }
+        public Func<int, Customer> NewCustomer { get; set; }
+        public Func<int, Customer> GetCustomer { get; set; }
+        public Func<Customer, bool> SaveCustomer { get; set; }
+
+        public event Func<bool> Save;
+
+        public void EndPresenterLink()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void SetData(ICustomer data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetData(ICustomer data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetDictionary(AnketaDictionaties dic)
+        {
+            //throw new NotImplementedException();
+        }
+
+        #endregion
 
         public RightholderWorkplace()
         {
