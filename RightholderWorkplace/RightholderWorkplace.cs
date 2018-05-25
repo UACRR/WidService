@@ -56,9 +56,66 @@ namespace RightholderWorkplace
             throw new NotImplementedException();
         }
 
-        public void SetDictionary(AnketaDictionaties dic)
+        public void SetDictionary(AnketaDictionaties dictionaries)
         {
-            //throw new NotImplementedException();
+            ctrlAnketaPerson.SexTypeDataSource = dictionaries.sexType;
+            ctrlAnketaPerson.SexTypeValueMember = "CodeI";
+            ctrlAnketaPerson.SexTypeDisplayMember = "Name";
+
+            ctrlFaAddress.CountriesDataSource = dictionaries.country;
+            ctrlFaAddress.CountriesValueMember = "CountryCode";
+            ctrlFaAddress.CountriesDisplayMember = "CountryName";
+
+            ctrlFaAddress.RegionsDataSource = dictionaries.region;
+            ctrlFaAddress.RegionsValueMember = "CodeI";
+            ctrlFaAddress.RegionsDisplayMember = "Name";
+
+            ctrlReAddress.CountriesDataSource = dictionaries.country;
+            ctrlReAddress.CountriesValueMember = "CountryCode";
+            ctrlReAddress.CountriesDisplayMember = "CountryName";
+
+            ctrlReAddress.RegionsDataSource = dictionaries.region;
+            ctrlReAddress.RegionsValueMember = "CodeI";
+            ctrlReAddress.RegionsDisplayMember = "Name";
+
+            ctrlLeAddress.CountriesDataSource = dictionaries.country;
+            ctrlLeAddress.CountriesValueMember = "CountryCode";
+            ctrlLeAddress.CountriesDisplayMember = "CountryName";
+
+            ctrlLeAddress.RegionsDataSource = dictionaries.region;
+            ctrlLeAddress.RegionsValueMember = "CodeI";
+            ctrlLeAddress.RegionsDisplayMember = "Name";
+
+            ctrlRegistrations.CountriesDataSource = dictionaries.country;
+            ctrlRegistrations.CountriesValueMember = "CountryCode";
+            ctrlRegistrations.CountriesDisplayMember = "CountryName";
+
+            ctrlRegistrations.ResidentTypesDataSource = dictionaries.residentType;
+            ctrlRegistrations.ResidentTypesValueMember = "CodeI";
+            ctrlRegistrations.ResidentTypesDisplayMember = "Name";
+
+            ddlTypeMethodGet.DataSource = dictionaries.typeMethodGet;
+            ddlTypeMethodGet.ValueMember = "getCode";
+            ddlTypeMethodGet.DisplayMember = "getName";
+
+            ctrlBaAddress.RegionsDataSource = dictionaries.region;
+            ctrlBaAddress.RegionsValueMember = "CodeI";
+            ctrlBaAddress.RegionsDisplayMember = "Name";
+
+            ctrlBaAddress.CountriesDataSource = dictionaries.country;
+            ctrlBaAddress.CountriesValueMember = "CountryCode";
+            ctrlBaAddress.CountriesDisplayMember = "CountryName";
+
+            ctrlBaAddress.RegionsDataSource = dictionaries.region;
+            ctrlBaAddress.RegionsValueMember = "CodeI";
+            ctrlBaAddress.RegionsDisplayMember = "Name";
+
+            ctrlExclusionsLimitations.CommunitiesDataSource = dictionaries.communities;
+
+            var columnCountry = gvTerritoryExclusions.Columns["CountryCode"] as GridViewComboBoxColumn;
+            columnCountry.DataSource = dictionaries.country;
+            columnCountry.ValueMember = "CountryCode";
+            columnCountry.DisplayMember = "CountryName";
         }
 
         #endregion
@@ -142,7 +199,7 @@ namespace RightholderWorkplace
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
             var connector = new ApiConnector("http://localhost:54867/");
-            _dictionaries = connector.GetItemById<AnketaDictionaties>("api/Dictionary", "anketa");
+            //_dictionaries = connector.GetItemById<AnketaDictionaties>("api/Dictionary", "anketa");
             var customer = connector.GetItemById<Customer>("api/rh/detail", "140");
             _anketa = customer.AnketaPerson.SingleOrDefault();
 
@@ -208,67 +265,7 @@ namespace RightholderWorkplace
                 new TerritoryExclude { CountryCode = "024" },
             };
 
-            // dictionaries
-            ctrlAnketaPerson.SexTypeDataSource = _dictionaries.sexType;
-            ctrlAnketaPerson.SexTypeValueMember = "CodeI";
-            ctrlAnketaPerson.SexTypeDisplayMember = "Name";
 
-            ctrlFaAddress.CountriesDataSource = _dictionaries.country;
-            ctrlFaAddress.CountriesValueMember = "CountryCode";
-            ctrlFaAddress.CountriesDisplayMember = "CountryName";
-
-            ctrlFaAddress.RegionsDataSource = _dictionaries.region;
-            ctrlFaAddress.RegionsValueMember = "CodeI";
-            ctrlFaAddress.RegionsDisplayMember = "Name";
-
-            ctrlReAddress.CountriesDataSource = _dictionaries.country;
-            ctrlReAddress.CountriesValueMember = "CountryCode";
-            ctrlReAddress.CountriesDisplayMember = "CountryName";
-
-            ctrlReAddress.RegionsDataSource = _dictionaries.region;
-            ctrlReAddress.RegionsValueMember = "CodeI";
-            ctrlReAddress.RegionsDisplayMember = "Name";
-
-            ctrlLeAddress.CountriesDataSource = _dictionaries.country;
-            ctrlLeAddress.CountriesValueMember = "CountryCode";
-            ctrlLeAddress.CountriesDisplayMember = "CountryName";
-
-            ctrlLeAddress.RegionsDataSource = _dictionaries.region;
-            ctrlLeAddress.RegionsValueMember = "CodeI";
-            ctrlLeAddress.RegionsDisplayMember = "Name";
-
-            ctrlRegistrations.CountriesDataSource = _dictionaries.country;
-            ctrlRegistrations.CountriesValueMember = "CountryCode";
-            ctrlRegistrations.CountriesDisplayMember = "CountryName";
-
-            ctrlRegistrations.ResidentTypesDataSource = _dictionaries.residentType;
-            ctrlRegistrations.ResidentTypesValueMember = "CodeI";
-            ctrlRegistrations.ResidentTypesDisplayMember = "Name";
-
-            ddlTypeMethodGet.DataSource = _dictionaries.typeMethodGet;
-            ddlTypeMethodGet.ValueMember = "getCode";
-            ddlTypeMethodGet.DisplayMember = "getName";
-
-            ctrlBaAddress.RegionsDataSource = _dictionaries.region;
-            ctrlBaAddress.RegionsValueMember = "CodeI";
-            ctrlBaAddress.RegionsDisplayMember = "Name";
-
-            ctrlBaAddress.CountriesDataSource = _dictionaries.country;
-            ctrlBaAddress.CountriesValueMember = "CountryCode";
-            ctrlBaAddress.CountriesDisplayMember = "CountryName";
-
-            ctrlBaAddress.RegionsDataSource = _dictionaries.region;
-            ctrlBaAddress.RegionsValueMember = "CodeI";
-            ctrlBaAddress.RegionsDisplayMember = "Name";
-
-            //gvTerritoryExclusions.AutoGenerateColumns = false;
-            //var columnCountry = new GridViewComboBoxColumn();
-            //gvTerritoryExclusions.Columns.Add(columnCountry);
-
-            var col = gvTerritoryExclusions.Columns["CountryCode"] as GridViewComboBoxColumn;
-            col.DataSource = _dictionaries.country;
-            col.ValueMember = "CountryCode";
-            col.DisplayMember = "CountryName";
 
             // data
             anketaPersonBindingSource.DataSource = _anketa;
@@ -341,8 +338,6 @@ namespace RightholderWorkplace
             newRightholdersPageView.SelectedPage = newRightholdersListPage;
         }
 
-        #endregion
-
         private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             int custId = Convert.ToInt32(e.Row.Cells["CustId"].Value);
@@ -356,5 +351,7 @@ namespace RightholderWorkplace
             //SetDataSources();
             //SetConsumerPageView();
         }
+
+        #endregion
     }
 }
