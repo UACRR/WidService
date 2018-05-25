@@ -31,39 +31,6 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
-        //public void TestMehod()
-        //{
-        //    //
-        //    List<ListConsumers> ds = new List<ListConsumers>
-        //    {
-        //        new ListConsumers
-        //        {
-        //            Name = "Ресторан",
-        //            CustId = 121,
-        //            CountAgree = 1,
-        //            Innokpo = 58946449,
-        //            Undistribamount = 154.554
-        //        },
-        //        new ListConsumers{
-        //            Name = "Готель",
-        //            CustId = 154,
-        //            CountAgree = 2,
-        //            Innokpo = 12313213,
-        //            Undistribamount = 12.54
-        //        },
-        //        new ListConsumers{
-        //            Name = "Забігайлівка",
-        //            CustId = 101,
-        //            CountAgree = 3,
-        //            Innokpo = 415146465,
-        //            Undistribamount = 1.0544
-        //        },
-        //    };
-
-        //    // rGridViewConsumers.DataSource = ds;
-        //    //
-        //}
-
         /// <summary>
         /// Перехід на редагування Споживача
         /// </summary>
@@ -313,6 +280,7 @@ namespace ConsumerWorkplace_v_1._0
             //licenseTypeCtrlContractConsumerMain.ClearData();
         }
 
+        private AnketaCompany _anketa;
         public void SetDataSources()
         {
             if (_cust == null)
@@ -321,6 +289,7 @@ namespace ConsumerWorkplace_v_1._0
             {
 
                 AnketaCompany anketa = _cust.Company.AnketaCompany.Where(rec => rec.Version == _cust.AnkVersion).SingleOrDefault();
+                _anketa = anketa;
                 if(_cust.BankAccount.Count == 0)
                     _cust.BankAccount.Add(new BankAccount{CustId = _cust.CustId});
                 var bankAccount = _cust.BankAccount.FirstOrDefault();
@@ -344,18 +313,21 @@ namespace ConsumerWorkplace_v_1._0
 
                 var licAgr = (agrMaster?.LicenseAgreement)?.FirstOrDefault(rec => rec.LicStatus < 4);
 
+                iAnketaCompanyBindingSource.DataSource = anketa;
+
+                anketaCtrlAddressFactual.DataSource = iAnketaCompanyBindingSource;
 
                 anketaCtrlAddressFactual.CountriesDataSource = _dic.country;
-                anketaCtrlAddressFactual.DataSource = this.iAnketaCompanyBindingSource;
-                anketaCtrlAddressFactual.RegionsDataSource = _dic.region;
                 anketaCtrlAddressFactual.CountriesValueMember = "countryCode";
                 anketaCtrlAddressFactual.CountriesDisplayMember = "countryName";
+
+                anketaCtrlAddressFactual.RegionsDataSource = _dic.region;
                 anketaCtrlAddressFactual.RegionsValueMember = "codeI";
                 anketaCtrlAddressFactual.RegionsDisplayMember = "name";
 
                 anketaCtrlAddressLegal.CountriesDataSource = _dic.country;
-                anketaCtrlAddressLegal.DataSource = this.iAnketaCompanyBindingSource;
                 anketaCtrlAddressLegal.RegionsDataSource = _dic.region;
+                anketaCtrlAddressLegal.DataSource = this.iAnketaCompanyBindingSource.DataSource;
                 anketaCtrlAddressLegal.CountriesValueMember = "countryCode";
                 anketaCtrlAddressLegal.CountriesDisplayMember = "countryName";
                 anketaCtrlAddressLegal.RegionsValueMember = "codeI";
@@ -381,7 +353,10 @@ namespace ConsumerWorkplace_v_1._0
                 placesCtrlConsumerPlaces.SetData(_cust);
                 if (_cust.Client.ClnBusinessPlace.Count != 0)
                     placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
+                else
+                    placesCtrlConsumerPlaces.SetGridDataSource(new List<ClnBusinessPlace>());
 
+                //{CustId = _cust.CustId,ClnPlaceHoll = new List<ClnPlaceHoll>()}
                 //iEmployeeBindingSource.DataSource = relBoss?.Empl;
 
                 if (relBoss?.Empl != null)
@@ -399,6 +374,10 @@ namespace ConsumerWorkplace_v_1._0
 
             }
         }
+
+
+
+
 
 
 
@@ -439,7 +418,7 @@ namespace ConsumerWorkplace_v_1._0
         /// <param name="e"></param>
         private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            MessageBox.Show(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value.ToString());
+            //MessageBox.Show(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value.ToString());
             int custId = Convert.ToInt32(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value);
             _cust = GetCustomer(custId);
             SetDataSources();
@@ -478,11 +457,6 @@ namespace ConsumerWorkplace_v_1._0
         public Func<int, Customer> NewCustomer { get; set; }
         public Func<int, Customer> GetCustomer { get; set; }
         public Func<Customer, bool> SaveCustomer { get; set; }
-
-        private void rpvConsumers_SelectedPageChanged(object sender, EventArgs e)
-        {
-
-        }
 
         public void EndPresenterLink()
         {

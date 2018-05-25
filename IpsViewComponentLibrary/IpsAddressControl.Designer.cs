@@ -31,13 +31,13 @@
             this.txtCity = new Telerik.WinControls.UI.RadTextBox();
             this.ddlRegion = new Telerik.WinControls.UI.RadDropDownList();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
             this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
+            this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.txtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCity
@@ -84,17 +84,6 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(600, 45);
             this.tableLayoutPanel.TabIndex = 6;
             // 
-            // ddlCountry
-            // 
-            this.ddlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlCountry.Location = new System.Drawing.Point(0, 0);
-            this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.ddlCountry.Name = "ddlCountry";
-            this.ddlCountry.Size = new System.Drawing.Size(186, 20);
-            this.ddlCountry.TabIndex = 18;
-            // 
             // txtAddress
             // 
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -107,6 +96,17 @@
             this.txtAddress.Size = new System.Drawing.Size(600, 20);
             this.txtAddress.TabIndex = 10;
             // 
+            // ddlCountry
+            // 
+            this.ddlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlCountry.Location = new System.Drawing.Point(0, 0);
+            this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
+            this.ddlCountry.Name = "ddlCountry";
+            this.ddlCountry.Size = new System.Drawing.Size(186, 20);
+            this.ddlCountry.TabIndex = 18;
+            // 
             // IpsAddressControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,8 +118,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
             this.ResumeLayout(false);
 
         }

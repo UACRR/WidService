@@ -74,7 +74,7 @@ namespace IpsViewComponentLibrary
                 {
                     _regionDataMember = value;
                     ddlRegion.DataBindings.Clear();
-                    ddlRegion.DataBindings.Add("SelectedValue", _bindingSource, _regionDataMember);
+                    ddlRegion.DataBindings.Add("SelectedValue", _bindingSource, _regionDataMember, true, DataSourceUpdateMode.OnPropertyChanged, 0);
                 }
             }
         }
