@@ -611,7 +611,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="sors"></param>
         /// <param name="dest"></param>
         /// <param name="compId"></param>
-        private void _dbContext.UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId,Func<T, T, bool> compId) where T : class
+        private void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId,Func<T, T, bool> compId) where T : class
         {
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
