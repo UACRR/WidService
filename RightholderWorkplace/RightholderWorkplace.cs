@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
+using Telerik.WinControls.UI.Localization;
 using WebAPIConnector;
 
 namespace RightholderWorkplace
@@ -20,6 +23,7 @@ namespace RightholderWorkplace
         BankAccount _bankAccount;
         AnketaDictionaties _dictionaries;
         List<TermsOfServiceWrapper> _termsOfServices;
+        RightHolder _rightHolder;
 
         public RightholderWorkplace()
         {
@@ -86,12 +90,22 @@ namespace RightholderWorkplace
 
         private void btnNextExclusionLimitation_Click(object sender, EventArgs e)
         {
-            newCreateRightholderPageView.SelectedPage = createRightholderExclusionLimitationPage;
+            newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
         }
 
         private void btnPrevRoyalty_Click(object sender, EventArgs e)
         {
             newCreateRightholderPageView.SelectedPage = createRightholderRoyaltyPage;
+        }
+
+        private void btnNextTerritoryLimitation_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderTerritoryLimitationsPage;
+        }
+
+        private void btnPrevRightLimitation_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
         }
 
         #endregion
@@ -162,6 +176,14 @@ namespace RightholderWorkplace
                 }),
             };
 
+            _rightHolder = new RightHolder();
+            _rightHolder.AroundWord = false;
+            _rightHolder.TerritoryExclude = new List<TerritoryExclude>
+            {
+                new TerritoryExclude { CountryCode = "826" },
+                new TerritoryExclude { CountryCode = "024" },
+            };
+
             // dictionaries
             ctrlAnketaPerson.SexTypeDataSource = _dictionaries.sexType;
             ctrlAnketaPerson.SexTypeValueMember = "CodeI";
@@ -215,6 +237,15 @@ namespace RightholderWorkplace
             ctrlBaAddress.RegionsValueMember = "CodeI";
             ctrlBaAddress.RegionsDisplayMember = "Name";
 
+            //gvTerritoryExclusions.AutoGenerateColumns = false;
+            //var columnCountry = new GridViewComboBoxColumn();
+            //gvTerritoryExclusions.Columns.Add(columnCountry);
+
+            var col = gvTerritoryExclusions.Columns["CountryCode"] as GridViewComboBoxColumn;
+            col.DataSource = _dictionaries.country;
+            col.ValueMember = "CountryCode";
+            col.DisplayMember = "CountryName";
+
             // data
             anketaPersonBindingSource.DataSource = _anketa;
             bankAccountBindingSource.DataSource = _bankAccount;
@@ -226,6 +257,10 @@ namespace RightholderWorkplace
             ctrlInternalPassport.DataSource = _anketa;
             ctrlBankAccount.DataSource = _bankAccount;
             ctrlExclusionsLimitations.DataSource = _termsOfServices;
+            gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
+            cbAroundWorld.DataBindings.Add("Checked", _rightHolder, "AroundWord", true, DataSourceUpdateMode.OnPropertyChanged, false);
+
+            RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
         }
 
         private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)
@@ -263,6 +298,11 @@ namespace RightholderWorkplace
                 else if (value == 3 || value == 4)
                     createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
             }
+        }
+
+        private void cbAroundWorld_ToggleStateChanged(object sender, StateChangedEventArgs args)
+        {
+            gvTerritoryExclusions.Enabled = !cbAroundWorld.Checked;
         }
     }
 }
