@@ -58,7 +58,7 @@ namespace IpsViewComponentLibrary
                 {
                     _countryDataMember = value;
                     ddlCountry.DataBindings.Clear();
-                    ddlCountry.DataBindings.Add("SelectedValue", _bindingSource, _countryDataMember);
+                    ddlCountry.DataBindings.Add("SelectedValue", _bindingSource, _countryDataMember, true, DataSourceUpdateMode.OnPropertyChanged, 0);
                 }
             }
         }

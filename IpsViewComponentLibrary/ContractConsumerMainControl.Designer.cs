@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.rdtPickerAgrDate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxContrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
@@ -38,8 +39,8 @@
             this.rdtPickerDateEnd = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
             this.lblContrDo = new Telerik.WinControls.UI.RadLabel();
-            this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).BeginInit();
@@ -48,7 +49,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rdtPickerAgrDate
@@ -66,6 +66,10 @@
             this.rdtPickerAgrDate.TabIndex = 9;
             this.rdtPickerAgrDate.TabStop = false;
             this.rdtPickerAgrDate.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            // 
+            // iAgreementMasterBindingSource
+            // 
+            this.iAgreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
             // 
             // lblContrFrom
             // 
@@ -147,10 +151,6 @@
             this.lblContrDo.TabIndex = 14;
             this.lblContrDo.Text = "ДІЯ ДОГОВОРУ";
             // 
-            // iAgreementMasterBindingSource
-            // 
-            this.iAgreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
-            // 
             // ContractConsumerMainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,6 +168,7 @@
             this.Name = "ContractConsumerMainControl";
             this.Size = new System.Drawing.Size(477, 49);
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).EndInit();
@@ -176,7 +177,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
