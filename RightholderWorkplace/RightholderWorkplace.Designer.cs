@@ -29,8 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn3 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.MainPageView = new Telerik.WinControls.UI.RadPageView();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
@@ -40,7 +47,6 @@
             this.newRightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.newRightholdersListPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnNewRightholder = new Telerik.WinControls.UI.RadButton();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.newRightholdersCreatePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.newCreateRightholderPageView = new Telerik.WinControls.UI.RadPageView();
@@ -93,14 +99,16 @@
             this.ctrlExclusionsLimitations = new IpsViewComponentLibrary.IpsExclusionsLimitationsControl();
             this.btnPrevRoyalty = new Telerik.WinControls.UI.RadButton();
             this.createRightholderTerritoryLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
+            this.cbAroundWorld = new Telerik.WinControls.UI.RadCheckBox();
             this.gvTerritoryExclusions = new Telerik.WinControls.UI.RadGridView();
             this.territoryExcludeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnPrevRightLimitation = new Telerik.WinControls.UI.RadButton();
             this.btnSaveRightholder = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
-            this.cbAroundWorld = new Telerik.WinControls.UI.RadCheckBox();
-            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
+            this.rightHolderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
@@ -111,7 +119,6 @@
             this.newRightholdersPageView.SuspendLayout();
             this.newRightholdersListPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.newRightholdersCreatePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newCreateRightholderPageView)).BeginInit();
@@ -177,13 +184,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnNextTerritoryLimitation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).BeginInit();
             this.createRightholderTerritoryLimitationsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbAroundWorld)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTerritoryExclusions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTerritoryExclusions.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.territoryExcludeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRightLimitation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbAroundWorld)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightHolderMainViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -264,7 +274,7 @@
             this.newRightholdersPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.newRightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.newRightholdersPageView.Name = "newRightholdersPageView";
-            this.newRightholdersPageView.SelectedPage = this.newRightholdersCreatePage;
+            this.newRightholdersPageView.SelectedPage = this.newRightholdersListPage;
             this.newRightholdersPageView.Size = new System.Drawing.Size(1054, 601);
             this.newRightholdersPageView.TabIndex = 1;
             this.newRightholdersPageView.ThemeName = "Office2007Silver";
@@ -274,8 +284,8 @@
             // 
             // newRightholdersListPage
             // 
+            this.newRightholdersListPage.Controls.Add(this.radGridView1);
             this.newRightholdersListPage.Controls.Add(this.btnNewRightholder);
-            this.newRightholdersListPage.Controls.Add(this.radLabel1);
             this.newRightholdersListPage.ItemSize = new System.Drawing.SizeF(26F, 145F);
             this.newRightholdersListPage.Location = new System.Drawing.Point(35, 10);
             this.newRightholdersListPage.Name = "newRightholdersListPage";
@@ -292,14 +302,6 @@
             this.btnNewRightholder.Text = "Додати";
             this.btnNewRightholder.ThemeName = "Office2007Silver";
             this.btnNewRightholder.Click += new System.EventHandler(this.btnNewRightholder_Click);
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(15, 12);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(218, 18);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Список нових договорів правовласників";
             // 
             // newRightholdersCreatePage
             // 
@@ -845,6 +847,7 @@
             // 
             this.createRightholderInternalPasportPage.Controls.Add(this.radLabel6);
             this.createRightholderInternalPasportPage.Controls.Add(this.ctrlInternalPassport);
+            this.createRightholderInternalPasportPage.ItemSize = new System.Drawing.SizeF(26F, 209F);
             this.createRightholderInternalPasportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderInternalPasportPage.Name = "createRightholderInternalPasportPage";
             this.createRightholderInternalPasportPage.Size = new System.Drawing.Size(777, 468);
@@ -872,6 +875,7 @@
             // createRightholderForeignPassportPage
             // 
             this.createRightholderForeignPassportPage.Controls.Add(this.radLabel7);
+            this.createRightholderForeignPassportPage.ItemSize = new System.Drawing.SizeF(26F, 215F);
             this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
             this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(777, 468);
@@ -947,6 +951,7 @@
             // createRightholderRoyaltyBankPage
             // 
             this.createRightholderRoyaltyBankPage.Controls.Add(this.ctrlBankAccount);
+            this.createRightholderRoyaltyBankPage.ItemSize = new System.Drawing.SizeF(26F, 196F);
             this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderRoyaltyBankPage.Name = "createRightholderRoyaltyBankPage";
             this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(774, 439);
@@ -1033,6 +1038,7 @@
             // 
             // createRightholderRoyaltyCashPage
             // 
+            this.createRightholderRoyaltyCashPage.ItemSize = new System.Drawing.SizeF(26F, 170F);
             this.createRightholderRoyaltyCashPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderRoyaltyCashPage.Name = "createRightholderRoyaltyCashPage";
             this.createRightholderRoyaltyCashPage.Size = new System.Drawing.Size(774, 439);
@@ -1044,6 +1050,7 @@
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel10);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel9);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.ctrlBaAddress);
+            this.createRightholderRoyaltyPostalTransfer.ItemSize = new System.Drawing.SizeF(26F, 217F);
             this.createRightholderRoyaltyPostalTransfer.Location = new System.Drawing.Point(35, 10);
             this.createRightholderRoyaltyPostalTransfer.Name = "createRightholderRoyaltyPostalTransfer";
             this.createRightholderRoyaltyPostalTransfer.Size = new System.Drawing.Size(774, 439);
@@ -1253,6 +1260,23 @@
             this.createRightholderTerritoryLimitationsPage.Size = new System.Drawing.Size(851, 522);
             this.createRightholderTerritoryLimitationsPage.Text = "Обмеження територїі";
             // 
+            // radLabel11
+            // 
+            this.radLabel11.Location = new System.Drawing.Point(17, 49);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(80, 18);
+            this.radLabel11.TabIndex = 17;
+            this.radLabel11.Text = "Весь світ, крім";
+            // 
+            // cbAroundWorld
+            // 
+            this.cbAroundWorld.Location = new System.Drawing.Point(17, 14);
+            this.cbAroundWorld.Name = "cbAroundWorld";
+            this.cbAroundWorld.Size = new System.Drawing.Size(65, 18);
+            this.cbAroundWorld.TabIndex = 16;
+            this.cbAroundWorld.Text = "Весь світ";
+            this.cbAroundWorld.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.cbAroundWorld_ToggleStateChanged);
+            // 
             // gvTerritoryExclusions
             // 
             this.gvTerritoryExclusions.Location = new System.Drawing.Point(17, 73);
@@ -1260,20 +1284,22 @@
             // 
             // 
             this.gvTerritoryExclusions.MasterTemplate.AutoGenerateColumns = false;
-            gridViewComboBoxColumn3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            gridViewComboBoxColumn3.FieldName = "CountryCode";
-            gridViewComboBoxColumn3.HeaderText = "Країна";
-            gridViewComboBoxColumn3.Name = "CountryCode";
-            gridViewComboBoxColumn3.Width = 300;
+            gridViewComboBoxColumn1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            gridViewComboBoxColumn1.FieldName = "CountryCode";
+            gridViewComboBoxColumn1.HeaderText = "Країна";
+            gridViewComboBoxColumn1.Name = "CountryCode";
+            gridViewComboBoxColumn1.Width = 300;
             this.gvTerritoryExclusions.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewComboBoxColumn3});
+            gridViewComboBoxColumn1});
             this.gvTerritoryExclusions.MasterTemplate.DataSource = this.territoryExcludeBindingSource;
             this.gvTerritoryExclusions.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvTerritoryExclusions.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvTerritoryExclusions.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvTerritoryExclusions.Name = "gvTerritoryExclusions";
+            this.gvTerritoryExclusions.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvTerritoryExclusions.ShowGroupPanel = false;
             this.gvTerritoryExclusions.Size = new System.Drawing.Size(349, 337);
             this.gvTerritoryExclusions.TabIndex = 15;
+            this.gvTerritoryExclusions.ThemeName = "Office2007Silver";
             // 
             // territoryExcludeBindingSource
             // 
@@ -1300,22 +1326,69 @@
             this.btnSaveRightholder.Text = "Зберегти";
             this.btnSaveRightholder.ThemeName = "Aqua";
             // 
-            // cbAroundWorld
+            // rightHolderMainViewBindingSource
             // 
-            this.cbAroundWorld.Location = new System.Drawing.Point(17, 14);
-            this.cbAroundWorld.Name = "cbAroundWorld";
-            this.cbAroundWorld.Size = new System.Drawing.Size(65, 18);
-            this.cbAroundWorld.TabIndex = 16;
-            this.cbAroundWorld.Text = "Весь світ";
-            this.cbAroundWorld.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.cbAroundWorld_ToggleStateChanged);
+            this.rightHolderMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.RightHolderMainView);
             // 
-            // radLabel11
+            // radGridView1
             // 
-            this.radLabel11.Location = new System.Drawing.Point(17, 49);
-            this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(80, 18);
-            this.radLabel11.TabIndex = 17;
-            this.radLabel11.Text = "Весь світ, крім";
+            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radGridView1.Location = new System.Drawing.Point(3, 3);
+            // 
+            // 
+            // 
+            this.radGridView1.MasterTemplate.AllowAddNewRow = false;
+            gridViewTextBoxColumn1.FieldName = "innerCode";
+            gridViewTextBoxColumn1.HeaderText = "innerCode";
+            gridViewTextBoxColumn1.IsAutoGenerated = true;
+            gridViewTextBoxColumn1.Name = "innerCode";
+            gridViewTextBoxColumn1.Width = 100;
+            gridViewTextBoxColumn2.FieldName = "interCode";
+            gridViewTextBoxColumn2.HeaderText = "interCode";
+            gridViewTextBoxColumn2.IsAutoGenerated = true;
+            gridViewTextBoxColumn2.Name = "interCode";
+            gridViewTextBoxColumn2.Width = 100;
+            gridViewTextBoxColumn3.FieldName = "name";
+            gridViewTextBoxColumn3.HeaderText = "name";
+            gridViewTextBoxColumn3.IsAutoGenerated = true;
+            gridViewTextBoxColumn3.Name = "name";
+            gridViewTextBoxColumn3.Width = 300;
+            gridViewDateTimeColumn1.FieldName = "registrDate";
+            gridViewDateTimeColumn1.HeaderText = "registrDate";
+            gridViewDateTimeColumn1.IsAutoGenerated = true;
+            gridViewDateTimeColumn1.Name = "registrDate";
+            gridViewDateTimeColumn1.Width = 100;
+            gridViewDecimalColumn1.DataType = typeof(int);
+            gridViewDecimalColumn1.FieldName = "cntObj";
+            gridViewDecimalColumn1.HeaderText = "cntObj";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.Name = "cntObj";
+            gridViewDecimalColumn1.Width = 100;
+            gridViewDecimalColumn2.DataType = typeof(int);
+            gridViewDecimalColumn2.FieldName = "yearProfit";
+            gridViewDecimalColumn2.HeaderText = "yearProfit";
+            gridViewDecimalColumn2.IsAutoGenerated = true;
+            gridViewDecimalColumn2.Name = "yearProfit";
+            gridViewDecimalColumn2.Width = 100;
+            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewDateTimeColumn1,
+            gridViewDecimalColumn1,
+            gridViewDecimalColumn2});
+            this.radGridView1.MasterTemplate.DataSource = this.rightHolderMainViewBindingSource;
+            this.radGridView1.MasterTemplate.ShowRowHeaderColumn = false;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.Name = "radGridView1";
+            this.radGridView1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.radGridView1.ReadOnly = true;
+            this.radGridView1.ShowGroupPanel = false;
+            this.radGridView1.Size = new System.Drawing.Size(1002, 544);
+            this.radGridView1.TabIndex = 2;
+            this.radGridView1.ThemeName = "Office2007Silver";
             // 
             // RightholderWorkplace
             // 
@@ -1340,9 +1413,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.newRightholdersPageView)).EndInit();
             this.newRightholdersPageView.ResumeLayout(false);
             this.newRightholdersListPage.ResumeLayout(false);
-            this.newRightholdersListPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.newRightholdersCreatePage.ResumeLayout(false);
             this.newRightholdersCreatePage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -1415,13 +1486,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).EndInit();
             this.createRightholderTerritoryLimitationsPage.ResumeLayout(false);
             this.createRightholderTerritoryLimitationsPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbAroundWorld)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTerritoryExclusions.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTerritoryExclusions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.territoryExcludeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRightLimitation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbAroundWorld)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightHolderMainViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1440,7 +1514,6 @@
         private Telerik.WinControls.UI.RadPageViewPage newRightholdersCreatePage;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
         private Telerik.WinControls.Themes.AquaTheme aquaTheme;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadButton btnNewRightholder;
         private Telerik.WinControls.UI.RadPageView newCreateRightholderPageView;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderFullNameComissionPage;
@@ -1499,5 +1572,7 @@
         private System.Windows.Forms.BindingSource territoryExcludeBindingSource;
         private Telerik.WinControls.UI.RadCheckBox cbAroundWorld;
         private Telerik.WinControls.UI.RadLabel radLabel11;
+        private System.Windows.Forms.BindingSource rightHolderMainViewBindingSource;
+        private Telerik.WinControls.UI.RadGridView radGridView1;
     }
 }
