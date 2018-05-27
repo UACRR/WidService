@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 using WebAPIConnector;
 
-namespace ipsFormsDesign.Controls
+namespace ipsFormsDesign.Services
 {
-    public class ConsumerModel : IConsumerModel
+    public class ConsumerService : IConsumerService
     {
         private ApiConnector _webApi = new ApiConnector("http://localhost:54867/api/");
         public Customer GetData(int custId)

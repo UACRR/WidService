@@ -34,7 +34,7 @@ namespace ipsFormsDesign.Interfaces
         IList<UserRoleType> userRoleType { get; set; }
         IList<UsesKind> usesKind { get; set; }
         IList<UsesType> usesType { get; set; }
-
+        IList<CommunityInfo> communities { get; set; }
     }
 
     public class AnketaDictionaties : ICunsomerDic
@@ -65,5 +65,6 @@ namespace ipsFormsDesign.Interfaces
         public IList<UsesKind> usesKind {get; set;}
         public IList<UsesType> usesType {get; set;}
         public IList<TypeMethodGet> typeMethodGet { get; set; }
+        public IList<CommunityInfo> communities { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using ipsFormsDesign.Controls;
+﻿using ipsFormsDesign.Services;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -16,7 +16,7 @@ namespace ConsumerWorkplace_v_1._0
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ConsumerWorkplace form = new ConsumerWorkplace();
-            ConsumerModel model = new ConsumerModel();
+            ConsumerService model = new ConsumerService();
             FormPresenter control = new FormPresenter(form, model);
 
             Application.Run(form);

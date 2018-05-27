@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Services;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,7 +15,12 @@ namespace RightholderWorkplace
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RightholderWorkplace());
+
+            RightholderWorkplace form = new RightholderWorkplace();
+            RightholderService service = new RightholderService();
+            RightholderWorkplacePresenter control = new RightholderWorkplacePresenter(form, service);
+
+            Application.Run(form);
         }
     }
 }
