@@ -164,7 +164,7 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextContract_Click(object sender, EventArgs e)
         {
             nextPage = true;
-                radPdfViewer.LoadDocument("InteractiveForms.pdf");
+                // radPdfViewer.LoadDocument("InteractiveForms.pdf");
             pageAllAnketa.SelectedPage = pvConsumerContracts;
         }
 
