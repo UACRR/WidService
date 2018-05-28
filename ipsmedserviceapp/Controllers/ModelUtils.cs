@@ -71,14 +71,23 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="maxId"></param>
         /// <param name="compId"></param>
 
-        public static void SetFields(this object dest, object source)
+        public static void SetFields(this object dest, object source, string[] FieldExclude = null )
         {
             if (ReferenceEquals(dest, source)) return;
             if ((dest == null) || (source == null)) return;
             if (dest.GetType() != source.GetType()) return;
 
+            List<string> excludeList = new List<string>();
+            if (FieldExclude != null)
+            {
+                excludeList.AddRange(FieldExclude);
+                excludeList.Sort();
+            }
+
             foreach (var property in dest.GetType().GetProperties())
             {
+                if (excludeList.Contains(property.Name))
+                    continue;
 
                 // If nullable
                 Type checkType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;

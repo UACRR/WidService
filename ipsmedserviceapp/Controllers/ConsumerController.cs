@@ -95,10 +95,10 @@ namespace ipsmedserviceapp.Controllers
                 // Споживач
                 newCust.Client = new Client();
                 // Договор з Споживачем
-                var addAgr = new AgreementMaster {AgrStatus = 0};
+                var addAgr = new AgreementMaster { AgrStatus = 0 };
                 addAgr.LicenseAgreement.Add(new LicenseAgreement());
-                newCust.AgreementMaster.Add( addAgr );
-                if( custType == 3 ) // юр особа
+                newCust.AgreementMaster.Add(addAgr);
+                if (custType == 3) // юр особа
                 {
                     // Компанія
                     newCust.Company = new Company();
@@ -138,73 +138,128 @@ namespace ipsmedserviceapp.Controllers
                 if (!(newCustomer.CustType > 0 && newCustomer.CustType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
-                _dbContext.Customer.Add(newCustomer);
-
                 // Збереження Customer
-                _dbContext.Entry(newCustomer).State = EntityState.Added;
+                Customer addCustomer = new Customer();
+                addCustomer.SetFields(newCustomer, new[] { "CustId" });
+                _dbContext.Customer.Add(addCustomer);
+
                 // Збереження Client
-                if (newCustomer.Client == null)
-                    newCustomer.Client = new Client();
-                _dbContext.Entry(newCustomer.Client).State = EntityState.Added;
+                addCustomer.Client = new Client();
+                addCustomer.Client.SetFields(newCustomer.Client, new[] { "CustId" });
+
 
                 // Збереження BankAccount
-                if( newCustomer.BankAccount.Count > 0 )
-                    foreach( var item in newCustomer.BankAccount)
-                        _dbContext.Entry(item).State = EntityState.Added;
-                // Збереження AgreementMaster
-                if (newCustomer.AgreementMaster.Count > 0)
-                    foreach (var item in newCustomer.AgreementMaster)
-                    {
-                        _dbContext.Entry(item).State = EntityState.Added;
-                        // Збереження LicenseAgreement
-                        if ( item.LicenseAgreement.Count > 0 )
-                            foreach (var subItem in item.LicenseAgreement)
-                                _dbContext.Entry(subItem).State = EntityState.Added;
-                    }
-                // Збереження PartnerClient
-                if (newCustomer.Partner != null )
-                    _dbContext.Entry(newCustomer.Partner).State = EntityState.Added;
+                var bankAccList = newCustomer.BankAccount.ToList();
+                bankAccList.ForEach(rec =>
+                {
+                    BankAccount addAcc = new BankAccount();
+                    addAcc.SetFields(rec, new[] { "CustId", "BanAccId" });
+                    addCustomer.BankAccount.Add(addAcc);
+                });
 
+                // Збереження AgreementMaster
+                var agreeMaster = newCustomer.AgreementMaster.ToList();
+
+                foreach (var item in agreeMaster)
+                {
+                    AgreementMaster addAgreeMAster = new AgreementMaster();
+                    addAgreeMAster.SetFields(item, new[] { "CustId", "AgrId" });
+                    addCustomer.AgreementMaster.Add(addAgreeMAster);
+                    var licenseAgg = item.LicenseAgreement.ToList();
+                    licenseAgg.ForEach(rec =>
+                    {
+                        LicenseAgreement addLic = new LicenseAgreement();
+
+                        addLic.SetFields(rec, new[] { "CustId", "AgrId", "LicId" });
+                        if (addLic.LicCode == 0)
+                            addLic.LicCode = 25;
+
+                        addCustomer.Client.LicenseAgreement.Add(addLic);
+                        addAgreeMAster.LicenseAgreement.Add(addLic);
+                    });
+
+                }
+                // Збереження PartnerClient
+                if (newCustomer.Partner != null)
+                {
+                    addCustomer.Partner = new Partner();
+                }
+
+                // if( newCustomer.Client.PartnerClient)
+                // ClnBusinessPlace
+                foreach (var item in newCustomer.Client.ClnBusinessPlace)
+                {
+                    ClnBusinessPlace placeItem = new ClnBusinessPlace();
+                    placeItem.SetFields(item, new[] { "PlaceId", "CustId" });
+                    addCustomer.Client.ClnBusinessPlace.Add(placeItem);
+                    // ClnPlaceHoll
+                    foreach (var hollItem in item.ClnPlaceHoll)
+                    {
+                        ClnPlaceHoll addHoll = new ClnPlaceHoll();
+                        addHoll.SetFields(hollItem, new[] { "HollId", "PlaceId" });
+                        placeItem.ClnPlaceHoll.Add(addHoll);
+                    }
+                }
                 if (newCustomer.CustType == 3) //   Юридична особа
                 {
 
                     // Збереження Company
                     if (newCustomer.Company == null)
                         throw new Exception("Not input data for Company");
-                    _dbContext.Entry(newCustomer.Company).State = EntityState.Added;
+                    // _dbContext.Entry(newCustomer.Company).State = EntityState.Added;
+                    addCustomer.Company = new Company();
 
                     // Збереження AnketaCompany
-                    if( newCustomer.AnketaCompany.Count == 0)
+                    if (newCustomer.AnketaCompany.Count == 0)
                         throw new Exception("Not input data for AnketaCompany");
+
                     foreach (var item in newCustomer.AnketaCompany)
-                        _dbContext.Entry(item).State = EntityState.Added;
+                    {
+                        AnketaCompany addAnketa = new AnketaCompany();
+                        addAnketa.SetFields(item, new[] { "CustId" });
+                        addCustomer.Company.AnketaCompany.Add(item);
+                    }
 
                     // Збереження RelEmployee
-                    if ( newCustomer.Company.RelEmployee.Count > 0)
+                    foreach (var item in newCustomer.Company.RelEmployee)
                     {
-                        foreach (var item in newCustomer.Company.RelEmployee )
+                        if (item.Empl == null)
+                            continue;
+
+                        RelEmployee relEmpl = new RelEmployee();
+                        relEmpl.SetFields(item, new[] { "CustId", "Emplid" });
+                        Employee emplItem = new Employee { Emplid = item.Empl.Emplid };
+                        // Збереження Employee
+                        if (item.Empl.Emplid == 0)
                         {
-                            // Збереження Employee
-                            if (item.Empl?.Emplid != null && item.Empl.Emplid == 0)
-                                _dbContext.Entry(item.Empl).State = EntityState.Added;
-
-                            _dbContext.Entry(item).State = EntityState.Added;
+                            emplItem.SetFields(item.Empl, new[] { "CustId", "Emplid" });
+                            addCustomer.Employee.Add(emplItem);
                         }
-
+                        else
+                            _dbContext.Employee.Attach(emplItem);
+                        relEmpl.Empl = emplItem;
+                        addCustomer.Company.RelEmployee.Add(relEmpl);
                     }
+
                 }
                 else
                 {
                     // Збереження Person
-                    if( newCustomer.Person == null )
+                    if (newCustomer.Person == null)
                         throw new Exception("Not input data for Company");
-                    _dbContext.Entry(newCustomer.Person).State = EntityState.Added;
+                    addCustomer.Person = new Person();
+
                     // Збереження AnketaPerson
                     if (newCustomer.AnketaPerson.Count == 0)
                         throw new Exception("Not input data for AnketaPerson");
 
                     foreach (var item in newCustomer.AnketaPerson)
+                    {
+                        AnketaPerson addPerson = new AnketaPerson();
+                        addPerson.SetFields(item, new[] { "CustId"});
+                        addCustomer.Person.AnketaPerson.Add(addPerson);
                         _dbContext.Entry(item).State = EntityState.Added;
+                    }
                 }
 
 
@@ -213,7 +268,7 @@ namespace ipsmedserviceapp.Controllers
                 tran.Commit();
                 tran = null;
 
-                return await GetConsumerById(newCustomer.CustId);
+                return await GetConsumerById(addCustomer.CustId);
             }
             catch (Exception ex)
             {
