@@ -42,7 +42,7 @@ namespace ipsFormsDesign.Services
                 return _webApi.NewItem<Customer>("rh/newrightholder", cust);
             }
 
-            return _webApi.UpdateItem<Customer>("detail", cust.CustId.ToString(), cust);
+            return _webApi.UpdateItem<Customer>("rh/detail", cust.CustId.ToString(), cust);
         }
     }
 }

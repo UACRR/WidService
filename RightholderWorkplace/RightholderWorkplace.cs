@@ -253,7 +253,7 @@ namespace RightholderWorkplace
             gvTerritoryExclusions.Enabled = !cbAroundWorld.Checked;
         }
 
-        #region Rightolders list commands
+        #region Rightolder commands
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
@@ -279,6 +279,18 @@ namespace RightholderWorkplace
             //SetConsumerPageView();
 
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+        }
+
+        private void btnSaveRightholder_Click(object sender, EventArgs e)
+        {
+            if (_customer == null)
+            {
+                return;
+            }
+
+            // TODO: additional validation
+
+            SaveCustomer?.Invoke(_customer);
         }
 
         #endregion
