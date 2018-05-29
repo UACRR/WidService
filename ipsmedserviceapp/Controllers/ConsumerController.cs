@@ -34,10 +34,10 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .SingleOrDefaultAsync();
             // Отримати дані по Контрактах
-            await _dbContext.Entry(cust).Collection(rec => rec.AgreementMaster)
+            await _dbContext.Entry(cust).Collection(rec => rec.Client.LicenseAgreement)
                 .Query()
-                .Where(agree => agree.AgrStatus < 4)
-                .Include(item => item.LicenseAgreement)
+                .Where(agree => agree.LicStatus < 4)
+                .Include(item => item.Agr )
                 .LoadAsync();
 
             // Отримати по контрактам Періоди оплат    
@@ -75,6 +75,127 @@ namespace ipsmedserviceapp.Controllers
         {
             var cust = await GetConsumerAllData(id);
             return Json(cust);
+        }
+
+        /// <summary>
+        /// Зберегти Споживача до Id
+        /// </summary>
+        /// <param name="id">ідентифікатор CustId бази даних</param>
+        /// <returns></returns>
+        [HttpPut("detail/{id}")]
+        public async Task<IActionResult> SaveConsumerById(int id, [FromBody] Customer updCustomer)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var dest = await GetConsumerAllData(id);
+                // Customer
+                dest.SetFields(updCustomer);
+                //.Include(item => item.BankAccount)
+                _dbContext.UpdateList(updCustomer.BankAccount, dest.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
+                //.Include(item => item.RightHolder)
+                dest.Client.SetFields(updCustomer.Client);
+
+                // Delete
+                List<LicenseAgreement> tempList = dest.Client.LicenseAgreement.Where(row => !updCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+                    // Delete LicenseAgreement
+                    var agreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
+                    agreeItem.LicenseAgreement.Remove(delLicense);
+                    dest.Client.LicenseAgreement.Remove(item);
+
+
+                    // AgreementMaster
+                    _dbContext.LicenseAgreement.Remove(delLicense);
+                }
+                );
+
+                // Modify
+                tempList = updCustomer.Client.LicenseAgreement.Where(row => dest.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+
+                    // Delete LicenseAgreement
+                    var agreeItemDest = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var agreeItemSors = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+
+                    agreeItemDest.SetFields(agreeItemSors);
+
+                    foreach (var license in agreeItemDest.LicenseAgreement)
+                    {
+                        var sorsLic = agreeItemSors.LicenseAgreement.Where(rec => rec.LicId == license.LicId).SingleOrDefault();
+                        license.SetFields(sorsLic);
+
+                        // AgreementMaster
+                    }
+                });
+                // Add
+                tempList = updCustomer.Client.LicenseAgreement.Where(row => !dest.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+
+                    // Delete LicenseAgreement
+                    var agreeItem = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var destAgreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    if(destAgreeItem == null )
+                    {
+                        destAgreeItem = new AgreementMaster();
+                        destAgreeItem.SetFields(agreeItem, new[] { "AgrId" });
+                        dest.AgreementMaster.Add(destAgreeItem);
+                    }
+
+                    var addLicItem = new LicenseAgreement();
+                    addLicItem.SetFields(item, new[] { "LicId" });
+                    dest.Client.LicenseAgreement.Add(addLicItem);
+
+                }
+                );
+
+
+                if (dest.CustType == 3) // Company
+                {
+                    //.Include(item => item.Company)
+                    if (dest.Company == null)
+                        dest.Company = new Company();
+
+                    //.Include(item => item.AnketaCompany)
+                    var sorsList = updCustomer.Company.AnketaCompany.ToList();
+                    _dbContext.UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                    //.Include(comp => comp.RelEmployee)
+                    _dbContext.UpdateList(updCustomer.Company.RelEmployee, dest.Company.RelEmployee, rec => { },
+                                        (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
+
+                    foreach (var emplRel in dest.Company.RelEmployee)
+                    {
+                        if (emplRel.Empl.Emplid == 0)
+                            _dbContext.Entry(emplRel.Empl).State = EntityState.Added;
+                    }
+                }
+                else
+                {
+                    //.Include(item => item.Person)
+                    if (dest.Person == null)
+                        dest.Person = new Person();
+                    _dbContext.AppendList(updCustomer.Person.AnketaPerson, dest.Person.AnketaPerson, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                    //.Include(item => item.AnketaPerson)
+                }
+
+                //.Include(item => item.Community)
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+
+                return Json(dest);
+            }
+            catch( Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
