@@ -384,6 +384,8 @@ namespace RightholderWorkplace
             }
 
             rightHolderBindingSource.DataSource = _customer.RightHolder;
+
+            territoryExcludeBindingSource.DataSource = _customer.RightHolder.TerritoryExclude;
         }
     }
 }
