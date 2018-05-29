@@ -146,6 +146,7 @@
             // 
             // ddlTypeVat
             // 
+            this.ddlTypeVat.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlTypeVat.Location = new System.Drawing.Point(120, 85);
             this.ddlTypeVat.Name = "ddlTypeVat";
             this.ddlTypeVat.Size = new System.Drawing.Size(120, 20);

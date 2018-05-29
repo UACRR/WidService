@@ -12,10 +12,38 @@ namespace IpsViewComponentLibrary
 {
     public partial class ContractConsumerDetailControl : UserControl
     {
+        private string _authorPaymentPercent;
+        private string _minAuthorPayment;
+
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get;
-            set;
+            get => iLicenseAgreementBindingSource.DataSource;
+            set => iLicenseAgreementBindingSource.DataSource = value;
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSourcePaidPeriod
+        {
+            get => rddListPeriodPayment.DataSource;
+            set => rddListPeriodPayment.DataSource = value;
+        }
+
+        [Category("Dictionaries")]
+        public string PaidPeriodValueMember
+        {
+            get => rddListPeriodPayment.ValueMember;
+            set => rddListPeriodPayment.ValueMember = value;
+        }
+
+        [Category("Dictionaries")]
+        public string PaidPeroidDisplayMember
+        {
+            get => rddListPeriodPayment.DisplayMember;
+            set => rddListPeriodPayment.DisplayMember = value;
         }
 
         public ContractConsumerDetailControl()
@@ -24,6 +52,38 @@ namespace IpsViewComponentLibrary
             rddListTypeAutoProl.Enabled = false;
             rtxtboxPercentAutoProl.Enabled = false;
         }
+
+
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string AuthorPaymentPercent
+        {
+            get => _authorPaymentPercent;
+            set
+            {
+                _authorPaymentPercent = value;
+                rtxtBoxAuthorPaymentPercent.DataBindings.Clear();
+                rtxtBoxAuthorPaymentPercent.DataBindings.Add("Text", iLicenseAgreementBindingSource,
+                    _authorPaymentPercent, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+            }
+        }
+
+        //MinAuthorPayment
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string MinAuthorPayment
+        {
+            get => _minAuthorPayment;
+            set
+            {
+                _minAuthorPayment = value;
+                rtxtBoxMinAuthorPayment.DataBindings.Clear();
+                rtxtBoxMinAuthorPayment.DataBindings.Add("Text", iLicenseAgreementBindingSource,
+                    _minAuthorPayment, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+            }
+        }
+
+
 
         private void rCheckBoxAutoprolongation_CheckStateChanged(object sender, EventArgs e)
         {

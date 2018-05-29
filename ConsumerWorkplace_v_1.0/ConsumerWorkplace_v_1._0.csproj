@@ -99,10 +99,13 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.AnketaDictionaties.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IActivityType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IPositionType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRelEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ITypeVat.datasource" />
     <None Include="Properties\DataSources\ListConsumers.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">

@@ -12,6 +12,11 @@ namespace IpsViewComponentLibrary
 {
     public partial class ContractConsumerMainControl : UserControl
     {
+        private string _pickerAgrDate;
+        private string _pickerDateBegin;
+        private string _pickerDateEnd;
+        private string _contrNumber;
+
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
@@ -20,19 +25,67 @@ namespace IpsViewComponentLibrary
             set => iAgreementMasterBindingSource.DataSource = value;
         }
 
-        public string ContractNumber
+        public string ContractNumber => rtxtBoxContrNumber.Text;
+        public string ContractBeginDate => rdtPickerAgrDate.Value.ToString("dd.MM.yyyy");
+
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string PickerAgrDate
         {
-            get => rtxtBoxContrNumber.Text;
+            get => _pickerAgrDate;
+            set
+            {
+                _pickerAgrDate = value;
+                rdtPickerAgrDate.DataBindings.Clear();
+                rdtPickerAgrDate.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerAgrDate, true,DataSourceUpdateMode.OnPropertyChanged, DateTime.Today );
+            }
         }
 
-        public string ContractBeginDate
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string PickerDateBegin
         {
-            get => rdtPickerAgrDate.Value.ToString("dd.MM.yyyy");
+            get => _pickerDateBegin;
+            set
+            {
+                _pickerDateBegin = value;
+                rdtPickerDateBegin.DataBindings.Clear();
+                rdtPickerDateBegin.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerDateBegin , true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
+            }
         }
 
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string PickerDateEnd
+        {
+            get => _pickerDateEnd;
+            set
+            {
+                _pickerDateEnd = value;
+                rdtPickerDateEnd.DataBindings.Clear();
+                rdtPickerDateEnd.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerDateEnd, true,  DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
+            }
+        }
+
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string ContrNumber
+        {
+            get => _contrNumber;
+            set
+            {
+                _contrNumber = value;
+                rtxtBoxContrNumber.DataBindings.Clear();
+                rtxtBoxContrNumber.DataBindings.Add("Text", iAgreementMasterBindingSource, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, "Договір №");
+            }
+        }
+
+
+        //ContrNumber
         public ContractConsumerMainControl()
         {
             InitializeComponent();
+            
         }
 
         public bool Validator()

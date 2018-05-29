@@ -92,7 +92,7 @@ namespace IpsViewComponentLibrary
                 {
                     _registerDateDataMember = value;
                     dtRegisterDate.DataBindings.Clear();
-                    dtRegisterDate.DataBindings.Add("Value", _bindingSource, _registerDateDataMember);
+                    dtRegisterDate.DataBindings.Add("Value", _bindingSource, _registerDateDataMember,true);
                 }
             }
         }

@@ -20,7 +20,7 @@ namespace ConsumerWorkplace_v_1._0
     {
         private bool nextPage = false;
         private sbyte validTabs = 0;
-
+        
 
         public event Func<bool> Save;
 
@@ -124,10 +124,22 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextPlaces_Click(object sender, EventArgs e)
         {
             nextPage = true;
-                placesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            placesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
             placesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                placesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            placesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            if(clientNameCheckBoxPlaces.IsChecked)
                 pageAllAnketa.SelectedPage = pvConsumerPlaces;
+            else
+            {
+                bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+                bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+                bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+                pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
+                pageAllAnketa.Pages[4].Item.ForeColor = Color.DarkGray;
+                pageAllAnketa.Pages[5].Item.ForeColor = DefaultForeColor;
+                if (validTabs==4)
+                validTabs++;
+            }
         }
 
         private void rbtnBackAnketa_Click(object sender, EventArgs e)
@@ -139,7 +151,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             nextPage = true;
                 bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+                bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
                 bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
                 pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
         }
@@ -158,7 +170,10 @@ namespace ConsumerWorkplace_v_1._0
 
         private void rbtnBackPlaces_Click(object sender, EventArgs e)
         {
-            pageAllAnketa.SelectedPage = pvConsumerPlaces;
+            if (IsPlaceIn)
+                pageAllAnketa.SelectedPage = pvConsumerPlaces;
+            else
+                pageAllAnketa.SelectedPage = pvConsumerManagers;
         }
 
         private void rbtnBackBankRequisites_Click(object sender, EventArgs e)
@@ -166,6 +181,7 @@ namespace ConsumerWorkplace_v_1._0
             pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
         }
 
+        #endregion
 
         /// <summary>
         /// Збереження анкети юр особи
@@ -177,13 +193,19 @@ namespace ConsumerWorkplace_v_1._0
             if (Validation(7) && MessageBox.Show("Do you want save data?", "Save data?", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question) == DialogResult.Yes)
             {
+
+                SaveCustomer?.Invoke(_cust);
+
+
                 ClearDataConsumersControls();
-                SetDataSources();
+                //
+
+
+
+                //SetDataSources();
                 rpvConsumers.SelectedPage = pageConsumersGrid;
             }
         }
-
-        #endregion
 
 
         /// <summary>
@@ -289,7 +311,7 @@ namespace ConsumerWorkplace_v_1._0
             {
 
                 AnketaCompany anketa = _cust.Company.AnketaCompany.Where(rec => rec.Version == _cust.AnkVersion).SingleOrDefault();
-                _anketa = anketa;
+                _anketa = new AnketaCompany{BanAcc = new BankAccount()};
                 if(_cust.BankAccount.Count == 0)
                     _cust.BankAccount.Add(new BankAccount{CustId = _cust.CustId});
                 var bankAccount = _cust.BankAccount.FirstOrDefault();
@@ -307,11 +329,18 @@ namespace ConsumerWorkplace_v_1._0
 
                 var relContactPerson = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 3).SingleOrDefault();
 
-                
 
                 var agrMaster = _cust.AgreementMaster?.Where(rec => rec.AgrStatus < 4).FirstOrDefault();
+                var license = agrMaster?.LicenseAgreement.First();
 
                 var licAgr = (agrMaster?.LicenseAgreement)?.FirstOrDefault(rec => rec.LicStatus < 4);
+
+
+                if (anketa == null)
+                {
+                    _cust.Company.AnketaCompany.Add(new AnketaCompany{BanAcc = new BankAccount()});
+                    anketa = _cust.Company.AnketaCompany.SingleOrDefault();
+                }
 
                 iAnketaCompanyBindingSource.DataSource = anketa;
 
@@ -336,19 +365,32 @@ namespace ConsumerWorkplace_v_1._0
                 anketaDictionatiesBindingSource.DataSource = _dic;
                 if(bankAccount != null)
                     bankRequisitesCtrlBankAccount.DataSource = bankAccount;
+
                 clientNameCtrlAnketaCompany.ActivityCodeDataSource = _dic.activityType;
-                clientNameCtrlAnketaCompany.ActivityCodeValueMember = "CodeI";
-                clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "Name";
+                clientNameCtrlAnketaCompany.ActivityCodeValueMember = "codeI";
+                clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "name";
                 clientNameCtrlAnketaCompany.DataSource = anketa;
+
                 clientNameCtrlRegistrationsCompany.DataSource = this.iAnketaCompanyBindingSource;
+                clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
+                clientNameCtrlRegistrationsCompany.TypesVatValueMember = "codeI";
+                clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "name";
                 // consumerMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
+
+                iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
+                iLicenseAgreementBindingSource.DataSource = license;
+                
+
                 consumerWorkplaceBindingSource.DataSource = this;
-                iAnketaCompanyBindingSource.DataSource = anketa;
+                
                 iPositionTypeBindingSource.DataSource = _dic.positionType;
                 if (relBoss != null)
                     iRelEmployeeBindingSource.DataSource = relBoss;
-                licenseTypeCtrlContractConsumerDetail.DataSource = _dic.licenseType;
+
                 licenseTypeCtrlContractConsumerMain.DataSource = agrMaster;
+
+                /*  - - -      BIND DATASOURCE      - - -  */
+                licenseTypeCtrlContractConsumerDetail.DataSource = license;
 
                 placesCtrlConsumerPlaces.SetData(_cust);
                 if (_cust.Client.ClnBusinessPlace.Count != 0)
@@ -390,6 +432,11 @@ namespace ConsumerWorkplace_v_1._0
         {
             if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
             {
+                if (!clientNameCheckBoxPlaces.IsChecked && e.Page.TabIndex == 4)
+                {
+                    e.Cancel = true;
+                    return;
+                }
                 if (e.Page.TabIndex <= validTabs)
                 {
                     e.Cancel = false;
