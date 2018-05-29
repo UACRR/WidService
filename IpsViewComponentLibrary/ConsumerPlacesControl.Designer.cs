@@ -167,7 +167,7 @@
             this.rTxtBoxCountOrMeters.Location = new System.Drawing.Point(134, 157);
             this.rTxtBoxCountOrMeters.Name = "rTxtBoxCountOrMeters";
             this.rTxtBoxCountOrMeters.Size = new System.Drawing.Size(96, 20);
-            this.rTxtBoxCountOrMeters.TabIndex = 8;
+            this.rTxtBoxCountOrMeters.TabIndex = 3;
             // 
             // lblLocation
             // 
@@ -175,7 +175,7 @@
             this.lblLocation.Location = new System.Drawing.Point(10, 154);
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(118, 22);
-            this.lblLocation.TabIndex = 7;
+            this.lblLocation.TabIndex = 3;
             this.lblLocation.Text = "label1";
             this.lblLocation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -184,7 +184,7 @@
             this.addressControl.Location = new System.Drawing.Point(13, 62);
             this.addressControl.Name = "addressControl";
             this.addressControl.Size = new System.Drawing.Size(873, 89);
-            this.addressControl.TabIndex = 6;
+            this.addressControl.TabIndex = 2;
             // 
             // rBtnCancel
             // 
@@ -213,7 +213,7 @@
             this.rLblTypeInst.Location = new System.Drawing.Point(13, 37);
             this.rLblTypeInst.Name = "rLblTypeInst";
             this.rLblTypeInst.Size = new System.Drawing.Size(115, 18);
-            this.rLblTypeInst.TabIndex = 3;
+            this.rLblTypeInst.TabIndex = 1;
             this.rLblTypeInst.Text = "Тип закладу";
             this.rLblTypeInst.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -224,7 +224,7 @@
             this.rLblName.Location = new System.Drawing.Point(13, 6);
             this.rLblName.Name = "rLblName";
             this.rLblName.Size = new System.Drawing.Size(115, 25);
-            this.rLblName.TabIndex = 2;
+            this.rLblName.TabIndex = 0;
             this.rLblName.Text = "Назва закладу";
             this.rLblName.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 

@@ -59,14 +59,14 @@
             this.txtNumberVat.Location = new System.Drawing.Point(436, 85);
             this.txtNumberVat.Name = "txtNumberVat";
             this.txtNumberVat.Size = new System.Drawing.Size(164, 20);
-            this.txtNumberVat.TabIndex = 27;
+            this.txtNumberVat.TabIndex = 5;
             // 
             // txtRegisterNumber
             // 
             this.txtRegisterNumber.Location = new System.Drawing.Point(120, 38);
             this.txtRegisterNumber.Name = "txtRegisterNumber";
             this.txtRegisterNumber.Size = new System.Drawing.Size(120, 20);
-            this.txtRegisterNumber.TabIndex = 26;
+            this.txtRegisterNumber.TabIndex = 1;
             // 
             // txtRegisterWho
             // 
@@ -75,7 +75,7 @@
             this.txtRegisterWho.Location = new System.Drawing.Point(436, 38);
             this.txtRegisterWho.Name = "txtRegisterWho";
             this.txtRegisterWho.Size = new System.Drawing.Size(164, 20);
-            this.txtRegisterWho.TabIndex = 25;
+            this.txtRegisterWho.TabIndex = 3;
             // 
             // dtRegisterDate
             // 
@@ -83,7 +83,7 @@
             this.dtRegisterDate.Location = new System.Drawing.Point(278, 38);
             this.dtRegisterDate.Name = "dtRegisterDate";
             this.dtRegisterDate.Size = new System.Drawing.Size(92, 20);
-            this.dtRegisterDate.TabIndex = 24;
+            this.dtRegisterDate.TabIndex = 2;
             this.dtRegisterDate.TabStop = false;
             this.dtRegisterDate.Value = new System.DateTime(((long)(0)));
             // 
@@ -92,14 +92,14 @@
             this.txtOkpo.Location = new System.Drawing.Point(120, 1);
             this.txtOkpo.Name = "txtOkpo";
             this.txtOkpo.Size = new System.Drawing.Size(120, 20);
-            this.txtOkpo.TabIndex = 23;
+            this.txtOkpo.TabIndex = 0;
             // 
             // lblIssuedBy
             // 
             this.lblIssuedBy.Location = new System.Drawing.Point(376, 40);
             this.lblIssuedBy.Name = "lblIssuedBy";
             this.lblIssuedBy.Size = new System.Drawing.Size(53, 18);
-            this.lblIssuedBy.TabIndex = 22;
+            this.lblIssuedBy.TabIndex = 3;
             this.lblIssuedBy.Text = "виданий:";
             // 
             // lblDateBegin
@@ -107,7 +107,7 @@
             this.lblDateBegin.Location = new System.Drawing.Point(247, 40);
             this.lblDateBegin.Name = "lblDateBegin";
             this.lblDateBegin.Size = new System.Drawing.Size(24, 18);
-            this.lblDateBegin.TabIndex = 21;
+            this.lblDateBegin.TabIndex = 2;
             this.lblDateBegin.Text = "від:";
             // 
             // lblIPN
@@ -115,7 +115,7 @@
             this.lblIPN.Location = new System.Drawing.Point(311, 85);
             this.lblIPN.Name = "lblIPN";
             this.lblIPN.Size = new System.Drawing.Size(118, 18);
-            this.lblIPN.TabIndex = 20;
+            this.lblIPN.TabIndex = 5;
             this.lblIPN.Text = "Індивід. подактов. №:";
             // 
             // lblSvidoctvo
@@ -124,7 +124,7 @@
             this.lblSvidoctvo.Location = new System.Drawing.Point(3, 24);
             this.lblSvidoctvo.Name = "lblSvidoctvo";
             this.lblSvidoctvo.Size = new System.Drawing.Size(97, 48);
-            this.lblSvidoctvo.TabIndex = 19;
+            this.lblSvidoctvo.TabIndex = 1;
             this.lblSvidoctvo.Text = "Свідоцтво про державну реєстрацію №:";
             // 
             // lbledrpou
@@ -132,7 +132,7 @@
             this.lbledrpou.Location = new System.Drawing.Point(3, 3);
             this.lbledrpou.Name = "lbledrpou";
             this.lbledrpou.Size = new System.Drawing.Size(53, 18);
-            this.lbledrpou.TabIndex = 18;
+            this.lbledrpou.TabIndex = 0;
             this.lbledrpou.Text = "ЄДРПОУ:";
             // 
             // lblTypeTaxpayer
@@ -141,16 +141,20 @@
             this.lblTypeTaxpayer.Location = new System.Drawing.Point(3, 78);
             this.lblTypeTaxpayer.Name = "lblTypeTaxpayer";
             this.lblTypeTaxpayer.Size = new System.Drawing.Size(97, 33);
-            this.lblTypeTaxpayer.TabIndex = 20;
+            this.lblTypeTaxpayer.TabIndex = 4;
             this.lblTypeTaxpayer.Text = "Тип платника податків:";
             // 
             // ddlTypeVat
             // 
+            this.ddlTypeVat.DropDownHeight = 50;
             this.ddlTypeVat.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlTypeVat.Location = new System.Drawing.Point(120, 85);
             this.ddlTypeVat.Name = "ddlTypeVat";
             this.ddlTypeVat.Size = new System.Drawing.Size(120, 20);
-            this.ddlTypeVat.TabIndex = 28;
+            this.ddlTypeVat.TabIndex = 4;
+            ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSize = true;
+            ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.FitToAvailableSize;
             // 
             // IpsRegistrationsCompanyControl
             // 

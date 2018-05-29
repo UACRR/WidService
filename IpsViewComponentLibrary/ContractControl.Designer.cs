@@ -51,14 +51,14 @@
             this.rtxtBoxNumber.Location = new System.Drawing.Point(32, 3);
             this.rtxtBoxNumber.Name = "rtxtBoxNumber";
             this.rtxtBoxNumber.Size = new System.Drawing.Size(75, 20);
-            this.rtxtBoxNumber.TabIndex = 1;
+            this.rtxtBoxNumber.TabIndex = 0;
             // 
             // lblFromDate
             // 
             this.lblFromDate.Location = new System.Drawing.Point(113, 5);
             this.lblFromDate.Name = "lblFromDate";
             this.lblFromDate.Size = new System.Drawing.Size(21, 18);
-            this.lblFromDate.TabIndex = 2;
+            this.lblFromDate.TabIndex = 1;
             this.lblFromDate.Text = "від";
             // 
             // rdtPickerBirth
@@ -71,7 +71,7 @@
             this.rdtPickerBirth.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerBirth.NullText = "Оберіть дату";
             this.rdtPickerBirth.Size = new System.Drawing.Size(127, 20);
-            this.rdtPickerBirth.TabIndex = 5;
+            this.rdtPickerBirth.TabIndex = 1;
             this.rdtPickerBirth.TabStop = false;
             this.rdtPickerBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 

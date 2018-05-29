@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -95,7 +96,6 @@ namespace IpsViewComponentLibrary
             else
             {
                 rtxtboxPercentAutoProl.Clear();
-                rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items[0];
                 rddListTypeAutoProl.Enabled = false;
                 rtxtboxPercentAutoProl.Enabled = false;
             }

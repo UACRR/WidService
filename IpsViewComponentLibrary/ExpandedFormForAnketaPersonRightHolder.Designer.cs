@@ -56,7 +56,7 @@
             this.rtxtBoxTextRu.Location = new System.Drawing.Point(13, 37);
             this.rtxtBoxTextRu.Name = "rtxtBoxTextRu";
             this.rtxtBoxTextRu.Size = new System.Drawing.Size(407, 20);
-            this.rtxtBoxTextRu.TabIndex = 1;
+            this.rtxtBoxTextRu.TabIndex = 0;
             // 
             // rBtnSave
             // 
@@ -81,14 +81,14 @@
             this.rtxtBoxTextEn.Location = new System.Drawing.Point(13, 87);
             this.rtxtBoxTextEn.Name = "rtxtBoxTextEn";
             this.rtxtBoxTextEn.Size = new System.Drawing.Size(407, 20);
-            this.rtxtBoxTextEn.TabIndex = 5;
+            this.rtxtBoxTextEn.TabIndex = 1;
             // 
             // lblTextEn
             // 
             this.lblTextEn.Location = new System.Drawing.Point(13, 63);
             this.lblTextEn.Name = "lblTextEn";
             this.lblTextEn.Size = new System.Drawing.Size(140, 18);
-            this.lblTextEn.TabIndex = 4;
+            this.lblTextEn.TabIndex = 1;
             this.lblTextEn.Text = "Псевдонім (сценічне ім\'я)";
             // 
             // ExpandedFormForAnketaPersonRightHolder
