@@ -55,19 +55,19 @@ namespace IpsViewComponentLibrary
             set => rddListPeriodPayment.DisplayMember = value;
         }
 
-        [Category("Dictionaries")]
-        public string AutoprolongationDisplayMember
-        {
-            get => rddListTypeAutoProl.DisplayMember;
-            set => rddListTypeAutoProl.DisplayMember = value;
-        }
+        //[Category("Dictionaries")]
+        //public string AutoprolongationDisplayMember
+        //{
+        //    get => rddListTypeAutoProl.DisplayMember;
+        //    set => rddListTypeAutoProl.DisplayMember = value;
+        //}
         
-        [Category("Dictionaries")]
-        public string AutoprolongationValueMember
-        {
-            get => rddListTypeAutoProl.ValueMember;
-            set => rddListTypeAutoProl.ValueMember = value;
-        }
+        //[Category("Dictionaries")]
+        //public string AutoprolongationValueMember
+        //{
+        //    get => rddListTypeAutoProl.ValueMember;
+        //    set => rddListTypeAutoProl.ValueMember = value;
+        //}
 
         [Category("Dictionaries")]
         public string PeriodPaymentDisplayMember
@@ -75,7 +75,7 @@ namespace IpsViewComponentLibrary
             get => rddListTypeAutoProl.DisplayMember;
             set => rddListTypeAutoProl.DisplayMember = value;
         }
-
+        
         [Category("Dictionaries")]
         public string PeriodPaymentValueMember
         {

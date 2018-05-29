@@ -318,6 +318,8 @@ namespace ConsumerWorkplace_v_1._0
                     _cust.BankAccount.Add(new BankAccount{CustId = _cust.CustId});
                 var bankAccount = _cust.BankAccount.FirstOrDefault();
 
+                bankRequisitesCtrlBankAccount.DataSource = bankAccount;
+
                 RelEmployee relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).FirstOrDefault();
                 if(relEmpl == null)
                 {
@@ -388,6 +390,7 @@ namespace ConsumerWorkplace_v_1._0
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
                 clientNameCtrlRegistrationsCompany.TypesVatValueMember = "codeI";
                 clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "name";
+                //clientNameCtrlRegistrationsCompany.NumberVatDataMember = "";
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
 

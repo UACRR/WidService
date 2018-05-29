@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -40,7 +41,7 @@
             this.rtxtboxPercentAutoProl = new Telerik.WinControls.UI.RadTextBox();
             this.rddListPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
             this.rddListTypeAutoProl = new Telerik.WinControls.UI.RadDropDownList();
-            this.iLicenseAgreementBindingSource = new System.Windows.Forms.BindingSource();
+            this.iLicenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -121,6 +122,8 @@
             // 
             // rddListPeriodPayment
             // 
+            this.rddListPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.iLicenseAgreementBindingSource, "PeriodCode", true));
+            this.rddListPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iLicenseAgreementBindingSource, "PeriodCode", true));
             this.rddListPeriodPayment.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.rddListPeriodPayment.Location = new System.Drawing.Point(139, 78);
             this.rddListPeriodPayment.Name = "rddListPeriodPayment";

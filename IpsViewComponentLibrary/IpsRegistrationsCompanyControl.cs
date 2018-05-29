@@ -133,14 +133,14 @@ namespace IpsViewComponentLibrary
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string NumberVatDataMember
         {
-            get { return _numberVatDataMember; }
+            get => _numberVatDataMember;
             set
             {
                 if (_numberVatDataMember != value)
                 {
                     _numberVatDataMember = value;
                     txtNumberVat.DataBindings.Clear();
-                    txtNumberVat.DataBindings.Add("Text", _bindingSource, _numberVatDataMember);
+                    txtNumberVat.DataBindings.Add("Text", _bindingSource, _numberVatDataMember,true,DataSourceUpdateMode.OnPropertyChanged,string.Empty);
                 }
             }
         }
