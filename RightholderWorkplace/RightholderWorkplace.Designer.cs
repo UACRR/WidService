@@ -1538,7 +1538,6 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Робоче місце адмінстратора права";
             this.ThemeName = "Office2007Silver";
-            this.Load += new System.EventHandler(this.RightholderWorkplace_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
             this.MainPageView.ResumeLayout(false);
             this.mainPageRightholders.ResumeLayout(false);
