@@ -70,7 +70,7 @@
             this.lblSex.Location = new System.Drawing.Point(271, 104);
             this.lblSex.Name = "lblSex";
             this.lblSex.Size = new System.Drawing.Size(36, 18);
-            this.lblSex.TabIndex = 21;
+            this.lblSex.TabIndex = 9;
             this.lblSex.Text = "Стать:";
             // 
             // lblBirthDate
@@ -78,7 +78,7 @@
             this.lblBirthDate.Location = new System.Drawing.Point(3, 105);
             this.lblBirthDate.Name = "lblBirthDate";
             this.lblBirthDate.Size = new System.Drawing.Size(101, 18);
-            this.lblBirthDate.TabIndex = 20;
+            this.lblBirthDate.TabIndex = 8;
             this.lblBirthDate.Text = "Дата народження:";
             // 
             // rtxtBoxMidleName
@@ -89,7 +89,7 @@
             this.rtxtBoxMidleName.Location = new System.Drawing.Point(109, 52);
             this.rtxtBoxMidleName.Name = "rtxtBoxMidleName";
             this.rtxtBoxMidleName.Size = new System.Drawing.Size(440, 20);
-            this.rtxtBoxMidleName.TabIndex = 19;
+            this.rtxtBoxMidleName.TabIndex = 4;
             // 
             // iAnketaPersonBindingSource
             // 
@@ -100,7 +100,7 @@
             this.lblMidleName.Location = new System.Drawing.Point(3, 51);
             this.lblMidleName.Name = "lblMidleName";
             this.lblMidleName.Size = new System.Drawing.Size(72, 18);
-            this.lblMidleName.TabIndex = 18;
+            this.lblMidleName.TabIndex = 4;
             this.lblMidleName.Text = "По-батькові:";
             // 
             // rtxtBoxFirstName
@@ -111,14 +111,14 @@
             this.rtxtBoxFirstName.Location = new System.Drawing.Point(109, 27);
             this.rtxtBoxFirstName.Name = "rtxtBoxFirstName";
             this.rtxtBoxFirstName.Size = new System.Drawing.Size(440, 20);
-            this.rtxtBoxFirstName.TabIndex = 17;
+            this.rtxtBoxFirstName.TabIndex = 2;
             // 
             // lblFirstName
             // 
             this.lblFirstName.Location = new System.Drawing.Point(3, 27);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(28, 18);
-            this.lblFirstName.TabIndex = 16;
+            this.lblFirstName.TabIndex = 2;
             this.lblFirstName.Text = "Ім\'я:";
             // 
             // rdtPickerBirth
@@ -133,7 +133,7 @@
             this.rdtPickerBirth.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerBirth.NullText = "Оберіть дату";
             this.rdtPickerBirth.Size = new System.Drawing.Size(127, 20);
-            this.rdtPickerBirth.TabIndex = 15;
+            this.rdtPickerBirth.TabIndex = 8;
             this.rdtPickerBirth.TabStop = false;
             this.rdtPickerBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerBirth.ValueChanged += new System.EventHandler(this.rdtPickerBirth_ValueChanged);
@@ -146,14 +146,14 @@
             this.rtxtBoxLastName.Location = new System.Drawing.Point(109, 2);
             this.rtxtBoxLastName.Name = "rtxtBoxLastName";
             this.rtxtBoxLastName.Size = new System.Drawing.Size(440, 20);
-            this.rtxtBoxLastName.TabIndex = 13;
+            this.rtxtBoxLastName.TabIndex = 0;
             // 
             // lblLastName
             // 
             this.lblLastName.Location = new System.Drawing.Point(3, 3);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(59, 18);
-            this.lblLastName.TabIndex = 12;
+            this.lblLastName.TabIndex = 0;
             this.lblLastName.Text = "Прізвище:";
             // 
             // rtxtBoxPseudonym
@@ -164,7 +164,7 @@
             this.rtxtBoxPseudonym.Location = new System.Drawing.Point(109, 78);
             this.rtxtBoxPseudonym.Name = "rtxtBoxPseudonym";
             this.rtxtBoxPseudonym.Size = new System.Drawing.Size(440, 20);
-            this.rtxtBoxPseudonym.TabIndex = 24;
+            this.rtxtBoxPseudonym.TabIndex = 6;
             // 
             // lblPseudonym
             // 
@@ -172,7 +172,7 @@
             this.lblPseudonym.Location = new System.Drawing.Point(3, 67);
             this.lblPseudonym.Name = "lblPseudonym";
             this.lblPseudonym.Size = new System.Drawing.Size(88, 38);
-            this.lblPseudonym.TabIndex = 23;
+            this.lblPseudonym.TabIndex = 6;
             this.lblPseudonym.Text = "Псевдонім (сценічне ім\'я):";
             // 
             // rBtnMoreLastName
@@ -181,7 +181,7 @@
             this.rBtnMoreLastName.Location = new System.Drawing.Point(555, 2);
             this.rBtnMoreLastName.Name = "rBtnMoreLastName";
             this.rBtnMoreLastName.Size = new System.Drawing.Size(87, 20);
-            this.rBtnMoreLastName.TabIndex = 25;
+            this.rBtnMoreLastName.TabIndex = 1;
             this.rBtnMoreLastName.Text = "Ще, інша мова";
             this.rBtnMoreLastName.Click += new System.EventHandler(this.rBtnMoreLastName_Click);
             // 
@@ -191,7 +191,7 @@
             this.rBtnMoreName.Location = new System.Drawing.Point(555, 27);
             this.rBtnMoreName.Name = "rBtnMoreName";
             this.rBtnMoreName.Size = new System.Drawing.Size(87, 20);
-            this.rBtnMoreName.TabIndex = 26;
+            this.rBtnMoreName.TabIndex = 3;
             this.rBtnMoreName.Text = "Ще, інша мова";
             this.rBtnMoreName.Click += new System.EventHandler(this.rBtnMoreName_Click);
             // 
@@ -201,7 +201,7 @@
             this.rBtnMoreSurName.Location = new System.Drawing.Point(555, 52);
             this.rBtnMoreSurName.Name = "rBtnMoreSurName";
             this.rBtnMoreSurName.Size = new System.Drawing.Size(87, 20);
-            this.rBtnMoreSurName.TabIndex = 27;
+            this.rBtnMoreSurName.TabIndex = 5;
             this.rBtnMoreSurName.Text = "Ще, інша мова";
             this.rBtnMoreSurName.Click += new System.EventHandler(this.rBtnMoreSurName_Click);
             // 
@@ -211,7 +211,7 @@
             this.rBtnMorePseudonym.Location = new System.Drawing.Point(555, 78);
             this.rBtnMorePseudonym.Name = "rBtnMorePseudonym";
             this.rBtnMorePseudonym.Size = new System.Drawing.Size(87, 20);
-            this.rBtnMorePseudonym.TabIndex = 28;
+            this.rBtnMorePseudonym.TabIndex = 7;
             this.rBtnMorePseudonym.Text = "Ще, інша мова";
             this.rBtnMorePseudonym.Click += new System.EventHandler(this.rBtnMorePseudonym_Click);
             // 
@@ -221,7 +221,7 @@
             this.radDropDownListSex.Location = new System.Drawing.Point(313, 105);
             this.radDropDownListSex.Name = "radDropDownListSex";
             this.radDropDownListSex.Size = new System.Drawing.Size(125, 20);
-            this.radDropDownListSex.TabIndex = 29;
+            this.radDropDownListSex.TabIndex = 9;
             // 
             // AnketaPersonRightHolderControl
             // 

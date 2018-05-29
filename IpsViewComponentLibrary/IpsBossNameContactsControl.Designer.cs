@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.txtPhone = new Telerik.WinControls.UI.RadTextBox();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtSurName = new Telerik.WinControls.UI.RadTextBox();
             this.txtFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.txtLastName = new Telerik.WinControls.UI.RadTextBox();
@@ -38,9 +39,9 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtEmail = new Telerik.WinControls.UI.RadTextBox();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSurName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).BeginInit();
@@ -48,7 +49,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -87,7 +87,11 @@
             this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(173, 20);
-            this.txtPhone.TabIndex = 27;
+            this.txtPhone.TabIndex = 3;
+            // 
+            // employeeBindingSource
+            // 
+            this.employeeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             // 
             // txtSurName
             // 
@@ -97,7 +101,7 @@
             this.txtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtSurName.Name = "txtSurName";
             this.txtSurName.Size = new System.Drawing.Size(175, 20);
-            this.txtSurName.TabIndex = 23;
+            this.txtSurName.TabIndex = 2;
             // 
             // txtFirstName
             // 
@@ -107,7 +111,7 @@
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(173, 20);
-            this.txtFirstName.TabIndex = 25;
+            this.txtFirstName.TabIndex = 1;
             // 
             // txtLastName
             // 
@@ -117,7 +121,7 @@
             this.txtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(173, 20);
-            this.txtLastName.TabIndex = 26;
+            this.txtLastName.TabIndex = 0;
             // 
             // radLabel1
             // 
@@ -125,7 +129,7 @@
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(24, 18);
-            this.radLabel1.TabIndex = 27;
+            this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "ПІБ:";
             // 
             // radLabel2
@@ -134,7 +138,7 @@
             this.radLabel2.Location = new System.Drawing.Point(3, 34);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(24, 18);
-            this.radLabel2.TabIndex = 28;
+            this.radLabel2.TabIndex = 3;
             this.radLabel2.Text = "Тел.:";
             // 
             // radLabel3
@@ -144,7 +148,7 @@
             this.radLabel3.Location = new System.Drawing.Point(293, 32);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(106, 22);
-            this.radLabel3.TabIndex = 29;
+            this.radLabel3.TabIndex = 4;
             this.radLabel3.Text = "Електронна пошта:";
             // 
             // txtEmail
@@ -155,11 +159,7 @@
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(175, 20);
-            this.txtEmail.TabIndex = 24;
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
+            this.txtEmail.TabIndex = 4;
             // 
             // IpsBossNameContactsControl
             // 
@@ -171,6 +171,7 @@
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSurName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).EndInit();
@@ -178,7 +179,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

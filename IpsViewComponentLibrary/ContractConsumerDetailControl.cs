@@ -7,23 +7,163 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
     public partial class ContractConsumerDetailControl : UserControl
     {
-        public object DataSource
-        {
-            get;
-            set;
-        }
+        private string _authorPaymentPercent;
+        private string _minAuthorPayment;
+        private string _percentAutoprolongation;
 
         public ContractConsumerDetailControl()
         {
             InitializeComponent();
             rddListTypeAutoProl.Enabled = false;
             rtxtboxPercentAutoProl.Enabled = false;
+            //rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items.First;
         }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get => iLicenseAgreementBindingSource.DataSource;
+            set => iLicenseAgreementBindingSource.DataSource = value;
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSourcePaidPeriod
+        {
+            get => rddListPeriodPayment.DataSource;
+            set => rddListPeriodPayment.DataSource = value;
+        }
+
+        [Category("Dictionaries")]
+        public string PaidPeriodValueMember
+        {
+            get => rddListPeriodPayment.ValueMember;
+            set => rddListPeriodPayment.ValueMember = value;
+        }
+
+        [Category("Dictionaries")]
+        public string PaidPeroidDisplayMember
+        {
+            get => rddListPeriodPayment.DisplayMember;
+            set => rddListPeriodPayment.DisplayMember = value;
+        }
+
+        //[Category("Dictionaries")]
+        //public string AutoprolongationDisplayMember
+        //{
+        //    get => rddListTypeAutoProl.DisplayMember;
+        //    set => rddListTypeAutoProl.DisplayMember = value;
+        //}
+        
+        //[Category("Dictionaries")]
+        //public string AutoprolongationValueMember
+        //{
+        //    get => rddListTypeAutoProl.ValueMember;
+        //    set => rddListTypeAutoProl.ValueMember = value;
+        //}
+
+        [Category("Dictionaries")]
+        public string PeriodPaymentDisplayMember
+        {
+            get => rddListTypeAutoProl.DisplayMember;
+            set => rddListTypeAutoProl.DisplayMember = value;
+        }
+        
+        [Category("Dictionaries")]
+        public string PeriodPaymentValueMember
+        {
+            get => rddListTypeAutoProl.ValueMember;
+            set => rddListTypeAutoProl.ValueMember = value;
+        }
+
+
+        [Category("Data")]
+        public bool IsAutoprolongation
+        {
+            get => rCheckBoxAutoprolongation.Checked;
+            set => rCheckBoxAutoprolongation.Checked = value;
+        }
+
+
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string AuthorPaymentPercent
+        {
+            get => _authorPaymentPercent;
+            set
+            {
+                _authorPaymentPercent = value;
+                rtxtBoxAuthorPaymentPercent.DataBindings.Clear();
+                rtxtBoxAuthorPaymentPercent.DataBindings.Add("Text", iLicenseAgreementBindingSource,
+                    _authorPaymentPercent, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+            }
+        }
+
+        //MinAuthorPayment
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string MinAuthorPayment
+        {
+            get => _minAuthorPayment;
+            set
+            {
+                _minAuthorPayment = value;
+                rtxtBoxMinAuthorPayment.DataBindings.Clear();
+                rtxtBoxMinAuthorPayment.DataBindings.Add("Text", iLicenseAgreementBindingSource,
+                    _minAuthorPayment, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+            }
+        }
+
+
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string PercentAutoprolongation
+        {
+            get => _percentAutoprolongation;
+            set
+            {
+                _percentAutoprolongation = value;
+                rtxtboxPercentAutoProl.DataBindings.Clear();
+                rtxtboxPercentAutoProl.DataBindings.Add("Text", iLicenseAgreementBindingSource,
+                    _percentAutoprolongation, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+            }
+        }
+
+        [Category("Dictionaries")]
+        [AttributeProvider(typeof(IListSource))]
+        public object PeriodDataSource
+        {
+            get => rddListPeriodPayment.DataSource;
+            set
+            {
+                if (rddListPeriodPayment.DataSource != value)
+                    rddListPeriodPayment.DataSource = value;
+            }
+        }
+
+        [Category("Dictionaries")]
+        public string PeriodDisplayMember
+        {
+            get => rddListPeriodPayment.DisplayMember;
+            set => rddListPeriodPayment.DisplayMember = value;
+        }
+
+        [Category("Dictionaries")]
+        public string PeriodValueMember
+        {
+            get => rddListPeriodPayment.ValueMember;
+            set => rddListPeriodPayment.ValueMember = value;
+        }
+
+
+        //rtxtboxPercentAutoProl
 
         private void rCheckBoxAutoprolongation_CheckStateChanged(object sender, EventArgs e)
         {
@@ -35,7 +175,6 @@ namespace IpsViewComponentLibrary
             else
             {
                 rtxtboxPercentAutoProl.Clear();
-                rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items[0];
                 rddListTypeAutoProl.Enabled = false;
                 rtxtboxPercentAutoProl.Enabled = false;
             }
@@ -63,6 +202,24 @@ namespace IpsViewComponentLibrary
 
 
             return isValid;
+        }
+
+        private void rddListTypeAutoProl_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            switch (rddListTypeAutoProl.SelectedItem.Index)
+            {
+                case 0:
+                    PercentAutoprolongation = "AddRate";
+                    break;
+                case 1:
+                    PercentAutoprolongation = "IndxInfl";
+                    break;
+            }
+        }
+
+        public int SelectedItem
+        {
+            set => rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items[value];
         }
     }
 }
