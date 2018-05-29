@@ -139,6 +139,12 @@
     <None Include="PDF\Litsenziyniy-dogovir-z-tsirkami-yak-mayut-statsionarniy-maydanchik1.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="PDF\Заполнение_3_МБВ.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="PDF\Заполнение_4_ТЦ магазини_исправлений.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\DataSources\ConsumerWorkplace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.AnketaDictionaties.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
