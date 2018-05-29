@@ -371,9 +371,10 @@ namespace ConsumerWorkplace_v_1._0
                 anketaCtrlAddressFactual.RegionsDisplayMember = "name";
 
                 anketaCtrlAddressLegal.CountriesDataSource = _dic.country;
-                anketaCtrlAddressLegal.RegionsDataSource = _dic.region;
                 anketaCtrlAddressLegal.CountriesValueMember = "countryCode";
                 anketaCtrlAddressLegal.CountriesDisplayMember = "countryName";
+
+                anketaCtrlAddressLegal.RegionsDataSource = _dic.region;
                 anketaCtrlAddressLegal.RegionsValueMember = "codeI";
                 anketaCtrlAddressLegal.RegionsDisplayMember = "name";
 
@@ -389,9 +390,19 @@ namespace ConsumerWorkplace_v_1._0
                 clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "name";
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
-              
 
-                consumerWorkplaceBindingSource.DataSource = this;
+                licenseTypeCtrlContractConsumerDetail.PeriodDataSource = _dic.period;
+                licenseTypeCtrlContractConsumerDetail.PeriodValueMember = "codeI";
+                licenseTypeCtrlContractConsumerDetail.PeriodDisplayMember = "name";
+
+                licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
+                if (license.AddRate == null && license.IndxInfl != null)
+                    licenseTypeCtrlContractConsumerDetail.SelectedItem = 1;
+                else if (license.AddRate != null && license.IndxInfl == null)
+                    licenseTypeCtrlContractConsumerDetail.SelectedItem = 0;
+
+
+                    consumerWorkplaceBindingSource.DataSource = this;
                 
                 iPositionTypeBindingSource.DataSource = _dic.positionType;
 
