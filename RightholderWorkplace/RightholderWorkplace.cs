@@ -382,6 +382,8 @@ namespace RightholderWorkplace
                 agreement = new AgreementMaster();
                 _customer.AgreementMaster.Add(agreement);
             }
+
+            rightHolderBindingSource.DataSource = _customer.RightHolder;
         }
     }
 }
