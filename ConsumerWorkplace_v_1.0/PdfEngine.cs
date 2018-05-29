@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ConsumerWorkplace_v_1._0
 {
-    public class PdfEngine
+    public static class PdfEngine
     {
-        public string GetPdf( Customer cust )
+        public static string GetPdf( Customer cust )
         {
             PdfDocument doc =  new PdfDocument( new PdfReader(@"./PDF/Litsenziyniy-dogovir-z-tsirkami-yak-mayut-statsionarniy-maydanchik1.pdf")
                                     , new PdfWriter(@"./PDF/Document.pdf"));

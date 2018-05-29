@@ -164,7 +164,8 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextContract_Click(object sender, EventArgs e)
         {
             nextPage = true;
-                radPdfViewer.LoadDocument("InteractiveForms.pdf");
+            var pdfDoc = PdfEngine.GetPdf(_cust);
+                radPdfViewer.LoadDocument(pdfDoc);
             pageAllAnketa.SelectedPage = pvConsumerContracts;
         }
 
@@ -302,7 +303,7 @@ namespace ConsumerWorkplace_v_1._0
             //licenseTypeCtrlContractConsumerMain.ClearData();
         }
 
-        private AnketaCompany _anketa;
+        //private AnketaCompany _anketa;
         public void SetDataSources()
         {
             if (_cust == null)
@@ -343,16 +344,16 @@ namespace ConsumerWorkplace_v_1._0
                 }
                 bindingSourceContact.DataSource = relEmpl.Empl;
 
-                if (_cust.Company.RelEmployee.Count == 0)
-                {
-                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 1 });
-                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 2 });
-                    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 3 });
-                }
+                //if (_cust.Company.RelEmployee.Count == 0)
+                //{
+                //    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 1 });
+                //    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 2 });
+                //    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 3 });
+                //}
 
-                var relBoss = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 1).SingleOrDefault();
-                var relBookkeeper =_cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 2).SingleOrDefault();
-                var relContactPerson = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 3).SingleOrDefault();
+                //var relBoss = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 1).SingleOrDefault();
+                //var relBookkeeper =_cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 2).SingleOrDefault();
+                //var relContactPerson = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 3).SingleOrDefault();
 
 
                 var agrMaster = _cust.AgreementMaster?.Where(rec => rec.AgrStatus < 4).FirstOrDefault();
@@ -407,10 +408,6 @@ namespace ConsumerWorkplace_v_1._0
 
             }
         }
-
-
-
-
 
 
 
