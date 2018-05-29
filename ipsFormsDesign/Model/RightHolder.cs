@@ -14,8 +14,8 @@ namespace ipsFormsDesign.Model
             RegisterCount = new HashSet<RegisterCount>();
             ReqAgreement = new HashSet<ReqAgreement>();
             TermsOfService = new HashSet<TermsOfService>();
-            TerritoryExclude = new HashSet<TerritoryExclude>();
-            TerritoryInclude = new HashSet<TerritoryInclude>();
+            TerritoryExclude = new List<TerritoryExclude>();
+            TerritoryInclude = new List<TerritoryInclude>();
         }
 
         public int CustId { get; set; }

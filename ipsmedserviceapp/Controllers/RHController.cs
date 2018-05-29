@@ -35,6 +35,8 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.AnketaAddName)
                         .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TermsOfService)
+                        .Include(item => item.RightHolder)
+                            .ThenInclude(rh => rh.TerritoryExclude)
                         .SingleOrDefaultAsync();
 
             var currDate = DateTime.Now.Date;
