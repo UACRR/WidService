@@ -60,7 +60,7 @@
             this.rtxtBoxIPN.MaxLength = 10;
             this.rtxtBoxIPN.Name = "rtxtBoxIPN";
             this.rtxtBoxIPN.Size = new System.Drawing.Size(220, 20);
-            this.rtxtBoxIPN.TabIndex = 1;
+            this.rtxtBoxIPN.TabIndex = 0;
             this.rtxtBoxIPN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtxtBoxIPN_KeyPress);
             // 
             // iAnketaPersonBindingSource
@@ -82,7 +82,7 @@
             this.rDropListCitizenship.Location = new System.Drawing.Point(91, 28);
             this.rDropListCitizenship.Name = "rDropListCitizenship";
             this.rDropListCitizenship.Size = new System.Drawing.Size(105, 20);
-            this.rDropListCitizenship.TabIndex = 3;
+            this.rDropListCitizenship.TabIndex = 2;
             // 
             // rDropDownListResidency
             // 
@@ -91,14 +91,14 @@
             this.rDropDownListResidency.Location = new System.Drawing.Point(289, 28);
             this.rDropDownListResidency.Name = "rDropDownListResidency";
             this.rDropDownListResidency.Size = new System.Drawing.Size(105, 20);
-            this.rDropDownListResidency.TabIndex = 5;
+            this.rDropDownListResidency.TabIndex = 3;
             // 
             // lblResidency
             // 
             this.lblResidency.Location = new System.Drawing.Point(202, 28);
             this.lblResidency.Name = "lblResidency";
             this.lblResidency.Size = new System.Drawing.Size(81, 18);
-            this.lblResidency.TabIndex = 4;
+            this.lblResidency.TabIndex = 3;
             this.lblResidency.Text = "Резидентність:";
             // 
             // RegistrationPersonsControl

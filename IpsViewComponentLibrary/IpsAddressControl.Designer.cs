@@ -47,7 +47,7 @@
             this.txtCity.Margin = new System.Windows.Forms.Padding(0);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(188, 20);
-            this.txtCity.TabIndex = 23;
+            this.txtCity.TabIndex = 2;
             // 
             // ddlRegion
             // 
@@ -59,7 +59,7 @@
             this.ddlRegion.Margin = new System.Windows.Forms.Padding(0);
             this.ddlRegion.Name = "ddlRegion";
             this.ddlRegion.Size = new System.Drawing.Size(186, 20);
-            this.ddlRegion.TabIndex = 22;
+            this.ddlRegion.TabIndex = 1;
             // 
             // tableLayoutPanel
             // 
@@ -95,7 +95,7 @@
             this.txtAddress.Margin = new System.Windows.Forms.Padding(0);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(600, 20);
-            this.txtAddress.TabIndex = 10;
+            this.txtAddress.TabIndex = 3;
             // 
             // ddlCountry
             // 
@@ -107,7 +107,7 @@
             this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
             this.ddlCountry.Name = "ddlCountry";
             this.ddlCountry.Size = new System.Drawing.Size(186, 20);
-            this.ddlCountry.TabIndex = 18;
+            this.ddlCountry.TabIndex = 0;
             // 
             // IpsAddressControl
             // 

@@ -12,9 +12,9 @@ namespace IpsViewComponentLibrary
 {
     public partial class ContractConsumerMainControl : UserControl
     {
-        private string _pickerAgrDate;
-        private string _pickerDateBegin;
-        private string _pickerDateEnd;
+        private DateTime _pickerAgrDate;
+        private DateTime _pickerDateBegin;
+        private DateTime _pickerDateEnd;
         private string _contrNumber;
 
         [Category("Data")]
@@ -30,40 +30,40 @@ namespace IpsViewComponentLibrary
 
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string PickerAgrDate
+        public DateTime PickerAgrDate
         {
             get => _pickerAgrDate;
             set
             {
                 _pickerAgrDate = value;
                 rdtPickerAgrDate.DataBindings.Clear();
-                rdtPickerAgrDate.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerAgrDate, true,DataSourceUpdateMode.OnPropertyChanged, DateTime.Today );
+                rdtPickerAgrDate.DataBindings.Add("Value", iAgreementMasterBindingSource, "AgrDate", true,DataSourceUpdateMode.OnPropertyChanged, DateTime.Today );
             }
         }
 
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string PickerDateBegin
+        public DateTime PickerDateBegin
         {
             get => _pickerDateBegin;
             set
             {
                 _pickerDateBegin = value;
                 rdtPickerDateBegin.DataBindings.Clear();
-                rdtPickerDateBegin.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerDateBegin , true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
+                rdtPickerDateBegin.DataBindings.Add("Value", iAgreementMasterBindingSource, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
             }
         }
 
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string PickerDateEnd
+        public DateTime PickerDateEnd
         {
             get => _pickerDateEnd;
             set
             {
                 _pickerDateEnd = value;
                 rdtPickerDateEnd.DataBindings.Clear();
-                rdtPickerDateEnd.DataBindings.Add("Value", iAgreementMasterBindingSource, _pickerDateEnd, true,  DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
+                rdtPickerDateEnd.DataBindings.Add("Value", iAgreementMasterBindingSource, "DateEnd", true,  DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
             }
         }
 

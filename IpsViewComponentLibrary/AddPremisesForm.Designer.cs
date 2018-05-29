@@ -49,7 +49,7 @@
             this.rBtnAdd.Location = new System.Drawing.Point(13, 66);
             this.rBtnAdd.Name = "rBtnAdd";
             this.rBtnAdd.Size = new System.Drawing.Size(126, 24);
-            this.rBtnAdd.TabIndex = 0;
+            this.rBtnAdd.TabIndex = 2;
             this.rBtnAdd.Text = "Додати приміщення";
             this.rBtnAdd.Click += new System.EventHandler(this.rBtnAdd_Click);
             // 
@@ -59,7 +59,7 @@
             this.rBtnCancel.Location = new System.Drawing.Point(384, 66);
             this.rBtnCancel.Name = "rBtnCancel";
             this.rBtnCancel.Size = new System.Drawing.Size(110, 24);
-            this.rBtnCancel.TabIndex = 1;
+            this.rBtnCancel.TabIndex = 3;
             this.rBtnCancel.Text = "Скасувати";
             this.rBtnCancel.Click += new System.EventHandler(this.rBtnCancel_Click);
             // 
@@ -69,7 +69,7 @@
             this.lblTypePremisses.Location = new System.Drawing.Point(13, 13);
             this.lblTypePremisses.Name = "lblTypePremisses";
             this.lblTypePremisses.Size = new System.Drawing.Size(93, 18);
-            this.lblTypePremisses.TabIndex = 2;
+            this.lblTypePremisses.TabIndex = 0;
             this.lblTypePremisses.Text = "Тип приміщення";
             this.lblTypePremisses.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -79,7 +79,7 @@
             this.lblMetrsPlaceTxt.Location = new System.Drawing.Point(12, 37);
             this.lblMetrsPlaceTxt.Name = "lblMetrsPlaceTxt";
             this.lblMetrsPlaceTxt.Size = new System.Drawing.Size(93, 18);
-            this.lblMetrsPlaceTxt.TabIndex = 3;
+            this.lblMetrsPlaceTxt.TabIndex = 1;
             this.lblMetrsPlaceTxt.Text = "Місць";
             this.lblMetrsPlaceTxt.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -90,7 +90,7 @@
             this.rtxtBoxTypePremisses.Location = new System.Drawing.Point(112, 12);
             this.rtxtBoxTypePremisses.Name = "rtxtBoxTypePremisses";
             this.rtxtBoxTypePremisses.Size = new System.Drawing.Size(382, 20);
-            this.rtxtBoxTypePremisses.TabIndex = 4;
+            this.rtxtBoxTypePremisses.TabIndex = 0;
             // 
             // rtxtBoxMetersPlaces
             // 
@@ -99,7 +99,7 @@
             this.rtxtBoxMetersPlaces.Location = new System.Drawing.Point(112, 36);
             this.rtxtBoxMetersPlaces.Name = "rtxtBoxMetersPlaces";
             this.rtxtBoxMetersPlaces.Size = new System.Drawing.Size(97, 20);
-            this.rtxtBoxMetersPlaces.TabIndex = 5;
+            this.rtxtBoxMetersPlaces.TabIndex = 1;
             // 
             // AddPremisesForm
             // 

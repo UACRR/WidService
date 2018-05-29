@@ -32,13 +32,15 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.AnketaPerson)
                         .Include(item => item.BankAccount)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
+                        .Include(item => item.Client).ThenInclude(cln => cln.LicenseAgreement)
                         .SingleOrDefaultAsync();
             // Отримати дані по Контрактах
-            await _dbContext.Entry(cust).Collection(rec => rec.AgreementMaster)
-                .Query()
-                .Where(agree => agree.AgrStatus < 4)
-                .Include(item => item.LicenseAgreement)
-                .LoadAsync();
+            if (cust.Client.LicenseAgreement.Count > 0)
+                await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
+                    .Query()
+                    .Where(agree => agree.LicStatus < 4)
+                    .Include(item => item.Agr)
+                    .LoadAsync();
 
             // Отримати по контрактам Періоди оплат    
             await _dbContext.PaidPeriod.FromSql("select * from PaidPeriod where custId = @custId", new SqlParameter("@custId", cust.CustId))
@@ -77,6 +79,130 @@ namespace ipsmedserviceapp.Controllers
             return Json(cust);
         }
 
+        /// <summary>
+        /// Зберегти Споживача до Id
+        /// </summary>
+        /// <param name="id">ідентифікатор CustId бази даних</param>
+        /// <returns></returns>
+        [HttpPut("detail/{id}")]
+        public async Task<IActionResult> SaveConsumerById(int id, [FromBody] Customer updCustomer)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var dest = await GetConsumerAllData(id);
+                // Customer
+                dest.SetFields(updCustomer);
+                //.Include(item => item.BankAccount)
+                _dbContext.UpdateList(updCustomer.BankAccount, dest.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
+                //.Include(item => item.RightHolder)
+                dest.Client.SetFields(updCustomer.Client);
+
+                // Delete
+                List<LicenseAgreement> tempList = dest.Client.LicenseAgreement.Where(row => !updCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+                    // Delete LicenseAgreement
+                    var agreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
+                    agreeItem.LicenseAgreement.Remove(delLicense);
+                    dest.Client.LicenseAgreement.Remove(item);
+
+
+                    // AgreementMaster
+                    _dbContext.LicenseAgreement.Remove(delLicense);
+                }
+                );
+
+                // Modify
+                tempList = updCustomer.Client.LicenseAgreement.Where(row => dest.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+
+                    // Delete LicenseAgreement
+                    var agreeItemDest = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var agreeItemSors = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+
+                    agreeItemDest.SetFields(agreeItemSors);
+
+                    foreach (var license in agreeItemDest.LicenseAgreement)
+                    {
+                        var sorsLic = agreeItemSors.LicenseAgreement.Where(rec => rec.LicId == license.LicId).SingleOrDefault();
+                        license.SetFields(sorsLic);
+
+                        // AgreementMaster
+                    }
+                });
+                // Add
+                tempList = updCustomer.Client.LicenseAgreement.Where(row => !dest.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+
+                    // Delete LicenseAgreement
+                    var agreeItem = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var destAgreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    if (destAgreeItem == null)
+                    {
+                        destAgreeItem = new AgreementMaster();
+                        destAgreeItem.SetFields(agreeItem, new[] { "AgrId" });
+                        dest.AgreementMaster.Add(destAgreeItem);
+                    }
+
+                    var addLicItem = new LicenseAgreement();
+                    addLicItem.SetFields(item, new[] { "LicId" });
+                    dest.Client.LicenseAgreement.Add(addLicItem);
+
+                }
+                );
+
+
+                if (dest.CustType == 3) // Company
+                {
+                    //.Include(item => item.Company)
+                    if (dest.Company == null)
+                        dest.Company = new Company();
+
+                    //.Include(item => item.AnketaCompany)
+                    var sorsList = updCustomer.Company.AnketaCompany.ToList();
+                    _dbContext.UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                    //.Include(comp => comp.RelEmployee)
+                    var relEmployeeList = updCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
+                    _dbContext.UpdateList(relEmployeeList, dest.Company.RelEmployee, rec => { },
+                                        (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
+
+                    foreach (var emplRel in dest.Company.RelEmployee)
+                    {
+                        if (emplRel.Empl.Emplid == 0)
+                            _dbContext.Employee.Add(emplRel.Empl );
+                    }
+                }
+                else
+                {
+                    //.Include(item => item.Person)
+                    if (dest.Person == null)
+                        dest.Person = new Person();
+                    _dbContext.AppendList(updCustomer.Person.AnketaPerson, dest.Person.AnketaPerson, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                    //.Include(item => item.AnketaPerson)
+                }
+
+                //.Include(item => item.Community)
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+
+                return Json(dest);
+            }
+            catch (Exception ex)
+            {
+                if (tran != null )
+                    tran.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         /// <summary>
         /// Шаблон нового користувача
@@ -91,26 +217,29 @@ namespace ipsmedserviceapp.Controllers
                 if (!(custType > 0 && custType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
-                Customer newCust = new Customer { CustType = custType, AnkVersion = 1 };
+                Customer newCust = new Customer { CustType = custType, AnkVersion = 1, Status = 2 };
                 // Споживач
                 newCust.Client = new Client();
                 // Договор з Споживачем
-                var addAgr = new AgreementMaster { AgrStatus = 0 };
-                addAgr.LicenseAgreement.Add(new LicenseAgreement());
+                var addAgr = new AgreementMaster { AgrStatus = 0, AgrType = 2 };
+                var license = new LicenseAgreement { LicStatus = 0, Agr = addAgr };
+                addAgr.LicenseAgreement.Add(license);
+                // addAgr.LicenseAgreement.Add(new LicenseAgreement { LicStatus = 0 });
+                newCust.Client.LicenseAgreement.Add(license);
                 newCust.AgreementMaster.Add(addAgr);
                 if (custType == 3) // юр особа
                 {
                     // Компанія
                     newCust.Company = new Company();
                     // Анкета
-                    newCust.AnketaCompany.Add(new AnketaCompany { Version = 1 });
+                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status=2 });
                 }
                 else
                 {
                     // Фіз. особа
                     newCust.Person = new Person();
                     // Анкета
-                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1 });
+                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, Status=2 });
                 }
 
                 return Json(newCust);
@@ -210,10 +339,10 @@ namespace ipsmedserviceapp.Controllers
                     addCustomer.Company = new Company();
 
                     // Збереження AnketaCompany
-                    if (newCustomer.AnketaCompany.Count == 0)
+                    if (newCustomer.Company.AnketaCompany.Count == 0)
                         throw new Exception("Not input data for AnketaCompany");
 
-                    foreach (var item in newCustomer.AnketaCompany)
+                    foreach (var item in newCustomer.Company.AnketaCompany)
                     {
                         AnketaCompany addAnketa = new AnketaCompany();
                         addAnketa.SetFields(item, new[] { "CustId" });
@@ -221,7 +350,7 @@ namespace ipsmedserviceapp.Controllers
                     }
 
                     // Збереження RelEmployee
-                    foreach (var item in newCustomer.Company.RelEmployee)
+                    foreach (var item in newCustomer.Company.RelEmployee.Where( rec => !string.IsNullOrEmpty( rec.Empl?.LastName?.Trim())).ToList() )
                     {
                         if (item.Empl == null)
                             continue;
@@ -250,13 +379,13 @@ namespace ipsmedserviceapp.Controllers
                     addCustomer.Person = new Person();
 
                     // Збереження AnketaPerson
-                    if (newCustomer.AnketaPerson.Count == 0)
+                    if (newCustomer.Person.AnketaPerson.Count == 0)
                         throw new Exception("Not input data for AnketaPerson");
 
-                    foreach (var item in newCustomer.AnketaPerson)
+                    foreach (var item in newCustomer.Person.AnketaPerson)
                     {
                         AnketaPerson addPerson = new AnketaPerson();
-                        addPerson.SetFields(item, new[] { "CustId"});
+                        addPerson.SetFields(item, new[] { "CustId" });
                         addCustomer.Person.AnketaPerson.Add(addPerson);
                         _dbContext.Entry(item).State = EntityState.Added;
                     }
@@ -289,45 +418,6 @@ namespace ipsmedserviceapp.Controllers
             var List = await _dbContext.getViewData("select * from vTsk_1_ListConsumer01", null);
             return Json(List);
         }
-
-        /// <summary>
-        /// Отримати список Споживачів малих прав
-        /// </summary>
-        /// <returns></returns>
-        //[HttpGet("dictionaries")]
-        //public async Task<IActionResult> GetDictionaries()
-        //{
-        //    Dictionary<string, object> listDictionaries = new Dictionary<string, object>();
-
-        //    listDictionaries.Add("activityType", await _dbContext.ActivityType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("agrLicenseType", await _dbContext.AgrLicenseType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("agreementStatus", await _dbContext.AgreementStatus.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("agreementType", await _dbContext.AgreementType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("anketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("copyrightKind", await _dbContext.CopyrightKind.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("copyrightType", await _dbContext.CopyrightType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("country", await _dbContext.Country.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("crkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("customerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("customerType", await _dbContext.CustomerType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("klR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("licenseClass", await _dbContext.LicenseClass.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("licenseType", await _dbContext.LicenseType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("period", await _dbContext.Period.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("periodStatus", await _dbContext.PeriodStatus.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("positionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("region", await _dbContext.Region.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("residentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("typePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("typeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("usesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());
-        //    listDictionaries.Add("usesType", await _dbContext.UsesType.AsNoTracking().ToListAsync());
-
-        //    return Json(listDictionaries);
-        //}
-
 
 
     }

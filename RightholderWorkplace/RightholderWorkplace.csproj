@@ -86,8 +86,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ITerritoryExclude.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightHolderMainView.datasource" />
     <None Include="Properties\Settings.settings">

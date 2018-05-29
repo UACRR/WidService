@@ -211,80 +211,6 @@ namespace RightholderWorkplace
 
         #endregion
 
-        private void RightholderWorkplace_Load(object sender, EventArgs e)
-        {
-            var connector = new ApiConnector("http://localhost:54867/");
-            //_dictionaries = connector.GetItemById<AnketaDictionaties>("api/Dictionary", "anketa");
-            var customer = connector.GetItemById<Customer>("api/rh/detail", "140");
-            _anketa = customer.AnketaPerson.SingleOrDefault();
-
-            //// fake data
-            //_anketa = new AnketaPerson
-            //{
-            //    LastName = "LastName",
-            //    FirstName = "FirstName",
-            //    SurName = "SurName",
-            //    NikName = "NikName",
-            //    BirthDate = new DateTime(2000, 08, 17),
-            //    Sex = 2,
-            //    PhoneMobileMain = "+380501111111",
-            //    Inn = "1234567890",
-            //    Citizenship = "1",
-            //    Residency = 1,
-            //    PUseries = "ПС",
-            //    PUnumber = "973179",
-            //    PUissuedWho = "PUissuedWho",
-            //    PUissuedWhen = new DateTime(2005, 7, 10),
-            //    FaCountry = "804",
-            //    FaRegion = 25,
-            //    FaCity = "FaCity",
-            //    FaAddress = "FaAddress",
-            //    ReCountry = "804",
-            //    ReRegion = 25,
-            //    ReCity = "ReCity",
-            //    ReAddress = "ReAddress",
-            //    LeCountry = "804",
-            //    LeRegion = 25,
-            //    LeCity = "LeCity",
-            //    LeAddress = "LeAddress",
-            //};
-
-            _bankAccount = new BankAccount
-            {
-                AccountNumber = "ac",
-                Mfo = 380380,
-                MfoName = "Mfo name",
-                MfoOkpo = "okpo",
-                TransitNumber = "tr num",
-                PCountry = "804",
-                PRegion = 25,
-                PCity = "PCity",
-                PAddress = "PAddress",
-                PIndex = "20800",
-            };
-
-            _termsOfServices = new List<TermsOfServiceWrapper>
-            {
-                new TermsOfServiceWrapper(new TermsOfService { OurService = true,
-                    CrkindCodeNavigation = new CopyrightKind { Name = "Name 1",
-                        CrGroupCodeNavigation = new CrkindGroup { Name = "Groupe 1" },
-                    },
-                }),
-            };
-
-            _rightHolder = new RightHolder();
-            _rightHolder.AroundWord = false;
-            _rightHolder.TerritoryExclude = new List<TerritoryExclude>
-            {
-                new TerritoryExclude { CountryCode = "826" },
-                new TerritoryExclude { CountryCode = "024" },
-            };
-
-
-
-
-        }
-
         private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)
         {
             if (newCreateRightholderPageView.SelectedPage == createRightholderPassportPage)
@@ -327,7 +253,7 @@ namespace RightholderWorkplace
             gvTerritoryExclusions.Enabled = !cbAroundWorld.Checked;
         }
 
-        #region Rightolders list commands
+        #region Rightolder commands
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
@@ -355,12 +281,24 @@ namespace RightholderWorkplace
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
         }
 
+        private void btnSaveRightholder_Click(object sender, EventArgs e)
+        {
+            if (_customer == null)
+            {
+                return;
+            }
+
+            // TODO: additional validation
+
+            SaveCustomer?.Invoke(_customer);
+        }
+
         #endregion
 
         private void UpdateDataSources()
         {
             _anketa = _customer.Person.AnketaPerson.Where( row => row.Version == _customer.AnkVersion ).SingleOrDefault();
-            if (_customer.BankAccount.Count > 0)
+            if (_customer.BankAccount.Any())
                 _bankAccount = _customer.BankAccount.FirstOrDefault();
             else
             {
@@ -371,6 +309,21 @@ namespace RightholderWorkplace
             anketaPersonBindingSource.DataSource = _anketa;
             bankAccountBindingSource.DataSource = _bankAccount;
             ctrlExclusionsLimitations.DataSource = _customer.RightHolder.TermsOfService.Select( rec => new TermsOfServiceWrapper(rec));
+
+            var agreement = _customer.AgreementMaster.FirstOrDefault();
+            if (agreement != null)
+            {
+                agreementAddRhBindingSource.DataSource = agreement.AgreementAddRh;
+            }
+            else
+            {
+                agreement = new AgreementMaster();
+                _customer.AgreementMaster.Add(agreement);
+            }
+
+            rightHolderBindingSource.DataSource = _customer.RightHolder;
+
+            territoryExcludeBindingSource.DataSource = _customer.RightHolder.TerritoryExclude;
         }
     }
 }

@@ -14,28 +14,30 @@ namespace IpsViewComponentLibrary
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsRegistrationsCompanyControl : UserControl
     {
-        //string _okpoDataMember;
-        //string _registerNumberDataMember;
-        //string _registerDateDataMember;
-        //string _registerWhoDataMember;
-        //string _typeVatDataMember;
-        //string _numberVatDataMember;
+        BindingSource _bindingSource;
+        string _okpoDataMember;
+        string _registerNumberDataMember;
+        string _registerDateDataMember;
+        string _registerWhoDataMember;
+        string _typeVatDataMember;
+        string _numberVatDataMember;
         
         public IpsRegistrationsCompanyControl()
         {
             InitializeComponent();
 
+            _bindingSource = new BindingSource();
         }
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return bindingSourceAnketaCompany.DataSource; }
+            get { return _bindingSource.DataSource; }
             set
             {
-                if (bindingSourceAnketaCompany.DataSource != value)
-                    bindingSourceAnketaCompany.DataSource = value;
+                if (_bindingSource.DataSource != value)
+                    _bindingSource.DataSource = value;
             }
         }
 
@@ -43,105 +45,105 @@ namespace IpsViewComponentLibrary
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string DataMember
         {
-            get { return bindingSourceAnketaCompany.DataMember; }
-            set { bindingSourceAnketaCompany.DataMember = value; }
+            get { return _bindingSource.DataMember; }
+            set { _bindingSource.DataMember = value; }
         }
 
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string OkpoDataMember
-        //{
-        //    get { return _okpoDataMember; }
-        //    set
-        //    {
-        //        if (_okpoDataMember != value)
-        //        {
-        //            _okpoDataMember = value;
-        //            txtOkpo.DataBindings.Clear();
-        //            txtOkpo.DataBindings.Add("Text", bindingSource1, _okpoDataMember);
-        //        }
-        //    }
-        //}
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string OkpoDataMember
+        {
+            get { return _okpoDataMember; }
+            set
+            {
+                if (_okpoDataMember != value)
+                {
+                    _okpoDataMember = value;
+                    txtOkpo.DataBindings.Clear();
+                    txtOkpo.DataBindings.Add("Text", _bindingSource, _okpoDataMember);
+                }
+            }
+        }
 
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string RegisterNumberDataMember
-        //{
-        //    get { return _registerNumberDataMember; }
-        //    set
-        //    {
-        //        if (_registerNumberDataMember != value)
-        //        {
-        //            _registerNumberDataMember = value;
-        //            txtRegisterNumber.DataBindings.Clear();
-        //            txtRegisterNumber.DataBindings.Add("Text", bindingSource1, _registerNumberDataMember);
-        //        }
-        //    }
-        //}
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string RegisterNumberDataMember
+        {
+            get { return _registerNumberDataMember; }
+            set
+            {
+                if (_registerNumberDataMember != value)
+                {
+                    _registerNumberDataMember = value;
+                    txtRegisterNumber.DataBindings.Clear();
+                    txtRegisterNumber.DataBindings.Add("Text", _bindingSource, _registerNumberDataMember);
+                }
+            }
+        }
 
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string RegisterDateDataMember
-        //{
-        //    get { return _registerDateDataMember; }
-        //    set
-        //    {
-        //        if (_registerDateDataMember != value)
-        //        {
-        //            _registerDateDataMember = value;
-        //            dtRegisterDate.DataBindings.Clear();
-        //            dtRegisterDate.DataBindings.Add("Value", bindingSource1, _registerDateDataMember,true);
-        //        }
-        //    }
-        //}
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string RegisterDateDataMember
+        {
+            get { return _registerDateDataMember; }
+            set
+            {
+                if (_registerDateDataMember != value)
+                {
+                    _registerDateDataMember = value;
+                    dtRegisterDate.DataBindings.Clear();
+                    dtRegisterDate.DataBindings.Add("Value", _bindingSource, _registerDateDataMember,true);
+                }
+            }
+        }
 
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string RegisterWhoDataMember
-        //{
-        //    get { return _registerWhoDataMember; }
-        //    set
-        //    {
-        //        if (_registerWhoDataMember != value)
-        //        {
-        //            _registerWhoDataMember = value;
-        //            txtRegisterWho.DataBindings.Clear();
-        //            txtRegisterWho.DataBindings.Add("Text", bindingSource1, _registerWhoDataMember);
-        //        }
-        //    }
-        //}
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string RegisterWhoDataMember
+        {
+            get { return _registerWhoDataMember; }
+            set
+            {
+                if (_registerWhoDataMember != value)
+                {
+                    _registerWhoDataMember = value;
+                    txtRegisterWho.DataBindings.Clear();
+                    txtRegisterWho.DataBindings.Add("Text", _bindingSource, _registerWhoDataMember);
+                }
+            }
+        }
 
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string TypeVatDataMember
-        //{
-        //    get { return _typeVatDataMember; }
-        //    set
-        //    {
-        //        if (_typeVatDataMember != value)
-        //        {
-        //            _typeVatDataMember = value;
-        //            ddlTypeVat.DataBindings.Clear();
-        //            ddlTypeVat.DataBindings.Add("SelectedValue", bindingSource1, _typeVatDataMember);
-        //        }
-        //    }
-        //}
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string TypeVatDataMember
+        {
+            get { return _typeVatDataMember; }
+            set
+            {
+                if (_typeVatDataMember != value)
+                {
+                    _typeVatDataMember = value;
+                    ddlTypeVat.DataBindings.Clear();
+                    ddlTypeVat.DataBindings.Add("SelectedValue", _bindingSource, _typeVatDataMember);
+                }
+            }
+        }
 
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string NumberVatDataMember
-        //{
-        //    get { return _numberVatDataMember; }
-        //    set
-        //    {
-        //        if (_numberVatDataMember != value)
-        //        {
-        //            _numberVatDataMember = value;
-        //            txtNumberVat.DataBindings.Clear();
-        //            txtNumberVat.DataBindings.Add("Text", bindingSource1, _numberVatDataMember);
-        //        }
-        //    }
-        //}
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string NumberVatDataMember
+        {
+            get => _numberVatDataMember;
+            set
+            {
+                if (_numberVatDataMember != value)
+                {
+                    _numberVatDataMember = value;
+                    txtNumberVat.DataBindings.Clear();
+                    txtNumberVat.DataBindings.Add("Text", _bindingSource, _numberVatDataMember,true,DataSourceUpdateMode.OnPropertyChanged,string.Empty);
+                }
+            }
+        }
 
         #region Type VAT dictionary
 
@@ -182,59 +184,59 @@ namespace IpsViewComponentLibrary
 
         #region Edit controls
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public RadTextBox TxtOkpo
-        //{
-        //    get
-        //    {
-        //        return txtOkpo;
-        //    }
-        //}
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox TxtOkpo
+        {
+            get
+            {
+                return txtOkpo;
+            }
+        }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public RadTextBox TxtRegisterNumber
-        //{
-        //    get
-        //    {
-        //        return txtRegisterNumber;
-        //    }
-        //}
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox TxtRegisterNumber
+        {
+            get
+            {
+                return txtRegisterNumber;
+            }
+        }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public RadDateTimePicker DtRegisterDate
-        //{
-        //    get
-        //    {
-        //        return dtRegisterDate;
-        //    }
-        //}
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadDateTimePicker DtRegisterDate
+        {
+            get
+            {
+                return dtRegisterDate;
+            }
+        }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public RadTextBox TxtRegisterWho
-        //{
-        //    get
-        //    {
-        //        return txtRegisterWho;
-        //    }
-        //}
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox TxtRegisterWho
+        {
+            get
+            {
+                return txtRegisterWho;
+            }
+        }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public RadDropDownList DdlTypeVat
-        //{
-        //    get
-        //    {
-        //        return ddlTypeVat;
-        //    }
-        //}
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadDropDownList DdlTypeVat
+        {
+            get
+            {
+                return ddlTypeVat;
+            }
+        }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public RadTextBox TxtNumberVat
-        //{
-        //    get
-        //    {
-        //        return txtNumberVat;
-        //    }
-        //}
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadTextBox TxtNumberVat
+        {
+            get
+            {
+                return txtNumberVat;
+            }
+        }
 
         #endregion
 

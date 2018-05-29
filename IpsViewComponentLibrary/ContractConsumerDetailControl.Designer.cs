@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -74,7 +76,7 @@
             this.radLabel3.Location = new System.Drawing.Point(453, 4);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(24, 18);
-            this.radLabel3.TabIndex = 2;
+            this.radLabel3.TabIndex = 1;
             this.radLabel3.Text = "грн";
             // 
             // radLabel4
@@ -82,7 +84,7 @@
             this.radLabel4.Location = new System.Drawing.Point(4, 78);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(129, 18);
-            this.radLabel4.TabIndex = 1;
+            this.radLabel4.TabIndex = 5;
             this.radLabel4.Text = "Періодичність платежів";
             // 
             // rtxtBoxAuthorPaymentPercent
@@ -91,7 +93,7 @@
             this.rtxtBoxAuthorPaymentPercent.Location = new System.Drawing.Point(139, 3);
             this.rtxtBoxAuthorPaymentPercent.Name = "rtxtBoxAuthorPaymentPercent";
             this.rtxtBoxAuthorPaymentPercent.Size = new System.Drawing.Size(78, 20);
-            this.rtxtBoxAuthorPaymentPercent.TabIndex = 3;
+            this.rtxtBoxAuthorPaymentPercent.TabIndex = 0;
             // 
             // rtxtBoxMinAuthorPayment
             // 
@@ -99,14 +101,15 @@
             this.rtxtBoxMinAuthorPayment.Location = new System.Drawing.Point(339, 3);
             this.rtxtBoxMinAuthorPayment.Name = "rtxtBoxMinAuthorPayment";
             this.rtxtBoxMinAuthorPayment.Size = new System.Drawing.Size(108, 20);
-            this.rtxtBoxMinAuthorPayment.TabIndex = 4;
+            this.rtxtBoxMinAuthorPayment.TabIndex = 1;
             // 
             // rCheckBoxAutoprolongation
             // 
+            this.rCheckBoxAutoprolongation.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.iLicenseAgreementBindingSource, "IsAutoprolog", true));
             this.rCheckBoxAutoprolongation.Location = new System.Drawing.Point(4, 28);
             this.rCheckBoxAutoprolongation.Name = "rCheckBoxAutoprolongation";
             this.rCheckBoxAutoprolongation.Size = new System.Drawing.Size(109, 18);
-            this.rCheckBoxAutoprolongation.TabIndex = 5;
+            this.rCheckBoxAutoprolongation.TabIndex = 2;
             this.rCheckBoxAutoprolongation.Text = "Автопролонгація";
             this.rCheckBoxAutoprolongation.CheckStateChanged += new System.EventHandler(this.rCheckBoxAutoprolongation_CheckStateChanged);
             // 
@@ -115,23 +118,30 @@
             this.rtxtboxPercentAutoProl.Location = new System.Drawing.Point(411, 52);
             this.rtxtboxPercentAutoProl.Name = "rtxtboxPercentAutoProl";
             this.rtxtboxPercentAutoProl.Size = new System.Drawing.Size(59, 20);
-            this.rtxtboxPercentAutoProl.TabIndex = 6;
+            this.rtxtboxPercentAutoProl.TabIndex = 4;
             // 
             // rddListPeriodPayment
             // 
+            this.rddListPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.iLicenseAgreementBindingSource, "PeriodCode", true));
+            this.rddListPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iLicenseAgreementBindingSource, "PeriodCode", true));
             this.rddListPeriodPayment.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.rddListPeriodPayment.Location = new System.Drawing.Point(139, 78);
             this.rddListPeriodPayment.Name = "rddListPeriodPayment";
             this.rddListPeriodPayment.Size = new System.Drawing.Size(194, 20);
-            this.rddListPeriodPayment.TabIndex = 7;
+            this.rddListPeriodPayment.TabIndex = 5;
             // 
             // rddListTypeAutoProl
             // 
             this.rddListTypeAutoProl.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            radListDataItem1.Text = "з підвищенням авторської винагороди за попередній рік";
+            radListDataItem2.Text = "індекс інфляції";
+            this.rddListTypeAutoProl.Items.Add(radListDataItem1);
+            this.rddListTypeAutoProl.Items.Add(radListDataItem2);
             this.rddListTypeAutoProl.Location = new System.Drawing.Point(4, 52);
             this.rddListTypeAutoProl.Name = "rddListTypeAutoProl";
             this.rddListTypeAutoProl.Size = new System.Drawing.Size(401, 20);
-            this.rddListTypeAutoProl.TabIndex = 8;
+            this.rddListTypeAutoProl.TabIndex = 3;
+            this.rddListTypeAutoProl.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rddListTypeAutoProl_SelectedIndexChanged);
             // 
             // iLicenseAgreementBindingSource
             // 

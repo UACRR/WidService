@@ -35,6 +35,8 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.AnketaAddName)
                         .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TermsOfService)
+                        .Include(item => item.RightHolder)
+                            .ThenInclude(rh => rh.TerritoryExclude)
                         .SingleOrDefaultAsync();
 
             var currDate = DateTime.Now.Date;
@@ -147,8 +149,21 @@ namespace ipsmedserviceapp.Controllers
                     foreach (var item in newRightHolder.RightHolder.TermsOfService)
                     {
                         _dbContext.Entry(item).State = EntityState.Added;
+                        _dbContext.Entry(item.CrkindCodeNavigation).State = EntityState.Unchanged;
+                        _dbContext.Entry(item.CrkindCodeNavigation.CrGroupCodeNavigation).State = EntityState.Unchanged;
+
                         foreach (var subItem in item.CustCmRight)
-                            _dbContext.Entry(subItem).State = EntityState.Added;
+                        {
+                            if (subItem.CmCustId == 0)
+                            {
+                                //_dbContext.Entry(subItem).State = EntityState.Unchanged;
+                            }
+                            else
+                            {
+                                subItem.CustId = newRightHolder.CustId;
+                                _dbContext.Entry(subItem).State = EntityState.Added;
+                            }
+                        }
                     }
                 // territoryInclude
                 if (newRightHolder.RightHolder.TerritoryInclude.Count > 0)
@@ -174,9 +189,16 @@ namespace ipsmedserviceapp.Controllers
                     foreach (var item in newRightHolder.AgreementMaster)
                     {
                         _dbContext.Entry(item).State = EntityState.Added;
+                        item.DateBegin = item.AgrDate;
+                        item.DateEnd = new DateTime(3000, 1, 1);
+                        item.AgrType = 1;
+
                         // Збереження AgreementAddRh
                         if (item.AgreementAddRh != null)
+                        {
+                            item.AgreementAddRh.CustId = newRightHolder.CustId;
                             _dbContext.Entry(item.AgreementAddRh).State = EntityState.Added;
+                        }
                     }
 
 
