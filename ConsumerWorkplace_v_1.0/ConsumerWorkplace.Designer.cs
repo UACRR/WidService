@@ -320,7 +320,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
-            this.rpvConsumers.SelectedPage = this.pageConsumersAnketa;
+            this.rpvConsumers.SelectedPage = this.pageConsumersGrid;
             this.rpvConsumers.Size = new System.Drawing.Size(1130, 609);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
@@ -454,7 +454,7 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlRegistrationsCompany.DdlTypeVat.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 85, 125, 20);
             this.clientNameCtrlRegistrationsCompany.DdlTypeVat.RootElement.StretchVertically = true;
             this.clientNameCtrlRegistrationsCompany.DdlTypeVat.Size = new System.Drawing.Size(120, 20);
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.TabIndex = 28;
+            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.TabIndex = 4;
             // 
             // 
             // 
@@ -467,7 +467,7 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.RootElement.ControlBounds = new System.Drawing.Rectangle(278, 38, 164, 20);
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.RootElement.StretchVertically = true;
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Size = new System.Drawing.Size(92, 20);
-            this.clientNameCtrlRegistrationsCompany.DtRegisterDate.TabIndex = 24;
+            this.clientNameCtrlRegistrationsCompany.DtRegisterDate.TabIndex = 2;
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.TabStop = false;
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Value = new System.DateTime(((long)(0)));
             this.clientNameCtrlRegistrationsCompany.Location = new System.Drawing.Point(4, 139);
@@ -492,7 +492,7 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlRegistrationsCompany.TxtNumberVat.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 85, 100, 20);
             this.clientNameCtrlRegistrationsCompany.TxtNumberVat.RootElement.StretchVertically = true;
             this.clientNameCtrlRegistrationsCompany.TxtNumberVat.Size = new System.Drawing.Size(164, 20);
-            this.clientNameCtrlRegistrationsCompany.TxtNumberVat.TabIndex = 27;
+            this.clientNameCtrlRegistrationsCompany.TxtNumberVat.TabIndex = 5;
             // 
             // 
             // 
@@ -505,7 +505,7 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlRegistrationsCompany.TxtOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 1, 100, 20);
             this.clientNameCtrlRegistrationsCompany.TxtOkpo.RootElement.StretchVertically = true;
             this.clientNameCtrlRegistrationsCompany.TxtOkpo.Size = new System.Drawing.Size(120, 20);
-            this.clientNameCtrlRegistrationsCompany.TxtOkpo.TabIndex = 23;
+            this.clientNameCtrlRegistrationsCompany.TxtOkpo.TabIndex = 0;
             // 
             // 
             // 
@@ -518,7 +518,7 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 38, 100, 20);
             this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber.RootElement.StretchVertically = true;
             this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber.Size = new System.Drawing.Size(120, 20);
-            this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber.TabIndex = 26;
+            this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber.TabIndex = 1;
             // 
             // 
             // 
@@ -533,7 +533,7 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 38, 100, 20);
             this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.RootElement.StretchVertically = true;
             this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.Size = new System.Drawing.Size(275, 20);
-            this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.TabIndex = 25;
+            this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.TabIndex = 3;
             this.clientNameCtrlRegistrationsCompany.TypesVatDataMember = "";
             this.clientNameCtrlRegistrationsCompany.TypesVatDataSource = this.iTypeVatBindingSource;
             this.clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "";
@@ -719,7 +719,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaCtrlAddressFactual.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 351, 20);
             this.anketaCtrlAddressFactual.DdlCountry.RootElement.StretchVertically = true;
             this.anketaCtrlAddressFactual.DdlCountry.Size = new System.Drawing.Size(186, 20);
-            this.anketaCtrlAddressFactual.DdlCountry.TabIndex = 18;
+            this.anketaCtrlAddressFactual.DdlCountry.TabIndex = 0;
             // 
             // 
             // 
@@ -736,7 +736,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaCtrlAddressFactual.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(358, 0, 338, 20);
             this.anketaCtrlAddressFactual.DdlRegion.RootElement.StretchVertically = true;
             this.anketaCtrlAddressFactual.DdlRegion.Size = new System.Drawing.Size(186, 20);
-            this.anketaCtrlAddressFactual.DdlRegion.TabIndex = 22;
+            this.anketaCtrlAddressFactual.DdlRegion.TabIndex = 1;
             this.anketaCtrlAddressFactual.Location = new System.Drawing.Point(21, 205);
             this.anketaCtrlAddressFactual.Margin = new System.Windows.Forms.Padding(4);
             this.anketaCtrlAddressFactual.Name = "anketaCtrlAddressFactual";
@@ -762,7 +762,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaCtrlAddressFactual.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 600, 20);
             this.anketaCtrlAddressFactual.TxtAddress.RootElement.StretchVertically = true;
             this.anketaCtrlAddressFactual.TxtAddress.Size = new System.Drawing.Size(600, 20);
-            this.anketaCtrlAddressFactual.TxtAddress.TabIndex = 10;
+            this.anketaCtrlAddressFactual.TxtAddress.TabIndex = 3;
             // 
             // 
             // 
@@ -776,7 +776,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaCtrlAddressFactual.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(412, 0, 188, 20);
             this.anketaCtrlAddressFactual.TxtCity.RootElement.StretchVertically = true;
             this.anketaCtrlAddressFactual.TxtCity.Size = new System.Drawing.Size(188, 20);
-            this.anketaCtrlAddressFactual.TxtCity.TabIndex = 23;
+            this.anketaCtrlAddressFactual.TxtCity.TabIndex = 2;
             // 
             // anketaCtrlAddressLegal
             // 
@@ -806,7 +806,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaCtrlAddressLegal.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 351, 20);
             this.anketaCtrlAddressLegal.DdlCountry.RootElement.StretchVertically = true;
             this.anketaCtrlAddressLegal.DdlCountry.Size = new System.Drawing.Size(210, 20);
-            this.anketaCtrlAddressLegal.DdlCountry.TabIndex = 18;
+            this.anketaCtrlAddressLegal.DdlCountry.TabIndex = 0;
             // 
             // 
             // 
@@ -824,7 +824,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaCtrlAddressLegal.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(358, 0, 338, 20);
             this.anketaCtrlAddressLegal.DdlRegion.RootElement.StretchVertically = true;
             this.anketaCtrlAddressLegal.DdlRegion.Size = new System.Drawing.Size(210, 20);
-            this.anketaCtrlAddressLegal.DdlRegion.TabIndex = 22;
+            this.anketaCtrlAddressLegal.DdlRegion.TabIndex = 1;
             this.anketaCtrlAddressLegal.Location = new System.Drawing.Point(21, 99);
             this.anketaCtrlAddressLegal.Margin = new System.Windows.Forms.Padding(4);
             this.anketaCtrlAddressLegal.Name = "anketaCtrlAddressLegal";
@@ -850,7 +850,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaCtrlAddressLegal.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 671, 20);
             this.anketaCtrlAddressLegal.TxtAddress.RootElement.StretchVertically = true;
             this.anketaCtrlAddressLegal.TxtAddress.Size = new System.Drawing.Size(671, 20);
-            this.anketaCtrlAddressLegal.TxtAddress.TabIndex = 10;
+            this.anketaCtrlAddressLegal.TxtAddress.TabIndex = 3;
             // 
             // 
             // 
@@ -864,7 +864,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaCtrlAddressLegal.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(460, 0, 211, 20);
             this.anketaCtrlAddressLegal.TxtCity.RootElement.StretchVertically = true;
             this.anketaCtrlAddressLegal.TxtCity.Size = new System.Drawing.Size(211, 20);
-            this.anketaCtrlAddressLegal.TxtCity.TabIndex = 23;
+            this.anketaCtrlAddressLegal.TxtCity.TabIndex = 2;
             // 
             // anketaDictionatiesBindingSource
             // 
@@ -960,7 +960,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerManagers.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerManagers.MinimumSize = new System.Drawing.Size(700, 480);
             this.pvConsumerManagers.Name = "pvConsumerManagers";
-            this.pvConsumerManagers.Size = new System.Drawing.Size(944, 520);
+            this.pvConsumerManagers.Size = new System.Drawing.Size(954, 508);
             this.pvConsumerManagers.Text = "Керівники";
             // 
             // managersTxtBoxOnBasics
@@ -993,7 +993,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnNextPlaces
             // 
             this.rbtnNextPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextPlaces.Location = new System.Drawing.Point(766, 493);
+            this.rbtnNextPlaces.Location = new System.Drawing.Point(776, 481);
             this.rbtnNextPlaces.Name = "rbtnNextPlaces";
             this.rbtnNextPlaces.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextPlaces.TabIndex = 6;
@@ -1007,7 +1007,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel8.Location = new System.Drawing.Point(89, 119);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(150, 36);
-            this.radLabel8.TabIndex = 1;
+            this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "На основі чого діє якщо посада «директор»";
             // 
             // radLabel7
@@ -1024,8 +1024,8 @@ namespace ConsumerWorkplace_v_1._0
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator5.Location = new System.Drawing.Point(119, 341);
             this.radSeparator5.Name = "radSeparator5";
-            this.radSeparator5.Size = new System.Drawing.Size(816, 21);
-            this.radSeparator5.TabIndex = 4;
+            this.radSeparator5.Size = new System.Drawing.Size(826, 21);
+            this.radSeparator5.TabIndex = 0;
             // 
             // radLabel6
             // 
@@ -1033,7 +1033,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel6.Location = new System.Drawing.Point(4, 336);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(109, 21);
-            this.radLabel6.TabIndex = 4;
+            this.radLabel6.TabIndex = 0;
             this.radLabel6.Text = "Контактна особа";
             // 
             // radSeparator4
@@ -1042,8 +1042,8 @@ namespace ConsumerWorkplace_v_1._0
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator4.Location = new System.Drawing.Point(119, 232);
             this.radSeparator4.Name = "radSeparator4";
-            this.radSeparator4.Size = new System.Drawing.Size(816, 21);
-            this.radSeparator4.TabIndex = 3;
+            this.radSeparator4.Size = new System.Drawing.Size(826, 21);
+            this.radSeparator4.TabIndex = 0;
             // 
             // radLabel5
             // 
@@ -1051,7 +1051,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel5.Location = new System.Drawing.Point(4, 232);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(66, 21);
-            this.radLabel5.TabIndex = 3;
+            this.radLabel5.TabIndex = 0;
             this.radLabel5.Text = "Бухгалтер";
             // 
             // radSeparator3
@@ -1060,7 +1060,7 @@ namespace ConsumerWorkplace_v_1._0
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator3.Location = new System.Drawing.Point(119, 70);
             this.radSeparator3.Name = "radSeparator3";
-            this.radSeparator3.Size = new System.Drawing.Size(816, 21);
+            this.radSeparator3.Size = new System.Drawing.Size(826, 21);
             this.radSeparator3.TabIndex = 0;
             // 
             // radLabel4
@@ -1075,7 +1075,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnBackAnketa
             // 
             this.rbtnBackAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackAnketa.Location = new System.Drawing.Point(585, 493);
+            this.rbtnBackAnketa.Location = new System.Drawing.Point(595, 481);
             this.rbtnBackAnketa.Name = "rbtnBackAnketa";
             this.rbtnBackAnketa.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackAnketa.TabIndex = 5;
@@ -1105,7 +1105,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsContactPerson.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 43, 175, 20);
             this.managersCtrlBossNameContactsContactPerson.TxtEmail.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsContactPerson.TxtEmail.Size = new System.Drawing.Size(175, 20);
-            this.managersCtrlBossNameContactsContactPerson.TxtEmail.TabIndex = 24;
+            this.managersCtrlBossNameContactsContactPerson.TxtEmail.TabIndex = 4;
             // 
             // 
             // 
@@ -1119,7 +1119,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsContactPerson.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 4, 173, 20);
             this.managersCtrlBossNameContactsContactPerson.TxtFirstName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsContactPerson.TxtFirstName.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.TabIndex = 25;
+            this.managersCtrlBossNameContactsContactPerson.TxtFirstName.TabIndex = 1;
             // 
             // 
             // 
@@ -1133,7 +1133,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsContactPerson.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 173, 20);
             this.managersCtrlBossNameContactsContactPerson.TxtLastName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsContactPerson.TxtLastName.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsContactPerson.TxtLastName.TabIndex = 26;
+            this.managersCtrlBossNameContactsContactPerson.TxtLastName.TabIndex = 0;
             // 
             // 
             // 
@@ -1147,7 +1147,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsContactPerson.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 43, 173, 20);
             this.managersCtrlBossNameContactsContactPerson.TxtPhone.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsContactPerson.TxtPhone.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsContactPerson.TxtPhone.TabIndex = 27;
+            this.managersCtrlBossNameContactsContactPerson.TxtPhone.TabIndex = 3;
             // 
             // 
             // 
@@ -1161,7 +1161,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 3, 175, 20);
             this.managersCtrlBossNameContactsContactPerson.TxtSurName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsContactPerson.TxtSurName.Size = new System.Drawing.Size(175, 20);
-            this.managersCtrlBossNameContactsContactPerson.TxtSurName.TabIndex = 23;
+            this.managersCtrlBossNameContactsContactPerson.TxtSurName.TabIndex = 2;
             // 
             // bindingSourceContact
             // 
@@ -1189,7 +1189,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsBookkeeper.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 46, 175, 20);
             this.managersCtrlBossNameContactsBookkeeper.TxtEmail.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsBookkeeper.TxtEmail.Size = new System.Drawing.Size(175, 20);
-            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.TabIndex = 24;
+            this.managersCtrlBossNameContactsBookkeeper.TxtEmail.TabIndex = 4;
             // 
             // 
             // 
@@ -1203,7 +1203,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 4, 173, 20);
             this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.TabIndex = 25;
+            this.managersCtrlBossNameContactsBookkeeper.TxtFirstName.TabIndex = 1;
             // 
             // 
             // 
@@ -1217,7 +1217,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsBookkeeper.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 173, 20);
             this.managersCtrlBossNameContactsBookkeeper.TxtLastName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsBookkeeper.TxtLastName.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.TabIndex = 26;
+            this.managersCtrlBossNameContactsBookkeeper.TxtLastName.TabIndex = 0;
             // 
             // 
             // 
@@ -1231,7 +1231,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsBookkeeper.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 46, 173, 20);
             this.managersCtrlBossNameContactsBookkeeper.TxtPhone.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsBookkeeper.TxtPhone.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.TabIndex = 27;
+            this.managersCtrlBossNameContactsBookkeeper.TxtPhone.TabIndex = 3;
             // 
             // 
             // 
@@ -1245,7 +1245,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 3, 175, 20);
             this.managersCtrlBossNameContactsBookkeeper.TxtSurName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsBookkeeper.TxtSurName.Size = new System.Drawing.Size(175, 20);
-            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.TabIndex = 23;
+            this.managersCtrlBossNameContactsBookkeeper.TxtSurName.TabIndex = 2;
             // 
             // iEmployeeBindingSourceBuh
             // 
@@ -1273,7 +1273,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsHead.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 43, 175, 20);
             this.managersCtrlBossNameContactsHead.TxtEmail.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsHead.TxtEmail.Size = new System.Drawing.Size(175, 20);
-            this.managersCtrlBossNameContactsHead.TxtEmail.TabIndex = 24;
+            this.managersCtrlBossNameContactsHead.TxtEmail.TabIndex = 4;
             // 
             // 
             // 
@@ -1287,7 +1287,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsHead.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 4, 173, 20);
             this.managersCtrlBossNameContactsHead.TxtFirstName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsHead.TxtFirstName.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsHead.TxtFirstName.TabIndex = 25;
+            this.managersCtrlBossNameContactsHead.TxtFirstName.TabIndex = 1;
             // 
             // 
             // 
@@ -1301,7 +1301,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsHead.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 173, 20);
             this.managersCtrlBossNameContactsHead.TxtLastName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsHead.TxtLastName.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsHead.TxtLastName.TabIndex = 26;
+            this.managersCtrlBossNameContactsHead.TxtLastName.TabIndex = 0;
             // 
             // 
             // 
@@ -1315,7 +1315,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsHead.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 43, 173, 20);
             this.managersCtrlBossNameContactsHead.TxtPhone.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsHead.TxtPhone.Size = new System.Drawing.Size(173, 20);
-            this.managersCtrlBossNameContactsHead.TxtPhone.TabIndex = 27;
+            this.managersCtrlBossNameContactsHead.TxtPhone.TabIndex = 3;
             // 
             // 
             // 
@@ -1329,7 +1329,7 @@ namespace ConsumerWorkplace_v_1._0
             this.managersCtrlBossNameContactsHead.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 3, 175, 20);
             this.managersCtrlBossNameContactsHead.TxtSurName.RootElement.StretchVertically = true;
             this.managersCtrlBossNameContactsHead.TxtSurName.Size = new System.Drawing.Size(175, 20);
-            this.managersCtrlBossNameContactsHead.TxtSurName.TabIndex = 23;
+            this.managersCtrlBossNameContactsHead.TxtSurName.TabIndex = 2;
             // 
             // iEmployeeBindingSource
             // 
@@ -1355,13 +1355,13 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerPlaces.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerPlaces.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerPlaces.Name = "pvConsumerPlaces";
-            this.pvConsumerPlaces.Size = new System.Drawing.Size(944, 520);
+            this.pvConsumerPlaces.Size = new System.Drawing.Size(954, 508);
             this.pvConsumerPlaces.Text = "Майданчики";
             // 
             // rbtnNextBankRequisites
             // 
             this.rbtnNextBankRequisites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextBankRequisites.Location = new System.Drawing.Point(766, 493);
+            this.rbtnNextBankRequisites.Location = new System.Drawing.Point(776, 481);
             this.rbtnNextBankRequisites.Name = "rbtnNextBankRequisites";
             this.rbtnNextBankRequisites.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextBankRequisites.TabIndex = 2;
@@ -1372,7 +1372,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnBackManagers
             // 
             this.rbtnBackManagers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackManagers.Location = new System.Drawing.Point(585, 493);
+            this.rbtnBackManagers.Location = new System.Drawing.Point(595, 481);
             this.rbtnBackManagers.Name = "rbtnBackManagers";
             this.rbtnBackManagers.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackManagers.TabIndex = 1;
@@ -1390,7 +1390,7 @@ namespace ConsumerWorkplace_v_1._0
             this.placesCtrlConsumerPlaces.Margin = new System.Windows.Forms.Padding(4);
             this.placesCtrlConsumerPlaces.Name = "placesCtrlConsumerPlaces";
             this.placesCtrlConsumerPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 36);
-            this.placesCtrlConsumerPlaces.Size = new System.Drawing.Size(895, 383);
+            this.placesCtrlConsumerPlaces.Size = new System.Drawing.Size(905, 383);
             this.placesCtrlConsumerPlaces.TabIndex = 0;
             // 
             // placesCtrlTitleLbl
@@ -1437,7 +1437,7 @@ namespace ConsumerWorkplace_v_1._0
             this.bankRequisitesCtrlBankAccount.TxtAccountNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 103, 100, 20);
             this.bankRequisitesCtrlBankAccount.TxtAccountNumber.RootElement.StretchVertically = true;
             this.bankRequisitesCtrlBankAccount.TxtAccountNumber.Size = new System.Drawing.Size(286, 20);
-            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.TabIndex = 5;
+            this.bankRequisitesCtrlBankAccount.TxtAccountNumber.TabIndex = 4;
             // 
             // 
             // 
@@ -1451,7 +1451,7 @@ namespace ConsumerWorkplace_v_1._0
             this.bankRequisitesCtrlBankAccount.TxtMfo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 28, 100, 20);
             this.bankRequisitesCtrlBankAccount.TxtMfo.RootElement.StretchVertically = true;
             this.bankRequisitesCtrlBankAccount.TxtMfo.Size = new System.Drawing.Size(286, 20);
-            this.bankRequisitesCtrlBankAccount.TxtMfo.TabIndex = 8;
+            this.bankRequisitesCtrlBankAccount.TxtMfo.TabIndex = 1;
             // 
             // 
             // 
@@ -1465,7 +1465,7 @@ namespace ConsumerWorkplace_v_1._0
             this.bankRequisitesCtrlBankAccount.TxtMfoName.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 3, 100, 20);
             this.bankRequisitesCtrlBankAccount.TxtMfoName.RootElement.StretchVertically = true;
             this.bankRequisitesCtrlBankAccount.TxtMfoName.Size = new System.Drawing.Size(286, 20);
-            this.bankRequisitesCtrlBankAccount.TxtMfoName.TabIndex = 9;
+            this.bankRequisitesCtrlBankAccount.TxtMfoName.TabIndex = 0;
             // 
             // 
             // 
@@ -1479,7 +1479,7 @@ namespace ConsumerWorkplace_v_1._0
             this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 53, 100, 20);
             this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.RootElement.StretchVertically = true;
             this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.Size = new System.Drawing.Size(286, 20);
-            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.TabIndex = 7;
+            this.bankRequisitesCtrlBankAccount.TxtMfoOkpo.TabIndex = 2;
             // 
             // 
             // 
@@ -1493,7 +1493,7 @@ namespace ConsumerWorkplace_v_1._0
             this.bankRequisitesCtrlBankAccount.TxtTransitNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(118, 78, 100, 20);
             this.bankRequisitesCtrlBankAccount.TxtTransitNumber.RootElement.StretchVertically = true;
             this.bankRequisitesCtrlBankAccount.TxtTransitNumber.Size = new System.Drawing.Size(286, 20);
-            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.TabIndex = 6;
+            this.bankRequisitesCtrlBankAccount.TxtTransitNumber.TabIndex = 3;
             // 
             // iBankAccountBindingSource
             // 
