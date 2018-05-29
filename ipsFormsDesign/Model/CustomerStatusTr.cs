@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class CustomerStatusTr
+    public partial class CustomerStatusTr : ICustomerStatusTr
     {
         public int CodeI { get; set; }
         public string Lang { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public CustomerStatus CodeINavigation { get; set; }
     }
 }
+

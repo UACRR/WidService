@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class GenreTr
+    public partial class GenreTr : IGenreTr
     {
         public int Id { get; set; }
         public string Lang { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public Genre IdNavigation { get; set; }
     }
 }
+

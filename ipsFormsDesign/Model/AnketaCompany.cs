@@ -1,8 +1,8 @@
-﻿using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
     public partial class AnketaCompany : IAnketaCompany
     {
@@ -43,3 +43,4 @@ namespace ipsmedserviceapp.Model
         public TypeVat TypeVatNavigation { get; set; }
     }
 }
+

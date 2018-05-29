@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class MoneyType
+    public partial class MoneyType : IMoneyType
     {
         public MoneyType()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<MoneyTypeTr> MoneyTypeTr { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class ReqLocationUse
+    public partial class ReqLocationUse : IReqLocationUse
     {
         public int LocUsId { get; set; }
         public int? ReqId { get; set; }
@@ -15,3 +16,4 @@ namespace ipsmedserviceapp.Model
         public Request Req { get; set; }
     }
 }
+

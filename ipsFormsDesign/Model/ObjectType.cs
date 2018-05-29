@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class ObjectType
+    public partial class ObjectType : IObjectType
     {
         public ObjectType()
         {
@@ -20,3 +21,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<ObjectTypeTr> ObjectTypeTr { get; set; }
     }
 }
+

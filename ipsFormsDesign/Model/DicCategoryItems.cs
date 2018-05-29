@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class DicCategoryItems
+    public partial class DicCategoryItems : IDicCategoryItems
     {
         public string DicName { get; set; }
         public int Code { get; set; }
@@ -15,3 +16,4 @@ namespace ipsmedserviceapp.Model
         public DictCategory CodeNavigation { get; set; }
     }
 }
+

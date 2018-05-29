@@ -1,14 +1,16 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class CreativeRoleType
+    public partial class CreativeRoleType : ICreativeRoleType
     {
         public CreativeRoleType()
         {
             CopyRight = new HashSet<CopyRight>();
             CreativeRoleTypeTr = new HashSet<CreativeRoleTypeTr>();
+            LicAuthor = new HashSet<LicAuthor>();
         }
 
         public int CodeI { get; set; }
@@ -20,5 +22,7 @@ namespace ipsmedserviceapp.Model
         public CopyrightType CrtypeNavigation { get; set; }
         public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
+        public ICollection<LicAuthor> LicAuthor { get; set; }
     }
 }
+

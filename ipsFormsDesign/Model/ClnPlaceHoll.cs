@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class ClnPlaceHoll
+    public partial class ClnPlaceHoll : IClnPlaceHoll
     {
         public ClnPlaceHoll()
         {
@@ -14,10 +15,11 @@ namespace ipsmedserviceapp.Model
         public int? PlaceId { get; set; }
         public string HollName { get; set; }
         public int? HollNum { get; set; }
-        public bool? СalcNum { get; set; }
+        public bool? �alcNum { get; set; }
         public decimal? SqHoll { get; set; }
 
         public ClnBusinessPlace Place { get; set; }
         public ICollection<LicPlaceHoll> LicPlaceHoll { get; set; }
     }
 }
+

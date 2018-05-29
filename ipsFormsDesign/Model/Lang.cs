@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class Lang
+    public partial class Lang : ILang
     {
         public Lang()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<LangTr> LangTr { get; set; }
     }
 }
+

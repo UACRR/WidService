@@ -1,12 +1,14 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class Register
+    public partial class Register : IRegister
     {
         public Register()
         {
+            BrRegister = new HashSet<BrRegister>();
             Distribution = new HashSet<Distribution>();
             RegisterItem = new HashSet<RegisterItem>();
         }
@@ -21,14 +23,15 @@ namespace ipsmedserviceapp.Model
         public int? PeriodId { get; set; }
         public string UserId { get; set; }
         public string FileName { get; set; }
-        public decimal? FullAmount { get; set; }
-        public decimal? FullRate { get; set; }
-        public int? NumTiket { get; set; }
+        public int? LicId { get; set; }
 
         public Customer Cust { get; set; }
+        public PaidPeriod Period { get; set; }
         public RegisterStatus RgStatusNavigation { get; set; }
         public AspNetUsers User { get; set; }
+        public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<Distribution> Distribution { get; set; }
         public ICollection<RegisterItem> RegisterItem { get; set; }
     }
 }
+

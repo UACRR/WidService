@@ -17,6 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerWizards", "Customer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerWorkplace_v_1._0", "ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj", "{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A0A5CF1-DA6E-4E1A-AF64-FFAC4E027068}"
+	ProjectSection(SolutionItems) = preProject
+		publishModel.ps1 = publishModel.ps1
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RightholderWorkplace", "RightholderWorkplace\RightholderWorkplace.csproj", "{BE2B9387-9119-454B-B94F-297DCE752D8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +109,15 @@ Global
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x64.ActiveCfg = Release|x86
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.ActiveCfg = Release|x86
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.Build.0 = Release|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug|Any CPU.Build.0 = Debug|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug|x64.ActiveCfg = Debug|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug|x86.ActiveCfg = Debug|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug|x86.Build.0 = Debug|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Release|Any CPU.ActiveCfg = Release|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Release|x64.ActiveCfg = Release|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Release|x86.ActiveCfg = Release|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

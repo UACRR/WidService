@@ -1,20 +1,22 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class RequestStatusType
+    public partial class RequestStatusType : IRequestStatusType
     {
         public RequestStatusType()
         {
             Request = new HashSet<Request>();
+            RequestStatusTypeTr = new HashSet<RequestStatusTypeTr>();
         }
 
-        public int ReqStatusCode { get; set; }
-        public string ReqStatusNameUk { get; set; }
-        public string ReqStatusNameRu { get; set; }
-        public string ReqStatusNameEn { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Request> Request { get; set; }
+        public ICollection<RequestStatusTypeTr> RequestStatusTypeTr { get; set; }
     }
 }
+

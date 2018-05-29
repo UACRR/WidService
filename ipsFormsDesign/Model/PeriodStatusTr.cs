@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class PeriodStatusTr
+    public partial class PeriodStatusTr : IPeriodStatusTr
     {
         public int CodeI { get; set; }
         public string Name { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public PeriodStatus CodeINavigation { get; set; }
     }
 }
+

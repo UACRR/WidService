@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class SexType
+    public partial class SexType : ISexType
     {
         public SexType()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<SexTypeTr> SexTypeTr { get; set; }
     }
 }
+

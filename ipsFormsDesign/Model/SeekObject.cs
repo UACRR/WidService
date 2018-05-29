@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class SeekObject
+    public partial class SeekObject : ISeekObject
     {
         public int Id { get; set; }
         public int? CodeI { get; set; }
@@ -14,3 +15,4 @@ namespace ipsmedserviceapp.Model
         public ObjectRight Obj { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class CustomerStatus
+    public partial class CustomerStatus : ICustomerStatus
     {
         public CustomerStatus()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<CustomerStatusTr> CustomerStatusTr { get; set; }
     }
 }
+

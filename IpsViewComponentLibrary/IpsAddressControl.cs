@@ -74,7 +74,7 @@ namespace IpsViewComponentLibrary
                 {
                     _regionDataMember = value;
                     ddlRegion.DataBindings.Clear();
-                    ddlRegion.DataBindings.Add("SelectedValue", _bindingSource, _regionDataMember);
+                    ddlRegion.DataBindings.Add("SelectedValue", _bindingSource, _regionDataMember, true, DataSourceUpdateMode.OnPropertyChanged, 0);
                 }
             }
         }
@@ -224,5 +224,20 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
+
+        public bool Validator()
+        {
+            bool isValid = true;
+
+            //if (rtxtBoxAuthorPaymentPercent.Text == string.Empty)
+            //{
+            //    isValid = false;
+            //    radLabel1.ForeColor = Color.FromArgb(180, 255, 0, 2); ;
+            //}
+            //else
+            //    radLabel1.ForeColor = Color.Black;
+
+            return isValid;
+        }
     }
 }

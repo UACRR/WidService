@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class TypePlace
+    public partial class TypePlace : ITypePlace
     {
         public TypePlace()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<TypePlaceTr> TypePlaceTr { get; set; }
     }
 }
+

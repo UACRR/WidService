@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class DocTemplate
+    public partial class DocTemplate : IDocTemplate
     {
         public int TemplId { get; set; }
         public int DocTypeCode { get; set; }
@@ -15,3 +16,4 @@ namespace ipsmedserviceapp.Model
         public RequestType ReqTypeNavigation { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class ReqCustomer
+    public partial class ReqCustomer : IReqCustomer
     {
         public ReqCustomer()
         {
@@ -25,3 +26,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<Request> Request { get; set; }
     }
 }
+

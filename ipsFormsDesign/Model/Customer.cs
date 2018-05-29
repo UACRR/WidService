@@ -1,8 +1,8 @@
-﻿using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
     public partial class Customer : ICustomer
     {
@@ -55,3 +55,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<UserRole> UserRole { get; set; }
     }
 }
+

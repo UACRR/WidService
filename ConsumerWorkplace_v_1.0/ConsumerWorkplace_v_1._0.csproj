@@ -77,11 +77,13 @@
     <Compile Include="ConsumerWorkplace.Designer.cs">
       <DependentUpon>ConsumerWorkplace.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPresenter.cs" />
+    <Compile Include="ListConsumers.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConsumerWorkplace.resx">
       <DependentUpon>ConsumerWorkplace.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +95,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\ConsumerWorkplace.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.AnketaDictionaties.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IActivityType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IPositionType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRelEmployee.datasource" />
+    <None Include="Properties\DataSources\ListConsumers.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

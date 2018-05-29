@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsmedserviceapp.Model;
+
 using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
+using ipsFormsDesign.Model;
 
 namespace ipsAnketaClient
 {
@@ -44,8 +45,10 @@ namespace ipsAnketaClient
         /// <param name="data"></param>
         public void SetGridDataSource(object dataSource)
         {
+            rGridViewInstitution.Refresh();
             if (dataSource!=null)
                 rGridViewInstitution.DataSource = dataSource;
+            
         }
 
         /// <summary>
@@ -121,6 +124,8 @@ namespace ipsAnketaClient
             rBtnEditInst.Enabled = true;
             isNewInst = false;
             newPlace?.Clear();
+
+            SetGridDataSource(data.Client.ClnBusinessPlace);
         }
 
         /// <summary>
@@ -529,6 +534,7 @@ namespace ipsAnketaClient
                 if (MessageBox.Show("Зберегти дані?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     SetDefaultState();
+                    SetGridDataSource(data.Client.ClnBusinessPlace);
                     //some code
                 }
             }
@@ -545,7 +551,5 @@ namespace ipsAnketaClient
         }
 
         #endregion
-
-
     }
 }

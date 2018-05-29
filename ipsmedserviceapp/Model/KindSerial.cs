@@ -7,14 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public KindSerial()
         {
+            KindSerialTr = new HashSet<KindSerialTr>();
             RequestSerial = new HashSet<RequestSerial>();
         }
 
-        public int KindSerialCode { get; set; }
-        public string KindSerialNameUk { get; set; }
-        public string KindSerialNameRu { get; set; }
-        public string KindSerialNameEn { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
+        public ICollection<KindSerialTr> KindSerialTr { get; set; }
         public ICollection<RequestSerial> RequestSerial { get; set; }
     }
 }

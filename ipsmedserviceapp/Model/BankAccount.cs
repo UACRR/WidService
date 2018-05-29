@@ -19,6 +19,11 @@ namespace ipsmedserviceapp.Model
         public int? Mfo { get; set; }
         public string MfoName { get; set; }
         public string MfoOkpo { get; set; }
+        public string PIndex { get; set; }
+        public string PAddress { get; set; }
+        public string PCity { get; set; }
+        public string PCountry { get; set; }
+        public int? PRegion { get; set; }
 
         public KlR030 CurrencyNavigation { get; set; }
         public Customer Cust { get; set; }

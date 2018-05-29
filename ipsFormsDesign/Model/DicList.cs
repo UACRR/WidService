@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class DicList
+    public partial class DicList : IDicList
     {
         public int DicId { get; set; }
         public string DKind { get; set; }
@@ -13,3 +14,4 @@ namespace ipsmedserviceapp.Model
         public string DNameEn { get; set; }
     }
 }
+

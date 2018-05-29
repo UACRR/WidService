@@ -604,25 +604,6 @@ namespace ipsmedserviceapp.Controllers
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sors"></param>
-        /// <param name="dest"></param>
-        /// <param name="compId"></param>
-        private void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId,Func<T, T, bool> compId) where T : class
-        {
-            // Видалення
-            List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => _dbContext.Entry(item).State = EntityState.Deleted);
-            // Додаємо нові
-            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
-            // Змінюємо спільні записи
-            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
-
-        }
         [HttpPut("extra/crkindgroup/{id}")]
         public async Task<ActionResult> UpdateCrkindgroup(int id, [FromBody] JObject data)
         {
@@ -649,7 +630,7 @@ namespace ipsmedserviceapp.Controllers
                 var dest = destItem.CrkindGroupTr;
                 var sors = sorsItem.CrkindGroupTr;
 
-                UpdateList(sors, dest,
+                _dbContext.UpdateList(sors, dest,
                     row => row.CodeI = destItem.CodeI,
                     (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
@@ -657,7 +638,7 @@ namespace ipsmedserviceapp.Controllers
                 var sorsRghtKind = sorsItem.CopyrightKind;
                 var destRghtKind = destItem.CopyrightKind;
 
-                UpdateList(sorsRghtKind, destRghtKind,
+                _dbContext.UpdateList(sorsRghtKind, destRghtKind,
                     row => row.CodeI = maxcopyrightKindCodeI++,
                     (sorsI, destI) => sorsI.CodeI == destI.CodeI);
 
@@ -669,7 +650,7 @@ namespace ipsmedserviceapp.Controllers
 
                     var sorsTr = sorsRow.CopyrightKindTr;
                     var destTr = destRow.CopyrightKindTr;
-                    UpdateList(sorsTr, destTr, 
+                    _dbContext.UpdateList(sorsTr, destTr, 
                         row => row.CodeI = destRow.CodeI,
                         (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
@@ -746,20 +727,34 @@ namespace ipsmedserviceapp.Controllers
         public async Task<ActionResult> GetAnketaDictionary()
         {
             Dictionary<string, object> retDictionary = new Dictionary<string, object>();
-            
-            retDictionary.Add("CustomerType",  await _dbContext.CustomerType.AsNoTracking().ToListAsync());
-            retDictionary.Add("CustomerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
-            retDictionary.Add("PositionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
-            retDictionary.Add("KlR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
-            retDictionary.Add("ActivityType", await _dbContext.ActivityType.AsNoTracking().ToListAsync());
-            retDictionary.Add("Region", await _dbContext.Region.AsNoTracking().ToListAsync());
-            retDictionary.Add("TypeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
-            retDictionary.Add("ResidentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
-            retDictionary.Add("SexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
-            retDictionary.Add("Country", await _dbContext.Country.AsNoTracking().ToListAsync());
-            retDictionary.Add("Lang", await _dbContext.Lang.AsNoTracking().ToListAsync());
-            retDictionary.Add("AnketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
-            retDictionary.Add("TypePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
+
+
+            retDictionary.Add("activityType", await _dbContext.ActivityType.AsNoTracking().ToListAsync());
+            retDictionary.Add("agrLicenseType", await _dbContext.AgrLicenseType.AsNoTracking().ToListAsync());
+            retDictionary.Add("agreementStatus", await _dbContext.AgreementStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("agreementType", await _dbContext.AgreementType.AsNoTracking().ToListAsync());
+            retDictionary.Add("anketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("copyrightKind", await _dbContext.CopyrightKind.AsNoTracking().ToListAsync());
+            retDictionary.Add("copyrightType", await _dbContext.CopyrightType.AsNoTracking().ToListAsync());
+            retDictionary.Add("country", await _dbContext.Country.AsNoTracking().ToListAsync());
+            retDictionary.Add("crkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
+            retDictionary.Add("customerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("customerType", await _dbContext.CustomerType.AsNoTracking().ToListAsync());
+            retDictionary.Add("klR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
+            retDictionary.Add("licenseClass", await _dbContext.LicenseClass.AsNoTracking().ToListAsync());
+            retDictionary.Add("licenseType", await _dbContext.LicenseType.AsNoTracking().ToListAsync());
+            retDictionary.Add("period", await _dbContext.Period.AsNoTracking().ToListAsync());
+            retDictionary.Add("periodStatus", await _dbContext.PeriodStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("positionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
+            retDictionary.Add("region", await _dbContext.Region.AsNoTracking().ToListAsync());
+            retDictionary.Add("residentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
+            retDictionary.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
+            retDictionary.Add("typeMethodGet", await _dbContext.TypeMethodGet.AsNoTracking().ToListAsync());
+            retDictionary.Add("typePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
+            retDictionary.Add("typeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
+            retDictionary.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
+            retDictionary.Add("usesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());
+            retDictionary.Add("usesType", await _dbContext.UsesType.AsNoTracking().ToListAsync());
             retDictionary.Add("Communities",
                 await _dbContext.getViewData("select t2.name, t2.custId from community t1 join vCustomer t2 on t2.custId = t1.custId", new SqlParameter[0]));
 

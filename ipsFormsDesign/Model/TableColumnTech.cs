@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class TableColumnTech
+    public partial class TableColumnTech : ITableColumnTech
     {
         public decimal Id { get; set; }
         public string Cname { get; set; }
@@ -14,3 +15,4 @@ namespace ipsmedserviceapp.Model
         public short? TypeTab { get; set; }
     }
 }
+

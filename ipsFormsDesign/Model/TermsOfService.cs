@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class TermsOfService
+    public partial class TermsOfService : ITermsOfService
     {
         public TermsOfService()
         {
@@ -19,3 +20,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<CustCmRight> CustCmRight { get; set; }
     }
 }
+

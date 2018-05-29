@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class TableColumn
+    public partial class TableColumn : ITableColumn
     {
         public decimal Id { get; set; }
         public string Lang { get; set; }
@@ -13,3 +14,4 @@ namespace ipsmedserviceapp.Model
         public string HText { get; set; }
     }
 }
+

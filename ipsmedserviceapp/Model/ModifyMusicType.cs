@@ -7,18 +7,18 @@ namespace ipsmedserviceapp.Model
     {
         public ModifyMusicType()
         {
+            ModifyMusicTypeTr = new HashSet<ModifyMusicTypeTr>();
             RequestAdapt = new HashSet<RequestAdapt>();
         }
 
-        public int ModifyMusicTypeCode { get; set; }
-        public string ModifyMusicTypeNameUk { get; set; }
-        public string ModifyMusicTypeNameRu { get; set; }
-        public string ModifyMusicTypeNameEn { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
         public int? KindCompCode { get; set; }
         public int CategoryCode { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
         public KindComposition KindCompCodeNavigation { get; set; }
+        public ICollection<ModifyMusicTypeTr> ModifyMusicTypeTr { get; set; }
         public ICollection<RequestAdapt> RequestAdapt { get; set; }
     }
 }

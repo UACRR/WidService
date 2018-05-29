@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class PortalObjectRights
+    public partial class PortalObjectRights : IPortalObjectRights
     {
         public int ObjId { get; set; }
         public int CRkindCode { get; set; }
@@ -13,3 +14,4 @@ namespace ipsmedserviceapp.Model
         public ObjectRight Obj { get; set; }
     }
 }
+

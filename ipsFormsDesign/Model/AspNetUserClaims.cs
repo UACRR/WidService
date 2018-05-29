@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class AspNetUserClaims
+    public partial class AspNetUserClaims : IAspNetUserClaims
     {
         public int Id { get; set; }
         public string ClaimType { get; set; }
@@ -13,3 +14,4 @@ namespace ipsmedserviceapp.Model
         public AspNetUsers User { get; set; }
     }
 }
+

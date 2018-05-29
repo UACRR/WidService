@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class PayMethodType
+    public partial class PayMethodType : IPayMethodType
     {
         public PayMethodType()
         {
@@ -18,3 +19,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<PaymentCase> PaymentCase { get; set; }
     }
 }
+

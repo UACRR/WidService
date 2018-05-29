@@ -1,20 +1,22 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class KindFilm
+    public partial class KindFilm : IKindFilm
     {
         public KindFilm()
         {
+            KindFilmTr = new HashSet<KindFilmTr>();
             RequestMovie = new HashSet<RequestMovie>();
         }
 
-        public int KindFilmCode { get; set; }
-        public string KindFilmNameUk { get; set; }
-        public string KindFilmNameRu { get; set; }
-        public string KindFilmNameEn { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
+        public ICollection<KindFilmTr> KindFilmTr { get; set; }
         public ICollection<RequestMovie> RequestMovie { get; set; }
     }
 }
+

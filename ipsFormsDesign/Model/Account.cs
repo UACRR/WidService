@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class Account
+    public partial class Account : IAccount
     {
         public Account()
         {
@@ -23,6 +24,7 @@ namespace ipsmedserviceapp.Model
         public short? AccDk { get; set; }
         public DateTime? DateModify { get; set; }
 
+        public AccountStatus AccStatusNavigation { get; set; }
         public AccountBals BalsCodeNavigation { get; set; }
         public Customer Cust { get; set; }
         public ObjectRight Obj { get; set; }
@@ -30,3 +32,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<PayTurn> PayTurn { get; set; }
     }
 }
+

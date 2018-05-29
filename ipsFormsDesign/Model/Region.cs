@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class Region
+    public partial class Region : IRegion
     {
         public Region()
         {
@@ -26,3 +27,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<RegionTr> RegionTr { get; set; }
     }
 }
+

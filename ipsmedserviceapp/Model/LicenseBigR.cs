@@ -5,6 +5,12 @@ namespace ipsmedserviceapp.Model
 {
     public partial class LicenseBigR
     {
+        public LicenseBigR()
+        {
+            LicAuthor = new HashSet<LicAuthor>();
+            MusicalDesign = new HashSet<MusicalDesign>();
+        }
+
         public int LicId { get; set; }
         public DateTime? DatePremiere { get; set; }
         public int? ObjId { get; set; }
@@ -17,5 +23,7 @@ namespace ipsmedserviceapp.Model
 
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
+        public ICollection<LicAuthor> LicAuthor { get; set; }
+        public ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }

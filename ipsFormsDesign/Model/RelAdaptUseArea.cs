@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class RelAdaptUseArea
+    public partial class RelAdaptUseArea : IRelAdaptUseArea
     {
         public int ReqId { get; set; }
         public int UseAreaTypeCode { get; set; }
@@ -12,3 +13,4 @@ namespace ipsmedserviceapp.Model
         public UseAreaType UseAreaTypeCodeNavigation { get; set; }
     }
 }
+

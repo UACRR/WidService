@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class PaymentCase
+    public partial class PaymentCase : IPaymentCase
     {
         public int ReqId { get; set; }
         public int? PayKind { get; set; }
@@ -21,3 +22,4 @@ namespace ipsmedserviceapp.Model
         public Request Req { get; set; }
     }
 }
+

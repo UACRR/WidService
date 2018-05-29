@@ -1,10 +1,17 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class LicenseBigR
+    public partial class LicenseBigR : ILicenseBigR
     {
+        public LicenseBigR()
+        {
+            LicAuthor = new HashSet<LicAuthor>();
+            MusicalDesign = new HashSet<MusicalDesign>();
+        }
+
         public int LicId { get; set; }
         public DateTime? DatePremiere { get; set; }
         public int? ObjId { get; set; }
@@ -17,5 +24,8 @@ namespace ipsmedserviceapp.Model
 
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
+        public ICollection<LicAuthor> LicAuthor { get; set; }
+        public ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }
+

@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class Invoice
+    public partial class Invoice : IInvoice
     {
         public int DocId { get; set; }
         public int? PayCustId { get; set; }
@@ -20,3 +21,4 @@ namespace ipsmedserviceapp.Model
         public Document Doc { get; set; }
     }
 }
+

@@ -1,8 +1,8 @@
-﻿using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
     public partial class BankAccount : IBankAccount
     {
@@ -20,6 +20,11 @@ namespace ipsmedserviceapp.Model
         public int? Mfo { get; set; }
         public string MfoName { get; set; }
         public string MfoOkpo { get; set; }
+        public string PIndex { get; set; }
+        public string PAddress { get; set; }
+        public string PCity { get; set; }
+        public string PCountry { get; set; }
+        public int? PRegion { get; set; }
 
         public KlR030 CurrencyNavigation { get; set; }
         public Customer Cust { get; set; }
@@ -27,3 +32,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<AnketaPerson> AnketaPerson { get; set; }
     }
 }
+

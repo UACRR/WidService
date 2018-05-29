@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class AgreementAddRh
+    public partial class AgreementAddRh : IAgreementAddRh
     {
         public int AgrId { get; set; }
         public decimal? RateCourt { get; set; }
@@ -16,3 +17,4 @@ namespace ipsmedserviceapp.Model
         public AspNetUsers ResponsUserNavigation { get; set; }
     }
 }
+

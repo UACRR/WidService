@@ -239,5 +239,53 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
+
+        public bool Validator()
+        {
+            bool isValid = true;
+
+            if (txtOkpo.Text == string.Empty)
+            {
+                lbledrpou.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                isValid = false;
+            }
+            else
+                lbledrpou.ForeColor = Color.Black;
+
+            if (txtRegisterNumber.Text == string.Empty)
+            {
+                lblSvidoctvo.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                isValid = false;
+            }
+            else
+                lblSvidoctvo.ForeColor = Color.Black;
+
+            if (txtRegisterWho.Text == string.Empty)
+            {
+                lblIssuedBy.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                isValid = false;
+            }
+            else
+                lblIssuedBy.ForeColor = Color.Black;
+
+            if (txtNumberVat.Text == string.Empty)
+            {
+                lblIPN.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                isValid = false;
+            }
+            else
+                lblIPN.ForeColor = Color.Black;
+
+            return isValid;
+        }
+
+        public void ClearData()
+        {
+            txtNumberVat.Text = string.Empty;
+            txtOkpo.Text = string.Empty;
+            txtRegisterNumber.Text = string.Empty;
+            txtRegisterWho.Text = string.Empty;
+            dtRegisterDate.Text = string.Empty;
+        }
     }
 }

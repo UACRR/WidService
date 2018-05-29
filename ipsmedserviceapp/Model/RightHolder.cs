@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -10,6 +9,7 @@ namespace ipsmedserviceapp.Model
         {
             AgreementAddRh = new HashSet<AgreementAddRh>();
             AnketaAddNick = new HashSet<AnketaAddNick>();
+            LicAuthor = new HashSet<LicAuthor>();
             RegisterCount = new HashSet<RegisterCount>();
             ReqAgreement = new HashSet<ReqAgreement>();
             TermsOfService = new HashSet<TermsOfService>();
@@ -25,9 +25,9 @@ namespace ipsmedserviceapp.Model
         public int? GetCode { get; set; }
 
         public Customer Cust { get; set; }
-        [JsonIgnore]
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
+        public ICollection<LicAuthor> LicAuthor { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
         public ICollection<ReqAgreement> ReqAgreement { get; set; }
         public ICollection<TermsOfService> TermsOfService { get; set; }

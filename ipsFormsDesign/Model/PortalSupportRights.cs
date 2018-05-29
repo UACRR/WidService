@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class PortalSupportRights
+    public partial class PortalSupportRights : IPortalSupportRights
     {
         public PortalSupportRights()
         {
@@ -16,3 +17,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
     }
 }
+

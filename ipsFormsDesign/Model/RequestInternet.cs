@@ -1,9 +1,10 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class RequestInternet
+    public partial class RequestInternet : IRequestInternet
     {
         public int ReqId { get; set; }
         public int? TypeInternetObject { get; set; }
@@ -14,3 +15,4 @@ namespace ipsmedserviceapp.Model
         public TypeInternetObject TypeInternetObjectNavigation { get; set; }
     }
 }
+
