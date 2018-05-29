@@ -17,7 +17,11 @@ namespace ipsFormsDesign.Dictionary
             _termsOfService = termsOfService;
             _custCmRight = termsOfService.CustCmRight.SingleOrDefault();
             if (_custCmRight == null)
+            {
                 _custCmRight = new CustCmRight();
+                _termsOfService.CustCmRight.Add(_custCmRight);
+            }
+                
         }
 
         public string Name
