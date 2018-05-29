@@ -358,6 +358,8 @@ namespace ConsumerWorkplace_v_1._0
 
                 var agrMaster = _cust.AgreementMaster?.Where(rec => rec.AgrStatus < 4).FirstOrDefault();
                 var license = agrMaster?.LicenseAgreement.Where(rec=>rec.LicStatus < 4).FirstOrDefault();
+                iAgreementMasterBindingSource.DataSource = agrMaster;
+                iLicenseAgreementBindingSource.DataSource = license;
 
 
                 anketaCtrlAddressFactual.CountriesDataSource = _dic.country;

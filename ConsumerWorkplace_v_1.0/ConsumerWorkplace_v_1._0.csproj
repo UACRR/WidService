@@ -133,7 +133,12 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
-    <None Include="PDF\Litsenziyniy-dogovir-z-tsirkami-yak-mayut-statsionarniy-maydanchik1.pdf" />
+    <None Include="PDF\1_БВ-НК-бари-дискотеки_платний та безоплатний вхід.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="PDF\Litsenziyniy-dogovir-z-tsirkami-yak-mayut-statsionarniy-maydanchik1.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\DataSources\ConsumerWorkplace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.AnketaDictionaties.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
