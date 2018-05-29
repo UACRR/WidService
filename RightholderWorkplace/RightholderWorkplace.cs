@@ -360,7 +360,7 @@ namespace RightholderWorkplace
         private void UpdateDataSources()
         {
             _anketa = _customer.Person.AnketaPerson.Where( row => row.Version == _customer.AnkVersion ).SingleOrDefault();
-            if (_customer.BankAccount.Count > 0)
+            if (_customer.BankAccount.Any())
                 _bankAccount = _customer.BankAccount.FirstOrDefault();
             else
             {
@@ -371,6 +371,17 @@ namespace RightholderWorkplace
             anketaPersonBindingSource.DataSource = _anketa;
             bankAccountBindingSource.DataSource = _bankAccount;
             ctrlExclusionsLimitations.DataSource = _customer.RightHolder.TermsOfService.Select( rec => new TermsOfServiceWrapper(rec));
+
+            var agreement = _customer.AgreementMaster.FirstOrDefault();
+            if (agreement != null)
+            {
+                agreementAddRhBindingSource.DataSource = agreement.AgreementAddRh;
+            }
+            else
+            {
+                agreement = new AgreementMaster();
+                _customer.AgreementMaster.Add(agreement);
+            }
         }
     }
 }
