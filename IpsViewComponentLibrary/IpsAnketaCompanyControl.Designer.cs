@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ddlActivityCode = new Telerik.WinControls.UI.RadDropDownList();
-            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource();
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtShortName = new Telerik.WinControls.UI.RadTextBox();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -53,7 +54,7 @@
             this.ddlActivityCode.Location = new System.Drawing.Point(119, 49);
             this.ddlActivityCode.Name = "ddlActivityCode";
             this.ddlActivityCode.Size = new System.Drawing.Size(324, 20);
-            this.ddlActivityCode.TabIndex = 11;
+            this.ddlActivityCode.TabIndex = 2;
             // 
             // anketaCompanyBindingSource
             // 
@@ -67,7 +68,7 @@
             this.txtShortName.Location = new System.Drawing.Point(119, 25);
             this.txtShortName.Name = "txtShortName";
             this.txtShortName.Size = new System.Drawing.Size(324, 20);
-            this.txtShortName.TabIndex = 10;
+            this.txtShortName.TabIndex = 1;
             // 
             // txtName
             // 
@@ -77,14 +78,14 @@
             this.txtName.Location = new System.Drawing.Point(119, 1);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(324, 20);
-            this.txtName.TabIndex = 9;
+            this.txtName.TabIndex = 0;
             // 
             // radLabel3
             // 
             this.radLabel3.Location = new System.Drawing.Point(2, 51);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(97, 18);
-            this.radLabel3.TabIndex = 8;
+            this.radLabel3.TabIndex = 2;
             this.radLabel3.Text = "Сфера діяльності:";
             // 
             // radLabel2
@@ -92,7 +93,7 @@
             this.radLabel2.Location = new System.Drawing.Point(2, 27);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(83, 18);
-            this.radLabel2.TabIndex = 7;
+            this.radLabel2.TabIndex = 1;
             this.radLabel2.Text = "Коротка назва:";
             // 
             // radLabel1
@@ -100,7 +101,7 @@
             this.radLabel1.Location = new System.Drawing.Point(2, 3);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(79, 18);
-            this.radLabel1.TabIndex = 6;
+            this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Назва клієнту:";
             // 
             // IpsAnketaCompanyControl

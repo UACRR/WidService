@@ -55,7 +55,7 @@
             this.rLblPremises.Location = new System.Drawing.Point(3, 3);
             this.rLblPremises.Name = "rLblPremises";
             this.rLblPremises.Size = new System.Drawing.Size(170, 26);
-            this.rLblPremises.TabIndex = 4;
+            this.rLblPremises.TabIndex = 0;
             this.rLblPremises.Text = "Приміщення закладу";
             this.rLblPremises.TextAlignment = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -98,7 +98,7 @@
             this.rGridViewPremises.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewPremises.Name = "rGridViewPremises";
             this.rGridViewPremises.Size = new System.Drawing.Size(618, 185);
-            this.rGridViewPremises.TabIndex = 5;
+            this.rGridViewPremises.TabIndex = 0;
             // 
             // rBtnAddPremises
             // 
@@ -106,7 +106,7 @@
             this.rBtnAddPremises.Location = new System.Drawing.Point(17, 226);
             this.rBtnAddPremises.Name = "rBtnAddPremises";
             this.rBtnAddPremises.Size = new System.Drawing.Size(138, 24);
-            this.rBtnAddPremises.TabIndex = 6;
+            this.rBtnAddPremises.TabIndex = 1;
             this.rBtnAddPremises.Text = "Додати приміщення";
             this.rBtnAddPremises.Click += new System.EventHandler(this.rBtnAddPremises_Click);
             // 
@@ -117,7 +117,7 @@
             this.radSeparator1.Location = new System.Drawing.Point(179, 9);
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(456, 20);
-            this.radSeparator1.TabIndex = 12;
+            this.radSeparator1.TabIndex = 0;
             // 
             // rBtnEditPremises
             // 
@@ -125,7 +125,7 @@
             this.rBtnEditPremises.Location = new System.Drawing.Point(162, 226);
             this.rBtnEditPremises.Name = "rBtnEditPremises";
             this.rBtnEditPremises.Size = new System.Drawing.Size(138, 24);
-            this.rBtnEditPremises.TabIndex = 13;
+            this.rBtnEditPremises.TabIndex = 2;
             this.rBtnEditPremises.Text = "Редагувати приміщення";
             this.rBtnEditPremises.Click += new System.EventHandler(this.rBtnEditPremises_Click);
             // 
@@ -135,7 +135,7 @@
             this.radBtnDeletePremises.Location = new System.Drawing.Point(510, 226);
             this.radBtnDeletePremises.Name = "radBtnDeletePremises";
             this.radBtnDeletePremises.Size = new System.Drawing.Size(125, 24);
-            this.radBtnDeletePremises.TabIndex = 14;
+            this.radBtnDeletePremises.TabIndex = 3;
             this.radBtnDeletePremises.Text = "Видалити приміщення";
             this.radBtnDeletePremises.Click += new System.EventHandler(this.radBtnDeletePremises_Click);
             // 

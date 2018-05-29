@@ -89,7 +89,7 @@
             this.rLblMainHeader.Location = new System.Drawing.Point(3, 3);
             this.rLblMainHeader.Name = "rLblMainHeader";
             this.rLblMainHeader.Size = new System.Drawing.Size(147, 30);
-            this.rLblMainHeader.TabIndex = 1;
+            this.rLblMainHeader.TabIndex = 0;
             this.rLblMainHeader.Text = "Адреса закладу";
             this.rLblMainHeader.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             // 
@@ -100,7 +100,7 @@
             this.lblTown.Location = new System.Drawing.Point(27, 39);
             this.lblTown.Name = "lblTown";
             this.lblTown.Size = new System.Drawing.Size(90, 17);
-            this.lblTown.TabIndex = 2;
+            this.lblTown.TabIndex = 0;
             this.lblTown.Text = "<html>Населений пункт</html>";
             // 
             // lblRegion
@@ -109,7 +109,7 @@
             this.lblRegion.Location = new System.Drawing.Point(387, 38);
             this.lblRegion.Name = "lblRegion";
             this.lblRegion.Size = new System.Drawing.Size(49, 18);
-            this.lblRegion.TabIndex = 3;
+            this.lblRegion.TabIndex = 1;
             this.lblRegion.Text = "Область";
             // 
             // lblStreet
@@ -118,7 +118,7 @@
             this.lblStreet.Location = new System.Drawing.Point(27, 64);
             this.lblStreet.Name = "lblStreet";
             this.lblStreet.Size = new System.Drawing.Size(90, 17);
-            this.lblStreet.TabIndex = 4;
+            this.lblStreet.TabIndex = 2;
             this.lblStreet.Text = "Вулиця";
             this.lblStreet.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -186,7 +186,7 @@
             this.rDropListRegion.Name = "rDropListRegion";
             this.rDropListRegion.NullText = "Оберіть область";
             this.rDropListRegion.Size = new System.Drawing.Size(209, 20);
-            this.rDropListRegion.TabIndex = 6;
+            this.rDropListRegion.TabIndex = 1;
             this.rDropListRegion.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rDropListRegion_SelectedIndexChanged);
             // 
             // rTxtBoxNameStreet
@@ -197,7 +197,7 @@
             this.rTxtBoxNameStreet.Name = "rTxtBoxNameStreet";
             this.rTxtBoxNameStreet.NullText = " Назва вулиці / № будинку ";
             this.rTxtBoxNameStreet.Size = new System.Drawing.Size(528, 20);
-            this.rTxtBoxNameStreet.TabIndex = 10;
+            this.rTxtBoxNameStreet.TabIndex = 2;
             // 
             // radSeparator1
             // 
@@ -206,7 +206,7 @@
             this.radSeparator1.Location = new System.Drawing.Point(156, 3);
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(499, 30);
-            this.radSeparator1.TabIndex = 11;
+            this.radSeparator1.TabIndex = 0;
             // 
             // IpsAddressExpandedControl
             // 

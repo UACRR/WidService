@@ -35,10 +35,10 @@
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtAccountNumber = new Telerik.WinControls.UI.RadTextBox();
+            this.BankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtTransitNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfoOkpo = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfo = new Telerik.WinControls.UI.RadTextBox();
-            this.BankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtMfoName = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -46,10 +46,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTransitNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BankAccountBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoName)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +101,11 @@
             this.txtAccountNumber.Location = new System.Drawing.Point(118, 103);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(286, 20);
-            this.txtAccountNumber.TabIndex = 5;
+            this.txtAccountNumber.TabIndex = 4;
+            // 
+            // BankAccountBindingSource
+            // 
+            this.BankAccountBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
             // 
             // txtTransitNumber
             // 
@@ -111,7 +115,7 @@
             this.txtTransitNumber.Location = new System.Drawing.Point(118, 78);
             this.txtTransitNumber.Name = "txtTransitNumber";
             this.txtTransitNumber.Size = new System.Drawing.Size(286, 20);
-            this.txtTransitNumber.TabIndex = 6;
+            this.txtTransitNumber.TabIndex = 3;
             // 
             // txtMfoOkpo
             // 
@@ -121,7 +125,7 @@
             this.txtMfoOkpo.Location = new System.Drawing.Point(118, 53);
             this.txtMfoOkpo.Name = "txtMfoOkpo";
             this.txtMfoOkpo.Size = new System.Drawing.Size(286, 20);
-            this.txtMfoOkpo.TabIndex = 7;
+            this.txtMfoOkpo.TabIndex = 2;
             // 
             // txtMfo
             // 
@@ -131,11 +135,7 @@
             this.txtMfo.Location = new System.Drawing.Point(118, 28);
             this.txtMfo.Name = "txtMfo";
             this.txtMfo.Size = new System.Drawing.Size(286, 20);
-            this.txtMfo.TabIndex = 8;
-            // 
-            // BankAccountBindingSource
-            // 
-            this.BankAccountBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
+            this.txtMfo.TabIndex = 1;
             // 
             // txtMfoName
             // 
@@ -145,7 +145,7 @@
             this.txtMfoName.Location = new System.Drawing.Point(118, 3);
             this.txtMfoName.Name = "txtMfoName";
             this.txtMfoName.Size = new System.Drawing.Size(286, 20);
-            this.txtMfoName.TabIndex = 9;
+            this.txtMfoName.TabIndex = 0;
             // 
             // IpsBankAccountControl
             // 
@@ -169,10 +169,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BankAccountBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTransitNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BankAccountBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

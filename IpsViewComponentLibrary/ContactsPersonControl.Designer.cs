@@ -31,22 +31,22 @@
             this.components = new System.ComponentModel.Container();
             this.lblMobPhone = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxMobPhone = new Telerik.WinControls.UI.RadTextBox();
+            this.iAnketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rtxtBoxMobPhoneSecond = new Telerik.WinControls.UI.RadTextBox();
             this.lblMobPhoneSecond = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxEmail = new Telerik.WinControls.UI.RadTextBox();
             this.lblEmail = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxHomePhone = new Telerik.WinControls.UI.RadTextBox();
             this.lblHomePhone = new Telerik.WinControls.UI.RadLabel();
-            this.iAnketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblMobPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMobPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMobPhoneSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMobPhoneSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxHomePhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblHomePhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMobPhone
@@ -63,7 +63,11 @@
             this.rtxtBoxMobPhone.Location = new System.Drawing.Point(122, 2);
             this.rtxtBoxMobPhone.Name = "rtxtBoxMobPhone";
             this.rtxtBoxMobPhone.Size = new System.Drawing.Size(150, 20);
-            this.rtxtBoxMobPhone.TabIndex = 1;
+            this.rtxtBoxMobPhone.TabIndex = 0;
+            // 
+            // iAnketaPersonBindingSource
+            // 
+            this.iAnketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
             // 
             // rtxtBoxMobPhoneSecond
             // 
@@ -71,14 +75,14 @@
             this.rtxtBoxMobPhoneSecond.Location = new System.Drawing.Point(415, 2);
             this.rtxtBoxMobPhoneSecond.Name = "rtxtBoxMobPhoneSecond";
             this.rtxtBoxMobPhoneSecond.Size = new System.Drawing.Size(150, 20);
-            this.rtxtBoxMobPhoneSecond.TabIndex = 3;
+            this.rtxtBoxMobPhoneSecond.TabIndex = 1;
             // 
             // lblMobPhoneSecond
             // 
             this.lblMobPhoneSecond.Location = new System.Drawing.Point(287, 3);
             this.lblMobPhoneSecond.Name = "lblMobPhoneSecond";
             this.lblMobPhoneSecond.Size = new System.Drawing.Size(122, 18);
-            this.lblMobPhoneSecond.TabIndex = 2;
+            this.lblMobPhoneSecond.TabIndex = 1;
             this.lblMobPhoneSecond.Text = "Мобільний телефон 2:";
             // 
             // rtxtBoxEmail
@@ -87,14 +91,14 @@
             this.rtxtBoxEmail.Location = new System.Drawing.Point(415, 28);
             this.rtxtBoxEmail.Name = "rtxtBoxEmail";
             this.rtxtBoxEmail.Size = new System.Drawing.Size(206, 20);
-            this.rtxtBoxEmail.TabIndex = 7;
+            this.rtxtBoxEmail.TabIndex = 3;
             // 
             // lblEmail
             // 
             this.lblEmail.Location = new System.Drawing.Point(287, 29);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(98, 18);
-            this.lblEmail.TabIndex = 6;
+            this.lblEmail.TabIndex = 3;
             this.lblEmail.Text = "Елктронна пошта:";
             // 
             // rtxtBoxHomePhone
@@ -103,19 +107,15 @@
             this.rtxtBoxHomePhone.Location = new System.Drawing.Point(122, 28);
             this.rtxtBoxHomePhone.Name = "rtxtBoxHomePhone";
             this.rtxtBoxHomePhone.Size = new System.Drawing.Size(150, 20);
-            this.rtxtBoxHomePhone.TabIndex = 5;
+            this.rtxtBoxHomePhone.TabIndex = 2;
             // 
             // lblHomePhone
             // 
             this.lblHomePhone.Location = new System.Drawing.Point(3, 29);
             this.lblHomePhone.Name = "lblHomePhone";
             this.lblHomePhone.Size = new System.Drawing.Size(108, 18);
-            this.lblHomePhone.TabIndex = 4;
+            this.lblHomePhone.TabIndex = 2;
             this.lblHomePhone.Text = "Домашній телефон:";
-            // 
-            // iAnketaPersonBindingSource
-            // 
-            this.iAnketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
             // 
             // ContactsPersonControl
             // 
@@ -134,13 +134,13 @@
             this.Size = new System.Drawing.Size(625, 50);
             ((System.ComponentModel.ISupportInitialize)(this.lblMobPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMobPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMobPhoneSecond)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMobPhoneSecond)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxHomePhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblHomePhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
