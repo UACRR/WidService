@@ -339,10 +339,10 @@ namespace ipsmedserviceapp.Controllers
                     addCustomer.Company = new Company();
 
                     // Збереження AnketaCompany
-                    if (newCustomer.AnketaCompany.Count == 0)
+                    if (newCustomer.Company.AnketaCompany.Count == 0)
                         throw new Exception("Not input data for AnketaCompany");
 
-                    foreach (var item in newCustomer.AnketaCompany)
+                    foreach (var item in newCustomer.Company.AnketaCompany)
                     {
                         AnketaCompany addAnketa = new AnketaCompany();
                         addAnketa.SetFields(item, new[] { "CustId" });
@@ -350,7 +350,7 @@ namespace ipsmedserviceapp.Controllers
                     }
 
                     // Збереження RelEmployee
-                    foreach (var item in newCustomer.Company.RelEmployee)
+                    foreach (var item in newCustomer.Company.RelEmployee.Where( rec => !string.IsNullOrEmpty( rec.Empl?.LastName?.Trim())).ToList() )
                     {
                         if (item.Empl == null)
                             continue;
@@ -379,10 +379,10 @@ namespace ipsmedserviceapp.Controllers
                     addCustomer.Person = new Person();
 
                     // Збереження AnketaPerson
-                    if (newCustomer.AnketaPerson.Count == 0)
+                    if (newCustomer.Person.AnketaPerson.Count == 0)
                         throw new Exception("Not input data for AnketaPerson");
 
-                    foreach (var item in newCustomer.AnketaPerson)
+                    foreach (var item in newCustomer.Person.AnketaPerson)
                     {
                         AnketaPerson addPerson = new AnketaPerson();
                         addPerson.SetFields(item, new[] { "CustId" });
