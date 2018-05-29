@@ -321,7 +321,7 @@ namespace ConsumerWorkplace_v_1._0
                 RelEmployee relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).FirstOrDefault();
                 if(relEmpl == null)
                 {
-                    relEmpl = new RelEmployee { Empl = new Employee() };
+                    relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
                     _cust.Company.RelEmployee.Add(relEmpl);
                 }
 
@@ -331,7 +331,7 @@ namespace ConsumerWorkplace_v_1._0
                 relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 2).FirstOrDefault();
                 if (relEmpl == null)
                 {
-                    relEmpl = new RelEmployee { Empl = new Employee() };
+                    relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 2 };
                     _cust.Company.RelEmployee.Add(relEmpl);
                 }
                 iEmployeeBindingSourceBuh.DataSource = relEmpl.Empl;
@@ -339,7 +339,7 @@ namespace ConsumerWorkplace_v_1._0
                 relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).FirstOrDefault();
                 if (relEmpl == null)
                 {
-                    relEmpl = new RelEmployee { Empl = new Employee() };
+                    relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 3 };
                     _cust.Company.RelEmployee.Add(relEmpl);
                 }
                 bindingSourceContact.DataSource = relEmpl.Empl;
