@@ -214,9 +214,7 @@ namespace ipsmedserviceapp.Model
         // Unable to generate entity type for table 'dbo.testshell'. Please see the warning messages.
         // Unable to generate entity type for table 'dbo.PartnerClient'. Please see the warning messages.
 
-        public MediaServiceContext(DbContextOptions<MediaServiceContext> options) : base(options)
-        {
-        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
