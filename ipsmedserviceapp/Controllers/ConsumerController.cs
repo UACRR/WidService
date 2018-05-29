@@ -32,13 +32,15 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.AnketaPerson)
                         .Include(item => item.BankAccount)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
+                        .Include(item => item.Client).ThenInclude(cln => cln.LicenseAgreement)
                         .SingleOrDefaultAsync();
             // Отримати дані по Контрактах
-            await _dbContext.Entry(cust).Collection(rec => rec.Client.LicenseAgreement)
-                .Query()
-                .Where(agree => agree.LicStatus < 4)
-                .Include(item => item.Agr )
-                .LoadAsync();
+            if (cust.Client.LicenseAgreement.Count > 0)
+                await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
+                    .Query()
+                    .Where(agree => agree.LicStatus < 4)
+                    .Include(item => item.Agr)
+                    .LoadAsync();
 
             // Отримати по контрактам Періоди оплат    
             await _dbContext.PaidPeriod.FromSql("select * from PaidPeriod where custId = @custId", new SqlParameter("@custId", cust.CustId))
@@ -139,7 +141,7 @@ namespace ipsmedserviceapp.Controllers
                     // Delete LicenseAgreement
                     var agreeItem = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
                     var destAgreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    if(destAgreeItem == null )
+                    if (destAgreeItem == null)
                     {
                         destAgreeItem = new AgreementMaster();
                         destAgreeItem.SetFields(agreeItem, new[] { "AgrId" });
@@ -164,13 +166,14 @@ namespace ipsmedserviceapp.Controllers
                     var sorsList = updCustomer.Company.AnketaCompany.ToList();
                     _dbContext.UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
                     //.Include(comp => comp.RelEmployee)
-                    _dbContext.UpdateList(updCustomer.Company.RelEmployee, dest.Company.RelEmployee, rec => { },
+                    var relEmployeeList = updCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
+                    _dbContext.UpdateList(relEmployeeList, dest.Company.RelEmployee, rec => { },
                                         (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
 
                     foreach (var emplRel in dest.Company.RelEmployee)
                     {
                         if (emplRel.Empl.Emplid == 0)
-                            _dbContext.Entry(emplRel.Empl).State = EntityState.Added;
+                            _dbContext.Employee.Add(emplRel.Empl );
                     }
                 }
                 else
@@ -192,8 +195,10 @@ namespace ipsmedserviceapp.Controllers
 
                 return Json(dest);
             }
-            catch( Exception ex)
+            catch (Exception ex)
             {
+                if (tran != null )
+                    tran.Rollback();
                 return BadRequest(ex.Message);
             }
         }
@@ -380,7 +385,7 @@ namespace ipsmedserviceapp.Controllers
                     foreach (var item in newCustomer.AnketaPerson)
                     {
                         AnketaPerson addPerson = new AnketaPerson();
-                        addPerson.SetFields(item, new[] { "CustId"});
+                        addPerson.SetFields(item, new[] { "CustId" });
                         addCustomer.Person.AnketaPerson.Add(addPerson);
                         _dbContext.Entry(item).State = EntityState.Added;
                     }
