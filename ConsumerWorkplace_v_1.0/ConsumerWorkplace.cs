@@ -318,6 +318,8 @@ namespace ConsumerWorkplace_v_1._0
                     _cust.BankAccount.Add(new BankAccount{CustId = _cust.CustId});
                 var bankAccount = _cust.BankAccount.FirstOrDefault();
 
+                bankRequisitesCtrlBankAccount.DataSource = bankAccount;
+
                 RelEmployee relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).FirstOrDefault();
                 if(relEmpl == null)
                 {
@@ -371,9 +373,10 @@ namespace ConsumerWorkplace_v_1._0
                 anketaCtrlAddressFactual.RegionsDisplayMember = "name";
 
                 anketaCtrlAddressLegal.CountriesDataSource = _dic.country;
-                anketaCtrlAddressLegal.RegionsDataSource = _dic.region;
                 anketaCtrlAddressLegal.CountriesValueMember = "countryCode";
                 anketaCtrlAddressLegal.CountriesDisplayMember = "countryName";
+
+                anketaCtrlAddressLegal.RegionsDataSource = _dic.region;
                 anketaCtrlAddressLegal.RegionsValueMember = "codeI";
                 anketaCtrlAddressLegal.RegionsDisplayMember = "name";
 
@@ -387,11 +390,22 @@ namespace ConsumerWorkplace_v_1._0
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
                 clientNameCtrlRegistrationsCompany.TypesVatValueMember = "codeI";
                 clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "name";
+                //clientNameCtrlRegistrationsCompany.NumberVatDataMember = "";
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
-              
 
-                consumerWorkplaceBindingSource.DataSource = this;
+                licenseTypeCtrlContractConsumerDetail.PeriodDataSource = _dic.period;
+                licenseTypeCtrlContractConsumerDetail.PeriodValueMember = "codeI";
+                licenseTypeCtrlContractConsumerDetail.PeriodDisplayMember = "name";
+
+                licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
+                if (license.AddRate == null && license.IndxInfl != null)
+                    licenseTypeCtrlContractConsumerDetail.SelectedItem = 1;
+                else if (license.AddRate != null && license.IndxInfl == null)
+                    licenseTypeCtrlContractConsumerDetail.SelectedItem = 0;
+
+
+                    consumerWorkplaceBindingSource.DataSource = this;
                 
                 iPositionTypeBindingSource.DataSource = _dic.positionType;
 
