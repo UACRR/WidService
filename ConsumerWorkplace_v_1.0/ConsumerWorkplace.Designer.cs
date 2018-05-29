@@ -379,7 +379,7 @@
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerManagers;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerBankRequisites;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1093, 537);
             this.pageAllAnketa.TabIndex = 2;
@@ -445,7 +445,7 @@
             // 
             // 
             this.clientNameCtrlRegistrationsCompany.DdlTypeVat.DataSource = this.iTypeVatBindingSource;
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.DropDownHeight = 447;
+            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.DropDownHeight = 596;
             this.clientNameCtrlRegistrationsCompany.DdlTypeVat.Location = new System.Drawing.Point(120, 85);
             this.clientNameCtrlRegistrationsCompany.DdlTypeVat.Name = "ddlTypeVat";
             // 
@@ -478,7 +478,7 @@
             this.clientNameCtrlRegistrationsCompany.RegisterDateDataMember = "RegistrDate";
             this.clientNameCtrlRegistrationsCompany.RegisterNumberDataMember = "RegistrNumber";
             this.clientNameCtrlRegistrationsCompany.RegisterWhoDataMember = "RegistrWho";
-            this.clientNameCtrlRegistrationsCompany.Size = new System.Drawing.Size(600, 143);
+            this.clientNameCtrlRegistrationsCompany.Size = new System.Drawing.Size(711, 143);
             this.clientNameCtrlRegistrationsCompany.TabIndex = 1;
             // 
             // 
@@ -532,7 +532,7 @@
             // 
             this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 38, 125, 25);
             this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.RootElement.StretchVertically = true;
-            this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.Size = new System.Drawing.Size(164, 20);
+            this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.Size = new System.Drawing.Size(275, 20);
             this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.TabIndex = 25;
             this.clientNameCtrlRegistrationsCompany.TypesVatDataMember = "";
             this.clientNameCtrlRegistrationsCompany.TypesVatDataSource = this.iTypeVatBindingSource;
@@ -709,7 +709,7 @@
             this.anketaCtrlAddressFactual.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.anketaCtrlAddressFactual.DdlCountry.DropDownHeight = 447;
+            this.anketaCtrlAddressFactual.DdlCountry.DropDownHeight = 596;
             this.anketaCtrlAddressFactual.DdlCountry.Location = new System.Drawing.Point(0, 0);
             this.anketaCtrlAddressFactual.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
             this.anketaCtrlAddressFactual.DdlCountry.Name = "ddlCountry";
@@ -726,7 +726,7 @@
             this.anketaCtrlAddressFactual.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.anketaCtrlAddressFactual.DdlRegion.DropDownHeight = 447;
+            this.anketaCtrlAddressFactual.DdlRegion.DropDownHeight = 596;
             this.anketaCtrlAddressFactual.DdlRegion.Location = new System.Drawing.Point(209, 0);
             this.anketaCtrlAddressFactual.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
             this.anketaCtrlAddressFactual.DdlRegion.Name = "ddlRegion";
@@ -796,7 +796,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.anketaCtrlAddressLegal.DdlCountry.DataSource = this.anketaDictionatiesBindingSource;
-            this.anketaCtrlAddressLegal.DdlCountry.DropDownHeight = 447;
+            this.anketaCtrlAddressLegal.DdlCountry.DropDownHeight = 596;
             this.anketaCtrlAddressLegal.DdlCountry.Location = new System.Drawing.Point(0, 0);
             this.anketaCtrlAddressLegal.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
             this.anketaCtrlAddressLegal.DdlCountry.Name = "ddlCountry";
@@ -814,7 +814,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.anketaCtrlAddressLegal.DdlRegion.DataSource = this.anketaDictionatiesBindingSource;
-            this.anketaCtrlAddressLegal.DdlRegion.DropDownHeight = 447;
+            this.anketaCtrlAddressLegal.DdlRegion.DropDownHeight = 596;
             this.anketaCtrlAddressLegal.DdlRegion.Location = new System.Drawing.Point(232, 0);
             this.anketaCtrlAddressLegal.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
             this.anketaCtrlAddressLegal.DdlRegion.Name = "ddlRegion";
