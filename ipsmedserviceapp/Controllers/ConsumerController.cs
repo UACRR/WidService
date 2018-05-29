@@ -217,11 +217,11 @@ namespace ipsmedserviceapp.Controllers
                 if (!(custType > 0 && custType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
-                Customer newCust = new Customer { CustType = custType, AnkVersion = 1 };
+                Customer newCust = new Customer { CustType = custType, AnkVersion = 1, Status = 2 };
                 // Споживач
                 newCust.Client = new Client();
                 // Договор з Споживачем
-                var addAgr = new AgreementMaster { AgrStatus = 0 };
+                var addAgr = new AgreementMaster { AgrStatus = 0, AgrType = 2 };
                 var license = new LicenseAgreement { LicStatus = 0, Agr = addAgr };
                 addAgr.LicenseAgreement.Add(license);
                 // addAgr.LicenseAgreement.Add(new LicenseAgreement { LicStatus = 0 });
@@ -232,14 +232,14 @@ namespace ipsmedserviceapp.Controllers
                     // Компанія
                     newCust.Company = new Company();
                     // Анкета
-                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1 });
+                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status=2 });
                 }
                 else
                 {
                     // Фіз. особа
                     newCust.Person = new Person();
                     // Анкета
-                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1 });
+                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, Status=2 });
                 }
 
                 return Json(newCust);
