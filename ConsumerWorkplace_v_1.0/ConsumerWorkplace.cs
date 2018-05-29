@@ -356,8 +356,8 @@ namespace ConsumerWorkplace_v_1._0
                 //var relContactPerson = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 3).SingleOrDefault();
 
 
-                var agrMaster = _cust.AgreementMaster?.Where(rec => rec.AgrStatus < 4).FirstOrDefault();
-                var license = agrMaster?.LicenseAgreement.Where(rec=>rec.LicStatus < 4).FirstOrDefault();
+                var license = _cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).FirstOrDefault();
+                var agrMaster = license.Agr;
                 iAgreementMasterBindingSource.DataSource = agrMaster;
                 iLicenseAgreementBindingSource.DataSource = license;
 

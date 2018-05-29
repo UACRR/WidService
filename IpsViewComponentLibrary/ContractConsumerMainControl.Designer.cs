@@ -125,7 +125,7 @@
             this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAgreementMasterBindingSource, "DateEnd", true));
             this.rdtPickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateEnd.Location = new System.Drawing.Point(354, 25);
-            this.rdtPickerDateEnd.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.Name = "rdtPickerDateEnd";
             this.rdtPickerDateEnd.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
