@@ -126,23 +126,30 @@ namespace ipsmedserviceapp.Controllers
                 if (!(newRightHolder.CustType > 0 && newRightHolder.CustType < 4))
                     throw new Exception("Bad customer type for new rightholder");
 
-                _dbContext.Customer.Add(newRightHolder);
+                Customer dest = new Customer();
+                dest.SetFields( newRightHolder, new [] {"CustId"} );
+                _dbContext.Customer.Add(dest);
 
                 // Збереження Customer
-                _dbContext.Entry(newRightHolder).State = EntityState.Added;
                 // Збереження RightHolder
-                if (newRightHolder.RightHolder == null)
-                    newRightHolder.RightHolder = new RightHolder();
-                _dbContext.Entry(newRightHolder.RightHolder).State = EntityState.Added;
+                dest.RightHolder = new RightHolder();
+                dest.RightHolder.SetFields( newRightHolder.RightHolder, new [] {"CustId"} );
 
                 if (newRightHolder.Community != null)
-                    _dbContext.Entry(newRightHolder.Community).State = EntityState.Added;
+                {
+                    dest.Community = new Community();
+                    dest.Community.SetFields( newRightHolder.Community, new[] { "CustId"} );
+                }
 
                 // AnketaAddName
                 if (newRightHolder.AnketaAddName.Count > 0)
                 {
                     foreach (var item in newRightHolder.AnketaAddName)
-                        _dbContext.Entry(item).State = EntityState.Added;
+                    {
+                        var addItem = new AnketaAddName();
+                        addItem.SetFields(item, new[] { "CustId" });
+                        dest.AnketaAddName.Add(addItem);
+                    }
                 }
 
                 if (newRightHolder.RightHolder.TermsOfService.Count > 0)
@@ -272,8 +279,6 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(customer);
         }
-
-
 
 
         /// <summary>
