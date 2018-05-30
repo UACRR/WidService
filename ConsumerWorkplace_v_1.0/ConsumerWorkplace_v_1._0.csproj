@@ -107,6 +107,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsumerList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerList.Designer.cs">
+      <DependentUpon>ConsumerList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerWorkplace.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,12 +120,24 @@
       <DependentUpon>ConsumerWorkplace.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPresenter.cs" />
+    <Compile Include="JurAnketa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JurAnketa.Designer.cs">
+      <DependentUpon>JurAnketa.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListConsumers.cs" />
     <Compile Include="PdfEngine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConsumerList.resx">
+      <DependentUpon>ConsumerList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerWorkplace.resx">
       <DependentUpon>ConsumerWorkplace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JurAnketa.resx">
+      <DependentUpon>JurAnketa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -158,6 +176,9 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IPositionType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRelEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ITypeVat.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
     <None Include="Properties\DataSources\ListConsumers.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">

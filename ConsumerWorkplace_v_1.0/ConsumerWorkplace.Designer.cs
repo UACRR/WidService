@@ -672,9 +672,6 @@ namespace ConsumerWorkplace_v_1._0
             this.licenseTypeCtrlContractConsumerMain.Margin = new System.Windows.Forms.Padding(4);
             this.licenseTypeCtrlContractConsumerMain.MaximumSize = new System.Drawing.Size(636, 60);
             this.licenseTypeCtrlContractConsumerMain.Name = "licenseTypeCtrlContractConsumerMain";
-            this.licenseTypeCtrlContractConsumerMain.PickerAgrDate = new System.DateTime(((long)(0)));
-            this.licenseTypeCtrlContractConsumerMain.PickerDateBegin = new System.DateTime(((long)(0)));
-            this.licenseTypeCtrlContractConsumerMain.PickerDateEnd = new System.DateTime(((long)(0)));
             this.licenseTypeCtrlContractConsumerMain.Size = new System.Drawing.Size(536, 60);
             this.licenseTypeCtrlContractConsumerMain.TabIndex = 1;
             // 
