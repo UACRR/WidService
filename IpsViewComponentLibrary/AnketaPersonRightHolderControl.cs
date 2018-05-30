@@ -27,8 +27,6 @@ namespace DebugFormForControls
                 if (iAnketaPersonBindingSource.DataSource != value)
                 {
                     iAnketaPersonBindingSource.DataSource = value;
-                    rdtPickerBirth.DataBindings.Clear();
-                    rdtPickerBirth.DataBindings.Add("Value", iAnketaPersonBindingSource, "BirthDate", true);
                 }
             }
         }

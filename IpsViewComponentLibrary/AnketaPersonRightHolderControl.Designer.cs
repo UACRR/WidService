@@ -123,17 +123,18 @@
             // 
             // rdtPickerBirth
             // 
+            this.rdtPickerBirth.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAnketaPersonBindingSource, "BirthDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.rdtPickerBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerBirth.Location = new System.Drawing.Point(109, 104);
             this.rdtPickerBirth.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.rdtPickerBirth.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerBirth.Name = "rdtPickerBirth";
-            this.rdtPickerBirth.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.rdtPickerBirth.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerBirth.NullText = "Оберіть дату";
             this.rdtPickerBirth.Size = new System.Drawing.Size(127, 20);
             this.rdtPickerBirth.TabIndex = 8;
             this.rdtPickerBirth.TabStop = false;
-            this.rdtPickerBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.rdtPickerBirth.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerBirth.ValueChanged += new System.EventHandler(this.rdtPickerBirth_ValueChanged);
             // 
             // rtxtBoxLastName
