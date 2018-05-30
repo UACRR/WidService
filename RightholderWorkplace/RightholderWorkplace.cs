@@ -274,6 +274,7 @@ namespace RightholderWorkplace
             }
 
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+            newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
         }
 
         private void btnNewRightholderCancel1_Click(object sender, EventArgs e)
@@ -291,6 +292,7 @@ namespace RightholderWorkplace
             //SetConsumerPageView();
 
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+            newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
         }
 
         private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
