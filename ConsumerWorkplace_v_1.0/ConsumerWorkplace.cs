@@ -341,16 +341,7 @@ namespace ConsumerWorkplace_v_1._0
                 }
                 bindingSourceContact.DataSource = relEmpl.Empl;
 
-                //if (_cust.Company.RelEmployee.Count == 0)
-                //{
-                //    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 1 });
-                //    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 2 });
-                //    _cust.Company.RelEmployee.Add(new RelEmployee { Empl = new Employee(), CustId = _cust.CustId, PositionCode = 3 });
-                //}
 
-                //var relBoss = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 1).SingleOrDefault();
-                //var relBookkeeper =_cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 2).SingleOrDefault();
-                //var relContactPerson = _cust.Company?.RelEmployee?.Where(rec => rec.PositionCode == 3).SingleOrDefault();
 
 
                 var license = _cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).FirstOrDefault();
@@ -383,8 +374,9 @@ namespace ConsumerWorkplace_v_1._0
                 clientNameCtrlAnketaCompany.DataSource = anketa;
 
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
-                clientNameCtrlRegistrationsCompany.TypesVatValueMember = "codeI";
+                clientNameCtrlRegistrationsCompany.TypesVatValueMember = "CodeI";
                 clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "name";
+                // clientNameCtrlRegistrationsCompany.DataSource = anketa;
                 //clientNameCtrlRegistrationsCompany.NumberVatDataMember = "";
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
