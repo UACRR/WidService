@@ -7,6 +7,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Configuration;
+using System.IO;
 
 namespace WebAPIConnector
 {
@@ -17,12 +19,26 @@ namespace WebAPIConnector
     {
         private HttpClient client = new HttpClient();
 
-        public ApiConnector( string api)
+        public ApiConnector( )
         {
-            client.BaseAddress = new Uri(api);
+            string Uri = configUrl();
+
+            client.BaseAddress = new Uri(Uri);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
+
+        }
+
+        private string configUrl()
+        {
+            string configName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "workplace.config");
+            ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
+            configFile.ExeConfigFilename = configName;
+            Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+            string url = config.ConnectionStrings.ConnectionStrings["WebApiConnection"].ConnectionString;
+
+            return url;
 
         }
 
