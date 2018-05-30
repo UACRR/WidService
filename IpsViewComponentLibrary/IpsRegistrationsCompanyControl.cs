@@ -14,7 +14,7 @@ namespace IpsViewComponentLibrary
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsRegistrationsCompanyControl : UserControl
     {
-        // BindingSource bindingSourceAnketaCompany;
+        // BindingSource iAnketaCompanyBindingSource;
         string _okpoDataMember;
         string _registerNumberDataMember;
         string _registerDateDataMember;
@@ -26,18 +26,17 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
-            bindingSourceAnketaCompany = new BindingSource();
         }
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return bindingSourceAnketaCompany.DataSource; }
+            get { return iAnketaCompanyBindingSource.DataSource; }
             set
             {
-                if (bindingSourceAnketaCompany.DataSource != value)
-                    bindingSourceAnketaCompany.DataSource = value;
+                if (iAnketaCompanyBindingSource.DataSource != value)
+                    iAnketaCompanyBindingSource.DataSource = value;
             }
         }
 
@@ -45,8 +44,8 @@ namespace IpsViewComponentLibrary
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string DataMember
         {
-            get { return bindingSourceAnketaCompany.DataMember; }
-            set { bindingSourceAnketaCompany.DataMember = value; }
+            get { return iAnketaCompanyBindingSource.DataMember; }
+            set { iAnketaCompanyBindingSource.DataMember = value; }
         }
 
         [Category("Data")]
@@ -60,7 +59,7 @@ namespace IpsViewComponentLibrary
                 {
                     _okpoDataMember = value;
                     txtOkpo.DataBindings.Clear();
-                    txtOkpo.DataBindings.Add("Text", bindingSourceAnketaCompany, _okpoDataMember);
+                    txtOkpo.DataBindings.Add("Text", iAnketaCompanyBindingSource, _okpoDataMember);
                 }
             }
         }
@@ -76,7 +75,7 @@ namespace IpsViewComponentLibrary
                 {
                     _registerNumberDataMember = value;
                     txtRegisterNumber.DataBindings.Clear();
-                    txtRegisterNumber.DataBindings.Add("Text", bindingSourceAnketaCompany, _registerNumberDataMember);
+                    txtRegisterNumber.DataBindings.Add("Text", iAnketaCompanyBindingSource, _registerNumberDataMember);
                 }
             }
         }
@@ -92,7 +91,7 @@ namespace IpsViewComponentLibrary
                 {
                     _registerDateDataMember = value;
                     dtRegisterDate.DataBindings.Clear();
-                    dtRegisterDate.DataBindings.Add("Value", bindingSourceAnketaCompany, _registerDateDataMember,true);
+                    dtRegisterDate.DataBindings.Add("Value", iAnketaCompanyBindingSource, _registerDateDataMember,true);
                 }
             }
         }
@@ -108,7 +107,7 @@ namespace IpsViewComponentLibrary
                 {
                     _registerWhoDataMember = value;
                     txtRegisterWho.DataBindings.Clear();
-                    txtRegisterWho.DataBindings.Add("Text", bindingSourceAnketaCompany, _registerWhoDataMember);
+                    txtRegisterWho.DataBindings.Add("Text", iAnketaCompanyBindingSource, _registerWhoDataMember);
                 }
             }
         }
@@ -140,7 +139,7 @@ namespace IpsViewComponentLibrary
                 {
                     _numberVatDataMember = value;
                     txtNumberVat.DataBindings.Clear();
-                    txtNumberVat.DataBindings.Add("Text", bindingSourceAnketaCompany, _numberVatDataMember,true,DataSourceUpdateMode.OnPropertyChanged,string.Empty);
+                    txtNumberVat.DataBindings.Add("Text", iAnketaCompanyBindingSource, _numberVatDataMember,true,DataSourceUpdateMode.OnPropertyChanged,string.Empty);
                 }
             }
         }
@@ -289,9 +288,10 @@ namespace IpsViewComponentLibrary
             dtRegisterDate.Text = string.Empty;
         }
 
-        private void ddlTypeVat_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+
+        private void ddlTypeVat_SelectedValueChanged(object sender, EventArgs e)
         {
-            var test = 1;
+            int test = 0;
         }
     }
 }
