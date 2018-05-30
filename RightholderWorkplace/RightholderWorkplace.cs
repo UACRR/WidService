@@ -334,8 +334,11 @@ namespace RightholderWorkplace
             ctrlExclusionsLimitations.DataSource = _customer.RightHolder.TermsOfService.Select( rec => new TermsOfServiceWrapper(rec));
 
             var agreement = _customer.AgreementMaster.FirstOrDefault();
+
             if (agreement != null)
             {
+                agreementMasterBindingSource.DataSource = agreement;
+
                 agreementAddRhBindingSource.DataSource = agreement.AgreementAddRh;
             }
             else

@@ -176,6 +176,8 @@ namespace ipsmedserviceapp.Controllers
                         string[] excludeAgr = new[] { "CustId", "AgrId" };
                         AgreementMaster addItem = new AgreementMaster { AgrType = 1 };
                         addItem.SetFields(item, excludeAgr);
+                        addItem.DateBegin = addItem.AgrDate;
+                        addItem.DateEnd = new DateTime(3000, 1, 1);
                         dest.AgreementMaster.Add(addItem);
 
                         // Збереження AgreementAddRh

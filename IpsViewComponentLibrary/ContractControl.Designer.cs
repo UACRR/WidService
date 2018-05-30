@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblNumber = new Telerik.WinControls.UI.RadLabel();
-            this.rtxtBoxNumber = new Telerik.WinControls.UI.RadTextBox();
+            this.txtAgrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblFromDate = new Telerik.WinControls.UI.RadLabel();
-            this.rdtPickerBirth = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtAgrDate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.agreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFromDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdtPickerBirth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtAgrDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.agreementMasterBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNumber
@@ -46,12 +49,12 @@
             this.lblNumber.TabIndex = 0;
             this.lblNumber.Text = "№";
             // 
-            // rtxtBoxNumber
+            // txtAgrNumber
             // 
-            this.rtxtBoxNumber.Location = new System.Drawing.Point(32, 3);
-            this.rtxtBoxNumber.Name = "rtxtBoxNumber";
-            this.rtxtBoxNumber.Size = new System.Drawing.Size(75, 20);
-            this.rtxtBoxNumber.TabIndex = 0;
+            this.txtAgrNumber.Location = new System.Drawing.Point(32, 3);
+            this.txtAgrNumber.Name = "txtAgrNumber";
+            this.txtAgrNumber.Size = new System.Drawing.Size(75, 20);
+            this.txtAgrNumber.TabIndex = 0;
             // 
             // lblFromDate
             // 
@@ -61,35 +64,40 @@
             this.lblFromDate.TabIndex = 1;
             this.lblFromDate.Text = "від";
             // 
-            // rdtPickerBirth
+            // dtAgrDate
             // 
-            this.rdtPickerBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerBirth.Location = new System.Drawing.Point(140, 3);
-            this.rdtPickerBirth.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.rdtPickerBirth.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.rdtPickerBirth.Name = "rdtPickerBirth";
-            this.rdtPickerBirth.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.rdtPickerBirth.NullText = "Оберіть дату";
-            this.rdtPickerBirth.Size = new System.Drawing.Size(127, 20);
-            this.rdtPickerBirth.TabIndex = 1;
-            this.rdtPickerBirth.TabStop = false;
-            this.rdtPickerBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtAgrDate.Location = new System.Drawing.Point(140, 3);
+            this.dtAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.dtAgrDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtAgrDate.Name = "dtAgrDate";
+            this.dtAgrDate.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtAgrDate.NullText = "Оберіть дату";
+            this.dtAgrDate.Size = new System.Drawing.Size(127, 20);
+            this.dtAgrDate.TabIndex = 1;
+            this.dtAgrDate.TabStop = false;
+            this.dtAgrDate.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            // 
+            // agreementMasterBindingSource
+            // 
+            this.agreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
             // 
             // ContractControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.rdtPickerBirth);
+            this.Controls.Add(this.dtAgrDate);
             this.Controls.Add(this.lblFromDate);
-            this.Controls.Add(this.rtxtBoxNumber);
+            this.Controls.Add(this.txtAgrNumber);
             this.Controls.Add(this.lblNumber);
             this.MaximumSize = new System.Drawing.Size(274, 27);
             this.Name = "ContractControl";
             this.Size = new System.Drawing.Size(274, 27);
             ((System.ComponentModel.ISupportInitialize)(this.lblNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFromDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdtPickerBirth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtAgrDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.agreementMasterBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,8 +106,9 @@
         #endregion
 
         private Telerik.WinControls.UI.RadLabel lblNumber;
-        private Telerik.WinControls.UI.RadTextBox rtxtBoxNumber;
+        private Telerik.WinControls.UI.RadTextBox txtAgrNumber;
         private Telerik.WinControls.UI.RadLabel lblFromDate;
-        private Telerik.WinControls.UI.RadDateTimePicker rdtPickerBirth;
+        private Telerik.WinControls.UI.RadDateTimePicker dtAgrDate;
+        private System.Windows.Forms.BindingSource agreementMasterBindingSource;
     }
 }
