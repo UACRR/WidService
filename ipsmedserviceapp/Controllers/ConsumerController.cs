@@ -98,6 +98,27 @@ namespace ipsmedserviceapp.Controllers
                 //.Include(item => item.RightHolder)
                 dest.Client.SetFields(updCustomer.Client);
 
+                // 
+                var places = dest.Client.ClnBusinessPlace.Where(rec => !updCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
+                places.ForEach(item => {
+                    _dbContext.ClnPlaceHoll.RemoveRange(item.ClnPlaceHoll);
+                    _dbContext.ClnBusinessPlace.Remove(item);
+                });
+
+                places = dest.Client.ClnBusinessPlace.Where(rec => updCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
+                places.ForEach(item => {
+                    var sorsItem = updCustomer.Client.ClnBusinessPlace.Where(rec => item.PlaceId == rec.PlaceId).SingleOrDefault();
+                    _dbContext.UpdateList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.PlaceId == r.PlaceId);
+                    item.SetFields(sorsItem);
+                });
+                places = updCustomer.Client.ClnBusinessPlace.Where(rec => !dest.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
+                places.ForEach(item => {
+                    ClnBusinessPlace clnPlace = new ClnBusinessPlace();
+                    clnPlace.SetFields(item);
+                    _dbContext.AppendList(item.ClnPlaceHoll, clnPlace.ClnPlaceHoll, i => { }, (l, r) => l.PlaceId == r.PlaceId);
+                    dest.Client.ClnBusinessPlace.Add(clnPlace);
+                });
+
                 // Delete
                 List<LicenseAgreement> tempList = dest.Client.LicenseAgreement.Where(row => !updCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
                 tempList.ForEach(item =>
