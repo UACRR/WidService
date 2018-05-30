@@ -280,6 +280,11 @@ namespace RightholderWorkplace
             //SetDataSources();
             //SetConsumerPageView();
 
+            for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
+            {
+                newCreateRightholderPageView.Pages[i].Enabled = true;
+            }
+
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
             newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
         }
@@ -298,7 +303,7 @@ namespace RightholderWorkplace
 
             // TODO: additional validation
 
-            //SaveCustomer?.Invoke(_customer);
+            SaveCustomer?.Invoke(_customer);
 
             // TODO: move to single method (EndPresernterLink)
             var list = GetMainViewData();
