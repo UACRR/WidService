@@ -287,10 +287,14 @@ namespace ipsmedserviceapp.Controllers
                 dest.RightHolder.SetFields(updCustomer.RightHolder);
                 //.Include(item => item.AnketaAddName)
                 _dbContext.UpdateList(updCustomer.RightHolder.AnketaAddNick, dest.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
+                
                 //.Include(rh => rh.TermsOfService)
-                _dbContext.UpdateList(updCustomer.RightHolder.TermsOfService, dest.RightHolder.TermsOfService, row => { }, (sorsItem, destItem) => sorsItem.CrkindCode == destItem.CrkindCode);
-                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
-                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TermsOfService, dest.RightHolder.TermsOfService, row => { }
+                                                                    , (sorsItem, destItem) => sorsItem.CrkindCode == destItem.CrkindCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }
+                                                                    , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }
+                                                                    , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
 
                 // Delete
                 List<AgreementAddRh> tempList = dest.RightHolder.AgreementAddRh.Where(row => !updCustomer.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
@@ -370,7 +374,6 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.Entry(agreeItem).State = EntityState.Added;
                 }
                 );
-
 
                 if (dest.CustType == 3) // Company
                 {
