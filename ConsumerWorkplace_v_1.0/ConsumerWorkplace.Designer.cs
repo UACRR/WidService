@@ -379,7 +379,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerPlaces;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1087, 530);
             this.pageAllAnketa.TabIndex = 0;
@@ -432,6 +432,7 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCheckBoxPlaces.Size = new System.Drawing.Size(86, 18);
             this.clientNameCheckBoxPlaces.TabIndex = 1;
             this.clientNameCheckBoxPlaces.Text = "Майданчики";
+            this.clientNameCheckBoxPlaces.CheckStateChanged += new System.EventHandler(this.clientNameCheckBoxPlaces_CheckStateChanged);
             // 
             // consumerWorkplaceBindingSource
             // 
@@ -1360,13 +1361,13 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerPlaces.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerPlaces.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerPlaces.Name = "pvConsumerPlaces";
-            this.pvConsumerPlaces.Size = new System.Drawing.Size(944, 507);
+            this.pvConsumerPlaces.Size = new System.Drawing.Size(943, 509);
             this.pvConsumerPlaces.Text = "Майданчики";
             // 
             // rbtnNextBankRequisites
             // 
             this.rbtnNextBankRequisites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextBankRequisites.Location = new System.Drawing.Point(766, 480);
+            this.rbtnNextBankRequisites.Location = new System.Drawing.Point(765, 482);
             this.rbtnNextBankRequisites.Name = "rbtnNextBankRequisites";
             this.rbtnNextBankRequisites.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextBankRequisites.TabIndex = 2;
@@ -1377,7 +1378,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnBackManagers
             // 
             this.rbtnBackManagers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackManagers.Location = new System.Drawing.Point(585, 480);
+            this.rbtnBackManagers.Location = new System.Drawing.Point(584, 482);
             this.rbtnBackManagers.Name = "rbtnBackManagers";
             this.rbtnBackManagers.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackManagers.TabIndex = 1;
