@@ -38,7 +38,7 @@ namespace ConsumerWorkplace_v_1._0
             PdfFont font = PdfFontFactory.CreateFont(FONT, "Cp1251", true);
 
             form.GetField("License.licNum").SetValue(license.Agr.AgrNumber, font, 10);
-            form.GetField("Date").SetValue(license.Agr.AgrDate?.ToString() ?? DateTime.Today.ToString(), font, 10);
+            form.GetField("Date").SetValue(license.Agr.AgrDate?.ToString("dd.MM.yyyy") ?? DateTime.Today.ToString("dd.MM.yyyy"), font, 10);
             form.GetField("AnketaCompany.name").SetValue(anketa.Name, font, 10);
             form.GetField("Employee.name").SetValue($"{relEmployy.Empl.LastName} {relEmployy.Empl.FirstName} {relEmployy.Empl.SurName ?? string.Empty }", font, 10);
             form.GetField("RelEmployee.RelDocument").SetValue(relEmployy.RelDocument ?? string.Empty, font, 10);
