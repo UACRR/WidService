@@ -469,7 +469,7 @@
             this.newCreateRightholderPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.newCreateRightholderPageView.Location = new System.Drawing.Point(3, 34);
             this.newCreateRightholderPageView.Name = "newCreateRightholderPageView";
-            this.newCreateRightholderPageView.SelectedPage = this.createRightholderFullNameComissionPage;
+            this.newCreateRightholderPageView.SelectedPage = this.createRightholderTerritoryLimitationsPage;
             this.newCreateRightholderPageView.Size = new System.Drawing.Size(1002, 543);
             this.newCreateRightholderPageView.TabIndex = 1;
             this.newCreateRightholderPageView.ThemeName = "Office2007Silver";
@@ -657,7 +657,7 @@
             // 
             // radButton1
             // 
-            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radButton1.Location = new System.Drawing.Point(3, 495);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(175, 24);
@@ -1038,7 +1038,7 @@
             // 
             // radButton2
             // 
-            this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radButton2.Location = new System.Drawing.Point(3, 495);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(175, 24);
@@ -1064,6 +1064,7 @@
             // 
             this.createRightholderInternalPasportPage.Controls.Add(this.radLabel6);
             this.createRightholderInternalPasportPage.Controls.Add(this.ctrlInternalPassport);
+            this.createRightholderInternalPasportPage.ItemSize = new System.Drawing.SizeF(26F, 209F);
             this.createRightholderInternalPasportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderInternalPasportPage.Name = "createRightholderInternalPasportPage";
             this.createRightholderInternalPasportPage.Size = new System.Drawing.Size(777, 468);
@@ -1091,6 +1092,7 @@
             // createRightholderForeignPassportPage
             // 
             this.createRightholderForeignPassportPage.Controls.Add(this.radLabel7);
+            this.createRightholderForeignPassportPage.ItemSize = new System.Drawing.SizeF(26F, 215F);
             this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
             this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(777, 468);
@@ -1144,7 +1146,7 @@
             // 
             // radButton3
             // 
-            this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radButton3.Location = new System.Drawing.Point(3, 495);
             this.radButton3.Name = "radButton3";
             this.radButton3.Size = new System.Drawing.Size(175, 24);
@@ -1178,6 +1180,7 @@
             // createRightholderRoyaltyBankPage
             // 
             this.createRightholderRoyaltyBankPage.Controls.Add(this.ctrlBankAccount);
+            this.createRightholderRoyaltyBankPage.ItemSize = new System.Drawing.SizeF(26F, 196F);
             this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderRoyaltyBankPage.Name = "createRightholderRoyaltyBankPage";
             this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(774, 439);
@@ -1268,6 +1271,7 @@
             // 
             // createRightholderRoyaltyCashPage
             // 
+            this.createRightholderRoyaltyCashPage.ItemSize = new System.Drawing.SizeF(26F, 170F);
             this.createRightholderRoyaltyCashPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderRoyaltyCashPage.Name = "createRightholderRoyaltyCashPage";
             this.createRightholderRoyaltyCashPage.Size = new System.Drawing.Size(774, 439);
@@ -1279,6 +1283,7 @@
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel10);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel9);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.ctrlBaAddress);
+            this.createRightholderRoyaltyPostalTransfer.ItemSize = new System.Drawing.SizeF(26F, 217F);
             this.createRightholderRoyaltyPostalTransfer.Location = new System.Drawing.Point(35, 10);
             this.createRightholderRoyaltyPostalTransfer.Name = "createRightholderRoyaltyPostalTransfer";
             this.createRightholderRoyaltyPostalTransfer.Size = new System.Drawing.Size(774, 439);
@@ -1438,7 +1443,7 @@
             // 
             // radButton4
             // 
-            this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radButton4.Location = new System.Drawing.Point(3, 495);
             this.radButton4.Name = "radButton4";
             this.radButton4.Size = new System.Drawing.Size(175, 24);
@@ -1499,7 +1504,7 @@
             // 
             // radButton5
             // 
-            this.radButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radButton5.Location = new System.Drawing.Point(3, 495);
             this.radButton5.Name = "radButton5";
             this.radButton5.Size = new System.Drawing.Size(175, 24);
