@@ -283,7 +283,7 @@ namespace RightholderWorkplace
 
         private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            int custId = Convert.ToInt32(e.Row.Cells["CustId"].Value);
+            int custId = Convert.ToInt32(gvRightholdersList.CurrentRow.Cells["CustId"].Value);
             _customer = GetCustomer(custId);
 
             UpdateDataSources();
@@ -291,6 +291,11 @@ namespace RightholderWorkplace
             //SetConsumerPageView();
 
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+        }
+
+        private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
+        {
+            gvRightholdersList_CommandCellClick(sender, null);
         }
 
         private void btnSaveRightholder_Click(object sender, EventArgs e)
