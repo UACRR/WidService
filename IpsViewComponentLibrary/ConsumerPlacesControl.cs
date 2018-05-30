@@ -123,7 +123,7 @@ namespace ipsAnketaClient
             IsNeedPremissesType = false;
             rBtnEditInst.Enabled = true;
             isNewInst = false;
-            newPlace?.Clear();
+            newPlace = new List<ClnPlaceHoll>();
 
             SetGridDataSource(data.Client.ClnBusinessPlace);
         }
