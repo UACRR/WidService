@@ -194,17 +194,12 @@ namespace ConsumerWorkplace_v_1._0
             if (Validation(7) && MessageBox.Show("Do you want save data?", "Save data?", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question) == DialogResult.Yes)
             {
-
                 SaveCustomer?.Invoke(_cust);
 
-
                 ClearDataConsumersControls();
-                //
-
-
-
-                //SetDataSources();
+                EndPresenterLink();
                 rpvConsumers.SelectedPage = pageConsumersGrid;
+                validTabs = 0;
             }
         }
 
