@@ -291,6 +291,12 @@ namespace RightholderWorkplace
             // TODO: additional validation
 
             SaveCustomer?.Invoke(_customer);
+
+            // TODO: move to single method (EndPresernterLink)
+            var list = GetMainViewData();
+            rightHolderMainViewBindingSource.DataSource = list;
+
+            newRightholdersPageView.SelectedPage = newRightholdersListPage;
         }
 
         #endregion
