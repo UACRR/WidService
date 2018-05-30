@@ -82,15 +82,15 @@ namespace ipsmedserviceapp.Controllers
         }
 
         [HttpGet("newrightholder/{custType}")]
-        public async Task<IActionResult> Newrightholder( int custType )
+        public async Task<IActionResult> Newrightholder(int custType)
         {
             Customer newCust = new Customer { CustType = custType, AnkVersion = 1 };
-            newCust.RightHolder = new RightHolder { AroundWord = true};
-            newCust.BankAccount.Add(  new BankAccount() );
-            if(custType < 3) // jur
+            newCust.RightHolder = new RightHolder { AroundWord = true };
+            newCust.BankAccount.Add(new BankAccount());
+            if (custType < 3) // jur
             {
                 newCust.Person = new Person();
-                newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, NikName=string.Empty });
+                newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, NikName = string.Empty });
             }
 
             var copyrightList = await _dbContext.CopyrightKind
@@ -98,7 +98,7 @@ namespace ipsmedserviceapp.Controllers
                 // .Include(rec => rec.)
                 .AsNoTracking().ToListAsync();
 
-            copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec  }));
+            copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec }));
             var agrMaster = new AgreementMaster();
             agrMaster.AgreementAddRh = new AgreementAddRh();
 
@@ -121,112 +121,99 @@ namespace ipsmedserviceapp.Controllers
             IDbContextTransaction tran = null;
             try
             {
+                var excludeFields = new string[] { "CustId" };
                 if (newRightHolder == null)
                     throw new Exception("new rightholder is empty");
                 if (!(newRightHolder.CustType > 0 && newRightHolder.CustType < 4))
                     throw new Exception("Bad customer type for new rightholder");
 
-                _dbContext.Customer.Add(newRightHolder);
-
                 // Збереження Customer
-                _dbContext.Entry(newRightHolder).State = EntityState.Added;
+                Customer dest = new Customer();
+                dest.SetFields(newRightHolder, excludeFields);
+                _dbContext.Customer.Add(dest);
+
                 // Збереження RightHolder
-                if (newRightHolder.RightHolder == null)
-                    newRightHolder.RightHolder = new RightHolder();
-                _dbContext.Entry(newRightHolder.RightHolder).State = EntityState.Added;
+                dest.RightHolder = new RightHolder();
+                dest.RightHolder.SetFields(newRightHolder.RightHolder, excludeFields);
 
                 if (newRightHolder.Community != null)
-                    _dbContext.Entry(newRightHolder.Community).State = EntityState.Added;
-
-                // AnketaAddName
-                if (newRightHolder.AnketaAddName.Count > 0)
                 {
-                    foreach (var item in newRightHolder.AnketaAddName)
-                        _dbContext.Entry(item).State = EntityState.Added;
+                    dest.Community = new Community();
+                    dest.Community.SetFields(newRightHolder.Community, excludeFields);
                 }
 
-                if (newRightHolder.RightHolder.TermsOfService.Count > 0)
-                    foreach (var item in newRightHolder.RightHolder.TermsOfService)
-                    {
-                        _dbContext.Entry(item).State = EntityState.Added;
-                        _dbContext.Entry(item.CrkindCodeNavigation).State = EntityState.Unchanged;
-                        _dbContext.Entry(item.CrkindCodeNavigation.CrGroupCodeNavigation).State = EntityState.Unchanged;
+                // AnketaAddName
+                _dbContext.AppendList(newRightHolder.AnketaAddName, dest.AnketaAddName, rec => { }, (l, r) => l.Lang == r.Lang, excludeFields);
+                // TermsOfService
+                foreach (var item in newRightHolder.RightHolder.TermsOfService)
+                {
+                    TermsOfService addItem = new TermsOfService();
+                    addItem.SetFields(item, excludeFields);
+                    // CustCmRight
+                    _dbContext.AppendList(item.CustCmRight, addItem.CustCmRight, rec => { }, (l, r) => l.CRkindCode == r.CRkindCode, excludeFields);
 
-                        foreach (var subItem in item.CustCmRight)
-                        {
-                            if (subItem.CmCustId == 0)
-                            {
-                                //_dbContext.Entry(subItem).State = EntityState.Unchanged;
-                            }
-                            else
-                            {
-                                subItem.CustId = newRightHolder.CustId;
-                                _dbContext.Entry(subItem).State = EntityState.Added;
-                            }
-                        }
-                    }
+                    dest.RightHolder.TermsOfService.Add(addItem);
+                }
                 // territoryInclude
-                if (newRightHolder.RightHolder.TerritoryInclude.Count > 0)
-                    // TermsOfService
-                    foreach (var item in newRightHolder.RightHolder.TerritoryInclude)
-                        _dbContext.Entry(item).State = EntityState.Added;
+                _dbContext.AppendList(newRightHolder.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude
+                                                                , rec => { }, (l, r) => l.CountryCode == r.CountryCode, excludeFields);
 
                 // territoryExclude
-                if (newRightHolder.RightHolder.TerritoryExclude.Count > 0)
-                    // TermsOfService
-                    foreach (var item in newRightHolder.RightHolder.TerritoryExclude)
-                        _dbContext.Entry(item).State = EntityState.Added;
-
+                _dbContext.AppendList(newRightHolder.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude
+                                                                , rec => { }, (l, r) => l.CountryCode == r.CountryCode, excludeFields);
 
 
                 // Збереження BankAccount
                 if (newRightHolder.BankAccount.Count > 0)
-                    foreach (var item in newRightHolder.BankAccount)
-                        _dbContext.Entry(item).State = EntityState.Added;
+                    _dbContext.AppendList(newRightHolder.BankAccount, dest.BankAccount
+                                                                    , rec => { }, (l, r) => l.BanAccId == r.BanAccId, new[] { "CustId", "BanAccId" });
 
                 // Збереження AgreementMaster
                 if (newRightHolder.AgreementMaster.Count > 0)
                     foreach (var item in newRightHolder.AgreementMaster)
                     {
-                        _dbContext.Entry(item).State = EntityState.Added;
-                        item.DateBegin = item.AgrDate;
-                        item.DateEnd = new DateTime(3000, 1, 1);
-                        item.AgrType = 1;
+                        string[] excludeAgr = new[] { "CustId", "AgrId" };
+                        AgreementMaster addItem = new AgreementMaster { AgrType = 1 };
+                        addItem.SetFields(item, excludeAgr);
+                        dest.AgreementMaster.Add(addItem);
 
                         // Збереження AgreementAddRh
                         if (item.AgreementAddRh != null)
                         {
-                            item.AgreementAddRh.CustId = newRightHolder.CustId;
-                            _dbContext.Entry(item.AgreementAddRh).State = EntityState.Added;
+                            AgreementAddRh addRHItem = new AgreementAddRh();
+                            addRHItem.SetFields(item.AgreementAddRh, excludeAgr);
+                            addItem.AgreementAddRh = addRHItem;
+                            dest.RightHolder.AgreementAddRh.Add(addRHItem);
                         }
                     }
 
 
                 if (newRightHolder.CustType == 3) //   Юридична особа
                 {
+                    if (newRightHolder.Company == null)
+                        throw new Exception("Bad data for new Comany!!!");
 
                     // Збереження Company
-                    if (newRightHolder.Company == null)
-                        throw new Exception("Not input data for Company");
-                    _dbContext.Entry(newRightHolder.Company).State = EntityState.Added;
+                    dest.Company = new Company();
+                    dest.Company.SetFields(newRightHolder.Company, excludeFields);
 
                     // Збереження AnketaCompany
-                    if (newRightHolder.AnketaCompany.Count == 0)
-                        throw new Exception("Not input data for AnketaCompany");
-                    foreach (var item in newRightHolder.AnketaCompany)
-                        _dbContext.Entry(item).State = EntityState.Added;
+                    _dbContext.AppendList(newRightHolder.Company.AnketaCompany, dest.Company.AnketaCompany
+                                                                    , rec => { }, (l, r) => l.Version == r.Version, excludeFields);
 
                     // Збереження RelEmployee
-                    if (newRightHolder.Company.RelEmployee.Count > 0)
+                    foreach (var item in newRightHolder.Company.RelEmployee)
                     {
-                        foreach (var item in newRightHolder.Company.RelEmployee)
+                        RelEmployee relItem = new RelEmployee();
+                        relItem.SetFields(item, excludeFields);
+                        if (item.Empl != null)
                         {
-                            // Збереження Employee
-                            if (item.Empl?.Emplid != null && item.Empl.Emplid == 0)
-                                _dbContext.Entry(item.Empl).State = EntityState.Added;
-
-                            _dbContext.Entry(item).State = EntityState.Added;
+                            relItem.Empl = new Employee();
+                            relItem.Empl.SetFields(item.Empl);
+                            dest.Employee.Add(relItem.Empl);
                         }
+
+                        dest.Company.RelEmployee.Add(relItem);
                     }
                 }
                 else
@@ -234,13 +221,14 @@ namespace ipsmedserviceapp.Controllers
                     // Збереження Person
                     if (newRightHolder.Person == null)
                         throw new Exception("Not input data for Company");
-                    _dbContext.Entry(newRightHolder.Person).State = EntityState.Added;
-                    // Збереження AnketaPerson
+                    dest.Person = new Person();
+                    dest.Person.SetFields(newRightHolder.Person, excludeFields);
+
                     if (newRightHolder.AnketaPerson.Count == 0)
                         throw new Exception("Not input data for AnketaPerson");
 
-                    foreach (var item in newRightHolder.AnketaPerson)
-                        _dbContext.Entry(item).State = EntityState.Added;
+                    _dbContext.AppendList(newRightHolder.Person.AnketaPerson, dest.Person.AnketaPerson
+                                                                    , rec => { }, (l, r) => l.Version == r.Version, excludeFields);
                 }
 
 
@@ -274,8 +262,6 @@ namespace ipsmedserviceapp.Controllers
         }
 
 
-
-
         /// <summary>
         /// Отримати всю інформацію по Правовласнику
         /// </summary>
@@ -301,10 +287,14 @@ namespace ipsmedserviceapp.Controllers
                 dest.RightHolder.SetFields(updCustomer.RightHolder);
                 //.Include(item => item.AnketaAddName)
                 _dbContext.UpdateList(updCustomer.RightHolder.AnketaAddNick, dest.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
+                
                 //.Include(rh => rh.TermsOfService)
-                _dbContext.UpdateList(updCustomer.RightHolder.TermsOfService, dest.RightHolder.TermsOfService, row => { }, (sorsItem, destItem) => sorsItem.CrkindCode == destItem.CrkindCode);
-                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
-                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }, (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TermsOfService, dest.RightHolder.TermsOfService, row => { }
+                                                                    , (sorsItem, destItem) => sorsItem.CrkindCode == destItem.CrkindCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }
+                                                                    , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
+                _dbContext.UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }
+                                                                    , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
 
                 // Delete
                 List<AgreementAddRh> tempList = dest.RightHolder.AgreementAddRh.Where(row => !updCustomer.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
@@ -384,7 +374,6 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.Entry(agreeItem).State = EntityState.Added;
                 }
                 );
-
 
                 if (dest.CustType == 3) // Company
                 {
