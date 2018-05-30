@@ -28,44 +28,44 @@ namespace IpsViewComponentLibrary
         public string ContractNumber => rtxtBoxContrNumber.Text;
         public string ContractBeginDate => rdtPickerAgrDate.Value.ToString("dd.MM.yyyy");
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public DateTime PickerAgrDate
-        {
-            get => _pickerAgrDate;
-            set
-            {
-                _pickerAgrDate = value;
-                rdtPickerAgrDate.DataBindings.Clear();
-                rdtPickerAgrDate.DataBindings.Add("Value", iAgreementMasterBindingSource, "AgrDate", true,DataSourceUpdateMode.OnPropertyChanged, DateTime.Today );
-            }
-        }
+        //[Category("Data")]
+        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //public DateTime PickerAgrDate
+        //{
+        //    get => _pickerAgrDate;
+        //    set
+        //    {
+        //        _pickerAgrDate = value;
+        //        rdtPickerAgrDate.DataBindings.Clear();
+        //        rdtPickerAgrDate.DataBindings.Add("Value", iAgreementMasterBindingSource, "AgrDate", true,DataSourceUpdateMode.OnPropertyChanged, DateTime.Today );
+        //    }
+        //}
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public DateTime PickerDateBegin
-        {
-            get => _pickerDateBegin;
-            set
-            {
-                _pickerDateBegin = value;
-                rdtPickerDateBegin.DataBindings.Clear();
-                rdtPickerDateBegin.DataBindings.Add("Value", iAgreementMasterBindingSource, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
-            }
-        }
+        //[Category("Data")]
+        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //public DateTime PickerDateBegin
+        //{
+        //    get => _pickerDateBegin;
+        //    set
+        //    {
+        //        _pickerDateBegin = value;
+        //        rdtPickerDateBegin.DataBindings.Clear();
+        //        rdtPickerDateBegin.DataBindings.Add("Value", iAgreementMasterBindingSource, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
+        //    }
+        //}
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public DateTime PickerDateEnd
-        {
-            get => _pickerDateEnd;
-            set
-            {
-                _pickerDateEnd = value;
-                rdtPickerDateEnd.DataBindings.Clear();
-                rdtPickerDateEnd.DataBindings.Add("Value", iAgreementMasterBindingSource, "DateEnd", true,  DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
-            }
-        }
+        //[Category("Data")]
+        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //public DateTime PickerDateEnd
+        //{
+        //    get => _pickerDateEnd;
+        //    set
+        //    {
+        //        _pickerDateEnd = value;
+        //        rdtPickerDateEnd.DataBindings.Clear();
+        //        rdtPickerDateEnd.DataBindings.Add("Value", iAgreementMasterBindingSource, "DateEnd", true,  DataSourceUpdateMode.OnPropertyChanged, DateTime.Today);
+        //    }
+        //}
 
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary
             {
                 _contrNumber = value;
                 rtxtBoxContrNumber.DataBindings.Clear();
-                rtxtBoxContrNumber.DataBindings.Add("Text", iAgreementMasterBindingSource, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, "Договір №");
+                rtxtBoxContrNumber.DataBindings.Add("Text", iAgreementMasterBindingSource, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
             }
         }
 

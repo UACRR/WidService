@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System;
+using System.Windows.Forms;
+namespace IpsViewComponentLibrary
 {
     partial class ContractConsumerMainControl
     {
@@ -28,9 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.rdtPickerAgrDate = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource();
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxContrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
@@ -53,8 +54,7 @@
             // 
             // rdtPickerAgrDate
             // 
-            this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAgreementMasterBindingSource, "AgrDate", true));
-            this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "AgrDate", true));
+            this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "AgrDate", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today));
             this.rdtPickerAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerAgrDate.Location = new System.Drawing.Point(354, 1);
             this.rdtPickerAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -81,7 +81,7 @@
             // 
             // rtxtBoxContrNumber
             // 
-            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAgreementMasterBindingSource, "AgrNumber", true));
+            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAgreementMasterBindingSource, "AgrNumber", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty ));
             this.rtxtBoxContrNumber.Location = new System.Drawing.Point(156, 2);
             this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
             this.rtxtBoxContrNumber.Size = new System.Drawing.Size(165, 20);
@@ -97,8 +97,7 @@
             // 
             // rdtPickerDateBegin
             // 
-            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAgreementMasterBindingSource, "DateBegin", true));
-            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateBegin", true));
+            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today ));
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateBegin.Location = new System.Drawing.Point(156, 26);
             this.rdtPickerDateBegin.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -121,8 +120,7 @@
             // 
             // rdtPickerDateEnd
             // 
-            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateEnd", true));
-            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAgreementMasterBindingSource, "DateEnd", true));
+            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today ));
             this.rdtPickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateEnd.Location = new System.Drawing.Point(354, 25);
             this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);

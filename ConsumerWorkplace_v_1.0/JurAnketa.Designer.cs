@@ -723,9 +723,6 @@
             this.licenseTypeCtrlContractConsumerMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.licenseTypeCtrlContractConsumerMain.MaximumSize = new System.Drawing.Size(636, 60);
             this.licenseTypeCtrlContractConsumerMain.Name = "licenseTypeCtrlContractConsumerMain";
-            this.licenseTypeCtrlContractConsumerMain.PickerAgrDate = "AgrDate";
-            this.licenseTypeCtrlContractConsumerMain.PickerDateBegin = "DateBegin";
-            this.licenseTypeCtrlContractConsumerMain.PickerDateEnd = "DateEnd";
             this.licenseTypeCtrlContractConsumerMain.Size = new System.Drawing.Size(636, 60);
             this.licenseTypeCtrlContractConsumerMain.TabIndex = 6;
             // 
