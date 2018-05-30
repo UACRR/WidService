@@ -123,8 +123,6 @@
             // 
             // rdtPickerBirth
             // 
-            this.rdtPickerBirth.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAnketaPersonBindingSource, "BirthDate", true));
-            this.rdtPickerBirth.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "BirthDate", true));
             this.rdtPickerBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerBirth.Location = new System.Drawing.Point(109, 104);
             this.rdtPickerBirth.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
