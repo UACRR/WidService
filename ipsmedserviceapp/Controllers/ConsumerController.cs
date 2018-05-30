@@ -287,25 +287,24 @@ namespace ipsmedserviceapp.Controllers
                 });
 
                 // Збереження AgreementMaster
-                var agreeMaster = newCustomer.AgreementMaster.ToList();
+                var licAgreement = newCustomer.Client.LicenseAgreement.ToList();
 
-                foreach (var item in agreeMaster)
+                foreach (var item in licAgreement)
                 {
-                    AgreementMaster addAgreeMAster = new AgreementMaster();
-                    addAgreeMAster.SetFields(item, new[] { "CustId", "AgrId" });
-                    addCustomer.AgreementMaster.Add(addAgreeMAster);
-                    var licenseAgg = item.LicenseAgreement.ToList();
-                    licenseAgg.ForEach(rec =>
+
+                    // Пошук Головного договора 
+                    AgreementMaster addAgreeMAster = addCustomer.AgreementMaster.Where( rec => rec.AgrNumber == item.Agr.AgrNumber && rec.AgrDate == item.Agr.AgrDate ).SingleOrDefault();
+                    if(addAgreeMAster == null )
                     {
-                        LicenseAgreement addLic = new LicenseAgreement();
+                        addAgreeMAster = new AgreementMaster();
+                        addAgreeMAster.SetFields(item.Agr, new[] { "CustId", "AgrId" });
+                        addCustomer.AgreementMaster.Add(addAgreeMAster);
+                    }
 
-                        addLic.SetFields(rec, new[] { "CustId", "AgrId", "LicId" });
-                        if (addLic.LicCode == 0)
-                            addLic.LicCode = 25;
-
-                        addCustomer.Client.LicenseAgreement.Add(addLic);
-                        addAgreeMAster.LicenseAgreement.Add(addLic);
-                    });
+                    LicenseAgreement addItem = new LicenseAgreement();
+                    addItem.SetFields(item, new[] { "CustId", "AgrId" });
+                    addAgreeMAster.LicenseAgreement.Add(addItem);
+                    addCustomer.Client.LicenseAgreement.Add(addItem);
 
                 }
                 // Збереження PartnerClient
