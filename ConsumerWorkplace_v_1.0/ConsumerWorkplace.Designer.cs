@@ -53,7 +53,6 @@ namespace ConsumerWorkplace_v_1._0
             this.consumerWorkplaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientNameCtrlRegistrationsCompany = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
             this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientNameCtrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvConsumerLicenseType = new Telerik.WinControls.UI.RadPageViewPage();
@@ -127,6 +126,7 @@ namespace ConsumerWorkplace_v_1._0
             this.rpwsrPageProfilesContracts = new Telerik.WinControls.UI.RadPageViewPage();
             this.rpwsrPageRepresentatives = new Telerik.WinControls.UI.RadPageViewPage();
             this.rMainPageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
+            this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
@@ -146,14 +146,12 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCheckBoxPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consumerWorkplaceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.DdlTypeVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.DtRegisterDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtNumberVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtRegisterWho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iTypeVatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).BeginInit();
             this.pvConsumerLicenseType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.licenseTypeDropListLicType)).BeginInit();
@@ -237,6 +235,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consumerMainViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iTypeVatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -354,7 +353,7 @@ namespace ConsumerWorkplace_v_1._0
             this.lblConsumerTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblConsumerTitle.AutoSize = false;
             this.lblConsumerTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblConsumerTitle.Location = new System.Drawing.Point(349, 3);
+            this.lblConsumerTitle.Location = new System.Drawing.Point(352, 3);
             this.lblConsumerTitle.Name = "lblConsumerTitle";
             this.lblConsumerTitle.Size = new System.Drawing.Size(396, 18);
             this.lblConsumerTitle.TabIndex = 0;
@@ -447,21 +446,6 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             // 
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.DataSource = this.iTypeVatBindingSource;
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.DisplayMember = "Name";
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.Location = new System.Drawing.Point(120, 85);
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.Name = "ddlTypeVat";
-            // 
-            // 
-            // 
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 85, 125, 20);
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.RootElement.StretchVertically = true;
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.Size = new System.Drawing.Size(120, 20);
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.TabIndex = 4;
-            this.clientNameCtrlRegistrationsCompany.DdlTypeVat.ValueMember = "CodeI";
-            // 
-            // 
-            // 
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Location = new System.Drawing.Point(278, 38);
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Name = "dtRegisterDate";
@@ -539,18 +523,13 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.Size = new System.Drawing.Size(275, 20);
             this.clientNameCtrlRegistrationsCompany.TxtRegisterWho.TabIndex = 3;
             this.clientNameCtrlRegistrationsCompany.TypesVatDataMember = "";
-            this.clientNameCtrlRegistrationsCompany.TypesVatDataSource = this.iTypeVatBindingSource;
+            this.clientNameCtrlRegistrationsCompany.TypesVatDataSource = null;
             this.clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "Name";
             this.clientNameCtrlRegistrationsCompany.TypesVatValueMember = "CodeI";
-            this.clientNameCtrlRegistrationsCompany.TypeVatDataMember = null;
             // 
             // iAnketaCompanyBindingSource
             // 
             this.iAnketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
-            // 
-            // iTypeVatBindingSource
-            // 
-            this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
             // 
             // clientNameCtrlAnketaCompany
             // 
@@ -1771,6 +1750,10 @@ namespace ConsumerWorkplace_v_1._0
             this.rMainPageBigRights.Size = new System.Drawing.Size(1325, 625);
             this.rMainPageBigRights.Text = "Великі права";
             // 
+            // iTypeVatBindingSource
+            // 
+            this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
+            // 
             // ConsumerWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1801,14 +1784,12 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCheckBoxPlaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consumerWorkplaceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.DdlTypeVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.DtRegisterDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtNumberVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtRegisterNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientNameCtrlRegistrationsCompany.TxtRegisterWho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iTypeVatBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).EndInit();
             this.pvConsumerLicenseType.ResumeLayout(false);
             this.pvConsumerLicenseType.PerformLayout();
@@ -1897,6 +1878,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consumerMainViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iTypeVatBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

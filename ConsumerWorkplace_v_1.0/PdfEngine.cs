@@ -53,7 +53,7 @@ namespace ConsumerWorkplace_v_1._0
             field = form.GetField("Period.name");
             field?.SetValue(period?.Name ?? string.Empty, font, 10);
             field = form.GetField("Period.nameR");
-            field?.SetValue(period?.Name ?? string.Empty, font, 10);
+            field?.SetValue(period?.NameR ?? string.Empty, font, 10);
             field = form.GetField("year");
             field?.SetValue(DateTime.Today.Year.ToString(), font, 10);
             field = form.GetField("LicenseAgreement.addRate");
@@ -81,7 +81,7 @@ namespace ConsumerWorkplace_v_1._0
             field = form.GetField("AnketaPerson.Inn");
             field?.SetValue(anketa.NumberVat ?? string.Empty, font, 10);
             field = form.GetField("AnketaCompany.numberVAT");
-            field?.SetValue(anketa.NumberVat == "1" ? "Платник" : "Не Платник", font, 10);
+            field?.SetValue(anketa.TypeVat == 1 ? "Платник" : "Не Платник", font, 10);
             field = form.GetField("Employee.Email");
             field?.SetValue(relEmployy.Empl.Email ?? string.Empty, font, 10);
 

@@ -398,8 +398,8 @@ namespace ConsumerWorkplace_v_1._0
                 clientNameCtrlAnketaCompany.DataSource = anketa;
 
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
-                clientNameCtrlRegistrationsCompany.TypesVatValueMember = "codeI";
-                clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "name";
+                //clientNameCtrlRegistrationsCompany.TypesVatValueMember = "CodeI";
+                //clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "Name";
                 //clientNameCtrlRegistrationsCompany.DdlTypeVat.SelectedValue = anketa.TypeVat;
                 //clientNameCtrlRegistrationsCompany.NumberVatDataMember = "";
 

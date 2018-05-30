@@ -150,7 +150,7 @@
             // ddlTypeVat
             // 
             this.ddlTypeVat.AutoScroll = true;
-            this.ddlTypeVat.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaCompanyBindingSource, "TypeVat", true));
+            this.ddlTypeVat.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaCompanyBindingSource, "TypeVat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.ddlTypeVat.DefaultItemsCountInDropDown = 5;
             this.ddlTypeVat.DropDownMaxSize = new System.Drawing.Size(300, 120);
             this.ddlTypeVat.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -158,6 +158,7 @@
             this.ddlTypeVat.Name = "ddlTypeVat";
             this.ddlTypeVat.Size = new System.Drawing.Size(120, 20);
             this.ddlTypeVat.TabIndex = 4;
+            this.ddlTypeVat.SelectedValueChanged += new System.EventHandler(this.ddlTypeVat_SelectedValueChanged);
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSize = true;
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.FitToAvailableSize;
