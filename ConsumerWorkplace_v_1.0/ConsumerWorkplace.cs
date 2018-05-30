@@ -409,6 +409,9 @@ namespace ConsumerWorkplace_v_1._0
                 licenseTypeCtrlContractConsumerDetail.PeriodValueMember = "codeI";
                 licenseTypeCtrlContractConsumerDetail.PeriodDisplayMember = "name";
 
+                licenseTypeDropListLicType.DisplayMember = "Name";
+                licenseTypeDropListLicType.ValueMember = "CodeI";
+
                 licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
                 if (license.AddRate == null && license.IndxInfl != null)
                     licenseTypeCtrlContractConsumerDetail.SelectedItem = 1;
@@ -523,6 +526,15 @@ namespace ConsumerWorkplace_v_1._0
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
             else if (validTabs >= 3)
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;
+        }
+
+        private void btnCopyFromJAtoFa_Click(object sender, EventArgs e)
+        {
+            anketaCtrlAddressFactual.DdlCountry.SelectedValue = anketaCtrlAddressLegal.DdlCountry.SelectedValue;
+            anketaCtrlAddressFactual.DdlRegion.SelectedIndex = anketaCtrlAddressLegal.DdlRegion.SelectedIndex;
+            anketaCtrlAddressFactual.TxtCity.Text = anketaCtrlAddressLegal.TxtCity.Text;
+            anketaCtrlAddressFactual.TxtAddress.Text = anketaCtrlAddressLegal.TxtAddress.Text;
+            anketaCtrlAddressFactual.TxtAddress.Select();
         }
     }
 
