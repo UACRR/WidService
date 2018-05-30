@@ -33,11 +33,13 @@
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
             this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
+            this.anketaDictionatiesBindingSource = new System.Windows.Forms.BindingSource();
             ((System.ComponentModel.ISupportInitialize)(this.txtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaDictionatiesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCity
@@ -54,6 +56,7 @@
             this.ddlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlRegion.DropDownMaxSize = new System.Drawing.Size(200, 300);
             this.ddlRegion.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlRegion.Location = new System.Drawing.Point(206, 0);
             this.ddlRegion.Margin = new System.Windows.Forms.Padding(0);
@@ -102,12 +105,17 @@
             this.ddlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlCountry.DropDownMaxSize = new System.Drawing.Size(200, 300);
             this.ddlCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCountry.Location = new System.Drawing.Point(0, 0);
             this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
             this.ddlCountry.Name = "ddlCountry";
             this.ddlCountry.Size = new System.Drawing.Size(186, 20);
             this.ddlCountry.TabIndex = 0;
+            // 
+            // anketaDictionatiesBindingSource
+            // 
+            this.anketaDictionatiesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.AnketaDictionaties);
             // 
             // IpsAddressControl
             // 
@@ -122,6 +130,7 @@
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaDictionatiesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -133,5 +142,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private Telerik.WinControls.UI.RadTextBox txtAddress;
         private Telerik.WinControls.UI.RadDropDownList ddlCountry;
+        private System.Windows.Forms.BindingSource anketaDictionatiesBindingSource;
     }
 }

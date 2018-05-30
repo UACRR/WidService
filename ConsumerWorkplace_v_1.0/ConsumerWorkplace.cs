@@ -32,9 +32,9 @@ namespace ConsumerWorkplace_v_1._0
         }
 
         /// <summary>
-        /// Перехід на редагування Споживача
+        /// Перехід на сторінку ДОДАВАННЯ Споживача
         /// </summary>
-        private void SetConsumerPageView()
+        private void SetConsumerPageViewAdd()
         {
             rpvConsumers.SelectedPage = pageConsumersAnketa;
             pageAllAnketa.SelectedPage = pvConsumerClientName;
@@ -45,7 +45,20 @@ namespace ConsumerWorkplace_v_1._0
             pageAllAnketa.Pages[0].Item.ForeColor = DefaultForeColor;
         }
         /// <summary>
-        /// Кнопка створення нової анкети ЮРИДИЧНОЇ особи
+        /// Перехід на сторінку РЕДАГУВАННЯ Споживача
+        /// </summary>
+        private void SetConsumerPageViewEdit()
+        {
+            validTabs = 10;
+            nextPage = true;
+            rpvConsumers.SelectedPage = pageConsumersAnketa;
+            pageAllAnketa.SelectedPage = pvConsumerClientName;
+            if(!clientNameCheckBoxPlaces.Checked)
+                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
+        }
+
+        /// <summary>
+        /// Кнопка ДОДАВАННЯ нової анкети ЮРИДИЧНОЇ особи
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -54,17 +67,30 @@ namespace ConsumerWorkplace_v_1._0
             int custType = 3; // Юридична особа
             _cust = NewCustomer(custType);
             SetDataSources();
-            SetConsumerPageView();
+            SetConsumerPageViewAdd();
         }
 
         /// <summary>
-        /// Кнопка створення нової анктеи ФІЗИЧНОЇ особи
+        /// Кнопка ДОДАВАННЯ нової анктеи ФІЗИЧНОЇ особи
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnAddNaturalPerson_Click(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// Кнопки РЕДАГУВАННЯ на грід
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            int custId = Convert.ToInt32(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value);
+            _cust = GetCustomer(custId);
+            SetDataSources();
+            SetConsumerPageViewEdit();
         }
 
         /// <summary>
@@ -342,8 +368,6 @@ namespace ConsumerWorkplace_v_1._0
                 bindingSourceContact.DataSource = relEmpl.Empl;
 
 
-
-
                 var license = _cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).FirstOrDefault();
                 var agrMaster = license.Agr;
                 iAgreementMasterBindingSource.DataSource = agrMaster;
@@ -374,9 +398,9 @@ namespace ConsumerWorkplace_v_1._0
                 clientNameCtrlAnketaCompany.DataSource = anketa;
 
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
-                clientNameCtrlRegistrationsCompany.TypesVatValueMember = "CodeI";
+                clientNameCtrlRegistrationsCompany.TypesVatValueMember = "codeI";
                 clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "name";
-                // clientNameCtrlRegistrationsCompany.DataSource = anketa;
+                //clientNameCtrlRegistrationsCompany.DdlTypeVat.SelectedValue = anketa.TypeVat;
                 //clientNameCtrlRegistrationsCompany.NumberVatDataMember = "";
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
@@ -449,19 +473,7 @@ namespace ConsumerWorkplace_v_1._0
                 e.Cancel = true;
         }
 
-        /// <summary>
-        /// Натискання по кнопкі редагування в грід
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            //MessageBox.Show(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value.ToString());
-            int custId = Convert.ToInt32(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value);
-            _cust = GetCustomer(custId);
-            SetDataSources();
-            SetConsumerPageView();
-        }
+
 
         Customer _cust = null;
         public void SetData(ICustomer data)
@@ -503,6 +515,14 @@ namespace ConsumerWorkplace_v_1._0
                 var list = getMainViewData();
                 consumerMainViewBindingSource.DataSource = list;
             }
+        }
+
+        private void clientNameCheckBoxPlaces_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (!clientNameCheckBoxPlaces.Checked)
+                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
+            else if (validTabs >= 3)
+                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;
         }
     }
 
