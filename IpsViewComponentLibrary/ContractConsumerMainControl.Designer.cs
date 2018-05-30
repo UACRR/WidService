@@ -31,7 +31,6 @@ namespace IpsViewComponentLibrary
         private void InitializeComponent()
         {
             this.rdtPickerAgrDate = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource();
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxContrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
@@ -40,8 +39,8 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateEnd = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
             this.lblContrDo = new Telerik.WinControls.UI.RadLabel();
+            this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).BeginInit();
@@ -50,11 +49,12 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rdtPickerAgrDate
             // 
-            this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "AgrDate", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today));
+            this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "AgrDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, new System.DateTime(2018, 5, 30, 0, 0, 0, 0)));
             this.rdtPickerAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerAgrDate.Location = new System.Drawing.Point(354, 1);
             this.rdtPickerAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -67,10 +67,6 @@ namespace IpsViewComponentLibrary
             this.rdtPickerAgrDate.TabStop = false;
             this.rdtPickerAgrDate.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
-            // iAgreementMasterBindingSource
-            // 
-            this.iAgreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
-            // 
             // lblContrFrom
             // 
             this.lblContrFrom.Location = new System.Drawing.Point(327, 3);
@@ -81,9 +77,10 @@ namespace IpsViewComponentLibrary
             // 
             // rtxtBoxContrNumber
             // 
-            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAgreementMasterBindingSource, "AgrNumber", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty ));
+            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAgreementMasterBindingSource, "AgrNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.rtxtBoxContrNumber.Location = new System.Drawing.Point(156, 2);
             this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
+            this.rtxtBoxContrNumber.NullText = "Номер договору";
             this.rtxtBoxContrNumber.Size = new System.Drawing.Size(165, 20);
             this.rtxtBoxContrNumber.TabIndex = 0;
             // 
@@ -97,7 +94,7 @@ namespace IpsViewComponentLibrary
             // 
             // rdtPickerDateBegin
             // 
-            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today ));
+            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, new System.DateTime(2018, 5, 30, 0, 0, 0, 0)));
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateBegin.Location = new System.Drawing.Point(156, 26);
             this.rdtPickerDateBegin.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -120,7 +117,7 @@ namespace IpsViewComponentLibrary
             // 
             // rdtPickerDateEnd
             // 
-            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged, DateTime.Today ));
+            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, new System.DateTime(2018, 5, 30, 0, 0, 0, 0)));
             this.rdtPickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateEnd.Location = new System.Drawing.Point(354, 25);
             this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -149,6 +146,10 @@ namespace IpsViewComponentLibrary
             this.lblContrDo.TabIndex = 2;
             this.lblContrDo.Text = "ДІЯ ДОГОВОРУ";
             // 
+            // iAgreementMasterBindingSource
+            // 
+            this.iAgreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
+            // 
             // ContractConsumerMainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,7 +167,6 @@ namespace IpsViewComponentLibrary
             this.Name = "ContractConsumerMainControl";
             this.Size = new System.Drawing.Size(477, 49);
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).EndInit();
@@ -175,6 +175,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -385,6 +385,7 @@ namespace ConsumerWorkplace_v_1._0
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
                 clientNameCtrlRegistrationsCompany.TypesVatValueMember = "codeI";
                 clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "name";
+                //clientNameCtrlRegistrationsCompany.DdlTypeVat.SelectedValue = anketa.TypeVat;
                 //clientNameCtrlRegistrationsCompany.NumberVatDataMember = "";
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
