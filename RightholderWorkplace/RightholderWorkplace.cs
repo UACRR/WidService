@@ -151,7 +151,10 @@ namespace RightholderWorkplace
         private void btnNextAnketa_Click(object sender, EventArgs e)
         {
             if (ctrlAnketaPerson.Validator())
+            {
+                createRightholderAnketaPage.Enabled = true;
                 newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
+            }
         }
 
         private void btnPrevFullNameComission_Click(object sender, EventArgs e)
@@ -169,6 +172,7 @@ namespace RightholderWorkplace
             if (ctrlContacts.Validator()
                 & ctrlRegistrations.Validator())
             {
+                createRightholderPassportPage.Enabled = true;
                 newCreateRightholderPageView.SelectedPage = createRightholderPassportPage;
             }
 
@@ -181,6 +185,7 @@ namespace RightholderWorkplace
 
         private void btnNextRoyalty_Click(object sender, EventArgs e)
         {
+            createRightholderRoyaltyPage.Enabled = true;
             newCreateRightholderPageView.SelectedPage = createRightholderRoyaltyPage;
         }
 
@@ -191,6 +196,7 @@ namespace RightholderWorkplace
 
         private void btnNextExclusionLimitation_Click(object sender, EventArgs e)
         {
+            createRightholderRigthLimitationsPage.Enabled = true;
             newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
         }
 
@@ -201,6 +207,7 @@ namespace RightholderWorkplace
 
         private void btnNextTerritoryLimitation_Click(object sender, EventArgs e)
         {
+            createRightholderTerritoryLimitationsPage.Enabled = true;
             newCreateRightholderPageView.SelectedPage = createRightholderTerritoryLimitationsPage;
         }
 
@@ -260,6 +267,11 @@ namespace RightholderWorkplace
             _customer = NewCustomer(1);//3 - юр.
 
             UpdateDataSources();
+
+            for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
+            {
+                newCreateRightholderPageView.Pages[i].Enabled = false;
+            }
 
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
         }
