@@ -115,11 +115,12 @@ namespace ConsumerWorkplace_v_1._0
             lblTabLicenseTypeClientName.Text = clientNameCtrlAnketaCompany.CompanyFullName;
             nextPage = true;
             pageAllAnketa.SelectedPage = pvConsumerLicenseType;
+            licenseTypeDropListLicType.Select();
         }
 
         private void rbtnNextAnketa_Click(object sender, EventArgs e)
         {
-            nextPage = true;
+                nextPage = true;
                 anketaCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
                 anketaCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
                 anketaCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
