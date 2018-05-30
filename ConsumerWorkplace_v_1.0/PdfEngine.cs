@@ -28,7 +28,7 @@ namespace ConsumerWorkplace_v_1._0
 
             var licTypeDoc = dic.agrLicenseType.Where(rec => rec.CodeI == license.LicCode).SingleOrDefault();
             var sors = Path.Combine(currentDir, "PDF", licTypeDoc.TemplateName);
-            var dest = Path.Combine(currentDir, "PDF", "OutDocument.pdf");
+            var dest = Path.Combine(Path.GetTempPath(), "OutDocument.pdf");
 
             PdfDocument doc = new PdfDocument(new PdfReader(sors)
                                     , new PdfWriter(dest));
