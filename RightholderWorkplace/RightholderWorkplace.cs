@@ -229,17 +229,6 @@ namespace RightholderWorkplace
             }
         }
 
-        private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            ////TODO: move to selected value changed event
-            //if (ddlTypeMethodGet.SelectedIndex == 0)
-            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyCashPage;
-            //else if (ddlTypeMethodGet.SelectedIndex == 1)
-            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyBankPage;
-            //else if (ddlTypeMethodGet.SelectedIndex == 2 || ddlTypeMethodGet.SelectedIndex == 3)
-            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
-        }
-
         private void ddlTypeMethodGet_SelectedValueChanged(object sender, EventArgs e)
         {
             if (ddlTypeMethodGet.SelectedValue is int)
@@ -309,7 +298,7 @@ namespace RightholderWorkplace
 
             // TODO: additional validation
 
-            SaveCustomer?.Invoke(_customer);
+            //SaveCustomer?.Invoke(_customer);
 
             // TODO: move to single method (EndPresernterLink)
             var list = GetMainViewData();

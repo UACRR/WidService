@@ -1400,7 +1400,6 @@
             this.ddlTypeMethodGet.Name = "ddlTypeMethodGet";
             this.ddlTypeMethodGet.Size = new System.Drawing.Size(218, 20);
             this.ddlTypeMethodGet.TabIndex = 14;
-            this.ddlTypeMethodGet.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlTypeMethodGet_SelectedIndexChanged);
             this.ddlTypeMethodGet.SelectedValueChanged += new System.EventHandler(this.ddlTypeMethodGet_SelectedValueChanged);
             // 
             // btnPrevPassport
