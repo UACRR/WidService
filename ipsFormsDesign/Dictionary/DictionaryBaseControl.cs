@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Dictionary
     public class DictionaryBaseControl 
 
     {
-        private ApiConnector connector = new ApiConnector("http://localhost:54867/");
+        private ApiConnector connector = new ApiConnector();
 
         public DictionaryBaseControl()
         {
