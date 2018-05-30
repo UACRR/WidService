@@ -121,17 +121,12 @@ namespace ipsmedserviceapp.Controllers
 
                     // Delete LicenseAgreement
                     var agreeItemDest = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    var agreeItemSors = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-
+                    var agreeItemSors = item.Agr;
                     agreeItemDest.SetFields(agreeItemSors);
 
-                    foreach (var license in agreeItemDest.LicenseAgreement)
-                    {
-                        var sorsLic = agreeItemSors.LicenseAgreement.Where(rec => rec.LicId == license.LicId).SingleOrDefault();
-                        license.SetFields(sorsLic);
+                    var license = dest.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
+                    license.SetFields(item);
 
-                        // AgreementMaster
-                    }
                 });
                 // Add
                 tempList = updCustomer.Client.LicenseAgreement.Where(row => !dest.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
@@ -139,7 +134,7 @@ namespace ipsmedserviceapp.Controllers
                 {
 
                     // Delete LicenseAgreement
-                    var agreeItem = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var agreeItem = item.Agr;
                     var destAgreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
                     if (destAgreeItem == null)
                     {
@@ -151,7 +146,7 @@ namespace ipsmedserviceapp.Controllers
                     var addLicItem = new LicenseAgreement();
                     addLicItem.SetFields(item, new[] { "LicId" });
                     dest.Client.LicenseAgreement.Add(addLicItem);
-
+                    destAgreeItem.LicenseAgreement.Add(addLicItem);
                 }
                 );
 
@@ -167,14 +162,32 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
                     //.Include(comp => comp.RelEmployee)
                     var relEmployeeList = updCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
-                    _dbContext.UpdateList(relEmployeeList, dest.Company.RelEmployee, rec => { },
-                                        (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
 
-                    foreach (var emplRel in dest.Company.RelEmployee)
-                    {
-                        if (emplRel.Empl.Emplid == 0)
-                            _dbContext.Employee.Add(emplRel.Empl );
-                    }
+                    var listRel = dest.Company.RelEmployee.Where(rec => !relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                    listRel.ForEach(delitem => {
+                        _dbContext.Employee.Remove(delitem.Empl);
+                        _dbContext.RelEmployee.Remove(delitem);
+                        dest.Company.RelEmployee.Remove(delitem);
+
+                    });
+
+                    listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode )).ToList();
+                    listRel.ForEach(updItem => {
+                        var sorsItem = listRel.Where(item => item.Emplid == updItem.Emplid && item.PositionCode == updItem.PositionCode).SingleOrDefault();
+                        updItem.SetFields(sorsItem);
+                        updItem.Empl.SetFields(sorsItem.Empl);
+                    });
+
+
+                    listRel = relEmployeeList.Where(rec => !dest.Company.RelEmployee.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                    listRel.ForEach(addItem => {
+                        Employee addEmpl = new Employee();
+                        addEmpl.SetFields(addItem.Empl);
+                        RelEmployee addRelItem = new RelEmployee { Empl = addEmpl };
+                        dest.Employee.Add(addEmpl);
+                        dest.Company.RelEmployee.Add(addRelItem );
+                    });
+
                 }
                 else
                 {
