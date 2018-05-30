@@ -69,7 +69,7 @@ namespace ConsumerWorkplace_v_1._0
             field = form.GetField("AnketaCompany.registrDate"); field?.SetValue(anketa.RegistrDate.ToString(), font, 10);
             field = form.GetField("AnketaPerson.Inn"); field?.SetValue(anketa.NumberVat, font, 10);
             field = form.GetField("AnketaCompany.numberVAT"); field?.SetValue(anketa.NumberVat == "1" ? "Платник" : "Не Платник", font, 10);
-            field = form.GetField("Employee.Email"); field?.SetValue(relEmployy.Empl.Email, font, 10);
+            field = form.GetField("Employee.Email"); field?.SetValue(relEmployy.Empl.Email ?? string.Empty, font, 10);
 
 
 
