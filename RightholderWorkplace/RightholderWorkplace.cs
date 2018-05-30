@@ -151,7 +151,10 @@ namespace RightholderWorkplace
         private void btnNextAnketa_Click(object sender, EventArgs e)
         {
             if (ctrlAnketaPerson.Validator())
+            {
+                createRightholderAnketaPage.Enabled = true;
                 newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
+            }
         }
 
         private void btnPrevFullNameComission_Click(object sender, EventArgs e)
@@ -169,6 +172,7 @@ namespace RightholderWorkplace
             if (ctrlContacts.Validator()
                 & ctrlRegistrations.Validator())
             {
+                createRightholderPassportPage.Enabled = true;
                 newCreateRightholderPageView.SelectedPage = createRightholderPassportPage;
             }
 
@@ -181,6 +185,7 @@ namespace RightholderWorkplace
 
         private void btnNextRoyalty_Click(object sender, EventArgs e)
         {
+            createRightholderRoyaltyPage.Enabled = true;
             newCreateRightholderPageView.SelectedPage = createRightholderRoyaltyPage;
         }
 
@@ -191,6 +196,7 @@ namespace RightholderWorkplace
 
         private void btnNextExclusionLimitation_Click(object sender, EventArgs e)
         {
+            createRightholderRigthLimitationsPage.Enabled = true;
             newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
         }
 
@@ -201,6 +207,7 @@ namespace RightholderWorkplace
 
         private void btnNextTerritoryLimitation_Click(object sender, EventArgs e)
         {
+            createRightholderTerritoryLimitationsPage.Enabled = true;
             newCreateRightholderPageView.SelectedPage = createRightholderTerritoryLimitationsPage;
         }
 
@@ -261,7 +268,13 @@ namespace RightholderWorkplace
 
             UpdateDataSources();
 
+            for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
+            {
+                newCreateRightholderPageView.Pages[i].Enabled = false;
+            }
+
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+            newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
         }
 
         private void btnNewRightholderCancel1_Click(object sender, EventArgs e)
@@ -271,7 +284,7 @@ namespace RightholderWorkplace
 
         private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            int custId = Convert.ToInt32(e.Row.Cells["CustId"].Value);
+            int custId = Convert.ToInt32(gvRightholdersList.CurrentRow.Cells["CustId"].Value);
             _customer = GetCustomer(custId);
 
             UpdateDataSources();
@@ -279,6 +292,12 @@ namespace RightholderWorkplace
             //SetConsumerPageView();
 
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+            newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
+        }
+
+        private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
+        {
+            gvRightholdersList_CommandCellClick(sender, null);
         }
 
         private void btnSaveRightholder_Click(object sender, EventArgs e)
@@ -291,6 +310,12 @@ namespace RightholderWorkplace
             // TODO: additional validation
 
             SaveCustomer?.Invoke(_customer);
+
+            // TODO: move to single method (EndPresernterLink)
+            var list = GetMainViewData();
+            rightHolderMainViewBindingSource.DataSource = list;
+
+            newRightholdersPageView.SelectedPage = newRightholdersListPage;
         }
 
         #endregion
@@ -311,8 +336,11 @@ namespace RightholderWorkplace
             ctrlExclusionsLimitations.DataSource = _customer.RightHolder.TermsOfService.Select( rec => new TermsOfServiceWrapper(rec));
 
             var agreement = _customer.AgreementMaster.FirstOrDefault();
+
             if (agreement != null)
             {
+                agreementMasterBindingSource.DataSource = agreement;
+
                 agreementAddRhBindingSource.DataSource = agreement.AgreementAddRh;
             }
             else

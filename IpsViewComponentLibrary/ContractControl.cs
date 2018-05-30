@@ -12,8 +12,28 @@ namespace DebugFormForControls
 {
     public partial class ContractControl : UserControl
     {
-        public string Number => rtxtBoxNumber.Text;
-        public DateTime NumberFromDate => rdtPickerBirth.Value;
+        public string Number => txtAgrNumber.Text;
+        public DateTime NumberFromDate => dtAgrDate.Value;
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get => agreementMasterBindingSource.DataSource;
+            set
+            {
+                if (agreementMasterBindingSource.DataSource != value)
+                {
+                    agreementMasterBindingSource.DataSource = value;
+
+                    dtAgrDate.DataBindings.Clear();
+                    dtAgrDate.DataBindings.Add("Value", agreementMasterBindingSource, "AgrDate", true);
+
+                    txtAgrNumber.DataBindings.Clear();
+                    txtAgrNumber.DataBindings.Add("Text", agreementMasterBindingSource, "AgrNumber");
+                }
+            }
+        }
 
         public ContractControl()
         {
@@ -25,8 +45,8 @@ namespace DebugFormForControls
         /// </summary>
         public void ClearData()
         {
-            rtxtBoxNumber.Clear();
-            rdtPickerBirth.SetToNullValue();
+            txtAgrNumber.Clear();
+            dtAgrDate.SetToNullValue();
         }
     }
 }

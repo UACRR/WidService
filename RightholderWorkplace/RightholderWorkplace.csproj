@@ -87,6 +87,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRightHolder.datasource" />
@@ -101,6 +102,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="workplace.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

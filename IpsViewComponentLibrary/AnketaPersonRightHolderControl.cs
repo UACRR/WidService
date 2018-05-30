@@ -25,7 +25,11 @@ namespace DebugFormForControls
             set
             {
                 if (iAnketaPersonBindingSource.DataSource != value)
+                {
                     iAnketaPersonBindingSource.DataSource = value;
+                    rdtPickerBirth.DataBindings.Clear();
+                    rdtPickerBirth.DataBindings.Add("Value", iAnketaPersonBindingSource, "BirthDate", true);
+                }
             }
         }
 
@@ -70,6 +74,18 @@ namespace DebugFormForControls
         {
             InitializeComponent();
         }
+
+        #region Edit controls
+
+        public RadDateTimePicker dtBirthDate
+        {
+            get
+            {
+                return rdtPickerBirth;
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Перевірка на правильність введених даних

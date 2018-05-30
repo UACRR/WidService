@@ -90,7 +90,18 @@ namespace ipsmedserviceapp.Controllers
             if (custType < 3) // jur
             {
                 newCust.Person = new Person();
-                newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, NikName = string.Empty });
+                newCust.Person.AnketaPerson.Add(new AnketaPerson
+                {
+                    Version = 1,
+                    NikName = string.Empty,
+                    FaCountry = "804",
+                    FaRegion = 25,
+                    ReCountry = "804",
+                    ReRegion = 25,
+                    LeCountry = "804",
+                    LeRegion = 25,
+
+                });
             }
 
             var copyrightList = await _dbContext.CopyrightKind
@@ -150,7 +161,8 @@ namespace ipsmedserviceapp.Controllers
                     TermsOfService addItem = new TermsOfService();
                     addItem.SetFields(item, excludeFields);
                     // CustCmRight
-                    _dbContext.AppendList(item.CustCmRight, addItem.CustCmRight, rec => { }, (l, r) => l.CRkindCode == r.CRkindCode, excludeFields);
+                    var custCmRightToSave = item.CustCmRight.Where(c => c.CmCustId != 0).ToList();
+                    _dbContext.AppendList(custCmRightToSave, addItem.CustCmRight, rec => { }, (l, r) => l.CRkindCode == r.CRkindCode, excludeFields);
 
                     dest.RightHolder.TermsOfService.Add(addItem);
                 }
@@ -175,6 +187,8 @@ namespace ipsmedserviceapp.Controllers
                         string[] excludeAgr = new[] { "CustId", "AgrId" };
                         AgreementMaster addItem = new AgreementMaster { AgrType = 1 };
                         addItem.SetFields(item, excludeAgr);
+                        addItem.DateBegin = addItem.AgrDate;
+                        addItem.DateEnd = new DateTime(3000, 1, 1);
                         dest.AgreementMaster.Add(addItem);
 
                         // Збереження AgreementAddRh
@@ -224,7 +238,7 @@ namespace ipsmedserviceapp.Controllers
                     dest.Person = new Person();
                     dest.Person.SetFields(newRightHolder.Person, excludeFields);
 
-                    if (newRightHolder.AnketaPerson.Count == 0)
+                    if (newRightHolder.Person.AnketaPerson.Count == 0)
                         throw new Exception("Not input data for AnketaPerson");
 
                     _dbContext.AppendList(newRightHolder.Person.AnketaPerson, dest.Person.AnketaPerson
@@ -237,7 +251,7 @@ namespace ipsmedserviceapp.Controllers
                 tran.Commit();
                 tran = null;
 
-                return await getRh(newRightHolder.CustId);
+                return await getRh(dest.CustId);
             }
             catch (Exception ex)
             {
@@ -291,6 +305,14 @@ namespace ipsmedserviceapp.Controllers
                 //.Include(rh => rh.TermsOfService)
                 _dbContext.UpdateList(updCustomer.RightHolder.TermsOfService, dest.RightHolder.TermsOfService, row => { }
                                                                     , (sorsItem, destItem) => sorsItem.CrkindCode == destItem.CrkindCode);
+                //CustCmRight
+                foreach (var item in updCustomer.RightHolder.TermsOfService)
+                {
+                    var updCmRightToSave = item.CustCmRight.Where(c => c.CmCustId != 0).ToList();
+                    var destCmRight = dest.RightHolder.TermsOfService.FirstOrDefault(t => t.CrkindCode == item.CrkindCode).CustCmRight;
+                    _dbContext.UpdateList(updCmRightToSave, destCmRight, row => { }, (sorsItem, destItem) => sorsItem.CRkindCode == destItem.CRkindCode);
+                }
+
                 _dbContext.UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }
                                                                     , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
                 _dbContext.UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }
