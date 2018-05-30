@@ -90,7 +90,18 @@ namespace ipsmedserviceapp.Controllers
             if (custType < 3) // jur
             {
                 newCust.Person = new Person();
-                newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, NikName = string.Empty });
+                newCust.Person.AnketaPerson.Add(new AnketaPerson
+                {
+                    Version = 1,
+                    NikName = string.Empty,
+                    FaCountry = "804",
+                    FaRegion = 25,
+                    ReCountry = "804",
+                    ReRegion = 25,
+                    LeCountry = "804",
+                    LeRegion = 25,
+
+                });
             }
 
             var copyrightList = await _dbContext.CopyrightKind
