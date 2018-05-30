@@ -28,7 +28,7 @@ namespace ConsumerWorkplace_v_1._0
 
             var licTypeDoc = dic.agrLicenseType.Where(rec => rec.CodeI == license.LicCode).SingleOrDefault();
             var sors = Path.Combine(currentDir, "PDF", licTypeDoc.TemplateName);
-            var dest = Path.Combine(currentDir, "PDF", "OutDocument.pdf");
+            var dest = Path.Combine(Path.GetTempPath(), "OutDocument.pdf");
 
             PdfDocument doc = new PdfDocument(new PdfReader(sors)
                                     , new PdfWriter(dest));
@@ -53,7 +53,7 @@ namespace ConsumerWorkplace_v_1._0
             field = form.GetField("Period.name");
             field?.SetValue(period?.Name ?? string.Empty, font, 10);
             field = form.GetField("Period.nameR");
-            field?.SetValue(period?.Name ?? string.Empty, font, 10);
+            field?.SetValue(period?.NameR ?? string.Empty, font, 10);
             field = form.GetField("year");
             field?.SetValue(DateTime.Today.Year.ToString(), font, 10);
             field = form.GetField("LicenseAgreement.addRate");
@@ -67,23 +67,23 @@ namespace ConsumerWorkplace_v_1._0
             field = form.GetField("Employee.PhoneNumber");
             field?.SetValue(relEmployy.Empl.PhoneNumber ?? string.Empty, font, 10);
             field = form.GetField("AnketaCompany.OKPO");
-            field?.SetValue(anketa.Okpo, font, 10);
+            field?.SetValue(anketa.Okpo ?? string.Empty, font, 10);
             field = form.GetField("BankAccount.mfoName");
-            field?.SetValue(bankAcc.MfoName, font, 10);
+            field?.SetValue(bankAcc.MfoName ?? string.Empty, font, 10);
             field = form.GetField("BankAccount.mfo");
-            field?.SetValue(bankAcc.Mfo.ToString(), font, 10);
+            field?.SetValue(bankAcc.Mfo?.ToString() ?? string.Empty, font, 10);
             field = form.GetField("BankAccount.accountNumber");
-            field?.SetValue(bankAcc.AccountNumber, font, 10);
+            field?.SetValue(bankAcc.AccountNumber ?? string.Empty, font, 10);
             field = form.GetField("AnketaCompany.registrNumber");
-            field?.SetValue(anketa.RegistrNumber, font, 10);
+            field?.SetValue(anketa.RegistrNumber ?? string.Empty, font, 10);
             field = form.GetField("AnketaCompany.registrDate");
-            field?.SetValue(anketa.RegistrDate.ToString(), font, 10);
+            field?.SetValue(anketa.RegistrDate?.ToString() ?? string.Empty, font, 10);
             field = form.GetField("AnketaPerson.Inn");
-            field?.SetValue(anketa.NumberVat, font, 10);
+            field?.SetValue(anketa.NumberVat ?? string.Empty, font, 10);
             field = form.GetField("AnketaCompany.numberVAT");
-            field?.SetValue(anketa.NumberVat == "1" ? "Платник" : "Не Платник", font, 10);
+            field?.SetValue(anketa.TypeVat == 1 ? "Платник" : "Не Платник", font, 10);
             field = form.GetField("Employee.Email");
-            field?.SetValue(relEmployy.Empl.Email, font, 10);
+            field?.SetValue(relEmployy.Empl.Email ?? string.Empty, font, 10);
 
             form.FlattenFields();
             doc.Close();

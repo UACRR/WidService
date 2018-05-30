@@ -30,35 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             this.ddlActivityCode = new Telerik.WinControls.UI.RadDropDownList();
-            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtShortName = new Telerik.WinControls.UI.RadTextBox();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ddlActivityCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShortName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlActivityCode
             // 
             this.ddlActivityCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlActivityCode.AutoScroll = true;
             this.ddlActivityCode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anketaCompanyBindingSource, "ActivityCode", true));
             this.ddlActivityCode.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlActivityCode.Location = new System.Drawing.Point(119, 49);
             this.ddlActivityCode.Name = "ddlActivityCode";
             this.ddlActivityCode.Size = new System.Drawing.Size(324, 20);
             this.ddlActivityCode.TabIndex = 2;
-            // 
-            // anketaCompanyBindingSource
-            // 
-            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // txtShortName
             // 
@@ -104,6 +101,10 @@
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Назва клієнту:";
             // 
+            // anketaCompanyBindingSource
+            // 
+            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
+            // 
             // IpsAnketaCompanyControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,12 +119,12 @@
             this.Name = "IpsAnketaCompanyControl";
             this.Size = new System.Drawing.Size(446, 71);
             ((System.ComponentModel.ISupportInitialize)(this.ddlActivityCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShortName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

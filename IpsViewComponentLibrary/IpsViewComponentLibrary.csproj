@@ -300,6 +300,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.CommunityInfo.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.TermsOfServiceWrapper.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.AnketaDictionaties.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster1.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
