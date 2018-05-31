@@ -123,6 +123,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMfoOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "MfoOkpo", true));
             this.txtMfoOkpo.Location = new System.Drawing.Point(118, 53);
+            this.txtMfoOkpo.MaxLength = 10;
             this.txtMfoOkpo.Name = "txtMfoOkpo";
             this.txtMfoOkpo.Size = new System.Drawing.Size(286, 20);
             this.txtMfoOkpo.TabIndex = 2;
@@ -133,6 +134,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "Mfo", true));
             this.txtMfo.Location = new System.Drawing.Point(118, 28);
+            this.txtMfo.MaxLength = 6;
             this.txtMfo.Name = "txtMfo";
             this.txtMfo.Size = new System.Drawing.Size(286, 20);
             this.txtMfo.TabIndex = 1;
