@@ -69,6 +69,7 @@
             // 
             // 
             this.rGridViewPremises.MasterTemplate.AllowAddNewRow = false;
+            this.rGridViewPremises.MasterTemplate.AllowColumnReorder = false;
             this.rGridViewPremises.MasterTemplate.AllowDragToGroup = false;
             this.rGridViewPremises.MasterTemplate.AllowEditRow = false;
             this.rGridViewPremises.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
@@ -97,6 +98,7 @@
             gridViewTextBoxColumn4});
             this.rGridViewPremises.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewPremises.Name = "rGridViewPremises";
+            this.rGridViewPremises.ReadOnly = true;
             this.rGridViewPremises.Size = new System.Drawing.Size(618, 185);
             this.rGridViewPremises.TabIndex = 0;
             // 

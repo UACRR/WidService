@@ -28,7 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem5 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem6 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem7 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem8 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem9 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem10 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem11 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem12 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem13 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem14 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem15 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem16 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem17 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem18 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem19 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem20 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem21 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem22 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem23 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem24 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem25 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem26 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -56,6 +81,7 @@
             this.rPanelAdd = new Telerik.WinControls.UI.RadPanel();
             this.rTxtBoxCountOrMeters = new Telerik.WinControls.UI.RadTextBox();
             this.lblLocation = new System.Windows.Forms.Label();
+            this.addressControl = new IpsViewComponentLibrary.IpsAddressExpandedControl();
             this.rBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.rBtnSave = new Telerik.WinControls.UI.RadButton();
             this.rLblTypeInst = new Telerik.WinControls.UI.RadLabel();
@@ -63,12 +89,12 @@
             this.rTxtBoxTypeInst = new Telerik.WinControls.UI.RadTextBox();
             this.rTxtBoxNameInst = new Telerik.WinControls.UI.RadTextBox();
             this.rGridViewInstitution = new Telerik.WinControls.UI.RadGridView();
-            this.addressControl = new IpsViewComponentLibrary.IpsAddressExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnEditInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rDropDownBtnAddInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rPanelAdd)).BeginInit();
             this.rPanelAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addressControl.RegionBind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).BeginInit();
@@ -77,7 +103,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxNameInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressControl.RegionBind)).BeginInit();
             this.SuspendLayout();
             // 
             // rBtnEditInst
@@ -181,6 +206,82 @@
             this.lblLocation.Text = "label1";
             this.lblLocation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // addressControl
+            // 
+            this.addressControl.Location = new System.Drawing.Point(13, 62);
+            this.addressControl.MaximumSize = new System.Drawing.Size(662, 89);
+            this.addressControl.MinimumSize = new System.Drawing.Size(400, 89);
+            this.addressControl.Name = "addressControl";
+            // 
+            // 
+            // 
+            radListDataItem2.Text = "Вінницька";
+            radListDataItem3.Text = "Волинська";
+            radListDataItem4.Text = "Дніпропетровська";
+            radListDataItem5.Text = "Донецька";
+            radListDataItem6.Text = "Житомирська";
+            radListDataItem7.Text = "Закарпатська";
+            radListDataItem8.Text = "Запорізька";
+            radListDataItem9.Text = "Івано-Франківська";
+            radListDataItem10.Text = "Київська";
+            radListDataItem11.Text = "Кіровоградська";
+            radListDataItem12.Text = "Луганська";
+            radListDataItem13.Text = "Львівська";
+            radListDataItem14.Text = "Миколаївська";
+            radListDataItem15.Text = "Одеська";
+            radListDataItem16.Text = "Полтавська";
+            radListDataItem17.Text = "Рівненська";
+            radListDataItem18.Text = "Сумська";
+            radListDataItem19.Text = "Тернопільська";
+            radListDataItem20.Text = "Харківська";
+            radListDataItem21.Text = "Херсонська";
+            radListDataItem22.Text = "Хмельницька";
+            radListDataItem23.Text = "Черкаська";
+            radListDataItem24.Text = "Чернівецька";
+            radListDataItem25.Text = "Чернігівська";
+            radListDataItem26.Text = "м. Київ";
+            this.addressControl.RegionBind.Items.Add(radListDataItem1);
+            this.addressControl.RegionBind.Items.Add(radListDataItem2);
+            this.addressControl.RegionBind.Items.Add(radListDataItem3);
+            this.addressControl.RegionBind.Items.Add(radListDataItem4);
+            this.addressControl.RegionBind.Items.Add(radListDataItem5);
+            this.addressControl.RegionBind.Items.Add(radListDataItem6);
+            this.addressControl.RegionBind.Items.Add(radListDataItem7);
+            this.addressControl.RegionBind.Items.Add(radListDataItem8);
+            this.addressControl.RegionBind.Items.Add(radListDataItem9);
+            this.addressControl.RegionBind.Items.Add(radListDataItem10);
+            this.addressControl.RegionBind.Items.Add(radListDataItem11);
+            this.addressControl.RegionBind.Items.Add(radListDataItem12);
+            this.addressControl.RegionBind.Items.Add(radListDataItem13);
+            this.addressControl.RegionBind.Items.Add(radListDataItem14);
+            this.addressControl.RegionBind.Items.Add(radListDataItem15);
+            this.addressControl.RegionBind.Items.Add(radListDataItem16);
+            this.addressControl.RegionBind.Items.Add(radListDataItem17);
+            this.addressControl.RegionBind.Items.Add(radListDataItem18);
+            this.addressControl.RegionBind.Items.Add(radListDataItem19);
+            this.addressControl.RegionBind.Items.Add(radListDataItem20);
+            this.addressControl.RegionBind.Items.Add(radListDataItem21);
+            this.addressControl.RegionBind.Items.Add(radListDataItem22);
+            this.addressControl.RegionBind.Items.Add(radListDataItem23);
+            this.addressControl.RegionBind.Items.Add(radListDataItem24);
+            this.addressControl.RegionBind.Items.Add(radListDataItem25);
+            this.addressControl.RegionBind.Items.Add(radListDataItem26);
+            this.addressControl.RegionBind.Location = new System.Drawing.Point(69, 37);
+            this.addressControl.RegionBind.Name = "rDropListRegion";
+            // 
+            // 
+            // 
+            this.addressControl.RegionBind.RootElement.ControlBounds = new System.Drawing.Rectangle(69, 37, 125, 20);
+            this.addressControl.RegionBind.RootElement.StretchVertically = true;
+            this.addressControl.RegionBind.Size = new System.Drawing.Size(170, 20);
+            this.addressControl.RegionBind.TabIndex = 1;
+            this.addressControl.RegionsPlacesCtrlDataMember = "";
+            this.addressControl.RegionsPlacesCtrlDataSource = null;
+            this.addressControl.RegionsPlacesCtrlDisplayMember = "";
+            this.addressControl.RegionsPlacesCtrlValueMember = "";
+            this.addressControl.Size = new System.Drawing.Size(662, 89);
+            this.addressControl.TabIndex = 2;
+            // 
             // rBtnCancel
             // 
             this.rBtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -248,6 +349,7 @@
             // 
             // 
             this.rGridViewInstitution.MasterTemplate.AllowAddNewRow = false;
+            this.rGridViewInstitution.MasterTemplate.AllowColumnReorder = false;
             this.rGridViewInstitution.MasterTemplate.AllowDragToGroup = false;
             this.rGridViewInstitution.MasterTemplate.AllowEditRow = false;
             this.rGridViewInstitution.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
@@ -267,7 +369,7 @@
             gridViewTextBoxColumn1.HeaderText = "Назва";
             gridViewTextBoxColumn1.IsAutoGenerated = true;
             gridViewTextBoxColumn1.Name = "PlaceName";
-            gridViewTextBoxColumn1.Width = 287;
+            gridViewTextBoxColumn1.Width = 288;
             gridViewTextBoxColumn2.FieldName = "PlaceCountry";
             gridViewTextBoxColumn2.HeaderText = "PlaceCountry";
             gridViewTextBoxColumn2.IsAutoGenerated = true;
@@ -289,12 +391,12 @@
             gridViewTextBoxColumn4.IsAutoGenerated = true;
             gridViewTextBoxColumn4.Name = "PlCodeNavigation.Name";
             gridViewTextBoxColumn4.ReadOnly = true;
-            gridViewTextBoxColumn4.Width = 175;
+            gridViewTextBoxColumn4.Width = 176;
             gridViewTextBoxColumn5.FieldName = "PlaceAddress";
             gridViewTextBoxColumn5.HeaderText = "Адреса";
             gridViewTextBoxColumn5.IsAutoGenerated = true;
             gridViewTextBoxColumn5.Name = "PlaceAddress";
-            gridViewTextBoxColumn5.Width = 371;
+            gridViewTextBoxColumn5.Width = 373;
             gridViewTextBoxColumn6.FieldName = "PlacePhone";
             gridViewTextBoxColumn6.HeaderText = "PlacePhone";
             gridViewTextBoxColumn6.IsAutoGenerated = true;
@@ -349,32 +451,9 @@
             gridViewTextBoxColumn10});
             this.rGridViewInstitution.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewInstitution.Name = "rGridViewInstitution";
+            this.rGridViewInstitution.ReadOnly = true;
             this.rGridViewInstitution.Size = new System.Drawing.Size(890, 244);
             this.rGridViewInstitution.TabIndex = 5;
-            // 
-            // addressControl
-            // 
-            this.addressControl.Location = new System.Drawing.Point(13, 62);
-            this.addressControl.MaximumSize = new System.Drawing.Size(662, 89);
-            this.addressControl.MinimumSize = new System.Drawing.Size(400, 89);
-            this.addressControl.Name = "addressControl";
-            // 
-            // 
-            // 
-            this.addressControl.RegionBind.Location = new System.Drawing.Point(69, 37);
-            this.addressControl.RegionBind.Name = "rDropListRegion";
-            // 
-            // 
-            // 
-            this.addressControl.RegionBind.RootElement.ControlBounds = new System.Drawing.Rectangle(69, 37, 125, 20);
-            this.addressControl.RegionBind.RootElement.StretchVertically = true;
-            this.addressControl.RegionBind.Size = new System.Drawing.Size(170, 20);
-            this.addressControl.RegionBind.TabIndex = 1;
-            this.addressControl.RegionsPlacesCtrlDataMember = "";
-            this.addressControl.RegionsPlacesCtrlDisplayMember = "";
-            this.addressControl.RegionsPlacesCtrlValueMember = "";
-            this.addressControl.Size = new System.Drawing.Size(662, 89);
-            this.addressControl.TabIndex = 2;
             // 
             // ConsumerPlacesControl
             // 
@@ -393,6 +472,7 @@
             this.rPanelAdd.ResumeLayout(false);
             this.rPanelAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.addressControl.RegionBind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).EndInit();
@@ -401,7 +481,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxNameInst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressControl.RegionBind)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -45,12 +45,18 @@ namespace ipsAnketaClient
         /// <param name="data"></param>
         public void SetGridDataSource(object dataSource)
         {
-            
             if (dataSource!=null)
+            {
+                rGridViewInstitution.DataSource = new List<ClnBusinessPlace>
+                {
+                    new ClnBusinessPlace()
+                };
                 rGridViewInstitution.DataSource = dataSource;
-            rGridViewInstitution.MasterTemplate.Refresh();
-            
+            }
 
+            rGridViewInstitution.Update();
+            rGridViewInstitution.MasterTemplate.Refresh();
+            rGridViewInstitution.Refresh();
         }
 
         /// <summary>
@@ -319,6 +325,8 @@ namespace ipsAnketaClient
         private void EditPremises_OnUpdateData()
         {
             var editdata = data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
+            premisesType.SetDataSource(data,IdItemOfSelectRow);
+            premisesType.RefreshGrid();
         }
 
         #endregion
@@ -397,13 +405,13 @@ namespace ipsAnketaClient
         {
             typePlace = new TypePlace
             {
-                CodeI = 3,
+                CodeI = 4,
                 Name = "Нічні клуби/Платний вхід",
                 ClnBusinessPlace = null,
                 TypePlaceTr = new List<TypePlaceTr> {
-                    new TypePlaceTr{ CodeI = 3, Name = "Night clubs/Paid entrance", Lang = "En" },
-                    new TypePlaceTr{ CodeI = 3, Name = "Ночные клубы/Платный вход", Lang = "Ru" },
-                    new TypePlaceTr{ CodeI = 3, Name = "Нічні клуби/Платний вхід", Lang = "Uk" } }
+                    new TypePlaceTr{ CodeI = 4, Name = "Night clubs/Paid entrance", Lang = "En" },
+                    new TypePlaceTr{ CodeI = 4, Name = "Ночные клубы/Платный вход", Lang = "Ru" },
+                    new TypePlaceTr{ CodeI = 4, Name = "Нічні клуби/Платний вхід", Lang = "Uk" } }
             };
             rTxtBoxTypeInst.Text = rBtnAddNightClub.Text;
             rPanelAdd.Visible = true;
@@ -422,15 +430,15 @@ namespace ipsAnketaClient
         {
             typePlace = new TypePlace
             {
-                CodeI = 4,
+                CodeI = 3,
                 Name = "Нічні клуби/Безкоштовний вхід",
                 ClnBusinessPlace = null,
                 TypePlaceTr = new List<TypePlaceTr> {
-                    new TypePlaceTr{ CodeI = 4, Name = "Night clubs/Free entrance", Lang = "En" },
-                    new TypePlaceTr{ CodeI = 4, Name = "Ночные клубы/Бесплатный вход", Lang = "Ru" },
-                    new TypePlaceTr{ CodeI = 4, Name = "Нічні клуби/Безкоштовний вхід", Lang = "Uk" } }
+                    new TypePlaceTr{ CodeI = 3, Name = "Night clubs/Free entrance", Lang = "En" },
+                    new TypePlaceTr{ CodeI = 3, Name = "Ночные клубы/Бесплатный вход", Lang = "Ru" },
+                    new TypePlaceTr{ CodeI = 3, Name = "Нічні клуби/Безкоштовний вхід", Lang = "Uk" } }
             };
-            rTxtBoxTypeInst.Text = rBtnAddNightClub.Text;
+            rTxtBoxTypeInst.Text = rBtnAddNightClubFree.Text;
             rPanelAdd.Visible = true;
             rTxtBoxCountOrMeters.Visible = true;
             lblLocation.Visible = true;
@@ -516,6 +524,15 @@ namespace ipsAnketaClient
                     premisesType.SetDataSource(data, IdItemOfSelectRow);
 
                 }
+                else if (typePlace.CodeI > 2)
+                {
+                    var countOrMeters = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
+                    var count = countOrMeters?.Select(item => item.HollNum).FirstOrDefault();
+                    rTxtBoxCountOrMeters.Text = count != null ? count.ToString() : countOrMeters?.Select(item => item.SqHoll).SingleOrDefault().ToString();
+                    lblLocation.Text = count!=null? "Кількість місць" : "Метраж";
+                    rTxtBoxCountOrMeters.Visible = true;
+                    lblLocation.Visible = true;
+                }
 
             rTxtBoxNameInst.Text = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlaceName).SingleOrDefault();
             var type = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlCodeNavigation).SingleOrDefault();
@@ -545,7 +562,7 @@ namespace ipsAnketaClient
             {
                 var newInst = new ClnBusinessPlace
                 {
-                    //PlaceId = 0, //id елемента, null?
+                    //PlaceId = 100, //id елемента, null?
                     CustId = data.Client.CustId,
                     PlCode = typePlace.CodeI, //код типу закладу,
                     PlaceName = rTxtBoxNameInst.Text,
@@ -565,7 +582,7 @@ namespace ipsAnketaClient
                     } //приміщення: IsNeedPremissesType-treu якщо з приміщеннями
                 };
 
-                data.Client.ClnBusinessPlace.Add(newInst);
+                 data.Client.ClnBusinessPlace.Add(newInst);
             }
             else // існуючий заклад
             {
@@ -577,22 +594,22 @@ namespace ipsAnketaClient
                     item.PlaceRegion = addressControl.RegionCode;
                     item.PlaceCity = addressControl.TownName;
                     item.PlaceAddress = addressControl.StreetName;
+                    var place = item.ClnPlaceHoll.SingleOrDefault();
+                    if (place != null)
+                    {
+                        place.HollNum = lblLocation.Text == "Кількість місць" ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null;
+                        place.SqHoll = lblLocation.Text == "Метраж" ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null;
+                    }
+                    
                 }
             }
-
-            var v = data.Client.ClnBusinessPlace;
 
             // * * * ЗБЕРЕЖЕННЯ ДАНИХ
 
-            if (true)
-            {
-                if (MessageBox.Show("Зберегти дані?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    SetDefaultState();
-                    SetGridDataSource(data.Client.ClnBusinessPlace);
-                    //some code
-                }
-            }
+            SetDefaultState();
+            //var v = data.Client.ClnBusinessPlace;
+            //some code
+
         }
 
         /// <summary>
