@@ -127,6 +127,8 @@
             this.btnSaveRightholder = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
+            this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
+            this.mainPageViewDistribution = new Telerik.WinControls.UI.RadPageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
@@ -231,6 +233,8 @@
             // MainPageView
             // 
             this.MainPageView.Controls.Add(this.mainPageRightholders);
+            this.MainPageView.Controls.Add(this.mainPageRightsObjects);
+            this.MainPageView.Controls.Add(this.mainPageViewDistribution);
             this.MainPageView.DefaultPage = this.mainPageRightholders;
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
@@ -1064,7 +1068,6 @@
             // 
             this.createRightholderInternalPasportPage.Controls.Add(this.radLabel6);
             this.createRightholderInternalPasportPage.Controls.Add(this.ctrlInternalPassport);
-            this.createRightholderInternalPasportPage.ItemSize = new System.Drawing.SizeF(26F, 209F);
             this.createRightholderInternalPasportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderInternalPasportPage.Name = "createRightholderInternalPasportPage";
             this.createRightholderInternalPasportPage.Size = new System.Drawing.Size(777, 468);
@@ -1092,7 +1095,6 @@
             // createRightholderForeignPassportPage
             // 
             this.createRightholderForeignPassportPage.Controls.Add(this.radLabel7);
-            this.createRightholderForeignPassportPage.ItemSize = new System.Drawing.SizeF(26F, 215F);
             this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
             this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(777, 468);
@@ -1582,6 +1584,22 @@
             this.btnSaveRightholder.ThemeName = "Aqua";
             this.btnSaveRightholder.Click += new System.EventHandler(this.btnSaveRightholder_Click);
             // 
+            // mainPageRightsObjects
+            // 
+            this.mainPageRightsObjects.ItemSize = new System.Drawing.SizeF(91F, 26F);
+            this.mainPageRightsObjects.Location = new System.Drawing.Point(10, 35);
+            this.mainPageRightsObjects.Name = "mainPageRightsObjects";
+            this.mainPageRightsObjects.Size = new System.Drawing.Size(1171, 622);
+            this.mainPageRightsObjects.Text = "Об\'єкти права";
+            // 
+            // mainPageViewDistribution
+            // 
+            this.mainPageViewDistribution.ItemSize = new System.Drawing.SizeF(122F, 26F);
+            this.mainPageViewDistribution.Location = new System.Drawing.Point(10, 35);
+            this.mainPageViewDistribution.Name = "mainPageViewDistribution";
+            this.mainPageViewDistribution.Size = new System.Drawing.Size(1171, 622);
+            this.mainPageViewDistribution.Text = "Відомості розподілу";
+            // 
             // RightholderWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1794,5 +1812,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.BindingSource agreementMasterBindingSource;
+        private Telerik.WinControls.UI.RadPageViewPage mainPageRightsObjects;
+        private Telerik.WinControls.UI.RadPageViewPage mainPageViewDistribution;
     }
 }
