@@ -264,7 +264,7 @@ namespace RightholderWorkplace
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
-            _customer = NewCustomer(1);//3 - юр.
+            _customer = NewCustomer(1);//3 - юр. 
 
             UpdateDataSources();
 
