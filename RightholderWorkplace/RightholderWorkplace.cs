@@ -229,17 +229,6 @@ namespace RightholderWorkplace
             }
         }
 
-        private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            ////TODO: move to selected value changed event
-            //if (ddlTypeMethodGet.SelectedIndex == 0)
-            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyCashPage;
-            //else if (ddlTypeMethodGet.SelectedIndex == 1)
-            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyBankPage;
-            //else if (ddlTypeMethodGet.SelectedIndex == 2 || ddlTypeMethodGet.SelectedIndex == 3)
-            //    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
-        }
-
         private void ddlTypeMethodGet_SelectedValueChanged(object sender, EventArgs e)
         {
             if (ddlTypeMethodGet.SelectedValue is int)
@@ -290,6 +279,11 @@ namespace RightholderWorkplace
             UpdateDataSources();
             //SetDataSources();
             //SetConsumerPageView();
+
+            for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
+            {
+                newCreateRightholderPageView.Pages[i].Enabled = true;
+            }
 
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
             newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;

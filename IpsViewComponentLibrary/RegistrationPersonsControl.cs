@@ -20,7 +20,16 @@ namespace IpsViewComponentLibrary
         public object DataSource
         {
             get => iAnketaPersonBindingSource.DataSource;
-            set => iAnketaPersonBindingSource.DataSource = value;
+            set
+            {
+                iAnketaPersonBindingSource.DataSource = value;
+
+                rDropListCitizenship.DataBindings.Clear();
+                rDropListCitizenship.DataBindings.Add("SelectedValue", iAnketaPersonBindingSource, "Citizenship", true);
+
+                rDropDownListResidency.DataBindings.Clear();
+                rDropDownListResidency.DataBindings.Add("SelectedValue", iAnketaPersonBindingSource, "Residency", true);
+            }
         }
 
         #region Resident type dictionary

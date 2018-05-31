@@ -49,19 +49,18 @@
             // 
             // rdtPickerPasportIssuedWhen
             // 
-            this.rdtPickerPasportIssuedWhen.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "PUissuedWhen", true));
-            this.rdtPickerPasportIssuedWhen.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAnketaPersonBindingSource, "PUissuedWhen", true));
+            this.rdtPickerPasportIssuedWhen.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAnketaPersonBindingSource, "PUissuedWhen", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.rdtPickerPasportIssuedWhen.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerPasportIssuedWhen.Location = new System.Drawing.Point(99, 71);
             this.rdtPickerPasportIssuedWhen.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.rdtPickerPasportIssuedWhen.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerPasportIssuedWhen.Name = "rdtPickerPasportIssuedWhen";
-            this.rdtPickerPasportIssuedWhen.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.rdtPickerPasportIssuedWhen.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerPasportIssuedWhen.NullText = "Оберіть дату";
             this.rdtPickerPasportIssuedWhen.Size = new System.Drawing.Size(127, 20);
             this.rdtPickerPasportIssuedWhen.TabIndex = 3;
             this.rdtPickerPasportIssuedWhen.TabStop = false;
-            this.rdtPickerPasportIssuedWhen.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.rdtPickerPasportIssuedWhen.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // iAnketaPersonBindingSource
             // 
