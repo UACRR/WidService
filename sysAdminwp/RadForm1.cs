@@ -21,7 +21,7 @@ namespace sysAdminwp
 {
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
-        private readonly ApiConnector connector = new ApiConnector("http://localhost:54867/");
+        private readonly ApiConnector connector = new ApiConnector();
         private List<DictBaseTypeI> list;
         private List<ViewTable> view;
         public string Url { get; set; }

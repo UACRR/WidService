@@ -9,7 +9,7 @@ namespace ipsFormsDesign.Services
 {
     public class ConsumerService : IConsumerService
     {
-        private ApiConnector _webApi = new ApiConnector("http://localhost:54867/api/");
+        private ApiConnector _webApi = new ApiConnector();
         public Customer GetData(int custId)
         {
             var anketaDic = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString() );

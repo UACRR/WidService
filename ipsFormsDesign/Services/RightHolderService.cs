@@ -9,7 +9,7 @@ namespace ipsFormsDesign.Services
 {
     public class RightholderService : IRightHolderService
     {
-        private ApiConnector _webApi = new ApiConnector("http://localhost:54867/api/");
+        private ApiConnector _webApi = new ApiConnector();
 
         public Customer GetData(int custId)
         {
