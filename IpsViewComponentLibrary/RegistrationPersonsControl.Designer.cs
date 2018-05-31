@@ -86,7 +86,6 @@
             // 
             // rDropDownListResidency
             // 
-            this.rDropDownListResidency.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaPersonBindingSource, "Residency", true));
             this.rDropDownListResidency.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.rDropDownListResidency.Location = new System.Drawing.Point(289, 28);
             this.rDropDownListResidency.Name = "rDropDownListResidency";
