@@ -108,7 +108,7 @@ namespace ipsmedserviceapp.Controllers
                 places = dest.Client.ClnBusinessPlace.Where(rec => updCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
                 places.ForEach(item => {
                     var sorsItem = updCustomer.Client.ClnBusinessPlace.Where(rec => item.PlaceId == rec.PlaceId).SingleOrDefault();
-                    _dbContext.UpdateList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.PlaceId == r.PlaceId);
+                    _dbContext.UpdateList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.HollId == r.HollId);
                     item.SetFields(sorsItem);
                 });
                 places = updCustomer.Client.ClnBusinessPlace.Where(rec => !dest.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
