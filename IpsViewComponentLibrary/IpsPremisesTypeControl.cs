@@ -141,6 +141,11 @@ namespace IpsViewComponentLibrary
             }
             return list;
         }
+
+        public void RefreshGrid()
+        {
+            rGridViewPremises.MasterTemplate.Refresh();
+        }
     }
 
     internal class PremisesInstitution

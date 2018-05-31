@@ -439,10 +439,15 @@ namespace ConsumerWorkplace_v_1._0
                 else
                     placesCtrlConsumerPlaces.SetGridDataSource(new List<ClnBusinessPlace>());
 
+                //placesCtrlConsumerPlaces.RegionsPlacesCtrlDataSource = _dic.region;
+                //placesCtrlConsumerPlaces.RegionsPlacesCtrlDisplayMember = "name";
+                //placesCtrlConsumerPlaces.RegionsPlacesCtrlValueMember = "codeI";
+                //var regionId = _cust.Client?.ClnBusinessPlace?.FirstOrDefault();
+                //if(regionId!=null)
+                //    placesCtrlConsumerPlaces.RegionSelectedValue = regionId.PlaceRegion;
 
-               
                 //managersRddListPositionHead.DataSource
-                ;
+                
 
             }
         }
@@ -459,6 +464,8 @@ namespace ConsumerWorkplace_v_1._0
             if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
             {
                 SetTitleText();
+                if(pageAllAnketa.SelectedPage.TabIndex == 4)
+                    placesCtrlConsumerPlaces.ClearData();
                 if (!clientNameCheckBoxPlaces.IsChecked && e.Page.TabIndex == 4)
                 {
                     e.Cancel = true;

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -69,7 +70,7 @@ namespace IpsViewComponentLibrary
             else
                 lblTown.ForeColor = Color.Black;
 
-            if (rDropListRegion.SelectedItem == null||rDropListRegion.SelectedItem.Index == 0)
+            if (rDropListRegion.SelectedItem == null)
             {
                 lblRegion.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 valid = false;
@@ -103,9 +104,9 @@ namespace IpsViewComponentLibrary
         {
            _nameTown = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item => item.PlaceCity).SingleOrDefault();
            _regionCode = (int)data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item=>item.PlaceRegion).SingleOrDefault();
-            rDropListRegion.SelectedIndex = _regionCode;
-            _nameRegion = rDropListRegion.SelectedItem.Text;
-            _streetAddress = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item => item.PlaceAddress).SingleOrDefault();
+           rDropListRegion.SelectedIndex = _regionCode;
+           _nameRegion = rDropListRegion.SelectedItem.Text;
+           _streetAddress = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == id).Select(item => item.PlaceAddress).SingleOrDefault();
 
 
             //_nubmerBuild;
@@ -120,5 +121,49 @@ namespace IpsViewComponentLibrary
             _regionCode = rDropListRegion.SelectedItem.Index;
             _nameRegion = rDropListRegion.SelectedItem.Text;
         }
+
+        #region Region dictionary
+
+        [Category("Dictionaries")]
+        [AttributeProvider(typeof(IListSource))]
+        public object RegionsPlacesCtrlDataSource
+        {
+            get => rDropListRegion.DataSource;
+            set
+            {
+                if (rDropListRegion.DataSource != value)
+                    rDropListRegion.DataSource = value;
+            }
+        }
+
+        [Category("Dictionaries")]
+        public string RegionsPlacesCtrlDataMember
+        {
+            get => rDropListRegion.DataMember;
+            set => rDropListRegion.DataMember = value;
+        }
+
+        [Category("Dictionaries")]
+        public string RegionsPlacesCtrlDisplayMember
+        {
+            get => rDropListRegion.DisplayMember;
+            set => rDropListRegion.DisplayMember = value;
+        }
+
+        [Category("Dictionaries")]
+        public string RegionsPlacesCtrlValueMember
+        {
+            get => rDropListRegion.ValueMember;
+            set => rDropListRegion.ValueMember = value;
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadDropDownList RegionBind
+        {
+            get => rDropListRegion;
+        } 
+
+        #endregion
+
     }
 }

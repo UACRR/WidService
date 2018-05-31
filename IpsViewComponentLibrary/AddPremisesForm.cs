@@ -94,7 +94,7 @@ namespace ipsAnketaClient
                     OnInsertData?.Invoke();
                     
                 }
-                if (MessageBox.Show("Дані додано!","",MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
+                //if (MessageBox.Show("Дані додано!","",MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
                     Close();
             }
         }

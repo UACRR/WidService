@@ -54,8 +54,6 @@
             Telerik.WinControls.UI.RadListDataItem radListDataItem24 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem25 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem26 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem27 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem28 = new Telerik.WinControls.UI.RadListDataItem();
             this.rTxtBoxTownName = new Telerik.WinControls.UI.RadTextBox();
             this.rLblMainHeader = new Telerik.WinControls.UI.RadLabel();
             this.lblTown = new Telerik.WinControls.UI.RadLabel();
@@ -78,9 +76,9 @@
             // 
             this.rTxtBoxTownName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rTxtBoxTownName.Location = new System.Drawing.Point(123, 37);
+            this.rTxtBoxTownName.Location = new System.Drawing.Point(352, 37);
             this.rTxtBoxTownName.Name = "rTxtBoxTownName";
-            this.rTxtBoxTownName.Size = new System.Drawing.Size(258, 20);
+            this.rTxtBoxTownName.Size = new System.Drawing.Size(153, 20);
             this.rTxtBoxTownName.TabIndex = 0;
             // 
             // rLblMainHeader
@@ -97,7 +95,7 @@
             // 
             this.lblTown.AutoSize = false;
             this.lblTown.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblTown.Location = new System.Drawing.Point(27, 39);
+            this.lblTown.Location = new System.Drawing.Point(256, 39);
             this.lblTown.Name = "lblTown";
             this.lblTown.Size = new System.Drawing.Size(90, 17);
             this.lblTown.TabIndex = 0;
@@ -105,55 +103,53 @@
             // 
             // lblRegion
             // 
-            this.lblRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRegion.Location = new System.Drawing.Point(387, 38);
+            this.lblRegion.AutoSize = false;
+            this.lblRegion.Location = new System.Drawing.Point(4, 39);
             this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(49, 18);
+            this.lblRegion.Size = new System.Drawing.Size(60, 17);
             this.lblRegion.TabIndex = 1;
             this.lblRegion.Text = "Область";
+            this.lblRegion.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblStreet
             // 
             this.lblStreet.AutoSize = false;
-            this.lblStreet.Location = new System.Drawing.Point(27, 64);
+            this.lblStreet.Location = new System.Drawing.Point(4, 66);
             this.lblStreet.Name = "lblStreet";
-            this.lblStreet.Size = new System.Drawing.Size(90, 17);
+            this.lblStreet.Size = new System.Drawing.Size(60, 17);
             this.lblStreet.TabIndex = 2;
             this.lblStreet.Text = "Вулиця";
             this.lblStreet.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // rDropListRegion
             // 
-            this.rDropListRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rDropListRegion.DropDownMinSize = new System.Drawing.Size(0, 200);
             this.rDropListRegion.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem2.Text = "Одеська";
-            radListDataItem3.Text = "Дніпропетровська";
-            radListDataItem4.Text = "Чернігівська";
-            radListDataItem5.Text = "Харківська";
+            radListDataItem2.Text = "Вінницька";
+            radListDataItem3.Text = "Волинська";
+            radListDataItem4.Text = "Дніпропетровська";
+            radListDataItem5.Text = "Донецька";
             radListDataItem6.Text = "Житомирська";
-            radListDataItem7.Text = "Полтавська";
-            radListDataItem8.Text = "Херсонська";
-            radListDataItem9.Text = "Київська";
-            radListDataItem10.Text = "Запорізька";
-            radListDataItem11.Text = "Луганська";
-            radListDataItem12.Text = "Донецька";
-            radListDataItem13.Text = "Вінницька";
-            radListDataItem14.Text = "АРК";
-            radListDataItem15.Text = "Миколаївська";
-            radListDataItem16.Text = "Кіровоградська";
-            radListDataItem17.Text = "Сумська";
-            radListDataItem18.Text = "Львівська";
-            radListDataItem19.Text = "Черкаська";
-            radListDataItem20.Text = "Хмельницька";
-            radListDataItem21.Text = "Волинська";
-            radListDataItem22.Text = "Рівненська";
-            radListDataItem23.Text = "Івано-Франківська";
-            radListDataItem24.Text = "Тернопільська";
-            radListDataItem25.Text = "Закарпатська";
-            radListDataItem26.Text = "Чернівецька";
-            radListDataItem27.Text = "м. Севастополь";
-            radListDataItem28.Text = "м. Київ";
+            radListDataItem7.Text = "Закарпатська";
+            radListDataItem8.Text = "Запорізька";
+            radListDataItem9.Text = "Івано-Франківська";
+            radListDataItem10.Text = "Київська";
+            radListDataItem11.Text = "Кіровоградська";
+            radListDataItem12.Text = "Луганська";
+            radListDataItem13.Text = "Львівська";
+            radListDataItem14.Text = "Миколаївська";
+            radListDataItem15.Text = "Одеська";
+            radListDataItem16.Text = "Полтавська";
+            radListDataItem17.Text = "Рівненська";
+            radListDataItem18.Text = "Сумська";
+            radListDataItem19.Text = "Тернопільська";
+            radListDataItem20.Text = "Харківська";
+            radListDataItem21.Text = "Херсонська";
+            radListDataItem22.Text = "Хмельницька";
+            radListDataItem23.Text = "Черкаська";
+            radListDataItem24.Text = "Чернівецька";
+            radListDataItem25.Text = "Чернігівська";
+            radListDataItem26.Text = "м. Київ";
             this.rDropListRegion.Items.Add(radListDataItem1);
             this.rDropListRegion.Items.Add(radListDataItem2);
             this.rDropListRegion.Items.Add(radListDataItem3);
@@ -180,12 +176,10 @@
             this.rDropListRegion.Items.Add(radListDataItem24);
             this.rDropListRegion.Items.Add(radListDataItem25);
             this.rDropListRegion.Items.Add(radListDataItem26);
-            this.rDropListRegion.Items.Add(radListDataItem27);
-            this.rDropListRegion.Items.Add(radListDataItem28);
-            this.rDropListRegion.Location = new System.Drawing.Point(442, 38);
+            this.rDropListRegion.Location = new System.Drawing.Point(69, 37);
             this.rDropListRegion.Name = "rDropListRegion";
             this.rDropListRegion.NullText = "Оберіть область";
-            this.rDropListRegion.Size = new System.Drawing.Size(209, 20);
+            this.rDropListRegion.Size = new System.Drawing.Size(181, 20);
             this.rDropListRegion.TabIndex = 1;
             this.rDropListRegion.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rDropListRegion_SelectedIndexChanged);
             // 
@@ -193,10 +187,10 @@
             // 
             this.rTxtBoxNameStreet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rTxtBoxNameStreet.Location = new System.Drawing.Point(123, 62);
+            this.rTxtBoxNameStreet.Location = new System.Drawing.Point(69, 64);
             this.rTxtBoxNameStreet.Name = "rTxtBoxNameStreet";
             this.rTxtBoxNameStreet.NullText = " Назва вулиці / № будинку ";
-            this.rTxtBoxNameStreet.Size = new System.Drawing.Size(528, 20);
+            this.rTxtBoxNameStreet.Size = new System.Drawing.Size(436, 20);
             this.rTxtBoxNameStreet.TabIndex = 2;
             // 
             // radSeparator1
@@ -205,7 +199,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(156, 3);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(499, 30);
+            this.radSeparator1.Size = new System.Drawing.Size(349, 30);
             this.radSeparator1.TabIndex = 0;
             // 
             // IpsAddressExpandedControl
@@ -220,8 +214,10 @@
             this.Controls.Add(this.lblTown);
             this.Controls.Add(this.rLblMainHeader);
             this.Controls.Add(this.rTxtBoxTownName);
+            this.MaximumSize = new System.Drawing.Size(662, 89);
+            this.MinimumSize = new System.Drawing.Size(400, 89);
             this.Name = "IpsAddressExpandedControl";
-            this.Size = new System.Drawing.Size(662, 89);
+            this.Size = new System.Drawing.Size(512, 89);
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxTownName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblMainHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTown)).EndInit();
