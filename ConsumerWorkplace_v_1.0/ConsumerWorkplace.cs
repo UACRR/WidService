@@ -465,7 +465,7 @@ namespace ConsumerWorkplace_v_1._0
             {
                 SetTitleText();
                 if(pageAllAnketa.SelectedPage.TabIndex == 4)
-                    placesCtrlConsumerPlaces.ClearData();
+                    //placesCtrlConsumerPlaces.ClearData();
                 if (!clientNameCheckBoxPlaces.IsChecked && e.Page.TabIndex == 4)
                 {
                     e.Cancel = true;

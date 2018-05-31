@@ -161,7 +161,13 @@ namespace ipsAnketaClient
         private void SetEditData()
         {
             rtxtBoxTypePremisses.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item =>item.HollName).SingleOrDefault();
-            rtxtBoxMetersPlaces.Text = _data.Where(idItem=>idItem.HollId == _idEditItem).Select(item=>item.HollNum).SingleOrDefault().ToString();
+            var numeric = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.HollNum).SingleOrDefault();
+            if(numeric != 0)
+                rtxtBoxMetersPlaces.Text = _data.Where(idItem=>idItem.HollId == _idEditItem).Select(item=>item.HollNum).SingleOrDefault().ToString();
+            else
+                rtxtBoxMetersPlaces.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.SqHoll).SingleOrDefault().ToString();
+
+
         }
 
         public List<ClnPlaceHoll> DataFotInsert()
