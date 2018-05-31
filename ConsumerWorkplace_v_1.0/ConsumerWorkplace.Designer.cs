@@ -56,11 +56,11 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvConsumerLicenseType = new Telerik.WinControls.UI.RadPageViewPage();
+            this.lblTabLicenseTypeClientName = new Telerik.WinControls.UI.RadLabel();
             this.licenseTypeDropListLicType = new Telerik.WinControls.UI.RadDropDownList();
             this.iLicenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgrLicenseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.lblTabLicenseTypeClientName = new Telerik.WinControls.UI.RadLabel();
             this.rbtnBackClientName = new Telerik.WinControls.UI.RadButton();
             this.rbtnNextAnketa = new Telerik.WinControls.UI.RadButton();
             this.licenseTypeCtrlContractConsumerDetail = new IpsViewComponentLibrary.ContractConsumerDetailControl();
@@ -154,11 +154,11 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).BeginInit();
             this.pvConsumerLicenseType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseTypeDropListLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
@@ -298,10 +298,10 @@ namespace ConsumerWorkplace_v_1._0
             // rpwsrPageConsumers
             // 
             this.rpwsrPageConsumers.Controls.Add(this.rpvConsumers);
-            this.rpwsrPageConsumers.ItemSize = new System.Drawing.SizeF(115F, 26F);
-            this.rpwsrPageConsumers.Location = new System.Drawing.Point(124, 10);
+            this.rpwsrPageConsumers.ItemSize = new System.Drawing.SizeF(113F, 26F);
+            this.rpwsrPageConsumers.Location = new System.Drawing.Point(122, 10);
             this.rpwsrPageConsumers.Name = "rpwsrPageConsumers";
-            this.rpwsrPageConsumers.Size = new System.Drawing.Size(1119, 609);
+            this.rpwsrPageConsumers.Size = new System.Drawing.Size(1121, 609);
             this.rpwsrPageConsumers.Text = "Споживачі";
             // 
             // rpvConsumers
@@ -321,8 +321,8 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
-            this.rpvConsumers.SelectedPage = this.pageConsumersAnketa;
-            this.rpvConsumers.Size = new System.Drawing.Size(1129, 609);
+            this.rpvConsumers.SelectedPage = this.pageConsumersGrid;
+            this.rpvConsumers.Size = new System.Drawing.Size(1121, 609);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rpvConsumers.GetChildAt(0))).ShowItemPinButton = false;
@@ -346,14 +346,14 @@ namespace ConsumerWorkplace_v_1._0
             this.pageConsumersAnketa.ItemSize = new System.Drawing.SizeF(12F, 298F);
             this.pageConsumersAnketa.Location = new System.Drawing.Point(21, 10);
             this.pageConsumersAnketa.Name = "pageConsumersAnketa";
-            this.pageConsumersAnketa.Size = new System.Drawing.Size(1097, 588);
+            this.pageConsumersAnketa.Size = new System.Drawing.Size(1087, 588);
             // 
             // lblConsumerTitle
             // 
             this.lblConsumerTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblConsumerTitle.AutoSize = false;
             this.lblConsumerTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblConsumerTitle.Location = new System.Drawing.Point(357, 3);
+            this.lblConsumerTitle.Location = new System.Drawing.Point(352, 3);
             this.lblConsumerTitle.Name = "lblConsumerTitle";
             this.lblConsumerTitle.Size = new System.Drawing.Size(396, 18);
             this.lblConsumerTitle.TabIndex = 0;
@@ -382,7 +382,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
             this.pageAllAnketa.SelectionWrap = false;
-            this.pageAllAnketa.Size = new System.Drawing.Size(1097, 529);
+            this.pageAllAnketa.Size = new System.Drawing.Size(1087, 529);
             this.pageAllAnketa.TabIndex = 0;
             this.pageAllAnketa.ThemeName = "Office2007Silver";
             this.pageAllAnketa.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.pageAllAnketa_SelectedPageChanging);
@@ -410,14 +410,14 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerClientName.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerClientName.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerClientName.Name = "pvConsumerClientName";
-            this.pvConsumerClientName.Size = new System.Drawing.Size(953, 508);
+            this.pvConsumerClientName.Size = new System.Drawing.Size(943, 508);
             this.pvConsumerClientName.TabStop = true;
             this.pvConsumerClientName.Text = "Назва клієнта";
             // 
             // rbtnNextLicType
             // 
             this.rbtnNextLicType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextLicType.Location = new System.Drawing.Point(767, 481);
+            this.rbtnNextLicType.Location = new System.Drawing.Point(757, 481);
             this.rbtnNextLicType.Name = "rbtnNextLicType";
             this.rbtnNextLicType.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextLicType.TabIndex = 3;
@@ -552,9 +552,9 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // pvConsumerLicenseType
             // 
+            this.pvConsumerLicenseType.Controls.Add(this.lblTabLicenseTypeClientName);
             this.pvConsumerLicenseType.Controls.Add(this.licenseTypeDropListLicType);
             this.pvConsumerLicenseType.Controls.Add(this.radLabel1);
-            this.pvConsumerLicenseType.Controls.Add(this.lblTabLicenseTypeClientName);
             this.pvConsumerLicenseType.Controls.Add(this.rbtnBackClientName);
             this.pvConsumerLicenseType.Controls.Add(this.rbtnNextAnketa);
             this.pvConsumerLicenseType.Controls.Add(this.licenseTypeCtrlContractConsumerDetail);
@@ -562,8 +562,17 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerLicenseType.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerLicenseType.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerLicenseType.Name = "pvConsumerLicenseType";
-            this.pvConsumerLicenseType.Size = new System.Drawing.Size(948, 506);
+            this.pvConsumerLicenseType.Size = new System.Drawing.Size(943, 508);
             this.pvConsumerLicenseType.Text = "Тип ліцензії";
+            // 
+            // lblTabLicenseTypeClientName
+            // 
+            this.lblTabLicenseTypeClientName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblTabLicenseTypeClientName.Location = new System.Drawing.Point(79, 6);
+            this.lblTabLicenseTypeClientName.Name = "lblTabLicenseTypeClientName";
+            this.lblTabLicenseTypeClientName.Size = new System.Drawing.Size(114, 22);
+            this.lblTabLicenseTypeClientName.TabIndex = 7;
+            this.lblTabLicenseTypeClientName.Text = "Client \"Name\"";
             // 
             // licenseTypeDropListLicType
             // 
@@ -591,19 +600,10 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel1.TabIndex = 10;
             this.radLabel1.Text = "Тип ліцензії";
             // 
-            // lblTabLicenseTypeClientName
-            // 
-            this.lblTabLicenseTypeClientName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTabLicenseTypeClientName.Location = new System.Drawing.Point(79, 6);
-            this.lblTabLicenseTypeClientName.Name = "lblTabLicenseTypeClientName";
-            this.lblTabLicenseTypeClientName.Size = new System.Drawing.Size(114, 22);
-            this.lblTabLicenseTypeClientName.TabIndex = 7;
-            this.lblTabLicenseTypeClientName.Text = "Client \"Name\"";
-            // 
             // rbtnBackClientName
             // 
             this.rbtnBackClientName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackClientName.Location = new System.Drawing.Point(589, 479);
+            this.rbtnBackClientName.Location = new System.Drawing.Point(584, 481);
             this.rbtnBackClientName.Name = "rbtnBackClientName";
             this.rbtnBackClientName.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackClientName.TabIndex = 5;
@@ -614,7 +614,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnNextAnketa
             // 
             this.rbtnNextAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextAnketa.Location = new System.Drawing.Point(770, 479);
+            this.rbtnNextAnketa.Location = new System.Drawing.Point(765, 481);
             this.rbtnNextAnketa.Name = "rbtnNextAnketa";
             this.rbtnNextAnketa.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextAnketa.TabIndex = 4;
@@ -675,7 +675,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerAnketa.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerAnketa.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerAnketa.Name = "pvConsumerAnketa";
-            this.pvConsumerAnketa.Size = new System.Drawing.Size(943, 504);
+            this.pvConsumerAnketa.Size = new System.Drawing.Size(943, 508);
             this.pvConsumerAnketa.Text = "Анкета";
             // 
             // btnCopyFromJAtoFa
@@ -726,7 +726,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnBackLicType
             // 
             this.rbtnBackLicType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackLicType.Location = new System.Drawing.Point(584, 477);
+            this.rbtnBackLicType.Location = new System.Drawing.Point(584, 481);
             this.rbtnBackLicType.Name = "rbtnBackLicType";
             this.rbtnBackLicType.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackLicType.TabIndex = 7;
@@ -737,7 +737,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnNextManagers
             // 
             this.rbtnNextManagers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextManagers.Location = new System.Drawing.Point(765, 477);
+            this.rbtnNextManagers.Location = new System.Drawing.Point(765, 481);
             this.rbtnNextManagers.Name = "rbtnNextManagers";
             this.rbtnNextManagers.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextManagers.TabIndex = 6;
@@ -952,7 +952,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerManagers.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerManagers.MinimumSize = new System.Drawing.Size(700, 480);
             this.pvConsumerManagers.Name = "pvConsumerManagers";
-            this.pvConsumerManagers.Size = new System.Drawing.Size(944, 507);
+            this.pvConsumerManagers.Size = new System.Drawing.Size(943, 508);
             this.pvConsumerManagers.Text = "Керівники";
             // 
             // managersTxtBoxOnBasics
@@ -985,7 +985,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnNextPlaces
             // 
             this.rbtnNextPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextPlaces.Location = new System.Drawing.Point(766, 480);
+            this.rbtnNextPlaces.Location = new System.Drawing.Point(765, 481);
             this.rbtnNextPlaces.Name = "rbtnNextPlaces";
             this.rbtnNextPlaces.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextPlaces.TabIndex = 6;
@@ -1016,7 +1016,7 @@ namespace ConsumerWorkplace_v_1._0
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator5.Location = new System.Drawing.Point(119, 341);
             this.radSeparator5.Name = "radSeparator5";
-            this.radSeparator5.Size = new System.Drawing.Size(816, 21);
+            this.radSeparator5.Size = new System.Drawing.Size(815, 21);
             this.radSeparator5.TabIndex = 0;
             // 
             // radLabel6
@@ -1034,7 +1034,7 @@ namespace ConsumerWorkplace_v_1._0
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator4.Location = new System.Drawing.Point(119, 232);
             this.radSeparator4.Name = "radSeparator4";
-            this.radSeparator4.Size = new System.Drawing.Size(816, 21);
+            this.radSeparator4.Size = new System.Drawing.Size(815, 21);
             this.radSeparator4.TabIndex = 0;
             // 
             // radLabel5
@@ -1052,7 +1052,7 @@ namespace ConsumerWorkplace_v_1._0
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator3.Location = new System.Drawing.Point(119, 70);
             this.radSeparator3.Name = "radSeparator3";
-            this.radSeparator3.Size = new System.Drawing.Size(816, 21);
+            this.radSeparator3.Size = new System.Drawing.Size(815, 21);
             this.radSeparator3.TabIndex = 0;
             // 
             // radLabel4
@@ -1067,7 +1067,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnBackAnketa
             // 
             this.rbtnBackAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackAnketa.Location = new System.Drawing.Point(585, 480);
+            this.rbtnBackAnketa.Location = new System.Drawing.Point(584, 481);
             this.rbtnBackAnketa.Name = "rbtnBackAnketa";
             this.rbtnBackAnketa.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackAnketa.TabIndex = 5;
@@ -1347,13 +1347,13 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerPlaces.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerPlaces.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerPlaces.Name = "pvConsumerPlaces";
-            this.pvConsumerPlaces.Size = new System.Drawing.Size(943, 509);
+            this.pvConsumerPlaces.Size = new System.Drawing.Size(943, 508);
             this.pvConsumerPlaces.Text = "Майданчики";
             // 
             // rbtnNextBankRequisites
             // 
             this.rbtnNextBankRequisites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextBankRequisites.Location = new System.Drawing.Point(765, 482);
+            this.rbtnNextBankRequisites.Location = new System.Drawing.Point(765, 481);
             this.rbtnNextBankRequisites.Name = "rbtnNextBankRequisites";
             this.rbtnNextBankRequisites.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextBankRequisites.TabIndex = 2;
@@ -1364,7 +1364,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnBackManagers
             // 
             this.rbtnBackManagers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackManagers.Location = new System.Drawing.Point(584, 482);
+            this.rbtnBackManagers.Location = new System.Drawing.Point(584, 481);
             this.rbtnBackManagers.Name = "rbtnBackManagers";
             this.rbtnBackManagers.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackManagers.TabIndex = 1;
@@ -1402,9 +1402,9 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerBankRequisites.Controls.Add(this.rbtnBackPlaces);
             this.pvConsumerBankRequisites.Controls.Add(this.rbtnNextContract);
             this.pvConsumerBankRequisites.ItemSize = new System.Drawing.SizeF(124F, 26F);
-            this.pvConsumerBankRequisites.Location = new System.Drawing.Point(137, 10);
+            this.pvConsumerBankRequisites.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerBankRequisites.Name = "pvConsumerBankRequisites";
-            this.pvConsumerBankRequisites.Size = new System.Drawing.Size(953, 508);
+            this.pvConsumerBankRequisites.Size = new System.Drawing.Size(943, 508);
             this.pvConsumerBankRequisites.Text = "Банківські реквізити";
             // 
             // bankRequisitesCtrlBankAccount
@@ -1504,7 +1504,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnBackPlaces
             // 
             this.rbtnBackPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackPlaces.Location = new System.Drawing.Point(594, 481);
+            this.rbtnBackPlaces.Location = new System.Drawing.Point(584, 481);
             this.rbtnBackPlaces.Name = "rbtnBackPlaces";
             this.rbtnBackPlaces.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackPlaces.TabIndex = 1;
@@ -1515,7 +1515,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnNextContract
             // 
             this.rbtnNextContract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextContract.Location = new System.Drawing.Point(775, 481);
+            this.rbtnNextContract.Location = new System.Drawing.Point(765, 481);
             this.rbtnNextContract.Name = "rbtnNextContract";
             this.rbtnNextContract.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextContract.TabIndex = 2;
@@ -1617,7 +1617,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageConsumersGrid.ItemSize = new System.Drawing.SizeF(12F, 298F);
             this.pageConsumersGrid.Location = new System.Drawing.Point(21, 10);
             this.pageConsumersGrid.Name = "pageConsumersGrid";
-            this.pageConsumersGrid.Size = new System.Drawing.Size(1097, 588);
+            this.pageConsumersGrid.Size = new System.Drawing.Size(1089, 588);
             // 
             // radDropDownButton
             // 
@@ -1669,26 +1669,26 @@ namespace ConsumerWorkplace_v_1._0
             gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
             gridViewTextBoxColumn1.Name = "Innokpo";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 136;
+            gridViewTextBoxColumn1.Width = 135;
             gridViewTextBoxColumn2.FieldName = "name";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "Name";
-            gridViewTextBoxColumn2.Width = 561;
+            gridViewTextBoxColumn2.Width = 553;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.DataType = typeof(int);
             gridViewTextBoxColumn3.FieldName = "countAgree";
             gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
             gridViewTextBoxColumn3.Name = "CountAgree";
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn3.Width = 136;
+            gridViewTextBoxColumn3.Width = 135;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(double);
             gridViewTextBoxColumn4.FieldName = "undistribamount";
             gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn4.Name = "Undistribamount";
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 155;
+            gridViewTextBoxColumn4.Width = 152;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "custId";
@@ -1716,7 +1716,7 @@ namespace ConsumerWorkplace_v_1._0
             this.rGridViewConsumers.Name = "rGridViewConsumers";
             this.rGridViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewConsumers.ReadOnly = true;
-            this.rGridViewConsumers.Size = new System.Drawing.Size(1102, 551);
+            this.rGridViewConsumers.Size = new System.Drawing.Size(1089, 551);
             this.rGridViewConsumers.TabIndex = 2;
             this.rGridViewConsumers.ThemeName = "Office2007Silver";
             this.rGridViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
@@ -1727,26 +1727,26 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // rpwsrPageProfilesContracts
             // 
-            this.rpwsrPageProfilesContracts.ItemSize = new System.Drawing.SizeF(115F, 26F);
-            this.rpwsrPageProfilesContracts.Location = new System.Drawing.Point(124, 10);
+            this.rpwsrPageProfilesContracts.ItemSize = new System.Drawing.SizeF(113F, 26F);
+            this.rpwsrPageProfilesContracts.Location = new System.Drawing.Point(122, 10);
             this.rpwsrPageProfilesContracts.Name = "rpwsrPageProfilesContracts";
-            this.rpwsrPageProfilesContracts.Size = new System.Drawing.Size(1120, 615);
+            this.rpwsrPageProfilesContracts.Size = new System.Drawing.Size(1121, 609);
             this.rpwsrPageProfilesContracts.Text = "Анкети / Договора";
             // 
             // rpwsrPageRepresentatives
             // 
-            this.rpwsrPageRepresentatives.ItemSize = new System.Drawing.SizeF(115F, 26F);
-            this.rpwsrPageRepresentatives.Location = new System.Drawing.Point(124, 10);
+            this.rpwsrPageRepresentatives.ItemSize = new System.Drawing.SizeF(113F, 26F);
+            this.rpwsrPageRepresentatives.Location = new System.Drawing.Point(122, 10);
             this.rpwsrPageRepresentatives.Name = "rpwsrPageRepresentatives";
-            this.rpwsrPageRepresentatives.Size = new System.Drawing.Size(1191, 605);
-            this.rpwsrPageRepresentatives.Text = "Представники (25)";
+            this.rpwsrPageRepresentatives.Size = new System.Drawing.Size(1121, 609);
+            this.rpwsrPageRepresentatives.Text = "Представники";
             // 
             // rMainPageBigRights
             // 
             this.rMainPageBigRights.ItemSize = new System.Drawing.SizeF(85F, 26F);
             this.rMainPageBigRights.Location = new System.Drawing.Point(10, 35);
             this.rMainPageBigRights.Name = "rMainPageBigRights";
-            this.rMainPageBigRights.Size = new System.Drawing.Size(1325, 625);
+            this.rMainPageBigRights.Size = new System.Drawing.Size(1254, 625);
             this.rMainPageBigRights.Text = "Великі права";
             // 
             // iTypeVatBindingSource
@@ -1792,11 +1792,11 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).EndInit();
             this.pvConsumerLicenseType.ResumeLayout(false);
             this.pvConsumerLicenseType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseTypeDropListLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();

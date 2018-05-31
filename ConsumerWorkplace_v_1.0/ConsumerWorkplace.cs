@@ -110,9 +110,30 @@ namespace ConsumerWorkplace_v_1._0
 
         #region [- - КНОПКИ НА ВКЛАДКІ ДОДАВАННЯ НОВОЇ АНКЕТИ ЮР ОСОБИ - -]
 
-        private void rbtnNextLicType_Click(object sender, EventArgs e)
+        private void SetTitleText()
         {
             lblTabLicenseTypeClientName.Text = clientNameCtrlAnketaCompany.CompanyFullName;
+
+            anketaCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            anketaCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+            anketaCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+
+            managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            managersCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+            managersCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+
+            placesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            placesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+            placesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+
+            bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+            bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            
+        }
+
+        private void rbtnNextLicType_Click(object sender, EventArgs e)
+        {
             nextPage = true;
             pageAllAnketa.SelectedPage = pvConsumerLicenseType;
             licenseTypeDropListLicType.Select();
@@ -121,9 +142,6 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextAnketa_Click(object sender, EventArgs e)
         {
                 nextPage = true;
-                anketaCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-                anketaCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                anketaCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
                 pageAllAnketa.SelectedPage = pvConsumerAnketa;
         }
 
@@ -136,9 +154,6 @@ namespace ConsumerWorkplace_v_1._0
         {
             nextPage = true;
 
-                managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-                managersCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                managersCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
                 pageAllAnketa.SelectedPage = pvConsumerManagers;
 
         }
@@ -151,16 +166,11 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextPlaces_Click(object sender, EventArgs e)
         {
             nextPage = true;
-            placesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            placesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            placesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+
             if(clientNameCheckBoxPlaces.IsChecked)
                 pageAllAnketa.SelectedPage = pvConsumerPlaces;
             else
             {
-                bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-                bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
                 pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
                 pageAllAnketa.Pages[4].Item.ForeColor = Color.DarkGray;
                 pageAllAnketa.Pages[5].Item.ForeColor = DefaultForeColor;
@@ -177,10 +187,7 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextBankRequisites_Click(object sender, EventArgs e)
         {
             nextPage = true;
-                bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-                bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
-                pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
+            pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
         }
 
         private void rbtnBackManagers_Click(object sender, EventArgs e)
@@ -451,6 +458,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
             {
+                SetTitleText();
                 if (!clientNameCheckBoxPlaces.IsChecked && e.Page.TabIndex == 4)
                 {
                     e.Cancel = true;
