@@ -594,13 +594,19 @@ namespace ipsAnketaClient
                     item.PlaceRegion = addressControl.RegionCode;
                     item.PlaceCity = addressControl.TownName;
                     item.PlaceAddress = addressControl.StreetName;
-                    var place = item.ClnPlaceHoll.SingleOrDefault();
-                    if (place != null)
+                    if (item.ClnPlaceHoll.Count == 1)
                     {
-                        place.HollNum = lblLocation.Text == "Кількість місць" ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null;
-                        place.SqHoll = lblLocation.Text == "Метраж" ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null;
+                        var place = item.ClnPlaceHoll.SingleOrDefault();
+                        if (place != null)
+                        {
+                            place.HollNum = lblLocation.Text == "Кількість місць"
+                                ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
+                                : null;
+                            place.SqHoll = lblLocation.Text == "Метраж"
+                                ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
+                                : null;
+                        }
                     }
-                    
                 }
             }
 
