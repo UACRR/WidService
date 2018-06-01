@@ -40,7 +40,6 @@ namespace IpsViewComponentLibrary
 
         #region Edit controls
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadMaskedEditBox TxtRateCommission
         {
             get
@@ -49,7 +48,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadMaskedEditBox TxtRateCourt
         {
             get

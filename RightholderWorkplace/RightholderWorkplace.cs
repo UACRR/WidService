@@ -128,7 +128,7 @@ namespace RightholderWorkplace
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
-            ThemeResolutionService.ApplicationThemeName = "Office2007Silver";
+            ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
 
             // data
