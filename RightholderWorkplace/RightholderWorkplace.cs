@@ -345,6 +345,9 @@ namespace RightholderWorkplace
 
             rightHolderBindingSource.DataSource = _customer.RightHolder;
 
+            // if type of collection is HashSet, then adding new row is not allowed
+            _customer.RightHolder.TerritoryExclude = _customer.RightHolder.TerritoryExclude.ToList();
+
             territoryExcludeBindingSource.DataSource = _customer.RightHolder.TerritoryExclude;
         }
     }
