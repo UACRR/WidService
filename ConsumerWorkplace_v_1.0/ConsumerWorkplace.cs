@@ -555,9 +555,17 @@ namespace ConsumerWorkplace_v_1._0
         private void clientNameCheckBoxPlaces_CheckStateChanged(object sender, EventArgs e)
         {
             if (!clientNameCheckBoxPlaces.Checked)
+            {
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
+                rbtnNextPlaces.Text = rbtnNextBankRequisites.Text;
+                rbtnBackPlaces.Text = rbtnBackManagers.Text;
+            }
             else if (validTabs >= 3)
+            {
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;
+                rbtnNextPlaces.Text = "Майданчики >";
+                rbtnBackPlaces.Text = "Майданчики >";
+            }
         }
 
         private void btnCopyFromJAtoFa_Click(object sender, EventArgs e)

@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System;
+
+namespace IpsViewComponentLibrary
 {
     partial class IpsRegistrationsCompanyControl
     {
@@ -91,6 +93,7 @@
             this.dtRegisterDate.TabIndex = 2;
             this.dtRegisterDate.TabStop = false;
             this.dtRegisterDate.Value = new System.DateTime(((long)(0)));
+            this.dtRegisterDate.MaxDate = DateTime.Today;
             // 
             // txtOkpo
             // 

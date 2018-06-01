@@ -110,5 +110,23 @@ namespace IpsViewComponentLibrary
             rdtPickerDateBegin.Text = string.Empty;
             rdtPickerDateEnd.Text = string.Empty;
         }
+
+        private void rdtPickerDateEnd_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                rdtPickerDateBegin.MaxDate = rdtPickerDateEnd.Value.Subtract(new TimeSpan(1, 0, 0, 0));
+
+            }
+            catch (Exception ex)
+            {
+                ;
+            }
+        }
+
+        private void rdtPickerDateEnd_TextChanged(object sender, EventArgs e)
+        {
+            ;
+        }
     }
 }
