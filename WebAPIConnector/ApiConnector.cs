@@ -36,6 +36,7 @@ namespace WebAPIConnector
             ExeConfigurationFileMap configFile = new ExeConfigurationFileMap();
             configFile.ExeConfigFilename = configName;
             Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configFile, ConfigurationUserLevel.None);
+
             string url = config.ConnectionStrings.ConnectionStrings["WebApiConnection"].ConnectionString;
 
             return url;

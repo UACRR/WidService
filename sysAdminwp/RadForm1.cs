@@ -51,7 +51,7 @@ namespace sysAdminwp
         //метод встановлення джерела даних для дерева
         private void SetDataSource()
         {
-            var dictCategory = connector.GetList<DictCategory>("api/dictionary/list");//дерево
+            var dictCategory = connector.GetList<DictCategory>("dictionary/list");//дерево
             radTreeViewList.DataSource = dictCategory;
             radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             radTreeViewList.DisplayMember = "Name\\Name";
@@ -303,7 +303,7 @@ namespace sysAdminwp
         //зміни при виборі елементу з дерева
         private void radTreeViewList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
-            var urlCategories = connector.GetList<DictCategory>("api/dictionary/list");
+            var urlCategories = connector.GetList<DictCategory>("dictionary/list");
             
              foreach (var item in urlCategories)
              {

@@ -114,6 +114,7 @@ namespace IpsViewComponentLibrary
             
             if (rGridViewPremises.CurrentRow.Cells[0].Value != null)
                 _idSelectedRow = Convert.ToInt32(rGridViewPremises.CurrentRow.Cells["IdItem"].Value);
+            if(_idSelectedRow == 0) return;
             OnBtnEditPremisesClick?.Invoke();
         }
 
@@ -133,13 +134,17 @@ namespace IpsViewComponentLibrary
             {
                 var v = dataTemp.Client.ClnBusinessPlace.Where(id=>id.PlaceId==idRowInst).Select(item => item.ClnPlaceHoll).SingleOrDefault();//
                 
-                if (v != null)
-                    foreach (var item in v)
-                    {
-                        list.Add(item);
-                    }
+                if (v != null) list.AddRange(v); // був форіч
             }
             return list;
+        }
+
+        public void RefreshGrid()
+        {
+            rGridViewPremises.Update();
+            rGridViewPremises.MasterTemplate.Refresh();
+            rGridViewPremises.Refresh();
+            
         }
     }
 

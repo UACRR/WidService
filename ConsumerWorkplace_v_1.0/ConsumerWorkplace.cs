@@ -52,6 +52,7 @@ namespace ConsumerWorkplace_v_1._0
             validTabs = 10;
             nextPage = true;
             rpvConsumers.SelectedPage = pageConsumersAnketa;
+            pageAllAnketa.SelectedPage = pvConsumerLicenseType;
             pageAllAnketa.SelectedPage = pvConsumerClientName;
             if(!clientNameCheckBoxPlaces.Checked)
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
@@ -110,21 +111,41 @@ namespace ConsumerWorkplace_v_1._0
 
         #region [- - КНОПКИ НА ВКЛАДКІ ДОДАВАННЯ НОВОЇ АНКЕТИ ЮР ОСОБИ - -]
 
-        private void rbtnNextLicType_Click(object sender, EventArgs e)
+        private void SetTitleText()
         {
             lblTabLicenseTypeClientName.Text = clientNameCtrlAnketaCompany.CompanyFullName;
+
+            anketaCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            anketaCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+            anketaCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+
+            managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            managersCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+            managersCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+
+            placesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            placesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+            placesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+
+            bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
+            bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
+            bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            
+        }
+
+        private void rbtnNextLicType_Click(object sender, EventArgs e)
+        {
             nextPage = true;
             pageAllAnketa.SelectedPage = pvConsumerLicenseType;
+            lblTabLicenseTypeClientName.Text = clientNameCtrlAnketaCompany.CompanyFullName;
             licenseTypeDropListLicType.Select();
         }
 
         private void rbtnNextAnketa_Click(object sender, EventArgs e)
         {
-                nextPage = true;
-                anketaCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-                anketaCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                anketaCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
-                pageAllAnketa.SelectedPage = pvConsumerAnketa;
+            nextPage = true;
+            pageAllAnketa.SelectedPage = pvConsumerAnketa;
+            SetTitleText();
         }
 
         private void rbtnBackClientName_Click(object sender, EventArgs e)
@@ -136,9 +157,6 @@ namespace ConsumerWorkplace_v_1._0
         {
             nextPage = true;
 
-                managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-                managersCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                managersCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
                 pageAllAnketa.SelectedPage = pvConsumerManagers;
 
         }
@@ -151,16 +169,11 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextPlaces_Click(object sender, EventArgs e)
         {
             nextPage = true;
-            placesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            placesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            placesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+
             if(clientNameCheckBoxPlaces.IsChecked)
                 pageAllAnketa.SelectedPage = pvConsumerPlaces;
             else
             {
-                bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-                bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
                 pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
                 pageAllAnketa.Pages[4].Item.ForeColor = Color.DarkGray;
                 pageAllAnketa.Pages[5].Item.ForeColor = DefaultForeColor;
@@ -177,10 +190,7 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextBankRequisites_Click(object sender, EventArgs e)
         {
             nextPage = true;
-                bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-                bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-                bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
-                pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
+            pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
         }
 
         private void rbtnBackManagers_Click(object sender, EventArgs e)
@@ -191,8 +201,8 @@ namespace ConsumerWorkplace_v_1._0
         private void rbtnNextContract_Click(object sender, EventArgs e)
         {
             nextPage = true;
-            var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
-                radPdfViewer.LoadDocument(pdfDoc);
+            //var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
+            //radPdfViewer.LoadDocument(pdfDoc);
             pageAllAnketa.SelectedPage = pvConsumerContracts;
         }
 
@@ -432,10 +442,15 @@ namespace ConsumerWorkplace_v_1._0
                 else
                     placesCtrlConsumerPlaces.SetGridDataSource(new List<ClnBusinessPlace>());
 
+                //placesCtrlConsumerPlaces.RegionsPlacesCtrlDataSource = _dic.region;
+                //placesCtrlConsumerPlaces.RegionsPlacesCtrlDisplayMember = "name";
+                //placesCtrlConsumerPlaces.RegionsPlacesCtrlValueMember = "codeI";
+                //var regionId = _cust.Client?.ClnBusinessPlace?.FirstOrDefault();
+                //if(regionId!=null)
+                //    placesCtrlConsumerPlaces.RegionSelectedValue = regionId.PlaceRegion;
 
-               
                 //managersRddListPositionHead.DataSource
-                ;
+                
 
             }
         }
@@ -449,8 +464,16 @@ namespace ConsumerWorkplace_v_1._0
         /// <param name="e"></param>
         private void pageAllAnketa_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
         {
-            if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
+            if (e.Page.TabIndex <= pageAllAnketa.SelectedPage.TabIndex)
             {
+                e.Cancel = false;
+                nextPage = false;
+            }
+            else if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
+            {
+
+                if (pageAllAnketa.SelectedPage.TabIndex == 4) ;
+                    //placesCtrlConsumerPlaces.ClearData();
                 if (!clientNameCheckBoxPlaces.IsChecked && e.Page.TabIndex == 4)
                 {
                     e.Cancel = true;
@@ -460,18 +483,26 @@ namespace ConsumerWorkplace_v_1._0
                 {
                     e.Cancel = false;
                     nextPage = false;
+                    if (pageAllAnketa.SelectedPage.TabIndex == 0 || pageAllAnketa.SelectedPage.TabIndex == 1)
+                        SetTitleText();
+                    if (e.Page.TabIndex != 6) return;
+                    var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
+                    radPdfViewer.LoadDocument(pdfDoc);
+                    return;
                 }
-                else if (pageAllAnketa.SelectedPage.TabIndex == validTabs && nextPage)
+                if (pageAllAnketa.SelectedPage.TabIndex == validTabs && nextPage)
                 {
                     validTabs++;
                     pageAllAnketa.Pages[validTabs].Item.ForeColor = DefaultForeColor;
                     e.Cancel = false;
                     nextPage = false;
+                    if (e.Page.TabIndex != 6) return;
+                    var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
+                    radPdfViewer.LoadDocument(pdfDoc);
+                    return;
                 }
-                else
-                {
-                    e.Cancel = true;
-                }
+
+                e.Cancel = true;
             }
             else
                 e.Cancel = true;
