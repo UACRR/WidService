@@ -60,9 +60,11 @@
             // txtNumberVat
             // 
             this.txtNumberVat.Location = new System.Drawing.Point(436, 85);
+            this.txtNumberVat.MaxLength = 12;
             this.txtNumberVat.Name = "txtNumberVat";
             this.txtNumberVat.Size = new System.Drawing.Size(164, 20);
             this.txtNumberVat.TabIndex = 5;
+            this.txtNumberVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberVat_KeyPress);
             // 
             // txtRegisterNumber
             // 
@@ -93,9 +95,11 @@
             // txtOkpo
             // 
             this.txtOkpo.Location = new System.Drawing.Point(120, 1);
+            this.txtOkpo.MaxLength = 10;
             this.txtOkpo.Name = "txtOkpo";
             this.txtOkpo.Size = new System.Drawing.Size(120, 20);
             this.txtOkpo.TabIndex = 0;
+            this.txtOkpo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOkpo_KeyPress);
             // 
             // lblIssuedBy
             // 
