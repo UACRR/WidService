@@ -15,5 +15,16 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         {
             InitializeComponent();
         }
+
+        private void RightholderView_Load(object sender, EventArgs e)
+        {
+            var rightholderListView = new RightholderListView();
+            rightholderListView.TopLevel = false;
+            rightholderListView.Dock = DockStyle.Fill;
+            rightholderListView.Show();
+
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(rightholderListView);
+        }
     }
 }
