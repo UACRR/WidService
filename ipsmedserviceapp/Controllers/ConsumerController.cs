@@ -208,9 +208,11 @@ namespace ipsmedserviceapp.Controllers
                     //
                     var relEmpl = updCustomer.Company.RelEmployee.Select(items => items.Empl).ToList();
                     listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                    
                     listRel.ForEach(updEmpl =>
                     {
                         var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
+                        updEmpl.SetFields(updCustomer.Company.RelEmployee.SingleOrDefault(item => item.Emplid == updEmpl.Emplid && item.PositionCode == updEmpl.PositionCode));
                         updEmpl.Empl.SetFields(sourceItem);
                     });
 

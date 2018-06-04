@@ -367,7 +367,7 @@ namespace ConsumerWorkplace_v_1._0
                     _cust.Company.RelEmployee.Add(relEmpl);
                 }
 
-                //iRelEmployeeBindingSource.DataSource = relEmpl;
+                iRelEmployeeBindingSource.DataSource = relEmpl;
                 iEmployeeBindingSource.DataSource = relEmpl.Empl;
 
                 relEmpl = _cust.Company.RelEmployee.FirstOrDefault(rec => rec.PositionCode == 2);
