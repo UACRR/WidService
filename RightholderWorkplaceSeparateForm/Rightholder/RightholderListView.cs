@@ -19,7 +19,18 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             Dock = DockStyle.Fill;
         }
 
-        public RightholderListViewPresenter Presenter { get; internal set; }
+        private RightholderListViewPresenter _presenter;
+        public RightholderListViewPresenter Presenter
+        {
+            get { return _presenter; }
+            set
+            {
+                if (_presenter == null)
+                {
+                    _presenter = value;
+                }
+            }
+        }
 
         public void Run()
         {
