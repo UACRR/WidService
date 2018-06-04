@@ -36,5 +36,10 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         {
             Show();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            _presenter.Save();
+        }
     }
 }

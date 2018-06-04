@@ -21,19 +21,23 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _view.Run();
         }
 
-        //public void AddRightholder()
-        //{
-        //    //RightholderType = 3;
-        //    //OnAddedRightholder(RightholderType);
+        internal void Save()
+        {
+            OnSavedRightholder();
+        }
 
-        //    OnAddedRightholder();
-        //}
+        public void AddRightholder()
+        {
+            //OnSavedRightholder(Rightholder);
 
-        //public event EventHandler AddedRightholder;
+            OnSavedRightholder();
+        }
 
-        //protected void OnAddedRightholder()
-        //{
-        //    AddedRightholder?.Invoke(this, EventArgs.Empty);
-        //}
+        public event EventHandler SavedRightholder;
+
+        protected void OnSavedRightholder()
+        {
+            SavedRightholder?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

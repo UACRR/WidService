@@ -47,9 +47,16 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         {
             var rightholderItemView = new RightholderItemView();
             var rightholderItemViewPresenter = new RightholderItemViewPresenter(rightholderItemView);
+            rightholderItemViewPresenter.SavedRightholder += SaveRightholder;
             rightholderItemViewPresenter.Run();
 
             return rightholderItemView;
+        }
+
+        public void SaveRightholder(object sender, EventArgs e)
+        {
+            // SelectedRightholderId = Id; ???
+            _view.ShowRightholderList();
         }
     }
 }
