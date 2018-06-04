@@ -54,7 +54,6 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "RightholderView";
-            this.Load += new System.EventHandler(this.RightholderView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

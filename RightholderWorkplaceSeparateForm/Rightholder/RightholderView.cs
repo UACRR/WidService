@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace RightholderWorkplaceSeparateForm.Rightholder
 {
@@ -14,14 +15,32 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         public RightholderView()
         {
             InitializeComponent();
+
+            TopLevel = false;
+            Dock = DockStyle.Fill;
         }
 
-        private void RightholderView_Load(object sender, EventArgs e)
+        private RightholderViewPresenter _presenter;
+        public RightholderViewPresenter Presenter
         {
-            var rightholderListView = new RightholderListView();
-            rightholderListView.TopLevel = false;
-            rightholderListView.Dock = DockStyle.Fill;
-            rightholderListView.Show();
+            get { return _presenter; }
+            set
+            {
+                if (_presenter == null)
+                {
+                    _presenter = value;
+                }
+            }
+        }
+
+        public void Run()
+        {
+            Show();
+        }
+
+        public void ShowRightholderList()
+        {
+            var rightholderListView = _presenter.GetRightholderListView();
 
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(rightholderListView);

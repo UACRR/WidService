@@ -14,7 +14,10 @@ namespace RightholderWorkplaceSeparateForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainView());
+
+            var view = new MainView();
+            var presenter = new MainViewPresenter(view);
+            presenter.Run();
         }
     }
 }

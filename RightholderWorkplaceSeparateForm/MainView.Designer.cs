@@ -98,7 +98,6 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Робоче місце адміністратора права";
-            this.Load += new System.EventHandler(this.MainView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).EndInit();
             this.mainPageView.ResumeLayout(false);
             this.mainPageRightholders.ResumeLayout(false);

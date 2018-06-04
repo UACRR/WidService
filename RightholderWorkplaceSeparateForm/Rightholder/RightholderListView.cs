@@ -14,6 +14,16 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         public RightholderListView()
         {
             InitializeComponent();
+
+            TopLevel = false;
+            Dock = DockStyle.Fill;
+        }
+
+        public RightholderListViewPresenter Presenter { get; internal set; }
+
+        public void Run()
+        {
+            Show();
         }
 
         private void miAddRightholderPerson_Click(object sender, EventArgs e)
