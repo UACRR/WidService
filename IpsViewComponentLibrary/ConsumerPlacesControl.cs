@@ -197,48 +197,48 @@ namespace ipsAnketaClient
 
         #region DATASOURCES
 
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object RegionsPlacesCtrlDataSource
-        {
-            get => addressControl.RegionsPlacesCtrlDataSource;
-            set => addressControl.RegionsPlacesCtrlDataSource = value;
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsPlacesCtrlDataMember
-        {
-            get => addressControl.RegionsPlacesCtrlDataMember;
-            set => addressControl.RegionsPlacesCtrlDataMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsPlacesCtrlDisplayMember
-        {
-            get => addressControl.RegionsPlacesCtrlDisplayMember;
-            set => addressControl.RegionsPlacesCtrlDisplayMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsPlacesCtrlValueMember
-        {
-            get => addressControl.RegionsPlacesCtrlValueMember;
-            set => addressControl.RegionsPlacesCtrlValueMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public RadListDataItem RegionSelectedItem
-        {
-            get => addressControl.RegionBind.SelectedItem;
-            set => addressControl.RegionBind.SelectedItem = value;
-        }
-
-        [Category("Dictionaries")]
-        public object RegionSelectedValue
-        {
-            get => addressControl.RegionBind.SelectedValue;
-            set => addressControl.RegionBind.SelectedValue = value;
-        }
+        //[Category("Dictionaries")]
+        //[AttributeProvider(typeof(IListSource))]
+        //public object RegionsPlacesCtrlDataSource
+        //{
+        //    get => addressControl.RegionsPlacesCtrlDataSource;
+        //    set => addressControl.RegionsPlacesCtrlDataSource = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public string RegionsPlacesCtrlDataMember
+        //{
+        //    get => addressControl.RegionsPlacesCtrlDataMember;
+        //    set => addressControl.RegionsPlacesCtrlDataMember = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public string RegionsPlacesCtrlDisplayMember
+        //{
+        //    get => addressControl.RegionsPlacesCtrlDisplayMember;
+        //    set => addressControl.RegionsPlacesCtrlDisplayMember = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public string RegionsPlacesCtrlValueMember
+        //{
+        //    get => addressControl.RegionsPlacesCtrlValueMember;
+        //    set => addressControl.RegionsPlacesCtrlValueMember = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public RadListDataItem RegionSelectedItem
+        //{
+        //    get => addressControl.RegionBind.SelectedItem;
+        //    set => addressControl.RegionBind.SelectedItem = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public object RegionSelectedValue
+        //{
+        //    get => addressControl.RegionBind.SelectedValue;
+        //    set => addressControl.RegionBind.SelectedValue = value;
+        //}
         #endregion
 
         #region Premises ctrl button click EVENTS 

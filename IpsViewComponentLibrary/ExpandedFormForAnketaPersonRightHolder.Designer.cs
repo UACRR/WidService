@@ -57,6 +57,7 @@
             this.rtxtBoxTextRu.Name = "rtxtBoxTextRu";
             this.rtxtBoxTextRu.Size = new System.Drawing.Size(407, 20);
             this.rtxtBoxTextRu.TabIndex = 0;
+            this.rtxtBoxTextRu.ThemeName = "Office2007Silver";
             // 
             // rBtnSave
             // 
@@ -65,6 +66,7 @@
             this.rBtnSave.Size = new System.Drawing.Size(90, 24);
             this.rBtnSave.TabIndex = 2;
             this.rBtnSave.Text = "Зберегти";
+            this.rBtnSave.ThemeName = "Office2007Silver";
             this.rBtnSave.Click += new System.EventHandler(this.rBtnSave_Click);
             // 
             // rBtnCancel
@@ -74,6 +76,7 @@
             this.rBtnCancel.Size = new System.Drawing.Size(90, 24);
             this.rBtnCancel.TabIndex = 3;
             this.rBtnCancel.Text = "Скасувати";
+            this.rBtnCancel.ThemeName = "Office2007Silver";
             this.rBtnCancel.Click += new System.EventHandler(this.rBtnCancel_Click);
             // 
             // rtxtBoxTextEn
@@ -82,6 +85,7 @@
             this.rtxtBoxTextEn.Name = "rtxtBoxTextEn";
             this.rtxtBoxTextEn.Size = new System.Drawing.Size(407, 20);
             this.rtxtBoxTextEn.TabIndex = 1;
+            this.rtxtBoxTextEn.ThemeName = "Office2007Silver";
             // 
             // lblTextEn
             // 
@@ -95,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 150);
+            this.ClientSize = new System.Drawing.Size(432, 148);
             this.Controls.Add(this.rtxtBoxTextEn);
             this.Controls.Add(this.lblTextEn);
             this.Controls.Add(this.rBtnCancel);
@@ -111,6 +115,7 @@
             this.RootElement.ApplyShapeToControl = true;
             this.RootElement.MaxSize = new System.Drawing.Size(440, 180);
             this.Text = "";
+            this.ThemeName = "Office2007Silver";
             ((System.ComponentModel.ISupportInitialize)(this.lblTextRu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxTextRu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).EndInit();
