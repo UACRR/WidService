@@ -32,8 +32,11 @@
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
             this.mainPageDistributionList = new Telerik.WinControls.UI.RadPageViewPage();
+            this.rightholderPanel = new Telerik.WinControls.UI.RadPanel();
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).BeginInit();
             this.mainPageView.SuspendLayout();
+            this.mainPageRightholders.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rightholderPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,13 +48,14 @@
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.mainPageRightholders;
+            this.mainPageView.SelectedPage = this.mainPageDistributionList;
             this.mainPageView.Size = new System.Drawing.Size(1192, 670);
             this.mainPageView.TabIndex = 0;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             // 
             // mainPageRightholders
             // 
+            this.mainPageRightholders.Controls.Add(this.rightholderPanel);
             this.mainPageRightholders.ItemSize = new System.Drawing.SizeF(98F, 28F);
             this.mainPageRightholders.Location = new System.Drawing.Point(10, 37);
             this.mainPageRightholders.Name = "mainPageRightholders";
@@ -74,6 +78,14 @@
             this.mainPageDistributionList.Size = new System.Drawing.Size(1171, 622);
             this.mainPageDistributionList.Text = "Відомості розподілу";
             // 
+            // rightholderPanel
+            // 
+            this.rightholderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightholderPanel.Location = new System.Drawing.Point(0, 0);
+            this.rightholderPanel.Name = "rightholderPanel";
+            this.rightholderPanel.Size = new System.Drawing.Size(1171, 622);
+            this.rightholderPanel.TabIndex = 0;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -86,8 +98,11 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Робоче місце адміністратора права";
+            this.Load += new System.EventHandler(this.MainView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).EndInit();
             this.mainPageView.ResumeLayout(false);
+            this.mainPageRightholders.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rightholderPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -99,5 +114,6 @@
         private Telerik.WinControls.UI.RadPageViewPage mainPageRightholders;
         private Telerik.WinControls.UI.RadPageViewPage mainPageRightsObjects;
         private Telerik.WinControls.UI.RadPageViewPage mainPageDistributionList;
+        private Telerik.WinControls.UI.RadPanel rightholderPanel;
     }
 }
