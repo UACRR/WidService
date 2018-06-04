@@ -32,6 +32,7 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
+
         private void PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises()
         {
             //some code
@@ -62,6 +63,8 @@ namespace ConsumerWorkplace_v_1._0
             pageAllAnketa.SelectedPage = pvConsumerClientName;
             if(!clientNameCheckBoxPlaces.Checked)
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
+            else
+                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;
         }
 
         /// <summary>
@@ -88,7 +91,7 @@ namespace ConsumerWorkplace_v_1._0
         }
 
         /// <summary>
-        /// Кнопки РЕДАГУВАННЯ на грід
+        /// Кнопки * * * РЕДАГУВАННЯ * * * на  - - грід - - 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -96,12 +99,14 @@ namespace ConsumerWorkplace_v_1._0
         {
             int custId = Convert.ToInt32(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value);
             _cust = GetCustomer(custId);
+            if (_cust?.Client?.ClnBusinessPlace != null)
+                IsPlaceIn = _cust.Client.ClnBusinessPlace.Count != 0;
             SetDataSources();
             SetConsumerPageViewEdit();
         }
 
         /// <summary>
-        /// Кнопка відміни створення анктеи юр особи
+        /// Кнопка  * * * СКАСУВАТИ * * * створення анктеи юр особи
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -118,7 +123,9 @@ namespace ConsumerWorkplace_v_1._0
 
 
         #region [- - КНОПКИ НА ВКЛАДКІ ДОДАВАННЯ НОВОЇ АНКЕТИ ЮР ОСОБИ - -]
-
+        /// <summary>
+        /// Титулки на сторінках
+        /// </summary>
         private void SetTitleText()
         {
             lblTabLicenseTypeClientName.Text = clientNameCtrlAnketaCompany.CompanyFullName;
@@ -141,6 +148,11 @@ namespace ConsumerWorkplace_v_1._0
             
         }
 
+        /// <summary>
+        /// НАСТУПНА  -  Тип ліцензії
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnNextLicType_Click(object sender, EventArgs e)
         {
             nextPage = true;
@@ -149,6 +161,11 @@ namespace ConsumerWorkplace_v_1._0
             licenseTypeDropListLicType.Select();
         }
 
+        /// <summary>
+        /// НАСТУПНА  -  Анкета
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnNextAnketa_Click(object sender, EventArgs e)
         {
             nextPage = true;
@@ -156,11 +173,11 @@ namespace ConsumerWorkplace_v_1._0
             SetTitleText();
         }
 
-        private void rbtnBackClientName_Click(object sender, EventArgs e)
-        {
-            pageAllAnketa.SelectedPage = pvConsumerClientName;
-        }
-
+        /// <summary>
+        /// НАСТУПНА  -  Керівники
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnNextManagers_Click(object sender, EventArgs e)
         {
             nextPage = true;
@@ -169,43 +186,43 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
-        private void rbtnBackLicType_Click(object sender, EventArgs e)
-        {
-            pageAllAnketa.SelectedPage = pvConsumerLicenseType;
-        }
-
+        /// <summary>
+        /// НАСТУПНА  -  Майданчики
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnNextPlaces_Click(object sender, EventArgs e)
         {
             nextPage = true;
 
-            if(clientNameCheckBoxPlaces.IsChecked)
+            if (clientNameCheckBoxPlaces.IsChecked)
                 pageAllAnketa.SelectedPage = pvConsumerPlaces;
             else
             {
                 pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
                 pageAllAnketa.Pages[4].Item.ForeColor = Color.DarkGray;
                 pageAllAnketa.Pages[5].Item.ForeColor = DefaultForeColor;
-                if (validTabs==4)
-                validTabs++;
+                if (validTabs == 4)
+                    validTabs++;
             }
         }
 
-        private void rbtnBackAnketa_Click(object sender, EventArgs e)
-        {
-            pageAllAnketa.SelectedPage = pvConsumerAnketa;
-        }
-
+        /// <summary>
+        /// НАСТУПНА  -  Банківські реквізити
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnNextBankRequisites_Click(object sender, EventArgs e)
         {
             nextPage = true;
             pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
         }
 
-        private void rbtnBackManagers_Click(object sender, EventArgs e)
-        {
-            pageAllAnketa.SelectedPage = pvConsumerManagers;
-        }
-
+        /// <summary>
+        /// НАСТУПНА  -  Договір
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnNextContract_Click(object sender, EventArgs e)
         {
             nextPage = true;
@@ -214,6 +231,51 @@ namespace ConsumerWorkplace_v_1._0
             pageAllAnketa.SelectedPage = pvConsumerContracts;
         }
 
+        /// <summary>
+        /// ПОПЕРЕДНЯ  -  Назва клієнта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbtnBackClientName_Click(object sender, EventArgs e)
+        {
+            pageAllAnketa.SelectedPage = pvConsumerClientName;
+        }
+
+        /// <summary>
+        /// ПОПЕРЕДНЯ  -  Тип ліцензції
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbtnBackLicType_Click(object sender, EventArgs e)
+        {
+            pageAllAnketa.SelectedPage = pvConsumerLicenseType;
+        }
+
+        /// <summary>
+        /// ПОПЕРЕДНЯ  -  Анкета
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbtnBackAnketa_Click(object sender, EventArgs e)
+        {
+            pageAllAnketa.SelectedPage = pvConsumerAnketa;
+        }
+
+        /// <summary>
+        /// ПОПЕРЕДНЯ  -  Керівники
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbtnBackManagers_Click(object sender, EventArgs e)
+        {
+            pageAllAnketa.SelectedPage = pvConsumerManagers;
+        }
+
+        /// <summary>
+        /// ПОПЕРЕДНЯ  -  Майданчики
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnBackPlaces_Click(object sender, EventArgs e)
         {
             if (IsPlaceIn)
@@ -222,13 +284,17 @@ namespace ConsumerWorkplace_v_1._0
                 pageAllAnketa.SelectedPage = pvConsumerManagers;
         }
 
+        /// <summary>
+        /// ПОПЕРЕДНЯ  -  Банківські реквізити
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnBackBankRequisites_Click(object sender, EventArgs e)
         {
             pageAllAnketa.SelectedPage = pvConsumerBankRequisites;
         }
 
-        #endregion
-
+        /*      *       *       *    КНОПКА ЗБЕРЕГТИ   *       *       *       */
         /// <summary>
         /// Збереження анкети юр особи
         /// </summary>
@@ -248,6 +314,7 @@ namespace ConsumerWorkplace_v_1._0
             }
         }
 
+        #endregion
 
         /// <summary>
         /// Перевірка на правильність ввеедених даних (Consumers) 
@@ -343,7 +410,10 @@ namespace ConsumerWorkplace_v_1._0
             //licenseTypeCtrlContractConsumerMain.ClearData();
         }
 
-        //private AnketaCompany _anketa;
+
+        /// <summary>
+        ///   - - -      BIND DATASOURCE      - - -  
+        /// </summary>
         public void SetDataSources()
         {
             if (_cust == null)
@@ -417,10 +487,6 @@ namespace ConsumerWorkplace_v_1._0
                 clientNameCtrlAnketaCompany.DataSource = anketa;
 
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
-                //clientNameCtrlRegistrationsCompany.TypesVatValueMember = "CodeI";
-                //clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "Name";
-                //clientNameCtrlRegistrationsCompany.DdlTypeVat.SelectedValue = anketa.TypeVat;
-                //clientNameCtrlRegistrationsCompany.NumberVatDataMember = "";
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
 
@@ -442,8 +508,6 @@ namespace ConsumerWorkplace_v_1._0
                 
                 iPositionTypeBindingSource.DataSource = _dic.positionType;
 
-                /*  - - -      BIND DATASOURCE      - - -  */
-
                 placesCtrlConsumerPlaces.SetData(_cust);
                 if (_cust.Client.ClnBusinessPlace.Count != 0)
                     placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
@@ -458,7 +522,7 @@ namespace ConsumerWorkplace_v_1._0
                 //    placesCtrlConsumerPlaces.RegionSelectedValue = regionId.PlaceRegion;
 
                 //managersRddListPositionHead.DataSource
-                
+                clientNameCheckBoxPlaces.Checked = IsPlaceIn;
 
             }
         }
@@ -547,6 +611,7 @@ namespace ConsumerWorkplace_v_1._0
                     return false;
                 return true;
             }
+            set{ }
         }
 
         public Func<IList<ConsumerMainView>> getMainViewData { get; set; }
@@ -563,6 +628,11 @@ namespace ConsumerWorkplace_v_1._0
             }
         }
 
+        /// <summary>
+        /// зміна наявності майданчиків 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clientNameCheckBoxPlaces_CheckStateChanged(object sender, EventArgs e)
         {
             if (!clientNameCheckBoxPlaces.Checked)
@@ -579,6 +649,11 @@ namespace ConsumerWorkplace_v_1._0
             }
         }
 
+        /// <summary>
+        /// копіювання фактичної адреси в юридичну
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCopyFromJAtoFa_Click(object sender, EventArgs e)
         {
             anketaCtrlAddressFactual.DdlCountry.SelectedValue = anketaCtrlAddressLegal.DdlCountry.SelectedValue;
