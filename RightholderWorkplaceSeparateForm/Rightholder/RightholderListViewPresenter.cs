@@ -20,5 +20,20 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         {
             _view.Run();
         }
+
+        public void AddRightholder()
+        {
+            //RightholderType = 3;
+            //OnAddedRightholder(RightholderType);
+
+            OnAddedRightholder();
+        }
+
+        public event EventHandler AddedRightholder;
+
+        protected void OnAddedRightholder()
+        {
+            AddedRightholder?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

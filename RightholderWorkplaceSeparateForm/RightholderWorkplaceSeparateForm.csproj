@@ -71,6 +71,7 @@
     <Compile Include="Rightholder\RightholderItemView.Designer.cs">
       <DependentUpon>RightholderItemView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rightholder\RightholderItemViewPresenter.cs" />
     <Compile Include="Rightholder\RightholderListView.cs">
       <SubType>Form</SubType>
     </Compile>

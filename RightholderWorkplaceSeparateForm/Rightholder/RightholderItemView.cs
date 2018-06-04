@@ -14,6 +14,27 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         public RightholderItemView()
         {
             InitializeComponent();
+
+            TopLevel = false;
+            Dock = DockStyle.Fill;
+        }
+
+        private RightholderItemViewPresenter _presenter;
+        public RightholderItemViewPresenter Presenter
+        {
+            get { return _presenter; }
+            set
+            {
+                if (_presenter == null)
+                {
+                    _presenter = value;
+                }
+            }
+        }
+
+        public void Run()
+        {
+            Show();
         }
     }
 }

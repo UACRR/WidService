@@ -39,9 +39,11 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
         private void miAddRightholderPerson_Click(object sender, EventArgs e)
         {
-            var rightholderItemView = new RightholderItemView();
-            rightholderItemView.TopLevel = false;
-            rightholderItemView.Dock = DockStyle.Fill;
+            _presenter.AddRightholder();
+
+            //var rightholderItemView = new RightholderItemView();
+            //rightholderItemView.TopLevel = false;
+            //rightholderItemView.Dock = DockStyle.Fill;
         }
     }
 }

@@ -32,9 +32,24 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         {
             var rightholderListView = new RightholderListView();
             var rightholderListViewPresenter = new RightholderListViewPresenter(rightholderListView);
+            rightholderListViewPresenter.AddedRightholder += AddRightholder;
             rightholderListViewPresenter.Run();
 
             return rightholderListView;
+        }
+
+        public void AddRightholder(object sender, EventArgs e)
+        {
+            _view.ShowRightholderItem();
+        }
+
+        public RightholderItemView GetRightholderItemView()
+        {
+            var rightholderItemView = new RightholderItemView();
+            var rightholderItemViewPresenter = new RightholderItemViewPresenter(rightholderItemView);
+            rightholderItemViewPresenter.Run();
+
+            return rightholderItemView;
         }
     }
 }
