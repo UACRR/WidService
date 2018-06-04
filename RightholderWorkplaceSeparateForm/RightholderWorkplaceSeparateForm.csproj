@@ -64,6 +64,12 @@
     <Compile Include="MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rightholder\RightholderItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rightholder\RightholderItemView.Designer.cs">
+      <DependentUpon>RightholderItemView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Rightholder\RightholderListView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Rightholder\RightholderItemView.resx">
+      <DependentUpon>RightholderItemView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Rightholder\RightholderListView.resx">
       <DependentUpon>RightholderListView.cs</DependentUpon>
     </EmbeddedResource>
