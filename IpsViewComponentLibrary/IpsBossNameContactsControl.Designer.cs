@@ -85,9 +85,11 @@
             this.txtPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "PhoneNumber", true));
             this.txtPhone.Location = new System.Drawing.Point(33, 34);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.txtPhone.MaxLength = 13;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(173, 20);
             this.txtPhone.TabIndex = 3;
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // employeeBindingSource
             // 
@@ -160,6 +162,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(175, 20);
             this.txtEmail.TabIndex = 4;
+            this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // IpsBossNameContactsControl
             // 

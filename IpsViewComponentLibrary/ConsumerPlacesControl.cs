@@ -27,9 +27,14 @@ namespace ipsAnketaClient
         private bool IsNeedPremissesType = false, 
                      isNewInst = false;
         private byte typePremises;
+
         #endregion
 
         public int IdItemOfSelectRow { get; set; }
+
+        public delegate void EnabledChangeWhenEdit();
+
+        public event EnabledChangeWhenEdit OnEnabledChangeWhenEditOrAddPremises;
 
         public ConsumerPlacesControl()
         {
@@ -52,6 +57,11 @@ namespace ipsAnketaClient
                     new ClnBusinessPlace()
                 };
                 rGridViewInstitution.DataSource = dataSource;
+            }
+            else
+            {
+                rGridViewInstitution.DataSource = new List<ClnBusinessPlace>();
+                //return;
             }
 
             rGridViewInstitution.Update();
@@ -133,7 +143,8 @@ namespace ipsAnketaClient
             isNewInst = false;
             newPlace = new List<ClnPlaceHoll>();
 
-            SetGridDataSource(data.Client.ClnBusinessPlace);
+            if(data.Client.ClnBusinessPlace.Count != 0)
+                SetGridDataSource(data.Client.ClnBusinessPlace);
         }
 
         public void ClearData()
@@ -510,7 +521,7 @@ namespace ipsAnketaClient
         /// <param name="e"></param>
         private void rBtnEditInst_Click(object sender, EventArgs e)
         {
-            if(rGridViewInstitution.RowCount == 0)
+            if(rGridViewInstitution.RowCount == 0 || rGridViewInstitution.CurrentRow.Cells[0].Value.ToString() == "0")
                 return;
             if (rGridViewInstitution.CurrentRow.Cells[0].Value.GetType() != typeof(Int32))
                 return;
@@ -544,6 +555,8 @@ namespace ipsAnketaClient
             rDropDownBtnAddInst.Enabled = false;
             rGridViewInstitution.Enabled = false;
             rBtnEditInst.Enabled = false;
+
+            OnEnabledChangeWhenEditOrAddPremises?.Invoke();
         }
 
         /// <summary>

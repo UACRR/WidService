@@ -28,7 +28,13 @@ namespace ConsumerWorkplace_v_1._0
         {
             InitializeComponent();
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
+            placesCtrlConsumerPlaces.OnEnabledChangeWhenEditOrAddPremises += PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises;
 
+        }
+
+        private void PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises()
+        {
+            //some code
         }
 
         /// <summary>
@@ -101,6 +107,8 @@ namespace ConsumerWorkplace_v_1._0
         /// <param name="e"></param>
         private void rbtnCancelAnketa_Click(object sender, EventArgs e)
         {
+            if(pageAllAnketa.SelectedPage.TabIndex == 4)
+                placesCtrlConsumerPlaces.ClearData();
             nextPage = true;
             ClearDataConsumersControls();
             rpvConsumers.SelectedPage = pageConsumersGrid;
@@ -359,10 +367,10 @@ namespace ConsumerWorkplace_v_1._0
                     _cust.Company.RelEmployee.Add(relEmpl);
                 }
 
-                iRelEmployeeBindingSource.DataSource = relEmpl;
+                //iRelEmployeeBindingSource.DataSource = relEmpl;
                 iEmployeeBindingSource.DataSource = relEmpl.Empl;
 
-                relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 2).FirstOrDefault();
+                relEmpl = _cust.Company.RelEmployee.FirstOrDefault(rec => rec.PositionCode == 2);
                 if (relEmpl == null)
                 {
                     relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 2 };
@@ -440,7 +448,7 @@ namespace ConsumerWorkplace_v_1._0
                 if (_cust.Client.ClnBusinessPlace.Count != 0)
                     placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
                 else
-                    placesCtrlConsumerPlaces.SetGridDataSource(new List<ClnBusinessPlace>());
+                    placesCtrlConsumerPlaces.SetGridDataSource(null);
 
                 //placesCtrlConsumerPlaces.RegionsPlacesCtrlDataSource = _dic.region;
                 //placesCtrlConsumerPlaces.RegionsPlacesCtrlDisplayMember = "name";
@@ -466,14 +474,17 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (e.Page.TabIndex <= pageAllAnketa.SelectedPage.TabIndex)
             {
+                if (pageAllAnketa.SelectedPage.TabIndex == 4)
+                    placesCtrlConsumerPlaces.ClearData();
                 e.Cancel = false;
                 nextPage = false;
             }
             else if ( Validation(Convert.ToByte(pageAllAnketa.SelectedPage.TabIndex+1)))
             {
 
-                if (pageAllAnketa.SelectedPage.TabIndex == 4) ;
-                    //placesCtrlConsumerPlaces.ClearData();
+                if (pageAllAnketa.SelectedPage.TabIndex == 4)
+                    placesCtrlConsumerPlaces.ClearData();
+
                 if (!clientNameCheckBoxPlaces.IsChecked && e.Page.TabIndex == 4)
                 {
                     e.Cancel = true;

@@ -97,6 +97,8 @@ namespace ipsmedserviceapp.Controllers
                 _dbContext.UpdateList(updCustomer.BankAccount, dest.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
                 //.Include(item => item.RightHolder)
                 dest.Client.SetFields(updCustomer.Client);
+                dest.Company.SetFields(updCustomer.Company);
+                //dest.Company.RelEmployee.SetFields(updCustomer.Company.RelEmployee);
 
                 // 
                 var places = dest.Client.ClnBusinessPlace.Where(rec => !updCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
@@ -192,22 +194,41 @@ namespace ipsmedserviceapp.Controllers
 
                     });
 
+                    
+
                     listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode )).ToList();
                     listRel.ForEach(updItem => {
-                        var sorsItem = listRel.Where(item => item.Emplid == updItem.Emplid && item.PositionCode == updItem.PositionCode).SingleOrDefault();
+                        var sorsItem = listRel.SingleOrDefault(item => item.Emplid == updItem.Emplid && item.PositionCode == updItem.PositionCode);
                         updItem.SetFields(sorsItem);
-                        updItem.Empl.SetFields(sorsItem.Empl);
+                        updItem.Empl.SetFields(sorsItem?.Empl);
                     });
 
+                    //
+                    // десь тут
+                    //
+                    var relEmpl = updCustomer.Company.RelEmployee.Select(items => items.Empl).ToList();
+                    listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                    listRel.ForEach(updEmpl =>
+                    {
+                        var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
+                        updEmpl.Empl.SetFields(sourceItem);
+                    });
+
+
+                    var testOne = listRel;
 
                     listRel = relEmployeeList.Where(rec => !dest.Company.RelEmployee.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
                     listRel.ForEach(addItem => {
                         Employee addEmpl = new Employee();
                         addEmpl.SetFields(addItem.Empl);
                         RelEmployee addRelItem = new RelEmployee { Empl = addEmpl };
+                        addRelItem.SetFields( addItem );
+                        addEmpl.CustId = addRelItem.CustId;
                         dest.Employee.Add(addEmpl);
                         dest.Company.RelEmployee.Add(addRelItem );
                     });
+
+                    var testMany = listRel;
 
                 }
                 else
