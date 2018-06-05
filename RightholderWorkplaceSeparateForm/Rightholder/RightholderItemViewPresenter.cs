@@ -9,9 +9,11 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
     public class RightholderItemViewPresenter
     {
         private readonly RightholderItemView _view;
+        private readonly RightholderViewPresenter _parentPresenter; // TODO: IPresenter or IChildPresenter
 
-        public RightholderItemViewPresenter(RightholderItemView view)
+        public RightholderItemViewPresenter(RightholderItemView view, RightholderViewPresenter parentPresenter)
         {
+            _parentPresenter = parentPresenter;
             _view = view;
             _view.Presenter = this;
         }
@@ -21,23 +23,27 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _view.Run();
         }
 
-        internal void Save()
+        public void Save()
         {
-            OnSavedRightholder();
+            // Save to db
+
+            //OnSavedRightholder();
+
+            _parentPresenter.ShowRightholderList();
         }
 
-        public void AddRightholder()
-        {
-            //OnSavedRightholder(Rightholder);
+        //public void AddRightholder()
+        //{
+        //    //OnSavedRightholder(Rightholder);
 
-            OnSavedRightholder();
-        }
+        //    OnSavedRightholder();
+        //}
 
-        public event EventHandler SavedRightholder;
+        //public event EventHandler SavedRightholder;
 
-        protected void OnSavedRightholder()
-        {
-            SavedRightholder?.Invoke(this, EventArgs.Empty);
-        }
+        //protected void OnSavedRightholder()
+        //{
+        //    SavedRightholder?.Invoke(this, EventArgs.Empty);
+        //}
     }
 }

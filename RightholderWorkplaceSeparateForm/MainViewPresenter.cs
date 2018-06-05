@@ -26,7 +26,7 @@ namespace RightholderWorkplaceSeparateForm
         public void ShowRightholders()
         {
             var rightholderView = new RightholderView();
-            var rightholderPresenter = new RightholderViewPresenter(rightholderView);
+            var rightholderPresenter = new RightholderViewPresenter(rightholderView, this);
             rightholderPresenter.Run();
 
             _view.ShowRightholders(rightholderView);
