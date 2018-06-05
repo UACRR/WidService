@@ -27,6 +27,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         {
             var rightholders = _service.GetAll();
             _view.RighholdersList = rightholders;
+
             var custId = Convert.ToInt32(id);
             if (custId != 0)
             {

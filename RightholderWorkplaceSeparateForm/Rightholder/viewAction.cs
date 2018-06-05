@@ -6,8 +6,22 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 {
     public class viewAction
     {
+        /// <summary>
+        /// View для вставки в панель
+        /// </summary>
         public Control view { get; set; }
-        public Action<object> backAction { get; set; }
+        /// <summary>
+        /// Функція з параметром при возвраті керування
+        /// </summary>
+        public Action<object> doneActionWithParam { get; set; }
+        /// <summary>
+        /// Функція без параметром при возвраті керування
+        /// </summary>
+        public Action doneAction { get; set; }
+        /// <summary>
+        /// Признак, що потрібно визивати при возвраті метод з параметром 
+        /// </summary>
+        public Type TypeParam { get; set; }
     }
 
     public static class ViewStack

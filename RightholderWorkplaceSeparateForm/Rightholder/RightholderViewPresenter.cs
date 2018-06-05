@@ -1,4 +1,6 @@
-﻿using RightholderWorkplaceSeparateForm.Services;
+﻿using RightholderWorkplaceSeparateForm.Models;
+using RightholderWorkplaceSeparateForm.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +43,11 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _view.ShowView(rightholderListView);
             if (_currentViewAction != null)
                 ViewStack.Push(_currentViewAction);
-            _currentViewAction = new viewAction { view = rightholderListView, backAction = (oid) => rightholderListViewPresenter.GetList(oid) };
+            _currentViewAction = new viewAction { view = rightholderListView,
+                doneActionWithParam = (oid) => rightholderListViewPresenter.GetList(oid),
+                doneAction = () => rightholderListViewPresenter.GetList(null),
+                TypeParam = typeof(RightholderModel)
+            };
         }
 
         public void ShowRightholderItem(int id = 0)
@@ -55,16 +61,51 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
             _view.ShowView(rightholderItemView);
             if (_currentViewAction != null)
+            {
                 ViewStack.Push(_currentViewAction);
-            _currentViewAction = new viewAction { view = rightholderItemView , backAction=(oid)=> { } };
+            }
+
+            _currentViewAction = new viewAction { view = rightholderItemView ,
+                doneActionWithParam =(oid)=> { },
+                doneAction = ()=> { },
+                TypeParam=typeof(void)
+            };
         }
 
-        public void Back( object id )
+        public void ShowObjectRightItem(int id = 0)
+        {
+
+            //var rightholderItemView = new RightholderItemView();
+            //var rightholderItemViewPresenter = new RightholderItemViewPresenter(rightholderItemView, this, _service);
+            ////rightholderItemViewPresenter.SavedRightholder += SaveRightholder;
+            //rightholderItemViewPresenter.RightholderId = id;
+            //rightholderItemViewPresenter.Run();
+
+            //_view.ShowView(rightholderItemView);
+            //if (_currentViewAction != null)
+            //{
+            //    _currentViewAction.WithParam = true;
+            //    ViewStack.Push(_currentViewAction);
+            //}
+
+            //_currentViewAction = new viewAction
+            //{
+            //    view = rightholderItemView,
+            //    doneActionWithParam = (oid) => { },
+            //    doneAction = () => { },
+            //    WithParam = true
+            //};
+        }
+        public void Done( Type returnType, object id )
         {
             if (ViewStack.Count == 0) return;
 
             _currentViewAction = ViewStack.Pop();
-            _currentViewAction.backAction( id );
+
+            if (_currentViewAction.TypeParam == returnType )
+                _currentViewAction.doneActionWithParam(id);
+             else
+                _currentViewAction.doneAction();
 
             _view.ShowView(_currentViewAction.view);
 

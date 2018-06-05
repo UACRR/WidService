@@ -53,7 +53,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
             //OnSavedRightholder();
 
-            _parentPresenter.Back( rightholder.Id );
+            _parentPresenter.Done(rightholder.GetType(), rightholder.Id );
         }
 
         //public void AddRightholder()
