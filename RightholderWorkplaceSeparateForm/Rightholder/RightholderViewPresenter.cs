@@ -15,7 +15,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         private readonly RightholderView _view;
         private readonly MainViewPresenter _parentPresenter; // TODO: IPresenter or IChildPresenter
         private readonly RightholdersService _service;
-        private viewAction _currentViewAction = null;
+        private ViewAction _currentViewAction = null;
 
         public RightholderViewPresenter(RightholderView view, MainViewPresenter parentPresenter)
         {
@@ -42,9 +42,9 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _view.ShowView(rightholderListView);
             if (_currentViewAction != null)
                 ViewStack.Push(_currentViewAction);
-            _currentViewAction = new viewAction { view = rightholderListView,
-                doneActionWithParam = (oid) => rightholderListViewPresenter.GetList(oid),
-                doneAction = () => rightholderListViewPresenter.GetList(null),
+            _currentViewAction = new ViewAction { View = rightholderListView,
+                DoneActionWithParam = (oid) => rightholderListViewPresenter.GetList(oid),
+                DoneAction = () => rightholderListViewPresenter.GetList(null),
                 TypeParam = typeof(RightholderModel)
             };
         }
@@ -63,9 +63,9 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
                 ViewStack.Push(_currentViewAction);
             }
 
-            _currentViewAction = new viewAction { view = rightholderItemView ,
-                doneActionWithParam =(oid)=> { },
-                doneAction = ()=> { },
+            _currentViewAction = new ViewAction { View = rightholderItemView ,
+                DoneActionWithParam =(oid)=> { },
+                DoneAction = ()=> { },
                 TypeParam=typeof(void)
             };
         }
@@ -77,11 +77,11 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _currentViewAction = ViewStack.Pop();
 
             if (_currentViewAction.TypeParam == returnType )
-                _currentViewAction.doneActionWithParam(id);
+                _currentViewAction.DoneActionWithParam(id);
              else
-                _currentViewAction.doneAction();
+                _currentViewAction.DoneAction();
 
-            _view.ShowView(_currentViewAction.view);
+            _view.ShowView(_currentViewAction.View);
         }
 
         public void Cancel()
@@ -90,7 +90,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
             _currentViewAction = ViewStack.Pop();
 
-            _view.ShowView(_currentViewAction.view);
+            _view.ShowView(_currentViewAction.View);
 
 
         }

@@ -88,7 +88,8 @@
       <DependentUpon>RightholderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Rightholder\RightholderViewPresenter.cs" />
-    <Compile Include="Rightholder\viewAction.cs" />
+    <Compile Include="Services\ViewAction.cs" />
+    <Compile Include="Services\ViewStack.cs" />
     <Compile Include="Services\RightholdersService.cs" />
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
