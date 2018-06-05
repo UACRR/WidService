@@ -25,16 +25,11 @@ namespace RightholderWorkplaceSeparateForm
 
         public void ShowRightholders()
         {
-            _view.ShowRightholders();
-        }
-
-        public RightholderView GetRightHoldersView()
-        {
             var rightholderView = new RightholderView();
             var rightholderPresenter = new RightholderViewPresenter(rightholderView);
             rightholderPresenter.Run();
 
-            return rightholderView;
+            _view.ShowRightholders(rightholderView);
         }
     }
 }

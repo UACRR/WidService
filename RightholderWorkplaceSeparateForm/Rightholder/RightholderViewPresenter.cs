@@ -25,38 +25,28 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
         public void ShowRightholderList()
         {
-            _view.ShowRightholderList();
-        }
-
-        public RightholderListView GetRightholderListView()
-        {
             var rightholderListView = new RightholderListView();
             var rightholderListViewPresenter = new RightholderListViewPresenter(rightholderListView);
             rightholderListViewPresenter.AddedRightholder += AddRightholder;
             rightholderListViewPresenter.Run();
 
-            return rightholderListView;
+            _view.ShowRightholderList(rightholderListView);
         }
 
         public void AddRightholder(object sender, EventArgs e)
-        {
-            _view.ShowRightholderItem();
-        }
-
-        public RightholderItemView GetRightholderItemView()
         {
             var rightholderItemView = new RightholderItemView();
             var rightholderItemViewPresenter = new RightholderItemViewPresenter(rightholderItemView);
             rightholderItemViewPresenter.SavedRightholder += SaveRightholder;
             rightholderItemViewPresenter.Run();
 
-            return rightholderItemView;
+            _view.ShowRightholderItem(rightholderItemView);
         }
 
         public void SaveRightholder(object sender, EventArgs e)
         {
             // SelectedRightholderId = Id; ???
-            _view.ShowRightholderList();
+            ShowRightholderList();
         }
     }
 }

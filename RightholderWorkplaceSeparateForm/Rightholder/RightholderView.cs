@@ -38,18 +38,14 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             Show();
         }
 
-        public void ShowRightholderList()
+        public void ShowRightholderList(RightholderListView rightholderListView)
         {
-            var rightholderListView = _presenter.GetRightholderListView();
-
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(rightholderListView);
         }
 
-        public void ShowRightholderItem()
+        public void ShowRightholderItem(RightholderItemView rightholderItemView)
         {
-            var rightholderItemView = _presenter.GetRightholderItemView();
-
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(rightholderItemView);
         }

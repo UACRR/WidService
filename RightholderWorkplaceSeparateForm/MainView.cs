@@ -36,12 +36,10 @@ namespace RightholderWorkplaceSeparateForm
             Application.Run(this);
         }
 
-        public void ShowRightholders()
+        public void ShowRightholders(RightholderView rightholderView)
         {
-            var rightholdersView = _presenter.GetRightHoldersView();
-
             rightholderPanel.Controls.Clear();
-            rightholderPanel.Controls.Add(rightholdersView);
+            rightholderPanel.Controls.Add(rightholderView);
 
             mainPageView.SelectedPage = mainPageRightholders;
         }
