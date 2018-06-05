@@ -188,7 +188,7 @@ namespace ipsmedserviceapp.Controllers
                         AgreementMaster addItem = new AgreementMaster { AgrType = 1 };
                         addItem.SetFields(item, excludeAgr);
 
-                        _dbContext.AppendList(item.AgreementAddBr, addItem.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
+                        //_dbContext.AppendList(item.AgreementAddBr, addItem.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
                         _dbContext.AppendList(item.AgreementAddRh, addItem.AgreementAddRh, i => { }, (l, r) => l.Version == r.Version);
 
 
@@ -314,84 +314,43 @@ namespace ipsmedserviceapp.Controllers
                 _dbContext.UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }
                                                                     , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
 
+
+                var destAgrList = dest.RightHolder.AgreementAddRh.Select(row => row.Agr).Distinct().ToList();
+                var sorsAgrList = updCustomer.RightHolder.AgreementAddRh.Select(row => row.Agr).Distinct().ToList();
+
+                List<AgreementMaster> agrList = destAgrList.Where(row => !sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+
                 // Delete
-                List<AgreementAddRh> tempList = dest.RightHolder.AgreementAddRh.Where(row => !updCustomer.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
-                tempList.ForEach(item =>
-                {
-                    // Delete LicenseAgreement
-                    var agreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    foreach (var license in agreeItem.LicenseAgreement)
-                    {
-                        // LicAutor
-                        foreach (var subItem in license.LicenseBigR.MusicalDesign)
-                            _dbContext.Entry(subItem).State = EntityState.Deleted;
-                        // LicenseBr
-                        foreach (var subItem in license.LicenseBigR.LicAuthor)
-                            _dbContext.Entry(subItem).State = EntityState.Deleted;
-
-                        // LicPlaceHoll
-                        _dbContext.Entry(license.LicenseBigR).State = EntityState.Deleted;
-                        _dbContext.Entry(license).State = EntityState.Deleted;
-                    }
-                    // AgreementMaster
-                    _dbContext.Entry(item).State = EntityState.Deleted;
-                    _dbContext.Entry(agreeItem).State = EntityState.Deleted;
-                }
-                );
-
-                // Modify
-                tempList = updCustomer.RightHolder.AgreementAddRh.Where(row => dest.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
-                tempList.ForEach(item =>
-                {
-
-                    // Delete LicenseAgreement
-                    var agreeItemDest = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    var agreeItemSors = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-
-                    agreeItemDest.SetFields(agreeItemSors);
-
-                    foreach (var license in agreeItemDest.LicenseAgreement)
-                    {
-                        var sorsLic = agreeItemSors.LicenseAgreement.Where(rec => rec.LicId == license.LicId).SingleOrDefault();
-                        license.SetFields(sorsLic);
-
-                        _dbContext.UpdateList(sorsLic.LicenseBigR.MusicalDesign, license.LicenseBigR.MusicalDesign, rec => { }, (sorsItem, destItem) => sorsItem.MdId == destItem.MdId);
-                        _dbContext.UpdateList(sorsLic.LicenseBigR.LicAuthor, license.LicenseBigR.LicAuthor, rec => { }, (sorsItem, destItem) => sorsItem.LicAutorId == destItem.LicAutorId);
-                        // AgreementMaster
-                    }
+                agrList.ForEach(item => {
+                    _dbContext.AgreementAddRh.RemoveRange(item.AgreementAddRh);
                 });
-                // Add
-                tempList = updCustomer.RightHolder.AgreementAddRh.Where(row => !dest.RightHolder.AgreementAddRh.Any(item => row.AgrId == item.AgrId)).ToList();
-                tempList.ForEach(item =>
+                _dbContext.AgreementMaster.RemoveRange(agrList);
+                // Modify
                 {
 
-                    // Delete LicenseAgreement
-                    var agreeItem = updCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    updCustomer.RightHolder.AgreementAddRh.Remove(item);
-                    updCustomer.AgreementMaster.Remove(agreeItem);
-                    dest.AgreementMaster.Add(agreeItem);
-                    dest.RightHolder.AgreementAddRh.Add(item);
-
-                    foreach (var license in agreeItem.LicenseAgreement)
-                    {
-                        // LicAutor
-                        foreach (var subItem in license.LicenseBigR.MusicalDesign)
-                            _dbContext.Entry(subItem).State = EntityState.Added;
-                        // LicenseBr
-                        foreach (var subItem in license.LicenseBigR.LicAuthor)
-                            _dbContext.Entry(subItem).State = EntityState.Added;
-
-                        foreach (var subItem in license.LicPlace)
-                            _dbContext.Entry(subItem).State = EntityState.Added;
-                        // LicPlaceHoll
-                        _dbContext.Entry(license.LicenseBigR).State = EntityState.Added;
-                        _dbContext.Entry(license).State = EntityState.Added;
-                    }
-                    // AgreementMaster
-                    _dbContext.Entry(item).State = EntityState.Added;
-                    _dbContext.Entry(agreeItem).State = EntityState.Added;
+                    agrList = destAgrList.Where(row => sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+                    var sorsDic = sorsAgrList.ToDictionary(rec => rec.AgrId);
+                    agrList.ForEach( item => {
+                        var sorsItem = sorsDic[item.AgrId];
+                        item.SetFields(sorsItem);
+                        _dbContext.UpdateList(sorsItem.AgreementAddRh, item.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
+                    });
                 }
-                );
+                // Add
+                {
+                    agrList = sorsAgrList.Where(row => !destAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+                    agrList.ForEach( item => {
+                        AgreementMaster addAgr = new AgreementMaster();
+                        addAgr.SetFields(item);
+                        _dbContext.AppendList(item.AgreementAddRh, addAgr.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
+                        _dbContext.AppendList(addAgr.AgreementAddRh, dest.RightHolder.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
+                        dest.AgreementMaster.Add(addAgr);
+                    });
+                }
+
+
+
+
 
                 if (dest.CustType == 3) // Company
                 {
