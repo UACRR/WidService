@@ -1,0 +1,184 @@
+﻿namespace RightholderWorkplaceSeparateForm.Rightholder
+{
+    partial class RightholderListView
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.commandPanel = new Telerik.WinControls.UI.RadPanel();
+            this.ddbAddRightholder = new Telerik.WinControls.UI.RadDropDownButton();
+            this.miAddRightholderPerson = new Telerik.WinControls.UI.RadMenuItem();
+            this.miAddRightholderCompany = new Telerik.WinControls.UI.RadMenuItem();
+            this.gvRightholdersList = new Telerik.WinControls.UI.RadGridView();
+            this.rightholderModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radMenuItem1 = new Telerik.WinControls.UI.RadDropDownMenu();
+            ((System.ComponentModel.ISupportInitialize)(this.commandPanel)).BeginInit();
+            this.commandPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbAddRightholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightholderModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenuItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // commandPanel
+            // 
+            this.commandPanel.Controls.Add(this.ddbAddRightholder);
+            this.commandPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.commandPanel.Location = new System.Drawing.Point(0, 587);
+            this.commandPanel.Name = "commandPanel";
+            this.commandPanel.Size = new System.Drawing.Size(932, 33);
+            this.commandPanel.TabIndex = 1;
+            // 
+            // ddbAddRightholder
+            // 
+            this.ddbAddRightholder.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.miAddRightholderPerson,
+            this.miAddRightholderCompany});
+            this.ddbAddRightholder.Location = new System.Drawing.Point(12, 5);
+            this.ddbAddRightholder.Name = "ddbAddRightholder";
+            this.ddbAddRightholder.Size = new System.Drawing.Size(140, 24);
+            this.ddbAddRightholder.TabIndex = 0;
+            this.ddbAddRightholder.Text = "Додати";
+            // 
+            // miAddRightholderPerson
+            // 
+            this.miAddRightholderPerson.Name = "miAddRightholderPerson";
+            this.miAddRightholderPerson.Text = "Фізична особа";
+            this.miAddRightholderPerson.Click += new System.EventHandler(this.miAddRightholderPerson_Click);
+            // 
+            // miAddRightholderCompany
+            // 
+            this.miAddRightholderCompany.Name = "miAddRightholderCompany";
+            this.miAddRightholderCompany.Text = "Юридична особа";
+            // 
+            // gvRightholdersList
+            // 
+            this.gvRightholdersList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvRightholdersList.Location = new System.Drawing.Point(0, 0);
+            // 
+            // 
+            // 
+            gridViewDecimalColumn1.DataType = typeof(int);
+            gridViewDecimalColumn1.FieldName = "Id";
+            gridViewDecimalColumn1.HeaderText = "Id";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.Name = "Id";
+            gridViewTextBoxColumn1.FieldName = "FirstName";
+            gridViewTextBoxColumn1.HeaderText = "FirstName";
+            gridViewTextBoxColumn1.IsAutoGenerated = true;
+            gridViewTextBoxColumn1.Name = "FirstName";
+            gridViewTextBoxColumn1.Width = 200;
+            gridViewTextBoxColumn2.FieldName = "LastName";
+            gridViewTextBoxColumn2.HeaderText = "LastName";
+            gridViewTextBoxColumn2.IsAutoGenerated = true;
+            gridViewTextBoxColumn2.Name = "LastName";
+            gridViewTextBoxColumn2.Width = 200;
+            this.gvRightholdersList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn1,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2});
+            this.gvRightholdersList.MasterTemplate.DataSource = this.rightholderModelBindingSource;
+            this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvRightholdersList.Name = "gvRightholdersList";
+            this.gvRightholdersList.Size = new System.Drawing.Size(932, 587);
+            this.gvRightholdersList.TabIndex = 2;
+            this.gvRightholdersList.DoubleClick += new System.EventHandler(this.gvRightholdersList_DoubleClick);
+            // 
+            // rightholderModelBindingSource
+            // 
+            this.rightholderModelBindingSource.DataSource = typeof(RightholderWorkplaceSeparateForm.Models.RightholderModel);
+            // 
+            // radMenuItem1
+            // 
+            this.radMenuItem1.AnimationEnabled = true;
+            this.radMenuItem1.AnimationFrames = 1;
+            this.radMenuItem1.AnimationType = Telerik.WinControls.UI.PopupAnimationTypes.Fade;
+            this.radMenuItem1.AutoSize = true;
+            this.radMenuItem1.DropDownAnimationDirection = Telerik.WinControls.UI.RadDirection.Down;
+            this.radMenuItem1.DropShadow = true;
+            this.radMenuItem1.EasingType = Telerik.WinControls.RadEasingType.InQuad;
+            this.radMenuItem1.EnableAeroEffects = false;
+            this.radMenuItem1.FadeAnimationFrames = 10;
+            this.radMenuItem1.FadeAnimationSpeed = 10;
+            this.radMenuItem1.FadeAnimationType = Telerik.WinControls.UI.FadeAnimationType.FadeIn;
+            this.radMenuItem1.FitToScreenMode = ((Telerik.WinControls.UI.FitToScreenModes)((Telerik.WinControls.UI.FitToScreenModes.FitWidth | Telerik.WinControls.UI.FitToScreenModes.FitHeight)));
+            this.radMenuItem1.HorizontalAlignmentCorrectionMode = Telerik.WinControls.UI.AlignmentCorrectionMode.SnapToOuterEdges;
+            this.radMenuItem1.LastShowDpiScaleFactor = new System.Drawing.SizeF(1F, 1F);
+            this.radMenuItem1.Location = new System.Drawing.Point(0, 0);
+            this.radMenuItem1.Maximum = new System.Drawing.Size(0, 0);
+            this.radMenuItem1.Minimum = new System.Drawing.Size(0, 0);
+            this.radMenuItem1.Name = "radMenuItem1";
+            this.radMenuItem1.Opacity = 1F;
+            this.radMenuItem1.ProcessKeyboard = false;
+            this.radMenuItem1.RollOverItemSelection = true;
+            this.radMenuItem1.Size = new System.Drawing.Size(0, 0);
+            this.radMenuItem1.TabIndex = 0;
+            this.radMenuItem1.VerticalAlignmentCorrectionMode = Telerik.WinControls.UI.AlignmentCorrectionMode.SnapToOuterEdges;
+            this.radMenuItem1.Visible = false;
+            // 
+            // RightholderListView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(932, 620);
+            this.Controls.Add(this.gvRightholdersList);
+            this.Controls.Add(this.commandPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "RightholderListView";
+            // 
+            // 
+            // 
+            this.RootElement.ApplyShapeToControl = true;
+            this.Text = "RightholderListView";
+            ((System.ComponentModel.ISupportInitialize)(this.commandPanel)).EndInit();
+            this.commandPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ddbAddRightholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightholderModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenuItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private Telerik.WinControls.UI.RadPanel commandPanel;
+        private Telerik.WinControls.UI.RadDropDownButton ddbAddRightholder;
+        private Telerik.WinControls.UI.RadGridView gvRightholdersList;
+        private Telerik.WinControls.UI.RadDropDownMenu radMenuItem1;
+        private Telerik.WinControls.UI.RadMenuItem miAddRightholderPerson;
+        private Telerik.WinControls.UI.RadMenuItem miAddRightholderCompany;
+        private System.Windows.Forms.BindingSource rightholderModelBindingSource;
+    }
+}
