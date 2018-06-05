@@ -593,7 +593,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // licenseTypeDropListLicType
             // 
-            this.licenseTypeDropListLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iLicenseAgreementBindingSource, "LicCode", true));
+            this.licenseTypeDropListLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iLicenseAgreementBindingSource, "licCode", true));
             this.licenseTypeDropListLicType.DataSource = this.iAgrLicenseTypeBindingSource;
             this.licenseTypeDropListLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.licenseTypeDropListLicType.Location = new System.Drawing.Point(76, 35);
@@ -638,14 +638,6 @@ namespace ConsumerWorkplace_v_1._0
             this.licenseTypeCtrlContractConsumerDetail.MinAuthorPayment = "MinAmount";
             this.licenseTypeCtrlContractConsumerDetail.MinimumSize = new System.Drawing.Size(494, 105);
             this.licenseTypeCtrlContractConsumerDetail.Name = "licenseTypeCtrlContractConsumerDetail";
-            this.licenseTypeCtrlContractConsumerDetail.PaidPeriodValueMember = "";
-            this.licenseTypeCtrlContractConsumerDetail.PaidPeroidDisplayMember = "";
-            this.licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "";
-            this.licenseTypeCtrlContractConsumerDetail.PeriodDataSource = null;
-            this.licenseTypeCtrlContractConsumerDetail.PeriodDisplayMember = "";
-            this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentDisplayMember = "";
-            this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentValueMember = "";
-            this.licenseTypeCtrlContractConsumerDetail.PeriodValueMember = "";
             this.licenseTypeCtrlContractConsumerDetail.Size = new System.Drawing.Size(494, 129);
             this.licenseTypeCtrlContractConsumerDetail.TabIndex = 2;
             // 

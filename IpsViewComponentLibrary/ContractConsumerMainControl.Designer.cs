@@ -43,6 +43,7 @@ namespace IpsViewComponentLibrary
             this.lblContrDoFrom = new Telerik.WinControls.UI.RadLabel();
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
             this.lblContrDo = new Telerik.WinControls.UI.RadLabel();
+            this.iLicenseAgrParamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
@@ -53,6 +54,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgrParamBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rdtPickerAgrDate
@@ -72,7 +74,7 @@ namespace IpsViewComponentLibrary
             // 
             // iAgreementMasterBindingSource
             // 
-            this.iAgreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
+            this.iAgreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ILicenseAgrParam);
             // 
             // lblContrFrom
             // 
@@ -101,7 +103,7 @@ namespace IpsViewComponentLibrary
             // 
             // rdtPickerDateBegin
             // 
-            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, new System.DateTime(2018, 5, 30, 0, 0, 0, 0)));
+            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iLicenseAgrParamBindingSource, "DateBegin", true));
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateBegin.Location = new System.Drawing.Point(156, 26);
             this.rdtPickerDateBegin.MaxDate = new System.DateTime(2018, 5, 31, 14, 13, 23, 112);
@@ -117,7 +119,7 @@ namespace IpsViewComponentLibrary
             // 
             // rdtPickerDateEnd
             // 
-            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAgreementMasterBindingSource, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, new System.DateTime(2018, 5, 30, 0, 0, 0, 0)));
+            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iLicenseAgrParamBindingSource, "DateEnd", true));
             this.rdtPickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateEnd.Location = new System.Drawing.Point(354, 25);
             this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -128,7 +130,7 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateEnd.Size = new System.Drawing.Size(120, 20);
             this.rdtPickerDateEnd.TabIndex = 3;
             this.rdtPickerDateEnd.TabStop = false;
-            this.rdtPickerDateEnd.Value = new System.DateTime(2018, 6, 1, 14, 22, 42, 877);
+            this.rdtPickerDateEnd.Value = new System.DateTime(2018, 6, 1, 14, 22, 42, 878);
             this.rdtPickerDateEnd.ValueChanged += new System.EventHandler(this.rdtPickerDateEnd_ValueChanged);
             this.rdtPickerDateEnd.TextChanged += new System.EventHandler(this.rdtPickerDateEnd_TextChanged);
             // 
@@ -156,6 +158,10 @@ namespace IpsViewComponentLibrary
             this.lblContrDo.TabIndex = 2;
             this.lblContrDo.Text = "ДІЯ ДОГОВОРУ";
             // 
+            // iLicenseAgrParamBindingSource
+            // 
+            this.iLicenseAgrParamBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ILicenseAgrParam);
+            // 
             // ContractConsumerMainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -182,6 +188,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgrParamBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,5 +206,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadLabel lblContrDoTo;
         private Telerik.WinControls.UI.RadLabel lblContrDo;
         private System.Windows.Forms.BindingSource iAgreementMasterBindingSource;
+        private BindingSource iLicenseAgrParamBindingSource;
     }
 }

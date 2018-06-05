@@ -456,13 +456,20 @@ namespace ConsumerWorkplace_v_1._0
                 }
                 bindingSourceContact.DataSource = relEmpl.Empl;
 
-
+                
                 var license = _cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).FirstOrDefault();
+                
                 var licenseParam = license.LicenseAgrParam.Where(rec => rec.LicVersion == license.LicVersion).SingleOrDefault();
-
+                
                 var agrMaster = license.Agr;
                 iAgreementMasterBindingSource.DataSource = agrMaster;
                 iLicenseAgreementBindingSource.DataSource = licenseParam;
+                
+                
+
+
+
+
 
 
                 anketaCtrlAddressFactual.CountriesDataSource = _dic.country;
@@ -498,6 +505,7 @@ namespace ConsumerWorkplace_v_1._0
 
                 licenseTypeDropListLicType.DisplayMember = "Name";
                 licenseTypeDropListLicType.ValueMember = "CodeI";
+                licenseTypeDropListLicType.SelectedValue = license.LicCode;
 
                 licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
                 if (licenseParam.AddRate == null && licenseParam.IndxInfl != null)
