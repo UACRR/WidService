@@ -95,8 +95,8 @@ namespace RightholderWorkplace
             ctrlRegistrations.ResidentTypesDisplayMember = "Name";
 
             ddlTypeMethodGet.DataSource = dictionaries.typeMethodGet;
-            ddlTypeMethodGet.ValueMember = "getCode";
-            ddlTypeMethodGet.DisplayMember = "getName";
+            ddlTypeMethodGet.ValueMember = "CodeI";
+            ddlTypeMethodGet.DisplayMember = "Name";
 
             ctrlBaAddress.RegionsDataSource = dictionaries.region;
             ctrlBaAddress.RegionsValueMember = "CodeI";
