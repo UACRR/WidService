@@ -21,11 +21,12 @@ namespace ipsmedserviceapp.Model
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
             tempList.ForEach(item => Entry(item).State = EntityState.Deleted);
+            // Змінюємо спільні записи
+            tempList = sors.Where(row => dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
             // Додаємо нові
             tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
             tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
-            // Змінюємо спільні записи
-            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
 
         }
 
@@ -40,8 +41,10 @@ namespace ipsmedserviceapp.Model
         public void AppendList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {
             // Змінюємо спільні записи
-            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item, excludeField));            // Додаємо нові
-            List<T> tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
+            List<T> tempList = sors.Where(row => dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => dest.First(row => compId(item, row)).SetFields(item, excludeField));            
+            // Додаємо нові
+            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
             tempList.ForEach(item =>
             {
                 T addItem = new T();
