@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace ConsumerWorkplace_v_1._0
 {
@@ -79,6 +80,7 @@ namespace ConsumerWorkplace_v_1._0
             this.anketaDictionatiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.anketaCtrlTitleLbl = new IpsViewComponentLibrary.ConsumerTitleControl();
             this.pvConsumerManagers = new Telerik.WinControls.UI.RadPageViewPage();
+            this.rbtnBackAnketa = new Telerik.WinControls.UI.RadButton();
             this.managersRddListPositionHead = new Telerik.WinControls.UI.RadDropDownList();
             this.iRelEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iPositionTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -92,7 +94,6 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.rbtnBackAnketa = new Telerik.WinControls.UI.RadButton();
             this.managersCtrlBossNameContactsContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
             this.bindingSourceContact = new System.Windows.Forms.BindingSource(this.components);
             this.managersCtrlBossNameContactsBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
@@ -130,6 +131,7 @@ namespace ConsumerWorkplace_v_1._0
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rMainPageView)).BeginInit();
             this.rMainPageView.SuspendLayout();
             this.rMainPageSmallRights.SuspendLayout();
@@ -180,6 +182,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.anketaCtrlAddressLegal.TxtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaDictionatiesBindingSource)).BeginInit();
             this.pvConsumerManagers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersRddListPositionHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iRelEmployeeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iPositionTypeBindingSource)).BeginInit();
@@ -193,7 +196,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtLastName)).BeginInit();
@@ -321,7 +323,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
-            this.rpvConsumers.SelectedPage = this.pageConsumersAnketa;
+            this.rpvConsumers.SelectedPage = this.pageConsumersGrid;
             this.rpvConsumers.Size = new System.Drawing.Size(1124, 617);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
@@ -380,7 +382,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerManagers;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1092, 535);
             this.pageAllAnketa.TabIndex = 0;
@@ -957,6 +959,17 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerManagers.Size = new System.Drawing.Size(948, 514);
             this.pvConsumerManagers.Text = "Керівники";
             // 
+            // rbtnBackAnketa
+            // 
+            this.rbtnBackAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.rbtnBackAnketa.Location = new System.Drawing.Point(589, 487);
+            this.rbtnBackAnketa.Name = "rbtnBackAnketa";
+            this.rbtnBackAnketa.Size = new System.Drawing.Size(175, 24);
+            this.rbtnBackAnketa.TabIndex = 5;
+            this.rbtnBackAnketa.Text = "< Анкета";
+            this.rbtnBackAnketa.ThemeName = "Aqua";
+            this.rbtnBackAnketa.Click += new System.EventHandler(this.rbtnBackAnketa_Click);
+            // 
             // managersRddListPositionHead
             // 
             this.managersRddListPositionHead.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iRelEmployeeBindingSource, "PositionCode", true));
@@ -1065,17 +1078,6 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel4.Size = new System.Drawing.Size(62, 21);
             this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Керівник";
-            // 
-            // rbtnBackAnketa
-            // 
-            this.rbtnBackAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackAnketa.Location = new System.Drawing.Point(589, 487);
-            this.rbtnBackAnketa.Name = "rbtnBackAnketa";
-            this.rbtnBackAnketa.Size = new System.Drawing.Size(175, 24);
-            this.rbtnBackAnketa.TabIndex = 5;
-            this.rbtnBackAnketa.Text = "< Анкета";
-            this.rbtnBackAnketa.ThemeName = "Aqua";
-            this.rbtnBackAnketa.Click += new System.EventHandler(this.rbtnBackAnketa_Click);
             // 
             // managersCtrlBossNameContactsContactPerson
             // 
@@ -1699,13 +1701,15 @@ namespace ConsumerWorkplace_v_1._0
             gridViewTextBoxColumn5.Name = "CustId";
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
-            gridViewCommandColumn1.DefaultText = "Edit";
+            gridViewCommandColumn1.DefaultText = "";//"Edit";
             gridViewCommandColumn1.FieldName = "btnsEdit";
             gridViewCommandColumn1.HeaderText = "Редагувати";
             gridViewCommandColumn1.Name = "btnsEdit";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.UseDefaultText = true;
             gridViewCommandColumn1.Width = 97;
+            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.Image = imageList.Images["0"];
             this.rGridViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -1754,6 +1758,12 @@ namespace ConsumerWorkplace_v_1._0
             // iTypeVatBindingSource
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
+            // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "edit.ico");
             // 
             // ConsumerWorkplace
             // 
@@ -1822,6 +1832,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.anketaDictionatiesBindingSource)).EndInit();
             this.pvConsumerManagers.ResumeLayout(false);
             this.pvConsumerManagers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersRddListPositionHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iRelEmployeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iPositionTypeBindingSource)).EndInit();
@@ -1835,7 +1846,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managersCtrlBossNameContactsContactPerson.TxtLastName)).EndInit();
@@ -1979,5 +1989,6 @@ namespace ConsumerWorkplace_v_1._0
         private System.Windows.Forms.BindingSource iEmployeeBindingSourceBuh;
         private System.Windows.Forms.BindingSource iBankAccountBindingSource;
         private Telerik.WinControls.UI.RadButton btnCopyFromJAtoFa;
+        private System.Windows.Forms.ImageList imageList;
     }
 }
