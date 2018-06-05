@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -35,6 +36,7 @@
             this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
             this.radTextBox3 = new Telerik.WinControls.UI.RadTextBox();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.rightholderModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -42,6 +44,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightholderModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +74,7 @@
             // 
             // radTextBox1
             // 
+            this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rightholderModelBindingSource, "FirstName", true));
             this.radTextBox1.Location = new System.Drawing.Point(168, 64);
             this.radTextBox1.Name = "radTextBox1";
             this.radTextBox1.Size = new System.Drawing.Size(100, 20);
@@ -78,6 +82,7 @@
             // 
             // radTextBox2
             // 
+            this.radTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rightholderModelBindingSource, "LastName", true));
             this.radTextBox2.Location = new System.Drawing.Point(168, 88);
             this.radTextBox2.Name = "radTextBox2";
             this.radTextBox2.Size = new System.Drawing.Size(100, 20);
@@ -99,11 +104,15 @@
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // rightholderModelBindingSource
+            // 
+            this.rightholderModelBindingSource.DataSource = typeof(RightholderWorkplaceSeparateForm.Models.RightholderModel);
+            // 
             // RightholderItemView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 530);
+            this.ClientSize = new System.Drawing.Size(916, 560);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.radTextBox3);
             this.Controls.Add(this.radTextBox2);
@@ -125,6 +134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightholderModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -140,5 +150,6 @@
         private Telerik.WinControls.UI.RadTextBox radTextBox2;
         private Telerik.WinControls.UI.RadTextBox radTextBox3;
         private Telerik.WinControls.UI.RadButton btnSave;
+        private System.Windows.Forms.BindingSource rightholderModelBindingSource;
     }
 }

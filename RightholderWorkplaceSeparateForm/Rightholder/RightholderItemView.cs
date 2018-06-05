@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using RightholderWorkplaceSeparateForm.Models;
 using Telerik.WinControls;
 
 namespace RightholderWorkplaceSeparateForm.Rightholder
@@ -30,6 +31,12 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
                     _presenter = value;
                 }
             }
+        }
+
+        public RightholderModel Rightholder
+        {
+            get => rightholderModelBindingSource.Current as RightholderModel;
+            set => rightholderModelBindingSource.DataSource = value;
         }
 
         public void Run()

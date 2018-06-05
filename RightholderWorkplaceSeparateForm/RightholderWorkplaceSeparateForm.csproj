@@ -65,6 +65,7 @@
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
     <Compile Include="MainViewPresenter.cs" />
+    <Compile Include="Models\RightholderModel.cs" />
     <Compile Include="Rightholder\RightholderItemView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +87,7 @@
       <DependentUpon>RightholderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Rightholder\RightholderViewPresenter.cs" />
+    <Compile Include="Services\RightholdersService.cs" />
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +112,7 @@
     <EmbeddedResource Include="Rightholder\RightholderView.resx">
       <DependentUpon>RightholderView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\RightholderWorkplaceSeparateForm.Models.RightholderModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
