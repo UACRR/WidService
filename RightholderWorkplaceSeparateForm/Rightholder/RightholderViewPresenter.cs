@@ -33,7 +33,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _view.ShowView(rightholderListView);
         }
 
-        public void AddRightholder(object sender, EventArgs e)
+        public void ShowRightholderItem()
         {
             var rightholderItemView = new RightholderItemView();
             var rightholderItemViewPresenter = new RightholderItemViewPresenter(rightholderItemView);
@@ -41,6 +41,13 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             rightholderItemViewPresenter.Run();
 
             _view.ShowView(rightholderItemView);
+        }
+
+        public void AddRightholder(object sender, EventArgs e)
+        {
+            //TODO: create empty object
+
+            ShowRightholderItem();
         }
 
         public void SaveRightholder(object sender, EventArgs e)
