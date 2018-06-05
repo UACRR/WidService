@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         {
             ClnPlaceHoll = new HashSet<ClnPlaceHoll>();
             LicPlace = new HashSet<LicPlace>();
+            License = new HashSet<License>();
         }
 
         public int PlaceId { get; set; }
@@ -27,6 +28,7 @@ namespace ipsFormsDesign.Model
         public TypePlace PlCodeNavigation { get; set; }
         public ICollection<ClnPlaceHoll> ClnPlaceHoll { get; set; }
         public ICollection<LicPlace> LicPlace { get; set; }
+        public ICollection<License> License { get; set; }
     }
 }
 

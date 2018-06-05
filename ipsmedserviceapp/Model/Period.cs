@@ -7,8 +7,10 @@ namespace ipsmedserviceapp.Model
     {
         public Period()
         {
-            AgreementMaster = new HashSet<AgreementMaster>();
-            LicenseAgreement = new HashSet<LicenseAgreement>();
+            AgreementAddBr = new HashSet<AgreementAddBr>();
+            AgreementAddPartner = new HashSet<AgreementAddPartner>();
+            AgreementAddRh = new HashSet<AgreementAddRh>();
+            LicenseAgrParam = new HashSet<LicenseAgrParam>();
             PaidPeriod = new HashSet<PaidPeriod>();
             PeriodTr = new HashSet<PeriodTr>();
         }
@@ -17,8 +19,10 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string NameR { get; set; }
 
-        public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
         public ICollection<PaidPeriod> PaidPeriod { get; set; }
         public ICollection<PeriodTr> PeriodTr { get; set; }
     }

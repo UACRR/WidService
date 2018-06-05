@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class TypeMethodGetTr
     {
-        public int GetCode { get; set; }
+        public int CodeI { get; set; }
         public string Lang { get; set; }
-        public string GetName { get; set; }
+        public string Name { get; set; }
 
-        public TypeMethodGet GetCodeNavigation { get; set; }
+        public TypeMethodGet CodeINavigation { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public Client()
         {
+            AgreementAddBr = new HashSet<AgreementAddBr>();
             BrRegister = new HashSet<BrRegister>();
             ClnBusinessPlace = new HashSet<ClnBusinessPlace>();
             Distribution = new HashSet<Distribution>();
@@ -20,6 +21,7 @@ namespace ipsFormsDesign.Model
         public int CustId { get; set; }
 
         public Customer Cust { get; set; }
+        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         public ICollection<Distribution> Distribution { get; set; }

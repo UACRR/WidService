@@ -110,8 +110,8 @@ namespace ipsmedserviceapp.Controllers
                 .AsNoTracking().ToListAsync();
 
             copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec }));
-            var agrMaster = new AgreementMaster();
-            agrMaster.AgreementAddRh = new AgreementAddRh();
+            var agrMaster = new AgreementMaster { Version = 1 };
+            agrMaster.AgreementAddRh.Add(new AgreementAddRh { Version = 1} );
 
             newCust.AgreementMaster.Add(agrMaster);
 
@@ -187,18 +187,14 @@ namespace ipsmedserviceapp.Controllers
                         string[] excludeAgr = new[] { "CustId", "AgrId" };
                         AgreementMaster addItem = new AgreementMaster { AgrType = 1 };
                         addItem.SetFields(item, excludeAgr);
-                        addItem.DateBegin = addItem.AgrDate;
-                        addItem.DateEnd = new DateTime(3000, 1, 1);
+
+                        _dbContext.AppendList(item.AgreementAddBr, addItem.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
+                        _dbContext.AppendList(item.AgreementAddRh, addItem.AgreementAddRh, i => { }, (l, r) => l.Version == r.Version);
+
+
                         dest.AgreementMaster.Add(addItem);
 
-                        // Збереження AgreementAddRh
-                        if (item.AgreementAddRh != null)
-                        {
-                            AgreementAddRh addRHItem = new AgreementAddRh();
-                            addRHItem.SetFields(item.AgreementAddRh, excludeAgr);
-                            addItem.AgreementAddRh = addRHItem;
-                            dest.RightHolder.AgreementAddRh.Add(addRHItem);
-                        }
+                        
                     }
 
 

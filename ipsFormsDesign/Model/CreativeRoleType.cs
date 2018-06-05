@@ -11,6 +11,8 @@ namespace ipsFormsDesign.Model
             CopyRight = new HashSet<CopyRight>();
             CreativeRoleTypeTr = new HashSet<CreativeRoleTypeTr>();
             LicAuthor = new HashSet<LicAuthor>();
+            RelEtRole = new HashSet<RelEtRole>();
+            RelGenreRole = new HashSet<RelGenreRole>();
         }
 
         public int CodeI { get; set; }
@@ -23,6 +25,8 @@ namespace ipsFormsDesign.Model
         public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
         public ICollection<LicAuthor> LicAuthor { get; set; }
+        public ICollection<RelEtRole> RelEtRole { get; set; }
+        public ICollection<RelGenreRole> RelGenreRole { get; set; }
     }
 }
 

@@ -23,7 +23,6 @@ namespace ipsFormsDesign.Model
         public bool? AroundWord { get; set; }
         public string InterCode { get; set; }
         public string InnerCode { get; set; }
-        public int? GetCode { get; set; }
 
         public Customer Cust { get; set; }
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
