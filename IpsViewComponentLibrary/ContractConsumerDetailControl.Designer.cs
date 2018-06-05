@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -36,7 +35,6 @@
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxAuthorPaymentPercent = new Telerik.WinControls.UI.RadTextBox();
-            this.iLicenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rtxtBoxMinAuthorPayment = new Telerik.WinControls.UI.RadTextBox();
             this.rCheckBoxAutoprolongation = new Telerik.WinControls.UI.RadCheckBox();
             this.rtxtboxPercentAutoProl = new Telerik.WinControls.UI.RadTextBox();
@@ -47,7 +45,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxAuthorPaymentPercent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMinAuthorPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rCheckBoxAutoprolongation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtboxPercentAutoProl)).BeginInit();
@@ -89,19 +86,13 @@
             // 
             // rtxtBoxAuthorPaymentPercent
             // 
-            this.rtxtBoxAuthorPaymentPercent.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iLicenseAgreementBindingSource, "RateAmount", true));
             this.rtxtBoxAuthorPaymentPercent.Location = new System.Drawing.Point(139, 3);
             this.rtxtBoxAuthorPaymentPercent.Name = "rtxtBoxAuthorPaymentPercent";
             this.rtxtBoxAuthorPaymentPercent.Size = new System.Drawing.Size(78, 20);
             this.rtxtBoxAuthorPaymentPercent.TabIndex = 0;
             // 
-            // iLicenseAgreementBindingSource
-            // 
-            this.iLicenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ILicenseAgrParam);
-            // 
             // rtxtBoxMinAuthorPayment
             // 
-            this.rtxtBoxMinAuthorPayment.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iLicenseAgreementBindingSource, "MinAmount", true));
             this.rtxtBoxMinAuthorPayment.Location = new System.Drawing.Point(339, 3);
             this.rtxtBoxMinAuthorPayment.Name = "rtxtBoxMinAuthorPayment";
             this.rtxtBoxMinAuthorPayment.Size = new System.Drawing.Size(108, 20);
@@ -109,7 +100,6 @@
             // 
             // rCheckBoxAutoprolongation
             // 
-            this.rCheckBoxAutoprolongation.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.iLicenseAgreementBindingSource, "IsAutoprolog", true));
             this.rCheckBoxAutoprolongation.Location = new System.Drawing.Point(4, 28);
             this.rCheckBoxAutoprolongation.Name = "rCheckBoxAutoprolongation";
             this.rCheckBoxAutoprolongation.Size = new System.Drawing.Size(109, 18);
@@ -126,8 +116,6 @@
             // 
             // rddListPeriodPayment
             // 
-            this.rddListPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.iLicenseAgreementBindingSource, "PeriodCode", true));
-            this.rddListPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iLicenseAgreementBindingSource, "PeriodCode", true));
             this.rddListPeriodPayment.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.rddListPeriodPayment.Location = new System.Drawing.Point(139, 78);
             this.rddListPeriodPayment.Name = "rddListPeriodPayment";
@@ -170,7 +158,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxAuthorPaymentPercent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMinAuthorPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rCheckBoxAutoprolongation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtboxPercentAutoProl)).EndInit();
@@ -193,6 +180,5 @@
         private Telerik.WinControls.UI.RadTextBox rtxtboxPercentAutoProl;
         private Telerik.WinControls.UI.RadDropDownList rddListPeriodPayment;
         private Telerik.WinControls.UI.RadDropDownList rddListTypeAutoProl;
-        private System.Windows.Forms.BindingSource iLicenseAgreementBindingSource;
     }
 }

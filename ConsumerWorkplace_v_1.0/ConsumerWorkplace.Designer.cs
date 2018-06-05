@@ -40,6 +40,7 @@ namespace ConsumerWorkplace_v_1._0
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.rMainPageView = new Telerik.WinControls.UI.RadPageView();
             this.rMainPageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
             this.rPageViewSmallRights = new Telerik.WinControls.UI.RadPageView();
@@ -57,16 +58,15 @@ namespace ConsumerWorkplace_v_1._0
             this.clientNameCtrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvConsumerLicenseType = new Telerik.WinControls.UI.RadPageViewPage();
-            this.rbtnBackClientName = new Telerik.WinControls.UI.RadButton();
-            this.rbtnNextAnketa = new Telerik.WinControls.UI.RadButton();
             this.licenseTypeDropListLicType = new Telerik.WinControls.UI.RadDropDownList();
             this.iLicenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgrLicenseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rbtnBackClientName = new Telerik.WinControls.UI.RadButton();
+            this.rbtnNextAnketa = new Telerik.WinControls.UI.RadButton();
             this.lblTabLicenseTypeClientName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.licenseTypeCtrlContractConsumerDetail = new IpsViewComponentLibrary.ContractConsumerDetailControl();
             this.licenseTypeCtrlContractConsumerMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvConsumerAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.rbtnBackLicType = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromJAtoFa = new Telerik.WinControls.UI.RadButton();
@@ -127,11 +127,11 @@ namespace ConsumerWorkplace_v_1._0
             this.rpwsrPageProfilesContracts = new Telerik.WinControls.UI.RadPageViewPage();
             this.rpwsrPageRepresentatives = new Telerik.WinControls.UI.RadPageViewPage();
             this.rMainPageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
+            this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rMainPageView)).BeginInit();
             this.rMainPageView.SuspendLayout();
             this.rMainPageSmallRights.SuspendLayout();
@@ -156,14 +156,13 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).BeginInit();
             this.pvConsumerLicenseType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackClientName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseTypeDropListLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackClientName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
             this.pvConsumerAnketa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJAtoFa)).BeginInit();
@@ -237,10 +236,17 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consumerMainViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iTypeVatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
+            // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "edit.ico");
             // 
             // rMainPageView
             // 
@@ -556,9 +562,9 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // pvConsumerLicenseType
             // 
+            this.pvConsumerLicenseType.Controls.Add(this.licenseTypeDropListLicType);
             this.pvConsumerLicenseType.Controls.Add(this.rbtnBackClientName);
             this.pvConsumerLicenseType.Controls.Add(this.rbtnNextAnketa);
-            this.pvConsumerLicenseType.Controls.Add(this.licenseTypeDropListLicType);
             this.pvConsumerLicenseType.Controls.Add(this.lblTabLicenseTypeClientName);
             this.pvConsumerLicenseType.Controls.Add(this.radLabel1);
             this.pvConsumerLicenseType.Controls.Add(this.licenseTypeCtrlContractConsumerDetail);
@@ -568,6 +574,24 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerLicenseType.Name = "pvConsumerLicenseType";
             this.pvConsumerLicenseType.Size = new System.Drawing.Size(948, 514);
             this.pvConsumerLicenseType.Text = "Тип ліцензії";
+            // 
+            // licenseTypeDropListLicType
+            // 
+            this.licenseTypeDropListLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iLicenseAgreementBindingSource, "licCode", true));
+            this.licenseTypeDropListLicType.DataSource = this.iAgrLicenseTypeBindingSource;
+            this.licenseTypeDropListLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.licenseTypeDropListLicType.Location = new System.Drawing.Point(76, 35);
+            this.licenseTypeDropListLicType.Name = "licenseTypeDropListLicType";
+            this.licenseTypeDropListLicType.Size = new System.Drawing.Size(404, 20);
+            this.licenseTypeDropListLicType.TabIndex = 0;
+            // 
+            // iLicenseAgreementBindingSource
+            // 
+            this.iLicenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ILicenseAgreement);
+            // 
+            // iAgrLicenseTypeBindingSource
+            // 
+            this.iAgrLicenseTypeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgrLicenseType);
             // 
             // rbtnBackClientName
             // 
@@ -591,24 +615,6 @@ namespace ConsumerWorkplace_v_1._0
             this.rbtnNextAnketa.ThemeName = "Aqua";
             this.rbtnNextAnketa.Click += new System.EventHandler(this.rbtnNextAnketa_Click);
             // 
-            // licenseTypeDropListLicType
-            // 
-            this.licenseTypeDropListLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iLicenseAgreementBindingSource, "licCode", true));
-            this.licenseTypeDropListLicType.DataSource = this.iAgrLicenseTypeBindingSource;
-            this.licenseTypeDropListLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.licenseTypeDropListLicType.Location = new System.Drawing.Point(76, 35);
-            this.licenseTypeDropListLicType.Name = "licenseTypeDropListLicType";
-            this.licenseTypeDropListLicType.Size = new System.Drawing.Size(404, 20);
-            this.licenseTypeDropListLicType.TabIndex = 0;
-            // 
-            // iLicenseAgreementBindingSource
-            // 
-            this.iLicenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ILicenseAgreement);
-            // 
-            // iAgrLicenseTypeBindingSource
-            // 
-            this.iAgrLicenseTypeBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgrLicenseType);
-            // 
             // lblTabLicenseTypeClientName
             // 
             this.lblTabLicenseTypeClientName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -628,33 +634,36 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // licenseTypeCtrlContractConsumerDetail
             // 
-            this.licenseTypeCtrlContractConsumerDetail.AuthorPaymentPercent = "RateAmount";
-            this.licenseTypeCtrlContractConsumerDetail.DataSource = this.iLicenseAgreementBindingSource;
-            this.licenseTypeCtrlContractConsumerDetail.DataSourcePaidPeriod = null;
+            this.licenseTypeCtrlContractConsumerDetail.AutoprolongationPercent = null;
+            this.licenseTypeCtrlContractConsumerDetail.DataSourceBinding = null;
             this.licenseTypeCtrlContractConsumerDetail.IsAutoprolongation = false;
             this.licenseTypeCtrlContractConsumerDetail.Location = new System.Drawing.Point(4, 141);
             this.licenseTypeCtrlContractConsumerDetail.Margin = new System.Windows.Forms.Padding(4);
             this.licenseTypeCtrlContractConsumerDetail.MaximumSize = new System.Drawing.Size(640, 129);
-            this.licenseTypeCtrlContractConsumerDetail.MinAuthorPayment = "MinAmount";
             this.licenseTypeCtrlContractConsumerDetail.MinimumSize = new System.Drawing.Size(494, 105);
+            this.licenseTypeCtrlContractConsumerDetail.MinPayment = null;
             this.licenseTypeCtrlContractConsumerDetail.Name = "licenseTypeCtrlContractConsumerDetail";
+            this.licenseTypeCtrlContractConsumerDetail.PercentPayment = null;
+            this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataSource = null;
+            this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentDisplayMember = "";
+            this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentValueMember = "";
             this.licenseTypeCtrlContractConsumerDetail.Size = new System.Drawing.Size(494, 129);
             this.licenseTypeCtrlContractConsumerDetail.TabIndex = 2;
             // 
             // licenseTypeCtrlContractConsumerMain
             // 
-            this.licenseTypeCtrlContractConsumerMain.ContrNumber = "AgrNumber";
-            this.licenseTypeCtrlContractConsumerMain.DataSource = this.iAgreementMasterBindingSource;
+            this.licenseTypeCtrlContractConsumerMain.AgrDateDataMember = null;
+            this.licenseTypeCtrlContractConsumerMain.BeginDateDataMember = null;
+            this.licenseTypeCtrlContractConsumerMain.ContrNumber = null;
+            this.licenseTypeCtrlContractConsumerMain.DataSource = null;
+            this.licenseTypeCtrlContractConsumerMain.DateDataSource = null;
+            this.licenseTypeCtrlContractConsumerMain.EndDateDataMember = null;
             this.licenseTypeCtrlContractConsumerMain.Location = new System.Drawing.Point(3, 73);
             this.licenseTypeCtrlContractConsumerMain.Margin = new System.Windows.Forms.Padding(4);
             this.licenseTypeCtrlContractConsumerMain.MaximumSize = new System.Drawing.Size(636, 60);
             this.licenseTypeCtrlContractConsumerMain.Name = "licenseTypeCtrlContractConsumerMain";
             this.licenseTypeCtrlContractConsumerMain.Size = new System.Drawing.Size(536, 60);
             this.licenseTypeCtrlContractConsumerMain.TabIndex = 1;
-            // 
-            // iAgreementMasterBindingSource
-            // 
-            this.iAgreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
             // 
             // pvConsumerAnketa
             // 
@@ -1665,26 +1674,26 @@ namespace ConsumerWorkplace_v_1._0
             gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
             gridViewTextBoxColumn1.Name = "Innokpo";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 136;
+            gridViewTextBoxColumn1.Width = 139;
             gridViewTextBoxColumn2.FieldName = "name";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "Name";
-            gridViewTextBoxColumn2.Width = 557;
+            gridViewTextBoxColumn2.Width = 570;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.DataType = typeof(int);
             gridViewTextBoxColumn3.FieldName = "countAgree";
             gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
             gridViewTextBoxColumn3.Name = "CountAgree";
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn3.Width = 136;
+            gridViewTextBoxColumn3.Width = 139;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(double);
             gridViewTextBoxColumn4.FieldName = "undistribamount";
             gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn4.Name = "Undistribamount";
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 153;
+            gridViewTextBoxColumn4.Width = 157;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "custId";
@@ -1693,15 +1702,13 @@ namespace ConsumerWorkplace_v_1._0
             gridViewTextBoxColumn5.Name = "CustId";
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
-            gridViewCommandColumn1.DefaultText = "";//"Edit";
             gridViewCommandColumn1.FieldName = "btnsEdit";
             gridViewCommandColumn1.HeaderText = "Редагувати";
+            gridViewCommandColumn1.Image = global::ConsumerWorkplace_v_1._0.Properties.Resources.edit__1_;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Name = "btnsEdit";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.UseDefaultText = true;
-            gridViewCommandColumn1.Width = 97;
-            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.Image = imageList.Images["0"];
+            gridViewCommandColumn1.Width = 70;
             this.rGridViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -1714,7 +1721,7 @@ namespace ConsumerWorkplace_v_1._0
             this.rGridViewConsumers.Name = "rGridViewConsumers";
             this.rGridViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewConsumers.ReadOnly = true;
-            this.rGridViewConsumers.Size = new System.Drawing.Size(1096, 559);
+            this.rGridViewConsumers.Size = new System.Drawing.Size(1092, 559);
             this.rGridViewConsumers.TabIndex = 2;
             this.rGridViewConsumers.ThemeName = "Office2007Silver";
             this.rGridViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
@@ -1747,15 +1754,13 @@ namespace ConsumerWorkplace_v_1._0
             this.rMainPageBigRights.Size = new System.Drawing.Size(1254, 625);
             this.rMainPageBigRights.Text = "Великі права";
             // 
+            // iAgreementMasterBindingSource
+            // 
+            this.iAgreementMasterBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
+            // 
             // iTypeVatBindingSource
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
-            // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "edit.ico");
             // 
             // ConsumerWorkplace
             // 
@@ -1796,14 +1801,13 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).EndInit();
             this.pvConsumerLicenseType.ResumeLayout(false);
             this.pvConsumerLicenseType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackClientName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseTypeDropListLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtnBackClientName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();
             this.pvConsumerAnketa.ResumeLayout(false);
             this.pvConsumerAnketa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rbtnBackLicType)).EndInit();
@@ -1881,6 +1885,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consumerMainViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iTypeVatBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
