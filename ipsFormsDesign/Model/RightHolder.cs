@@ -14,8 +14,8 @@ namespace ipsFormsDesign.Model
             RegisterCount = new HashSet<RegisterCount>();
             ReqAgreement = new HashSet<ReqAgreement>();
             TermsOfService = new HashSet<TermsOfService>();
-            TerritoryExclude = new List<TerritoryExclude>();
-            TerritoryInclude = new List<TerritoryInclude>();
+            TerritoryExclude = new HashSet<TerritoryExclude>();
+            TerritoryInclude = new HashSet<TerritoryInclude>();
         }
 
         public int CustId { get; set; }
@@ -23,7 +23,6 @@ namespace ipsFormsDesign.Model
         public bool? AroundWord { get; set; }
         public string InterCode { get; set; }
         public string InnerCode { get; set; }
-        public int? GetCode { get; set; }
 
         public Customer Cust { get; set; }
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }

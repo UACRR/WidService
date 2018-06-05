@@ -370,9 +370,11 @@ namespace ConsumerWorkplace_v_1._0
 
 
                 var license = _cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).FirstOrDefault();
+                var licenseParam = license.LicenseAgrParam.Where(rec => rec.LicVersion == license.LicVersion).SingleOrDefault();
+
                 var agrMaster = license.Agr;
                 iAgreementMasterBindingSource.DataSource = agrMaster;
-                iLicenseAgreementBindingSource.DataSource = license;
+                iLicenseAgreementBindingSource.DataSource = licenseParam;
 
 
                 anketaCtrlAddressFactual.CountriesDataSource = _dic.country;
@@ -414,9 +416,9 @@ namespace ConsumerWorkplace_v_1._0
                 licenseTypeDropListLicType.ValueMember = "CodeI";
 
                 licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
-                if (license.AddRate == null && license.IndxInfl != null)
+                if (licenseParam.AddRate == null && licenseParam.IndxInfl != null)
                     licenseTypeCtrlContractConsumerDetail.SelectedItem = 1;
-                else if (license.AddRate != null && license.IndxInfl == null)
+                else if (licenseParam.AddRate != null && licenseParam.IndxInfl == null)
                     licenseTypeCtrlContractConsumerDetail.SelectedItem = 0;
 
 

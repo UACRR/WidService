@@ -6,11 +6,6 @@ namespace ipsFormsDesign.Model
 {
     public partial class ClnPlaceHoll : IClnPlaceHoll
     {
-        public ClnPlaceHoll()
-        {
-            LicPlaceHoll = new HashSet<LicPlaceHoll>();
-        }
-
         public int HollId { get; set; }
         public int? PlaceId { get; set; }
         public string HollName { get; set; }
@@ -19,7 +14,6 @@ namespace ipsFormsDesign.Model
         public decimal? SqHoll { get; set; }
 
         public ClnBusinessPlace Place { get; set; }
-        public ICollection<LicPlaceHoll> LicPlaceHoll { get; set; }
     }
 }
 

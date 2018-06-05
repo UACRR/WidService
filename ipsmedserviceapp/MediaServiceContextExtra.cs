@@ -39,7 +39,8 @@ namespace ipsmedserviceapp.Model
         /// <param name="compId"></param>
         public void AppendList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {
-            // Додаємо нові
+            // Змінюємо спільні записи
+            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item, excludeField));            // Додаємо нові
             List<T> tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
             tempList.ForEach(item =>
             {
@@ -48,8 +49,7 @@ namespace ipsmedserviceapp.Model
                 maxId(addItem);
                 dest.Add(addItem);
             });
-            // Змінюємо спільні записи
-            sors.ToList().ForEach(item => dest.First(row => compId(item, row)).SetFields(item, excludeField ));
+
 
         }
 

@@ -33,8 +33,10 @@ namespace ipsmedserviceapp.Model
         public string ObjImg { get; set; }
         public int? Loadid { get; set; }
         public int? SpecType { get; set; }
+        public int? ActCode { get; set; }
 
-        public GenreType GenreTypeNavigation { get; set; }
+        public ObjAct ActCodeNavigation { get; set; }
+        public Category CategoryCodeNavigation { get; set; }
         public SpecType SpecTypeNavigation { get; set; }
         public ObjectStatus StatusNavigation { get; set; }
         public MediaTrack MediaTrack { get; set; }

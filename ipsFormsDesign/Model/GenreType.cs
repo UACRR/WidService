@@ -9,7 +9,7 @@ namespace ipsFormsDesign.Model
         public GenreType()
         {
             GenreTypeTr = new HashSet<GenreTypeTr>();
-            ObjectRight = new HashSet<ObjectRight>();
+            RelGenreRole = new HashSet<RelGenreRole>();
         }
 
         public int CodeI { get; set; }
@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public ICollection<GenreTypeTr> GenreTypeTr { get; set; }
-        public ICollection<ObjectRight> ObjectRight { get; set; }
+        public ICollection<RelGenreRole> RelGenreRole { get; set; }
     }
 }
 

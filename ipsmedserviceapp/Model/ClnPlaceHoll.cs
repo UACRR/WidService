@@ -5,11 +5,6 @@ namespace ipsmedserviceapp.Model
 {
     public partial class ClnPlaceHoll
     {
-        public ClnPlaceHoll()
-        {
-            LicPlaceHoll = new HashSet<LicPlaceHoll>();
-        }
-
         public int HollId { get; set; }
         public int? PlaceId { get; set; }
         public string HollName { get; set; }
@@ -18,6 +13,5 @@ namespace ipsmedserviceapp.Model
         public decimal? SqHoll { get; set; }
 
         public ClnBusinessPlace Place { get; set; }
-        public ICollection<LicPlaceHoll> LicPlaceHoll { get; set; }
     }
 }

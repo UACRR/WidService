@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>..\packages\Portable.BouncyCastle.1.8.1.3\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.2\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
@@ -297,6 +297,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.CommunityInfo.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.TermsOfServiceWrapper.datasource" />
@@ -307,6 +308,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgrParam.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">

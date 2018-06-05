@@ -21,10 +21,11 @@ namespace ConsumerWorkplace_v_1._0
 
             var license = cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).SingleOrDefault();
             var agree = license.Agr;
+            var licenseParam = license.LicenseAgrParam.Where(rec => rec.LicVersion == license.LicVersion).SingleOrDefault();
             var anketa = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
             var relEmployy = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
             var bankAcc = cust.BankAccount.FirstOrDefault();
-            var period = dic.period.Where(rec => rec.CodeI == license.PeriodCode).SingleOrDefault();
+            var period = dic.period.Where(rec => rec.CodeI == licenseParam.PeriodCode).SingleOrDefault();
 
             var licTypeDoc = dic.agrLicenseType.SingleOrDefault(rec => rec.CodeI == license.LicCode);
             var sors = Path.Combine(currentDir, "PDF", licTypeDoc.TemplateName ?? string.Empty);
@@ -44,12 +45,12 @@ namespace ConsumerWorkplace_v_1._0
             form.GetField("RelEmployee.RelDocument").SetValue(relEmployy.RelDocument ?? string.Empty, font, 10);
 
             var field = form.GetField("LicenseAgreement.rateAmount");
-            field?.SetValue(license.RateAmount?.ToString() ?? "1", font, 10);
+            field?.SetValue(licenseParam.RateAmount?.ToString() ?? "1", font, 10);
             field = form.GetField("LicenseAgreement.minAmount#0");
-            field?.SetValue(license.MinAmount?.ToString() ?? "2 000", font, 10);
+            field?.SetValue(licenseParam.MinAmount?.ToString() ?? "2 000", font, 10);
 
             field = form.GetField("LicenseAgreement.minAmount");
-            field?.SetValue((license.MinAmount % 100)?.ToString() ?? "00", font, 10);
+            field?.SetValue((licenseParam.MinAmount % 100)?.ToString() ?? "00", font, 10);
             field = form.GetField("Period.name");
             field?.SetValue(period?.Name ?? string.Empty, font, 10);
             field = form.GetField("Period.nameR");
@@ -57,7 +58,7 @@ namespace ConsumerWorkplace_v_1._0
             field = form.GetField("year");
             field?.SetValue(DateTime.Today.Year.ToString(), font, 10);
             field = form.GetField("LicenseAgreement.addRate");
-            field?.SetValue(license.AddRate?.ToString() ?? "5", font, 10);
+            field?.SetValue(licenseParam.AddRate?.ToString() ?? "5", font, 10);
             field = form.GetField("AnketaPerson.Name");
             field?.SetValue(anketa.Name, font, 10);
             field = form.GetField("AnketaCompany.JaCountry + AnketaCompany.jaRegion + AnketaCompany.JaCity + AnketaCompany.JaAddress");

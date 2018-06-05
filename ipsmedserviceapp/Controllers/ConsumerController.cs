@@ -38,10 +38,17 @@ namespace ipsmedserviceapp.Controllers
             if (cust.Client.LicenseAgreement.Count > 0)
                 await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                     .Query()
-                    .Where(agree => agree.LicStatus < 4)
+                    .Where(agree => agree.LicStatus < 4 )
                     .Include(item => item.Agr)
+                    .Include( item => item.License )
                     .LoadAsync();
 
+            foreach (var license in cust.Client.LicenseAgreement)
+                await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
+                    .Query()
+                    .Where(rec => rec.LicVersion == license.LicVersion)
+                    .LoadAsync();
+            
             // Отримати по контрактам Періоди оплат    
             await _dbContext.PaidPeriod.FromSql("select * from PaidPeriod where custId = @custId", new SqlParameter("@custId", cust.CustId))
                 .Include(row => row.MoneyPeriodLink)
@@ -126,6 +133,8 @@ namespace ipsmedserviceapp.Controllers
                     // Delete LicenseAgreement
                     var agreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
                     var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
+                    _dbContext.License.RemoveRange(delLicense.License.ToArray());
+
                     agreeItem.LicenseAgreement.Remove(delLicense);
                     dest.Client.LicenseAgreement.Remove(item);
 
@@ -147,6 +156,8 @@ namespace ipsmedserviceapp.Controllers
 
                     var license = dest.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
                     license.SetFields(item);
+                    _dbContext.UpdateList(item.License, license.License, i => { }, (l, r) => l.PlaceId == r.PlaceId);
+                    _dbContext.AppendList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion );
 
                 });
                 // Add
@@ -164,8 +175,11 @@ namespace ipsmedserviceapp.Controllers
                         dest.AgreementMaster.Add(destAgreeItem);
                     }
 
-                    var addLicItem = new LicenseAgreement();
+                    var addLicItem = new LicenseAgreement { LicVersion = 1 };
                     addLicItem.SetFields(item, new[] { "LicId" });
+                    _dbContext.AppendList(item.License, addLicItem.License, i => { }, (l, r) => l.PlaceId == r.PlaceId);
+                    _dbContext.AppendList(item.LicenseAgrParam, addLicItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
+
                     dest.Client.LicenseAgreement.Add(addLicItem);
                     destAgreeItem.LicenseAgreement.Add(addLicItem);
                 }
@@ -255,8 +269,9 @@ namespace ipsmedserviceapp.Controllers
                 // Споживач
                 newCust.Client = new Client();
                 // Договор з Споживачем
-                var addAgr = new AgreementMaster { AgrStatus = 0, AgrType = 2 };
-                var license = new LicenseAgreement { LicStatus = 0, Agr = addAgr };
+                var addAgr = new AgreementMaster { AgrStatus = 0, AgrType = 2, Version = 1 };
+                var license = new LicenseAgreement { LicStatus = 0, Agr = addAgr, LicVersion = 1 };
+                license.LicenseAgrParam.Add(new LicenseAgrParam { LicVersion = 1 });
                 addAgr.LicenseAgreement.Add(license);
                 // addAgr.LicenseAgreement.Add(new LicenseAgreement { LicStatus = 0 });
                 newCust.Client.LicenseAgreement.Add(license);
@@ -337,6 +352,9 @@ namespace ipsmedserviceapp.Controllers
 
                     LicenseAgreement addItem = new LicenseAgreement();
                     addItem.SetFields(item, new[] { "CustId", "AgrId" });
+                    _dbContext.AppendList(item.LicenseAgrParam, addItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
+                    _dbContext.AppendList(item.License, addItem.License, i => { }, (l, r) => l.PlaceId == r.PlaceId );
+
                     addAgreeMAster.LicenseAgreement.Add(addItem);
                     addCustomer.Client.LicenseAgreement.Add(addItem);
 

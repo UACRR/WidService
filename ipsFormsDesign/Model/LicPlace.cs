@@ -6,17 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class LicPlace : ILicPlace
     {
-        public LicPlace()
-        {
-            LicPlaceHoll = new HashSet<LicPlaceHoll>();
-        }
-
         public int LicId { get; set; }
         public int PlaceId { get; set; }
 
         public LicenseAgreement Lic { get; set; }
         public ClnBusinessPlace Place { get; set; }
-        public ICollection<LicPlaceHoll> LicPlaceHoll { get; set; }
     }
 }
 
