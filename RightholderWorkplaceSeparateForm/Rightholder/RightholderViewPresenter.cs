@@ -12,13 +12,15 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
     public partial class RightholderViewPresenter
     {
 
+        private readonly ViewStack _viewStack;
         private readonly RightholderView _view;
         private readonly MainViewPresenter _parentPresenter; // TODO: IPresenter or IChildPresenter
         private readonly RightholdersService _service;
         private ViewAction _currentViewAction = null;
 
-        public RightholderViewPresenter(RightholderView view, MainViewPresenter parentPresenter)
+        public RightholderViewPresenter(RightholderView view, MainViewPresenter parentPresenter, ViewStack viewStack)
         {
+            _viewStack = viewStack;
             _parentPresenter = parentPresenter;
             _view = view;
             _view.Presenter = this;
@@ -41,7 +43,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
             _view.ShowView(rightholderListView);
             if (_currentViewAction != null)
-                ViewStack.Push(_currentViewAction);
+                _viewStack.Push(_currentViewAction);
             _currentViewAction = new ViewAction { View = rightholderListView,
                 DoneActionWithParam = (oid) => rightholderListViewPresenter.GetList(oid),
                 DoneAction = () => rightholderListViewPresenter.GetList(null),
@@ -60,7 +62,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _view.ShowView(rightholderItemView);
             if (_currentViewAction != null)
             {
-                ViewStack.Push(_currentViewAction);
+                _viewStack.Push(_currentViewAction);
             }
 
             _currentViewAction = new ViewAction { View = rightholderItemView ,
@@ -72,9 +74,9 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
         public void Done( Type returnType, object id )
         {
-            if (ViewStack.Count == 0) return;
+            if (_viewStack.Count == 0) return;
 
-            _currentViewAction = ViewStack.Pop();
+            _currentViewAction = _viewStack.Pop();
 
             if (_currentViewAction.TypeParam == returnType )
                 _currentViewAction.DoneActionWithParam(id);
@@ -86,9 +88,9 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
         public void Cancel()
         {
-            if (ViewStack.Count == 0) return;
+            if (_viewStack.Count == 0) return;
 
-            _currentViewAction = ViewStack.Pop();
+            _currentViewAction = _viewStack.Pop();
 
             _view.ShowView(_currentViewAction.View);
 
