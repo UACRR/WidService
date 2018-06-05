@@ -1,5 +1,4 @@
 ﻿using RightholderWorkplaceSeparateForm.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +7,13 @@ using Telerik.WinControls.UI;
 
 namespace RightholderWorkplaceSeparateForm.Rightholder
 {
-    public class RightholderViewPresenter
+    public partial class RightholderViewPresenter
     {
+
         private readonly RightholderView _view;
         private readonly MainViewPresenter _parentPresenter; // TODO: IPresenter or IChildPresenter
         private readonly RightholdersService _service;
+        private viewAction _currentViewAction = null;
 
         public RightholderViewPresenter(RightholderView view, MainViewPresenter parentPresenter)
         {
@@ -38,10 +39,14 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             rightholderListViewPresenter.Run();
 
             _view.ShowView(rightholderListView);
+            if (_currentViewAction != null)
+                ViewStack.Push(_currentViewAction);
+            _currentViewAction = new viewAction { view = rightholderListView, backAction = (oid) => rightholderListViewPresenter.GetList(oid) };
         }
 
         public void ShowRightholderItem(int id = 0)
         {
+
             var rightholderItemView = new RightholderItemView();
             var rightholderItemViewPresenter = new RightholderItemViewPresenter(rightholderItemView, this, _service);
             //rightholderItemViewPresenter.SavedRightholder += SaveRightholder;
@@ -49,6 +54,31 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             rightholderItemViewPresenter.Run();
 
             _view.ShowView(rightholderItemView);
+            if (_currentViewAction != null)
+                ViewStack.Push(_currentViewAction);
+            _currentViewAction = new viewAction { view = rightholderItemView , backAction=(oid)=> { } };
+        }
+
+        public void Back( object id )
+        {
+            if (ViewStack.Count == 0) return;
+
+            _currentViewAction = ViewStack.Pop();
+            _currentViewAction.backAction( id );
+
+            _view.ShowView(_currentViewAction.view);
+
+
+        }
+        public void Cancel()
+        {
+            if (ViewStack.Count == 0) return;
+
+            _currentViewAction = ViewStack.Pop();
+
+            _view.ShowView(_currentViewAction.view);
+
+
         }
 
         //public void AddRightholder(object sender, EventArgs e)

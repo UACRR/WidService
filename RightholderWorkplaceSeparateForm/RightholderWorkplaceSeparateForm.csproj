@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="MainViewPresenter.cs" />
     <Compile Include="Models\RightholderModel.cs" />
+    <Compile Include="Rightholder\IView.cs" />
     <Compile Include="Rightholder\RightholderItemView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +88,7 @@
       <DependentUpon>RightholderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Rightholder\RightholderViewPresenter.cs" />
+    <Compile Include="Rightholder\viewAction.cs" />
     <Compile Include="Services\RightholdersService.cs" />
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

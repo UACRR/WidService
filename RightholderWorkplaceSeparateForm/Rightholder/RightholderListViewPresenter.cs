@@ -23,10 +23,20 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _view.Presenter = this;
         }
 
-        public void Run()
+        public void GetList( object id = null)
         {
             var rightholders = _service.GetAll();
             _view.RighholdersList = rightholders;
+            var custId = Convert.ToInt32(id);
+            if (custId != 0)
+            {
+                _view.SelectedRightholderId = custId;
+            }
+
+        }
+        public void Run()
+        {
+            GetList();
             if (SelectedRightholderId != 0)
             {
                 _view.SelectedRightholderId = SelectedRightholderId;
