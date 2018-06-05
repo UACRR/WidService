@@ -48,11 +48,6 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
         public void AddRightholder()
         {
-            //RightholderType = 3;
-            //OnAddedRightholder(RightholderType);
-
-            //OnAddedRightholder();
-
             _parentPresenter.ShowRightholderItem();
         }
 
@@ -62,12 +57,5 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
             _parentPresenter.ShowRightholderItem(rightholderId);
         }
-
-        //public event EventHandler AddedRightholder;
-
-        //protected void OnAddedRightholder()
-        //{
-        //    AddedRightholder?.Invoke(this, EventArgs.Empty);
-        //}
     }
 }
