@@ -98,9 +98,11 @@
             gridViewTextBoxColumn4});
             this.rGridViewPremises.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewPremises.Name = "rGridViewPremises";
+            this.rGridViewPremises.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewPremises.ReadOnly = true;
             this.rGridViewPremises.Size = new System.Drawing.Size(618, 185);
             this.rGridViewPremises.TabIndex = 0;
+            this.rGridViewPremises.ThemeName = "Office2007Silver";
             // 
             // rBtnAddPremises
             // 
@@ -110,6 +112,7 @@
             this.rBtnAddPremises.Size = new System.Drawing.Size(138, 24);
             this.rBtnAddPremises.TabIndex = 1;
             this.rBtnAddPremises.Text = "Додати приміщення";
+            this.rBtnAddPremises.ThemeName = "Office2007Silver";
             this.rBtnAddPremises.Click += new System.EventHandler(this.rBtnAddPremises_Click);
             // 
             // radSeparator1
@@ -120,6 +123,7 @@
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(456, 20);
             this.radSeparator1.TabIndex = 0;
+            this.radSeparator1.ThemeName = "Office2007Silver";
             // 
             // rBtnEditPremises
             // 
@@ -129,6 +133,7 @@
             this.rBtnEditPremises.Size = new System.Drawing.Size(138, 24);
             this.rBtnEditPremises.TabIndex = 2;
             this.rBtnEditPremises.Text = "Редагувати приміщення";
+            this.rBtnEditPremises.ThemeName = "Office2007Silver";
             this.rBtnEditPremises.Click += new System.EventHandler(this.rBtnEditPremises_Click);
             // 
             // radBtnDeletePremises
@@ -139,6 +144,7 @@
             this.radBtnDeletePremises.Size = new System.Drawing.Size(125, 24);
             this.radBtnDeletePremises.TabIndex = 3;
             this.radBtnDeletePremises.Text = "Видалити приміщення";
+            this.radBtnDeletePremises.ThemeName = "Office2007Silver";
             this.radBtnDeletePremises.Click += new System.EventHandler(this.radBtnDeletePremises_Click);
             // 
             // IpsPremisesTypeControl

@@ -80,6 +80,7 @@
             this.rTxtBoxTownName.Name = "rTxtBoxTownName";
             this.rTxtBoxTownName.Size = new System.Drawing.Size(153, 20);
             this.rTxtBoxTownName.TabIndex = 0;
+            this.rTxtBoxTownName.ThemeName = "Office2007Silver";
             // 
             // rLblMainHeader
             // 
@@ -181,6 +182,7 @@
             this.rDropListRegion.NullText = "Оберіть область";
             this.rDropListRegion.Size = new System.Drawing.Size(181, 20);
             this.rDropListRegion.TabIndex = 1;
+            this.rDropListRegion.ThemeName = "Office2007Silver";
             this.rDropListRegion.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rDropListRegion_SelectedIndexChanged);
             // 
             // rTxtBoxNameStreet
@@ -192,6 +194,7 @@
             this.rTxtBoxNameStreet.NullText = " Назва вулиці / № будинку ";
             this.rTxtBoxNameStreet.Size = new System.Drawing.Size(436, 20);
             this.rTxtBoxNameStreet.TabIndex = 2;
+            this.rTxtBoxNameStreet.ThemeName = "Office2007Silver";
             // 
             // radSeparator1
             // 
@@ -201,6 +204,7 @@
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(349, 30);
             this.radSeparator1.TabIndex = 0;
+            this.radSeparator1.ThemeName = "Office2007Silver";
             // 
             // IpsAddressExpandedControl
             // 

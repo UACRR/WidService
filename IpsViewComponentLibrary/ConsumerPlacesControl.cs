@@ -27,9 +27,14 @@ namespace ipsAnketaClient
         private bool IsNeedPremissesType = false, 
                      isNewInst = false;
         private byte typePremises;
+
         #endregion
 
         public int IdItemOfSelectRow { get; set; }
+
+        public delegate void EnabledChangeWhenEdit();
+
+        public event EnabledChangeWhenEdit OnEnabledChangeWhenEditOrAddPremises;
 
         public ConsumerPlacesControl()
         {
@@ -52,6 +57,11 @@ namespace ipsAnketaClient
                     new ClnBusinessPlace()
                 };
                 rGridViewInstitution.DataSource = dataSource;
+            }
+            else
+            {
+                rGridViewInstitution.DataSource = new List<ClnBusinessPlace>();
+                //return;
             }
 
             rGridViewInstitution.Update();
@@ -133,7 +143,8 @@ namespace ipsAnketaClient
             isNewInst = false;
             newPlace = new List<ClnPlaceHoll>();
 
-            SetGridDataSource(data.Client.ClnBusinessPlace);
+            if(data.Client.ClnBusinessPlace.Count != 0)
+                SetGridDataSource(data.Client.ClnBusinessPlace);
         }
 
         public void ClearData()
@@ -197,48 +208,48 @@ namespace ipsAnketaClient
 
         #region DATASOURCES
 
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object RegionsPlacesCtrlDataSource
-        {
-            get => addressControl.RegionsPlacesCtrlDataSource;
-            set => addressControl.RegionsPlacesCtrlDataSource = value;
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsPlacesCtrlDataMember
-        {
-            get => addressControl.RegionsPlacesCtrlDataMember;
-            set => addressControl.RegionsPlacesCtrlDataMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsPlacesCtrlDisplayMember
-        {
-            get => addressControl.RegionsPlacesCtrlDisplayMember;
-            set => addressControl.RegionsPlacesCtrlDisplayMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsPlacesCtrlValueMember
-        {
-            get => addressControl.RegionsPlacesCtrlValueMember;
-            set => addressControl.RegionsPlacesCtrlValueMember = value;
-        }
-
-        [Category("Dictionaries")]
-        public RadListDataItem RegionSelectedItem
-        {
-            get => addressControl.RegionBind.SelectedItem;
-            set => addressControl.RegionBind.SelectedItem = value;
-        }
-
-        [Category("Dictionaries")]
-        public object RegionSelectedValue
-        {
-            get => addressControl.RegionBind.SelectedValue;
-            set => addressControl.RegionBind.SelectedValue = value;
-        }
+        //[Category("Dictionaries")]
+        //[AttributeProvider(typeof(IListSource))]
+        //public object RegionsPlacesCtrlDataSource
+        //{
+        //    get => addressControl.RegionsPlacesCtrlDataSource;
+        //    set => addressControl.RegionsPlacesCtrlDataSource = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public string RegionsPlacesCtrlDataMember
+        //{
+        //    get => addressControl.RegionsPlacesCtrlDataMember;
+        //    set => addressControl.RegionsPlacesCtrlDataMember = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public string RegionsPlacesCtrlDisplayMember
+        //{
+        //    get => addressControl.RegionsPlacesCtrlDisplayMember;
+        //    set => addressControl.RegionsPlacesCtrlDisplayMember = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public string RegionsPlacesCtrlValueMember
+        //{
+        //    get => addressControl.RegionsPlacesCtrlValueMember;
+        //    set => addressControl.RegionsPlacesCtrlValueMember = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public RadListDataItem RegionSelectedItem
+        //{
+        //    get => addressControl.RegionBind.SelectedItem;
+        //    set => addressControl.RegionBind.SelectedItem = value;
+        //}
+        //
+        //[Category("Dictionaries")]
+        //public object RegionSelectedValue
+        //{
+        //    get => addressControl.RegionBind.SelectedValue;
+        //    set => addressControl.RegionBind.SelectedValue = value;
+        //}
         #endregion
 
         #region Premises ctrl button click EVENTS 
@@ -510,7 +521,7 @@ namespace ipsAnketaClient
         /// <param name="e"></param>
         private void rBtnEditInst_Click(object sender, EventArgs e)
         {
-            if(rGridViewInstitution.RowCount == 0)
+            if(rGridViewInstitution.RowCount == 0 || rGridViewInstitution.CurrentRow.Cells[0].Value.ToString() == "0")
                 return;
             if (rGridViewInstitution.CurrentRow.Cells[0].Value.GetType() != typeof(Int32))
                 return;
@@ -544,6 +555,8 @@ namespace ipsAnketaClient
             rDropDownBtnAddInst.Enabled = false;
             rGridViewInstitution.Enabled = false;
             rBtnEditInst.Enabled = false;
+
+            OnEnabledChangeWhenEditOrAddPremises?.Invoke();
         }
 
         /// <summary>

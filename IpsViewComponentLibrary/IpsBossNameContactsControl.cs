@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -89,9 +92,33 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
+        private bool IsValidMail(string email)
+        {
+            
+            try
+            {
+                var mail = new MailAddress(email);
+                
+                return mail.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public bool Validator()
         {
             bool isValid = true;
+
+            if (txtEmail.Text != string.Empty)
+            if (!IsValidMail(txtEmail.Text))
+            {
+                isValid = false;
+                radLabel3.ForeColor = Color.FromArgb(180, 255, 0, 2);
+            }
+            else
+                radLabel3.ForeColor = Color.Black;
 
             //if (rtxtBoxAuthorPaymentPercent.Text == string.Empty)
             //{
@@ -102,6 +129,24 @@ namespace IpsViewComponentLibrary
             //    radLabel1.ForeColor = Color.Black;
 
             return isValid;
+        }
+
+        private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && !(ch>=64 && ch <= 90) && !(ch >= 97 && ch <= 122) && ch != 45 && ch != 46 && ch != 95)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 43)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

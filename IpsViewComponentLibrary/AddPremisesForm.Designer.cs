@@ -46,21 +46,23 @@
             // rBtnAdd
             // 
             this.rBtnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnAdd.Location = new System.Drawing.Point(13, 66);
+            this.rBtnAdd.Location = new System.Drawing.Point(13, 64);
             this.rBtnAdd.Name = "rBtnAdd";
             this.rBtnAdd.Size = new System.Drawing.Size(126, 24);
             this.rBtnAdd.TabIndex = 2;
             this.rBtnAdd.Text = "Додати приміщення";
+            this.rBtnAdd.ThemeName = "Office2007Silver";
             this.rBtnAdd.Click += new System.EventHandler(this.rBtnAdd_Click);
             // 
             // rBtnCancel
             // 
             this.rBtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rBtnCancel.Location = new System.Drawing.Point(384, 66);
+            this.rBtnCancel.Location = new System.Drawing.Point(384, 64);
             this.rBtnCancel.Name = "rBtnCancel";
             this.rBtnCancel.Size = new System.Drawing.Size(110, 24);
             this.rBtnCancel.TabIndex = 3;
             this.rBtnCancel.Text = "Скасувати";
+            this.rBtnCancel.ThemeName = "Office2007Silver";
             this.rBtnCancel.Click += new System.EventHandler(this.rBtnCancel_Click);
             // 
             // lblTypePremisses
@@ -91,6 +93,7 @@
             this.rtxtBoxTypePremisses.Name = "rtxtBoxTypePremisses";
             this.rtxtBoxTypePremisses.Size = new System.Drawing.Size(382, 20);
             this.rtxtBoxTypePremisses.TabIndex = 0;
+            this.rtxtBoxTypePremisses.ThemeName = "Office2007Silver";
             // 
             // rtxtBoxMetersPlaces
             // 
@@ -100,12 +103,13 @@
             this.rtxtBoxMetersPlaces.Name = "rtxtBoxMetersPlaces";
             this.rtxtBoxMetersPlaces.Size = new System.Drawing.Size(97, 20);
             this.rtxtBoxMetersPlaces.TabIndex = 1;
+            this.rtxtBoxMetersPlaces.ThemeName = "Office2007Silver";
             // 
             // AddPremisesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 102);
+            this.ClientSize = new System.Drawing.Size(506, 100);
             this.Controls.Add(this.rtxtBoxMetersPlaces);
             this.Controls.Add(this.rtxtBoxTypePremisses);
             this.Controls.Add(this.lblMetrsPlaceTxt);
@@ -120,6 +124,7 @@
             this.RootElement.ApplyShapeToControl = true;
             this.RootElement.MaxSize = new System.Drawing.Size(514, 132);
             this.Text = "Додати приміщення закладу";
+            this.ThemeName = "Office2007Silver";
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypePremisses)).EndInit();
