@@ -48,7 +48,7 @@ namespace ipsmedserviceapp.Controllers
                 .LoadAsync();
 
             await _dbContext.CustCmRight
-                .Where(cr => cr.CustId == id && currDate >= cr.DateBegin && currDate <= cr.DateEnd)
+                .Where(cr => cr.CustId == id )
                 .LoadAsync();
 
             if (cust.Company != null)
@@ -59,11 +59,22 @@ namespace ipsmedserviceapp.Controllers
                 }
             }
 
-            // load only one active agreement with AgreementAddRh for customer
             await _dbContext.Entry(cust).Collection(rec => rec.AgreementMaster)
                 .Query()
+                .Where(item => item.AgrStatus != 4 && item.AgrType == 1 )
+                .LoadAsync();
+
+            // load only one active agreement with AgreementAddRh for customer
+            await _dbContext.Entry(cust.RightHolder).Collection(rec => rec.AgreementAddRh)
+                .Query()
                 .Where(item => item.AgrStatus != 4)
-                .Include(item => item.AgreementAddRh)
+                .LoadAsync();
+
+
+            await _dbContext.AgreementMaster.FromSql(
+                @"select * from AgreementMaster t1
+where agrId in ( select distinct agrid from AgreementAddRH where custId = @custid )
+and agrStatus between  0 and 4", new SqlParameter( "@custId", cust.CustId ))
                 .LoadAsync();
 
             return cust;
@@ -315,8 +326,8 @@ namespace ipsmedserviceapp.Controllers
                                                                     , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
 
 
-                var destAgrList = dest.RightHolder.AgreementAddRh.Select(row => row.Agr).Distinct().ToList();
-                var sorsAgrList = updCustomer.RightHolder.AgreementAddRh.Select(row => row.Agr).Distinct().ToList();
+                var destAgrList = dest.AgreementMaster.ToList();
+                var sorsAgrList = updCustomer.AgreementMaster.ToList();
 
                 List<AgreementMaster> agrList = destAgrList.Where(row => !sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
 
