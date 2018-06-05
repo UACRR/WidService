@@ -701,23 +701,16 @@
             // 
             // licenseTypeCtrlContractConsumerDetail
             // 
-            this.licenseTypeCtrlContractConsumerDetail.AuthorPaymentPercent = "RateAmount";
-            this.licenseTypeCtrlContractConsumerDetail.DataSource = typeof(ipsFormsDesign.Interfaces.ILicenseAgreement);
-            this.licenseTypeCtrlContractConsumerDetail.DataSourcePaidPeriod = null;
             this.licenseTypeCtrlContractConsumerDetail.Location = new System.Drawing.Point(4, 149);
             this.licenseTypeCtrlContractConsumerDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.licenseTypeCtrlContractConsumerDetail.MaximumSize = new System.Drawing.Size(640, 129);
-            this.licenseTypeCtrlContractConsumerDetail.MinAuthorPayment = "MinAmount";
             this.licenseTypeCtrlContractConsumerDetail.MinimumSize = new System.Drawing.Size(494, 105);
             this.licenseTypeCtrlContractConsumerDetail.Name = "licenseTypeCtrlContractConsumerDetail";
-            this.licenseTypeCtrlContractConsumerDetail.PaidPeriodValueMember = "";
-            this.licenseTypeCtrlContractConsumerDetail.PaidPeroidDisplayMember = "";
             this.licenseTypeCtrlContractConsumerDetail.Size = new System.Drawing.Size(638, 126);
             this.licenseTypeCtrlContractConsumerDetail.TabIndex = 8;
             // 
             // licenseTypeCtrlContractConsumerMain
             // 
-            this.licenseTypeCtrlContractConsumerMain.ContrNumber = "AgrNumber";
             this.licenseTypeCtrlContractConsumerMain.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementMaster);
             this.licenseTypeCtrlContractConsumerMain.Location = new System.Drawing.Point(3, 73);
             this.licenseTypeCtrlContractConsumerMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

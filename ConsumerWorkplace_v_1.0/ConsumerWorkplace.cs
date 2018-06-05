@@ -456,14 +456,21 @@ namespace ConsumerWorkplace_v_1._0
                 }
                 bindingSourceContact.DataSource = relEmpl.Empl;
 
-
+                
                 var license = _cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).FirstOrDefault();
+                
                 var licenseParam = license.LicenseAgrParam.Where(rec => rec.LicVersion == license.LicVersion).SingleOrDefault();
-
+                
                 var agrMaster = license.Agr;
-                iAgreementMasterBindingSource.DataSource = agrMaster;
-                iLicenseAgreementBindingSource.DataSource = licenseParam;
 
+
+                //iAgreementMasterBindingSource.DataSource = agrMaster;
+                //licenseTypeCtrlContractConsumerMain.DataSource = agrMaster;
+                
+                iAgreementMasterBindingSource.DataSource = licenseParam;
+
+                iLicenseAgreementBindingSource.DataSource = license;
+                
 
                 anketaCtrlAddressFactual.CountriesDataSource = _dic.country;
                 anketaCtrlAddressFactual.CountriesValueMember = "countryCode";
@@ -492,17 +499,30 @@ namespace ConsumerWorkplace_v_1._0
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
 
-                licenseTypeCtrlContractConsumerDetail.PeriodDataSource = _dic.period;
-                licenseTypeCtrlContractConsumerDetail.PeriodValueMember = "codeI";
-                licenseTypeCtrlContractConsumerDetail.PeriodDisplayMember = "name";
+                licenseTypeCtrlContractConsumerMain.DataSource = agrMaster;
+                licenseTypeCtrlContractConsumerMain.DateDataSource = licenseParam;
+                licenseTypeCtrlContractConsumerMain.ContrNumber = "AgrNumber";
+                licenseTypeCtrlContractConsumerMain.AgrDateDataMember = "AgrDate";
+                licenseTypeCtrlContractConsumerMain.BeginDateDataMember = "DateBegin";
+                licenseTypeCtrlContractConsumerMain.EndDateDataMember = "DateEnd";
+
+                licenseTypeCtrlContractConsumerDetail.DataSourceBinding = licenseParam;
+                licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataSource = _dic.period;
+                licenseTypeCtrlContractConsumerDetail.PeriodPaymentValueMember = "codeI";
+                licenseTypeCtrlContractConsumerDetail.PeriodPaymentDisplayMember = "name";
+                licenseTypeCtrlContractConsumerDetail.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
+                licenseTypeCtrlContractConsumerDetail.MinPayment = "MinAmount";
+                licenseTypeCtrlContractConsumerDetail.PercentPayment = "RateAmount";
+                
 
                 licenseTypeDropListLicType.DisplayMember = "Name";
                 licenseTypeDropListLicType.ValueMember = "CodeI";
+                licenseTypeDropListLicType.SelectedValue = license.LicCode;
 
-                licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
-                if (licenseParam.AddRate == null && licenseParam.IndxInfl != null)
+                //licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
+                if (licenseParam?.AddRate == null && licenseParam?.IndxInfl != null)
                     licenseTypeCtrlContractConsumerDetail.SelectedItem = 1;
-                else if (licenseParam.AddRate != null && licenseParam.IndxInfl == null)
+                else if (licenseParam?.AddRate != null && licenseParam.IndxInfl == null)
                     licenseTypeCtrlContractConsumerDetail.SelectedItem = 0;
 
 
