@@ -30,7 +30,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             rightholderListViewPresenter.AddedRightholder += AddRightholder;
             rightholderListViewPresenter.Run();
 
-            _view.ShowRightholderList(rightholderListView);
+            _view.ShowView(rightholderListView);
         }
 
         public void AddRightholder(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             rightholderItemViewPresenter.SavedRightholder += SaveRightholder;
             rightholderItemViewPresenter.Run();
 
-            _view.ShowRightholderItem(rightholderItemView);
+            _view.ShowView(rightholderItemView);
         }
 
         public void SaveRightholder(object sender, EventArgs e)

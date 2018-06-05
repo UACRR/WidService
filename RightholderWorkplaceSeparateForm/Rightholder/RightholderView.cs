@@ -38,13 +38,13 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             Show();
         }
 
-        public void ShowRightholderList(RightholderListView rightholderListView)
+        public void ShowView(RightholderListView rightholderListView) // TODO: take IVeiw interface as a parameter
         {
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(rightholderListView);
         }
 
-        public void ShowRightholderItem(RightholderItemView rightholderItemView)
+        public void ShowView(RightholderItemView rightholderItemView) // TODO: take IVeiw interface as a parameter
         {
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(rightholderItemView);
