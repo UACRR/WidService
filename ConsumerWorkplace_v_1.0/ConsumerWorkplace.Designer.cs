@@ -1704,7 +1704,7 @@ namespace ConsumerWorkplace_v_1._0
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.FieldName = "btnsEdit";
             gridViewCommandColumn1.HeaderText = "Редагувати";
-            gridViewCommandColumn1.Image = global::ConsumerWorkplace_v_1._0.Properties.Resources.edit__1_;
+            gridViewCommandColumn1.Image = global::ConsumerWorkplace_v_1._0.Properties.Resources.editIcon;
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Name = "btnsEdit";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
