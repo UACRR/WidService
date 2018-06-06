@@ -229,6 +229,12 @@
     <Compile Include="RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SingleShowInformationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SingleShowInformationControl.Designer.cs">
+      <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddPremisesForm.resx">
@@ -297,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleShowInformationControl.resx">
+      <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
