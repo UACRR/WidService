@@ -9,7 +9,9 @@ namespace ipsFormsDesign.Model
         public ObjectRight()
         {
             Account = new HashSet<Account>();
+            Authors = new HashSet<Authors>();
             BrRegItem = new HashSet<BrRegItem>();
+            CopyRight = new HashSet<CopyRight>();
             DistributionItem = new HashSet<DistributionItem>();
             LicenseBigR = new HashSet<LicenseBigR>();
             MusicalDesign = new HashSet<MusicalDesign>();
@@ -42,7 +44,9 @@ namespace ipsFormsDesign.Model
         public ObjectStatus StatusNavigation { get; set; }
         public MediaTrack MediaTrack { get; set; }
         public ICollection<Account> Account { get; set; }
+        public ICollection<Authors> Authors { get; set; }
         public ICollection<BrRegItem> BrRegItem { get; set; }
+        public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<DistributionItem> DistributionItem { get; set; }
         public ICollection<LicenseBigR> LicenseBigR { get; set; }
         public ICollection<MusicalDesign> MusicalDesign { get; set; }

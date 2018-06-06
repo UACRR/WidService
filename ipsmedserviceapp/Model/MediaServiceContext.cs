@@ -38,6 +38,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual DbSet<Authors> Authors { get; set; }
         public virtual DbSet<BankAccount> BankAccount { get; set; }
         public virtual DbSet<BrRegister> BrRegister { get; set; }
         public virtual DbSet<BrRegItem> BrRegItem { get; set; }
@@ -259,8 +260,7 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+
             }
         }
 
@@ -1651,6 +1651,44 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Value).HasColumnName("value");
             });
 
+            modelBuilder.Entity<Authors>(entity =>
+            {
+                entity.HasKey(e => e.AuthId);
+
+                entity.Property(e => e.AuthId).HasColumnName("authId");
+
+                entity.Property(e => e.AuthorName)
+                    .IsRequired()
+                    .HasColumnName("authorName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.IsFolkOrUnknown).HasColumnName("isFolkOrUnknown");
+
+                entity.Property(e => e.ObjId).HasColumnName("objId");
+
+                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.Authors)
+                    .HasForeignKey(d => d.CustId)
+                    .HasConstraintName("FK_AUTHORS_REFERENCE_RIGHTHOL");
+
+                entity.HasOne(d => d.Obj)
+                    .WithMany(p => p.Authors)
+                    .HasForeignKey(d => d.ObjId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AUTHORS_REFERENCE_OBJECTRI");
+
+                entity.HasOne(d => d.RoleCodeNavigation)
+                    .WithMany(p => p.Authors)
+                    .HasForeignKey(d => d.RoleCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_AUTHORS_REFERENCE_CREATIVE");
+            });
+
             modelBuilder.Entity<BankAccount>(entity =>
             {
                 entity.HasKey(e => e.BanAccId);
@@ -2172,6 +2210,17 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.RoleRate)
                     .HasColumnName("roleRate")
                     .HasColumnType("decimal(5, 2)");
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.CopyRight)
+                    .HasForeignKey(d => d.CustId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COPYRIGH_ASSOCIATI_RIGHTHOL");
+
+                entity.HasOne(d => d.Obj)
+                    .WithMany(p => p.CopyRight)
+                    .HasForeignKey(d => d.ObjId)
+                    .HasConstraintName("FK_COPYRIGH_REFERENCE_OBJECTRI");
 
                 entity.HasOne(d => d.RoleCodeNavigation)
                     .WithMany(p => p.CopyRight)

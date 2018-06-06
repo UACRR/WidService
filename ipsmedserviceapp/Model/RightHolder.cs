@@ -9,6 +9,8 @@ namespace ipsmedserviceapp.Model
         {
             AgreementAddRh = new HashSet<AgreementAddRh>();
             AnketaAddNick = new HashSet<AnketaAddNick>();
+            Authors = new HashSet<Authors>();
+            CopyRight = new HashSet<CopyRight>();
             LicAuthor = new HashSet<LicAuthor>();
             RegisterCount = new HashSet<RegisterCount>();
             ReqAgreement = new HashSet<ReqAgreement>();
@@ -26,6 +28,8 @@ namespace ipsmedserviceapp.Model
         public Customer Cust { get; set; }
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
+        public ICollection<Authors> Authors { get; set; }
+        public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<LicAuthor> LicAuthor { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
         public ICollection<ReqAgreement> ReqAgreement { get; set; }

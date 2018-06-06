@@ -337,6 +337,15 @@ public interface IAtreementStatusTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IAuthors
+    {
+         int AuthId { get; set; }
+         int ObjId { get; set; }
+         int RoleCode { get; set; }
+         int? CustId { get; set; }
+         string AuthorName { get; set; }
+         int? IsFolkOrUnknown { get; set; }
+}
 public interface IBankAccount
     {    int BanAccId { get; set; }
          int? CustId { get; set; }

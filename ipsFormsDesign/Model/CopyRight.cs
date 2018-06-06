@@ -22,6 +22,8 @@ namespace ipsFormsDesign.Model
         public int? ParentId { get; set; }
         public int? RoleCode { get; set; }
 
+        public RightHolder Cust { get; set; }
+        public ObjectRight Obj { get; set; }
         public CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }
