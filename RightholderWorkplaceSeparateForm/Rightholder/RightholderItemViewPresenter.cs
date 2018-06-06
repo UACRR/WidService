@@ -50,24 +50,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
                 _service.Update(rightholder);
             }
 
-
-            //OnSavedRightholder();
-
             _parentPresenter.Done(rightholder.GetType(), rightholder.Id );
         }
-
-        //public void AddRightholder()
-        //{
-        //    //OnSavedRightholder(Rightholder);
-
-        //    OnSavedRightholder();
-        //}
-
-        //public event EventHandler SavedRightholder;
-
-        //protected void OnSavedRightholder()
-        //{
-        //    SavedRightholder?.Invoke(this, EventArgs.Empty);
-        //}
     }
 }

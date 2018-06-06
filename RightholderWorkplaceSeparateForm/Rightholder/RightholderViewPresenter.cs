@@ -15,7 +15,7 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
         private readonly RightholderView _view;
         private readonly MainViewPresenter _parentPresenter; // TODO: IPresenter or IChildPresenter
         private readonly RightholdersService _service;
-        private viewAction _currentViewAction = null;
+        private ViewAction _currentViewAction = null;
 
         public RightholderViewPresenter(RightholderView view, MainViewPresenter parentPresenter)
         {
@@ -37,15 +37,14 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             var rightholderListView = new RightholderListView();
             var rightholderListViewPresenter = new RightholderListViewPresenter(rightholderListView, this, _service);
             rightholderListViewPresenter.SelectedRightholderId = id;
-            //rightholderListViewPresenter.AddedRightholder += AddRightholder;
             rightholderListViewPresenter.Run();
 
             _view.ShowView(rightholderListView);
             if (_currentViewAction != null)
                 ViewStack.Push(_currentViewAction);
-            _currentViewAction = new viewAction { view = rightholderListView,
-                doneActionWithParam = (oid) => rightholderListViewPresenter.GetList(oid),
-                doneAction = () => rightholderListViewPresenter.GetList(null),
+            _currentViewAction = new ViewAction { View = rightholderListView,
+                DoneActionWithParam = (oid) => rightholderListViewPresenter.GetList(oid),
+                DoneAction = () => rightholderListViewPresenter.GetList(null),
                 TypeParam = typeof(RightholderModel)
             };
         }
@@ -55,7 +54,6 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
 
             var rightholderItemView = new RightholderItemView();
             var rightholderItemViewPresenter = new RightholderItemViewPresenter(rightholderItemView, this, _service);
-            //rightholderItemViewPresenter.SavedRightholder += SaveRightholder;
             rightholderItemViewPresenter.RightholderId = id;
             rightholderItemViewPresenter.Run();
 
@@ -65,37 +63,13 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
                 ViewStack.Push(_currentViewAction);
             }
 
-            _currentViewAction = new viewAction { view = rightholderItemView ,
-                doneActionWithParam =(oid)=> { },
-                doneAction = ()=> { },
+            _currentViewAction = new ViewAction { View = rightholderItemView ,
+                DoneActionWithParam =(oid)=> { },
+                DoneAction = ()=> { },
                 TypeParam=typeof(void)
             };
         }
 
-        public void ShowObjectRightItem(int id = 0)
-        {
-
-            //var rightholderItemView = new RightholderItemView();
-            //var rightholderItemViewPresenter = new RightholderItemViewPresenter(rightholderItemView, this, _service);
-            ////rightholderItemViewPresenter.SavedRightholder += SaveRightholder;
-            //rightholderItemViewPresenter.RightholderId = id;
-            //rightholderItemViewPresenter.Run();
-
-            //_view.ShowView(rightholderItemView);
-            //if (_currentViewAction != null)
-            //{
-            //    _currentViewAction.WithParam = true;
-            //    ViewStack.Push(_currentViewAction);
-            //}
-
-            //_currentViewAction = new viewAction
-            //{
-            //    view = rightholderItemView,
-            //    doneActionWithParam = (oid) => { },
-            //    doneAction = () => { },
-            //    WithParam = true
-            //};
-        }
         public void Done( Type returnType, object id )
         {
             if (ViewStack.Count == 0) return;
@@ -103,36 +77,22 @@ namespace RightholderWorkplaceSeparateForm.Rightholder
             _currentViewAction = ViewStack.Pop();
 
             if (_currentViewAction.TypeParam == returnType )
-                _currentViewAction.doneActionWithParam(id);
+                _currentViewAction.DoneActionWithParam(id);
              else
-                _currentViewAction.doneAction();
+                _currentViewAction.DoneAction();
 
-            _view.ShowView(_currentViewAction.view);
-
-
+            _view.ShowView(_currentViewAction.View);
         }
+
         public void Cancel()
         {
             if (ViewStack.Count == 0) return;
 
             _currentViewAction = ViewStack.Pop();
 
-            _view.ShowView(_currentViewAction.view);
+            _view.ShowView(_currentViewAction.View);
 
 
         }
-
-        //public void AddRightholder(object sender, EventArgs e)
-        //{
-        //    //TODO: create empty object
-
-        //    ShowRightholderItem();
-        //}
-
-        //public void SaveRightholder(object sender, EventArgs e)
-        //{
-        //    // SelectedRightholderId = Id; ???
-        //    ShowRightholderList();
-        //}
     }
 }

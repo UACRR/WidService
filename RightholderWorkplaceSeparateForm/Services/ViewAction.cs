@@ -1,41 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace RightholderWorkplaceSeparateForm.Rightholder
+namespace RightholderWorkplaceSeparateForm.Services
 {
-    public class viewAction
+    public class ViewAction
     {
         /// <summary>
         /// View для вставки в панель
         /// </summary>
-        public Control view { get; set; }
+        public Control View { get; set; }
         /// <summary>
         /// Функція з параметром при возвраті керування
         /// </summary>
-        public Action<object> doneActionWithParam { get; set; }
+        public Action<object> DoneActionWithParam { get; set; }
         /// <summary>
         /// Функція без параметром при возвраті керування
         /// </summary>
-        public Action doneAction { get; set; }
+        public Action DoneAction { get; set; }
         /// <summary>
         /// Признак, що потрібно визивати при возвраті метод з параметром 
         /// </summary>
         public Type TypeParam { get; set; }
-    }
-
-    public static class ViewStack
-    {
-        private static Stack<viewAction> _stack = new Stack<viewAction>();
-        public static int Count { get { return _stack.Count; } }
-        public static void Push(viewAction item )
-        {
-            _stack.Push(item);
-        }
-        public static viewAction Pop()
-        {
-            return _stack.Pop();
-        }
     }
 
 }
