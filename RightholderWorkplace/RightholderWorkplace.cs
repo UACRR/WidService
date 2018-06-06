@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
@@ -353,7 +354,19 @@ namespace RightholderWorkplace
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
-            // test object right bindings
+            var service = new ObjectRightService();
+            var dictionaries = service.GetDictionary();
+
+            // dictionaries
+            ddlGenreType.DataSource = dictionaries.genreType;
+            ddlGenreType.ValueMember = "CodeI";
+            ddlGenreType.DisplayMember = "Name";
+
+            ddlSpecType.DataSource = dictionaries.specType;
+            ddlSpecType.ValueMember = "CodeI";
+            ddlSpecType.DisplayMember = "Name";
+
+            // fake object right
             var objectRight = new ObjectRight
             {
                 Name = "Object name",
@@ -366,6 +379,7 @@ namespace RightholderWorkplace
                 }
             };
 
+            // update bidings
             objectRightBindingSource.DataSource = objectRight;
             mediaTrackBindingSource.DataSource = objectRight.MediaTrack;
         }
