@@ -38,9 +38,12 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition9 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition10 = new Telerik.WinControls.UI.TableViewDefinition();
             this.MainPageView = new Telerik.WinControls.UI.RadPageView();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
@@ -126,8 +129,37 @@
             this.btnPrevRightLimitation = new Telerik.WinControls.UI.RadButton();
             this.btnSaveRightholder = new Telerik.WinControls.UI.RadButton();
             this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
+            this.objectsPageView = new Telerik.WinControls.UI.RadPageView();
+            this.actualObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.actualObjectsPageView = new Telerik.WinControls.UI.RadPageView();
+            this.actualObjectsListPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.actualObjectsItemPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.notAcceptedObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.newObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.notLinkedObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.mainPageViewDistribution = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.objectItemPageView = new Telerik.WinControls.UI.RadPageView();
+            this.objectItemObjectPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.objectItemRightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.objectItemPerformersPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
+            this.gvObjectAuthors = new Telerik.WinControls.UI.RadGridView();
+            this.radSeparator4 = new Telerik.WinControls.UI.RadSeparator();
+            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlSpecType = new Telerik.WinControls.UI.RadDropDownList();
+            this.mebDuration = new Telerik.WinControls.UI.RadMaskedEditBox();
+            this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlGenre = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.btnMoreObjectAltName = new Telerik.WinControls.UI.RadButton();
+            this.txtObjectName = new Telerik.WinControls.UI.RadTextBox();
+            this.txtObjectAltName = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
+            this.gvObjectRightholders = new Telerik.WinControls.UI.RadGridView();
+            this.gvObjectPerformers = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
@@ -224,6 +256,38 @@
             ((System.ComponentModel.ISupportInitialize)(this.territoryExcludeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRightLimitation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).BeginInit();
+            this.mainPageRightsObjects.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).BeginInit();
+            this.objectsPageView.SuspendLayout();
+            this.actualObjectsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.actualObjectsPageView)).BeginInit();
+            this.actualObjectsPageView.SuspendLayout();
+            this.actualObjectsItemPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectItemPageView)).BeginInit();
+            this.objectItemPageView.SuspendLayout();
+            this.objectItemObjectPage.SuspendLayout();
+            this.objectItemRightholdersPage.SuspendLayout();
+            this.objectItemPerformersPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthors)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthors.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlSpecType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGenre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreObjectAltName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObjectAltName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightholders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightholders.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectPerformers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectPerformers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -236,7 +300,7 @@
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageRightholders;
+            this.MainPageView.SelectedPage = this.mainPageRightsObjects;
             this.MainPageView.Size = new System.Drawing.Size(1192, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";
@@ -263,7 +327,7 @@
             this.rightholdersPageView.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
-            this.rightholdersPageView.SelectedPage = this.newRightholdersPage;
+            this.rightholdersPageView.SelectedPage = this.actualRightholdersPage;
             this.rightholdersPageView.Size = new System.Drawing.Size(1182, 632);
             this.rightholdersPageView.TabIndex = 0;
             this.rightholdersPageView.ThemeName = "Office2013Light";
@@ -284,9 +348,9 @@
             // notAcceptedRightholdersPage
             // 
             this.notAcceptedRightholdersPage.ItemSize = new System.Drawing.SizeF(102F, 27F);
-            this.notAcceptedRightholdersPage.Location = new System.Drawing.Point(105, 10);
+            this.notAcceptedRightholdersPage.Location = new System.Drawing.Point(106, 5);
             this.notAcceptedRightholdersPage.Name = "notAcceptedRightholdersPage";
-            this.notAcceptedRightholdersPage.Size = new System.Drawing.Size(1055, 599);
+            this.notAcceptedRightholdersPage.Size = new System.Drawing.Size(1071, 622);
             this.notAcceptedRightholdersPage.Text = "Не акцептовані";
             // 
             // newRightholdersPage
@@ -306,7 +370,7 @@
             this.newRightholdersPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.newRightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.newRightholdersPageView.Name = "newRightholdersPageView";
-            this.newRightholdersPageView.SelectedPage = this.newRightholdersCreatePage;
+            this.newRightholdersPageView.SelectedPage = this.newRightholdersListPage;
             this.newRightholdersPageView.Size = new System.Drawing.Size(1071, 622);
             this.newRightholdersPageView.TabIndex = 1;
             this.newRightholdersPageView.ThemeName = "Office2013Light";
@@ -318,7 +382,6 @@
             // 
             this.newRightholdersListPage.Controls.Add(this.ddbNewRightholder);
             this.newRightholdersListPage.Controls.Add(this.gvRightholdersList);
-            this.newRightholdersListPage.ItemSize = new System.Drawing.SizeF(27F, 151F);
             this.newRightholdersListPage.Location = new System.Drawing.Point(31, 5);
             this.newRightholdersListPage.Name = "newRightholdersListPage";
             this.newRightholdersListPage.Size = new System.Drawing.Size(1035, 612);
@@ -421,7 +484,7 @@
             gridViewTextBoxColumn10});
             this.gvRightholdersList.MasterTemplate.DataSource = this.rightHolderMainViewBindingSource;
             this.gvRightholdersList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition7;
             this.gvRightholdersList.Name = "gvRightholdersList";
             this.gvRightholdersList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvRightholdersList.ReadOnly = true;
@@ -440,7 +503,6 @@
             // 
             this.newRightholdersCreatePage.Controls.Add(this.radLabel2);
             this.newRightholdersCreatePage.Controls.Add(this.newCreateRightholderPageView);
-            this.newRightholdersCreatePage.ItemSize = new System.Drawing.SizeF(27F, 169F);
             this.newRightholdersCreatePage.Location = new System.Drawing.Point(31, 5);
             this.newRightholdersCreatePage.Name = "newRightholdersCreatePage";
             this.newRightholdersCreatePage.Size = new System.Drawing.Size(1035, 612);
@@ -470,7 +532,7 @@
             this.newCreateRightholderPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.newCreateRightholderPageView.Location = new System.Drawing.Point(3, 34);
             this.newCreateRightholderPageView.Name = "newCreateRightholderPageView";
-            this.newCreateRightholderPageView.SelectedPage = this.createRightholderRoyaltyPage;
+            this.newCreateRightholderPageView.SelectedPage = this.createRightholderFullNameComissionPage;
             this.newCreateRightholderPageView.Size = new System.Drawing.Size(1029, 575);
             this.newCreateRightholderPageView.TabIndex = 1;
             this.newCreateRightholderPageView.ThemeName = "Office2013Light";
@@ -490,7 +552,6 @@
             this.createRightholderFullNameComissionPage.Controls.Add(this.ctrlAgreement);
             this.createRightholderFullNameComissionPage.Controls.Add(this.ctrlAnketaPerson);
             this.createRightholderFullNameComissionPage.Controls.Add(this.ipsServiceComissionControl1);
-            this.createRightholderFullNameComissionPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderFullNameComissionPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderFullNameComissionPage.Name = "createRightholderFullNameComissionPage";
             this.createRightholderFullNameComissionPage.Size = new System.Drawing.Size(883, 565);
@@ -616,7 +677,6 @@
             this.createRightholderAnketaPage.Controls.Add(this.ctrlContacts);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlLeAddress);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlFaAddress);
-            this.createRightholderAnketaPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderAnketaPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderAnketaPage.Name = "createRightholderAnketaPage";
             this.createRightholderAnketaPage.Size = new System.Drawing.Size(883, 565);
@@ -997,7 +1057,6 @@
             this.createRightholderPassportPage.Controls.Add(this.createRightholderPassportPageView);
             this.createRightholderPassportPage.Controls.Add(this.btnPrevAnketa);
             this.createRightholderPassportPage.Controls.Add(this.btnNextRoyalty);
-            this.createRightholderPassportPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderPassportPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderPassportPage.Name = "createRightholderPassportPage";
             this.createRightholderPassportPage.Size = new System.Drawing.Size(883, 565);
@@ -1103,7 +1162,6 @@
             this.createRightholderRoyaltyPage.Controls.Add(this.ddlTypeMethodGet);
             this.createRightholderRoyaltyPage.Controls.Add(this.btnPrevPassport);
             this.createRightholderRoyaltyPage.Controls.Add(this.btnNextRightLimitation);
-            this.createRightholderRoyaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderRoyaltyPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRoyaltyPage.Name = "createRightholderRoyaltyPage";
             this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(883, 565);
@@ -1145,7 +1203,6 @@
             // createRightholderRoyaltyBankPage
             // 
             this.createRightholderRoyaltyBankPage.Controls.Add(this.ctrlBankAccount);
-            this.createRightholderRoyaltyBankPage.ItemSize = new System.Drawing.SizeF(27F, 206F);
             this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyBankPage.Name = "createRightholderRoyaltyBankPage";
             this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(784, 450);
@@ -1236,7 +1293,6 @@
             // 
             // createRightholderRoyaltyCashPage
             // 
-            this.createRightholderRoyaltyCashPage.ItemSize = new System.Drawing.SizeF(27F, 178F);
             this.createRightholderRoyaltyCashPage.Location = new System.Drawing.Point(35, 10);
             this.createRightholderRoyaltyCashPage.Name = "createRightholderRoyaltyCashPage";
             this.createRightholderRoyaltyCashPage.Size = new System.Drawing.Size(774, 439);
@@ -1248,7 +1304,6 @@
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel10);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel9);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.ctrlBaAddress);
-            this.createRightholderRoyaltyPostalTransfer.ItemSize = new System.Drawing.SizeF(27F, 229F);
             this.createRightholderRoyaltyPostalTransfer.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyPostalTransfer.Name = "createRightholderRoyaltyPostalTransfer";
             this.createRightholderRoyaltyPostalTransfer.Size = new System.Drawing.Size(784, 450);
@@ -1400,7 +1455,6 @@
             this.createRightholderRigthLimitationsPage.Controls.Add(this.btnNextTerritoryLimitation);
             this.createRightholderRigthLimitationsPage.Controls.Add(this.btnPrevRoyalty);
             this.createRightholderRigthLimitationsPage.Controls.Add(this.ctrlExclusionsLimitations);
-            this.createRightholderRigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderRigthLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRigthLimitationsPage.Name = "createRightholderRigthLimitationsPage";
             this.createRightholderRigthLimitationsPage.Size = new System.Drawing.Size(883, 565);
@@ -1461,7 +1515,6 @@
             this.createRightholderTerritoryLimitationsPage.Controls.Add(this.gvTerritoryExclusions);
             this.createRightholderTerritoryLimitationsPage.Controls.Add(this.btnPrevRightLimitation);
             this.createRightholderTerritoryLimitationsPage.Controls.Add(this.btnSaveRightholder);
-            this.createRightholderTerritoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderTerritoryLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderTerritoryLimitationsPage.Name = "createRightholderTerritoryLimitationsPage";
             this.createRightholderTerritoryLimitationsPage.Size = new System.Drawing.Size(883, 565);
@@ -1513,7 +1566,7 @@
             gridViewComboBoxColumn2});
             this.gvTerritoryExclusions.MasterTemplate.DataSource = this.territoryExcludeBindingSource;
             this.gvTerritoryExclusions.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvTerritoryExclusions.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvTerritoryExclusions.MasterTemplate.ViewDefinition = tableViewDefinition8;
             this.gvTerritoryExclusions.Name = "gvTerritoryExclusions";
             this.gvTerritoryExclusions.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvTerritoryExclusions.ShowGroupPanel = false;
@@ -1549,11 +1602,93 @@
             // 
             // mainPageRightsObjects
             // 
+            this.mainPageRightsObjects.Controls.Add(this.objectsPageView);
             this.mainPageRightsObjects.ItemSize = new System.Drawing.SizeF(95F, 27F);
-            this.mainPageRightsObjects.Location = new System.Drawing.Point(10, 35);
+            this.mainPageRightsObjects.Location = new System.Drawing.Point(5, 31);
             this.mainPageRightsObjects.Name = "mainPageRightsObjects";
-            this.mainPageRightsObjects.Size = new System.Drawing.Size(1171, 622);
+            this.mainPageRightsObjects.Size = new System.Drawing.Size(1182, 632);
             this.mainPageRightsObjects.Text = "Об\'єкти права";
+            // 
+            // objectsPageView
+            // 
+            this.objectsPageView.Controls.Add(this.actualObjectsPage);
+            this.objectsPageView.Controls.Add(this.notAcceptedObjectsPage);
+            this.objectsPageView.Controls.Add(this.newObjectsPage);
+            this.objectsPageView.Controls.Add(this.notLinkedObjectsPage);
+            this.objectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.objectsPageView.Location = new System.Drawing.Point(0, 0);
+            this.objectsPageView.Name = "objectsPageView";
+            this.objectsPageView.SelectedPage = this.actualObjectsPage;
+            this.objectsPageView.Size = new System.Drawing.Size(1182, 632);
+            this.objectsPageView.TabIndex = 0;
+            this.objectsPageView.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
+            // 
+            // actualObjectsPage
+            // 
+            this.actualObjectsPage.Controls.Add(this.actualObjectsPageView);
+            this.actualObjectsPage.ItemSize = new System.Drawing.SizeF(151F, 27F);
+            this.actualObjectsPage.Location = new System.Drawing.Point(155, 5);
+            this.actualObjectsPage.Name = "actualObjectsPage";
+            this.actualObjectsPage.Size = new System.Drawing.Size(1022, 622);
+            this.actualObjectsPage.Text = "Об\'єкти права діючі";
+            // 
+            // actualObjectsPageView
+            // 
+            this.actualObjectsPageView.Controls.Add(this.actualObjectsListPage);
+            this.actualObjectsPageView.Controls.Add(this.actualObjectsItemPage);
+            this.actualObjectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.actualObjectsPageView.Location = new System.Drawing.Point(0, 0);
+            this.actualObjectsPageView.Name = "actualObjectsPageView";
+            this.actualObjectsPageView.SelectedPage = this.actualObjectsItemPage;
+            this.actualObjectsPageView.Size = new System.Drawing.Size(1022, 622);
+            this.actualObjectsPageView.TabIndex = 0;
+            this.actualObjectsPageView.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.actualObjectsPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.actualObjectsPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
+            // 
+            // actualObjectsListPage
+            // 
+            this.actualObjectsListPage.ItemSize = new System.Drawing.SizeF(27F, 133F);
+            this.actualObjectsListPage.Location = new System.Drawing.Point(31, 5);
+            this.actualObjectsListPage.Name = "actualObjectsListPage";
+            this.actualObjectsListPage.Size = new System.Drawing.Size(986, 612);
+            this.actualObjectsListPage.Text = "actualObjectsListPage";
+            // 
+            // actualObjectsItemPage
+            // 
+            this.actualObjectsItemPage.Controls.Add(this.objectItemPageView);
+            this.actualObjectsItemPage.ItemSize = new System.Drawing.SizeF(27F, 140F);
+            this.actualObjectsItemPage.Location = new System.Drawing.Point(31, 5);
+            this.actualObjectsItemPage.Name = "actualObjectsItemPage";
+            this.actualObjectsItemPage.Size = new System.Drawing.Size(986, 612);
+            this.actualObjectsItemPage.Text = "actualObjectsItemPage";
+            // 
+            // notAcceptedObjectsPage
+            // 
+            this.notAcceptedObjectsPage.ItemSize = new System.Drawing.SizeF(151F, 27F);
+            this.notAcceptedObjectsPage.Location = new System.Drawing.Point(155, 5);
+            this.notAcceptedObjectsPage.Name = "notAcceptedObjectsPage";
+            this.notAcceptedObjectsPage.Size = new System.Drawing.Size(1022, 622);
+            this.notAcceptedObjectsPage.Text = "Не підтверджені УААСП";
+            // 
+            // newObjectsPage
+            // 
+            this.newObjectsPage.ItemSize = new System.Drawing.SizeF(151F, 27F);
+            this.newObjectsPage.Location = new System.Drawing.Point(155, 5);
+            this.newObjectsPage.Name = "newObjectsPage";
+            this.newObjectsPage.Size = new System.Drawing.Size(1022, 622);
+            this.newObjectsPage.Text = "Нові об\'єкти права";
+            // 
+            // notLinkedObjectsPage
+            // 
+            this.notLinkedObjectsPage.ItemSize = new System.Drawing.SizeF(151F, 27F);
+            this.notLinkedObjectsPage.Location = new System.Drawing.Point(155, 5);
+            this.notLinkedObjectsPage.Name = "notLinkedObjectsPage";
+            this.notLinkedObjectsPage.Size = new System.Drawing.Size(1022, 622);
+            this.notLinkedObjectsPage.Text = "Не прив\'язані";
             // 
             // mainPageViewDistribution
             // 
@@ -1562,6 +1697,216 @@
             this.mainPageViewDistribution.Name = "mainPageViewDistribution";
             this.mainPageViewDistribution.Size = new System.Drawing.Size(1182, 632);
             this.mainPageViewDistribution.Text = "Відомості розподілу";
+            // 
+            // objectItemPageView
+            // 
+            this.objectItemPageView.Controls.Add(this.objectItemObjectPage);
+            this.objectItemPageView.Controls.Add(this.objectItemRightholdersPage);
+            this.objectItemPageView.Controls.Add(this.objectItemPerformersPage);
+            this.objectItemPageView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.objectItemPageView.Location = new System.Drawing.Point(0, 0);
+            this.objectItemPageView.Name = "objectItemPageView";
+            this.objectItemPageView.SelectedPage = this.objectItemObjectPage;
+            this.objectItemPageView.Size = new System.Drawing.Size(986, 612);
+            this.objectItemPageView.TabIndex = 0;
+            this.objectItemPageView.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectItemPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectItemPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectItemPageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
+            // 
+            // objectItemObjectPage
+            // 
+            this.objectItemObjectPage.Controls.Add(this.radLabel17);
+            this.objectItemObjectPage.Controls.Add(this.gvObjectAuthors);
+            this.objectItemObjectPage.Controls.Add(this.radSeparator4);
+            this.objectItemObjectPage.Controls.Add(this.radLabel19);
+            this.objectItemObjectPage.Controls.Add(this.ddlSpecType);
+            this.objectItemObjectPage.Controls.Add(this.mebDuration);
+            this.objectItemObjectPage.Controls.Add(this.radLabel18);
+            this.objectItemObjectPage.Controls.Add(this.radLabel16);
+            this.objectItemObjectPage.Controls.Add(this.ddlGenre);
+            this.objectItemObjectPage.Controls.Add(this.radLabel15);
+            this.objectItemObjectPage.Controls.Add(this.btnMoreObjectAltName);
+            this.objectItemObjectPage.Controls.Add(this.txtObjectName);
+            this.objectItemObjectPage.Controls.Add(this.txtObjectAltName);
+            this.objectItemObjectPage.Controls.Add(this.radLabel14);
+            this.objectItemObjectPage.Controls.Add(this.radLabel13);
+            this.objectItemObjectPage.ItemSize = new System.Drawing.SizeF(103F, 27F);
+            this.objectItemObjectPage.Location = new System.Drawing.Point(107, 5);
+            this.objectItemObjectPage.Name = "objectItemObjectPage";
+            this.objectItemObjectPage.Size = new System.Drawing.Size(874, 602);
+            this.objectItemObjectPage.Text = "Об\'єкт права";
+            // 
+            // objectItemRightholdersPage
+            // 
+            this.objectItemRightholdersPage.Controls.Add(this.gvObjectRightholders);
+            this.objectItemRightholdersPage.ItemSize = new System.Drawing.SizeF(103F, 27F);
+            this.objectItemRightholdersPage.Location = new System.Drawing.Point(107, 5);
+            this.objectItemRightholdersPage.Name = "objectItemRightholdersPage";
+            this.objectItemRightholdersPage.Size = new System.Drawing.Size(874, 602);
+            this.objectItemRightholdersPage.Text = "Правовласники";
+            // 
+            // objectItemPerformersPage
+            // 
+            this.objectItemPerformersPage.Controls.Add(this.gvObjectPerformers);
+            this.objectItemPerformersPage.ItemSize = new System.Drawing.SizeF(103F, 27F);
+            this.objectItemPerformersPage.Location = new System.Drawing.Point(107, 5);
+            this.objectItemPerformersPage.Name = "objectItemPerformersPage";
+            this.objectItemPerformersPage.Size = new System.Drawing.Size(874, 602);
+            this.objectItemPerformersPage.Text = "Виконавці";
+            // 
+            // radLabel17
+            // 
+            this.radLabel17.Location = new System.Drawing.Point(520, 56);
+            this.radLabel17.Name = "radLabel17";
+            this.radLabel17.Size = new System.Drawing.Size(23, 18);
+            this.radLabel17.TabIndex = 46;
+            this.radLabel17.Text = "сек";
+            // 
+            // gvObjectAuthors
+            // 
+            this.gvObjectAuthors.Location = new System.Drawing.Point(4, 156);
+            // 
+            // 
+            // 
+            this.gvObjectAuthors.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvObjectAuthors.Name = "gvObjectAuthors";
+            this.gvObjectAuthors.Size = new System.Drawing.Size(867, 443);
+            this.gvObjectAuthors.TabIndex = 45;
+            this.gvObjectAuthors.ThemeName = "Office2013Light";
+            // 
+            // radSeparator4
+            // 
+            this.radSeparator4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator4.Location = new System.Drawing.Point(61, 128);
+            this.radSeparator4.Name = "radSeparator4";
+            this.radSeparator4.Size = new System.Drawing.Size(810, 21);
+            this.radSeparator4.TabIndex = 44;
+            this.radSeparator4.ThemeName = "Office2013Light";
+            // 
+            // radLabel19
+            // 
+            this.radLabel19.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel19.Location = new System.Drawing.Point(3, 128);
+            this.radLabel19.Name = "radLabel19";
+            this.radLabel19.Size = new System.Drawing.Size(52, 21);
+            this.radLabel19.TabIndex = 40;
+            this.radLabel19.Text = "Автори";
+            // 
+            // ddlSpecType
+            // 
+            this.ddlSpecType.Location = new System.Drawing.Point(128, 82);
+            this.ddlSpecType.Name = "ddlSpecType";
+            this.ddlSpecType.Size = new System.Drawing.Size(197, 21);
+            this.ddlSpecType.TabIndex = 43;
+            this.ddlSpecType.ThemeName = "Office2013Light";
+            // 
+            // mebDuration
+            // 
+            this.mebDuration.Location = new System.Drawing.Point(464, 54);
+            this.mebDuration.Name = "mebDuration";
+            this.mebDuration.Size = new System.Drawing.Size(54, 21);
+            this.mebDuration.TabIndex = 42;
+            this.mebDuration.TabStop = false;
+            this.mebDuration.ThemeName = "Office2013Light";
+            // 
+            // radLabel18
+            // 
+            this.radLabel18.Location = new System.Drawing.Point(3, 83);
+            this.radLabel18.Name = "radLabel18";
+            this.radLabel18.Size = new System.Drawing.Size(79, 18);
+            this.radLabel18.TabIndex = 38;
+            this.radLabel18.Text = "Специфікація:";
+            // 
+            // radLabel16
+            // 
+            this.radLabel16.Location = new System.Drawing.Point(344, 55);
+            this.radLabel16.Name = "radLabel16";
+            this.radLabel16.Size = new System.Drawing.Size(114, 18);
+            this.radLabel16.TabIndex = 36;
+            this.radLabel16.Text = "Тривалість звучання:";
+            // 
+            // ddlGenre
+            // 
+            this.ddlGenre.Location = new System.Drawing.Point(128, 55);
+            this.ddlGenre.Name = "ddlGenre";
+            this.ddlGenre.Size = new System.Drawing.Size(197, 21);
+            this.ddlGenre.TabIndex = 41;
+            this.ddlGenre.ThemeName = "Office2013Light";
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(3, 55);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(37, 18);
+            this.radLabel15.TabIndex = 34;
+            this.radLabel15.Text = "Жанр:";
+            // 
+            // btnMoreObjectAltName
+            // 
+            this.btnMoreObjectAltName.Location = new System.Drawing.Point(638, 28);
+            this.btnMoreObjectAltName.Name = "btnMoreObjectAltName";
+            this.btnMoreObjectAltName.Size = new System.Drawing.Size(74, 21);
+            this.btnMoreObjectAltName.TabIndex = 39;
+            this.btnMoreObjectAltName.Text = "Ще";
+            this.btnMoreObjectAltName.ThemeName = "Office2013Light";
+            // 
+            // txtObjectName
+            // 
+            this.txtObjectName.Location = new System.Drawing.Point(128, 1);
+            this.txtObjectName.Name = "txtObjectName";
+            this.txtObjectName.Size = new System.Drawing.Size(504, 21);
+            this.txtObjectName.TabIndex = 37;
+            this.txtObjectName.ThemeName = "Office2013Light";
+            // 
+            // txtObjectAltName
+            // 
+            this.txtObjectAltName.Location = new System.Drawing.Point(128, 28);
+            this.txtObjectAltName.Name = "txtObjectAltName";
+            this.txtObjectAltName.Size = new System.Drawing.Size(504, 21);
+            this.txtObjectAltName.TabIndex = 35;
+            this.txtObjectAltName.ThemeName = "Office2013Light";
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Location = new System.Drawing.Point(3, 29);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(119, 18);
+            this.radLabel14.TabIndex = 33;
+            this.radLabel14.Text = "Альтернативна назва:";
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Location = new System.Drawing.Point(3, 3);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(72, 18);
+            this.radLabel13.TabIndex = 32;
+            this.radLabel13.Text = "Назва твору:";
+            // 
+            // gvObjectRightholders
+            // 
+            this.gvObjectRightholders.Location = new System.Drawing.Point(3, 3);
+            // 
+            // 
+            // 
+            this.gvObjectRightholders.MasterTemplate.ViewDefinition = tableViewDefinition9;
+            this.gvObjectRightholders.Name = "gvObjectRightholders";
+            this.gvObjectRightholders.Size = new System.Drawing.Size(868, 596);
+            this.gvObjectRightholders.TabIndex = 0;
+            this.gvObjectRightholders.ThemeName = "Office2013Light";
+            // 
+            // gvObjectPerformers
+            // 
+            this.gvObjectPerformers.Location = new System.Drawing.Point(3, 3);
+            // 
+            // 
+            // 
+            this.gvObjectPerformers.MasterTemplate.ViewDefinition = tableViewDefinition10;
+            this.gvObjectPerformers.Name = "gvObjectPerformers";
+            this.gvObjectPerformers.Size = new System.Drawing.Size(868, 596);
+            this.gvObjectPerformers.TabIndex = 0;
+            this.gvObjectPerformers.ThemeName = "Office2013Light";
             // 
             // RightholderWorkplace
             // 
@@ -1680,6 +2025,39 @@
             ((System.ComponentModel.ISupportInitialize)(this.territoryExcludeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRightLimitation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveRightholder)).EndInit();
+            this.mainPageRightsObjects.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).EndInit();
+            this.objectsPageView.ResumeLayout(false);
+            this.actualObjectsPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.actualObjectsPageView)).EndInit();
+            this.actualObjectsPageView.ResumeLayout(false);
+            this.actualObjectsItemPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.objectItemPageView)).EndInit();
+            this.objectItemPageView.ResumeLayout(false);
+            this.objectItemObjectPage.ResumeLayout(false);
+            this.objectItemObjectPage.PerformLayout();
+            this.objectItemRightholdersPage.ResumeLayout(false);
+            this.objectItemPerformersPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthors.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthors)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlSpecType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGenre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreObjectAltName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObjectAltName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightholders.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightholders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectPerformers.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectPerformers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1774,5 +2152,34 @@
         private Telerik.WinControls.UI.RadPageViewPage mainPageRightsObjects;
         private Telerik.WinControls.UI.RadPageViewPage mainPageViewDistribution;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadPageView objectsPageView;
+        private Telerik.WinControls.UI.RadPageViewPage actualObjectsPage;
+        private Telerik.WinControls.UI.RadPageViewPage notAcceptedObjectsPage;
+        private Telerik.WinControls.UI.RadPageViewPage newObjectsPage;
+        private Telerik.WinControls.UI.RadPageViewPage notLinkedObjectsPage;
+        private Telerik.WinControls.UI.RadPageView actualObjectsPageView;
+        private Telerik.WinControls.UI.RadPageViewPage actualObjectsListPage;
+        private Telerik.WinControls.UI.RadPageViewPage actualObjectsItemPage;
+        private Telerik.WinControls.UI.RadPageView objectItemPageView;
+        private Telerik.WinControls.UI.RadPageViewPage objectItemObjectPage;
+        private Telerik.WinControls.UI.RadLabel radLabel17;
+        private Telerik.WinControls.UI.RadGridView gvObjectAuthors;
+        private Telerik.WinControls.UI.RadSeparator radSeparator4;
+        private Telerik.WinControls.UI.RadLabel radLabel19;
+        private Telerik.WinControls.UI.RadDropDownList ddlSpecType;
+        private Telerik.WinControls.UI.RadMaskedEditBox mebDuration;
+        private Telerik.WinControls.UI.RadLabel radLabel18;
+        private Telerik.WinControls.UI.RadLabel radLabel16;
+        private Telerik.WinControls.UI.RadDropDownList ddlGenre;
+        private Telerik.WinControls.UI.RadLabel radLabel15;
+        private Telerik.WinControls.UI.RadButton btnMoreObjectAltName;
+        private Telerik.WinControls.UI.RadTextBox txtObjectName;
+        private Telerik.WinControls.UI.RadTextBox txtObjectAltName;
+        private Telerik.WinControls.UI.RadLabel radLabel14;
+        private Telerik.WinControls.UI.RadLabel radLabel13;
+        private Telerik.WinControls.UI.RadPageViewPage objectItemRightholdersPage;
+        private Telerik.WinControls.UI.RadPageViewPage objectItemPerformersPage;
+        private Telerik.WinControls.UI.RadGridView gvObjectRightholders;
+        private Telerik.WinControls.UI.RadGridView gvObjectPerformers;
     }
 }
