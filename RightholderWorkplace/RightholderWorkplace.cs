@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
@@ -349,6 +350,40 @@ namespace RightholderWorkplace
             _customer.RightHolder.TerritoryExclude = _customer.RightHolder.TerritoryExclude.ToList();
 
             territoryExcludeBindingSource.DataSource = _customer.RightHolder.TerritoryExclude;
+        }
+
+        private void RightholderWorkplace_Load(object sender, EventArgs e)
+        {
+            var service = new ObjectRightService();
+            var dictionaries = service.GetDictionary();
+            var objectsRightsList = service.GetMainView();
+
+            // dictionaries
+            ddlGenreType.DataSource = dictionaries.genreType;
+            ddlGenreType.ValueMember = "CodeI";
+            ddlGenreType.DisplayMember = "Name";
+
+            ddlSpecType.DataSource = dictionaries.specType;
+            ddlSpecType.ValueMember = "CodeI";
+            ddlSpecType.DisplayMember = "Name";
+
+            // fake object right
+            var objectRight = new ObjectRight
+            {
+                Name = "Object name",
+                GenreType = 1,
+                SpecType = 1,
+                MediaTrack = new MediaTrack
+                {
+                    Iswc = "ISWC1234",
+                    Duration = 5,
+                }
+            };
+
+            // update bidings
+            gvObjectsRightsList.DataSource = objectsRightsList;
+            objectRightBindingSource.DataSource = objectRight;
+            mediaTrackBindingSource.DataSource = objectRight.MediaTrack;
         }
     }
 }
