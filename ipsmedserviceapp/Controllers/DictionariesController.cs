@@ -760,5 +760,31 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(retDictionary);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("objectright")]
+        public async Task<ActionResult> GetObjectRightDictionary()
+        {
+            Dictionary<string, object> retDictionary = new Dictionary<string, object>();
+
+            retDictionary.Add("category", await _dbContext.Category.AsNoTracking().ToListAsync());
+            retDictionary.Add("copyrightType", await _dbContext.CopyrightType.AsNoTracking().ToListAsync());
+            retDictionary.Add("creativeRoleType", await _dbContext.CreativeRoleType.AsNoTracking().ToListAsync());
+            retDictionary.Add("etGenre", await _dbContext.EtGenre.AsNoTracking().ToListAsync());
+            retDictionary.Add("etRole", await _dbContext.EtRole.AsNoTracking().ToListAsync());
+            retDictionary.Add("genreType", await _dbContext.GenreType.AsNoTracking().ToListAsync());
+            retDictionary.Add("legalBasis", await _dbContext.LegalBasis.AsNoTracking().ToListAsync());
+            retDictionary.Add("objAct", await _dbContext.ObjAct.AsNoTracking().ToListAsync());
+            retDictionary.Add("objectStatus", await _dbContext.ObjectStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("permitType", await _dbContext.PermitType.AsNoTracking().ToListAsync());
+            retDictionary.Add("seekType", await _dbContext.SeekType.AsNoTracking().ToListAsync());
+            retDictionary.Add("specType", await _dbContext.SpecType.AsNoTracking().ToListAsync());
+
+            return Json(retDictionary);
+        }
+
+        }
     }
-}

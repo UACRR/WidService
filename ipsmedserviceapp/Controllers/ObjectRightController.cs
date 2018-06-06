@@ -116,9 +116,6 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(addObject);
         }
-
-
-        
         
         /// <summary>
         /// Створення нового об'єкту права
@@ -149,6 +146,17 @@ namespace ipsmedserviceapp.Controllers
                 tran?.Rollback();
                 return BadRequest(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Получити  список об'єктів права для основного єкрану інтерфейсу користувача
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("listObjectRight")]
+        public async Task<IActionResult> getListObjectRight()
+        {
+            var list = await _dbContext.getViewData("select * from vTsk_1_ListObjectRight01", null);
+            return Json(list);
         }
     }
 
