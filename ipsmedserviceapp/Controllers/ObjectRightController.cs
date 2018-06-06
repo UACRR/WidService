@@ -6,6 +6,7 @@ using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -30,7 +31,8 @@ namespace ipsmedserviceapp.Controllers
         private async Task<ObjectRight> getObjectRightById( int objid )
         {
             var objectRight = await _dbContext.ObjectRight.Where(rec => rec.ObjId == objid)
-                .Include( rec => rec.CopyRight)
+                .Include(rec => rec.Authors)
+                .Include(rec => rec.CopyRight)
                 .Include(rec => rec.SeekObject)
                 .Include(rec => rec.MediaTrack)
                 .SingleOrDefaultAsync();
@@ -44,14 +46,54 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Сінхронізація інформації по Об'єктам права
+        /// </summary>
+        /// <param name="sors"></param>
+        /// <param name="dest"></param>
+        private void updateObjectRight(ObjectRight sors, ObjectRight dest)
+        {
+            dest.SetFields(sors);
+            _dbContext.UpdateList(sors.CopyRight, dest.CopyRight, i => { }, (l, r) => l.CRightId == r.CRightId);
+            _dbContext.UpdateList(sors.Authors, dest.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
+
+        }
+
+        /// <summary>
         /// Публічний меиод -- Отримати об'єкт бази даних по ідентифікатору
         /// </summary>
         /// <param name="objid">Ідентифікатор об'єкту</param>
         /// <returns>Структура даних обїекту</returns>
         [HttpGet("detail/{objid}")]
-        public async Task<IActionResult> GetObjectById( int objid )
+        public async Task<IActionResult> GetObjectById(int objid)
         {
-            return Json( await getObjectRightById(objid) );
+            return Json(await getObjectRightById(objid));
+        }
+
+        /// <summary>
+        /// Публічний меиод -- Отримати об'єкт бази даних по ідентифікатору
+        /// </summary>
+        /// <param name="objid">Ідентифікатор об'єкту</param>
+        /// <returns>Структура даних обїекту</returns>
+        [HttpPut("detail/{objid}")]
+        public async Task<IActionResult> UpdateObjectRightById(int objid, [FromBody] ObjectRight body )
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                ObjectRight dest = await getObjectRightById(objid);
+                updateObjectRight(body, dest);
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(dest);
+
+            }
+            catch( Exception ex )
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -75,21 +117,38 @@ namespace ipsmedserviceapp.Controllers
             return Json(addObject);
         }
 
-        private void updateObjectRight( ObjectRight sors, ObjectRight dest )
-        {
-            dest.SetFields(sors);
 
-        }
+        
+        
+        /// <summary>
+        /// Створення нового об'єкту права
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
         [HttpPost("newobject")]
-        public IActionResult createObjectRight([FromBody] ObjectRight body )
+        public async Task<IActionResult> createObjectRight([FromBody] ObjectRight body )
         {
             ObjectRight addObject = new ObjectRight { CategoryCode = body.CategoryCode };
-            _dbContext.ObjectRight.Add(addObject);
+            IDbContextTransaction tran = null;
+            try
+            {
 
-            updateObjectRight(body, addObject);
+                _dbContext.ObjectRight.Add(addObject);
 
+                updateObjectRight(body, addObject);
 
-            return Json(addObject);
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+
+                return Json(addObject);
+
+            }
+            catch( Exception ex )
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
         }
     }
 
