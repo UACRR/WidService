@@ -350,5 +350,24 @@ namespace RightholderWorkplace
 
             territoryExcludeBindingSource.DataSource = _customer.RightHolder.TerritoryExclude;
         }
+
+        private void RightholderWorkplace_Load(object sender, EventArgs e)
+        {
+            // test object right bindings
+            var objectRight = new ObjectRight
+            {
+                Name = "Object name",
+                GenreType = 1,
+                SpecType = 1,
+                MediaTrack = new MediaTrack
+                {
+                    Iswc = "ISWC1234",
+                    Duration = 5,
+                }
+            };
+
+            objectRightBindingSource.DataSource = objectRight;
+            mediaTrackBindingSource.DataSource = objectRight.MediaTrack;
+        }
     }
 }

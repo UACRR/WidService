@@ -89,6 +89,8 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IMediaTrack.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IObjectRight.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ITerritoryExclude.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightHolderMainView.datasource" />
