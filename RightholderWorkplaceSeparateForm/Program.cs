@@ -1,5 +1,4 @@
-﻿using RightholderWorkplaceSeparateForm.Services;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -16,9 +15,8 @@ namespace RightholderWorkplaceSeparateForm
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var viewStack = ViewStack.GetInstance();
             var view = new MainView();
-            var presenter = new MainViewPresenter(view, viewStack);
+            var presenter = new MainViewPresenter(view);
             presenter.Run();
         }
     }

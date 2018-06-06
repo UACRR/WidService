@@ -2,36 +2,24 @@
 
 namespace RightholderWorkplaceSeparateForm.Services
 {
-    public class ViewStack
+    public static class ViewStack
     {
-        private Stack<ViewAction> _stack = new Stack<ViewAction>();
-        private static ViewStack _instance;
+        private static Stack<ViewAction> _stack = new Stack<ViewAction>();
 
-        private ViewStack()
-        {
-        }
-
-        public static ViewStack GetInstance()
-        {
-            if (_instance == null)
-                _instance = new ViewStack();
-
-            return _instance;
-        }
-
-        public int Count
+        public static int Count
         {
             get => _stack.Count;
         }
 
-        public void Push(ViewAction item )
+        public static void Push(ViewAction item )
         {
             _stack.Push(item);
         }
 
-        public ViewAction Pop()
+        public static ViewAction Pop()
         {
             return _stack.Pop();
         }
     }
+
 }
