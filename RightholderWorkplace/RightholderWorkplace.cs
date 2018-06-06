@@ -356,6 +356,7 @@ namespace RightholderWorkplace
         {
             var service = new ObjectRightService();
             var dictionaries = service.GetDictionary();
+            var objectsRightsList = service.GetMainView();
 
             // dictionaries
             ddlGenreType.DataSource = dictionaries.genreType;
@@ -380,6 +381,7 @@ namespace RightholderWorkplace
             };
 
             // update bidings
+            gvObjectsRightsList.DataSource = objectsRightsList;
             objectRightBindingSource.DataSource = objectRight;
             mediaTrackBindingSource.DataSource = objectRight.MediaTrack;
         }

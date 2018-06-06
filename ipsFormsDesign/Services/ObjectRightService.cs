@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Interfaces;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,14 @@ namespace ipsFormsDesign.Services
 
         public ObjectRightDictionaries GetDictionary()
         {
-            return _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright"); ;
+            var item = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
+            return item;
+        }
+
+        public IList<ObjectRightMainView> GetMainView()
+        {
+            var list = _webApi.GetList<ObjectRightMainView>("objectright/listobjectright");
+            return list;
         }
     }
 }
