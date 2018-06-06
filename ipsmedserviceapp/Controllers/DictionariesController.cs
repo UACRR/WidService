@@ -762,7 +762,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Довідники об'єкту права
         /// </summary>
         /// <returns></returns>
         [HttpGet("objectright")]
