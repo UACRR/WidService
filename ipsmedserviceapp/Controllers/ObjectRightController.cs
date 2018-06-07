@@ -66,7 +66,10 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("detail/{objid}")]
         public async Task<IActionResult> GetObjectById(int objid)
         {
-            return Json(await getObjectRightById(objid));
+            var or = await getObjectRightById(objid);
+            var rhList = await _dbContext.getViewData($"select * from ft_ObjectRightCustomerForm01({objid})", null);
+
+            return Json( new { objectRight = or, rhList});
         }
 
         /// <summary>
