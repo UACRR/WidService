@@ -58,20 +58,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditControl1.cs">
+    <Compile Include="Interface\IMVC.cs" />
+    <Compile Include="Level\EditControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditControl1.Designer.cs">
+    <Compile Include="Level\EditControl1.Designer.cs">
       <DependentUpon>EditControl1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GridControl1.cs">
+    <Compile Include="Level\GridControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GridControl1.Designer.cs">
+    <Compile Include="Level\GridControl1.Designer.cs">
       <DependentUpon>GridControl1.cs</DependentUpon>
     </Compile>
-    <Compile Include="LevelPresenter.cs" />
-    <Compile Include="Main\IData.cs" />
+    <Compile Include="Level\LevelPresenter.cs" />
+    <Compile Include="Interface\IData.cs" />
     <Compile Include="Main\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,10 +87,10 @@
     <Compile Include="RadForm1.Designer.cs">
       <DependentUpon>RadForm1.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="EditControl1.resx">
+    <EmbeddedResource Include="Level\EditControl1.resx">
       <DependentUpon>EditControl1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GridControl1.resx">
+    <EmbeddedResource Include="Level\GridControl1.resx">
       <DependentUpon>GridControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main\MainView.resx">

@@ -10,5 +10,6 @@ namespace TestMVCStack.Main
     {
         string field1 { get; set; }
         string field2 { get; set; }
+        int id { get;  }
     }
 }
