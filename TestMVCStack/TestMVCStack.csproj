@@ -70,7 +70,14 @@
     <Compile Include="GridControl1.Designer.cs">
       <DependentUpon>GridControl1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LevelPresenter.cs" />
     <Compile Include="Main\IData.cs" />
+    <Compile Include="Main\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Main\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main\PresenterMain.cs" />
     <Compile Include="Main\ServiceMain.cs" />
     <Compile Include="RadForm1.cs">
@@ -84,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GridControl1.resx">
       <DependentUpon>GridControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="RadForm1.resx">
