@@ -132,6 +132,12 @@
     <Compile Include="ExpandedFormForAnketaPersonRightHolder.Designer.cs">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="InformationAboutTheContractTitleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InformationAboutTheContractTitleControl.Designer.cs">
+      <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformationOfUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -266,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExpandedFormForAnketaPersonRightHolder.resx">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
+      <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformationOfUserControl.resx">
       <DependentUpon>InformationOfUserControl.cs</DependentUpon>
