@@ -372,16 +372,6 @@ namespace RightholderWorkplace
             columnRole.ValueMember = "CodeI";
             columnRole.DisplayMember = "Name";
 
-            //var columnIsFolkOrUnknown = gvObjectAuthors.Columns["IsFolkOrUnknown"] as GridViewComboBoxColumn;
-            //columnIsFolkOrUnknown.DataSource = new []
-            //{
-            //    new { CodeI = 0, Name = "" },
-            //    new { CodeI = 1, Name = "Народний" },
-            //    new { CodeI = 2, Name = "Невідомий" },
-            //};
-            //columnIsFolkOrUnknown.ValueMember = "CodeI";
-            //columnIsFolkOrUnknown.DisplayMember = "Name";
-
             // fake object right
             var objectRight = new ObjectRight
             {
@@ -396,22 +386,10 @@ namespace RightholderWorkplace
                 Authors = new List<Authors>
                 {
                     new Authors{ AuthId = 1, RoleCode = 4, AuthorName = "Performer 1", IsFolkOrUnknown = null },
-                    new Authors{ AuthId = 2, RoleCode = 1, AuthorName = "", IsFolkOrUnknown = 1 },
-                    new Authors{ AuthId = 3, RoleCode = 2, AuthorName = "", IsFolkOrUnknown = 2 },
+                    new Authors{ AuthId = 2, RoleCode = 1, AuthorName = "Народний", IsFolkOrUnknown = 1 },
+                    new Authors{ AuthId = 3, RoleCode = 2, AuthorName = "Невідомий", IsFolkOrUnknown = 2 },
                 }
             };
-
-            objectRight.Authors = objectRight.Authors.Select(a =>
-            {
-                if (a.IsFolkOrUnknown != null)
-                {
-                    if (a.IsFolkOrUnknown == 1)
-                        a.AuthorName = "Народний";
-                    else
-                        a.AuthorName = "Невідомий";
-                }
-                return a;
-            }).ToList();
 
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
