@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Model;
 
 namespace ConsumerWorkplace_v_1._0
 {
@@ -20,6 +21,15 @@ namespace ConsumerWorkplace_v_1._0
             FormPresenter control = new FormPresenter(form, model);
 
             Application.Run(form);
+            LoadCabinet(form.ReturnCustomer(), form.ReturnList());
+        }
+
+        private static void LoadCabinet(Customer oo, object ooo)
+        {
+            ConsumerCabinet f = new ConsumerCabinet();
+            f.SetData(oo);
+            f.SetDataSourceGridConsumerList(ooo);
+            Application.Run(f);
         }
     }
 }

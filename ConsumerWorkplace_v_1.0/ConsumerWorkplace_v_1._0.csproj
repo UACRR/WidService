@@ -108,6 +108,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsumerCabinet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerCabinet.Designer.cs">
+      <DependentUpon>ConsumerCabinet.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     <Compile Include="PdfEngine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConsumerCabinet.resx">
+      <DependentUpon>ConsumerCabinet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerList.resx">
       <DependentUpon>ConsumerList.cs</DependentUpon>
     </EmbeddedResource>
