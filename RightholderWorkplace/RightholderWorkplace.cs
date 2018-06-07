@@ -355,8 +355,10 @@ namespace RightholderWorkplace
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
             var service = new ObjectRightService();
+
             var dictionaries = service.GetDictionary();
             var objectsRightsList = service.GetMainView();
+            var objectRightContainer = service.GetData(5848);
 
             // dictionaries
             ddlGenreType.DataSource = dictionaries.genreType;
@@ -367,35 +369,27 @@ namespace RightholderWorkplace
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
 
-            var columnRole = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRole.DataSource = dictionaries.creativeRoleType;
-            columnRole.ValueMember = "CodeI";
-            columnRole.DisplayMember = "Name";
+            var columnRoleAuth = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleAuth.DataSource = dictionaries.creativeRoleType;
+            columnRoleAuth.ValueMember = "CodeI";
+            columnRoleAuth.DisplayMember = "Name";
 
-            // fake object right
-            var objectRight = new ObjectRight
-            {
-                Name = "Object name",
-                GenreType = 1,
-                SpecType = 1,
-                MediaTrack = new MediaTrack
-                {
-                    Iswc = "ISWC1234",
-                    Duration = 5,
-                },
-                Authors = new List<Authors>
-                {
-                    new Authors{ AuthId = 1, RoleCode = 4, AuthorName = "Performer 1", IsFolkOrUnknown = null },
-                    new Authors{ AuthId = 2, RoleCode = 1, AuthorName = "Народний", IsFolkOrUnknown = 1 },
-                    new Authors{ AuthId = 3, RoleCode = 2, AuthorName = "Невідомий", IsFolkOrUnknown = 2 },
-                }
-            };
+            var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleRh.DataSource = dictionaries.creativeRoleType;
+            columnRoleRh.ValueMember = "CodeI";
+            columnRoleRh.DisplayMember = "Name";
+
+            var columnRh = gvObjectRightholders.Columns["CustId"] as GridViewComboBoxColumn;
+            columnRh.DataSource = objectRightContainer.rhList;
+            columnRh.ValueMember = "CustId";
+            columnRh.DisplayMember = "Name";
 
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
-            objectRightBindingSource.DataSource = objectRight;
-            mediaTrackBindingSource.DataSource = objectRight.MediaTrack;
-            authorsBindingSource.DataSource = objectRight.Authors;
+            objectRightBindingSource.DataSource = objectRightContainer.objectRight;
+            mediaTrackBindingSource.DataSource = objectRightContainer.objectRight.MediaTrack;
+            authorsBindingSource.DataSource = objectRightContainer.objectRight.Authors;
+            copyRightBindingSource.DataSource = objectRightContainer.objectRight.CopyRight;
         }
     }
 }

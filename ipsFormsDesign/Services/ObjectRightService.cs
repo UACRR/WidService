@@ -13,14 +13,20 @@ namespace ipsFormsDesign.Services
 
         public ObjectRightDictionaries GetDictionary()
         {
-            var item = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
-            return item;
+            var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
+            return dictionaries;
         }
 
         public IList<ObjectRightMainView> GetMainView()
         {
             var list = _webApi.GetList<ObjectRightMainView>("objectright/listobjectright");
             return list;
+        }
+
+        public ContainerForObjectRihgt GetData(int objId)
+        {
+            var item = _webApi.GetItemById<ContainerForObjectRihgt>("objectright/detail", objId.ToString());
+            return item;
         }
     }
 }
