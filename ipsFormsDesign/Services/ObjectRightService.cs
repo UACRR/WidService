@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,6 +28,16 @@ namespace ipsFormsDesign.Services
         {
             var item = _webApi.GetItemById<ContainerForObjectRihgt>("objectright/detail", objId.ToString());
             return item;
+        }
+
+        public bool Save(ObjectRight item)
+        {
+            if (item.ObjId == 0) // Новий об'єкт права
+            {
+                return _webApi.NewItem("objectright/newrightholder", item);
+            }
+
+            return _webApi.UpdateItem("objectright/detail", item.ObjId.ToString(), item);
         }
     }
 }
