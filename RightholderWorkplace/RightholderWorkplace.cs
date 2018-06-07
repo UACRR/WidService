@@ -367,6 +367,11 @@ namespace RightholderWorkplace
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
 
+            var columnRole = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRole.DataSource = dictionaries.creativeRoleType;
+            columnRole.ValueMember = "CodeI";
+            columnRole.DisplayMember = "Name";
+
             // fake object right
             var objectRight = new ObjectRight
             {
@@ -377,13 +382,19 @@ namespace RightholderWorkplace
                 {
                     Iswc = "ISWC1234",
                     Duration = 5,
-                }
+                },
+                Authors = new List<Authors>
+                {
+                    new Authors{ AuthId = 1, RoleCode = 60001, AuthorName = "Author 1", IsFolkOrUnknown = null },
+                    new Authors{ AuthId = 2, RoleCode = 60013, AuthorName = "Composer 2", IsFolkOrUnknown = null },
+                },
             };
 
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
             objectRightBindingSource.DataSource = objectRight;
             mediaTrackBindingSource.DataSource = objectRight.MediaTrack;
+            authorsBindingSource.DataSource = objectRight.Authors;
         }
     }
 }
