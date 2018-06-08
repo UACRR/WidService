@@ -406,11 +406,22 @@ namespace RightholderWorkplace
             copyRightBindingSource.DataSource = _objectRight.CopyRight;
         }
 
+        #region Object right commands
+
         private void btnSaveTest_Click(object sender, EventArgs e)
         {
             var service = new ObjectRightService();
 
             service.Save(_objectRight);
         }
+
+        private void ddlAuthorName_PopupOpening(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+
+            var selectionView = new RightholderSelectionView().ShowDialog();
+        }
+
+        #endregion
     }
 }
