@@ -324,6 +324,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster1.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IClnBusinessPlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />

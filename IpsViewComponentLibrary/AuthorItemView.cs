@@ -1,4 +1,6 @@
-﻿using ipsFormsDesign.Interfaces;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using System;
 using System.Collections.Generic;
@@ -14,59 +16,109 @@ namespace RightholderWorkplace
 {
     public partial class AuthorItemView : Telerik.WinControls.UI.RadForm
     {
-        public event EventHandler<RightholderMainView> RightholderSelected;
+        private readonly ObjectRightDictionaries _dictionaries;
+        //public event EventHandler<RightholderMainView> RightholderSelected;
 
-        public AuthorItemView()
+        public AuthorItemView(BindingSource bindingSource, ObjectRightDictionaries dictionaries)
         {
             InitializeComponent();
+
+            authorsBindingSource.DataSource = bindingSource;
+
+            _dictionaries = dictionaries;
+            SetDictionaries(_dictionaries);
         }
 
-        private void RightholderSelectionView_Load(object sender, EventArgs e)
+        private void SetDictionaries(ObjectRightDictionaries dictionaries)
         {
-            var service = new RightholderService();
-            var list = service.GetMainView();
-            rightholderMainViewBindingSource.DataSource = list;
-            //btnOk.Focus();
+            ddlRoleCode.DataSource = dictionaries.creativeRoleType;
+            ddlRoleCode.ValueMember = "CodeI";
+            ddlRoleCode.DisplayMember = "Name";
 
-            //GridSearchCellElement searchCell = gvRightholdersList.TableElement.GetCellElement(gvRightholdersList.MasterView.TableSearchRow, null) as GridSearchCellElement;
-            //if (searchCell != null)
-            //{
-            //    searchCell.SearchTextBox.Focus();
-            //}
-
-            //searchCell.SearchTextBox.Focus();
-            //searchCell.SearchTextBox.Text = "1";
+            ddlAuthorState.DataSource = new List<DictBaseTypeI>
+            {
+                new DictBaseTypeI { CodeI = 0, Name = "Підтверджений" },
+                new DictBaseTypeI { CodeI = 1, Name = "Народний" },
+                new DictBaseTypeI { CodeI = 2, Name = "Невідомий" },
+            };
+            ddlAuthorState.ValueMember = "CodeI";
+            ddlAuthorState.DisplayMember = "Name";
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void btnOk_Save(object sender, EventArgs e)
         {
-            SelectAndClose();
+            SaveAndClose();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            authorsBindingSource.ResetBindings(false);
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
         private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
         {
-            SelectAndClose();
+            SaveAndClose();
         }
 
-        private void OnRightholderSelected(RightholderMainView item)
-        {
-            RightholderSelected?.Invoke(this, item);
-        }
+        //private void OnRightholderSelected(RightholderMainView item)
+        //{
+        //    RightholderSelected?.Invoke(this, item);
+        //}
 
-        private void SelectAndClose()
+        private void SaveAndClose()
         {
-            var item = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
+            //var item = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
 
-            OnRightholderSelected(item);
+            //OnRightholderSelected(item);
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void ddlAuthorName_PopupOpening(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+
+            using (var selectionView = new RightholderSelectionView())
+            {
+                selectionView.RightholderSelected += SelectionView_RightholderSelected;
+                selectionView.ShowDialog();
+            }
+        }
+
+        private void SelectionView_RightholderSelected(object sender, RightholderMainView item)
+        {
+            var currentAuthor = authorsBindingSource.Current as Authors;
+            currentAuthor.AuthorName = item.Name;
+            currentAuthor.CustId = item.CustId;
+            currentAuthor.IsFolkOrUnknown = null;
+
+            authorsBindingSource.ResetBindings(false);
+        }
+
+        private void ddlAuthorState_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (ddlAuthorState.SelectedItem == null)
+                return;
+
+            var state = ddlAuthorState.SelectedItem.DataBoundItem as DictBaseTypeI;
+
+            var currentAuthor = authorsBindingSource.Current as Authors;
+
+            if (currentAuthor == null)
+                return;
+
+            if (state.CodeI != 0)
+            {
+                currentAuthor.CustId = null;
+                currentAuthor.AuthorName = (ddlAuthorState.SelectedItem.DataBoundItem as DictBaseTypeI).Name;
+            }
+            else if (currentAuthor.AuthorName == "Народний" || currentAuthor.AuthorName == "Невідомий")
+            {
+                currentAuthor.AuthorName = "";
+            }
         }
     }
 }

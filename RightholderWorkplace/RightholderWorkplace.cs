@@ -26,6 +26,7 @@ namespace RightholderWorkplace
         AnketaPerson _anketa;
         BankAccount _bankAccount;
         AnketaDictionaties _dictionaries;
+        ObjectRightDictionaries _dictionariesObjectRight;
         List<TermsOfServiceWrapper> _termsOfServices;
         RightHolder _rightHolder;
 
@@ -356,27 +357,27 @@ namespace RightholderWorkplace
         {
             var service = new ObjectRightService();
 
-            var dictionaries = service.GetDictionary();
+            _dictionariesObjectRight = service.GetDictionary();
             var objectsRightsList = service.GetMainView();
             var objectRightContainer = service.GetData(5848);
             _objectRight = objectRightContainer.objectRight;
 
             // dictionaries
-            ddlGenreType.DataSource = dictionaries.genreType;
+            ddlGenreType.DataSource = _dictionariesObjectRight.genreType;
             ddlGenreType.ValueMember = "CodeI";
             ddlGenreType.DisplayMember = "Name";
 
-            ddlSpecType.DataSource = dictionaries.specType;
+            ddlSpecType.DataSource = _dictionariesObjectRight.specType;
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
 
             var columnRoleAuth = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRoleAuth.DataSource = dictionaries.creativeRoleType;
+            columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
             columnRoleAuth.ValueMember = "CodeI";
             columnRoleAuth.DisplayMember = "Name";
 
             var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRoleRh.DataSource = dictionaries.creativeRoleType;
+            columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
             columnRoleRh.ValueMember = "CodeI";
             columnRoleRh.DisplayMember = "Name";
 
@@ -384,19 +385,6 @@ namespace RightholderWorkplace
             columnRh.DataSource = objectRightContainer.rhList;
             columnRh.ValueMember = "CustId";
             columnRh.DisplayMember = "Name";
-
-            ddlRoleCode.DataSource = dictionaries.creativeRoleType;
-            ddlRoleCode.ValueMember = "CodeI";
-            ddlRoleCode.DisplayMember = "Name";
-
-            ddlAuthorState.DataSource = new List<DictBaseTypeI>
-            {
-                new DictBaseTypeI { CodeI = 0, Name = "Підтверджений" },
-                new DictBaseTypeI { CodeI = 1, Name = "Народний" },
-                new DictBaseTypeI { CodeI = 2, Name = "Невідомий" },
-            };
-            ddlAuthorState.ValueMember = "CodeI";
-            ddlAuthorState.DisplayMember = "Name";
 
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
@@ -415,50 +403,15 @@ namespace RightholderWorkplace
             service.Save(_objectRight);
         }
 
-        private void ddlAuthorName_PopupOpening(object sender, CancelEventArgs e)
+        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
         {
-            e.Cancel = true;
-
-            using (var selectionView = new RightholderSelectionView())
+            using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
             {
-                selectionView.RightholderSelected += SelectionView_RightholderSelected;
-                selectionView.ShowDialog();
+                authorItemView.StartPosition = FormStartPosition.CenterParent;
+                authorItemView.ShowDialog();
             }
         }
 
         #endregion
-
-        private void SelectionView_RightholderSelected(object sender, RightholderMainView item)
-        {
-            var currentAuthor = authorsBindingSource.Current as Authors;
-            currentAuthor.AuthorName = item.Name;
-            currentAuthor.CustId = item.CustId;
-            currentAuthor.IsFolkOrUnknown = null;
-
-            authorsBindingSource.ResetBindings(false);
-        }
-
-        private void ddlAuthorState_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (ddlAuthorState.SelectedItem == null)
-                return;
-
-            var state = ddlAuthorState.SelectedItem.DataBoundItem as DictBaseTypeI;
-
-            var currentAuthor = authorsBindingSource.Current as Authors;
-
-            if (currentAuthor == null)
-                return;
-
-            if (state.CodeI != 0)
-            {
-                currentAuthor.CustId = null;
-                currentAuthor.AuthorName = (ddlAuthorState.SelectedItem.DataBoundItem as DictBaseTypeI).Name;
-            }
-            else if (currentAuthor.AuthorName == "Народний" || currentAuthor.AuthorName == "Невідомий")
-            {
-                currentAuthor.AuthorName = "";
-            }
-        }
     }
 }
