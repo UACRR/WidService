@@ -385,6 +385,19 @@ namespace RightholderWorkplace
             columnRh.ValueMember = "CustId";
             columnRh.DisplayMember = "Name";
 
+            ddlRoleCode.DataSource = dictionaries.creativeRoleType;
+            ddlRoleCode.ValueMember = "CodeI";
+            ddlRoleCode.DisplayMember = "Name";
+
+            ddlAuthorState.DataSource = new List<DictBaseTypeI>
+            {
+                new DictBaseTypeI { CodeI = 0, Name = "Підтверджений" },
+                new DictBaseTypeI { CodeI = 1, Name = "Народний" },
+                new DictBaseTypeI { CodeI = 2, Name = "Невідомий" },
+            };
+            ddlAuthorState.ValueMember = "CodeI";
+            ddlAuthorState.DisplayMember = "Name";
+
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
             objectRightBindingSource.DataSource = _objectRight;
