@@ -223,6 +223,12 @@
     <Compile Include="RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RightholderSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderSelectionView.Designer.cs">
+      <DependentUpon>RightholderSelectionView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddPremisesForm.resx">
@@ -288,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderSelectionView.resx">
+      <DependentUpon>RightholderSelectionView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
