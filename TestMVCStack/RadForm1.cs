@@ -16,18 +16,8 @@ namespace TestMVCStack
         public RadForm1()
         {
             InitializeComponent();
-            var service = new ServiceMain();
-            var presenter = new PresenterMain();
-            MainView view = new MainView();
-            presenter.service = service;
-            presenter.View = view;
-            presenter.runGrid();
-
-            view.Dock = DockStyle.Fill;
-            view.Size = radPanel1.Size;
-
-            radPanel1.Controls.Add(view as Control);
-
+            PresenterMain presenter = new PresenterMain(new ServiceMain(), mainViewSwitcher1);
+            
         }
     }
 }

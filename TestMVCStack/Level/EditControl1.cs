@@ -11,15 +11,15 @@ using TestMVCStack.Interface;
 
 namespace TestMVCStack
 {
-    public partial class EditControl1 : UserControl, IView
+    public partial class EditControl1 : UserControl
     {
-        public EditControl1(IPresenterLevel presenter )
+        public EditControl1(IPresenter presenter )
         {
             this.presenter = presenter;
             InitializeComponent();
         }
 
-        public IPresenterLevel presenter { get; }
+        public IPresenter presenter { get; }
 
         public void SetBindingSource(object Source)
         {
@@ -28,12 +28,13 @@ namespace TestMVCStack
 
         private void radButton1_Click(object sender, EventArgs e)
         {
-            presenter.Done(bindingSourceData.DataSource);
+            presenter.Save(bindingSourceData.DataSource);
+            presenter.Done();
         }
 
         private void radButton2_Click(object sender, EventArgs e)
         {
-            presenter.parent.presenterCancel();
+            presenter.Cancel();
         }
     }
 }

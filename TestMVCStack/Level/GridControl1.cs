@@ -12,11 +12,11 @@ using TestMVCStack.Main;
 
 namespace TestMVCStack
 {
-    public partial class GridControl1 : UserControl, IViewWithCurrent
+    public partial class GridControl1 : UserControl
     {
-        public IPresenterLevel presenter { get; }
+        public IPresenter presenter { get; }
 
-        public GridControl1(IPresenterLevel parent)
+        public GridControl1(IPresenter parent)
         {
             presenter = parent;
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace TestMVCStack
 
         private void radButton1_Click(object sender, EventArgs e)
         {
-            presenter.parent.editData(null);
+            presenter.AddNew();
         }
 
         public void SetBindingSource(object Source)
@@ -56,12 +56,11 @@ namespace TestMVCStack
 
         private void radButton3_Click(object sender, EventArgs e)
         {
-            presenter.parent.NewMainPresenter();
+            presenter.NestPanel();
         }
 
         private void radGridView1_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
         {
-            int i = 0;
         }
     }
 }

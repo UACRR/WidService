@@ -71,16 +71,21 @@
     <Compile Include="Level\GridControl1.Designer.cs">
       <DependentUpon>GridControl1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Level\LevelPresenter.cs" />
     <Compile Include="Interface\IData.cs" />
-    <Compile Include="Main\MainView.cs">
+    <Compile Include="MainViewSwitcher.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Main\MainView.Designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <Compile Include="MainViewSwitcher.Designer.cs">
+      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
     </Compile>
     <Compile Include="Main\PresenterMain.cs" />
     <Compile Include="Main\ServiceMain.cs" />
+    <Compile Include="Nested.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Nested.Designer.cs">
+      <DependentUpon>Nested.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadForm1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,8 +98,11 @@
     <EmbeddedResource Include="Level\GridControl1.resx">
       <DependentUpon>GridControl1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main\MainView.resx">
-      <DependentUpon>MainView.cs</DependentUpon>
+    <EmbeddedResource Include="MainViewSwitcher.resx">
+      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nested.resx">
+      <DependentUpon>Nested.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="RadForm1.resx">

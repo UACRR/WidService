@@ -69,7 +69,9 @@ namespace TestMVCStack.Main
 
             if (editRow.isNew)
             {
+                editRow.isNew = false;
                 list.Add(editRow);
+
                 return;
             }
 

@@ -1,6 +1,6 @@
-﻿namespace TestMVCStack.Main
+﻿namespace TestMVCStack
 {
-    partial class MainView
+    partial class MainViewSwitcher
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -34,24 +34,19 @@
             // 
             // radPanel1
             // 
-            this.radPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radPanel1.Location = new System.Drawing.Point(77, 0);
-            this.radPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanel1.Location = new System.Drawing.Point(0, 0);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(790, 332);
+            this.radPanel1.Size = new System.Drawing.Size(885, 391);
             this.radPanel1.TabIndex = 0;
-            this.radPanel1.Text = "radPanel1";
             // 
-            // MainView
+            // MainViewSwitcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "MainView";
-            this.Size = new System.Drawing.Size(875, 332);
+            this.Name = "MainViewSwitcher";
+            this.Size = new System.Drawing.Size(885, 391);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.ResumeLayout(false);
 

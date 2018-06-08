@@ -28,33 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
+            this.mainViewSwitcher1 = new TestMVCStack.MainViewSwitcher();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // radPanel1
+            // mainViewSwitcher1
             // 
-            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanel1.Location = new System.Drawing.Point(0, 0);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(1421, 381);
-            this.radPanel1.TabIndex = 0;
-            this.radPanel1.Text = "radPanel1";
+            this.mainViewSwitcher1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainViewSwitcher1.Location = new System.Drawing.Point(0, 0);
+            this.mainViewSwitcher1.Name = "mainViewSwitcher1";
+            this.mainViewSwitcher1.Size = new System.Drawing.Size(1269, 381);
+            this.mainViewSwitcher1.TabIndex = 0;
             // 
             // RadForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1421, 381);
-            this.Controls.Add(this.radPanel1);
+            this.ClientSize = new System.Drawing.Size(1269, 381);
+            this.Controls.Add(this.mainViewSwitcher1);
             this.Name = "RadForm1";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "RadForm1";
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -62,6 +59,6 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadPanel radPanel1;
+        private MainViewSwitcher mainViewSwitcher1;
     }
 }

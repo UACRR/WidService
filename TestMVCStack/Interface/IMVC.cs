@@ -17,48 +17,14 @@ namespace TestMVCStack.Interface
         void AddNexItem();
     }
 
-    public interface IView
-    {
-        void SetBindingSource(object Source);
-        IPresenterLevel presenter { get; }
-    }
-    public interface IViewMain : IView
-    {
-        void SetView(Control view);
-    }
-
-    public interface IViewWithCurrent : IView
-    {
-        void SetCurrentRow(object id);
-    }
-
     public interface IPresenter
     {
         void Done();
-        void Done(object id);
         void Cancel();
-        void Refresh();
-        void Refresh(object id);
-        Type PresenterType { get; }
-        void SetView(IView view);
+        void Save( object item );
+        void AddNew();
+        void EditItem(object item);
+        void NestPanel();
     }
-
-    public interface IPresenterMain : IPresenter
-    {
-        void presenterDone(object id);
-        void presenterDone();
-        void presenterCancel();
-        void runGrid(IData curRow);
-        void editData(IData curRow);
-        void NewMainPresenter();
-    }
-
-
-    public interface IPresenterLevel  : IPresenter
-    {
-        IPresenterMain parent { get;  }
-}
-
-
 
 }
