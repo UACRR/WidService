@@ -419,9 +419,46 @@ namespace RightholderWorkplace
         {
             e.Cancel = true;
 
-            var selectionView = new RightholderSelectionView().ShowDialog();
+            using (var selectionView = new RightholderSelectionView())
+            {
+                selectionView.RightholderSelected += SelectionView_RightholderSelected;
+                selectionView.ShowDialog();
+            }
         }
 
         #endregion
+
+        private void SelectionView_RightholderSelected(object sender, RightholderMainView item)
+        {
+            var currentAuthor = authorsBindingSource.Current as Authors;
+            currentAuthor.AuthorName = item.Name;
+            currentAuthor.CustId = item.CustId;
+            currentAuthor.IsFolkOrUnknown = null;
+
+            authorsBindingSource.ResetBindings(false);
+        }
+
+        private void ddlAuthorState_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (ddlAuthorState.SelectedItem == null)
+                return;
+
+            var state = ddlAuthorState.SelectedItem.DataBoundItem as DictBaseTypeI;
+
+            var currentAuthor = authorsBindingSource.Current as Authors;
+
+            if (currentAuthor == null)
+                return;
+
+            if (state.CodeI != 0)
+            {
+                currentAuthor.CustId = null;
+                currentAuthor.AuthorName = (ddlAuthorState.SelectedItem.DataBoundItem as DictBaseTypeI).Name;
+            }
+            else if (currentAuthor.AuthorName == "Народний" || currentAuthor.AuthorName == "Невідомий")
+            {
+                currentAuthor.AuthorName = "";
+            }
+        }
     }
 }
