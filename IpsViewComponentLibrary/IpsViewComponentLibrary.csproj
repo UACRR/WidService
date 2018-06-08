@@ -320,6 +320,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightholderMainView.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
