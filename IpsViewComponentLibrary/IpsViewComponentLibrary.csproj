@@ -102,6 +102,12 @@
     <Compile Include="AddPremisesForm.Designer.cs">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuthorItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthorItemView.Designer.cs">
+      <DependentUpon>AuthorItemView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerPlacesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthorItemView.resx">
+      <DependentUpon>AuthorItemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerPlacesControl.resx">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
