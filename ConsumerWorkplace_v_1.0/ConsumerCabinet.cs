@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
@@ -11,61 +12,54 @@ using Telerik.WinControls;
 
 namespace ConsumerWorkplace_v_1._0
 {
-    public partial class ConsumerCabinet : Telerik.WinControls.UI.RadForm
+    public partial class ConsumerCabinet : Telerik.WinControls.UI.RadForm, IConsumerForm
     {
         private Customer _customer;
+        private AnketaDictionaties _dic;
 
         public Func<IList<ConsumerMainView>> GetMainViewData { get; set; }
 
         public ConsumerCabinet()
         {
             InitializeComponent();
+            gcConsumerCabinet.SetDictionary(_dic);
+            gcConsumerCabinet.OnGridRowSelectedChaged += GcConsumerCabinet_OnGridRowSelectedChaged;
         }
 
-        /// <summary>
-        /// Дані для форми
-        /// </summary>
-        /// <param name="obj"></param>
-        public void SetData(Customer obj)
+        private Customer GcConsumerCabinet_OnGridRowSelectedChaged(int id)
         {
-            if (obj == null) return;
-
-            _customer = obj;
+            return GetCustomer(id);
         }
 
-        public void SetDataSourceGridConsumerList(object o)
+        public event Func<bool> Save;
+        public Func<IList<ConsumerMainView>> getMainViewData { get; set; }
+        public Func<int, Customer> NewCustomer { get; set; }
+        public Func<int, Customer> GetCustomer { get; set; }
+        public Func<Customer, bool> SaveCustomer { get; set; }
+        public void EndPresenterLink()
         {
-            gvConsumerList.DataSource = o;
+            if (getMainViewData != null)
+            {
+                var list = getMainViewData();
+                //gvConsumerList.DataSource = list;
+                gcConsumerCabinet.SetGridDataSource(list); // передати в грід джерело даних
 
+            }
         }
 
-        public void HelloWorld()
+        public void SetData(ICustomer data)
         {
-            MessageBox.Show("Hello world!");
+            _customer = (Customer) data;
         }
 
-        private void gvConsumerList_SelectionChanged(object sender, EventArgs e)
+        public void GetData(ICustomer data)
         {
-            SetUserInfoData();
-            gvLicenseAgr.DataSource = new object();
-            SetAgrInfoData();
-            
+            throw new NotImplementedException();
         }
 
-        private void SetUserInfoData()
+        public void SetDictionary(AnketaDictionaties dic)
         {
-            
-            userInfoCtrl.Edrpou += 12;
-        }
-
-        private void SetAgrInfoData()
-        {
-            agreementInfoCtrl.Amount += 123;
-        }
-
-        private void SetCalculationData()
-        {
-            calculationCtrl.SetData(new object());
+            _dic = dic;
         }
     }
 }

@@ -138,6 +138,12 @@
     <Compile Include="ExpandedFormForAnketaPersonRightHolder.Designer.cs">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalControlConsumerCabinet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalControlConsumerCabinet.Designer.cs">
+      <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformationAboutTheContractTitleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -216,6 +222,12 @@
     <Compile Include="IpsExclusionsLimitationsControl.Designer.cs">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiddleControlInfoAgrCalc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlInfoAgrCalc.Designer.cs">
+      <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    </Compile>
     <Compile Include="PassportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,6 +294,9 @@
     <EmbeddedResource Include="ExpandedFormForAnketaPersonRightHolder.resx">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GlobalControlConsumerCabinet.resx">
+      <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IpsExclusionsLimitationsControl.resx">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlInfoAgrCalc.resx">
+      <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PassportControl.resx">
       <DependentUpon>PassportControl.cs</DependentUpon>

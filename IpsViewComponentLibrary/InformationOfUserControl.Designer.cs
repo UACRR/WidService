@@ -97,6 +97,7 @@
             this.groupholdingCtrl.TabIndex = 5;
             this.groupholdingCtrl.TextTitle = "Група / Холдінг";
             this.groupholdingCtrl.TextValue = "Копірайт";
+            this.groupholdingCtrl.Visible = false;
             // 
             // radLabel2
             // 
@@ -202,7 +203,7 @@
             this.contactPersMobilePhoneCtrl.MinimumSize = new System.Drawing.Size(150, 35);
             this.contactPersMobilePhoneCtrl.Name = "contactPersMobilePhoneCtrl";
             this.contactPersMobilePhoneCtrl.Size = new System.Drawing.Size(173, 35);
-            this.contactPersMobilePhoneCtrl.SplitterRatio = 61;
+            this.contactPersMobilePhoneCtrl.SplitterRatio = 63;
             this.contactPersMobilePhoneCtrl.TabIndex = 3;
             this.contactPersMobilePhoneCtrl.TextTitle = "Моб. тел.";
             this.contactPersMobilePhoneCtrl.TextValue = "+380999999999";

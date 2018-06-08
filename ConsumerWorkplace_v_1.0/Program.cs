@@ -20,15 +20,16 @@ namespace ConsumerWorkplace_v_1._0
             ConsumerService model = new ConsumerService();
             FormPresenter control = new FormPresenter(form, model);
 
-            Application.Run(form);
+            //Application.Run(form);
             LoadCabinet(form.ReturnCustomer(), form.ReturnList());
         }
 
         private static void LoadCabinet(Customer oo, object ooo)
         {
             ConsumerCabinet f = new ConsumerCabinet();
+            ConsumerService m = new ConsumerService();
+            FormPresenter control = new FormPresenter(f, m);
             f.SetData(oo);
-            f.SetDataSourceGridConsumerList(ooo);
             Application.Run(f);
         }
     }

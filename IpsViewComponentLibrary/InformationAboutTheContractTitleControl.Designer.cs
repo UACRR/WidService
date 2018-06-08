@@ -28,30 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.numberCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.dateCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.agentCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.periodCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
-            this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
-            this.dateBeginCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.dateEndCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.isProlongationCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.isTornCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.fixedPayCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.dateEndCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.dateBeginCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.minPayCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.percentCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
             this.isPayCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.implemCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.stateCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
             this.distributedAmountCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.amountCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.bankCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtNotation = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.periodCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.agentCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.dateCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.numberCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
@@ -65,58 +63,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNotation)).BeginInit();
             this.SuspendLayout();
             // 
-            // numberCtrl
-            // 
-            this.numberCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.numberCtrl.Location = new System.Drawing.Point(4, 4);
-            this.numberCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.numberCtrl.MinimumSize = new System.Drawing.Size(150, 25);
-            this.numberCtrl.Name = "numberCtrl";
-            this.numberCtrl.Size = new System.Drawing.Size(225, 28);
-            this.numberCtrl.SplitterRatio = 48;
-            this.numberCtrl.TabIndex = 0;
-            this.numberCtrl.TextTitle = "Номер";
-            this.numberCtrl.TextValue = "КБЦКП - 95/87845-45а";
-            // 
-            // dateCtrl
-            // 
-            this.dateCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleRight;
-            this.dateCtrl.Location = new System.Drawing.Point(235, 4);
-            this.dateCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.dateCtrl.MinimumSize = new System.Drawing.Size(150, 25);
-            this.dateCtrl.Name = "dateCtrl";
-            this.dateCtrl.Size = new System.Drawing.Size(150, 28);
-            this.dateCtrl.SplitterRatio = 45;
-            this.dateCtrl.TabIndex = 1;
-            this.dateCtrl.TextTitle = "Дата";
-            this.dateCtrl.TextValue = "12.12.2020";
-            // 
-            // agentCtrl
-            // 
-            this.agentCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleRight;
-            this.agentCtrl.Location = new System.Drawing.Point(391, 4);
-            this.agentCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.agentCtrl.MinimumSize = new System.Drawing.Size(150, 25);
-            this.agentCtrl.Name = "agentCtrl";
-            this.agentCtrl.Size = new System.Drawing.Size(391, 28);
-            this.agentCtrl.SplitterRatio = 85;
-            this.agentCtrl.TabIndex = 2;
-            this.agentCtrl.TextTitle = "Представник";
-            this.agentCtrl.TextValue = "";
-            // 
-            // periodCtrl
-            // 
-            this.periodCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.periodCtrl.Location = new System.Drawing.Point(4, 38);
-            this.periodCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.periodCtrl.MinimumSize = new System.Drawing.Size(150, 25);
-            this.periodCtrl.Name = "periodCtrl";
-            this.periodCtrl.Size = new System.Drawing.Size(225, 28);
-            this.periodCtrl.SplitterRatio = 98;
-            this.periodCtrl.TabIndex = 3;
-            this.periodCtrl.TextTitle = "Період звітності";
-            this.periodCtrl.TextValue = "Щоночі";
-            // 
             // checkAttach
             // 
             this.checkAttach.AutoSize = false;
@@ -128,74 +74,18 @@
             // 
             // radPanel1
             // 
-            this.radPanel1.Controls.Add(this.isTornCtrl);
             this.radPanel1.Controls.Add(this.isProlongationCtrl);
             this.radPanel1.Controls.Add(this.dateEndCtrl);
             this.radPanel1.Controls.Add(this.dateBeginCtrl);
             this.radPanel1.Location = new System.Drawing.Point(4, 73);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(190, 118);
+            this.radPanel1.Size = new System.Drawing.Size(190, 97);
             this.radPanel1.TabIndex = 5;
-            // 
-            // radPanel2
-            // 
-            this.radPanel2.Controls.Add(this.fixedPayCtrl);
-            this.radPanel2.Controls.Add(this.minPayCtrl);
-            this.radPanel2.Controls.Add(this.percentCtrl);
-            this.radPanel2.Location = new System.Drawing.Point(200, 73);
-            this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(190, 118);
-            this.radPanel2.TabIndex = 6;
-            // 
-            // radPanel3
-            // 
-            this.radPanel3.Controls.Add(this.isPayCtrl);
-            this.radPanel3.Controls.Add(this.implemCtrl);
-            this.radPanel3.Controls.Add(this.stateCtrl);
-            this.radPanel3.Location = new System.Drawing.Point(396, 73);
-            this.radPanel3.Name = "radPanel3";
-            this.radPanel3.Size = new System.Drawing.Size(190, 118);
-            this.radPanel3.TabIndex = 7;
-            // 
-            // radPanel4
-            // 
-            this.radPanel4.Controls.Add(this.distributedAmountCtrl);
-            this.radPanel4.Controls.Add(this.amountCtrl);
-            this.radPanel4.Controls.Add(this.bankCtrl);
-            this.radPanel4.Location = new System.Drawing.Point(592, 73);
-            this.radPanel4.Name = "radPanel4";
-            this.radPanel4.Size = new System.Drawing.Size(190, 118);
-            this.radPanel4.TabIndex = 6;
-            // 
-            // dateBeginCtrl
-            // 
-            this.dateBeginCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dateBeginCtrl.Location = new System.Drawing.Point(3, 3);
-            this.dateBeginCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.dateBeginCtrl.MinimumSize = new System.Drawing.Size(150, 25);
-            this.dateBeginCtrl.Name = "dateBeginCtrl";
-            this.dateBeginCtrl.Size = new System.Drawing.Size(184, 28);
-            this.dateBeginCtrl.SplitterRatio = 96;
-            this.dateBeginCtrl.TabIndex = 8;
-            this.dateBeginCtrl.TextTitle = "Початок дії";
-            this.dateBeginCtrl.TextValue = "10.10.1010";
-            // 
-            // dateEndCtrl
-            // 
-            this.dateEndCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dateEndCtrl.Location = new System.Drawing.Point(3, 30);
-            this.dateEndCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.dateEndCtrl.MinimumSize = new System.Drawing.Size(150, 25);
-            this.dateEndCtrl.Name = "dateEndCtrl";
-            this.dateEndCtrl.Size = new System.Drawing.Size(184, 28);
-            this.dateEndCtrl.SplitterRatio = 96;
-            this.dateEndCtrl.TabIndex = 9;
-            this.dateEndCtrl.TextTitle = "Кінець дії";
-            this.dateEndCtrl.TextValue = "10.10.1010";
             // 
             // isProlongationCtrl
             // 
             this.isProlongationCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.isProlongationCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.isProlongationCtrl.Location = new System.Drawing.Point(3, 57);
             this.isProlongationCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.isProlongationCtrl.MinimumSize = new System.Drawing.Size(150, 25);
@@ -206,35 +96,47 @@
             this.isProlongationCtrl.TextTitle = "Пролонгація";
             this.isProlongationCtrl.TextValue = "ТАК";
             // 
-            // isTornCtrl
+            // dateEndCtrl
             // 
-            this.isTornCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.isTornCtrl.Location = new System.Drawing.Point(3, 84);
-            this.isTornCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.isTornCtrl.MinimumSize = new System.Drawing.Size(150, 25);
-            this.isTornCtrl.Name = "isTornCtrl";
-            this.isTornCtrl.Size = new System.Drawing.Size(184, 28);
-            this.isTornCtrl.SplitterRatio = 142;
-            this.isTornCtrl.TabIndex = 9;
-            this.isTornCtrl.TextTitle = "Розторгнутий";
-            this.isTornCtrl.TextValue = "";
+            this.dateEndCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dateEndCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
+            this.dateEndCtrl.Location = new System.Drawing.Point(3, 30);
+            this.dateEndCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.dateEndCtrl.MinimumSize = new System.Drawing.Size(150, 25);
+            this.dateEndCtrl.Name = "dateEndCtrl";
+            this.dateEndCtrl.Size = new System.Drawing.Size(184, 28);
+            this.dateEndCtrl.SplitterRatio = 96;
+            this.dateEndCtrl.TabIndex = 9;
+            this.dateEndCtrl.TextTitle = "Кінець дії";
+            this.dateEndCtrl.TextValue = "10.10.1010";
             // 
-            // fixedPayCtrl
+            // dateBeginCtrl
             // 
-            this.fixedPayCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.fixedPayCtrl.Location = new System.Drawing.Point(3, 58);
-            this.fixedPayCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.fixedPayCtrl.MinimumSize = new System.Drawing.Size(150, 25);
-            this.fixedPayCtrl.Name = "fixedPayCtrl";
-            this.fixedPayCtrl.Size = new System.Drawing.Size(182, 28);
-            this.fixedPayCtrl.SplitterRatio = 109;
-            this.fixedPayCtrl.TabIndex = 12;
-            this.fixedPayCtrl.TextTitle = "Фіксована сума";
-            this.fixedPayCtrl.TextValue = "99100.25";
+            this.dateBeginCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dateBeginCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
+            this.dateBeginCtrl.Location = new System.Drawing.Point(3, 3);
+            this.dateBeginCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.dateBeginCtrl.MinimumSize = new System.Drawing.Size(150, 25);
+            this.dateBeginCtrl.Name = "dateBeginCtrl";
+            this.dateBeginCtrl.Size = new System.Drawing.Size(184, 28);
+            this.dateBeginCtrl.SplitterRatio = 96;
+            this.dateBeginCtrl.TabIndex = 8;
+            this.dateBeginCtrl.TextTitle = "Початок дії";
+            this.dateBeginCtrl.TextValue = "10.10.1010";
+            // 
+            // radPanel2
+            // 
+            this.radPanel2.Controls.Add(this.minPayCtrl);
+            this.radPanel2.Controls.Add(this.percentCtrl);
+            this.radPanel2.Location = new System.Drawing.Point(200, 73);
+            this.radPanel2.Name = "radPanel2";
+            this.radPanel2.Size = new System.Drawing.Size(190, 97);
+            this.radPanel2.TabIndex = 6;
             // 
             // minPayCtrl
             // 
             this.minPayCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.minPayCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.minPayCtrl.Location = new System.Drawing.Point(3, 31);
             this.minPayCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.minPayCtrl.MinimumSize = new System.Drawing.Size(150, 25);
@@ -248,6 +150,7 @@
             // percentCtrl
             // 
             this.percentCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.percentCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.percentCtrl.Location = new System.Drawing.Point(3, 4);
             this.percentCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.percentCtrl.MinimumSize = new System.Drawing.Size(150, 25);
@@ -258,15 +161,26 @@
             this.percentCtrl.TextTitle = "Відсоток відрахувань";
             this.percentCtrl.TextValue = "3";
             // 
+            // radPanel3
+            // 
+            this.radPanel3.Controls.Add(this.isPayCtrl);
+            this.radPanel3.Controls.Add(this.implemCtrl);
+            this.radPanel3.Controls.Add(this.stateCtrl);
+            this.radPanel3.Location = new System.Drawing.Point(396, 73);
+            this.radPanel3.Name = "radPanel3";
+            this.radPanel3.Size = new System.Drawing.Size(190, 97);
+            this.radPanel3.TabIndex = 7;
+            // 
             // isPayCtrl
             // 
             this.isPayCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.isPayCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.isPayCtrl.Location = new System.Drawing.Point(3, 58);
             this.isPayCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.isPayCtrl.MinimumSize = new System.Drawing.Size(150, 25);
             this.isPayCtrl.Name = "isPayCtrl";
             this.isPayCtrl.Size = new System.Drawing.Size(184, 28);
-            this.isPayCtrl.SplitterRatio = 74;
+            this.isPayCtrl.SplitterRatio = 68;
             this.isPayCtrl.TabIndex = 12;
             this.isPayCtrl.TextTitle = "Оплата";
             this.isPayCtrl.TextValue = "Не сплачений";
@@ -274,12 +188,13 @@
             // implemCtrl
             // 
             this.implemCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.implemCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.implemCtrl.Location = new System.Drawing.Point(3, 31);
             this.implemCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.implemCtrl.MinimumSize = new System.Drawing.Size(150, 25);
             this.implemCtrl.Name = "implemCtrl";
             this.implemCtrl.Size = new System.Drawing.Size(184, 28);
-            this.implemCtrl.SplitterRatio = 74;
+            this.implemCtrl.SplitterRatio = 72;
             this.implemCtrl.TabIndex = 11;
             this.implemCtrl.TextTitle = "Виконання";
             this.implemCtrl.TextValue = "Немає акту";
@@ -287,19 +202,31 @@
             // stateCtrl
             // 
             this.stateCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.stateCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.stateCtrl.Location = new System.Drawing.Point(3, 4);
             this.stateCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.stateCtrl.MinimumSize = new System.Drawing.Size(150, 25);
             this.stateCtrl.Name = "stateCtrl";
             this.stateCtrl.Size = new System.Drawing.Size(184, 28);
-            this.stateCtrl.SplitterRatio = 74;
+            this.stateCtrl.SplitterRatio = 40;
             this.stateCtrl.TabIndex = 10;
             this.stateCtrl.TextTitle = "Стан";
             this.stateCtrl.TextValue = "Не дійсний";
             // 
+            // radPanel4
+            // 
+            this.radPanel4.Controls.Add(this.distributedAmountCtrl);
+            this.radPanel4.Controls.Add(this.amountCtrl);
+            this.radPanel4.Controls.Add(this.bankCtrl);
+            this.radPanel4.Location = new System.Drawing.Point(592, 73);
+            this.radPanel4.Name = "radPanel4";
+            this.radPanel4.Size = new System.Drawing.Size(190, 97);
+            this.radPanel4.TabIndex = 6;
+            // 
             // distributedAmountCtrl
             // 
             this.distributedAmountCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.distributedAmountCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.distributedAmountCtrl.Location = new System.Drawing.Point(3, 58);
             this.distributedAmountCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.distributedAmountCtrl.MinimumSize = new System.Drawing.Size(150, 25);
@@ -313,6 +240,7 @@
             // amountCtrl
             // 
             this.amountCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.amountCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.amountCtrl.Location = new System.Drawing.Point(3, 31);
             this.amountCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.amountCtrl.MinimumSize = new System.Drawing.Size(150, 25);
@@ -326,6 +254,7 @@
             // bankCtrl
             // 
             this.bankCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bankCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
             this.bankCtrl.Location = new System.Drawing.Point(3, 4);
             this.bankCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
             this.bankCtrl.MinimumSize = new System.Drawing.Size(150, 25);
@@ -338,7 +267,7 @@
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(5, 197);
+            this.radLabel1.Location = new System.Drawing.Point(4, 176);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(54, 18);
             this.radLabel1.TabIndex = 8;
@@ -347,11 +276,67 @@
             // txtNotation
             // 
             this.txtNotation.AutoScroll = true;
-            this.txtNotation.Location = new System.Drawing.Point(65, 197);
+            this.txtNotation.Location = new System.Drawing.Point(64, 176);
             this.txtNotation.Multiline = true;
             this.txtNotation.Name = "txtNotation";
             this.txtNotation.Size = new System.Drawing.Size(717, 77);
             this.txtNotation.TabIndex = 9;
+            // 
+            // periodCtrl
+            // 
+            this.periodCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.periodCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.periodCtrl.Location = new System.Drawing.Point(4, 38);
+            this.periodCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.periodCtrl.MinimumSize = new System.Drawing.Size(150, 25);
+            this.periodCtrl.Name = "periodCtrl";
+            this.periodCtrl.Size = new System.Drawing.Size(225, 28);
+            this.periodCtrl.SplitterRatio = 96;
+            this.periodCtrl.TabIndex = 3;
+            this.periodCtrl.TextTitle = "Період звітності";
+            this.periodCtrl.TextValue = "Щоночі";
+            // 
+            // agentCtrl
+            // 
+            this.agentCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleRight;
+            this.agentCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.agentCtrl.Location = new System.Drawing.Point(391, 4);
+            this.agentCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.agentCtrl.MinimumSize = new System.Drawing.Size(150, 25);
+            this.agentCtrl.Name = "agentCtrl";
+            this.agentCtrl.Size = new System.Drawing.Size(391, 28);
+            this.agentCtrl.SplitterRatio = 85;
+            this.agentCtrl.TabIndex = 2;
+            this.agentCtrl.TextTitle = "Представник";
+            this.agentCtrl.TextValue = "";
+            // 
+            // dateCtrl
+            // 
+            this.dateCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleRight;
+            this.dateCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dateCtrl.Location = new System.Drawing.Point(235, 4);
+            this.dateCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.dateCtrl.MinimumSize = new System.Drawing.Size(150, 25);
+            this.dateCtrl.Name = "dateCtrl";
+            this.dateCtrl.Size = new System.Drawing.Size(150, 28);
+            this.dateCtrl.SplitterRatio = 45;
+            this.dateCtrl.TabIndex = 1;
+            this.dateCtrl.TextTitle = "Дата";
+            this.dateCtrl.TextValue = "12.12.2020";
+            // 
+            // numberCtrl
+            // 
+            this.numberCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.numberCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.numberCtrl.Location = new System.Drawing.Point(4, 4);
+            this.numberCtrl.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.numberCtrl.MinimumSize = new System.Drawing.Size(150, 25);
+            this.numberCtrl.Name = "numberCtrl";
+            this.numberCtrl.Size = new System.Drawing.Size(225, 28);
+            this.numberCtrl.SplitterRatio = 48;
+            this.numberCtrl.TabIndex = 0;
+            this.numberCtrl.TextTitle = "Номер";
+            this.numberCtrl.TextValue = "КБЦКП - 95/87845-45а";
             // 
             // InformationAboutTheContractTitleControl
             // 
@@ -368,10 +353,10 @@
             this.Controls.Add(this.agentCtrl);
             this.Controls.Add(this.dateCtrl);
             this.Controls.Add(this.numberCtrl);
-            this.MaximumSize = new System.Drawing.Size(788, 277);
-            this.MinimumSize = new System.Drawing.Size(788, 277);
+            this.MaximumSize = new System.Drawing.Size(788, 257);
+            this.MinimumSize = new System.Drawing.Size(788, 257);
             this.Name = "InformationAboutTheContractTitleControl";
-            this.Size = new System.Drawing.Size(788, 277);
+            this.Size = new System.Drawing.Size(788, 257);
             ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
@@ -396,12 +381,10 @@
         private SingleShowInformationControl periodCtrl;
         private Telerik.WinControls.UI.RadCheckBox checkAttach;
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private SingleShowInformationControl isTornCtrl;
         private SingleShowInformationControl isProlongationCtrl;
         private SingleShowInformationControl dateEndCtrl;
         private SingleShowInformationControl dateBeginCtrl;
         private Telerik.WinControls.UI.RadPanel radPanel2;
-        private SingleShowInformationControl fixedPayCtrl;
         private SingleShowInformationControl minPayCtrl;
         private SingleShowInformationControl percentCtrl;
         private Telerik.WinControls.UI.RadPanel radPanel3;

@@ -50,5 +50,12 @@ namespace IpsViewComponentLibrary
             get => lbltxtName.TextAlign;
             set => lbltxtName.TextAlign = value;
         }
+
+        [Category("Data")]
+        public ContentAlignment AlignmentValue
+        {
+            get => txtShow.TextAlignment;
+            set => txtShow.TextAlignment = value;
+        }
     }
 }

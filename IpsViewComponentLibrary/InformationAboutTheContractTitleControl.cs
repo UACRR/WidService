@@ -107,31 +107,6 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
-        /// Розторгнутий
-        /// </summary>
-        public bool IsTorn
-        {
-            get
-            {
-                switch (isTornCtrl.TextValue)
-                {
-                    case "Так":
-                        return true;
-                    case "Ні":
-                        return false;
-                }
-                return false;
-            }
-            set
-            {
-                if (value)
-                    isTornCtrl.TextValue = "Так";
-                if (!value)
-                    isTornCtrl.TextValue = "Ні";
-            }
-        }
-
-        /// <summary>
         /// Відсоток відрахувань
         /// </summary>
         public string Percent
@@ -147,15 +122,6 @@ namespace IpsViewComponentLibrary
         {
             get => minPayCtrl.TextValue;
             set => minPayCtrl.TextValue = value;
-        }
-
-        /// <summary>
-        /// Фіксована сума
-        /// </summary>
-        public string FixedPayment
-        {
-            get => fixedPayCtrl.TextValue;
-            set => fixedPayCtrl.TextValue = value;
         }
 
         /// <summary>
@@ -289,10 +255,8 @@ namespace IpsViewComponentLibrary
             dateBeginCtrl.TextValue = string.Empty;
             dateEndCtrl.TextValue = string.Empty;
             isProlongationCtrl.TextValue = string.Empty;
-            isTornCtrl.TextValue = string.Empty;
             percentCtrl.TextValue = string.Empty;
             minPayCtrl.TextValue = string.Empty;
-            fixedPayCtrl.TextValue = string.Empty;
             stateCtrl.TextValue = string.Empty;
             implemCtrl.TextValue = string.Empty;
             isPayCtrl.TextValue = string.Empty;
