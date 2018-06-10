@@ -18,8 +18,7 @@ namespace TestMVCStack
         {
             InitializeComponent();
             radLabel1.Text = $" N {index++}";
-            var presenter = new PresenterMain(new ServiceMain(), mainViewSwitcher1, parent );
-            mainViewSwitcher1.presenter = presenter;
+            var presenter = new PresenterMain(new ServiceMain(), mainViewSwitcher1, parent, index );
         }
     }
 }

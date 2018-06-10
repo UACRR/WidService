@@ -27,10 +27,22 @@ namespace TestMVCStack
             Initialize();
         }
 
-        public PresenterMain(ServiceMain _service, MainViewSwitcher switcher, PresenterMain _parent)
+        public PresenterMain(ServiceMain _service, MainViewSwitcher switcher, PresenterMain _parent, int level)
             : this(_service, switcher)
         {
             parent = _parent;
+            gridControl.radButton2.Text = "Закрити";
+            switch (level)
+            {
+                case 0:
+                    break;
+                case 4:
+                    gridControl.radButton3.Visible = false;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         public void AddNew()
@@ -38,16 +50,36 @@ namespace TestMVCStack
             IData newItem = service.newItem();
             editControl.SetBindingSource(newItem);
 
-            _switcher.SwitchView(editControl.GetType(), true);
+            _switcher.SwitchView(editControl, true);
         }
 
         public void Cancel()
         {
-            _switcher.CloseView();
+            if (_switcher.Count == 0)
+            {
+                if (parent == null)
+                    Application.Exit();
+                else
+                    parent.Cancel();
+
+                return;
+            }
+            else
+                _switcher.CloseView();
         }
 
         public void Done()
         {
+            if(_switcher.Count == 0  )
+            {
+                if (parent == null)
+                    Application.Exit();
+                else
+                    parent.Done();
+
+                return;
+            }
+            else
             _switcher.CloseView();
 
         }
@@ -56,7 +88,7 @@ namespace TestMVCStack
         {
 
             editControl.SetBindingSource(item);
-            _switcher.SwitchView(editControl.GetType(), true);
+            _switcher.SwitchView(editControl, true);
         }
 
         public void Save(object item)
@@ -75,9 +107,7 @@ namespace TestMVCStack
             gridControl.SetBindingSource(service.GetList());
 
             _curentView = gridControl;
-            _switcher.AddSwitchView(gridControl);
-            _switcher.AddSwitchView(editControl);
-            _switcher.StartView(gridControl.GetType());
+            _switcher.SwitchView(gridControl, true);
 
         }
 
@@ -87,9 +117,8 @@ namespace TestMVCStack
             {
                 nestedControl = new Nested(this);
                 nestedControl.Dock = DockStyle.Fill;
-                _switcher.AddSwitchView(nestedControl);
             }
-            _switcher.SwitchView(nestedControl.GetType(), true);
+            _switcher.SwitchView(nestedControl, true);
         }
     }
 }
