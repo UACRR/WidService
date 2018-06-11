@@ -9,6 +9,7 @@
     <item name="Client">
         <noignore>ClnBusinessPlace</noignore>
         <noignore>LicenseAgreement</noignore>
+        <noignore>MoneyReceived</noignore>
     </item>
     <item name="LicenseAgreement">
         <noignore>Agr</noignore>
@@ -43,5 +44,7 @@
     <item Name="TypePlace">
     </item>  
     <item Name="License">
+    </item>  
+    <item Name="MoneyReceived">
     </item>  
 </tables>

@@ -25,6 +25,7 @@ namespace ipsFormsDesign.Model
         public int? Version { get; set; }
 
         public AgreementStatus AgrStatusNavigation { get; set; }
+        public AgreementType AgrTypeNavigation { get; set; }
         public Customer Cust { get; set; }
         public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }

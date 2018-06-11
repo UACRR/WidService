@@ -8,7 +8,6 @@ namespace ipsFormsDesign.Model
     {
         public RequestType()
         {
-            DocTemplate = new HashSet<DocTemplate>();
             RelReqObj = new HashSet<RelReqObj>();
             Request = new HashSet<Request>();
             RequestTypeTr = new HashSet<RequestTypeTr>();
@@ -21,7 +20,6 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<DocTemplate> DocTemplate { get; set; }
         public ICollection<RelReqObj> RelReqObj { get; set; }
         public ICollection<Request> Request { get; set; }
         public ICollection<RequestTypeTr> RequestTypeTr { get; set; }

@@ -49,12 +49,6 @@ namespace ipsmedserviceapp.Controllers
                     .Where(rec => rec.LicVersion == license.LicVersion)
                     .LoadAsync();
             
-            // Отримати по контрактам Періоди оплат    
-            //await _dbContext.PaidPeriod.FromSql("select * from PaidPeriod where custId = @custId", new SqlParameter("@custId", cust.CustId))
-            //    .Include(row => row.MoneyPeriodLink)
-            //    .LoadAsync();
-            // 
-            // await _dbContext.MoneyReceived.FromSql("select * from MoneyReceived where custId = @custId", new SqlParameter("@custId", cust.CustId)).LoadAsync();
 
             // Отримати Майданчики
             foreach (var place in cust.Client.ClnBusinessPlace)

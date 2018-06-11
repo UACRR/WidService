@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         {
             BrRegister = new HashSet<BrRegister>();
             Distribution = new HashSet<Distribution>();
+            Document = new HashSet<Document>();
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
             Register = new HashSet<Register>();
         }
@@ -33,6 +34,7 @@ namespace ipsFormsDesign.Model
         public PeriodStatus StatusNavigation { get; set; }
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<Distribution> Distribution { get; set; }
+        public ICollection<Document> Document { get; set; }
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ICollection<Register> Register { get; set; }
     }

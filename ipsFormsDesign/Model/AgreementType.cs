@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public AgreementType()
         {
+            AgreementMaster = new HashSet<AgreementMaster>();
             AgreementTypeTr = new HashSet<AgreementTypeTr>();
         }
 
@@ -15,6 +16,7 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public string TemplateName { get; set; }
 
+        public ICollection<AgreementMaster> AgreementMaster { get; set; }
         public ICollection<AgreementTypeTr> AgreementTypeTr { get; set; }
     }
 }

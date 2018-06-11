@@ -27,6 +27,7 @@ namespace ipsFormsDesign.Model
         public PaidPeriod Period { get; set; }
         public Register ReqIdSrNavigation { get; set; }
         public RegisterStatus StatusNavigation { get; set; }
+        public AspNetUsers User { get; set; }
         public ICollection<BrRegItem> BrRegItem { get; set; }
         public ICollection<Distribution> Distribution { get; set; }
     }
