@@ -711,11 +711,12 @@ public interface IDocText
     }
 public interface IDocument
     {    int DocId { get; set; }
-         int DocTypeCode { get; set; }
+         int DocType { get; set; }
          DateTime DocDate { get; set; }
          string DocNumber { get; set; }
          string DocFile { get; set; }
          int? DocStatus { get; set; }
+         int? PeriodId { get; set; }
 }
 public interface IDocumentKind
     {    int CodeI { get; set; }
@@ -724,6 +725,28 @@ public interface IDocumentKind
          string DocMaker { get; set; }
 }
 public interface IDocumentKindTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
+public interface IDocumentStatus
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IDocumentStatusTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
+public interface IDocumentType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+         string TemplNum { get; set; }
+         string TemplPath { get; set; }
+}
+public interface IDocumentTypeTr
     {
          int CodeI { get; set; }
          string Lang { get; set; }

@@ -49,12 +49,6 @@ namespace ipsmedserviceapp.Controllers
                     .Where(rec => rec.LicVersion == license.LicVersion)
                     .LoadAsync();
             
-            // Отримати по контрактам Періоди оплат    
-            //await _dbContext.PaidPeriod.FromSql("select * from PaidPeriod where custId = @custId", new SqlParameter("@custId", cust.CustId))
-            //    .Include(row => row.MoneyPeriodLink)
-            //    .LoadAsync();
-            // 
-            // await _dbContext.MoneyReceived.FromSql("select * from MoneyReceived where custId = @custId", new SqlParameter("@custId", cust.CustId)).LoadAsync();
 
             // Отримати Майданчики
             foreach (var place in cust.Client.ClnBusinessPlace)
@@ -508,16 +502,16 @@ namespace ipsmedserviceapp.Controllers
                                         .Include( rec => rec.Cust).ThenInclude( cust => cust.Cust )
                                         .SingleOrDefaultAsync();
 
-                var vCustomer = (await _dbContext.getViewData($"select * from vCustomer where custId = {licenseAgrement.CustId}", null)).Select( rec => new { innOkpo = rec["INNOKPO"] as string }).ToList();
+                //var vCustomer = (await _dbContext.getViewData($"select * from vCustomer where custId = {licenseAgrement.CustId}", null)).Select( rec => new { innOkpo = rec["INNOKPO"] as string }).ToList();
 
 
-                var externPays = await _dbContext.ExternalPay.FromSql($"select * from ExternalPay where okpoCorr = @okpo", new SqlParameter("@okpo", vCustomer[0].innOkpo )).ToListAsync();
+                //var externPays = await _dbContext.ExternalPay.FromSql($"select * from ExternalPay where okpoCorr = @okpo", new SqlParameter("@okpo", vCustomer[0].innOkpo )).ToListAsync();
 
                 await _dbContext.MoneyPeriodLink.FromSql($"select * from MoneyPeriodLink where licid = {licid}")
                                 .Include(rec => rec.Paid)
                                 .LoadAsync();
 
-                return Json(new { externalPay = externPays, customer = licenseAgrement.Cust.Cust });
+                return Json(licenseAgrement.Cust.Cust);
 
             }
             catch (Exception ex)

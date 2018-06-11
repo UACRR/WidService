@@ -30,7 +30,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public ICollection<Distribution> Distribution { get; set; }
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
-        [JsonIgnore]
         public ICollection<MoneyReceived> MoneyReceived { get; set; }
         [JsonIgnore]
         public ICollection<PaidPeriod> PaidPeriod { get; set; }
@@ -38,14 +37,6 @@ namespace ipsmedserviceapp.Model
         public ICollection<PartnerClient> PartnerClient { get; set; }
     }
 }
-
-
-
-
-
-
-
-
 
 
 

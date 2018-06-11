@@ -12,6 +12,7 @@ namespace ipsFormsDesign.Model
             AspNetUserClaims = new HashSet<AspNetUserClaims>();
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
+            BrRegister = new HashSet<BrRegister>();
             Employee = new HashSet<Employee>();
             Register = new HashSet<Register>();
             Request = new HashSet<Request>();
@@ -41,6 +42,7 @@ namespace ipsFormsDesign.Model
         public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<Employee> Employee { get; set; }
         public ICollection<Register> Register { get; set; }
         public ICollection<Request> Request { get; set; }

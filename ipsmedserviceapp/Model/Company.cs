@@ -24,11 +24,3 @@ namespace ipsmedserviceapp.Model
 
 
 
-
-
-
-
-
-
-
-
