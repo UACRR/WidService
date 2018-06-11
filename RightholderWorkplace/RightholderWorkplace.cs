@@ -145,6 +145,7 @@ namespace RightholderWorkplace
             ctrlContacts.DataSource = anketaPersonBindingSource;
             ctrlRegistrations.DataSource = anketaPersonBindingSource;
             ctrlInternalPassport.DataSource = anketaPersonBindingSource;
+            ctrlInternationalPassport.DataSource = anketaPersonBindingSource;
             //ctrlBankAccount.DataSource = _bankAccount;
             //ctrlExclusionsLimitations.DataSource = _termsOfServices;
             //gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
@@ -227,7 +228,7 @@ namespace RightholderWorkplace
         {
             if (newCreateRightholderPageView.SelectedPage == createRightholderPassportPage)
             {
-                if (_anketa.Residency == 1)
+                if (_anketa.Citizenship == "804")
                     createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
                 else
                     createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
