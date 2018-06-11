@@ -227,7 +227,7 @@ namespace RightholderWorkplace
         {
             if (newCreateRightholderPageView.SelectedPage == createRightholderPassportPage)
             {
-                if (_anketa.Residency == 1)
+                if (_anketa.Citizenship == "804")
                     createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
                 else
                     createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
