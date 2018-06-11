@@ -89,9 +89,9 @@ namespace IpsViewComponentLibrary
         /// <param name="custId"></param>
         private void SetUserInfoData()
         {
-            var userInfo = _customer.AnketaCompany.SingleOrDefault();
-            var contactPerson = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
-            var manager = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
+            var userInfo = _customer?.Company?.AnketaCompany?.SingleOrDefault();
+            var contactPerson = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
+            var manager = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
 
 
             userInfoCtrl.Edrpou = userInfo?.Okpo;
