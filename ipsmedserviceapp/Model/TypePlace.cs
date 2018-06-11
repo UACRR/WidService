@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -14,7 +15,18 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        [JsonIgnore]
         public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        [JsonIgnore]
         public ICollection<TypePlaceTr> TypePlaceTr { get; set; }
     }
 }
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -23,11 +24,21 @@ namespace ipsmedserviceapp.Model
         public short? AccDk { get; set; }
         public DateTime? DateModify { get; set; }
 
+        [JsonIgnore]
         public AccountStatus AccStatusNavigation { get; set; }
+        [JsonIgnore]
         public AccountBals BalsCodeNavigation { get; set; }
         public Customer Cust { get; set; }
+        [JsonIgnore]
         public ObjectRight Obj { get; set; }
+        [JsonIgnore]
         public Currency R030Navigation { get; set; }
+        [JsonIgnore]
         public ICollection<PayTurn> PayTurn { get; set; }
     }
 }
+
+
+
+
+

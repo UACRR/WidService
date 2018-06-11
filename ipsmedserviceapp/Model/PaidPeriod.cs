@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -26,9 +27,13 @@ namespace ipsmedserviceapp.Model
         public string PeriodName { get; set; }
         public bool? FagFirst { get; set; }
 
+        [JsonIgnore]
         public Client Cust { get; set; }
+        [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
+        [JsonIgnore]
         public Period PeriodTypeNavigation { get; set; }
+        [JsonIgnore]
         public PeriodStatus StatusNavigation { get; set; }
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<Distribution> Distribution { get; set; }
@@ -36,3 +41,14 @@ namespace ipsmedserviceapp.Model
         public ICollection<Register> Register { get; set; }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
