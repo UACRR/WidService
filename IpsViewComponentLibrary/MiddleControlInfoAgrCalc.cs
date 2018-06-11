@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             SetDefaultPages();
+            
         }
 
         public void SetDictionary(AnketaDictionaties dict)
@@ -162,6 +163,12 @@ namespace IpsViewComponentLibrary
             bool isInt = Int32.TryParse(e.CurrentRow.Cells["Id"].Value.ToString(), out int result);
             if (!isInt) return;
             SetAgrInfoData(result);
+        }
+
+        private void pvMain_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if(pvMain.SelectedPage == pvReports)
+                reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
         }
     }
 

@@ -104,31 +104,31 @@
             gridViewTextBoxColumn1.FieldName = "Period";
             gridViewTextBoxColumn1.HeaderText = "Період";
             gridViewTextBoxColumn1.Name = "Period";
-            gridViewTextBoxColumn1.Width = 202;
+            gridViewTextBoxColumn1.Width = 198;
             gridViewTextBoxColumn2.FieldName = "StateOfPeriod";
             gridViewTextBoxColumn2.HeaderText = "Стан періоду";
             gridViewTextBoxColumn2.Name = "StateOfPeriod";
-            gridViewTextBoxColumn2.Width = 145;
+            gridViewTextBoxColumn2.Width = 142;
             gridViewDecimalColumn1.FieldName = "AmountNeed";
             gridViewDecimalColumn1.HeaderText = "Вимога";
             gridViewDecimalColumn1.Name = "AmountNeed";
-            gridViewDecimalColumn1.Width = 145;
+            gridViewDecimalColumn1.Width = 142;
             gridViewDecimalColumn2.FieldName = "AmountBound";
             gridViewDecimalColumn2.HeaderText = "Прив\'язано";
             gridViewDecimalColumn2.Name = "AmountBound";
-            gridViewDecimalColumn2.Width = 145;
+            gridViewDecimalColumn2.Width = 142;
             gridViewDecimalColumn3.FieldName = "AmountDistrib";
             gridViewDecimalColumn3.HeaderText = "Розподілено";
             gridViewDecimalColumn3.Name = "AmountDistrib";
-            gridViewDecimalColumn3.Width = 117;
+            gridViewDecimalColumn3.Width = 115;
             gridViewDecimalColumn4.FieldName = "AmountNotDistrib";
             gridViewDecimalColumn4.HeaderText = "Не розподілено";
             gridViewDecimalColumn4.Name = "AmountNotDistrib";
-            gridViewDecimalColumn4.Width = 132;
+            gridViewDecimalColumn4.Width = 130;
             gridViewDecimalColumn5.FieldName = "Arrears";
             gridViewDecimalColumn5.HeaderText = "Борг";
             gridViewDecimalColumn5.Name = "Arrears";
-            gridViewDecimalColumn5.Width = 124;
+            gridViewDecimalColumn5.Width = 123;
             this.gvPeriodsPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -142,10 +142,10 @@
             this.gvPeriodsPayment.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPeriodsPayment.ReadOnly = true;
             this.gvPeriodsPayment.ShowGroupPanel = false;
-            this.gvPeriodsPayment.Size = new System.Drawing.Size(1025, 114);
+            this.gvPeriodsPayment.Size = new System.Drawing.Size(1007, 114);
             this.gvPeriodsPayment.TabIndex = 0;
             this.gvPeriodsPayment.ThemeName = "Office2007Silver";
-            this.gvPeriodsPayment.SelectionChanged += new System.EventHandler(this.gvPeriodsPayment_SelectionChanged);
+            this.gvPeriodsPayment.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodsPayment_CurrentRowChanged);
             // 
             // gvPayments
             // 
@@ -164,26 +164,26 @@
             gridViewTextBoxColumn3.FieldName = "SelectPeriod";
             gridViewTextBoxColumn3.HeaderText = "Період";
             gridViewTextBoxColumn3.Name = "SelectPeriod";
-            gridViewTextBoxColumn3.Width = 139;
+            gridViewTextBoxColumn3.Width = 137;
             gridViewTextBoxColumn4.FieldName = "NumberPayment";
             gridViewTextBoxColumn4.HeaderText = "Номер платежу";
             gridViewTextBoxColumn4.Name = "NumberPayment";
-            gridViewTextBoxColumn4.Width = 109;
+            gridViewTextBoxColumn4.Width = 107;
             gridViewTextBoxColumn5.HeaderText = "Дата платежу";
             gridViewTextBoxColumn5.Name = "column1";
-            gridViewTextBoxColumn5.Width = 95;
+            gridViewTextBoxColumn5.Width = 93;
             gridViewDecimalColumn6.HeaderText = "Сума платежу";
             gridViewDecimalColumn6.Name = "column2";
-            gridViewDecimalColumn6.Width = 100;
+            gridViewDecimalColumn6.Width = 98;
             gridViewTextBoxColumn6.HeaderText = "Сума періоду";
             gridViewTextBoxColumn6.Name = "column3";
-            gridViewTextBoxColumn6.Width = 100;
+            gridViewTextBoxColumn6.Width = 98;
             gridViewTextBoxColumn7.HeaderText = "Стан";
             gridViewTextBoxColumn7.Name = "column4";
-            gridViewTextBoxColumn7.Width = 133;
+            gridViewTextBoxColumn7.Width = 131;
             gridViewTextBoxColumn8.HeaderText = "Призначення";
             gridViewTextBoxColumn8.Name = "column5";
-            gridViewTextBoxColumn8.Width = 334;
+            gridViewTextBoxColumn8.Width = 328;
             this.gvPayments.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
@@ -198,7 +198,7 @@
             this.gvPayments.ReadOnly = true;
             this.gvPayments.ShowGroupPanel = false;
             this.gvPayments.ShowGroupPanelScrollbars = false;
-            this.gvPayments.Size = new System.Drawing.Size(1025, 114);
+            this.gvPayments.Size = new System.Drawing.Size(1007, 114);
             this.gvPayments.TabIndex = 1;
             this.gvPayments.ThemeName = "Office2007Silver";
             // 
@@ -210,6 +210,7 @@
             this.btnDistribute.TabIndex = 3;
             this.btnDistribute.Text = "Розподілити";
             this.btnDistribute.ThemeName = "Office2007Silver";
+            this.btnDistribute.Click += new System.EventHandler(this.btnDistribute_Click);
             // 
             // lblTitlePeriod
             // 
@@ -219,7 +220,7 @@
             this.lblTitlePeriod.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblTitlePeriod.Location = new System.Drawing.Point(129, 433);
             this.lblTitlePeriod.Name = "lblTitlePeriod";
-            this.lblTitlePeriod.Size = new System.Drawing.Size(764, 24);
+            this.lblTitlePeriod.Size = new System.Drawing.Size(746, 24);
             this.lblTitlePeriod.TabIndex = 6;
             this.lblTitlePeriod.Text = "Платежі обраного періода";
             this.lblTitlePeriod.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -240,26 +241,26 @@
             gridViewTextBoxColumn9.FieldName = "NumberInvoice";
             gridViewTextBoxColumn9.HeaderText = "Номер платежу";
             gridViewTextBoxColumn9.Name = "NumberInvoice";
-            gridViewTextBoxColumn9.Width = 102;
+            gridViewTextBoxColumn9.Width = 100;
             gridViewTextBoxColumn10.EnableExpressionEditor = true;
             gridViewTextBoxColumn10.Expression = "";
             gridViewTextBoxColumn10.FieldName = "DateInvoice";
             gridViewTextBoxColumn10.HeaderText = "Дата платежу";
             gridViewTextBoxColumn10.Name = "DateInvoice";
-            gridViewTextBoxColumn10.Width = 102;
+            gridViewTextBoxColumn10.Width = 100;
             gridViewDecimalColumn7.FieldName = "Amount";
             gridViewDecimalColumn7.HeaderText = "Сума платежу";
             gridViewDecimalColumn7.Name = "Amount";
-            gridViewDecimalColumn7.Width = 122;
+            gridViewDecimalColumn7.Width = 120;
             gridViewDecimalColumn8.FieldName = "DestribAmount";
             gridViewDecimalColumn8.HeaderText = "Сума для прив\'язки";
             gridViewDecimalColumn8.Name = "DestribAmount";
-            gridViewDecimalColumn8.Width = 122;
+            gridViewDecimalColumn8.Width = 120;
             gridViewTextBoxColumn11.FieldName = "GoalInvoice";
             gridViewTextBoxColumn11.HeaderText = "Призначення платежу";
             gridViewTextBoxColumn11.Multiline = true;
             gridViewTextBoxColumn11.Name = "GoalInvoice";
-            gridViewTextBoxColumn11.Width = 560;
+            gridViewTextBoxColumn11.Width = 550;
             gridViewTextBoxColumn12.FieldName = "PaidId";
             gridViewTextBoxColumn12.HeaderText = "Id";
             gridViewTextBoxColumn12.IsVisible = false;
@@ -278,7 +279,7 @@
             this.gvUserMoneys.ReadOnly = true;
             this.gvUserMoneys.ShowGroupPanel = false;
             this.gvUserMoneys.ShowGroupPanelScrollbars = false;
-            this.gvUserMoneys.Size = new System.Drawing.Size(1025, 107);
+            this.gvUserMoneys.Size = new System.Drawing.Size(1007, 107);
             this.gvUserMoneys.TabIndex = 8;
             this.gvUserMoneys.ThemeName = "Office2007Silver";
             this.gvUserMoneys.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvUserMoneys_CurrentRowChanged);
@@ -311,40 +312,40 @@
             gridViewTextBoxColumn13.FieldName = "License";
             gridViewTextBoxColumn13.HeaderText = "Ліцензія";
             gridViewTextBoxColumn13.Name = "License";
-            gridViewTextBoxColumn13.Width = 170;
+            gridViewTextBoxColumn13.Width = 167;
             gridViewTextBoxColumn14.FieldName = "Series";
             gridViewTextBoxColumn14.HeaderText = "Серія";
             gridViewTextBoxColumn14.Name = "Series";
-            gridViewTextBoxColumn14.Width = 48;
-            gridViewTextBoxColumn15.FieldName = "NumberAgr";
+            gridViewTextBoxColumn14.Width = 47;
+            gridViewTextBoxColumn15.FieldName = "AgrNumber";
             gridViewTextBoxColumn15.HeaderText = "Номер договору";
-            gridViewTextBoxColumn15.Name = "NumberAgr";
-            gridViewTextBoxColumn15.Width = 117;
+            gridViewTextBoxColumn15.Name = "AgrNumber";
+            gridViewTextBoxColumn15.Width = 115;
             gridViewTextBoxColumn16.FieldName = "DateBegin";
             gridViewTextBoxColumn16.HeaderText = "Дата початку";
             gridViewTextBoxColumn16.Name = "DateBegin";
-            gridViewTextBoxColumn16.Width = 107;
+            gridViewTextBoxColumn16.Width = 105;
             gridViewTextBoxColumn17.FieldName = "DateEnd";
             gridViewTextBoxColumn17.HeaderText = "Дата кінця";
             gridViewTextBoxColumn17.Name = "DateEnd";
-            gridViewTextBoxColumn17.Width = 107;
+            gridViewTextBoxColumn17.Width = 105;
             gridViewDecimalColumn9.FieldName = "Amount";
             gridViewDecimalColumn9.HeaderText = "Сума";
             gridViewDecimalColumn9.Name = "Amount";
-            gridViewDecimalColumn9.Width = 107;
+            gridViewDecimalColumn9.Width = 105;
             gridViewTextBoxColumn18.FieldName = "State";
             gridViewTextBoxColumn18.HeaderText = "Стан";
             gridViewTextBoxColumn18.Name = "State";
-            gridViewTextBoxColumn18.Width = 107;
+            gridViewTextBoxColumn18.Width = 105;
             gridViewTextBoxColumn19.FieldName = "PeriodPayment";
             gridViewTextBoxColumn19.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn19.Name = "PeriodPayment";
-            gridViewTextBoxColumn19.Width = 144;
+            gridViewTextBoxColumn19.Width = 141;
             gridViewDecimalColumn10.FieldName = "Arrears";
             gridViewDecimalColumn10.FormatString = "dd.MM.yyyy";
             gridViewDecimalColumn10.HeaderText = "Борг";
             gridViewDecimalColumn10.Name = "Arrears";
-            gridViewDecimalColumn10.Width = 105;
+            gridViewDecimalColumn10.Width = 104;
             this.gvLicenseAgr.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn13,
             gridViewTextBoxColumn14,
@@ -360,37 +361,30 @@
             this.gvLicenseAgr.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvLicenseAgr.ReadOnly = true;
             this.gvLicenseAgr.ShowGroupPanel = false;
-            this.gvLicenseAgr.Size = new System.Drawing.Size(1025, 108);
+            this.gvLicenseAgr.Size = new System.Drawing.Size(1007, 108);
             this.gvLicenseAgr.TabIndex = 10;
             this.gvLicenseAgr.ThemeName = "Office2007Silver";
             this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
-            this.gvLicenseAgr.SelectionChanged += new System.EventHandler(this.gvLicenseAgr_SelectionChanged);
             // 
             // radLabel2
             // 
-            this.radLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel2.AutoSize = false;
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel2.Location = new System.Drawing.Point(132, 145);
+            this.radLabel2.Location = new System.Drawing.Point(3, 145);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(764, 21);
+            this.radLabel2.Size = new System.Drawing.Size(325, 21);
             this.radLabel2.TabIndex = 11;
-            this.radLabel2.Text = "Ліцензійні договора";
-            this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radLabel2.Text = "Активні договора";
             // 
             // radLabel3
             // 
-            this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel3.AutoSize = false;
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(132, 286);
+            this.radLabel3.Location = new System.Drawing.Point(3, 286);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(764, 21);
+            this.radLabel3.Size = new System.Drawing.Size(325, 21);
             this.radLabel3.TabIndex = 12;
             this.radLabel3.Text = "Періоди платежів";
-            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CalculationInfoControl
             // 
@@ -405,10 +399,10 @@
             this.Controls.Add(this.btnDistribute);
             this.Controls.Add(this.gvPayments);
             this.Controls.Add(this.gvPeriodsPayment);
-            this.MaximumSize = new System.Drawing.Size(1237, 1000);
+            this.MaximumSize = new System.Drawing.Size(1300, 1000);
             this.MinimumSize = new System.Drawing.Size(400, 562);
             this.Name = "CalculationInfoControl";
-            this.Size = new System.Drawing.Size(1031, 580);
+            this.Size = new System.Drawing.Size(1013, 580);
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPayments.MasterTemplate)).EndInit();

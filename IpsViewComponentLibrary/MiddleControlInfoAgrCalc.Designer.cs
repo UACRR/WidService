@@ -48,6 +48,8 @@
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
             this.calculationCtrl = new IpsViewComponentLibrary.CalculationInfoControl();
+            this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
+            this.reportsControl = new IpsViewComponentLibrary.ReportsControl();
             this.userInfoCtrl = new IpsViewComponentLibrary.InformationOfUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
@@ -58,6 +60,7 @@
             this.pvSecond.SuspendLayout();
             this.pvAgreement.SuspendLayout();
             this.pvCalculation.SuspendLayout();
+            this.pvReports.SuspendLayout();
             this.SuspendLayout();
             // 
             // pvMain
@@ -67,6 +70,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pvMain.Controls.Add(this.pvActiveAgr);
             this.pvMain.Controls.Add(this.pvCalculation);
+            this.pvMain.Controls.Add(this.pvReports);
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Location = new System.Drawing.Point(3, 253);
             this.pvMain.Name = "pvMain";
@@ -74,6 +78,7 @@
             this.pvMain.Size = new System.Drawing.Size(1082, 285);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2007Silver";
+            this.pvMain.SelectedPageChanged += new System.EventHandler(this.pvMain_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             // 
             // pvActiveAgr
@@ -239,12 +244,33 @@
             // 
             // calculationCtrl
             // 
+            this.calculationCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.calculationCtrl.Location = new System.Drawing.Point(0, 3);
             this.calculationCtrl.MaximumSize = new System.Drawing.Size(1237, 1000);
             this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
             this.calculationCtrl.Name = "calculationCtrl";
-            this.calculationCtrl.Size = new System.Drawing.Size(1031, 580);
+            this.calculationCtrl.Size = new System.Drawing.Size(963, 580);
             this.calculationCtrl.TabIndex = 0;
+            // 
+            // pvReports
+            // 
+            this.pvReports.AutoScroll = true;
+            this.pvReports.Controls.Add(this.reportsControl);
+            this.pvReports.ItemSize = new System.Drawing.SizeF(43F, 26F);
+            this.pvReports.Location = new System.Drawing.Point(10, 35);
+            this.pvReports.Name = "pvReports";
+            this.pvReports.Size = new System.Drawing.Size(1061, 239);
+            this.pvReports.Text = "Звіти";
+            // 
+            // reportsControl
+            // 
+            this.reportsControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportsControl.Location = new System.Drawing.Point(4, 4);
+            this.reportsControl.Name = "reportsControl";
+            this.reportsControl.Size = new System.Drawing.Size(1003, 470);
+            this.reportsControl.TabIndex = 0;
             // 
             // userInfoCtrl
             // 
@@ -286,6 +312,7 @@
             this.pvSecond.ResumeLayout(false);
             this.pvAgreement.ResumeLayout(false);
             this.pvCalculation.ResumeLayout(false);
+            this.pvReports.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -302,5 +329,7 @@
         private Telerik.WinControls.UI.RadPageViewPage pvCalculation;
         private CalculationInfoControl calculationCtrl;
         private InformationOfUserControl userInfoCtrl;
+        private Telerik.WinControls.UI.RadPageViewPage pvReports;
+        private ReportsControl reportsControl;
     }
 }

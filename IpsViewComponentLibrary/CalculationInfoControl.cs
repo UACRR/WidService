@@ -19,7 +19,6 @@ namespace IpsViewComponentLibrary
         public CalculationInfoControl()
         {
             InitializeComponent();
-            //DateInvoice
         }
 
         public void SetData(Customer o)
@@ -46,29 +45,29 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        // подія зміни обраного рядка [Нерозподілені грн користувача]
         private void gvUserMoneys_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if (gvUserMoneys.Rows.Count == 0) return;
             //int id = gvUserMoneys.CurrentRow.Cells[0].Value;
             SetDataSourceLicenseAgr();
+            
         }
 
+        // подія зміни обраного рядка [ліцензійних договорів (активні договора) ]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if (gvLicenseAgr.Rows.Count == 0) return;
             SetDataSourcePeriodsPayment();
         }
 
-        private void gvLicenseAgr_SelectionChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void gvPeriodsPayment_SelectionChanged(object sender, EventArgs e)
+        // подія зміни обраного рядка [періодів платежів]
+        private void gvPeriodsPayment_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if (gvPeriodsPayment.Rows.Count == 0) return;
             SetDataSourcePayments();
         }
+        
 
         // Джерело для [ліцензійних договорів]
         private void SetDataSourceLicenseAgr()
@@ -93,19 +92,34 @@ namespace IpsViewComponentLibrary
             }
             gvLicenseAgr.DataSource = source;
         }
+
+        public object DataSourceReturn
+        {
+            get => gvLicenseAgr.DataSource;
+        }
+
         // Джерело для [періодів платежів]
         private void SetDataSourcePeriodsPayment()
         {
-            gvLicenseAgr.DataSource = new object();
+            var period = _data.Client.PaidPeriod;
+            gvPeriodsPayment.DataSource = period;
         }
+
         // Джерело для [платежів обраного періоду]
         private void SetDataSourcePayments()
         {
 
         }
 
-
+        private void btnDistribute_Click(object sender, EventArgs e)
+        {
+            ContractConsumerMainControl c = new ContractConsumerMainControl();
+            Form f = new Form();
+            f.Controls.Add(c);
+            f.ShowDialog();
+        }
     }
+
     public class GridLicAgr
     {
         public int Id { get; set; }
