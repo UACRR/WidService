@@ -133,6 +133,9 @@ namespace RightholderWorkplace
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
 
+            sbSaveRightholder.DefaultItem = miSaveRightholder;
+            sbSaveRightholder.Text = miSaveRightholder.Text;
+
             // data
             //anketaPersonBindingSource.DataSource = _anketa;
             //bankAccountBindingSource.DataSource = _bankAccount;
@@ -316,12 +319,15 @@ namespace RightholderWorkplace
             gvRightholdersList_CommandCellClick(sender, null);
         }
 
-        private void btnSaveRightholder_Click(object sender, EventArgs e)
+        private void SaveRightholder(bool accept)
         {
             if (_customer == null)
             {
                 return;
             }
+
+            if (accept)
+                _customer.Status = 2; // Активний
 
             // TODO: additional validation
 
@@ -332,6 +338,16 @@ namespace RightholderWorkplace
             rightHolderMainViewBindingSource.DataSource = list;
 
             newRightholdersPageView.SelectedPage = newRightholdersListPage;
+        }
+
+        private void miSaveRightholder_Click(object sender, EventArgs e)
+        {
+            SaveRightholder(accept: false);
+        }
+
+        private void miAcceptAndSaveRightholder_Click(object sender, EventArgs e)
+        {
+            SaveRightholder(accept: true);
         }
 
         #endregion
