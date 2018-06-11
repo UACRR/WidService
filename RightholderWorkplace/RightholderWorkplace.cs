@@ -254,7 +254,16 @@ namespace RightholderWorkplace
         private void btnAddTerritoryExclude_Click(object sender, EventArgs e)
         {
             gvTerritoryExclusions.Rows.AddNew();
-            gvTerritoryExclusions.CurrentRow.Cells[0].BeginEdit();
+
+            var currentCell = gvTerritoryExclusions.CurrentRow.Cells[0];
+            currentCell.IsSelected = true;
+            currentCell.BeginEdit();
+            var dropDownEditor = gvTerritoryExclusions.ActiveEditor as RadDropDownListEditor;
+            if (dropDownEditor != null)
+            {
+                var element = dropDownEditor.EditorElement as RadDropDownListEditorElement;
+                element.ShowPopup();
+            }
         }
 
         private void btnRemoveTerritoryExclude_Click(object sender, EventArgs e)
