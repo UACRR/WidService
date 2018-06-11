@@ -493,6 +493,40 @@ namespace ipsmedserviceapp.Controllers
             return Json(List);
         }
 
+        /// <summary>
+        /// Отримати детальну інформацію по періодам оплати договору
+        /// </summary>
+        /// <param name="licid"></param>
+        /// <returns></returns>
+        [HttpGet("period/detail/{licid}")]
+        public async Task<IActionResult> GetPeriodDetail( int licid )
+        {
+            try
+            {
+                var licenseAgrement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)
+                                        .Include(rec => rec.PaidPeriod)
+                                        .Include( rec => rec.Cust).ThenInclude( cust => cust.Cust )
+                                        .SingleOrDefaultAsync();
+
+                var vCustomer = (await _dbContext.getViewData($"select * from vCustomer where custId = {licenseAgrement.CustId}", null)).Select( rec => new { innOkpo = rec["INNOKPO"] as string }).ToList();
+
+
+                var externPays = await _dbContext.ExternalPay.FromSql($"select * from ExternalPay where okpoCorr = @okpo", new SqlParameter("@okpo", vCustomer[0].innOkpo )).ToListAsync();
+
+                await _dbContext.MoneyPeriodLink.FromSql($"select * from MoneyPeriodLink where licid = {licid}")
+                                .Include(rec => rec.Paid)
+                                .LoadAsync();
+
+                return Json(new { externalPay = externPays, customer = licenseAgrement.Cust.Cust });
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 }
