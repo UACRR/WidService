@@ -409,6 +409,7 @@ namespace RightholderWorkplace
             {
                 authorItemView.StartPosition = FormStartPosition.CenterParent;
                 authorItemView.ShowDialog();
+                authorsBindingSource.ResetBindings(false);
             }
         }
 

@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelCommand = new System.Windows.Forms.Panel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.ddlAuthorName = new Telerik.WinControls.UI.RadDropDownList();
-            this.authorsBindingSource = new System.Windows.Forms.BindingSource();
+            this.authorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ddlAuthorState = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlRoleCode = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
@@ -102,6 +103,7 @@
             // ddlAuthorState
             // 
             this.ddlAuthorState.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.authorsBindingSource, "IsFolkOrUnknown", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.ddlAuthorState.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlAuthorState.Location = new System.Drawing.Point(92, 46);
             this.ddlAuthorState.Name = "ddlAuthorState";
             this.ddlAuthorState.Size = new System.Drawing.Size(267, 21);

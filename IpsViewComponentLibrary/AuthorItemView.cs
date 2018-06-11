@@ -23,7 +23,7 @@ namespace RightholderWorkplace
         {
             InitializeComponent();
 
-            authorsBindingSource.DataSource = bindingSource;
+            authorsBindingSource = bindingSource;
 
             _dictionaries = dictionaries;
             SetDictionaries(_dictionaries);
