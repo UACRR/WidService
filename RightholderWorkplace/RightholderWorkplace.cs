@@ -21,11 +21,12 @@ namespace RightholderWorkplace
     public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm
     {
         Customer _customer;
-
+        ObjectRight _objectRight;
 
         AnketaPerson _anketa;
         BankAccount _bankAccount;
         AnketaDictionaties _dictionaries;
+        ObjectRightDictionaries _dictionariesObjectRight;
         List<TermsOfServiceWrapper> _termsOfServices;
         RightHolder _rightHolder;
 
@@ -356,26 +357,27 @@ namespace RightholderWorkplace
         {
             var service = new ObjectRightService();
 
-            var dictionaries = service.GetDictionary();
+            _dictionariesObjectRight = service.GetDictionary();
             var objectsRightsList = service.GetMainView();
             var objectRightContainer = service.GetData(5848);
+            _objectRight = objectRightContainer.objectRight;
 
             // dictionaries
-            ddlGenreType.DataSource = dictionaries.genreType;
+            ddlGenreType.DataSource = _dictionariesObjectRight.genreType;
             ddlGenreType.ValueMember = "CodeI";
             ddlGenreType.DisplayMember = "Name";
 
-            ddlSpecType.DataSource = dictionaries.specType;
+            ddlSpecType.DataSource = _dictionariesObjectRight.specType;
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
 
             var columnRoleAuth = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRoleAuth.DataSource = dictionaries.creativeRoleType;
+            columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
             columnRoleAuth.ValueMember = "CodeI";
             columnRoleAuth.DisplayMember = "Name";
 
             var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRoleRh.DataSource = dictionaries.creativeRoleType;
+            columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
             columnRoleRh.ValueMember = "CodeI";
             columnRoleRh.DisplayMember = "Name";
 
@@ -386,10 +388,31 @@ namespace RightholderWorkplace
 
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
-            objectRightBindingSource.DataSource = objectRightContainer.objectRight;
-            mediaTrackBindingSource.DataSource = objectRightContainer.objectRight.MediaTrack;
-            authorsBindingSource.DataSource = objectRightContainer.objectRight.Authors;
-            copyRightBindingSource.DataSource = objectRightContainer.objectRight.CopyRight;
+            objectRightBindingSource.DataSource = _objectRight;
+            mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
+            authorsBindingSource.DataSource = _objectRight.Authors;
+            copyRightBindingSource.DataSource = _objectRight.CopyRight;
         }
+
+        #region Object right commands
+
+        private void btnSaveTest_Click(object sender, EventArgs e)
+        {
+            var service = new ObjectRightService();
+
+            service.Save(_objectRight);
+        }
+
+        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
+        {
+            using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
+            {
+                authorItemView.StartPosition = FormStartPosition.CenterParent;
+                authorItemView.ShowDialog();
+                authorsBindingSource.ResetBindings(false);
+            }
+        }
+
+        #endregion
     }
 }

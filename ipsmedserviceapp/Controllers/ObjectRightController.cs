@@ -53,6 +53,8 @@ namespace ipsmedserviceapp.Controllers
         private void updateObjectRight(ObjectRight sors, ObjectRight dest)
         {
             dest.SetFields(sors);
+            dest.MediaTrack.SetFields(sors.MediaTrack);
+            dest.MediaTrack.Name = sors.Name;
             _dbContext.UpdateList(sors.CopyRight, dest.CopyRight, i => { }, (l, r) => l.CRightId == r.CRightId);
             _dbContext.UpdateList(sors.Authors, dest.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
 
