@@ -145,6 +145,7 @@ namespace RightholderWorkplace
             ctrlContacts.DataSource = anketaPersonBindingSource;
             ctrlRegistrations.DataSource = anketaPersonBindingSource;
             ctrlInternalPassport.DataSource = anketaPersonBindingSource;
+            ctrlInternationalPassport.DataSource = anketaPersonBindingSource;
             //ctrlBankAccount.DataSource = _bankAccount;
             //ctrlExclusionsLimitations.DataSource = _termsOfServices;
             //gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
