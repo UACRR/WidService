@@ -22,7 +22,6 @@ namespace ConsumerWorkplace_v_1._0
         public ConsumerCabinet()
         {
             InitializeComponent();
-            gcConsumerCabinet.SetDictionary(_dic);
             gcConsumerCabinet.OnGridRowSelectedChaged += GcConsumerCabinet_OnGridRowSelectedChaged;
         }
 
@@ -60,6 +59,7 @@ namespace ConsumerWorkplace_v_1._0
         public void SetDictionary(AnketaDictionaties dic)
         {
             _dic = dic;
+            gcConsumerCabinet.SetDictionary(_dic);
         }
     }
 }

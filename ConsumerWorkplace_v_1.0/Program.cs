@@ -19,9 +19,9 @@ namespace ConsumerWorkplace_v_1._0
             ConsumerWorkplace form = new ConsumerWorkplace();
             ConsumerService model = new ConsumerService();
             FormPresenter control = new FormPresenter(form, model);
+            Application.Run(form);
 
-            //Application.Run(form);
-            LoadCabinet(form.ReturnCustomer(), form.ReturnList());
+            //LoadCabinet(form.ReturnCustomer(), form.ReturnList());
         }
 
         private static void LoadCabinet(Customer oo, object ooo)

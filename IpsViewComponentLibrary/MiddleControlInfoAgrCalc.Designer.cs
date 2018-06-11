@@ -70,7 +70,7 @@
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Location = new System.Drawing.Point(3, 253);
             this.pvMain.Name = "pvMain";
-            this.pvMain.SelectedPage = this.pvActiveAgr;
+            this.pvMain.SelectedPage = this.pvCalculation;
             this.pvMain.Size = new System.Drawing.Size(1082, 285);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2007Silver";
@@ -96,7 +96,6 @@
             // 
             // 
             this.gvLicenseAgr.MasterTemplate.AllowAddNewRow = false;
-            this.gvLicenseAgr.MasterTemplate.AllowColumnReorder = false;
             this.gvLicenseAgr.MasterTemplate.AllowDeleteRow = false;
             this.gvLicenseAgr.MasterTemplate.AllowDragToGroup = false;
             this.gvLicenseAgr.MasterTemplate.AllowEditRow = false;
@@ -163,6 +162,7 @@
             this.gvLicenseAgr.Size = new System.Drawing.Size(1058, 131);
             this.gvLicenseAgr.TabIndex = 11;
             this.gvLicenseAgr.ThemeName = "Office2007Silver";
+            this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
             // 
             // pvSecond
             // 
@@ -175,7 +175,7 @@
             this.pvSecond.Location = new System.Drawing.Point(2, 140);
             this.pvSecond.Name = "pvSecond";
             this.pvSecond.SelectedPage = this.pvAgreement;
-            this.pvSecond.Size = new System.Drawing.Size(1059, 101);
+            this.pvSecond.Size = new System.Drawing.Size(1059, 105);
             this.pvSecond.TabIndex = 2;
             this.pvSecond.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvSecond.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -189,7 +189,7 @@
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(57F, 26F);
             this.pvAgreement.Location = new System.Drawing.Point(66, 10);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(982, 80);
+            this.pvAgreement.Size = new System.Drawing.Size(982, 84);
             this.pvAgreement.Text = "Договір";
             // 
             // agreementInfoCtrl

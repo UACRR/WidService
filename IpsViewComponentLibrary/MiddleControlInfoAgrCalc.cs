@@ -26,6 +26,7 @@ namespace IpsViewComponentLibrary
         public void SetDictionary(AnketaDictionaties dict)
         {
             _dictionaties = dict;
+            calculationCtrl.SetDictionary(dict);
         }
 
         public void SetCustomerData(Customer cust)
@@ -34,11 +35,14 @@ namespace IpsViewComponentLibrary
             _customer = cust;
             SetUserInfoData();
             gvLicenseAgr.DataSource = new object();
-            SetAgrInfoData();
+            //SetAgrInfoData();
             SetCalculationData();
             SetLicenseAgrGridDataSource();
         }
 
+        /// <summary>
+        /// Активні договора грід
+        /// </summary>
         private void SetLicenseAgrGridDataSource()
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
@@ -47,21 +51,35 @@ namespace IpsViewComponentLibrary
                 var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
                 source.Add(new GridLicenseAgrView
                 {
-                    Id = 1,
-                    License = "",
-                    Series = "",
-                    AgrNumber = item?.Agr?.AgrNumber,
-                    DateBegin = licenseParam?.DateBegin?.ToShortDateString(),
-                    DateEnd = licenseParam?.DateEnd?.ToShortDateString(),
-                    Amount = "",
-                    State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name,
-                    PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name,
+                    Id = item?.AgrId ?? default(int),
+                    License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
+                    Series = string.Empty,
+                    AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
+                    DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
+                    DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
+                    Amount = licenseParam?.MinAmount ?? default(decimal),
+                    State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
+                    PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
                     DateLastPayment = ""
                 });
+                source.Add(new GridLicenseAgrView
+                {
+                    Id = 2,
+                    License = "Типова ліцензія",
+                    Series = "КПП",
+                    AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
+                    DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
+                    DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
+                    Amount = (decimal)999.87,
+                    State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
+                    PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
+                    DateLastPayment = "32.13.2071"
+                });
             }
-            
-            
+
             gvLicenseAgr.DataSource = source;
+            gvLicenseAgr.MasterTemplate.Refresh();
+            gvLicenseAgr.Update();
         }
 
         /// <summary>
@@ -97,9 +115,10 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Інформація по договору
         /// </summary>
-        private void SetAgrInfoData()
+        private void SetAgrInfoData(int idItem = 0)
         {
-            var license = _customer.Client.LicenseAgreement.FirstOrDefault(rec => rec.LicStatus < 4);
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+
             agreementInfoCtrl.NumberAgr = license?.Agr?.AgrNumber;
             agreementInfoCtrl.Agent = "";
             agreementInfoCtrl.DateAgr = license?.Agr?.AgrDate?.ToString("dd.MM.yyyy");
@@ -137,19 +156,26 @@ namespace IpsViewComponentLibrary
             pvSecond.SelectedPage = pvSecond.DefaultPage;
             pvMain.SelectedPage = pvMain.DefaultPage;
         }
+
+        private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            bool isInt = Int32.TryParse(e.CurrentRow.Cells["Id"].Value.ToString(), out int result);
+            if (!isInt) return;
+            SetAgrInfoData(result);
+        }
     }
 
-    internal class GridLicenseAgrView
+    public class GridLicenseAgrView
     {
-        internal int Id { get; set; }
-        internal string License { get; set; }
-        internal string Series { get; set; }
-        internal string AgrNumber { get; set; }
-        internal string DateBegin { get; set; }
-        internal string DateEnd { get; set; }
-        internal string Amount { get; set; }
-        internal string State { get; set; }
-        internal string PeriodPayment { get; set; }
-        internal string DateLastPayment { get; set; }
+        public int Id { get; set; }
+        public string License { get; set; }
+        public string Series { get; set; }
+        public string AgrNumber { get; set; }
+        public string DateBegin { get; set; }
+        public string DateEnd { get; set; }
+        public decimal Amount { get; set; }
+        public string State { get; set; }
+        public string PeriodPayment { get; set; }
+        public string DateLastPayment { get; set; }
     }
 }
