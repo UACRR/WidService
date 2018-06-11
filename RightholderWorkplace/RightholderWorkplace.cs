@@ -251,6 +251,17 @@ namespace RightholderWorkplace
             gvTerritoryExclusions.Enabled = !cbAroundWorld.Checked;
         }
 
+        private void btnAddTerritoryExclude_Click(object sender, EventArgs e)
+        {
+            gvTerritoryExclusions.Rows.AddNew();
+            gvTerritoryExclusions.CurrentRow.Cells[0].BeginEdit();
+        }
+
+        private void btnRemoveTerritoryExclude_Click(object sender, EventArgs e)
+        {
+            gvTerritoryExclusions.Rows.Remove(gvTerritoryExclusions.CurrentRow);
+        }
+
         #region Rightolder commands
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
