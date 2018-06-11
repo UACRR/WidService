@@ -91,6 +91,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICopyRight.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IMediaTrack.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IObjectRight.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRightHolder.datasource" />

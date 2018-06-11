@@ -21,11 +21,12 @@ namespace RightholderWorkplace
     public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm
     {
         Customer _customer;
-
+        ObjectRight _objectRight;
 
         AnketaPerson _anketa;
         BankAccount _bankAccount;
         AnketaDictionaties _dictionaries;
+        ObjectRightDictionaries _dictionariesObjectRight;
         List<TermsOfServiceWrapper> _termsOfServices;
         RightHolder _rightHolder;
 
@@ -250,6 +251,26 @@ namespace RightholderWorkplace
             gvTerritoryExclusions.Enabled = !cbAroundWorld.Checked;
         }
 
+        private void btnAddTerritoryExclude_Click(object sender, EventArgs e)
+        {
+            gvTerritoryExclusions.Rows.AddNew();
+
+            var currentCell = gvTerritoryExclusions.CurrentRow.Cells[0];
+            currentCell.IsSelected = true;
+            currentCell.BeginEdit();
+            var dropDownEditor = gvTerritoryExclusions.ActiveEditor as RadDropDownListEditor;
+            if (dropDownEditor != null)
+            {
+                var element = dropDownEditor.EditorElement as RadDropDownListEditorElement;
+                element.ShowPopup();
+            }
+        }
+
+        private void btnRemoveTerritoryExclude_Click(object sender, EventArgs e)
+        {
+            gvTerritoryExclusions.Rows.Remove(gvTerritoryExclusions.CurrentRow);
+        }
+
         #region Rightolder commands
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
@@ -355,46 +376,63 @@ namespace RightholderWorkplace
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
             var service = new ObjectRightService();
-            var dictionaries = service.GetDictionary();
+
+            _dictionariesObjectRight = service.GetDictionary();
             var objectsRightsList = service.GetMainView();
+            var objectRightContainer = service.GetData(5848);
+            _objectRight = objectRightContainer.objectRight;
 
             // dictionaries
-            ddlGenreType.DataSource = dictionaries.genreType;
+            ddlGenreType.DataSource = _dictionariesObjectRight.genreType;
             ddlGenreType.ValueMember = "CodeI";
             ddlGenreType.DisplayMember = "Name";
 
-            ddlSpecType.DataSource = dictionaries.specType;
+            ddlSpecType.DataSource = _dictionariesObjectRight.specType;
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
 
-            var columnRole = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRole.DataSource = dictionaries.creativeRoleType;
-            columnRole.ValueMember = "CodeI";
-            columnRole.DisplayMember = "Name";
+            var columnRoleAuth = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
+            columnRoleAuth.ValueMember = "CodeI";
+            columnRoleAuth.DisplayMember = "Name";
 
-            // fake object right
-            var objectRight = new ObjectRight
-            {
-                Name = "Object name",
-                GenreType = 1,
-                SpecType = 1,
-                MediaTrack = new MediaTrack
-                {
-                    Iswc = "ISWC1234",
-                    Duration = 5,
-                },
-                Authors = new List<Authors>
-                {
-                    new Authors{ AuthId = 1, RoleCode = 60001, AuthorName = "Author 1", IsFolkOrUnknown = null },
-                    new Authors{ AuthId = 2, RoleCode = 60013, AuthorName = "Composer 2", IsFolkOrUnknown = null },
-                },
-            };
+            var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
+            columnRoleRh.ValueMember = "CodeI";
+            columnRoleRh.DisplayMember = "Name";
+
+            var columnRh = gvObjectRightholders.Columns["CustId"] as GridViewComboBoxColumn;
+            columnRh.DataSource = objectRightContainer.rhList;
+            columnRh.ValueMember = "CustId";
+            columnRh.DisplayMember = "Name";
 
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
-            objectRightBindingSource.DataSource = objectRight;
-            mediaTrackBindingSource.DataSource = objectRight.MediaTrack;
-            authorsBindingSource.DataSource = objectRight.Authors;
+            objectRightBindingSource.DataSource = _objectRight;
+            mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
+            authorsBindingSource.DataSource = _objectRight.Authors;
+            copyRightBindingSource.DataSource = _objectRight.CopyRight;
         }
+
+        #region Object right commands
+
+        private void btnSaveTest_Click(object sender, EventArgs e)
+        {
+            var service = new ObjectRightService();
+
+            service.Save(_objectRight);
+        }
+
+        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
+        {
+            using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
+            {
+                authorItemView.StartPosition = FormStartPosition.CenterParent;
+                authorItemView.ShowDialog();
+                authorsBindingSource.ResetBindings(false);
+            }
+        }
+
+        #endregion
     }
 }
