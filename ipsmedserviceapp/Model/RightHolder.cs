@@ -30,11 +30,9 @@ namespace ipsmedserviceapp.Model
         public Customer Cust { get; set; }
         [JsonIgnore]
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        [JsonIgnore]
         public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
         [JsonIgnore]
         public ICollection<Authors> Authors { get; set; }
-        [JsonIgnore]
         public ICollection<CopyRight> CopyRight { get; set; }
         [JsonIgnore]
         public ICollection<LicAuthor> LicAuthor { get; set; }
@@ -47,6 +45,8 @@ namespace ipsmedserviceapp.Model
         public ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
+
+
 
 
 

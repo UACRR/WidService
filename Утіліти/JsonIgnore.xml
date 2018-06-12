@@ -55,6 +55,8 @@
         <noignore>TermsOfService</noignore>
         <noignore>TerritoryExclude</noignore>
         <noignore>TerritoryInclude</noignore>
+        <noignore>AnketaAddNick</noignore>
+        <noignore>CopyRight</noignore>
     </item>
     <item Name="AgreementAddRh">
     </item>
