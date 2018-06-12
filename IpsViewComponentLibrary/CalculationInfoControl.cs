@@ -20,7 +20,10 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Встановлення даних
+        /// </summary>
+        /// <param name="o"></param>
         public void SetData(Customer o)
         {
             if (o == null) return;
@@ -28,6 +31,10 @@ namespace IpsViewComponentLibrary
             _data = o;
             SetDataSource();
         }
+        /// <summary>
+        /// Встановлення словника даних
+        /// </summary>
+        /// <param name="dict"></param>
         public void SetDictionary(AnketaDictionaties dict)
         {
             _dict = dict;
@@ -101,8 +108,23 @@ namespace IpsViewComponentLibrary
         // Джерело для [періодів платежів]
         private void SetDataSourcePeriodsPayment()
         {
-            var period = _data.Client.PaidPeriod;
-            gvPeriodsPayment.DataSource = period;
+            var period = _data.Client.LicenseAgreement.Select(item => item.PaidPeriod).SingleOrDefault();
+            List<GridPeriods> source = new List<GridPeriods>();
+            foreach (var paidPeriod in period)
+            {
+                source.Add(new GridPeriods
+                {
+                    PeriodId = paidPeriod.PeriodId,
+                    PeriodName = paidPeriod.PeriodName,
+                    Status = paidPeriod.Status,
+                    Amount = paidPeriod.Amount,
+                    AmountBound = paidPeriod.Distribamount + paidPeriod.Undistribamount,
+                    Distribamount = paidPeriod.Distribamount,
+                    Undistribamount = paidPeriod.Undistribamount,
+                    Arrears = paidPeriod.Amount - (paidPeriod.Distribamount + paidPeriod.Undistribamount)
+                });
+            }
+            gvPeriodsPayment.DataSource = source;
         }
 
         // Джерело для [платежів обраного періоду]
@@ -113,10 +135,11 @@ namespace IpsViewComponentLibrary
 
         private void btnDistribute_Click(object sender, EventArgs e)
         {
-            ContractConsumerMainControl c = new ContractConsumerMainControl();
-            Form f = new Form();
-            f.Controls.Add(c);
-            f.ShowDialog();
+            //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
+            DistributionForm distr = new DistributionForm(gvUserMoneys.DataSource, gvPeriodsPayment.DataSource, _data);
+            distr.StartPosition = FormStartPosition.CenterScreen;
+            distr.ShowDialog();
+
         }
     }
 
@@ -132,5 +155,19 @@ namespace IpsViewComponentLibrary
         public string State { get; set; }
         public string PeriodPayment { get; set; }
         public string Debt { get; set; }
+    }
+    public class GridPeriods
+    {
+        //public int LicId { get; set; }
+
+        public int PeriodId { get; set; }
+
+        public string PeriodName { get; set; }
+        public int Status { get; set; }
+        public decimal Amount { get; set; }
+        public decimal AmountBound { get; set; }
+        public decimal Undistribamount { get; set; }
+        public decimal Distribamount { get; set; }
+        public decimal Arrears { get; set; }
     }
 }
