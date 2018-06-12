@@ -234,7 +234,12 @@ namespace ipsFormsDesign.Services
             {
                 var groupName = group[groupId];
                 var curRow = table.Rows.Add();
-                curRow.Cells[1].Range.Text = groupName;
+                //Range cellRng = curRow.Cells[1].Range;
+
+                //cellRng.Text = groupName;
+                //cellRng.Bold = 1;
+                //cellRng.Font.Size = cellRng.Font.Size + 1;
+                //cellRng.
                 var listTerm = body[groupId];
                 foreach( var item in listTerm )
                 {
@@ -243,8 +248,6 @@ namespace ipsFormsDesign.Services
                     curRow.Cells[2].Range.Text = item.OurService == true ? "Tak" : "Ні";
                 }
             }
-
-
         }
 
         // зберігти
