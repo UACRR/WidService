@@ -137,7 +137,7 @@
             this.rdtPickerBirth.TabIndex = 8;
             this.rdtPickerBirth.TabStop = false;
             this.rdtPickerBirth.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.rdtPickerBirth.ValueChanged += new System.EventHandler(this.rdtPickerBirth_ValueChanged);
+            this.rdtPickerBirth.ValueChanged += new System.EventHandler(this.dtPickerBirth_ValueChanged);
             // 
             // rtxtBoxLastName
             // 
@@ -184,7 +184,7 @@
             this.btnMoreLastName.Size = new System.Drawing.Size(87, 20);
             this.btnMoreLastName.TabIndex = 1;
             this.btnMoreLastName.Text = "Ще, інша мова";
-            this.btnMoreLastName.Click += new System.EventHandler(this.rBtnMoreLastName_Click);
+            this.btnMoreLastName.Click += new System.EventHandler(this.btnMoreLastName_Click);
             // 
             // btnMoreName
             // 
@@ -194,7 +194,7 @@
             this.btnMoreName.Size = new System.Drawing.Size(87, 20);
             this.btnMoreName.TabIndex = 3;
             this.btnMoreName.Text = "Ще, інша мова";
-            this.btnMoreName.Click += new System.EventHandler(this.rBtnMoreName_Click);
+            this.btnMoreName.Click += new System.EventHandler(this.btnMoreName_Click);
             // 
             // btnMoreSurName
             // 
@@ -204,7 +204,7 @@
             this.btnMoreSurName.Size = new System.Drawing.Size(87, 20);
             this.btnMoreSurName.TabIndex = 5;
             this.btnMoreSurName.Text = "Ще, інша мова";
-            this.btnMoreSurName.Click += new System.EventHandler(this.rBtnMoreSurName_Click);
+            this.btnMoreSurName.Click += new System.EventHandler(this.btnMoreSurName_Click);
             // 
             // btnMorePseudonym
             // 
@@ -214,7 +214,7 @@
             this.btnMorePseudonym.Size = new System.Drawing.Size(87, 20);
             this.btnMorePseudonym.TabIndex = 7;
             this.btnMorePseudonym.Text = "Ще";
-            this.btnMorePseudonym.Click += new System.EventHandler(this.rBtnMorePseudonym_Click);
+            this.btnMorePseudonym.Click += new System.EventHandler(this.btnMorePseudonym_Click);
             // 
             // radDropDownListSex
             // 

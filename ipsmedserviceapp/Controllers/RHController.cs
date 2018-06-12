@@ -39,6 +39,8 @@ namespace ipsmedserviceapp.Controllers
                             .ThenInclude(rh => rh.TerritoryExclude)
                         .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TerritoryInclude)
+                        .Include(item => item.RightHolder)
+                            .ThenInclude(rh => rh.AnketaAddNick)
                         .SingleOrDefaultAsync();
 
             var currDate = DateTime.Now.Date;
@@ -164,6 +166,10 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
             // AnketaAddName
             _dbContext.UpdateList(sorsCust.AnketaAddName, destCustomer.AnketaAddName, rec => { }, (l, r) => l.Lang == r.Lang );
+
+            // AnketaAddNick
+            _dbContext.UpdateList(sorsCust.RightHolder.AnketaAddNick, destCustomer.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
+
             // TermsOfService
             foreach (var item in sorsCust.RightHolder.TermsOfService)
             {
