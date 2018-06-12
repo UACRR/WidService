@@ -36,7 +36,7 @@ namespace TestWord
         private void ProcessWord(string template)
         {
             Customer cust = service.GetData(131);
-            wordApp = new WordEngine();
+            wordApp = new WordEngine(service.GetDictionary());
 
             wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
             radPdfViewer1.LoadDocument(wordApp.Pdf);

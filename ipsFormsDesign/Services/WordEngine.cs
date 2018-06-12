@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using ipsFormsDesign.Interfaces;
 
 namespace ipsFormsDesign.Services
 {
@@ -14,10 +15,12 @@ namespace ipsFormsDesign.Services
         private static Application app;
         private Microsoft.Office.Interop.Word.Document innerDoc;
         private string tempFileName = string.Empty;
+        private AnketaDictionaties _dic = null;
 
-        public WordEngine()
+        public WordEngine(AnketaDictionaties dic)
         {
             app = null;
+            _dic = dic;
         }
 
         ~WordEngine()
@@ -87,8 +90,10 @@ namespace ipsFormsDesign.Services
                             formTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
                             break;
                         case "TableTrrUse":
+                            formTableInUse(item.Range.Tables, cust.RightHolder);
                             break;
                         case "TableTrrNotUse":
+                            formTableExclude(item.Range.Tables, cust.RightHolder);
                             break;
                         case "prcntARlt":
                             item.Range.Text = $"{agrRh.RateCommiss:0}";
@@ -166,15 +171,78 @@ namespace ipsFormsDesign.Services
             }
         }
 
+        private void formTableExclude(Tables tables, RightHolder rightHolder)
+        {
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            if(table.Rows.Count > 0)
+            table.Rows.Delete();
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            foreach (var item in rightHolder.TerritoryExclude)
+            {
+                var curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
+            }
+        }
+
+        private void formTableInUse(Tables tables, RightHolder rightHolder )
+        {
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+
+            for( int i = table.Rows.Count; i > 2; i--  )
+                table.Rows[i].Delete();
+
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+
+            Row curRow = null;
+            if ( rightHolder.AroundWord == true )
+            {
+                curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                curRow.Cells[1].Range.Text = "Всіх країн світу";
+            }
+            else
+                foreach( var item in rightHolder.TerritoryInclude )
+                {
+
+                    curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                    curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
+                }
+        }
+
         private void formTermUse(Tables tables, ICollection<TermsOfService> termsOfServices)
         {
             if (tables.Count == 0) return;
+            Table table = tables[1];
             Dictionary<int, List<TermsOfService>> body = new Dictionary<int, List<TermsOfService>>();
             Dictionary<int, string> group = new Dictionary<int, string>();
 
 
 
-            foreach( )
+            foreach( var item in termsOfServices )
+            {
+                int groupId = item.CrkindCodeNavigation.CrGroupCodeNavigation.CodeI;
+                if ( !group.Keys.Contains(groupId) )
+                {
+                    group.Add(groupId, item.CrkindCodeNavigation.CrGroupCodeNavigation.Name);
+                    body.Add(groupId, new List<TermsOfService>());
+                }
+                body[groupId].Add(item);
+            }
+
+            foreach( var groupId in group.Keys )
+            {
+                var groupName = group[groupId];
+                var curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = groupName;
+                var listTerm = body[groupId];
+                foreach( var item in listTerm )
+                {
+                    curRow = table.Rows.Add();
+                    curRow.Cells[1].Range.Text = item.CrkindCodeNavigation.Name;
+                    curRow.Cells[2].Range.Text = item.OurService == true ? "Tak" : "Ні";
+                }
+            }
 
 
         }
