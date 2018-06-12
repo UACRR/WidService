@@ -22,6 +22,11 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private async Task<Customer> GetConsumerAllData(int id)
         {
             // Отримати основну інформацію
