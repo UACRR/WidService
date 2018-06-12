@@ -32,6 +32,7 @@
             this.lblSex = new Telerik.WinControls.UI.RadLabel();
             this.lblBirthDate = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxMidleName = new Telerik.WinControls.UI.RadTextBox();
+            this.anketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblMidleName = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.lblFirstName = new Telerik.WinControls.UI.RadLabel();
@@ -40,15 +41,16 @@
             this.lblLastName = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxPseudonym = new Telerik.WinControls.UI.RadTextBox();
             this.lblPseudonym = new Telerik.WinControls.UI.RadLabel();
-            this.rBtnMoreLastName = new Telerik.WinControls.UI.RadButton();
-            this.rBtnMoreName = new Telerik.WinControls.UI.RadButton();
-            this.rBtnMoreSurName = new Telerik.WinControls.UI.RadButton();
-            this.rBtnMorePseudonym = new Telerik.WinControls.UI.RadButton();
+            this.btnMoreLastName = new Telerik.WinControls.UI.RadButton();
+            this.btnMoreName = new Telerik.WinControls.UI.RadButton();
+            this.btnMoreSurName = new Telerik.WinControls.UI.RadButton();
+            this.btnMorePseudonym = new Telerik.WinControls.UI.RadButton();
             this.radDropDownListSex = new Telerik.WinControls.UI.RadDropDownList();
-            this.iAnketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMidleName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMidleName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFirstName)).BeginInit();
@@ -57,12 +59,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxPseudonym)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPseudonym)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreLastName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreSurName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnMorePseudonym)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreLastName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreSurName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMorePseudonym)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownListSex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSex
@@ -85,11 +87,15 @@
             // 
             this.rtxtBoxMidleName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtBoxMidleName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "SurName", true));
+            this.rtxtBoxMidleName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "SurName", true));
             this.rtxtBoxMidleName.Location = new System.Drawing.Point(115, 52);
             this.rtxtBoxMidleName.Name = "rtxtBoxMidleName";
             this.rtxtBoxMidleName.Size = new System.Drawing.Size(434, 20);
             this.rtxtBoxMidleName.TabIndex = 4;
+            // 
+            // anketaPersonBindingSource
+            // 
+            this.anketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
             // 
             // lblMidleName
             // 
@@ -103,7 +109,7 @@
             // 
             this.rtxtBoxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "FirstName", true));
+            this.rtxtBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "FirstName", true));
             this.rtxtBoxFirstName.Location = new System.Drawing.Point(115, 27);
             this.rtxtBoxFirstName.Name = "rtxtBoxFirstName";
             this.rtxtBoxFirstName.Size = new System.Drawing.Size(434, 20);
@@ -119,7 +125,7 @@
             // 
             // rdtPickerBirth
             // 
-            this.rdtPickerBirth.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.iAnketaPersonBindingSource, "BirthDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
+            this.rdtPickerBirth.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.anketaPersonBindingSource, "BirthDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.rdtPickerBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerBirth.Location = new System.Drawing.Point(115, 104);
             this.rdtPickerBirth.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -137,7 +143,7 @@
             // 
             this.rtxtBoxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtBoxLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "LastName", true));
+            this.rtxtBoxLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "LastName", true));
             this.rtxtBoxLastName.Location = new System.Drawing.Point(115, 2);
             this.rtxtBoxLastName.Name = "rtxtBoxLastName";
             this.rtxtBoxLastName.Size = new System.Drawing.Size(434, 20);
@@ -155,7 +161,7 @@
             // 
             this.rtxtBoxPseudonym.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtBoxPseudonym.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "NikName", true));
+            this.rtxtBoxPseudonym.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "NikName", true));
             this.rtxtBoxPseudonym.Location = new System.Drawing.Point(115, 78);
             this.rtxtBoxPseudonym.Name = "rtxtBoxPseudonym";
             this.rtxtBoxPseudonym.Size = new System.Drawing.Size(434, 20);
@@ -170,67 +176,67 @@
             this.lblPseudonym.TabIndex = 6;
             this.lblPseudonym.Text = "Псевдонім (сценічне ім\'я):";
             // 
-            // rBtnMoreLastName
+            // btnMoreLastName
             // 
-            this.rBtnMoreLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rBtnMoreLastName.Location = new System.Drawing.Point(555, 2);
-            this.rBtnMoreLastName.Name = "rBtnMoreLastName";
-            this.rBtnMoreLastName.Size = new System.Drawing.Size(87, 20);
-            this.rBtnMoreLastName.TabIndex = 1;
-            this.rBtnMoreLastName.Text = "Ще, інша мова";
-            this.rBtnMoreLastName.Click += new System.EventHandler(this.rBtnMoreLastName_Click);
+            this.btnMoreLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoreLastName.Location = new System.Drawing.Point(555, 2);
+            this.btnMoreLastName.Name = "btnMoreLastName";
+            this.btnMoreLastName.Size = new System.Drawing.Size(87, 20);
+            this.btnMoreLastName.TabIndex = 1;
+            this.btnMoreLastName.Text = "Ще, інша мова";
+            this.btnMoreLastName.Click += new System.EventHandler(this.rBtnMoreLastName_Click);
             // 
-            // rBtnMoreName
+            // btnMoreName
             // 
-            this.rBtnMoreName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rBtnMoreName.Location = new System.Drawing.Point(555, 27);
-            this.rBtnMoreName.Name = "rBtnMoreName";
-            this.rBtnMoreName.Size = new System.Drawing.Size(87, 20);
-            this.rBtnMoreName.TabIndex = 3;
-            this.rBtnMoreName.Text = "Ще, інша мова";
-            this.rBtnMoreName.Click += new System.EventHandler(this.rBtnMoreName_Click);
+            this.btnMoreName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoreName.Location = new System.Drawing.Point(555, 27);
+            this.btnMoreName.Name = "btnMoreName";
+            this.btnMoreName.Size = new System.Drawing.Size(87, 20);
+            this.btnMoreName.TabIndex = 3;
+            this.btnMoreName.Text = "Ще, інша мова";
+            this.btnMoreName.Click += new System.EventHandler(this.rBtnMoreName_Click);
             // 
-            // rBtnMoreSurName
+            // btnMoreSurName
             // 
-            this.rBtnMoreSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rBtnMoreSurName.Location = new System.Drawing.Point(555, 52);
-            this.rBtnMoreSurName.Name = "rBtnMoreSurName";
-            this.rBtnMoreSurName.Size = new System.Drawing.Size(87, 20);
-            this.rBtnMoreSurName.TabIndex = 5;
-            this.rBtnMoreSurName.Text = "Ще, інша мова";
-            this.rBtnMoreSurName.Click += new System.EventHandler(this.rBtnMoreSurName_Click);
+            this.btnMoreSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoreSurName.Location = new System.Drawing.Point(555, 52);
+            this.btnMoreSurName.Name = "btnMoreSurName";
+            this.btnMoreSurName.Size = new System.Drawing.Size(87, 20);
+            this.btnMoreSurName.TabIndex = 5;
+            this.btnMoreSurName.Text = "Ще, інша мова";
+            this.btnMoreSurName.Click += new System.EventHandler(this.rBtnMoreSurName_Click);
             // 
-            // rBtnMorePseudonym
+            // btnMorePseudonym
             // 
-            this.rBtnMorePseudonym.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rBtnMorePseudonym.Location = new System.Drawing.Point(555, 78);
-            this.rBtnMorePseudonym.Name = "rBtnMorePseudonym";
-            this.rBtnMorePseudonym.Size = new System.Drawing.Size(87, 20);
-            this.rBtnMorePseudonym.TabIndex = 7;
-            this.rBtnMorePseudonym.Text = "Ще, інша мова";
-            this.rBtnMorePseudonym.Click += new System.EventHandler(this.rBtnMorePseudonym_Click);
+            this.btnMorePseudonym.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMorePseudonym.Location = new System.Drawing.Point(555, 78);
+            this.btnMorePseudonym.Name = "btnMorePseudonym";
+            this.btnMorePseudonym.Size = new System.Drawing.Size(87, 20);
+            this.btnMorePseudonym.TabIndex = 7;
+            this.btnMorePseudonym.Text = "Ще";
+            this.btnMorePseudonym.Click += new System.EventHandler(this.rBtnMorePseudonym_Click);
             // 
             // radDropDownListSex
             // 
-            this.radDropDownListSex.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaPersonBindingSource, "Sex", true));
+            this.radDropDownListSex.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.anketaPersonBindingSource, "Sex", true));
             this.radDropDownListSex.Location = new System.Drawing.Point(313, 105);
             this.radDropDownListSex.Name = "radDropDownListSex";
             this.radDropDownListSex.Size = new System.Drawing.Size(125, 20);
             this.radDropDownListSex.TabIndex = 9;
             // 
-            // iAnketaPersonBindingSource
+            // customerBindingSource
             // 
-            this.iAnketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.customerBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ICustomer);
             // 
             // AnketaPersonRightHolderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radDropDownListSex);
-            this.Controls.Add(this.rBtnMorePseudonym);
-            this.Controls.Add(this.rBtnMoreSurName);
-            this.Controls.Add(this.rBtnMoreName);
-            this.Controls.Add(this.rBtnMoreLastName);
+            this.Controls.Add(this.btnMorePseudonym);
+            this.Controls.Add(this.btnMoreSurName);
+            this.Controls.Add(this.btnMoreName);
+            this.Controls.Add(this.btnMoreLastName);
             this.Controls.Add(this.rtxtBoxPseudonym);
             this.Controls.Add(this.lblPseudonym);
             this.Controls.Add(this.lblSex);
@@ -248,6 +254,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMidleName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMidleName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFirstName)).EndInit();
@@ -256,12 +263,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxPseudonym)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPseudonym)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreLastName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnMoreSurName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnMorePseudonym)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreLastName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreSurName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMorePseudonym)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownListSex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaPersonBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,11 +286,12 @@
         private Telerik.WinControls.UI.RadLabel lblLastName;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxPseudonym;
         private Telerik.WinControls.UI.RadLabel lblPseudonym;
-        private Telerik.WinControls.UI.RadButton rBtnMoreLastName;
-        private Telerik.WinControls.UI.RadButton rBtnMoreName;
-        private Telerik.WinControls.UI.RadButton rBtnMoreSurName;
-        private Telerik.WinControls.UI.RadButton rBtnMorePseudonym;
-        private System.Windows.Forms.BindingSource iAnketaPersonBindingSource;
+        private Telerik.WinControls.UI.RadButton btnMoreLastName;
+        private Telerik.WinControls.UI.RadButton btnMoreName;
+        private Telerik.WinControls.UI.RadButton btnMoreSurName;
+        private Telerik.WinControls.UI.RadButton btnMorePseudonym;
+        private System.Windows.Forms.BindingSource anketaPersonBindingSource;
         private Telerik.WinControls.UI.RadDropDownList radDropDownListSex;
+        private System.Windows.Forms.BindingSource customerBindingSource;
     }
 }
