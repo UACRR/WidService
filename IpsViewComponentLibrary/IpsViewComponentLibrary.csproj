@@ -299,6 +299,12 @@
     <Compile Include="SingleShowInformationControl.Designer.cs">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="TerritoryIncludeExcludeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
+      <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddPremisesForm.resx">
@@ -401,6 +407,9 @@
     <EmbeddedResource Include="SingleShowInformationControl.resx">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TerritoryIncludeExcludeControl.resx">
+      <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -423,10 +432,12 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IClnBusinessPlace.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICountry.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICustomer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightholderMainView.datasource" />
   </ItemGroup>
   <ItemGroup>

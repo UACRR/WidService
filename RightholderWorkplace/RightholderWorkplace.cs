@@ -113,11 +113,7 @@ namespace RightholderWorkplace
             ctrlBaAddress.RegionsDisplayMember = "Name";
 
             ctrlExclusionsLimitations.CommunitiesDataSource = dictionaries.communities;
-
-            var columnCountry = gvTerritoryExclusions.Columns["CountryCode"] as GridViewComboBoxColumn;
-            columnCountry.DataSource = dictionaries.country;
-            columnCountry.ValueMember = "CountryCode";
-            columnCountry.DisplayMember = "CountryName";
+            ctrlTerritoryIncludeExclude.CountriesDataSource = dictionaries.country;
         }
 
         #endregion
@@ -146,6 +142,7 @@ namespace RightholderWorkplace
             ctrlRegistrations.DataSource = anketaPersonBindingSource;
             ctrlInternalPassport.DataSource = anketaPersonBindingSource;
             ctrlInternationalPassport.DataSource = anketaPersonBindingSource;
+            ctrlTerritoryIncludeExclude.DataSource = rightHolderBindingSource;
             //ctrlBankAccount.DataSource = _bankAccount;
             //ctrlExclusionsLimitations.DataSource = _termsOfServices;
             //gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
@@ -248,31 +245,6 @@ namespace RightholderWorkplace
                 else if (value == 3 || value == 4)
                     createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
             }
-        }
-
-        private void cbAroundWorld_ToggleStateChanged(object sender, StateChangedEventArgs args)
-        {
-            gvTerritoryExclusions.Enabled = !cbAroundWorld.Checked;
-        }
-
-        private void btnAddTerritoryExclude_Click(object sender, EventArgs e)
-        {
-            gvTerritoryExclusions.Rows.AddNew();
-
-            var currentCell = gvTerritoryExclusions.CurrentRow.Cells[0];
-            currentCell.IsSelected = true;
-            currentCell.BeginEdit();
-            var dropDownEditor = gvTerritoryExclusions.ActiveEditor as RadDropDownListEditor;
-            if (dropDownEditor != null)
-            {
-                var element = dropDownEditor.EditorElement as RadDropDownListEditorElement;
-                element.ShowPopup();
-            }
-        }
-
-        private void btnRemoveTerritoryExclude_Click(object sender, EventArgs e)
-        {
-            gvTerritoryExclusions.Rows.Remove(gvTerritoryExclusions.CurrentRow);
         }
 
         #region Rightolder commands
@@ -383,12 +355,11 @@ namespace RightholderWorkplace
                 _customer.AgreementMaster.Add(agreement);
             }
 
-            rightHolderBindingSource.DataSource = _customer.RightHolder;
-
             // if type of collection is HashSet, then adding new row is not allowed
             _customer.RightHolder.TerritoryExclude = _customer.RightHolder.TerritoryExclude.ToList();
+            _customer.RightHolder.TerritoryInclude = _customer.RightHolder.TerritoryInclude.ToList();
 
-            territoryExcludeBindingSource.DataSource = _customer.RightHolder.TerritoryExclude;
+            rightHolderBindingSource.DataSource = _customer.RightHolder;
         }
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)

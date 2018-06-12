@@ -52,7 +52,7 @@ namespace ipsmedserviceapp.Controllers
                 .LoadAsync();
 
             await _dbContext.CustCmRight
-                .Where(cr => cr.CustId == id)
+                .FromSql("select * from CustCmRight where custId = @custId and getdate() between dateBegin and dateEnd", new SqlParameter("custId", id))
                 .LoadAsync();
 
             if (cust.Company != null)
@@ -184,6 +184,12 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
                 destCustomer.RightHolder.TermsOfService.Add(addItem);
             }
+
+            if (sorsCust.RightHolder.AroundWord == null || sorsCust.RightHolder.AroundWord == false)
+                sorsCust.RightHolder.TerritoryExclude.Clear();
+            else
+                sorsCust.RightHolder.TerritoryInclude.Clear();
+
             // territoryInclude
             _dbContext.UpdateList(sorsCust.RightHolder.TerritoryInclude, destCustomer.RightHolder.TerritoryInclude
                                                             , rec => { }, (l, r) => l.CountryCode == r.CountryCode);
@@ -191,7 +197,6 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             // territoryExclude
             _dbContext.UpdateList(sorsCust.RightHolder.TerritoryExclude, destCustomer.RightHolder.TerritoryExclude
                                                             , rec => { }, (l, r) => l.CountryCode == r.CountryCode);
-
 
             // Збереження BankAccount
             if (sorsCust.BankAccount.Count > 0)
