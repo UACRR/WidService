@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RightholderWorkplace", "Rig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RightholderWorkplaceSeparateForm", "RightholderWorkplaceSeparateForm\RightholderWorkplaceSeparateForm.csproj", "{769DAA8D-9177-4FD8-B908-358B218A0F64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWord", "TestWord\TestWord.csproj", "{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +131,14 @@ Global
 		{769DAA8D-9177-4FD8-B908-358B218A0F64}.Release|x64.ActiveCfg = Release|x86
 		{769DAA8D-9177-4FD8-B908-358B218A0F64}.Release|x86.ActiveCfg = Release|x86
 		{769DAA8D-9177-4FD8-B908-358B218A0F64}.Release|x86.Build.0 = Release|x86
+		{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}.Debug|x64.ActiveCfg = Debug|x86
+		{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}.Debug|x86.ActiveCfg = Debug|x86
+		{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}.Debug|x86.Build.0 = Debug|x86
+		{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}.Release|Any CPU.ActiveCfg = Release|x86
+		{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}.Release|x64.ActiveCfg = Release|x86
+		{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}.Release|x86.ActiveCfg = Release|x86
+		{A4BED2A7-54DE-43B1-8E0A-498E3F0C6F27}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
