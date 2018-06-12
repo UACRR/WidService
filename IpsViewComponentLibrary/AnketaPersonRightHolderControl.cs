@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
+using ipsFormsDesign.Model;
 
 namespace DebugFormForControls
 {
@@ -19,14 +20,28 @@ namespace DebugFormForControls
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
-        public object DataSource
+        public object DataSourceAnketa
         {
-            get => iAnketaPersonBindingSource.DataSource;
+            get => anketaPersonBindingSource.DataSource;
             set
             {
-                if (iAnketaPersonBindingSource.DataSource != value)
+                if (anketaPersonBindingSource.DataSource != value)
                 {
-                    iAnketaPersonBindingSource.DataSource = value;
+                    anketaPersonBindingSource.DataSource = value;
+                }
+            }
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSourceCustomer
+        {
+            get => customerBindingSource.DataSource;
+            set
+            {
+                if (customerBindingSource.DataSource != value)
+                {
+                    customerBindingSource.DataSource = value;
                 }
             }
         }
@@ -147,28 +162,19 @@ namespace DebugFormForControls
         //    _sexSelected = radDropDownListSex.SelectedItem.Index != 0;
         //}
 
-
         private void rBtnMoreName_Click(object sender, EventArgs e)
         {
-            ExpandedFormForAnketaPersonRightHolder more = new ExpandedFormForAnketaPersonRightHolder("firstname");
-            more.StartPosition = FormStartPosition.CenterScreen;
-            more.ShowDialog();
+            ShowEditAddNamesView();
         }
-
 
         private void rBtnMoreLastName_Click(object sender, EventArgs e)
         {
-            ExpandedFormForAnketaPersonRightHolder more = new ExpandedFormForAnketaPersonRightHolder("lastname");
-            more.StartPosition = FormStartPosition.CenterScreen;
-            more.ShowDialog();
-
+            ShowEditAddNamesView();
         }
 
         private void rBtnMoreSurName_Click(object sender, EventArgs e)
         {
-            ExpandedFormForAnketaPersonRightHolder more = new ExpandedFormForAnketaPersonRightHolder("surname");
-            more.StartPosition = FormStartPosition.CenterScreen;
-            more.ShowDialog();
+            ShowEditAddNamesView();
         }
 
         private void rBtnMorePseudonym_Click(object sender, EventArgs e)
@@ -181,6 +187,17 @@ namespace DebugFormForControls
         private void rdtPickerBirth_ValueChanged(object sender, EventArgs e)
         {
             _birthDateSelected = true;
+        }
+
+        private void ShowEditAddNamesView()
+        {
+            var customer = customerBindingSource.Current as Customer;
+
+            using (var moreNames = new AnketaAddNamesView(customer.AnketaAddName))
+            {
+                moreNames.StartPosition = FormStartPosition.CenterParent;
+                moreNames.ShowDialog();
+            }
         }
     }
 }

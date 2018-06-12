@@ -140,7 +140,7 @@ namespace RightholderWorkplace
             //anketaPersonBindingSource.DataSource = _anketa;
             //bankAccountBindingSource.DataSource = _bankAccount;
 
-            ctrlAnketaPerson.DataSource = anketaPersonBindingSource;
+            ctrlAnketaPerson.DataSourceAnketa = anketaPersonBindingSource;
             ctrlFaAddress.DataSource = anketaPersonBindingSource;
             ctrlContacts.DataSource = anketaPersonBindingSource;
             ctrlRegistrations.DataSource = anketaPersonBindingSource;
@@ -355,6 +355,7 @@ namespace RightholderWorkplace
 
         private void UpdateDataSources()
         {
+            ctrlAnketaPerson.DataSourceCustomer = _customer;
             _anketa = _customer.Person.AnketaPerson.Where( row => row.Version == _customer.AnkVersion ).SingleOrDefault();
             if (_customer.BankAccount.Any())
                 _bankAccount = _customer.BankAccount.FirstOrDefault();
