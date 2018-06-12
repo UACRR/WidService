@@ -15,11 +15,16 @@ namespace IpsViewComponentLibrary
     {
         private Customer dataTemp;
         private int _idSelectedRow;
+        private string _idSelectedRowString;
 
         //id рядка приміщення закладу
         public int IdSelectedRow
         {
             get => _idSelectedRow;
+        }
+        public string IdSelectedRowStr
+        {
+            get => _idSelectedRowString;
         }
 
         public delegate void AddPremises();
@@ -114,7 +119,8 @@ namespace IpsViewComponentLibrary
             
             if (rGridViewPremises.CurrentRow.Cells[0].Value != null)
                 _idSelectedRow = Convert.ToInt32(rGridViewPremises.CurrentRow.Cells["IdItem"].Value);
-            if(_idSelectedRow == 0) return;
+            if(_idSelectedRow == 0)
+               _idSelectedRowString = rGridViewPremises.CurrentRow.Cells["TypePremisesName"].Value.ToString();
             OnBtnEditPremisesClick?.Invoke();
         }
 
@@ -130,13 +136,14 @@ namespace IpsViewComponentLibrary
         public List<ClnPlaceHoll> GetData(int idRowInst)
         {
             List<ClnPlaceHoll> list = new List<ClnPlaceHoll>();
+
             if (dataTemp != null && dataTemp.Client.ClnBusinessPlace.Select(item => item.ClnPlaceHoll).Any())
             {
                 var v = dataTemp.Client.ClnBusinessPlace.Where(id=>id.PlaceId==idRowInst).Select(item => item.ClnPlaceHoll).SingleOrDefault();//
-                
                 if (v != null) list.AddRange(v); // був форіч
+                return list;
             }
-            return list;
+            return new List<ClnPlaceHoll>();
         }
 
         public void RefreshGrid()
