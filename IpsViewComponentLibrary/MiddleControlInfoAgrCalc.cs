@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             SetDefaultPages();
+            
         }
 
         public void SetDictionary(AnketaDictionaties dict)
@@ -88,9 +89,9 @@ namespace IpsViewComponentLibrary
         /// <param name="custId"></param>
         private void SetUserInfoData()
         {
-            var userInfo = _customer.AnketaCompany.SingleOrDefault();
-            var contactPerson = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
-            var manager = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
+            var userInfo = _customer?.Company?.AnketaCompany?.SingleOrDefault();
+            var contactPerson = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
+            var manager = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
 
 
             userInfoCtrl.Edrpou = userInfo?.Okpo;
@@ -162,6 +163,12 @@ namespace IpsViewComponentLibrary
             bool isInt = Int32.TryParse(e.CurrentRow.Cells["Id"].Value.ToString(), out int result);
             if (!isInt) return;
             SetAgrInfoData(result);
+        }
+
+        private void pvMain_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if(pvMain.SelectedPage == pvReports)
+                reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
         }
     }
 
