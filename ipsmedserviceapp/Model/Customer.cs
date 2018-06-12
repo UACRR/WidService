@@ -36,7 +36,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public CustomerStatus StatusNavigation { get; set; }
         public Client Client { get; set; }
-        [JsonIgnore]
         public Community Community { get; set; }
         public Company Company { get; set; }
         [JsonIgnore]
@@ -44,13 +43,10 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public Partner Partner { get; set; }
         public Person Person { get; set; }
-        [JsonIgnore]
         public RightHolder RightHolder { get; set; }
         [JsonIgnore]
         public ICollection<Account> Account { get; set; }
-        [JsonIgnore]
         public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        [JsonIgnore]
         public ICollection<AnketaAddName> AnketaAddName { get; set; }
         [JsonIgnore]
         public ICollection<AnketaAddParam> AnketaAddParam { get; set; }
@@ -73,6 +69,10 @@ namespace ipsmedserviceapp.Model
         public ICollection<UserRole> UserRole { get; set; }
     }
 }
+
+
+
+
 
 
 

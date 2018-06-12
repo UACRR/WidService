@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -23,12 +24,20 @@ namespace ipsmedserviceapp.Model
         public int? AgrType { get; set; }
         public int? Version { get; set; }
 
+        [JsonIgnore]
         public AgreementStatus AgrStatusNavigation { get; set; }
+        [JsonIgnore]
         public AgreementType AgrTypeNavigation { get; set; }
+        [JsonIgnore]
         public Customer Cust { get; set; }
+        [JsonIgnore]
         public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        [JsonIgnore]
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        [JsonIgnore]
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
+
+

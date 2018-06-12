@@ -37,6 +37,8 @@ namespace ipsmedserviceapp.Controllers
                             .ThenInclude(rh => rh.TermsOfService)
                         .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TerritoryExclude)
+                        .Include(item => item.RightHolder)
+                            .ThenInclude(rh => rh.TerritoryInclude)
                         .SingleOrDefaultAsync();
 
             var currDate = DateTime.Now.Date;

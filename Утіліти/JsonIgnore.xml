@@ -4,7 +4,11 @@
         <noignore>Person</noignore>
         <noignore>Client</noignore>
         <noignore>BankAccount</noignore>
-       
+        <noignore>RightHolder</noignore>
+        <noignore>Community</noignore>
+        <noignore>AnketaAddName</noignore>
+        <noignore>AgreementMaster</noignore>
+
     </item>
     <item name="Client">
         <noignore>ClnBusinessPlace</noignore>
@@ -42,9 +46,21 @@
         <noignore>Paid</noignore>
     </item>
     <item Name="TypePlace">
-    </item>  
+    </item>
     <item Name="License">
-    </item>  
+    </item>
     <item Name="MoneyReceived">
-    </item>  
+    </item>
+    <item Name="RightHolder">
+        <noignore>TermsOfService</noignore>
+        <noignore>TerritoryExclude</noignore>
+        <noignore>TerritoryInclude</noignore>
+    </item>
+    <item Name="AgreementAddRh">
+    </item>
+    <item Name="AgreementMaster">
+        <noignore>AgreementAddRh</noignore>
+    </item>
+
+
 </tables>
