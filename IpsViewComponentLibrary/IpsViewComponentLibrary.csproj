@@ -112,6 +112,12 @@
     <Compile Include="AnketaAddNamesView.Designer.cs">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
     </Compile>
+    <Compile Include="AnketaAddNickView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnketaAddNickView.Designer.cs">
+      <DependentUpon>AnketaAddNickView.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuthorItemView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     <EmbeddedResource Include="AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AnketaAddNickView.resx">
+      <DependentUpon>AnketaAddNickView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnketaPersonControl.resx">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -409,6 +418,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster1.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaAddName.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaAddNick.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
