@@ -1,0 +1,50 @@
+<tables>
+    <item name="Customer">
+        <noignore>Company</noignore>
+        <noignore>Person</noignore>
+        <noignore>Client</noignore>
+        <noignore>BankAccount</noignore>
+       
+    </item>
+    <item name="Client">
+        <noignore>ClnBusinessPlace</noignore>
+        <noignore>LicenseAgreement</noignore>
+        <noignore>MoneyReceived</noignore>
+    </item>
+    <item name="LicenseAgreement">
+        <noignore>Agr</noignore>
+        <noignore>License</noignore>
+        <noignore>LicenseAgrParam</noignore>
+        <noignore>PaidPeriod</noignore>
+    </item>
+    <item Name="ClnBusinessPlace">
+        <noignore>ClnPlaceHoll</noignore>
+        <noignore>PlCodeNavigation</noignore>
+    </item>
+    <item Name="Company">
+        <noignore>RelEmployee</noignore>
+        <noignore>AnketaCompany</noignore>
+    </item>
+    <item Name="Person">
+        <noignore>AnketaPerson</noignore>
+    </item>
+
+    <item Name="RelEmployee">
+        <noignore>Empl</noignore>
+    </item>
+    <item Name="PaidPeriod">
+        <noignore>MoneyPeriodLink</noignore>
+        <noignore>Distribution</noignore>
+        <noignore>Register</noignore>
+        <noignore>BrRegister</noignore>
+    </item>
+    <item Name="MoneyPeriodLink">
+        <noignore>Paid</noignore>
+    </item>
+    <item Name="TypePlace">
+    </item>  
+    <item Name="License">
+    </item>  
+    <item Name="MoneyReceived">
+    </item>  
+</tables>

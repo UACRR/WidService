@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -12,7 +13,12 @@ namespace ipsmedserviceapp.Model
         public DateTime? LDate { get; set; }
         public int? Status { get; set; }
 
+        [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
+        [JsonIgnore]
         public ClnBusinessPlace Place { get; set; }
     }
 }
+
+
+

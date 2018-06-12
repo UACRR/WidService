@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -19,14 +20,23 @@ namespace ipsmedserviceapp.Model
 
         public int CustId { get; set; }
 
+        [JsonIgnore]
         public Customer Cust { get; set; }
+        [JsonIgnore]
         public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        [JsonIgnore]
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        [JsonIgnore]
         public ICollection<Distribution> Distribution { get; set; }
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
         public ICollection<MoneyReceived> MoneyReceived { get; set; }
+        [JsonIgnore]
         public ICollection<PaidPeriod> PaidPeriod { get; set; }
+        [JsonIgnore]
         public ICollection<PartnerClient> PartnerClient { get; set; }
     }
 }
+
+
+

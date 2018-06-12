@@ -32,6 +32,16 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
+        public Customer ReturnCustomer()
+        {
+            return _cust ?? new Customer();
+        }
+
+        public object ReturnList()
+        {
+            return getMainViewData().ToList();
+        }
+
 
         private void PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises()
         {

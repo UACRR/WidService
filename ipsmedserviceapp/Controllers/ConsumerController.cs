@@ -33,28 +33,27 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.BankAccount)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.LicenseAgreement)
+                        .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
                         .SingleOrDefaultAsync();
             // Отримати дані по Контрактах
             if (cust.Client.LicenseAgreement.Count > 0)
                 await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                     .Query()
-                    .Where(agree => agree.LicStatus < 4 )
+                    .Where(agree => agree.LicStatus < 4)
                     .Include(item => item.Agr)
-                    .Include( item => item.License )
+                    .Include(item => item.License)
+                    .Include(rec => rec.PaidPeriod)
                     .LoadAsync();
 
             foreach (var license in cust.Client.LicenseAgreement)
+            {
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
                     .Where(rec => rec.LicVersion == license.LicVersion)
                     .LoadAsync();
-            
-            // Отримати по контрактам Періоди оплат    
-            await _dbContext.PaidPeriod.FromSql("select * from PaidPeriod where custId = @custId", new SqlParameter("@custId", cust.CustId))
-                .Include(row => row.MoneyPeriodLink)
-                .LoadAsync();
-            // 
-            await _dbContext.MoneyReceived.FromSql("select * from MoneyReceived where custId = @custId", new SqlParameter("@custId", cust.CustId)).LoadAsync();
+
+                await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
+            }
 
             // Отримати Майданчики
             foreach (var place in cust.Client.ClnBusinessPlace)
@@ -109,19 +108,22 @@ namespace ipsmedserviceapp.Controllers
 
                 // 
                 var places = dest.Client.ClnBusinessPlace.Where(rec => !updCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
-                places.ForEach(item => {
+                places.ForEach(item =>
+                {
                     _dbContext.ClnPlaceHoll.RemoveRange(item.ClnPlaceHoll);
                     _dbContext.ClnBusinessPlace.Remove(item);
                 });
 
                 places = dest.Client.ClnBusinessPlace.Where(rec => updCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
-                places.ForEach(item => {
+                places.ForEach(item =>
+                {
                     var sorsItem = updCustomer.Client.ClnBusinessPlace.Where(rec => item.PlaceId == rec.PlaceId).SingleOrDefault();
                     _dbContext.UpdateList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.HollId == r.HollId);
                     item.SetFields(sorsItem);
                 });
                 places = updCustomer.Client.ClnBusinessPlace.Where(rec => !dest.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
-                places.ForEach(item => {
+                places.ForEach(item =>
+                {
                     ClnBusinessPlace clnPlace = new ClnBusinessPlace();
                     clnPlace.SetFields(item);
                     _dbContext.AppendList(item.ClnPlaceHoll, clnPlace.ClnPlaceHoll, i => { }, (l, r) => l.PlaceId == r.PlaceId);
@@ -159,7 +161,7 @@ namespace ipsmedserviceapp.Controllers
                     var license = dest.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
                     license.SetFields(item);
                     _dbContext.UpdateList(item.License, license.License, i => { }, (l, r) => l.PlaceId == r.PlaceId);
-                    _dbContext.AppendList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion );
+                    _dbContext.AppendList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
 
                 });
                 // Add
@@ -201,17 +203,19 @@ namespace ipsmedserviceapp.Controllers
                     var relEmployeeList = updCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
 
                     var listRel = dest.Company.RelEmployee.Where(rec => !relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
-                    listRel.ForEach(delitem => {
+                    listRel.ForEach(delitem =>
+                    {
                         _dbContext.Employee.Remove(delitem.Empl);
                         _dbContext.RelEmployee.Remove(delitem);
                         dest.Company.RelEmployee.Remove(delitem);
 
                     });
 
-                    
 
-                    listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode )).ToList();
-                    listRel.ForEach(updItem => {
+
+                    listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                    listRel.ForEach(updItem =>
+                    {
                         var sorsItem = listRel.SingleOrDefault(item => item.Emplid == updItem.Emplid && item.PositionCode == updItem.PositionCode);
                         updItem.SetFields(sorsItem);
                         updItem.Empl.SetFields(sorsItem?.Empl);
@@ -222,7 +226,7 @@ namespace ipsmedserviceapp.Controllers
                     //
                     var relEmpl = updCustomer.Company.RelEmployee.Select(items => items.Empl).ToList();
                     listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
-                    
+
                     listRel.ForEach(updEmpl =>
                     {
                         var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
@@ -234,14 +238,15 @@ namespace ipsmedserviceapp.Controllers
                     var testOne = listRel;
 
                     listRel = relEmployeeList.Where(rec => !dest.Company.RelEmployee.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
-                    listRel.ForEach(addItem => {
+                    listRel.ForEach(addItem =>
+                    {
                         Employee addEmpl = new Employee();
                         addEmpl.SetFields(addItem.Empl);
                         RelEmployee addRelItem = new RelEmployee { Empl = addEmpl };
-                        addRelItem.SetFields( addItem );
+                        addRelItem.SetFields(addItem);
                         addEmpl.CustId = addRelItem.CustId;
                         dest.Employee.Add(addEmpl);
-                        dest.Company.RelEmployee.Add(addRelItem );
+                        dest.Company.RelEmployee.Add(addRelItem);
                     });
 
                     var testMany = listRel;
@@ -268,7 +273,7 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                if (tran != null )
+                if (tran != null)
                     tran.Rollback();
                 return BadRequest(ex.Message);
             }
@@ -304,14 +309,14 @@ namespace ipsmedserviceapp.Controllers
                     // Компанія
                     newCust.Company = new Company();
                     // Анкета
-                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status=2 });
+                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status = 2 });
                 }
                 else
                 {
                     // Фіз. особа
                     newCust.Person = new Person();
                     // Анкета
-                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, Status=2 });
+                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, Status = 2 });
                 }
 
                 return Json(newCust);
@@ -365,8 +370,8 @@ namespace ipsmedserviceapp.Controllers
                 {
 
                     // Пошук Головного договора 
-                    AgreementMaster addAgreeMAster = addCustomer.AgreementMaster.Where( rec => rec.AgrNumber == item.Agr.AgrNumber && rec.AgrDate == item.Agr.AgrDate ).SingleOrDefault();
-                    if(addAgreeMAster == null )
+                    AgreementMaster addAgreeMAster = addCustomer.AgreementMaster.Where(rec => rec.AgrNumber == item.Agr.AgrNumber && rec.AgrDate == item.Agr.AgrDate).SingleOrDefault();
+                    if (addAgreeMAster == null)
                     {
                         addAgreeMAster = new AgreementMaster();
                         addAgreeMAster.SetFields(item.Agr, new[] { "CustId", "AgrId" });
@@ -376,7 +381,7 @@ namespace ipsmedserviceapp.Controllers
                     LicenseAgreement addItem = new LicenseAgreement();
                     addItem.SetFields(item, new[] { "CustId", "AgrId" });
                     _dbContext.AppendList(item.LicenseAgrParam, addItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
-                    _dbContext.AppendList(item.License, addItem.License, i => { }, (l, r) => l.PlaceId == r.PlaceId );
+                    _dbContext.AppendList(item.License, addItem.License, i => { }, (l, r) => l.PlaceId == r.PlaceId);
 
                     addAgreeMAster.LicenseAgreement.Add(addItem);
                     addCustomer.Client.LicenseAgreement.Add(addItem);
@@ -424,7 +429,7 @@ namespace ipsmedserviceapp.Controllers
                     }
 
                     // Збереження RelEmployee
-                    foreach (var item in newCustomer.Company.RelEmployee.Where( rec => !string.IsNullOrEmpty( rec.Empl?.LastName?.Trim())).ToList() )
+                    foreach (var item in newCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList())
                     {
                         if (item.Empl == null)
                             continue;
@@ -491,6 +496,40 @@ namespace ipsmedserviceapp.Controllers
         {
             var List = await _dbContext.getViewData("select * from vTsk_1_ListConsumer01", null);
             return Json(List);
+        }
+
+        /// <summary>
+        /// Отримати детальну інформацію по періодам оплати договору
+        /// </summary>
+        /// <param name="licid"></param>
+        /// <returns></returns>
+        [HttpGet("period/detail/{licid}")]
+        public async Task<IActionResult> GetPeriodDetail(int licid)
+        {
+            try
+            {
+                var licenseAgrement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)
+                                        .Include(rec => rec.PaidPeriod)
+                                        .Include(rec => rec.Cust).ThenInclude(cust => cust.Cust)
+                                        .SingleOrDefaultAsync();
+
+                //var vCustomer = (await _dbContext.getViewData($"select * from vCustomer where custId = {licenseAgrement.CustId}", null)).Select( rec => new { innOkpo = rec["INNOKPO"] as string }).ToList();
+
+
+                //var externPays = await _dbContext.ExternalPay.FromSql($"select * from ExternalPay where okpoCorr = @okpo", new SqlParameter("@okpo", vCustomer[0].innOkpo )).ToListAsync();
+
+                await _dbContext.MoneyPeriodLink.FromSql($"select * from MoneyPeriodLink where licid = {licid}")
+                                .Include(rec => rec.Paid)
+                                .LoadAsync();
+
+                return Json(licenseAgrement.Cust.Cust);
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
 

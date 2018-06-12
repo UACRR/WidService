@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
@@ -20,11 +21,12 @@ namespace RightholderWorkplace
     public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm
     {
         Customer _customer;
-
+        ObjectRight _objectRight;
 
         AnketaPerson _anketa;
         BankAccount _bankAccount;
         AnketaDictionaties _dictionaries;
+        ObjectRightDictionaries _dictionariesObjectRight;
         List<TermsOfServiceWrapper> _termsOfServices;
         RightHolder _rightHolder;
 
@@ -131,6 +133,9 @@ namespace RightholderWorkplace
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
 
+            sbSaveRightholder.DefaultItem = miSaveRightholder;
+            sbSaveRightholder.Text = miSaveRightholder.Text;
+
             // data
             //anketaPersonBindingSource.DataSource = _anketa;
             //bankAccountBindingSource.DataSource = _bankAccount;
@@ -140,6 +145,7 @@ namespace RightholderWorkplace
             ctrlContacts.DataSource = anketaPersonBindingSource;
             ctrlRegistrations.DataSource = anketaPersonBindingSource;
             ctrlInternalPassport.DataSource = anketaPersonBindingSource;
+            ctrlInternationalPassport.DataSource = anketaPersonBindingSource;
             //ctrlBankAccount.DataSource = _bankAccount;
             //ctrlExclusionsLimitations.DataSource = _termsOfServices;
             //gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
@@ -222,7 +228,7 @@ namespace RightholderWorkplace
         {
             if (newCreateRightholderPageView.SelectedPage == createRightholderPassportPage)
             {
-                if (_anketa.Residency == 1)
+                if (_anketa.Citizenship == "804")
                     createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
                 else
                     createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
@@ -247,6 +253,26 @@ namespace RightholderWorkplace
         private void cbAroundWorld_ToggleStateChanged(object sender, StateChangedEventArgs args)
         {
             gvTerritoryExclusions.Enabled = !cbAroundWorld.Checked;
+        }
+
+        private void btnAddTerritoryExclude_Click(object sender, EventArgs e)
+        {
+            gvTerritoryExclusions.Rows.AddNew();
+
+            var currentCell = gvTerritoryExclusions.CurrentRow.Cells[0];
+            currentCell.IsSelected = true;
+            currentCell.BeginEdit();
+            var dropDownEditor = gvTerritoryExclusions.ActiveEditor as RadDropDownListEditor;
+            if (dropDownEditor != null)
+            {
+                var element = dropDownEditor.EditorElement as RadDropDownListEditorElement;
+                element.ShowPopup();
+            }
+        }
+
+        private void btnRemoveTerritoryExclude_Click(object sender, EventArgs e)
+        {
+            gvTerritoryExclusions.Rows.Remove(gvTerritoryExclusions.CurrentRow);
         }
 
         #region Rightolder commands
@@ -294,12 +320,15 @@ namespace RightholderWorkplace
             gvRightholdersList_CommandCellClick(sender, null);
         }
 
-        private void btnSaveRightholder_Click(object sender, EventArgs e)
+        private void SaveRightholder(bool accept)
         {
             if (_customer == null)
             {
                 return;
             }
+
+            if (accept)
+                _customer.Status = 2; // Активний
 
             // TODO: additional validation
 
@@ -310,6 +339,16 @@ namespace RightholderWorkplace
             rightHolderMainViewBindingSource.DataSource = list;
 
             newRightholdersPageView.SelectedPage = newRightholdersListPage;
+        }
+
+        private void miSaveRightholder_Click(object sender, EventArgs e)
+        {
+            SaveRightholder(accept: false);
+        }
+
+        private void miAcceptAndSaveRightholder_Click(object sender, EventArgs e)
+        {
+            SaveRightholder(accept: true);
         }
 
         #endregion
@@ -350,5 +389,67 @@ namespace RightholderWorkplace
 
             territoryExcludeBindingSource.DataSource = _customer.RightHolder.TerritoryExclude;
         }
+
+        private void RightholderWorkplace_Load(object sender, EventArgs e)
+        {
+            var service = new ObjectRightService();
+
+            _dictionariesObjectRight = service.GetDictionary();
+            var objectsRightsList = service.GetMainView();
+            var objectRightContainer = service.GetData(5848);
+            _objectRight = objectRightContainer.objectRight;
+
+            // dictionaries
+            ddlGenreType.DataSource = _dictionariesObjectRight.genreType;
+            ddlGenreType.ValueMember = "CodeI";
+            ddlGenreType.DisplayMember = "Name";
+
+            ddlSpecType.DataSource = _dictionariesObjectRight.specType;
+            ddlSpecType.ValueMember = "CodeI";
+            ddlSpecType.DisplayMember = "Name";
+
+            var columnRoleAuth = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
+            columnRoleAuth.ValueMember = "CodeI";
+            columnRoleAuth.DisplayMember = "Name";
+
+            var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
+            columnRoleRh.ValueMember = "CodeI";
+            columnRoleRh.DisplayMember = "Name";
+
+            var columnRh = gvObjectRightholders.Columns["CustId"] as GridViewComboBoxColumn;
+            columnRh.DataSource = objectRightContainer.rhList;
+            columnRh.ValueMember = "CustId";
+            columnRh.DisplayMember = "Name";
+
+            // update bidings
+            gvObjectsRightsList.DataSource = objectsRightsList;
+            objectRightBindingSource.DataSource = _objectRight;
+            mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
+            authorsBindingSource.DataSource = _objectRight.Authors;
+            copyRightBindingSource.DataSource = _objectRight.CopyRight;
+        }
+
+        #region Object right commands
+
+        private void btnSaveTest_Click(object sender, EventArgs e)
+        {
+            var service = new ObjectRightService();
+
+            service.Save(_objectRight);
+        }
+
+        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
+        {
+            using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
+            {
+                authorItemView.StartPosition = FormStartPosition.CenterParent;
+                authorItemView.ShowDialog();
+                authorsBindingSource.ResetBindings(false);
+            }
+        }
+
+        #endregion
     }
 }

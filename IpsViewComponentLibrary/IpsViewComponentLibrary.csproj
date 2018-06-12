@@ -70,6 +70,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security.AccessControl">
+      <HintPath>..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\system.security.accesscontrol\4.4.0\ref\netstandard2.0\System.Security.AccessControl.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -86,6 +89,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2018.2.515.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
@@ -101,6 +105,18 @@
     </Compile>
     <Compile Include="AddPremisesForm.Designer.cs">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthorItemView.Designer.cs">
+      <DependentUpon>AuthorItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalculationInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalculationInfoControl.Designer.cs">
+      <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerPlacesControl.cs">
       <SubType>UserControl</SubType>
@@ -131,6 +147,24 @@
     </Compile>
     <Compile Include="ExpandedFormForAnketaPersonRightHolder.Designer.cs">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalControlConsumerCabinet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalControlConsumerCabinet.Designer.cs">
+      <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformationAboutTheContractTitleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InformationAboutTheContractTitleControl.Designer.cs">
+      <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformationOfUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InformationOfUserControl.Designer.cs">
+      <DependentUpon>InformationOfUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsAnketaCompanyControl.cs">
       <SubType>UserControl</SubType>
@@ -198,6 +232,12 @@
     <Compile Include="IpsExclusionsLimitationsControl.Designer.cs">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiddleControlInfoAgrCalc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlInfoAgrCalc.Designer.cs">
+      <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    </Compile>
     <Compile Include="PassportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -209,6 +249,12 @@
     </Compile>
     <Compile Include="IpsRegistrationsCompanyControl.Designer.cs">
       <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PassportInternationalControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PassportInternationalControl.Designer.cs">
+      <DependentUpon>PassportInternationalControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IpsServiceComissionControl.cs">
@@ -223,6 +269,24 @@
     <Compile Include="RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReportsControl.Designer.cs">
+      <DependentUpon>ReportsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderSelectionView.Designer.cs">
+      <DependentUpon>RightholderSelectionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleShowInformationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SingleShowInformationControl.Designer.cs">
+      <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddPremisesForm.resx">
@@ -233,6 +297,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthorItemView.resx">
+      <DependentUpon>AuthorItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalculationInfoControl.resx">
+      <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerPlacesControl.resx">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
@@ -255,6 +325,15 @@
     <EmbeddedResource Include="ExpandedFormForAnketaPersonRightHolder.resx">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GlobalControlConsumerCabinet.resx">
+      <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
+      <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformationOfUserControl.resx">
+      <DependentUpon>InformationOfUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="IpsAnketaCompanyControl.resx">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,11 +355,17 @@
     <EmbeddedResource Include="IpsExclusionsLimitationsControl.resx">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlInfoAgrCalc.resx">
+      <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PassportControl.resx">
       <DependentUpon>PassportControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsRegistrationsCompanyControl.resx">
       <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PassportInternationalControl.resx">
+      <DependentUpon>PassportInternationalControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="IpsServiceComissionControl.resx">
@@ -288,6 +373,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportsControl.resx">
+      <DependentUpon>ReportsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderSelectionView.resx">
+      <DependentUpon>RightholderSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleShowInformationControl.resx">
+      <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
@@ -306,11 +400,13 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster1.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IClnBusinessPlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightholderMainView.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">

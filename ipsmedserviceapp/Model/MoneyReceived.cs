@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -19,8 +20,12 @@ namespace ipsmedserviceapp.Model
         public decimal Amount { get; set; }
         public decimal DestribAmount { get; set; }
 
+        [JsonIgnore]
         public Client Cust { get; set; }
+        [JsonIgnore]
         public MoneyType MoneyTypeNavigation { get; set; }
+        [JsonIgnore]
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
     }
 }
+

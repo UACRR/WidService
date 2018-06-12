@@ -84,11 +84,14 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<DistributionItem> DistributionItem { get; set; }
         public virtual DbSet<DocPreparePay> DocPreparePay { get; set; }
         public virtual DbSet<DocReq> DocReq { get; set; }
-        public virtual DbSet<DocTemplate> DocTemplate { get; set; }
         public virtual DbSet<DocText> DocText { get; set; }
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<DocumentKind> DocumentKind { get; set; }
         public virtual DbSet<DocumentKindTr> DocumentKindTr { get; set; }
+        public virtual DbSet<DocumentStatus> DocumentStatus { get; set; }
+        public virtual DbSet<DocumentStatusTr> DocumentStatusTr { get; set; }
+        public virtual DbSet<DocumentType> DocumentType { get; set; }
+        public virtual DbSet<DocumentTypeTr> DocumentTypeTr { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EpisodeType> EpisodeType { get; set; }
         public virtual DbSet<EpisodeTypeTr> EpisodeTypeTr { get; set; }
@@ -260,7 +263,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -732,6 +736,11 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.AgreementMaster)
                     .HasForeignKey(d => d.AgrStatus)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_STATUS");
+
+                entity.HasOne(d => d.AgrTypeNavigation)
+                    .WithMany(p => p.AgreementMaster)
+                    .HasForeignKey(d => d.AgrType)
+                    .HasConstraintName("FK_AGREEMEN_REF_AGRTYPE");
 
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.AgreementMaster)
@@ -1808,6 +1817,11 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.BrRegister)
                     .HasForeignKey(d => d.Status)
                     .HasConstraintName("FK_BRREGIST_REFERENCE_REGISTER");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.BrRegister)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_BRREGIST_REF_ASPNETUS");
             });
 
             modelBuilder.Entity<BrRegItem>(entity =>
@@ -3038,38 +3052,6 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_DOCREQ_REFERENCE_REQUEST");
             });
 
-            modelBuilder.Entity<DocTemplate>(entity =>
-            {
-                entity.HasKey(e => e.TemplId);
-
-                entity.Property(e => e.TemplId).HasColumnName("templId");
-
-                entity.Property(e => e.DocTypeCode).HasColumnName("docTypeCode");
-
-                entity.Property(e => e.ReqType).HasColumnName("reqType");
-
-                entity.Property(e => e.TemplName)
-                    .HasColumnName("templName")
-                    .HasMaxLength(64)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.TemplPath)
-                    .HasColumnName("templPath")
-                    .HasMaxLength(254)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.DocTypeCodeNavigation)
-                    .WithMany(p => p.DocTemplate)
-                    .HasForeignKey(d => d.DocTypeCode)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DOCTEMPL_REFERENCE_DOCUMENT");
-
-                entity.HasOne(d => d.ReqTypeNavigation)
-                    .WithMany(p => p.DocTemplate)
-                    .HasForeignKey(d => d.ReqType)
-                    .HasConstraintName("FK_DOCTEMPL_REFERENCE_REQUESTT");
-            });
-
             modelBuilder.Entity<DocText>(entity =>
             {
                 entity.Property(e => e.Code)
@@ -3115,13 +3097,25 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.DocStatus).HasColumnName("docStatus");
 
-                entity.Property(e => e.DocTypeCode).HasColumnName("docTypeCode");
+                entity.Property(e => e.DocType).HasColumnName("docType");
 
-                entity.HasOne(d => d.DocTypeCodeNavigation)
+                entity.Property(e => e.PeriodId).HasColumnName("periodId");
+
+                entity.HasOne(d => d.DocStatusNavigation)
                     .WithMany(p => p.Document)
-                    .HasForeignKey(d => d.DocTypeCode)
+                    .HasForeignKey(d => d.DocStatus)
+                    .HasConstraintName("FK_DOCUMENT_REFERENCE_STATUS");
+
+                entity.HasOne(d => d.DocTypeNavigation)
+                    .WithMany(p => p.Document)
+                    .HasForeignKey(d => d.DocType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DOCUMENT_REFERENCE_DOCUMENT");
+                    .HasConstraintName("FK_DOCUMENT_REFERENCE_TYPE");
+
+                entity.HasOne(d => d.Period)
+                    .WithMany(p => p.Document)
+                    .HasForeignKey(d => d.PeriodId)
+                    .HasConstraintName("FK_DOCUMENT_REFERENCE_PAIDPERI");
             });
 
             modelBuilder.Entity<DocumentKind>(entity =>
@@ -3170,6 +3164,88 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DOCUMENT_REFERENCE_DOCUM");
+            });
+
+            modelBuilder.Entity<DocumentStatus>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<DocumentStatusTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.DocumentStatusTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DOCUMENT_REFERENCE_DOCTR");
+            });
+
+            modelBuilder.Entity<DocumentType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TemplNum)
+                    .HasColumnName("templNum")
+                    .HasMaxLength(64)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TemplPath)
+                    .HasColumnName("templPath")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<DocumentTypeTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.DocumentTypeTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_DOCUMENT_REFERENCE_DOCUMENT");
             });
 
             modelBuilder.Entity<Employee>(entity =>
