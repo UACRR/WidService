@@ -294,9 +294,10 @@ namespace ipsAnketaClient
             if(rGridViewInstitution.Rows.Count != 0)
                 idRow = Convert.ToInt32(rGridViewInstitution.CurrentRow.Cells[0].Value);
 
-            if (idRow == 0 || premisesType.IdSelectedRow == 0) return;
-
-            editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow);
+            if (premisesType.IdSelectedRow != 0)
+                editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow);
+            else
+                editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
             editPremises.OnUpdateData += EditPremises_OnUpdateData; ;
             editPremises.StartPosition = FormStartPosition.CenterScreen;
             editPremises.SetTypePremises(Convert.ToByte(data.Client.ClnBusinessPlace.SingleOrDefault(item => item.PlaceId == idRow).PlCode));

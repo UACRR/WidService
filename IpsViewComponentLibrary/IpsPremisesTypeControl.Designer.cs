@@ -96,6 +96,7 @@
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4});
+            this.rGridViewPremises.MasterTemplate.EnableGrouping = false;
             this.rGridViewPremises.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewPremises.Name = "rGridViewPremises";
             this.rGridViewPremises.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);

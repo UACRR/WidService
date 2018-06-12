@@ -49,6 +49,7 @@ namespace IpsViewComponentLibrary
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             foreach (var item in _customer.Client.LicenseAgreement)
             {
+                //
                 var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
                 source.Add(new GridLicenseAgrView
                 {
