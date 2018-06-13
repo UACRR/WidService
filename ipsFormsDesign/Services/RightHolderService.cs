@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Interfaces;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,27 @@ namespace ipsFormsDesign.Services
 
         public IList<RightholderMainView> GetMainView()
         {
-            var anketaDic = _webApi.GetList<RightholderMainView>("rh/listrh");
-            return anketaDic;
+            return GetRightholdersList("rh/listrh");
+        }
+
+        public IList<RightholderMainView> GetMainViewByStatus(RightholderStatusType rightholderStatus)
+        {
+            var resourceUrl = "rh/listrh";
+
+            if (rightholderStatus == RightholderStatusType.New)
+            {
+                resourceUrl = resourceUrl + "/new";
+            }
+            else if (rightholderStatus == RightholderStatusType.NotAccepted)
+            {
+                resourceUrl = resourceUrl + "/notaccepted";
+            }
+            else if (rightholderStatus == RightholderStatusType.Active)
+            {
+                resourceUrl = resourceUrl + "/active";
+            }
+
+            return GetRightholdersList(resourceUrl);
         }
 
         public Customer NewCustomer(int custType)
@@ -43,6 +63,12 @@ namespace ipsFormsDesign.Services
             }
 
             return _webApi.UpdateItem<Customer>("rh/detail", cust.CustId.ToString(), cust);
+        }
+
+        private IList<RightholderMainView> GetRightholdersList(string resourceUrl)
+        {
+            var list = _webApi.GetList<RightholderMainView>(resourceUrl);
+            return list;
         }
     }
 }

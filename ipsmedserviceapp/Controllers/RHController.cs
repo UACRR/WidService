@@ -89,10 +89,28 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         /// Отримати список Споживачів малих прав
         /// </summary>
         /// <returns></returns>
-        [HttpGet("listRH")]
-        public async Task<IActionResult> GetListSR()
+        [HttpGet("listRH/{filterType?}")]
+        public async Task<IActionResult> GetListSR(string filterType)
         {
-            var List = await _dbContext.getViewData("select * from vTsk_1_ListRightHolder01", null);
+            var queryText = "select * from vTsk_1_ListRightHolder01";
+
+            if (!string.IsNullOrEmpty(filterType))
+            {
+                if (filterType.ToLower() == "new")
+                {
+                    queryText = queryText + " where status = 0";
+                }
+                else if (filterType.ToLower() == "notaccepted")
+                {
+                    queryText = queryText + " where status = 1";
+                }
+                else if (filterType.ToLower() == "active")
+                {
+                    queryText = queryText + " where status = 2";
+                }
+            }
+
+            var List = await _dbContext.getViewData(queryText, null);
             return Json(List);
         }
 
