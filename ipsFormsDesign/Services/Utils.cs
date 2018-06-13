@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ipsFormsDesign.Services
+namespace ipsFormsDesign
 {
     public static class Utils
     {

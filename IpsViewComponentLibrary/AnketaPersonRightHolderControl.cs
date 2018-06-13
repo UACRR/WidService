@@ -162,29 +162,34 @@ namespace DebugFormForControls
         //    _sexSelected = radDropDownListSex.SelectedItem.Index != 0;
         //}
 
-        private void rBtnMoreName_Click(object sender, EventArgs e)
+        private void btnMoreName_Click(object sender, EventArgs e)
         {
             ShowEditAddNamesView();
         }
 
-        private void rBtnMoreLastName_Click(object sender, EventArgs e)
+        private void btnMoreLastName_Click(object sender, EventArgs e)
         {
             ShowEditAddNamesView();
         }
 
-        private void rBtnMoreSurName_Click(object sender, EventArgs e)
+        private void btnMoreSurName_Click(object sender, EventArgs e)
         {
             ShowEditAddNamesView();
         }
 
-        private void rBtnMorePseudonym_Click(object sender, EventArgs e)
+        private void btnMorePseudonym_Click(object sender, EventArgs e)
         {
-            ExpandedFormForAnketaPersonRightHolder more = new ExpandedFormForAnketaPersonRightHolder("pseudonym");
-            more.StartPosition = FormStartPosition.CenterScreen;
-            more.ShowDialog();
+            var customer = customerBindingSource.Current as Customer;
+
+            using (var moreNicks = new AnketaAddNickView(customer.RightHolder.AnketaAddNick))
+            {
+                moreNicks.StartPosition = FormStartPosition.CenterParent;
+                moreNicks.AddNicksUpdated += AddNicksUpdated;
+                moreNicks.ShowDialog();
+            }
         }
 
-        private void rdtPickerBirth_ValueChanged(object sender, EventArgs e)
+        private void dtPickerBirth_ValueChanged(object sender, EventArgs e)
         {
             _birthDateSelected = true;
         }
@@ -198,6 +203,13 @@ namespace DebugFormForControls
                 moreNames.StartPosition = FormStartPosition.CenterParent;
                 moreNames.ShowDialog();
             }
+        }
+
+        private void AddNicksUpdated(object sender, ICollection<AnketaAddNick> anketaAddNicks)
+        {
+            var customer = customerBindingSource.Current as Customer;
+
+            customer.RightHolder.AnketaAddNick = anketaAddNicks;
         }
     }
 }
