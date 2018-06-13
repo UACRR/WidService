@@ -289,6 +289,14 @@ namespace RightholderWorkplace
             acceptColumn.IsVisible = _rightholderStatusType != RightholderStatusType.Active;
         }
 
+        private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        {
+            if (sender is GridHeaderCellElement headerCell)
+            {
+                e.ToolTipText = headerCell.Text;
+            }
+        }
+
         #region Rightolder commands
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)

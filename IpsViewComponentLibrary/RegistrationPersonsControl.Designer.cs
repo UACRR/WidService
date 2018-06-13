@@ -49,17 +49,17 @@
             // 
             this.lblipn.Location = new System.Drawing.Point(3, 3);
             this.lblipn.Name = "lblipn";
-            this.lblipn.Size = new System.Drawing.Size(170, 18);
+            this.lblipn.Size = new System.Drawing.Size(175, 18);
             this.lblipn.TabIndex = 0;
-            this.lblipn.Text = "ІПН (якщо нема «0000000000»):";
+            this.lblipn.Text = "ІПН (якщо немає «0000000000»):";
             // 
             // rtxtBoxIPN
             // 
             this.rtxtBoxIPN.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.iAnketaPersonBindingSource, "Inn", true));
-            this.rtxtBoxIPN.Location = new System.Drawing.Point(174, 2);
+            this.rtxtBoxIPN.Location = new System.Drawing.Point(202, 2);
             this.rtxtBoxIPN.MaxLength = 10;
             this.rtxtBoxIPN.Name = "rtxtBoxIPN";
-            this.rtxtBoxIPN.Size = new System.Drawing.Size(220, 20);
+            this.rtxtBoxIPN.Size = new System.Drawing.Size(192, 20);
             this.rtxtBoxIPN.TabIndex = 0;
             this.rtxtBoxIPN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtxtBoxIPN_KeyPress);
             // 
