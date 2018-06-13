@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RightholderWorkplace.Models
+namespace ipsFormsDesign.Dictionary
 {
-    public enum RightholderFilterType
+    public enum RightholderStatusType
     {
         New = 0,
         NotAccepted = 1,

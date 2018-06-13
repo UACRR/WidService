@@ -3,7 +3,6 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using RightholderWorkplace.Localisation;
-using RightholderWorkplace.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +34,7 @@ namespace RightholderWorkplace
         #region IRightholderForm immplementation
 
         public Func<IList<RightholderMainView>> GetMainViewData { get; set; }
+        public Func<RightholderStatusType, IList<RightholderMainView>> GetMainViewDataByStatus { get; set; }
         public Func<int, Customer> NewCustomer { get; set; }
         public Func<int, Customer> GetCustomer { get; set; }
         public Func<Customer, bool> SaveCustomer { get; set; }
@@ -46,7 +46,7 @@ namespace RightholderWorkplace
             if (GetMainViewData != null)
             {
                 tbtnActive.IsChecked = true;
-                RightholdersListFilterChanged(RightholderFilterType.Active);
+                RightholdersListFilterChanged(RightholderStatusType.Active);
             }
         }
 
@@ -251,7 +251,7 @@ namespace RightholderWorkplace
 
         private void tbtn_Click(object sender, EventArgs e)
         {
-            var rightholderFilterType = (RightholderFilterType)Convert.ToInt32((sender as RadToggleButton).Tag);
+            var rightholderFilterType = (RightholderStatusType)Convert.ToInt32((sender as RadToggleButton).Tag);
             RightholdersListFilterChanged(rightholderFilterType);
             
             // deselect all buttons, excluding sender
@@ -264,22 +264,21 @@ namespace RightholderWorkplace
             }
         }
 
-        private void RightholdersListFilterChanged(RightholderFilterType rightholderFilterType)
+        private void RightholdersListFilterChanged(RightholderStatusType rightholderStatusType)
         {
-            SetRightholdersListColumns(rightholderFilterType);
+            SetRightholdersListColumns(rightholderStatusType);
 
-            // fetch list by filter
-            var list = GetMainViewData();
+            var list = GetMainViewDataByStatus(rightholderStatusType);
             rightHolderMainViewBindingSource.DataSource = list;
         }
 
-        private void SetRightholdersListColumns(RightholderFilterType rightholderFilterType)
+        private void SetRightholdersListColumns(RightholderStatusType rightholderStatusType)
         {
             var editColumn = gvRightholdersList.Columns["EditColumn"];
             var acceptColumn = gvRightholdersList.Columns["AcceptColumn"];
 
             editColumn.IsVisible = true;
-            acceptColumn.IsVisible = rightholderFilterType != RightholderFilterType.Active;
+            acceptColumn.IsVisible = rightholderStatusType != RightholderStatusType.Active;
         }
 
         #region Rightolder commands

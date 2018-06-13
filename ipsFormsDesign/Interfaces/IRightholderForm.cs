@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Model;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace ipsFormsDesign.Interfaces
     {
         event Func<bool> Save;
         Func<IList<RightholderMainView>> GetMainViewData { get; set; }
+        Func<RightholderStatusType, IList<RightholderMainView>> GetMainViewDataByStatus { get; set; }
         Func<int, Customer> NewCustomer { get; set; }
         Func<int, Customer> GetCustomer { get; set; }
         Func<Customer, bool> SaveCustomer { get; set; }
