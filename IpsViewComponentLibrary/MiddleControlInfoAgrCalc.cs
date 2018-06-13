@@ -64,19 +64,7 @@ namespace IpsViewComponentLibrary
                     PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
                     DateLastPayment = ""
                 });
-                source.Add(new GridLicenseAgrView
-                {
-                    Id = 2,
-                    License = "Типова ліцензія",
-                    Series = "КПП",
-                    AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
-                    DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
-                    DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
-                    Amount = (decimal)999.87,
-                    State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
-                    PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
-                    DateLastPayment = "32.13.2071"
-                });
+
             }
 
             gvLicenseAgr.DataSource = source;

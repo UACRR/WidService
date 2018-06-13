@@ -189,7 +189,7 @@ namespace IpsViewComponentLibrary
             // btnSaveDistrib
             // 
             this.btnSaveDistrib.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveDistrib.Location = new System.Drawing.Point(906, 230);
+            this.btnSaveDistrib.Location = new System.Drawing.Point(906, 228);
             this.btnSaveDistrib.Name = "btnSaveDistrib";
             this.btnSaveDistrib.Size = new System.Drawing.Size(110, 24);
             this.btnSaveDistrib.TabIndex = 12;
