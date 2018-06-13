@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
 using WebAPIConnector;
@@ -131,6 +132,8 @@ namespace RightholderWorkplace
 
             sbSaveRightholder.DefaultItem = miSaveRightholder;
             sbSaveRightholder.Text = miSaveRightholder.Text;
+
+            tbtnActive.IsChecked = true;
 
             // data
             //anketaPersonBindingSource.DataSource = _anketa;
@@ -423,5 +426,17 @@ namespace RightholderWorkplace
         }
 
         #endregion
+
+        private void tbtn_Click(object sender, EventArgs e)
+        {
+            // deselect all buttons, excluding sender
+            foreach (var control in panelFilterButtons.Controls)
+            {
+                if (control != sender && control is RadToggleButton toggleButton)
+                {
+                    toggleButton.ToggleState = ToggleState.Off;
+                }
+            }
+        }
     }
 }
