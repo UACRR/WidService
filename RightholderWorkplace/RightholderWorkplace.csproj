@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Localisation\RadGridViewUkraineLocalizationProvider.cs" />
+    <Compile Include="Models\RightholderFilterType.cs" />
     <Compile Include="RightholderWorkplace.cs">
       <SubType>Form</SubType>
     </Compile>

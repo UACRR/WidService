@@ -3,6 +3,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using RightholderWorkplace.Localisation;
+using RightholderWorkplace.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,8 +45,8 @@ namespace RightholderWorkplace
         {
             if (GetMainViewData != null)
             {
-                var list = GetMainViewData();
-                rightHolderMainViewBindingSource.DataSource = list;
+                tbtnActive.IsChecked = true;
+                RightholdersListFilterChanged(RightholderFilterType.Active);
             }
         }
 
@@ -132,8 +133,6 @@ namespace RightholderWorkplace
 
             sbSaveRightholder.DefaultItem = miSaveRightholder;
             sbSaveRightholder.Text = miSaveRightholder.Text;
-
-            tbtnActive.IsChecked = true;
 
             // data
             //anketaPersonBindingSource.DataSource = _anketa;
@@ -248,6 +247,39 @@ namespace RightholderWorkplace
                 else if (value == 3 || value == 4)
                     createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
             }
+        }
+
+        private void tbtn_Click(object sender, EventArgs e)
+        {
+            var rightholderFilterType = (RightholderFilterType)Convert.ToInt32((sender as RadToggleButton).Tag);
+            RightholdersListFilterChanged(rightholderFilterType);
+            
+            // deselect all buttons, excluding sender
+            foreach (var control in panelFilterButtons.Controls)
+            {
+                if (control != sender && control is RadToggleButton toggleButton)
+                {
+                    toggleButton.ToggleState = ToggleState.Off;
+                }
+            }
+        }
+
+        private void RightholdersListFilterChanged(RightholderFilterType rightholderFilterType)
+        {
+            SetRightholdersListColumns(rightholderFilterType);
+
+            // fetch list by filter
+            var list = GetMainViewData();
+            rightHolderMainViewBindingSource.DataSource = list;
+        }
+
+        private void SetRightholdersListColumns(RightholderFilterType rightholderFilterType)
+        {
+            var editColumn = gvRightholdersList.Columns["EditColumn"];
+            var acceptColumn = gvRightholdersList.Columns["AcceptColumn"];
+
+            editColumn.IsVisible = true;
+            acceptColumn.IsVisible = rightholderFilterType != RightholderFilterType.Active;
         }
 
         #region Rightolder commands
@@ -426,17 +458,5 @@ namespace RightholderWorkplace
         }
 
         #endregion
-
-        private void tbtn_Click(object sender, EventArgs e)
-        {
-            // deselect all buttons, excluding sender
-            foreach (var control in panelFilterButtons.Controls)
-            {
-                if (control != sender && control is RadToggleButton toggleButton)
-                {
-                    toggleButton.ToggleState = ToggleState.Off;
-                }
-            }
-        }
     }
 }
