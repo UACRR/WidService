@@ -31,20 +31,7 @@ namespace ipsFormsDesign.Services
 
         public IList<RightholderMainView> GetMainViewByStatus(RightholderStatusType rightholderStatus)
         {
-            var resourceUrl = "rh/listrh";
-
-            if (rightholderStatus == RightholderStatusType.New)
-            {
-                resourceUrl = resourceUrl + "/new";
-            }
-            else if (rightholderStatus == RightholderStatusType.NotAccepted)
-            {
-                resourceUrl = resourceUrl + "/notaccepted";
-            }
-            else if (rightholderStatus == RightholderStatusType.Active)
-            {
-                resourceUrl = resourceUrl + "/active";
-            }
+            var resourceUrl = "rh/listrh" + "/" + rightholderStatus.ToString().ToLower();
 
             return GetRightholdersList(resourceUrl);
         }
