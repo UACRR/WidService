@@ -153,6 +153,7 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        #region Views
         /// <summary>
         /// Получити  список об'єктів права для основного єкрану інтерфейсу користувача
         /// </summary>
@@ -163,6 +164,34 @@ namespace ipsmedserviceapp.Controllers
             var list = await _dbContext.getViewData("select * from vTsk_1_ListObjectRight01", null);
             return Json(list);
         }
+
+
+        /// <summary>
+        /// Список всіх об'єктів Єкран "Об'єкти (ВСІ)"
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("view/list_01")]
+        public async Task<IActionResult> getvtsk_3_OR_01()
+        {
+            var list = await _dbContext.getViewData("select * from vtsk_3_OR_01", null);
+            return Json(list);
+        }
+
+        /// <summary>
+        /// Список правовласників
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("view/list_02")]
+        public async Task<IActionResult> getvtsk_3_OR_02()
+        {
+            var list = await _dbContext.getViewData("select * from vtsk_3_OR_02", null);
+            return Json(list);
+        }
+
+
+
+        #endregion
+
     }
 
 
