@@ -23,6 +23,7 @@ namespace RightholderWorkplace
     {
         Customer _customer;
         ObjectRight _objectRight;
+        RightholderStatusType _rightholderStatusType;
 
         AnketaPerson _anketa;
         BankAccount _bankAccount;
@@ -266,19 +267,26 @@ namespace RightholderWorkplace
 
         private void RightholdersListFilterChanged(RightholderStatusType rightholderStatusType)
         {
-            SetRightholdersListColumns(rightholderStatusType);
+            _rightholderStatusType = rightholderStatusType;
 
-            var list = GetMainViewDataByStatus(rightholderStatusType);
+            SetRightholdersListColumns();
+
+            UpdateRightholdersList();
+        }
+
+        private void UpdateRightholdersList()
+        {
+            var list = GetMainViewDataByStatus(_rightholderStatusType);
             rightHolderMainViewBindingSource.DataSource = list;
         }
 
-        private void SetRightholdersListColumns(RightholderStatusType rightholderStatusType)
+        private void SetRightholdersListColumns()
         {
             var editColumn = gvRightholdersList.Columns["EditColumn"];
             var acceptColumn = gvRightholdersList.Columns["AcceptColumn"];
 
             editColumn.IsVisible = true;
-            acceptColumn.IsVisible = rightholderStatusType != RightholderStatusType.Active;
+            acceptColumn.IsVisible = _rightholderStatusType != RightholderStatusType.Active;
         }
 
         #region Rightolder commands
@@ -340,9 +348,7 @@ namespace RightholderWorkplace
 
             SaveCustomer?.Invoke(_customer);
 
-            // TODO: move to single method (EndPresernterLink)
-            var list = GetMainViewData();
-            rightHolderMainViewBindingSource.DataSource = list;
+            UpdateRightholdersList();
 
             newRightholdersPageView.SelectedPage = newRightholdersListPage;
         }
