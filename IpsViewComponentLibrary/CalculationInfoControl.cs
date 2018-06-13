@@ -147,19 +147,23 @@ namespace IpsViewComponentLibrary
         // Джерело для [платежів обраного періоду]
         private void SetDataSourcePayments(int idPeriod = 0, int idLic = 0)
         {
+            
             var period = _data.Client.LicenseAgreement.Where(rec => rec.LicId == idLic).Select(rec => rec.PaidPeriod).SingleOrDefault();
             var moneyPeriod = period?.Where(recId => recId.PeriodId == idPeriod).Select(rec => rec.MoneyPeriodLink).SingleOrDefault();
+            
             List<GridPayments> source = new List<GridPayments>();
             foreach (var item in moneyPeriod?.Select(rec => rec.Paid)?.ToList())
             {
-                if(item != null)
+                
+                var ststuse = item.MoneyType;
+                if (item != null)
                     source.Add(new GridPayments
                     {
-                        SelectPeriod = "Period 01",
+                        SelectPeriod = period?.Where(rec => rec.PeriodId == idPeriod).Select(name => name.PeriodName).SingleOrDefault(),
                         PaidId = item.PaidId,
                         NumberInvoice = item.NumberInvoice,
                         DateInvoice = item.DateInvoice.ToShortDateString(),
-                        State = "Стан",
+                        State = item.MoneyType.ToString(),//moneyLinkStatus
                         Amount = item.Amount,
                         DestribAmount = item.DestribAmount,
                         GoalInvoice = item.GoalInvoice

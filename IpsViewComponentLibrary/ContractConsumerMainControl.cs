@@ -100,7 +100,8 @@ namespace IpsViewComponentLibrary
         public ContractConsumerMainControl()
         {
             InitializeComponent();
-            
+            rdtPickerAgrDate.Value = DateTime.Now;
+            rdtPickerDateBegin.Value = DateTime.Now;
         }
 
         public bool Validator()
@@ -126,22 +127,17 @@ namespace IpsViewComponentLibrary
             rdtPickerDateEnd.Text = string.Empty;
         }
 
-        private void rdtPickerDateEnd_ValueChanged(object sender, EventArgs e)
+        private void rdtPickerDateBegin_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                rdtPickerDateBegin.MaxDate = rdtPickerDateEnd.Value.Subtract(new TimeSpan(1, 0, 0, 0));
+                rdtPickerDateEnd.MinDate = rdtPickerDateBegin.Value.Add(new TimeSpan(1, 0, 0, 0));
 
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
                 ;
             }
-        }
-
-        private void rdtPickerDateEnd_TextChanged(object sender, EventArgs e)
-        {
-            ;
         }
     }
 }
