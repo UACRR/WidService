@@ -8,8 +8,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Enumerations;
@@ -63,6 +65,8 @@ namespace RightholderWorkplace
 
         public void SetDictionary(AnketaDictionaties dictionaries)
         {
+            _dictionaries = dictionaries;
+
             ctrlAnketaPerson.SexTypeDataSource = dictionaries.sexType;
             ctrlAnketaPerson.SexTypeValueMember = "CodeI";
             ctrlAnketaPerson.SexTypeDisplayMember = "Name";
@@ -295,6 +299,26 @@ namespace RightholderWorkplace
             {
                 e.ToolTipText = headerCell.Text;
             }
+        }
+
+        private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
+        {
+            if (_customer == null)
+                return;
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx");
+
+            var wordEngine = new WordEngine(_dictionaries);
+
+            btnGenerateRightholderAgreement.Enabled = false;
+            waitbarAgreement.StartWaiting();
+
+            await Task.Factory.StartNew(() => wordEngine.processRightHolder(template, _customer, _customer.AgreementMaster.First()));
+
+            pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
+
+            waitbarAgreement.StopWaiting();
+            btnGenerateRightholderAgreement.Enabled = true;
         }
 
         #region Rightolder commands

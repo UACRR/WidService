@@ -29,42 +29,42 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn109 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn110 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn111 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn112 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn28 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn82 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn83 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn19 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn20 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn113 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition46 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn84 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn114 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn115 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn116 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn85 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn86 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn117 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn87 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn118 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition47 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn88 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn89 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn37 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn119 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn38 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn10 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn120 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition48 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn39 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn40 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn90 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn29 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn30 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition49 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition50 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn4 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn10 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn11 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn12 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn13 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn14 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn15 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn16 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn17 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn5 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn6 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn2 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn7 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn8 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn18 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn5 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn6 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition9 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition10 = new Telerik.WinControls.UI.TableViewDefinition();
             this.MainPageView = new Telerik.WinControls.UI.RadPageView();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
@@ -151,6 +151,9 @@
             this.miAcceptAndSaveRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.radButton5 = new Telerik.WinControls.UI.RadButton();
             this.btnPrevRightLimitation = new Telerik.WinControls.UI.RadButton();
+            this.createRightholderAgreementPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.btnGenerateRightholderAgreement = new Telerik.WinControls.UI.RadButton();
+            this.pdfvRightholderAgreement = new Telerik.WinControls.UI.RadPdfViewer();
             this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
             this.objectsPageView = new Telerik.WinControls.UI.RadPageView();
             this.actualObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -193,6 +196,8 @@
             this.mainPageViewDistribution = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.waitbarAgreement = new Telerik.WinControls.UI.RadWaitingBar();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
@@ -288,6 +293,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.sbSaveRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRightLimitation)).BeginInit();
+            this.createRightholderAgreementPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGenerateRightholderAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pdfvRightholderAgreement)).BeginInit();
+            this.pdfvRightholderAgreement.SuspendLayout();
             this.mainPageRightsObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).BeginInit();
             this.objectsPageView.SuspendLayout();
@@ -332,6 +341,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectPerformers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectPerformers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightDictionariesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitbarAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -495,76 +505,76 @@
             this.gvRightholdersList.MasterTemplate.AllowAddNewRow = false;
             this.gvRightholdersList.MasterTemplate.AutoGenerateColumns = false;
             this.gvRightholdersList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn109.DataType = typeof(int);
-            gridViewTextBoxColumn109.FieldName = "CustId";
-            gridViewTextBoxColumn109.HeaderText = "CustId";
-            gridViewTextBoxColumn109.IsVisible = false;
-            gridViewTextBoxColumn109.Name = "CustId";
-            gridViewTextBoxColumn110.FieldName = "InnerCode";
-            gridViewTextBoxColumn110.HeaderText = "Шифр автора / правовласника";
-            gridViewTextBoxColumn110.IsAutoGenerated = true;
-            gridViewTextBoxColumn110.Name = "InnerCode";
-            gridViewTextBoxColumn110.Width = 98;
-            gridViewTextBoxColumn111.FieldName = "InterCode";
-            gridViewTextBoxColumn111.HeaderText = "IPI";
-            gridViewTextBoxColumn111.IsAutoGenerated = true;
-            gridViewTextBoxColumn111.Name = "InterCode";
-            gridViewTextBoxColumn111.Width = 98;
-            gridViewTextBoxColumn112.FieldName = "Name";
-            gridViewTextBoxColumn112.HeaderText = "Правовласник";
-            gridViewTextBoxColumn112.IsAutoGenerated = true;
-            gridViewTextBoxColumn112.Name = "Name";
-            gridViewTextBoxColumn112.Width = 309;
-            gridViewDateTimeColumn28.FieldName = "RegistrDate";
-            gridViewDateTimeColumn28.FormatString = "{0:dd/MM/yyyy}";
-            gridViewDateTimeColumn28.HeaderText = "Дата народження / реєстрації";
-            gridViewDateTimeColumn28.IsAutoGenerated = true;
-            gridViewDateTimeColumn28.Name = "RegistrDate";
-            gridViewDateTimeColumn28.Width = 98;
-            gridViewDecimalColumn82.DataType = typeof(int);
-            gridViewDecimalColumn82.FieldName = "CntObj";
-            gridViewDecimalColumn82.HeaderText = "К-ть об\'єктів";
-            gridViewDecimalColumn82.IsAutoGenerated = true;
-            gridViewDecimalColumn82.Name = "CntObj";
-            gridViewDecimalColumn82.Width = 98;
-            gridViewDecimalColumn83.DataType = typeof(int);
-            gridViewDecimalColumn83.FieldName = "YearProfit";
-            gridViewDecimalColumn83.FormatString = "{0:N2}";
-            gridViewDecimalColumn83.HeaderText = "Дохід з початку року";
-            gridViewDecimalColumn83.IsAutoGenerated = true;
-            gridViewDecimalColumn83.Name = "YearProfit";
-            gridViewDecimalColumn83.Width = 98;
-            gridViewCommandColumn19.AllowResize = false;
-            gridViewCommandColumn19.DefaultText = "Підтвердити";
-            gridViewCommandColumn19.HeaderText = "";
-            gridViewCommandColumn19.Name = "AcceptColumn";
-            gridViewCommandColumn19.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn19.UseDefaultText = true;
-            gridViewCommandColumn19.Width = 100;
-            gridViewCommandColumn20.AllowResize = false;
-            gridViewCommandColumn20.DefaultText = "Редагувати";
-            gridViewCommandColumn20.HeaderText = "";
-            gridViewCommandColumn20.Name = "EditColumn";
-            gridViewCommandColumn20.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn20.UseDefaultText = true;
-            gridViewCommandColumn20.Width = 100;
-            gridViewTextBoxColumn113.HeaderText = "";
-            gridViewTextBoxColumn113.Name = "EmptyColumn";
-            gridViewTextBoxColumn113.Width = 39;
+            gridViewTextBoxColumn13.DataType = typeof(int);
+            gridViewTextBoxColumn13.FieldName = "CustId";
+            gridViewTextBoxColumn13.HeaderText = "CustId";
+            gridViewTextBoxColumn13.IsVisible = false;
+            gridViewTextBoxColumn13.Name = "CustId";
+            gridViewTextBoxColumn14.FieldName = "InnerCode";
+            gridViewTextBoxColumn14.HeaderText = "Шифр автора / правовласника";
+            gridViewTextBoxColumn14.IsAutoGenerated = true;
+            gridViewTextBoxColumn14.Name = "InnerCode";
+            gridViewTextBoxColumn14.Width = 98;
+            gridViewTextBoxColumn15.FieldName = "InterCode";
+            gridViewTextBoxColumn15.HeaderText = "IPI";
+            gridViewTextBoxColumn15.IsAutoGenerated = true;
+            gridViewTextBoxColumn15.Name = "InterCode";
+            gridViewTextBoxColumn15.Width = 98;
+            gridViewTextBoxColumn16.FieldName = "Name";
+            gridViewTextBoxColumn16.HeaderText = "Правовласник";
+            gridViewTextBoxColumn16.IsAutoGenerated = true;
+            gridViewTextBoxColumn16.Name = "Name";
+            gridViewTextBoxColumn16.Width = 309;
+            gridViewDateTimeColumn4.FieldName = "RegistrDate";
+            gridViewDateTimeColumn4.FormatString = "{0:dd/MM/yyyy}";
+            gridViewDateTimeColumn4.HeaderText = "Дата народження / реєстрації";
+            gridViewDateTimeColumn4.IsAutoGenerated = true;
+            gridViewDateTimeColumn4.Name = "RegistrDate";
+            gridViewDateTimeColumn4.Width = 98;
+            gridViewDecimalColumn10.DataType = typeof(int);
+            gridViewDecimalColumn10.FieldName = "CntObj";
+            gridViewDecimalColumn10.HeaderText = "К-ть об\'єктів";
+            gridViewDecimalColumn10.IsAutoGenerated = true;
+            gridViewDecimalColumn10.Name = "CntObj";
+            gridViewDecimalColumn10.Width = 98;
+            gridViewDecimalColumn11.DataType = typeof(int);
+            gridViewDecimalColumn11.FieldName = "YearProfit";
+            gridViewDecimalColumn11.FormatString = "{0:N2}";
+            gridViewDecimalColumn11.HeaderText = "Дохід з початку року";
+            gridViewDecimalColumn11.IsAutoGenerated = true;
+            gridViewDecimalColumn11.Name = "YearProfit";
+            gridViewDecimalColumn11.Width = 98;
+            gridViewCommandColumn3.AllowResize = false;
+            gridViewCommandColumn3.DefaultText = "Підтвердити";
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Name = "AcceptColumn";
+            gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn3.UseDefaultText = true;
+            gridViewCommandColumn3.Width = 100;
+            gridViewCommandColumn4.AllowResize = false;
+            gridViewCommandColumn4.DefaultText = "Редагувати";
+            gridViewCommandColumn4.HeaderText = "";
+            gridViewCommandColumn4.Name = "EditColumn";
+            gridViewCommandColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn4.UseDefaultText = true;
+            gridViewCommandColumn4.Width = 100;
+            gridViewTextBoxColumn17.HeaderText = "";
+            gridViewTextBoxColumn17.Name = "EmptyColumn";
+            gridViewTextBoxColumn17.Width = 39;
             this.gvRightholdersList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn109,
-            gridViewTextBoxColumn110,
-            gridViewTextBoxColumn111,
-            gridViewTextBoxColumn112,
-            gridViewDateTimeColumn28,
-            gridViewDecimalColumn82,
-            gridViewDecimalColumn83,
-            gridViewCommandColumn19,
-            gridViewCommandColumn20,
-            gridViewTextBoxColumn113});
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewDateTimeColumn4,
+            gridViewDecimalColumn10,
+            gridViewDecimalColumn11,
+            gridViewCommandColumn3,
+            gridViewCommandColumn4,
+            gridViewTextBoxColumn17});
             this.gvRightholdersList.MasterTemplate.DataSource = this.rightHolderMainViewBindingSource;
             this.gvRightholdersList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition46;
+            this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition6;
             this.gvRightholdersList.Name = "gvRightholdersList";
             this.gvRightholdersList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvRightholdersList.ReadOnly = true;
@@ -611,10 +621,11 @@
             this.newCreateRightholderPageView.Controls.Add(this.createRightholderRoyaltyPage);
             this.newCreateRightholderPageView.Controls.Add(this.createRightholderRigthLimitationsPage);
             this.newCreateRightholderPageView.Controls.Add(this.createRightholderTerritoryLimitationsPage);
+            this.newCreateRightholderPageView.Controls.Add(this.createRightholderAgreementPage);
             this.newCreateRightholderPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.newCreateRightholderPageView.Location = new System.Drawing.Point(3, 34);
             this.newCreateRightholderPageView.Name = "newCreateRightholderPageView";
-            this.newCreateRightholderPageView.SelectedPage = this.createRightholderAnketaPage;
+            this.newCreateRightholderPageView.SelectedPage = this.createRightholderAgreementPage;
             this.newCreateRightholderPageView.Size = new System.Drawing.Size(1028, 575);
             this.newCreateRightholderPageView.TabIndex = 1;
             this.newCreateRightholderPageView.ThemeName = "Office2013Light";
@@ -936,7 +947,7 @@
             // 
             // 
             // 
-            this.ctrlReAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 737, 20);
+            this.ctrlReAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 736, 20);
             this.ctrlReAddress.TxtAddress.RootElement.StretchVertically = true;
             this.ctrlReAddress.TxtAddress.Size = new System.Drawing.Size(736, 20);
             this.ctrlReAddress.TxtAddress.TabIndex = 10;
@@ -950,7 +961,7 @@
             // 
             // 
             // 
-            this.ctrlReAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(504, 0, 233, 20);
+            this.ctrlReAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(504, 0, 232, 20);
             this.ctrlReAddress.TxtCity.RootElement.StretchVertically = true;
             this.ctrlReAddress.TxtCity.Size = new System.Drawing.Size(232, 20);
             this.ctrlReAddress.TxtCity.TabIndex = 23;
@@ -1030,7 +1041,7 @@
             // 
             // 
             // 
-            this.ctrlLeAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 737, 20);
+            this.ctrlLeAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 736, 20);
             this.ctrlLeAddress.TxtAddress.RootElement.StretchVertically = true;
             this.ctrlLeAddress.TxtAddress.Size = new System.Drawing.Size(736, 20);
             this.ctrlLeAddress.TxtAddress.TabIndex = 10;
@@ -1044,7 +1055,7 @@
             // 
             // 
             // 
-            this.ctrlLeAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(504, 0, 233, 20);
+            this.ctrlLeAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(504, 0, 232, 20);
             this.ctrlLeAddress.TxtCity.RootElement.StretchVertically = true;
             this.ctrlLeAddress.TxtCity.Size = new System.Drawing.Size(232, 20);
             this.ctrlLeAddress.TxtCity.TabIndex = 23;
@@ -1116,7 +1127,7 @@
             // 
             // 
             // 
-            this.ctrlFaAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 737, 20);
+            this.ctrlFaAddress.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 736, 20);
             this.ctrlFaAddress.TxtAddress.RootElement.StretchVertically = true;
             this.ctrlFaAddress.TxtAddress.Size = new System.Drawing.Size(736, 20);
             this.ctrlFaAddress.TxtAddress.TabIndex = 10;
@@ -1131,7 +1142,7 @@
             // 
             // 
             // 
-            this.ctrlFaAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(504, 0, 233, 20);
+            this.ctrlFaAddress.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(504, 0, 232, 20);
             this.ctrlFaAddress.TxtCity.RootElement.StretchVertically = true;
             this.ctrlFaAddress.TxtCity.Size = new System.Drawing.Size(232, 20);
             this.ctrlFaAddress.TxtCity.TabIndex = 23;
@@ -1142,6 +1153,7 @@
             this.createRightholderPassportPage.Controls.Add(this.createRightholderPassportPageView);
             this.createRightholderPassportPage.Controls.Add(this.btnPrevAnketa);
             this.createRightholderPassportPage.Controls.Add(this.btnNextRoyalty);
+            this.createRightholderPassportPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderPassportPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderPassportPage.Name = "createRightholderPassportPage";
             this.createRightholderPassportPage.Size = new System.Drawing.Size(883, 565);
@@ -1257,6 +1269,7 @@
             this.createRightholderRoyaltyPage.Controls.Add(this.ddlTypeMethodGet);
             this.createRightholderRoyaltyPage.Controls.Add(this.btnPrevPassport);
             this.createRightholderRoyaltyPage.Controls.Add(this.btnNextRightLimitation);
+            this.createRightholderRoyaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderRoyaltyPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRoyaltyPage.Name = "createRightholderRoyaltyPage";
             this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(883, 565);
@@ -1555,6 +1568,7 @@
             this.createRightholderRigthLimitationsPage.Controls.Add(this.btnNextTerritoryLimitation);
             this.createRightholderRigthLimitationsPage.Controls.Add(this.btnPrevRoyalty);
             this.createRightholderRigthLimitationsPage.Controls.Add(this.ctrlExclusionsLimitations);
+            this.createRightholderRigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderRigthLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRigthLimitationsPage.Name = "createRightholderRigthLimitationsPage";
             this.createRightholderRigthLimitationsPage.Size = new System.Drawing.Size(883, 565);
@@ -1677,6 +1691,39 @@
             this.btnPrevRightLimitation.ThemeName = "Office2013Light";
             this.btnPrevRightLimitation.Click += new System.EventHandler(this.btnPrevRightLimitation_Click);
             // 
+            // createRightholderAgreementPage
+            // 
+            this.createRightholderAgreementPage.Controls.Add(this.btnGenerateRightholderAgreement);
+            this.createRightholderAgreementPage.Controls.Add(this.pdfvRightholderAgreement);
+            this.createRightholderAgreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
+            this.createRightholderAgreementPage.Location = new System.Drawing.Point(141, 5);
+            this.createRightholderAgreementPage.Name = "createRightholderAgreementPage";
+            this.createRightholderAgreementPage.Size = new System.Drawing.Size(882, 565);
+            this.createRightholderAgreementPage.Text = "Договір";
+            // 
+            // btnGenerateRightholderAgreement
+            // 
+            this.btnGenerateRightholderAgreement.Location = new System.Drawing.Point(4, 4);
+            this.btnGenerateRightholderAgreement.Name = "btnGenerateRightholderAgreement";
+            this.btnGenerateRightholderAgreement.Size = new System.Drawing.Size(110, 24);
+            this.btnGenerateRightholderAgreement.TabIndex = 1;
+            this.btnGenerateRightholderAgreement.Text = "Cформувати";
+            this.btnGenerateRightholderAgreement.ThemeName = "Office2013Light";
+            this.btnGenerateRightholderAgreement.Click += new System.EventHandler(this.btnGenerateRightholderAgreement_Click);
+            // 
+            // pdfvRightholderAgreement
+            // 
+            this.pdfvRightholderAgreement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pdfvRightholderAgreement.Controls.Add(this.waitbarAgreement);
+            this.pdfvRightholderAgreement.Location = new System.Drawing.Point(3, 34);
+            this.pdfvRightholderAgreement.Name = "pdfvRightholderAgreement";
+            this.pdfvRightholderAgreement.Size = new System.Drawing.Size(876, 476);
+            this.pdfvRightholderAgreement.TabIndex = 0;
+            this.pdfvRightholderAgreement.ThemeName = "Office2013Light";
+            this.pdfvRightholderAgreement.ThumbnailsScaleFactor = 0.15F;
+            // 
             // mainPageRightsObjects
             // 
             this.mainPageRightsObjects.Controls.Add(this.objectsPageView);
@@ -1745,66 +1792,66 @@
             this.gvObjectsRightsList.MasterTemplate.AllowEditRow = false;
             this.gvObjectsRightsList.MasterTemplate.AutoGenerateColumns = false;
             this.gvObjectsRightsList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn84.DataType = typeof(int);
-            gridViewDecimalColumn84.FieldName = "ObjId";
-            gridViewDecimalColumn84.HeaderText = "ObjId";
-            gridViewDecimalColumn84.IsAutoGenerated = true;
-            gridViewDecimalColumn84.IsVisible = false;
-            gridViewDecimalColumn84.Name = "ObjId";
-            gridViewTextBoxColumn114.FieldName = "Iswc";
-            gridViewTextBoxColumn114.HeaderText = "ISWC";
-            gridViewTextBoxColumn114.IsAutoGenerated = true;
-            gridViewTextBoxColumn114.Name = "Iswc";
-            gridViewTextBoxColumn114.Width = 100;
-            gridViewTextBoxColumn115.FieldName = "Name";
-            gridViewTextBoxColumn115.HeaderText = "Назва";
-            gridViewTextBoxColumn115.IsAutoGenerated = true;
-            gridViewTextBoxColumn115.Name = "Name";
-            gridViewTextBoxColumn115.Width = 284;
-            gridViewTextBoxColumn116.FieldName = "GenreName";
-            gridViewTextBoxColumn116.HeaderText = "Жанр";
-            gridViewTextBoxColumn116.IsAutoGenerated = true;
-            gridViewTextBoxColumn116.Name = "GenreName";
-            gridViewTextBoxColumn116.Width = 104;
-            gridViewDecimalColumn85.DataType = typeof(double);
-            gridViewDecimalColumn85.FieldName = "Duration";
-            gridViewDecimalColumn85.HeaderText = "Час виконання";
-            gridViewDecimalColumn85.IsAutoGenerated = true;
-            gridViewDecimalColumn85.Name = "Duration";
-            gridViewDecimalColumn85.Width = 109;
-            gridViewDecimalColumn86.DataType = typeof(double);
-            gridViewDecimalColumn86.FieldName = "Rate";
-            gridViewDecimalColumn86.HeaderText = "Загальний % володіння";
-            gridViewDecimalColumn86.IsAutoGenerated = true;
-            gridViewDecimalColumn86.Name = "Rate";
-            gridViewDecimalColumn86.Width = 119;
-            gridViewTextBoxColumn117.FieldName = "Performer";
-            gridViewTextBoxColumn117.HeaderText = "Виконавець";
-            gridViewTextBoxColumn117.IsAutoGenerated = true;
-            gridViewTextBoxColumn117.Name = "Performer";
-            gridViewTextBoxColumn117.Width = 147;
-            gridViewDecimalColumn87.DataType = typeof(double);
-            gridViewDecimalColumn87.FieldName = "Profit";
-            gridViewDecimalColumn87.HeaderText = "Дохід з початку року";
-            gridViewDecimalColumn87.IsAutoGenerated = true;
-            gridViewDecimalColumn87.Name = "Profit";
-            gridViewDecimalColumn87.Width = 114;
-            gridViewTextBoxColumn118.HeaderText = "";
-            gridViewTextBoxColumn118.Name = "EmptyColumn";
-            gridViewTextBoxColumn118.Width = 7;
+            gridViewDecimalColumn12.DataType = typeof(int);
+            gridViewDecimalColumn12.FieldName = "ObjId";
+            gridViewDecimalColumn12.HeaderText = "ObjId";
+            gridViewDecimalColumn12.IsAutoGenerated = true;
+            gridViewDecimalColumn12.IsVisible = false;
+            gridViewDecimalColumn12.Name = "ObjId";
+            gridViewTextBoxColumn18.FieldName = "Iswc";
+            gridViewTextBoxColumn18.HeaderText = "ISWC";
+            gridViewTextBoxColumn18.IsAutoGenerated = true;
+            gridViewTextBoxColumn18.Name = "Iswc";
+            gridViewTextBoxColumn18.Width = 100;
+            gridViewTextBoxColumn19.FieldName = "Name";
+            gridViewTextBoxColumn19.HeaderText = "Назва";
+            gridViewTextBoxColumn19.IsAutoGenerated = true;
+            gridViewTextBoxColumn19.Name = "Name";
+            gridViewTextBoxColumn19.Width = 284;
+            gridViewTextBoxColumn20.FieldName = "GenreName";
+            gridViewTextBoxColumn20.HeaderText = "Жанр";
+            gridViewTextBoxColumn20.IsAutoGenerated = true;
+            gridViewTextBoxColumn20.Name = "GenreName";
+            gridViewTextBoxColumn20.Width = 104;
+            gridViewDecimalColumn13.DataType = typeof(double);
+            gridViewDecimalColumn13.FieldName = "Duration";
+            gridViewDecimalColumn13.HeaderText = "Час виконання";
+            gridViewDecimalColumn13.IsAutoGenerated = true;
+            gridViewDecimalColumn13.Name = "Duration";
+            gridViewDecimalColumn13.Width = 109;
+            gridViewDecimalColumn14.DataType = typeof(double);
+            gridViewDecimalColumn14.FieldName = "Rate";
+            gridViewDecimalColumn14.HeaderText = "Загальний % володіння";
+            gridViewDecimalColumn14.IsAutoGenerated = true;
+            gridViewDecimalColumn14.Name = "Rate";
+            gridViewDecimalColumn14.Width = 119;
+            gridViewTextBoxColumn21.FieldName = "Performer";
+            gridViewTextBoxColumn21.HeaderText = "Виконавець";
+            gridViewTextBoxColumn21.IsAutoGenerated = true;
+            gridViewTextBoxColumn21.Name = "Performer";
+            gridViewTextBoxColumn21.Width = 147;
+            gridViewDecimalColumn15.DataType = typeof(double);
+            gridViewDecimalColumn15.FieldName = "Profit";
+            gridViewDecimalColumn15.HeaderText = "Дохід з початку року";
+            gridViewDecimalColumn15.IsAutoGenerated = true;
+            gridViewDecimalColumn15.Name = "Profit";
+            gridViewDecimalColumn15.Width = 114;
+            gridViewTextBoxColumn22.HeaderText = "";
+            gridViewTextBoxColumn22.Name = "EmptyColumn";
+            gridViewTextBoxColumn22.Width = 7;
             this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn84,
-            gridViewTextBoxColumn114,
-            gridViewTextBoxColumn115,
-            gridViewTextBoxColumn116,
-            gridViewDecimalColumn85,
-            gridViewDecimalColumn86,
-            gridViewTextBoxColumn117,
-            gridViewDecimalColumn87,
-            gridViewTextBoxColumn118});
+            gridViewDecimalColumn12,
+            gridViewTextBoxColumn18,
+            gridViewTextBoxColumn19,
+            gridViewTextBoxColumn20,
+            gridViewDecimalColumn13,
+            gridViewDecimalColumn14,
+            gridViewTextBoxColumn21,
+            gridViewDecimalColumn15,
+            gridViewTextBoxColumn22});
             this.gvObjectsRightsList.MasterTemplate.DataSource = this.objectRightMainViewBindingSource;
             this.gvObjectsRightsList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition47;
+            this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition7;
             this.gvObjectsRightsList.Name = "gvObjectsRightsList";
             this.gvObjectsRightsList.ShowGroupPanel = false;
             this.gvObjectsRightsList.Size = new System.Drawing.Size(986, 614);
@@ -1919,57 +1966,57 @@
             this.gvObjectAuthors.MasterTemplate.AllowEditRow = false;
             this.gvObjectAuthors.MasterTemplate.AutoGenerateColumns = false;
             this.gvObjectAuthors.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn88.DataType = typeof(int);
-            gridViewDecimalColumn88.FieldName = "AuthId";
-            gridViewDecimalColumn88.HeaderText = "AuthId";
-            gridViewDecimalColumn88.IsAutoGenerated = true;
-            gridViewDecimalColumn88.IsVisible = false;
-            gridViewDecimalColumn88.Name = "AuthId";
-            gridViewDecimalColumn88.Width = 125;
-            gridViewDecimalColumn89.DataType = typeof(int);
-            gridViewDecimalColumn89.FieldName = "ObjId";
-            gridViewDecimalColumn89.HeaderText = "ObjId";
-            gridViewDecimalColumn89.IsAutoGenerated = true;
-            gridViewDecimalColumn89.IsVisible = false;
-            gridViewDecimalColumn89.Name = "ObjId";
-            gridViewDecimalColumn89.Width = 146;
-            gridViewComboBoxColumn37.DataType = typeof(int);
-            gridViewComboBoxColumn37.FieldName = "RoleCode";
-            gridViewComboBoxColumn37.HeaderText = "Творча роль";
-            gridViewComboBoxColumn37.Name = "RoleCode";
-            gridViewComboBoxColumn37.Width = 301;
-            gridViewTextBoxColumn119.FieldName = "AuthorName";
-            gridViewTextBoxColumn119.HeaderText = "Автор";
-            gridViewTextBoxColumn119.IsAutoGenerated = true;
-            gridViewTextBoxColumn119.Name = "AuthorName";
-            gridViewTextBoxColumn119.Width = 401;
-            gridViewComboBoxColumn38.DataType = typeof(System.Nullable<int>);
-            gridViewComboBoxColumn38.FieldName = "IsFolkOrUnknown";
-            gridViewComboBoxColumn38.HeaderText = "Народна / невідомий";
-            gridViewComboBoxColumn38.IsVisible = false;
-            gridViewComboBoxColumn38.Name = "IsFolkOrUnknown";
-            gridViewComboBoxColumn38.Width = 149;
-            gridViewCheckBoxColumn10.DataType = typeof(int);
-            gridViewCheckBoxColumn10.FieldName = "CustId";
-            gridViewCheckBoxColumn10.HeaderText = "Є правовласником";
-            gridViewCheckBoxColumn10.Name = "CustId";
-            gridViewCheckBoxColumn10.Width = 97;
-            gridViewTextBoxColumn120.AllowSort = false;
-            gridViewTextBoxColumn120.HeaderText = "";
-            gridViewTextBoxColumn120.Name = "emptyColumn";
-            gridViewTextBoxColumn120.Width = 80;
+            gridViewDecimalColumn16.DataType = typeof(int);
+            gridViewDecimalColumn16.FieldName = "AuthId";
+            gridViewDecimalColumn16.HeaderText = "AuthId";
+            gridViewDecimalColumn16.IsAutoGenerated = true;
+            gridViewDecimalColumn16.IsVisible = false;
+            gridViewDecimalColumn16.Name = "AuthId";
+            gridViewDecimalColumn16.Width = 125;
+            gridViewDecimalColumn17.DataType = typeof(int);
+            gridViewDecimalColumn17.FieldName = "ObjId";
+            gridViewDecimalColumn17.HeaderText = "ObjId";
+            gridViewDecimalColumn17.IsAutoGenerated = true;
+            gridViewDecimalColumn17.IsVisible = false;
+            gridViewDecimalColumn17.Name = "ObjId";
+            gridViewDecimalColumn17.Width = 146;
+            gridViewComboBoxColumn5.DataType = typeof(int);
+            gridViewComboBoxColumn5.FieldName = "RoleCode";
+            gridViewComboBoxColumn5.HeaderText = "Творча роль";
+            gridViewComboBoxColumn5.Name = "RoleCode";
+            gridViewComboBoxColumn5.Width = 301;
+            gridViewTextBoxColumn23.FieldName = "AuthorName";
+            gridViewTextBoxColumn23.HeaderText = "Автор";
+            gridViewTextBoxColumn23.IsAutoGenerated = true;
+            gridViewTextBoxColumn23.Name = "AuthorName";
+            gridViewTextBoxColumn23.Width = 401;
+            gridViewComboBoxColumn6.DataType = typeof(System.Nullable<int>);
+            gridViewComboBoxColumn6.FieldName = "IsFolkOrUnknown";
+            gridViewComboBoxColumn6.HeaderText = "Народна / невідомий";
+            gridViewComboBoxColumn6.IsVisible = false;
+            gridViewComboBoxColumn6.Name = "IsFolkOrUnknown";
+            gridViewComboBoxColumn6.Width = 149;
+            gridViewCheckBoxColumn2.DataType = typeof(int);
+            gridViewCheckBoxColumn2.FieldName = "CustId";
+            gridViewCheckBoxColumn2.HeaderText = "Є правовласником";
+            gridViewCheckBoxColumn2.Name = "CustId";
+            gridViewCheckBoxColumn2.Width = 97;
+            gridViewTextBoxColumn24.AllowSort = false;
+            gridViewTextBoxColumn24.HeaderText = "";
+            gridViewTextBoxColumn24.Name = "emptyColumn";
+            gridViewTextBoxColumn24.Width = 80;
             this.gvObjectAuthors.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn88,
-            gridViewDecimalColumn89,
-            gridViewComboBoxColumn37,
-            gridViewTextBoxColumn119,
-            gridViewComboBoxColumn38,
-            gridViewCheckBoxColumn10,
-            gridViewTextBoxColumn120});
+            gridViewDecimalColumn16,
+            gridViewDecimalColumn17,
+            gridViewComboBoxColumn5,
+            gridViewTextBoxColumn23,
+            gridViewComboBoxColumn6,
+            gridViewCheckBoxColumn2,
+            gridViewTextBoxColumn24});
             this.gvObjectAuthors.MasterTemplate.DataSource = this.authorsBindingSource;
             this.gvObjectAuthors.MasterTemplate.EnableGrouping = false;
             this.gvObjectAuthors.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvObjectAuthors.MasterTemplate.ViewDefinition = tableViewDefinition48;
+            this.gvObjectAuthors.MasterTemplate.ViewDefinition = tableViewDefinition8;
             this.gvObjectAuthors.Name = "gvObjectAuthors";
             this.gvObjectAuthors.ShowGroupPanel = false;
             this.gvObjectAuthors.Size = new System.Drawing.Size(881, 458);
@@ -2123,50 +2170,50 @@
             this.gvObjectRightholders.MasterTemplate.AllowEditRow = false;
             this.gvObjectRightholders.MasterTemplate.AutoGenerateColumns = false;
             this.gvObjectRightholders.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewComboBoxColumn39.DataType = typeof(int);
-            gridViewComboBoxColumn39.FieldName = "RoleCode";
-            gridViewComboBoxColumn39.HeaderText = "Творча роль";
-            gridViewComboBoxColumn39.Name = "RoleCode";
-            gridViewComboBoxColumn39.Width = 184;
-            gridViewComboBoxColumn40.DataType = typeof(int);
-            gridViewComboBoxColumn40.FieldName = "CustId";
-            gridViewComboBoxColumn40.HeaderText = "Правовласник";
-            gridViewComboBoxColumn40.Name = "CustId";
-            gridViewComboBoxColumn40.Width = 307;
-            gridViewDecimalColumn90.DataType = typeof(System.Nullable<decimal>);
-            gridViewDecimalColumn90.FieldName = "Rate";
-            gridViewDecimalColumn90.FormatString = "{0:N2}";
-            gridViewDecimalColumn90.HeaderText = "%";
-            gridViewDecimalColumn90.IsAutoGenerated = true;
-            gridViewDecimalColumn90.Name = "Rate";
-            gridViewDecimalColumn90.Width = 85;
-            gridViewDateTimeColumn29.CustomFormat = "dd/MM/yyyy";
-            gridViewDateTimeColumn29.DataType = typeof(System.Nullable<System.DateTime>);
-            gridViewDateTimeColumn29.FieldName = "BeginDate";
-            gridViewDateTimeColumn29.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            gridViewDateTimeColumn29.FormatString = "{0:dd/MM/yyyy}";
-            gridViewDateTimeColumn29.HeaderText = "Дата початку";
-            gridViewDateTimeColumn29.IsAutoGenerated = true;
-            gridViewDateTimeColumn29.Name = "BeginDate";
-            gridViewDateTimeColumn29.Width = 147;
-            gridViewDateTimeColumn30.CustomFormat = "dd/MM/yyyy";
-            gridViewDateTimeColumn30.DataType = typeof(System.Nullable<System.DateTime>);
-            gridViewDateTimeColumn30.FieldName = "EndDate";
-            gridViewDateTimeColumn30.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            gridViewDateTimeColumn30.FormatString = "{0:dd/MM/yyyy}";
-            gridViewDateTimeColumn30.HeaderText = "Дата завершення";
-            gridViewDateTimeColumn30.IsAutoGenerated = true;
-            gridViewDateTimeColumn30.Name = "EndDate";
-            gridViewDateTimeColumn30.Width = 148;
+            gridViewComboBoxColumn7.DataType = typeof(int);
+            gridViewComboBoxColumn7.FieldName = "RoleCode";
+            gridViewComboBoxColumn7.HeaderText = "Творча роль";
+            gridViewComboBoxColumn7.Name = "RoleCode";
+            gridViewComboBoxColumn7.Width = 184;
+            gridViewComboBoxColumn8.DataType = typeof(int);
+            gridViewComboBoxColumn8.FieldName = "CustId";
+            gridViewComboBoxColumn8.HeaderText = "Правовласник";
+            gridViewComboBoxColumn8.Name = "CustId";
+            gridViewComboBoxColumn8.Width = 307;
+            gridViewDecimalColumn18.DataType = typeof(System.Nullable<decimal>);
+            gridViewDecimalColumn18.FieldName = "Rate";
+            gridViewDecimalColumn18.FormatString = "{0:N2}";
+            gridViewDecimalColumn18.HeaderText = "%";
+            gridViewDecimalColumn18.IsAutoGenerated = true;
+            gridViewDecimalColumn18.Name = "Rate";
+            gridViewDecimalColumn18.Width = 85;
+            gridViewDateTimeColumn5.CustomFormat = "dd/MM/yyyy";
+            gridViewDateTimeColumn5.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewDateTimeColumn5.FieldName = "BeginDate";
+            gridViewDateTimeColumn5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            gridViewDateTimeColumn5.FormatString = "{0:dd/MM/yyyy}";
+            gridViewDateTimeColumn5.HeaderText = "Дата початку";
+            gridViewDateTimeColumn5.IsAutoGenerated = true;
+            gridViewDateTimeColumn5.Name = "BeginDate";
+            gridViewDateTimeColumn5.Width = 147;
+            gridViewDateTimeColumn6.CustomFormat = "dd/MM/yyyy";
+            gridViewDateTimeColumn6.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewDateTimeColumn6.FieldName = "EndDate";
+            gridViewDateTimeColumn6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            gridViewDateTimeColumn6.FormatString = "{0:dd/MM/yyyy}";
+            gridViewDateTimeColumn6.HeaderText = "Дата завершення";
+            gridViewDateTimeColumn6.IsAutoGenerated = true;
+            gridViewDateTimeColumn6.Name = "EndDate";
+            gridViewDateTimeColumn6.Width = 148;
             this.gvObjectRightholders.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewComboBoxColumn39,
-            gridViewComboBoxColumn40,
-            gridViewDecimalColumn90,
-            gridViewDateTimeColumn29,
-            gridViewDateTimeColumn30});
+            gridViewComboBoxColumn7,
+            gridViewComboBoxColumn8,
+            gridViewDecimalColumn18,
+            gridViewDateTimeColumn5,
+            gridViewDateTimeColumn6});
             this.gvObjectRightholders.MasterTemplate.DataSource = this.copyRightBindingSource;
             this.gvObjectRightholders.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvObjectRightholders.MasterTemplate.ViewDefinition = tableViewDefinition49;
+            this.gvObjectRightholders.MasterTemplate.ViewDefinition = tableViewDefinition9;
             this.gvObjectRightholders.Name = "gvObjectRightholders";
             this.gvObjectRightholders.ShowGroupPanel = false;
             this.gvObjectRightholders.Size = new System.Drawing.Size(868, 596);
@@ -2191,7 +2238,7 @@
             // 
             // 
             // 
-            this.gvObjectPerformers.MasterTemplate.ViewDefinition = tableViewDefinition50;
+            this.gvObjectPerformers.MasterTemplate.ViewDefinition = tableViewDefinition10;
             this.gvObjectPerformers.Name = "gvObjectPerformers";
             this.gvObjectPerformers.Size = new System.Drawing.Size(868, 596);
             this.gvObjectPerformers.TabIndex = 0;
@@ -2229,6 +2276,26 @@
             // objectRightDictionariesBindingSource
             // 
             this.objectRightDictionariesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ObjectRightDictionaries);
+            // 
+            // waitbarAgreement
+            // 
+            this.waitbarAgreement.AssociatedControl = this.pdfvRightholderAgreement;
+            this.waitbarAgreement.Location = new System.Drawing.Point(403, 203);
+            this.waitbarAgreement.Name = "waitbarAgreement";
+            this.waitbarAgreement.Size = new System.Drawing.Size(70, 70);
+            this.waitbarAgreement.TabIndex = 9;
+            this.waitbarAgreement.Text = "radWaitingBar1";
+            this.waitbarAgreement.ThemeName = "Office2013Light";
+            this.waitbarAgreement.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitbarAgreement.WaitingSpeed = 50;
+            this.waitbarAgreement.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
             // RightholderWorkplace
             // 
@@ -2347,6 +2414,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.sbSaveRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRightLimitation)).EndInit();
+            this.createRightholderAgreementPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnGenerateRightholderAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pdfvRightholderAgreement)).EndInit();
+            this.pdfvRightholderAgreement.ResumeLayout(false);
             this.mainPageRightsObjects.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).EndInit();
             this.objectsPageView.ResumeLayout(false);
@@ -2392,6 +2463,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectPerformers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectPerformers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightDictionariesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitbarAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -2527,5 +2599,10 @@
         private Telerik.WinControls.UI.RadToggleButton tbtnNew;
         private Telerik.WinControls.UI.RadToggleButton tbtnNotAccepted;
         private Telerik.WinControls.UI.RadToggleButton tbtnActive;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderAgreementPage;
+        private Telerik.WinControls.UI.RadPdfViewer pdfvRightholderAgreement;
+        private Telerik.WinControls.UI.RadButton btnGenerateRightholderAgreement;
+        private Telerik.WinControls.UI.RadWaitingBar waitbarAgreement;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }
