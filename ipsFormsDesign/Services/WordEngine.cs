@@ -120,19 +120,19 @@ namespace ipsFormsDesign.Services
                             break;
                         case "СstLegalAddress":
                             if (anketa.FaAddress != anketa.ReAddress)
-                                item.Range.Text = $"{countries[anketa.ReCountry].CountryName} {anketa.ReCity} {anketa.ReAddress}";
+                                item.Range.Text = $"{countries[anketa.ReCountry ?? "804"].CountryName} {anketa.ReCity} {anketa.ReAddress}";
                             else
                                 item.Delete();
                             break;
                         case "СstResidentialAddress":
                             if (anketa.FaAddress != null)
-                                item.Range.Text = $"{countries[anketa.FaCountry].CountryName} {anketa.FaCity} {anketa.FaAddress}";
+                                item.Range.Text = $"{countries[anketa.FaCountry ?? "804" ].CountryName} {anketa.FaCity} {anketa.FaAddress}";
                             else
                                 item.Delete();
                             break;
                         case "СstCorrespAddress":
                             if (anketa.LeAddress != null)
-                                item.Range.Text = $"{countries[anketa.LeCountry].CountryName} {anketa.LeCity} {anketa.LeAddress}";
+                                item.Range.Text = $"{countries[anketa.LeCountry ?? "804"].CountryName} {anketa.LeCity} {anketa.LeAddress}";
                             else
                                 item.Delete();
                             break;
