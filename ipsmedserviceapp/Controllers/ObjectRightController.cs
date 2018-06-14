@@ -161,7 +161,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("listObjectRight")]
         public async Task<IActionResult> getListObjectRight()
         {
-            var list = await _dbContext.getViewData("select * from vTsk_1_ListObjectRight01", null);
+            var list = await _dbContext.getViewData("select * from vTsk_3_ListObjectRight01", null);
             return Json(list);
         }
 
