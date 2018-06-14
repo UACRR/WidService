@@ -291,7 +291,7 @@
             this.periodCtrl.MinimumSize = new System.Drawing.Size(150, 25);
             this.periodCtrl.Name = "periodCtrl";
             this.periodCtrl.Size = new System.Drawing.Size(225, 28);
-            this.periodCtrl.SplitterRatio = 96;
+            this.periodCtrl.SplitterRatio = 98;
             this.periodCtrl.TabIndex = 3;
             this.periodCtrl.TextTitle = "Період звітності";
             this.periodCtrl.TextValue = "Щоночі";
