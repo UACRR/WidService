@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Dictionary
         public string Iswc { get; set; }
         public string Name { get; set; }
         public string GenreName { get; set; }
-        public double Duration { get; set; }
+        public TimeSpan Duration { get; set; }
         public double Rate { get; set; }
         public string Performer { get; set; }
         public double Profit { get; set; }
