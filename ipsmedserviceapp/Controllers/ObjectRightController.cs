@@ -192,10 +192,10 @@ namespace ipsmedserviceapp.Controllers
         /// Об'єкти (ВСІ)-от правообл
         /// </summary>
         /// <returns></returns>
-        [HttpGet("view/list_0301")]
-        public async Task<IActionResult> getvtsk_3_OR_03()
+        [HttpGet("view/list_0301/{id}")]
+        public async Task<IActionResult> getvtsk_3_OR_03(int id)
         {
-            var list = await _dbContext.getViewData("select * from vtsk_3_OR_03", null);
+            var list = await _dbContext.getViewData($"select * from vtsk_3_OR_03 where custId = {id}", null);
             return Json(list);
         }
 
