@@ -73,7 +73,7 @@ namespace ipsFormsDesign.Services
                     item.Temporary = true;
                     string title = item.Title.Trim();
                     var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-                    var regions = _dic.region.ToDictionary(rec => rec.CodeI );
+                    var regions = _dic.region.ToDictionary(rec => rec.CodeI);
 
                     switch (title)
                     {
@@ -119,13 +119,22 @@ namespace ipsFormsDesign.Services
                             item.Range.Text = Utils.NumPhrase(Convert.ToUInt32(agrRh.RateCourt), true); ;
                             break;
                         case "СstLegalAddress":
-                            item.Range.Text = $"{countries[anketa.ReCountry].CountryName} місто {anketa.ReCity} {anketa.ReAddress}";
+                            if (anketa.FaAddress != anketa.ReAddress)
+                                item.Range.Text = $"{countries[anketa.ReCountry].CountryName} {anketa.ReCity} {anketa.ReAddress}";
+                            else
+                                item.Delete();
                             break;
                         case "СstResidentialAddress":
-                            item.Range.Text = $"{countries[anketa.FaCountry].CountryName} місто {anketa.FaCity} {anketa.FaAddress}";
+                            if (anketa.FaAddress != null)
+                                item.Range.Text = $"{countries[anketa.FaCountry].CountryName} {anketa.FaCity} {anketa.FaAddress}";
+                            else
+                                item.Delete();
                             break;
                         case "СstCorrespAddress":
-                            item.Range.Text = $"{countries[anketa.LeCountry].CountryName} місто {anketa.LeCity} {anketa.LeAddress}";
+                            if (anketa.LeAddress != null)
+                                item.Range.Text = $"{countries[anketa.LeCountry].CountryName} {anketa.LeCity} {anketa.LeAddress}";
+                            else
+                                item.Delete();
                             break;
                         case "СstBDate":
                             item.Range.Text = $"{anketa.BirthDate:dd.MM.yyyy}";
