@@ -155,7 +155,7 @@ namespace IpsViewComponentLibrary
             foreach (var item in moneyPeriod?.Select(rec => rec.Paid)?.ToList())
             {
                 
-                var ststuse = item.MoneyType;
+                //var ststuse = item.MoneyType;
                 if (item != null)
                     source.Add(new GridPayments
                     {
