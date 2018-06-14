@@ -45,7 +45,9 @@ namespace ipsmedserviceapp.Controllers
 
             var currDate = DateTime.Now.Date;
 
-            await _dbContext.TermsOfService
+            await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,0) as ourService
+from CopyrightKind t1
+left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.codeI", new SqlParameter("@custid", id) )
                 .Include(tos => tos.CrkindCodeNavigation)
                     .ThenInclude(ck => ck.CrGroupCodeNavigation)
                 .Where(tos => tos.CustId == id)

@@ -77,8 +77,14 @@ namespace ipsFormsDesign.Services
                         case "docNumberR":
                             item.Range.Text = agr.AgrNumber;
                             break;
-                        case "docDateBegin":
+                        case "docDate":
                             item.Range.Text = $"{agr.AgrDate:dd.MM.yyyy}";
+                            break;
+                        case "docDateBegin":
+                            item.Range.Text = $"{agrRh.DateBegin:dd.MM.yyyy}";
+                            break;
+                        case "docDateEnd":
+                            item.Range.Text = $"{agrRh.DateEnd:dd.MM.yyyy}";
                             break;
                         case "СstName":
                             item.Range.Text = $"{anketa.LastName} {anketa.FirstName} {anketa.SurName ?? string.Empty}";
@@ -94,6 +100,8 @@ namespace ipsFormsDesign.Services
                             break;
                         case "TableTrrNotUse":
                             formTableExclude(item.Range.Tables, cust.RightHolder);
+                            if (cust.RightHolder.TerritoryExclude.Count == 0)
+                                item.Delete();
                             break;
                         case "prcntARlt":
                             item.Range.Text = $"{agrRh.RateCommiss:0}";
@@ -188,24 +196,24 @@ namespace ipsFormsDesign.Services
             }
         }
 
-        private void formTableInUse(Tables tables, RightHolder rightHolder )
+        private void formTableInUse(Tables tables, RightHolder rightHolder)
         {
             if (tables.Count == 0) return;
             Table table = tables[1];
 
-            for( int i = table.Rows.Count; i > 2; i--  )
+            for (int i = table.Rows.Count; i > 2; i--)
                 table.Rows[i].Delete();
 
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
 
             Row curRow = null;
-            if ( rightHolder.AroundWord == true )
+            if (rightHolder.AroundWord == true)
             {
                 curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
                 curRow.Cells[1].Range.Text = "Всіх країн світу";
             }
             else
-                foreach( var item in rightHolder.TerritoryInclude )
+                foreach (var item in rightHolder.TerritoryInclude)
                 {
 
                     curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
@@ -222,10 +230,10 @@ namespace ipsFormsDesign.Services
 
 
 
-            foreach( var item in termsOfServices )
+            foreach (var item in termsOfServices)
             {
                 int groupId = item.CrkindCodeNavigation.CrGroupCodeNavigation.CodeI;
-                if ( !group.Keys.Contains(groupId) )
+                if (!group.Keys.Contains(groupId))
                 {
                     group.Add(groupId, item.CrkindCodeNavigation.CrGroupCodeNavigation.Name);
                     body.Add(groupId, new List<TermsOfService>());
@@ -233,18 +241,18 @@ namespace ipsFormsDesign.Services
                 body[groupId].Add(item);
             }
 
-            foreach( var groupId in group.Keys )
+            foreach (var groupId in group.Keys)
             {
                 var groupName = group[groupId];
                 var curRow = table.Rows.Add();
-                //Range cellRng = curRow.Cells[1].Range;
+                Range cellRng = curRow.Cells[1].Range;
 
-                //cellRng.Text = groupName;
+                cellRng.Text = groupName;
                 //cellRng.Bold = 1;
                 //cellRng.Font.Size = cellRng.Font.Size + 1;
                 //cellRng.
                 var listTerm = body[groupId];
-                foreach( var item in listTerm )
+                foreach (var item in listTerm)
                 {
                     curRow = table.Rows.Add();
                     curRow.Cells[1].Range.Text = item.CrkindCodeNavigation.Name;
