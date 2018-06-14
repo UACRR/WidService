@@ -248,6 +248,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calculationCtrl.AutoScroll = true;
             this.calculationCtrl.Location = new System.Drawing.Point(0, 0);
+            this.calculationCtrl.MaximumSize = new System.Drawing.Size(3000, 1000);
             this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
             this.calculationCtrl.Name = "calculationCtrl";
             this.calculationCtrl.Size = new System.Drawing.Size(1058, 595);
