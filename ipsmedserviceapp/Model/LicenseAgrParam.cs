@@ -22,6 +22,7 @@ namespace ipsmedserviceapp.Model
         public int? LicStatus { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
+        public int? AnkVersion { get; set; }
 
         public LicenseAgreement Lic { get; set; }
         public AgreementStatus LicStatusNavigation { get; set; }

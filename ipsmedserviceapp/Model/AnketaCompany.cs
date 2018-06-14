@@ -29,6 +29,10 @@ namespace ipsmedserviceapp.Model
         public int? FaRegion { get; set; }
         public string RegistrNumber { get; set; }
         public string RegistrWho { get; set; }
+        public string LeCity { get; set; }
+        public string LeCountry { get; set; }
+        public string LePostIndex { get; set; }
+        public int? LeRegion { get; set; }
 
         public ActivityType ActivityCodeNavigation { get; set; }
         public BankAccount BanAcc { get; set; }
@@ -38,6 +42,8 @@ namespace ipsmedserviceapp.Model
         public Region FaRegionNavigation { get; set; }
         public Country JaCountryNavigation { get; set; }
         public Region JaRegionNavigation { get; set; }
+        public Country LeCountryNavigation { get; set; }
+        public Region LeRegionNavigation { get; set; }
         public AnketaStatus StatusNavigation { get; set; }
         public TypeVat TypeVatNavigation { get; set; }
     }

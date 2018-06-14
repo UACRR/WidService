@@ -24,7 +24,7 @@ namespace ipsFormsDesign.Model
         public string Label { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
-        public double? Duration { get; set; }
+        public TimeSpan? Duration { get; set; }
 
         public ObjectRight Obj { get; set; }
         public ICollection<MediaFile> MediaFile { get; set; }
