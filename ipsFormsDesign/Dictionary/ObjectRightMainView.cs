@@ -8,13 +8,15 @@ namespace ipsFormsDesign.Dictionary
     public class ObjectRightMainView
     {
         public int ObjId { get; set; }
-        public string Iswc { get; set; }
         public string Name { get; set; }
+        public string Category { get; set; }
         public string GenreName { get; set; }
-        public double Duration { get; set; }
-        public double Rate { get; set; }
+        public double Duration { get; set; } // which units?
+        public string SpecName { get; set; } // pereklad, obrobka - maight be one-to-many relations?
+        public double RateTotal { get; set; }
         public string Performer { get; set; }
         public double Profit { get; set; }
+        // no need for genre Type
     }
 
     public class ViewCustomer

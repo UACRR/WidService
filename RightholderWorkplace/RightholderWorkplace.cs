@@ -156,6 +156,8 @@ namespace RightholderWorkplace
             //cbAroundWorld.DataBindings.Add("Checked", _rightHolder, "AroundWord", true, DataSourceUpdateMode.OnPropertyChanged, false);
         }
 
+        #region Rightholders page
+
         #region Next / Prev buttons
 
         private void btnNextAnketa_Click(object sender, EventArgs e)
@@ -295,11 +297,9 @@ namespace RightholderWorkplace
 
         private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
-            if (sender is GridHeaderCellElement headerCell)
-            {
-                e.ToolTipText = headerCell.Text;
-            }
+            SetTooltipTextFromHeader(sender, e);
         }
+
 
         private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
         {
@@ -397,6 +397,8 @@ namespace RightholderWorkplace
 
         #endregion
 
+        #endregion
+
         private void UpdateDataSources()
         {
             ctrlAnketaPerson.DataSourceCustomer = _customer;
@@ -475,7 +477,7 @@ namespace RightholderWorkplace
             copyRightBindingSource.DataSource = _objectRight.CopyRight;
         }
 
-        #region Object right commands
+        #region Objectrights page
 
         private void btnSaveTest_Click(object sender, EventArgs e)
         {
@@ -491,6 +493,23 @@ namespace RightholderWorkplace
                 authorItemView.StartPosition = FormStartPosition.CenterParent;
                 authorItemView.ShowDialog();
                 authorsBindingSource.ResetBindings(false);
+            }
+        }
+
+        private void gvObjectsRightsList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        {
+            SetTooltipTextFromHeader(sender, e);
+        }
+
+        #endregion
+
+        #region Common Helpers
+
+        private static void SetTooltipTextFromHeader(object sender, ToolTipTextNeededEventArgs e)
+        {
+            if (sender is GridHeaderCellElement headerCell)
+            {
+                e.ToolTipText = headerCell.Text;
             }
         }
 
