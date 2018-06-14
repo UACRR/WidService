@@ -175,12 +175,15 @@ namespace ipsFormsDesign.Services
         {
             if (tables.Count == 0) return;
             Table table = tables[1];
-            if(table.Rows.Count > 0)
-            table.Rows.Delete();
+
+            for (int i = table.Rows.Count; i > 2; i--)
+                table.Rows[i].Delete();
+
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
             foreach (var item in rightHolder.TerritoryExclude)
             {
-                var curRow = table.Rows.Add();
+                curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
                 curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
             }
         }

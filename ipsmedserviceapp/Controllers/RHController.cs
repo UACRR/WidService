@@ -252,7 +252,8 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                     AgreementMaster addAgr = new AgreementMaster();
                     addAgr.SetFields(item);
                     _dbContext.AppendList(item.AgreementAddRh, addAgr.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
-                    // _dbContext.AppendList(addAgr.AgreementAddRh, destCustomer.RightHolder.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
+                    foreach (var addRhItem in addAgr.AgreementAddRh)
+                        destCustomer.RightHolder.AgreementAddRh.Add(addRhItem);
                     destCustomer.AgreementMaster.Add(addAgr);
                 });
             }
