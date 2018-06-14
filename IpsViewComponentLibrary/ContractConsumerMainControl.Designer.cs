@@ -94,16 +94,17 @@ namespace IpsViewComponentLibrary
             // 
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateBegin.Location = new System.Drawing.Point(156, 26);
-            this.rdtPickerDateBegin.MaxDate = new System.DateTime(2018, 5, 31, 14, 13, 23, 112);
+            this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 5, 31, 0, 0, 0, 0);
             this.rdtPickerDateBegin.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.Name = "rdtPickerDateBegin";
-            this.rdtPickerDateBegin.NullDate = new System.DateTime(2018, 6, 1, 14, 13, 23, 98);
+            this.rdtPickerDateBegin.NullDate = new System.DateTime(2018, 6, 13, 16, 4, 23, 37);
             this.rdtPickerDateBegin.NullText = "  /  /";
             this.rdtPickerDateBegin.Size = new System.Drawing.Size(120, 20);
             this.rdtPickerDateBegin.TabIndex = 2;
             this.rdtPickerDateBegin.TabStop = false;
-            this.rdtPickerDateBegin.Text = "31.05.2018";
-            this.rdtPickerDateBegin.Value = new System.DateTime(2018, 5, 31, 14, 13, 23, 112);
+            this.rdtPickerDateBegin.Value = new System.DateTime(2018, 6, 13, 16, 4, 23, 37);
+            this.rdtPickerDateBegin.ValueChanged += new System.EventHandler(this.rdtPickerDateBegin_ValueChanged);
+            ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.rdtPickerDateBegin.GetChildAt(0))).Text = "";
             // 
             // rdtPickerDateEnd
             // 
@@ -111,15 +112,12 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateEnd.Location = new System.Drawing.Point(354, 25);
             this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.rdtPickerDateEnd.NullDate = DateTime.Now;
             this.rdtPickerDateEnd.Name = "rdtPickerDateEnd";
-            this.rdtPickerDateEnd.NullDate = new System.DateTime(2018, 6, 1, 14, 22, 42, 878);
             this.rdtPickerDateEnd.NullText = "  /  /";
             this.rdtPickerDateEnd.Size = new System.Drawing.Size(120, 20);
             this.rdtPickerDateEnd.TabIndex = 3;
             this.rdtPickerDateEnd.TabStop = false;
-            this.rdtPickerDateEnd.Value = new System.DateTime(2018, 6, 1, 14, 22, 42, 878);
-            this.rdtPickerDateEnd.ValueChanged += new System.EventHandler(this.rdtPickerDateEnd_ValueChanged);
-            this.rdtPickerDateEnd.TextChanged += new System.EventHandler(this.rdtPickerDateEnd_TextChanged);
             // 
             // lblContrDoFrom
             // 

@@ -141,7 +141,7 @@ namespace ipsAnketaClient
             else
                 lblMetrsPlaceTxt.ForeColor = Color.Black;
 
-
+            if(_data != null)
             foreach (var clnPlaceHoll in _data)
             {
                 if (clnPlaceHoll.HollName == rtxtBoxTypePremisses.Text && clnPlaceHoll.HollId == 0)

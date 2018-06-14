@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary
         public IpsRegistrationsCompanyControl()
         {
             InitializeComponent();
-
+            dtRegisterDate.SetUserCalendarSettingsm();
         }
 
         [Category("Data")]

@@ -86,6 +86,7 @@ namespace DebugFormForControls
         public AnketaPersonRightHolderControl()
         {
             InitializeComponent();
+            rdtPickerBirth.SetUserCalendarSettingsm();
         }
 
         #region Edit controls

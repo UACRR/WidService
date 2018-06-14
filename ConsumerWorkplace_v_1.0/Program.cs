@@ -28,6 +28,7 @@ namespace ConsumerWorkplace_v_1._0
         private static void LoadCabinet(Customer oo, object ooo)
         {
             ConsumerCabinet f = new ConsumerCabinet();
+            f.WindowState = FormWindowState.Maximized;
             ConsumerService m = new ConsumerService();
             FormPresenter control = new FormPresenter(f, m);
             f.SetData(oo);

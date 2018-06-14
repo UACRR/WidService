@@ -154,12 +154,19 @@
     <Compile Include="ContractConsumerMainControl.Designer.cs">
       <DependentUpon>ContractConsumerMainControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DistributionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DistributionForm.Designer.cs">
+      <DependentUpon>DistributionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExpandedFormForAnketaPersonRightHolder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExpandedFormForAnketaPersonRightHolder.Designer.cs">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExtensionUtils.cs" />
     <Compile Include="GlobalControlConsumerCabinet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -345,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ContractControl.resx">
       <DependentUpon>ContractControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DistributionForm.resx">
+      <DependentUpon>DistributionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExpandedFormForAnketaPersonRightHolder.resx">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>

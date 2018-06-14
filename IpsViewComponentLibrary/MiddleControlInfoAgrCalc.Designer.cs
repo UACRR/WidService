@@ -250,7 +250,7 @@
             this.calculationCtrl.MaximumSize = new System.Drawing.Size(1237, 1000);
             this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
             this.calculationCtrl.Name = "calculationCtrl";
-            this.calculationCtrl.Size = new System.Drawing.Size(963, 580);
+            this.calculationCtrl.Size = new System.Drawing.Size(946, 580);
             this.calculationCtrl.TabIndex = 0;
             // 
             // pvReports
@@ -269,7 +269,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reportsControl.Location = new System.Drawing.Point(4, 4);
             this.reportsControl.Name = "reportsControl";
-            this.reportsControl.Size = new System.Drawing.Size(1003, 470);
+            this.reportsControl.Size = new System.Drawing.Size(986, 470);
             this.reportsControl.TabIndex = 0;
             // 
             // userInfoCtrl

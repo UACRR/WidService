@@ -19,7 +19,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             string currentDir = AppDomain.CurrentDomain.BaseDirectory;
 
-            var license = cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).SingleOrDefault();
+            var license = cust.Client.LicenseAgreement.Where(rec => rec.LicStatus < 4).FirstOrDefault();
             var agree = license.Agr;
             var licenseParam = license.LicenseAgrParam.Where(rec => rec.LicVersion == license.LicVersion).SingleOrDefault();
             var anketa = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
