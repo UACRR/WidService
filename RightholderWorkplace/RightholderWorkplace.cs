@@ -444,6 +444,7 @@ namespace RightholderWorkplace
             var objectsRightsList = service.GetMainView();
             var objectRightContainer = service.GetData(5848);
             _objectRight = objectRightContainer.objectRight;
+            var rigthholdersObjectsRights = service.GetRightholdersObjectsRights(131);
 
             // dictionaries
             ddlGenreType.DataSource = _dictionariesObjectRight.genreType;
@@ -472,6 +473,7 @@ namespace RightholderWorkplace
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
             objectRightBindingSource.DataSource = _objectRight;
+            objectRightForRightholderBindingSource.DataSource = rigthholdersObjectsRights;
             mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
             authorsBindingSource.DataSource = _objectRight.Authors;
             copyRightBindingSource.DataSource = _objectRight.CopyRight;

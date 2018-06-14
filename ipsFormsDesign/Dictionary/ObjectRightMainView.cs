@@ -16,7 +16,23 @@ namespace ipsFormsDesign.Dictionary
         public double RateTotal { get; set; }
         public string Performer { get; set; }
         public double Profit { get; set; }
-        // no need for genre Type
+    }
+
+    public class ObjectRightForRightholder
+    {
+        public int CustId { get; set; }
+        public string NameClient { get; set; }
+        public int ObjId { get; set; }
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string GenreName { get; set; }
+        public TimeSpan Duration { get; set; }
+        public string RoleName { get; set; }
+        public string SpecName { get; set; }
+        public double RateTotal { get; set; }
+        public double RateRh { get; set; }
+        public string Performer { get; set; }
+        public double Profit { get; set; }
     }
 
     public class ViewCustomer
