@@ -24,6 +24,12 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
+        public IList<ObjectRightForRightholder> GetRightholdersObjectsRights(int custId)
+        {
+            var list = _webApi.GetList<ObjectRightForRightholder>($"objectright/view/list_0301/{custId}");
+            return list;
+        }
+
         public ContainerForObjectRihgt GetData(int objId)
         {
             var item = _webApi.GetItemById<ContainerForObjectRihgt>("objectright/detail", objId.ToString());

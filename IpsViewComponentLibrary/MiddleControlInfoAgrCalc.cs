@@ -96,8 +96,6 @@ namespace IpsViewComponentLibrary
                                             contactPerson?.Empl?.SurName;
             userInfoCtrl.WorkPositionContactPerson = "";
             userInfoCtrl.PhoneContactPerson = contactPerson?.Empl?.PhoneNumber;
-            userInfoCtrl.MobilePnoneContactPerson = "";
-            userInfoCtrl.FaksContactPerson = "";
             userInfoCtrl.EmailContactPerson = contactPerson?.Empl?.Email;
             userInfoCtrl.OrganisationForm = "";
         }
