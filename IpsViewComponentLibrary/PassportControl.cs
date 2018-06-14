@@ -23,6 +23,7 @@ namespace IpsViewComponentLibrary
         public PassportControl()
         {
             InitializeComponent();
+            rdtPickerPasportIssuedWhen.SetUserCalendarSettingsm();
         }
 
         private void rtxtBoxPasportNumber_KeyPress(object sender, KeyPressEventArgs e)

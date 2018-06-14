@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary
         }
 
 
-        public void SetDataSource(Customer sourceData, int id)
+        public void SetDataSource(Customer sourceData, int id, byte prem = 0)
         {
             dataTemp = sourceData;
             List<PremisesInstitution> data = new List<PremisesInstitution>();
@@ -65,10 +65,9 @@ namespace IpsViewComponentLibrary
                     data.Add(temp);
                 }
 
-            SetGridType(sourceData.Client.ClnBusinessPlace.SingleOrDefault(idItem => idItem.PlaceId == id).PlCode == 1
-                ? (byte) 1
-                : (byte) 2);
-
+            byte? type = (byte?) sourceData.Client.ClnBusinessPlace.SingleOrDefault(idItem => idItem.PlaceId == id)?.PlCode;
+            SetGridType(type ?? prem);
+                if(prem == 0)
             rGridViewPremises.DataSource = data;
         }
 

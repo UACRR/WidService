@@ -206,51 +206,6 @@ namespace ipsAnketaClient
 
         #endregion
 
-        #region DATASOURCES
-
-        //[Category("Dictionaries")]
-        //[AttributeProvider(typeof(IListSource))]
-        //public object RegionsPlacesCtrlDataSource
-        //{
-        //    get => addressControl.RegionsPlacesCtrlDataSource;
-        //    set => addressControl.RegionsPlacesCtrlDataSource = value;
-        //}
-        //
-        //[Category("Dictionaries")]
-        //public string RegionsPlacesCtrlDataMember
-        //{
-        //    get => addressControl.RegionsPlacesCtrlDataMember;
-        //    set => addressControl.RegionsPlacesCtrlDataMember = value;
-        //}
-        //
-        //[Category("Dictionaries")]
-        //public string RegionsPlacesCtrlDisplayMember
-        //{
-        //    get => addressControl.RegionsPlacesCtrlDisplayMember;
-        //    set => addressControl.RegionsPlacesCtrlDisplayMember = value;
-        //}
-        //
-        //[Category("Dictionaries")]
-        //public string RegionsPlacesCtrlValueMember
-        //{
-        //    get => addressControl.RegionsPlacesCtrlValueMember;
-        //    set => addressControl.RegionsPlacesCtrlValueMember = value;
-        //}
-        //
-        //[Category("Dictionaries")]
-        //public RadListDataItem RegionSelectedItem
-        //{
-        //    get => addressControl.RegionBind.SelectedItem;
-        //    set => addressControl.RegionBind.SelectedItem = value;
-        //}
-        //
-        //[Category("Dictionaries")]
-        //public object RegionSelectedValue
-        //{
-        //    get => addressControl.RegionBind.SelectedValue;
-        //    set => addressControl.RegionBind.SelectedValue = value;
-        //}
-        #endregion
 
         #region Premises ctrl button click EVENTS 
 
@@ -296,11 +251,16 @@ namespace ipsAnketaClient
 
             if (premisesType.IdSelectedRow != 0)
                 editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow);
-            else
+            else if (isNewInst)
+                editPremises = new AddPremisesForm(newPlace, premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
+            else 
                 editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
             editPremises.OnUpdateData += EditPremises_OnUpdateData; ;
             editPremises.StartPosition = FormStartPosition.CenterScreen;
-            editPremises.SetTypePremises(Convert.ToByte(data.Client.ClnBusinessPlace.SingleOrDefault(item => item.PlaceId == idRow).PlCode));
+            if(!isNewInst)
+                 editPremises.SetTypePremises(Convert.ToByte(data?.Client?.ClnBusinessPlace?.SingleOrDefault(item => item?.PlaceId == idRow)?.PlCode));
+            else
+                 editPremises.SetTypePremises(typePremises);
             editPremises.ShowDialog();
             editPremises.OnUpdateData -= EditPremises_OnUpdateData;
             editPremises = null;
@@ -337,7 +297,8 @@ namespace ipsAnketaClient
         private void EditPremises_OnUpdateData()
         {
             var editdata = data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
-            premisesType.SetDataSource(data,IdItemOfSelectRow);
+            premisesType.SetDataSource(data,IdItemOfSelectRow,typePremises);
+            premisesType.SetDataSource(newPlace);
             premisesType.RefreshGrid();
         }
 
