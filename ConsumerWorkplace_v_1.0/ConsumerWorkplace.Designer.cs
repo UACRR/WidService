@@ -456,6 +456,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             // 
+            this.clientNameCtrlRegistrationsCompany.DtRegisterDate.CalendarSize = new System.Drawing.Size(220, 180);
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Location = new System.Drawing.Point(278, 38);
             this.clientNameCtrlRegistrationsCompany.DtRegisterDate.Name = "dtRegisterDate";

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtAccountNumber = new Telerik.WinControls.UI.RadTextBox();
-            this.BankAccountBindingSource = new System.Windows.Forms.BindingSource();
+            this.BankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtTransitNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfoOkpo = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfo = new Telerik.WinControls.UI.RadTextBox();
@@ -126,6 +127,7 @@
             this.txtMfoOkpo.Name = "txtMfoOkpo";
             this.txtMfoOkpo.Size = new System.Drawing.Size(286, 20);
             this.txtMfoOkpo.TabIndex = 2;
+            this.txtMfoOkpo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMfoOkpo_KeyPress);
             // 
             // txtMfo
             // 

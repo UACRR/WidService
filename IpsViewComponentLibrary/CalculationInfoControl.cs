@@ -163,7 +163,6 @@ namespace IpsViewComponentLibrary
                         PaidId = item.PaidId,
                         NumberInvoice = item.NumberInvoice,
                         DateInvoice = item.DateInvoice.ToShortDateString(),
-                        State = item.MoneyType.ToString(),//moneyLinkStatus
                         Amount = item.Amount,
                         DestribAmount = item.DestribAmount,
                         GoalInvoice = item.GoalInvoice
@@ -216,7 +215,6 @@ namespace IpsViewComponentLibrary
     {
         public int PaidId { get; set; }
         public string SelectPeriod { get; set; }
-        public string State{ get; set; }
         public string DateInvoice { get; set; }
         public string NumberInvoice { get; set; }
         public string GoalInvoice { get; set; }

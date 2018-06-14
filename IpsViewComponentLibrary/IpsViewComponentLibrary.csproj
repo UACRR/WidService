@@ -282,6 +282,11 @@
     <Compile Include="IpsServiceComissionControl.Designer.cs">
       <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RegistrationPersonsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -405,6 +410,10 @@
     <EmbeddedResource Include="IpsServiceComissionControl.resx">
       <DependentUpon>IpsServiceComissionControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,7 +430,9 @@
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\createAct.ico" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
@@ -458,6 +469,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\viewAct.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
