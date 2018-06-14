@@ -228,6 +228,17 @@ namespace RightholderWorkplace
             newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
         }
 
+        private void btnNextAgreement_Click(object sender, EventArgs e)
+        {
+            createRightholderTerritoryLimitationsPage.Enabled = true;
+            newCreateRightholderPageView.SelectedPage = createRightholderAgreementPage;
+        }
+
+        private void btnPrevTerritoryLimitation_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderTerritoryLimitationsPage;
+        }
+
         #endregion
 
         private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)
