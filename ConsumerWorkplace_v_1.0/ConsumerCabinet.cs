@@ -24,28 +24,10 @@ namespace ConsumerWorkplace_v_1._0
         public ConsumerCabinet()
         {
             InitializeComponent();
-
-
             gcConsumerCabinet.OnGridRowSelectedChaged += GcConsumerCabinet_OnGridRowSelectedChaged;
-
-            dtTetsDate.DateTimePickerElement.Calendar.HeaderNavigationMode = HeaderNavigationMode.Zoom;
-            //dtTetsDate.DateTimePickerElement.Calendar.TodayButton.ShowBorder = true;
-            dtTetsDate.DateTimePickerElement.Calendar.TodayButton.Text = "Сьогодні";
-            //dtTetsDate.DateTimePickerElement.Calendar.ClearButton.Visibility = ElementVisibility.Hidden;
-            dtTetsDate.DateTimePickerElement.Calendar.ClearButton.ShowBorder = false;
-            dtTetsDate.DateTimePickerElement.Calendar.ShowFooter = true;
-            
-            dtTetsDate.DateTimePickerElement.Calendar.TodayButton.Click += TodayButton_Click;
-
-            dtTetsDate.DateTimePickerElement.Calendar.CalendarElement.CalendarStatusElement.LabelFormat = "dd/MM/yyyy";
-            dtTetsDate.DateTimePickerElement.CalendarSize = new Size(200,180);
-
         }
 
-        private void TodayButton_Click(object sender, EventArgs e)
-        {
-            dtTetsDate.Value = DateTime.Now;
-        }
+
 
         private Customer GcConsumerCabinet_OnGridRowSelectedChaged(int id)
         {
@@ -83,5 +65,7 @@ namespace ConsumerWorkplace_v_1._0
             _dic = dic;
             gcConsumerCabinet.SetDictionary(_dic);
         }
+
+
     }
 }

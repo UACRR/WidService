@@ -166,6 +166,7 @@
     <Compile Include="ExpandedFormForAnketaPersonRightHolder.Designer.cs">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExtensionUtils.cs" />
     <Compile Include="GlobalControlConsumerCabinet.cs">
       <SubType>UserControl</SubType>
     </Compile>

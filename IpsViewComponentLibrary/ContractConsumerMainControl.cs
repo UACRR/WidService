@@ -102,6 +102,9 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
             rdtPickerAgrDate.Value = DateTime.Now;
             rdtPickerDateBegin.Value = DateTime.Now;
+            rdtPickerAgrDate.SetUserCalendarSettingsm();
+            rdtPickerDateBegin.SetUserCalendarSettingsm();
+            rdtPickerDateEnd.SetUserCalendarSettingsm();
         }
 
         public bool Validator()

@@ -8,6 +8,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
 
 namespace DebugFormForControls
@@ -38,6 +39,7 @@ namespace DebugFormForControls
         public AnketaPersonControl()
         {
             InitializeComponent();
+            rdtPickerBirth.SetUserCalendarSettingsm();
         }
 
         /// <summary>
