@@ -2,6 +2,7 @@
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary;
 using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
@@ -36,11 +37,11 @@ namespace RightholderWorkplace
 
         ObjectRightService _objectRightService = new ObjectRightService();
 
-        public int SelectedRightholderId
+        public RightholderMainView SelectedRightholder
         {
             get
             {
-                return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView).CustId;
+                return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
             }
             set { }
         }
@@ -139,6 +140,8 @@ namespace RightholderWorkplace
         public RightholderWorkplace()
         {
             InitializeComponent();
+
+            WireUpObjectsRightsPageEvents();
 
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
@@ -375,7 +378,7 @@ namespace RightholderWorkplace
             }
             else if (currentColumnName == "ObjectListColumn")
             {
-                ShowRightholdersObjectsRights();
+                ShowObjectsRightsForRightholder(SelectedRightholder);
             }
         }
 
@@ -398,10 +401,12 @@ namespace RightholderWorkplace
 
         #region Rightholder page Helpers
 
-        private void EditRightholder()
+        private void EditRightholder(RightholderMainView rightholder = null)
         {
-            int custId = Convert.ToInt32(gvRightholdersList.CurrentRow.Cells["CustId"].Value);
-            _customer = GetCustomer(custId);
+            if (rightholder == null)
+                rightholder = SelectedRightholder;
+
+            _customer = GetCustomer(rightholder.CustId);
 
             UpdateDataSources();
 
@@ -410,6 +415,7 @@ namespace RightholderWorkplace
                 newCreateRightholderPageView.Pages[i].Enabled = true;
             }
 
+            MainPageView.SelectedPage = mainPageRightholders;
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
             newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
         }
@@ -431,11 +437,6 @@ namespace RightholderWorkplace
             UpdateRightholdersList();
 
             newRightholdersPageView.SelectedPage = newRightholdersListPage;
-        }
-
-        private void ShowRightholdersObjectsRights()
-        {
-            ShowObjectsRightsForRightholder(SelectedRightholderId);
         }
 
         #endregion
@@ -520,6 +521,25 @@ namespace RightholderWorkplace
 
         #region Objectrights page
 
+        private void WireUpObjectsRightsPageEvents()
+        {
+            ctrlRightholderSelector.RightholderChanged += CtrlRightholderSelector_RightholderChanged;
+            ctrlRightholderSelector.ShowAnketaCommandExecuted += CtrlRightholderSelector_ShowAnketaCommandExecuted;
+        }
+
+        private void CtrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
+        {
+            var rigthholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(selectedRightholder.CustId);
+
+            objectRightForRightholderBindingSource.DataSource = rigthholdersObjectsRightsList;
+        }
+
+        private void CtrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e)
+        {
+            if (ctrlRightholderSelector.Rightholder != null)
+                EditRightholder(ctrlRightholderSelector.Rightholder);
+        }
+
         private void btnSaveTest_Click(object sender, EventArgs e)
         {
             var service = new ObjectRightService();
@@ -542,14 +562,12 @@ namespace RightholderWorkplace
             SetTooltipTextFromHeader(sender, e);
         }
 
-        private void ShowObjectsRightsForRightholder(int selectedRightholderId)
+        private void ShowObjectsRightsForRightholder(RightholderMainView selectedRightholder)
         {
             MainPageView.SelectedPage = mainPageRightsObjects;
             objectsPageView.SelectedPage = rightholdersObjectsPage;
 
-            var rigthholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(selectedRightholderId);
-
-            objectRightForRightholderBindingSource.DataSource = rigthholdersObjectsRightsList;
+            ctrlRightholderSelector.Rightholder = selectedRightholder;
         }
 
         #endregion
