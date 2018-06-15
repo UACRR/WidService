@@ -504,6 +504,20 @@ public interface ICopyrightTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface ICopyRtranslate
+    {
+         int CRightId { get; set; }
+         int? RoleCode { get; set; }
+         string LangFrom { get; set; }
+         string LangTo { get; set; }
+}
+public interface ICounterNumber
+    {
+         int CodeI { get; set; }
+         string Name { get; set; }
+         int? CNum { get; set; }
+         string Prefix { get; set; }
+    }
 public interface ICountry
     {    int? ContinentCode { get; set; }
          string CountryCode { get; set; }
@@ -532,6 +546,9 @@ public interface ICreativeRoleTypeTr
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
+}
+public interface ICreativeTranslate
+    {    int CodeI { get; set; }
 }
 public interface ICrkindGroup
     {    int CodeI { get; set; }
@@ -932,6 +949,13 @@ public interface ILangTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface ILanguage
+    {    string CodeS { get; set; }
+         string Name { get; set; }
+         int? NameId { get; set; }
+         string NameSh3 { get; set; }
+         short? ShortChoise { get; set; }
+}
 public interface ILegalBasis
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1310,6 +1334,10 @@ public interface IPayTurn
          int? RegId { get; set; }
          int? DistId { get; set; }
 }
+public interface IPerformer
+    {    int PerId { get; set; }
+         string PerName { get; set; }
+}
 public interface IPeriod
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1451,6 +1479,11 @@ public interface IRelEmployee
          int PositionCode { get; set; }
          string RelDocument { get; set; }
 }
+public interface IRelEtGenre
+    {
+         int GenreCode { get; set; }
+         int EtGenreCode { get; set; }
+}
 public interface IRelEtRole
     {
          int RoleCode { get; set; }
@@ -1491,6 +1524,11 @@ public interface IRelObjGenre
     {
          int GenreId { get; set; }
          int ObjId { get; set; }
+}
+public interface IRelObjPerformer
+    {
+         int ObjId { get; set; }
+         int PerId { get; set; }
 }
 public interface IRelPopGenre
     {

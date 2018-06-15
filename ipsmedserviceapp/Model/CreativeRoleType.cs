@@ -22,6 +22,7 @@ namespace ipsmedserviceapp.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public CopyrightType CrtypeNavigation { get; set; }
+        public CreativeTranslate CreativeTranslate { get; set; }
         public ICollection<Authors> Authors { get; set; }
         public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }

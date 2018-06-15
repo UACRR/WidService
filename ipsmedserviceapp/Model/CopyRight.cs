@@ -24,5 +24,6 @@ namespace ipsmedserviceapp.Model
         public RightHolder Cust { get; set; }
         public ObjectRight Obj { get; set; }
         public CreativeRoleType RoleCodeNavigation { get; set; }
+        public CopyRtranslate CopyRtranslate { get; set; }
     }
 }
