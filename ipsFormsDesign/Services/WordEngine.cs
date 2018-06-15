@@ -152,7 +152,7 @@ namespace ipsFormsDesign.Services
                             item.Range.Text = customerName;
                             break;
                         case "СstPerson":
-                            item.Range.Text = $"{anketa.LastName} {anketa.FirstName} {anketa.SurName ?? string.Empty}";
+                            // item.Range.Text = $"{anketa.LastName} {anketa.FirstName} {anketa.SurName ?? string.Empty}";
                             break;
 
 
@@ -300,6 +300,7 @@ namespace ipsFormsDesign.Services
                         case "СstName":
                             item.Range.Text = $"{anketaComp.Name} ";
                             break;
+                            
  /*                      case "СstPerson":
                             item.Range.Text = $"{anketaComp.C} {anketa.FirstName} {anketa.SurName ?? string.Empty}";
                             break;
@@ -401,6 +402,7 @@ namespace ipsFormsDesign.Services
             if(table.Rows.Count > 0)
             table.Rows.Delete();
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null ;
             foreach (var item in rightHolder.TerritoryExclude)
             {
                 curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
