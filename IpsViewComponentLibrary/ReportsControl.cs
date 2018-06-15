@@ -10,6 +10,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using System.Windows.Forms;
 
+
 namespace IpsViewComponentLibrary
 {
     public partial class ReportsControl : UserControl
@@ -67,9 +68,16 @@ namespace IpsViewComponentLibrary
 
         private void btnViewReport_Click(object sender, EventArgs e)
         {
-            if (gvPeriodReports.Rows.Count == 0)
+            if (gvPeriodReports.Rows.Count == 10)
+            {
                 MessageBox.Show("Звіти за обраний період не знайдено!", "Звіти відсутні!", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                //return;
+            }
+
+            
+            ReportExcelViewForm viewForm = new ReportExcelViewForm(@"c:\Users\vpysmennyi\9_ВЕОН ПЛЮС січень 2018.xlsx");
+            viewForm.ShowDialog();
         }
 
         private void gvPeriods_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
