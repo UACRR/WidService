@@ -72,12 +72,14 @@
             this.btn.TabIndex = 1;
             this.btn.Text = "Кнопка";
             this.btn.ThemeName = "Office2007Silver";
+            this.btn.Click += new System.EventHandler(this.btn_Click);
             // 
             // gvReportContentView
             // 
             this.gvReportContentView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvReportContentView.AutoSizeRows = true;
             this.gvReportContentView.Location = new System.Drawing.Point(12, 55);
             // 
             // 
@@ -90,24 +92,29 @@
             gridViewTextBoxColumn1.FieldName = "IdReport";
             gridViewTextBoxColumn1.HeaderText = "Id";
             gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.Multiline = true;
             gridViewTextBoxColumn1.Name = "IdReport";
             gridViewTextBoxColumn2.FieldName = "ItemName";
             gridViewTextBoxColumn2.HeaderText = "Назва твору";
+            gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "ItemName";
             gridViewTextBoxColumn2.Width = 163;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "Performer";
             gridViewTextBoxColumn3.HeaderText = "Виконавець";
+            gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "Performer";
             gridViewTextBoxColumn3.Width = 149;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "AuthorMusic";
             gridViewTextBoxColumn4.HeaderText = "Автор музики";
+            gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "AuthorMusic";
             gridViewTextBoxColumn4.Width = 112;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "AuthorText";
             gridViewTextBoxColumn5.HeaderText = "Автор тексту";
+            gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "AuthorText";
             gridViewTextBoxColumn5.Width = 89;
             gridViewTextBoxColumn5.WrapText = true;
@@ -122,6 +129,7 @@
             gridViewTextBoxColumn6.HeaderText = "Кількість публічних сповіщень твору";
             gridViewTextBoxColumn6.MaxWidth = 120;
             gridViewTextBoxColumn6.MinWidth = 120;
+            gridViewTextBoxColumn6.Multiline = true;
             gridViewTextBoxColumn6.Name = "CountUse";
             gridViewTextBoxColumn6.Width = 120;
             gridViewTextBoxColumn6.WrapText = true;
@@ -153,7 +161,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 429);
+            this.ClientSize = new System.Drawing.Size(892, 430);
             this.Controls.Add(this.gvReportContentView);
             this.Controls.Add(this.btn);
             this.Controls.Add(this.lblTitle);
