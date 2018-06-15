@@ -214,6 +214,7 @@ public interface IAnketaCompany
          string LeCountry { get; set; }
          string LePostIndex { get; set; }
          int? LeRegion { get; set; }
+         string LeAddress { get; set; }
 }
 public interface IAnketaPerson
     {
@@ -1000,6 +1001,7 @@ public interface ILicenseAgrParam
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
          int? AnkVersion { get; set; }
+         string Comment { get; set; }
 }
 public interface ILicenseBigR
     {    int LicId { get; set; }

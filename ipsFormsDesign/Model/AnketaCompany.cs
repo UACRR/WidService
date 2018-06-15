@@ -34,6 +34,7 @@ namespace ipsFormsDesign.Model
         public string LeCountry { get; set; }
         public string LePostIndex { get; set; }
         public int? LeRegion { get; set; }
+        public string LeAddress { get; set; }
 
         public ActivityType ActivityCodeNavigation { get; set; }
         public BankAccount BanAcc { get; set; }

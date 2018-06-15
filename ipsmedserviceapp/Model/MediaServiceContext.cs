@@ -1062,6 +1062,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.JaRegion).HasColumnName("jaRegion");
 
+                entity.Property(e => e.LeAddress)
+                    .HasColumnName("leAddress")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.LeCity)
                     .HasColumnName("leCity")
                     .HasMaxLength(100)
@@ -4137,6 +4142,11 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("numeric(10, 5)");
 
                 entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
+
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(2048)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.DateBegin)
                     .HasColumnName("dateBegin")

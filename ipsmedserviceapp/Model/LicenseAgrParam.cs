@@ -23,6 +23,7 @@ namespace ipsmedserviceapp.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
         public int? AnkVersion { get; set; }
+        public string Comment { get; set; }
 
         public LicenseAgreement Lic { get; set; }
         public AgreementStatus LicStatusNavigation { get; set; }
