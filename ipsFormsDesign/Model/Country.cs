@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         {
             AnketaCompanyFaCountryNavigation = new HashSet<AnketaCompany>();
             AnketaCompanyJaCountryNavigation = new HashSet<AnketaCompany>();
+            AnketaCompanyLeCountryNavigation = new HashSet<AnketaCompany>();
             AnketaPersonCitizenshipNavigation = new HashSet<AnketaPerson>();
             AnketaPersonFaCountryNavigation = new HashSet<AnketaPerson>();
             AnketaPersonReCountryNavigation = new HashSet<AnketaPerson>();
@@ -33,6 +34,7 @@ namespace ipsFormsDesign.Model
         public Continent ContinentCodeNavigation { get; set; }
         public ICollection<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
         public ICollection<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
+        public ICollection<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
         public ICollection<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
         public ICollection<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
         public ICollection<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }

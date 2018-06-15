@@ -74,8 +74,8 @@
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Location = new System.Drawing.Point(3, 253);
             this.pvMain.Name = "pvMain";
-            this.pvMain.SelectedPage = this.pvCalculation;
-            this.pvMain.Size = new System.Drawing.Size(1082, 285);
+            this.pvMain.SelectedPage = this.pvActiveAgr;
+            this.pvMain.Size = new System.Drawing.Size(1082, 644);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2007Silver";
             this.pvMain.SelectedPageChanged += new System.EventHandler(this.pvMain_SelectedPageChanged);
@@ -88,7 +88,7 @@
             this.pvActiveAgr.ItemSize = new System.Drawing.SizeF(107F, 26F);
             this.pvActiveAgr.Location = new System.Drawing.Point(10, 35);
             this.pvActiveAgr.Name = "pvActiveAgr";
-            this.pvActiveAgr.Size = new System.Drawing.Size(1061, 239);
+            this.pvActiveAgr.Size = new System.Drawing.Size(1061, 598);
             this.pvActiveAgr.Text = "Активні договора";
             // 
             // gvLicenseAgr
@@ -180,7 +180,7 @@
             this.pvSecond.Location = new System.Drawing.Point(2, 140);
             this.pvSecond.Name = "pvSecond";
             this.pvSecond.SelectedPage = this.pvAgreement;
-            this.pvSecond.Size = new System.Drawing.Size(1059, 105);
+            this.pvSecond.Size = new System.Drawing.Size(1059, 464);
             this.pvSecond.TabIndex = 2;
             this.pvSecond.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvSecond.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -194,7 +194,7 @@
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(57F, 26F);
             this.pvAgreement.Location = new System.Drawing.Point(66, 10);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(982, 84);
+            this.pvAgreement.Size = new System.Drawing.Size(982, 443);
             this.pvAgreement.Text = "Договір";
             // 
             // agreementInfoCtrl
@@ -229,7 +229,7 @@
             this.pvHistory.ItemSize = new System.Drawing.SizeF(57F, 26F);
             this.pvHistory.Location = new System.Drawing.Point(66, 10);
             this.pvHistory.Name = "pvHistory";
-            this.pvHistory.Size = new System.Drawing.Size(973, 116);
+            this.pvHistory.Size = new System.Drawing.Size(982, 349);
             this.pvHistory.Text = "Історія";
             // 
             // pvCalculation
@@ -239,18 +239,18 @@
             this.pvCalculation.ItemSize = new System.Drawing.SizeF(78F, 26F);
             this.pvCalculation.Location = new System.Drawing.Point(10, 35);
             this.pvCalculation.Name = "pvCalculation";
-            this.pvCalculation.Size = new System.Drawing.Size(1061, 239);
+            this.pvCalculation.Size = new System.Drawing.Size(1061, 598);
             this.pvCalculation.Text = "Розрахунки";
             // 
             // calculationCtrl
             // 
             this.calculationCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.calculationCtrl.Location = new System.Drawing.Point(0, 3);
-            this.calculationCtrl.MaximumSize = new System.Drawing.Size(1237, 1000);
+            this.calculationCtrl.AutoScroll = true;
+            this.calculationCtrl.Location = new System.Drawing.Point(0, 0);
             this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
             this.calculationCtrl.Name = "calculationCtrl";
-            this.calculationCtrl.Size = new System.Drawing.Size(963, 580);
+            this.calculationCtrl.Size = new System.Drawing.Size(1058, 595);
             this.calculationCtrl.TabIndex = 0;
             // 
             // pvReports
@@ -260,7 +260,7 @@
             this.pvReports.ItemSize = new System.Drawing.SizeF(43F, 26F);
             this.pvReports.Location = new System.Drawing.Point(10, 35);
             this.pvReports.Name = "pvReports";
-            this.pvReports.Size = new System.Drawing.Size(1061, 239);
+            this.pvReports.Size = new System.Drawing.Size(1061, 598);
             this.pvReports.Text = "Звіти";
             // 
             // reportsControl
@@ -268,20 +268,20 @@
             this.reportsControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reportsControl.Location = new System.Drawing.Point(4, 4);
+            this.reportsControl.MinimumSize = new System.Drawing.Size(700, 470);
             this.reportsControl.Name = "reportsControl";
-            this.reportsControl.Size = new System.Drawing.Size(1003, 470);
+            this.reportsControl.Size = new System.Drawing.Size(1054, 470);
             this.reportsControl.TabIndex = 0;
             // 
             // userInfoCtrl
             // 
             this.userInfoCtrl.Edrpou = "46546545";
             this.userInfoCtrl.EmailContactPerson = "qwerty@qwer.ty";
-            this.userInfoCtrl.FaksContactPerson = "0999999999";
+            this.userInfoCtrl.EmailManager = "qwerty@qwer.ty";
             this.userInfoCtrl.GroupOrHolding = "Копірайт";
             this.userInfoCtrl.Location = new System.Drawing.Point(3, 3);
             this.userInfoCtrl.MaximumSize = new System.Drawing.Size(912, 242);
             this.userInfoCtrl.MinimumSize = new System.Drawing.Size(912, 242);
-            this.userInfoCtrl.MobilePnoneContactPerson = "+380999999999";
             this.userInfoCtrl.Name = "userInfoCtrl";
             this.userInfoCtrl.NameInfo = "ррррр";
             this.userInfoCtrl.OrganisationForm = "ТОВ";
@@ -302,7 +302,7 @@
             this.Controls.Add(this.pvMain);
             this.Controls.Add(this.userInfoCtrl);
             this.Name = "MiddleControlInfoAgrCalc";
-            this.Size = new System.Drawing.Size(1088, 541);
+            this.Size = new System.Drawing.Size(1088, 900);
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).EndInit();
             this.pvMain.ResumeLayout(false);
             this.pvActiveAgr.ResumeLayout(false);

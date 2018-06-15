@@ -20,7 +20,13 @@ namespace ipsFormsDesign.Services
 
         public IList<ObjectRightMainView> GetMainView()
         {
-            var list = _webApi.GetList<ObjectRightMainView>("objectright/listobjectright");
+            var list = _webApi.GetList<ObjectRightMainView>("objectright/view/list_01");
+            return list;
+        }
+
+        public IList<ObjectRightForRightholder> GetRightholdersObjectsRights(int custId)
+        {
+            var list = _webApi.GetList<ObjectRightForRightholder>($"objectright/view/list_0301/{custId}");
             return list;
         }
 

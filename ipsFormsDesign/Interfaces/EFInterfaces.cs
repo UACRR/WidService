@@ -210,6 +210,11 @@ public interface IAnketaCompany
          int? FaRegion { get; set; }
          string RegistrNumber { get; set; }
          string RegistrWho { get; set; }
+         string LeCity { get; set; }
+         string LeCountry { get; set; }
+         string LePostIndex { get; set; }
+         int? LeRegion { get; set; }
+         string LeAddress { get; set; }
 }
 public interface IAnketaPerson
     {
@@ -995,6 +1000,8 @@ public interface ILicenseAgrParam
          int? LicStatus { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
+         int? AnkVersion { get; set; }
+         string Comment { get; set; }
 }
 public interface ILicenseBigR
     {    int LicId { get; set; }
@@ -1064,7 +1071,7 @@ public interface IMediaTrack
          string Label { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
-         double? Duration { get; set; }
+         TimeSpan? Duration { get; set; }
 }
 public interface IModifyMusicType
     {    int CodeI { get; set; }

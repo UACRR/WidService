@@ -8,10 +8,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
 using WebAPIConnector;
@@ -22,6 +25,7 @@ namespace RightholderWorkplace
     {
         Customer _customer;
         ObjectRight _objectRight;
+        RightholderStatusType _rightholderStatusType;
 
         AnketaPerson _anketa;
         BankAccount _bankAccount;
@@ -33,6 +37,7 @@ namespace RightholderWorkplace
         #region IRightholderForm immplementation
 
         public Func<IList<RightholderMainView>> GetMainViewData { get; set; }
+        public Func<RightholderStatusType, IList<RightholderMainView>> GetMainViewDataByStatus { get; set; }
         public Func<int, Customer> NewCustomer { get; set; }
         public Func<int, Customer> GetCustomer { get; set; }
         public Func<Customer, bool> SaveCustomer { get; set; }
@@ -43,8 +48,8 @@ namespace RightholderWorkplace
         {
             if (GetMainViewData != null)
             {
-                var list = GetMainViewData();
-                rightHolderMainViewBindingSource.DataSource = list;
+                tbtnActive.IsChecked = true;
+                RightholdersListFilterChanged(RightholderStatusType.Active);
             }
         }
 
@@ -60,6 +65,8 @@ namespace RightholderWorkplace
 
         public void SetDictionary(AnketaDictionaties dictionaries)
         {
+            _dictionaries = dictionaries;
+
             ctrlAnketaPerson.SexTypeDataSource = dictionaries.sexType;
             ctrlAnketaPerson.SexTypeValueMember = "CodeI";
             ctrlAnketaPerson.SexTypeDisplayMember = "Name";
@@ -149,6 +156,8 @@ namespace RightholderWorkplace
             //cbAroundWorld.DataBindings.Add("Checked", _rightHolder, "AroundWord", true, DataSourceUpdateMode.OnPropertyChanged, false);
         }
 
+        #region Rightholders page
+
         #region Next / Prev buttons
 
         private void btnNextAnketa_Click(object sender, EventArgs e)
@@ -219,6 +228,17 @@ namespace RightholderWorkplace
             newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
         }
 
+        private void btnNextAgreement_Click(object sender, EventArgs e)
+        {
+            createRightholderTerritoryLimitationsPage.Enabled = true;
+            newCreateRightholderPageView.SelectedPage = createRightholderAgreementPage;
+        }
+
+        private void btnPrevTerritoryLimitation_Click(object sender, EventArgs e)
+        {
+            newCreateRightholderPageView.SelectedPage = createRightholderTerritoryLimitationsPage;
+        }
+
         #endregion
 
         private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)
@@ -245,6 +265,71 @@ namespace RightholderWorkplace
                 else if (value == 3 || value == 4)
                     createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
             }
+        }
+
+        private void tbtn_Click(object sender, EventArgs e)
+        {
+            var rightholderFilterType = (RightholderStatusType)Convert.ToInt32((sender as RadToggleButton).Tag);
+            RightholdersListFilterChanged(rightholderFilterType);
+            
+            // deselect all buttons, excluding sender
+            foreach (var control in panelFilterButtons.Controls)
+            {
+                if (control != sender && control is RadToggleButton toggleButton)
+                {
+                    toggleButton.ToggleState = ToggleState.Off;
+                }
+            }
+        }
+
+        private void RightholdersListFilterChanged(RightholderStatusType rightholderStatusType)
+        {
+            _rightholderStatusType = rightholderStatusType;
+
+            SetRightholdersListColumns();
+
+            UpdateRightholdersList();
+        }
+
+        private void UpdateRightholdersList()
+        {
+            var list = GetMainViewDataByStatus(_rightholderStatusType);
+            rightHolderMainViewBindingSource.DataSource = list;
+        }
+
+        private void SetRightholdersListColumns()
+        {
+            var editColumn = gvRightholdersList.Columns["EditColumn"];
+            var acceptColumn = gvRightholdersList.Columns["AcceptColumn"];
+
+            editColumn.IsVisible = true;
+            acceptColumn.IsVisible = _rightholderStatusType != RightholderStatusType.Active;
+        }
+
+        private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        {
+            SetTooltipTextFromHeader(sender, e);
+        }
+
+
+        private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
+        {
+            if (_customer == null)
+                return;
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx");
+
+            var wordEngine = new WordEngine(_dictionaries);
+
+            btnGenerateRightholderAgreement.Enabled = false;
+            waitbarAgreement.StartWaiting();
+
+            await Task.Factory.StartNew(() => wordEngine.processRightHolder(template, _customer, _customer.AgreementMaster.First()));
+
+            pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
+
+            waitbarAgreement.StopWaiting();
+            btnGenerateRightholderAgreement.Enabled = true;
         }
 
         #region Rightolder commands
@@ -306,9 +391,7 @@ namespace RightholderWorkplace
 
             SaveCustomer?.Invoke(_customer);
 
-            // TODO: move to single method (EndPresernterLink)
-            var list = GetMainViewData();
-            rightHolderMainViewBindingSource.DataSource = list;
+            UpdateRightholdersList();
 
             newRightholdersPageView.SelectedPage = newRightholdersListPage;
         }
@@ -322,6 +405,8 @@ namespace RightholderWorkplace
         {
             SaveRightholder(accept: true);
         }
+
+        #endregion
 
         #endregion
 
@@ -370,6 +455,7 @@ namespace RightholderWorkplace
             var objectsRightsList = service.GetMainView();
             var objectRightContainer = service.GetData(5848);
             _objectRight = objectRightContainer.objectRight;
+            var rigthholdersObjectsRights = service.GetRightholdersObjectsRights(131);
 
             // dictionaries
             ddlGenreType.DataSource = _dictionariesObjectRight.genreType;
@@ -398,12 +484,13 @@ namespace RightholderWorkplace
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
             objectRightBindingSource.DataSource = _objectRight;
+            objectRightForRightholderBindingSource.DataSource = rigthholdersObjectsRights;
             mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
             authorsBindingSource.DataSource = _objectRight.Authors;
             copyRightBindingSource.DataSource = _objectRight.CopyRight;
         }
 
-        #region Object right commands
+        #region Objectrights page
 
         private void btnSaveTest_Click(object sender, EventArgs e)
         {
@@ -419,6 +506,23 @@ namespace RightholderWorkplace
                 authorItemView.StartPosition = FormStartPosition.CenterParent;
                 authorItemView.ShowDialog();
                 authorsBindingSource.ResetBindings(false);
+            }
+        }
+
+        private void gvObjectsRightsList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        {
+            SetTooltipTextFromHeader(sender, e);
+        }
+
+        #endregion
+
+        #region Common Helpers
+
+        private static void SetTooltipTextFromHeader(object sender, ToolTipTextNeededEventArgs e)
+        {
+            if (sender is GridHeaderCellElement headerCell)
+            {
+                e.ToolTipText = headerCell.Text;
             }
         }
 

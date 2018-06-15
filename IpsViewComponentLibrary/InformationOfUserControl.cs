@@ -68,22 +68,22 @@ namespace IpsViewComponentLibrary
             get => contactPersPhoneCtrl.TextValue;
             set => contactPersPhoneCtrl.TextValue = value;
         }
-        /// <summary>
-        /// Мобільний телефон контактної особи
-        /// </summary>
-        public string MobilePnoneContactPerson
-        {
-            get => contactPersMobilePhoneCtrl.TextValue;
-            set => contactPersMobilePhoneCtrl.TextValue = value;
-        }
-        /// <summary>
-        /// Факс контактної особи
-        /// </summary>
-        public string FaksContactPerson
-        {
-            get => contactPersFaksCtrl.TextValue;
-            set => contactPersFaksCtrl.TextValue = value;
-        }
+        ///// <summary>
+        ///// Мобільний телефон контактної особи
+        ///// </summary>
+        //public string MobilePnoneContactPerson
+        //{
+        //    get => contactPersMobilePhoneCtrl.TextValue;
+        //    set => contactPersMobilePhoneCtrl.TextValue = value;
+        //}
+        ///// <summary>
+        ///// Факс контактної особи
+        ///// </summary>
+        //public string FaksContactPerson
+        //{
+        //    get => contactPersFaksCtrl.TextValue;
+        //    set => contactPersFaksCtrl.TextValue = value;
+        //}
         /// <summary>
         /// EMail контактної особи
         /// </summary>
@@ -116,6 +116,14 @@ namespace IpsViewComponentLibrary
             get => managerPhoneCtrl.TextValue;
             set => managerPhoneCtrl.TextValue = value;
         }
+        /// <summary>
+        /// Email керівника
+        /// </summary>
+        public string EmailManager
+        {
+            get => managerEmail.TextValue;
+            set => managerEmail.TextValue = value;
+        }
 
         public InformationOfUserControl()
         {
@@ -126,9 +134,7 @@ namespace IpsViewComponentLibrary
         {
             Edrpou = string.Empty;
             EmailContactPerson = string.Empty;
-            FaksContactPerson = string.Empty;
             GroupOrHolding = string.Empty;
-            MobilePnoneContactPerson = string.Empty;
             NameInfo = string.Empty;
             OrganisationForm = string.Empty;
             PhoneContactPerson = string.Empty;
@@ -137,6 +143,10 @@ namespace IpsViewComponentLibrary
             WorkPositionContactPerson = string.Empty;
             WorkPositionManager = string.Empty;
             PibManager = string.Empty;
+            EmailManager = string.Empty;
+
+            //MobilePnoneContactPerson = string.Empty;
+            //FaksContactPerson = string.Empty;
         }
     }
 }

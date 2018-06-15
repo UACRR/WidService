@@ -48,7 +48,7 @@
             this.mсInfoAgrCalc.AutoScroll = true;
             this.mсInfoAgrCalc.Location = new System.Drawing.Point(315, 3);
             this.mсInfoAgrCalc.Name = "mсInfoAgrCalc";
-            this.mсInfoAgrCalc.Size = new System.Drawing.Size(1096, 628);
+            this.mсInfoAgrCalc.Size = new System.Drawing.Size(1069, 690);
             this.mсInfoAgrCalc.TabIndex = 0;
             // 
             // gvConsumerList
@@ -109,7 +109,7 @@
             this.gvConsumerList.Name = "gvConsumerList";
             this.gvConsumerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvConsumerList.ReadOnly = true;
-            this.gvConsumerList.Size = new System.Drawing.Size(306, 628);
+            this.gvConsumerList.Size = new System.Drawing.Size(306, 690);
             this.gvConsumerList.TabIndex = 4;
             this.gvConsumerList.ThemeName = "Office2007Silver";
             this.gvConsumerList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvConsumerList_CurrentRowChanged);
@@ -121,7 +121,7 @@
             this.Controls.Add(this.gvConsumerList);
             this.Controls.Add(this.mсInfoAgrCalc);
             this.Name = "GlobalControlConsumerCabinet";
-            this.Size = new System.Drawing.Size(1414, 634);
+            this.Size = new System.Drawing.Size(1387, 696);
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumerList)).EndInit();
             this.ResumeLayout(false);

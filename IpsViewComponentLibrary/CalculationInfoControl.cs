@@ -20,7 +20,10 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Встановлення даних
+        /// </summary>
+        /// <param name="o"></param>
         public void SetData(Customer o)
         {
             if (o == null) return;
@@ -28,6 +31,10 @@ namespace IpsViewComponentLibrary
             _data = o;
             SetDataSource();
         }
+        /// <summary>
+        /// Встановлення словника даних
+        /// </summary>
+        /// <param name="dict"></param>
         public void SetDictionary(AnketaDictionaties dict)
         {
             _dict = dict;
@@ -38,17 +45,16 @@ namespace IpsViewComponentLibrary
             var dsourceUserMoney = _data?.Client?.MoneyReceived?.ToList();
             gvUserMoneys.DataSource = dsourceUserMoney;
 
-            foreach (var item in gvUserMoneys.Rows)
-            {
-                item.Cells["DateInvoice"].Value =
-                    Convert.ToDateTime(item.Cells["DateInvoice"].Value).ToShortDateString();
-            }
         }
 
         // подія зміни обраного рядка [Нерозподілені грн користувача]
         private void gvUserMoneys_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvUserMoneys.Rows.Count == 0) return;
+            if (gvUserMoneys.Rows.Count == 0)
+            {
+                gvLicenseAgr.DataSource = null;
+                return;
+            }
             //int id = gvUserMoneys.CurrentRow.Cells[0].Value;
             SetDataSourceLicenseAgr();
             
@@ -57,15 +63,26 @@ namespace IpsViewComponentLibrary
         // подія зміни обраного рядка [ліцензійних договорів (активні договора) ]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvLicenseAgr.Rows.Count == 0) return;
-            SetDataSourcePeriodsPayment();
+            if (gvLicenseAgr.Rows.Count == 0)
+            {
+                gvPeriodsPayment.DataSource = null;
+                return;
+            }
+
+            SetDataSourcePeriodsPayment(Convert.ToInt32(e.CurrentRow.Cells["LicenseId"].Value));
         }
 
         // подія зміни обраного рядка [періодів платежів]
         private void gvPeriodsPayment_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvPeriodsPayment.Rows.Count == 0) return;
-            SetDataSourcePayments();
+            if (gvPeriodsPayment.Rows.Count == 0)
+            {
+                gvPayments.DataSource = null;
+                return;
+            }
+
+            SetDataSourcePayments(idPeriod: Convert.ToInt32(e.CurrentRow.Cells["PeriodId"].Value), 
+                                  idLic: Convert.ToInt32(gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value));
         }
         
 
@@ -79,6 +96,7 @@ namespace IpsViewComponentLibrary
                 source.Add(new GridLicAgr
                 {
                     Id = item?.AgrId ?? default(int),
+                    LicenseId = item?.LicId ?? default(int),
                     License = _dict?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
                     Series = string.Empty,
                     AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
@@ -99,30 +117,75 @@ namespace IpsViewComponentLibrary
         }
 
         // Джерело для [періодів платежів]
-        private void SetDataSourcePeriodsPayment()
+        private void SetDataSourcePeriodsPayment(int idLic)
         {
-            var period = _data.Client.PaidPeriod;
-            gvPeriodsPayment.DataSource = period;
+            var period = _data.Client.LicenseAgreement.Where(recId => recId.LicId == idLic).Select(item => item.PaidPeriod).SingleOrDefault();
+            if (period == null)
+            {
+                gvPeriodsPayment.DataSource = null;
+                return;
+            }
+
+            List<GridPeriods> source = new List<GridPeriods>();
+            foreach (var paidPeriod in period)
+            {
+                source.Add(new GridPeriods
+                {
+                    PeriodId = paidPeriod.PeriodId,
+                    PeriodName = paidPeriod.PeriodName,
+                    Status = paidPeriod.Status,
+                    Amount = paidPeriod.Amount,
+                    AmountBound = paidPeriod.Distribamount + paidPeriod.Undistribamount,
+                    Distribamount = paidPeriod.Distribamount,
+                    Undistribamount = paidPeriod.Undistribamount,
+                    Arrears = paidPeriod.Amount - (paidPeriod.Distribamount + paidPeriod.Undistribamount)
+                });
+            }
+            gvPeriodsPayment.DataSource = source;
         }
 
         // Джерело для [платежів обраного періоду]
-        private void SetDataSourcePayments()
+        private void SetDataSourcePayments(int idPeriod = 0, int idLic = 0)
         {
+            
+            var period = _data.Client.LicenseAgreement.Where(rec => rec.LicId == idLic).Select(rec => rec.PaidPeriod).SingleOrDefault();
+            var moneyPeriod = period?.Where(recId => recId.PeriodId == idPeriod).Select(rec => rec.MoneyPeriodLink).SingleOrDefault();
+            
+            List<GridPayments> source = new List<GridPayments>();
+            foreach (var item in moneyPeriod?.Select(rec => rec.Paid)?.ToList())
+            {
+                
+                //var ststuse = item.MoneyType;
+                if (item != null)
+                    source.Add(new GridPayments
+                    {
+                        SelectPeriod = period?.Where(rec => rec.PeriodId == idPeriod).Select(name => name.PeriodName).SingleOrDefault(),
+                        PaidId = item.PaidId,
+                        NumberInvoice = item.NumberInvoice,
+                        DateInvoice = item.DateInvoice.ToShortDateString(),
+                        Amount = item.Amount,
+                        DestribAmount = item.DestribAmount,
+                        GoalInvoice = item.GoalInvoice
+                    });
+            }
+
+            gvPayments.DataSource = source;
 
         }
 
         private void btnDistribute_Click(object sender, EventArgs e)
         {
-            ContractConsumerMainControl c = new ContractConsumerMainControl();
-            Form f = new Form();
-            f.Controls.Add(c);
-            f.ShowDialog();
+            //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
+            DistributionForm distr = new DistributionForm(gvUserMoneys.DataSource, gvPeriodsPayment.DataSource, _data);
+            distr.StartPosition = FormStartPosition.CenterScreen;
+            distr.ShowDialog();
         }
     }
 
     public class GridLicAgr
     {
         public int Id { get; set; }
+        public int LicenseId { get; set; }
         public string License { get; set; }
         public string Series { get; set; }
         public string AgrNumber { get; set; }
@@ -132,5 +195,30 @@ namespace IpsViewComponentLibrary
         public string State { get; set; }
         public string PeriodPayment { get; set; }
         public string Debt { get; set; }
+    }
+    public class GridPeriods
+    {
+        //public int LicId { get; set; }
+
+        public int PeriodId { get; set; }
+
+        public string PeriodName { get; set; }
+        public int Status { get; set; }
+        public decimal Amount { get; set; }
+        public decimal AmountBound { get; set; }
+        public decimal Undistribamount { get; set; }
+        public decimal Distribamount { get; set; }
+        public decimal Arrears { get; set; }
+    }
+
+    public class GridPayments
+    {
+        public int PaidId { get; set; }
+        public string SelectPeriod { get; set; }
+        public string DateInvoice { get; set; }
+        public string NumberInvoice { get; set; }
+        public string GoalInvoice { get; set; }
+        public decimal Amount { get; set; }
+        public decimal DestribAmount { get; set; }
     }
 }

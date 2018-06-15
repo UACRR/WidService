@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpsViewComponentLibrary;
 
 namespace DebugFormForControls
 {
@@ -38,6 +39,7 @@ namespace DebugFormForControls
         public ContractControl()
         {
             InitializeComponent();
+            dtAgrDate.SetUserCalendarSettingsm();
         }
 
         /// <summary>

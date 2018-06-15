@@ -18,6 +18,7 @@ namespace RightholderWorkplace
             _form = form;
             _service = service;
             _form.GetMainViewData = _service.GetMainView;
+            _form.GetMainViewDataByStatus = _service.GetMainViewByStatus;
             _form.SetDictionary(_service.GetDictionary());
             _form.NewCustomer = _service.NewCustomer;
             _form.SaveCustomer = _service.Save;

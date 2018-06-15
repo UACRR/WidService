@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace ConsumerWorkplace_v_1._0
 {
@@ -24,6 +26,8 @@ namespace ConsumerWorkplace_v_1._0
             InitializeComponent();
             gcConsumerCabinet.OnGridRowSelectedChaged += GcConsumerCabinet_OnGridRowSelectedChaged;
         }
+
+
 
         private Customer GcConsumerCabinet_OnGridRowSelectedChaged(int id)
         {
@@ -61,5 +65,7 @@ namespace ConsumerWorkplace_v_1._0
             _dic = dic;
             gcConsumerCabinet.SetDictionary(_dic);
         }
+
+
     }
 }

@@ -19,15 +19,16 @@ namespace ConsumerWorkplace_v_1._0
             ConsumerWorkplace form = new ConsumerWorkplace();
             ConsumerService model = new ConsumerService();
             FormPresenter control = new FormPresenter(form, model);
-            
+
             Application.Run(form);
 
-            //LoadCabinet(form.ReturnCustomer(), form.ReturnList());
+            //LoadCabinet(form.ReturnCustomer());
         }
 
-        private static void LoadCabinet(Customer oo, object ooo)
+        private static void LoadCabinet(Customer oo)
         {
             ConsumerCabinet f = new ConsumerCabinet();
+            f.WindowState = FormWindowState.Maximized;
             ConsumerService m = new ConsumerService();
             FormPresenter control = new FormPresenter(f, m);
             f.SetData(oo);

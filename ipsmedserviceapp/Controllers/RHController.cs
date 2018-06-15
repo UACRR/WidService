@@ -45,7 +45,9 @@ namespace ipsmedserviceapp.Controllers
 
             var currDate = DateTime.Now.Date;
 
-            await _dbContext.TermsOfService
+            await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,0) as ourService
+from CopyrightKind t1
+left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.codeI", new SqlParameter("@custid", id) )
                 .Include(tos => tos.CrkindCodeNavigation)
                     .ThenInclude(ck => ck.CrGroupCodeNavigation)
                 .Where(tos => tos.CustId == id)
@@ -89,10 +91,28 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         /// Отримати список Споживачів малих прав
         /// </summary>
         /// <returns></returns>
-        [HttpGet("listRH")]
-        public async Task<IActionResult> GetListSR()
+        [HttpGet("listRH/{filterType?}")]
+        public async Task<IActionResult> GetListSR(string filterType)
         {
-            var List = await _dbContext.getViewData("select * from vTsk_1_ListRightHolder01", null);
+            var queryText = "select * from vTsk_1_ListRightHolder01";
+
+            if (!string.IsNullOrEmpty(filterType))
+            {
+                if (filterType.ToLower() == "new")
+                {
+                    queryText = queryText + " where status = 0";
+                }
+                else if (filterType.ToLower() == "notaccepted")
+                {
+                    queryText = queryText + " where status = 1";
+                }
+                else if (filterType.ToLower() == "active")
+                {
+                    queryText = queryText + " where status = 2";
+                }
+            }
+
+            var List = await _dbContext.getViewData(queryText, null);
             return Json(List);
         }
 
@@ -234,7 +254,8 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                     AgreementMaster addAgr = new AgreementMaster();
                     addAgr.SetFields(item);
                     _dbContext.AppendList(item.AgreementAddRh, addAgr.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
-                    // _dbContext.AppendList(addAgr.AgreementAddRh, destCustomer.RightHolder.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
+                    foreach (var addRhItem in addAgr.AgreementAddRh)
+                        destCustomer.RightHolder.AgreementAddRh.Add(addRhItem);
                     destCustomer.AgreementMaster.Add(addAgr);
                 });
             }

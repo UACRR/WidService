@@ -36,6 +36,8 @@ namespace IpsViewComponentLibrary
         public PassportInternationalControl()
         {
             InitializeComponent();
+            dtIssuedDate.SetUserCalendarSettingsm();
+            dtValidityDate.SetUserCalendarSettingsm();
         }
     }
 }

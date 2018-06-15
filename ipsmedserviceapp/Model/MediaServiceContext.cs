@@ -1062,6 +1062,27 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.JaRegion).HasColumnName("jaRegion");
 
+                entity.Property(e => e.LeAddress)
+                    .HasColumnName("leAddress")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LeCity)
+                    .HasColumnName("leCity")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LeCountry)
+                    .HasColumnName("leCountry")
+                    .HasColumnType("char(3)");
+
+                entity.Property(e => e.LePostIndex)
+                    .HasColumnName("lePostIndex")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LeRegion).HasColumnName("leRegion");
+
                 entity.Property(e => e.ModifyDate)
                     .HasColumnName("modifyDate")
                     .HasColumnType("datetime");
@@ -1150,6 +1171,16 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.AnketaCompanyJaRegionNavigation)
                     .HasForeignKey(d => d.JaRegion)
                     .HasConstraintName("FK_ANKETACO_REFERENCE_REGJA");
+
+                entity.HasOne(d => d.LeCountryNavigation)
+                    .WithMany(p => p.AnketaCompanyLeCountryNavigation)
+                    .HasForeignKey(d => d.LeCountry)
+                    .HasConstraintName("FK_ANKETALE_REF_LECOUNTRY");
+
+                entity.HasOne(d => d.LeRegionNavigation)
+                    .WithMany(p => p.AnketaCompanyLeRegionNavigation)
+                    .HasForeignKey(d => d.LeRegion)
+                    .HasConstraintName("FK_ANKETACO_REF_LEREGION");
 
                 entity.HasOne(d => d.StatusNavigation)
                     .WithMany(p => p.AnketaCompany)
@@ -4110,6 +4141,13 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("addRate")
                     .HasColumnType("numeric(10, 5)");
 
+                entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
+
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(2048)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.DateBegin)
                     .HasColumnName("dateBegin")
                     .HasColumnType("date");
@@ -5010,6 +5048,10 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PaidPeriod>(entity =>
             {
                 entity.HasKey(e => e.PeriodId);
+
+                entity.HasIndex(e => new { e.LicId, e.BeginDate, e.EndDate })
+                    .HasName("uipaidperiod_001")
+                    .IsUnique();
 
                 entity.Property(e => e.PeriodId).HasColumnName("periodId");
 
