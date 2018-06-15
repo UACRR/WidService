@@ -682,7 +682,7 @@
             this.createRightholderFullNameComissionPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderFullNameComissionPage.Name = "createRightholderFullNameComissionPage";
             this.createRightholderFullNameComissionPage.Size = new System.Drawing.Size(882, 565);
-            this.createRightholderFullNameComissionPage.Text = "ФІО, Комісії";
+            this.createRightholderFullNameComissionPage.Text = "ПІБ, Комісії";
             // 
             // radTextBox2
             // 
