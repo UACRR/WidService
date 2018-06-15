@@ -1,4 +1,4 @@
-﻿namespace RightholderWorkplace
+﻿namespace IpsViewComponentLibrary
 {
     partial class AuthorItemView
     {

@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace RightholderWorkplace
+namespace IpsViewComponentLibrary
 {
     public partial class AuthorItemView : Telerik.WinControls.UI.RadForm
     {
