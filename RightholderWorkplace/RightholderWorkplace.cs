@@ -418,6 +418,7 @@ namespace RightholderWorkplace
             MainPageView.SelectedPage = mainPageRightholders;
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
             newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
+            pdfvRightholderAgreement.UnloadDocument();
         }
 
         private void SaveRightholder(bool accept)
