@@ -15,7 +15,6 @@ namespace ipsmedserviceapp.Model
         public int RegId { get; set; }
         public int? CustId { get; set; }
         public int? CountRows { get; set; }
-        public double? DurationItems { get; set; }
         public string Login { get; set; }
         public int? RgStatus { get; set; }
         public DateTime? CreateDate { get; set; }
@@ -23,6 +22,7 @@ namespace ipsmedserviceapp.Model
         public string UserId { get; set; }
         public string FileName { get; set; }
         public int? LicId { get; set; }
+        public TimeSpan? DurationItems { get; set; }
 
         public Customer Cust { get; set; }
         public PaidPeriod Period { get; set; }

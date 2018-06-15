@@ -1418,7 +1418,6 @@ public interface IRegister
     {    int RegId { get; set; }
          int? CustId { get; set; }
          int? CountRows { get; set; }
-         double? DurationItems { get; set; }
          string Login { get; set; }
          int? RgStatus { get; set; }
          DateTime? CreateDate { get; set; }
@@ -1426,6 +1425,7 @@ public interface IRegister
          string UserId { get; set; }
          string FileName { get; set; }
          int? LicId { get; set; }
+         TimeSpan? DurationItems { get; set; }
 }
 public interface IRegisterCount
     {
@@ -1451,11 +1451,11 @@ public interface IRegisterItem
          string Performer { get; set; }
          string AuthorMusic { get; set; }
          string AuthorText { get; set; }
-         double? DurationUse { get; set; }
          int? CountUse { get; set; }
-         double? DurationItem { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
+         TimeSpan? DurationUse { get; set; }
+         TimeSpan? DurationItem { get; set; }
 }
 public interface IRegisterStatus
     {    int CodeI { get; set; }
