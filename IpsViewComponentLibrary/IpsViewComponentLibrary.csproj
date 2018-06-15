@@ -299,11 +299,11 @@
     <Compile Include="ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderPersonInfo.cs">
+    <Compile Include="RightholderSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RightholderPersonInfo.Designer.cs">
-      <DependentUpon>RightholderPersonInfo.cs</DependentUpon>
+    <Compile Include="RightholderSelectorControl.Designer.cs">
+      <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderSelectionView.cs">
       <SubType>Form</SubType>
@@ -426,8 +426,8 @@
     <EmbeddedResource Include="ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderPersonInfo.resx">
-      <DependentUpon>RightholderPersonInfo.cs</DependentUpon>
+    <EmbeddedResource Include="RightholderSelectorControl.resx">
+      <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderSelectionView.resx">
       <DependentUpon>RightholderSelectionView.cs</DependentUpon>

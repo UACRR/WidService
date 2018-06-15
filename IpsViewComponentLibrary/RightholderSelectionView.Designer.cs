@@ -1,4 +1,4 @@
-﻿namespace RightholderWorkplace
+﻿namespace IpsViewComponentLibrary
 {
     partial class RightholderSelectionView
     {
@@ -187,7 +187,6 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Оберіть правовласника";
             this.ThemeName = "Office2013Light";
-            this.Load += new System.EventHandler(this.RightholderSelectionView_Load);
             this.panelCommand.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
