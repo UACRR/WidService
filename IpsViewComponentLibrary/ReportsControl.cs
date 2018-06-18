@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary
     public partial class ReportsControl : UserControl
     {
         private Customer _data;
+        private string _path;
         public ReportsControl()
         {
             InitializeComponent();
@@ -37,27 +38,32 @@ namespace IpsViewComponentLibrary
         {
             List<GridPeriodsReports> source = new List<GridPeriodsReports>();
             Random rnd = new Random();
-            for (int i = 0; i < rnd.Next(11); i++)
+            var period = _data.Client.LicenseAgreement.Where(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value).Select(rec => rec.PaidPeriod).SingleOrDefault();
+            if (period == null)
+            {
+                gvPeriods.DataSource = null;
+                return;
+            }
+            
+            foreach (var paidPeriod in period)
             {
                 source.Add(new GridPeriodsReports
                 {
-                    PeriodId = rnd.Next(100),
-                    Amount = rnd.Next(5000),
-                    Distribamount = rnd.Next(5000),
+                    PeriodId = paidPeriod.PeriodId,
+                    PeriodName = paidPeriod.PeriodName,
+                    Status = paidPeriod.Status,
+                    Amount = paidPeriod.Amount,
+                    Distribamount = paidPeriod.Distribamount,
                     IsActFormed = rnd.Next(20) > 10 ? "Так" : "Ні",
-                    PeriodName = "Період " + ( rnd.Next(10) + rnd.NextDouble() ),
                     ReportCounts = rnd.Next(5),
-                    Status = rnd.Next(3)
-                    
                 });
             }
-
             gvPeriods.DataSource = source;
-
         }
 
         private void gvPeriods_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            //set datasource gvPeriodReports
 
         }
 
@@ -68,15 +74,15 @@ namespace IpsViewComponentLibrary
 
         private void btnViewReport_Click(object sender, EventArgs e)
         {
-            if (gvPeriodReports.Rows.Count == 10)
+            if (gvPeriodReports.Rows.Count == 0)
             {
                 MessageBox.Show("Звіти за обраний період не знайдено!", "Звіти відсутні!", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                //return;
+                return;
             }
 
             
-            ReportExcelViewForm viewForm = new ReportExcelViewForm(@"c:\Users\vpysmennyi\9_ВЕОН ПЛЮС січень 2018.xlsx");
+            ReportExcelViewForm viewForm = new ReportExcelViewForm(@_path);
             viewForm.ShowDialog();
         }
 
@@ -102,6 +108,14 @@ namespace IpsViewComponentLibrary
         private void ViewAct()
         {
             MessageBox.Show("Перегляд акту");
+        }
+
+        //звіти періода
+        private void gvPeriodReports_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            _path = string.Empty;
+            if (gvPeriods.RowCount == 0) return;
+            _path = @e?.CurrentRow?.Cells["Path"]?.Value?.ToString();
         }
     }
 
