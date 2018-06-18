@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -24,8 +25,13 @@ namespace ipsmedserviceapp.Model
         public TimeSpan? DurationUse { get; set; }
         public TimeSpan? DurationItem { get; set; }
 
+        [JsonIgnore]
         public ObjectRight Obj { get; set; }
+        [JsonIgnore]
         public Register Reg { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
     }
 }
+
+
+

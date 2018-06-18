@@ -20,6 +20,7 @@
         <noignore>License</noignore>
         <noignore>LicenseAgrParam</noignore>
         <noignore>PaidPeriod</noignore>
+        <noignore>Register</noignore>
     </item>
     <item Name="ClnBusinessPlace">
         <noignore>ClnPlaceHoll</noignore>
@@ -38,7 +39,6 @@
     </item>
     <item Name="PaidPeriod">
         <noignore>MoneyPeriodLink</noignore>
-        <noignore>Distribution</noignore>
         <noignore>Register</noignore>
         <noignore>BrRegister</noignore>
     </item>
@@ -62,6 +62,16 @@
     </item>
     <item Name="AgreementMaster">
         <noignore>AgreementAddRh</noignore>
+    </item>
+    <item Name="Register">
+        <noignore>Distribution</noignore>
+        <noignore>RegisterItem</noignore>
+    </item>
+    <item Name="RegisterItem">
+        <noignore>RegisterCount</noignore>
+    </item>
+    <item Name="Distribution">
+        <noignore>DistributionItem</noignore>
     </item>
 
 

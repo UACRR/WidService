@@ -518,14 +518,30 @@ namespace ipsmedserviceapp.Controllers
                                         .Include(rec => rec.Cust).ThenInclude(cust => cust.Cust)
                                         .SingleOrDefaultAsync();
 
-                //var vCustomer = (await _dbContext.getViewData($"select * from vCustomer where custId = {licenseAgrement.CustId}", null)).Select( rec => new { innOkpo = rec["INNOKPO"] as string }).ToList();
-
-
-                //var externPays = await _dbContext.ExternalPay.FromSql($"select * from ExternalPay where okpoCorr = @okpo", new SqlParameter("@okpo", vCustomer[0].innOkpo )).ToListAsync();
-
                 await _dbContext.MoneyPeriodLink.FromSql($"select * from MoneyPeriodLink where licid = {licid}")
                                 .Include(rec => rec.Paid)
                                 .LoadAsync();
+
+                await _dbContext.Register.FromSql("select t2.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId where t1.licid = @licid", new SqlParameter("@licid", licid))
+                    .Include(rec => rec.RegisterItem)
+                    .Include(rec => rec.Distribution)
+                    .LoadAsync();
+
+
+                await _dbContext.DistributionItem.FromSql(@"
+select t3.* from PaidPeriod t1 join Distribution t2 on t2.periodId = t1.periodId 
+join DistributionItem t3 on t3.distId = t2.distId
+where t1.licid = @licid", new SqlParameter("@licid", licid))
+                    .LoadAsync();
+
+                await _dbContext.RegisterCount.FromSql(@"
+select t4.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId 
+join RegisterItem t3 on t3.regId = t2.regId
+join RegisterCount t4 on t4.regId = t3.regId and t4.regIItemId = t3.regIItemId
+where t1.licid = @licid", new SqlParameter("@licid", licid))
+    .LoadAsync();
+
+
 
                 return Json(licenseAgrement.Cust.Cust);
 

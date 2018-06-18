@@ -37,6 +37,7 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public PeriodStatus StatusNavigation { get; set; }
         public ICollection<BrRegister> BrRegister { get; set; }
+        [JsonIgnore]
         public ICollection<Distribution> Distribution { get; set; }
         [JsonIgnore]
         public ICollection<Document> Document { get; set; }
@@ -44,4 +45,7 @@ namespace ipsmedserviceapp.Model
         public ICollection<Register> Register { get; set; }
     }
 }
+
+
+
 
