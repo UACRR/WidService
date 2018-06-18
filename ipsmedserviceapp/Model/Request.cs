@@ -21,7 +21,6 @@ namespace ipsmedserviceapp.Model
         public int? CountUse { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public double? DurationUse { get; set; }
         public int Reqstatus { get; set; }
         public int? CustId { get; set; }
         public string UserId { get; set; }
@@ -38,6 +37,7 @@ namespace ipsmedserviceapp.Model
         public string R030 { get; set; }
         public decimal? ReqAmount { get; set; }
         public string WorkName { get; set; }
+        public TimeSpan? DurationUse { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
         public Customer Cust { get; set; }

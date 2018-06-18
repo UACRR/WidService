@@ -66,6 +66,8 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<CreativeRoleType> CreativeRoleType { get; set; }
         public virtual DbSet<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
         public virtual DbSet<CreativeTranslate> CreativeTranslate { get; set; }
+        public virtual DbSet<CrightStatus> CrightStatus { get; set; }
+        public virtual DbSet<CrightStatusTr> CrightStatusTr { get; set; }
         public virtual DbSet<CrkindGroup> CrkindGroup { get; set; }
         public virtual DbSet<CrkindGroupTr> CrkindGroupTr { get; set; }
         public virtual DbSet<Currency> Currency { get; set; }
@@ -103,6 +105,8 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<EtGenreRole> EtGenreRole { get; set; }
         public virtual DbSet<EtRole> EtRole { get; set; }
         public virtual DbSet<ExternalPay> ExternalPay { get; set; }
+        public virtual DbSet<FolkType> FolkType { get; set; }
+        public virtual DbSet<FolkTypeTr> FolkTypeTr { get; set; }
         public virtual DbSet<GenreType> GenreType { get; set; }
         public virtual DbSet<GenreTypeTr> GenreTypeTr { get; set; }
         public virtual DbSet<Invoice> Invoice { get; set; }
@@ -268,8 +272,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -1710,6 +1714,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
+                entity.Property(e => e.FolkType).HasColumnName("folkType");
+
                 entity.Property(e => e.IsFolkOrUnknown).HasColumnName("isFolkOrUnknown");
 
                 entity.Property(e => e.ObjId).HasColumnName("objId");
@@ -1720,6 +1726,11 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.Authors)
                     .HasForeignKey(d => d.CustId)
                     .HasConstraintName("FK_AUTHORS_REFERENCE_RIGHTHOL");
+
+                entity.HasOne(d => d.FolkTypeNavigation)
+                    .WithMany(p => p.Authors)
+                    .HasForeignKey(d => d.FolkType)
+                    .HasConstraintName("FK_AUTHORS_REFERENCE_FOLKTYPE");
 
                 entity.HasOne(d => d.Obj)
                     .WithMany(p => p.Authors)
@@ -2261,6 +2272,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("roleRate")
                     .HasColumnType("decimal(5, 2)");
 
+                entity.Property(e => e.Status).HasColumnName("status");
+
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.CopyRight)
                     .HasForeignKey(d => d.CustId)
@@ -2276,6 +2289,11 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.CopyRight)
                     .HasForeignKey(d => d.RoleCode)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_CREATIVE");
+
+                entity.HasOne(d => d.StatusNavigation)
+                    .WithMany(p => p.CopyRight)
+                    .HasForeignKey(d => d.Status)
+                    .HasConstraintName("FK_COPYRIGH_REFERENCE_CRIGHTST");
             });
 
             modelBuilder.Entity<CopyrightKind>(entity =>
@@ -2553,6 +2571,46 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey<CreativeTranslate>(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CTRANSLATE_REFERENCE_CREATIVE");
+            });
+
+            modelBuilder.Entity<CrightStatus>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.ToTable("CRightStatus");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<CrightStatusTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.ToTable("CRightStatusTr");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.CrightStatusTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CRIGHTST_REFERENCE_CRIGHTST");
             });
 
             modelBuilder.Entity<CrkindGroup>(entity =>
@@ -3634,6 +3692,42 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("numeric(20, 2)");
 
                 entity.Property(e => e.Status).HasColumnName("status");
+            });
+
+            modelBuilder.Entity<FolkType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<FolkTypeTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.FolkTypeTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FOLKTYPE_REFERENCE_FOLKTYPE");
             });
 
             modelBuilder.Entity<GenreType>(entity =>

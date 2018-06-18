@@ -35,3 +35,9 @@ $outBuffer=$outBuffer+"`n}`n";
 
 $formInterface = [string]::Concat($formDesignPath, "\", "Interfaces\EFInterfaces.cs");
 $outBuffer | Set-Content $formInterface;
+
+$setIgnore = Get-Location;
+$setIgnore = [System.IO.Path]::Combine( $setIgnore, "SetJsonIgnore.ps1" );
+# Split-Path $setIgnore; 
+
+ & $setIgnore;

@@ -21,10 +21,12 @@ namespace ipsFormsDesign.Model
         public bool? PermCode { get; set; }
         public int? ParentId { get; set; }
         public int? RoleCode { get; set; }
+        public int? Status { get; set; }
 
         public RightHolder Cust { get; set; }
         public ObjectRight Obj { get; set; }
         public CreativeRoleType RoleCodeNavigation { get; set; }
+        public CrightStatus StatusNavigation { get; set; }
         public CopyRtranslate CopyRtranslate { get; set; }
     }
 }

@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public int ReqId { get; set; }
         public string TradeMark { get; set; }
-        public double? DurationAll { get; set; }
-        public double? DurationShort { get; set; }
+        public TimeSpan? DurationAll { get; set; }
+        public TimeSpan? DurationShort { get; set; }
 
         public Request Req { get; set; }
     }

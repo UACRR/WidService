@@ -350,6 +350,7 @@ public interface IAuthors
          int? CustId { get; set; }
          string AuthorName { get; set; }
          int? IsFolkOrUnknown { get; set; }
+         int? FolkType { get; set; }
 }
 public interface IBankAccount
     {    int BanAccId { get; set; }
@@ -482,6 +483,7 @@ public interface ICopyRight
          bool? PermCode { get; set; }
          int? ParentId { get; set; }
          int? RoleCode { get; set; }
+         int? Status { get; set; }
 }
 public interface ICopyrightKind
     {    int CodeI { get; set; }
@@ -549,6 +551,16 @@ public interface ICreativeRoleTypeTr
 }
 public interface ICreativeTranslate
     {    int CodeI { get; set; }
+}
+public interface ICrightStatus
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface ICrightStatusTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
 }
 public interface ICrkindGroup
     {    int CodeI { get; set; }
@@ -840,6 +852,16 @@ public interface IExternalPay
          int? Status { get; set; }
          DateTime? DateOper { get; set; }
     }
+public interface IFolkType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IFolkTypeTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
 public interface IGenre
     {    int CategoryCode { get; set; }
          string Name { get; set; }
@@ -1627,7 +1649,6 @@ public interface IRequest
          int? CountUse { get; set; }
          DateTime? BeginDate { get; set; }
          DateTime? EndDate { get; set; }
-         double? DurationUse { get; set; }
          int Reqstatus { get; set; }
          int? CustId { get; set; }
          string UserId { get; set; }
@@ -1644,6 +1665,7 @@ public interface IRequest
          string R030 { get; set; }
          decimal? ReqAmount { get; set; }
          string WorkName { get; set; }
+         TimeSpan? DurationUse { get; set; }
 }
 public interface IRequestAdapt
     {    int ReqId { get; set; }
@@ -1659,8 +1681,8 @@ public interface IRequestAdvertising
     {
          int ReqId { get; set; }
          string TradeMark { get; set; }
-         double? DurationAll { get; set; }
-         double? DurationShort { get; set; }
+         TimeSpan? DurationAll { get; set; }
+         TimeSpan? DurationShort { get; set; }
 }
 public interface IRequestAim
     {    int CodeI { get; set; }
