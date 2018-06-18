@@ -27,6 +27,7 @@ namespace IpsViewComponentLibrary
 
             rdbProtected.IsChecked = true;
             pvParameters.SelectedPage = pvpProtected;
+            mtxtRate_ValueChanged(this, EventArgs.Empty);
 
             authorsBindingSource = bindingSource;
 
@@ -113,6 +114,26 @@ namespace IpsViewComponentLibrary
                 pvParameters.SelectedPage = pvpNotProtected;
             else if (rdbFolk.IsChecked == true)
                 pvParameters.SelectedPage = pvpFolk;
+        }
+
+        private void mtxtRate_ValueChanged(object sender, EventArgs e)
+        {
+            if (mtxtRate.Text == "0")
+            {
+                lblAuthorRightholder.Text = "Автор:";
+                txtCommunity.Visible = false;
+                dtBeginDate.Visible = false;
+                dtEndDate.Visible = false;
+            }
+            else
+            {
+                lblAuthorRightholder.Text = "Правовласник:";
+                txtCommunity.Visible = true;
+                dtBeginDate.Visible = true;
+                dtEndDate.Visible = true;
+
+            }
+
         }
     }
 }
