@@ -463,6 +463,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Resources\createAct.ico" />
   </ItemGroup>
   <ItemGroup>

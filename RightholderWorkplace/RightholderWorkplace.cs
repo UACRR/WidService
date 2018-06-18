@@ -550,7 +550,22 @@ namespace RightholderWorkplace
 
         private void btnAddTest_Click(object sender, EventArgs e)
         {
-            using (var authorItemView = new AuthorRightholderItemView(authorsBindingSource, _dictionariesObjectRight))
+            var authRigh = new ObjectAuthorRightholder
+            {
+                //RoleCode = 1,
+                //AuthorName = "Author",
+                //IsRightholder = false,
+                RoleCode = 1,
+                AuthorName = "Rightholder",
+                CustId = 1000,
+                IsRightholder = true,
+                CommunityName = "Community",
+                Rate = 50,
+                BeginDate = new DateTime(2000, 1, 1),
+                EndDate = new DateTime(2020, 12, 31),
+            };
+
+            using (var authorItemView = new AuthorRightholderItemView(authRigh, _dictionariesObjectRight))
             {
                 authorItemView.StartPosition = FormStartPosition.CenterParent;
                 authorItemView.ShowDialog();

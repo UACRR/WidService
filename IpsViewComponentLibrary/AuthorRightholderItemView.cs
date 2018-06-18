@@ -17,23 +17,20 @@ namespace IpsViewComponentLibrary
     public partial class AuthorRightholderItemView : Telerik.WinControls.UI.RadForm
     {
         private readonly ObjectRightDictionaries _dictionaries;
-        //public event EventHandler<RightholderMainView> RightholderSelected;
 
-        public AuthorRightholderItemView(BindingSource bindingSource, ObjectRightDictionaries dictionaries)
+        public AuthorRightholderItemView(ObjectAuthorRightholder authorRightholder, ObjectRightDictionaries dictionaries)
         {
             InitializeComponent();
 
             pvParameters.ViewElement.Visibility = ElementVisibility.Hidden;
 
-            rdbProtected.IsChecked = true;
+            rdbAuthorRightholder.IsChecked = true;
             pvParameters.SelectedPage = pvpAuthorRightholder;
-
-            checkIsRightholder_ToggleStateChanged(this, new StateChangedEventArgs(Telerik.WinControls.Enumerations.ToggleState.Off));
-
-            authorsBindingSource = bindingSource;
 
             _dictionaries = dictionaries;
             SetDictionaries(_dictionaries);
+
+            objectAuthorRightholderBindingSource.DataSource = authorRightholder;
         }
 
         private void SetDictionaries(ObjectRightDictionaries dictionaries)
@@ -54,35 +51,24 @@ namespace IpsViewComponentLibrary
 
         private void btnOk_Save(object sender, EventArgs e)
         {
-            SaveAndClose();
+            //var item = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
+            //OnRightholderSelected(item);
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            authorsBindingSource.ResetBindings(false);
+            //authorsBindingSource.ResetBindings(false);
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
-        {
-            SaveAndClose();
         }
 
         //private void OnRightholderSelected(RightholderMainView item)
         //{
         //    RightholderSelected?.Invoke(this, item);
         //}
-
-        private void SaveAndClose()
-        {
-            //var item = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
-
-            //OnRightholderSelected(item);
-
-            DialogResult = DialogResult.OK;
-            Close();
-        }
 
         private void ddlRightholder_PopupOpening(object sender, CancelEventArgs e)
         {
@@ -109,7 +95,7 @@ namespace IpsViewComponentLibrary
 
         private void rdbProtected_CheckStateChanged(object sender, EventArgs e)
         {
-            if (rdbProtected.IsChecked == true)
+            if (rdbAuthorRightholder.IsChecked == true)
                 pvParameters.SelectedPage = pvpAuthorRightholder;
             else if (rdbNotProtected.IsChecked == true)
                 pvParameters.SelectedPage = pvpNotProtected;
