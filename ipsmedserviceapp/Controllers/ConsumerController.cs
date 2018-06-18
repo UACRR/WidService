@@ -720,7 +720,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         [HttpPost("Document/{custId}/{typeDocument}")]
         public async Task<ActionResult> UploadDocument(int custId, int typeDocument, IFormFile file)
         {
-
+            // Перевірка існування дерикторії
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
             string consumerPath = Path.Combine(documentsFolder, custId.ToString());
             if (!Directory.Exists(consumerPath))
@@ -734,7 +734,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
             if (System.IO.File.Exists(consumerPath))
                 System.IO.File.Delete(consumerPath);
-
+            // Зберігаємо файл на сервері
             using (var stream = new FileStream(consumerPath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
