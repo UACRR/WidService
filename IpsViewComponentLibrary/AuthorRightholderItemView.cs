@@ -14,14 +14,19 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class AuthorItemView : Telerik.WinControls.UI.RadForm
+    public partial class AuthorRightholderItemView : Telerik.WinControls.UI.RadForm
     {
         private readonly ObjectRightDictionaries _dictionaries;
         //public event EventHandler<RightholderMainView> RightholderSelected;
 
-        public AuthorItemView(BindingSource bindingSource, ObjectRightDictionaries dictionaries)
+        public AuthorRightholderItemView(BindingSource bindingSource, ObjectRightDictionaries dictionaries)
         {
             InitializeComponent();
+
+            pvParameters.ViewElement.Visibility = ElementVisibility.Hidden;
+
+            rdbProtected.IsChecked = true;
+            pvParameters.SelectedPage = pvpProtected;
 
             authorsBindingSource = bindingSource;
 
@@ -35,14 +40,14 @@ namespace IpsViewComponentLibrary
             ddlRoleCode.ValueMember = "CodeI";
             ddlRoleCode.DisplayMember = "Name";
 
-            ddlAuthorState.DataSource = new List<DictBaseTypeI>
-            {
-                new DictBaseTypeI { CodeI = 0, Name = "Підтверджений" },
-                new DictBaseTypeI { CodeI = 1, Name = "Народний" },
-                new DictBaseTypeI { CodeI = 2, Name = "Невідомий" },
-            };
-            ddlAuthorState.ValueMember = "CodeI";
-            ddlAuthorState.DisplayMember = "Name";
+            //ddlAuthorState.DataSource = new List<DictBaseTypeI>
+            //{
+            //    new DictBaseTypeI { CodeI = 0, Name = "Підтверджений" },
+            //    new DictBaseTypeI { CodeI = 1, Name = "Народний" },
+            //    new DictBaseTypeI { CodeI = 2, Name = "Невідомий" },
+            //};
+            //ddlAuthorState.ValueMember = "CodeI";
+            //ddlAuthorState.DisplayMember = "Name";
         }
 
         private void btnOk_Save(object sender, EventArgs e)
@@ -77,7 +82,7 @@ namespace IpsViewComponentLibrary
             Close();
         }
 
-        private void ddlAuthorName_PopupOpening(object sender, CancelEventArgs e)
+        private void ddlRightholder_PopupOpening(object sender, CancelEventArgs e)
         {
             e.Cancel = true;
 
@@ -88,37 +93,26 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void SelectionView_RightholderSelected(object sender, RightholderMainView item)
+        private void SelectionView_RightholderSelected(object sender, RightholderMainView selectedRightholder)
         {
-            var currentAuthor = authorsBindingSource.Current as Authors;
-            currentAuthor.AuthorName = item.Name;
-            currentAuthor.CustId = item.CustId;
-            currentAuthor.IsFolkOrUnknown = null;
+            //var currentAuthor = authorsBindingSource.Current as Authors;
+            //currentAuthor.AuthorName = item.Name;
+            //currentAuthor.CustId = item.CustId;
+            //currentAuthor.IsFolkOrUnknown = null;
 
-            authorsBindingSource.ResetBindings(false);
+            //authorsBindingSource.ResetBindings(false);
+
+            ddlRightholder.Text = selectedRightholder.Name;
         }
 
-        private void ddlAuthorState_SelectedValueChanged(object sender, EventArgs e)
+        private void rdbProtected_CheckStateChanged(object sender, EventArgs e)
         {
-            if (ddlAuthorState.SelectedItem == null)
-                return;
-
-            var state = ddlAuthorState.SelectedItem.DataBoundItem as DictBaseTypeI;
-
-            var currentAuthor = authorsBindingSource.Current as Authors;
-
-            if (currentAuthor == null)
-                return;
-
-            if (state.CodeI != 0)
-            {
-                currentAuthor.CustId = null;
-                currentAuthor.AuthorName = (ddlAuthorState.SelectedItem.DataBoundItem as DictBaseTypeI).Name;
-            }
-            else if (currentAuthor.AuthorName == "Народний" || currentAuthor.AuthorName == "Невідомий")
-            {
-                currentAuthor.AuthorName = "";
-            }
+            if (rdbProtected.IsChecked == true)
+                pvParameters.SelectedPage = pvpProtected;
+            else if (rdbNotProtected.IsChecked == true)
+                pvParameters.SelectedPage = pvpNotProtected;
+            else if (rdbFolk.IsChecked == true)
+                pvParameters.SelectedPage = pvpFolk;
         }
     }
 }

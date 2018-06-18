@@ -497,10 +497,10 @@ namespace RightholderWorkplace
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
 
-            var columnRoleAuth = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
-            columnRoleAuth.ValueMember = "CodeI";
-            columnRoleAuth.DisplayMember = "Name";
+            //var columnRoleAuth = gvObjectAuthorsRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
+            //columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
+            //columnRoleAuth.ValueMember = "CodeI";
+            //columnRoleAuth.DisplayMember = "Name";
 
             var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
             columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
@@ -548,14 +548,24 @@ namespace RightholderWorkplace
             service.Save(_objectRight);
         }
 
-        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
+        private void btnAddTest_Click(object sender, EventArgs e)
         {
-            using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
+            using (var authorItemView = new AuthorRightholderItemView(authorsBindingSource, _dictionariesObjectRight))
             {
                 authorItemView.StartPosition = FormStartPosition.CenterParent;
                 authorItemView.ShowDialog();
                 authorsBindingSource.ResetBindings(false);
             }
+        }
+
+        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
+        {
+            //using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
+            //{
+            //    authorItemView.StartPosition = FormStartPosition.CenterParent;
+            //    authorItemView.ShowDialog();
+            //    authorsBindingSource.ResetBindings(false);
+            //}
         }
 
         private void gvObjectsRightsList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
