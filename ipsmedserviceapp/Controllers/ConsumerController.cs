@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -9,6 +10,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols;
+
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -17,9 +21,11 @@ namespace ipsmedserviceapp.Controllers
     public class ConsumerController : Controller
     {
         private MediaServiceContext _dbContext;
-        public ConsumerController(MediaServiceContext dbContext)
+        private IConfiguration _config;
+        public ConsumerController(MediaServiceContext dbContext, IConfiguration config)
         {
             _dbContext = dbContext;
+            _config = config;
         }
 
         /// <summary>
@@ -553,7 +559,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
         } // GetPeriodDetail(int licid)
 
-        #region
+        #region Register POST PUT DELETE
         /// <summary>
         /// Отримати детальну інформацію по звіту періоду
         /// </summary>
@@ -566,7 +572,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 .Include(rec => rec.RegisterItem)
                 .SingleOrDefaultAsync();
 
-            return Json( register );
+            return Json(register);
 
         }
 
@@ -587,16 +593,16 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     throw new ApplicationException("Empty Register Body");
 
                 var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == body.PeriodId).SingleOrDefaultAsync();
-                if( period == null )
+                if (period == null)
                     throw new ApplicationException("Dont find PAidPeriod");
 
                 Register addItem = new Register { RgStatus = 1 };
                 // addItem.RegId
                 addItem.SetFields(body, new[] { "RegId" });
-                period.Register.Add( addItem );
+                period.Register.Add(addItem);
 
                 int index = 1;
-                _dbContext.AppendList(body.RegisterItem, addItem.RegisterItem, item => item.RegIitemId=index++, (l, r) =>  l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+                _dbContext.AppendList(body.RegisterItem, addItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
 
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
@@ -608,7 +614,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             {
                 if (tran != null)
                     tran.Rollback();
-                return BadRequest( e.Message );
+                return BadRequest(e.Message);
             }
 
         } // PostRegisterDetail
@@ -630,8 +636,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     throw new ApplicationException("Empty Register Body");
 
 
-                Register modifyItem = await _dbContext.Register.Where( rec => rec.RegId == regId)
-                                        .Include( rec => rec.RegisterItem )
+                Register modifyItem = await _dbContext.Register.Where(rec => rec.RegId == regId)
+                                        .Include(rec => rec.RegisterItem)
                                         .SingleOrDefaultAsync();
                 if (modifyItem == null)
                     throw new ApplicationException("Dont find Register item");
@@ -639,7 +645,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 // addItem.PeriodId
                 modifyItem.SetFields(body, new[] { "RegId", "PeriodId" });
 
-                int index = modifyItem.RegisterItem.Max( rec => rec.RegIitemId );
+                int index = modifyItem.RegisterItem.Max(rec => rec.RegIitemId);
                 index++;
 
                 _dbContext.UpdateList(body.RegisterItem, modifyItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
@@ -678,7 +684,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 if (deleteItem == null)
                     throw new ApplicationException("Dont find Register item");
 
-                if( deleteItem.RgStatus > 1 )
+                if (deleteItem.RgStatus > 1)
                 {
                     throw new ApplicationException("Can not delete Register with status > 1");
                 }
@@ -704,6 +710,77 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
         #endregion
 
+        #region Download Upload file
+        /// <summary>
+        /// Завантаження файлу(ів) на сервер
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="typeDocument"></param>
+        /// <returns></returns>
+        [HttpPost("Document/{custId}/{typeDocument}")]
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, IFormFile file)
+        {
+
+            string documentsFolder = _config.GetValue<string>("DocumentsFolder");
+            string consumerPath = Path.Combine(documentsFolder, custId.ToString());
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+
+            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+
+            consumerPath = Path.Combine(consumerPath, file.FileName);
+
+            if (System.IO.File.Exists(consumerPath))
+                System.IO.File.Delete(consumerPath);
+
+            using (var stream = new FileStream(consumerPath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return Ok();
+        }
+
+
+        /// <summary>
+        /// Завантаження файлу(ів) на сервер
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="typeDocument"></param>
+        /// <returns></returns>
+        [HttpGet("Document/{custId}/{typeDocument}")]
+        public async Task<ActionResult> DownloadDocument(int custId, int typeDocument, string fileName)
+        {
+
+            string documentsFolder = _config.GetValue<string>("DocumentsFolder");
+            string consumerPath = Path.Combine(documentsFolder, custId.ToString());
+            if (!Directory.Exists(consumerPath))
+                return BadRequest();
+
+            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            if (!Directory.Exists(consumerPath))
+                return BadRequest();
+
+            consumerPath = Path.Combine(consumerPath, fileName);
+
+            if (!System.IO.File.Exists(consumerPath))
+                return BadRequest();
+
+            var memoryStream = new MemoryStream();
+            using (var stream = new FileStream(consumerPath, FileMode.Open))
+            {
+                await stream.CopyToAsync(memoryStream);
+            }
+            memoryStream.Position = 0;
+
+            return File(memoryStream, "application/vnd.ms-word", Path.GetFileName( consumerPath ));
+        }
+
+
+
+        #endregion
 
     } // public class ConsumerController : Controller
 }
