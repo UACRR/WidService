@@ -551,8 +551,159 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
                 return BadRequest(ex.Message);
             }
+        } // GetPeriodDetail(int licid)
+
+        #region
+        /// <summary>
+        /// Отримати детальну інформацію по звіту періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpGet("period/register/{regid}")]
+        public async Task<IActionResult> GetRegisterDetail(int regid)
+        {
+            var register = await _dbContext.Register.Where(rec => rec.RegId == regid)
+                .Include(rec => rec.RegisterItem)
+                .SingleOrDefaultAsync();
+
+            return Json( register );
+
         }
 
 
-    }
+        /// <summary>
+        /// Створити звіту періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpPost("period/register/new")]
+        public async Task<IActionResult> PostRegisterDetail([FromBody] Register body)
+        {
+
+            IDbContextTransaction tran = null;
+            try
+            {
+                if (body == null)
+                    throw new ApplicationException("Empty Register Body");
+
+                var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == body.PeriodId).SingleOrDefaultAsync();
+                if( period == null )
+                    throw new ApplicationException("Dont find PAidPeriod");
+
+                Register addItem = new Register { RgStatus = 1 };
+                // addItem.RegId
+                addItem.SetFields(body, new[] { "RegId" });
+                period.Register.Add( addItem );
+
+                int index = 1;
+                _dbContext.AppendList(body.RegisterItem, addItem.RegisterItem, item => item.RegIitemId=index++, (l, r) =>  l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(addItem);
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest( e.Message );
+            }
+
+        } // PostRegisterDetail
+
+
+        /// <summary>
+        /// Змінити звіт періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpPut("period/register/{regId}")]
+        public async Task<IActionResult> PutRegisterDetail(int regId, [FromBody] Register body)
+        {
+
+            IDbContextTransaction tran = null;
+            try
+            {
+                if (body == null)
+                    throw new ApplicationException("Empty Register Body");
+
+
+                Register modifyItem = await _dbContext.Register.Where( rec => rec.RegId == regId)
+                                        .Include( rec => rec.RegisterItem )
+                                        .SingleOrDefaultAsync();
+                if (modifyItem == null)
+                    throw new ApplicationException("Dont find Register item");
+
+                // addItem.PeriodId
+                modifyItem.SetFields(body, new[] { "RegId", "PeriodId" });
+
+                int index = modifyItem.RegisterItem.Max( rec => rec.RegIitemId );
+                index++;
+
+                _dbContext.UpdateList(body.RegisterItem, modifyItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(modifyItem);
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        } // PoutRegisterDetail
+
+        /// <summary>
+        /// Змінити звіт періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpDelete("period/register/{regId}")]
+        public async Task<IActionResult> DeleteRegisterDetail(int regId)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+
+                Register deleteItem = await _dbContext.Register.Where(rec => rec.RegId == regId)
+                                        .Include(rec => rec.RegisterItem)
+                                        .SingleOrDefaultAsync();
+                if (deleteItem == null)
+                    throw new ApplicationException("Dont find Register item");
+
+                if( deleteItem.RgStatus > 1 )
+                {
+                    throw new ApplicationException("Can not delete Register with status > 1");
+                }
+
+                // var itemList = deleteItem.RegisterItem.ToList();
+                _dbContext.RegisterItem.RemoveRange(deleteItem.RegisterItem);
+                _dbContext.Register.Remove(deleteItem);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        } // DeleteRegisterDetail
+
+        #endregion
+
+
+    } // public class ConsumerController : Controller
 }
