@@ -48,10 +48,11 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -181,23 +182,23 @@
             gridViewTextBoxColumn9.FieldName = "PeriodName";
             gridViewTextBoxColumn9.HeaderText = "Період";
             gridViewTextBoxColumn9.Name = "PeriodName";
-            gridViewTextBoxColumn9.Width = 294;
+            gridViewTextBoxColumn9.Width = 308;
             gridViewTextBoxColumn10.FieldName = "Status";
             gridViewTextBoxColumn10.HeaderText = "Стан періоду";
             gridViewTextBoxColumn10.Name = "Status";
-            gridViewTextBoxColumn10.Width = 122;
+            gridViewTextBoxColumn10.Width = 128;
             gridViewDecimalColumn3.FieldName = "Amount";
             gridViewDecimalColumn3.HeaderText = "Вимога";
             gridViewDecimalColumn3.Name = "Amount";
-            gridViewDecimalColumn3.Width = 122;
+            gridViewDecimalColumn3.Width = 128;
             gridViewDecimalColumn4.FieldName = "Distribamount";
             gridViewDecimalColumn4.HeaderText = "Розподілено";
             gridViewDecimalColumn4.Name = "Distribamount";
-            gridViewDecimalColumn4.Width = 122;
+            gridViewDecimalColumn4.Width = 128;
             gridViewTextBoxColumn11.FieldName = "ReportCounts";
             gridViewTextBoxColumn11.HeaderText = "Звітів";
             gridViewTextBoxColumn11.Name = "ReportCounts";
-            gridViewTextBoxColumn11.Width = 74;
+            gridViewTextBoxColumn11.Width = 83;
             gridViewTextBoxColumn12.FieldName = "IsActFormed";
             gridViewTextBoxColumn12.HeaderText = "Сформовано акт";
             gridViewTextBoxColumn12.MaxWidth = 80;
@@ -227,10 +228,6 @@
             gridViewTextBoxColumn13.IsVisible = false;
             gridViewTextBoxColumn13.Name = "PeriodId";
             gridViewTextBoxColumn13.Width = 42;
-            gridViewTextBoxColumn14.FieldName = "Path";
-            gridViewTextBoxColumn14.HeaderText = "path";
-            gridViewTextBoxColumn14.Name = "Path";
-            gridViewTextBoxColumn14.Width = 42;
             this.gvPeriods.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
@@ -240,8 +237,7 @@
             gridViewTextBoxColumn12,
             gridViewCommandColumn1,
             gridViewCommandColumn2,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14});
+            gridViewTextBoxColumn13});
             this.gvPeriods.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvPeriods.Name = "gvPeriods";
             this.gvPeriods.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -279,15 +275,29 @@
             this.gvPeriodReports.MasterTemplate.AllowDragToGroup = false;
             this.gvPeriodReports.MasterTemplate.AllowEditRow = false;
             this.gvPeriodReports.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn15.HeaderText = "Звіти періода";
-            gridViewTextBoxColumn15.Name = "ReportsPeriod";
-            gridViewTextBoxColumn15.Width = 693;
-            gridViewTextBoxColumn16.HeaderText = "Період";
-            gridViewTextBoxColumn16.Name = "Period";
-            gridViewTextBoxColumn16.Width = 212;
+            gridViewTextBoxColumn14.FieldName = "ReportsName";
+            gridViewTextBoxColumn14.HeaderText = "Звіти періода";
+            gridViewTextBoxColumn14.Name = "ReportsName";
+            gridViewTextBoxColumn14.Width = 693;
+            gridViewTextBoxColumn15.FieldName = "PeriodName";
+            gridViewTextBoxColumn15.HeaderText = "Період";
+            gridViewTextBoxColumn15.Name = "PeriodName";
+            gridViewTextBoxColumn15.Width = 212;
+            gridViewTextBoxColumn16.FieldName = "ReportId";
+            gridViewTextBoxColumn16.HeaderText = "ID";
+            gridViewTextBoxColumn16.IsVisible = false;
+            gridViewTextBoxColumn16.Name = "ReportId";
+            gridViewTextBoxColumn16.Width = 48;
+            gridViewTextBoxColumn17.FieldName = "PathString";
+            gridViewTextBoxColumn17.HeaderText = "Path";
+            gridViewTextBoxColumn17.IsVisible = false;
+            gridViewTextBoxColumn17.Name = "PathString";
+            gridViewTextBoxColumn17.Width = 48;
             this.gvPeriodReports.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn14,
             gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16});
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17});
             this.gvPeriodReports.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvPeriodReports.Name = "gvPeriodReports";
             this.gvPeriodReports.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
