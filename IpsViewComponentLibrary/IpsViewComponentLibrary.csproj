@@ -110,12 +110,6 @@
     <Compile Include="AddPremisesForm.Designer.cs">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddressLetterControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AddressLetterControl.Designer.cs">
-      <DependentUpon>AddressLetterControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="AnketaAddNamesView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,9 +337,6 @@
   <ItemGroup>
     <EmbeddedResource Include="AddPremisesForm.resx">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddressLetterControl.resx">
-      <DependentUpon>AddressLetterControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>

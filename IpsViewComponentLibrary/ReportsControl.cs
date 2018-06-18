@@ -86,10 +86,12 @@ namespace IpsViewComponentLibrary
         private void gvPeriods_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             List<GridReportsP> source = new List<GridReportsP>();
-            var data = _data.Register;
-            if (data != null)
+            var paidPeriods = _data?.Client?.LicenseAgreement?.Where(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value).Select(rec => rec.PaidPeriod).SingleOrDefault();
+            var register = paidPeriods?.Where(rec => rec.PeriodId == (int)gvPeriods.CurrentRow.Cells["PeriodId"].Value).Select(rec => rec.Register).SingleOrDefault();
+
+            if (register != null)
             {
-                foreach (var item in data)
+                foreach (var item in register)
                 {
                     var reports = new GridReportsP
                     {
