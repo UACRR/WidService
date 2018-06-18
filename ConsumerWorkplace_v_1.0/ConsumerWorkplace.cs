@@ -71,7 +71,13 @@ namespace ConsumerWorkplace_v_1._0
             rpvConsumers.SelectedPage = pageConsumersAnketa;
             pageAllAnketa.SelectedPage = pvConsumerLicenseType;
             pageAllAnketa.SelectedPage = pvConsumerClientName;
-            if(!clientNameCheckBoxPlaces.Checked)
+
+            foreach (var page in pageAllAnketa.Pages)
+            {
+                page.Item.ForeColor = DefaultForeColor;
+            }
+
+            if (!clientNameCheckBoxPlaces.Checked)
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
             else
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;

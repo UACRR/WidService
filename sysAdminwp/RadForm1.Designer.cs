@@ -125,7 +125,6 @@ namespace sysAdminwp
             this.radGridView1.EnableCustomFiltering = true;
             this.radGridView1.Location = new System.Drawing.Point(243, 64);
             this.radGridView1.Margin = new System.Windows.Forms.Padding(1);
-            //
             // 
             // 
             // 
@@ -239,7 +238,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radTBCode.Location = new System.Drawing.Point(162, 28);
             this.radTBCode.Name = "radTBCode";
-            this.radTBCode.Size = new System.Drawing.Size(727, 0);
+            this.radTBCode.Size = new System.Drawing.Size(727, 20);
             this.radTBCode.TabIndex = 6;
             this.radTBCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
             // 
@@ -346,7 +345,7 @@ namespace sysAdminwp
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "RadForm1";
+            this.Text = "Довідники";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
