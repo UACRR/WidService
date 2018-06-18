@@ -26,8 +26,9 @@ namespace IpsViewComponentLibrary
             pvParameters.ViewElement.Visibility = ElementVisibility.Hidden;
 
             rdbProtected.IsChecked = true;
-            pvParameters.SelectedPage = pvpProtected;
-            mtxtRate_ValueChanged(this, EventArgs.Empty);
+            pvParameters.SelectedPage = pvpAuthorRightholder;
+
+            checkIsRightholder_ToggleStateChanged(this, new StateChangedEventArgs(Telerik.WinControls.Enumerations.ToggleState.Off));
 
             authorsBindingSource = bindingSource;
 
@@ -109,31 +110,28 @@ namespace IpsViewComponentLibrary
         private void rdbProtected_CheckStateChanged(object sender, EventArgs e)
         {
             if (rdbProtected.IsChecked == true)
-                pvParameters.SelectedPage = pvpProtected;
+                pvParameters.SelectedPage = pvpAuthorRightholder;
             else if (rdbNotProtected.IsChecked == true)
                 pvParameters.SelectedPage = pvpNotProtected;
             else if (rdbFolk.IsChecked == true)
                 pvParameters.SelectedPage = pvpFolk;
         }
 
-        private void mtxtRate_ValueChanged(object sender, EventArgs e)
+        private void checkIsRightholder_ToggleStateChanged(object sender, StateChangedEventArgs args)
         {
-            if (mtxtRate.Text == "0")
+            if (checkIsRightholder.CheckState == CheckState.Checked)
             {
-                lblAuthorRightholder.Text = "Автор:";
-                txtCommunity.Visible = false;
-                dtBeginDate.Visible = false;
-                dtEndDate.Visible = false;
+                lblAuthorRightholder.Text = "Правовласник:";
+                ddlRightholder.Text = "";
+                ddlRightholder.ReadOnly = true;
+                panelRightholderInfo.Visible = true;
             }
             else
             {
-                lblAuthorRightholder.Text = "Правовласник:";
-                txtCommunity.Visible = true;
-                dtBeginDate.Visible = true;
-                dtEndDate.Visible = true;
-
+                lblAuthorRightholder.Text = "Автор:";
+                ddlRightholder.ReadOnly = false;
+                panelRightholderInfo.Visible = false;
             }
-
         }
     }
 }
