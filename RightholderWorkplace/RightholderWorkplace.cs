@@ -244,7 +244,7 @@ namespace RightholderWorkplace
 
         private void btnNextAgreement_Click(object sender, EventArgs e)
         {
-            createRightholderTerritoryLimitationsPage.Enabled = true;
+            createRightholderAgreementPage.Enabled = true;
             newCreateRightholderPageView.SelectedPage = createRightholderAgreementPage;
         }
 
