@@ -262,7 +262,8 @@ namespace sysAdminwp
             radTBNameEn.Clear();
             radTBNameRu.Clear();
             radTBNameUa.Clear();
-            
+            radPanelChange.Enabled = true;
+
         }
 
         //кнопка видалення рядка в grid
@@ -334,9 +335,11 @@ namespace sysAdminwp
                              UpdateEditPanel();
                              radPanelChange.Enabled = false;
                              radTxtBoxSearchData.Enabled = false;
-                             radBtnAdd.Enabled = false;
                              radBtnRemove.Enabled = false;
-                         }
+
+                             radBtnAdd.Enabled = true;
+                             return;
+                        }
                      }
                  }
 
