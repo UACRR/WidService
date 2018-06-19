@@ -500,6 +500,7 @@ namespace RightholderWorkplace
             var objectAuthorRightholderList = _objectRight.Authors.Select(a => {
 
                 var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId);
+                var foundedRightholder = objectRightContainer.rhList.FirstOrDefault(r => r.custId == a.CustId);
 
                 return new ObjectAuthorRightholder
                 {
@@ -510,7 +511,7 @@ namespace RightholderWorkplace
                     AuthorName = a.AuthorName,
                     IsRightholder = a.CustId != null,
                     CopyrightStatus = foundedCopyright?.Status,
-                    CommunityName = "",
+                    CommunityName = foundedRightholder?.Community_Name,
                     Rate = foundedCopyright?.Rate,
                     BeginDate = foundedCopyright?.BeginDate,
                     EndDate = foundedCopyright?.EndDate,

@@ -43,6 +43,7 @@ namespace ipsFormsDesign.Dictionary
         public int isClient { get; set; }
         public int isRHolder { get; set; }
         public int isPartner { get; set; }
+        public string Community_Name { get; set; }
     }
 
     public class ContainerForObjectRihgt
