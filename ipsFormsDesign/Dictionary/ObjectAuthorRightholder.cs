@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ipsFormsDesign.Dictionary
 {
-    public class ObjectAuthorRightholder
+    public class ObjectAuthorRightholder : EditableObjectBase
     {
         public int AuthId { get; set; }
         public int ObjId { get; set; }

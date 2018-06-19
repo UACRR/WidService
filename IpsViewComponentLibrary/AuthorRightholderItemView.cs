@@ -24,6 +24,7 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
 
             _authorRightholder = authorRightholder;
+            _authorRightholder.BeginEdit();
 
             pvParameters.ViewElement.Visibility = ElementVisibility.Hidden;
 
@@ -40,21 +41,11 @@ namespace IpsViewComponentLibrary
             ddlRoleCode.DataSource = dictionaries.creativeRoleType;
             ddlRoleCode.ValueMember = "CodeI";
             ddlRoleCode.DisplayMember = "Name";
-
-            //ddlAuthorState.DataSource = new List<DictBaseTypeI>
-            //{
-            //    new DictBaseTypeI { CodeI = 0, Name = "Підтверджений" },
-            //    new DictBaseTypeI { CodeI = 1, Name = "Народний" },
-            //    new DictBaseTypeI { CodeI = 2, Name = "Невідомий" },
-            //};
-            //ddlAuthorState.ValueMember = "CodeI";
-            //ddlAuthorState.DisplayMember = "Name";
         }
 
-        private void btnOk_Save(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            //var item = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
-            //OnRightholderSelected(item);
+            _authorRightholder.EndEdit();
 
             DialogResult = DialogResult.OK;
             Close();
@@ -62,15 +53,10 @@ namespace IpsViewComponentLibrary
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //authorsBindingSource.ResetBindings(false);
+            _authorRightholder.CancelEdit();
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
-        //private void OnRightholderSelected(RightholderMainView item)
-        //{
-        //    RightholderSelected?.Invoke(this, item);
-        //}
 
         private void ddlRightholder_PopupOpening(object sender, CancelEventArgs e)
         {

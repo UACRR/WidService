@@ -37,15 +37,6 @@ namespace RightholderWorkplace
 
         ObjectRightService _objectRightService = new ObjectRightService();
 
-        public RightholderMainView SelectedRightholder
-        {
-            get
-            {
-                return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
-            }
-            set { }
-        }
-
         #region IRightholderForm immplementation
 
         public Func<IList<RightholderMainView>> GetMainViewData { get; set; }
@@ -171,6 +162,15 @@ namespace RightholderWorkplace
         }
 
         #region Rightholders page
+
+        public RightholderMainView SelectedRightholder
+        {
+            get
+            {
+                return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
+            }
+            set { }
+        }
 
         #region Next / Prev buttons
 
@@ -552,6 +552,15 @@ namespace RightholderWorkplace
 
         #region Objectrights page
 
+        public ObjectAuthorRightholder SelectedObjectAuthorRightholder
+        {
+            get
+            {
+                return gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
+            }
+            set { }
+        }
+
         private void WireUpObjectsRightsPageEvents()
         {
             ctrlRightholderSelector.RightholderChanged += CtrlRightholderSelector_RightholderChanged;
@@ -608,14 +617,19 @@ namespace RightholderWorkplace
             }
         }
 
+        private void gvObjectAuthorsRightholders_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                EditObjectAuthorRightholder();
+            }
+        }
+
         private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
         {
-            //using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
-            //{
-            //    authorItemView.StartPosition = FormStartPosition.CenterParent;
-            //    authorItemView.ShowDialog();
-            //    authorsBindingSource.ResetBindings(false);
-            //}
+            EditObjectAuthorRightholder();
         }
 
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
@@ -630,6 +644,30 @@ namespace RightholderWorkplace
 
             ctrlRightholderSelector.Rightholder = selectedRightholder;
         }
+
+        #region Objectrights page helpers
+
+        private void EditObjectAuthorRightholder(ObjectAuthorRightholder objectAuthorRightholder = null)
+        {
+            if (objectAuthorRightholder == null)
+                objectAuthorRightholder = SelectedObjectAuthorRightholder;
+
+            objectAuthorRightholderBindingSource.RaiseListChangedEvents = false;
+
+            using (var authorRightholderItemView = new AuthorRightholderItemView(SelectedObjectAuthorRightholder, _dictionariesObjectRight))
+            {
+                authorRightholderItemView.StartPosition = FormStartPosition.CenterParent;
+                authorRightholderItemView.ShowDialog();
+            }
+
+            objectAuthorRightholderBindingSource.RaiseListChangedEvents = true;
+
+            MainPageView.SelectedPage = mainPageRightsObjects;
+            objectsPageView.SelectedPage = actualObjectsPage;
+            actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+        }
+
+        #endregion
 
         #endregion
 
