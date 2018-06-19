@@ -12,7 +12,7 @@ namespace TestMVCStack
         /// Кількість об'єктів в стекі
         /// </summary>
         public int Count { get { return _stack.Count; } }
-        // public PresenterMain presenter { get; set; }
+
 
         public MainViewSwitcher()
         {
@@ -45,14 +45,6 @@ namespace TestMVCStack
         {
             if (_stack.Count == 0)
             {
-                //if(presenter == null
-                //    || presenter.parent == null )
-                //{
-                //    Application.Exit();
-                //    return;
-                //}
-
-                //presenter.parent.Done();
                 return;
             }
             _currentView = _stack.Pop();

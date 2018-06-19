@@ -9,7 +9,7 @@ using TestMVCStack.Main;
 
 namespace TestMVCStack
 {
-    public class PresenterMain : IPresenter
+    public class PresenterMain : IPresenterNested
     {
         MainViewSwitcher _switcher = null;
         Control _curentView = null;
@@ -27,6 +27,13 @@ namespace TestMVCStack
             Initialize();
         }
 
+        /// <summary>
+        /// Конструктор для включення 
+        /// </summary>
+        /// <param name="_service"></param>
+        /// <param name="switcher"></param>
+        /// <param name="_parent"></param>
+        /// <param name="level"></param>
         public PresenterMain(ServiceMain _service, MainViewSwitcher switcher, PresenterMain _parent, int level)
             : this(_service, switcher)
         {

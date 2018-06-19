@@ -255,6 +255,12 @@
     <Compile Include="IpsExclusionsLimitationsControl.Designer.cs">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainViewSwitcher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainViewSwitcher.Designer.cs">
+      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiddleControlInfoAgrCalc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -409,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IpsExclusionsLimitationsControl.resx">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainViewSwitcher.resx">
+      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlInfoAgrCalc.resx">
       <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>

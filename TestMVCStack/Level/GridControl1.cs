@@ -14,9 +14,9 @@ namespace TestMVCStack
 {
     public partial class GridControl1 : UserControl
     {
-        public IPresenter presenter { get; }
+        public IPresenterNested presenter { get; }
 
-        public GridControl1(IPresenter parent)
+        public GridControl1(IPresenterNested parent)
         {
             presenter = parent;
             InitializeComponent();
@@ -24,8 +24,7 @@ namespace TestMVCStack
 
         private void radButton2_Click(object sender, EventArgs e)
         {
-            //if (radGridView1.SelectedRows.Count > 0)
-            //    presenter.parent.editData(radGridView1.SelectedRows[0].DataBoundItem as IData);
+
             presenter.Cancel();
         }
 
@@ -59,8 +58,6 @@ namespace TestMVCStack
             presenter.NestPanel();
         }
 
-        private void radGridView1_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
-        {
-        }
+
     }
 }
