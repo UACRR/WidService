@@ -151,7 +151,7 @@
             this.pvParameters.Controls.Add(this.pvpFolk);
             this.pvParameters.Location = new System.Drawing.Point(0, 80);
             this.pvParameters.Name = "pvParameters";
-            this.pvParameters.SelectedPage = this.pvpNotProtected;
+            this.pvParameters.SelectedPage = this.pvpAuthorRightholder;
             this.pvParameters.Size = new System.Drawing.Size(546, 183);
             this.pvParameters.TabIndex = 59;
             this.pvParameters.ThemeName = "Office2013Light";

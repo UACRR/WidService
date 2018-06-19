@@ -9,7 +9,7 @@ namespace ipsFormsDesign.Dictionary
         public int AuthId { get; set; }
         public int ObjId { get; set; }
         public int RoleCode { get; set; }
-        public int FolkType { get; set; }
+        public int? FolkType { get; set; }
         public string AuthorName { get; set; }
         public bool IsRightholder { get; set; }
         public int CustId { get; set; }

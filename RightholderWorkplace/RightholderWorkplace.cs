@@ -497,10 +497,31 @@ namespace RightholderWorkplace
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
 
-            //var columnRoleAuth = gvObjectAuthorsRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
-            //columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
-            //columnRoleAuth.ValueMember = "CodeI";
-            //columnRoleAuth.DisplayMember = "Name";
+            var objectAuthorRightholderList = _objectRight.Authors.Select(a => {
+                return new ObjectAuthorRightholder
+                {
+                    AuthId = a.AuthId,
+                    ObjId = a.ObjId,
+                    RoleCode = a.RoleCode,
+                    FolkType = a.FolkType,
+                    IsRightholder = a.CustId != null,
+                    AuthorName = a.AuthorName,
+                    CommunityName = "",
+                    Rate = 0,
+                    BeginDate = null,
+                    EndDate = null,
+                };
+            }).ToList();
+
+            var columnRoleCode = gvObjectAuthorsRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleCode.DataSource = _dictionariesObjectRight.creativeRoleType;
+            columnRoleCode.ValueMember = "CodeI";
+            columnRoleCode.DisplayMember = "Name";
+
+            var columnFolkType = gvObjectAuthorsRightholders.Columns["FolkType"] as GridViewComboBoxColumn;
+            columnFolkType.DataSource = _dictionariesObjectRight.folkType;
+            columnFolkType.ValueMember = "CodeI";
+            columnFolkType.DisplayMember = "Name";
 
             var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
             columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
@@ -514,9 +535,9 @@ namespace RightholderWorkplace
 
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
+            objectAuthorRightholderBindingSource.DataSource = objectAuthorRightholderList;
             objectRightBindingSource.DataSource = _objectRight;
             mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
-            authorsBindingSource.DataSource = _objectRight.Authors;
             copyRightBindingSource.DataSource = _objectRight.CopyRight;
         }
 
@@ -552,28 +573,29 @@ namespace RightholderWorkplace
         {
             var authRigh = new ObjectAuthorRightholder
             {
-                FolkType = 1,
+                //FolkType = 1,
+                ////RoleCode = 1,
+                ////AuthorName = "Author",
+                ////IsRightholder = false,
                 //RoleCode = 1,
-                //AuthorName = "Author",
-                //IsRightholder = false,
-                RoleCode = 1,
-                AuthorName = "Rightholder",
-                CustId = 1000,
-                IsRightholder = true,
-                CommunityName = "Community",
-                Rate = 50,
-                BeginDate = new DateTime(2000, 1, 1),
-                EndDate = new DateTime(2020, 12, 31),
+                //AuthorName = "Rightholder",
+                //CustId = 1000,
+                //IsRightholder = true,
+                //CommunityName = "Community",
+                //Rate = 50,
+                //BeginDate = new DateTime(2000, 1, 1),
+                //EndDate = new DateTime(2020, 12, 31),
                 //FolkType = 2,
                 //AuthorName = "Author not protected",
                 //FolkType = 3,
+                //FolkType = null,
             };
 
             using (var authorItemView = new AuthorRightholderItemView(authRigh, _dictionariesObjectRight))
             {
                 authorItemView.StartPosition = FormStartPosition.CenterParent;
                 authorItemView.ShowDialog();
-                authorsBindingSource.ResetBindings(false);
+                //authorsBindingSource.ResetBindings(false);
             }
         }
 
@@ -587,7 +609,7 @@ namespace RightholderWorkplace
             //}
         }
 
-        private void gvObjectsRightsList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             SetTooltipTextFromHeader(sender, e);
         }
