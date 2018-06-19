@@ -498,18 +498,22 @@ namespace RightholderWorkplace
             ddlSpecType.DisplayMember = "Name";
 
             var objectAuthorRightholderList = _objectRight.Authors.Select(a => {
+
+                var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId);
+
                 return new ObjectAuthorRightholder
                 {
                     AuthId = a.AuthId,
                     ObjId = a.ObjId,
                     RoleCode = a.RoleCode,
                     FolkType = a.FolkType,
-                    IsRightholder = a.CustId != null,
                     AuthorName = a.AuthorName,
+                    IsRightholder = a.CustId != null,
+                    CopyrightStatus = foundedCopyright?.Status,
                     CommunityName = "",
-                    Rate = 0,
-                    BeginDate = null,
-                    EndDate = null,
+                    Rate = foundedCopyright?.Rate,
+                    BeginDate = foundedCopyright?.BeginDate,
+                    EndDate = foundedCopyright?.EndDate,
                 };
             }).ToList();
 
@@ -522,6 +526,10 @@ namespace RightholderWorkplace
             columnFolkType.DataSource = _dictionariesObjectRight.folkType;
             columnFolkType.ValueMember = "CodeI";
             columnFolkType.DisplayMember = "Name";
+
+            //var columnCopyrightStatus = gvObjectAuthorsRightholders.Columns["CopyrightStatus"] as GridViewCheckBoxColumn;
+            //columnCopyrightStatus.NullValue = false;
+            //columnCopyrightStatus.DataSourceNullValue = false;
 
             var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
             columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
