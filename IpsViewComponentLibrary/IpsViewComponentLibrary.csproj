@@ -177,6 +177,12 @@
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtensionUtils.cs" />
+    <Compile Include="GlobalControlConsumerAnketa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalControlConsumerAnketa.Designer.cs">
+      <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalControlConsumerCabinet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -267,11 +273,41 @@
     <Compile Include="MainViewSwitcher.Designer.cs">
       <DependentUpon>MainViewSwitcher.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiddleControlAddress.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAddress.Designer.cs">
+      <DependentUpon>MiddleControlAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlAgreementAnketaType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
+      <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlBankRequisites.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlBankRequisites.Designer.cs">
+      <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlClientName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlClientName.Designer.cs">
+      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiddleControlInfoAgrCalc.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MiddleControlInfoAgrCalc.Designer.cs">
       <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlManagers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlManagers.Designer.cs">
+      <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </Compile>
     <Compile Include="PassportControl.cs">
       <SubType>UserControl</SubType>
@@ -395,6 +431,9 @@
     <EmbeddedResource Include="ExpandedFormForAnketaPersonRightHolder.resx">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GlobalControlConsumerAnketa.resx">
+      <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GlobalControlConsumerCabinet.resx">
       <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
     </EmbeddedResource>
@@ -428,8 +467,23 @@
     <EmbeddedResource Include="MainViewSwitcher.resx">
       <DependentUpon>MainViewSwitcher.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAddress.resx">
+      <DependentUpon>MiddleControlAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
+      <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlBankRequisites.resx">
+      <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlClientName.resx">
+      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlInfoAgrCalc.resx">
       <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlManagers.resx">
+      <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PassportControl.resx">
       <DependentUpon>PassportControl.cs</DependentUpon>

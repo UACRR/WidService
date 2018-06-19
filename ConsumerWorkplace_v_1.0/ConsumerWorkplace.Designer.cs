@@ -556,10 +556,6 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // clientNameCtrlAnketaCompany
             // 
-            this.clientNameCtrlAnketaCompany.ActivityCodeDataMember = "";
-            this.clientNameCtrlAnketaCompany.ActivityCodeDataSource = this.iActivityTypeBindingSource;
-            this.clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "";
-            this.clientNameCtrlAnketaCompany.ActivityCodeValueMember = "";
             this.clientNameCtrlAnketaCompany.DataMember = "";
             this.clientNameCtrlAnketaCompany.DataSource = this.iAnketaCompanyBindingSource;
             this.clientNameCtrlAnketaCompany.Location = new System.Drawing.Point(4, 4);

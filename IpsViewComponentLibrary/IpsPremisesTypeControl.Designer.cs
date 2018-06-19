@@ -81,16 +81,16 @@
             gridViewTextBoxColumn2.FieldName = "TypePremisesName";
             gridViewTextBoxColumn2.HeaderText = "Тип приміщення";
             gridViewTextBoxColumn2.Name = "TypePremisesName";
-            gridViewTextBoxColumn2.Width = 427;
+            gridViewTextBoxColumn2.Width = 377;
             gridViewTextBoxColumn3.FieldName = "CountPlace";
             gridViewTextBoxColumn3.HeaderText = "Місць";
             gridViewTextBoxColumn3.Name = "CountPlace";
-            gridViewTextBoxColumn3.Width = 86;
+            gridViewTextBoxColumn3.Width = 76;
             gridViewTextBoxColumn4.FieldName = "Meterage";
             gridViewTextBoxColumn4.HeaderText = "Метраж";
             gridViewTextBoxColumn4.Name = "Meterage";
             gridViewTextBoxColumn4.UseDataTypeConverterWhenSorting = true;
-            gridViewTextBoxColumn4.Width = 86;
+            gridViewTextBoxColumn4.Width = 76;
             this.rGridViewPremises.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -101,7 +101,7 @@
             this.rGridViewPremises.Name = "rGridViewPremises";
             this.rGridViewPremises.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewPremises.ReadOnly = true;
-            this.rGridViewPremises.Size = new System.Drawing.Size(618, 185);
+            this.rGridViewPremises.Size = new System.Drawing.Size(548, 185);
             this.rGridViewPremises.TabIndex = 0;
             this.rGridViewPremises.ThemeName = "Office2007Silver";
             // 
@@ -122,7 +122,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(179, 9);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(456, 20);
+            this.radSeparator1.Size = new System.Drawing.Size(386, 20);
             this.radSeparator1.TabIndex = 0;
             this.radSeparator1.ThemeName = "Office2007Silver";
             // 
@@ -140,7 +140,7 @@
             // radBtnDeletePremises
             // 
             this.radBtnDeletePremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radBtnDeletePremises.Location = new System.Drawing.Point(510, 226);
+            this.radBtnDeletePremises.Location = new System.Drawing.Point(440, 226);
             this.radBtnDeletePremises.Name = "radBtnDeletePremises";
             this.radBtnDeletePremises.Size = new System.Drawing.Size(125, 24);
             this.radBtnDeletePremises.TabIndex = 3;
@@ -158,8 +158,9 @@
             this.Controls.Add(this.rBtnAddPremises);
             this.Controls.Add(this.rGridViewPremises);
             this.Controls.Add(this.rLblPremises);
+            this.MinimumSize = new System.Drawing.Size(450, 253);
             this.Name = "IpsPremisesTypeControl";
-            this.Size = new System.Drawing.Size(638, 253);
+            this.Size = new System.Drawing.Size(568, 253);
             ((System.ComponentModel.ISupportInitialize)(this.rLblPremises)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewPremises.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewPremises)).EndInit();

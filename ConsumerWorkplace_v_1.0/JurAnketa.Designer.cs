@@ -686,10 +686,6 @@
             // 
             // clientNameCtrlAnketaCompany
             // 
-            this.clientNameCtrlAnketaCompany.ActivityCodeDataMember = "";
-            this.clientNameCtrlAnketaCompany.ActivityCodeDataSource = null;
-            this.clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "";
-            this.clientNameCtrlAnketaCompany.ActivityCodeValueMember = "";
             this.clientNameCtrlAnketaCompany.DataMember = "";
             this.clientNameCtrlAnketaCompany.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             this.clientNameCtrlAnketaCompany.Location = new System.Drawing.Point(4, 4);

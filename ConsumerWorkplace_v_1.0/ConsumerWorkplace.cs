@@ -505,9 +505,7 @@ namespace ConsumerWorkplace_v_1._0
 
                 anketaDictionatiesBindingSource.DataSource = _dic;
 
-                clientNameCtrlAnketaCompany.ActivityCodeDataSource = _dic.activityType;
-                clientNameCtrlAnketaCompany.ActivityCodeValueMember = "codeI";
-                clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "name";
+
                 clientNameCtrlAnketaCompany.DataSource = anketa;
 
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;

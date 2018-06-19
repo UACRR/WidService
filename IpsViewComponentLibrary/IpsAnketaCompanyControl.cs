@@ -41,39 +41,6 @@ namespace IpsViewComponentLibrary
 
         #region Activity code dictionary
 
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object ActivityCodeDataSource
-        {
-            get { return ddlActivityCode.DataSource; }
-            set
-            {
-                if (ddlActivityCode.DataSource != value)
-                    ddlActivityCode.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string ActivityCodeDataMember
-        {
-            get { return ddlActivityCode.DataMember; }
-            set { ddlActivityCode.DataMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string ActivityCodeDisplayMember
-        {
-            get { return ddlActivityCode.DisplayMember; }
-            set { ddlActivityCode.DisplayMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string ActivityCodeValueMember
-        {
-            get { return ddlActivityCode.ValueMember; }
-            set { ddlActivityCode.ValueMember = value; }
-        }
-
         public string CompanyFullName => txtName.Text;
 
         /// <summary>
