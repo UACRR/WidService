@@ -16,21 +16,23 @@ namespace IpsViewComponentLibrary
 {
     public partial class AuthorRightholderItemView : Telerik.WinControls.UI.RadForm
     {
+        private readonly ObjectAuthorRightholder _authorRightholder;
         private readonly ObjectRightDictionaries _dictionaries;
 
         public AuthorRightholderItemView(ObjectAuthorRightholder authorRightholder, ObjectRightDictionaries dictionaries)
         {
             InitializeComponent();
 
+            _authorRightholder = authorRightholder;
+
             pvParameters.ViewElement.Visibility = ElementVisibility.Hidden;
 
-            rdbAuthorRightholder.IsChecked = true;
-            pvParameters.SelectedPage = pvpAuthorRightholder;
+            rpanelFolkType.SelectedValue = _authorRightholder.FolkType;
 
             _dictionaries = dictionaries;
             SetDictionaries(_dictionaries);
 
-            objectAuthorRightholderBindingSource.DataSource = authorRightholder;
+            objectAuthorRightholderBindingSource.DataSource = _authorRightholder;
         }
 
         private void SetDictionaries(ObjectRightDictionaries dictionaries)
@@ -93,17 +95,19 @@ namespace IpsViewComponentLibrary
             ddlRightholder.Text = selectedRightholder.Name;
         }
 
-        private void rdbProtected_CheckStateChanged(object sender, EventArgs e)
+        private void rpanelFolkType_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (rdbAuthorRightholder.IsChecked == true)
+            _authorRightholder.FolkType = rpanelFolkType.SelectedValue;
+
+            if (_authorRightholder.FolkType == 1)
                 pvParameters.SelectedPage = pvpAuthorRightholder;
-            else if (rdbNotProtected.IsChecked == true)
+            else if (_authorRightholder.FolkType == 2)
                 pvParameters.SelectedPage = pvpNotProtected;
-            else if (rdbFolk.IsChecked == true)
+            else if (_authorRightholder.FolkType == 3)
                 pvParameters.SelectedPage = pvpFolk;
         }
 
-        private void checkIsRightholder_ToggleStateChanged(object sender, StateChangedEventArgs args)
+        private void checkIsRightholder_CheckStateChanged(object sender, EventArgs e)
         {
             if (checkIsRightholder.CheckState == CheckState.Checked)
             {

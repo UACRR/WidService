@@ -33,11 +33,8 @@
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.ddlRoleCode = new Telerik.WinControls.UI.RadDropDownList();
+            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
-            this.panelFolkType = new System.Windows.Forms.Panel();
-            this.rdbFolk = new Telerik.WinControls.UI.RadRadioButton();
-            this.rdbNotProtected = new Telerik.WinControls.UI.RadRadioButton();
-            this.rdbAuthorRightholder = new Telerik.WinControls.UI.RadRadioButton();
             this.pvParameters = new Telerik.WinControls.UI.RadPageView();
             this.pvpAuthorRightholder = new Telerik.WinControls.UI.RadPageViewPage();
             this.panelRightholderInfo = new System.Windows.Forms.Panel();
@@ -56,16 +53,16 @@
             this.txtAuthorName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.pvpFolk = new Telerik.WinControls.UI.RadPageViewPage();
-            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rpanelFolkType = new IpsViewComponentLibrary.RadioPanel();
+            this.rdbFolk = new Telerik.WinControls.UI.RadRadioButton();
+            this.rdbNotProtected = new Telerik.WinControls.UI.RadRadioButton();
+            this.rdbAuthorRightholder = new Telerik.WinControls.UI.RadRadioButton();
             this.panelCommand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRoleCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
-            this.panelFolkType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdbAuthorRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvParameters)).BeginInit();
             this.pvParameters.SuspendLayout();
             this.pvpAuthorRightholder.SuspendLayout();
@@ -84,7 +81,10 @@
             this.pvpNotProtected.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
+            this.rpanelFolkType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdbAuthorRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +93,7 @@
             this.panelCommand.Controls.Add(this.btnCancel);
             this.panelCommand.Controls.Add(this.btnSave);
             this.panelCommand.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelCommand.Location = new System.Drawing.Point(0, 266);
+            this.panelCommand.Location = new System.Drawing.Point(0, 263);
             this.panelCommand.Name = "panelCommand";
             this.panelCommand.Size = new System.Drawing.Size(546, 31);
             this.panelCommand.TabIndex = 0;
@@ -131,6 +131,10 @@
             this.ddlRoleCode.TabIndex = 55;
             this.ddlRoleCode.ThemeName = "Office2013Light";
             // 
+            // objectAuthorRightholderBindingSource
+            // 
+            this.objectAuthorRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
+            // 
             // radLabel21
             // 
             this.radLabel21.Location = new System.Drawing.Point(8, 21);
@@ -140,49 +144,6 @@
             this.radLabel21.Text = "Творча роль:";
             this.radLabel21.ThemeName = "Office2013Light";
             // 
-            // panelFolkType
-            // 
-            this.panelFolkType.Controls.Add(this.rdbFolk);
-            this.panelFolkType.Controls.Add(this.rdbNotProtected);
-            this.panelFolkType.Controls.Add(this.rdbAuthorRightholder);
-            this.panelFolkType.Location = new System.Drawing.Point(114, 46);
-            this.panelFolkType.Name = "panelFolkType";
-            this.panelFolkType.Size = new System.Drawing.Size(432, 28);
-            this.panelFolkType.TabIndex = 58;
-            // 
-            // rdbFolk
-            // 
-            this.rdbFolk.Location = new System.Drawing.Point(314, 4);
-            this.rdbFolk.Name = "rdbFolk";
-            this.rdbFolk.Size = new System.Drawing.Size(81, 19);
-            this.rdbFolk.TabIndex = 2;
-            this.rdbFolk.Tag = "3";
-            this.rdbFolk.Text = "Народний";
-            this.rdbFolk.ThemeName = "Office2013Light";
-            this.rdbFolk.CheckStateChanged += new System.EventHandler(this.rdbProtected_CheckStateChanged);
-            // 
-            // rdbNotProtected
-            // 
-            this.rdbNotProtected.Location = new System.Drawing.Point(173, 4);
-            this.rdbNotProtected.Name = "rdbNotProtected";
-            this.rdbNotProtected.Size = new System.Drawing.Size(119, 19);
-            this.rdbNotProtected.TabIndex = 1;
-            this.rdbNotProtected.Tag = "2";
-            this.rdbNotProtected.Text = "Не охороняється";
-            this.rdbNotProtected.ThemeName = "Office2013Light";
-            this.rdbNotProtected.CheckStateChanged += new System.EventHandler(this.rdbProtected_CheckStateChanged);
-            // 
-            // rdbAuthorRightholder
-            // 
-            this.rdbAuthorRightholder.Location = new System.Drawing.Point(4, 4);
-            this.rdbAuthorRightholder.Name = "rdbAuthorRightholder";
-            this.rdbAuthorRightholder.Size = new System.Drawing.Size(149, 19);
-            this.rdbAuthorRightholder.TabIndex = 0;
-            this.rdbAuthorRightholder.Tag = "1";
-            this.rdbAuthorRightholder.Text = "Автор / правовласник";
-            this.rdbAuthorRightholder.ThemeName = "Office2013Light";
-            this.rdbAuthorRightholder.CheckStateChanged += new System.EventHandler(this.rdbProtected_CheckStateChanged);
-            // 
             // pvParameters
             // 
             this.pvParameters.Controls.Add(this.pvpAuthorRightholder);
@@ -190,7 +151,7 @@
             this.pvParameters.Controls.Add(this.pvpFolk);
             this.pvParameters.Location = new System.Drawing.Point(0, 80);
             this.pvParameters.Name = "pvParameters";
-            this.pvParameters.SelectedPage = this.pvpAuthorRightholder;
+            this.pvParameters.SelectedPage = this.pvpNotProtected;
             this.pvParameters.Size = new System.Drawing.Size(546, 183);
             this.pvParameters.TabIndex = 59;
             this.pvParameters.ThemeName = "Office2013Light";
@@ -203,10 +164,10 @@
             this.pvpAuthorRightholder.Controls.Add(this.checkIsRightholder);
             this.pvpAuthorRightholder.Controls.Add(this.lblAuthorRightholder);
             this.pvpAuthorRightholder.Controls.Add(this.ddlRightholder);
-            this.pvpAuthorRightholder.ItemSize = new System.Drawing.SizeF(135F, 25F);
+            this.pvpAuthorRightholder.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.pvpAuthorRightholder.Location = new System.Drawing.Point(5, 5);
             this.pvpAuthorRightholder.Name = "pvpAuthorRightholder";
-            this.pvpAuthorRightholder.Size = new System.Drawing.Size(536, 149);
+            this.pvpAuthorRightholder.Size = new System.Drawing.Size(536, 147);
             this.pvpAuthorRightholder.Text = "pvpAuthorRightholder";
             // 
             // panelRightholderInfo
@@ -326,7 +287,7 @@
             this.checkIsRightholder.TabIndex = 64;
             this.checkIsRightholder.Text = "Є правовласником";
             this.checkIsRightholder.ThemeName = "Office2013Light";
-            this.checkIsRightholder.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.checkIsRightholder_ToggleStateChanged);
+            this.checkIsRightholder.CheckStateChanged += new System.EventHandler(this.checkIsRightholder_CheckStateChanged);
             // 
             // lblAuthorRightholder
             // 
@@ -352,14 +313,15 @@
             // 
             this.pvpNotProtected.Controls.Add(this.txtAuthorName);
             this.pvpNotProtected.Controls.Add(this.radLabel2);
-            this.pvpNotProtected.ItemSize = new System.Drawing.SizeF(106F, 25F);
+            this.pvpNotProtected.ItemSize = new System.Drawing.SizeF(108F, 27F);
             this.pvpNotProtected.Location = new System.Drawing.Point(5, 5);
             this.pvpNotProtected.Name = "pvpNotProtected";
-            this.pvpNotProtected.Size = new System.Drawing.Size(536, 145);
+            this.pvpNotProtected.Size = new System.Drawing.Size(536, 147);
             this.pvpNotProtected.Text = "pvpNotProtected";
             // 
             // txtAuthorName
             // 
+            this.txtAuthorName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "AuthorName", true));
             this.txtAuthorName.Location = new System.Drawing.Point(114, 3);
             this.txtAuthorName.Name = "txtAuthorName";
             this.txtAuthorName.Size = new System.Drawing.Size(415, 21);
@@ -377,15 +339,53 @@
             // 
             // pvpFolk
             // 
-            this.pvpFolk.ItemSize = new System.Drawing.SizeF(55F, 25F);
+            this.pvpFolk.ItemSize = new System.Drawing.SizeF(57F, 27F);
             this.pvpFolk.Location = new System.Drawing.Point(5, 5);
             this.pvpFolk.Name = "pvpFolk";
             this.pvpFolk.Size = new System.Drawing.Size(536, 145);
             this.pvpFolk.Text = "pvpFolk";
             // 
-            // objectAuthorRightholderBindingSource
+            // rpanelFolkType
             // 
-            this.objectAuthorRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
+            this.rpanelFolkType.Controls.Add(this.rdbFolk);
+            this.rpanelFolkType.Controls.Add(this.rdbNotProtected);
+            this.rpanelFolkType.Controls.Add(this.rdbAuthorRightholder);
+            this.rpanelFolkType.Location = new System.Drawing.Point(109, 46);
+            this.rpanelFolkType.Name = "rpanelFolkType";
+            this.rpanelFolkType.SelectedValue = 0;
+            this.rpanelFolkType.Size = new System.Drawing.Size(432, 28);
+            this.rpanelFolkType.TabIndex = 60;
+            this.rpanelFolkType.SelectedValueChanged += new System.EventHandler(this.rpanelFolkType_SelectedValueChanged);
+            // 
+            // rdbFolk
+            // 
+            this.rdbFolk.Location = new System.Drawing.Point(318, 5);
+            this.rdbFolk.Name = "rdbFolk";
+            this.rdbFolk.Size = new System.Drawing.Size(81, 19);
+            this.rdbFolk.TabIndex = 5;
+            this.rdbFolk.Tag = "3";
+            this.rdbFolk.Text = "Народний";
+            this.rdbFolk.ThemeName = "Office2013Light";
+            // 
+            // rdbNotProtected
+            // 
+            this.rdbNotProtected.Location = new System.Drawing.Point(177, 5);
+            this.rdbNotProtected.Name = "rdbNotProtected";
+            this.rdbNotProtected.Size = new System.Drawing.Size(119, 19);
+            this.rdbNotProtected.TabIndex = 4;
+            this.rdbNotProtected.Tag = "2";
+            this.rdbNotProtected.Text = "Не охороняється";
+            this.rdbNotProtected.ThemeName = "Office2013Light";
+            // 
+            // rdbAuthorRightholder
+            // 
+            this.rdbAuthorRightholder.Location = new System.Drawing.Point(8, 5);
+            this.rdbAuthorRightholder.Name = "rdbAuthorRightholder";
+            this.rdbAuthorRightholder.Size = new System.Drawing.Size(149, 19);
+            this.rdbAuthorRightholder.TabIndex = 3;
+            this.rdbAuthorRightholder.Tag = "1";
+            this.rdbAuthorRightholder.Text = "Автор / правовласник";
+            this.rdbAuthorRightholder.ThemeName = "Office2013Light";
             // 
             // AuthorRightholderItemView
             // 
@@ -393,9 +393,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(546, 297);
+            this.ClientSize = new System.Drawing.Size(546, 294);
+            this.Controls.Add(this.rpanelFolkType);
             this.Controls.Add(this.pvParameters);
-            this.Controls.Add(this.panelFolkType);
             this.Controls.Add(this.ddlRoleCode);
             this.Controls.Add(this.radLabel21);
             this.Controls.Add(this.panelCommand);
@@ -411,12 +411,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRoleCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
-            this.panelFolkType.ResumeLayout(false);
-            this.panelFolkType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdbAuthorRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvParameters)).EndInit();
             this.pvParameters.ResumeLayout(false);
             this.pvpAuthorRightholder.ResumeLayout(false);
@@ -438,7 +434,11 @@
             this.pvpNotProtected.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
+            this.rpanelFolkType.ResumeLayout(false);
+            this.rpanelFolkType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdbAuthorRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -452,10 +452,6 @@
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadDropDownList ddlRoleCode;
         private Telerik.WinControls.UI.RadLabel radLabel21;
-        private System.Windows.Forms.Panel panelFolkType;
-        private Telerik.WinControls.UI.RadRadioButton rdbFolk;
-        private Telerik.WinControls.UI.RadRadioButton rdbNotProtected;
-        private Telerik.WinControls.UI.RadRadioButton rdbAuthorRightholder;
         private Telerik.WinControls.UI.RadPageView pvParameters;
         private Telerik.WinControls.UI.RadPageViewPage pvpAuthorRightholder;
         private Telerik.WinControls.UI.RadLabel lblAuthorRightholder;
@@ -475,5 +471,9 @@
         private Telerik.WinControls.UI.RadMaskedEditBox mtxtRate;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private System.Windows.Forms.BindingSource objectAuthorRightholderBindingSource;
+        private RadioPanel rpanelFolkType;
+        private Telerik.WinControls.UI.RadRadioButton rdbFolk;
+        private Telerik.WinControls.UI.RadRadioButton rdbNotProtected;
+        private Telerik.WinControls.UI.RadRadioButton rdbAuthorRightholder;
     }
 }

@@ -552,6 +552,7 @@ namespace RightholderWorkplace
         {
             var authRigh = new ObjectAuthorRightholder
             {
+                FolkType = 1,
                 //RoleCode = 1,
                 //AuthorName = "Author",
                 //IsRightholder = false,
@@ -563,6 +564,9 @@ namespace RightholderWorkplace
                 Rate = 50,
                 BeginDate = new DateTime(2000, 1, 1),
                 EndDate = new DateTime(2020, 12, 31),
+                //FolkType = 2,
+                //AuthorName = "Author not protected",
+                //FolkType = 3,
             };
 
             using (var authorItemView = new AuthorRightholderItemView(authRigh, _dictionariesObjectRight))
