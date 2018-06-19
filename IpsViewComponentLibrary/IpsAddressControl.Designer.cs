@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtCity = new Telerik.WinControls.UI.RadTextBox();
             this.ddlRegion = new Telerik.WinControls.UI.RadDropDownList();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
             this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
-            this.anketaDictionatiesBindingSource = new System.Windows.Forms.BindingSource();
+            this.anketaDictionatiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
@@ -48,6 +49,7 @@
             this.txtCity.Location = new System.Drawing.Point(412, 0);
             this.txtCity.Margin = new System.Windows.Forms.Padding(0);
             this.txtCity.Name = "txtCity";
+            this.txtCity.NullText = "Місто";
             this.txtCity.Size = new System.Drawing.Size(188, 20);
             this.txtCity.TabIndex = 2;
             // 
@@ -97,6 +99,7 @@
             this.txtAddress.Location = new System.Drawing.Point(0, 25);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(0);
             this.txtAddress.Name = "txtAddress";
+            this.txtAddress.NullText = "Адреса";
             this.txtAddress.Size = new System.Drawing.Size(600, 20);
             this.txtAddress.TabIndex = 3;
             // 

@@ -42,7 +42,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gcConsumerCabinet.Location = new System.Drawing.Point(13, 39);
             this.gcConsumerCabinet.Name = "gcConsumerCabinet";
-            this.gcConsumerCabinet.Size = new System.Drawing.Size(1372, 531);
+            this.gcConsumerCabinet.Size = new System.Drawing.Size(1372, 573);
             this.gcConsumerCabinet.TabIndex = 0;
             // 
             // dtTetsDate
