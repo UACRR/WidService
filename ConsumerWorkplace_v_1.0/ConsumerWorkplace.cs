@@ -71,7 +71,13 @@ namespace ConsumerWorkplace_v_1._0
             rpvConsumers.SelectedPage = pageConsumersAnketa;
             pageAllAnketa.SelectedPage = pvConsumerLicenseType;
             pageAllAnketa.SelectedPage = pvConsumerClientName;
-            if(!clientNameCheckBoxPlaces.Checked)
+
+            foreach (var page in pageAllAnketa.Pages)
+            {
+                page.Item.ForeColor = DefaultForeColor;
+            }
+
+            if (!clientNameCheckBoxPlaces.Checked)
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
             else
                 pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;
@@ -471,7 +477,6 @@ namespace ConsumerWorkplace_v_1._0
                 
                 var licenseParam = license.LicenseAgrParam.Where(rec => rec.LicVersion == license.LicVersion).SingleOrDefault();
                 
-                var agrMaster = license.Agr;
 
 
                 //iAgreementMasterBindingSource.DataSource = agrMaster;
@@ -509,10 +514,10 @@ namespace ConsumerWorkplace_v_1._0
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
 
-                licenseTypeCtrlContractConsumerMain.DataSource = agrMaster;
+                licenseTypeCtrlContractConsumerMain.DataSource = licenseParam;
                 licenseTypeCtrlContractConsumerMain.DateDataSource = licenseParam;
-                licenseTypeCtrlContractConsumerMain.ContrNumber = "AgrNumber";
-                licenseTypeCtrlContractConsumerMain.AgrDateDataMember = "AgrDate";
+                licenseTypeCtrlContractConsumerMain.ContrNumber = "LicNum";
+                licenseTypeCtrlContractConsumerMain.AgrDateDataMember = "LicDate";
                 licenseTypeCtrlContractConsumerMain.BeginDateDataMember = "DateBegin";
                 licenseTypeCtrlContractConsumerMain.EndDateDataMember = "DateEnd";
 

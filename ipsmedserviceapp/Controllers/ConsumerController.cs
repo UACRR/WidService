@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -9,6 +10,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols;
+
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -17,9 +21,11 @@ namespace ipsmedserviceapp.Controllers
     public class ConsumerController : Controller
     {
         private MediaServiceContext _dbContext;
-        public ConsumerController(MediaServiceContext dbContext)
+        private IConfiguration _config;
+        public ConsumerController(MediaServiceContext dbContext, IConfiguration config)
         {
             _dbContext = dbContext;
+            _config = config;
         }
 
         /// <summary>
@@ -518,14 +524,30 @@ namespace ipsmedserviceapp.Controllers
                                         .Include(rec => rec.Cust).ThenInclude(cust => cust.Cust)
                                         .SingleOrDefaultAsync();
 
-                //var vCustomer = (await _dbContext.getViewData($"select * from vCustomer where custId = {licenseAgrement.CustId}", null)).Select( rec => new { innOkpo = rec["INNOKPO"] as string }).ToList();
-
-
-                //var externPays = await _dbContext.ExternalPay.FromSql($"select * from ExternalPay where okpoCorr = @okpo", new SqlParameter("@okpo", vCustomer[0].innOkpo )).ToListAsync();
-
                 await _dbContext.MoneyPeriodLink.FromSql($"select * from MoneyPeriodLink where licid = {licid}")
                                 .Include(rec => rec.Paid)
                                 .LoadAsync();
+
+                await _dbContext.Register.FromSql("select t2.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId where t1.licid = @licid", new SqlParameter("@licid", licid))
+                    .Include(rec => rec.RegisterItem)
+                    .Include(rec => rec.Distribution)
+                    .LoadAsync();
+
+
+                await _dbContext.DistributionItem.FromSql(@"
+select t3.* from PaidPeriod t1 join Distribution t2 on t2.periodId = t1.periodId 
+join DistributionItem t3 on t3.distId = t2.distId
+where t1.licid = @licid", new SqlParameter("@licid", licid))
+                    .LoadAsync();
+
+                await _dbContext.RegisterCount.FromSql(@"
+select t4.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId 
+join RegisterItem t3 on t3.regId = t2.regId
+join RegisterCount t4 on t4.regId = t3.regId and t4.regIItemId = t3.regIItemId
+where t1.licid = @licid", new SqlParameter("@licid", licid))
+    .LoadAsync();
+
+
 
                 return Json(licenseAgrement.Cust.Cust);
 
@@ -535,8 +557,230 @@ namespace ipsmedserviceapp.Controllers
 
                 return BadRequest(ex.Message);
             }
+        } // GetPeriodDetail(int licid)
+
+        #region Register POST PUT DELETE
+        /// <summary>
+        /// Отримати детальну інформацію по звіту періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpGet("period/register/{regid}")]
+        public async Task<IActionResult> GetRegisterDetail(int regid)
+        {
+            var register = await _dbContext.Register.Where(rec => rec.RegId == regid)
+                .Include(rec => rec.RegisterItem)
+                .SingleOrDefaultAsync();
+
+            return Json(register);
+
         }
 
 
-    }
+        /// <summary>
+        /// Створити звіту періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpPost("period/register/new")]
+        public async Task<IActionResult> PostRegisterDetail([FromBody] Register body)
+        {
+
+            IDbContextTransaction tran = null;
+            try
+            {
+                if (body == null)
+                    throw new ApplicationException("Empty Register Body");
+
+                var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == body.PeriodId).SingleOrDefaultAsync();
+                if (period == null)
+                    throw new ApplicationException("Dont find PAidPeriod");
+
+                Register addItem = new Register { RgStatus = 1 };
+                // addItem.RegId
+                addItem.SetFields(body, new[] { "RegId" });
+                period.Register.Add(addItem);
+
+                int index = 1;
+                _dbContext.AppendList(body.RegisterItem, addItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(addItem);
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        } // PostRegisterDetail
+
+
+        /// <summary>
+        /// Змінити звіт періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpPut("period/register/{regId}")]
+        public async Task<IActionResult> PutRegisterDetail(int regId, [FromBody] Register body)
+        {
+
+            IDbContextTransaction tran = null;
+            try
+            {
+                if (body == null)
+                    throw new ApplicationException("Empty Register Body");
+
+
+                Register modifyItem = await _dbContext.Register.Where(rec => rec.RegId == regId)
+                                        .Include(rec => rec.RegisterItem)
+                                        .SingleOrDefaultAsync();
+                if (modifyItem == null)
+                    throw new ApplicationException("Dont find Register item");
+
+                // addItem.PeriodId
+                modifyItem.SetFields(body, new[] { "RegId", "PeriodId" });
+
+                int index = modifyItem.RegisterItem.Max(rec => rec.RegIitemId);
+                index++;
+
+                _dbContext.UpdateList(body.RegisterItem, modifyItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(modifyItem);
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        } // PoutRegisterDetail
+
+        /// <summary>
+        /// Змінити звіт періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpDelete("period/register/{regId}")]
+        public async Task<IActionResult> DeleteRegisterDetail(int regId)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+
+                Register deleteItem = await _dbContext.Register.Where(rec => rec.RegId == regId)
+                                        .Include(rec => rec.RegisterItem)
+                                        .SingleOrDefaultAsync();
+                if (deleteItem == null)
+                    throw new ApplicationException("Dont find Register item");
+
+                if (deleteItem.RgStatus > 1)
+                {
+                    throw new ApplicationException("Can not delete Register with status > 1");
+                }
+
+                // var itemList = deleteItem.RegisterItem.ToList();
+                _dbContext.RegisterItem.RemoveRange(deleteItem.RegisterItem);
+                _dbContext.Register.Remove(deleteItem);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        } // DeleteRegisterDetail
+
+        #endregion
+
+        #region Download Upload file
+        /// <summary>
+        /// Завантаження файлу(ів) на сервер
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="typeDocument"></param>
+        /// <returns></returns>
+        [HttpPost("Document/{custId}/{typeDocument}")]
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, IFormFile file)
+        {
+            // Перевірка існування дерикторії
+            string documentsFolder = _config.GetValue<string>("DocumentsFolder");
+            string consumerPath = Path.Combine(documentsFolder, custId.ToString());
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+
+            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+
+            consumerPath = Path.Combine(consumerPath, file.FileName);
+
+            if (System.IO.File.Exists(consumerPath))
+                System.IO.File.Delete(consumerPath);
+            // Зберігаємо файл на сервері
+            using (var stream = new FileStream(consumerPath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return Ok();
+        }
+
+
+        /// <summary>
+        /// Завантаження файлу(ів) на сервер
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="typeDocument"></param>
+        /// <returns></returns>
+        [HttpGet("Document/{custId}/{typeDocument}")]
+        public async Task<ActionResult> DownloadDocument(int custId, int typeDocument, string fileName)
+        {
+
+            string documentsFolder = _config.GetValue<string>("DocumentsFolder");
+            string consumerPath = Path.Combine(documentsFolder, custId.ToString());
+            if (!Directory.Exists(consumerPath))
+                return BadRequest();
+
+            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            if (!Directory.Exists(consumerPath))
+                return BadRequest();
+
+            consumerPath = Path.Combine(consumerPath, fileName);
+
+            if (!System.IO.File.Exists(consumerPath))
+                return BadRequest();
+
+            var memoryStream = new MemoryStream();
+            using (var stream = new FileStream(consumerPath, FileMode.Open))
+            {
+                await stream.CopyToAsync(memoryStream);
+            }
+            memoryStream.Position = 0;
+
+            return File(memoryStream, "application/vnd.ms-word", Path.GetFileName( consumerPath ));
+        }
+
+
+
+        #endregion
+
+    } // public class ConsumerController : Controller
 }

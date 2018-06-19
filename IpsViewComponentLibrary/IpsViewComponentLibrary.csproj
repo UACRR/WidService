@@ -67,6 +67,10 @@
     <Reference Include="itext.svg, Version=7.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itext7.7.1.2\lib\net40\itext.svg.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -293,17 +297,23 @@
     <Compile Include="RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportExcelViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportExcelViewForm.Designer.cs">
+      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderPersonInfo.cs">
+    <Compile Include="RightholderSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RightholderPersonInfo.Designer.cs">
-      <DependentUpon>RightholderPersonInfo.cs</DependentUpon>
+    <Compile Include="RightholderSelectorControl.Designer.cs">
+      <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderSelectionView.cs">
       <SubType>Form</SubType>
@@ -423,11 +433,15 @@
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportExcelViewForm.cs.resx" />
+    <EmbeddedResource Include="ReportExcelViewForm.resx">
+      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderPersonInfo.resx">
-      <DependentUpon>RightholderPersonInfo.cs</DependentUpon>
+    <EmbeddedResource Include="RightholderSelectorControl.resx">
+      <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderSelectionView.resx">
       <DependentUpon>RightholderSelectionView.cs</DependentUpon>

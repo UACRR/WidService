@@ -39,6 +39,7 @@ namespace IpsViewComponentLibrary
             //SetAgrInfoData();
             SetCalculationData();
             SetLicenseAgrGridDataSource();
+            reportsControl.SetData(cust);
         }
 
         /// <summary>

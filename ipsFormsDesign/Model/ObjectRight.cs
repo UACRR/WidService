@@ -17,6 +17,7 @@ namespace ipsFormsDesign.Model
             MusicalDesign = new HashSet<MusicalDesign>();
             PortalObjectRights = new HashSet<PortalObjectRights>();
             RegisterItem = new HashSet<RegisterItem>();
+            RelObjPerformer = new HashSet<RelObjPerformer>();
             RelPopGenre = new HashSet<RelPopGenre>();
             Request = new HashSet<Request>();
             SeekObject = new HashSet<SeekObject>();
@@ -52,6 +53,7 @@ namespace ipsFormsDesign.Model
         public ICollection<MusicalDesign> MusicalDesign { get; set; }
         public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
         public ICollection<RegisterItem> RegisterItem { get; set; }
+        public ICollection<RelObjPerformer> RelObjPerformer { get; set; }
         public ICollection<RelPopGenre> RelPopGenre { get; set; }
         public ICollection<Request> Request { get; set; }
         public ICollection<SeekObject> SeekObject { get; set; }

@@ -350,6 +350,7 @@ public interface IAuthors
          int? CustId { get; set; }
          string AuthorName { get; set; }
          int? IsFolkOrUnknown { get; set; }
+         int? FolkType { get; set; }
 }
 public interface IBankAccount
     {    int BanAccId { get; set; }
@@ -482,6 +483,7 @@ public interface ICopyRight
          bool? PermCode { get; set; }
          int? ParentId { get; set; }
          int? RoleCode { get; set; }
+         int? Status { get; set; }
 }
 public interface ICopyrightKind
     {    int CodeI { get; set; }
@@ -504,6 +506,20 @@ public interface ICopyrightTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface ICopyRtranslate
+    {
+         int CRightId { get; set; }
+         int? RoleCode { get; set; }
+         string LangFrom { get; set; }
+         string LangTo { get; set; }
+}
+public interface ICounterNumber
+    {
+         int CodeI { get; set; }
+         string Name { get; set; }
+         int? CNum { get; set; }
+         string Prefix { get; set; }
+    }
 public interface ICountry
     {    int? ContinentCode { get; set; }
          string CountryCode { get; set; }
@@ -528,6 +544,19 @@ public interface ICreativeRoleType
          int Crtype { get; set; }
 }
 public interface ICreativeRoleTypeTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
+public interface ICreativeTranslate
+    {    int CodeI { get; set; }
+}
+public interface ICrightStatus
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface ICrightStatusTr
     {
          int CodeI { get; set; }
          string Lang { get; set; }
@@ -823,6 +852,16 @@ public interface IExternalPay
          int? Status { get; set; }
          DateTime? DateOper { get; set; }
     }
+public interface IFolkType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IFolkTypeTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
 public interface IGenre
     {    int CategoryCode { get; set; }
          string Name { get; set; }
@@ -931,6 +970,13 @@ public interface ILangTr
          string CodeS { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
+}
+public interface ILanguage
+    {    string CodeS { get; set; }
+         string Name { get; set; }
+         int? NameId { get; set; }
+         string NameSh3 { get; set; }
+         short? ShortChoise { get; set; }
 }
 public interface ILegalBasis
     {    int CodeI { get; set; }
@@ -1310,6 +1356,10 @@ public interface IPayTurn
          int? RegId { get; set; }
          int? DistId { get; set; }
 }
+public interface IPerformer
+    {    int PerId { get; set; }
+         string PerName { get; set; }
+}
 public interface IPeriod
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1390,7 +1440,6 @@ public interface IRegister
     {    int RegId { get; set; }
          int? CustId { get; set; }
          int? CountRows { get; set; }
-         double? DurationItems { get; set; }
          string Login { get; set; }
          int? RgStatus { get; set; }
          DateTime? CreateDate { get; set; }
@@ -1398,6 +1447,7 @@ public interface IRegister
          string UserId { get; set; }
          string FileName { get; set; }
          int? LicId { get; set; }
+         TimeSpan? DurationItems { get; set; }
 }
 public interface IRegisterCount
     {
@@ -1423,11 +1473,11 @@ public interface IRegisterItem
          string Performer { get; set; }
          string AuthorMusic { get; set; }
          string AuthorText { get; set; }
-         double? DurationUse { get; set; }
          int? CountUse { get; set; }
-         double? DurationItem { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
+         TimeSpan? DurationUse { get; set; }
+         TimeSpan? DurationItem { get; set; }
 }
 public interface IRegisterStatus
     {    int CodeI { get; set; }
@@ -1450,6 +1500,11 @@ public interface IRelEmployee
          int CustId { get; set; }
          int PositionCode { get; set; }
          string RelDocument { get; set; }
+}
+public interface IRelEtGenre
+    {
+         int GenreCode { get; set; }
+         int EtGenreCode { get; set; }
 }
 public interface IRelEtRole
     {
@@ -1491,6 +1546,11 @@ public interface IRelObjGenre
     {
          int GenreId { get; set; }
          int ObjId { get; set; }
+}
+public interface IRelObjPerformer
+    {
+         int ObjId { get; set; }
+         int PerId { get; set; }
 }
 public interface IRelPopGenre
     {
@@ -1589,7 +1649,6 @@ public interface IRequest
          int? CountUse { get; set; }
          DateTime? BeginDate { get; set; }
          DateTime? EndDate { get; set; }
-         double? DurationUse { get; set; }
          int Reqstatus { get; set; }
          int? CustId { get; set; }
          string UserId { get; set; }
@@ -1606,6 +1665,7 @@ public interface IRequest
          string R030 { get; set; }
          decimal? ReqAmount { get; set; }
          string WorkName { get; set; }
+         TimeSpan? DurationUse { get; set; }
 }
 public interface IRequestAdapt
     {    int ReqId { get; set; }
@@ -1621,8 +1681,8 @@ public interface IRequestAdvertising
     {
          int ReqId { get; set; }
          string TradeMark { get; set; }
-         double? DurationAll { get; set; }
-         double? DurationShort { get; set; }
+         TimeSpan? DurationAll { get; set; }
+         TimeSpan? DurationShort { get; set; }
 }
 public interface IRequestAim
     {    int CodeI { get; set; }
