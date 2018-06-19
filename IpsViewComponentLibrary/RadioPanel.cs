@@ -12,8 +12,8 @@ namespace IpsViewComponentLibrary
     {
         public event EventHandler SelectedValueChanged = delegate { };
 
-        int _selectedValue;
-        public int SelectedValue
+        int? _selectedValue;
+        public int? SelectedValue
         {
             get
             {
@@ -21,16 +21,23 @@ namespace IpsViewComponentLibrary
             }
             set
             {
-                int val = 0;
-                var radioButton = this.Controls.OfType<RadRadioButton>()
-                    .FirstOrDefault(radio =>
-                        radio.Tag != null
-                       && int.TryParse(radio.Tag.ToString(), out val) && val == value);
-
-                if (radioButton != null)
+                if (value != null)
                 {
-                    radioButton.IsChecked = true;
-                    _selectedValue = val;
+                    int val = 0;
+                    var radioButton = this.Controls.OfType<RadRadioButton>()
+                        .FirstOrDefault(radio =>
+                            radio.Tag != null
+                           && int.TryParse(radio.Tag.ToString(), out val) && val == value);
+
+                    if (radioButton != null)
+                    {
+                        radioButton.IsChecked = true;
+                        _selectedValue = val;
+                    }
+                }
+                else
+                {
+                    _selectedValue = null;
                 }
             }
         }
