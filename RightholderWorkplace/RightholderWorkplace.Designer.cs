@@ -96,6 +96,8 @@
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.actualObjectsItemPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.txtTotalPersent = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.mebDuration = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.mediaTrackBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
@@ -233,6 +235,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).BeginInit();
             this.actualObjectsItemPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPersent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaTrackBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
@@ -553,6 +557,8 @@
             // 
             // actualObjectsItemPage
             // 
+            this.actualObjectsItemPage.Controls.Add(this.txtTotalPersent);
+            this.actualObjectsItemPage.Controls.Add(this.radLabel11);
             this.actualObjectsItemPage.Controls.Add(this.mebDuration);
             this.actualObjectsItemPage.Controls.Add(this.radLabel14);
             this.actualObjectsItemPage.Controls.Add(this.txtObjectAltName);
@@ -577,6 +583,27 @@
             this.actualObjectsItemPage.Name = "actualObjectsItemPage";
             this.actualObjectsItemPage.Size = new System.Drawing.Size(953, 612);
             this.actualObjectsItemPage.Text = "actualObjectsItemPage";
+            // 
+            // txtTotalPersent
+            // 
+            this.txtTotalPersent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalPersent.Location = new System.Drawing.Point(906, 379);
+            this.txtTotalPersent.Name = "txtTotalPersent";
+            this.txtTotalPersent.ReadOnly = true;
+            this.txtTotalPersent.Size = new System.Drawing.Size(44, 21);
+            this.txtTotalPersent.TabIndex = 68;
+            this.txtTotalPersent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTotalPersent.ThemeName = "Office2013Light";
+            // 
+            // radLabel11
+            // 
+            this.radLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel11.Location = new System.Drawing.Point(721, 380);
+            this.radLabel11.Name = "radLabel11";
+            this.radLabel11.Size = new System.Drawing.Size(180, 19);
+            this.radLabel11.TabIndex = 54;
+            this.radLabel11.Text = "Загальний відсоток володіння:";
+            this.radLabel11.ThemeName = "Office2013Light";
             // 
             // mebDuration
             // 
@@ -2577,6 +2604,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).EndInit();
             this.actualObjectsItemPage.ResumeLayout(false);
             this.actualObjectsItemPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPersent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaTrackBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
@@ -2859,5 +2888,7 @@
         private Telerik.WinControls.UI.RadDropDownMenu radMenuButtonItem1;
         private Telerik.WinControls.UI.RadMenuItem miAddMusicalComposition;
         private Telerik.WinControls.UI.RadMaskedEditBox mebDuration;
+        private Telerik.WinControls.UI.RadTextBox txtTotalPersent;
+        private Telerik.WinControls.UI.RadLabel radLabel11;
     }
 }

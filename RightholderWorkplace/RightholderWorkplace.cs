@@ -616,6 +616,8 @@ namespace RightholderWorkplace
             SetAvalaibleGenres(objectRightContainer.objectRight.CategoryCode);
             UpdateObjectRightDataSources(objectRightContainer.objectRight, objectRightContainer.rhList);
 
+            CalculateTotalPersent();
+
             MainPageView.SelectedPage = mainPageRightsObjects;
             objectsPageView.SelectedPage = actualObjectsPage;
             actualObjectsPageView.SelectedPage = actualObjectsItemPage;
@@ -700,8 +702,6 @@ namespace RightholderWorkplace
                 return;
             }
 
-            // TODO: additional validation
-
             // transform from single table to Authors and Copyright tables
             var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
 
@@ -733,6 +733,12 @@ namespace RightholderWorkplace
                         Status = ar.CopyrightStatus,
                     };
                 }).ToList();
+
+            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100)
+            {
+                MessageBox.Show("Загальний відсоток володіння не може бути більше 100.", "Помилка");
+                return;
+            }
 
             _objectRightService.Save(_objectRight);
 
@@ -787,6 +793,8 @@ namespace RightholderWorkplace
                 {
                     objectAuthorRightholderBindingSource.Add(objectAuthorRightholder);
                 }
+
+                CalculateTotalPersent();
             }
 
             MainPageView.SelectedPage = mainPageRightsObjects;
@@ -797,6 +805,21 @@ namespace RightholderWorkplace
         private void DeleteObjectAuthorRightholder()
         {
             objectAuthorRightholderBindingSource.Remove(SelectedObjectAuthorRightholder);
+            CalculateTotalPersent();
+        }
+
+        private void CalculateTotalPersent()
+        {
+            var list = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>();
+
+            var totalPersent = list.Where(ar => ar.Rate != null).Sum(s => s.Rate);
+
+            txtTotalPersent.Text = totalPersent.ToString();
+
+            if (totalPersent > 100)
+                txtTotalPersent.ForeColor = Color.Red;
+            else
+                txtTotalPersent.ForeColor = SystemColors.ControlText;
         }
 
         #endregion
