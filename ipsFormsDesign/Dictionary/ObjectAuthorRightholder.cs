@@ -9,6 +9,7 @@ namespace ipsFormsDesign.Dictionary
         public int RoleCode { get; set; }
         public string AuthorName { get; set; }
         public int? CustId { get; set; }
+        public int? CRightId { get; set; }
         public int? CopyrightStatus { get; set; }
         public int? StatusZayavky { get; set; }
         public string CommunityName { get; set; }
