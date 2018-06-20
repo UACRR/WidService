@@ -43,8 +43,8 @@ namespace ConsumerWorkplace_v_1._0
         private Customer GcConsumerCabinet_OnGridRowSelectedChaged(int id)
         {
             _customer = GetCustomer(id);
-            globalControlConsumerAnketa1.SetDataAndDictionaries(_customer, _dic);
-            globalControlConsumerAnketa1.InitializeControl(false);
+            globalControlConsumerAnketa1.SetDataAndDictionaries(_customer, _dic); // передати дані та словники
+            globalControlConsumerAnketa1.InitializeControl(false);                // ініціалізація редагування (false), () або створення нового (true)
             return GetCustomer(id);
         }
 

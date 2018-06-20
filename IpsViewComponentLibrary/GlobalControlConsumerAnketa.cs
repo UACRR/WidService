@@ -50,22 +50,17 @@ namespace IpsViewComponentLibrary
         public GlobalControlConsumerAnketa()
         {
             InitializeComponent();
-
             pageAnketaConsumer.SelectedPage = pvClientName;
             _visiblePage = 1;
             ChangeButtonsName(_visiblePage);
             btnBack.Visible = false;
 
-            //ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged;
+            ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged; // при зміні наявності майданчиків
             
         }
 
-        private void ButtonSaveClick()
-        {
-        }
-
         /// <summary>
-        /// Ініціалізація даних для контрола
+        /// Ініціалізація даних для контрола (DATABINDING)
         /// </summary>
         /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
         public void InitializeControl(bool isNew = false)
@@ -77,10 +72,10 @@ namespace IpsViewComponentLibrary
             ctrlManagers.SetDataSources(_cust,_anketaDictionaries);   // - - - - - - - -  Керівники
             ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
             ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
-                ? _cust?.Client?.ClnBusinessPlace // - - - - - -  - - - - - - - - - - - - 
-                : null);                          // - - - - - -  - - - - - - - - - - - -
-            ctrlPlacesTitle.Text =             // - - - - - -  - - - - - - - - - - - - -
-                _cust?.Company?.AnketaCompany?. // - - - - - -  - - - - - - - - - - - - -
+                ? _cust?.Client?.ClnBusinessPlace // - - - - - - - - - - - - - - - - - - 
+                : null);                          // - - - - - - - - - - - - - - - - - -
+            ctrlPlacesTitle.Text =              // - - - - - - - - - - - - - - - - - - -
+                _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust,_anketaDictionaries); // - - - - - -  Банківські реквізити
             ctrlAgreement.SetDataSources(_cust,_anketaDictionaries);  // - - - - - - - -  Договір

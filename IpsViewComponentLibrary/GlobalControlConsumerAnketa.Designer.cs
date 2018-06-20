@@ -44,11 +44,11 @@
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.MiddleControlAgreementAnketaType();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
+            this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
             this.btnNext = new Telerik.WinControls.UI.RadButton();
             this.btnBack = new Telerik.WinControls.UI.RadButton();
-            this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
             this.pvClientName.SuspendLayout();
@@ -59,11 +59,11 @@
             this.pvBankRequisites.SuspendLayout();
             this.pvAgreement.SuspendLayout();
             this.pvPrint.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
             this.SuspendLayout();
             // 
             // pageAnketaConsumer
@@ -87,7 +87,7 @@
             // 
             // 
             this.pageAnketaConsumer.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAnketaConsumer.SelectedPage = this.pvPrint;
+            this.pageAnketaConsumer.SelectedPage = this.pvClientName;
             this.pageAnketaConsumer.SelectionWrap = false;
             this.pageAnketaConsumer.Size = new System.Drawing.Size(1143, 658);
             this.pageAnketaConsumer.TabIndex = 1;
@@ -135,7 +135,7 @@
             this.pvAddress.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvAddress.Location = new System.Drawing.Point(133, 10);
             this.pvAddress.Name = "pvAddress";
-            this.pvAddress.Size = new System.Drawing.Size(959, 573);
+            this.pvAddress.Size = new System.Drawing.Size(999, 637);
             this.pvAddress.Text = "Адреса";
             // 
             // ctrlAddress
@@ -146,7 +146,7 @@
             this.ctrlAddress.MaximumSize = new System.Drawing.Size(1000, 313);
             this.ctrlAddress.MinimumSize = new System.Drawing.Size(727, 313);
             this.ctrlAddress.Name = "ctrlAddress";
-            this.ctrlAddress.Size = new System.Drawing.Size(955, 313);
+            this.ctrlAddress.Size = new System.Drawing.Size(995, 313);
             this.ctrlAddress.TabIndex = 0;
             // 
             // pvManagers
@@ -210,7 +210,7 @@
             this.pvBankRequisites.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvBankRequisites.Location = new System.Drawing.Point(133, 10);
             this.pvBankRequisites.Name = "pvBankRequisites";
-            this.pvBankRequisites.Size = new System.Drawing.Size(959, 573);
+            this.pvBankRequisites.Size = new System.Drawing.Size(999, 637);
             this.pvBankRequisites.Text = "Банківські реквізити";
             // 
             // ctrlBankRequisites
@@ -228,7 +228,7 @@
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvAgreement.Location = new System.Drawing.Point(133, 10);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(959, 573);
+            this.pvAgreement.Size = new System.Drawing.Size(999, 637);
             this.pvAgreement.Text = "Договір";
             // 
             // ctrlAgreement
@@ -251,6 +251,15 @@
             this.pvPrint.Size = new System.Drawing.Size(999, 637);
             this.pvPrint.Text = "Друк";
             // 
+            // btnLoadPdf
+            // 
+            this.btnLoadPdf.Location = new System.Drawing.Point(3, 3);
+            this.btnLoadPdf.Name = "btnLoadPdf";
+            this.btnLoadPdf.Size = new System.Drawing.Size(176, 24);
+            this.btnLoadPdf.TabIndex = 4;
+            this.btnLoadPdf.Text = "Завантажити PDF договору";
+            this.btnLoadPdf.Click += new System.EventHandler(this.btnLoadPdf_Click);
+            // 
             // radPdfViewerNavigator
             // 
             this.radPdfViewerNavigator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -258,7 +267,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(0, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(999, 38);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(999, 0);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -315,15 +324,6 @@
             this.btnBack.ThemeName = "Aqua";
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // btnLoadPdf
-            // 
-            this.btnLoadPdf.Location = new System.Drawing.Point(3, 3);
-            this.btnLoadPdf.Name = "btnLoadPdf";
-            this.btnLoadPdf.Size = new System.Drawing.Size(176, 24);
-            this.btnLoadPdf.TabIndex = 4;
-            this.btnLoadPdf.Text = "Завантажити PDF договору";
-            this.btnLoadPdf.Click += new System.EventHandler(this.btnLoadPdf_Click);
-            // 
             // GlobalControlConsumerAnketa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,11 +345,11 @@
             this.pvAgreement.ResumeLayout(false);
             this.pvPrint.ResumeLayout(false);
             this.pvPrint.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).EndInit();
             this.ResumeLayout(false);
 
         }
