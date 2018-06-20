@@ -587,36 +587,6 @@ namespace RightholderWorkplace
             service.Save(_objectRight);
         }
 
-        private void btnAddTest_Click(object sender, EventArgs e)
-        {
-            var authRigh = new ObjectAuthorRightholder
-            {
-                //FolkType = 1,
-                ////RoleCode = 1,
-                ////AuthorName = "Author",
-                ////IsRightholder = false,
-                //RoleCode = 1,
-                //AuthorName = "Rightholder",
-                //CustId = 1000,
-                //IsRightholder = true,
-                //CommunityName = "Community",
-                //Rate = 50,
-                //BeginDate = new DateTime(2000, 1, 1),
-                //EndDate = new DateTime(2020, 12, 31),
-                //FolkType = 2,
-                //AuthorName = "Author not protected",
-                //FolkType = 3,
-                //FolkType = null,
-            };
-
-            using (var authorItemView = new AuthorRightholderItemView(authRigh, _dictionariesObjectRight))
-            {
-                authorItemView.StartPosition = FormStartPosition.CenterParent;
-                authorItemView.ShowDialog();
-                //authorsBindingSource.ResetBindings(false);
-            }
-        }
-
         private void gvObjectAuthorsRightholders_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var currentColumnName = e.Column.Name;
@@ -625,11 +595,21 @@ namespace RightholderWorkplace
             {
                 EditObjectAuthorRightholder();
             }
+            else if (currentColumnName == "DeleteColumn")
+            {
+                DeleteObjectAuthorRightholder();
+            }
         }
 
         private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
         {
             EditObjectAuthorRightholder();
+        }
+
+        private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
+        {
+            var objectAuthorRightholder = new ObjectAuthorRightholder();
+            EditObjectAuthorRightholder(objectAuthorRightholder);
         }
 
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
@@ -652,19 +632,30 @@ namespace RightholderWorkplace
             if (objectAuthorRightholder == null)
                 objectAuthorRightholder = SelectedObjectAuthorRightholder;
 
-            objectAuthorRightholderBindingSource.RaiseListChangedEvents = false;
 
-            using (var authorRightholderItemView = new AuthorRightholderItemView(SelectedObjectAuthorRightholder, _dictionariesObjectRight))
+            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight))
             {
+                objectAuthorRightholderBindingSource.RaiseListChangedEvents = false;
+
                 authorRightholderItemView.StartPosition = FormStartPosition.CenterParent;
                 authorRightholderItemView.ShowDialog();
-            }
 
-            objectAuthorRightholderBindingSource.RaiseListChangedEvents = true;
+                objectAuthorRightholderBindingSource.RaiseListChangedEvents = true;
+
+                if (authorRightholderItemView.DialogResult == DialogResult.OK && objectAuthorRightholderBindingSource.IndexOf(objectAuthorRightholder) == -1)
+                {
+                    objectAuthorRightholderBindingSource.Add(objectAuthorRightholder);
+                }
+            }
 
             MainPageView.SelectedPage = mainPageRightsObjects;
             objectsPageView.SelectedPage = actualObjectsPage;
             actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+        }
+
+        private void DeleteObjectAuthorRightholder()
+        {
+            objectAuthorRightholderBindingSource.Remove(SelectedObjectAuthorRightholder);
         }
 
         #endregion
