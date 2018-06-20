@@ -22,9 +22,9 @@ namespace ConsumerWorkplace_v_1._0
 
             //Application.Run(form);
 
-            //LoadCabinet(form.ReturnCustomer());
+            LoadCabinet(form.ReturnCustomer());
 
-            LoadTest();
+            //LoadTest();
         }
 
         private static void LoadCabinet(Customer oo)

@@ -25,12 +25,15 @@ namespace ConsumerWorkplace_v_1._0
         {
             InitializeComponent();
             gcConsumerCabinet.OnGridRowSelectedChaged += GcConsumerCabinet_OnGridRowSelectedChaged;
+
         }
 
 
 
         private Customer GcConsumerCabinet_OnGridRowSelectedChaged(int id)
         {
+            globalControlConsumerAnketa1.SetDataAndDictionaries(GetCustomer(id), _dic);
+            globalControlConsumerAnketa1.InitializeControl(false);
             return GetCustomer(id);
         }
 

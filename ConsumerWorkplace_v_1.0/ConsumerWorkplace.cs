@@ -77,10 +77,7 @@ namespace ConsumerWorkplace_v_1._0
                 page.Item.ForeColor = DefaultForeColor;
             }
 
-            if (!clientNameCheckBoxPlaces.Checked)
-                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
-            else
-                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;
+            pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = !clientNameCheckBoxPlaces.Checked ? Color.DarkGray : DefaultForeColor;
         }
 
         /// <summary>
@@ -446,7 +443,7 @@ namespace ConsumerWorkplace_v_1._0
 
                 bankRequisitesCtrlBankAccount.DataSource = bankAccount;
 
-                RelEmployee relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).FirstOrDefault();
+                RelEmployee relEmpl = _cust.Company.RelEmployee.FirstOrDefault(rec => rec.PositionCode == 1);
                 if(relEmpl == null)
                 {
                     relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
@@ -454,6 +451,7 @@ namespace ConsumerWorkplace_v_1._0
                 }
 
                 iRelEmployeeBindingSource.DataSource = relEmpl;
+
                 iEmployeeBindingSource.DataSource = relEmpl.Empl;
 
                 relEmpl = _cust.Company.RelEmployee.FirstOrDefault(rec => rec.PositionCode == 2);
@@ -544,10 +542,9 @@ namespace ConsumerWorkplace_v_1._0
                 iPositionTypeBindingSource.DataSource = _dic.positionType;
 
                 placesCtrlConsumerPlaces.SetData(_cust);
-                if (_cust.Client.ClnBusinessPlace.Count != 0)
-                    placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
-                else
-                    placesCtrlConsumerPlaces.SetGridDataSource(null);
+                placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace.Count != 0
+                    ? _cust.Client.ClnBusinessPlace
+                    : null);
 
                 //placesCtrlConsumerPlaces.RegionsPlacesCtrlDataSource = _dic.region;
                 //placesCtrlConsumerPlaces.RegionsPlacesCtrlDisplayMember = "name";
@@ -642,11 +639,8 @@ namespace ConsumerWorkplace_v_1._0
         /// </summary>
         public bool IsPlaceIn
         {
-            get { if (_cust == null || _cust.Client.ClnBusinessPlace.Count == 0)
-                    return false;
-                return true;
-            }
-            set{ }
+            get => _cust != null && _cust.Client.ClnBusinessPlace.Count != 0;
+            set {  }
         }
 
         public Func<IList<ConsumerMainView>> getMainViewData { get; set; }

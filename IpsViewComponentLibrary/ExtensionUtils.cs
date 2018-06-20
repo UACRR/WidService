@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -44,5 +46,15 @@ namespace IpsViewComponentLibrary
         {
             _dtPicker.Value = DateTime.Now;
         }
+    }
+
+    public interface IMiddleCtrlAnketaConsumer
+    {
+        /// <summary>
+        /// Встановлення джерела даних для DataBinding
+        /// </summary>
+        /// <param name="cust">Дані споживача</param>
+        /// <param name="dictionaties">Словники</param>
+        void SetDataSources(Customer cust, AnketaDictionaties dictionaties);
     }
 }

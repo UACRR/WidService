@@ -31,16 +31,16 @@
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
             this.addressFactual = new IpsViewComponentLibrary.IpsAddressControl();
             this.addressLegal = new IpsViewComponentLibrary.IpsAddressControl();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.btnCopyFromJaToLe = new Telerik.WinControls.UI.RadButton();
             this.radSeparator6 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.btnCopyFromJAtoFa = new Telerik.WinControls.UI.RadButton();
+            this.btnCopyFromJaToFa = new Telerik.WinControls.UI.RadButton();
             this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.addressLetter = new IpsViewComponentLibrary.AddressLetter();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.btnCopyFromFaToLe = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressFactual.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressFactual.DdlRegion)).BeginInit();
@@ -50,10 +50,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.addressLegal.DdlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLegal.TxtAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLegal.TxtCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToLe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJAtoFa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToFa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
@@ -63,7 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtPostIndex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromFaToLe)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -253,13 +253,14 @@
             this.addressLegal.TxtCity.Size = new System.Drawing.Size(220, 20);
             this.addressLegal.TxtCity.TabIndex = 2;
             // 
-            // radButton1
+            // btnCopyFromJaToLe
             // 
-            this.radButton1.Location = new System.Drawing.Point(20, 239);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(153, 19);
-            this.radButton1.TabIndex = 30;
-            this.radButton1.Text = "Вставити з юридичної";
+            this.btnCopyFromJaToLe.Location = new System.Drawing.Point(20, 239);
+            this.btnCopyFromJaToLe.Name = "btnCopyFromJaToLe";
+            this.btnCopyFromJaToLe.Size = new System.Drawing.Size(153, 19);
+            this.btnCopyFromJaToLe.TabIndex = 30;
+            this.btnCopyFromJaToLe.Text = "Вставити з юридичної";
+            this.btnCopyFromJaToLe.Click += new System.EventHandler(this.btnCopyFromJaToLe_Click);
             // 
             // radSeparator6
             // 
@@ -279,13 +280,14 @@
             this.radLabel9.TabIndex = 28;
             this.radLabel9.Text = "Поштова адреса";
             // 
-            // btnCopyFromJAtoFa
+            // btnCopyFromJaToFa
             // 
-            this.btnCopyFromJAtoFa.Location = new System.Drawing.Point(20, 136);
-            this.btnCopyFromJAtoFa.Name = "btnCopyFromJAtoFa";
-            this.btnCopyFromJAtoFa.Size = new System.Drawing.Size(153, 19);
-            this.btnCopyFromJAtoFa.TabIndex = 27;
-            this.btnCopyFromJAtoFa.Text = "Вставити з юридичної";
+            this.btnCopyFromJaToFa.Location = new System.Drawing.Point(20, 136);
+            this.btnCopyFromJaToFa.Name = "btnCopyFromJaToFa";
+            this.btnCopyFromJaToFa.Size = new System.Drawing.Size(153, 19);
+            this.btnCopyFromJaToFa.TabIndex = 27;
+            this.btnCopyFromJaToFa.Text = "Вставити з юридичної";
+            this.btnCopyFromJaToFa.Click += new System.EventHandler(this.btnCopyFromJaToFa_Click);
             // 
             // radSeparator2
             // 
@@ -348,7 +350,7 @@
             // 
             // 
             // 
-            this.addressLetter.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 220, 20);
+            this.addressLetter.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 234, 20);
             this.addressLetter.DdlCountry.RootElement.StretchVertically = true;
             this.addressLetter.DdlCountry.Size = new System.Drawing.Size(220, 20);
             this.addressLetter.DdlCountry.TabIndex = 0;
@@ -366,7 +368,7 @@
             // 
             // 
             // 
-            this.addressLetter.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(417, 0, 397, 20);
+            this.addressLetter.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(254, 0, 234, 20);
             this.addressLetter.DdlRegion.RootElement.StretchVertically = true;
             this.addressLetter.DdlRegion.Size = new System.Drawing.Size(220, 20);
             this.addressLetter.DdlRegion.TabIndex = 1;
@@ -393,7 +395,7 @@
             // 
             // 
             // 
-            this.addressLetter.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 460, 20);
+            this.addressLetter.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 422, 20);
             this.addressLetter.TxtAddress.RootElement.MinSize = new System.Drawing.Size(460, 20);
             this.addressLetter.TxtAddress.RootElement.StretchVertically = true;
             this.addressLetter.TxtAddress.Size = new System.Drawing.Size(460, 20);
@@ -431,26 +433,27 @@
             this.addressLetter.TxtPostIndex.Size = new System.Drawing.Size(220, 20);
             this.addressLetter.TxtPostIndex.TabIndex = 4;
             // 
-            // radButton2
+            // btnCopyFromFaToLe
             // 
-            this.radButton2.Location = new System.Drawing.Point(179, 240);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(153, 19);
-            this.radButton2.TabIndex = 34;
-            this.radButton2.Text = "Вставити з фактичної";
+            this.btnCopyFromFaToLe.Location = new System.Drawing.Point(179, 240);
+            this.btnCopyFromFaToLe.Name = "btnCopyFromFaToLe";
+            this.btnCopyFromFaToLe.Size = new System.Drawing.Size(153, 19);
+            this.btnCopyFromFaToLe.TabIndex = 34;
+            this.btnCopyFromFaToLe.Text = "Вставити з фактичної";
+            this.btnCopyFromFaToLe.Click += new System.EventHandler(this.btnCopyFromFaToLe_Click);
             // 
             // MiddleControlAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radButton2);
+            this.Controls.Add(this.btnCopyFromFaToLe);
             this.Controls.Add(this.addressLetter);
             this.Controls.Add(this.addressFactual);
             this.Controls.Add(this.addressLegal);
-            this.Controls.Add(this.radButton1);
+            this.Controls.Add(this.btnCopyFromJaToLe);
             this.Controls.Add(this.radSeparator6);
             this.Controls.Add(this.radLabel9);
-            this.Controls.Add(this.btnCopyFromJAtoFa);
+            this.Controls.Add(this.btnCopyFromJaToFa);
             this.Controls.Add(this.radSeparator2);
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.radSeparator1);
@@ -469,10 +472,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.addressLegal.DdlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLegal.TxtAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLegal.TxtCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToLe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJAtoFa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToFa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
@@ -482,7 +485,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtPostIndex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromFaToLe)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,15 +496,15 @@
         private Telerik.WinControls.UI.RadLabel lblTitle;
         private IpsAddressControl addressFactual;
         private IpsAddressControl addressLegal;
-        private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadButton btnCopyFromJaToLe;
         private Telerik.WinControls.UI.RadSeparator radSeparator6;
         private Telerik.WinControls.UI.RadLabel radLabel9;
-        private Telerik.WinControls.UI.RadButton btnCopyFromJAtoFa;
+        private Telerik.WinControls.UI.RadButton btnCopyFromJaToFa;
         private Telerik.WinControls.UI.RadSeparator radSeparator2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadSeparator radSeparator1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private AddressLetter addressLetter;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton btnCopyFromFaToLe;
     }
 }

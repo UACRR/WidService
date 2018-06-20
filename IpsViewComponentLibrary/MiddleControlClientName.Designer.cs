@@ -46,6 +46,7 @@
             this.checkClientName.Size = new System.Drawing.Size(86, 18);
             this.checkClientName.TabIndex = 2;
             this.checkClientName.Text = "Майданчики";
+            this.checkClientName.CheckStateChanged += new System.EventHandler(this.checkClientName_CheckStateChanged);
             // 
             // ctrlRegistrationsCompany
             // 
@@ -64,7 +65,7 @@
             // 
             // 
             // 
-            this.ctrlRegistrationsCompany.DtRegisterDate.RootElement.ControlBounds = new System.Drawing.Rectangle(278, 38, 92, 20);
+            this.ctrlRegistrationsCompany.DtRegisterDate.RootElement.ControlBounds = new System.Drawing.Rectangle(278, 38, 164, 20);
             this.ctrlRegistrationsCompany.DtRegisterDate.RootElement.StretchVertically = true;
             this.ctrlRegistrationsCompany.DtRegisterDate.Size = new System.Drawing.Size(92, 20);
             this.ctrlRegistrationsCompany.DtRegisterDate.TabIndex = 2;
@@ -88,7 +89,7 @@
             // 
             // 
             // 
-            this.ctrlRegistrationsCompany.TxtNumberVat.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 85, 164, 20);
+            this.ctrlRegistrationsCompany.TxtNumberVat.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 85, 100, 20);
             this.ctrlRegistrationsCompany.TxtNumberVat.RootElement.StretchVertically = true;
             this.ctrlRegistrationsCompany.TxtNumberVat.Size = new System.Drawing.Size(164, 20);
             this.ctrlRegistrationsCompany.TxtNumberVat.TabIndex = 5;
@@ -101,7 +102,7 @@
             // 
             // 
             // 
-            this.ctrlRegistrationsCompany.TxtOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 1, 120, 20);
+            this.ctrlRegistrationsCompany.TxtOkpo.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 1, 100, 20);
             this.ctrlRegistrationsCompany.TxtOkpo.RootElement.StretchVertically = true;
             this.ctrlRegistrationsCompany.TxtOkpo.Size = new System.Drawing.Size(120, 20);
             this.ctrlRegistrationsCompany.TxtOkpo.TabIndex = 0;
@@ -113,7 +114,7 @@
             // 
             // 
             // 
-            this.ctrlRegistrationsCompany.TxtRegisterNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 38, 120, 20);
+            this.ctrlRegistrationsCompany.TxtRegisterNumber.RootElement.ControlBounds = new System.Drawing.Rectangle(120, 38, 100, 20);
             this.ctrlRegistrationsCompany.TxtRegisterNumber.RootElement.StretchVertically = true;
             this.ctrlRegistrationsCompany.TxtRegisterNumber.Size = new System.Drawing.Size(120, 20);
             this.ctrlRegistrationsCompany.TxtRegisterNumber.TabIndex = 1;
@@ -127,7 +128,7 @@
             // 
             // 
             // 
-            this.ctrlRegistrationsCompany.TxtRegisterWho.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 38, 164, 0);
+            this.ctrlRegistrationsCompany.TxtRegisterWho.RootElement.ControlBounds = new System.Drawing.Rectangle(436, 38, 100, 20);
             this.ctrlRegistrationsCompany.TxtRegisterWho.RootElement.StretchVertically = true;
             this.ctrlRegistrationsCompany.TxtRegisterWho.Size = new System.Drawing.Size(268, 20);
             this.ctrlRegistrationsCompany.TxtRegisterWho.TabIndex = 3;

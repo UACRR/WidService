@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
     public partial class GlobalControlConsumerAnketa : UserControl
     {
         private int _visiblePage;
-        private readonly Dictionary<int,string[]> buttonNames = new Dictionary<int, string[]>
+        private readonly Dictionary<int,string[]> _buttonsName = new Dictionary<int, string[]>
         {
             {1, new []{"","Адреса >"} },
             {2, new []{"< Назва","Керівники >"} },
@@ -27,8 +29,18 @@ namespace IpsViewComponentLibrary
         };
 
         private ButtonType _btnType = ButtonType.None;
+        private byte _nextPageNumber;
 
-        public bool IsContainPlaces { get; set; }
+        private Customer _cust;
+        private AnketaDictionaties _anketaDictionaries;
+
+        //властивість наявності майданчиків
+         public bool IsContainPlaces
+         {
+             get;// => ctrlClientName.IsPlaceIn;
+            set;//=> ctrlClientName.IsPlaceIn = value;
+         } 
+
 
         public GlobalControlConsumerAnketa()
         {
@@ -38,11 +50,50 @@ namespace IpsViewComponentLibrary
             _visiblePage = 1;
             ChangeButtonsName(_visiblePage);
             btnBack.Visible = false;
-            SetColorTabs();
 
-            IsContainPlaces = false;
+            //ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged;
+            
         }
 
+        /// <summary>
+        /// Ініціалізація даних для контрола
+        /// </summary>
+        /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
+        public void InitializeControl(bool isNew = false)
+        {
+            SetColorTabs(isNew);
+
+            //ctrlClientName.SetDataSources(_cust,_anketaDictionaries); // - - - - - - - -  Назва клієнта
+            //ctrlAddress.SetDataSources(_cust,_anketaDictionaries);    // - - - - - - - -  Адреса
+            //ctrlManagers.SetDataSources(_cust,_anketaDictionaries);   // - - - - - - - -  Керівники
+            //ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
+            //ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
+            //    ? _cust?.Client?.ClnBusinessPlace // - - - - - -  - - - - - - - - - - - - 
+            //    : null);                          // - - - - - -  - - - - - - - - - - - -
+            ctrlPlacesTitle.Text =             // - - - - - -  - - - - - - - - - - - - -
+                _cust?.Company?.AnketaCompany?. // - - - - - -  - - - - - - - - - - - - -
+                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
+            //ctrlBankRequisites.SetDataSources(_cust,_anketaDictionaries); // - - - - - -  Банківські реквізити
+            //ctrlAgreement.SetDataSources(_cust,_anketaDictionaries);  // - - - - - - - -  Договір
+ 
+        }
+
+        /// <summary>
+        /// Обов'язковий метод 
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <param name="dict"></param>
+        public void SetDataAndDictionaries(Customer cust, AnketaDictionaties dict)
+        {
+            _cust = cust;
+            _anketaDictionaries = dict;
+        }
+
+        //TODO: дописати валідатора
+        /// <summary>
+        /// Перевірка на валідність даних
+        /// </summary>
+        /// <returns></returns>
         private bool Validator()
         {
             return true;
@@ -143,7 +194,7 @@ namespace IpsViewComponentLibrary
         private void ChangeButtonsName(int key)
         {
 
-            string[] names = buttonNames[key];
+            string[] names = _buttonsName[key];
             btnBack.Text = names[0];
             btnNext.Text = names[1];
             
@@ -151,13 +202,13 @@ namespace IpsViewComponentLibrary
             {
                 if (key == 3)
                 {
-                    string[] namess = buttonNames[11];
+                    string[] namess = _buttonsName[11];
                     btnBack.Text = namess[0];
                     btnNext.Text = namess[1];
                 }
                 else if (key == 5)
                 {
-                    string[] namess = buttonNames[12];
+                    string[] namess = _buttonsName[12];
                     btnBack.Text = namess[0];
                     btnNext.Text = namess[1];
                 }
@@ -180,7 +231,7 @@ namespace IpsViewComponentLibrary
                         page.Item.ForeColor = Color.DarkGray;
                     }
                     pageAnketaConsumer.Pages[0].Item.ForeColor = DefaultForeColor;
-
+                    _nextPageNumber = 1;
                 }
                     break;
 
@@ -190,13 +241,19 @@ namespace IpsViewComponentLibrary
                     {
                         page.Item.ForeColor = DefaultForeColor;
                     }
+                    _nextPageNumber = 10;
                 }
                     break;
             }
         }
 
-        #endregion
+        //зміна кольору вкладки з майданчиками при виборі чекбокса
+        private void CtrlClientName_OnContainPlacesChanged(object sender, EventArgs e)
+        {
+            pageAnketaConsumer.Pages[3].Item.ForeColor = IsContainPlaces ? DefaultForeColor : Color.DarkGray;
+        }
 
+        //переходи по вкладкам (кнопки та кліки)
         private void pageAnketaConsumer_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
         {
             //перехід на вкладку майданчиків за умови що їх немає
@@ -204,59 +261,81 @@ namespace IpsViewComponentLibrary
             switch (_btnType)
             {
                 case ButtonType.Next:
-                {
-                    if (e.Page.TabIndex == 3 && !IsContainPlaces)
                     {
-                        _visiblePage++;
-                        pageAnketaConsumer.SelectedPage = pvBankRequisites;
-                        e.Cancel = true;
+                        if (Validator())
+                        {
+                            if (e.Page.TabIndex == 3 && !IsContainPlaces)
+                            {
+                                _visiblePage++;
+                                pageAnketaConsumer.SelectedPage = pvBankRequisites;
+                                e.Cancel = true;
+                                pageAnketaConsumer.Pages[e.Page.TabIndex + 1].Item.ForeColor = DefaultForeColor;
+                                if (_nextPageNumber == e.Page.TabIndex)
+                                    _nextPageNumber += 2;
+                            }
+                            else
+                            {
+                                ChangeButtonsName(_visiblePage + 1);
+                                if (_visiblePage == 1)
+                                    btnBack.Visible = true;
+                                if (_visiblePage != 7)
+                                    _visiblePage++;
+                                _btnType = ButtonType.None;
+                                if (_nextPageNumber == e.Page.TabIndex)
+                                    _nextPageNumber++;
+                                pageAnketaConsumer.Pages[e.Page.TabIndex].Item.ForeColor = DefaultForeColor;
+                            }
+                        }
+                        else
+                            e.Cancel = true;
                     }
-                    else
-                    {
-                        ChangeButtonsName(_visiblePage + 1);
-                        if (_visiblePage == 1)
-                            btnBack.Visible = true;
-                        if (_visiblePage != 7)
-                            _visiblePage++;
-                        _btnType = ButtonType.None;
-
-                    }
-                }
                     break;
 
                 case ButtonType.Previos:
-                {
-                    if (e.Page.TabIndex == 3 && !IsContainPlaces)
                     {
-                        _visiblePage--;
-                        pageAnketaConsumer.SelectedPage = pvManagers;
-                        e.Cancel = true;
+                        if (e.Page.TabIndex == 3 && !IsContainPlaces)
+                        {
+                            _visiblePage--;
+                            pageAnketaConsumer.SelectedPage = pvManagers;
+                            e.Cancel = true;
+                        }
+                        else
+                        {
+                            ChangeButtonsName(_visiblePage - 1);
+                            if (_visiblePage == 2)
+                                btnBack.Visible = false;
+                            _visiblePage--;
+                            _btnType = ButtonType.None;
+                        }
                     }
-                    else
-                    {
-                        ChangeButtonsName(_visiblePage - 1);
-                        if (_visiblePage == 2)
-                            btnBack.Visible = false;
-                        _visiblePage--;
-                        _btnType = ButtonType.None;
-                    }
-                }
                     break;
 
                 case ButtonType.None:
-                {
-                    if (e.Page.TabIndex == 3 && !IsContainPlaces)
                     {
-                        e.Cancel = true;
-                        return;
+                        if (e.Page.TabIndex == 3 && !IsContainPlaces)
+                        {
+                            e.Cancel = true;
+                        }
+                        else
+                        {
+                            if (e.Page.TabIndex < _nextPageNumber && Validator())
+                            {
+                                _visiblePage = e.Page.TabIndex + 1;
+                                ChangeButtonsName(_visiblePage);
+                                btnBack.Visible = e.Page.TabIndex > 0;
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                            }
+                        }
+
                     }
-                        _visiblePage = e.Page.TabIndex + 1;
-                    ChangeButtonsName(_visiblePage);
-                    btnBack.Visible = e.Page.TabIndex > 0;
-                }
                     break;
             }
         }
+
+        #endregion
     }
 
     internal enum ButtonType
@@ -265,5 +344,4 @@ namespace IpsViewComponentLibrary
         Next,
         Previos
     };
-
 }

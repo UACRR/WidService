@@ -84,7 +84,7 @@
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(79, 18);
             this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Назва клієнту:";
+            this.radLabel1.Text = "Назва клієнта:";
             // 
             // IpsAnketaCompanyControl
             // 
