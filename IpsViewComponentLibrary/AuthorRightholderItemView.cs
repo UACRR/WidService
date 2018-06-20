@@ -71,9 +71,14 @@ namespace IpsViewComponentLibrary
 
         private void SelectionView_RightholderSelected(object sender, RightholderMainView selectedRightholder)
         {
-            _authorRightholder.CustId = selectedRightholder.CustId;
             _authorRightholder.AuthorName = selectedRightholder.Name;
-            _authorRightholder.CommunityName = selectedRightholder.Community_Name;
+
+            if (_authorRightholder.IsRightholder)
+            {
+                _authorRightholder.CustId = selectedRightholder.CustId;
+                _authorRightholder.CommunityName = selectedRightholder.Community_Name;
+            }
+
             objectAuthorRightholderBindingSource.ResetBindings(false);
         }
 
