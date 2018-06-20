@@ -20,7 +20,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A0A5CF1-DA6E-4E1A-AF64-FFAC4E027068}"
 	ProjectSection(SolutionItems) = preProject
 		publishModel.ps1 = publishModel.ps1
-		SetJsonIgnore.ps1 = SetJsonIgnore.ps1
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RightholderWorkplace", "RightholderWorkplace\RightholderWorkplace.csproj", "{BE2B9387-9119-454B-B94F-297DCE752D8D}"

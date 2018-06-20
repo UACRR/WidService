@@ -37,15 +37,6 @@ namespace RightholderWorkplace
 
         ObjectRightService _objectRightService = new ObjectRightService();
 
-        public RightholderMainView SelectedRightholder
-        {
-            get
-            {
-                return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
-            }
-            set { }
-        }
-
         #region IRightholderForm immplementation
 
         public Func<IList<RightholderMainView>> GetMainViewData { get; set; }
@@ -171,6 +162,15 @@ namespace RightholderWorkplace
         }
 
         #region Rightholders page
+
+        public RightholderMainView SelectedRightholder
+        {
+            get
+            {
+                return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
+            }
+            set { }
+        }
 
         #region Next / Prev buttons
 
@@ -497,10 +497,40 @@ namespace RightholderWorkplace
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
 
-            var columnRoleAuth = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
-            columnRoleAuth.ValueMember = "CodeI";
-            columnRoleAuth.DisplayMember = "Name";
+            var objectAuthorRightholderList = _objectRight.Authors.Select(a => {
+
+                var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId);
+                var foundedRightholder = objectRightContainer.rhList.FirstOrDefault(r => r.custId == a.CustId);
+
+                return new ObjectAuthorRightholder
+                {
+                    AuthId = a.AuthId,
+                    ObjId = a.ObjId,
+                    RoleCode = a.RoleCode,
+                    FolkType = a.FolkType,
+                    AuthorName = a.AuthorName,
+                    IsRightholder = a.CustId != null,
+                    CopyrightStatus = foundedCopyright?.Status,
+                    CommunityName = foundedRightholder?.Community_Name,
+                    Rate = foundedCopyright?.Rate,
+                    BeginDate = foundedCopyright?.BeginDate,
+                    EndDate = foundedCopyright?.EndDate,
+                };
+            }).ToList();
+
+            var columnRoleCode = gvObjectAuthorsRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleCode.DataSource = _dictionariesObjectRight.creativeRoleType;
+            columnRoleCode.ValueMember = "CodeI";
+            columnRoleCode.DisplayMember = "Name";
+
+            var columnFolkType = gvObjectAuthorsRightholders.Columns["FolkType"] as GridViewComboBoxColumn;
+            columnFolkType.DataSource = _dictionariesObjectRight.folkType;
+            columnFolkType.ValueMember = "CodeI";
+            columnFolkType.DisplayMember = "Name";
+
+            //var columnCopyrightStatus = gvObjectAuthorsRightholders.Columns["CopyrightStatus"] as GridViewCheckBoxColumn;
+            //columnCopyrightStatus.NullValue = false;
+            //columnCopyrightStatus.DataSourceNullValue = false;
 
             var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
             columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
@@ -514,13 +544,22 @@ namespace RightholderWorkplace
 
             // update bidings
             gvObjectsRightsList.DataSource = objectsRightsList;
+            objectAuthorRightholderBindingSource.DataSource = objectAuthorRightholderList;
             objectRightBindingSource.DataSource = _objectRight;
             mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
-            authorsBindingSource.DataSource = _objectRight.Authors;
             copyRightBindingSource.DataSource = _objectRight.CopyRight;
         }
 
         #region Objectrights page
+
+        public ObjectAuthorRightholder SelectedObjectAuthorRightholder
+        {
+            get
+            {
+                return gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
+            }
+            set { }
+        }
 
         private void WireUpObjectsRightsPageEvents()
         {
@@ -548,17 +587,32 @@ namespace RightholderWorkplace
             service.Save(_objectRight);
         }
 
-        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
+        private void gvObjectAuthorsRightholders_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
             {
-                authorItemView.StartPosition = FormStartPosition.CenterParent;
-                authorItemView.ShowDialog();
-                authorsBindingSource.ResetBindings(false);
+                EditObjectAuthorRightholder();
+            }
+            else if (currentColumnName == "DeleteColumn")
+            {
+                DeleteObjectAuthorRightholder();
             }
         }
 
-        private void gvObjectsRightsList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
+        {
+            EditObjectAuthorRightholder();
+        }
+
+        private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
+        {
+            var objectAuthorRightholder = new ObjectAuthorRightholder();
+            EditObjectAuthorRightholder(objectAuthorRightholder);
+        }
+
+        private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             SetTooltipTextFromHeader(sender, e);
         }
@@ -570,6 +624,41 @@ namespace RightholderWorkplace
 
             ctrlRightholderSelector.Rightholder = selectedRightholder;
         }
+
+        #region Objectrights page helpers
+
+        private void EditObjectAuthorRightholder(ObjectAuthorRightholder objectAuthorRightholder = null)
+        {
+            if (objectAuthorRightholder == null)
+                objectAuthorRightholder = SelectedObjectAuthorRightholder;
+
+
+            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight))
+            {
+                objectAuthorRightholderBindingSource.RaiseListChangedEvents = false;
+
+                authorRightholderItemView.StartPosition = FormStartPosition.CenterParent;
+                authorRightholderItemView.ShowDialog();
+
+                objectAuthorRightholderBindingSource.RaiseListChangedEvents = true;
+
+                if (authorRightholderItemView.DialogResult == DialogResult.OK && objectAuthorRightholderBindingSource.IndexOf(objectAuthorRightholder) == -1)
+                {
+                    objectAuthorRightholderBindingSource.Add(objectAuthorRightholder);
+                }
+            }
+
+            MainPageView.SelectedPage = mainPageRightsObjects;
+            objectsPageView.SelectedPage = actualObjectsPage;
+            actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+        }
+
+        private void DeleteObjectAuthorRightholder()
+        {
+            objectAuthorRightholderBindingSource.Remove(SelectedObjectAuthorRightholder);
+        }
+
+        #endregion
 
         #endregion
 
