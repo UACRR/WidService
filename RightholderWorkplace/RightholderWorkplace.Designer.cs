@@ -29,62 +29,102 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn24 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn4 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn25 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn26 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn27 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn27 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn10 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn18 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn19 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn8 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn9 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn10 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn20 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn27 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn21 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn22 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn23 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn11 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn24 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn25 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn26 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn3 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn4 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn3 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn27 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn21 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn4 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn28 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn29 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn22 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn23 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn4 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
             Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn5 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn6 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn12 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn13 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn30 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn8 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn9 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn28 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn29 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn33 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn31 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn34 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn30 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn31 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn35 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn32 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn11 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn36 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn37 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn38 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn39 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn32 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn6 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn33 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn40 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn34 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn40 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn12 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn13 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn14 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.MainPageView = new Telerik.WinControls.UI.RadPageView();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.mainPageViewDistribution = new Telerik.WinControls.UI.RadPageViewPage();
+            this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
+            this.objectsPageView = new Telerik.WinControls.UI.RadPageView();
+            this.actualObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.actualObjectsPageView = new Telerik.WinControls.UI.RadPageView();
+            this.actualObjectsListPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ddbAddObjectRight = new Telerik.WinControls.UI.RadDropDownButton();
+            this.miAddMusicalComposition = new Telerik.WinControls.UI.RadMenuItem();
+            this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
+            this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.actualObjectsItemPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.mebDuration = new Telerik.WinControls.UI.RadMaskedEditBox();
+            this.mediaTrackBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.txtObjectAltName = new Telerik.WinControls.UI.RadTextBox();
+            this.txtObjectName = new Telerik.WinControls.UI.RadTextBox();
+            this.objectRightBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnMoreObjectAltName = new Telerik.WinControls.UI.RadButton();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlGenreType = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlSpecType = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
+            this.gvObjectAuthorsRightholders = new Telerik.WinControls.UI.RadGridView();
+            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
+            this.txtISWC = new Telerik.WinControls.UI.RadTextBox();
+            this.btnAddAuthorRightholder = new Telerik.WinControls.UI.RadButton();
+            this.btnObjectRightItemCancel = new Telerik.WinControls.UI.RadButton();
+            this.btnObjectRightItemSave = new Telerik.WinControls.UI.RadButton();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator4 = new Telerik.WinControls.UI.RadSeparator();
+            this.rightholdersObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlRightholderSelector = new IpsViewComponentLibrary.RightholderSelectorControl();
+            this.gvRightholdersObjectsRights = new Telerik.WinControls.UI.RadGridView();
+            this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.notAcceptedObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.newObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.notLinkedObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -103,13 +143,13 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.newCreateRightholderPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderFullNameComissionPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
-            this.rightHolderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.btnNewRightholderCancel1 = new Telerik.WinControls.UI.RadButton();
             this.btnNextAnketa = new Telerik.WinControls.UI.RadButton();
+            this.btnNewRightholderCancel1 = new Telerik.WinControls.UI.RadButton();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
+            this.rightHolderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
             this.ctrlAgreement = new DebugFormForControls.ContractControl();
             this.agreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAnketaPerson = new DebugFormForControls.AnketaPersonRightHolderControl();
@@ -117,15 +157,15 @@
             this.ipsServiceComissionControl1 = new IpsViewComponentLibrary.IpsServiceComissionControl();
             this.agreementAddRhBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.createRightholderAnketaPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.btnPrevFullNameComission = new Telerik.WinControls.UI.RadButton();
             this.btnNextPassport = new Telerik.WinControls.UI.RadButton();
+            this.btnPrevFullNameComission = new Telerik.WinControls.UI.RadButton();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.ctrlRegistrations = new IpsViewComponentLibrary.RegistrationPersonsControl();
             this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
@@ -143,25 +183,25 @@
             this.btnPrevAnketa = new Telerik.WinControls.UI.RadButton();
             this.btnNextRoyalty = new Telerik.WinControls.UI.RadButton();
             this.createRightholderRoyaltyPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radButton3 = new Telerik.WinControls.UI.RadButton();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.radButton3 = new Telerik.WinControls.UI.RadButton();
             this.createRightholderRoyaltyPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderRoyaltyBankPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.createRightholderRoyaltyCashPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderRoyaltyPostalTransfer = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.txtPostalIndex = new Telerik.WinControls.UI.RadTextBox();
             this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ddlTypeMethodGet = new Telerik.WinControls.UI.RadDropDownList();
             this.btnPrevPassport = new Telerik.WinControls.UI.RadButton();
+            this.ddlTypeMethodGet = new Telerik.WinControls.UI.RadDropDownList();
             this.btnNextRightLimitation = new Telerik.WinControls.UI.RadButton();
             this.createRightholderRigthLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radButton4 = new Telerik.WinControls.UI.RadButton();
-            this.btnNextTerritoryLimitation = new Telerik.WinControls.UI.RadButton();
             this.btnPrevRoyalty = new Telerik.WinControls.UI.RadButton();
+            this.btnNextTerritoryLimitation = new Telerik.WinControls.UI.RadButton();
+            this.radButton4 = new Telerik.WinControls.UI.RadButton();
             this.ctrlExclusionsLimitations = new IpsViewComponentLibrary.IpsExclusionsLimitationsControl();
             this.createRightholderTerritoryLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnNextAgreement = new Telerik.WinControls.UI.RadButton();
@@ -178,49 +218,48 @@
             this.pdfvRightholderAgreement = new Telerik.WinControls.UI.RadPdfViewer();
             this.waitbarAgreement = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
-            this.objectsPageView = new Telerik.WinControls.UI.RadPageView();
-            this.actualObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.actualObjectsPageView = new Telerik.WinControls.UI.RadPageView();
-            this.actualObjectsListPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
-            this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.actualObjectsItemPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.btnObjectRightItemSave = new Telerik.WinControls.UI.RadButton();
-            this.btnObjectRightItemCancel = new Telerik.WinControls.UI.RadButton();
-            this.btnAddAuthorRightholder = new Telerik.WinControls.UI.RadButton();
-            this.txtISWC = new Telerik.WinControls.UI.RadTextBox();
-            this.mediaTrackBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
-            this.gvObjectAuthorsRightholders = new Telerik.WinControls.UI.RadGridView();
-            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radSeparator4 = new Telerik.WinControls.UI.RadSeparator();
-            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlSpecType = new Telerik.WinControls.UI.RadDropDownList();
-            this.objectRightBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mebDuration = new Telerik.WinControls.UI.RadMaskedEditBox();
-            this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlGenreType = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.btnMoreObjectAltName = new Telerik.WinControls.UI.RadButton();
-            this.txtObjectName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtObjectAltName = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
-            this.rightholdersObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlRightholderSelector = new IpsViewComponentLibrary.RightholderSelectorControl();
-            this.gvRightholdersObjectsRights = new Telerik.WinControls.UI.RadGridView();
-            this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.notAcceptedObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.newObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.notLinkedObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainPageViewDistribution = new Telerik.WinControls.UI.RadPageViewPage();
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.MainPageView = new Telerik.WinControls.UI.RadPageView();
+            this.radMenuButtonItem1 = new Telerik.WinControls.UI.RadDropDownMenu();
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
-            this.MainPageView.SuspendLayout();
+            this.mainPageRightsObjects.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).BeginInit();
+            this.objectsPageView.SuspendLayout();
+            this.actualObjectsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.actualObjectsPageView)).BeginInit();
+            this.actualObjectsPageView.SuspendLayout();
+            this.actualObjectsListPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).BeginInit();
+            this.actualObjectsItemPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mediaTrackBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObjectAltName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreObjectAltName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlSpecType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthorsRightholders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthorsRightholders.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtISWC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddAuthorRightholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).BeginInit();
+            this.rightholdersObjectsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
             this.mainPageRightholders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rightholdersPageView)).BeginInit();
             this.rightholdersPageView.SuspendLayout();
@@ -241,26 +280,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.newCreateRightholderPageView)).BeginInit();
             this.newCreateRightholderPageView.SuspendLayout();
             this.createRightholderFullNameComissionPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rightHolderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNewRightholderCancel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextAnketa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNewRightholderCancel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightHolderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementMasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementAddRhBindingSource)).BeginInit();
             this.createRightholderAnketaPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrevFullNameComission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextPassport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrevFullNameComission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.DdlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.TxtAddress)).BeginInit();
@@ -284,8 +323,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextRoyalty)).BeginInit();
             this.createRightholderRoyaltyPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderRoyaltyPageView)).BeginInit();
             this.createRightholderRoyaltyPageView.SuspendLayout();
             this.createRightholderRoyaltyBankPage.SuspendLayout();
@@ -295,21 +334,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtMfoOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtTransitNumber)).BeginInit();
             this.createRightholderRoyaltyPostalTransfer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPostalIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBaAddress.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBaAddress.DdlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBaAddress.TxtAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBaAddress.TxtCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlTypeMethodGet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevPassport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlTypeMethodGet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextRightLimitation)).BeginInit();
             this.createRightholderRigthLimitationsPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNextTerritoryLimitation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNextTerritoryLimitation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
             this.createRightholderTerritoryLimitationsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton5)).BeginInit();
@@ -322,65 +361,715 @@
             ((System.ComponentModel.ISupportInitialize)(this.pdfvRightholderAgreement)).BeginInit();
             this.pdfvRightholderAgreement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waitbarAgreement)).BeginInit();
-            this.mainPageRightsObjects.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).BeginInit();
-            this.objectsPageView.SuspendLayout();
-            this.actualObjectsPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.actualObjectsPageView)).BeginInit();
-            this.actualObjectsPageView.SuspendLayout();
-            this.actualObjectsListPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).BeginInit();
-            this.actualObjectsItemPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddAuthorRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtISWC)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mediaTrackBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthorsRightholders)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthorsRightholders.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlSpecType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMoreObjectAltName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtObjectAltName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
-            this.rightholdersObjectsPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
+            this.MainPageView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightDictionariesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // MainPageView
+            // mainPageViewDistribution
             // 
-            this.MainPageView.Controls.Add(this.mainPageRightholders);
-            this.MainPageView.Controls.Add(this.mainPageRightsObjects);
-            this.MainPageView.Controls.Add(this.mainPageViewDistribution);
-            this.MainPageView.DefaultPage = this.mainPageRightholders;
-            this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPageView.Location = new System.Drawing.Point(0, 0);
-            this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageRightholders;
-            this.MainPageView.Size = new System.Drawing.Size(1192, 668);
-            this.MainPageView.TabIndex = 0;
-            this.MainPageView.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).ShowItemPinButton = false;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).ShowItemCloseButton = false;
+            this.mainPageViewDistribution.ItemSize = new System.Drawing.SizeF(128F, 27F);
+            this.mainPageViewDistribution.Location = new System.Drawing.Point(5, 31);
+            this.mainPageViewDistribution.Name = "mainPageViewDistribution";
+            this.mainPageViewDistribution.Size = new System.Drawing.Size(1182, 632);
+            this.mainPageViewDistribution.Text = "Відомості розподілу";
+            // 
+            // mainPageRightsObjects
+            // 
+            this.mainPageRightsObjects.Controls.Add(this.objectsPageView);
+            this.mainPageRightsObjects.ItemSize = new System.Drawing.SizeF(95F, 27F);
+            this.mainPageRightsObjects.Location = new System.Drawing.Point(5, 31);
+            this.mainPageRightsObjects.Name = "mainPageRightsObjects";
+            this.mainPageRightsObjects.Size = new System.Drawing.Size(1182, 632);
+            this.mainPageRightsObjects.Text = "Об\'єкти права";
+            // 
+            // objectsPageView
+            // 
+            this.objectsPageView.Controls.Add(this.actualObjectsPage);
+            this.objectsPageView.Controls.Add(this.rightholdersObjectsPage);
+            this.objectsPageView.Controls.Add(this.notAcceptedObjectsPage);
+            this.objectsPageView.Controls.Add(this.newObjectsPage);
+            this.objectsPageView.Controls.Add(this.notLinkedObjectsPage);
+            this.objectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.objectsPageView.Location = new System.Drawing.Point(0, 0);
+            this.objectsPageView.Name = "objectsPageView";
+            this.objectsPageView.SelectedPage = this.actualObjectsPage;
+            this.objectsPageView.Size = new System.Drawing.Size(1182, 632);
+            this.objectsPageView.TabIndex = 0;
+            this.objectsPageView.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
+            // 
+            // actualObjectsPage
+            // 
+            this.actualObjectsPage.Controls.Add(this.actualObjectsPageView);
+            this.actualObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
+            this.actualObjectsPage.Location = new System.Drawing.Point(188, 5);
+            this.actualObjectsPage.Name = "actualObjectsPage";
+            this.actualObjectsPage.Size = new System.Drawing.Size(989, 622);
+            this.actualObjectsPage.Text = "Об\'єкти права діючі";
+            // 
+            // actualObjectsPageView
+            // 
+            this.actualObjectsPageView.Controls.Add(this.actualObjectsListPage);
+            this.actualObjectsPageView.Controls.Add(this.actualObjectsItemPage);
+            this.actualObjectsPageView.DefaultPage = this.actualObjectsListPage;
+            this.actualObjectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.actualObjectsPageView.Location = new System.Drawing.Point(0, 0);
+            this.actualObjectsPageView.Name = "actualObjectsPageView";
+            this.actualObjectsPageView.SelectedPage = this.actualObjectsItemPage;
+            this.actualObjectsPageView.Size = new System.Drawing.Size(989, 622);
+            this.actualObjectsPageView.TabIndex = 0;
+            this.actualObjectsPageView.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.actualObjectsPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.actualObjectsPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
+            // 
+            // actualObjectsListPage
+            // 
+            this.actualObjectsListPage.Controls.Add(this.ddbAddObjectRight);
+            this.actualObjectsListPage.Controls.Add(this.gvObjectsRightsList);
+            this.actualObjectsListPage.ItemSize = new System.Drawing.SizeF(27F, 133F);
+            this.actualObjectsListPage.Location = new System.Drawing.Point(31, 5);
+            this.actualObjectsListPage.Name = "actualObjectsListPage";
+            this.actualObjectsListPage.Size = new System.Drawing.Size(953, 612);
+            this.actualObjectsListPage.Text = "actualObjectsListPage";
+            // 
+            // ddbAddObjectRight
+            // 
+            this.ddbAddObjectRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ddbAddObjectRight.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.miAddMusicalComposition});
+            this.ddbAddObjectRight.Location = new System.Drawing.Point(3, 585);
+            this.ddbAddObjectRight.Name = "ddbAddObjectRight";
+            this.ddbAddObjectRight.Size = new System.Drawing.Size(140, 24);
+            this.ddbAddObjectRight.TabIndex = 4;
+            this.ddbAddObjectRight.Text = "Додати";
+            this.ddbAddObjectRight.ThemeName = "Office2013Light";
+            // 
+            // miAddMusicalComposition
+            // 
+            this.miAddMusicalComposition.Name = "miAddMusicalComposition";
+            this.miAddMusicalComposition.Tag = "5";
+            this.miAddMusicalComposition.Text = "Музичні твори з текстом і без тексту";
+            this.miAddMusicalComposition.Click += new System.EventHandler(this.miAddMusicalComposition_Click);
+            // 
+            // gvObjectsRightsList
+            // 
+            this.gvObjectsRightsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvObjectsRightsList.Location = new System.Drawing.Point(3, 0);
+            // 
+            // 
+            // 
+            this.gvObjectsRightsList.MasterTemplate.AllowAddNewRow = false;
+            this.gvObjectsRightsList.MasterTemplate.AllowDeleteRow = false;
+            this.gvObjectsRightsList.MasterTemplate.AllowEditRow = false;
+            this.gvObjectsRightsList.MasterTemplate.AutoGenerateColumns = false;
+            this.gvObjectsRightsList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewDecimalColumn24.DataType = typeof(int);
+            gridViewDecimalColumn24.FieldName = "ObjId";
+            gridViewDecimalColumn24.HeaderText = "Шифр твору";
+            gridViewDecimalColumn24.IsAutoGenerated = true;
+            gridViewDecimalColumn24.Name = "ObjId";
+            gridViewDecimalColumn24.Width = 91;
+            gridViewTextBoxColumn23.FieldName = "Name";
+            gridViewTextBoxColumn23.HeaderText = "Назва твору";
+            gridViewTextBoxColumn23.IsAutoGenerated = true;
+            gridViewTextBoxColumn23.Name = "Name";
+            gridViewTextBoxColumn23.Width = 198;
+            gridViewTextBoxColumn24.FieldName = "Category";
+            gridViewTextBoxColumn24.HeaderText = "В/М";
+            gridViewTextBoxColumn24.IsAutoGenerated = true;
+            gridViewTextBoxColumn24.Name = "Category";
+            gridViewTextBoxColumn24.Width = 48;
+            gridViewTextBoxColumn25.FieldName = "GenreName";
+            gridViewTextBoxColumn25.HeaderText = "Жанр";
+            gridViewTextBoxColumn25.IsAutoGenerated = true;
+            gridViewTextBoxColumn25.Name = "GenreName";
+            gridViewTextBoxColumn25.Width = 100;
+            gridViewDecimalColumn25.DataType = typeof(System.TimeSpan);
+            gridViewDecimalColumn25.FieldName = "Duration";
+            gridViewDecimalColumn25.HeaderText = "Час";
+            gridViewDecimalColumn25.IsAutoGenerated = true;
+            gridViewDecimalColumn25.Name = "Duration";
+            gridViewDecimalColumn25.Width = 72;
+            gridViewTextBoxColumn26.FieldName = "SpecName";
+            gridViewTextBoxColumn26.HeaderText = "Переклад / обробка / оригінал";
+            gridViewTextBoxColumn26.IsAutoGenerated = true;
+            gridViewTextBoxColumn26.Name = "SpecName";
+            gridViewTextBoxColumn26.Width = 100;
+            gridViewDecimalColumn26.DataType = typeof(double);
+            gridViewDecimalColumn26.FieldName = "RateTotal";
+            gridViewDecimalColumn26.HeaderText = "Спільний % володіння";
+            gridViewDecimalColumn26.IsAutoGenerated = true;
+            gridViewDecimalColumn26.Name = "RateTotal";
+            gridViewDecimalColumn26.Width = 74;
+            gridViewTextBoxColumn27.FieldName = "Performer";
+            gridViewTextBoxColumn27.HeaderText = "Виконавець";
+            gridViewTextBoxColumn27.IsAutoGenerated = true;
+            gridViewTextBoxColumn27.Name = "Performer";
+            gridViewTextBoxColumn27.Width = 100;
+            gridViewDecimalColumn27.DataType = typeof(double);
+            gridViewDecimalColumn27.FieldName = "Profit";
+            gridViewDecimalColumn27.HeaderText = "Дохід з початку року";
+            gridViewDecimalColumn27.IsAutoGenerated = true;
+            gridViewDecimalColumn27.Name = "Profit";
+            gridViewDecimalColumn27.Width = 93;
+            gridViewCommandColumn10.AllowResize = false;
+            gridViewCommandColumn10.DefaultText = "Редагувати";
+            gridViewCommandColumn10.HeaderText = "";
+            gridViewCommandColumn10.Name = "EditColumn";
+            gridViewCommandColumn10.UseDefaultText = true;
+            gridViewCommandColumn10.Width = 81;
+            this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn24,
+            gridViewTextBoxColumn23,
+            gridViewTextBoxColumn24,
+            gridViewTextBoxColumn25,
+            gridViewDecimalColumn25,
+            gridViewTextBoxColumn26,
+            gridViewDecimalColumn26,
+            gridViewTextBoxColumn27,
+            gridViewDecimalColumn27,
+            gridViewCommandColumn10});
+            this.gvObjectsRightsList.MasterTemplate.DataSource = this.objectRightMainViewBindingSource;
+            this.gvObjectsRightsList.MasterTemplate.ShowRowHeaderColumn = false;
+            this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvObjectsRightsList.Name = "gvObjectsRightsList";
+            this.gvObjectsRightsList.ShowGroupPanel = false;
+            this.gvObjectsRightsList.Size = new System.Drawing.Size(950, 579);
+            this.gvObjectsRightsList.TabIndex = 0;
+            this.gvObjectsRightsList.ThemeName = "Office2013Light";
+            this.gvObjectsRightsList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectsRightsList_CommandCellClick);
+            this.gvObjectsRightsList.DoubleClick += new System.EventHandler(this.gvObjectsRightsList_DoubleClick);
+            // 
+            // objectRightMainViewBindingSource
+            // 
+            this.objectRightMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightMainView);
+            // 
+            // actualObjectsItemPage
+            // 
+            this.actualObjectsItemPage.Controls.Add(this.mebDuration);
+            this.actualObjectsItemPage.Controls.Add(this.radLabel14);
+            this.actualObjectsItemPage.Controls.Add(this.txtObjectAltName);
+            this.actualObjectsItemPage.Controls.Add(this.txtObjectName);
+            this.actualObjectsItemPage.Controls.Add(this.btnMoreObjectAltName);
+            this.actualObjectsItemPage.Controls.Add(this.radLabel15);
+            this.actualObjectsItemPage.Controls.Add(this.ddlGenreType);
+            this.actualObjectsItemPage.Controls.Add(this.radLabel16);
+            this.actualObjectsItemPage.Controls.Add(this.radLabel18);
+            this.actualObjectsItemPage.Controls.Add(this.ddlSpecType);
+            this.actualObjectsItemPage.Controls.Add(this.radLabel19);
+            this.actualObjectsItemPage.Controls.Add(this.gvObjectAuthorsRightholders);
+            this.actualObjectsItemPage.Controls.Add(this.radLabel20);
+            this.actualObjectsItemPage.Controls.Add(this.txtISWC);
+            this.actualObjectsItemPage.Controls.Add(this.btnAddAuthorRightholder);
+            this.actualObjectsItemPage.Controls.Add(this.btnObjectRightItemCancel);
+            this.actualObjectsItemPage.Controls.Add(this.btnObjectRightItemSave);
+            this.actualObjectsItemPage.Controls.Add(this.radLabel13);
+            this.actualObjectsItemPage.Controls.Add(this.radSeparator4);
+            this.actualObjectsItemPage.ItemSize = new System.Drawing.SizeF(27F, 140F);
+            this.actualObjectsItemPage.Location = new System.Drawing.Point(31, 5);
+            this.actualObjectsItemPage.Name = "actualObjectsItemPage";
+            this.actualObjectsItemPage.Size = new System.Drawing.Size(953, 612);
+            this.actualObjectsItemPage.Text = "actualObjectsItemPage";
+            // 
+            // mebDuration
+            // 
+            this.mebDuration.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mediaTrackBindingSource, "Duration", true));
+            this.mebDuration.Location = new System.Drawing.Point(491, 84);
+            this.mebDuration.Mask = "99:99:99";
+            this.mebDuration.MaskType = Telerik.WinControls.UI.MaskType.Standard;
+            this.mebDuration.Name = "mebDuration";
+            this.mebDuration.Size = new System.Drawing.Size(54, 21);
+            this.mebDuration.TabIndex = 72;
+            this.mebDuration.TabStop = false;
+            this.mebDuration.Text = "__:__:__";
+            this.mebDuration.ThemeName = "Office2013Light";
+            // 
+            // mediaTrackBindingSource
+            // 
+            this.mediaTrackBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IMediaTrack);
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Location = new System.Drawing.Point(3, 29);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(129, 19);
+            this.radLabel14.TabIndex = 52;
+            this.radLabel14.Text = "Альтернативна назва:";
+            this.radLabel14.ThemeName = "Office2013Light";
+            // 
+            // txtObjectAltName
+            // 
+            this.txtObjectAltName.Location = new System.Drawing.Point(135, 28);
+            this.txtObjectAltName.Name = "txtObjectAltName";
+            this.txtObjectAltName.Size = new System.Drawing.Size(513, 21);
+            this.txtObjectAltName.TabIndex = 54;
+            this.txtObjectAltName.ThemeName = "Office2013Light";
+            // 
+            // txtObjectName
+            // 
+            this.txtObjectName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectRightBindingSource, "Name", true));
+            this.txtObjectName.Location = new System.Drawing.Point(135, 1);
+            this.txtObjectName.Name = "txtObjectName";
+            this.txtObjectName.Size = new System.Drawing.Size(513, 21);
+            this.txtObjectName.TabIndex = 56;
+            this.txtObjectName.ThemeName = "Office2013Light";
+            // 
+            // objectRightBindingSource
+            // 
+            this.objectRightBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IObjectRight);
+            // 
+            // btnMoreObjectAltName
+            // 
+            this.btnMoreObjectAltName.Location = new System.Drawing.Point(654, 28);
+            this.btnMoreObjectAltName.Name = "btnMoreObjectAltName";
+            this.btnMoreObjectAltName.Size = new System.Drawing.Size(74, 21);
+            this.btnMoreObjectAltName.TabIndex = 59;
+            this.btnMoreObjectAltName.Text = "Ще";
+            this.btnMoreObjectAltName.ThemeName = "Office2013Light";
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(3, 55);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(41, 19);
+            this.radLabel15.TabIndex = 53;
+            this.radLabel15.Text = "Жанр:";
+            this.radLabel15.ThemeName = "Office2013Light";
+            // 
+            // ddlGenreType
+            // 
+            this.ddlGenreType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.objectRightBindingSource, "GenreType", true));
+            this.ddlGenreType.Location = new System.Drawing.Point(135, 55);
+            this.ddlGenreType.Name = "ddlGenreType";
+            this.ddlGenreType.Size = new System.Drawing.Size(197, 21);
+            this.ddlGenreType.TabIndex = 61;
+            this.ddlGenreType.ThemeName = "Office2013Light";
+            // 
+            // radLabel16
+            // 
+            this.radLabel16.Location = new System.Drawing.Point(357, 85);
+            this.radLabel16.Name = "radLabel16";
+            this.radLabel16.Size = new System.Drawing.Size(125, 19);
+            this.radLabel16.TabIndex = 55;
+            this.radLabel16.Text = "Тривалість звучання:";
+            this.radLabel16.ThemeName = "Office2013Light";
+            // 
+            // radLabel18
+            // 
+            this.radLabel18.Location = new System.Drawing.Point(357, 56);
+            this.radLabel18.Name = "radLabel18";
+            this.radLabel18.Size = new System.Drawing.Size(86, 19);
+            this.radLabel18.TabIndex = 58;
+            this.radLabel18.Text = "Специфікація:";
+            this.radLabel18.ThemeName = "Office2013Light";
+            // 
+            // ddlSpecType
+            // 
+            this.ddlSpecType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.objectRightBindingSource, "SpecType", true));
+            this.ddlSpecType.Location = new System.Drawing.Point(451, 55);
+            this.ddlSpecType.Name = "ddlSpecType";
+            this.ddlSpecType.Size = new System.Drawing.Size(197, 21);
+            this.ddlSpecType.TabIndex = 63;
+            this.ddlSpecType.ThemeName = "Office2013Light";
+            // 
+            // radLabel19
+            // 
+            this.radLabel19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel19.Location = new System.Drawing.Point(3, 117);
+            this.radLabel19.Name = "radLabel19";
+            this.radLabel19.Size = new System.Drawing.Size(195, 25);
+            this.radLabel19.TabIndex = 60;
+            this.radLabel19.Text = "Автори / правовласники";
+            // 
+            // gvObjectAuthorsRightholders
+            // 
+            this.gvObjectAuthorsRightholders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvObjectAuthorsRightholders.Location = new System.Drawing.Point(4, 143);
+            // 
+            // 
+            // 
+            this.gvObjectAuthorsRightholders.MasterTemplate.AllowAddNewRow = false;
+            this.gvObjectAuthorsRightholders.MasterTemplate.AllowDeleteRow = false;
+            this.gvObjectAuthorsRightholders.MasterTemplate.AllowEditRow = false;
+            this.gvObjectAuthorsRightholders.MasterTemplate.AutoGenerateColumns = false;
+            this.gvObjectAuthorsRightholders.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewDecimalColumn18.DataType = typeof(int);
+            gridViewDecimalColumn18.FieldName = "AuthId";
+            gridViewDecimalColumn18.HeaderText = "AuthId";
+            gridViewDecimalColumn18.IsAutoGenerated = true;
+            gridViewDecimalColumn18.IsVisible = false;
+            gridViewDecimalColumn18.Name = "AuthId";
+            gridViewDecimalColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewDecimalColumn18.Width = 65;
+            gridViewDecimalColumn19.DataType = typeof(int);
+            gridViewDecimalColumn19.FieldName = "ObjId";
+            gridViewDecimalColumn19.HeaderText = "ObjId";
+            gridViewDecimalColumn19.IsAutoGenerated = true;
+            gridViewDecimalColumn19.IsVisible = false;
+            gridViewDecimalColumn19.Name = "ObjId";
+            gridViewDecimalColumn19.Width = 70;
+            gridViewDecimalColumn20.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn20.FieldName = "CRightId";
+            gridViewDecimalColumn20.HeaderText = "CRightId";
+            gridViewDecimalColumn20.IsAutoGenerated = true;
+            gridViewDecimalColumn20.IsVisible = false;
+            gridViewDecimalColumn20.Name = "CRightId";
+            gridViewDecimalColumn20.Width = 49;
+            gridViewComboBoxColumn3.DataType = typeof(int);
+            gridViewComboBoxColumn3.FieldName = "RoleCode";
+            gridViewComboBoxColumn3.HeaderText = "Творча роль";
+            gridViewComboBoxColumn3.Name = "RoleCode";
+            gridViewComboBoxColumn3.Width = 122;
+            gridViewComboBoxColumn4.DataType = typeof(System.Nullable<int>);
+            gridViewComboBoxColumn4.FieldName = "FolkType";
+            gridViewComboBoxColumn4.HeaderText = "Тип";
+            gridViewComboBoxColumn4.Name = "FolkType";
+            gridViewComboBoxColumn4.Width = 66;
+            gridViewTextBoxColumn21.FieldName = "AuthorName";
+            gridViewTextBoxColumn21.HeaderText = "Назва";
+            gridViewTextBoxColumn21.IsAutoGenerated = true;
+            gridViewTextBoxColumn21.Name = "AuthorName";
+            gridViewTextBoxColumn21.Width = 135;
+            gridViewCheckBoxColumn3.FieldName = "IsRightholder";
+            gridViewCheckBoxColumn3.HeaderText = "Є правовласником";
+            gridViewCheckBoxColumn3.IsAutoGenerated = true;
+            gridViewCheckBoxColumn3.Name = "IsRightholder";
+            gridViewCheckBoxColumn3.Width = 52;
+            gridViewDecimalColumn21.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn21.FieldName = "CustId";
+            gridViewDecimalColumn21.HeaderText = "CustId";
+            gridViewDecimalColumn21.IsAutoGenerated = true;
+            gridViewDecimalColumn21.IsVisible = false;
+            gridViewDecimalColumn21.Name = "CustId";
+            gridViewDecimalColumn21.Width = 78;
+            gridViewCheckBoxColumn4.DataType = typeof(int);
+            gridViewCheckBoxColumn4.FieldName = "CopyrightStatus";
+            gridViewCheckBoxColumn4.HeaderText = "Підтверджений";
+            gridViewCheckBoxColumn4.Name = "CopyrightStatus";
+            gridViewDecimalColumn22.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn22.FieldName = "StatusZayavky";
+            gridViewDecimalColumn22.HeaderText = "Заявка";
+            gridViewDecimalColumn22.IsAutoGenerated = true;
+            gridViewDecimalColumn22.Name = "StatusZayavky";
+            gridViewDecimalColumn22.Width = 52;
+            gridViewTextBoxColumn22.FieldName = "CommunityName";
+            gridViewTextBoxColumn22.HeaderText = "Спільнота";
+            gridViewTextBoxColumn22.IsAutoGenerated = true;
+            gridViewTextBoxColumn22.Name = "CommunityName";
+            gridViewTextBoxColumn22.Width = 79;
+            gridViewDecimalColumn23.DataType = typeof(System.Nullable<decimal>);
+            gridViewDecimalColumn23.FieldName = "Rate";
+            gridViewDecimalColumn23.HeaderText = "% володіння";
+            gridViewDecimalColumn23.IsAutoGenerated = true;
+            gridViewDecimalColumn23.Name = "Rate";
+            gridViewDecimalColumn23.Width = 51;
+            gridViewDateTimeColumn4.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewDateTimeColumn4.FieldName = "BeginDate";
+            gridViewDateTimeColumn4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            gridViewDateTimeColumn4.FormatString = "{0:dd/MM/yyyy}";
+            gridViewDateTimeColumn4.HeaderText = "Дата початку";
+            gridViewDateTimeColumn4.IsAutoGenerated = true;
+            gridViewDateTimeColumn4.Name = "BeginDate";
+            gridViewDateTimeColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewDateTimeColumn4.Width = 94;
+            gridViewDateTimeColumn5.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewDateTimeColumn5.FieldName = "EndDate";
+            gridViewDateTimeColumn5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            gridViewDateTimeColumn5.FormatString = "{0:dd/MM/yyyy}";
+            gridViewDateTimeColumn5.HeaderText = "Дата завершення";
+            gridViewDateTimeColumn5.IsAutoGenerated = true;
+            gridViewDateTimeColumn5.Name = "EndDate";
+            gridViewDateTimeColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewDateTimeColumn5.Width = 98;
+            gridViewCommandColumn8.AllowResize = false;
+            gridViewCommandColumn8.DefaultText = "Редагувати";
+            gridViewCommandColumn8.HeaderText = "";
+            gridViewCommandColumn8.Name = "EditColumn";
+            gridViewCommandColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn8.UseDefaultText = true;
+            gridViewCommandColumn8.Width = 80;
+            gridViewCommandColumn9.AllowResize = false;
+            gridViewCommandColumn9.DefaultText = "Видалити";
+            gridViewCommandColumn9.HeaderText = "";
+            gridViewCommandColumn9.Name = "DeleteColumn";
+            gridViewCommandColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn9.UseDefaultText = true;
+            gridViewCommandColumn9.Width = 76;
+            this.gvObjectAuthorsRightholders.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn18,
+            gridViewDecimalColumn19,
+            gridViewDecimalColumn20,
+            gridViewComboBoxColumn3,
+            gridViewComboBoxColumn4,
+            gridViewTextBoxColumn21,
+            gridViewCheckBoxColumn3,
+            gridViewDecimalColumn21,
+            gridViewCheckBoxColumn4,
+            gridViewDecimalColumn22,
+            gridViewTextBoxColumn22,
+            gridViewDecimalColumn23,
+            gridViewDateTimeColumn4,
+            gridViewDateTimeColumn5,
+            gridViewCommandColumn8,
+            gridViewCommandColumn9});
+            this.gvObjectAuthorsRightholders.MasterTemplate.DataSource = this.objectAuthorRightholderBindingSource;
+            this.gvObjectAuthorsRightholders.MasterTemplate.EnableGrouping = false;
+            this.gvObjectAuthorsRightholders.MasterTemplate.ShowRowHeaderColumn = false;
+            this.gvObjectAuthorsRightholders.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gvObjectAuthorsRightholders.Name = "gvObjectAuthorsRightholders";
+            this.gvObjectAuthorsRightholders.ShowGroupPanel = false;
+            this.gvObjectAuthorsRightholders.Size = new System.Drawing.Size(946, 229);
+            this.gvObjectAuthorsRightholders.TabIndex = 65;
+            this.gvObjectAuthorsRightholders.ThemeName = "Office2013Light";
+            this.gvObjectAuthorsRightholders.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectAuthorsRightholders_CommandCellClick);
+            this.gvObjectAuthorsRightholders.DoubleClick += new System.EventHandler(this.gvObjectAuthorsRightholders_DoubleClick);
+            // 
+            // objectAuthorRightholderBindingSource
+            // 
+            this.objectAuthorRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
+            // 
+            // radLabel20
+            // 
+            this.radLabel20.Location = new System.Drawing.Point(3, 84);
+            this.radLabel20.Name = "radLabel20";
+            this.radLabel20.Size = new System.Drawing.Size(38, 19);
+            this.radLabel20.TabIndex = 57;
+            this.radLabel20.Text = "ISWC:";
+            this.radLabel20.ThemeName = "Office2013Light";
+            // 
+            // txtISWC
+            // 
+            this.txtISWC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mediaTrackBindingSource, "Iswc", true));
+            this.txtISWC.Location = new System.Drawing.Point(135, 83);
+            this.txtISWC.Name = "txtISWC";
+            this.txtISWC.Size = new System.Drawing.Size(197, 21);
+            this.txtISWC.TabIndex = 67;
+            this.txtISWC.ThemeName = "Office2013Light";
+            // 
+            // btnAddAuthorRightholder
+            // 
+            this.btnAddAuthorRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddAuthorRightholder.Location = new System.Drawing.Point(4, 378);
+            this.btnAddAuthorRightholder.Name = "btnAddAuthorRightholder";
+            this.btnAddAuthorRightholder.Size = new System.Drawing.Size(110, 24);
+            this.btnAddAuthorRightholder.TabIndex = 69;
+            this.btnAddAuthorRightholder.Text = "Додати";
+            this.btnAddAuthorRightholder.ThemeName = "Office2013Light";
+            this.btnAddAuthorRightholder.Click += new System.EventHandler(this.btnAddAuthorRightholder_Click);
+            // 
+            // btnObjectRightItemCancel
+            // 
+            this.btnObjectRightItemCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnObjectRightItemCancel.Location = new System.Drawing.Point(3, 585);
+            this.btnObjectRightItemCancel.Name = "btnObjectRightItemCancel";
+            this.btnObjectRightItemCancel.Size = new System.Drawing.Size(175, 24);
+            this.btnObjectRightItemCancel.TabIndex = 70;
+            this.btnObjectRightItemCancel.Text = "Скасувати";
+            this.btnObjectRightItemCancel.ThemeName = "Office2013Light";
+            this.btnObjectRightItemCancel.Click += new System.EventHandler(this.btnObjectRightItemCancel_Click);
+            // 
+            // btnObjectRightItemSave
+            // 
+            this.btnObjectRightItemSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnObjectRightItemSave.Location = new System.Drawing.Point(775, 585);
+            this.btnObjectRightItemSave.Name = "btnObjectRightItemSave";
+            this.btnObjectRightItemSave.Size = new System.Drawing.Size(175, 24);
+            this.btnObjectRightItemSave.TabIndex = 71;
+            this.btnObjectRightItemSave.Text = "Зберегти";
+            this.btnObjectRightItemSave.ThemeName = "Office2013Light";
+            this.btnObjectRightItemSave.Click += new System.EventHandler(this.btnObjectRightItemSave_Click);
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Location = new System.Drawing.Point(3, 3);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(78, 19);
+            this.radLabel13.TabIndex = 51;
+            this.radLabel13.Text = "Назва твору:";
+            this.radLabel13.ThemeName = "Office2013Light";
+            // 
+            // radSeparator4
+            // 
+            this.radSeparator4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator4.Location = new System.Drawing.Point(4, 138);
+            this.radSeparator4.Name = "radSeparator4";
+            this.radSeparator4.Size = new System.Drawing.Size(946, 10);
+            this.radSeparator4.TabIndex = 64;
+            this.radSeparator4.ThemeName = "Office2013Light";
+            // 
+            // rightholdersObjectsPage
+            // 
+            this.rightholdersObjectsPage.Controls.Add(this.ctrlRightholderSelector);
+            this.rightholdersObjectsPage.Controls.Add(this.gvRightholdersObjectsRights);
+            this.rightholdersObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
+            this.rightholdersObjectsPage.Location = new System.Drawing.Point(188, 5);
+            this.rightholdersObjectsPage.Name = "rightholdersObjectsPage";
+            this.rightholdersObjectsPage.Size = new System.Drawing.Size(989, 622);
+            this.rightholdersObjectsPage.Text = "Об\'єкти права правовласника";
+            // 
+            // ctrlRightholderSelector
+            // 
+            this.ctrlRightholderSelector.Location = new System.Drawing.Point(4, 4);
+            this.ctrlRightholderSelector.Name = "ctrlRightholderSelector";
+            this.ctrlRightholderSelector.Rightholder = null;
+            this.ctrlRightholderSelector.Size = new System.Drawing.Size(889, 29);
+            this.ctrlRightholderSelector.TabIndex = 2;
+            // 
+            // gvRightholdersObjectsRights
+            // 
+            this.gvRightholdersObjectsRights.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvRightholdersObjectsRights.Location = new System.Drawing.Point(0, 39);
+            // 
+            // 
+            // 
+            this.gvRightholdersObjectsRights.MasterTemplate.AllowAddNewRow = false;
+            this.gvRightholdersObjectsRights.MasterTemplate.AllowDeleteRow = false;
+            this.gvRightholdersObjectsRights.MasterTemplate.AllowEditRow = false;
+            this.gvRightholdersObjectsRights.MasterTemplate.AutoGenerateColumns = false;
+            this.gvRightholdersObjectsRights.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewDecimalColumn28.DataType = typeof(int);
+            gridViewDecimalColumn28.FieldName = "CustId";
+            gridViewDecimalColumn28.HeaderText = "CustId";
+            gridViewDecimalColumn28.IsAutoGenerated = true;
+            gridViewDecimalColumn28.IsVisible = false;
+            gridViewDecimalColumn28.Name = "CustId";
+            gridViewDecimalColumn28.Width = 32;
+            gridViewTextBoxColumn28.FieldName = "NameClient";
+            gridViewTextBoxColumn28.HeaderText = "NameClient";
+            gridViewTextBoxColumn28.IsAutoGenerated = true;
+            gridViewTextBoxColumn28.IsVisible = false;
+            gridViewTextBoxColumn28.Name = "NameClient";
+            gridViewTextBoxColumn28.Width = 100;
+            gridViewDecimalColumn29.DataType = typeof(int);
+            gridViewDecimalColumn29.FieldName = "ObjId";
+            gridViewDecimalColumn29.HeaderText = "Шифр твору";
+            gridViewDecimalColumn29.IsAutoGenerated = true;
+            gridViewDecimalColumn29.Name = "ObjId";
+            gridViewDecimalColumn29.Width = 70;
+            gridViewTextBoxColumn29.FieldName = "Name";
+            gridViewTextBoxColumn29.HeaderText = "Назва твору";
+            gridViewTextBoxColumn29.IsAutoGenerated = true;
+            gridViewTextBoxColumn29.Name = "Name";
+            gridViewTextBoxColumn29.Width = 142;
+            gridViewTextBoxColumn30.FieldName = "Category";
+            gridViewTextBoxColumn30.HeaderText = "В/М";
+            gridViewTextBoxColumn30.IsAutoGenerated = true;
+            gridViewTextBoxColumn30.Name = "Category";
+            gridViewTextBoxColumn30.Width = 49;
+            gridViewTextBoxColumn31.FieldName = "GenreName";
+            gridViewTextBoxColumn31.HeaderText = "Жанр";
+            gridViewTextBoxColumn31.IsAutoGenerated = true;
+            gridViewTextBoxColumn31.Name = "GenreName";
+            gridViewTextBoxColumn31.Width = 94;
+            gridViewTextBoxColumn32.DataType = typeof(System.TimeSpan);
+            gridViewTextBoxColumn32.FieldName = "Duration";
+            gridViewTextBoxColumn32.HeaderText = "Час";
+            gridViewTextBoxColumn32.IsAutoGenerated = true;
+            gridViewTextBoxColumn32.Name = "Duration";
+            gridViewTextBoxColumn32.Width = 79;
+            gridViewTextBoxColumn33.FieldName = "RoleName";
+            gridViewTextBoxColumn33.HeaderText = "Творчий профіль";
+            gridViewTextBoxColumn33.IsAutoGenerated = true;
+            gridViewTextBoxColumn33.Name = "RoleName";
+            gridViewTextBoxColumn33.Width = 101;
+            gridViewTextBoxColumn34.FieldName = "SpecName";
+            gridViewTextBoxColumn34.HeaderText = "Переклад / обробка / оригінал";
+            gridViewTextBoxColumn34.IsAutoGenerated = true;
+            gridViewTextBoxColumn34.Name = "SpecName";
+            gridViewTextBoxColumn34.Width = 93;
+            gridViewDecimalColumn30.DataType = typeof(double);
+            gridViewDecimalColumn30.FieldName = "RateTotal";
+            gridViewDecimalColumn30.HeaderText = "Спільний % володіння";
+            gridViewDecimalColumn30.IsAutoGenerated = true;
+            gridViewDecimalColumn30.Name = "RateTotal";
+            gridViewDecimalColumn30.Width = 74;
+            gridViewDecimalColumn31.DataType = typeof(double);
+            gridViewDecimalColumn31.FieldName = "RateRh";
+            gridViewDecimalColumn31.HeaderText = "Його % володіння";
+            gridViewDecimalColumn31.IsAutoGenerated = true;
+            gridViewDecimalColumn31.Name = "RateRh";
+            gridViewDecimalColumn31.Width = 73;
+            gridViewTextBoxColumn35.FieldName = "Performer";
+            gridViewTextBoxColumn35.HeaderText = "Виконавець";
+            gridViewTextBoxColumn35.IsAutoGenerated = true;
+            gridViewTextBoxColumn35.Name = "Performer";
+            gridViewTextBoxColumn35.Width = 97;
+            gridViewDecimalColumn32.DataType = typeof(double);
+            gridViewDecimalColumn32.FieldName = "Profit";
+            gridViewDecimalColumn32.HeaderText = "Дохід з початку року";
+            gridViewDecimalColumn32.IsAutoGenerated = true;
+            gridViewDecimalColumn32.Name = "Profit";
+            gridViewDecimalColumn32.Width = 82;
+            gridViewCommandColumn11.DefaultText = "Редагувати";
+            gridViewCommandColumn11.HeaderText = "";
+            gridViewCommandColumn11.Name = "EditColumn";
+            gridViewCommandColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn11.UseDefaultText = true;
+            gridViewCommandColumn11.Width = 45;
+            this.gvRightholdersObjectsRights.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn28,
+            gridViewTextBoxColumn28,
+            gridViewDecimalColumn29,
+            gridViewTextBoxColumn29,
+            gridViewTextBoxColumn30,
+            gridViewTextBoxColumn31,
+            gridViewTextBoxColumn32,
+            gridViewTextBoxColumn33,
+            gridViewTextBoxColumn34,
+            gridViewDecimalColumn30,
+            gridViewDecimalColumn31,
+            gridViewTextBoxColumn35,
+            gridViewDecimalColumn32,
+            gridViewCommandColumn11});
+            this.gvRightholdersObjectsRights.MasterTemplate.DataSource = this.objectRightForRightholderBindingSource;
+            this.gvRightholdersObjectsRights.MasterTemplate.ShowRowHeaderColumn = false;
+            this.gvRightholdersObjectsRights.MasterTemplate.ViewDefinition = tableViewDefinition7;
+            this.gvRightholdersObjectsRights.Name = "gvRightholdersObjectsRights";
+            this.gvRightholdersObjectsRights.ShowGroupPanel = false;
+            this.gvRightholdersObjectsRights.Size = new System.Drawing.Size(989, 580);
+            this.gvRightholdersObjectsRights.TabIndex = 1;
+            this.gvRightholdersObjectsRights.ThemeName = "Office2013Light";
+            // 
+            // objectRightForRightholderBindingSource
+            // 
+            this.objectRightForRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightForRightholder);
+            // 
+            // notAcceptedObjectsPage
+            // 
+            this.notAcceptedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
+            this.notAcceptedObjectsPage.Location = new System.Drawing.Point(188, 5);
+            this.notAcceptedObjectsPage.Name = "notAcceptedObjectsPage";
+            this.notAcceptedObjectsPage.Size = new System.Drawing.Size(989, 622);
+            this.notAcceptedObjectsPage.Text = "Не підтверджені УААСП";
+            // 
+            // newObjectsPage
+            // 
+            this.newObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
+            this.newObjectsPage.Location = new System.Drawing.Point(188, 5);
+            this.newObjectsPage.Name = "newObjectsPage";
+            this.newObjectsPage.Size = new System.Drawing.Size(989, 622);
+            this.newObjectsPage.Text = "Нові об\'єкти права";
+            // 
+            // notLinkedObjectsPage
+            // 
+            this.notLinkedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
+            this.notLinkedObjectsPage.Location = new System.Drawing.Point(188, 5);
+            this.notLinkedObjectsPage.Name = "notLinkedObjectsPage";
+            this.notLinkedObjectsPage.Size = new System.Drawing.Size(989, 622);
+            this.notLinkedObjectsPage.Text = "Не прив\'язані";
             // 
             // mainPageRightholders
             // 
@@ -425,7 +1114,7 @@
             this.newRightholdersPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.newRightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.newRightholdersPageView.Name = "newRightholdersPageView";
-            this.newRightholdersPageView.SelectedPage = this.newRightholdersCreatePage;
+            this.newRightholdersPageView.SelectedPage = this.newRightholdersListPage;
             this.newRightholdersPageView.Size = new System.Drawing.Size(1070, 622);
             this.newRightholdersPageView.TabIndex = 1;
             this.newRightholdersPageView.ThemeName = "Office2013Light";
@@ -504,6 +1193,7 @@
             // 
             this.miNewRightholderPerson.Name = "miNewRightholderPerson";
             this.miNewRightholderPerson.Text = "Фізична особа";
+            this.miNewRightholderPerson.UseCompatibleTextRendering = false;
             this.miNewRightholderPerson.Click += new System.EventHandler(this.miNewRightholderPerson_Click);
             // 
             // miNewRigthholderCompany
@@ -512,6 +1202,7 @@
             this.miNewRigthholderCompany.Enabled = false;
             this.miNewRigthholderCompany.Name = "miNewRigthholderCompany";
             this.miNewRigthholderCompany.Text = "Юридична особа";
+            this.miNewRigthholderCompany.UseCompatibleTextRendering = false;
             // 
             // gvRightholdersList
             // 
@@ -525,92 +1216,92 @@
             this.gvRightholdersList.MasterTemplate.AllowAddNewRow = false;
             this.gvRightholdersList.MasterTemplate.AutoGenerateColumns = false;
             this.gvRightholdersList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn21.DataType = typeof(int);
-            gridViewTextBoxColumn21.FieldName = "CustId";
-            gridViewTextBoxColumn21.HeaderText = "CustId";
-            gridViewTextBoxColumn21.IsVisible = false;
-            gridViewTextBoxColumn21.Name = "CustId";
-            gridViewTextBoxColumn22.FieldName = "InnerCode";
-            gridViewTextBoxColumn22.HeaderText = "Шифр автора / правовласника";
-            gridViewTextBoxColumn22.IsAutoGenerated = true;
-            gridViewTextBoxColumn22.Name = "InnerCode";
-            gridViewTextBoxColumn22.Width = 93;
-            gridViewTextBoxColumn23.FieldName = "InterCode";
-            gridViewTextBoxColumn23.HeaderText = "IPI";
-            gridViewTextBoxColumn23.IsAutoGenerated = true;
-            gridViewTextBoxColumn23.Name = "InterCode";
-            gridViewTextBoxColumn23.Width = 93;
-            gridViewTextBoxColumn24.FieldName = "Name";
-            gridViewTextBoxColumn24.HeaderText = "Правовласник";
-            gridViewTextBoxColumn24.IsAutoGenerated = true;
-            gridViewTextBoxColumn24.Name = "Name";
-            gridViewTextBoxColumn24.Width = 232;
-            gridViewDateTimeColumn4.AllowResize = false;
-            gridViewDateTimeColumn4.FieldName = "RegistrDate";
-            gridViewDateTimeColumn4.FormatString = "{0:dd/MM/yyyy}";
-            gridViewDateTimeColumn4.HeaderText = "Дата народження / реєстрації";
-            gridViewDateTimeColumn4.IsAutoGenerated = true;
-            gridViewDateTimeColumn4.Name = "RegistrDate";
-            gridViewDateTimeColumn4.Width = 92;
-            gridViewDecimalColumn18.AllowResize = false;
-            gridViewDecimalColumn18.DataType = typeof(int);
-            gridViewDecimalColumn18.FieldName = "CntObj";
-            gridViewDecimalColumn18.HeaderText = "К-ть об\'єктів";
-            gridViewDecimalColumn18.IsAutoGenerated = true;
-            gridViewDecimalColumn18.Name = "CntObj";
-            gridViewDecimalColumn18.Width = 53;
-            gridViewDecimalColumn19.AllowResize = false;
-            gridViewDecimalColumn19.FieldName = "YearProfit";
-            gridViewDecimalColumn19.FormatString = "{0:N2}";
-            gridViewDecimalColumn19.HeaderText = "Дохід з початку року";
-            gridViewDecimalColumn19.IsAutoGenerated = true;
-            gridViewDecimalColumn19.Name = "YearProfit";
-            gridViewDecimalColumn19.Width = 94;
-            gridViewTextBoxColumn25.FieldName = "Community_Name";
-            gridViewTextBoxColumn25.HeaderText = "Cпільнота";
-            gridViewTextBoxColumn25.Name = "Community_Name";
-            gridViewTextBoxColumn25.Width = 143;
-            gridViewCommandColumn8.AllowResize = false;
-            gridViewCommandColumn8.DefaultText = "Підтвердити";
-            gridViewCommandColumn8.HeaderText = "";
-            gridViewCommandColumn8.Name = "AcceptColumn";
-            gridViewCommandColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn8.UseDefaultText = true;
-            gridViewCommandColumn8.Width = 80;
-            gridViewCommandColumn9.AllowResize = false;
-            gridViewCommandColumn9.DefaultText = "Об\'єкти";
-            gridViewCommandColumn9.HeaderText = "";
-            gridViewCommandColumn9.Name = "ObjectListColumn";
-            gridViewCommandColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn9.UseDefaultText = true;
-            gridViewCommandColumn9.Width = 80;
-            gridViewCommandColumn10.AllowResize = false;
-            gridViewCommandColumn10.DefaultText = "Редагувати";
-            gridViewCommandColumn10.HeaderText = "";
-            gridViewCommandColumn10.Name = "EditColumn";
-            gridViewCommandColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn10.UseDefaultText = true;
-            gridViewCommandColumn10.Width = 80;
+            gridViewTextBoxColumn36.DataType = typeof(int);
+            gridViewTextBoxColumn36.FieldName = "CustId";
+            gridViewTextBoxColumn36.HeaderText = "CustId";
+            gridViewTextBoxColumn36.IsVisible = false;
+            gridViewTextBoxColumn36.Name = "CustId";
+            gridViewTextBoxColumn37.FieldName = "InnerCode";
+            gridViewTextBoxColumn37.HeaderText = "Шифр автора / правовласника";
+            gridViewTextBoxColumn37.IsAutoGenerated = true;
+            gridViewTextBoxColumn37.Name = "InnerCode";
+            gridViewTextBoxColumn37.Width = 93;
+            gridViewTextBoxColumn38.FieldName = "InterCode";
+            gridViewTextBoxColumn38.HeaderText = "IPI";
+            gridViewTextBoxColumn38.IsAutoGenerated = true;
+            gridViewTextBoxColumn38.Name = "InterCode";
+            gridViewTextBoxColumn38.Width = 93;
+            gridViewTextBoxColumn39.FieldName = "Name";
+            gridViewTextBoxColumn39.HeaderText = "Правовласник";
+            gridViewTextBoxColumn39.IsAutoGenerated = true;
+            gridViewTextBoxColumn39.Name = "Name";
+            gridViewTextBoxColumn39.Width = 231;
+            gridViewDateTimeColumn6.AllowResize = false;
+            gridViewDateTimeColumn6.FieldName = "RegistrDate";
+            gridViewDateTimeColumn6.FormatString = "{0:dd/MM/yyyy}";
+            gridViewDateTimeColumn6.HeaderText = "Дата народження / реєстрації";
+            gridViewDateTimeColumn6.IsAutoGenerated = true;
+            gridViewDateTimeColumn6.Name = "RegistrDate";
+            gridViewDateTimeColumn6.Width = 92;
+            gridViewDecimalColumn33.AllowResize = false;
+            gridViewDecimalColumn33.DataType = typeof(int);
+            gridViewDecimalColumn33.FieldName = "CntObj";
+            gridViewDecimalColumn33.HeaderText = "К-ть об\'єктів";
+            gridViewDecimalColumn33.IsAutoGenerated = true;
+            gridViewDecimalColumn33.Name = "CntObj";
+            gridViewDecimalColumn33.Width = 53;
+            gridViewDecimalColumn34.AllowResize = false;
+            gridViewDecimalColumn34.FieldName = "YearProfit";
+            gridViewDecimalColumn34.FormatString = "{0:N2}";
+            gridViewDecimalColumn34.HeaderText = "Дохід з початку року";
+            gridViewDecimalColumn34.IsAutoGenerated = true;
+            gridViewDecimalColumn34.Name = "YearProfit";
+            gridViewDecimalColumn34.Width = 94;
+            gridViewTextBoxColumn40.FieldName = "Community_Name";
+            gridViewTextBoxColumn40.HeaderText = "Cпільнота";
+            gridViewTextBoxColumn40.Name = "Community_Name";
+            gridViewTextBoxColumn40.Width = 142;
+            gridViewCommandColumn12.AllowResize = false;
+            gridViewCommandColumn12.DefaultText = "Підтвердити";
+            gridViewCommandColumn12.HeaderText = "";
+            gridViewCommandColumn12.Name = "AcceptColumn";
+            gridViewCommandColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn12.UseDefaultText = true;
+            gridViewCommandColumn12.Width = 80;
+            gridViewCommandColumn13.AllowResize = false;
+            gridViewCommandColumn13.DefaultText = "Об\'єкти";
+            gridViewCommandColumn13.HeaderText = "";
+            gridViewCommandColumn13.Name = "ObjectListColumn";
+            gridViewCommandColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn13.UseDefaultText = true;
+            gridViewCommandColumn13.Width = 80;
+            gridViewCommandColumn14.AllowResize = false;
+            gridViewCommandColumn14.DefaultText = "Редагувати";
+            gridViewCommandColumn14.HeaderText = "";
+            gridViewCommandColumn14.Name = "EditColumn";
+            gridViewCommandColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn14.UseDefaultText = true;
+            gridViewCommandColumn14.Width = 80;
             this.gvRightholdersList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn21,
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewTextBoxColumn24,
-            gridViewDateTimeColumn4,
-            gridViewDecimalColumn18,
-            gridViewDecimalColumn19,
-            gridViewTextBoxColumn25,
-            gridViewCommandColumn8,
-            gridViewCommandColumn9,
-            gridViewCommandColumn10});
+            gridViewTextBoxColumn36,
+            gridViewTextBoxColumn37,
+            gridViewTextBoxColumn38,
+            gridViewTextBoxColumn39,
+            gridViewDateTimeColumn6,
+            gridViewDecimalColumn33,
+            gridViewDecimalColumn34,
+            gridViewTextBoxColumn40,
+            gridViewCommandColumn12,
+            gridViewCommandColumn13,
+            gridViewCommandColumn14});
             this.gvRightholdersList.MasterTemplate.DataSource = this.rightHolderMainViewBindingSource;
             this.gvRightholdersList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition8;
             this.gvRightholdersList.Name = "gvRightholdersList";
             this.gvRightholdersList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvRightholdersList.ReadOnly = true;
             this.gvRightholdersList.ShowGroupPanel = false;
-            this.gvRightholdersList.Size = new System.Drawing.Size(1033, 543);
+            this.gvRightholdersList.Size = new System.Drawing.Size(1031, 543);
             this.gvRightholdersList.TabIndex = 2;
             this.gvRightholdersList.ThemeName = "Office2013Light";
             this.gvRightholdersList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersList_CommandCellClick);
@@ -667,56 +1358,30 @@
             // 
             // createRightholderFullNameComissionPage
             // 
-            this.createRightholderFullNameComissionPage.Controls.Add(this.radTextBox2);
-            this.createRightholderFullNameComissionPage.Controls.Add(this.radTextBox1);
-            this.createRightholderFullNameComissionPage.Controls.Add(this.radLabel12);
-            this.createRightholderFullNameComissionPage.Controls.Add(this.radLabel1);
-            this.createRightholderFullNameComissionPage.Controls.Add(this.btnNewRightholderCancel1);
             this.createRightholderFullNameComissionPage.Controls.Add(this.btnNextAnketa);
+            this.createRightholderFullNameComissionPage.Controls.Add(this.btnNewRightholderCancel1);
+            this.createRightholderFullNameComissionPage.Controls.Add(this.radLabel1);
+            this.createRightholderFullNameComissionPage.Controls.Add(this.radLabel12);
+            this.createRightholderFullNameComissionPage.Controls.Add(this.radTextBox1);
+            this.createRightholderFullNameComissionPage.Controls.Add(this.radTextBox2);
             this.createRightholderFullNameComissionPage.Controls.Add(this.ctrlAgreement);
             this.createRightholderFullNameComissionPage.Controls.Add(this.ctrlAnketaPerson);
             this.createRightholderFullNameComissionPage.Controls.Add(this.ipsServiceComissionControl1);
-            this.createRightholderFullNameComissionPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderFullNameComissionPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderFullNameComissionPage.Name = "createRightholderFullNameComissionPage";
             this.createRightholderFullNameComissionPage.Size = new System.Drawing.Size(882, 565);
             this.createRightholderFullNameComissionPage.Text = "ПІБ, Комісії";
             // 
-            // radTextBox2
+            // btnNextAnketa
             // 
-            this.radTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rightHolderBindingSource, "InterCode", true));
-            this.radTextBox2.Location = new System.Drawing.Point(118, 207);
-            this.radTextBox2.Name = "radTextBox2";
-            this.radTextBox2.Size = new System.Drawing.Size(328, 20);
-            this.radTextBox2.TabIndex = 13;
-            // 
-            // rightHolderBindingSource
-            // 
-            this.rightHolderBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IRightHolder);
-            // 
-            // radTextBox1
-            // 
-            this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rightHolderBindingSource, "InnerCode", true));
-            this.radTextBox1.Location = new System.Drawing.Point(118, 182);
-            this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(328, 20);
-            this.radTextBox1.TabIndex = 12;
-            // 
-            // radLabel12
-            // 
-            this.radLabel12.Location = new System.Drawing.Point(7, 208);
-            this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(21, 18);
-            this.radLabel12.TabIndex = 11;
-            this.radLabel12.Text = "IPI:";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(7, 183);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(40, 18);
-            this.radLabel1.TabIndex = 10;
-            this.radLabel1.Text = "Шифр:";
+            this.btnNextAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNextAnketa.Location = new System.Drawing.Point(706, 538);
+            this.btnNextAnketa.Name = "btnNextAnketa";
+            this.btnNextAnketa.Size = new System.Drawing.Size(175, 24);
+            this.btnNextAnketa.TabIndex = 4;
+            this.btnNextAnketa.Text = "Анкетні дані >";
+            this.btnNextAnketa.ThemeName = "Office2013Light";
+            this.btnNextAnketa.Click += new System.EventHandler(this.btnNextAnketa_Click);
             // 
             // btnNewRightholderCancel1
             // 
@@ -729,22 +1394,47 @@
             this.btnNewRightholderCancel1.ThemeName = "Office2013Light";
             this.btnNewRightholderCancel1.Click += new System.EventHandler(this.btnNewRightholderCancel1_Click);
             // 
-            // btnNextAnketa
+            // radLabel1
             // 
-            this.btnNextAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextAnketa.Location = new System.Drawing.Point(704, 538);
-            this.btnNextAnketa.Name = "btnNextAnketa";
-            this.btnNextAnketa.Size = new System.Drawing.Size(175, 24);
-            this.btnNextAnketa.TabIndex = 4;
-            this.btnNextAnketa.Text = "Анкетні дані >";
-            this.btnNextAnketa.ThemeName = "Office2013Light";
-            this.btnNextAnketa.Click += new System.EventHandler(this.btnNextAnketa_Click);
+            this.radLabel1.Location = new System.Drawing.Point(7, 183);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(40, 18);
+            this.radLabel1.TabIndex = 10;
+            this.radLabel1.Text = "Шифр:";
+            // 
+            // radLabel12
+            // 
+            this.radLabel12.Location = new System.Drawing.Point(7, 208);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(21, 18);
+            this.radLabel12.TabIndex = 11;
+            this.radLabel12.Text = "IPI:";
+            // 
+            // radTextBox1
+            // 
+            this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rightHolderBindingSource, "InnerCode", true));
+            this.radTextBox1.Location = new System.Drawing.Point(118, 182);
+            this.radTextBox1.Name = "radTextBox1";
+            this.radTextBox1.Size = new System.Drawing.Size(328, 20);
+            this.radTextBox1.TabIndex = 12;
+            // 
+            // rightHolderBindingSource
+            // 
+            this.rightHolderBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IRightHolder);
+            // 
+            // radTextBox2
+            // 
+            this.radTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.rightHolderBindingSource, "InterCode", true));
+            this.radTextBox2.Location = new System.Drawing.Point(118, 207);
+            this.radTextBox2.Name = "radTextBox2";
+            this.radTextBox2.Size = new System.Drawing.Size(328, 20);
+            this.radTextBox2.TabIndex = 13;
             // 
             // ctrlAgreement
             // 
             this.ctrlAgreement.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ctrlAgreement.DataSource = this.agreementMasterBindingSource;
-            this.ctrlAgreement.Location = new System.Drawing.Point(314, 3);
+            this.ctrlAgreement.Location = new System.Drawing.Point(315, 3);
             this.ctrlAgreement.MaximumSize = new System.Drawing.Size(274, 27);
             this.ctrlAgreement.Name = "ctrlAgreement";
             this.ctrlAgreement.Size = new System.Drawing.Size(274, 27);
@@ -767,7 +1457,7 @@
             this.ctrlAnketaPerson.SexTypeDataSource = null;
             this.ctrlAnketaPerson.SexTypeDisplayMember = "";
             this.ctrlAnketaPerson.SexTypeValueMember = "";
-            this.ctrlAnketaPerson.Size = new System.Drawing.Size(879, 128);
+            this.ctrlAnketaPerson.Size = new System.Drawing.Size(881, 128);
             this.ctrlAnketaPerson.TabIndex = 8;
             // 
             // anketaPersonBindingSource
@@ -789,15 +1479,15 @@
             // 
             // createRightholderAnketaPage
             // 
-            this.createRightholderAnketaPage.Controls.Add(this.radButton1);
-            this.createRightholderAnketaPage.Controls.Add(this.radSeparator3);
-            this.createRightholderAnketaPage.Controls.Add(this.radLabel5);
-            this.createRightholderAnketaPage.Controls.Add(this.radSeparator2);
-            this.createRightholderAnketaPage.Controls.Add(this.radLabel3);
-            this.createRightholderAnketaPage.Controls.Add(this.radSeparator1);
-            this.createRightholderAnketaPage.Controls.Add(this.radLabel4);
-            this.createRightholderAnketaPage.Controls.Add(this.btnPrevFullNameComission);
             this.createRightholderAnketaPage.Controls.Add(this.btnNextPassport);
+            this.createRightholderAnketaPage.Controls.Add(this.btnPrevFullNameComission);
+            this.createRightholderAnketaPage.Controls.Add(this.radLabel4);
+            this.createRightholderAnketaPage.Controls.Add(this.radSeparator1);
+            this.createRightholderAnketaPage.Controls.Add(this.radLabel3);
+            this.createRightholderAnketaPage.Controls.Add(this.radSeparator2);
+            this.createRightholderAnketaPage.Controls.Add(this.radLabel5);
+            this.createRightholderAnketaPage.Controls.Add(this.radSeparator3);
+            this.createRightholderAnketaPage.Controls.Add(this.radButton1);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlRegistrations);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlReAddress);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlContacts);
@@ -808,70 +1498,16 @@
             this.createRightholderAnketaPage.Size = new System.Drawing.Size(882, 565);
             this.createRightholderAnketaPage.Text = "Анкета";
             // 
-            // radButton1
+            // btnNextPassport
             // 
-            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton1.Location = new System.Drawing.Point(3, 538);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(175, 24);
-            this.radButton1.TabIndex = 25;
-            this.radButton1.Text = "Скасувати";
-            this.radButton1.ThemeName = "Office2013Light";
-            this.radButton1.Click += new System.EventHandler(this.btnNewRightholderCancel1_Click);
-            // 
-            // radSeparator3
-            // 
-            this.radSeparator3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator3.Location = new System.Drawing.Point(143, 170);
-            this.radSeparator3.Name = "radSeparator3";
-            this.radSeparator3.Size = new System.Drawing.Size(736, 21);
-            this.radSeparator3.TabIndex = 17;
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel5.Location = new System.Drawing.Point(3, 170);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(123, 21);
-            this.radLabel5.TabIndex = 16;
-            this.radLabel5.Text = "Адреса листування";
-            // 
-            // radSeparator2
-            // 
-            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator2.Location = new System.Drawing.Point(143, 85);
-            this.radSeparator2.Name = "radSeparator2";
-            this.radSeparator2.Size = new System.Drawing.Size(736, 21);
-            this.radSeparator2.TabIndex = 16;
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(3, 85);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(116, 21);
-            this.radLabel3.TabIndex = 15;
-            this.radLabel3.Text = "Адреса реєстрації";
-            // 
-            // radSeparator1
-            // 
-            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator1.Location = new System.Drawing.Point(143, 3);
-            this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(736, 21);
-            this.radSeparator1.TabIndex = 14;
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel4.Location = new System.Drawing.Point(3, 3);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(132, 21);
-            this.radLabel4.TabIndex = 13;
-            this.radLabel4.Text = "Адреса проживання";
+            this.btnNextPassport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNextPassport.Location = new System.Drawing.Point(704, 538);
+            this.btnNextPassport.Name = "btnNextPassport";
+            this.btnNextPassport.Size = new System.Drawing.Size(175, 24);
+            this.btnNextPassport.TabIndex = 8;
+            this.btnNextPassport.Text = "Паспортні дані >";
+            this.btnNextPassport.ThemeName = "Office2013Light";
+            this.btnNextPassport.Click += new System.EventHandler(this.btnNextPassport_Click);
             // 
             // btnPrevFullNameComission
             // 
@@ -884,16 +1520,70 @@
             this.btnPrevFullNameComission.ThemeName = "Office2013Light";
             this.btnPrevFullNameComission.Click += new System.EventHandler(this.btnPrevFullNameComission_Click);
             // 
-            // btnNextPassport
+            // radLabel4
             // 
-            this.btnNextPassport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextPassport.Location = new System.Drawing.Point(704, 538);
-            this.btnNextPassport.Name = "btnNextPassport";
-            this.btnNextPassport.Size = new System.Drawing.Size(175, 24);
-            this.btnNextPassport.TabIndex = 8;
-            this.btnNextPassport.Text = "Паспортні дані >";
-            this.btnNextPassport.ThemeName = "Office2013Light";
-            this.btnNextPassport.Click += new System.EventHandler(this.btnNextPassport_Click);
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel4.Location = new System.Drawing.Point(3, 3);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(132, 21);
+            this.radLabel4.TabIndex = 13;
+            this.radLabel4.Text = "Адреса проживання";
+            // 
+            // radSeparator1
+            // 
+            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator1.Location = new System.Drawing.Point(143, 3);
+            this.radSeparator1.Name = "radSeparator1";
+            this.radSeparator1.Size = new System.Drawing.Size(736, 21);
+            this.radSeparator1.TabIndex = 14;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel3.Location = new System.Drawing.Point(3, 85);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(116, 21);
+            this.radLabel3.TabIndex = 15;
+            this.radLabel3.Text = "Адреса реєстрації";
+            // 
+            // radSeparator2
+            // 
+            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator2.Location = new System.Drawing.Point(143, 85);
+            this.radSeparator2.Name = "radSeparator2";
+            this.radSeparator2.Size = new System.Drawing.Size(736, 21);
+            this.radSeparator2.TabIndex = 16;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel5.Location = new System.Drawing.Point(3, 170);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(123, 21);
+            this.radLabel5.TabIndex = 16;
+            this.radLabel5.Text = "Адреса листування";
+            // 
+            // radSeparator3
+            // 
+            this.radSeparator3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator3.Location = new System.Drawing.Point(143, 170);
+            this.radSeparator3.Name = "radSeparator3";
+            this.radSeparator3.Size = new System.Drawing.Size(736, 21);
+            this.radSeparator3.TabIndex = 17;
+            // 
+            // radButton1
+            // 
+            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radButton1.Location = new System.Drawing.Point(3, 538);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(175, 24);
+            this.radButton1.TabIndex = 25;
+            this.radButton1.Text = "Скасувати";
+            this.radButton1.ThemeName = "Office2013Light";
+            this.radButton1.Click += new System.EventHandler(this.btnNewRightholderCancel1_Click);
             // 
             // ctrlRegistrations
             // 
@@ -1244,9 +1934,9 @@
             // 
             this.createRightholderForeignPassportPage.Controls.Add(this.ctrlInternationalPassport);
             this.createRightholderForeignPassportPage.Controls.Add(this.radLabel7);
-            this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(29, 5);
+            this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
-            this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(789, 479);
+            this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(787, 479);
             this.createRightholderForeignPassportPage.Text = "createRightholderForeignPassportPage";
             // 
             // ctrlInternationalPassport
@@ -1292,16 +1982,24 @@
             // 
             // createRightholderRoyaltyPage
             // 
-            this.createRightholderRoyaltyPage.Controls.Add(this.radButton3);
             this.createRightholderRoyaltyPage.Controls.Add(this.radLabel8);
+            this.createRightholderRoyaltyPage.Controls.Add(this.radButton3);
             this.createRightholderRoyaltyPage.Controls.Add(this.createRightholderRoyaltyPageView);
-            this.createRightholderRoyaltyPage.Controls.Add(this.ddlTypeMethodGet);
             this.createRightholderRoyaltyPage.Controls.Add(this.btnPrevPassport);
+            this.createRightholderRoyaltyPage.Controls.Add(this.ddlTypeMethodGet);
             this.createRightholderRoyaltyPage.Controls.Add(this.btnNextRightLimitation);
             this.createRightholderRoyaltyPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRoyaltyPage.Name = "createRightholderRoyaltyPage";
             this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(883, 565);
             this.createRightholderRoyaltyPage.Text = "Як отримувати роялті";
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Location = new System.Drawing.Point(46, 3);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(102, 18);
+            this.radLabel8.TabIndex = 16;
+            this.radLabel8.Text = "Метод отримання:";
             // 
             // radButton3
             // 
@@ -1313,14 +2011,6 @@
             this.radButton3.Text = "Скасувати";
             this.radButton3.ThemeName = "Office2013Light";
             this.radButton3.Click += new System.EventHandler(this.btnNewRightholderCancel1_Click);
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.Location = new System.Drawing.Point(46, 3);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(102, 18);
-            this.radLabel8.TabIndex = 16;
-            this.radLabel8.Text = "Метод отримання:";
             // 
             // createRightholderRoyaltyPageView
             // 
@@ -1437,14 +2127,30 @@
             // 
             // createRightholderRoyaltyPostalTransfer
             // 
-            this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.txtPostalIndex);
-            this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel10);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel9);
+            this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel10);
+            this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.txtPostalIndex);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.ctrlBaAddress);
-            this.createRightholderRoyaltyPostalTransfer.Location = new System.Drawing.Point(29, 5);
+            this.createRightholderRoyaltyPostalTransfer.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyPostalTransfer.Name = "createRightholderRoyaltyPostalTransfer";
-            this.createRightholderRoyaltyPostalTransfer.Size = new System.Drawing.Size(786, 450);
+            this.createRightholderRoyaltyPostalTransfer.Size = new System.Drawing.Size(784, 450);
             this.createRightholderRoyaltyPostalTransfer.Text = "createRightholderRoyaltyPostalTransfer";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(10, 13);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(98, 18);
+            this.radLabel9.TabIndex = 17;
+            this.radLabel9.Text = "Поштовий індекс:";
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.Location = new System.Drawing.Point(10, 46);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(46, 18);
+            this.radLabel10.TabIndex = 18;
+            this.radLabel10.Text = "Адреса:";
             // 
             // txtPostalIndex
             // 
@@ -1457,22 +2163,6 @@
             // bankAccountBindingSource
             // 
             this.bankAccountBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.Location = new System.Drawing.Point(10, 46);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(46, 18);
-            this.radLabel10.TabIndex = 18;
-            this.radLabel10.Text = "Адреса:";
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.Location = new System.Drawing.Point(10, 13);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(98, 18);
-            this.radLabel9.TabIndex = 17;
-            this.radLabel9.Text = "Поштовий індекс:";
             // 
             // ctrlBaAddress
             // 
@@ -1559,15 +2249,6 @@
             this.ctrlBaAddress.TxtCity.Size = new System.Drawing.Size(213, 20);
             this.ctrlBaAddress.TxtCity.TabIndex = 23;
             // 
-            // ddlTypeMethodGet
-            // 
-            this.ddlTypeMethodGet.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.agreementAddRhBindingSource, "GetCode", true));
-            this.ddlTypeMethodGet.Location = new System.Drawing.Point(160, 3);
-            this.ddlTypeMethodGet.Name = "ddlTypeMethodGet";
-            this.ddlTypeMethodGet.Size = new System.Drawing.Size(218, 20);
-            this.ddlTypeMethodGet.TabIndex = 14;
-            this.ddlTypeMethodGet.SelectedValueChanged += new System.EventHandler(this.ddlTypeMethodGet_SelectedValueChanged);
-            // 
             // btnPrevPassport
             // 
             this.btnPrevPassport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1578,6 +2259,15 @@
             this.btnPrevPassport.Text = "< Паспортні дані";
             this.btnPrevPassport.ThemeName = "Office2013Light";
             this.btnPrevPassport.Click += new System.EventHandler(this.btnPrevPassport_Click);
+            // 
+            // ddlTypeMethodGet
+            // 
+            this.ddlTypeMethodGet.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.agreementAddRhBindingSource, "GetCode", true));
+            this.ddlTypeMethodGet.Location = new System.Drawing.Point(160, 3);
+            this.ddlTypeMethodGet.Name = "ddlTypeMethodGet";
+            this.ddlTypeMethodGet.Size = new System.Drawing.Size(218, 20);
+            this.ddlTypeMethodGet.TabIndex = 14;
+            this.ddlTypeMethodGet.SelectedValueChanged += new System.EventHandler(this.ddlTypeMethodGet_SelectedValueChanged);
             // 
             // btnNextRightLimitation
             // 
@@ -1592,25 +2282,25 @@
             // 
             // createRightholderRigthLimitationsPage
             // 
-            this.createRightholderRigthLimitationsPage.Controls.Add(this.radButton4);
-            this.createRightholderRigthLimitationsPage.Controls.Add(this.btnNextTerritoryLimitation);
             this.createRightholderRigthLimitationsPage.Controls.Add(this.btnPrevRoyalty);
+            this.createRightholderRigthLimitationsPage.Controls.Add(this.btnNextTerritoryLimitation);
+            this.createRightholderRigthLimitationsPage.Controls.Add(this.radButton4);
             this.createRightholderRigthLimitationsPage.Controls.Add(this.ctrlExclusionsLimitations);
             this.createRightholderRigthLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRigthLimitationsPage.Name = "createRightholderRigthLimitationsPage";
             this.createRightholderRigthLimitationsPage.Size = new System.Drawing.Size(882, 565);
             this.createRightholderRigthLimitationsPage.Text = "Обмеження прав";
             // 
-            // radButton4
+            // btnPrevRoyalty
             // 
-            this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton4.Location = new System.Drawing.Point(3, 538);
-            this.radButton4.Name = "radButton4";
-            this.radButton4.Size = new System.Drawing.Size(175, 24);
-            this.radButton4.TabIndex = 15;
-            this.radButton4.Text = "Скасувати";
-            this.radButton4.ThemeName = "Office2013Light";
-            this.radButton4.Click += new System.EventHandler(this.btnNewRightholderCancel1_Click);
+            this.btnPrevRoyalty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrevRoyalty.Location = new System.Drawing.Point(523, 538);
+            this.btnPrevRoyalty.Name = "btnPrevRoyalty";
+            this.btnPrevRoyalty.Size = new System.Drawing.Size(175, 24);
+            this.btnPrevRoyalty.TabIndex = 13;
+            this.btnPrevRoyalty.Text = "< Як отримувати роялті";
+            this.btnPrevRoyalty.ThemeName = "Office2013Light";
+            this.btnPrevRoyalty.Click += new System.EventHandler(this.btnPrevRoyalty_Click);
             // 
             // btnNextTerritoryLimitation
             // 
@@ -1623,16 +2313,16 @@
             this.btnNextTerritoryLimitation.ThemeName = "Office2013Light";
             this.btnNextTerritoryLimitation.Click += new System.EventHandler(this.btnNextTerritoryLimitation_Click);
             // 
-            // btnPrevRoyalty
+            // radButton4
             // 
-            this.btnPrevRoyalty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevRoyalty.Location = new System.Drawing.Point(523, 538);
-            this.btnPrevRoyalty.Name = "btnPrevRoyalty";
-            this.btnPrevRoyalty.Size = new System.Drawing.Size(175, 24);
-            this.btnPrevRoyalty.TabIndex = 13;
-            this.btnPrevRoyalty.Text = "< Як отримувати роялті";
-            this.btnPrevRoyalty.ThemeName = "Office2013Light";
-            this.btnPrevRoyalty.Click += new System.EventHandler(this.btnPrevRoyalty_Click);
+            this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radButton4.Location = new System.Drawing.Point(3, 538);
+            this.radButton4.Name = "radButton4";
+            this.radButton4.Size = new System.Drawing.Size(175, 24);
+            this.radButton4.TabIndex = 15;
+            this.radButton4.Text = "Скасувати";
+            this.radButton4.ThemeName = "Office2013Light";
+            this.radButton4.Click += new System.EventHandler(this.btnNewRightholderCancel1_Click);
             // 
             // ctrlExclusionsLimitations
             // 
@@ -1810,692 +2500,50 @@
             this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
-            // mainPageRightsObjects
-            // 
-            this.mainPageRightsObjects.Controls.Add(this.objectsPageView);
-            this.mainPageRightsObjects.ItemSize = new System.Drawing.SizeF(95F, 27F);
-            this.mainPageRightsObjects.Location = new System.Drawing.Point(5, 31);
-            this.mainPageRightsObjects.Name = "mainPageRightsObjects";
-            this.mainPageRightsObjects.Size = new System.Drawing.Size(1182, 632);
-            this.mainPageRightsObjects.Text = "Об\'єкти права";
-            // 
-            // objectsPageView
-            // 
-            this.objectsPageView.Controls.Add(this.actualObjectsPage);
-            this.objectsPageView.Controls.Add(this.rightholdersObjectsPage);
-            this.objectsPageView.Controls.Add(this.notAcceptedObjectsPage);
-            this.objectsPageView.Controls.Add(this.newObjectsPage);
-            this.objectsPageView.Controls.Add(this.notLinkedObjectsPage);
-            this.objectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.objectsPageView.Location = new System.Drawing.Point(0, 0);
-            this.objectsPageView.Name = "objectsPageView";
-            this.objectsPageView.SelectedPage = this.actualObjectsPage;
-            this.objectsPageView.Size = new System.Drawing.Size(1182, 632);
-            this.objectsPageView.TabIndex = 0;
-            this.objectsPageView.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.objectsPageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
-            // 
-            // actualObjectsPage
-            // 
-            this.actualObjectsPage.Controls.Add(this.actualObjectsPageView);
-            this.actualObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
-            this.actualObjectsPage.Location = new System.Drawing.Point(188, 5);
-            this.actualObjectsPage.Name = "actualObjectsPage";
-            this.actualObjectsPage.Size = new System.Drawing.Size(989, 622);
-            this.actualObjectsPage.Text = "Об\'єкти права діючі";
-            // 
-            // actualObjectsPageView
-            // 
-            this.actualObjectsPageView.Controls.Add(this.actualObjectsListPage);
-            this.actualObjectsPageView.Controls.Add(this.actualObjectsItemPage);
-            this.actualObjectsPageView.DefaultPage = this.actualObjectsListPage;
-            this.actualObjectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.actualObjectsPageView.Location = new System.Drawing.Point(0, 0);
-            this.actualObjectsPageView.Name = "actualObjectsPageView";
-            this.actualObjectsPageView.SelectedPage = this.actualObjectsItemPage;
-            this.actualObjectsPageView.Size = new System.Drawing.Size(989, 622);
-            this.actualObjectsPageView.TabIndex = 0;
-            this.actualObjectsPageView.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.actualObjectsPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.actualObjectsPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
-            // 
-            // actualObjectsListPage
-            // 
-            this.actualObjectsListPage.Controls.Add(this.gvObjectsRightsList);
-            this.actualObjectsListPage.ItemSize = new System.Drawing.SizeF(27F, 133F);
-            this.actualObjectsListPage.Location = new System.Drawing.Point(31, 5);
-            this.actualObjectsListPage.Name = "actualObjectsListPage";
-            this.actualObjectsListPage.Size = new System.Drawing.Size(953, 612);
-            this.actualObjectsListPage.Text = "actualObjectsListPage";
-            // 
-            // gvObjectsRightsList
-            // 
-            this.gvObjectsRightsList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvObjectsRightsList.Location = new System.Drawing.Point(0, 0);
-            // 
-            // 
-            // 
-            this.gvObjectsRightsList.MasterTemplate.AllowAddNewRow = false;
-            this.gvObjectsRightsList.MasterTemplate.AllowDeleteRow = false;
-            this.gvObjectsRightsList.MasterTemplate.AllowEditRow = false;
-            this.gvObjectsRightsList.MasterTemplate.AutoGenerateColumns = false;
-            this.gvObjectsRightsList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn20.DataType = typeof(int);
-            gridViewDecimalColumn20.FieldName = "ObjId";
-            gridViewDecimalColumn20.HeaderText = "Шифр твору";
-            gridViewDecimalColumn20.IsAutoGenerated = true;
-            gridViewDecimalColumn20.Name = "ObjId";
-            gridViewDecimalColumn20.Width = 91;
-            gridViewTextBoxColumn26.FieldName = "Name";
-            gridViewTextBoxColumn26.HeaderText = "Назва твору";
-            gridViewTextBoxColumn26.IsAutoGenerated = true;
-            gridViewTextBoxColumn26.Name = "Name";
-            gridViewTextBoxColumn26.Width = 199;
-            gridViewTextBoxColumn27.FieldName = "Category";
-            gridViewTextBoxColumn27.HeaderText = "В/М";
-            gridViewTextBoxColumn27.IsAutoGenerated = true;
-            gridViewTextBoxColumn27.Name = "Category";
-            gridViewTextBoxColumn28.FieldName = "GenreName";
-            gridViewTextBoxColumn28.HeaderText = "Жанр";
-            gridViewTextBoxColumn28.IsAutoGenerated = true;
-            gridViewTextBoxColumn28.Name = "GenreName";
-            gridViewTextBoxColumn28.Width = 100;
-            gridViewDecimalColumn21.DataType = typeof(System.TimeSpan);
-            gridViewDecimalColumn21.FieldName = "Duration";
-            gridViewDecimalColumn21.HeaderText = "Час";
-            gridViewDecimalColumn21.IsAutoGenerated = true;
-            gridViewDecimalColumn21.Name = "Duration";
-            gridViewDecimalColumn21.Width = 74;
-            gridViewTextBoxColumn29.FieldName = "SpecName";
-            gridViewTextBoxColumn29.HeaderText = "Переклад / обробка / оригінал";
-            gridViewTextBoxColumn29.IsAutoGenerated = true;
-            gridViewTextBoxColumn29.Name = "SpecName";
-            gridViewTextBoxColumn29.Width = 100;
-            gridViewDecimalColumn22.DataType = typeof(double);
-            gridViewDecimalColumn22.FieldName = "RateTotal";
-            gridViewDecimalColumn22.HeaderText = "Спільний % володіння";
-            gridViewDecimalColumn22.IsAutoGenerated = true;
-            gridViewDecimalColumn22.Name = "RateTotal";
-            gridViewDecimalColumn22.Width = 76;
-            gridViewTextBoxColumn30.FieldName = "Performer";
-            gridViewTextBoxColumn30.HeaderText = "Виконавець";
-            gridViewTextBoxColumn30.IsAutoGenerated = true;
-            gridViewTextBoxColumn30.Name = "Performer";
-            gridViewTextBoxColumn30.Width = 100;
-            gridViewDecimalColumn23.DataType = typeof(double);
-            gridViewDecimalColumn23.FieldName = "Profit";
-            gridViewDecimalColumn23.HeaderText = "Дохід з початку року";
-            gridViewDecimalColumn23.IsAutoGenerated = true;
-            gridViewDecimalColumn23.Name = "Profit";
-            gridViewDecimalColumn23.Width = 89;
-            gridViewCommandColumn11.AllowResize = false;
-            gridViewCommandColumn11.DefaultText = "Редагувати";
-            gridViewCommandColumn11.HeaderText = "";
-            gridViewCommandColumn11.Name = "EditColumn";
-            gridViewCommandColumn11.UseDefaultText = true;
-            gridViewCommandColumn11.Width = 81;
-            this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn20,
-            gridViewTextBoxColumn26,
-            gridViewTextBoxColumn27,
-            gridViewTextBoxColumn28,
-            gridViewDecimalColumn21,
-            gridViewTextBoxColumn29,
-            gridViewDecimalColumn22,
-            gridViewTextBoxColumn30,
-            gridViewDecimalColumn23,
-            gridViewCommandColumn11});
-            this.gvObjectsRightsList.MasterTemplate.DataSource = this.objectRightMainViewBindingSource;
-            this.gvObjectsRightsList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition6;
-            this.gvObjectsRightsList.Name = "gvObjectsRightsList";
-            this.gvObjectsRightsList.ShowGroupPanel = false;
-            this.gvObjectsRightsList.Size = new System.Drawing.Size(953, 612);
-            this.gvObjectsRightsList.TabIndex = 0;
-            this.gvObjectsRightsList.ThemeName = "Office2013Light";
-            this.gvObjectsRightsList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectsRightsList_CommandCellClick);
-            this.gvObjectsRightsList.DoubleClick += new System.EventHandler(this.gvObjectsRightsList_DoubleClick);
-            // 
-            // objectRightMainViewBindingSource
-            // 
-            this.objectRightMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightMainView);
-            // 
-            // actualObjectsItemPage
-            // 
-            this.actualObjectsItemPage.Controls.Add(this.btnObjectRightItemSave);
-            this.actualObjectsItemPage.Controls.Add(this.btnObjectRightItemCancel);
-            this.actualObjectsItemPage.Controls.Add(this.btnAddAuthorRightholder);
-            this.actualObjectsItemPage.Controls.Add(this.txtISWC);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel20);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel17);
-            this.actualObjectsItemPage.Controls.Add(this.gvObjectAuthorsRightholders);
-            this.actualObjectsItemPage.Controls.Add(this.radSeparator4);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel19);
-            this.actualObjectsItemPage.Controls.Add(this.ddlSpecType);
-            this.actualObjectsItemPage.Controls.Add(this.mebDuration);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel18);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel16);
-            this.actualObjectsItemPage.Controls.Add(this.ddlGenreType);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel15);
-            this.actualObjectsItemPage.Controls.Add(this.btnMoreObjectAltName);
-            this.actualObjectsItemPage.Controls.Add(this.txtObjectName);
-            this.actualObjectsItemPage.Controls.Add(this.txtObjectAltName);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel14);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel13);
-            this.actualObjectsItemPage.ItemSize = new System.Drawing.SizeF(27F, 140F);
-            this.actualObjectsItemPage.Location = new System.Drawing.Point(31, 5);
-            this.actualObjectsItemPage.Name = "actualObjectsItemPage";
-            this.actualObjectsItemPage.Size = new System.Drawing.Size(953, 612);
-            this.actualObjectsItemPage.Text = "actualObjectsItemPage";
-            // 
-            // btnObjectRightItemSave
-            // 
-            this.btnObjectRightItemSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnObjectRightItemSave.Location = new System.Drawing.Point(775, 585);
-            this.btnObjectRightItemSave.Name = "btnObjectRightItemSave";
-            this.btnObjectRightItemSave.Size = new System.Drawing.Size(175, 24);
-            this.btnObjectRightItemSave.TabIndex = 71;
-            this.btnObjectRightItemSave.Text = "Зберегти";
-            this.btnObjectRightItemSave.ThemeName = "Office2013Light";
-            this.btnObjectRightItemSave.Click += new System.EventHandler(this.btnObjectRightItemSave_Click);
-            // 
-            // btnObjectRightItemCancel
-            // 
-            this.btnObjectRightItemCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnObjectRightItemCancel.Location = new System.Drawing.Point(3, 585);
-            this.btnObjectRightItemCancel.Name = "btnObjectRightItemCancel";
-            this.btnObjectRightItemCancel.Size = new System.Drawing.Size(175, 24);
-            this.btnObjectRightItemCancel.TabIndex = 70;
-            this.btnObjectRightItemCancel.Text = "Скасувати";
-            this.btnObjectRightItemCancel.ThemeName = "Office2013Light";
-            this.btnObjectRightItemCancel.Click += new System.EventHandler(this.btnObjectRightItemCancel_Click);
-            // 
-            // btnAddAuthorRightholder
-            // 
-            this.btnAddAuthorRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddAuthorRightholder.Location = new System.Drawing.Point(4, 378);
-            this.btnAddAuthorRightholder.Name = "btnAddAuthorRightholder";
-            this.btnAddAuthorRightholder.Size = new System.Drawing.Size(110, 24);
-            this.btnAddAuthorRightholder.TabIndex = 69;
-            this.btnAddAuthorRightholder.Text = "Додати";
-            this.btnAddAuthorRightholder.ThemeName = "Office2013Light";
-            this.btnAddAuthorRightholder.Click += new System.EventHandler(this.btnAddAuthorRightholder_Click);
-            // 
-            // txtISWC
-            // 
-            this.txtISWC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mediaTrackBindingSource, "Iswc", true));
-            this.txtISWC.Location = new System.Drawing.Point(128, 83);
-            this.txtISWC.Name = "txtISWC";
-            this.txtISWC.Size = new System.Drawing.Size(197, 21);
-            this.txtISWC.TabIndex = 67;
-            this.txtISWC.ThemeName = "Office2013Light";
-            // 
-            // mediaTrackBindingSource
-            // 
-            this.mediaTrackBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IMediaTrack);
-            // 
-            // radLabel20
-            // 
-            this.radLabel20.Location = new System.Drawing.Point(3, 84);
-            this.radLabel20.Name = "radLabel20";
-            this.radLabel20.Size = new System.Drawing.Size(38, 19);
-            this.radLabel20.TabIndex = 57;
-            this.radLabel20.Text = "ISWC:";
-            this.radLabel20.ThemeName = "Office2013Light";
-            // 
-            // radLabel17
-            // 
-            this.radLabel17.Location = new System.Drawing.Point(535, 85);
-            this.radLabel17.Name = "radLabel17";
-            this.radLabel17.Size = new System.Drawing.Size(25, 19);
-            this.radLabel17.TabIndex = 66;
-            this.radLabel17.Text = "сек";
-            this.radLabel17.ThemeName = "Office2013Light";
-            // 
-            // gvObjectAuthorsRightholders
-            // 
-            this.gvObjectAuthorsRightholders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvObjectAuthorsRightholders.Location = new System.Drawing.Point(4, 143);
-            // 
-            // 
-            // 
-            this.gvObjectAuthorsRightholders.MasterTemplate.AllowAddNewRow = false;
-            this.gvObjectAuthorsRightholders.MasterTemplate.AllowDeleteRow = false;
-            this.gvObjectAuthorsRightholders.MasterTemplate.AllowEditRow = false;
-            this.gvObjectAuthorsRightholders.MasterTemplate.AutoGenerateColumns = false;
-            this.gvObjectAuthorsRightholders.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn24.DataType = typeof(int);
-            gridViewDecimalColumn24.FieldName = "AuthId";
-            gridViewDecimalColumn24.HeaderText = "AuthId";
-            gridViewDecimalColumn24.IsAutoGenerated = true;
-            gridViewDecimalColumn24.IsVisible = false;
-            gridViewDecimalColumn24.Name = "AuthId";
-            gridViewDecimalColumn24.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewDecimalColumn24.Width = 65;
-            gridViewDecimalColumn25.DataType = typeof(int);
-            gridViewDecimalColumn25.FieldName = "ObjId";
-            gridViewDecimalColumn25.HeaderText = "ObjId";
-            gridViewDecimalColumn25.IsAutoGenerated = true;
-            gridViewDecimalColumn25.IsVisible = false;
-            gridViewDecimalColumn25.Name = "ObjId";
-            gridViewDecimalColumn25.Width = 70;
-            gridViewDecimalColumn26.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn26.FieldName = "CRightId";
-            gridViewDecimalColumn26.HeaderText = "CRightId";
-            gridViewDecimalColumn26.IsAutoGenerated = true;
-            gridViewDecimalColumn26.IsVisible = false;
-            gridViewDecimalColumn26.Name = "CRightId";
-            gridViewDecimalColumn26.Width = 49;
-            gridViewComboBoxColumn3.DataType = typeof(int);
-            gridViewComboBoxColumn3.FieldName = "RoleCode";
-            gridViewComboBoxColumn3.HeaderText = "Творча роль";
-            gridViewComboBoxColumn3.Name = "RoleCode";
-            gridViewComboBoxColumn3.Width = 122;
-            gridViewComboBoxColumn4.DataType = typeof(System.Nullable<int>);
-            gridViewComboBoxColumn4.FieldName = "FolkType";
-            gridViewComboBoxColumn4.HeaderText = "Тип";
-            gridViewComboBoxColumn4.Name = "FolkType";
-            gridViewComboBoxColumn4.Width = 66;
-            gridViewTextBoxColumn31.FieldName = "AuthorName";
-            gridViewTextBoxColumn31.HeaderText = "Назва";
-            gridViewTextBoxColumn31.IsAutoGenerated = true;
-            gridViewTextBoxColumn31.Name = "AuthorName";
-            gridViewTextBoxColumn31.Width = 135;
-            gridViewCheckBoxColumn3.FieldName = "IsRightholder";
-            gridViewCheckBoxColumn3.HeaderText = "Є правовласником";
-            gridViewCheckBoxColumn3.IsAutoGenerated = true;
-            gridViewCheckBoxColumn3.Name = "IsRightholder";
-            gridViewCheckBoxColumn3.Width = 52;
-            gridViewDecimalColumn27.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn27.FieldName = "CustId";
-            gridViewDecimalColumn27.HeaderText = "CustId";
-            gridViewDecimalColumn27.IsAutoGenerated = true;
-            gridViewDecimalColumn27.IsVisible = false;
-            gridViewDecimalColumn27.Name = "CustId";
-            gridViewDecimalColumn27.Width = 78;
-            gridViewCheckBoxColumn4.DataType = typeof(int);
-            gridViewCheckBoxColumn4.FieldName = "CopyrightStatus";
-            gridViewCheckBoxColumn4.HeaderText = "Підтверджений";
-            gridViewCheckBoxColumn4.Name = "CopyrightStatus";
-            gridViewDecimalColumn28.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn28.FieldName = "StatusZayavky";
-            gridViewDecimalColumn28.HeaderText = "Заявка";
-            gridViewDecimalColumn28.IsAutoGenerated = true;
-            gridViewDecimalColumn28.Name = "StatusZayavky";
-            gridViewDecimalColumn28.Width = 52;
-            gridViewTextBoxColumn32.FieldName = "CommunityName";
-            gridViewTextBoxColumn32.HeaderText = "Спільнота";
-            gridViewTextBoxColumn32.IsAutoGenerated = true;
-            gridViewTextBoxColumn32.Name = "CommunityName";
-            gridViewTextBoxColumn32.Width = 79;
-            gridViewDecimalColumn29.DataType = typeof(System.Nullable<decimal>);
-            gridViewDecimalColumn29.FieldName = "Rate";
-            gridViewDecimalColumn29.HeaderText = "% володіння";
-            gridViewDecimalColumn29.IsAutoGenerated = true;
-            gridViewDecimalColumn29.Name = "Rate";
-            gridViewDecimalColumn29.Width = 51;
-            gridViewDateTimeColumn5.DataType = typeof(System.Nullable<System.DateTime>);
-            gridViewDateTimeColumn5.FieldName = "BeginDate";
-            gridViewDateTimeColumn5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            gridViewDateTimeColumn5.FormatString = "{0:dd/MM/yyyy}";
-            gridViewDateTimeColumn5.HeaderText = "Дата початку";
-            gridViewDateTimeColumn5.IsAutoGenerated = true;
-            gridViewDateTimeColumn5.Name = "BeginDate";
-            gridViewDateTimeColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewDateTimeColumn5.Width = 94;
-            gridViewDateTimeColumn6.DataType = typeof(System.Nullable<System.DateTime>);
-            gridViewDateTimeColumn6.FieldName = "EndDate";
-            gridViewDateTimeColumn6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            gridViewDateTimeColumn6.FormatString = "{0:dd/MM/yyyy}";
-            gridViewDateTimeColumn6.HeaderText = "Дата завершення";
-            gridViewDateTimeColumn6.IsAutoGenerated = true;
-            gridViewDateTimeColumn6.Name = "EndDate";
-            gridViewDateTimeColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewDateTimeColumn6.Width = 98;
-            gridViewCommandColumn12.AllowResize = false;
-            gridViewCommandColumn12.DefaultText = "Редагувати";
-            gridViewCommandColumn12.HeaderText = "";
-            gridViewCommandColumn12.Name = "EditColumn";
-            gridViewCommandColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn12.UseDefaultText = true;
-            gridViewCommandColumn12.Width = 80;
-            gridViewCommandColumn13.AllowResize = false;
-            gridViewCommandColumn13.DefaultText = "Видалити";
-            gridViewCommandColumn13.HeaderText = "";
-            gridViewCommandColumn13.Name = "DeleteColumn";
-            gridViewCommandColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn13.UseDefaultText = true;
-            gridViewCommandColumn13.Width = 76;
-            this.gvObjectAuthorsRightholders.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn24,
-            gridViewDecimalColumn25,
-            gridViewDecimalColumn26,
-            gridViewComboBoxColumn3,
-            gridViewComboBoxColumn4,
-            gridViewTextBoxColumn31,
-            gridViewCheckBoxColumn3,
-            gridViewDecimalColumn27,
-            gridViewCheckBoxColumn4,
-            gridViewDecimalColumn28,
-            gridViewTextBoxColumn32,
-            gridViewDecimalColumn29,
-            gridViewDateTimeColumn5,
-            gridViewDateTimeColumn6,
-            gridViewCommandColumn12,
-            gridViewCommandColumn13});
-            this.gvObjectAuthorsRightholders.MasterTemplate.DataSource = this.objectAuthorRightholderBindingSource;
-            this.gvObjectAuthorsRightholders.MasterTemplate.EnableGrouping = false;
-            this.gvObjectAuthorsRightholders.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvObjectAuthorsRightholders.MasterTemplate.ViewDefinition = tableViewDefinition7;
-            this.gvObjectAuthorsRightholders.Name = "gvObjectAuthorsRightholders";
-            this.gvObjectAuthorsRightholders.ShowGroupPanel = false;
-            this.gvObjectAuthorsRightholders.Size = new System.Drawing.Size(946, 229);
-            this.gvObjectAuthorsRightholders.TabIndex = 65;
-            this.gvObjectAuthorsRightholders.ThemeName = "Office2013Light";
-            this.gvObjectAuthorsRightholders.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectAuthorsRightholders_CommandCellClick);
-            this.gvObjectAuthorsRightholders.DoubleClick += new System.EventHandler(this.gvObjectAuthorsRightholders_DoubleClick);
-            // 
-            // objectAuthorRightholderBindingSource
-            // 
-            this.objectAuthorRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
-            // 
-            // radSeparator4
-            // 
-            this.radSeparator4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator4.Location = new System.Drawing.Point(4, 138);
-            this.radSeparator4.Name = "radSeparator4";
-            this.radSeparator4.Size = new System.Drawing.Size(946, 10);
-            this.radSeparator4.TabIndex = 64;
-            this.radSeparator4.ThemeName = "Office2013Light";
-            // 
-            // radLabel19
-            // 
-            this.radLabel19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel19.Location = new System.Drawing.Point(3, 117);
-            this.radLabel19.Name = "radLabel19";
-            this.radLabel19.Size = new System.Drawing.Size(195, 25);
-            this.radLabel19.TabIndex = 60;
-            this.radLabel19.Text = "Автори / правовласники";
-            // 
-            // ddlSpecType
-            // 
-            this.ddlSpecType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.objectRightBindingSource, "SpecType", true));
-            this.ddlSpecType.Location = new System.Drawing.Point(435, 55);
-            this.ddlSpecType.Name = "ddlSpecType";
-            this.ddlSpecType.Size = new System.Drawing.Size(197, 21);
-            this.ddlSpecType.TabIndex = 63;
-            this.ddlSpecType.ThemeName = "Office2013Light";
-            // 
-            // objectRightBindingSource
-            // 
-            this.objectRightBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IObjectRight);
-            // 
-            // mebDuration
-            // 
-            this.mebDuration.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mediaTrackBindingSource, "Duration", true));
-            this.mebDuration.Location = new System.Drawing.Point(479, 83);
-            this.mebDuration.Name = "mebDuration";
-            this.mebDuration.Size = new System.Drawing.Size(54, 21);
-            this.mebDuration.TabIndex = 62;
-            this.mebDuration.TabStop = false;
-            this.mebDuration.ThemeName = "Office2013Light";
-            // 
-            // radLabel18
-            // 
-            this.radLabel18.Location = new System.Drawing.Point(350, 56);
-            this.radLabel18.Name = "radLabel18";
-            this.radLabel18.Size = new System.Drawing.Size(86, 19);
-            this.radLabel18.TabIndex = 58;
-            this.radLabel18.Text = "Специфікація:";
-            this.radLabel18.ThemeName = "Office2013Light";
-            // 
-            // radLabel16
-            // 
-            this.radLabel16.Location = new System.Drawing.Point(350, 85);
-            this.radLabel16.Name = "radLabel16";
-            this.radLabel16.Size = new System.Drawing.Size(125, 19);
-            this.radLabel16.TabIndex = 55;
-            this.radLabel16.Text = "Тривалість звучання:";
-            this.radLabel16.ThemeName = "Office2013Light";
-            // 
-            // ddlGenreType
-            // 
-            this.ddlGenreType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.objectRightBindingSource, "GenreType", true));
-            this.ddlGenreType.Location = new System.Drawing.Point(128, 55);
-            this.ddlGenreType.Name = "ddlGenreType";
-            this.ddlGenreType.Size = new System.Drawing.Size(197, 21);
-            this.ddlGenreType.TabIndex = 61;
-            this.ddlGenreType.ThemeName = "Office2013Light";
-            // 
-            // radLabel15
-            // 
-            this.radLabel15.Location = new System.Drawing.Point(3, 55);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(41, 19);
-            this.radLabel15.TabIndex = 53;
-            this.radLabel15.Text = "Жанр:";
-            this.radLabel15.ThemeName = "Office2013Light";
-            // 
-            // btnMoreObjectAltName
-            // 
-            this.btnMoreObjectAltName.Location = new System.Drawing.Point(638, 28);
-            this.btnMoreObjectAltName.Name = "btnMoreObjectAltName";
-            this.btnMoreObjectAltName.Size = new System.Drawing.Size(74, 21);
-            this.btnMoreObjectAltName.TabIndex = 59;
-            this.btnMoreObjectAltName.Text = "Ще";
-            this.btnMoreObjectAltName.ThemeName = "Office2013Light";
-            // 
-            // txtObjectName
-            // 
-            this.txtObjectName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectRightBindingSource, "Name", true));
-            this.txtObjectName.Location = new System.Drawing.Point(128, 1);
-            this.txtObjectName.Name = "txtObjectName";
-            this.txtObjectName.Size = new System.Drawing.Size(504, 21);
-            this.txtObjectName.TabIndex = 56;
-            this.txtObjectName.ThemeName = "Office2013Light";
-            // 
-            // txtObjectAltName
-            // 
-            this.txtObjectAltName.Location = new System.Drawing.Point(128, 28);
-            this.txtObjectAltName.Name = "txtObjectAltName";
-            this.txtObjectAltName.Size = new System.Drawing.Size(504, 21);
-            this.txtObjectAltName.TabIndex = 54;
-            this.txtObjectAltName.ThemeName = "Office2013Light";
-            // 
-            // radLabel14
-            // 
-            this.radLabel14.Location = new System.Drawing.Point(3, 29);
-            this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(129, 19);
-            this.radLabel14.TabIndex = 52;
-            this.radLabel14.Text = "Альтернативна назва:";
-            this.radLabel14.ThemeName = "Office2013Light";
-            // 
-            // radLabel13
-            // 
-            this.radLabel13.Location = new System.Drawing.Point(3, 3);
-            this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(78, 19);
-            this.radLabel13.TabIndex = 51;
-            this.radLabel13.Text = "Назва твору:";
-            this.radLabel13.ThemeName = "Office2013Light";
-            // 
-            // rightholdersObjectsPage
-            // 
-            this.rightholdersObjectsPage.Controls.Add(this.ctrlRightholderSelector);
-            this.rightholdersObjectsPage.Controls.Add(this.gvRightholdersObjectsRights);
-            this.rightholdersObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
-            this.rightholdersObjectsPage.Location = new System.Drawing.Point(188, 5);
-            this.rightholdersObjectsPage.Name = "rightholdersObjectsPage";
-            this.rightholdersObjectsPage.Size = new System.Drawing.Size(989, 622);
-            this.rightholdersObjectsPage.Text = "Об\'єкти права правовласника";
-            // 
-            // ctrlRightholderSelector
-            // 
-            this.ctrlRightholderSelector.Location = new System.Drawing.Point(4, 4);
-            this.ctrlRightholderSelector.Name = "ctrlRightholderSelector";
-            this.ctrlRightholderSelector.Rightholder = null;
-            this.ctrlRightholderSelector.Size = new System.Drawing.Size(889, 29);
-            this.ctrlRightholderSelector.TabIndex = 2;
-            // 
-            // gvRightholdersObjectsRights
-            // 
-            this.gvRightholdersObjectsRights.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvRightholdersObjectsRights.Location = new System.Drawing.Point(0, 39);
-            // 
-            // 
-            // 
-            this.gvRightholdersObjectsRights.MasterTemplate.AllowAddNewRow = false;
-            this.gvRightholdersObjectsRights.MasterTemplate.AllowDeleteRow = false;
-            this.gvRightholdersObjectsRights.MasterTemplate.AllowEditRow = false;
-            this.gvRightholdersObjectsRights.MasterTemplate.AutoGenerateColumns = false;
-            this.gvRightholdersObjectsRights.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn30.DataType = typeof(int);
-            gridViewDecimalColumn30.FieldName = "CustId";
-            gridViewDecimalColumn30.HeaderText = "CustId";
-            gridViewDecimalColumn30.IsAutoGenerated = true;
-            gridViewDecimalColumn30.IsVisible = false;
-            gridViewDecimalColumn30.Name = "CustId";
-            gridViewDecimalColumn30.Width = 32;
-            gridViewTextBoxColumn33.FieldName = "NameClient";
-            gridViewTextBoxColumn33.HeaderText = "NameClient";
-            gridViewTextBoxColumn33.IsAutoGenerated = true;
-            gridViewTextBoxColumn33.IsVisible = false;
-            gridViewTextBoxColumn33.Name = "NameClient";
-            gridViewTextBoxColumn33.Width = 100;
-            gridViewDecimalColumn31.DataType = typeof(int);
-            gridViewDecimalColumn31.FieldName = "ObjId";
-            gridViewDecimalColumn31.HeaderText = "Шифр твору";
-            gridViewDecimalColumn31.IsAutoGenerated = true;
-            gridViewDecimalColumn31.Name = "ObjId";
-            gridViewDecimalColumn31.Width = 69;
-            gridViewTextBoxColumn34.FieldName = "Name";
-            gridViewTextBoxColumn34.HeaderText = "Назва твору";
-            gridViewTextBoxColumn34.IsAutoGenerated = true;
-            gridViewTextBoxColumn34.Name = "Name";
-            gridViewTextBoxColumn34.Width = 140;
-            gridViewTextBoxColumn35.FieldName = "Category";
-            gridViewTextBoxColumn35.HeaderText = "В/М";
-            gridViewTextBoxColumn35.IsAutoGenerated = true;
-            gridViewTextBoxColumn35.Name = "Category";
-            gridViewTextBoxColumn35.Width = 48;
-            gridViewTextBoxColumn36.FieldName = "GenreName";
-            gridViewTextBoxColumn36.HeaderText = "Жанр";
-            gridViewTextBoxColumn36.IsAutoGenerated = true;
-            gridViewTextBoxColumn36.Name = "GenreName";
-            gridViewTextBoxColumn36.Width = 93;
-            gridViewTextBoxColumn37.DataType = typeof(System.TimeSpan);
-            gridViewTextBoxColumn37.FieldName = "Duration";
-            gridViewTextBoxColumn37.HeaderText = "Час";
-            gridViewTextBoxColumn37.IsAutoGenerated = true;
-            gridViewTextBoxColumn37.Name = "Duration";
-            gridViewTextBoxColumn37.Width = 78;
-            gridViewTextBoxColumn38.FieldName = "RoleName";
-            gridViewTextBoxColumn38.HeaderText = "Творчий профіль";
-            gridViewTextBoxColumn38.IsAutoGenerated = true;
-            gridViewTextBoxColumn38.Name = "RoleName";
-            gridViewTextBoxColumn38.Width = 100;
-            gridViewTextBoxColumn39.FieldName = "SpecName";
-            gridViewTextBoxColumn39.HeaderText = "Переклад / обробка / оригінал";
-            gridViewTextBoxColumn39.IsAutoGenerated = true;
-            gridViewTextBoxColumn39.Name = "SpecName";
-            gridViewTextBoxColumn39.Width = 92;
-            gridViewDecimalColumn32.DataType = typeof(double);
-            gridViewDecimalColumn32.FieldName = "RateTotal";
-            gridViewDecimalColumn32.HeaderText = "Спільний % володіння";
-            gridViewDecimalColumn32.IsAutoGenerated = true;
-            gridViewDecimalColumn32.Name = "RateTotal";
-            gridViewDecimalColumn32.Width = 73;
-            gridViewDecimalColumn33.DataType = typeof(double);
-            gridViewDecimalColumn33.FieldName = "RateRh";
-            gridViewDecimalColumn33.HeaderText = "Його % володіння";
-            gridViewDecimalColumn33.IsAutoGenerated = true;
-            gridViewDecimalColumn33.Name = "RateRh";
-            gridViewDecimalColumn33.Width = 72;
-            gridViewTextBoxColumn40.FieldName = "Performer";
-            gridViewTextBoxColumn40.HeaderText = "Виконавець";
-            gridViewTextBoxColumn40.IsAutoGenerated = true;
-            gridViewTextBoxColumn40.Name = "Performer";
-            gridViewTextBoxColumn40.Width = 96;
-            gridViewDecimalColumn34.DataType = typeof(double);
-            gridViewDecimalColumn34.FieldName = "Profit";
-            gridViewDecimalColumn34.HeaderText = "Дохід з початку року";
-            gridViewDecimalColumn34.IsAutoGenerated = true;
-            gridViewDecimalColumn34.Name = "Profit";
-            gridViewDecimalColumn34.Width = 81;
-            gridViewCommandColumn14.DefaultText = "Редагувати";
-            gridViewCommandColumn14.HeaderText = "";
-            gridViewCommandColumn14.Name = "EditColumn";
-            gridViewCommandColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn14.UseDefaultText = true;
-            gridViewCommandColumn14.Width = 45;
-            this.gvRightholdersObjectsRights.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn30,
-            gridViewTextBoxColumn33,
-            gridViewDecimalColumn31,
-            gridViewTextBoxColumn34,
-            gridViewTextBoxColumn35,
-            gridViewTextBoxColumn36,
-            gridViewTextBoxColumn37,
-            gridViewTextBoxColumn38,
-            gridViewTextBoxColumn39,
-            gridViewDecimalColumn32,
-            gridViewDecimalColumn33,
-            gridViewTextBoxColumn40,
-            gridViewDecimalColumn34,
-            gridViewCommandColumn14});
-            this.gvRightholdersObjectsRights.MasterTemplate.DataSource = this.objectRightForRightholderBindingSource;
-            this.gvRightholdersObjectsRights.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvRightholdersObjectsRights.MasterTemplate.ViewDefinition = tableViewDefinition8;
-            this.gvRightholdersObjectsRights.Name = "gvRightholdersObjectsRights";
-            this.gvRightholdersObjectsRights.ShowGroupPanel = false;
-            this.gvRightholdersObjectsRights.Size = new System.Drawing.Size(989, 580);
-            this.gvRightholdersObjectsRights.TabIndex = 1;
-            this.gvRightholdersObjectsRights.ThemeName = "Office2013Light";
-            // 
-            // objectRightForRightholderBindingSource
-            // 
-            this.objectRightForRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightForRightholder);
-            // 
-            // notAcceptedObjectsPage
-            // 
-            this.notAcceptedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
-            this.notAcceptedObjectsPage.Location = new System.Drawing.Point(188, 5);
-            this.notAcceptedObjectsPage.Name = "notAcceptedObjectsPage";
-            this.notAcceptedObjectsPage.Size = new System.Drawing.Size(989, 622);
-            this.notAcceptedObjectsPage.Text = "Не підтверджені УААСП";
-            // 
-            // newObjectsPage
-            // 
-            this.newObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
-            this.newObjectsPage.Location = new System.Drawing.Point(188, 5);
-            this.newObjectsPage.Name = "newObjectsPage";
-            this.newObjectsPage.Size = new System.Drawing.Size(989, 622);
-            this.newObjectsPage.Text = "Нові об\'єкти права";
-            // 
-            // notLinkedObjectsPage
-            // 
-            this.notLinkedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
-            this.notLinkedObjectsPage.Location = new System.Drawing.Point(188, 5);
-            this.notLinkedObjectsPage.Name = "notLinkedObjectsPage";
-            this.notLinkedObjectsPage.Size = new System.Drawing.Size(989, 622);
-            this.notLinkedObjectsPage.Text = "Не прив\'язані";
-            // 
-            // mainPageViewDistribution
-            // 
-            this.mainPageViewDistribution.ItemSize = new System.Drawing.SizeF(128F, 27F);
-            this.mainPageViewDistribution.Location = new System.Drawing.Point(5, 31);
-            this.mainPageViewDistribution.Name = "mainPageViewDistribution";
-            this.mainPageViewDistribution.Size = new System.Drawing.Size(1182, 632);
-            this.mainPageViewDistribution.Text = "Відомості розподілу";
+            // MainPageView
+            // 
+            this.MainPageView.Controls.Add(this.mainPageRightholders);
+            this.MainPageView.Controls.Add(this.mainPageRightsObjects);
+            this.MainPageView.Controls.Add(this.mainPageViewDistribution);
+            this.MainPageView.DefaultPage = this.mainPageRightholders;
+            this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPageView.Location = new System.Drawing.Point(0, 0);
+            this.MainPageView.Name = "MainPageView";
+            this.MainPageView.SelectedPage = this.mainPageRightsObjects;
+            this.MainPageView.Size = new System.Drawing.Size(1192, 668);
+            this.MainPageView.TabIndex = 0;
+            this.MainPageView.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).ShowItemPinButton = false;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).ShowItemCloseButton = false;
+            // 
+            // radMenuButtonItem1
+            // 
+            this.radMenuButtonItem1.AnimationEnabled = true;
+            this.radMenuButtonItem1.AnimationFrames = 1;
+            this.radMenuButtonItem1.AnimationType = Telerik.WinControls.UI.PopupAnimationTypes.Fade;
+            this.radMenuButtonItem1.AutoSize = true;
+            this.radMenuButtonItem1.DropDownAnimationDirection = Telerik.WinControls.UI.RadDirection.Down;
+            this.radMenuButtonItem1.DropShadow = true;
+            this.radMenuButtonItem1.EasingType = Telerik.WinControls.RadEasingType.InQuad;
+            this.radMenuButtonItem1.EnableAeroEffects = false;
+            this.radMenuButtonItem1.FadeAnimationFrames = 10;
+            this.radMenuButtonItem1.FadeAnimationSpeed = 10;
+            this.radMenuButtonItem1.FadeAnimationType = Telerik.WinControls.UI.FadeAnimationType.FadeIn;
+            this.radMenuButtonItem1.FitToScreenMode = ((Telerik.WinControls.UI.FitToScreenModes)((Telerik.WinControls.UI.FitToScreenModes.FitWidth | Telerik.WinControls.UI.FitToScreenModes.FitHeight)));
+            this.radMenuButtonItem1.HorizontalAlignmentCorrectionMode = Telerik.WinControls.UI.AlignmentCorrectionMode.SnapToOuterEdges;
+            this.radMenuButtonItem1.LastShowDpiScaleFactor = new System.Drawing.SizeF(1F, 1F);
+            this.radMenuButtonItem1.Location = new System.Drawing.Point(0, 0);
+            this.radMenuButtonItem1.Maximum = new System.Drawing.Size(0, 0);
+            this.radMenuButtonItem1.Minimum = new System.Drawing.Size(0, 0);
+            this.radMenuButtonItem1.Name = "radMenuButtonItem1";
+            this.radMenuButtonItem1.Opacity = 1F;
+            this.radMenuButtonItem1.ProcessKeyboard = false;
+            this.radMenuButtonItem1.RollOverItemSelection = true;
+            this.radMenuButtonItem1.Size = new System.Drawing.Size(0, 0);
+            this.radMenuButtonItem1.TabIndex = 0;
+            this.radMenuButtonItem1.VerticalAlignmentCorrectionMode = Telerik.WinControls.UI.AlignmentCorrectionMode.SnapToOuterEdges;
+            this.radMenuButtonItem1.Visible = false;
             // 
             // objectRightDictionariesBindingSource
             // 
@@ -2516,8 +2564,46 @@
             this.Text = "Робоче місце адмінстратора права";
             this.ThemeName = "Office2013Light";
             this.Load += new System.EventHandler(this.RightholderWorkplace_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
-            this.MainPageView.ResumeLayout(false);
+            this.mainPageRightsObjects.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).EndInit();
+            this.objectsPageView.ResumeLayout(false);
+            this.actualObjectsPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.actualObjectsPageView)).EndInit();
+            this.actualObjectsPageView.ResumeLayout(false);
+            this.actualObjectsListPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).EndInit();
+            this.actualObjectsItemPage.ResumeLayout(false);
+            this.actualObjectsItemPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mediaTrackBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObjectAltName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMoreObjectAltName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlSpecType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthorsRightholders.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthorsRightholders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtISWC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddAuthorRightholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).EndInit();
+            this.rightholdersObjectsPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).EndInit();
             this.mainPageRightholders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rightholdersPageView)).EndInit();
             this.rightholdersPageView.ResumeLayout(false);
@@ -2540,27 +2626,27 @@
             this.newCreateRightholderPageView.ResumeLayout(false);
             this.createRightholderFullNameComissionPage.ResumeLayout(false);
             this.createRightholderFullNameComissionPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rightHolderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNewRightholderCancel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextAnketa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNewRightholderCancel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightHolderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementMasterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementAddRhBindingSource)).EndInit();
             this.createRightholderAnketaPage.ResumeLayout(false);
             this.createRightholderAnketaPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrevFullNameComission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextPassport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrevFullNameComission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.DdlCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.DdlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlReAddress.TxtAddress)).EndInit();
@@ -2587,8 +2673,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnNextRoyalty)).EndInit();
             this.createRightholderRoyaltyPage.ResumeLayout(false);
             this.createRightholderRoyaltyPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderRoyaltyPageView)).EndInit();
             this.createRightholderRoyaltyPageView.ResumeLayout(false);
             this.createRightholderRoyaltyBankPage.ResumeLayout(false);
@@ -2599,21 +2685,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBankAccount.TxtTransitNumber)).EndInit();
             this.createRightholderRoyaltyPostalTransfer.ResumeLayout(false);
             this.createRightholderRoyaltyPostalTransfer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPostalIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBaAddress.DdlCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBaAddress.DdlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBaAddress.TxtAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBaAddress.TxtCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlTypeMethodGet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevPassport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlTypeMethodGet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNextRightLimitation)).EndInit();
             this.createRightholderRigthLimitationsPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNextTerritoryLimitation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrevRoyalty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNextTerritoryLimitation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
             this.createRightholderTerritoryLimitationsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnNextAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton5)).EndInit();
@@ -2626,46 +2712,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pdfvRightholderAgreement)).EndInit();
             this.pdfvRightholderAgreement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.waitbarAgreement)).EndInit();
-            this.mainPageRightsObjects.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).EndInit();
-            this.objectsPageView.ResumeLayout(false);
-            this.actualObjectsPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.actualObjectsPageView)).EndInit();
-            this.actualObjectsPageView.ResumeLayout(false);
-            this.actualObjectsListPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).EndInit();
-            this.actualObjectsItemPage.ResumeLayout(false);
-            this.actualObjectsItemPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddAuthorRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtISWC)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mediaTrackBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthorsRightholders.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvObjectAuthorsRightholders)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlSpecType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMoreObjectAltName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtObjectAltName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
-            this.rightholdersObjectsPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
+            this.MainPageView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightDictionariesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -2673,131 +2722,37 @@
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadPageView MainPageView;
-        private Telerik.WinControls.UI.RadPageViewPage mainPageRightholders;
-        private Telerik.WinControls.UI.RadPageView rightholdersPageView;
-        private Telerik.WinControls.UI.RadPageViewPage rightholdersPage;
-        private Telerik.WinControls.UI.RadPageView newRightholdersPageView;
-        private Telerik.WinControls.UI.RadPageViewPage newRightholdersListPage;
-        private Telerik.WinControls.UI.RadPageViewPage newRightholdersCreatePage;
-        private Telerik.WinControls.UI.RadPageView newCreateRightholderPageView;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderFullNameComissionPage;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderAnketaPage;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderPassportPage;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyPage;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderRigthLimitationsPage;
-        private Telerik.WinControls.UI.RadButton btnNextAnketa;
-        private Telerik.WinControls.UI.RadButton btnPrevFullNameComission;
-        private Telerik.WinControls.UI.RadButton btnNextPassport;
-        private Telerik.WinControls.UI.RadButton btnPrevAnketa;
-        private Telerik.WinControls.UI.RadButton btnNextRoyalty;
-        private Telerik.WinControls.UI.RadButton btnPrevPassport;
-        private Telerik.WinControls.UI.RadButton btnNextRightLimitation;
-        private Telerik.WinControls.UI.RadButton btnPrevRoyalty;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
-        private DebugFormForControls.ContractControl ctrlAgreement;
-        private IpsViewComponentLibrary.IpsServiceComissionControl ipsServiceComissionControl1;
-        private Telerik.WinControls.UI.RadSeparator radSeparator3;
-        private Telerik.WinControls.UI.RadLabel radLabel5;
-        private Telerik.WinControls.UI.RadSeparator radSeparator2;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadSeparator radSeparator1;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
-        private IpsViewComponentLibrary.IpsAddressControl ctrlLeAddress;
-        private IpsViewComponentLibrary.IpsAddressControl ctrlFaAddress;
-        private DebugFormForControls.ContactsPersonControl ctrlContacts;
-        private Telerik.WinControls.UI.RadPageView createRightholderPassportPageView;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderInternalPasportPage;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderForeignPassportPage;
-        private Telerik.WinControls.UI.RadLabel radLabel6;
-        private IpsViewComponentLibrary.PassportControl ctrlInternalPassport;
-        private Telerik.WinControls.UI.RadLabel radLabel7;
-        private Telerik.WinControls.UI.RadDropDownList ddlTypeMethodGet;
-        private Telerik.WinControls.UI.RadPageView createRightholderRoyaltyPageView;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyBankPage;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyCashPage;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyPostalTransfer;
-        private Telerik.WinControls.UI.RadLabel radLabel8;
-        private IpsViewComponentLibrary.IpsBankAccountControl ctrlBankAccount;
-        private IpsViewComponentLibrary.IpsExclusionsLimitationsControl ctrlExclusionsLimitations;
-        private DebugFormForControls.AnketaPersonRightHolderControl ctrlAnketaPerson;
         private System.Windows.Forms.BindingSource anketaPersonBindingSource;
-        private IpsViewComponentLibrary.IpsAddressControl ctrlReAddress;
-        private IpsViewComponentLibrary.RegistrationPersonsControl ctrlRegistrations;
-        private Telerik.WinControls.UI.RadLabel radLabel10;
-        private Telerik.WinControls.UI.RadLabel radLabel9;
-        private IpsViewComponentLibrary.IpsAddressControl ctrlBaAddress;
-        private Telerik.WinControls.UI.RadTextBox txtPostalIndex;
         private System.Windows.Forms.BindingSource bankAccountBindingSource;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderTerritoryLimitationsPage;
-        private Telerik.WinControls.UI.RadButton btnNextTerritoryLimitation;
-        private Telerik.WinControls.UI.RadButton btnPrevRightLimitation;
         private System.Windows.Forms.BindingSource rightHolderMainViewBindingSource;
-        private Telerik.WinControls.UI.RadGridView gvRightholdersList;
-        private Telerik.WinControls.UI.RadDropDownButton ddbNewRightholder;
-        private Telerik.WinControls.UI.RadMenuItem miNewRightholderPerson;
-        private Telerik.WinControls.UI.RadMenuItem miNewRigthholderCompany;
-        private Telerik.WinControls.UI.RadButton btnNewRightholderCancel1;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
-        private Telerik.WinControls.UI.RadButton radButton3;
-        private Telerik.WinControls.UI.RadButton radButton4;
-        private Telerik.WinControls.UI.RadButton radButton5;
         private System.Windows.Forms.BindingSource agreementAddRhBindingSource;
         private System.Windows.Forms.BindingSource rightHolderBindingSource;
-        private Telerik.WinControls.UI.RadTextBox radTextBox2;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
-        private Telerik.WinControls.UI.RadLabel radLabel12;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.BindingSource agreementMasterBindingSource;
-        private Telerik.WinControls.UI.RadPageViewPage mainPageRightsObjects;
-        private Telerik.WinControls.UI.RadPageViewPage mainPageViewDistribution;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private Telerik.WinControls.UI.RadPageView objectsPageView;
-        private Telerik.WinControls.UI.RadPageViewPage actualObjectsPage;
-        private Telerik.WinControls.UI.RadPageViewPage notAcceptedObjectsPage;
-        private Telerik.WinControls.UI.RadPageViewPage newObjectsPage;
-        private Telerik.WinControls.UI.RadPageViewPage notLinkedObjectsPage;
-        private Telerik.WinControls.UI.RadPageView actualObjectsPageView;
-        private Telerik.WinControls.UI.RadPageViewPage actualObjectsListPage;
-        private Telerik.WinControls.UI.RadPageViewPage actualObjectsItemPage;
         private System.Windows.Forms.BindingSource objectRightBindingSource;
         private System.Windows.Forms.BindingSource mediaTrackBindingSource;
         private System.Windows.Forms.BindingSource objectRightDictionariesBindingSource;
-        private Telerik.WinControls.UI.RadGridView gvObjectsRightsList;
         private System.Windows.Forms.BindingSource objectRightMainViewBindingSource;
-        private IpsViewComponentLibrary.PassportInternationalControl ctrlInternationalPassport;
-        private IpsViewComponentLibrary.TerritoryIncludeExcludeControl ctrlTerritoryIncludeExclude;
-        private System.Windows.Forms.Panel panelFilterButtons;
-        private Telerik.WinControls.UI.RadToggleButton tbtnNew;
-        private Telerik.WinControls.UI.RadToggleButton tbtnNotAccepted;
-        private Telerik.WinControls.UI.RadToggleButton tbtnActive;
-        private Telerik.WinControls.UI.RadPageViewPage createRightholderAgreementPage;
-        private Telerik.WinControls.UI.RadPdfViewer pdfvRightholderAgreement;
-        private Telerik.WinControls.UI.RadButton btnGenerateRightholderAgreement;
-        private Telerik.WinControls.UI.RadWaitingBar waitbarAgreement;
-        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
-        private Telerik.WinControls.UI.RadPageViewPage rightholdersObjectsPage;
-        private Telerik.WinControls.UI.RadGridView gvRightholdersObjectsRights;
         private System.Windows.Forms.BindingSource objectRightForRightholderBindingSource;
-        private Telerik.WinControls.UI.RadButton btnNextAgreement;
-        private Telerik.WinControls.UI.RadSplitButton sbSaveRightholder;
-        private Telerik.WinControls.UI.RadMenuItem miSaveRightholder;
-        private Telerik.WinControls.UI.RadMenuItem miAcceptAndSaveRightholder;
-        private Telerik.WinControls.UI.RadButton radButton6;
-        private Telerik.WinControls.UI.RadButton btnPrevTerritoryLimitation;
-        private IpsViewComponentLibrary.RightholderSelectorControl ctrlRightholderSelector;
         private System.Windows.Forms.BindingSource objectAuthorRightholderBindingSource;
+        private Telerik.WinControls.UI.RadPageViewPage mainPageViewDistribution;
+        private Telerik.WinControls.UI.RadPageViewPage mainPageRightsObjects;
+        private Telerik.WinControls.UI.RadPageView objectsPageView;
+        private Telerik.WinControls.UI.RadPageViewPage actualObjectsPage;
+        private Telerik.WinControls.UI.RadPageView actualObjectsPageView;
+        private Telerik.WinControls.UI.RadPageViewPage actualObjectsListPage;
+        private Telerik.WinControls.UI.RadDropDownButton ddbAddObjectRight;
+        private Telerik.WinControls.UI.RadGridView gvObjectsRightsList;
+        private Telerik.WinControls.UI.RadPageViewPage actualObjectsItemPage;
+        private Telerik.WinControls.UI.RadButton btnObjectRightItemSave;
+        private Telerik.WinControls.UI.RadButton btnObjectRightItemCancel;
         private Telerik.WinControls.UI.RadButton btnAddAuthorRightholder;
         private Telerik.WinControls.UI.RadTextBox txtISWC;
         private Telerik.WinControls.UI.RadLabel radLabel20;
-        private Telerik.WinControls.UI.RadLabel radLabel17;
         private Telerik.WinControls.UI.RadGridView gvObjectAuthorsRightholders;
         private Telerik.WinControls.UI.RadSeparator radSeparator4;
         private Telerik.WinControls.UI.RadLabel radLabel19;
         private Telerik.WinControls.UI.RadDropDownList ddlSpecType;
-        private Telerik.WinControls.UI.RadMaskedEditBox mebDuration;
         private Telerik.WinControls.UI.RadLabel radLabel18;
         private Telerik.WinControls.UI.RadLabel radLabel16;
         private Telerik.WinControls.UI.RadDropDownList ddlGenreType;
@@ -2807,7 +2762,102 @@
         private Telerik.WinControls.UI.RadTextBox txtObjectAltName;
         private Telerik.WinControls.UI.RadLabel radLabel14;
         private Telerik.WinControls.UI.RadLabel radLabel13;
-        private Telerik.WinControls.UI.RadButton btnObjectRightItemSave;
-        private Telerik.WinControls.UI.RadButton btnObjectRightItemCancel;
+        private Telerik.WinControls.UI.RadPageViewPage rightholdersObjectsPage;
+        private IpsViewComponentLibrary.RightholderSelectorControl ctrlRightholderSelector;
+        private Telerik.WinControls.UI.RadGridView gvRightholdersObjectsRights;
+        private Telerik.WinControls.UI.RadPageViewPage notAcceptedObjectsPage;
+        private Telerik.WinControls.UI.RadPageViewPage newObjectsPage;
+        private Telerik.WinControls.UI.RadPageViewPage notLinkedObjectsPage;
+        private Telerik.WinControls.UI.RadPageViewPage mainPageRightholders;
+        private Telerik.WinControls.UI.RadPageView rightholdersPageView;
+        private Telerik.WinControls.UI.RadPageViewPage rightholdersPage;
+        private Telerik.WinControls.UI.RadPageView newRightholdersPageView;
+        private Telerik.WinControls.UI.RadPageViewPage newRightholdersListPage;
+        private System.Windows.Forms.Panel panelFilterButtons;
+        private Telerik.WinControls.UI.RadToggleButton tbtnNew;
+        private Telerik.WinControls.UI.RadToggleButton tbtnNotAccepted;
+        private Telerik.WinControls.UI.RadToggleButton tbtnActive;
+        private Telerik.WinControls.UI.RadDropDownButton ddbNewRightholder;
+        private Telerik.WinControls.UI.RadMenuItem miNewRightholderPerson;
+        private Telerik.WinControls.UI.RadMenuItem miNewRigthholderCompany;
+        private Telerik.WinControls.UI.RadGridView gvRightholdersList;
+        private Telerik.WinControls.UI.RadPageViewPage newRightholdersCreatePage;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.UI.RadPageView newCreateRightholderPageView;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderFullNameComissionPage;
+        private Telerik.WinControls.UI.RadTextBox radTextBox2;
+        private Telerik.WinControls.UI.RadTextBox radTextBox1;
+        private Telerik.WinControls.UI.RadLabel radLabel12;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadButton btnNewRightholderCancel1;
+        private Telerik.WinControls.UI.RadButton btnNextAnketa;
+        private DebugFormForControls.ContractControl ctrlAgreement;
+        private DebugFormForControls.AnketaPersonRightHolderControl ctrlAnketaPerson;
+        private IpsViewComponentLibrary.IpsServiceComissionControl ipsServiceComissionControl1;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderAnketaPage;
+        private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadSeparator radSeparator3;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadSeparator radSeparator2;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadSeparator radSeparator1;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadButton btnPrevFullNameComission;
+        private Telerik.WinControls.UI.RadButton btnNextPassport;
+        private IpsViewComponentLibrary.RegistrationPersonsControl ctrlRegistrations;
+        private IpsViewComponentLibrary.IpsAddressControl ctrlReAddress;
+        private DebugFormForControls.ContactsPersonControl ctrlContacts;
+        private IpsViewComponentLibrary.IpsAddressControl ctrlLeAddress;
+        private IpsViewComponentLibrary.IpsAddressControl ctrlFaAddress;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderPassportPage;
+        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadPageView createRightholderPassportPageView;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderInternalPasportPage;
+        private Telerik.WinControls.UI.RadLabel radLabel6;
+        private IpsViewComponentLibrary.PassportControl ctrlInternalPassport;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderForeignPassportPage;
+        private IpsViewComponentLibrary.PassportInternationalControl ctrlInternationalPassport;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
+        private Telerik.WinControls.UI.RadButton btnPrevAnketa;
+        private Telerik.WinControls.UI.RadButton btnNextRoyalty;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyPage;
+        private Telerik.WinControls.UI.RadButton radButton3;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadPageView createRightholderRoyaltyPageView;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyBankPage;
+        private IpsViewComponentLibrary.IpsBankAccountControl ctrlBankAccount;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyCashPage;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderRoyaltyPostalTransfer;
+        private Telerik.WinControls.UI.RadTextBox txtPostalIndex;
+        private Telerik.WinControls.UI.RadLabel radLabel10;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private IpsViewComponentLibrary.IpsAddressControl ctrlBaAddress;
+        private Telerik.WinControls.UI.RadDropDownList ddlTypeMethodGet;
+        private Telerik.WinControls.UI.RadButton btnPrevPassport;
+        private Telerik.WinControls.UI.RadButton btnNextRightLimitation;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderRigthLimitationsPage;
+        private Telerik.WinControls.UI.RadButton radButton4;
+        private Telerik.WinControls.UI.RadButton btnNextTerritoryLimitation;
+        private Telerik.WinControls.UI.RadButton btnPrevRoyalty;
+        private IpsViewComponentLibrary.IpsExclusionsLimitationsControl ctrlExclusionsLimitations;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderTerritoryLimitationsPage;
+        private Telerik.WinControls.UI.RadButton btnNextAgreement;
+        private IpsViewComponentLibrary.TerritoryIncludeExcludeControl ctrlTerritoryIncludeExclude;
+        private Telerik.WinControls.UI.RadButton radButton5;
+        private Telerik.WinControls.UI.RadButton btnPrevRightLimitation;
+        private Telerik.WinControls.UI.RadPageViewPage createRightholderAgreementPage;
+        private Telerik.WinControls.UI.RadSplitButton sbSaveRightholder;
+        private Telerik.WinControls.UI.RadMenuItem miSaveRightholder;
+        private Telerik.WinControls.UI.RadMenuItem miAcceptAndSaveRightholder;
+        private Telerik.WinControls.UI.RadButton radButton6;
+        private Telerik.WinControls.UI.RadButton btnPrevTerritoryLimitation;
+        private Telerik.WinControls.UI.RadButton btnGenerateRightholderAgreement;
+        private Telerik.WinControls.UI.RadPdfViewer pdfvRightholderAgreement;
+        private Telerik.WinControls.UI.RadWaitingBar waitbarAgreement;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
+        private Telerik.WinControls.UI.RadPageView MainPageView;
+        private Telerik.WinControls.UI.RadDropDownMenu radMenuButtonItem1;
+        private Telerik.WinControls.UI.RadMenuItem miAddMusicalComposition;
+        private Telerik.WinControls.UI.RadMaskedEditBox mebDuration;
     }
 }

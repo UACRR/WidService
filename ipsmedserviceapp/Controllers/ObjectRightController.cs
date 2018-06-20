@@ -54,10 +54,10 @@ namespace ipsmedserviceapp.Controllers
         {
             dest.SetFields(sors);
             dest.MediaTrack.SetFields(sors.MediaTrack);
+            dest.MediaTrack.Duration = sors.MediaTrack.Duration;
             dest.MediaTrack.Name = sors.Name;
             _dbContext.UpdateList(sors.CopyRight, dest.CopyRight, i => { }, (l, r) => l.CRightId == r.CRightId);
             _dbContext.UpdateList(sors.Authors, dest.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
-
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 case 5:
                     {
-                        addObject.MediaTrack = new MediaTrack();
+                        addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0,0,0) };
                     }
                     break;
             }
@@ -130,7 +130,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("newobject")]
         public async Task<IActionResult> createObjectRight([FromBody] ObjectRight body )
         {
-            ObjectRight addObject = new ObjectRight { CategoryCode = body.CategoryCode };
+            ObjectRight addObject = new ObjectRight { CategoryCode = body.CategoryCode, MediaTrack = new MediaTrack() };
             IDbContextTransaction tran = null;
             try
             {

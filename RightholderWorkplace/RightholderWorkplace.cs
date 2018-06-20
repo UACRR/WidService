@@ -520,10 +520,6 @@ namespace RightholderWorkplace
 
         private void SetObjectRightDictionaries()
         {
-            ddlGenreType.DataSource = _dictionariesObjectRight.genreType;
-            ddlGenreType.ValueMember = "CodeI";
-            ddlGenreType.DisplayMember = "Name";
-
             ddlSpecType.DataSource = _dictionariesObjectRight.specType;
             ddlSpecType.ValueMember = "CodeI";
             ddlSpecType.DisplayMember = "Name";
@@ -541,6 +537,13 @@ namespace RightholderWorkplace
             //var columnCopyrightStatus = gvObjectAuthorsRightholders.Columns["CopyrightStatus"] as GridViewCheckBoxColumn;
             //columnCopyrightStatus.NullValue = false;
             //columnCopyrightStatus.DataSourceNullValue = false;
+        }
+
+        private void SetAvalaibleGenres(int category)
+        {
+            ddlGenreType.DataSource = _dictionariesObjectRight.genreType.Where(g => g.CategoryCode == category);
+            ddlGenreType.ValueMember = "CodeI";
+            ddlGenreType.DisplayMember = "Name";
         }
 
         private void WireUpObjectsRightsPageEvents()
@@ -564,6 +567,33 @@ namespace RightholderWorkplace
 
         #region Objectrights list event handlers
 
+        private void miAddMusicalComposition_Click(object sender, EventArgs e)
+        {
+            if (sender is RadMenuItem menuItem)
+            {
+                int category;
+                if (int.TryParse(menuItem.Tag.ToString(), out category))
+                {
+                    AddObjectRight(category);
+                }
+            }
+        }
+
+        private void AddObjectRight(int category)
+        {
+            if (category == 0)
+                return;
+
+            _objectRight = _objectRightService.NewObjectRight(category);
+
+            SetAvalaibleGenres(category);
+            UpdateObjectRightDataSources(_objectRight, null);
+
+            MainPageView.SelectedPage = mainPageRightsObjects;
+            objectsPageView.SelectedPage = actualObjectsPage;
+            actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+        }
+
         private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var currentColumnName = e.Column.Name;
@@ -583,16 +613,20 @@ namespace RightholderWorkplace
         {
             var objectRightContainer = _objectRightService.GetData(SelectedObjectRight.ObjId);
 
-            UpdateObjectRightDataSources(objectRightContainer);
+            SetAvalaibleGenres(objectRightContainer.objectRight.CategoryCode);
+            UpdateObjectRightDataSources(objectRightContainer.objectRight, objectRightContainer.rhList);
 
             MainPageView.SelectedPage = mainPageRightsObjects;
             objectsPageView.SelectedPage = actualObjectsPage;
             actualObjectsPageView.SelectedPage = actualObjectsItemPage;
         }
 
-        private void UpdateObjectRightDataSources(ContainerForObjectRihgt objectRightContainer)
+        private void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholders)
         {
-            _objectRight = objectRightContainer.objectRight;
+            _objectRight = objectRight;
+
+            if (rightholders == null)
+                rightholders = new List<ViewCustomer>();
 
             objectRightBindingSource.DataSource = _objectRight;
             mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
@@ -602,7 +636,7 @@ namespace RightholderWorkplace
             {
 
                 var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId);
-                var foundedRightholder = objectRightContainer.rhList.FirstOrDefault(r => r.custId == a.CustId);
+                var foundedRightholder = rightholders.FirstOrDefault(r => r.custId == a.CustId);
 
                 return new ObjectAuthorRightholder
                 {
