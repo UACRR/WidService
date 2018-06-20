@@ -774,7 +774,7 @@ namespace RightholderWorkplace
                 objectAuthorRightholder = SelectedObjectAuthorRightholder;
 
 
-            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight))
+            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight, _objectRight.CategoryCode))
             {
                 objectAuthorRightholderBindingSource.RaiseListChangedEvents = false;
 

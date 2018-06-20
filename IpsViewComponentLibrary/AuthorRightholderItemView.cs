@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -18,8 +19,9 @@ namespace IpsViewComponentLibrary
     {
         private readonly ObjectAuthorRightholder _authorRightholder;
         private readonly ObjectRightDictionaries _dictionaries;
+        private readonly int _category;
 
-        public AuthorRightholderItemView(ObjectAuthorRightholder authorRightholder, ObjectRightDictionaries dictionaries)
+        public AuthorRightholderItemView(ObjectAuthorRightholder authorRightholder, ObjectRightDictionaries dictionaries, int category)
         {
             InitializeComponent();
 
@@ -31,14 +33,15 @@ namespace IpsViewComponentLibrary
             rpanelFolkType.SelectedValue = _authorRightholder.FolkType;
 
             _dictionaries = dictionaries;
-            SetDictionaries(_dictionaries);
+            _category = category;
+            SetDictionaries();
 
             objectAuthorRightholderBindingSource.DataSource = _authorRightholder;
         }
 
-        private void SetDictionaries(ObjectRightDictionaries dictionaries)
+        private void SetDictionaries()
         {
-            ddlRoleCode.DataSource = dictionaries.creativeRoleType;
+            ddlRoleCode.DataSource = _dictionaries.creativeRoleType.Where(cr => cr.CategoryCode == _category && cr.Crtype == 1);
             ddlRoleCode.ValueMember = "CodeI";
             ddlRoleCode.DisplayMember = "Name";
         }
