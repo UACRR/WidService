@@ -71,14 +71,10 @@ namespace IpsViewComponentLibrary
 
         private void SelectionView_RightholderSelected(object sender, RightholderMainView selectedRightholder)
         {
-            //var currentAuthor = authorsBindingSource.Current as Authors;
-            //currentAuthor.AuthorName = item.Name;
-            //currentAuthor.CustId = item.CustId;
-            //currentAuthor.IsFolkOrUnknown = null;
-
-            //authorsBindingSource.ResetBindings(false);
-
-            ddlRightholder.Text = selectedRightholder.Name;
+            _authorRightholder.CustId = selectedRightholder.CustId;
+            _authorRightholder.AuthorName = selectedRightholder.Name;
+            _authorRightholder.CommunityName = selectedRightholder.Community_Name;
+            objectAuthorRightholderBindingSource.ResetBindings(false);
         }
 
         private void rpanelFolkType_SelectedValueChanged(object sender, EventArgs e)
