@@ -35,12 +35,17 @@ namespace IpsViewComponentLibrary
         private AnketaDictionaties _anketaDictionaries;
 
         //властивість наявності майданчиків
-         public bool IsContainPlaces
-         {
-             get;// => ctrlClientName.IsPlaceIn;
-            set;//=> ctrlClientName.IsPlaceIn = value;
-         } 
+        public bool IsContainPlaces
+        {
+           get => ctrlClientName.IsPlaceIn;
+           set => ctrlClientName.IsPlaceIn = value;
+        }
 
+        public delegate string GeneratePdfDoc(Customer customer, AnketaDictionaties dictionaties);
+        public event GeneratePdfDoc OnDocumentNeedGenerate;
+
+        public delegate void ReturnSaveCustomer(Customer cust);
+        public event ReturnSaveCustomer OnBtnSaveClick;
 
         public GlobalControlConsumerAnketa()
         {
@@ -55,6 +60,10 @@ namespace IpsViewComponentLibrary
             
         }
 
+        private void ButtonSaveClick()
+        {
+        }
+
         /// <summary>
         /// Ініціалізація даних для контрола
         /// </summary>
@@ -63,18 +72,18 @@ namespace IpsViewComponentLibrary
         {
             SetColorTabs(isNew);
 
-            //ctrlClientName.SetDataSources(_cust,_anketaDictionaries); // - - - - - - - -  Назва клієнта
-            //ctrlAddress.SetDataSources(_cust,_anketaDictionaries);    // - - - - - - - -  Адреса
-            //ctrlManagers.SetDataSources(_cust,_anketaDictionaries);   // - - - - - - - -  Керівники
-            //ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
-            //ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
-            //    ? _cust?.Client?.ClnBusinessPlace // - - - - - -  - - - - - - - - - - - - 
-            //    : null);                          // - - - - - -  - - - - - - - - - - - -
+            ctrlClientName.SetDataSources(_cust,_anketaDictionaries); // - - - - - - - -  Назва клієнта
+            ctrlAddress.SetDataSources(_cust,_anketaDictionaries);    // - - - - - - - -  Адреса
+            ctrlManagers.SetDataSources(_cust,_anketaDictionaries);   // - - - - - - - -  Керівники
+            ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
+            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
+                ? _cust?.Client?.ClnBusinessPlace // - - - - - -  - - - - - - - - - - - - 
+                : null);                          // - - - - - -  - - - - - - - - - - - -
             ctrlPlacesTitle.Text =             // - - - - - -  - - - - - - - - - - - - -
                 _cust?.Company?.AnketaCompany?. // - - - - - -  - - - - - - - - - - - - -
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
-            //ctrlBankRequisites.SetDataSources(_cust,_anketaDictionaries); // - - - - - -  Банківські реквізити
-            //ctrlAgreement.SetDataSources(_cust,_anketaDictionaries);  // - - - - - - - -  Договір
+            ctrlBankRequisites.SetDataSources(_cust,_anketaDictionaries); // - - - - - -  Банківські реквізити
+            ctrlAgreement.SetDataSources(_cust,_anketaDictionaries);  // - - - - - - - -  Договір
  
         }
 
@@ -139,8 +148,8 @@ namespace IpsViewComponentLibrary
                 case 7:
                 {
                     _btnType = ButtonType.None;
-                        MessageBox.Show("bingo!");
-                    
+                    OnBtnSaveClick?.Invoke(_cust);
+
                 }
                     break;
             }
@@ -336,6 +345,14 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
+
+        private void btnLoadPdf_Click(object sender, EventArgs e)
+        {
+            var pdfDoc = OnDocumentNeedGenerate?.Invoke(_cust, _anketaDictionaries);
+            
+            if(!string.IsNullOrEmpty(pdfDoc))
+                radPdfViewer.LoadDocument(pdfDoc);
+        }
     }
 
     internal enum ButtonType

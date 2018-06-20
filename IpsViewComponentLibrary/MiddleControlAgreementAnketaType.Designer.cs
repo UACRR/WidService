@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
-            this.contractConsumerMainControl1 = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            this.contractConsumerDetailControl1 = new IpsViewComponentLibrary.ContractConsumerDetailControl();
-            this.licenseTypeDropListLicType = new Telerik.WinControls.UI.RadDropDownList();
+            this.ctrlAgreementMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.ctrlAgreementSecond = new IpsViewComponentLibrary.ContractConsumerDetailControl();
+            this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseTypeDropListLicType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,45 +47,46 @@
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Назва «Клієнта»";
             // 
-            // contractConsumerMainControl1
+            // ctrlAgreementMain
             // 
-            this.contractConsumerMainControl1.AgrDateDataMember = null;
-            this.contractConsumerMainControl1.BeginDateDataMember = null;
-            this.contractConsumerMainControl1.ContrNumber = null;
-            this.contractConsumerMainControl1.DataSource = null;
-            this.contractConsumerMainControl1.DateDataSource = null;
-            this.contractConsumerMainControl1.EndDateDataMember = null;
-            this.contractConsumerMainControl1.Location = new System.Drawing.Point(3, 56);
-            this.contractConsumerMainControl1.MaximumSize = new System.Drawing.Size(477, 49);
-            this.contractConsumerMainControl1.Name = "contractConsumerMainControl1";
-            this.contractConsumerMainControl1.Size = new System.Drawing.Size(477, 49);
-            this.contractConsumerMainControl1.TabIndex = 10;
+            this.ctrlAgreementMain.AgrDateDataMember = null;
+            this.ctrlAgreementMain.BeginDateDataMember = null;
+            this.ctrlAgreementMain.ContrNumber = null;
+            this.ctrlAgreementMain.DataSource = null;
+            this.ctrlAgreementMain.DateDataSource = null;
+            this.ctrlAgreementMain.EndDateDataMember = null;
+            this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 56);
+            this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);
+            this.ctrlAgreementMain.Name = "ctrlAgreementMain";
+            this.ctrlAgreementMain.Size = new System.Drawing.Size(477, 49);
+            this.ctrlAgreementMain.TabIndex = 10;
             // 
-            // contractConsumerDetailControl1
+            // ctrlAgreementSecond
             // 
-            this.contractConsumerDetailControl1.AutoprolongationPercent = null;
-            this.contractConsumerDetailControl1.DataSourceBinding = null;
-            this.contractConsumerDetailControl1.IsAutoprolongation = false;
-            this.contractConsumerDetailControl1.Location = new System.Drawing.Point(3, 111);
-            this.contractConsumerDetailControl1.MaximumSize = new System.Drawing.Size(480, 105);
-            this.contractConsumerDetailControl1.MinimumSize = new System.Drawing.Size(480, 105);
-            this.contractConsumerDetailControl1.MinPayment = null;
-            this.contractConsumerDetailControl1.Name = "contractConsumerDetailControl1";
-            this.contractConsumerDetailControl1.PercentPayment = null;
-            this.contractConsumerDetailControl1.PeriodPaymentDataSource = null;
-            this.contractConsumerDetailControl1.PeriodPaymentDisplayMember = "";
-            this.contractConsumerDetailControl1.PeriodPaymentValueMember = "";
-            this.contractConsumerDetailControl1.Size = new System.Drawing.Size(480, 105);
-            this.contractConsumerDetailControl1.TabIndex = 11;
+            this.ctrlAgreementSecond.AutoprolongationPercent = null;
+            this.ctrlAgreementSecond.DataSourceBinding = null;
+            this.ctrlAgreementSecond.IsAutoprolongation = false;
+            this.ctrlAgreementSecond.Location = new System.Drawing.Point(3, 111);
+            this.ctrlAgreementSecond.MaximumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgreementSecond.MinimumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgreementSecond.MinPayment = null;
+            this.ctrlAgreementSecond.Name = "ctrlAgreementSecond";
+            this.ctrlAgreementSecond.PercentPayment = null;
+            this.ctrlAgreementSecond.PeriodPaymentDataSource = null;
+            this.ctrlAgreementSecond.PeriodPaymentDisplayMember = "";
+            this.ctrlAgreementSecond.PeriodPaymentValueMember = "";
+            this.ctrlAgreementSecond.Size = new System.Drawing.Size(480, 105);
+            this.ctrlAgreementSecond.TabIndex = 11;
             // 
-            // licenseTypeDropListLicType
+            // ddlLicType
             // 
-            this.licenseTypeDropListLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.licenseTypeDropListLicType.Location = new System.Drawing.Point(76, 30);
-            this.licenseTypeDropListLicType.Name = "licenseTypeDropListLicType";
-            this.licenseTypeDropListLicType.Size = new System.Drawing.Size(340, 20);
-            this.licenseTypeDropListLicType.TabIndex = 12;
-            ((Telerik.WinControls.UI.StackLayoutElement)(this.licenseTypeDropListLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
+            this.ddlLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlLicType.Location = new System.Drawing.Point(76, 30);
+            this.ddlLicType.Name = "ddlLicType";
+            this.ddlLicType.Size = new System.Drawing.Size(340, 20);
+            this.ddlLicType.TabIndex = 12;
+            ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            ((Telerik.WinControls.UI.StackLayoutElement)(this.ddlLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
             // 
             // radLabel1
             // 
@@ -99,17 +100,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.licenseTypeDropListLicType);
+            this.Controls.Add(this.ddlLicType);
             this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.contractConsumerDetailControl1);
-            this.Controls.Add(this.contractConsumerMainControl1);
+            this.Controls.Add(this.ctrlAgreementSecond);
+            this.Controls.Add(this.ctrlAgreementMain);
             this.Controls.Add(this.lblTitle);
             this.MaximumSize = new System.Drawing.Size(490, 218);
             this.MinimumSize = new System.Drawing.Size(490, 218);
             this.Name = "MiddleControlAgreementAnketaType";
             this.Size = new System.Drawing.Size(490, 218);
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseTypeDropListLicType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -119,9 +120,9 @@
         #endregion
 
         private Telerik.WinControls.UI.RadLabel lblTitle;
-        private ContractConsumerMainControl contractConsumerMainControl1;
-        private ContractConsumerDetailControl contractConsumerDetailControl1;
-        private Telerik.WinControls.UI.RadDropDownList licenseTypeDropListLicType;
+        private ContractConsumerMainControl ctrlAgreementMain;
+        private ContractConsumerDetailControl ctrlAgreementSecond;
+        private Telerik.WinControls.UI.RadDropDownList ddlLicType;
         private Telerik.WinControls.UI.RadLabel radLabel1;
     }
 }

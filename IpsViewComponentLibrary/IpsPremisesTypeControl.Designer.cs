@@ -81,16 +81,16 @@
             gridViewTextBoxColumn2.FieldName = "TypePremisesName";
             gridViewTextBoxColumn2.HeaderText = "Тип приміщення";
             gridViewTextBoxColumn2.Name = "TypePremisesName";
-            gridViewTextBoxColumn2.Width = 377;
+            gridViewTextBoxColumn2.Width = 353;
             gridViewTextBoxColumn3.FieldName = "CountPlace";
             gridViewTextBoxColumn3.HeaderText = "Місць";
             gridViewTextBoxColumn3.Name = "CountPlace";
-            gridViewTextBoxColumn3.Width = 76;
+            gridViewTextBoxColumn3.Width = 71;
             gridViewTextBoxColumn4.FieldName = "Meterage";
             gridViewTextBoxColumn4.HeaderText = "Метраж";
             gridViewTextBoxColumn4.Name = "Meterage";
             gridViewTextBoxColumn4.UseDataTypeConverterWhenSorting = true;
-            gridViewTextBoxColumn4.Width = 76;
+            gridViewTextBoxColumn4.Width = 72;
             this.rGridViewPremises.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -101,14 +101,14 @@
             this.rGridViewPremises.Name = "rGridViewPremises";
             this.rGridViewPremises.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewPremises.ReadOnly = true;
-            this.rGridViewPremises.Size = new System.Drawing.Size(548, 185);
+            this.rGridViewPremises.Size = new System.Drawing.Size(515, 192);
             this.rGridViewPremises.TabIndex = 0;
             this.rGridViewPremises.ThemeName = "Office2007Silver";
             // 
             // rBtnAddPremises
             // 
             this.rBtnAddPremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnAddPremises.Location = new System.Drawing.Point(17, 226);
+            this.rBtnAddPremises.Location = new System.Drawing.Point(17, 233);
             this.rBtnAddPremises.Name = "rBtnAddPremises";
             this.rBtnAddPremises.Size = new System.Drawing.Size(138, 24);
             this.rBtnAddPremises.TabIndex = 1;
@@ -122,14 +122,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(179, 9);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(386, 20);
+            this.radSeparator1.Size = new System.Drawing.Size(353, 20);
             this.radSeparator1.TabIndex = 0;
             this.radSeparator1.ThemeName = "Office2007Silver";
             // 
             // rBtnEditPremises
             // 
             this.rBtnEditPremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnEditPremises.Location = new System.Drawing.Point(162, 226);
+            this.rBtnEditPremises.Location = new System.Drawing.Point(162, 233);
             this.rBtnEditPremises.Name = "rBtnEditPremises";
             this.rBtnEditPremises.Size = new System.Drawing.Size(138, 24);
             this.rBtnEditPremises.TabIndex = 2;
@@ -140,7 +140,7 @@
             // radBtnDeletePremises
             // 
             this.radBtnDeletePremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radBtnDeletePremises.Location = new System.Drawing.Point(440, 226);
+            this.radBtnDeletePremises.Location = new System.Drawing.Point(407, 233);
             this.radBtnDeletePremises.Name = "radBtnDeletePremises";
             this.radBtnDeletePremises.Size = new System.Drawing.Size(125, 24);
             this.radBtnDeletePremises.TabIndex = 3;
@@ -158,9 +158,9 @@
             this.Controls.Add(this.rBtnAddPremises);
             this.Controls.Add(this.rGridViewPremises);
             this.Controls.Add(this.rLblPremises);
-            this.MinimumSize = new System.Drawing.Size(450, 253);
+            this.MinimumSize = new System.Drawing.Size(450, 260);
             this.Name = "IpsPremisesTypeControl";
-            this.Size = new System.Drawing.Size(568, 253);
+            this.Size = new System.Drawing.Size(535, 260);
             ((System.ComponentModel.ISupportInitialize)(this.rLblPremises)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewPremises.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewPremises)).EndInit();
