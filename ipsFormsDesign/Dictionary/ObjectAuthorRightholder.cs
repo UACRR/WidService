@@ -62,6 +62,11 @@ namespace ipsFormsDesign.Dictionary
             }
         }
 
+        public ObjectAuthorRightholder()
+        {
+            _folkType = 1;
+        }
+
         private void ClearRightholderData()
         {
             IsRightholder = false;
