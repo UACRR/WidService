@@ -13,7 +13,7 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
-    /// <inheritdoc />
+    /// <inheritdoc cref="" />
     /// 1. Передати  AnketaDictionaties,
     /// 2. Передати джерело даних в грід
     /// 3. Підписатись на подію (викликати метод, що повертає Customer)
@@ -23,9 +23,18 @@ namespace IpsViewComponentLibrary
         public delegate Customer UpdateData(int id);
         public event UpdateData OnGridRowSelectedChaged;
 
+        public delegate void ButtonBackClick(int custId);
+
+        public event ButtonBackClick OnButtonBackClick;
         public GlobalControlConsumerCabinet()
         {
             InitializeComponent();
+        }
+
+        public void SetSelectCustomer(int custId)
+        {
+            if (gvConsumerList.Rows.Count != 0)
+                gvConsumerList.CurrentRow = gvConsumerList.Rows[gvConsumerList.Rows.Where(rec => (int)rec.Cells["CustId"].Value == custId).Select(rec => rec.Index).SingleOrDefault()];
         }
 
         /// <summary>
@@ -61,6 +70,11 @@ namespace IpsViewComponentLibrary
         {
             // Обробка події зміни фільтра
             ConsumerFilterEnum choice = _choice is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            OnButtonBackClick?.Invoke((int)gvConsumerList.CurrentRow.Cells["CustId"].Value);
         }
     }
 }

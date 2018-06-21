@@ -16,6 +16,7 @@ namespace ConsumerWorkplace_v_1._0
     {
         private readonly MainViewSwitcher _switcher;
         private GlobalControlConsumerCabinet cabinet = null;
+        private GlobalControlConsumerMainGrid mainGrid = null;
         private Control _currentControl = null;
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private ConsumerService _service = null;
@@ -26,7 +27,7 @@ namespace ConsumerWorkplace_v_1._0
             _switcher = switcher;
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _service = service;
-            SwitchToCabinet();
+            SwitchToGrid();
 
         }
 
@@ -34,38 +35,70 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (_currentControl == null)
                 return;
-            _currentNodeValue =  (e.Node.Value is ConsumerFilterEnum ? (ConsumerFilterEnum) e.Node.Value : ConsumerFilterEnum.None);
+            _currentNodeValue =  (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            cabinet.SetGridDataSource(getMainView());
-
+            mainGrid?.SetGridDataSource(getMainView());
+            cabinet?.SetGridDataSource(getMainView());
+            
 
         }
 
-        public void SwitchToGrid()
-        {
 
+        //перейти з гріда до кабінету
+        private void MainGrid_OnGridButtonClick(int custId)
+        {
+            SwitchToCabinet(custId);
+        }
+
+        //перейти з кабінету до гріда
+        private void Cabinet_OnButtonBackClick(int custId)
+        {
+            SwitchToGrid(custId);
         }
 
         public IList<ConsumerMainView> getMainView()
         {
             return _service.getMainView(_currentNodeValue);
         }
-        public void SwitchToCabinet()
+
+        public void SwitchToGrid(int id = 0)
+        {
+            if (mainGrid == null)
+            {
+                mainGrid = new GlobalControlConsumerMainGrid();
+                mainGrid.OnGridButtonClick += MainGrid_OnGridButtonClick;
+                mainGrid.SetDictionary(_service.GetDictionary());
+                mainGrid.SetGridDataSource(getMainView());
+
+                mainGrid.Dock = DockStyle.Fill;
+            }
+
+            if (id != 0)
+                mainGrid.SetSelectCustomer(id);
+
+            _currentControl = mainGrid;
+            _switcher.SwitchView(mainGrid);
+        }
+
+        public void SwitchToCabinet(int id)
         {
             if (cabinet == null)
             {
                 cabinet = new GlobalControlConsumerCabinet();
+                cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
+                cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 cabinet.SetDictionary( _service.GetDictionary());
                 cabinet.SetGridDataSource(getMainView());
 
                 cabinet.Dock = DockStyle.Fill;
-                cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged; ;
             }
 
+            cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;
-            // _currentControl.SetFilter(_currentNodeValue);
             _switcher.SwitchView( cabinet );
         }
+
+
 
         private ipsFormsDesign.Model.Customer Cabinet_OnGridRowSelectedChaged(int id)
         {

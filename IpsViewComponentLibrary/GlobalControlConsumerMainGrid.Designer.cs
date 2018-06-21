@@ -35,30 +35,30 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.rGridViewConsumers = new Telerik.WinControls.UI.RadGridView();
+            this.gvViewConsumers = new Telerik.WinControls.UI.RadGridView();
             this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
-            ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             this.SuspendLayout();
             // 
-            // rGridViewConsumers
+            // gvViewConsumers
             // 
-            this.rGridViewConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gvViewConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rGridViewConsumers.Location = new System.Drawing.Point(3, 34);
+            this.gvViewConsumers.Location = new System.Drawing.Point(3, 34);
             // 
             // 
             // 
-            this.rGridViewConsumers.MasterTemplate.AllowAddNewRow = false;
-            this.rGridViewConsumers.MasterTemplate.AllowColumnReorder = false;
-            this.rGridViewConsumers.MasterTemplate.AllowDeleteRow = false;
-            this.rGridViewConsumers.MasterTemplate.AllowDragToGroup = false;
-            this.rGridViewConsumers.MasterTemplate.AllowEditRow = false;
-            this.rGridViewConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gvViewConsumers.MasterTemplate.AllowAddNewRow = false;
+            this.gvViewConsumers.MasterTemplate.AllowColumnReorder = false;
+            this.gvViewConsumers.MasterTemplate.AllowDeleteRow = false;
+            this.gvViewConsumers.MasterTemplate.AllowDragToGroup = false;
+            this.gvViewConsumers.MasterTemplate.AllowEditRow = false;
+            this.gvViewConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.FieldName = "innokpo";
             gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
@@ -92,27 +92,29 @@
             gridViewTextBoxColumn5.Name = "CustId";
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
+            gridViewCommandColumn1.DefaultText = "Відкрити";
             gridViewCommandColumn1.FieldName = "btnsEdit";
-            gridViewCommandColumn1.HeaderText = "Редагувати";
+            gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Name = "btnsEdit";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 70;
-            this.rGridViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            this.gvViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
             gridViewCommandColumn1});
-            this.rGridViewConsumers.MasterTemplate.EnableGrouping = false;
-            this.rGridViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.rGridViewConsumers.Name = "rGridViewConsumers";
-            this.rGridViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.rGridViewConsumers.ReadOnly = true;
-            this.rGridViewConsumers.Size = new System.Drawing.Size(1034, 547);
-            this.rGridViewConsumers.TabIndex = 3;
-            this.rGridViewConsumers.ThemeName = "Office2007Silver";
+            this.gvViewConsumers.MasterTemplate.EnableGrouping = false;
+            this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvViewConsumers.Name = "gvViewConsumers";
+            this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvViewConsumers.ReadOnly = true;
+            this.gvViewConsumers.Size = new System.Drawing.Size(1034, 547);
+            this.gvViewConsumers.TabIndex = 3;
+            this.gvViewConsumers.ThemeName = "Office2007Silver";
+            this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
             // 
             // btnNewConsumer
             // 
@@ -153,11 +155,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnNewConsumer);
-            this.Controls.Add(this.rGridViewConsumers);
+            this.Controls.Add(this.gvViewConsumers);
             this.Name = "GlobalControlConsumerMainGrid";
             this.Size = new System.Drawing.Size(1040, 584);
-            ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             this.ResumeLayout(false);
@@ -166,7 +168,7 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadGridView rGridViewConsumers;
+        private Telerik.WinControls.UI.RadGridView gvViewConsumers;
         private Telerik.WinControls.UI.RadButton btnNewConsumer;
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
     }

@@ -42,6 +42,7 @@ namespace ConsumerWorkplace_v_1._0
             InitializeComponent();
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
             placesCtrlConsumerPlaces.OnEnabledChangeWhenEditOrAddPremises += PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises;
+
             foreach (var item in list)
             {
                 radTreeView1.Nodes.Add(item);
@@ -49,8 +50,8 @@ namespace ConsumerWorkplace_v_1._0
 
             _service = new ConsumerService();
             _presenter = new SwitchPresenter( mainViewSwitcher1, _service, radTreeView1 );
+            radTreeView1.SelectedNode = radTreeView1.Nodes["Всі"];
 
-            
         }
 
         public Customer ReturnCustomer()
