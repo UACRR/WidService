@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.Data;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
@@ -489,6 +490,20 @@ namespace RightholderWorkplace
             SetObjectRightDictionaries();
 
             UpdateObjectRightsList();
+
+            FilterDescriptor filterByName = new FilterDescriptor();
+            filterByName.PropertyName = "CodeI";
+            filterByName.Operator = FilterOperator.IsEqualTo;
+            filterByName.Value = 1;
+            filterByName.IsFilterEditor = true;
+            gvObjectAddNames.FilterDescriptors.Add(filterByName);
+
+            FilterDescriptor filterByPerformer = new FilterDescriptor();
+            filterByPerformer.PropertyName = "CodeI";
+            filterByPerformer.Operator = FilterOperator.IsEqualTo;
+            filterByPerformer.Value = 2;
+            filterByPerformer.IsFilterEditor = true;
+            gvObjectPerformers.FilterDescriptors.Add(filterByPerformer);
         }
 
         #region Objectrights page
@@ -633,6 +648,9 @@ namespace RightholderWorkplace
             objectRightBindingSource.DataSource = _objectRight;
             mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
 
+            _objectRight.SeekObject = _objectRight.SeekObject.ToList();
+            seekObjectBindingSource.DataSource = _objectRight.SeekObject;
+
             // transform Authors and Copyright table into single table
             var objectAuthorRightholderList = _objectRight.Authors.Select(a =>
             {
@@ -750,6 +768,34 @@ namespace RightholderWorkplace
             actualObjectsPageView.SelectedPage = actualObjectsListPage;
         }
 
+        private void btnAddObjectAddName_Click(object sender, EventArgs e)
+        {
+            AddRowToGrid(gvObjectAddNames);
+        }
+
+        private void btnDeleteObjectAddName_Click(object sender, EventArgs e)
+        {
+            gvObjectAddNames.Rows.Remove(gvObjectAddNames.CurrentRow);
+        }
+
+        private void btnAddObjectPerformer_Click(object sender, EventArgs e)
+        {
+            AddRowToGrid(gvObjectPerformers);
+        }
+
+        private void btnDeleteObjectPerformer_Click(object sender, EventArgs e)
+        {
+            gvObjectPerformers.Rows.Remove(gvObjectPerformers.CurrentRow);
+        }
+
+        private void AddRowToGrid(RadGridView gridView)
+        {
+            var filterValue = gridView.FilterDescriptors.FirstOrDefault()?.Value;
+
+            var newRow = gridView.Rows.AddNew();
+            newRow.Cells["CodeI"].Value = filterValue;
+            newRow.Cells["Name"].BeginEdit();
+        }
 
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
