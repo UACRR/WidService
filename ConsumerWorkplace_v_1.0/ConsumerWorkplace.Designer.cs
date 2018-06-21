@@ -33,13 +33,13 @@ namespace ConsumerWorkplace_v_1._0
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsumerWorkplace));
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
@@ -286,7 +286,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageParentConsumers.Margin = new System.Windows.Forms.Padding(0);
             this.pageParentConsumers.Name = "pageParentConsumers";
             this.pageParentConsumers.SelectedPage = this.pageBigRights;
-            this.pageParentConsumers.Size = new System.Drawing.Size(1251, 624);
+            this.pageParentConsumers.Size = new System.Drawing.Size(1273, 648);
             this.pageParentConsumers.TabIndex = 0;
             this.pageParentConsumers.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageParentConsumers.GetChildAt(0))).StripScrollingAnimation = Telerik.WinControls.RadEasingType.Linear;
@@ -303,7 +303,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageBigRights.ItemSize = new System.Drawing.SizeF(85F, 26F);
             this.pageBigRights.Location = new System.Drawing.Point(10, 31);
             this.pageBigRights.Name = "pageBigRights";
-            this.pageBigRights.Size = new System.Drawing.Size(1235, 587);
+            this.pageBigRights.Size = new System.Drawing.Size(1257, 611);
             this.pageBigRights.Text = "Великі права";
             // 
             // rPageViewSmallRights
@@ -318,7 +318,7 @@ namespace ConsumerWorkplace_v_1._0
             this.rPageViewSmallRights.Location = new System.Drawing.Point(0, -1);
             this.rPageViewSmallRights.Name = "rPageViewSmallRights";
             this.rPageViewSmallRights.SelectedPage = this.rpwsrPageConsumers;
-            this.rPageViewSmallRights.Size = new System.Drawing.Size(1196, 549);
+            this.rPageViewSmallRights.Size = new System.Drawing.Size(1218, 609);
             this.rPageViewSmallRights.TabIndex = 0;
             this.rPageViewSmallRights.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rPageViewSmallRights.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -330,11 +330,12 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // rpwsrPageConsumers
             // 
+            this.rpwsrPageConsumers.Controls.Add(this.radDropDownButton);
             this.rpwsrPageConsumers.Controls.Add(this.rpvConsumers);
             this.rpwsrPageConsumers.ItemSize = new System.Drawing.SizeF(113F, 26F);
             this.rpwsrPageConsumers.Location = new System.Drawing.Point(122, 10);
             this.rpwsrPageConsumers.Name = "rpwsrPageConsumers";
-            this.rpwsrPageConsumers.Size = new System.Drawing.Size(1063, 528);
+            this.rpwsrPageConsumers.Size = new System.Drawing.Size(1085, 588);
             this.rpwsrPageConsumers.Text = "Споживачі";
             // 
             // rpvConsumers
@@ -355,7 +356,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
             this.rpvConsumers.SelectedPage = this.pageConsumersGrid;
-            this.rpvConsumers.Size = new System.Drawing.Size(1063, 528);
+            this.rpvConsumers.Size = new System.Drawing.Size(1085, 539);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.rpvConsumers.GetChildAt(0))).ShowItemPinButton = false;
@@ -379,14 +380,14 @@ namespace ConsumerWorkplace_v_1._0
             this.pageConsumersAnketa.ItemSize = new System.Drawing.SizeF(12F, 257F);
             this.pageConsumersAnketa.Location = new System.Drawing.Point(21, 10);
             this.pageConsumersAnketa.Name = "pageConsumersAnketa";
-            this.pageConsumersAnketa.Size = new System.Drawing.Size(1034, 507);
+            this.pageConsumersAnketa.Size = new System.Drawing.Size(1031, 507);
             // 
             // lblConsumerTitle
             // 
             this.lblConsumerTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblConsumerTitle.AutoSize = false;
             this.lblConsumerTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblConsumerTitle.Location = new System.Drawing.Point(322, 3);
+            this.lblConsumerTitle.Location = new System.Drawing.Point(320, 3);
             this.lblConsumerTitle.Name = "lblConsumerTitle";
             this.lblConsumerTitle.Size = new System.Drawing.Size(396, 18);
             this.lblConsumerTitle.TabIndex = 0;
@@ -415,7 +416,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
             this.pageAllAnketa.SelectionWrap = false;
-            this.pageAllAnketa.Size = new System.Drawing.Size(1018, 446);
+            this.pageAllAnketa.Size = new System.Drawing.Size(1015, 446);
             this.pageAllAnketa.TabIndex = 0;
             this.pageAllAnketa.ThemeName = "Office2007Silver";
             this.pageAllAnketa.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.pageAllAnketa_SelectedPageChanging);
@@ -443,14 +444,14 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerClientName.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerClientName.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerClientName.Name = "pvConsumerClientName";
-            this.pvConsumerClientName.Size = new System.Drawing.Size(874, 425);
+            this.pvConsumerClientName.Size = new System.Drawing.Size(871, 425);
             this.pvConsumerClientName.TabStop = true;
             this.pvConsumerClientName.Text = "Назва клієнта";
             // 
             // rbtnNextLicType
             // 
             this.rbtnNextLicType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextLicType.Location = new System.Drawing.Point(645, 396);
+            this.rbtnNextLicType.Location = new System.Drawing.Point(642, 396);
             this.rbtnNextLicType.Name = "rbtnNextLicType";
             this.rbtnNextLicType.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextLicType.TabIndex = 3;
@@ -1773,12 +1774,11 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // pageConsumersGrid
             // 
-            this.pageConsumersGrid.Controls.Add(this.radDropDownButton);
             this.pageConsumersGrid.Controls.Add(this.rGridViewConsumers);
             this.pageConsumersGrid.ItemSize = new System.Drawing.SizeF(12F, 257F);
             this.pageConsumersGrid.Location = new System.Drawing.Point(21, 10);
             this.pageConsumersGrid.Name = "pageConsumersGrid";
-            this.pageConsumersGrid.Size = new System.Drawing.Size(1031, 507);
+            this.pageConsumersGrid.Size = new System.Drawing.Size(1053, 518);
             // 
             // radDropDownButton
             // 
@@ -1787,7 +1787,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radDropDownButton.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnAddJuridicalPerson,
             this.btnAddNaturalPerson});
-            this.radDropDownButton.Location = new System.Drawing.Point(0, 509);
+            this.radDropDownButton.Location = new System.Drawing.Point(12, 561);
             this.radDropDownButton.Name = "radDropDownButton";
             this.radDropDownButton.Size = new System.Drawing.Size(140, 24);
             this.radDropDownButton.TabIndex = 3;
@@ -1825,59 +1825,59 @@ namespace ConsumerWorkplace_v_1._0
             this.rGridViewConsumers.MasterTemplate.AllowDragToGroup = false;
             this.rGridViewConsumers.MasterTemplate.AllowEditRow = false;
             this.rGridViewConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn11.DataType = typeof(int);
-            gridViewTextBoxColumn11.FieldName = "innokpo";
-            gridViewTextBoxColumn11.HeaderText = "ЄДРПОУ";
-            gridViewTextBoxColumn11.Name = "Innokpo";
-            gridViewTextBoxColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn11.Width = 130;
-            gridViewTextBoxColumn12.FieldName = "name";
-            gridViewTextBoxColumn12.HeaderText = "Назва";
-            gridViewTextBoxColumn12.Multiline = true;
-            gridViewTextBoxColumn12.Name = "Name";
-            gridViewTextBoxColumn12.Width = 534;
-            gridViewTextBoxColumn12.WrapText = true;
-            gridViewTextBoxColumn13.DataType = typeof(int);
-            gridViewTextBoxColumn13.FieldName = "countAgree";
-            gridViewTextBoxColumn13.HeaderText = "К-сть діючих договорів";
-            gridViewTextBoxColumn13.Name = "CountAgree";
-            gridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn13.Width = 130;
-            gridViewTextBoxColumn13.WrapText = true;
-            gridViewTextBoxColumn14.DataType = typeof(double);
-            gridViewTextBoxColumn14.FieldName = "undistribamount";
-            gridViewTextBoxColumn14.HeaderText = "Нерозподілені кошти";
-            gridViewTextBoxColumn14.Name = "Undistribamount";
-            gridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn14.Width = 147;
-            gridViewTextBoxColumn14.WrapText = true;
-            gridViewTextBoxColumn15.DataType = typeof(int);
-            gridViewTextBoxColumn15.FieldName = "custId";
-            gridViewTextBoxColumn15.HeaderText = "ID";
-            gridViewTextBoxColumn15.IsVisible = false;
-            gridViewTextBoxColumn15.Name = "CustId";
-            gridViewCommandColumn3.AllowResize = false;
-            gridViewCommandColumn3.AllowSort = false;
-            gridViewCommandColumn3.FieldName = "btnsEdit";
-            gridViewCommandColumn3.HeaderText = "Редагувати";
-            gridViewCommandColumn3.Image = global::ConsumerWorkplace_v_1._0.Properties.Resources.editIcon;
-            gridViewCommandColumn3.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn3.Name = "btnsEdit";
-            gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn3.Width = 70;
+            gridViewTextBoxColumn1.DataType = typeof(int);
+            gridViewTextBoxColumn1.FieldName = "innokpo";
+            gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
+            gridViewTextBoxColumn1.Name = "Innokpo";
+            gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn1.Width = 133;
+            gridViewTextBoxColumn2.FieldName = "name";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Multiline = true;
+            gridViewTextBoxColumn2.Name = "Name";
+            gridViewTextBoxColumn2.Width = 546;
+            gridViewTextBoxColumn2.WrapText = true;
+            gridViewTextBoxColumn3.DataType = typeof(int);
+            gridViewTextBoxColumn3.FieldName = "countAgree";
+            gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
+            gridViewTextBoxColumn3.Name = "CountAgree";
+            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn3.Width = 133;
+            gridViewTextBoxColumn3.WrapText = true;
+            gridViewTextBoxColumn4.DataType = typeof(double);
+            gridViewTextBoxColumn4.FieldName = "undistribamount";
+            gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
+            gridViewTextBoxColumn4.Name = "Undistribamount";
+            gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn4.Width = 151;
+            gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.DataType = typeof(int);
+            gridViewTextBoxColumn5.FieldName = "custId";
+            gridViewTextBoxColumn5.HeaderText = "ID";
+            gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.Name = "CustId";
+            gridViewCommandColumn1.AllowResize = false;
+            gridViewCommandColumn1.AllowSort = false;
+            gridViewCommandColumn1.FieldName = "btnsEdit";
+            gridViewCommandColumn1.HeaderText = "Редагувати";
+            gridViewCommandColumn1.Image = global::ConsumerWorkplace_v_1._0.Properties.Resources.editIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.Name = "btnsEdit";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.Width = 70;
             this.rGridViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewCommandColumn3});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewCommandColumn1});
             this.rGridViewConsumers.MasterTemplate.DataSource = this.consumerMainViewBindingSource;
-            this.rGridViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.rGridViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewConsumers.Name = "rGridViewConsumers";
             this.rGridViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewConsumers.ReadOnly = true;
-            this.rGridViewConsumers.Size = new System.Drawing.Size(1028, 499);
+            this.rGridViewConsumers.Size = new System.Drawing.Size(1050, 510);
             this.rGridViewConsumers.TabIndex = 2;
             this.rGridViewConsumers.ThemeName = "Office2007Silver";
             this.rGridViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
@@ -1963,7 +1963,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.Location = new System.Drawing.Point(0, 0);
             this.pageViewOwner.Name = "pageViewOwner";
             this.pageViewOwner.SelectedPage = this.radPageViewPage1;
-            this.pageViewOwner.Size = new System.Drawing.Size(1272, 670);
+            this.pageViewOwner.Size = new System.Drawing.Size(1294, 694);
             this.pageViewOwner.TabIndex = 1;
             this.pageViewOwner.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewOwner.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -1976,7 +1976,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(72F, 26F);
             this.radPageViewPage1.Location = new System.Drawing.Point(10, 35);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1251, 624);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1273, 648);
             this.radPageViewPage1.Text = "Споживачі";
             // 
             // radPageViewPage2
@@ -2028,7 +2028,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1272, 670);
+            this.ClientSize = new System.Drawing.Size(1294, 694);
             this.Controls.Add(this.pageViewOwner);
             this.MinimumSize = new System.Drawing.Size(1280, 700);
             this.Name = "ConsumerWorkplace";

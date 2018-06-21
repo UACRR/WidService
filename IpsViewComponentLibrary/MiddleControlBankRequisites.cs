@@ -22,6 +22,8 @@ namespace IpsViewComponentLibrary
         public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
         {
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
+            if (cust.BankAccount.Count == 0)
+                cust.BankAccount.Add(new BankAccount { CustId = cust.CustId });
             var bankAccount = cust?.BankAccount.FirstOrDefault();
             ctrlBankAccount.DataSource = bankAccount;
             lblTitle.Text = anketa?.Name;

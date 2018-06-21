@@ -133,6 +133,12 @@
     <Compile Include="AnketaAddNickView.Designer.cs">
       <DependentUpon>AnketaAddNickView.cs</DependentUpon>
     </Compile>
+    <Compile Include="AnketaConsumerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnketaConsumerForm.Designer.cs">
+      <DependentUpon>AnketaConsumerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuthorRightholderItemView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -413,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaAddNickView.resx">
       <DependentUpon>AnketaAddNickView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnketaConsumerForm.resx">
+      <DependentUpon>AnketaConsumerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaPersonControl.resx">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>

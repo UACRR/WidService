@@ -41,7 +41,6 @@ namespace ConsumerWorkplace_v_1._0
             
             InitializeComponent();
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
-            placesCtrlConsumerPlaces.OnEnabledChangeWhenEditOrAddPremises += PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises;
 
             foreach (var item in list)
             {
@@ -54,21 +53,6 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
-        public Customer ReturnCustomer()
-        {
-            return _cust ?? new Customer();
-        }
-
-        public object ReturnList()
-        {
-            return getMainViewData().ToList();
-        }
-
-
-        private void PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises()
-        {
-            //some code
-        }
 
         /// <summary>
         /// Перехід на сторінку ДОДАВАННЯ Споживача
