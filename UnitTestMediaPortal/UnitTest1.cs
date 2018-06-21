@@ -15,12 +15,12 @@ namespace UnitTestMediaPortal
     public class UnitTest1 : NUnitFormTest
     {
         [TestMethod]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.ExpectedException(typeof(ArgumentException))]
         public void TestMethodBindingControls()
         {
             try
             {
                 FormBinding1 form = new FormBinding1();
+                
                 var anketa = new AnketaCompany();
                 form.bindingSource1.DataSource = anketa;
 
@@ -31,6 +31,9 @@ namespace UnitTestMediaPortal
                 Microsoft.VisualStudio.TestTools.UnitTesting.Assert.Fail(ex.Message);
             }
         }
+
+
+
 
     }
 }
