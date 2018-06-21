@@ -508,6 +508,8 @@ namespace RightholderWorkplace
 
         #region Objectrights page
 
+        private RadPageViewPage _previousPage;
+
         public ObjectRightMainView SelectedObjectRight
         {
             get
@@ -520,6 +522,22 @@ namespace RightholderWorkplace
                 if (row != null)
                 {
                     gvObjectsRightsList.CurrentRow = row;
+                }
+            }
+        }
+
+        public int SelectedRghtholdersObjectRightId
+        {
+            get
+            {
+                return (gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder).ObjId;
+            }
+            set
+            {
+                var row = gvRightholdersObjectsRights.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == value);
+                if (row != null)
+                {
+                    gvRightholdersObjectsRights.CurrentRow = row;
                 }
             }
         }
@@ -569,9 +587,7 @@ namespace RightholderWorkplace
 
         private void CtrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
-            var rigthholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(selectedRightholder.CustId);
-
-            objectRightForRightholderBindingSource.DataSource = rigthholdersObjectsRightsList;
+            UpdateRightholdersObjectsRightList();
         }
 
         private void CtrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e)
@@ -624,9 +640,14 @@ namespace RightholderWorkplace
             EditObjectRight();
         }
 
-        private void EditObjectRight()
+        private void EditObjectRight(int objId = 0)
         {
-            var objectRightContainer = _objectRightService.GetData(SelectedObjectRight.ObjId);
+            _previousPage = objectsPageView.SelectedPage;
+
+            if (objId == 0)
+                objId = SelectedObjectRight.ObjId;
+
+            var objectRightContainer = _objectRightService.GetData(objId);
 
             SetAvalaibleGenres(objectRightContainer.objectRight.CategoryCode);
             UpdateObjectRightDataSources(objectRightContainer.objectRight, objectRightContainer.rhList);
@@ -710,6 +731,7 @@ namespace RightholderWorkplace
 
         private void btnObjectRightItemCancel_Click(object sender, EventArgs e)
         {
+            objectsPageView.SelectedPage = _previousPage;
             actualObjectsPageView.SelectedPage = actualObjectsListPage;
         }
 
@@ -761,10 +783,17 @@ namespace RightholderWorkplace
 
             _objectRightService.Save(_objectRight);
 
-            UpdateObjectRightsList();
+            if (_previousPage == actualObjectsPage)
+            {
+                UpdateObjectRightsList();
+                SelectedObjectRight = new ObjectRightMainView { ObjId = _objectRight.ObjId };
+            }
+            else if (_previousPage == rightholdersObjectsPage)
+            {
+                UpdateRightholdersObjectsRightList(_objectRight.ObjId);
+            }
 
-            SelectedObjectRight = new ObjectRightMainView { ObjId = _objectRight.ObjId };
-
+            objectsPageView.SelectedPage = _previousPage;
             actualObjectsPageView.SelectedPage = actualObjectsListPage;
         }
 
@@ -804,6 +833,28 @@ namespace RightholderWorkplace
 
         #endregion
 
+        #region Rightholders objectrights list event handlers
+
+        private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                EditObjectRight(SelectedRghtholdersObjectRightId);
+            }
+        }
+
+        private void gvRightholdersObjectsRights_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column is GridViewCommandColumn)
+                return;
+
+            EditObjectRight(SelectedRghtholdersObjectRightId);
+        }
+
+        #endregion
+
         #region Objectrights page helpers
 
         private void UpdateObjectRightsList()
@@ -811,6 +862,18 @@ namespace RightholderWorkplace
             var objectsRightsList = _objectRightService.GetMainView();
 
             gvObjectsRightsList.DataSource = objectsRightsList;
+        }
+
+        private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0)
+        {
+            var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
+
+            objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
+
+            if (selectedObjectId != 0)
+            {
+                SelectedRghtholdersObjectRightId = selectedObjectId;
+            }
         }
 
         private void ShowObjectsRightsForRightholder(RightholderMainView selectedRightholder)
