@@ -102,6 +102,7 @@
             this.txtSurName.Location = new System.Drawing.Point(425, 3);
             this.txtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtSurName.Name = "txtSurName";
+            this.txtSurName.NullText = "По батькові";
             this.txtSurName.Size = new System.Drawing.Size(175, 20);
             this.txtSurName.TabIndex = 2;
             // 
@@ -112,6 +113,7 @@
             this.txtFirstName.Location = new System.Drawing.Point(229, 3);
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.NullText = "Ім\'я";
             this.txtFirstName.Size = new System.Drawing.Size(173, 20);
             this.txtFirstName.TabIndex = 1;
             // 
@@ -122,6 +124,7 @@
             this.txtLastName.Location = new System.Drawing.Point(33, 3);
             this.txtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtLastName.Name = "txtLastName";
+            this.txtLastName.NullText = "Прізвище";
             this.txtLastName.Size = new System.Drawing.Size(173, 20);
             this.txtLastName.TabIndex = 0;
             // 

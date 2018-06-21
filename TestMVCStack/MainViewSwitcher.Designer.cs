@@ -37,7 +37,7 @@
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel1.Location = new System.Drawing.Point(0, 0);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(885, 391);
+            this.radPanel1.Size = new System.Drawing.Size(837, 398);
             this.radPanel1.TabIndex = 0;
             // 
             // MainViewSwitcher
@@ -46,7 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radPanel1);
             this.Name = "MainViewSwitcher";
-            this.Size = new System.Drawing.Size(885, 391);
+            this.Size = new System.Drawing.Size(837, 398);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.ResumeLayout(false);
 
