@@ -30,7 +30,7 @@ namespace ipsFormsDesign.Dictionary
         public string RoleName { get; set; }
         public string SpecName { get; set; }
         public double RateTotal { get; set; }
-        public double RateRh { get; set; }
+        public double? RateRh { get; set; }
         public string Performer { get; set; }
         public double Profit { get; set; }
     }

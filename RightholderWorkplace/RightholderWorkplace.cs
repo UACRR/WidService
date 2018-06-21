@@ -727,6 +727,7 @@ namespace RightholderWorkplace
                         CRightId = ar.CRightId ?? 0,
                         CustId = (int)ar.CustId,
                         ObjId = ar.ObjId,
+                        RoleCode = ar.RoleCode,
                         Rate = ar.Rate,
                         BeginDate = ar.BeginDate,
                         EndDate = ar.EndDate,
