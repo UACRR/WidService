@@ -53,6 +53,10 @@ namespace ipsmedserviceapp.Controllers
         private void updateObjectRight(ObjectRight sors, ObjectRight dest)
         {
             dest.SetFields(sors);
+            if (sors.MediaTrack != null && dest.MediaTrack == null)
+            {
+                dest.MediaTrack = new MediaTrack();
+            }
             dest.MediaTrack.SetFields(sors.MediaTrack);
             dest.MediaTrack.Duration = sors.MediaTrack.Duration;
             dest.MediaTrack.Name = sors.Name;
@@ -130,7 +134,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpPost("newobject")]
         public async Task<IActionResult> createObjectRight([FromBody] ObjectRight body )
         {
-            ObjectRight addObject = new ObjectRight { CategoryCode = body.CategoryCode, MediaTrack = new MediaTrack() };
+            ObjectRight addObject = new ObjectRight { CategoryCode = body.CategoryCode };
             IDbContextTransaction tran = null;
             try
             {
