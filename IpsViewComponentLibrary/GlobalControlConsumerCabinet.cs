@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
@@ -16,7 +17,7 @@ namespace IpsViewComponentLibrary
     /// 1. Передати  AnketaDictionaties,
     /// 2. Передати джерело даних в грід
     /// 3. Підписатись на подію (викликати метод, що повертає Customer)
-    public partial class GlobalControlConsumerCabinet : UserControl
+    public partial class GlobalControlConsumerCabinet : UserControl, IFilteredControl
     {
 
         public delegate Customer UpdateData(int id);
@@ -54,6 +55,12 @@ namespace IpsViewComponentLibrary
         {
             int custId = (int)e.CurrentRow.Cells["CustId"].Value;
             mсInfoAgrCalc.SetCustomerData(OnGridRowSelectedChaged?.Invoke(custId)); //здійснює оновлення даних
+        }
+
+        public void SetFilter( object _choice )
+        {
+            // Обробка події зміни фільтра
+            ConsumerFilterEnum choice = _choice is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None;
         }
     }
 }

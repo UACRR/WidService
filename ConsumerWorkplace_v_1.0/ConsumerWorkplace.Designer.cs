@@ -130,6 +130,8 @@ namespace ConsumerWorkplace_v_1._0
             this.rpwsrPageProfilesContracts = new Telerik.WinControls.UI.RadPageViewPage();
             this.rpwsrPageRepresentatives = new Telerik.WinControls.UI.RadPageViewPage();
             this.rMainPageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
+            this.mainViewSwitcher1 = new IpsViewComponentLibrary.MainViewSwitcher();
+            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
@@ -247,6 +249,8 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.consumerMainViewBindingSource)).BeginInit();
+            this.rMainPageBigRights.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
@@ -272,7 +276,7 @@ namespace ConsumerWorkplace_v_1._0
             this.rMainPageView.Location = new System.Drawing.Point(0, 0);
             this.rMainPageView.Margin = new System.Windows.Forms.Padding(0);
             this.rMainPageView.Name = "rMainPageView";
-            this.rMainPageView.SelectedPage = this.rMainPageSmallRights;
+            this.rMainPageView.SelectedPage = this.rMainPageBigRights;
             this.rMainPageView.Size = new System.Drawing.Size(1275, 671);
             this.rMainPageView.TabIndex = 0;
             this.rMainPageView.ThemeName = "Office2007Silver";
@@ -341,7 +345,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
-            this.rpvConsumers.SelectedPage = this.pageConsumersAnketa;
+            this.rpvConsumers.SelectedPage = this.pageConsumersGrid;
             this.rpvConsumers.Size = new System.Drawing.Size(1124, 604);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
@@ -400,7 +404,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerContracts;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1076, 522);
             this.pageAllAnketa.TabIndex = 0;
@@ -1690,7 +1694,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(4, 3);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(928, 38);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(928, 0);
             this.radPdfViewerNavigator.TabIndex = 0;
             this.radPdfViewerNavigator.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -1891,11 +1895,32 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // rMainPageBigRights
             // 
+            this.rMainPageBigRights.Controls.Add(this.mainViewSwitcher1);
+            this.rMainPageBigRights.Controls.Add(this.radTreeView1);
             this.rMainPageBigRights.ItemSize = new System.Drawing.SizeF(85F, 26F);
             this.rMainPageBigRights.Location = new System.Drawing.Point(10, 35);
             this.rMainPageBigRights.Name = "rMainPageBigRights";
             this.rMainPageBigRights.Size = new System.Drawing.Size(1254, 625);
             this.rMainPageBigRights.Text = "Великі права";
+            // 
+            // mainViewSwitcher1
+            // 
+            this.mainViewSwitcher1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainViewSwitcher1.Location = new System.Drawing.Point(205, 0);
+            this.mainViewSwitcher1.Name = "mainViewSwitcher1";
+            this.mainViewSwitcher1.Size = new System.Drawing.Size(1045, 622);
+            this.mainViewSwitcher1.TabIndex = 1;
+            // 
+            // radTreeView1
+            // 
+            this.radTreeView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.Size = new System.Drawing.Size(199, 625);
+            this.radTreeView1.SpacingBetweenNodes = -1;
+            this.radTreeView1.TabIndex = 0;
             // 
             // iActivityTypeBindingSource
             // 
@@ -2039,6 +2064,8 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.consumerMainViewBindingSource)).EndInit();
+            this.rMainPageBigRights.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();
@@ -2146,5 +2173,7 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadSeparator radSeparator6;
         private Telerik.WinControls.UI.RadLabel radLabel9;
         private IpsViewComponentLibrary.AddressLetter addressLetter1;
+        private IpsViewComponentLibrary.MainViewSwitcher mainViewSwitcher1;
+        private Telerik.WinControls.UI.RadTreeView radTreeView1;
     }
 }

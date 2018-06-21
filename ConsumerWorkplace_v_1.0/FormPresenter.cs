@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsumerWorkplace_v_1._0
 {
-    public class FormPresenter
+    public class FormPresenter 
     {
         private IConsumerForm _form;
         private IConsumerService _service;

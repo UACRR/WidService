@@ -8,10 +8,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using Telerik.WinControls;
-
+using Telerik.WinControls.UI;
 
 
 namespace ConsumerWorkplace_v_1._0
@@ -20,16 +22,35 @@ namespace ConsumerWorkplace_v_1._0
     {
         private bool nextPage = false;
         private sbyte validTabs = 0;
-        
+        private SwitchPresenter _presenter;
+        private ConsumerService _service;
 
         public event Func<bool> Save;
 
         public ConsumerWorkplace()
         {
+            RadTreeNode[] list = new[]
+            {
+                new RadTreeNode {Text = "Всі", Value = ConsumerFilterEnum.All},
+                new RadTreeNode {Text = "Діючі", Value = ConsumerFilterEnum.Working},
+                new RadTreeNode {Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
+                new RadTreeNode {Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation},
+                new RadTreeNode {Text = "Не розподіленні", Value = ConsumerFilterEnum.ForDistribution}
+            };
+            
+            
             InitializeComponent();
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
             placesCtrlConsumerPlaces.OnEnabledChangeWhenEditOrAddPremises += PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises;
+            foreach (var item in list)
+            {
+                radTreeView1.Nodes.Add(item);
+            }
 
+            _service = new ConsumerService();
+            _presenter = new SwitchPresenter( mainViewSwitcher1, _service, radTreeView1 );
+
+            
         }
 
         public Customer ReturnCustomer()
