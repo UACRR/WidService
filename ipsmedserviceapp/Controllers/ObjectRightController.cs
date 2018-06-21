@@ -62,6 +62,7 @@ namespace ipsmedserviceapp.Controllers
             dest.MediaTrack.Name = sors.Name;
             _dbContext.UpdateList(sors.CopyRight, dest.CopyRight, i => { }, (l, r) => l.CRightId == r.CRightId);
             _dbContext.UpdateList(sors.Authors, dest.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
+            _dbContext.UpdateList(sors.SeekObject, dest.SeekObject, i => { }, (l, r) => l.Id == r.Id);
         }
 
         /// <summary>
