@@ -20,9 +20,9 @@ namespace ConsumerWorkplace_v_1._0
             ConsumerService model = new ConsumerService();
             FormPresenter control = new FormPresenter(form, model);
 
-            //Application.Run(form);
+            Application.Run(form);
 
-            LoadCabinet(form.ReturnCustomer());
+            //LoadCabinet(form.ReturnCustomer());
 
             //LoadTest();
         }
