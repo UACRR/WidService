@@ -194,6 +194,12 @@
     <Compile Include="GlobalControlConsumerCabinet.Designer.cs">
       <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalControlConsumerMainGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalControlConsumerMainGrid.Designer.cs">
+      <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformationAboutTheContractTitleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -353,6 +359,11 @@
     <Compile Include="ReportExcelViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportExcelViewForm.cs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportExcelViewForm.cs.resx</DependentUpon>
+    </Compile>
     <Compile Include="ReportExcelViewForm.Designer.cs">
       <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
     </Compile>
@@ -442,6 +453,9 @@
     <EmbeddedResource Include="GlobalControlConsumerCabinet.resx">
       <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GlobalControlConsumerMainGrid.resx">
+      <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -510,7 +524,10 @@
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportExcelViewForm.cs.resx" />
+    <EmbeddedResource Include="ReportExcelViewForm.cs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportExcelViewForm.cs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportExcelViewForm.resx">
       <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -572,6 +589,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\viewAct.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
