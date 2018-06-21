@@ -6,22 +6,30 @@ using ipsAnketaClient;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using NUnit.Extensions.Forms;
+using NUnit.Framework;
 
 namespace UnitTestMediaPortal
 {
-
     [TestClass]
-    public class UnitTest1
+    [TestFixture]
+    public class UnitTest1 : NUnitFormTest
     {
         [TestMethod]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.ExpectedException(typeof(ArgumentException))]
         public void TestMethodBindingControls()
         {
-            FormBinding1 form = new FormBinding1();
-            var anketa = new AnketaPerson();
-            form.bindingSource1.DataSource = anketa;
+            try
+            {
+                FormBinding1 form = new FormBinding1();
+                var anketa = new AnketaCompany();
+                form.bindingSource1.DataSource = anketa;
 
-            form.Show();
-
+                form.Show();
+            }
+            catch(Exception ex)
+            {
+                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.Fail(ex.Message);
+            }
         }
 
     }
