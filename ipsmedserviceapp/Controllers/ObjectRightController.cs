@@ -64,18 +64,21 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.UpdateList(sors.Authors, dest.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
             _dbContext.UpdateList(sors.SeekObject, dest.SeekObject, i => { }, (l, r) => l.Id == r.Id);
 
-            // update authors or lyrics, composers from Authors
-            var lyrics = dest.Authors.Where(a => a.RoleCode == 1).Select(a => a.AuthorName).ToList();
-            var composers = dest.Authors.Where(a => a.RoleCode == 2).Select(a => a.AuthorName).ToList();
+            if (dest.CategoryCode == 5)
+            {
+                // update authors or lyrics, composers from Authors
+                var lyrics = dest.Authors.Where(a => a.RoleCode == 1).Select(a => a.AuthorName).ToList();
+                var composers = dest.Authors.Where(a => a.RoleCode == 2).Select(a => a.AuthorName).ToList();
 
-            dest.MediaTrack.Lyrics = string.Join(", ", lyrics);
-            dest.MediaTrack.Composers = string.Join(", ", composers);
-            dest.Author = string.Join(", ", dest.MediaTrack.Lyrics, dest.MediaTrack.Composers);
+                dest.MediaTrack.Lyrics = string.Join(", ", lyrics);
+                dest.MediaTrack.Composers = string.Join(", ", composers);
+                dest.Author = string.Join(", ", dest.MediaTrack.Lyrics, dest.MediaTrack.Composers);
 
-            // update performers from SeekObject
-            var performers = dest.SeekObject.Where(so => so.CodeI == 2).Select(so => so.Name).ToList();
-            dest.Performer = string.Join(", ", performers);
-            dest.MediaTrack.Performers = dest.Performer;
+                // update performers from SeekObject
+                var performers = dest.SeekObject.Where(so => so.CodeI == 2).Select(so => so.Name).ToList();
+                dest.Performer = string.Join(", ", performers);
+                dest.MediaTrack.Performers = dest.Performer;
+            }
         }
 
         /// <summary>
