@@ -26,7 +26,7 @@ namespace ipsFormsDesign.Services
 
         public IList<ObjectRightForRightholder> GetRightholdersObjectsRights(int custId)
         {
-            var list = _webApi.GetList<ObjectRightForRightholder>($"objectright/view/list_0301/{custId}");
+            var list = _webApi.GetList<ObjectRightForRightholder>($"objectright/view/list_0302/{custId}");
             return list;
         }
 
