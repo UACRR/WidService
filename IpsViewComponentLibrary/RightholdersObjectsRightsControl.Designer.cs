@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
@@ -44,19 +45,23 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.rightholderSelectorControl1 = new IpsViewComponentLibrary.RightholderSelectorControl();
+            this.ctrlRightholderSelector = new IpsViewComponentLibrary.RightholderSelectorControl();
             this.gvRightholdersObjectsRights = new Telerik.WinControls.UI.RadGridView();
+            this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // rightholderSelectorControl1
+            // ctrlRightholderSelector
             // 
-            this.rightholderSelectorControl1.Location = new System.Drawing.Point(3, 3);
-            this.rightholderSelectorControl1.Name = "rightholderSelectorControl1";
-            this.rightholderSelectorControl1.Rightholder = null;
-            this.rightholderSelectorControl1.Size = new System.Drawing.Size(889, 29);
-            this.rightholderSelectorControl1.TabIndex = 0;
+            this.ctrlRightholderSelector.Location = new System.Drawing.Point(3, 3);
+            this.ctrlRightholderSelector.Name = "ctrlRightholderSelector";
+            this.ctrlRightholderSelector.Rightholder = null;
+            this.ctrlRightholderSelector.Size = new System.Drawing.Size(889, 29);
+            this.ctrlRightholderSelector.TabIndex = 0;
+            this.ctrlRightholderSelector.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.rightholderSelectorControl1_RightholderChanged);
+            this.ctrlRightholderSelector.ShowAnketaCommandExecuted += new System.EventHandler(this.rightholderSelectorControl1_ShowAnketaCommandExecuted);
             // 
             // gvRightholdersObjectsRights
             // 
@@ -167,6 +172,7 @@
             gridViewTextBoxColumn8,
             gridViewDecimalColumn5,
             gridViewCommandColumn1});
+            this.gvRightholdersObjectsRights.MasterTemplate.DataSource = this.objectRightForRightholderBindingSource;
             this.gvRightholdersObjectsRights.MasterTemplate.ShowRowHeaderColumn = false;
             this.gvRightholdersObjectsRights.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvRightholdersObjectsRights.Name = "gvRightholdersObjectsRights";
@@ -177,16 +183,21 @@
             this.gvRightholdersObjectsRights.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersObjectsRights_CellDoubleClick);
             this.gvRightholdersObjectsRights.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersObjectsRights_CommandCellClick);
             // 
+            // objectRightForRightholderBindingSource
+            // 
+            this.objectRightForRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightForRightholder);
+            // 
             // RightholdersObjectsRightsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gvRightholdersObjectsRights);
-            this.Controls.Add(this.rightholderSelectorControl1);
+            this.Controls.Add(this.ctrlRightholderSelector);
             this.Name = "RightholdersObjectsRightsControl";
             this.Size = new System.Drawing.Size(891, 534);
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -194,7 +205,8 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme1;
-        private RightholderSelectorControl rightholderSelectorControl1;
+        private RightholderSelectorControl ctrlRightholderSelector;
         private Telerik.WinControls.UI.RadGridView gvRightholdersObjectsRights;
+        private System.Windows.Forms.BindingSource objectRightForRightholderBindingSource;
     }
 }

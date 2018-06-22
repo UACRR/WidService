@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
+using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary
 {
@@ -39,7 +40,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
         }
-
+        
         #region gvRightholdersObjectsRights event handlers
 
         private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -63,6 +64,30 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
+
+        private void rightholderSelectorControl1_RightholderChanged(object sender, ipsFormsDesign.Interfaces.RightholderMainView e)
+        {
+            UpdateRightholdersObjectsRightList();
+        }
+
+        private void rightholderSelectorControl1_ShowAnketaCommandExecuted(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0)
+        {
+            var _objectRightService = new ObjectRightService(); // TODO: move to presenter
+
+            var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
+
+            objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
+
+            if (selectedObjectId != 0)
+            {
+                SelectedObjectRightId = selectedObjectId;
+            }
+        }
 
         #region Raise event methods
 
