@@ -134,6 +134,12 @@
     <Compile Include="AuthorItemView.Designer.cs">
       <DependentUpon>AuthorItemView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalculationInfoControlNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalculationInfoControlNew.Designer.cs">
+      <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="CalculationInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -368,6 +374,9 @@
     <EmbeddedResource Include="AuthorItemView.resx">
       <DependentUpon>AuthorItemView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CalculationInfoControlNew.resx">
+      <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CalculationInfoControl.resx">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -472,6 +481,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Resources\createAct.ico" />
   </ItemGroup>
   <ItemGroup>
