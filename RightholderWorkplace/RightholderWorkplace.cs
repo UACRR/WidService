@@ -897,7 +897,6 @@ namespace RightholderWorkplace
             {
                 objectAuthorRightholderBindingSource.RaiseListChangedEvents = false;
 
-                authorRightholderItemView.StartPosition = FormStartPosition.CenterParent;
                 authorRightholderItemView.ShowDialog();
 
                 objectAuthorRightholderBindingSource.RaiseListChangedEvents = true;

@@ -184,7 +184,6 @@ namespace DebugFormForControls
 
             using (var moreNicks = new AnketaAddNickView(customer.RightHolder.AnketaAddNick))
             {
-                moreNicks.StartPosition = FormStartPosition.CenterParent;
                 moreNicks.AddNicksUpdated += AddNicksUpdated;
                 moreNicks.ShowDialog();
             }
@@ -201,7 +200,6 @@ namespace DebugFormForControls
 
             using (var moreNames = new AnketaAddNamesView(customer.AnketaAddName))
             {
-                moreNames.StartPosition = FormStartPosition.CenterParent;
                 moreNames.ShowDialog();
             }
         }

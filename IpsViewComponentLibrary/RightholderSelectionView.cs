@@ -43,6 +43,8 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
+            StartPosition = FormStartPosition.CenterParent;
+
             var service = new RightholderService();
             var list = service.GetMainView();
             rightholderMainViewBindingSource.DataSource = list;

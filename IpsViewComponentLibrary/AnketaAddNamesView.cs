@@ -25,6 +25,8 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
+            StartPosition = FormStartPosition.CenterParent;
+
             InitializeBindings();
 
             _inputAddNames = anketaAddNames;

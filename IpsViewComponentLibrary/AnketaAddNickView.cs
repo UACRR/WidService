@@ -22,6 +22,8 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
+            StartPosition = FormStartPosition.CenterParent;
+
             _anketaAddNicks = anketaAddNicks.ToList();
 
             InitializeBindings();

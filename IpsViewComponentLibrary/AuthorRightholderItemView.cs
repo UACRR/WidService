@@ -25,6 +25,8 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
+            StartPosition = FormStartPosition.CenterParent;
+
             _authorRightholder = authorRightholder;
             _authorRightholder.BeginEdit();
 
