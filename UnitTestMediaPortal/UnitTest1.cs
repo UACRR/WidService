@@ -11,18 +11,24 @@ using NUnit.Framework;
 namespace UnitTestMediaPortal
 {
     [TestClass]
-    [TestFixture]
+    [TestFixture,RequiresSTA]
     public class UnitTest1 : NUnitFormTest
     {
+        
         [TestMethod]
         public void TestMethodBindingControls()
         {
             try
             {
                 FormBinding1 form = new FormBinding1();
-                
+                foreach( Control item in form.anketaPersonControl1.Controls )
+                {
+                    foreach( Binding bind in item.DataBindings )
+                        bind.BindingComplete += Bind_BindingComplete;
+                }
                 var anketa = new AnketaCompany();
                 form.bindingSource1.DataSource = anketa;
+
 
                 form.Show();
             }
@@ -32,8 +38,10 @@ namespace UnitTestMediaPortal
             }
         }
 
-
-
-
+        private void Bind_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            if (e.BindingCompleteState != BindingCompleteState.Success)
+                Microsoft.VisualStudio.TestTools.UnitTesting.Assert.Fail();
+        }
     }
 }

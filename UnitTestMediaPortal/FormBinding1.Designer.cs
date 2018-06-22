@@ -42,9 +42,8 @@
             this.anketaPersonControl1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.anketaPersonControl1.Location = new System.Drawing.Point(44, 13);
             this.anketaPersonControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.anketaPersonControl1.MaximumSize = new System.Drawing.Size(1200, 129);
             this.anketaPersonControl1.Name = "anketaPersonControl1";
-            this.anketaPersonControl1.Size = new System.Drawing.Size(594, 105);
+            this.anketaPersonControl1.Size = new System.Drawing.Size(652, 125);
             this.anketaPersonControl1.TabIndex = 0;
             // 
             // bindingSource1
@@ -53,7 +52,7 @@
             // 
             // FormBinding1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 209);
             this.Controls.Add(this.anketaPersonControl1);
