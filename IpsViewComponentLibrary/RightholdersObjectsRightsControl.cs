@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary
 {
@@ -34,6 +35,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        public event EventHandler<RightholderMainView> RightholderChanged = delegate { };
         public event EventHandler<int> EditObjectCommandExecuted = delegate { };
 
         public RightholdersObjectsRightsControl()
@@ -65,12 +67,14 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
-        private void rightholderSelectorControl1_RightholderChanged(object sender, ipsFormsDesign.Interfaces.RightholderMainView e)
+        private void ctrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
             UpdateRightholdersObjectsRightList();
+
+            OnRightholderChanged(selectedRightholder);
         }
 
-        private void rightholderSelectorControl1_ShowAnketaCommandExecuted(object sender, EventArgs e)
+        private void ctrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e)
         {
 
         }
@@ -90,6 +94,11 @@ namespace IpsViewComponentLibrary
         }
 
         #region Raise event methods
+
+        protected void OnRightholderChanged(RightholderMainView selectedRightholder)
+        {
+            RightholderChanged(this, selectedRightholder);
+        }
 
         protected void OnEditObjectCommandExecuted(int objId)
         {

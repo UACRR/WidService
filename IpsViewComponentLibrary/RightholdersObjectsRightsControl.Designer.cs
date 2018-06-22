@@ -60,8 +60,8 @@
             this.ctrlRightholderSelector.Rightholder = null;
             this.ctrlRightholderSelector.Size = new System.Drawing.Size(889, 29);
             this.ctrlRightholderSelector.TabIndex = 0;
-            this.ctrlRightholderSelector.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.rightholderSelectorControl1_RightholderChanged);
-            this.ctrlRightholderSelector.ShowAnketaCommandExecuted += new System.EventHandler(this.rightholderSelectorControl1_ShowAnketaCommandExecuted);
+            this.ctrlRightholderSelector.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderSelector_RightholderChanged);
+            this.ctrlRightholderSelector.ShowAnketaCommandExecuted += new System.EventHandler(this.ctrlRightholderSelector_ShowAnketaCommandExecuted);
             // 
             // gvRightholdersObjectsRights
             // 
