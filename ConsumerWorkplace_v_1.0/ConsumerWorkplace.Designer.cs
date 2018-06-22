@@ -673,11 +673,11 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // licenseTypeCtrlContractConsumerMain
             // 
-            this.licenseTypeCtrlContractConsumerMain.AgrDateDataMember = null;
-            this.licenseTypeCtrlContractConsumerMain.BeginDateDataMember = null;
-            this.licenseTypeCtrlContractConsumerMain.ContrNumber = null;
-            this.licenseTypeCtrlContractConsumerMain.DataSource = null;
-            this.licenseTypeCtrlContractConsumerMain.EndDateDataMember = null;
+            //this.licenseTypeCtrlContractConsumerMain.AgrDateDataMember = null;
+            //this.licenseTypeCtrlContractConsumerMain.BeginDateDataMember = null;
+            //this.licenseTypeCtrlContractConsumerMain.ContrNumber = null;
+            //this.licenseTypeCtrlContractConsumerMain.DataSource = null;
+            //this.licenseTypeCtrlContractConsumerMain.EndDateDataMember = null;
             this.licenseTypeCtrlContractConsumerMain.Location = new System.Drawing.Point(3, 73);
             this.licenseTypeCtrlContractConsumerMain.Margin = new System.Windows.Forms.Padding(4);
             this.licenseTypeCtrlContractConsumerMain.MaximumSize = new System.Drawing.Size(636, 60);

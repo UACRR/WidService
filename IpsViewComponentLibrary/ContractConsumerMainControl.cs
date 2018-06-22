@@ -35,31 +35,31 @@ namespace IpsViewComponentLibrary
         public string ContractBeginDate => rdtPickerAgrDate.Value.ToString("dd.MM.yyyy");
 
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string ContrNumber
-        {
-            get => _contrNumber;
-            set
-            {
-                _contrNumber = value;
-                rtxtBoxContrNumber.DataBindings.Clear();
-                rtxtBoxContrNumber.DataBindings.Add("Text", bindingSourceLicAgreement, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
-            }
-        }
+        //[Category("Data")]
+        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //public string ContrNumber
+        //{
+        //    get => _contrNumber;
+        //    set
+        //    {
+        //        _contrNumber = value;
+        //        rtxtBoxContrNumber.DataBindings.Clear();
+        //        rtxtBoxContrNumber.DataBindings.Add("Text", bindingSourceLicAgreement, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+        //    }
+        //}
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string AgrDateDataMember
-        {
-            get => _agrDate;
-            set
-            {
-                    _agrDate = value;
-                    rdtPickerAgrDate.DataBindings.Clear();
-                    rdtPickerAgrDate.DataBindings.Add("Value", bindingSourceLicAgreement, _agrDate, true, DataSourceUpdateMode.OnPropertyChanged, value);
-            }
-        }
+        //[Category("Data")]
+        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //public string AgrDateDataMember
+        //{
+        //    get => _agrDate;
+        //    set
+        //    {
+        //            _agrDate = value;
+        //            rdtPickerAgrDate.DataBindings.Clear();
+        //            rdtPickerAgrDate.DataBindings.Add("Value", bindingSourceLicAgreement, _agrDate, true, DataSourceUpdateMode.OnPropertyChanged, value);
+        //    }
+        //}
 
 
         //[Category("Data")]
@@ -70,41 +70,41 @@ namespace IpsViewComponentLibrary
         //    set => bindingSourceLicAgreement.DataSource = value;
         //}
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string BeginDateDataMember
-        {
-            get => _dateBegin;
-            set
-            {
-                _dateBegin = value;
-                rdtPickerDateBegin.DataBindings.Clear();
-                rdtPickerDateBegin.DataBindings.Add("Value", bindingSourceLicAgreement, _dateBegin, true, DataSourceUpdateMode.OnPropertyChanged, value);
-            }
-        }
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string EndDateDataMember
-        {
-            get => _dateEnd;
-            set
-            {
-                _dateEnd = value;
-                rdtPickerDateEnd.DataBindings.Clear();
-                rdtPickerDateEnd.DataBindings.Add("Value", bindingSourceLicAgreement, _dateEnd, true, DataSourceUpdateMode.OnPropertyChanged, value);
-            }
-        }
+        //[Category("Data")]
+        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //public string BeginDateDataMember
+        //{
+        //    get => _dateBegin;
+        //    set
+        //    {
+        //        _dateBegin = value;
+        //        rdtPickerDateBegin.DataBindings.Clear();
+        //        rdtPickerDateBegin.DataBindings.Add("Value", bindingSourceLicAgreement, _dateBegin, true, DataSourceUpdateMode.OnPropertyChanged, value);
+        //    }
+        //}
+        //[Category("Data")]
+        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //public string EndDateDataMember
+        //{
+        //    get => _dateEnd;
+        //    set
+        //    {
+        //        _dateEnd = value;
+        //        rdtPickerDateEnd.DataBindings.Clear();
+        //        rdtPickerDateEnd.DataBindings.Add("Value", bindingSourceLicAgreement, _dateEnd, true, DataSourceUpdateMode.OnPropertyChanged, value);
+        //    }
+        //}
 
 
         //ContrNumber
         public ContractConsumerMainControl()
         {
             InitializeComponent();
-            rdtPickerAgrDate.Value = DateTime.Now;
-            rdtPickerDateBegin.Value = DateTime.Now;
-            rdtPickerAgrDate.SetUserCalendarSettingsm();
-            rdtPickerDateBegin.SetUserCalendarSettingsm();
-            rdtPickerDateEnd.SetUserCalendarSettingsm();
+            //rdtPickerAgrDate.Value = DateTime.Now;
+            //rdtPickerDateBegin.Value = DateTime.Now;
+            //rdtPickerAgrDate.SetUserCalendarSettingsm();
+            //rdtPickerDateBegin.SetUserCalendarSettingsm();
+            //rdtPickerDateEnd.SetUserCalendarSettingsm();
         }
 
         public bool Validator()
