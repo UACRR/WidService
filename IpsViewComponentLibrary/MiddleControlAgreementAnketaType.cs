@@ -31,7 +31,7 @@ namespace IpsViewComponentLibrary
             ddlLicType.SelectedValue = license?.LicCode;
 
             ctrlAgreementMain.DataSource = licenseParam;
-            ctrlAgreementMain.DateDataSource = licenseParam;
+            // ctrlAgreementMain.DateDataSource = licenseParam;
             ctrlAgreementMain.ContrNumber = "LicNum";
             ctrlAgreementMain.AgrDateDataMember = "LicDate";
             ctrlAgreementMain.BeginDateDataMember = "DateBegin";

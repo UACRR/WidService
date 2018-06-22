@@ -20,15 +20,15 @@ namespace IpsViewComponentLibrary
         private string _dateBegin;
         private string _dateEnd;
         private string _contrNumber;
-        private BindingSource _bindingSource = new BindingSource();
-        private BindingSource _dateBindingSource = new BindingSource();
+        //private BindingSource bindingSourceLicAgreement = new BindingSource();
+        //private BindingSource bindingSourceLicAgreement = new BindingSource();
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get => _bindingSource.DataSource;
-            set => _bindingSource.DataSource = value;
+            get => bindingSourceLicAgreement.DataSource;
+            set => bindingSourceLicAgreement.DataSource = value;
         }
 
         public string ContractNumber => rtxtBoxContrNumber.Text;
@@ -44,7 +44,7 @@ namespace IpsViewComponentLibrary
             {
                 _contrNumber = value;
                 rtxtBoxContrNumber.DataBindings.Clear();
-                rtxtBoxContrNumber.DataBindings.Add("Text", _bindingSource, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+                rtxtBoxContrNumber.DataBindings.Add("Text", bindingSourceLicAgreement, _contrNumber, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
             }
         }
 
@@ -57,18 +57,18 @@ namespace IpsViewComponentLibrary
             {
                     _agrDate = value;
                     rdtPickerAgrDate.DataBindings.Clear();
-                    rdtPickerAgrDate.DataBindings.Add("Value", _bindingSource, _agrDate, true, DataSourceUpdateMode.OnPropertyChanged, value);
+                    rdtPickerAgrDate.DataBindings.Add("Value", bindingSourceLicAgreement, _agrDate, true, DataSourceUpdateMode.OnPropertyChanged, value);
             }
         }
 
 
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
-        public object DateDataSource
-        {
-            get => _dateBindingSource.DataSource;
-            set => _dateBindingSource.DataSource = value;
-        }
+        //[Category("Data")]
+        //[AttributeProvider(typeof(IListSource))]
+        //public object DateDataSource
+        //{
+        //    get => bindingSourceLicAgreement.DataSource;
+        //    set => bindingSourceLicAgreement.DataSource = value;
+        //}
 
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
@@ -79,7 +79,7 @@ namespace IpsViewComponentLibrary
             {
                 _dateBegin = value;
                 rdtPickerDateBegin.DataBindings.Clear();
-                rdtPickerDateBegin.DataBindings.Add("Value", _dateBindingSource, _dateBegin, true, DataSourceUpdateMode.OnPropertyChanged, value);
+                rdtPickerDateBegin.DataBindings.Add("Value", bindingSourceLicAgreement, _dateBegin, true, DataSourceUpdateMode.OnPropertyChanged, value);
             }
         }
         [Category("Data")]
@@ -91,7 +91,7 @@ namespace IpsViewComponentLibrary
             {
                 _dateEnd = value;
                 rdtPickerDateEnd.DataBindings.Clear();
-                rdtPickerDateEnd.DataBindings.Add("Value", _dateBindingSource, _dateEnd, true, DataSourceUpdateMode.OnPropertyChanged, value);
+                rdtPickerDateEnd.DataBindings.Add("Value", bindingSourceLicAgreement, _dateEnd, true, DataSourceUpdateMode.OnPropertyChanged, value);
             }
         }
 

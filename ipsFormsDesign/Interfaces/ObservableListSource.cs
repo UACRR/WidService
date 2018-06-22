@@ -38,5 +38,8 @@ namespace ipsFormsDesign.Interfaces
         {
             return new BindingList<T>(this);
         }
+
+
+         
     }
 }

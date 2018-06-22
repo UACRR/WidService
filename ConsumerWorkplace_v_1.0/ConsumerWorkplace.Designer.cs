@@ -33,13 +33,13 @@ namespace ConsumerWorkplace_v_1._0
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsumerWorkplace));
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
@@ -66,6 +66,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.licenseTypeCtrlContractConsumerDetail = new IpsViewComponentLibrary.ContractConsumerDetailControl();
             this.licenseTypeCtrlContractConsumerMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.licenseAgrParamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvConsumerAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.addressLetter1 = new IpsViewComponentLibrary.AddressLetter();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
@@ -176,6 +177,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).BeginInit();
             this.pvConsumerAnketa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlRegion)).BeginInit();
@@ -354,7 +356,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
-            this.rpvConsumers.SelectedPage = this.pageConsumersGrid;
+            this.rpvConsumers.SelectedPage = this.pageConsumersAnketa;
             this.rpvConsumers.Size = new System.Drawing.Size(1063, 528);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
@@ -379,14 +381,14 @@ namespace ConsumerWorkplace_v_1._0
             this.pageConsumersAnketa.ItemSize = new System.Drawing.SizeF(12F, 257F);
             this.pageConsumersAnketa.Location = new System.Drawing.Point(21, 10);
             this.pageConsumersAnketa.Name = "pageConsumersAnketa";
-            this.pageConsumersAnketa.Size = new System.Drawing.Size(1034, 507);
+            this.pageConsumersAnketa.Size = new System.Drawing.Size(1031, 507);
             // 
             // lblConsumerTitle
             // 
             this.lblConsumerTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblConsumerTitle.AutoSize = false;
             this.lblConsumerTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblConsumerTitle.Location = new System.Drawing.Point(322, 3);
+            this.lblConsumerTitle.Location = new System.Drawing.Point(320, 3);
             this.lblConsumerTitle.Name = "lblConsumerTitle";
             this.lblConsumerTitle.Size = new System.Drawing.Size(396, 18);
             this.lblConsumerTitle.TabIndex = 0;
@@ -413,9 +415,9 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerLicenseType;
             this.pageAllAnketa.SelectionWrap = false;
-            this.pageAllAnketa.Size = new System.Drawing.Size(1018, 446);
+            this.pageAllAnketa.Size = new System.Drawing.Size(1015, 446);
             this.pageAllAnketa.TabIndex = 0;
             this.pageAllAnketa.ThemeName = "Office2007Silver";
             this.pageAllAnketa.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.pageAllAnketa_SelectedPageChanging);
@@ -443,14 +445,14 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerClientName.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerClientName.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerClientName.Name = "pvConsumerClientName";
-            this.pvConsumerClientName.Size = new System.Drawing.Size(874, 425);
+            this.pvConsumerClientName.Size = new System.Drawing.Size(871, 425);
             this.pvConsumerClientName.TabStop = true;
             this.pvConsumerClientName.Text = "Назва клієнта";
             // 
             // rbtnNextLicType
             // 
             this.rbtnNextLicType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextLicType.Location = new System.Drawing.Point(645, 396);
+            this.rbtnNextLicType.Location = new System.Drawing.Point(642, 396);
             this.rbtnNextLicType.Name = "rbtnNextLicType";
             this.rbtnNextLicType.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextLicType.TabIndex = 3;
@@ -591,7 +593,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pvConsumerLicenseType.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvConsumerLicenseType.Location = new System.Drawing.Point(133, 10);
             this.pvConsumerLicenseType.Name = "pvConsumerLicenseType";
-            this.pvConsumerLicenseType.Size = new System.Drawing.Size(936, 501);
+            this.pvConsumerLicenseType.Size = new System.Drawing.Size(871, 425);
             this.pvConsumerLicenseType.Text = "Тип ліцензії";
             // 
             // licenseTypeDropListLicType
@@ -615,7 +617,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnBackClientName
             // 
             this.rbtnBackClientName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnBackClientName.Location = new System.Drawing.Point(577, 474);
+            this.rbtnBackClientName.Location = new System.Drawing.Point(512, 398);
             this.rbtnBackClientName.Name = "rbtnBackClientName";
             this.rbtnBackClientName.Size = new System.Drawing.Size(175, 24);
             this.rbtnBackClientName.TabIndex = 5;
@@ -626,7 +628,7 @@ namespace ConsumerWorkplace_v_1._0
             // rbtnNextAnketa
             // 
             this.rbtnNextAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtnNextAnketa.Location = new System.Drawing.Point(758, 474);
+            this.rbtnNextAnketa.Location = new System.Drawing.Point(693, 398);
             this.rbtnNextAnketa.Name = "rbtnNextAnketa";
             this.rbtnNextAnketa.Size = new System.Drawing.Size(175, 24);
             this.rbtnNextAnketa.TabIndex = 4;
@@ -675,7 +677,6 @@ namespace ConsumerWorkplace_v_1._0
             this.licenseTypeCtrlContractConsumerMain.BeginDateDataMember = null;
             this.licenseTypeCtrlContractConsumerMain.ContrNumber = null;
             this.licenseTypeCtrlContractConsumerMain.DataSource = null;
-            this.licenseTypeCtrlContractConsumerMain.DateDataSource = null;
             this.licenseTypeCtrlContractConsumerMain.EndDateDataMember = null;
             this.licenseTypeCtrlContractConsumerMain.Location = new System.Drawing.Point(3, 73);
             this.licenseTypeCtrlContractConsumerMain.Margin = new System.Windows.Forms.Padding(4);
@@ -683,6 +684,10 @@ namespace ConsumerWorkplace_v_1._0
             this.licenseTypeCtrlContractConsumerMain.Name = "licenseTypeCtrlContractConsumerMain";
             this.licenseTypeCtrlContractConsumerMain.Size = new System.Drawing.Size(536, 60);
             this.licenseTypeCtrlContractConsumerMain.TabIndex = 1;
+            // 
+            // licenseAgrParamBindingSource
+            // 
+            this.licenseAgrParamBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // pvConsumerAnketa
             // 
@@ -1825,55 +1830,55 @@ namespace ConsumerWorkplace_v_1._0
             this.rGridViewConsumers.MasterTemplate.AllowDragToGroup = false;
             this.rGridViewConsumers.MasterTemplate.AllowEditRow = false;
             this.rGridViewConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn11.DataType = typeof(int);
-            gridViewTextBoxColumn11.FieldName = "innokpo";
-            gridViewTextBoxColumn11.HeaderText = "ЄДРПОУ";
-            gridViewTextBoxColumn11.Name = "Innokpo";
-            gridViewTextBoxColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn11.Width = 130;
-            gridViewTextBoxColumn12.FieldName = "name";
-            gridViewTextBoxColumn12.HeaderText = "Назва";
-            gridViewTextBoxColumn12.Multiline = true;
-            gridViewTextBoxColumn12.Name = "Name";
-            gridViewTextBoxColumn12.Width = 534;
-            gridViewTextBoxColumn12.WrapText = true;
-            gridViewTextBoxColumn13.DataType = typeof(int);
-            gridViewTextBoxColumn13.FieldName = "countAgree";
-            gridViewTextBoxColumn13.HeaderText = "К-сть діючих договорів";
-            gridViewTextBoxColumn13.Name = "CountAgree";
-            gridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn13.Width = 130;
-            gridViewTextBoxColumn13.WrapText = true;
-            gridViewTextBoxColumn14.DataType = typeof(double);
-            gridViewTextBoxColumn14.FieldName = "undistribamount";
-            gridViewTextBoxColumn14.HeaderText = "Нерозподілені кошти";
-            gridViewTextBoxColumn14.Name = "Undistribamount";
-            gridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn14.Width = 147;
-            gridViewTextBoxColumn14.WrapText = true;
-            gridViewTextBoxColumn15.DataType = typeof(int);
-            gridViewTextBoxColumn15.FieldName = "custId";
-            gridViewTextBoxColumn15.HeaderText = "ID";
-            gridViewTextBoxColumn15.IsVisible = false;
-            gridViewTextBoxColumn15.Name = "CustId";
-            gridViewCommandColumn3.AllowResize = false;
-            gridViewCommandColumn3.AllowSort = false;
-            gridViewCommandColumn3.FieldName = "btnsEdit";
-            gridViewCommandColumn3.HeaderText = "Редагувати";
-            gridViewCommandColumn3.Image = global::ConsumerWorkplace_v_1._0.Properties.Resources.editIcon;
-            gridViewCommandColumn3.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn3.Name = "btnsEdit";
-            gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn3.Width = 70;
+            gridViewTextBoxColumn1.DataType = typeof(int);
+            gridViewTextBoxColumn1.FieldName = "innokpo";
+            gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
+            gridViewTextBoxColumn1.Name = "Innokpo";
+            gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn1.Width = 130;
+            gridViewTextBoxColumn2.FieldName = "name";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Multiline = true;
+            gridViewTextBoxColumn2.Name = "Name";
+            gridViewTextBoxColumn2.Width = 534;
+            gridViewTextBoxColumn2.WrapText = true;
+            gridViewTextBoxColumn3.DataType = typeof(int);
+            gridViewTextBoxColumn3.FieldName = "countAgree";
+            gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
+            gridViewTextBoxColumn3.Name = "CountAgree";
+            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn3.Width = 130;
+            gridViewTextBoxColumn3.WrapText = true;
+            gridViewTextBoxColumn4.DataType = typeof(double);
+            gridViewTextBoxColumn4.FieldName = "undistribamount";
+            gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
+            gridViewTextBoxColumn4.Name = "Undistribamount";
+            gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn4.Width = 147;
+            gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.DataType = typeof(int);
+            gridViewTextBoxColumn5.FieldName = "custId";
+            gridViewTextBoxColumn5.HeaderText = "ID";
+            gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.Name = "CustId";
+            gridViewCommandColumn1.AllowResize = false;
+            gridViewCommandColumn1.AllowSort = false;
+            gridViewCommandColumn1.FieldName = "btnsEdit";
+            gridViewCommandColumn1.HeaderText = "Редагувати";
+            gridViewCommandColumn1.Image = global::ConsumerWorkplace_v_1._0.Properties.Resources.editIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.Name = "btnsEdit";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.Width = 70;
             this.rGridViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewCommandColumn3});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewCommandColumn1});
             this.rGridViewConsumers.MasterTemplate.DataSource = this.consumerMainViewBindingSource;
-            this.rGridViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.rGridViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewConsumers.Name = "rGridViewConsumers";
             this.rGridViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewConsumers.ReadOnly = true;
@@ -2070,6 +2075,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).EndInit();
             this.pvConsumerAnketa.ResumeLayout(false);
             this.pvConsumerAnketa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlCountry)).EndInit();
@@ -2277,5 +2283,6 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage4;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage5;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage6;
+        private System.Windows.Forms.BindingSource licenseAgrParamBindingSource;
     }
 }

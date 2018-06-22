@@ -561,6 +561,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
     <None Include="Resources\createAct.ico" />
   </ItemGroup>

@@ -477,8 +477,8 @@ namespace RightholderWorkplace
             }
 
             // if type of collection is HashSet, then adding new row is not allowed
-            _customer.RightHolder.TerritoryExclude = _customer.RightHolder.TerritoryExclude.ToList();
-            _customer.RightHolder.TerritoryInclude = _customer.RightHolder.TerritoryInclude.ToList();
+            _customer.RightHolder.TerritoryExclude = _customer.RightHolder.TerritoryExclude;
+            _customer.RightHolder.TerritoryInclude = _customer.RightHolder.TerritoryInclude;
 
             rightHolderBindingSource.DataSource = _customer.RightHolder;
         }
@@ -669,7 +669,7 @@ namespace RightholderWorkplace
             objectRightBindingSource.DataSource = _objectRight;
             mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
 
-            _objectRight.SeekObject = _objectRight.SeekObject.ToList();
+            _objectRight.SeekObject = _objectRight.SeekObject;
             seekObjectBindingSource.DataSource = _objectRight.SeekObject;
 
             // transform Authors and Copyright table into single table
@@ -745,35 +745,58 @@ namespace RightholderWorkplace
             // transform from single table to Authors and Copyright tables
             var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
 
-            _objectRight.Authors = objectAuthorRightholderList.Select(ar =>
+            objectAuthorRightholderList.ForEach(ar => _objectRight.Authors.Add(new Authors
             {
-                return new Authors
-                {
-                    AuthId = ar.AuthId,
-                    ObjId = ar.ObjId,
-                    RoleCode = ar.RoleCode,
-                    CustId = ar.CustId,
-                    AuthorName = ar.AuthorName,
-                    FolkType = ar.FolkType,
-                };
-            }).ToList();
+                AuthId = ar.AuthId,
+                ObjId = ar.ObjId,
+                RoleCode = ar.RoleCode,
+                CustId = ar.CustId,
+                AuthorName = ar.AuthorName,
+                FolkType = ar.FolkType,
+            }));
 
-            _objectRight.CopyRight = objectAuthorRightholderList
-                .Where(ar => ar.IsRightholder)
-                .Select(ar =>
-                {
-                    return new CopyRight
-                    {
-                        CRightId = ar.CRightId ?? 0,
-                        CustId = (int)ar.CustId,
-                        ObjId = ar.ObjId,
-                        RoleCode = ar.RoleCode,
-                        Rate = ar.Rate,
-                        BeginDate = ar.BeginDate,
-                        EndDate = ar.EndDate,
-                        Status = ar.CopyrightStatus,
-                    };
-                }).ToList();
+            //_objectRight.Authors = objectAuthorRightholderList.Select(ar =>
+            //{
+            //    return new Authors
+            //    {
+            //        AuthId = ar.AuthId,
+            //        ObjId = ar.ObjId,
+            //        RoleCode = ar.RoleCode,
+            //        CustId = ar.CustId,
+            //        AuthorName = ar.AuthorName,
+            //        FolkType = ar.FolkType,
+            //    };
+            //}).ToList();
+
+            objectAuthorRightholderList.ForEach(ar => _objectRight.CopyRight.Add(
+               new CopyRight
+               {
+                   CRightId = ar.CRightId ?? 0,
+                   CustId = (int)ar.CustId,
+                   ObjId = ar.ObjId,
+                   RoleCode = ar.RoleCode,
+                   Rate = ar.Rate,
+                   BeginDate = ar.BeginDate,
+                   EndDate = ar.EndDate,
+                   Status = ar.CopyrightStatus,
+               }
+                ));
+            //_objectRight.CopyRight = objectAuthorRightholderList
+            //    .Where(ar => ar.IsRightholder)
+            //    .Select(ar =>
+            //    {
+            //        return |new CopyRight
+            //        {
+            //            CRightId = ar.CRightId ?? 0,
+            //            CustId = (int)ar.CustId,
+            //            ObjId = ar.ObjId,
+            //            RoleCode = ar.RoleCode,
+            //            Rate = ar.Rate,
+            //            BeginDate = ar.BeginDate,
+            //            EndDate = ar.EndDate,
+            //            Status = ar.CopyrightStatus,
+            //        };
+            //    }).ToList();
 
             if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100)
             {
