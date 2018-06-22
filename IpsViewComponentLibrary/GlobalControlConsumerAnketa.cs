@@ -79,7 +79,8 @@ namespace IpsViewComponentLibrary
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust,_anketaDictionaries); // - - - - - -  Банківські реквізити
             ctrlAgreement.SetDataSources(_cust,_anketaDictionaries);  // - - - - - - - -  Договір
- 
+
+            ctrlClientName.SetDefaultState();
         }
 
         /// <summary>
@@ -113,11 +114,13 @@ namespace IpsViewComponentLibrary
                 case 1:
                     {
                         pageAnketaConsumer.SelectedPage = pvAddress;
+                        ctrlAddress.SetDefaultState();
                     }
                     break;
                 case 2:
                     {
                         pageAnketaConsumer.SelectedPage = pvManagers;
+                        
                     }
                     break;
                 case 3:
@@ -133,6 +136,7 @@ namespace IpsViewComponentLibrary
                 case 5:
                     {
                         pageAnketaConsumer.SelectedPage = pvAgreement;
+                        ctrlAgreement.SetDefaultListItem();
                     }
                     break;
                 case 6:
@@ -144,7 +148,6 @@ namespace IpsViewComponentLibrary
                 {
                     _btnType = ButtonType.None;
                     OnBtnSaveClick?.Invoke(_cust);
-
                 }
                     break;
             }

@@ -113,13 +113,23 @@ namespace ConsumerWorkplace_v_1._0
             int custType = 3; // Юридична особа
             var _cust = _service.NewCustomer(custType);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict);
-            form.StartPosition = FormStartPosition.CenterParent;
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict) {StartPosition = FormStartPosition.CenterParent};
+            form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
+            form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
+            if(!form.Disposing)
+            {
+                form.Dispose();
+                form = null;
+                GC.Collect();
+            }
         }
 
-
-
+        private bool Form_OnSaveCustomerNeed(ipsFormsDesign.Model.Customer cust)
+        {
+            var result = _service.Save(cust);
+            return result;
+        }
 
         private ipsFormsDesign.Model.Customer Cabinet_OnGridRowSelectedChaged(int id)
         {

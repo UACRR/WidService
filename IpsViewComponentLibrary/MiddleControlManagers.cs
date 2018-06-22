@@ -60,5 +60,14 @@ namespace IpsViewComponentLibrary
 
             lblTitle.Text = anketa?.Name;
         }
+
+        internal void SetDefaultState()
+        {
+            if (ddlPosition.Items.Count != 0)
+            {
+                ddlPosition.SelectedItem = ddlPosition.Items.Last;
+                ddlPosition.SelectedItem = ddlPosition.Items.First;
+            }
+        }
     }
 }

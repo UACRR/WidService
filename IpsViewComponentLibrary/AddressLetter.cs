@@ -233,5 +233,19 @@ namespace IpsViewComponentLibrary
 
             return isValid;
         }
+
+        internal void SetDefaultState()
+        {
+            if (ddlCountry.Items.Count != 0)
+            {
+                ddlCountry.SelectedIndex = ddlCountry.Items.Last.Index;
+                ddlCountry.SelectedIndex = ddlCountry.Items.First.Index;
+            }
+            if (ddlRegion.Items.Count != 0)
+            {
+                ddlRegion.SelectedIndex = ddlCountry.Items.Last.Index;
+                ddlRegion.SelectedIndex = ddlCountry.Items.First.Index;
+            }
+        }
     }
 }

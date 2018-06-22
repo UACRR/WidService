@@ -19,6 +19,7 @@ namespace IpsViewComponentLibrary
         string _registerNumberDataMember;
         string _registerDateDataMember;
         string _registerWhoDataMember;
+        private string _typeVatDataMember;
 
         string _numberVatDataMember;
         
@@ -112,21 +113,21 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string TypeVatDataMember
-        //{
-        //    get { return _typeVatDataMember; }
-        //    set
-        //    {
-        //        if (_typeVatDataMember != value)
-        //        {
-        //            _typeVatDataMember = value;
-        //            ddlTypeVat.DataBindings.Clear();
-        //            ddlTypeVat.DataBindings.Add("SelectedValue", bindingSourceAnketaCompany, _typeVatDataMember);
-        //        }
-        //    }
-        //}
+        [Category("Data")]
+        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        public string TypeVatDataMember
+        {
+            get => _typeVatDataMember;
+            set
+            {
+                if (_typeVatDataMember != value)
+                {
+                    _typeVatDataMember = value;
+                    ddlTypeVat.DataBindings.Clear();
+                    ddlTypeVat.DataBindings.Add("SelectedValue", iAnketaCompanyBindingSource, "TypeVat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+                }
+            }
+        }
 
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
@@ -319,6 +320,15 @@ namespace IpsViewComponentLibrary
             if (!char.IsDigit(ch) && ch != 8)
             {
                 e.Handled = true;
+            }
+        }
+
+        internal void SetDefaultState()
+        {
+            if (ddlTypeVat.Items.Count != 0)
+            {
+                ddlTypeVat.SelectedIndex = ddlTypeVat.Items.Last.Index;
+                ddlTypeVat.SelectedIndex = ddlTypeVat.Items.First.Index;
             }
         }
     }

@@ -599,8 +599,8 @@ namespace ConsumerWorkplace_v_1._0
                     if (pageAllAnketa.SelectedPage.TabIndex == 0 || pageAllAnketa.SelectedPage.TabIndex == 1)
                         SetTitleText();
                     if (e.Page.TabIndex != 6) return;
-                    var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
-                    radPdfViewer.LoadDocument(pdfDoc);
+                    //var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
+                    //radPdfViewer.LoadDocument(pdfDoc);
                     return;
                 }
                 if (pageAllAnketa.SelectedPage.TabIndex == validTabs && nextPage)
@@ -610,8 +610,8 @@ namespace ConsumerWorkplace_v_1._0
                     e.Cancel = false;
                     nextPage = false;
                     if (e.Page.TabIndex != 6) return;
-                    var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
-                    radPdfViewer.LoadDocument(pdfDoc);
+                    //var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
+                    //radPdfViewer.LoadDocument(pdfDoc);
                     return;
                 }
 
