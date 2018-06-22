@@ -87,7 +87,7 @@
             // 
             // 
             this.pageAnketaConsumer.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAnketaConsumer.SelectedPage = this.pvManagers;
+            this.pageAnketaConsumer.SelectedPage = this.pvClientName;
             this.pageAnketaConsumer.SelectionWrap = false;
             this.pageAnketaConsumer.Size = new System.Drawing.Size(1143, 658);
             this.pageAnketaConsumer.TabIndex = 1;

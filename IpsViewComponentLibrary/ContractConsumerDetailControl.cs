@@ -16,20 +16,20 @@ namespace IpsViewComponentLibrary
         private string _authorPaymentPercent;
         private string _minAuthorPayment;
         private string _percentAutoprolongation;
+        private string _periodPaymentDataMember;
         private BindingSource _bindingSource = new BindingSource();
 
         public ContractConsumerDetailControl()
         {
             InitializeComponent();
-
-            //rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items.First;
+            
         }
 
         public void SetDefaultState()
         {
             rddListTypeAutoProl.Enabled = false;
-            rtxtboxPercentAutoProl.Enabled = false;
-            rtxtboxPercentAutoProl.Clear();
+            txtPercentAutoProl.Enabled = false;
+
             if (rddListPeriodPayment.Items.Count != 0)
             {
                 rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.Last.Index;
@@ -62,6 +62,9 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        /// <summary>
+        /// Мінімальна сума оплати
+        /// </summary>
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string MinPayment
@@ -76,6 +79,9 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        /// <summary>
+        /// Якщо є автопролонгація, обраний тип кріпити сюди
+        /// </summary>
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string AutoprolongationPercent
@@ -83,9 +89,15 @@ namespace IpsViewComponentLibrary
             get => _percentAutoprolongation;
             set
             {
+                if (value == null)
+                {
+                    txtPercentAutoProl.TextBoxElement.Text = string.Empty;
+
+                    return;
+                }
                 _percentAutoprolongation = value;
-                rtxtboxPercentAutoProl.DataBindings.Clear();
-                rtxtboxPercentAutoProl.DataBindings.Add("Text", _bindingSource,
+                txtPercentAutoProl.DataBindings.Clear();
+                txtPercentAutoProl.DataBindings.Add("Text", _bindingSource,
                     _percentAutoprolongation, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
             }
         }
@@ -116,6 +128,29 @@ namespace IpsViewComponentLibrary
             set => rddListPeriodPayment.ValueMember = value;
         }
 
+        [Category("Dictionary")]
+        public string PeriodPaymentDataMember
+        {
+            get => _periodPaymentDataMember;
+            set
+            {
+                _periodPaymentDataMember = value;
+                rddListPeriodPayment.DataBindings.Clear();
+                rddListPeriodPayment.DataBindings.Add("SelectedValue", _bindingSource, _periodPaymentDataMember, true, DataSourceUpdateMode.OnPropertyChanged, value);
+            }
+        }
+
+        [Category("Dictionary")]
+        public object PeriodPaymentSelectedValue
+        {
+            get => rddListPeriodPayment.SelectedValue;
+            set => rddListPeriodPayment.SelectedValue = value;
+        }
+
+
+        /// <summary>
+        /// Чи встановлена автопролонгація
+        /// </summary>
         [Category("Data")]
         public bool IsAutoprolongation
         {
@@ -128,13 +163,13 @@ namespace IpsViewComponentLibrary
             if (rCheckBoxAutoprolongation.Checked)
             {
                 rddListTypeAutoProl.Enabled = true;
-                rtxtboxPercentAutoProl.Enabled = true;
+                txtPercentAutoProl.Enabled = true;
             }
             else
             {
-                rtxtboxPercentAutoProl.Clear();
+                txtPercentAutoProl.Clear();
                 rddListTypeAutoProl.Enabled = false;
-                rtxtboxPercentAutoProl.Enabled = false;
+                txtPercentAutoProl.Enabled = false;
             }
         }
 

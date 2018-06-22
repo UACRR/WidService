@@ -33,6 +33,7 @@ namespace IpsViewComponentLibrary
             ddlLicType.ValueMember = "codeI";
             ddlLicType.SelectedValue = license?.LicCode;
            
+            
 
             ctrlAgreementMain.DataSource = licenseParam;
             ctrlAgreementMain.DateDataSource = licenseParam;
@@ -41,18 +42,24 @@ namespace IpsViewComponentLibrary
             ctrlAgreementMain.BeginDateDataMember = "DateBegin";
             ctrlAgreementMain.EndDateDataMember = "DateEnd";
 
+            
             ctrlAgreementSecond.DataSourceBinding = licenseParam;
-            ctrlAgreementSecond.PeriodPaymentDataSource = dictionaties?.period;
-            ctrlAgreementSecond.PeriodPaymentValueMember = "codeI";
-            ctrlAgreementSecond.PeriodPaymentDisplayMember = "name";
             ctrlAgreementSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
             ctrlAgreementSecond.MinPayment = "MinAmount";
             ctrlAgreementSecond.PercentPayment = "RateAmount";
+
+            ctrlAgreementSecond.PeriodPaymentDataSource = dictionaties?.period;
+            ctrlAgreementSecond.PeriodPaymentValueMember = "codeI";
+            ctrlAgreementSecond.PeriodPaymentDisplayMember = "name";
+            ctrlAgreementSecond.PeriodPaymentDataMember = "PeriodCode";
+            ctrlAgreementSecond.PeriodPaymentSelectedValue = licenseParam?.PeriodCode;
 
             if (licenseParam?.AddRate == null && licenseParam?.IndxInfl != null)
                 ctrlAgreementSecond.SelectedItem = 1;
             else if (licenseParam?.AddRate != null && licenseParam.IndxInfl == null)
                 ctrlAgreementSecond.SelectedItem = 0;
+            else
+                ctrlAgreementSecond.AutoprolongationPercent = null;
 
             
             lblTitle.Text = anketa?.Name;

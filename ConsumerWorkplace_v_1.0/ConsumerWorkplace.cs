@@ -324,7 +324,7 @@ namespace ConsumerWorkplace_v_1._0
             if (Validation(7) && MessageBox.Show("Do you want save data?", "Save data?", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                SaveCustomer?.Invoke(_cust);
+                var result = SaveCustomer?.Invoke(_cust);
 
                 ClearDataConsumersControls();
                 EndPresenterLink();
@@ -507,6 +507,21 @@ namespace ConsumerWorkplace_v_1._0
                 anketaCtrlAddressLegal.RegionsValueMember = "codeI";
                 anketaCtrlAddressLegal.RegionsDisplayMember = "name";
 
+                //                
+                addressLetter1.DataSource = anketa;
+                addressLetter1.AddressDataMember = "LeAddress";
+                addressLetter1.CityDataMember = "LeCity";
+                addressLetter1.CountryDataMember = "LeCountry";
+                addressLetter1.CountriesDataSource = _dic.country;
+                addressLetter1.CountriesValueMember = "countryCode";
+                addressLetter1.CountriesDisplayMember = "countryName";
+                addressLetter1.RegionDataMember = "LeRegion";
+                addressLetter1.RegionsDataSource = _dic.region;
+                addressLetter1.RegionsValueMember = "codeI";
+                addressLetter1.RegionsDisplayMember = "name";
+                addressLetter1.PostIndexDataMember = "LePostIndex";
+
+
                 anketaDictionatiesBindingSource.DataSource = _dic;
 
 
@@ -530,11 +545,13 @@ namespace ConsumerWorkplace_v_1._0
                 licenseTypeCtrlContractConsumerDetail.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
                 licenseTypeCtrlContractConsumerDetail.MinPayment = "MinAmount";
                 licenseTypeCtrlContractConsumerDetail.PercentPayment = "RateAmount";
-                
+                licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataMember = "PeriodCode";
+                licenseTypeCtrlContractConsumerDetail.PeriodPaymentSelectedValue = licenseParam?.PeriodCode;
 
                 licenseTypeDropListLicType.DisplayMember = "Name";
                 licenseTypeDropListLicType.ValueMember = "CodeI";
                 licenseTypeDropListLicType.SelectedValue = license.LicCode;
+                
 
                 //licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
                 if (licenseParam?.AddRate == null && licenseParam?.IndxInfl != null)

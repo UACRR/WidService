@@ -37,7 +37,7 @@
             this.rtxtBoxAuthorPaymentPercent = new Telerik.WinControls.UI.RadTextBox();
             this.rtxtBoxMinAuthorPayment = new Telerik.WinControls.UI.RadTextBox();
             this.rCheckBoxAutoprolongation = new Telerik.WinControls.UI.RadCheckBox();
-            this.rtxtboxPercentAutoProl = new Telerik.WinControls.UI.RadTextBox();
+            this.txtPercentAutoProl = new Telerik.WinControls.UI.RadTextBox();
             this.rddListPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
             this.rddListTypeAutoProl = new Telerik.WinControls.UI.RadDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -47,7 +47,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxAuthorPaymentPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMinAuthorPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rCheckBoxAutoprolongation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtboxPercentAutoProl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).BeginInit();
             this.SuspendLayout();
@@ -107,12 +107,12 @@
             this.rCheckBoxAutoprolongation.Text = "Автопролонгація";
             this.rCheckBoxAutoprolongation.CheckStateChanged += new System.EventHandler(this.rCheckBoxAutoprolongation_CheckStateChanged);
             // 
-            // rtxtboxPercentAutoProl
+            // txtPercentAutoProl
             // 
-            this.rtxtboxPercentAutoProl.Location = new System.Drawing.Point(411, 52);
-            this.rtxtboxPercentAutoProl.Name = "rtxtboxPercentAutoProl";
-            this.rtxtboxPercentAutoProl.Size = new System.Drawing.Size(59, 20);
-            this.rtxtboxPercentAutoProl.TabIndex = 4;
+            this.txtPercentAutoProl.Location = new System.Drawing.Point(411, 52);
+            this.txtPercentAutoProl.Name = "txtPercentAutoProl";
+            this.txtPercentAutoProl.Size = new System.Drawing.Size(59, 20);
+            this.txtPercentAutoProl.TabIndex = 4;
             // 
             // rddListPeriodPayment
             // 
@@ -141,7 +141,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.rddListTypeAutoProl);
             this.Controls.Add(this.rddListPeriodPayment);
-            this.Controls.Add(this.rtxtboxPercentAutoProl);
+            this.Controls.Add(this.txtPercentAutoProl);
             this.Controls.Add(this.rCheckBoxAutoprolongation);
             this.Controls.Add(this.rtxtBoxMinAuthorPayment);
             this.Controls.Add(this.rtxtBoxAuthorPaymentPercent);
@@ -160,7 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxAuthorPaymentPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMinAuthorPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rCheckBoxAutoprolongation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtboxPercentAutoProl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).EndInit();
             this.ResumeLayout(false);
@@ -177,7 +177,7 @@
         private Telerik.WinControls.UI.RadTextBox rtxtBoxAuthorPaymentPercent;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxMinAuthorPayment;
         private Telerik.WinControls.UI.RadCheckBox rCheckBoxAutoprolongation;
-        private Telerik.WinControls.UI.RadTextBox rtxtboxPercentAutoProl;
+        private Telerik.WinControls.UI.RadTextBox txtPercentAutoProl;
         private Telerik.WinControls.UI.RadDropDownList rddListPeriodPayment;
         private Telerik.WinControls.UI.RadDropDownList rddListTypeAutoProl;
     }
