@@ -484,6 +484,7 @@ namespace RightholderWorkplace
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
+            // Objects rights page init
             _dictionariesObjectRight = _objectRightService.GetDictionary();
 
             SetObjectRightDictionaries();
@@ -503,6 +504,15 @@ namespace RightholderWorkplace
             filterByPerformer.Value = 2;
             filterByPerformer.IsFilterEditor = true;
             gvObjectPerformers.FilterDescriptors.Add(filterByPerformer);
+
+            // Change rightholders page init
+            GridViewRelation relation = new GridViewRelation(gvChangeCopyrights.MasterTemplate, gvChangeCopyrightsTemplate);
+            relation.RelationName = "RightholdersObjects";
+            relation.ParentColumnNames.Add("ObjId");
+            relation.ChildColumnNames.Add("ObjId");
+            gvChangeCopyrights.Relations.Add(relation);
+
+            gvChangeCopyrightsTemplate.AllowAddNewRow = false;
         }
 
         #region Objectrights page
@@ -857,7 +867,7 @@ namespace RightholderWorkplace
             gvObjectsRightsList.DataSource = objectsRightsList;
         }
 
-        private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0)
+        private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0) // moved
         {
             var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
 
@@ -926,6 +936,65 @@ namespace RightholderWorkplace
         }
 
         #endregion
+
+        #endregion
+
+        #region Change rightholders page
+
+        private List<ObjectCopyright> _objectCopyrightList = new List<ObjectCopyright>();
+
+        private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView e)
+        {
+            objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
+            _objectCopyrightList.Clear();
+        }
+
+        private void btnAddNewRightholder_Click(object sender, EventArgs e)
+        {
+            using (var selectionView = new RightholderSelectionView())
+            {
+                selectionView.RightholderSelected += SelectionView_RightholderSelected;
+                selectionView.ShowDialog();
+            }
+        }
+
+        private void SelectionView_RightholderSelected(object sender, RightholderMainView addedRightholder)
+        {
+            var objectsRightsList = ctrlRightholdersObjectsForChange.ObjectsRightsList;
+
+            objectsRightsList.ForEach(or =>
+            {
+                var newObjectCopyright = new ObjectCopyright
+                {
+                    ObjId = or.ObjId,
+                    CustId = or.CustId,
+                    //RoleCode = or.RoleCode, ???
+                    InnerCode = addedRightholder.InnerCode,
+                    InterCode = addedRightholder.InterCode,
+                    Name = addedRightholder.Name,
+                    Rate = 0,
+                };
+                _objectCopyrightList.Add(newObjectCopyright);
+            });
+
+            using (gvChangeCopyrights.DeferRefresh())
+            {
+                objectCopyrightBindingSource.DataSource = _objectCopyrightList;
+                objectCopyrightBindingSource.ResetBindings(false);
+                gvChangeCopyrights.MasterTemplate.ExpandAll();
+            }
+        }
+
+        private void gvChangeCopyrights_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            if (e.RowElement.ViewTemplate.Parent == null)
+            {
+                e.RowElement.DrawFill = true;
+                e.RowElement.GradientStyle = GradientStyles.Solid;
+                e.RowElement.BackColor = Color.LightGray;
+                e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+            }
+        }
 
         #endregion
 

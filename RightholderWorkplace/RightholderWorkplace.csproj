@@ -91,6 +91,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectCopyright.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
