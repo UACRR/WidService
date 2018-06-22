@@ -12,8 +12,30 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
+    [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class CalculationInfoNewControl : UserControl
     {
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get { return bindingSourceConsumer.DataSource; }
+            set
+            {
+                bindingSourceConsumer.DataSource = value;
+                // Привязуємо до 
+                if (value is Client)
+                    moneyReceivedBindingSource.DataSource = (value as Client).MoneyReceived;
+            }
+        }
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public string DataMember
+        {
+            get { return bindingSourceConsumer.DataMember; }
+            set { bindingSourceConsumer.DataMember = value; }
+        }
+
         private AnketaDictionaties _dict;
         private Customer _data;
         public CalculationInfoNewControl()
@@ -57,7 +79,7 @@ namespace IpsViewComponentLibrary
             }
             //int id = gvUserMoneys.CurrentRow.Cells[0].Value;
             SetDataSourceLicenseAgr();
-            
+
         }
 
         // подія зміни обраного рядка [ліцензійних договорів (активні договора) ]
@@ -81,34 +103,34 @@ namespace IpsViewComponentLibrary
                 return;
             }
 
-            SetDataSourcePayments(idPeriod: Convert.ToInt32(e.CurrentRow.Cells["PeriodId"].Value), 
+            SetDataSourcePayments(idPeriod: Convert.ToInt32(e.CurrentRow.Cells["PeriodId"].Value),
                                   idLic: Convert.ToInt32(gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value));
         }
-        
+
 
         // Джерело для [ліцензійних договорів]
         private void SetDataSourceLicenseAgr()
         {
-            List<GridLicAgr> source = new List<GridLicAgr>();
-            foreach (var item in _data.Client.LicenseAgreement)
-            {
-                var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
-                source.Add(new GridLicAgr
-                {
-                    Id = item?.AgrId ?? default(int),
-                    LicenseId = item?.LicId ?? default(int),
-                    License = _dict?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
-                    Series = string.Empty,
-                    AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
-                    DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
-                    DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
-                    Amount = licenseParam?.MinAmount ?? default(decimal),
-                    State = _dict?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
-                    PeriodPayment = _dict?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
-                    Debt = ""
-                });
-            }
-            gvLicenseAgr.DataSource = source;
+            //List<GridLicAgr> source = new List<GridLicAgr>();
+            //foreach (var item in _data.Client.LicenseAgreement)
+            //{
+            //    var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
+            //    source.Add(new GridLicAgr
+            //    {
+            //        Id = item?.AgrId ?? default(int),
+            //        LicenseId = item?.LicId ?? default(int),
+            //        License = _dict?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
+            //        Series = string.Empty,
+            //        AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
+            //        DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
+            //        DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
+            //        Amount = licenseParam?.MinAmount ?? default(decimal),
+            //        State = _dict?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
+            //        PeriodPayment = _dict?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
+            //        Debt = ""
+            //    });
+            //}
+            //gvLicenseAgr.DataSource = source;
         }
 
         public object DataSourceReturn
@@ -147,14 +169,14 @@ namespace IpsViewComponentLibrary
         // Джерело для [платежів обраного періоду]
         private void SetDataSourcePayments(int idPeriod = 0, int idLic = 0)
         {
-            
+
             var period = _data.Client.LicenseAgreement.Where(rec => rec.LicId == idLic).Select(rec => rec.PaidPeriod).SingleOrDefault();
             var moneyPeriod = period?.Where(recId => recId.PeriodId == idPeriod).Select(rec => rec.MoneyPeriodLink).SingleOrDefault();
-            
+
             List<GridPayments> source = new List<GridPayments>();
             foreach (var item in moneyPeriod?.Select(rec => rec.Paid)?.ToList())
             {
-                
+
                 //var ststuse = item.MoneyType;
                 if (item != null)
                     source.Add(new GridPayments
@@ -179,6 +201,16 @@ namespace IpsViewComponentLibrary
             DistributionForm distr = new DistributionForm(gvUserMoneys.DataSource, gvPeriodsPayment.DataSource, _data);
             distr.StartPosition = FormStartPosition.CenterScreen;
             distr.ShowDialog();
+        }
+
+        private void gvUserMoneys_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
+        {
+            var test = e.ListChangedType;
+        }
+
+        private void moneyReceivedBindingSource_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            var test = e.BindingCompleteState;
         }
     }
 

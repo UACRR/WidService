@@ -49,13 +49,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
     <Reference Include="Telerik.WinControls, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>C:\Program Files (x86)\Progress\Telerik UI for WinForms R2 2018\Bin40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>C:\Program Files (x86)\Progress\Telerik UI for WinForms R2 2018\Bin40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
@@ -72,13 +75,26 @@
     <Compile Include="FormBinding1.Designer.cs">
       <DependentUpon>FormBinding1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormIBindingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormIBindingList.Designer.cs">
+      <DependentUpon>FormIBindingList.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="GenericTest1.GenericTest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
+    <None Include="workplace.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
@@ -89,10 +105,17 @@
       <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
       <Name>IpsViewComponentLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
+      <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
+      <Name>WebAPIConnector</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormBinding1.resx">
       <DependentUpon>FormBinding1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormIBindingList.resx">
+      <DependentUpon>FormIBindingList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
