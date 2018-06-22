@@ -260,14 +260,14 @@
             // 
             this.mtxtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "Rate", true));
             this.mtxtRate.Location = new System.Drawing.Point(120, 40);
-            this.mtxtRate.Mask = "N0";
+            this.mtxtRate.Mask = "N2";
             this.mtxtRate.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRate.Name = "mtxtRate";
             this.mtxtRate.PromptChar = '0';
             this.mtxtRate.Size = new System.Drawing.Size(69, 21);
             this.mtxtRate.TabIndex = 66;
             this.mtxtRate.TabStop = false;
-            this.mtxtRate.Text = "0";
+            this.mtxtRate.Text = "0,00";
             this.mtxtRate.ThemeName = "Office2013Light";
             // 
             // radLabel3
