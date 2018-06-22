@@ -224,10 +224,10 @@ namespace ipsmedserviceapp.Controllers
         /// Об'єкти (ВСІ)-от правообл Grid 2
         /// </summary>
         /// <returns></returns>
-        [HttpGet("view/list_0302")]
-        public async Task<IActionResult> vtsk_3_OR_03_V2()
+        [HttpGet("view/list_0302/{id}")]
+        public async Task<IActionResult> vtsk_3_OR_03_V2(int id)
         {
-            var list = await _dbContext.getViewData("select * from vtsk_3_OR_03_V2", null);
+            var list = await _dbContext.getViewData($"select * from vtsk_3_OR_03_V2  where custId = {id}", null);
             return Json(list);
         }
 

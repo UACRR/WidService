@@ -388,6 +388,12 @@
     <Compile Include="RightholderSelectionView.Designer.cs">
       <DependentUpon>RightholderSelectionView.cs</DependentUpon>
     </Compile>
+    <Compile Include="RightholdersObjectsRightsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholdersObjectsRightsControl.Designer.cs">
+      <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingleShowInformationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -543,6 +549,9 @@
     <EmbeddedResource Include="RightholderSelectionView.resx">
       <DependentUpon>RightholderSelectionView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RightholdersObjectsRightsControl.resx">
+      <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SingleShowInformationControl.resx">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -552,6 +561,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
     <None Include="Resources\createAct.ico" />
   </ItemGroup>
   <ItemGroup>

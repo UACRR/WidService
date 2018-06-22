@@ -133,8 +133,6 @@ namespace RightholderWorkplace
         {
             InitializeComponent();
 
-            WireUpObjectsRightsPageEvents();
-
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
@@ -418,6 +416,7 @@ namespace RightholderWorkplace
             }
 
             MainPageView.SelectedPage = mainPageRightholders;
+            rightholdersPageView.SelectedPage = rightholdersPage;
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
             newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
             pdfvRightholderAgreement.UnloadDocument();
@@ -485,6 +484,7 @@ namespace RightholderWorkplace
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
+            // Objects rights page init
             _dictionariesObjectRight = _objectRightService.GetDictionary();
 
             SetObjectRightDictionaries();
@@ -504,6 +504,15 @@ namespace RightholderWorkplace
             filterByPerformer.Value = 2;
             filterByPerformer.IsFilterEditor = true;
             gvObjectPerformers.FilterDescriptors.Add(filterByPerformer);
+
+            // Change rightholders page init
+            GridViewRelation relation = new GridViewRelation(gvChangeCopyrights.MasterTemplate, gvChangeCopyrightsTemplate);
+            relation.RelationName = "RightholdersObjects";
+            relation.ParentColumnNames.Add("ObjId");
+            relation.ChildColumnNames.Add("ObjId");
+            gvChangeCopyrights.Relations.Add(relation);
+
+            gvChangeCopyrightsTemplate.AllowAddNewRow = false;
         }
 
         #region Objectrights page
@@ -526,7 +535,7 @@ namespace RightholderWorkplace
             }
         }
 
-        public int SelectedRghtholdersObjectRightId
+        public int SelectedRghtholdersObjectRightId // moved
         {
             get
             {
@@ -577,12 +586,6 @@ namespace RightholderWorkplace
             ddlGenreType.DataSource = _dictionariesObjectRight.genreType.Where(g => g.CategoryCode == category);
             ddlGenreType.ValueMember = "CodeI";
             ddlGenreType.DisplayMember = "Name";
-        }
-
-        private void WireUpObjectsRightsPageEvents()
-        {
-            ctrlRightholderSelector.RightholderChanged += CtrlRightholderSelector_RightholderChanged;
-            ctrlRightholderSelector.ShowAnketaCommandExecuted += CtrlRightholderSelector_ShowAnketaCommandExecuted;
         }
 
         private void CtrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
@@ -640,7 +643,7 @@ namespace RightholderWorkplace
             EditObjectRight();
         }
 
-        private void EditObjectRight(int objId = 0)
+        private void EditObjectRight(int objId = 0) // subscribe to EditObjectCommandExecuted
         {
             _previousPage = objectsPageView.SelectedPage;
 
@@ -676,7 +679,7 @@ namespace RightholderWorkplace
             var objectAuthorRightholderList = _objectRight.Authors.Select(a =>
             {
 
-                var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId);
+                var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
                 var foundedRightholder = rightholders.FirstOrDefault(r => r.custId == a.CustId);
 
                 return new ObjectAuthorRightholder
@@ -835,7 +838,7 @@ namespace RightholderWorkplace
 
         #region Rightholders objectrights list event handlers
 
-        private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e) // moved
         {
             var currentColumnName = e.Column.Name;
 
@@ -845,7 +848,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void gvRightholdersObjectsRights_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        private void gvRightholdersObjectsRights_CellDoubleClick(object sender, GridViewCellEventArgs e) // moved
         {
             if (e.Column is GridViewCommandColumn)
                 return;
@@ -864,7 +867,7 @@ namespace RightholderWorkplace
             gvObjectsRightsList.DataSource = objectsRightsList;
         }
 
-        private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0)
+        private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0) // moved
         {
             var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
 
@@ -933,6 +936,65 @@ namespace RightholderWorkplace
         }
 
         #endregion
+
+        #endregion
+
+        #region Change rightholders page
+
+        private List<ObjectCopyright> _objectCopyrightList = new List<ObjectCopyright>();
+
+        private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView e)
+        {
+            objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
+            _objectCopyrightList.Clear();
+        }
+
+        private void btnAddNewRightholder_Click(object sender, EventArgs e)
+        {
+            using (var selectionView = new RightholderSelectionView())
+            {
+                selectionView.RightholderSelected += SelectionView_RightholderSelected;
+                selectionView.ShowDialog();
+            }
+        }
+
+        private void SelectionView_RightholderSelected(object sender, RightholderMainView addedRightholder)
+        {
+            var objectsRightsList = ctrlRightholdersObjectsForChange.ObjectsRightsList;
+
+            objectsRightsList.ForEach(or =>
+            {
+                var newObjectCopyright = new ObjectCopyright
+                {
+                    ObjId = or.ObjId,
+                    CustId = or.CustId,
+                    //RoleCode = or.RoleCode, ???
+                    InnerCode = addedRightholder.InnerCode,
+                    InterCode = addedRightholder.InterCode,
+                    Name = addedRightholder.Name,
+                    Rate = 0,
+                };
+                _objectCopyrightList.Add(newObjectCopyright);
+            });
+
+            using (gvChangeCopyrights.DeferRefresh())
+            {
+                objectCopyrightBindingSource.DataSource = _objectCopyrightList;
+                objectCopyrightBindingSource.ResetBindings(false);
+                gvChangeCopyrights.MasterTemplate.ExpandAll();
+            }
+        }
+
+        private void gvChangeCopyrights_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            if (e.RowElement.ViewTemplate.Parent == null)
+            {
+                e.RowElement.DrawFill = true;
+                e.RowElement.GradientStyle = GradientStyles.Solid;
+                e.RowElement.BackColor = Color.LightGray;
+                e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+            }
+        }
 
         #endregion
 
