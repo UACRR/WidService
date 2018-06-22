@@ -669,7 +669,7 @@ namespace RightholderWorkplace
             var objectAuthorRightholderList = _objectRight.Authors.Select(a =>
             {
 
-                var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId);
+                var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
                 var foundedRightholder = rightholders.FirstOrDefault(r => r.custId == a.CustId);
 
                 return new ObjectAuthorRightholder
