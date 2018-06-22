@@ -42,6 +42,7 @@
             this.anketaPersonControl1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.anketaPersonControl1.Location = new System.Drawing.Point(44, 13);
             this.anketaPersonControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.anketaPersonControl1.MaximumSize = new System.Drawing.Size(1200, 129);
             this.anketaPersonControl1.Name = "anketaPersonControl1";
             this.anketaPersonControl1.Size = new System.Drawing.Size(594, 122);
             this.anketaPersonControl1.TabIndex = 0;
