@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
+
+namespace IpsViewComponentLibrary
+{
+    public partial class MiddleControlAgreementAnketaType : UserControl, IMiddleCtrlAnketaConsumer
+    {
+        public MiddleControlAgreementAnketaType()
+        {
+            InitializeComponent();
+        }
+
+        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
+        {
+            AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
+            var license = cust?.Client?.LicenseAgreement?.FirstOrDefault(rec => rec.LicStatus < 4);
+            var licenseParam = license?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == license?.LicVersion);
+
+            ddlLicType.DataSource = dictionaties?.agrLicenseType;
+            ddlLicType.DisplayMember = "Name";
+            ddlLicType.ValueMember = "CodeI";
+            ddlLicType.SelectedValue = license?.LicCode;
+
+            ctrlAgreementMain.DataSource = licenseParam;
+            ctrlAgreementMain.DateDataSource = licenseParam;
+            ctrlAgreementMain.ContrNumber = "LicNum";
+            ctrlAgreementMain.AgrDateDataMember = "LicDate";
+            ctrlAgreementMain.BeginDateDataMember = "DateBegin";
+            ctrlAgreementMain.EndDateDataMember = "DateEnd";
+
+            ctrlAgreementSecond.DataSourceBinding = licenseParam;
+            ctrlAgreementSecond.PeriodPaymentDataSource = dictionaties.period;
+            ctrlAgreementSecond.PeriodPaymentValueMember = "codeI";
+            ctrlAgreementSecond.PeriodPaymentDisplayMember = "name";
+            ctrlAgreementSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
+            ctrlAgreementSecond.MinPayment = "MinAmount";
+            ctrlAgreementSecond.PercentPayment = "RateAmount";
+
+            if (licenseParam?.AddRate == null && licenseParam?.IndxInfl != null)
+                ctrlAgreementSecond.SelectedItem = 1;
+            else if (licenseParam?.AddRate != null && licenseParam.IndxInfl == null)
+                ctrlAgreementSecond.SelectedItem = 0;
+
+            lblTitle.Text = anketa?.Name;
+        }
+    }
+}

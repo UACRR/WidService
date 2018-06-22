@@ -23,6 +23,8 @@ namespace ConsumerWorkplace_v_1._0
             Application.Run(form);
 
             //LoadCabinet(form.ReturnCustomer());
+
+            //LoadTest();
         }
 
         private static void LoadCabinet(Customer oo)
@@ -33,6 +35,12 @@ namespace ConsumerWorkplace_v_1._0
             FormPresenter control = new FormPresenter(f, m);
             f.SetData(oo);
             Application.Run(f);
+        }
+
+        private static void LoadTest()
+        {
+            TestForm test = new TestForm();
+            Application.Run(test);
         }
     }
 }

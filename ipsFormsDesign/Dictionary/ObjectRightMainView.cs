@@ -30,7 +30,7 @@ namespace ipsFormsDesign.Dictionary
         public string RoleName { get; set; }
         public string SpecName { get; set; }
         public double RateTotal { get; set; }
-        public double RateRh { get; set; }
+        public double? RateRh { get; set; }
         public string Performer { get; set; }
         public double Profit { get; set; }
     }
@@ -43,6 +43,7 @@ namespace ipsFormsDesign.Dictionary
         public int isClient { get; set; }
         public int isRHolder { get; set; }
         public int isPartner { get; set; }
+        public string Community_Name { get; set; }
     }
 
     public class ContainerForObjectRihgt

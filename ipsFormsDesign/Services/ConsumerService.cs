@@ -3,6 +3,7 @@ using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -24,7 +25,13 @@ namespace ipsFormsDesign.Services
 
         public IList<ConsumerMainView> getMainView()
         {
-            var anketaDic = _webApi.GetList<ConsumerMainView>("consumer/listSR");
+            return getMainView(ConsumerFilterEnum.All);
+        }
+
+        public IList<ConsumerMainView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All )
+        {
+            string url = $"consumer/listSR/{what}";
+            var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
         }
 

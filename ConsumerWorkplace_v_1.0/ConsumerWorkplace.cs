@@ -8,10 +8,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using Telerik.WinControls;
-
+using Telerik.WinControls.UI;
 
 
 namespace ConsumerWorkplace_v_1._0
@@ -20,15 +22,35 @@ namespace ConsumerWorkplace_v_1._0
     {
         private bool nextPage = false;
         private sbyte validTabs = 0;
-        
+        private SwitchPresenter _presenter;
+        private ConsumerService _service;
 
         public event Func<bool> Save;
 
         public ConsumerWorkplace()
         {
+            RadTreeNode[] list = new[]
+            {
+                new RadTreeNode {Text = "Всі", Value = ConsumerFilterEnum.All},
+                new RadTreeNode {Text = "Діючі", Value = ConsumerFilterEnum.Working},
+                new RadTreeNode {Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
+                new RadTreeNode {Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation},
+                new RadTreeNode {Text = "Не розподіленні", Value = ConsumerFilterEnum.ForDistribution}
+            };
+            
+            
             InitializeComponent();
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
             placesCtrlConsumerPlaces.OnEnabledChangeWhenEditOrAddPremises += PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises;
+
+            foreach (var item in list)
+            {
+                radTreeView1.Nodes.Add(item);
+            }
+
+            _service = new ConsumerService();
+            _presenter = new SwitchPresenter( mainViewSwitcher1, _service, radTreeView1 );
+            radTreeView1.SelectedNode = radTreeView1.Nodes["Всі"];
 
         }
 
@@ -77,10 +99,7 @@ namespace ConsumerWorkplace_v_1._0
                 page.Item.ForeColor = DefaultForeColor;
             }
 
-            if (!clientNameCheckBoxPlaces.Checked)
-                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
-            else
-                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;
+            pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = !clientNameCheckBoxPlaces.Checked ? Color.DarkGray : DefaultForeColor;
         }
 
         /// <summary>
@@ -446,7 +465,7 @@ namespace ConsumerWorkplace_v_1._0
 
                 bankRequisitesCtrlBankAccount.DataSource = bankAccount;
 
-                RelEmployee relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).FirstOrDefault();
+                RelEmployee relEmpl = _cust.Company.RelEmployee.FirstOrDefault(rec => rec.PositionCode == 1);
                 if(relEmpl == null)
                 {
                     relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
@@ -454,6 +473,7 @@ namespace ConsumerWorkplace_v_1._0
                 }
 
                 iRelEmployeeBindingSource.DataSource = relEmpl;
+
                 iEmployeeBindingSource.DataSource = relEmpl.Empl;
 
                 relEmpl = _cust.Company.RelEmployee.FirstOrDefault(rec => rec.PositionCode == 2);
@@ -505,9 +525,7 @@ namespace ConsumerWorkplace_v_1._0
 
                 anketaDictionatiesBindingSource.DataSource = _dic;
 
-                clientNameCtrlAnketaCompany.ActivityCodeDataSource = _dic.activityType;
-                clientNameCtrlAnketaCompany.ActivityCodeValueMember = "codeI";
-                clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "name";
+
                 clientNameCtrlAnketaCompany.DataSource = anketa;
 
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
@@ -546,10 +564,9 @@ namespace ConsumerWorkplace_v_1._0
                 iPositionTypeBindingSource.DataSource = _dic.positionType;
 
                 placesCtrlConsumerPlaces.SetData(_cust);
-                if (_cust.Client.ClnBusinessPlace.Count != 0)
-                    placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
-                else
-                    placesCtrlConsumerPlaces.SetGridDataSource(null);
+                placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace.Count != 0
+                    ? _cust.Client.ClnBusinessPlace
+                    : null);
 
                 //placesCtrlConsumerPlaces.RegionsPlacesCtrlDataSource = _dic.region;
                 //placesCtrlConsumerPlaces.RegionsPlacesCtrlDisplayMember = "name";
@@ -644,11 +661,8 @@ namespace ConsumerWorkplace_v_1._0
         /// </summary>
         public bool IsPlaceIn
         {
-            get { if (_cust == null || _cust.Client.ClnBusinessPlace.Count == 0)
-                    return false;
-                return true;
-            }
-            set{ }
+            get => _cust != null && _cust.Client.ClnBusinessPlace.Count != 0;
+            set {  }
         }
 
         public Func<IList<ConsumerMainView>> getMainViewData { get; set; }

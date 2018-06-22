@@ -71,17 +71,18 @@ namespace ipsFormsDesign.Interfaces
 
     public class ObjectRightDictionaries
     {
-             public IList<Category> category {get; set; }
-             public IList<CopyrightType> copyrightType {get; set; }
-             public IList<CreativeRoleType> creativeRoleType {get; set; }
-             public IList<EtGenre> etGenre {get; set; }
-             public IList<EtRole> etRole {get; set; }
-             public IList<GenreType> genreType {get; set; }
-             public IList<LegalBasis> legalBasis {get; set; }
-             public IList<ObjAct> objAct {get; set; }
-             public IList<ObjectStatus> objectStatus {get; set; }
-             public IList<PermitType> permitType {get; set; }
-             public IList<SeekType> seekType {get; set; }
-             public IList<SpecType> specType {get; set; }
+        public IList<Category> category {get; set; }
+        public IList<CopyrightType> copyrightType {get; set; }
+        public IList<CreativeRoleType> creativeRoleType {get; set; }
+        public IList<EtGenre> etGenre {get; set; }
+        public IList<EtRole> etRole {get; set; }
+        public IList<GenreType> genreType {get; set; }
+        public IList<LegalBasis> legalBasis {get; set; }
+        public IList<ObjAct> objAct {get; set; }
+        public IList<ObjectStatus> objectStatus {get; set; }
+        public IList<PermitType> permitType {get; set; }
+        public IList<SeekType> seekType {get; set; }
+        public IList<SpecType> specType {get; set; }
+        public IList<SpecType> folkType { get; set; }
     }
 }

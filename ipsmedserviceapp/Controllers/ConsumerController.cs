@@ -502,8 +502,8 @@ namespace ipsmedserviceapp.Controllers
         /// Отримати список Споживачів малих прав
         /// </summary>
         /// <returns></returns>
-        [HttpGet("listSR")]
-        public async Task<IActionResult> GetListSR()
+        [HttpGet("listSR/{wtat}")]
+        public async Task<IActionResult> GetListSR( int what )
         {
             var List = await _dbContext.getViewData("select * from vTsk_1_ListConsumer01", null);
             return Json(List);

@@ -100,13 +100,13 @@ namespace ipsAnketaClient
             lblLocation.Text = string.Empty;
 
             premisesType = new IpsPremisesTypeControl();
-            premisesType.OnBtnAddPremisesClick += PremisesType_OnBtnAddPremisesClick; ;
-            premisesType.OnBtnDeletePremisesClick += PremisesType_OnBtnDeletePremisesClick; ;
-            premisesType.OnBtnEditPremisesClick += PremisesType_OnBtnEditPremisesClick; ;
+            premisesType.OnBtnAddPremisesClick += PremisesType_OnBtnAddPremisesClick; 
+            premisesType.OnBtnDeletePremisesClick += PremisesType_OnBtnDeletePremisesClick; 
+            premisesType.OnBtnEditPremisesClick += PremisesType_OnBtnEditPremisesClick; 
             premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            premisesType.Location = new Point(10, 155); ;
+            premisesType.Location = new Point(10, 155); 
             premisesType.Width = addressControl.Width;
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height + 235);//   + 240
+            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height + 230);//   + 240
 
             rPanelAdd.Controls.Add(premisesType);
         }
@@ -126,7 +126,7 @@ namespace ipsAnketaClient
             if (premisesType != null)
             {
                 rPanelAdd.Controls.Remove(premisesType);
-                rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height - 235);//   - 240
+                rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height - 230);//   - 240
                 rPanelAdd.Refresh();
                 premisesType.OnBtnAddPremisesClick -= PremisesType_OnBtnAddPremisesClick;
                 premisesType.OnBtnDeletePremisesClick -= PremisesType_OnBtnDeletePremisesClick;
@@ -144,8 +144,8 @@ namespace ipsAnketaClient
             isNewInst = false;
             newPlace = new List<ClnPlaceHoll>();
 
-            if(data.Client.ClnBusinessPlace.Count != 0)
-                SetGridDataSource(data.Client.ClnBusinessPlace);
+            if(data?.Client?.ClnBusinessPlace?.Count != 0)
+                SetGridDataSource(data?.Client?.ClnBusinessPlace);
         }
 
         public void ClearData()

@@ -48,25 +48,30 @@ namespace IpsViewComponentLibrary
         private void SetLicenseAgrGridDataSource()
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
-            foreach (var item in _customer.Client.LicenseAgreement)
-            {
-                //
-                var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
-                source.Add(new GridLicenseAgrView
+            if (_customer?.Client.LicenseAgreement != null)
+                foreach (var item in _customer.Client.LicenseAgreement)
                 {
-                    Id = item?.AgrId ?? default(int),
-                    License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
-                    Series = string.Empty,
-                    AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
-                    DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
-                    DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
-                    Amount = licenseParam?.MinAmount ?? default(decimal),
-                    State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
-                    PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
-                    DateLastPayment = ""
-                });
-
-            }
+                    //
+                    var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
+                    source.Add(new GridLicenseAgrView
+                    {
+                        Id = item?.AgrId ?? default(int),
+                        License =
+                            _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
+                        Series = string.Empty,
+                        AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
+                        DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
+                        DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
+                        Amount = licenseParam?.MinAmount ?? default(decimal),
+                        State = _dictionaties?.agreementStatus
+                                    ?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ??
+                                string.Empty,
+                        PeriodPayment =
+                            _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ??
+                            string.Empty,
+                        DateLastPayment = ""
+                    });
+                }
 
             gvLicenseAgr.DataSource = source;
             gvLicenseAgr.MasterTemplate.Refresh();

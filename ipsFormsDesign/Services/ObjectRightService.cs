@@ -40,10 +40,16 @@ namespace ipsFormsDesign.Services
         {
             if (item.ObjId == 0) // Новий об'єкт права
             {
-                return _webApi.NewItem("objectright/newrightholder", item);
+                return _webApi.NewItem("objectright/newobject", item);
             }
 
             return _webApi.UpdateItem("objectright/detail", item.ObjId.ToString(), item);
+        }
+
+        public ObjectRight NewObjectRight(int category)
+        {
+            var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
+            return item;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="view">контрол</param>
         /// <param name="needReturn">true - Додати поточний контрол в стек перед переключенням на новий</param>
-        public void SwitchView(Control view, bool needReturn)
+        public void SwitchView(Control view, bool needReturn = true)
         {
             if (needReturn)
             {
@@ -47,17 +47,18 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Закрити поточний контрол
         /// </summary>
-        public void CloseView()
+        public Control CloseView()
         {
             if (_stack.Count == 0)
             {
-                return;
+                return null;
             }
             _currentView = _stack.Pop();
             radPanel1.SuspendLayout();
             radPanel1.Controls.Clear();
             radPanel1.Controls.Add(_currentView);
             radPanel1.ResumeLayout();
+            return _currentView;
         }
     }
 }
