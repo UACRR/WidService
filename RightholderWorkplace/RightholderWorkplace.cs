@@ -133,8 +133,6 @@ namespace RightholderWorkplace
         {
             InitializeComponent();
 
-            WireUpObjectsRightsPageEvents();
-
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
@@ -577,12 +575,6 @@ namespace RightholderWorkplace
             ddlGenreType.DataSource = _dictionariesObjectRight.genreType.Where(g => g.CategoryCode == category);
             ddlGenreType.ValueMember = "CodeI";
             ddlGenreType.DisplayMember = "Name";
-        }
-
-        private void WireUpObjectsRightsPageEvents()
-        {
-            ctrlRightholderSelector.RightholderChanged += CtrlRightholderSelector_RightholderChanged;
-            ctrlRightholderSelector.ShowAnketaCommandExecuted += CtrlRightholderSelector_ShowAnketaCommandExecuted;
         }
 
         private void CtrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
