@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public Employee()
         {
-            RelEmployee = new HashSet<RelEmployee>();
+            RelEmployee = new ObservableListSource<RelEmployee>();
         }
 
         public int Emplid { get; set; }
@@ -22,7 +22,7 @@ namespace ipsFormsDesign.Model
 
         public Customer Cust { get; set; }
         public AspNetUsers User { get; set; }
-        public ICollection<RelEmployee> RelEmployee { get; set; }
+        public ObservableListSource<RelEmployee> RelEmployee { get; set; }
     }
 }
 

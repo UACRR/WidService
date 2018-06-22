@@ -28,6 +28,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<AnketaAddNick> AnketaAddNick { get; set; }
         public virtual DbSet<AnketaAddParam> AnketaAddParam { get; set; }
         public virtual DbSet<AnketaCompany> AnketaCompany { get; set; }
+        public virtual DbSet<AnketaExternal> AnketaExternal { get; set; }
         public virtual DbSet<AnketaPerson> AnketaPerson { get; set; }
         public virtual DbSet<AnketaStatus> AnketaStatus { get; set; }
         public virtual DbSet<AnketaStatusTr> AnketaStatusTr { get; set; }
@@ -90,11 +91,6 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<DocPreparePay> DocPreparePay { get; set; }
         public virtual DbSet<DocReq> DocReq { get; set; }
         public virtual DbSet<DocText> DocText { get; set; }
-        public virtual DbSet<Document> Document { get; set; }
-        public virtual DbSet<DocumentKind> DocumentKind { get; set; }
-        public virtual DbSet<DocumentKindTr> DocumentKindTr { get; set; }
-        public virtual DbSet<DocumentStatus> DocumentStatus { get; set; }
-        public virtual DbSet<DocumentStatusTr> DocumentStatusTr { get; set; }
         public virtual DbSet<DocumentType> DocumentType { get; set; }
         public virtual DbSet<DocumentTypeTr> DocumentTypeTr { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
@@ -105,6 +101,8 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<EtGenreRole> EtGenreRole { get; set; }
         public virtual DbSet<EtRole> EtRole { get; set; }
         public virtual DbSet<ExternalPay> ExternalPay { get; set; }
+        public virtual DbSet<FileCustomer> FileCustomer { get; set; }
+        public virtual DbSet<FileType> FileType { get; set; }
         public virtual DbSet<FolkType> FolkType { get; set; }
         public virtual DbSet<FolkTypeTr> FolkTypeTr { get; set; }
         public virtual DbSet<GenreType> GenreType { get; set; }
@@ -1201,6 +1199,32 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.AnketaCompany)
                     .HasForeignKey(d => d.TypeVat)
                     .HasConstraintName("FK_ANKETACO_REFERENCE_TYPEVAT");
+            });
+
+            modelBuilder.Entity<AnketaExternal>(entity =>
+            {
+                entity.HasKey(e => e.CustId);
+
+                entity.Property(e => e.CustId)
+                    .HasColumnName("custId")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.InterCode)
+                    .HasColumnName("interCode")
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Cust)
+                    .WithOne(p => p.AnketaExternal)
+                    .HasForeignKey<AnketaExternal>(d => d.CustId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ANKETAEX_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<AnketaPerson>(entity =>
@@ -3211,12 +3235,6 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
-                entity.HasOne(d => d.Doc)
-                    .WithMany(p => p.DocReq)
-                    .HasForeignKey(d => d.DocId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DOCREQ_REFERENCE_DOCUMENT");
-
                 entity.HasOne(d => d.Req)
                     .WithMany(p => p.DocReq)
                     .HasForeignKey(d => d.ReqId)
@@ -3246,134 +3264,6 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Document>(entity =>
-            {
-                entity.HasKey(e => e.DocId);
-
-                entity.Property(e => e.DocId).HasColumnName("docId");
-
-                entity.Property(e => e.DocDate)
-                    .HasColumnName("docDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DocFile)
-                    .HasColumnName("docFile")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DocNumber)
-                    .IsRequired()
-                    .HasColumnName("docNumber")
-                    .HasMaxLength(64)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DocStatus).HasColumnName("docStatus");
-
-                entity.Property(e => e.DocType).HasColumnName("docType");
-
-                entity.Property(e => e.PeriodId).HasColumnName("periodId");
-
-                entity.HasOne(d => d.DocStatusNavigation)
-                    .WithMany(p => p.Document)
-                    .HasForeignKey(d => d.DocStatus)
-                    .HasConstraintName("FK_DOCUMENT_REFERENCE_STATUS");
-
-                entity.HasOne(d => d.DocTypeNavigation)
-                    .WithMany(p => p.Document)
-                    .HasForeignKey(d => d.DocType)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DOCUMENT_REFERENCE_TYPE");
-
-                entity.HasOne(d => d.Period)
-                    .WithMany(p => p.Document)
-                    .HasForeignKey(d => d.PeriodId)
-                    .HasConstraintName("FK_DOCUMENT_REFERENCE_PAIDPERI");
-            });
-
-            modelBuilder.Entity<DocumentKind>(entity =>
-            {
-                entity.HasKey(e => e.CodeI);
-
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.DocMaker)
-                    .HasColumnName("docMaker")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.CategoryCodeNavigation)
-                    .WithMany(p => p.DocumentKind)
-                    .HasForeignKey(d => d.CategoryCode)
-                    .HasConstraintName("FK_DOCUMENT_REFERENCE_CATEGORY");
-            });
-
-            modelBuilder.Entity<DocumentKindTr>(entity =>
-            {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
-                    .HasColumnType("char(2)");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.CodeINavigation)
-                    .WithMany(p => p.DocumentKindTr)
-                    .HasForeignKey(d => d.CodeI)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DOCUMENT_REFERENCE_DOCUM");
-            });
-
-            modelBuilder.Entity<DocumentStatus>(entity =>
-            {
-                entity.HasKey(e => e.CodeI);
-
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<DocumentStatusTr>(entity =>
-            {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
-                    .HasColumnType("char(2)");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.CodeINavigation)
-                    .WithMany(p => p.DocumentStatusTr)
-                    .HasForeignKey(d => d.CodeI)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_DOCUMENT_REFERENCE_DOCTR");
-            });
-
             modelBuilder.Entity<DocumentType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
@@ -3385,16 +3275,6 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.TemplNum)
-                    .HasColumnName("templNum")
-                    .HasMaxLength(64)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.TemplPath)
-                    .HasColumnName("templPath")
-                    .HasMaxLength(254)
                     .IsUnicode(false);
             });
 
@@ -3694,6 +3574,71 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Status).HasColumnName("status");
             });
 
+            modelBuilder.Entity<FileCustomer>(entity =>
+            {
+                entity.HasKey(e => e.DocId);
+
+                entity.Property(e => e.DocId).HasColumnName("docId");
+
+                entity.Property(e => e.CreateDate)
+                    .HasColumnName("createDate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.DocComment)
+                    .HasColumnName("docComment")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DocFile)
+                    .HasColumnName("docFile")
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DocType).HasColumnName("docType");
+
+                entity.Property(e => e.MimeType)
+                    .HasColumnName("mimeType")
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifyDate)
+                    .HasColumnName("modifyDate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.ModifyLogin)
+                    .HasColumnName("modifyLogin")
+                    .HasMaxLength(48)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.FileCustomer)
+                    .HasForeignKey(d => d.CustId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FILECUST_REFERENCE_CUSTOMER");
+
+                entity.HasOne(d => d.DocTypeNavigation)
+                    .WithMany(p => p.FileCustomer)
+                    .HasForeignKey(d => d.DocType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FILECUST_REFERENCE_TYPE");
+            });
+
+            modelBuilder.Entity<FileType>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<FolkType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
@@ -3812,12 +3757,6 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.Doc)
-                    .WithOne(p => p.Invoice)
-                    .HasForeignKey<Invoice>(d => d.DocId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_INVOICE_REFERENCE_DOCUMENT");
             });
 
             modelBuilder.Entity<ItemStatus>(entity =>
@@ -5264,6 +5203,10 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("date");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.DateActPrint)
+                    .HasColumnName("dateActPrint")
+                    .HasColumnType("date");
 
                 entity.Property(e => e.Distribamount)
                     .HasColumnName("distribamount")

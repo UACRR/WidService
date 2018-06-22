@@ -8,19 +8,20 @@ namespace ipsFormsDesign.Model
     {
         public Customer()
         {
-            Account = new HashSet<Account>();
-            AgreementMaster = new HashSet<AgreementMaster>();
-            AnketaAddName = new HashSet<AnketaAddName>();
-            AnketaAddParam = new HashSet<AnketaAddParam>();
-            AnketaCompany = new HashSet<AnketaCompany>();
-            AnketaPerson = new HashSet<AnketaPerson>();
-            BankAccount = new HashSet<BankAccount>();
-            Employee = new HashSet<Employee>();
-            Register = new HashSet<Register>();
-            ReqAgreement = new HashSet<ReqAgreement>();
-            ReqCustomer = new HashSet<ReqCustomer>();
-            Request = new HashSet<Request>();
-            UserRole = new HashSet<UserRole>();
+            Account = new ObservableListSource<Account>();
+            AgreementMaster = new ObservableListSource<AgreementMaster>();
+            AnketaAddName = new ObservableListSource<AnketaAddName>();
+            AnketaAddParam = new ObservableListSource<AnketaAddParam>();
+            AnketaCompany = new ObservableListSource<AnketaCompany>();
+            AnketaPerson = new ObservableListSource<AnketaPerson>();
+            BankAccount = new ObservableListSource<BankAccount>();
+            Employee = new ObservableListSource<Employee>();
+            FileCustomer = new ObservableListSource<FileCustomer>();
+            Register = new ObservableListSource<Register>();
+            ReqAgreement = new ObservableListSource<ReqAgreement>();
+            ReqCustomer = new ObservableListSource<ReqCustomer>();
+            Request = new ObservableListSource<Request>();
+            UserRole = new ObservableListSource<UserRole>();
         }
 
         public int CustId { get; set; }
@@ -33,6 +34,7 @@ namespace ipsFormsDesign.Model
 
         public CustomerType CustTypeNavigation { get; set; }
         public CustomerStatus StatusNavigation { get; set; }
+        public AnketaExternal AnketaExternal { get; set; }
         public Client Client { get; set; }
         public Community Community { get; set; }
         public Company Company { get; set; }
@@ -40,19 +42,20 @@ namespace ipsFormsDesign.Model
         public Partner Partner { get; set; }
         public Person Person { get; set; }
         public RightHolder RightHolder { get; set; }
-        public ICollection<Account> Account { get; set; }
-        public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        public ICollection<AnketaAddName> AnketaAddName { get; set; }
-        public ICollection<AnketaAddParam> AnketaAddParam { get; set; }
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<BankAccount> BankAccount { get; set; }
-        public ICollection<Employee> Employee { get; set; }
-        public ICollection<Register> Register { get; set; }
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
-        public ICollection<ReqCustomer> ReqCustomer { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<UserRole> UserRole { get; set; }
+        public ObservableListSource<Account> Account { get; set; }
+        public ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
+        public ObservableListSource<AnketaAddName> AnketaAddName { get; set; }
+        public ObservableListSource<AnketaAddParam> AnketaAddParam { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public ObservableListSource<BankAccount> BankAccount { get; set; }
+        public ObservableListSource<Employee> Employee { get; set; }
+        public ObservableListSource<FileCustomer> FileCustomer { get; set; }
+        public ObservableListSource<Register> Register { get; set; }
+        public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        public ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
+        public ObservableListSource<UserRole> UserRole { get; set; }
     }
 }
 

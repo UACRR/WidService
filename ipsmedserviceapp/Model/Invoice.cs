@@ -16,7 +16,5 @@ namespace ipsmedserviceapp.Model
         public string RecBankName { get; set; }
         public string Purpose { get; set; }
         public int? Status { get; set; }
-
-        public Document Doc { get; set; }
     }
 }

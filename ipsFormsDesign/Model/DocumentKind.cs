@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public DocumentKind()
         {
-            DocumentKindTr = new HashSet<DocumentKindTr>();
+            DocumentKindTr = new ObservableListSource<DocumentKindTr>();
         }
 
         public int CodeI { get; set; }
@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Model
         public string DocMaker { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<DocumentKindTr> DocumentKindTr { get; set; }
+        public ObservableListSource<DocumentKindTr> DocumentKindTr { get; set; }
     }
 }
 

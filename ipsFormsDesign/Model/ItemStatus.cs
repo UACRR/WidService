@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public ItemStatus()
         {
-            BrRegItem = new HashSet<BrRegItem>();
-            ItemStatusTr = new HashSet<ItemStatusTr>();
+            BrRegItem = new ObservableListSource<BrRegItem>();
+            ItemStatusTr = new ObservableListSource<ItemStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<BrRegItem> BrRegItem { get; set; }
-        public ICollection<ItemStatusTr> ItemStatusTr { get; set; }
+        public ObservableListSource<BrRegItem> BrRegItem { get; set; }
+        public ObservableListSource<ItemStatusTr> ItemStatusTr { get; set; }
     }
 }
 

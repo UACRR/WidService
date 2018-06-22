@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public Currency()
         {
-            Account = new HashSet<Account>();
+            Account = new ObservableListSource<Account>();
         }
 
         public string R030 { get; set; }
@@ -23,7 +23,7 @@ namespace ipsFormsDesign.Model
         public short? PrNc { get; set; }
         public int? OrderBy { get; set; }
 
-        public ICollection<Account> Account { get; set; }
+        public ObservableListSource<Account> Account { get; set; }
     }
 }
 

@@ -8,13 +8,13 @@ namespace ipsFormsDesign.Model
     {
         public DistribType()
         {
-            DistribTypeTr = new HashSet<DistribTypeTr>();
+            DistribTypeTr = new ObservableListSource<DistribTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<DistribTypeTr> DistribTypeTr { get; set; }
+        public ObservableListSource<DistribTypeTr> DistribTypeTr { get; set; }
     }
 }
 

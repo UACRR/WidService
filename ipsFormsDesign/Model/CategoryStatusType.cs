@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public CategoryStatusType()
         {
-            Category = new HashSet<Category>();
-            CategoryStatusTypeTr = new HashSet<CategoryStatusTypeTr>();
+            Category = new ObservableListSource<Category>();
+            CategoryStatusTypeTr = new ObservableListSource<CategoryStatusTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Category> Category { get; set; }
-        public ICollection<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
+        public ObservableListSource<Category> Category { get; set; }
+        public ObservableListSource<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
     }
 }
 

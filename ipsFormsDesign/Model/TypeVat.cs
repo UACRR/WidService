@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public TypeVat()
         {
-            AnketaCompany = new HashSet<AnketaCompany>();
-            AnketaPerson = new HashSet<AnketaPerson>();
-            TypeVattr = new HashSet<TypeVattr>();
+            AnketaCompany = new ObservableListSource<AnketaCompany>();
+            AnketaPerson = new ObservableListSource<AnketaPerson>();
+            TypeVattr = new ObservableListSource<TypeVattr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<TypeVattr> TypeVattr { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public ObservableListSource<TypeVattr> TypeVattr { get; set; }
     }
 }
 

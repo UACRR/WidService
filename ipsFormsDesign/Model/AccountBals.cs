@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public AccountBals()
         {
-            Account = new HashSet<Account>();
+            Account = new ObservableListSource<Account>();
         }
 
         public int BalsCode { get; set; }
@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Model
         public string BalsNameRu { get; set; }
         public string BalsNameEn { get; set; }
 
-        public ICollection<Account> Account { get; set; }
+        public ObservableListSource<Account> Account { get; set; }
     }
 }
 

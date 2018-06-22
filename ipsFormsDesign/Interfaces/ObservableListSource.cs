@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
+using ipsFormsDesign.Model;
 
 namespace ipsFormsDesign.Interfaces
 {
@@ -11,6 +13,19 @@ namespace ipsFormsDesign.Interfaces
                where T : class
     {
         private IBindingList _bindingList;
+
+        public ObservableListSource()
+        {
+        }
+
+        public ObservableListSource(IList<T> list)
+        {
+            _bindingList = new BindingList<T>(list);
+        }
+        public ObservableListSource(ICollection<T> list)
+        {
+            _bindingList = new BindingList<T>(list.ToList());
+        }
 
         bool IListSource.ContainsListCollection { get { return false; } }
 

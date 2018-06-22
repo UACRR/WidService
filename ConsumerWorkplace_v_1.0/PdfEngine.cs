@@ -38,8 +38,8 @@ namespace ConsumerWorkplace_v_1._0
             string FONT = "c:/Windows/Fonts/Arial.ttf";
             PdfFont font = PdfFontFactory.CreateFont(FONT, "Cp1251", true);
 
-            form.GetField("License.licNum").SetValue(license.Agr.AgrNumber, font, 10);
-            form.GetField("Date").SetValue(license.Agr.AgrDate?.ToString("dd.MM.yyyy") ?? DateTime.Today.ToString("dd.MM.yyyy"), font, 10);
+            form.GetField("License.licNum").SetValue(license.LicNum, font, 10);
+            form.GetField("Date").SetValue(license.LicDate?.ToString("dd.MM.yyyy") ?? DateTime.Today.ToString("dd.MM.yyyy"), font, 10);
             form.GetField("AnketaCompany.name").SetValue(anketa.Name, font, 10);
             form.GetField("Employee.name").SetValue($"{relEmployy.Empl.LastName} {relEmployy.Empl.FirstName} {relEmployy.Empl.SurName ?? string.Empty }", font, 10);
             form.GetField("RelEmployee.RelDocument").SetValue(relEmployy.RelDocument ?? string.Empty, font, 10);

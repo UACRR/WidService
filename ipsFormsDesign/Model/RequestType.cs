@@ -8,11 +8,11 @@ namespace ipsFormsDesign.Model
     {
         public RequestType()
         {
-            RelReqObj = new HashSet<RelReqObj>();
-            Request = new HashSet<Request>();
-            RequestTypeTr = new HashSet<RequestTypeTr>();
-            UseAreaType = new HashSet<UseAreaType>();
-            UseMediaType = new HashSet<UseMediaType>();
+            RelReqObj = new ObservableListSource<RelReqObj>();
+            Request = new ObservableListSource<Request>();
+            RequestTypeTr = new ObservableListSource<RequestTypeTr>();
+            UseAreaType = new ObservableListSource<UseAreaType>();
+            UseMediaType = new ObservableListSource<UseMediaType>();
         }
 
         public int CodeI { get; set; }
@@ -20,11 +20,11 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<RelReqObj> RelReqObj { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<RequestTypeTr> RequestTypeTr { get; set; }
-        public ICollection<UseAreaType> UseAreaType { get; set; }
-        public ICollection<UseMediaType> UseMediaType { get; set; }
+        public ObservableListSource<RelReqObj> RelReqObj { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
+        public ObservableListSource<RequestTypeTr> RequestTypeTr { get; set; }
+        public ObservableListSource<UseAreaType> UseAreaType { get; set; }
+        public ObservableListSource<UseMediaType> UseMediaType { get; set; }
     }
 }
 

@@ -9,7 +9,6 @@ namespace ipsmedserviceapp.Model
         {
             CategoryTr = new HashSet<CategoryTr>();
             CreativeRoleType = new HashSet<CreativeRoleType>();
-            DocumentKind = new HashSet<DocumentKind>();
             EtGenre = new HashSet<EtGenre>();
             EtRole = new HashSet<EtRole>();
             GenreType = new HashSet<GenreType>();
@@ -37,7 +36,6 @@ namespace ipsmedserviceapp.Model
         public CategoryStatusType StatusNavigation { get; set; }
         public ICollection<CategoryTr> CategoryTr { get; set; }
         public ICollection<CreativeRoleType> CreativeRoleType { get; set; }
-        public ICollection<DocumentKind> DocumentKind { get; set; }
         public ICollection<EtGenre> EtGenre { get; set; }
         public ICollection<EtRole> EtRole { get; set; }
         public ICollection<GenreType> GenreType { get; set; }

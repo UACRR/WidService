@@ -8,13 +8,13 @@ namespace ipsFormsDesign.Model
     {
         public PermitType()
         {
-            PermitTypeTr = new HashSet<PermitTypeTr>();
+            PermitTypeTr = new ObservableListSource<PermitTypeTr>();
         }
 
         public bool CodeB { get; set; }
         public string Name { get; set; }
 
-        public ICollection<PermitTypeTr> PermitTypeTr { get; set; }
+        public ObservableListSource<PermitTypeTr> PermitTypeTr { get; set; }
     }
 }
 

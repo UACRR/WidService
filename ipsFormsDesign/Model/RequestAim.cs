@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public RequestAim()
         {
-            Request = new HashSet<Request>();
-            RequestAimTr = new HashSet<RequestAimTr>();
+            Request = new ObservableListSource<Request>();
+            RequestAimTr = new ObservableListSource<RequestAimTr>();
         }
 
         public int CodeI { get; set; }
@@ -18,8 +18,8 @@ namespace ipsFormsDesign.Model
         public int CategoryCode { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<RequestAimTr> RequestAimTr { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
+        public ObservableListSource<RequestAimTr> RequestAimTr { get; set; }
     }
 }
 

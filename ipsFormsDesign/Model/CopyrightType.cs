@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public CopyrightType()
         {
-            CopyrightTypeTr = new HashSet<CopyrightTypeTr>();
-            CreativeRoleType = new HashSet<CreativeRoleType>();
-            MyCopyRightType = new HashSet<MyCopyRightType>();
+            CopyrightTypeTr = new ObservableListSource<CopyrightTypeTr>();
+            CreativeRoleType = new ObservableListSource<CreativeRoleType>();
+            MyCopyRightType = new ObservableListSource<MyCopyRightType>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<CopyrightTypeTr> CopyrightTypeTr { get; set; }
-        public ICollection<CreativeRoleType> CreativeRoleType { get; set; }
-        public ICollection<MyCopyRightType> MyCopyRightType { get; set; }
+        public ObservableListSource<CopyrightTypeTr> CopyrightTypeTr { get; set; }
+        public ObservableListSource<CreativeRoleType> CreativeRoleType { get; set; }
+        public ObservableListSource<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }
 

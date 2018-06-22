@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public CrightStatus()
         {
-            CopyRight = new HashSet<CopyRight>();
-            CrightStatusTr = new HashSet<CrightStatusTr>();
+            CopyRight = new ObservableListSource<CopyRight>();
+            CrightStatusTr = new ObservableListSource<CrightStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<CrightStatusTr> CrightStatusTr { get; set; }
+        public ObservableListSource<CopyRight> CopyRight { get; set; }
+        public ObservableListSource<CrightStatusTr> CrightStatusTr { get; set; }
     }
 }
 

@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public TermsOfService()
         {
-            CustCmRight = new HashSet<CustCmRight>();
+            CustCmRight = new ObservableListSource<CustCmRight>();
         }
 
         public int CustId { get; set; }
@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Model
 
         public CopyrightKind CrkindCodeNavigation { get; set; }
         public RightHolder Cust { get; set; }
-        public ICollection<CustCmRight> CustCmRight { get; set; }
+        public ObservableListSource<CustCmRight> CustCmRight { get; set; }
     }
 }
 

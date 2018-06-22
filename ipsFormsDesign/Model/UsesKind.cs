@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public UsesKind()
         {
-            AgrLicenseType = new HashSet<AgrLicenseType>();
-            UsesKindTr = new HashSet<UsesKindTr>();
+            AgrLicenseType = new ObservableListSource<AgrLicenseType>();
+            UsesKindTr = new ObservableListSource<UsesKindTr>();
         }
 
         public int CodeI { get; set; }
@@ -17,8 +17,8 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
 
         public UsesType UsesTypeNavigation { get; set; }
-        public ICollection<AgrLicenseType> AgrLicenseType { get; set; }
-        public ICollection<UsesKindTr> UsesKindTr { get; set; }
+        public ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
+        public ObservableListSource<UsesKindTr> UsesKindTr { get; set; }
     }
 }
 

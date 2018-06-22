@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public RequestMovie()
         {
-            RelGenreMovie = new HashSet<RelGenreMovie>();
-            RelMovieEpisode = new HashSet<RelMovieEpisode>();
+            RelGenreMovie = new ObservableListSource<RelGenreMovie>();
+            RelMovieEpisode = new ObservableListSource<RelMovieEpisode>();
         }
 
         public int ReqId { get; set; }
@@ -20,8 +20,8 @@ namespace ipsFormsDesign.Model
 
         public KindFilm KindFilmNavigation { get; set; }
         public Request Req { get; set; }
-        public ICollection<RelGenreMovie> RelGenreMovie { get; set; }
-        public ICollection<RelMovieEpisode> RelMovieEpisode { get; set; }
+        public ObservableListSource<RelGenreMovie> RelGenreMovie { get; set; }
+        public ObservableListSource<RelMovieEpisode> RelMovieEpisode { get; set; }
     }
 }
 

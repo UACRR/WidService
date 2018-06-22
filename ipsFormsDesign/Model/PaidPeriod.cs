@@ -8,11 +8,10 @@ namespace ipsFormsDesign.Model
     {
         public PaidPeriod()
         {
-            BrRegister = new HashSet<BrRegister>();
-            Distribution = new HashSet<Distribution>();
-            Document = new HashSet<Document>();
-            MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
-            Register = new HashSet<Register>();
+            BrRegister = new ObservableListSource<BrRegister>();
+            Distribution = new ObservableListSource<Distribution>();
+            MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
+            Register = new ObservableListSource<Register>();
         }
 
         public int PeriodId { get; set; }
@@ -27,16 +26,16 @@ namespace ipsFormsDesign.Model
         public decimal Distribamount { get; set; }
         public string PeriodName { get; set; }
         public bool? FagFirst { get; set; }
+        public DateTime? DateActPrint { get; set; }
 
         public Client Cust { get; set; }
         public LicenseAgreement Lic { get; set; }
         public Period PeriodTypeNavigation { get; set; }
         public PeriodStatus StatusNavigation { get; set; }
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
-        public ICollection<Document> Document { get; set; }
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ICollection<Register> Register { get; set; }
+        public ObservableListSource<BrRegister> BrRegister { get; set; }
+        public ObservableListSource<Distribution> Distribution { get; set; }
+        public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public ObservableListSource<Register> Register { get; set; }
     }
 }
 

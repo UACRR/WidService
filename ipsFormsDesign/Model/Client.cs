@@ -8,27 +8,27 @@ namespace ipsFormsDesign.Model
     {
         public Client()
         {
-            AgreementAddBr = new HashSet<AgreementAddBr>();
-            BrRegister = new HashSet<BrRegister>();
-            ClnBusinessPlace = new HashSet<ClnBusinessPlace>();
-            Distribution = new HashSet<Distribution>();
-            LicenseAgreement = new HashSet<LicenseAgreement>();
+            AgreementAddBr = new ObservableListSource<AgreementAddBr>();
+            BrRegister = new ObservableListSource<BrRegister>();
+            ClnBusinessPlace = new ObservableListSource<ClnBusinessPlace>();
+            Distribution = new ObservableListSource<Distribution>();
+            LicenseAgreement = new ObservableListSource<LicenseAgreement>();
             MoneyReceived = new ObservableListSource<MoneyReceived>();
-            PaidPeriod = new HashSet<PaidPeriod>();
-            PartnerClient = new HashSet<PartnerClient>();
+            PaidPeriod = new ObservableListSource<PaidPeriod>();
+            PartnerClient = new ObservableListSource<PartnerClient>();
         }
 
         public int CustId { get; set; }
 
         public Customer Cust { get; set; }
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
+        public ObservableListSource<BrRegister> BrRegister { get; set; }
+        public ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        public ObservableListSource<Distribution> Distribution { get; set; }
+        public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
         public ObservableListSource<MoneyReceived> MoneyReceived { get; set; }
-        public ICollection<PaidPeriod> PaidPeriod { get; set; }
-        public ICollection<PartnerClient> PartnerClient { get; set; }
+        public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
+        public ObservableListSource<PartnerClient> PartnerClient { get; set; }
     }
 }
 

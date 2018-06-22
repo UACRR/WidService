@@ -8,13 +8,13 @@ namespace ipsFormsDesign.Model
     {
         public Performer()
         {
-            RelObjPerformer = new HashSet<RelObjPerformer>();
+            RelObjPerformer = new ObservableListSource<RelObjPerformer>();
         }
 
         public int PerId { get; set; }
         public string PerName { get; set; }
 
-        public ICollection<RelObjPerformer> RelObjPerformer { get; set; }
+        public ObservableListSource<RelObjPerformer> RelObjPerformer { get; set; }
     }
 }
 

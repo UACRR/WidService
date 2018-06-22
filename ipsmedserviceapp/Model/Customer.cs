@@ -16,6 +16,7 @@ namespace ipsmedserviceapp.Model
             AnketaPerson = new HashSet<AnketaPerson>();
             BankAccount = new HashSet<BankAccount>();
             Employee = new HashSet<Employee>();
+            FileCustomer = new HashSet<FileCustomer>();
             Register = new HashSet<Register>();
             ReqAgreement = new HashSet<ReqAgreement>();
             ReqCustomer = new HashSet<ReqCustomer>();
@@ -35,6 +36,8 @@ namespace ipsmedserviceapp.Model
         public CustomerType CustTypeNavigation { get; set; }
         [JsonIgnore]
         public CustomerStatus StatusNavigation { get; set; }
+        [JsonIgnore]
+        public AnketaExternal AnketaExternal { get; set; }
         public Client Client { get; set; }
         public Community Community { get; set; }
         public Company Company { get; set; }
@@ -58,6 +61,8 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public ICollection<Employee> Employee { get; set; }
         [JsonIgnore]
+        public ICollection<FileCustomer> FileCustomer { get; set; }
+        [JsonIgnore]
         public ICollection<Register> Register { get; set; }
         [JsonIgnore]
         public ICollection<ReqAgreement> ReqAgreement { get; set; }
@@ -69,7 +74,4 @@ namespace ipsmedserviceapp.Model
         public ICollection<UserRole> UserRole { get; set; }
     }
 }
-
-
-
 

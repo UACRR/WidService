@@ -8,25 +8,25 @@ namespace ipsFormsDesign.Model
     {
         public AgreementStatus()
         {
-            AgreementAddBr = new HashSet<AgreementAddBr>();
-            AgreementAddPartner = new HashSet<AgreementAddPartner>();
-            AgreementAddRh = new HashSet<AgreementAddRh>();
-            AgreementMaster = new HashSet<AgreementMaster>();
-            AgreementStatusTr = new HashSet<AgreementStatusTr>();
-            LicenseAgrParam = new HashSet<LicenseAgrParam>();
-            LicenseAgreement = new HashSet<LicenseAgreement>();
+            AgreementAddBr = new ObservableListSource<AgreementAddBr>();
+            AgreementAddPartner = new ObservableListSource<AgreementAddPartner>();
+            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
+            AgreementMaster = new ObservableListSource<AgreementMaster>();
+            AgreementStatusTr = new ObservableListSource<AgreementStatusTr>();
+            LicenseAgrParam = new ObservableListSource<LicenseAgrParam>();
+            LicenseAgreement = new ObservableListSource<LicenseAgreement>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
-        public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        public ICollection<AgreementStatusTr> AgreementStatusTr { get; set; }
-        public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
+        public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
+        public ObservableListSource<AgreementStatusTr> AgreementStatusTr { get; set; }
+        public ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
 

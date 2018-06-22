@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public MyAnketa()
         {
-            MyCategory = new HashSet<MyCategory>();
-            MyCopyRightType = new HashSet<MyCopyRightType>();
+            MyCategory = new ObservableListSource<MyCategory>();
+            MyCopyRightType = new ObservableListSource<MyCopyRightType>();
         }
 
         public int CustId { get; set; }
@@ -19,8 +19,8 @@ namespace ipsFormsDesign.Model
         public string AccCourt { get; set; }
 
         public Customer Cust { get; set; }
-        public ICollection<MyCategory> MyCategory { get; set; }
-        public ICollection<MyCopyRightType> MyCopyRightType { get; set; }
+        public ObservableListSource<MyCategory> MyCategory { get; set; }
+        public ObservableListSource<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }
 

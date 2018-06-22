@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public TermUse()
         {
-            Request = new HashSet<Request>();
-            TermUseTr = new HashSet<TermUseTr>();
+            Request = new ObservableListSource<Request>();
+            TermUseTr = new ObservableListSource<TermUseTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Request> Request { get; set; }
-        public ICollection<TermUseTr> TermUseTr { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
+        public ObservableListSource<TermUseTr> TermUseTr { get; set; }
     }
 }
 

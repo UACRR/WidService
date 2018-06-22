@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public DocumentStatus()
         {
-            Document = new HashSet<Document>();
-            DocumentStatusTr = new HashSet<DocumentStatusTr>();
+            Document = new ObservableListSource<Document>();
+            DocumentStatusTr = new ObservableListSource<DocumentStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Document> Document { get; set; }
-        public ICollection<DocumentStatusTr> DocumentStatusTr { get; set; }
+        public ObservableListSource<Document> Document { get; set; }
+        public ObservableListSource<DocumentStatusTr> DocumentStatusTr { get; set; }
     }
 }
 

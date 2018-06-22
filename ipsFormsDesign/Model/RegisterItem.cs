@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public RegisterItem()
         {
-            RegisterCount = new HashSet<RegisterCount>();
+            RegisterCount = new ObservableListSource<RegisterCount>();
         }
 
         public int RegId { get; set; }
@@ -27,7 +27,7 @@ namespace ipsFormsDesign.Model
 
         public ObjectRight Obj { get; set; }
         public Register Reg { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
+        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }
 }
 

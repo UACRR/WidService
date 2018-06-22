@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public UserRoleType()
         {
-            UserRole = new HashSet<UserRole>();
-            UserRoleTypeTr = new HashSet<UserRoleTypeTr>();
+            UserRole = new ObservableListSource<UserRole>();
+            UserRoleTypeTr = new ObservableListSource<UserRoleTypeTr>();
         }
 
         public int CodeI { get; set; }
@@ -18,8 +18,8 @@ namespace ipsFormsDesign.Model
         public string TypeNameEn { get; set; }
         public string Name { get; set; }
 
-        public ICollection<UserRole> UserRole { get; set; }
-        public ICollection<UserRoleTypeTr> UserRoleTypeTr { get; set; }
+        public ObservableListSource<UserRole> UserRole { get; set; }
+        public ObservableListSource<UserRoleTypeTr> UserRoleTypeTr { get; set; }
     }
 }
 

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Interfaces;
 
 namespace DebugFormForControls
 {
@@ -210,7 +211,7 @@ namespace DebugFormForControls
         {
             var customer = customerBindingSource.Current as Customer;
 
-            customer.RightHolder.AnketaAddNick = anketaAddNicks;
+            customer.RightHolder.AnketaAddNick = new ObservableListSource<AnketaAddNick>(anketaAddNicks.ToList());
         }
     }
 }

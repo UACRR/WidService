@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public Account()
         {
-            PayTurn = new HashSet<PayTurn>();
+            PayTurn = new ObservableListSource<PayTurn>();
         }
 
         public int AccId { get; set; }
@@ -29,7 +29,7 @@ namespace ipsFormsDesign.Model
         public Customer Cust { get; set; }
         public ObjectRight Obj { get; set; }
         public Currency R030Navigation { get; set; }
-        public ICollection<PayTurn> PayTurn { get; set; }
+        public ObservableListSource<PayTurn> PayTurn { get; set; }
     }
 }
 

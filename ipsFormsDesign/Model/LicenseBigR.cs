@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public LicenseBigR()
         {
-            LicAuthor = new HashSet<LicAuthor>();
-            MusicalDesign = new HashSet<MusicalDesign>();
+            LicAuthor = new ObservableListSource<LicAuthor>();
+            MusicalDesign = new ObservableListSource<MusicalDesign>();
         }
 
         public int LicId { get; set; }
@@ -24,8 +24,8 @@ namespace ipsFormsDesign.Model
 
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
-        public ICollection<LicAuthor> LicAuthor { get; set; }
-        public ICollection<MusicalDesign> MusicalDesign { get; set; }
+        public ObservableListSource<LicAuthor> LicAuthor { get; set; }
+        public ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
     }
 }
 

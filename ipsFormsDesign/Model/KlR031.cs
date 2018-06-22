@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public KlR031()
         {
-            KlR030 = new HashSet<KlR030>();
+            KlR030 = new ObservableListSource<KlR030>();
         }
 
         public short R031 { get; set; }
@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Model
         public string R031NameRu { get; set; }
         public string R031NameEn { get; set; }
 
-        public ICollection<KlR030> KlR030 { get; set; }
+        public ObservableListSource<KlR030> KlR030 { get; set; }
     }
 }
 

@@ -8,16 +8,16 @@ namespace ipsFormsDesign.Model
     {
         public AgreementType()
         {
-            AgreementMaster = new HashSet<AgreementMaster>();
-            AgreementTypeTr = new HashSet<AgreementTypeTr>();
+            AgreementMaster = new ObservableListSource<AgreementMaster>();
+            AgreementTypeTr = new ObservableListSource<AgreementTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
         public string TemplateName { get; set; }
 
-        public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        public ICollection<AgreementTypeTr> AgreementTypeTr { get; set; }
+        public ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
+        public ObservableListSource<AgreementTypeTr> AgreementTypeTr { get; set; }
     }
 }
 
