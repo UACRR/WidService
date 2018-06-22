@@ -152,11 +152,8 @@
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.mebDuration = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.mediaTrackBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
-            this.txtObjectAltName = new Telerik.WinControls.UI.RadTextBox();
             this.txtObjectName = new Telerik.WinControls.UI.RadTextBox();
             this.objectRightBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnMoreObjectAltName = new Telerik.WinControls.UI.RadButton();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.ddlGenreType = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
@@ -328,11 +325,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaTrackBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtObjectAltName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMoreObjectAltName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
@@ -499,7 +493,7 @@
             this.objectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.objectsPageView.Location = new System.Drawing.Point(0, 0);
             this.objectsPageView.Name = "objectsPageView";
-            this.objectsPageView.SelectedPage = this.rightholdersObjectsPage;
+            this.objectsPageView.SelectedPage = this.actualObjectsPage;
             this.objectsPageView.Size = new System.Drawing.Size(1182, 632);
             this.objectsPageView.TabIndex = 0;
             this.objectsPageView.ThemeName = "Office2013Light";
@@ -524,7 +518,7 @@
             this.actualObjectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.actualObjectsPageView.Location = new System.Drawing.Point(0, 0);
             this.actualObjectsPageView.Name = "actualObjectsPageView";
-            this.actualObjectsPageView.SelectedPage = this.actualObjectsListPage;
+            this.actualObjectsPageView.SelectedPage = this.actualObjectsItemPage;
             this.actualObjectsPageView.Size = new System.Drawing.Size(989, 622);
             this.actualObjectsPageView.TabIndex = 0;
             this.actualObjectsPageView.ThemeName = "Office2013Light";
@@ -659,10 +653,7 @@
             // 
             this.actualObjectsItemPage.Controls.Add(this.radSplitContainer1);
             this.actualObjectsItemPage.Controls.Add(this.mebDuration);
-            this.actualObjectsItemPage.Controls.Add(this.radLabel14);
-            this.actualObjectsItemPage.Controls.Add(this.txtObjectAltName);
             this.actualObjectsItemPage.Controls.Add(this.txtObjectName);
-            this.actualObjectsItemPage.Controls.Add(this.btnMoreObjectAltName);
             this.actualObjectsItemPage.Controls.Add(this.radLabel15);
             this.actualObjectsItemPage.Controls.Add(this.ddlGenreType);
             this.actualObjectsItemPage.Controls.Add(this.radLabel16);
@@ -686,14 +677,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
-            this.radSplitContainer1.Location = new System.Drawing.Point(0, 108);
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 81);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(953, 474);
+            this.radSplitContainer1.Size = new System.Drawing.Size(953, 501);
             this.radSplitContainer1.SplitterWidth = 5;
             this.radSplitContainer1.TabIndex = 73;
             this.radSplitContainer1.TabStop = false;
@@ -713,7 +704,7 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(953, 234);
+            this.splitPanel1.Size = new System.Drawing.Size(953, 248);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
@@ -722,7 +713,7 @@
             // txtTotalPersent
             // 
             this.txtTotalPersent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalPersent.Location = new System.Drawing.Point(903, 208);
+            this.txtTotalPersent.Location = new System.Drawing.Point(903, 222);
             this.txtTotalPersent.Name = "txtTotalPersent";
             this.txtTotalPersent.ReadOnly = true;
             this.txtTotalPersent.Size = new System.Drawing.Size(44, 21);
@@ -733,7 +724,7 @@
             // radLabel11
             // 
             this.radLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLabel11.Location = new System.Drawing.Point(718, 209);
+            this.radLabel11.Location = new System.Drawing.Point(718, 223);
             this.radLabel11.Name = "radLabel11";
             this.radLabel11.Size = new System.Drawing.Size(180, 19);
             this.radLabel11.TabIndex = 70;
@@ -888,7 +879,7 @@
             this.gvObjectAuthorsRightholders.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvObjectAuthorsRightholders.Name = "gvObjectAuthorsRightholders";
             this.gvObjectAuthorsRightholders.ShowGroupPanel = false;
-            this.gvObjectAuthorsRightholders.Size = new System.Drawing.Size(944, 173);
+            this.gvObjectAuthorsRightholders.Size = new System.Drawing.Size(944, 187);
             this.gvObjectAuthorsRightholders.TabIndex = 73;
             this.gvObjectAuthorsRightholders.ThemeName = "Office2013Light";
             this.gvObjectAuthorsRightholders.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectAuthorsRightholders_CommandCellClick);
@@ -901,7 +892,7 @@
             // btnAddAuthorRightholder
             // 
             this.btnAddAuthorRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddAuthorRightholder.Location = new System.Drawing.Point(3, 207);
+            this.btnAddAuthorRightholder.Location = new System.Drawing.Point(3, 221);
             this.btnAddAuthorRightholder.Name = "btnAddAuthorRightholder";
             this.btnAddAuthorRightholder.Size = new System.Drawing.Size(110, 24);
             this.btnAddAuthorRightholder.TabIndex = 75;
@@ -922,13 +913,13 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.radSplitContainer2);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 239);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 253);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(953, 235);
+            this.splitPanel2.Size = new System.Drawing.Size(953, 248);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
@@ -945,7 +936,7 @@
             // 
             // 
             this.radSplitContainer2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer2.Size = new System.Drawing.Size(953, 235);
+            this.radSplitContainer2.Size = new System.Drawing.Size(953, 248);
             this.radSplitContainer2.SplitterWidth = 5;
             this.radSplitContainer2.TabIndex = 0;
             this.radSplitContainer2.TabStop = false;
@@ -963,7 +954,7 @@
             // 
             // 
             this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel3.Size = new System.Drawing.Size(474, 235);
+            this.splitPanel3.Size = new System.Drawing.Size(474, 248);
             this.splitPanel3.TabIndex = 0;
             this.splitPanel3.TabStop = false;
             this.splitPanel3.Text = "splitPanel3";
@@ -1041,7 +1032,7 @@
             this.gvObjectAddNames.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvObjectAddNames.Name = "gvObjectAddNames";
             this.gvObjectAddNames.ShowGroupPanel = false;
-            this.gvObjectAddNames.Size = new System.Drawing.Size(352, 198);
+            this.gvObjectAddNames.Size = new System.Drawing.Size(352, 211);
             this.gvObjectAddNames.TabIndex = 73;
             this.gvObjectAddNames.ThemeName = "Office2013Light";
             // 
@@ -1070,7 +1061,7 @@
             // 
             // 
             this.splitPanel4.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel4.Size = new System.Drawing.Size(474, 235);
+            this.splitPanel4.Size = new System.Drawing.Size(474, 248);
             this.splitPanel4.TabIndex = 1;
             this.splitPanel4.TabStop = false;
             this.splitPanel4.Text = "splitPanel4";
@@ -1148,7 +1139,7 @@
             this.gvObjectPerformers.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.gvObjectPerformers.Name = "gvObjectPerformers";
             this.gvObjectPerformers.ShowGroupPanel = false;
-            this.gvObjectPerformers.Size = new System.Drawing.Size(352, 198);
+            this.gvObjectPerformers.Size = new System.Drawing.Size(352, 211);
             this.gvObjectPerformers.TabIndex = 78;
             this.gvObjectPerformers.ThemeName = "Office2013Light";
             // 
@@ -1164,7 +1155,7 @@
             // mebDuration
             // 
             this.mebDuration.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mediaTrackBindingSource, "Duration", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, System.TimeSpan.Parse("00:00:00")));
-            this.mebDuration.Location = new System.Drawing.Point(491, 84);
+            this.mebDuration.Location = new System.Drawing.Point(491, 57);
             this.mebDuration.Mask = "99:99:99";
             this.mebDuration.MaskType = Telerik.WinControls.UI.MaskType.Standard;
             this.mebDuration.Name = "mebDuration";
@@ -1177,23 +1168,6 @@
             // mediaTrackBindingSource
             // 
             this.mediaTrackBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IMediaTrack);
-            // 
-            // radLabel14
-            // 
-            this.radLabel14.Location = new System.Drawing.Point(3, 29);
-            this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(129, 19);
-            this.radLabel14.TabIndex = 52;
-            this.radLabel14.Text = "Альтернативна назва:";
-            this.radLabel14.ThemeName = "Office2013Light";
-            // 
-            // txtObjectAltName
-            // 
-            this.txtObjectAltName.Location = new System.Drawing.Point(135, 28);
-            this.txtObjectAltName.Name = "txtObjectAltName";
-            this.txtObjectAltName.Size = new System.Drawing.Size(513, 21);
-            this.txtObjectAltName.TabIndex = 54;
-            this.txtObjectAltName.ThemeName = "Office2013Light";
             // 
             // txtObjectName
             // 
@@ -1208,18 +1182,9 @@
             // 
             this.objectRightBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IObjectRight);
             // 
-            // btnMoreObjectAltName
-            // 
-            this.btnMoreObjectAltName.Location = new System.Drawing.Point(654, 28);
-            this.btnMoreObjectAltName.Name = "btnMoreObjectAltName";
-            this.btnMoreObjectAltName.Size = new System.Drawing.Size(74, 21);
-            this.btnMoreObjectAltName.TabIndex = 59;
-            this.btnMoreObjectAltName.Text = "Ще";
-            this.btnMoreObjectAltName.ThemeName = "Office2013Light";
-            // 
             // radLabel15
             // 
-            this.radLabel15.Location = new System.Drawing.Point(3, 55);
+            this.radLabel15.Location = new System.Drawing.Point(3, 28);
             this.radLabel15.Name = "radLabel15";
             this.radLabel15.Size = new System.Drawing.Size(41, 19);
             this.radLabel15.TabIndex = 53;
@@ -1230,7 +1195,7 @@
             // 
             this.ddlGenreType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.objectRightBindingSource, "GenreType", true));
-            this.ddlGenreType.Location = new System.Drawing.Point(135, 55);
+            this.ddlGenreType.Location = new System.Drawing.Point(135, 28);
             this.ddlGenreType.Name = "ddlGenreType";
             this.ddlGenreType.Size = new System.Drawing.Size(197, 21);
             this.ddlGenreType.TabIndex = 61;
@@ -1238,7 +1203,7 @@
             // 
             // radLabel16
             // 
-            this.radLabel16.Location = new System.Drawing.Point(357, 85);
+            this.radLabel16.Location = new System.Drawing.Point(357, 58);
             this.radLabel16.Name = "radLabel16";
             this.radLabel16.Size = new System.Drawing.Size(125, 19);
             this.radLabel16.TabIndex = 55;
@@ -1247,7 +1212,7 @@
             // 
             // radLabel18
             // 
-            this.radLabel18.Location = new System.Drawing.Point(357, 56);
+            this.radLabel18.Location = new System.Drawing.Point(357, 29);
             this.radLabel18.Name = "radLabel18";
             this.radLabel18.Size = new System.Drawing.Size(86, 19);
             this.radLabel18.TabIndex = 58;
@@ -1257,7 +1222,7 @@
             // ddlSpecType
             // 
             this.ddlSpecType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.objectRightBindingSource, "SpecType", true));
-            this.ddlSpecType.Location = new System.Drawing.Point(451, 55);
+            this.ddlSpecType.Location = new System.Drawing.Point(451, 28);
             this.ddlSpecType.Name = "ddlSpecType";
             this.ddlSpecType.Size = new System.Drawing.Size(197, 21);
             this.ddlSpecType.TabIndex = 63;
@@ -1265,7 +1230,7 @@
             // 
             // radLabel20
             // 
-            this.radLabel20.Location = new System.Drawing.Point(3, 84);
+            this.radLabel20.Location = new System.Drawing.Point(3, 57);
             this.radLabel20.Name = "radLabel20";
             this.radLabel20.Size = new System.Drawing.Size(38, 19);
             this.radLabel20.TabIndex = 57;
@@ -1275,7 +1240,7 @@
             // txtISWC
             // 
             this.txtISWC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.mediaTrackBindingSource, "Iswc", true));
-            this.txtISWC.Location = new System.Drawing.Point(135, 83);
+            this.txtISWC.Location = new System.Drawing.Point(135, 56);
             this.txtISWC.Name = "txtISWC";
             this.txtISWC.Size = new System.Drawing.Size(197, 21);
             this.txtISWC.TabIndex = 67;
@@ -3223,7 +3188,7 @@
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageRightholders;
+            this.MainPageView.SelectedPage = this.mainPageRightsObjects;
             this.MainPageView.Size = new System.Drawing.Size(1192, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";
@@ -3327,11 +3292,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebDuration)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaTrackBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtObjectAltName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtObjectName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMoreObjectAltName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
@@ -3512,10 +3474,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel16;
         private Telerik.WinControls.UI.RadDropDownList ddlGenreType;
         private Telerik.WinControls.UI.RadLabel radLabel15;
-        private Telerik.WinControls.UI.RadButton btnMoreObjectAltName;
         private Telerik.WinControls.UI.RadTextBox txtObjectName;
-        private Telerik.WinControls.UI.RadTextBox txtObjectAltName;
-        private Telerik.WinControls.UI.RadLabel radLabel14;
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadPageViewPage rightholdersObjectsPage;
         private IpsViewComponentLibrary.RightholderSelectorControl ctrlRightholderSelector;
