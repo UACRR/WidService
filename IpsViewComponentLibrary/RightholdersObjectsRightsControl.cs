@@ -35,6 +35,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        public List<ObjectRightForRightholder> ObjectsRightsList
+        {
+            get
+            {
+                return objectRightForRightholderBindingSource.List.Cast<ObjectRightForRightholder>().ToList();
+            }
+        }
+
         public event EventHandler<RightholderMainView> RightholderChanged = delegate { };
         public event EventHandler<int> EditObjectCommandExecuted = delegate { };
 
