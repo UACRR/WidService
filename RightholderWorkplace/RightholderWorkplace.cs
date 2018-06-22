@@ -416,6 +416,7 @@ namespace RightholderWorkplace
             }
 
             MainPageView.SelectedPage = mainPageRightholders;
+            rightholdersPageView.SelectedPage = rightholdersPage;
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
             newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
             pdfvRightholderAgreement.UnloadDocument();
@@ -524,7 +525,7 @@ namespace RightholderWorkplace
             }
         }
 
-        public int SelectedRghtholdersObjectRightId
+        public int SelectedRghtholdersObjectRightId // moved
         {
             get
             {
@@ -632,7 +633,7 @@ namespace RightholderWorkplace
             EditObjectRight();
         }
 
-        private void EditObjectRight(int objId = 0)
+        private void EditObjectRight(int objId = 0) // subscribe to EditObjectCommandExecuted
         {
             _previousPage = objectsPageView.SelectedPage;
 
@@ -827,7 +828,7 @@ namespace RightholderWorkplace
 
         #region Rightholders objectrights list event handlers
 
-        private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e) // moved
         {
             var currentColumnName = e.Column.Name;
 
@@ -837,7 +838,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void gvRightholdersObjectsRights_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        private void gvRightholdersObjectsRights_CellDoubleClick(object sender, GridViewCellEventArgs e) // moved
         {
             if (e.Column is GridViewCommandColumn)
                 return;
