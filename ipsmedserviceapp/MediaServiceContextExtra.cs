@@ -20,6 +20,7 @@ namespace ipsmedserviceapp.Model
         {
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => Entry(item).State = EntityState.Deleted);
             tempList.ForEach(item => dest.Remove(item));
             // Змінюємо спільні записи
             tempList = sors.Where(row => dest.Any(item => compId(row, item))).ToList();
