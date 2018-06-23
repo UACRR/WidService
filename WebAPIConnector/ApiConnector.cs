@@ -80,14 +80,20 @@ namespace WebAPIConnector
         /// <param name="id"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public TResult ApiFunc<T, TResult>( string url, int id, List<T> data)
+        public TResult ApiFunc<T, TResult>( string url, int id, List<T> data) where TResult : class
         {
             string idUrl = $"{url}/{id}";
             StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             var responce = client.PostAsync(idUrl, content) .GetAwaiter().GetResult();
-            JObject retObj = JObject.Parse(responce.Content.ReadAsStringAsync().Result);
+            if(responce.IsSuccessStatusCode == true)
+            {
+                JObject retObj = JObject.Parse(responce.Content.ReadAsStringAsync().Result);
 
-            return retObj.ToObject<TResult>();
+                return retObj.ToObject<TResult>();
+
+            }
+
+            return null;
 
         }
 
