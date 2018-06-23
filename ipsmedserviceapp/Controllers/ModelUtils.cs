@@ -60,8 +60,6 @@ namespace ipsmedserviceapp.Controllers
 
     public static class ModelUtils
     {
-
-
         /// <summary>
         /// 
         /// </summary>

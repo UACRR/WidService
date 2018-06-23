@@ -382,6 +382,88 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
         }
 
+        #region inheritance
+
+        /// <summary>
+        /// Внутрішній метод підготовки данних до зміни
+        /// </summary>
+        /// <param name="rhId"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        private async Task<bool> internalRHInheritance(int rhId, List<RightHolder> body )
+        {
+            // Права Автора / Правовласника
+            DateTime checkDate = DateTime.Today;
+            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && item.EndDate >= checkDate)
+                                .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
+                                .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).ToListAsync();
+
+            if (listCopyRight.Count == 0)
+                return false;
+
+            // Правовласник
+            var oldRightHolder = listCopyRight[0].Cust;
+
+            // Правовласник з інтерфейсу
+            var oldBodyCust = body.Where(rec => rec.CustId == rhId).SingleOrDefault();
+            if (oldBodyCust == null)
+                return false;
+
+            // Закриваємо Правовласника
+            oldRightHolder.Cust.Status = 9;
+
+            // Об'єкти правовласника
+            var objects = await _dbContext.ObjectRight.FromSql(@"
+select t1.* 
+from ObjectRight t1
+join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
+where
+t2.custId = @custid
+", new SqlParameter("@custid", rhId)).AsNoTracking().ToListAsync();
+
+
+            // Автора об'єктів
+            var authtors = await _dbContext.Authors.FromSql(@"
+select t1.* 
+from Authors t1
+join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
+where
+t2.custId = @custid
+", new SqlParameter("@custid", rhId)).AsNoTracking().ToListAsync();
+
+            // Проставляємо кінцеву дату права
+            DateTime endDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
+            listCopyRight.ForEach(item => {
+                //
+                item.EndDate = endDate;
+
+            });
+
+            // Оброблюємо нових правовласників
+            body.Where(rec => rec.CustId != rhId).ToList()
+                .ForEach(item => {
+                        // Додаємо нові права
+                        foreach (var cright in item.CopyRight)
+                    {
+                        CopyRight addItem = new CopyRight();
+                        addItem.SetFields(cright);
+                        _dbContext.CopyRight.Add(addItem);
+                    }
+                        // Додаємо Авторів
+                        foreach (var author in item.Authors)
+                    {
+                        if (authtors.Any(rec => rec.ObjId == author.ObjId && rec.CustId == author.CustId && rec.RoleCode == author.RoleCode))
+                            continue;
+
+                        Authors addAutor = new Authors();
+                        addAutor.SetFields(author);
+                        _dbContext.Authors.Add(addAutor);
+                    }
+                });
+
+            return true;
+
+        }
         /// <summary>
         /// Зміна правовласника по спадщині
         /// </summary>
@@ -389,92 +471,22 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         /// <param name="body">Список нових правовласників
         ///                    та запис по старому правовласнику з датою завершення володінням правами 
         /// </param>
-        /// <returns></returns>
+        /// <returns>Ok</returns>
         [HttpPost("inheritance/{rhId}")]
         public async Task<IActionResult> SetRHInheritance( int rhId, [FromBody]List<RightHolder> body)
         {
             IDbContextTransaction tran = null;
             try
             {
-                
-                // Права Автора / Правовласника
-                var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate >= DateTime.Today && item.EndDate <= DateTime.Today)
-                                    .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
-                                    .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).ToListAsync();
-
-                if (listCopyRight.Count == 0)
+                if ( await internalRHInheritance(rhId, body) == false)
                     return Ok();
-                
-                // Правовласник
-                var oldRightHolder = listCopyRight[0].Cust;
-
-                // Правовласник з інтерфейсу
-                var oldBodyCust = body.Where(rec => rec.CustId == rhId).SingleOrDefault();
-                if (oldBodyCust == null)
-                    return Ok();
-
-                // Закриваємо Правовласника
-                oldRightHolder.Cust.Status = oldBodyCust.Cust.Status;
-
-                // Об'єкти правовласника
-                var objects = _dbContext.ObjectRight.FromSql(@"
-select * 
-from ObjectRight t1
-join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
-where
-t2.custId = @custid
-", new SqlParameter("@custid", rhId)).AsNoTracking().ToList();
-                
-                
-                // Автора об'єктів
-                var authtors = _dbContext.Authors.FromSql(@"
-select * 
-from Authors t1
-join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
-where
-t2.custId = @custid
-", new SqlParameter("@custid", rhId)).AsNoTracking().ToList();
-
-
-
-
-                // Проставляємо кінцеву дату права
-                DateTime endDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
-                listCopyRight.ForEach(item => {
-                    //
-                    item.EndDate = endDate;
-
-                });
-
-                // Оброблюємо нових правовласників
-                body.Where(rec => rec.CustId != rhId).ToList()
-                    .ForEach(item => {
-                        // Додаємо нові права
-                        foreach( var cright in item.CopyRight )
-                        {
-                            CopyRight addItem = new CopyRight();
-                            addItem.SetFields(cright);
-                            _dbContext.CopyRight.Add(addItem);
-                        }
-                        // Додаємо Авторів
-                        foreach( var author in item.Authors )
-                        {
-                            if (authtors.Any(rec => rec.ObjId == author.ObjId && rec.CustId == author.CustId && rec.RoleCode == author.RoleCode))
-                                continue;
-
-                            Authors addAutor = new Authors();
-                            addAutor.SetFields(author);
-                            _dbContext.Authors.Add(addAutor);
-                        }
-                    });
 
                 tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
                 tran = null;
 
-
-                return Json(oldRightHolder.Cust);
+                return Ok();
 
             }
             catch (Exception)
@@ -484,6 +496,82 @@ t2.custId = @custid
                 return BadRequest();
             }
         }
+
+#if DEBUG
+        /// <summary>
+        /// Отримати результат після зміни процесу
+        /// </summary>
+        /// <param name="rhId"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        private async Task<IActionResult> getDebugInfoForSetRHInheritance(int rhId, [FromBody]List<RightHolder> body)
+        {
+            DateTime checkDate = DateTime.Today;
+            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate >= checkDate && item.EndDate <= checkDate)
+                    .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
+                    .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).AsNoTracking().ToListAsync();
+
+            var authtors = await _dbContext.Authors.FromSql(@"
+select t1.* 
+from Authors t1
+join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
+where
+t2.custId = @custid
+", new SqlParameter("@custid", rhId)).AsNoTracking().ToListAsync();
+
+            var oldBodyCust = body.Where(rec => rec.CustId == rhId).SingleOrDefault();
+            DateTime endDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
+
+            var inheriers = await _dbContext.CopyRight.FromSql(@"
+select t3.* 
+from ObjectRight t1
+join CopyRight t2 on t2.objId = t1.objId and @dateend between t2.beginDate and t2.endDate
+join CopyRight t3 on t3.objId = t1.objId and @dateend < t3.beginDate
+where
+t2.custId = @custid
+", new SqlParameter("@custid", rhId), new SqlParameter("@dateend", endDate) ).AsNoTracking().ToListAsync();
+
+
+            return Json(new { listCopyRight, authtors, inheriers });
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rhId"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        [HttpPost("inheritancedebug/{rhId}")]
+        public async Task<IActionResult> SetRHInheritanceDebug(int rhId, [FromBody]List<RightHolder> body)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                if (await internalRHInheritance(rhId, body) == false)
+                    return Ok();
+
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+
+                var result = await getDebugInfoForSetRHInheritance(rhId, body);
+                tran.Rollback();
+                tran = null;
+
+                return result;
+
+            }
+            catch (Exception)
+            {
+
+                tran?.Rollback();
+                return BadRequest();
+            }
+        }
+
+#endif
+#endregion
 
     }
 }

@@ -63,7 +63,33 @@ namespace WebAPIConnector
 
         }
 
-       
+        public bool ApiAction<T>(string url, int rhId, List<T> inheritData)
+        {
+            string idUrl = $"{url}/{rhId}";
+            StringContent content = new StringContent(JsonConvert.SerializeObject(inheritData), Encoding.UTF8, "application/json");
+            var responce = client.PostAsync(idUrl, content).GetAwaiter().GetResult();
+            return responce.IsSuccessStatusCode;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public TResult ApiFunc<T, TResult>( string url, int id, List<T> data)
+        {
+            string idUrl = $"{url}/{id}";
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var responce = client.PostAsync(idUrl, content) .GetAwaiter().GetResult();
+            JObject retObj = JObject.Parse(responce.Content.ReadAsStringAsync().Result);
+
+            return retObj.ToObject<TResult>();
+
+        }
 
 
         /// <summary>
