@@ -35,6 +35,11 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        public RightholderMainView SelectedRightholder
+        {
+            get { return ctrlRightholderSelector.Rightholder; }
+        }
+
         public List<ObjectRightForRightholder> ObjectsRightsList
         {
             get
