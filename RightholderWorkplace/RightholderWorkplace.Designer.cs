@@ -505,7 +505,6 @@
             // actualObjectsPage
             // 
             this.actualObjectsPage.Controls.Add(this.actualObjectsPageView);
-            this.actualObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.actualObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.actualObjectsPage.Name = "actualObjectsPage";
             this.actualObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -519,7 +518,7 @@
             this.actualObjectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.actualObjectsPageView.Location = new System.Drawing.Point(0, 0);
             this.actualObjectsPageView.Name = "actualObjectsPageView";
-            this.actualObjectsPageView.SelectedPage = this.actualObjectsItemPage;
+            this.actualObjectsPageView.SelectedPage = this.actualObjectsListPage;
             this.actualObjectsPageView.Size = new System.Drawing.Size(989, 622);
             this.actualObjectsPageView.TabIndex = 0;
             this.actualObjectsPageView.ThemeName = "Office2013Light";
@@ -530,7 +529,6 @@
             // 
             this.actualObjectsListPage.Controls.Add(this.ddbAddObjectRight);
             this.actualObjectsListPage.Controls.Add(this.gvObjectsRightsList);
-            this.actualObjectsListPage.ItemSize = new System.Drawing.SizeF(27F, 133F);
             this.actualObjectsListPage.Location = new System.Drawing.Point(31, 5);
             this.actualObjectsListPage.Name = "actualObjectsListPage";
             this.actualObjectsListPage.Size = new System.Drawing.Size(953, 612);
@@ -665,7 +663,6 @@
             this.actualObjectsItemPage.Controls.Add(this.btnObjectRightItemCancel);
             this.actualObjectsItemPage.Controls.Add(this.btnObjectRightItemSave);
             this.actualObjectsItemPage.Controls.Add(this.radLabel13);
-            this.actualObjectsItemPage.ItemSize = new System.Drawing.SizeF(27F, 140F);
             this.actualObjectsItemPage.Location = new System.Drawing.Point(31, 5);
             this.actualObjectsItemPage.Name = "actualObjectsItemPage";
             this.actualObjectsItemPage.Size = new System.Drawing.Size(953, 612);
@@ -709,7 +706,6 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
-            this.splitPanel1.ThemeName = "Office2013Light";
             // 
             // txtTotalPersent
             // 
@@ -925,7 +921,6 @@
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
-            this.splitPanel2.ThemeName = "Office2013Light";
             // 
             // radSplitContainer2
             // 
@@ -960,7 +955,6 @@
             this.splitPanel3.TabIndex = 0;
             this.splitPanel3.TabStop = false;
             this.splitPanel3.Text = "splitPanel3";
-            this.splitPanel3.ThemeName = "Office2013Light";
             // 
             // btnDeleteObjectAddName
             // 
@@ -1067,7 +1061,6 @@
             this.splitPanel4.TabIndex = 1;
             this.splitPanel4.TabStop = false;
             this.splitPanel4.Text = "splitPanel4";
-            this.splitPanel4.ThemeName = "Office2013Light";
             // 
             // btnDeleteObjectPerformer
             // 
@@ -1283,7 +1276,6 @@
             // 
             this.rightholdersObjectsPage.Controls.Add(this.ctrlRightholderSelector);
             this.rightholdersObjectsPage.Controls.Add(this.gvRightholdersObjectsRights);
-            this.rightholdersObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.rightholdersObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.rightholdersObjectsPage.Name = "rightholdersObjectsPage";
             this.rightholdersObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -1425,7 +1417,6 @@
             // 
             // notAcceptedObjectsPage
             // 
-            this.notAcceptedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.notAcceptedObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.notAcceptedObjectsPage.Name = "notAcceptedObjectsPage";
             this.notAcceptedObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -1433,7 +1424,6 @@
             // 
             // newObjectsPage
             // 
-            this.newObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.newObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.newObjectsPage.Name = "newObjectsPage";
             this.newObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -1441,7 +1431,6 @@
             // 
             // notLinkedObjectsPage
             // 
-            this.notLinkedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.notLinkedObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.notLinkedObjectsPage.Name = "notLinkedObjectsPage";
             this.notLinkedObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -1465,7 +1454,7 @@
             this.rightholdersPageView.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
-            this.rightholdersPageView.SelectedPage = this.rightholdersPage;
+            this.rightholdersPageView.SelectedPage = this.rightholdersChangePage;
             this.rightholdersPageView.Size = new System.Drawing.Size(1182, 632);
             this.rightholdersPageView.TabIndex = 0;
             this.rightholdersPageView.ThemeName = "Office2013Light";
@@ -1492,7 +1481,7 @@
             this.newRightholdersPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.newRightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.newRightholdersPageView.Name = "newRightholdersPageView";
-            this.newRightholdersPageView.SelectedPage = this.newRightholdersCreatePage;
+            this.newRightholdersPageView.SelectedPage = this.newRightholdersListPage;
             this.newRightholdersPageView.Size = new System.Drawing.Size(1037, 622);
             this.newRightholdersPageView.TabIndex = 1;
             this.newRightholdersPageView.ThemeName = "Office2013Light";
@@ -1745,7 +1734,6 @@
             this.createRightholderFullNameComissionPage.Controls.Add(this.ctrlAgreement);
             this.createRightholderFullNameComissionPage.Controls.Add(this.ctrlAnketaPerson);
             this.createRightholderFullNameComissionPage.Controls.Add(this.ipsServiceComissionControl1);
-            this.createRightholderFullNameComissionPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderFullNameComissionPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderFullNameComissionPage.Name = "createRightholderFullNameComissionPage";
             this.createRightholderFullNameComissionPage.Size = new System.Drawing.Size(849, 565);
@@ -1872,7 +1860,6 @@
             this.createRightholderAnketaPage.Controls.Add(this.ctrlContacts);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlLeAddress);
             this.createRightholderAnketaPage.Controls.Add(this.ctrlFaAddress);
-            this.createRightholderAnketaPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderAnketaPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderAnketaPage.Name = "createRightholderAnketaPage";
             this.createRightholderAnketaPage.Size = new System.Drawing.Size(882, 565);
@@ -2253,7 +2240,6 @@
             this.createRightholderPassportPage.Controls.Add(this.createRightholderPassportPageView);
             this.createRightholderPassportPage.Controls.Add(this.btnPrevAnketa);
             this.createRightholderPassportPage.Controls.Add(this.btnNextRoyalty);
-            this.createRightholderPassportPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderPassportPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderPassportPage.Name = "createRightholderPassportPage";
             this.createRightholderPassportPage.Size = new System.Drawing.Size(883, 565);
@@ -2369,7 +2355,6 @@
             this.createRightholderRoyaltyPage.Controls.Add(this.btnPrevPassport);
             this.createRightholderRoyaltyPage.Controls.Add(this.ddlTypeMethodGet);
             this.createRightholderRoyaltyPage.Controls.Add(this.btnNextRightLimitation);
-            this.createRightholderRoyaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderRoyaltyPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRoyaltyPage.Name = "createRightholderRoyaltyPage";
             this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(849, 565);
@@ -2669,7 +2654,6 @@
             this.createRightholderRigthLimitationsPage.Controls.Add(this.btnNextTerritoryLimitation);
             this.createRightholderRigthLimitationsPage.Controls.Add(this.radButton4);
             this.createRightholderRigthLimitationsPage.Controls.Add(this.ctrlExclusionsLimitations);
-            this.createRightholderRigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderRigthLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRigthLimitationsPage.Name = "createRightholderRigthLimitationsPage";
             this.createRightholderRigthLimitationsPage.Size = new System.Drawing.Size(849, 565);
@@ -2728,7 +2712,6 @@
             this.createRightholderTerritoryLimitationsPage.Controls.Add(this.ctrlTerritoryIncludeExclude);
             this.createRightholderTerritoryLimitationsPage.Controls.Add(this.radButton5);
             this.createRightholderTerritoryLimitationsPage.Controls.Add(this.btnPrevRightLimitation);
-            this.createRightholderTerritoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderTerritoryLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderTerritoryLimitationsPage.Name = "createRightholderTerritoryLimitationsPage";
             this.createRightholderTerritoryLimitationsPage.Size = new System.Drawing.Size(849, 565);
@@ -2785,7 +2768,6 @@
             this.createRightholderAgreementPage.Controls.Add(this.btnPrevTerritoryLimitation);
             this.createRightholderAgreementPage.Controls.Add(this.btnGenerateRightholderAgreement);
             this.createRightholderAgreementPage.Controls.Add(this.pdfvRightholderAgreement);
-            this.createRightholderAgreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderAgreementPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderAgreementPage.Name = "createRightholderAgreementPage";
             this.createRightholderAgreementPage.Size = new System.Drawing.Size(849, 565);
@@ -2928,6 +2910,7 @@
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
+            this.splitPanel5.ThemeName = "Office2013Light";
             // 
             // ctrlRightholdersObjectsForChange
             // 
@@ -2960,6 +2943,7 @@
             this.splitPanel6.TabIndex = 1;
             this.splitPanel6.TabStop = false;
             this.splitPanel6.Text = "splitPanel6";
+            this.splitPanel6.ThemeName = "Office2013Light";
             // 
             // btnSaveNewCopyrights
             // 
@@ -2970,6 +2954,7 @@
             this.btnSaveNewCopyrights.TabIndex = 73;
             this.btnSaveNewCopyrights.Text = "Зберегти";
             this.btnSaveNewCopyrights.ThemeName = "Office2013Light";
+            this.btnSaveNewCopyrights.Click += new System.EventHandler(this.btnSaveNewCopyrights_Click);
             // 
             // btnAddNewRightholder
             // 
@@ -3213,7 +3198,7 @@
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageRightsObjects;
+            this.MainPageView.SelectedPage = this.mainPageRightholders;
             this.MainPageView.Size = new System.Drawing.Size(1192, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";
