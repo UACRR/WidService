@@ -8,19 +8,19 @@ namespace ipsFormsDesign.Model
     {
         public EpisodeType()
         {
-            EpisodeTypeTr = new HashSet<EpisodeTypeTr>();
-            RelMovieEpisode = new HashSet<RelMovieEpisode>();
-            RelSerialEpisode = new HashSet<RelSerialEpisode>();
-            RelTvepisode = new HashSet<RelTvepisode>();
+            EpisodeTypeTr = new ObservableListSource<EpisodeTypeTr>();
+            RelMovieEpisode = new ObservableListSource<RelMovieEpisode>();
+            RelSerialEpisode = new ObservableListSource<RelSerialEpisode>();
+            RelTvepisode = new ObservableListSource<RelTvepisode>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<EpisodeTypeTr> EpisodeTypeTr { get; set; }
-        public ICollection<RelMovieEpisode> RelMovieEpisode { get; set; }
-        public ICollection<RelSerialEpisode> RelSerialEpisode { get; set; }
-        public ICollection<RelTvepisode> RelTvepisode { get; set; }
+        public ObservableListSource<EpisodeTypeTr> EpisodeTypeTr { get; set; }
+        public ObservableListSource<RelMovieEpisode> RelMovieEpisode { get; set; }
+        public ObservableListSource<RelSerialEpisode> RelSerialEpisode { get; set; }
+        public ObservableListSource<RelTvepisode> RelTvepisode { get; set; }
     }
 }
 

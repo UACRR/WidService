@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public MoneyLinkStatus()
         {
-            MoneyLinkStatusTr = new HashSet<MoneyLinkStatusTr>();
-            MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
+            MoneyLinkStatusTr = new ObservableListSource<MoneyLinkStatusTr>();
+            MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<MoneyLinkStatusTr> MoneyLinkStatusTr { get; set; }
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public ObservableListSource<MoneyLinkStatusTr> MoneyLinkStatusTr { get; set; }
+        public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
     }
 }
 

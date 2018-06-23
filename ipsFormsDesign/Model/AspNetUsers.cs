@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public AspNetUsers()
         {
-            AgreementAddRh = new HashSet<AgreementAddRh>();
-            AspNetUserClaims = new HashSet<AspNetUserClaims>();
-            AspNetUserLogins = new HashSet<AspNetUserLogins>();
-            AspNetUserRoles = new HashSet<AspNetUserRoles>();
-            BrRegister = new HashSet<BrRegister>();
-            Employee = new HashSet<Employee>();
-            Register = new HashSet<Register>();
-            Request = new HashSet<Request>();
-            UserRole = new HashSet<UserRole>();
+            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
+            AspNetUserClaims = new ObservableListSource<AspNetUserClaims>();
+            AspNetUserLogins = new ObservableListSource<AspNetUserLogins>();
+            AspNetUserRoles = new ObservableListSource<AspNetUserRoles>();
+            BrRegister = new ObservableListSource<BrRegister>();
+            Employee = new ObservableListSource<Employee>();
+            Register = new ObservableListSource<Register>();
+            Request = new ObservableListSource<Request>();
+            UserRole = new ObservableListSource<UserRole>();
         }
 
         public string Id { get; set; }
@@ -38,15 +38,15 @@ namespace ipsFormsDesign.Model
         public bool TwoFactorEnabled { get; set; }
         public string UserName { get; set; }
 
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<Employee> Employee { get; set; }
-        public ICollection<Register> Register { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<UserRole> UserRole { get; set; }
+        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public ObservableListSource<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public ObservableListSource<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public ObservableListSource<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public ObservableListSource<BrRegister> BrRegister { get; set; }
+        public ObservableListSource<Employee> Employee { get; set; }
+        public ObservableListSource<Register> Register { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
+        public ObservableListSource<UserRole> UserRole { get; set; }
     }
 }
 

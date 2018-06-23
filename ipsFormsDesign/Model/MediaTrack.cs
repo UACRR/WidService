@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public MediaTrack()
         {
-            MediaFile = new HashSet<MediaFile>();
+            MediaFile = new ObservableListSource<MediaFile>();
         }
 
         public int ObjId { get; set; }
@@ -27,7 +27,7 @@ namespace ipsFormsDesign.Model
         public TimeSpan? Duration { get; set; }
 
         public ObjectRight Obj { get; set; }
-        public ICollection<MediaFile> MediaFile { get; set; }
+        public ObservableListSource<MediaFile> MediaFile { get; set; }
     }
 }
 

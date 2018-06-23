@@ -8,19 +8,19 @@ namespace ipsFormsDesign.Model
     {
         public ObjAct()
         {
-            EtGenreRate = new HashSet<EtGenreRate>();
-            EtGenreRole = new HashSet<EtGenreRole>();
-            ObjActTr = new HashSet<ObjActTr>();
-            ObjectRight = new HashSet<ObjectRight>();
+            EtGenreRate = new ObservableListSource<EtGenreRate>();
+            EtGenreRole = new ObservableListSource<EtGenreRole>();
+            ObjActTr = new ObservableListSource<ObjActTr>();
+            ObjectRight = new ObservableListSource<ObjectRight>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<EtGenreRate> EtGenreRate { get; set; }
-        public ICollection<EtGenreRole> EtGenreRole { get; set; }
-        public ICollection<ObjActTr> ObjActTr { get; set; }
-        public ICollection<ObjectRight> ObjectRight { get; set; }
+        public ObservableListSource<EtGenreRate> EtGenreRate { get; set; }
+        public ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
+        public ObservableListSource<ObjActTr> ObjActTr { get; set; }
+        public ObservableListSource<ObjectRight> ObjectRight { get; set; }
     }
 }
 

@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public BankAccount()
         {
-            AnketaCompany = new HashSet<AnketaCompany>();
-            AnketaPerson = new HashSet<AnketaPerson>();
+            AnketaCompany = new ObservableListSource<AnketaCompany>();
+            AnketaPerson = new ObservableListSource<AnketaPerson>();
         }
 
         public int BanAccId { get; set; }
@@ -28,8 +28,8 @@ namespace ipsFormsDesign.Model
 
         public KlR030 CurrencyNavigation { get; set; }
         public Customer Cust { get; set; }
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
     }
 }
 

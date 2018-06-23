@@ -117,7 +117,7 @@ namespace ConsumerWorkplace_v_1._0
         private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             int custId = Convert.ToInt32(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value);
-            _cust = GetCustomer(custId);
+            SetData( GetCustomer(custId) );
             if (_cust?.Client?.ClnBusinessPlace != null)
                 IsPlaceIn = _cust.Client.ClnBusinessPlace.Count != 0;
             SetDataSources();
@@ -150,21 +150,21 @@ namespace ConsumerWorkplace_v_1._0
             lblTabLicenseTypeClientName.Text = clientNameCtrlAnketaCompany.CompanyFullName;
 
             anketaCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            anketaCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            anketaCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            anketaCtrlTitleLbl.ContractBeginDate = curLicAgreement?.DateBegin?.ToShortDateString();
+            anketaCtrlTitleLbl.ContractNumber = curLicAgreement?.LicNum ?? String.Empty;
 
             managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            managersCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            managersCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            managersCtrlTitleLbl.ContractBeginDate = curLicAgreement?.DateBegin?.ToShortDateString();
+            managersCtrlTitleLbl.ContractNumber = curLicAgreement?.LicNum ?? String.Empty;
 
             placesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            placesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            placesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            placesCtrlTitleLbl.ContractBeginDate = curLicAgreement?.DateBegin?.ToShortDateString();
+            placesCtrlTitleLbl.ContractNumber = curLicAgreement?.LicNum ?? String.Empty;
 
             bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
-            
+            bankRequisitesCtrlTitleLbl.ContractBeginDate = curLicAgreement?.DateBegin?.ToShortDateString();
+            bankRequisitesCtrlTitleLbl.ContractNumber = curLicAgreement?.LicNum ?? String.Empty;
+
         }
 
         /// <summary>
@@ -531,12 +531,9 @@ namespace ConsumerWorkplace_v_1._0
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
 
+                licenseAgrParamBindingSource.DataSource = licenseParam;
                 licenseTypeCtrlContractConsumerMain.DataSource = licenseParam;
-                licenseTypeCtrlContractConsumerMain.DateDataSource = licenseParam;
-                licenseTypeCtrlContractConsumerMain.ContrNumber = "LicNum";
-                licenseTypeCtrlContractConsumerMain.AgrDateDataMember = "LicDate";
-                licenseTypeCtrlContractConsumerMain.BeginDateDataMember = "DateBegin";
-                licenseTypeCtrlContractConsumerMain.EndDateDataMember = "DateEnd";
+
 
                 licenseTypeCtrlContractConsumerDetail.DataSourceBinding = licenseParam;
                 licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataSource = _dic.period;
@@ -641,9 +638,12 @@ namespace ConsumerWorkplace_v_1._0
 
 
         Customer _cust = null;
+        LicenseAgrParam curLicAgreement = null;
         public void SetData(ICustomer data)
         {
             _cust = (Customer)data;
+            var licAgr = _cust.Client.LicenseAgreement.FirstOrDefault();
+            curLicAgreement = licAgr?.LicenseAgrParam.Where(item => item.LicVersion == licAgr.LicVersion).SingleOrDefault();
         }
 
         public void GetData(ICustomer data)

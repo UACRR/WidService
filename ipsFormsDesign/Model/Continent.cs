@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public Continent()
         {
-            ContinentTr = new HashSet<ContinentTr>();
-            Country = new HashSet<Country>();
-            ReqLocationUse = new HashSet<ReqLocationUse>();
+            ContinentTr = new ObservableListSource<ContinentTr>();
+            Country = new ObservableListSource<Country>();
+            ReqLocationUse = new ObservableListSource<ReqLocationUse>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<ContinentTr> ContinentTr { get; set; }
-        public ICollection<Country> Country { get; set; }
-        public ICollection<ReqLocationUse> ReqLocationUse { get; set; }
+        public ObservableListSource<ContinentTr> ContinentTr { get; set; }
+        public ObservableListSource<Country> Country { get; set; }
+        public ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
     }
 }
 

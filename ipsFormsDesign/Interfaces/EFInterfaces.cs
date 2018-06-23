@@ -216,6 +216,12 @@ public interface IAnketaCompany
          int? LeRegion { get; set; }
          string LeAddress { get; set; }
 }
+public interface IAnketaExternal
+    {
+         int CustId { get; set; }
+         string Name { get; set; }
+         string InterCode { get; set; }
+}
 public interface IAnketaPerson
     {
          int CustId { get; set; }
@@ -775,11 +781,10 @@ public interface IDocumentStatusTr
          string Name { get; set; }
 }
 public interface IDocumentType
-    {    int CodeI { get; set; }
+    {
+         int CodeI { get; set; }
          string Name { get; set; }
-         string TemplNum { get; set; }
-         string TemplPath { get; set; }
-}
+    }
 public interface IDocumentTypeTr
     {
          int CodeI { get; set; }
@@ -852,6 +857,22 @@ public interface IExternalPay
          int? Status { get; set; }
          DateTime? DateOper { get; set; }
     }
+public interface IFileCustomer
+    {
+         int DocId { get; set; }
+         int CustId { get; set; }
+         int DocType { get; set; }
+         DateTime? CreateDate { get; set; }
+         string DocFile { get; set; }
+         string DocComment { get; set; }
+         string MimeType { get; set; }
+         DateTime? ModifyDate { get; set; }
+         string ModifyLogin { get; set; }
+}
+public interface IFileType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
 public interface IFolkType
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -897,7 +918,7 @@ public interface IInvoice
          string RecBankName { get; set; }
          string Purpose { get; set; }
          int? Status { get; set; }
-}
+    }
 public interface IItemStatus
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1285,6 +1306,7 @@ public interface IPaidPeriod
          decimal Distribamount { get; set; }
          string PeriodName { get; set; }
          bool? FagFirst { get; set; }
+         DateTime? DateActPrint { get; set; }
 }
 public interface IPartner
     {    int CustId { get; set; }

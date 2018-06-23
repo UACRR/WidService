@@ -36,11 +36,11 @@ namespace IpsViewComponentLibrary
             
 
             ctrlAgreementMain.DataSource = licenseParam;
-            ctrlAgreementMain.DateDataSource = licenseParam;
-            ctrlAgreementMain.ContrNumber = "LicNum";
-            ctrlAgreementMain.AgrDateDataMember = "LicDate";
-            ctrlAgreementMain.BeginDateDataMember = "DateBegin";
-            ctrlAgreementMain.EndDateDataMember = "DateEnd";
+            // ctrlAgreementMain.DateDataSource = licenseParam;
+            //ctrlAgreementMain.ContrNumber = "LicNum";
+            //ctrlAgreementMain.AgrDateDataMember = "LicDate";
+            //ctrlAgreementMain.BeginDateDataMember = "DateBegin";
+            //ctrlAgreementMain.EndDateDataMember = "DateEnd";
 
             
             ctrlAgreementSecond.DataSourceBinding = licenseParam;

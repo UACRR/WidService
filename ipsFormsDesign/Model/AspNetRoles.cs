@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public AspNetRoles()
         {
-            AspNetRoleClaims = new HashSet<AspNetRoleClaims>();
-            AspNetUserRoles = new HashSet<AspNetUserRoles>();
+            AspNetRoleClaims = new ObservableListSource<AspNetRoleClaims>();
+            AspNetUserRoles = new ObservableListSource<AspNetUserRoles>();
         }
 
         public string Id { get; set; }
@@ -18,8 +18,8 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public string NormalizedName { get; set; }
 
-        public ICollection<AspNetRoleClaims> AspNetRoleClaims { get; set; }
-        public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public ObservableListSource<AspNetRoleClaims> AspNetRoleClaims { get; set; }
+        public ObservableListSource<AspNetUserRoles> AspNetUserRoles { get; set; }
     }
 }
 

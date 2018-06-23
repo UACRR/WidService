@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public DistribStatus()
         {
-            DistribStatusTr = new HashSet<DistribStatusTr>();
-            Distribution = new HashSet<Distribution>();
+            DistribStatusTr = new ObservableListSource<DistribStatusTr>();
+            Distribution = new ObservableListSource<Distribution>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<DistribStatusTr> DistribStatusTr { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
+        public ObservableListSource<DistribStatusTr> DistribStatusTr { get; set; }
+        public ObservableListSource<Distribution> Distribution { get; set; }
     }
 }
 

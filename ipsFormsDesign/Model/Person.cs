@@ -8,14 +8,14 @@ namespace ipsFormsDesign.Model
     {
         public Person()
         {
-            AnketaPerson = new HashSet<AnketaPerson>();
+            AnketaPerson = new ObservableListSource<AnketaPerson>();
         }
 
         public int CustId { get; set; }
         public int Version { get; set; }
 
         public Customer Cust { get; set; }
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
     }
 }
 

@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public MoneyReceived()
         {
-            MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
+            MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
         }
 
         public int PaidId { get; set; }
@@ -22,7 +22,7 @@ namespace ipsFormsDesign.Model
 
         public Client Cust { get; set; }
         public MoneyType MoneyTypeNavigation { get; set; }
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
     }
 }
 

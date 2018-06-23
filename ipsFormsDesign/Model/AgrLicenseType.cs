@@ -8,9 +8,9 @@ namespace ipsFormsDesign.Model
     {
         public AgrLicenseType()
         {
-            AgrLicenseTypeTr = new HashSet<AgrLicenseTypeTr>();
-            LicenseAgreement = new HashSet<LicenseAgreement>();
-            RelLicCopyR = new HashSet<RelLicCopyR>();
+            AgrLicenseTypeTr = new ObservableListSource<AgrLicenseTypeTr>();
+            LicenseAgreement = new ObservableListSource<LicenseAgreement>();
+            RelLicCopyR = new ObservableListSource<RelLicCopyR>();
         }
 
         public int CodeI { get; set; }
@@ -21,9 +21,9 @@ namespace ipsFormsDesign.Model
 
         public CopyrightKind KindCodeNavigation { get; set; }
         public UsesKind UsesKindNavigation { get; set; }
-        public ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
-        public ICollection<RelLicCopyR> RelLicCopyR { get; set; }
+        public ObservableListSource<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
+        public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
+        public ObservableListSource<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }
 

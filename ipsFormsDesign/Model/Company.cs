@@ -8,16 +8,16 @@ namespace ipsFormsDesign.Model
     {
         public Company()
         {
-            AnketaCompany = new HashSet<AnketaCompany>();
-            RelEmployee = new HashSet<RelEmployee>();
+            AnketaCompany = new ObservableListSource<AnketaCompany>();
+            RelEmployee = new ObservableListSource<RelEmployee>();
         }
 
         public int CustId { get; set; }
         public int Version { get; set; }
 
         public Customer Cust { get; set; }
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
-        public ICollection<RelEmployee> RelEmployee { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        public ObservableListSource<RelEmployee> RelEmployee { get; set; }
     }
 }
 

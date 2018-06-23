@@ -8,24 +8,23 @@ namespace ipsFormsDesign.Model
     {
         public Category()
         {
-            CategoryTr = new HashSet<CategoryTr>();
-            CreativeRoleType = new HashSet<CreativeRoleType>();
-            DocumentKind = new HashSet<DocumentKind>();
-            EtGenre = new HashSet<EtGenre>();
-            EtRole = new HashSet<EtRole>();
-            GenreType = new HashSet<GenreType>();
-            KindComposition = new HashSet<KindComposition>();
-            ModifyMusicType = new HashSet<ModifyMusicType>();
-            ModifyTextType = new HashSet<ModifyTextType>();
-            ModifyType = new HashSet<ModifyType>();
-            MyCategory = new HashSet<MyCategory>();
-            ObjectRight = new HashSet<ObjectRight>();
-            PopGenre = new HashSet<PopGenre>();
-            Request = new HashSet<Request>();
-            RequestAim = new HashSet<RequestAim>();
-            RequestType = new HashSet<RequestType>();
-            UseAreaType = new HashSet<UseAreaType>();
-            UseMediaType = new HashSet<UseMediaType>();
+            CategoryTr = new ObservableListSource<CategoryTr>();
+            CreativeRoleType = new ObservableListSource<CreativeRoleType>();
+            EtGenre = new ObservableListSource<EtGenre>();
+            EtRole = new ObservableListSource<EtRole>();
+            GenreType = new ObservableListSource<GenreType>();
+            KindComposition = new ObservableListSource<KindComposition>();
+            ModifyMusicType = new ObservableListSource<ModifyMusicType>();
+            ModifyTextType = new ObservableListSource<ModifyTextType>();
+            ModifyType = new ObservableListSource<ModifyType>();
+            MyCategory = new ObservableListSource<MyCategory>();
+            ObjectRight = new ObservableListSource<ObjectRight>();
+            PopGenre = new ObservableListSource<PopGenre>();
+            Request = new ObservableListSource<Request>();
+            RequestAim = new ObservableListSource<RequestAim>();
+            RequestType = new ObservableListSource<RequestType>();
+            UseAreaType = new ObservableListSource<UseAreaType>();
+            UseMediaType = new ObservableListSource<UseMediaType>();
         }
 
         public int CodeI { get; set; }
@@ -36,24 +35,23 @@ namespace ipsFormsDesign.Model
         public string Comment { get; set; }
 
         public CategoryStatusType StatusNavigation { get; set; }
-        public ICollection<CategoryTr> CategoryTr { get; set; }
-        public ICollection<CreativeRoleType> CreativeRoleType { get; set; }
-        public ICollection<DocumentKind> DocumentKind { get; set; }
-        public ICollection<EtGenre> EtGenre { get; set; }
-        public ICollection<EtRole> EtRole { get; set; }
-        public ICollection<GenreType> GenreType { get; set; }
-        public ICollection<KindComposition> KindComposition { get; set; }
-        public ICollection<ModifyMusicType> ModifyMusicType { get; set; }
-        public ICollection<ModifyTextType> ModifyTextType { get; set; }
-        public ICollection<ModifyType> ModifyType { get; set; }
-        public ICollection<MyCategory> MyCategory { get; set; }
-        public ICollection<ObjectRight> ObjectRight { get; set; }
-        public ICollection<PopGenre> PopGenre { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<RequestAim> RequestAim { get; set; }
-        public ICollection<RequestType> RequestType { get; set; }
-        public ICollection<UseAreaType> UseAreaType { get; set; }
-        public ICollection<UseMediaType> UseMediaType { get; set; }
+        public ObservableListSource<CategoryTr> CategoryTr { get; set; }
+        public ObservableListSource<CreativeRoleType> CreativeRoleType { get; set; }
+        public ObservableListSource<EtGenre> EtGenre { get; set; }
+        public ObservableListSource<EtRole> EtRole { get; set; }
+        public ObservableListSource<GenreType> GenreType { get; set; }
+        public ObservableListSource<KindComposition> KindComposition { get; set; }
+        public ObservableListSource<ModifyMusicType> ModifyMusicType { get; set; }
+        public ObservableListSource<ModifyTextType> ModifyTextType { get; set; }
+        public ObservableListSource<ModifyType> ModifyType { get; set; }
+        public ObservableListSource<MyCategory> MyCategory { get; set; }
+        public ObservableListSource<ObjectRight> ObjectRight { get; set; }
+        public ObservableListSource<PopGenre> PopGenre { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
+        public ObservableListSource<RequestAim> RequestAim { get; set; }
+        public ObservableListSource<RequestType> RequestType { get; set; }
+        public ObservableListSource<UseAreaType> UseAreaType { get; set; }
+        public ObservableListSource<UseMediaType> UseMediaType { get; set; }
     }
 }
 

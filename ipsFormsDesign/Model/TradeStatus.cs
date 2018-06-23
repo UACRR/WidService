@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public TradeStatus()
         {
-            ReqTrade = new HashSet<ReqTrade>();
+            ReqTrade = new ObservableListSource<ReqTrade>();
         }
 
         public int StatusCode { get; set; }
@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Model
         public string StatusNameRu { get; set; }
         public string StatusNameEn { get; set; }
 
-        public ICollection<ReqTrade> ReqTrade { get; set; }
+        public ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }
 

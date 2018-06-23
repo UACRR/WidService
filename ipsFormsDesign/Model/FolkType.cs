@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public FolkType()
         {
-            Authors = new HashSet<Authors>();
-            FolkTypeTr = new HashSet<FolkTypeTr>();
+            Authors = new ObservableListSource<Authors>();
+            FolkTypeTr = new ObservableListSource<FolkTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<FolkTypeTr> FolkTypeTr { get; set; }
+        public ObservableListSource<Authors> Authors { get; set; }
+        public ObservableListSource<FolkTypeTr> FolkTypeTr { get; set; }
     }
 }
 

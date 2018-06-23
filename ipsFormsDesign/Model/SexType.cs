@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public SexType()
         {
-            AnketaPerson = new HashSet<AnketaPerson>();
-            SexTypeTr = new HashSet<SexTypeTr>();
+            AnketaPerson = new ObservableListSource<AnketaPerson>();
+            SexTypeTr = new ObservableListSource<SexTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<SexTypeTr> SexTypeTr { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public ObservableListSource<SexTypeTr> SexTypeTr { get; set; }
     }
 }
 

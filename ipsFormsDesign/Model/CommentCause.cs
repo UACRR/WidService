@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public CommentCause()
         {
-            ReqTrade = new HashSet<ReqTrade>();
+            ReqTrade = new ObservableListSource<ReqTrade>();
         }
 
         public int CauseCode { get; set; }
@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Model
         public string CauseNameRu { get; set; }
         public string CauseNameEn { get; set; }
 
-        public ICollection<ReqTrade> ReqTrade { get; set; }
+        public ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }
 

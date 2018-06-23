@@ -8,9 +8,9 @@ namespace ipsFormsDesign.Model
     {
         public GenreType()
         {
-            GenreTypeTr = new HashSet<GenreTypeTr>();
-            RelEtGenre = new HashSet<RelEtGenre>();
-            RelGenreRole = new HashSet<RelGenreRole>();
+            GenreTypeTr = new ObservableListSource<GenreTypeTr>();
+            RelEtGenre = new ObservableListSource<RelEtGenre>();
+            RelGenreRole = new ObservableListSource<RelGenreRole>();
         }
 
         public int CodeI { get; set; }
@@ -18,9 +18,9 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<GenreTypeTr> GenreTypeTr { get; set; }
-        public ICollection<RelEtGenre> RelEtGenre { get; set; }
-        public ICollection<RelGenreRole> RelGenreRole { get; set; }
+        public ObservableListSource<GenreTypeTr> GenreTypeTr { get; set; }
+        public ObservableListSource<RelEtGenre> RelEtGenre { get; set; }
+        public ObservableListSource<RelGenreRole> RelGenreRole { get; set; }
     }
 }
 

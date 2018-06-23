@@ -8,10 +8,10 @@ namespace ipsFormsDesign.Model
     {
         public AgreementMaster()
         {
-            AgreementAddBr = new HashSet<AgreementAddBr>();
-            AgreementAddPartner = new HashSet<AgreementAddPartner>();
-            AgreementAddRh = new HashSet<AgreementAddRh>();
-            LicenseAgreement = new HashSet<LicenseAgreement>();
+            AgreementAddBr = new ObservableListSource<AgreementAddBr>();
+            AgreementAddPartner = new ObservableListSource<AgreementAddPartner>();
+            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
+            LicenseAgreement = new ObservableListSource<LicenseAgreement>();
         }
 
         public int AgrId { get; set; }
@@ -27,10 +27,10 @@ namespace ipsFormsDesign.Model
         public AgreementStatus AgrStatusNavigation { get; set; }
         public AgreementType AgrTypeNavigation { get; set; }
         public Customer Cust { get; set; }
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
-        public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
+        public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
 

@@ -49,12 +49,12 @@
             // 
             // ctrlAgreementMain
             // 
-            this.ctrlAgreementMain.AgrDateDataMember = null;
-            this.ctrlAgreementMain.BeginDateDataMember = null;
-            this.ctrlAgreementMain.ContrNumber = null;
+            //this.ctrlAgreementMain.AgrDateDataMember = null;
+            //this.ctrlAgreementMain.BeginDateDataMember = null;
+            //this.ctrlAgreementMain.ContrNumber = null;
             this.ctrlAgreementMain.DataSource = null;
-            this.ctrlAgreementMain.DateDataSource = null;
-            this.ctrlAgreementMain.EndDateDataMember = null;
+            //this.ctrlAgreementMain.DateDataSource = null;
+            //this.ctrlAgreementMain.EndDateDataMember = null;
             this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 56);
             this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementMain.Name = "ctrlAgreementMain";

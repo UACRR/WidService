@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public RequestAdapt()
         {
-            RelAdaptUseArea = new HashSet<RelAdaptUseArea>();
-            RelGenreAdapt = new HashSet<RelGenreAdapt>();
+            RelAdaptUseArea = new ObservableListSource<RelAdaptUseArea>();
+            RelGenreAdapt = new ObservableListSource<RelGenreAdapt>();
         }
 
         public int ReqId { get; set; }
@@ -25,8 +25,8 @@ namespace ipsFormsDesign.Model
         public ModifyTextType ModifyTextTypeNavigation { get; set; }
         public ModifyType ModifyTypeNavigation { get; set; }
         public Request Req { get; set; }
-        public ICollection<RelAdaptUseArea> RelAdaptUseArea { get; set; }
-        public ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
+        public ObservableListSource<RelAdaptUseArea> RelAdaptUseArea { get; set; }
+        public ObservableListSource<RelGenreAdapt> RelGenreAdapt { get; set; }
     }
 }
 

@@ -69,6 +69,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.licenseTypeCtrlContractConsumerDetail = new IpsViewComponentLibrary.ContractConsumerDetailControl();
             this.licenseTypeCtrlContractConsumerMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.licenseAgrParamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvConsumerAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.addressLetter1 = new IpsViewComponentLibrary.AddressLetter();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
@@ -177,6 +178,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).BeginInit();
             this.pvConsumerAnketa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlRegion)).BeginInit();
@@ -417,7 +419,7 @@ namespace ConsumerWorkplace_v_1._0
             this.lblConsumerTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblConsumerTitle.AutoSize = false;
             this.lblConsumerTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblConsumerTitle.Location = new System.Drawing.Point(322, 3);
+            this.lblConsumerTitle.Location = new System.Drawing.Point(320, 3);
             this.lblConsumerTitle.Name = "lblConsumerTitle";
             this.lblConsumerTitle.Size = new System.Drawing.Size(396, 18);
             this.lblConsumerTitle.TabIndex = 0;
@@ -703,18 +705,21 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // licenseTypeCtrlContractConsumerMain
             // 
-            this.licenseTypeCtrlContractConsumerMain.AgrDateDataMember = null;
-            this.licenseTypeCtrlContractConsumerMain.BeginDateDataMember = null;
-            this.licenseTypeCtrlContractConsumerMain.ContrNumber = null;
-            this.licenseTypeCtrlContractConsumerMain.DataSource = null;
-            this.licenseTypeCtrlContractConsumerMain.DateDataSource = null;
-            this.licenseTypeCtrlContractConsumerMain.EndDateDataMember = null;
+            //this.licenseTypeCtrlContractConsumerMain.AgrDateDataMember = null;
+            //this.licenseTypeCtrlContractConsumerMain.BeginDateDataMember = null;
+            //this.licenseTypeCtrlContractConsumerMain.ContrNumber = null;
+            //this.licenseTypeCtrlContractConsumerMain.DataSource = null;
+            //this.licenseTypeCtrlContractConsumerMain.EndDateDataMember = null;
             this.licenseTypeCtrlContractConsumerMain.Location = new System.Drawing.Point(3, 73);
             this.licenseTypeCtrlContractConsumerMain.Margin = new System.Windows.Forms.Padding(4);
             this.licenseTypeCtrlContractConsumerMain.MaximumSize = new System.Drawing.Size(636, 60);
             this.licenseTypeCtrlContractConsumerMain.Name = "licenseTypeCtrlContractConsumerMain";
             this.licenseTypeCtrlContractConsumerMain.Size = new System.Drawing.Size(536, 60);
             this.licenseTypeCtrlContractConsumerMain.TabIndex = 1;
+            // 
+            // licenseAgrParamBindingSource
+            // 
+            this.licenseAgrParamBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // pvConsumerAnketa
             // 
@@ -2072,6 +2077,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).EndInit();
             this.pvConsumerAnketa.ResumeLayout(false);
             this.pvConsumerAnketa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlCountry)).EndInit();
@@ -2278,5 +2284,6 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage4;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage5;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage6;
+        private System.Windows.Forms.BindingSource licenseAgrParamBindingSource;
     }
 }

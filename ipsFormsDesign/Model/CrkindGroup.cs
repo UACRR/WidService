@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public CrkindGroup()
         {
-            CopyrightKind = new HashSet<CopyrightKind>();
-            CrkindGroupTr = new HashSet<CrkindGroupTr>();
+            CopyrightKind = new ObservableListSource<CopyrightKind>();
+            CrkindGroupTr = new ObservableListSource<CrkindGroupTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<CopyrightKind> CopyrightKind { get; set; }
-        public ICollection<CrkindGroupTr> CrkindGroupTr { get; set; }
+        public ObservableListSource<CopyrightKind> CopyrightKind { get; set; }
+        public ObservableListSource<CrkindGroupTr> CrkindGroupTr { get; set; }
     }
 }
 

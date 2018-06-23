@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public Language()
         {
-            CopyRtranslateLangFromNavigation = new HashSet<CopyRtranslate>();
-            CopyRtranslateLangToNavigation = new HashSet<CopyRtranslate>();
+            CopyRtranslateLangFromNavigation = new ObservableListSource<CopyRtranslate>();
+            CopyRtranslateLangToNavigation = new ObservableListSource<CopyRtranslate>();
         }
 
         public string CodeS { get; set; }
@@ -18,8 +18,8 @@ namespace ipsFormsDesign.Model
         public string NameSh3 { get; set; }
         public short? ShortChoise { get; set; }
 
-        public ICollection<CopyRtranslate> CopyRtranslateLangFromNavigation { get; set; }
-        public ICollection<CopyRtranslate> CopyRtranslateLangToNavigation { get; set; }
+        public ObservableListSource<CopyRtranslate> CopyRtranslateLangFromNavigation { get; set; }
+        public ObservableListSource<CopyRtranslate> CopyRtranslateLangToNavigation { get; set; }
     }
 }
 

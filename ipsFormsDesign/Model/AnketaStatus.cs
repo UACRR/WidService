@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public AnketaStatus()
         {
-            AnketaCompany = new HashSet<AnketaCompany>();
-            AnketaPerson = new HashSet<AnketaPerson>();
-            AnketaStatusTr = new HashSet<AnketaStatusTr>();
+            AnketaCompany = new ObservableListSource<AnketaCompany>();
+            AnketaPerson = new ObservableListSource<AnketaPerson>();
+            AnketaStatusTr = new ObservableListSource<AnketaStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<AnketaStatusTr> AnketaStatusTr { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public ObservableListSource<AnketaStatusTr> AnketaStatusTr { get; set; }
     }
 }
 

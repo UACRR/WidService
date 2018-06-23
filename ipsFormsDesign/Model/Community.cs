@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public Community()
         {
-            CustCmRight = new HashSet<CustCmRight>();
-            RegisterCount = new HashSet<RegisterCount>();
+            CustCmRight = new ObservableListSource<CustCmRight>();
+            RegisterCount = new ObservableListSource<RegisterCount>();
         }
 
         public int CustId { get; set; }
 
         public Customer Cust { get; set; }
-        public ICollection<CustCmRight> CustCmRight { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
+        public ObservableListSource<CustCmRight> CustCmRight { get; set; }
+        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }
 }
 

@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public KindSerial()
         {
-            KindSerialTr = new HashSet<KindSerialTr>();
-            RequestSerial = new HashSet<RequestSerial>();
+            KindSerialTr = new ObservableListSource<KindSerialTr>();
+            RequestSerial = new ObservableListSource<RequestSerial>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<KindSerialTr> KindSerialTr { get; set; }
-        public ICollection<RequestSerial> RequestSerial { get; set; }
+        public ObservableListSource<KindSerialTr> KindSerialTr { get; set; }
+        public ObservableListSource<RequestSerial> RequestSerial { get; set; }
     }
 }
 

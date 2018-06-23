@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public ObjectType()
         {
-            ObjectRight = new HashSet<ObjectRight>();
-            ObjectTypeTr = new HashSet<ObjectTypeTr>();
+            ObjectRight = new ObservableListSource<ObjectRight>();
+            ObjectTypeTr = new ObservableListSource<ObjectTypeTr>();
         }
 
         public int CodeI { get; set; }
@@ -17,8 +17,8 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<ObjectRight> ObjectRight { get; set; }
-        public ICollection<ObjectTypeTr> ObjectTypeTr { get; set; }
+        public ObservableListSource<ObjectRight> ObjectRight { get; set; }
+        public ObservableListSource<ObjectTypeTr> ObjectTypeTr { get; set; }
     }
 }
 

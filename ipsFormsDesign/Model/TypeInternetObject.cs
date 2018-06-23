@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public TypeInternetObject()
         {
-            RequestInternet = new HashSet<RequestInternet>();
-            TypeInternetObjectTr = new HashSet<TypeInternetObjectTr>();
+            RequestInternet = new ObservableListSource<RequestInternet>();
+            TypeInternetObjectTr = new ObservableListSource<TypeInternetObjectTr>();
         }
 
         public int CodeI { get; set; }
@@ -17,8 +17,8 @@ namespace ipsFormsDesign.Model
         public string TypeInetNameEn { get; set; }
         public string TypeInetNameRu { get; set; }
 
-        public ICollection<RequestInternet> RequestInternet { get; set; }
-        public ICollection<TypeInternetObjectTr> TypeInternetObjectTr { get; set; }
+        public ObservableListSource<RequestInternet> RequestInternet { get; set; }
+        public ObservableListSource<TypeInternetObjectTr> TypeInternetObjectTr { get; set; }
     }
 }
 

@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public LicenseType()
         {
-            LicenseAgreement = new HashSet<LicenseAgreement>();
-            LicenseTypeTr = new HashSet<LicenseTypeTr>();
-            Request = new HashSet<Request>();
+            LicenseAgreement = new ObservableListSource<LicenseAgreement>();
+            LicenseTypeTr = new ObservableListSource<LicenseTypeTr>();
+            Request = new ObservableListSource<Request>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
-        public ICollection<LicenseTypeTr> LicenseTypeTr { get; set; }
-        public ICollection<Request> Request { get; set; }
+        public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
+        public ObservableListSource<LicenseTypeTr> LicenseTypeTr { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
     }
 }
 

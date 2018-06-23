@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public SpecType()
         {
-            ObjectRight = new HashSet<ObjectRight>();
-            SpecTypeTr = new HashSet<SpecTypeTr>();
+            ObjectRight = new ObservableListSource<ObjectRight>();
+            SpecTypeTr = new ObservableListSource<SpecTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<ObjectRight> ObjectRight { get; set; }
-        public ICollection<SpecTypeTr> SpecTypeTr { get; set; }
+        public ObservableListSource<ObjectRight> ObjectRight { get; set; }
+        public ObservableListSource<SpecTypeTr> SpecTypeTr { get; set; }
     }
 }
 

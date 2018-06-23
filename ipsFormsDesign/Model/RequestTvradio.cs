@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public RequestTvradio()
         {
-            RelTvepisode = new HashSet<RelTvepisode>();
+            RelTvepisode = new ObservableListSource<RelTvepisode>();
         }
 
         public int ReqId { get; set; }
@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Model
         public string EpisodeComment { get; set; }
 
         public Request Req { get; set; }
-        public ICollection<RelTvepisode> RelTvepisode { get; set; }
+        public ObservableListSource<RelTvepisode> RelTvepisode { get; set; }
     }
 }
 

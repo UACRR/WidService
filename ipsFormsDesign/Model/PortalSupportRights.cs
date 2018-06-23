@@ -8,13 +8,13 @@ namespace ipsFormsDesign.Model
     {
         public PortalSupportRights()
         {
-            PortalObjectRights = new HashSet<PortalObjectRights>();
+            PortalObjectRights = new ObservableListSource<PortalObjectRights>();
         }
 
         public int CRkindCode { get; set; }
 
         public CopyrightKind CRkindCodeNavigation { get; set; }
-        public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
+        public ObservableListSource<PortalObjectRights> PortalObjectRights { get; set; }
     }
 }
 

@@ -145,6 +145,12 @@
     <Compile Include="AuthorRightholderItemView.Designer.cs">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalculationInfoControlNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalculationInfoControlNew.Designer.cs">
+      <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="CalculationInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -438,6 +444,9 @@
     <EmbeddedResource Include="AuthorRightholderItemView.resx">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CalculationInfoControlNew.resx">
+      <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CalculationInfoControl.resx">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -571,6 +580,10 @@
   <ItemGroup>
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
     <None Include="Resources\createAct.ico" />
   </ItemGroup>
   <ItemGroup>
