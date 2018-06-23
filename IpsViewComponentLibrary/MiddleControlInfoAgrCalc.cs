@@ -96,11 +96,9 @@ namespace IpsViewComponentLibrary
                                       manager?.Empl?.SurName;
 
             userInfoCtrl.PhoneManager = manager?.Empl?.PhoneNumber;
-            userInfoCtrl.WorkPositionManager = "";//уточнити
             userInfoCtrl.PibContactPerson = contactPerson?.Empl?.FirstName + " " +
                                             contactPerson?.Empl?.LastName + " " +
                                             contactPerson?.Empl?.SurName;
-            userInfoCtrl.WorkPositionContactPerson = "";
             userInfoCtrl.PhoneContactPerson = contactPerson?.Empl?.PhoneNumber;
             userInfoCtrl.EmailContactPerson = contactPerson?.Empl?.Email;
             userInfoCtrl.OrganisationForm = "";

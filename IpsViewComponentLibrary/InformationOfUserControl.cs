@@ -53,14 +53,6 @@ namespace IpsViewComponentLibrary
             set => contactPersPibCtrl.TextValue = value;
         }
         /// <summary>
-        /// Посада контактної особи
-        /// </summary>
-        public string WorkPositionContactPerson
-        {
-            get => contactPersWorkPositionCtrl.TextValue;
-            set => contactPersWorkPositionCtrl.TextValue = value;
-        }
-        /// <summary>
         /// Телефон контактної особи
         /// </summary>
         public string PhoneContactPerson
@@ -101,14 +93,6 @@ namespace IpsViewComponentLibrary
             set => managerPibCtrl.TextValue = value;
         }
         /// <summary>
-        /// Посада керівника
-        /// </summary>
-        public string WorkPositionManager
-        {
-            get => managerWorkPositionCtrl.TextValue;
-            set => managerWorkPositionCtrl.TextValue = value;
-        }
-        /// <summary>
         /// Контактний телефон керівника
         /// </summary>
         public string PhoneManager
@@ -140,8 +124,6 @@ namespace IpsViewComponentLibrary
             PhoneContactPerson = string.Empty;
             PhoneManager = string.Empty;
             PibContactPerson = string.Empty;
-            WorkPositionContactPerson = string.Empty;
-            WorkPositionManager = string.Empty;
             PibManager = string.Empty;
             EmailManager = string.Empty;
 

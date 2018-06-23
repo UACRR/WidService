@@ -35,12 +35,10 @@
             this.panelMeneger = new Telerik.WinControls.UI.RadPanel();
             this.managerEmail = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.managerPhoneCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.managerWorkPositionCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.managerPibCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.panelContactPerson = new Telerik.WinControls.UI.RadPanel();
             this.contactPersEmailCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.contactPersPhoneCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.contactPersWorkPositionCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.contactPersPibCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.organisationFormCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.edrpouCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
@@ -72,7 +70,7 @@
             this.panelUserInfo.Controls.Add(this.nameCtrl);
             this.panelUserInfo.Location = new System.Drawing.Point(3, 12);
             this.panelUserInfo.Name = "panelUserInfo";
-            this.panelUserInfo.Size = new System.Drawing.Size(906, 223);
+            this.panelUserInfo.Size = new System.Drawing.Size(906, 194);
             this.panelUserInfo.TabIndex = 0;
             this.panelUserInfo.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             // 
@@ -111,18 +109,17 @@
             // 
             this.panelMeneger.Controls.Add(this.managerEmail);
             this.panelMeneger.Controls.Add(this.managerPhoneCtrl);
-            this.panelMeneger.Controls.Add(this.managerWorkPositionCtrl);
             this.panelMeneger.Controls.Add(this.managerPibCtrl);
             this.panelMeneger.Location = new System.Drawing.Point(517, 84);
             this.panelMeneger.Name = "panelMeneger";
-            this.panelMeneger.Size = new System.Drawing.Size(385, 134);
+            this.panelMeneger.Size = new System.Drawing.Size(385, 106);
             this.panelMeneger.TabIndex = 4;
             // 
             // managerEmail
             // 
             this.managerEmail.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.managerEmail.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.managerEmail.Location = new System.Drawing.Point(3, 96);
+            this.managerEmail.Location = new System.Drawing.Point(3, 69);
             this.managerEmail.MaximumSize = new System.Drawing.Size(1000, 35);
             this.managerEmail.MinimumSize = new System.Drawing.Size(150, 35);
             this.managerEmail.Name = "managerEmail";
@@ -136,7 +133,7 @@
             // 
             this.managerPhoneCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.managerPhoneCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.managerPhoneCtrl.Location = new System.Drawing.Point(3, 70);
+            this.managerPhoneCtrl.Location = new System.Drawing.Point(3, 43);
             this.managerPhoneCtrl.MaximumSize = new System.Drawing.Size(1000, 35);
             this.managerPhoneCtrl.MinimumSize = new System.Drawing.Size(150, 35);
             this.managerPhoneCtrl.Name = "managerPhoneCtrl";
@@ -145,20 +142,6 @@
             this.managerPhoneCtrl.TabIndex = 3;
             this.managerPhoneCtrl.TextTitle = "Тел.";
             this.managerPhoneCtrl.TextValue = "+380999999999";
-            // 
-            // managerWorkPositionCtrl
-            // 
-            this.managerWorkPositionCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.managerWorkPositionCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.managerWorkPositionCtrl.Location = new System.Drawing.Point(3, 43);
-            this.managerWorkPositionCtrl.MaximumSize = new System.Drawing.Size(1000, 35);
-            this.managerWorkPositionCtrl.MinimumSize = new System.Drawing.Size(150, 35);
-            this.managerWorkPositionCtrl.Name = "managerWorkPositionCtrl";
-            this.managerWorkPositionCtrl.Size = new System.Drawing.Size(379, 35);
-            this.managerWorkPositionCtrl.SplitterRatio = 50;
-            this.managerWorkPositionCtrl.TabIndex = 2;
-            this.managerWorkPositionCtrl.TextTitle = "Посада";
-            this.managerWorkPositionCtrl.TextValue = "Президент";
             // 
             // managerPibCtrl
             // 
@@ -178,18 +161,17 @@
             // 
             this.panelContactPerson.Controls.Add(this.contactPersEmailCtrl);
             this.panelContactPerson.Controls.Add(this.contactPersPhoneCtrl);
-            this.panelContactPerson.Controls.Add(this.contactPersWorkPositionCtrl);
             this.panelContactPerson.Controls.Add(this.contactPersPibCtrl);
             this.panelContactPerson.Location = new System.Drawing.Point(4, 84);
             this.panelContactPerson.Name = "panelContactPerson";
-            this.panelContactPerson.Size = new System.Drawing.Size(507, 134);
+            this.panelContactPerson.Size = new System.Drawing.Size(507, 106);
             this.panelContactPerson.TabIndex = 3;
             // 
             // contactPersEmailCtrl
             // 
             this.contactPersEmailCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.contactPersEmailCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.contactPersEmailCtrl.Location = new System.Drawing.Point(181, 70);
+            this.contactPersEmailCtrl.Location = new System.Drawing.Point(181, 43);
             this.contactPersEmailCtrl.MaximumSize = new System.Drawing.Size(1000, 35);
             this.contactPersEmailCtrl.MinimumSize = new System.Drawing.Size(150, 35);
             this.contactPersEmailCtrl.Name = "contactPersEmailCtrl";
@@ -203,7 +185,7 @@
             // 
             this.contactPersPhoneCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.contactPersPhoneCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.contactPersPhoneCtrl.Location = new System.Drawing.Point(3, 70);
+            this.contactPersPhoneCtrl.Location = new System.Drawing.Point(3, 43);
             this.contactPersPhoneCtrl.MaximumSize = new System.Drawing.Size(1000, 35);
             this.contactPersPhoneCtrl.MinimumSize = new System.Drawing.Size(150, 35);
             this.contactPersPhoneCtrl.Name = "contactPersPhoneCtrl";
@@ -212,20 +194,6 @@
             this.contactPersPhoneCtrl.TabIndex = 2;
             this.contactPersPhoneCtrl.TextTitle = "Тел.";
             this.contactPersPhoneCtrl.TextValue = "+380999999999";
-            // 
-            // contactPersWorkPositionCtrl
-            // 
-            this.contactPersWorkPositionCtrl.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.contactPersWorkPositionCtrl.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.contactPersWorkPositionCtrl.Location = new System.Drawing.Point(2, 43);
-            this.contactPersWorkPositionCtrl.MaximumSize = new System.Drawing.Size(1000, 35);
-            this.contactPersWorkPositionCtrl.MinimumSize = new System.Drawing.Size(150, 35);
-            this.contactPersWorkPositionCtrl.Name = "contactPersWorkPositionCtrl";
-            this.contactPersWorkPositionCtrl.Size = new System.Drawing.Size(500, 35);
-            this.contactPersWorkPositionCtrl.SplitterRatio = 50;
-            this.contactPersWorkPositionCtrl.TabIndex = 1;
-            this.contactPersWorkPositionCtrl.TextTitle = "Посада";
-            this.contactPersWorkPositionCtrl.TextValue = "Президент";
             // 
             // contactPersPibCtrl
             // 
@@ -298,10 +266,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.panelUserInfo);
-            this.MaximumSize = new System.Drawing.Size(912, 238);
-            this.MinimumSize = new System.Drawing.Size(912, 238);
+            this.MaximumSize = new System.Drawing.Size(912, 209);
+            this.MinimumSize = new System.Drawing.Size(912, 209);
             this.Name = "InformationOfUserControl";
-            this.Size = new System.Drawing.Size(912, 238);
+            this.Size = new System.Drawing.Size(912, 209);
             ((System.ComponentModel.ISupportInitialize)(this.panelUserInfo)).EndInit();
             this.panelUserInfo.ResumeLayout(false);
             this.panelUserInfo.PerformLayout();
@@ -327,13 +295,11 @@
         private Telerik.WinControls.UI.RadPanel panelContactPerson;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadPanel panelMeneger;
-        private SingleShowInformationControl contactPersWorkPositionCtrl;
         private SingleShowInformationControl contactPersPibCtrl;
         private SingleShowInformationControl contactPersPhoneCtrl;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private SingleShowInformationControl groupholdingCtrl;
         private SingleShowInformationControl managerPhoneCtrl;
-        private SingleShowInformationControl managerWorkPositionCtrl;
         private SingleShowInformationControl managerPibCtrl;
         private SingleShowInformationControl contactPersEmailCtrl;
         private SingleShowInformationControl managerEmail;

@@ -40,24 +40,17 @@ namespace IpsViewComponentLibrary
             _dict = dict;
         }
 
+        /// <summary>
+        /// Джерело даних для [Нерозподілені кошти користувача] та [Активні договора]
+        /// </summary>
         private void SetDataSource()
         {
+            //TODO: витягти записи де кошти не розподілені
             var dsourceUserMoney = _data?.Client?.MoneyReceived?.ToList();
             gvUserMoneys.DataSource = dsourceUserMoney;
-
-        }
-
-        // подія зміни обраного рядка [Нерозподілені грн користувача]
-        private void gvUserMoneys_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-            if (gvUserMoneys.Rows.Count == 0)
-            {
-                gvLicenseAgr.DataSource = null;
-                return;
-            }
-            //int id = gvUserMoneys.CurrentRow.Cells[0].Value;
+            //встановити джерело для [Активні договора]
             SetDataSourceLicenseAgr();
-            
+
         }
 
         // подія зміни обраного рядка [ліцензійних договорів (активні договора) ]
@@ -86,13 +79,16 @@ namespace IpsViewComponentLibrary
         }
         
 
-        // Джерело для [ліцензійних договорів]
+        // Джерело для [Активні договора]
         private void SetDataSourceLicenseAgr()
         {
             List<GridLicAgr> source = new List<GridLicAgr>();
             foreach (var item in _data.Client.LicenseAgreement)
             {
                 var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
+                var period = _data.Client.LicenseAgreement.Where(recId => recId.LicId == licenseParam?.LicId).Select(rec => rec.PaidPeriod).SingleOrDefault();
+                var debt = period?.Sum(paidPeriod => paidPeriod.Amount - (paidPeriod.Distribamount + paidPeriod.Undistribamount));
+
                 source.Add(new GridLicAgr
                 {
                     Id = item?.AgrId ?? default(int),
@@ -105,7 +101,7 @@ namespace IpsViewComponentLibrary
                     Amount = licenseParam?.MinAmount ?? default(decimal),
                     State = _dict?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
                     PeriodPayment = _dict?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
-                    Debt = ""
+                    Debt = debt ?? default(decimal)
                 });
             }
             gvLicenseAgr.DataSource = source;
@@ -176,7 +172,15 @@ namespace IpsViewComponentLibrary
         private void btnDistribute_Click(object sender, EventArgs e)
         {
             //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
-            DistributionForm distr = new DistributionForm(gvUserMoneys.DataSource, gvPeriodsPayment.DataSource, _data);
+            List<MoneyReceived> source = new List<MoneyReceived>();
+            source.Add(_data?.Client?.MoneyReceived?.Where(rec => rec.PaidId == (int)gvUserMoneys.CurrentRow.Cells["PaidId"].Value).SingleOrDefault());
+            //licenseID
+            var lic = _data?.Client?.LicenseAgreement.SingleOrDefault(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value);
+            var licenseParam = lic?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == lic.LicVersion);
+
+
+
+            DistributionForm distr = new DistributionForm(source, licenseParam, gvPeriodsPayment.DataSource, _data);
             distr.StartPosition = FormStartPosition.CenterScreen;
             distr.ShowDialog();
         }
@@ -194,7 +198,7 @@ namespace IpsViewComponentLibrary
         public decimal Amount { get; set; }
         public string State { get; set; }
         public string PeriodPayment { get; set; }
-        public string Debt { get; set; }
+        public decimal Debt { get; set; }
     }
     public class GridPeriods
     {

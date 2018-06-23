@@ -14,20 +14,19 @@ namespace IpsViewComponentLibrary
     public partial class DistributionForm : Telerik.WinControls.UI.RadForm
     {
         private Customer _cust;
-        private object _licDataSource;
         private object _distribMoneyDataSource;
         public DistributionForm()
         {
             InitializeComponent();
         }
 
-        public DistributionForm(object dsUnDistrMoney, object distribMoney, Customer cust)
+        public DistributionForm(object undistrinbMoney, object licenseAgr, object source, Customer cust)
         {
-            InitializeComponent();
-            _licDataSource = dsUnDistrMoney;
-            _distribMoneyDataSource = distribMoney;
+            var undistribMoneyReceived = undistrinbMoney as MoneyReceived;
+            var licenseAgreementParams = licenseAgr as LicenseAgrParam;
             _cust = cust;
-            
+            _distribMoneyDataSource = source;
+            InitializeComponent();
 
             SetDataSources();
         }
@@ -35,7 +34,6 @@ namespace IpsViewComponentLibrary
         //встановити джерело для грідів
         private void SetDataSources()
         {
-            gvUserMoneys.DataSource = _licDataSource;
             DistributionMoneys();
         }
 
