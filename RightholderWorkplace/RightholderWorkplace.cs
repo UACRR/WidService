@@ -940,12 +940,13 @@ namespace RightholderWorkplace
 
         #region Change rightholders page
 
-        private List<ObjectCopyright> _objectCopyrightList = new List<ObjectCopyright>();
+        private BindingList<ObjectCopyright> _objectCopyrightList = new BindingList<ObjectCopyright>();
 
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView e)
         {
             objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
             _objectCopyrightList.Clear();
+            objectCopyrightBindingSource.DataSource = _objectCopyrightList;
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
@@ -961,25 +962,24 @@ namespace RightholderWorkplace
         {
             var objectsRightsList = ctrlRightholdersObjectsForChange.ObjectsRightsList;
 
-            objectsRightsList.ForEach(or =>
-            {
-                var newObjectCopyright = new ObjectCopyright
-                {
-                    ObjId = or.ObjId,
-                    CustId = or.CustId,
-                    //RoleCode = or.RoleCode, ???
-                    InnerCode = addedRightholder.InnerCode,
-                    InterCode = addedRightholder.InterCode,
-                    Name = addedRightholder.Name,
-                    Rate = 0,
-                };
-                _objectCopyrightList.Add(newObjectCopyright);
-            });
-
             using (gvChangeCopyrights.DeferRefresh())
             {
-                objectCopyrightBindingSource.DataSource = _objectCopyrightList;
-                objectCopyrightBindingSource.ResetBindings(false);
+
+                objectsRightsList.ForEach(or =>
+                {
+                    var newObjectCopyright = new ObjectCopyright
+                    {
+                        ObjId = or.ObjId,
+                        CustId = or.CustId,
+                        //RoleCode = or.RoleCode, ???
+                        InnerCode = addedRightholder.InnerCode,
+                        InterCode = addedRightholder.InterCode,
+                        Name = addedRightholder.Name,
+                        Rate = 0,
+                    };
+                    _objectCopyrightList.Add(newObjectCopyright);
+                });
+
                 gvChangeCopyrights.MasterTemplate.ExpandAll();
             }
         }
