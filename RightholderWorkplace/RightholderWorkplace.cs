@@ -940,13 +940,13 @@ namespace RightholderWorkplace
 
         #region Change rightholders page
 
-        private BindingList<ObjectCopyright> _objectCopyrightList = new BindingList<ObjectCopyright>();
+        private BindingList<ObjectCopyright> _objectsCopyrightList = new BindingList<ObjectCopyright>();
 
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView e)
         {
             objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
-            _objectCopyrightList.Clear();
-            objectCopyrightBindingSource.DataSource = _objectCopyrightList;
+            _objectsCopyrightList.Clear();
+            objectCopyrightBindingSource.DataSource = _objectsCopyrightList;
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
@@ -977,10 +977,30 @@ namespace RightholderWorkplace
                         Name = addedRightholder.Name,
                         Rate = 0,
                     };
-                    _objectCopyrightList.Add(newObjectCopyright);
+                    _objectsCopyrightList.Add(newObjectCopyright);
                 });
 
+                DistributePersent(objectsRightsList, _objectsCopyrightList);
+
                 gvChangeCopyrights.MasterTemplate.ExpandAll();
+            }
+        }
+
+        private void DistributePersent(List<ObjectRightForRightholder> objectsRightsList, BindingList<ObjectCopyright> objectCopyrightList)
+        {
+            foreach (var obj in objectsRightsList)
+            {
+                var copyrightList = objectCopyrightList.Where(cr => cr.ObjId == obj.ObjId);
+                var copyrightCount = copyrightList.Count();
+                double newRate = (obj.RateRh ?? 0) / copyrightCount;
+                double newRoundRate = Math.Round(newRate, 2);
+                var delta = (newRate - newRoundRate) * copyrightCount;
+
+                foreach (var copyright in copyrightList)
+                {
+                    copyright.Rate = newRoundRate + delta;
+                    delta = 0.0;
+                }
             }
         }
 
