@@ -27,12 +27,12 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get => bindingSourceLicAgreement.DataSource;
-            set => bindingSourceLicAgreement.DataSource = value;
+            get => bindingSource1.DataSource;
+            set => bindingSource1.DataSource = value;
         }
 
-        public string ContractNumber => rtxtBoxContrNumber.Text;
-        public string ContractBeginDate => rdtPickerAgrDate.Value.ToString("dd.MM.yyyy");
+        //public string ContractNumber => rtxtBoxContrNumber.Text;
+        //public string ContractBeginDate => rdtPickerAgrDate.Value.ToString("dd.MM.yyyy");
 
 
         //[Category("Data")]
