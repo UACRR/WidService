@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace UnitTestMediaPortal
 {
@@ -24,6 +25,8 @@ namespace UnitTestMediaPortal
             get { return calculationInfoNewControl1.DataSource; }
             set { calculationInfoNewControl1.DataSource = value; }
         }
+
+        public RadGridView usersMoney { get { return calculationInfoNewControl1.gvUserMoney;  } } 
 
     }
 }

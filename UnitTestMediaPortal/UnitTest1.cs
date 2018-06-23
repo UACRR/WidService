@@ -15,6 +15,7 @@ namespace UnitTestMediaPortal
     public class UnitTestBinding
     {
         private ApiConnector api = null;
+        private Customer testCust = null;
 
         [TestInitialize]
         public void Initialize()
@@ -41,7 +42,7 @@ namespace UnitTestMediaPortal
             FormIBindingList form = new FormIBindingList();
             form.Show(null);
             form.DataSource = cust.Client;
-            Assert.AreEqual(form.calculationInfoNewControl1.gvUserMoneys.RowCount, cust.Client.MoneyReceived.Count);
+            Assert.AreEqual(form.usersMoney.RowCount, cust.Client.MoneyReceived.Count);
             form.Close();
             form.Dispose();
         }
