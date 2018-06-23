@@ -511,8 +511,6 @@ namespace RightholderWorkplace
             relation.ParentColumnNames.Add("ObjId");
             relation.ChildColumnNames.Add("ObjId");
             gvChangeCopyrights.Relations.Add(relation);
-
-            gvChangeCopyrightsTemplate.AllowAddNewRow = false;
         }
 
         #region Objectrights page
@@ -963,13 +961,13 @@ namespace RightholderWorkplace
 
         #region Change rightholders page
 
-        private BindingList<ObjectCopyright> _objectCopyrightList = new BindingList<ObjectCopyright>();
+        private BindingList<ObjectCopyright> _objectsCopyrightList = new BindingList<ObjectCopyright>();
 
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView e)
         {
             objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
-            _objectCopyrightList.Clear();
-            objectCopyrightBindingSource.DataSource = _objectCopyrightList;
+            _objectsCopyrightList.Clear();
+            objectCopyrightBindingSource.DataSource = _objectsCopyrightList;
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
@@ -1000,10 +998,36 @@ namespace RightholderWorkplace
                         Name = addedRightholder.Name,
                         Rate = 0,
                     };
-                    _objectCopyrightList.Add(newObjectCopyright);
+                    _objectsCopyrightList.Add(newObjectCopyright);
                 });
 
+                DistributePersent();
+
                 gvChangeCopyrights.MasterTemplate.ExpandAll();
+            }
+        }
+
+        private void DistributePersent()
+        {
+            foreach (var row in gvChangeCopyrights.Rows)
+            {
+                // if manual distribution is set then continue
+                if (row.Cells["IsManualPersent"].Value != null && (bool)row.Cells["IsManualPersent"].Value)
+                    continue;
+
+                var obj = row.DataBoundItem as ObjectRightForRightholder;
+
+                var copyrightList = _objectsCopyrightList.Where(cr => cr.ObjId == obj.ObjId);
+                var copyrightCount = copyrightList.Count();
+                double newRate = (obj.RateRh ?? 0) / copyrightCount;
+                double newRoundRate = Math.Round(newRate, 2);
+                var delta = (newRate - newRoundRate) * copyrightCount;
+
+                foreach (var copyright in copyrightList)
+                {
+                    copyright.Rate = newRoundRate + delta;
+                    delta = 0.0;
+                }
             }
         }
 
@@ -1015,6 +1039,20 @@ namespace RightholderWorkplace
                 e.RowElement.GradientStyle = GradientStyles.Solid;
                 e.RowElement.BackColor = Color.LightGray;
                 e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+            }
+        }
+
+        private void gvChangeCopyrights_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        {
+            if (e.Column.Name == "Rate")
+            {
+                var parentRow = e.Row.Parent as GridViewHierarchyRowInfo;
+
+                // if manual distribution is not set then cancel
+                if (parentRow.Cells["IsManualPersent"].Value == null || !(bool)parentRow.Cells["IsManualPersent"].Value)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 
