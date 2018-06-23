@@ -204,13 +204,13 @@
             this.dtEndDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.dtEndDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtEndDate.Name = "dtEndDate";
-            this.dtEndDate.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtEndDate.NullText = "Оберіть дату";
+            this.dtEndDate.NullDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
+            this.dtEndDate.NullText = "Не обмежено";
             this.dtEndDate.Size = new System.Drawing.Size(122, 21);
             this.dtEndDate.TabIndex = 71;
             this.dtEndDate.TabStop = false;
             this.dtEndDate.ThemeName = "Office2013Light";
-            this.dtEndDate.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtEndDate.Value = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             // 
             // dtBeginDate
             // 
