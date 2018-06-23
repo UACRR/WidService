@@ -47,7 +47,7 @@ namespace ipsmedserviceapp.Controllers
 
             await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,0) as ourService
 from CopyrightKind t1
-left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.codeI", new SqlParameter("@custid", id) )
+left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.codeI", new SqlParameter("@custid", id))
                 .Include(tos => tos.CrkindCodeNavigation)
                     .ThenInclude(ck => ck.CrGroupCodeNavigation)
                 .Where(tos => tos.CustId == id)
@@ -185,7 +185,7 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             }
 
             // AnketaAddName
-            _dbContext.UpdateList(sorsCust.AnketaAddName, destCustomer.AnketaAddName, rec => { }, (l, r) => l.Lang == r.Lang );
+            _dbContext.UpdateList(sorsCust.AnketaAddName, destCustomer.AnketaAddName, rec => { }, (l, r) => l.Lang == r.Lang);
 
             // AnketaAddNick
             _dbContext.UpdateList(sorsCust.RightHolder.AnketaAddNick, destCustomer.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
@@ -193,14 +193,14 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             // TermsOfService
             foreach (var item in sorsCust.RightHolder.TermsOfService)
             {
-                TermsOfService addItem = destCustomer.RightHolder.TermsOfService.Where( rec => rec.CrkindCode == item.CrkindCode ).SingleOrDefault();
+                TermsOfService addItem = destCustomer.RightHolder.TermsOfService.Where(rec => rec.CrkindCode == item.CrkindCode).SingleOrDefault();
                 if (addItem == null)
                     addItem = new TermsOfService();
 
                 addItem.SetFields(item, excludeFields);
                 // CustCmRight
                 var custCmRightToSave = item.CustCmRight.Where(c => c.CmCustId != 0).ToList();
-                _dbContext.UpdateList(custCmRightToSave, addItem.CustCmRight, rec => { }, (l, r) => l.CRkindCode == r.CRkindCode && l.CmCustId == r.CmCustId && l.DateBegin == r.DateBegin );
+                _dbContext.UpdateList(custCmRightToSave, addItem.CustCmRight, rec => { }, (l, r) => l.CRkindCode == r.CRkindCode && l.CmCustId == r.CmCustId && l.DateBegin == r.DateBegin);
 
                 destCustomer.RightHolder.TermsOfService.Add(addItem);
             }
@@ -221,7 +221,7 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             // Збереження BankAccount
             if (sorsCust.BankAccount.Count > 0)
                 _dbContext.UpdateList(sorsCust.BankAccount, destCustomer.BankAccount
-                                                                , rec => { }, (l, r) => l.BanAccId == r.BanAccId );
+                                                                , rec => { }, (l, r) => l.BanAccId == r.BanAccId);
 
             var destAgrList = destCustomer.AgreementMaster.ToList();
             var sorsAgrList = sorsCust.AgreementMaster.ToList();
@@ -291,7 +291,7 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                 // Збереження Person
                 if (sorsCust.Person == null)
                     throw new Exception("Not input data for Company");
-                if (destCustomer.Person == null ) destCustomer.Person = new Person();
+                if (destCustomer.Person == null) destCustomer.Person = new Person();
                 destCustomer.Person.SetFields(sorsCust.Person, excludeFields);
 
                 if (sorsCust.Person.AnketaPerson.Count == 0)
@@ -316,14 +316,14 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             try
             {
                 Customer addRightHolder = new Customer();
-                _dbContext.Customer.Add( addRightHolder );
-                updateRihtholder( newRightHolder, addRightHolder );
+                _dbContext.Customer.Add(addRightHolder);
+                updateRihtholder(newRightHolder, addRightHolder);
 
                 tran = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
                 tran.Commit();
                 tran = null;
-                
+
                 return await getRh(addRightHolder.CustId);
             }
             catch (Exception ex)
@@ -365,104 +365,6 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             {
                 var dest = await GetRightHolderAllData(rhId);
                 updateRihtholder(updCustomer, dest);
-                //// Customer
-                //dest.SetFields(updCustomer);
-                ////.Include(item => item.BankAccount)
-                //_dbContext.UpdateList(updCustomer.BankAccount, dest.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
-                ////.Include(item => item.AnketaAddName)
-                //_dbContext.UpdateList(updCustomer.AnketaAddName, dest.AnketaAddName, row => { }, (sorsItem, destItem) => sorsItem.Lang == destItem.Lang);
-                ////.Include(item => item.RightHolder)
-                //dest.RightHolder.SetFields(updCustomer.RightHolder);
-                ////.Include(item => item.AnketaAddName)
-                //_dbContext.UpdateList(updCustomer.RightHolder.AnketaAddNick, dest.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
-
-                ////.Include(rh => rh.TermsOfService)
-                //_dbContext.UpdateList(updCustomer.RightHolder.TermsOfService, dest.RightHolder.TermsOfService, row => { }
-                //                                                    , (sorsItem, destItem) => sorsItem.CrkindCode == destItem.CrkindCode);
-                ////CustCmRight
-                //foreach (var item in updCustomer.RightHolder.TermsOfService)
-                //{
-                //    var updCmRightToSave = item.CustCmRight.Where(c => c.CmCustId != 0).ToList();
-                //    var destCmRight = dest.RightHolder.TermsOfService.FirstOrDefault(t => t.CrkindCode == item.CrkindCode).CustCmRight;
-                //    _dbContext.UpdateList(updCmRightToSave, destCmRight, row => { }, (sorsItem, destItem) => sorsItem.CRkindCode == destItem.CRkindCode);
-                //}
-
-                //_dbContext.UpdateList(updCustomer.RightHolder.TerritoryExclude, dest.RightHolder.TerritoryExclude, row => { }
-                //                                                    , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
-                //_dbContext.UpdateList(updCustomer.RightHolder.TerritoryInclude, dest.RightHolder.TerritoryInclude, row => { }
-                //                                                    , (sorsItem, destItem) => sorsItem.CountryCode == destItem.CountryCode);
-
-
-                //var destAgrList = dest.AgreementMaster.ToList();
-                //var sorsAgrList = updCustomer.AgreementMaster.ToList();
-
-                //List<AgreementMaster> agrList = destAgrList.Where(row => !sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
-
-                //// Delete
-                //agrList.ForEach(item =>
-                //{
-                //    _dbContext.AgreementAddRh.RemoveRange(item.AgreementAddRh);
-                //});
-                //_dbContext.AgreementMaster.RemoveRange(agrList);
-                //// Modify
-                //{
-
-                //    agrList = destAgrList.Where(row => sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
-                //    var sorsDic = sorsAgrList.ToDictionary(rec => rec.AgrId);
-                //    agrList.ForEach(item =>
-                //    {
-                //        var sorsItem = sorsDic[item.AgrId];
-                //        item.SetFields(sorsItem);
-                //        _dbContext.UpdateList(sorsItem.AgreementAddRh, item.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
-                //    });
-                //}
-                //// Add
-                //{
-                //    agrList = sorsAgrList.Where(row => !destAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
-                //    agrList.ForEach(item =>
-                //    {
-                //        AgreementMaster addAgr = new AgreementMaster();
-                //        addAgr.SetFields(item);
-                //        _dbContext.AppendList(item.AgreementAddRh, addAgr.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
-                //        _dbContext.AppendList(addAgr.AgreementAddRh, dest.RightHolder.AgreementAddRh, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
-                //        dest.AgreementMaster.Add(addAgr);
-                //    });
-                //}
-
-
-
-
-
-                //if (dest.CustType == 3) // Company
-                //{
-                //    //.Include(item => item.Company)
-                //    if (dest.Company == null)
-                //        dest.Company = new Company();
-
-                //    //.Include(item => item.AnketaCompany)
-                //    var sorsList = updCustomer.Company.AnketaCompany.ToList();
-                //    _dbContext.UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
-                //    //.Include(comp => comp.RelEmployee)
-                //    _dbContext.UpdateList(updCustomer.Company.RelEmployee, dest.Company.RelEmployee, rec => { },
-                //                        (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
-
-                //    foreach (var emplRel in dest.Company.RelEmployee)
-                //    {
-                //        if (emplRel.Empl.Emplid == 0)
-                //            _dbContext.Entry(emplRel.Empl).State = EntityState.Added;
-                //    }
-                //}
-                //else
-                //{
-                //    //.Include(item => item.Person)
-                //    if (dest.Person == null)
-                //        dest.Person = new Person();
-                //    _dbContext.AppendList(updCustomer.Person.AnketaPerson, dest.Person.AnketaPerson, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
-                //    //.Include(item => item.AnketaPerson)
-                //}
-
-                //.Include(item => item.Community)
-
                 tran = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
                 tran.Commit();
@@ -478,6 +380,109 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                 return BadRequest(ex.Message);
             }
 
+        }
+
+        /// <summary>
+        /// Зміна правовласника по спадщині
+        /// </summary>
+        /// <param name="rhId">Ід старого правовласника</param>
+        /// <param name="body">Список нових правовласників
+        ///                    та запис по старому правовласнику з датою завершення володінням правами 
+        /// </param>
+        /// <returns></returns>
+        [HttpPost("inheritance/{rhId}")]
+        public async Task<IActionResult> SetRHInheritance( int rhId, [FromBody]List<RightHolder> body)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                
+                // Права Автора / Правовласника
+                var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate >= DateTime.Today && item.EndDate <= DateTime.Today)
+                                    .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
+                                    .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).ToListAsync();
+
+                if (listCopyRight.Count == 0)
+                    return Ok();
+                
+                // Правовласник
+                var oldRightHolder = listCopyRight[0].Cust;
+
+                // Правовласник з інтерфейсу
+                var oldBodyCust = body.Where(rec => rec.CustId == rhId).SingleOrDefault();
+                if (oldBodyCust == null)
+                    return Ok();
+
+                // Закриваємо Правовласника
+                oldRightHolder.Cust.Status = oldBodyCust.Cust.Status;
+
+                // Об'єкти правовласника
+                var objects = _dbContext.ObjectRight.FromSql(@"
+select * 
+from ObjectRight t1
+join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
+where
+t2.custId = @custid
+", new SqlParameter("@custid", rhId)).AsNoTracking().ToList();
+                
+                
+                // Автора об'єктів
+                var authtors = _dbContext.Authors.FromSql(@"
+select * 
+from Authors t1
+join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
+where
+t2.custId = @custid
+", new SqlParameter("@custid", rhId)).AsNoTracking().ToList();
+
+
+
+
+                // Проставляємо кінцеву дату права
+                DateTime endDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
+                listCopyRight.ForEach(item => {
+                    //
+                    item.EndDate = endDate;
+
+                });
+
+                // Оброблюємо нових правовласників
+                body.Where(rec => rec.CustId != rhId).ToList()
+                    .ForEach(item => {
+                        // Додаємо нові права
+                        foreach( var cright in item.CopyRight )
+                        {
+                            CopyRight addItem = new CopyRight();
+                            addItem.SetFields(cright);
+                            _dbContext.CopyRight.Add(addItem);
+                        }
+                        // Додаємо Авторів
+                        foreach( var author in item.Authors )
+                        {
+                            if (authtors.Any(rec => rec.ObjId == author.ObjId && rec.CustId == author.CustId && rec.RoleCode == author.RoleCode))
+                                continue;
+
+                            Authors addAutor = new Authors();
+                            addAutor.SetFields(author);
+                            _dbContext.Authors.Add(addAutor);
+                        }
+                    });
+
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+
+                return Json(oldRightHolder.Cust);
+
+            }
+            catch (Exception)
+            {
+
+                tran?.Rollback();
+                return BadRequest();
+            }
         }
 
     }
