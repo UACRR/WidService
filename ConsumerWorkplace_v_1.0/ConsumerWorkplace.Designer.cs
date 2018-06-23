@@ -287,7 +287,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageParentConsumers.Location = new System.Drawing.Point(0, 0);
             this.pageParentConsumers.Margin = new System.Windows.Forms.Padding(0);
             this.pageParentConsumers.Name = "pageParentConsumers";
-            this.pageParentConsumers.SelectedPage = this.pageBigRights;
+            this.pageParentConsumers.SelectedPage = this.pageSmallRights;
             this.pageParentConsumers.Size = new System.Drawing.Size(1273, 689);
             this.pageParentConsumers.TabIndex = 0;
             this.pageParentConsumers.ThemeName = "Office2007Silver";
@@ -302,6 +302,7 @@ namespace ConsumerWorkplace_v_1._0
             // pageBigRights
             // 
             this.pageBigRights.Controls.Add(this.rPageViewSmallRights);
+            this.pageBigRights.Enabled = false;
             this.pageBigRights.ItemSize = new System.Drawing.SizeF(85F, 26F);
             this.pageBigRights.Location = new System.Drawing.Point(10, 31);
             this.pageBigRights.Name = "pageBigRights";
@@ -387,7 +388,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.rpvConsumers.RootElement.FocusBorderWidth = 1;
-            this.rpvConsumers.SelectedPage = this.pageConsumersAnketa;
+            this.rpvConsumers.SelectedPage = this.pageConsumersGrid;
             this.rpvConsumers.Size = new System.Drawing.Size(1088, 599);
             this.rpvConsumers.TabIndex = 0;
             this.rpvConsumers.ThemeName = "Office2007Silver";
@@ -446,7 +447,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // 
             this.pageAllAnketa.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAllAnketa.SelectedPage = this.pvConsumerLicenseType;
+            this.pageAllAnketa.SelectedPage = this.pvConsumerClientName;
             this.pageAllAnketa.SelectionWrap = false;
             this.pageAllAnketa.Size = new System.Drawing.Size(1018, 519);
             this.pageAllAnketa.TabIndex = 0;
@@ -697,8 +698,10 @@ namespace ConsumerWorkplace_v_1._0
             this.licenseTypeCtrlContractConsumerDetail.MinPayment = null;
             this.licenseTypeCtrlContractConsumerDetail.Name = "licenseTypeCtrlContractConsumerDetail";
             this.licenseTypeCtrlContractConsumerDetail.PercentPayment = null;
+            this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataMember = null;
             this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataSource = null;
             this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentDisplayMember = "";
+            this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentSelectedValue = null;
             this.licenseTypeCtrlContractConsumerDetail.PeriodPaymentValueMember = "";
             this.licenseTypeCtrlContractConsumerDetail.Size = new System.Drawing.Size(494, 129);
             this.licenseTypeCtrlContractConsumerDetail.TabIndex = 2;
@@ -1938,6 +1941,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // radPageViewPage7
             // 
+            this.radPageViewPage7.Enabled = false;
             this.radPageViewPage7.ItemSize = new System.Drawing.SizeF(148F, 26F);
             this.radPageViewPage7.Location = new System.Drawing.Point(10, 31);
             this.radPageViewPage7.Name = "radPageViewPage7";

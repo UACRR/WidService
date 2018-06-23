@@ -19,6 +19,7 @@ namespace IpsViewComponentLibrary
     /// 3. Підписатись на подію (викликати метод, що повертає Customer)
     public partial class GlobalControlConsumerCabinet : UserControl, IFilteredControl
     {
+        private int _rowId;
 
         public delegate Customer UpdateData(int id);
         public event UpdateData OnGridRowSelectedChaged;
@@ -28,15 +29,28 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler OnAddNewCustomer;
 
+        public string FilterString
+        {
+            get => txtSearch.Text;
+            set => txtSearch.Text = value;
+        }
+
         public GlobalControlConsumerCabinet()
         {
             InitializeComponent();
+            gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
+        }
+
+        private void GvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            var id = (int?)e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
+            _rowId = id;
         }
 
         public void SetSelectCustomer(int custId)
         {
             if (gvConsumerList.Rows.Count != 0)
-                gvConsumerList.CurrentRow = gvConsumerList.Rows[gvConsumerList.Rows.Where(rec => (int)rec.Cells["CustId"].Value == custId).Select(rec => rec.Index).SingleOrDefault()];
+                gvConsumerList.CurrentRow = gvConsumerList.Rows.SingleOrDefault(rec => (int)rec.Cells["CustId"].Value == custId);
         }
 
         /// <summary>
@@ -64,8 +78,11 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void gvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            int custId = (int)e.CurrentRow.Cells["CustId"].Value;
-            mсInfoAgrCalc.SetCustomerData(OnGridRowSelectedChaged?.Invoke(custId)); //здійснює оновлення даних
+            int custId = (int?) e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
+            if (custId != -1)
+                mсInfoAgrCalc.SetCustomerData(OnGridRowSelectedChaged?.Invoke(custId)); //здійснює оновлення даних
+            else
+                ;//TODO: встановити пусті значення
         }
 
         public void SetFilter( object _choice )
@@ -76,12 +93,59 @@ namespace IpsViewComponentLibrary
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            OnButtonBackClick?.Invoke((int)gvConsumerList.CurrentRow.Cells["CustId"].Value);
+            OnButtonBackClick?.Invoke(_rowId);
         }
 
         private void btnNewConsumer_Click(object sender, EventArgs e)
         {
             OnAddNewCustomer?.Invoke(this,EventArgs.Empty);
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            gvConsumerList.MasterTemplate.Refresh();
+        }
+
+        private void gvConsumerList_CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
+        {
+            //пустий фільтер - всі дані
+            if (string.IsNullOrEmpty(txtSearch.Text))
+            {
+                gvConsumerList.BeginUpdate();
+                e.Visible = true;
+                for (int i = 0; i < gvConsumerList.ColumnCount; i++)
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+
+                gvConsumerList.EndUpdate(false);
+                return;
+            }
+
+            //фільтр не пустий
+            gvConsumerList.BeginUpdate();
+            e.Visible = false;
+            for (int i = 0; i < gvConsumerList.ColumnCount; i++)
+            {
+                //якщо поле пусте
+                if (e.Row.Cells[i].Value == null)
+                    continue;
+
+                string text = e.Row.Cells[i].Value.ToString();
+                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                {
+                    e.Visible = true;
+                    e.Row.Cells[i].Style.CustomizeFill = true;
+                    e.Row.Cells[i].Style.DrawFill = true;
+                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
+                }
+                else
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+
+                gvConsumerList.EndUpdate(false);
+            }
         }
     }
 }
