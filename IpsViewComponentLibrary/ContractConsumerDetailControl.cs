@@ -16,14 +16,25 @@ namespace IpsViewComponentLibrary
         private string _authorPaymentPercent;
         private string _minAuthorPayment;
         private string _percentAutoprolongation;
+        private string _periodPaymentDataMember;
         private BindingSource _bindingSource = new BindingSource();
 
         public ContractConsumerDetailControl()
         {
             InitializeComponent();
+            
+        }
+
+        public void SetDefaultState()
+        {
             rddListTypeAutoProl.Enabled = false;
-            rtxtboxPercentAutoProl.Enabled = false;
-            //rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items.First;
+            txtPercentAutoProl.Enabled = false;
+
+            if (rddListPeriodPayment.Items.Count != 0)
+            {
+                rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.Last.Index;
+                rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.First.Index;
+            }
         }
 
         /// <summary>
@@ -51,6 +62,9 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        /// <summary>
+        /// Мінімальна сума оплати
+        /// </summary>
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string MinPayment
@@ -65,6 +79,9 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        /// <summary>
+        /// Якщо є автопролонгація, обраний тип кріпити сюди
+        /// </summary>
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string AutoprolongationPercent
@@ -72,9 +89,15 @@ namespace IpsViewComponentLibrary
             get => _percentAutoprolongation;
             set
             {
+                if (value == null)
+                {
+                    txtPercentAutoProl.TextBoxElement.Text = string.Empty;
+
+                    return;
+                }
                 _percentAutoprolongation = value;
-                rtxtboxPercentAutoProl.DataBindings.Clear();
-                rtxtboxPercentAutoProl.DataBindings.Add("Text", _bindingSource,
+                txtPercentAutoProl.DataBindings.Clear();
+                txtPercentAutoProl.DataBindings.Add("Text", _bindingSource,
                     _percentAutoprolongation, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
             }
         }
@@ -105,139 +128,48 @@ namespace IpsViewComponentLibrary
             set => rddListPeriodPayment.ValueMember = value;
         }
 
+        [Category("Dictionary")]
+        public string PeriodPaymentDataMember
+        {
+            get => _periodPaymentDataMember;
+            set
+            {
+                _periodPaymentDataMember = value;
+                rddListPeriodPayment.DataBindings.Clear();
+                rddListPeriodPayment.DataBindings.Add("SelectedValue", _bindingSource, _periodPaymentDataMember, true, DataSourceUpdateMode.OnPropertyChanged, value);
+            }
+        }
+
+        [Category("Dictionary")]
+        public object PeriodPaymentSelectedValue
+        {
+            get => rddListPeriodPayment.SelectedValue;
+            set => rddListPeriodPayment.SelectedValue = value;
+        }
+
+
+        /// <summary>
+        /// Чи встановлена автопролонгація
+        /// </summary>
         [Category("Data")]
         public bool IsAutoprolongation
         {
             get => rCheckBoxAutoprolongation.Checked;
             set => rCheckBoxAutoprolongation.Checked = value;
         }
-
-        ////old * * * * * * * * * *  * * * * * * * * * * * *
-        //[Category("Data")]
-        //[AttributeProvider(typeof(IListSource))]
-        //public object DataSource
-        //{
-        //    get => iLicenseAgreementBindingSource.DataSource;
-        //    set => iLicenseAgreementBindingSource.DataSource = value;
-        //}
-
-        //[Category("Data")]
-        //[AttributeProvider(typeof(IListSource))]
-        //public object DataSourcePaidPeriod
-        //{
-        //    get => rddListPeriodPayment.DataSource;
-        //    set => rddListPeriodPayment.DataSource = value;
-        //}
-
-        //[Category("Dictionaries")]
-        //public string PaidPeriodValueMember
-        //{
-        //    get => rddListPeriodPayment.ValueMember;
-        //    set => rddListPeriodPayment.ValueMember = value;
-        //}
-
-        //[Category("Dictionaries")]
-        //public string PaidPeroidDisplayMember
-        //{
-        //    get => rddListPeriodPayment.DisplayMember;
-        //    set => rddListPeriodPayment.DisplayMember = value;
-        //}
-
-
-
-        //[Category("Data")]
-        //public bool IsAutoprolongation
-        //{
-        //    get => rCheckBoxAutoprolongation.Checked;
-        //    set => rCheckBoxAutoprolongation.Checked = value;
-        //}
-
-
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string AuthorPaymentPercent
-        //{
-        //    get => _authorPaymentPercent;
-        //    set
-        //    {
-        //        _authorPaymentPercent = value;
-        //        rtxtBoxAuthorPaymentPercent.DataBindings.Clear();
-        //        rtxtBoxAuthorPaymentPercent.DataBindings.Add("Text", iLicenseAgreementBindingSource,
-        //            _authorPaymentPercent, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
-        //    }
-        //}
-
-        ////MinAuthorPayment
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string MinAuthorPayment
-        //{
-        //    get => _minAuthorPayment;
-        //    set
-        //    {
-        //        _minAuthorPayment = value;
-        //        rtxtBoxMinAuthorPayment.DataBindings.Clear();
-        //        rtxtBoxMinAuthorPayment.DataBindings.Add("Text", iLicenseAgreementBindingSource,
-        //            _minAuthorPayment, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
-        //    }
-        //}
-
-
-        //[Category("Data")]
-        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        //public string PercentAutoprolongation
-        //{
-        //    get => _percentAutoprolongation;
-        //    set
-        //    {
-        //        _percentAutoprolongation = value;
-        //        rtxtboxPercentAutoProl.DataBindings.Clear();
-        //        rtxtboxPercentAutoProl.DataBindings.Add("Text", iLicenseAgreementBindingSource,
-        //            _percentAutoprolongation, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
-        //    }
-        //}
-
-        //[Category("Dictionaries")]
-        //[AttributeProvider(typeof(IListSource))]
-        //public object PeriodDataSource
-        //{
-        //    get => rddListPeriodPayment.DataSource;
-        //    set
-        //    {
-        //        if (rddListPeriodPayment.DataSource != value)
-        //            rddListPeriodPayment.DataSource = value;
-        //    }
-        //}
-
-        //[Category("Dictionaries")]
-        //public string PeriodDisplayMember
-        //{
-        //    get => rddListPeriodPayment.DisplayMember;
-        //    set => rddListPeriodPayment.DisplayMember = value;
-        //}
-
-        //[Category("Dictionaries")]
-        //public string PeriodValueMember
-        //{
-        //    get => rddListPeriodPayment.ValueMember;
-        //    set => rddListPeriodPayment.ValueMember = value;
-        //}
-
-
-        //rtxtboxPercentAutoProl
-
+        
         private void rCheckBoxAutoprolongation_CheckStateChanged(object sender, EventArgs e)
         {
             if (rCheckBoxAutoprolongation.Checked)
             {
                 rddListTypeAutoProl.Enabled = true;
-                rtxtboxPercentAutoProl.Enabled = true;
+                txtPercentAutoProl.Enabled = true;
             }
             else
             {
-                rtxtboxPercentAutoProl.Clear();
+                txtPercentAutoProl.Clear();
                 rddListTypeAutoProl.Enabled = false;
-                rtxtboxPercentAutoProl.Enabled = false;
+                txtPercentAutoProl.Enabled = false;
             }
         }
 

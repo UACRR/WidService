@@ -37,8 +37,11 @@ namespace IpsViewComponentLibrary
             ctrlRegistrationsCompany.TypesVatDataSource = dictionaties?.typeVat;
             ctrlRegistrationsCompany.TypesVatDisplayMember = "Name";
             ctrlRegistrationsCompany.TypesVatValueMember = "CodeI";
+            ctrlRegistrationsCompany.TypeVatDataMember = "TypeVat";
 
             ctrlRegistrationsCompany.NumberVatDataMember = "NumberVat";
+
+            
             ctrlRegistrationsCompany.OkpoDataMember = "Okpo";
             
             ctrlRegistrationsCompany.RegisterDateDataMember = "RegistrDate";
@@ -57,6 +60,11 @@ namespace IpsViewComponentLibrary
         private void checkClientName_CheckStateChanged(object sender, EventArgs e)
         {
             OnContainPlacesChanged?.Invoke(this, e);
+        }
+
+        internal void SetDefaultState()
+        {
+            ctrlRegistrationsCompany.SetDefaultState();
         }
     }
 }

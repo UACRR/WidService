@@ -25,10 +25,15 @@ namespace IpsViewComponentLibrary
             var license = cust?.Client?.LicenseAgreement?.FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == license?.LicVersion);
 
+
             ddlLicType.DataSource = dictionaties?.agrLicenseType;
-            ddlLicType.DisplayMember = "Name";
-            ddlLicType.ValueMember = "CodeI";
+            ddlLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", license, "LicCode", true));
+
+            ddlLicType.DisplayMember = "name";
+            ddlLicType.ValueMember = "codeI";
             ddlLicType.SelectedValue = license?.LicCode;
+           
+            
 
             ctrlAgreementMain.DataSource = licenseParam;
             ctrlAgreementMain.DateDataSource = licenseParam;
@@ -37,20 +42,39 @@ namespace IpsViewComponentLibrary
             ctrlAgreementMain.BeginDateDataMember = "DateBegin";
             ctrlAgreementMain.EndDateDataMember = "DateEnd";
 
+            
             ctrlAgreementSecond.DataSourceBinding = licenseParam;
-            ctrlAgreementSecond.PeriodPaymentDataSource = dictionaties.period;
-            ctrlAgreementSecond.PeriodPaymentValueMember = "codeI";
-            ctrlAgreementSecond.PeriodPaymentDisplayMember = "name";
             ctrlAgreementSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
             ctrlAgreementSecond.MinPayment = "MinAmount";
             ctrlAgreementSecond.PercentPayment = "RateAmount";
+
+            ctrlAgreementSecond.PeriodPaymentDataSource = dictionaties?.period;
+            ctrlAgreementSecond.PeriodPaymentValueMember = "codeI";
+            ctrlAgreementSecond.PeriodPaymentDisplayMember = "name";
+            ctrlAgreementSecond.PeriodPaymentDataMember = "PeriodCode";
+            ctrlAgreementSecond.PeriodPaymentSelectedValue = licenseParam?.PeriodCode;
 
             if (licenseParam?.AddRate == null && licenseParam?.IndxInfl != null)
                 ctrlAgreementSecond.SelectedItem = 1;
             else if (licenseParam?.AddRate != null && licenseParam.IndxInfl == null)
                 ctrlAgreementSecond.SelectedItem = 0;
+            else
+                ctrlAgreementSecond.AutoprolongationPercent = null;
 
+            
             lblTitle.Text = anketa?.Name;
+            
+        }
+
+        internal void SetDefaultListItem()
+        {
+            if (ddlLicType.Items.Count != 0)
+            {
+                ddlLicType.SelectedIndex = ddlLicType.Items.Last.Index;
+                ddlLicType.SelectedIndex = ddlLicType.Items.First.Index;
+            }
+
+            ctrlAgreementSecond.SetDefaultState();
         }
     }
 }

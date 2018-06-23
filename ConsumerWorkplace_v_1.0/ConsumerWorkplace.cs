@@ -41,7 +41,6 @@ namespace ConsumerWorkplace_v_1._0
             
             InitializeComponent();
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
-            placesCtrlConsumerPlaces.OnEnabledChangeWhenEditOrAddPremises += PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises;
 
             foreach (var item in list)
             {
@@ -54,21 +53,6 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
-        public Customer ReturnCustomer()
-        {
-            return _cust ?? new Customer();
-        }
-
-        public object ReturnList()
-        {
-            return getMainViewData().ToList();
-        }
-
-
-        private void PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises()
-        {
-            //some code
-        }
 
         /// <summary>
         /// Перехід на сторінку ДОДАВАННЯ Споживача
@@ -340,7 +324,7 @@ namespace ConsumerWorkplace_v_1._0
             if (Validation(7) && MessageBox.Show("Do you want save data?", "Save data?", MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                SaveCustomer?.Invoke(_cust);
+                var result = SaveCustomer?.Invoke(_cust);
 
                 ClearDataConsumersControls();
                 EndPresenterLink();
@@ -523,6 +507,21 @@ namespace ConsumerWorkplace_v_1._0
                 anketaCtrlAddressLegal.RegionsValueMember = "codeI";
                 anketaCtrlAddressLegal.RegionsDisplayMember = "name";
 
+                //                
+                addressLetter1.DataSource = anketa;
+                addressLetter1.AddressDataMember = "LeAddress";
+                addressLetter1.CityDataMember = "LeCity";
+                addressLetter1.CountryDataMember = "LeCountry";
+                addressLetter1.CountriesDataSource = _dic.country;
+                addressLetter1.CountriesValueMember = "countryCode";
+                addressLetter1.CountriesDisplayMember = "countryName";
+                addressLetter1.RegionDataMember = "LeRegion";
+                addressLetter1.RegionsDataSource = _dic.region;
+                addressLetter1.RegionsValueMember = "codeI";
+                addressLetter1.RegionsDisplayMember = "name";
+                addressLetter1.PostIndexDataMember = "LePostIndex";
+
+
                 anketaDictionatiesBindingSource.DataSource = _dic;
 
 
@@ -546,11 +545,13 @@ namespace ConsumerWorkplace_v_1._0
                 licenseTypeCtrlContractConsumerDetail.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
                 licenseTypeCtrlContractConsumerDetail.MinPayment = "MinAmount";
                 licenseTypeCtrlContractConsumerDetail.PercentPayment = "RateAmount";
-                
+                licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataMember = "PeriodCode";
+                licenseTypeCtrlContractConsumerDetail.PeriodPaymentSelectedValue = licenseParam?.PeriodCode;
 
                 licenseTypeDropListLicType.DisplayMember = "Name";
                 licenseTypeDropListLicType.ValueMember = "CodeI";
                 licenseTypeDropListLicType.SelectedValue = license.LicCode;
+                
 
                 //licenseTypeCtrlContractConsumerDetail.PercentAutoprolongation = "AddRate";
                 if (licenseParam?.AddRate == null && licenseParam?.IndxInfl != null)
@@ -615,8 +616,8 @@ namespace ConsumerWorkplace_v_1._0
                     if (pageAllAnketa.SelectedPage.TabIndex == 0 || pageAllAnketa.SelectedPage.TabIndex == 1)
                         SetTitleText();
                     if (e.Page.TabIndex != 6) return;
-                    var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
-                    radPdfViewer.LoadDocument(pdfDoc);
+                    //var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
+                    //radPdfViewer.LoadDocument(pdfDoc);
                     return;
                 }
                 if (pageAllAnketa.SelectedPage.TabIndex == validTabs && nextPage)
@@ -626,8 +627,8 @@ namespace ConsumerWorkplace_v_1._0
                     e.Cancel = false;
                     nextPage = false;
                     if (e.Page.TabIndex != 6) return;
-                    var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
-                    radPdfViewer.LoadDocument(pdfDoc);
+                    //var pdfDoc = PdfEngine.GetPdf(_cust, _dic);
+                    //radPdfViewer.LoadDocument(pdfDoc);
                     return;
                 }
 

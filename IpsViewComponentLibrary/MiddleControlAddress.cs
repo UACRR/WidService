@@ -30,6 +30,7 @@ namespace IpsViewComponentLibrary
             addressLegal.CountriesDataSource = dictionaties.country;
             addressLegal.CountriesValueMember = "countryCode";
             addressLegal.CountriesDisplayMember = "countryName";
+            addressLegal.RegionDataMember = "JaRegion";
             addressLegal.RegionsDataSource = dictionaties.region;
             addressLegal.RegionsValueMember = "codeI";
             addressLegal.RegionsDisplayMember = "name";
@@ -42,6 +43,7 @@ namespace IpsViewComponentLibrary
             addressFactual.CountriesDataSource = dictionaties.country;
             addressFactual.CountriesValueMember = "countryCode";
             addressFactual.CountriesDisplayMember = "countryName";
+            addressFactual.RegionDataMember = "FaRegion";
             addressFactual.RegionsDataSource = dictionaties.region;
             addressFactual.RegionsValueMember = "codeI";
             addressFactual.RegionsDisplayMember = "name";
@@ -54,6 +56,7 @@ namespace IpsViewComponentLibrary
             addressLetter.CountriesDataSource = dictionaties.country;
             addressLetter.CountriesValueMember = "countryCode";
             addressLetter.CountriesDisplayMember = "countryName";
+            addressLetter.RegionDataMember = "LeRegion";
             addressLetter.RegionsDataSource = dictionaties.region;
             addressLetter.RegionsValueMember = "codeI";
             addressLetter.RegionsDisplayMember = "name";
@@ -68,9 +71,10 @@ namespace IpsViewComponentLibrary
         {
             addressFactual.DdlCountry.SelectedValue = addressLegal.DdlCountry.SelectedValue;
             addressFactual.DdlRegion.SelectedIndex = addressLegal.DdlRegion.SelectedIndex;
+            addressFactual.TxtCity.Select();
             addressFactual.TxtCity.Text = addressLegal.TxtCity.Text;
-            addressFactual.TxtAddress.Text = addressLegal.TxtAddress.Text;
             addressFactual.TxtAddress.Select();
+            addressFactual.TxtAddress.Text = addressLegal.TxtAddress.Text;
         }
 
         // з юридичної до поштової
@@ -78,7 +82,9 @@ namespace IpsViewComponentLibrary
         {
             addressLetter.DdlCountry.SelectedValue = addressLegal.DdlCountry.SelectedValue;
             addressLetter.DdlRegion.SelectedIndex = addressLegal.DdlRegion.SelectedIndex;
+            addressLetter.TxtCity.Select();
             addressLetter.TxtCity.Text = addressLegal.TxtCity.Text;
+            addressLetter.TxtAddress.Select();
             addressLetter.TxtAddress.Text = addressLegal.TxtAddress.Text;
             addressLetter.TxtPostIndex.Select();
         }
@@ -88,9 +94,18 @@ namespace IpsViewComponentLibrary
         {
             addressLetter.DdlCountry.SelectedValue = addressFactual.DdlCountry.SelectedValue;
             addressLetter.DdlRegion.SelectedIndex = addressFactual.DdlRegion.SelectedIndex;
+            addressLetter.TxtCity.Select();
             addressLetter.TxtCity.Text = addressFactual.TxtCity.Text;
+            addressLetter.TxtAddress.Select();
             addressLetter.TxtAddress.Text = addressFactual.TxtAddress.Text;
             addressLetter.TxtPostIndex.Select();
+        }
+
+        internal void SetDefaultState()
+        {
+            addressFactual.SetDefaultState();
+            addressLegal.SetDefaultState();
+            addressLetter.SetDefaultState();
         }
 
     }

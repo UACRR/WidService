@@ -39,8 +39,6 @@ namespace ConsumerWorkplace_v_1._0
             // Передати в поточний контрол зміну фільтра ???
             mainGrid?.SetGridDataSource(getMainView());
             cabinet?.SetGridDataSource(getMainView());
-            
-
         }
 
 
@@ -67,6 +65,7 @@ namespace ConsumerWorkplace_v_1._0
             {
                 mainGrid = new GlobalControlConsumerMainGrid();
                 mainGrid.OnGridButtonClick += MainGrid_OnGridButtonClick;
+                mainGrid.OnAddNewCustomer += MainGrid_OnAddNewCustomer;
                 mainGrid.SetDictionary(_service.GetDictionary());
                 mainGrid.SetGridDataSource(getMainView());
 
@@ -87,7 +86,8 @@ namespace ConsumerWorkplace_v_1._0
                 cabinet = new GlobalControlConsumerCabinet();
                 cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
-                cabinet.SetDictionary( _service.GetDictionary());
+                cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
+                cabinet.SetDictionary(_service.GetDictionary());
                 cabinet.SetGridDataSource(getMainView());
 
                 cabinet.Dock = DockStyle.Fill;
@@ -95,10 +95,41 @@ namespace ConsumerWorkplace_v_1._0
 
             cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;
-            _switcher.SwitchView( cabinet );
+            _switcher.SwitchView(cabinet);
         }
 
+        private void Cabinet_OnAddNewCustomer(object sender, EventArgs e)
+        {
+            NewConsumer();
+        }
 
+        private void MainGrid_OnAddNewCustomer(object sender, EventArgs e)
+        {
+            NewConsumer();
+        }
+
+        private void NewConsumer()
+        {
+            int custType = 3; // Юридична особа
+            var _cust = _service.NewCustomer(custType);
+            var _dict = _service.GetDictionary();
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict) {StartPosition = FormStartPosition.CenterParent};
+            form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
+            form.ShowDialog();
+            form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
+            if(!form.Disposing)
+            {
+                form.Dispose();
+                form = null;
+                GC.Collect();
+            }
+        }
+
+        private bool Form_OnSaveCustomerNeed(ipsFormsDesign.Model.Customer cust)
+        {
+            var result = _service.Save(cust);
+            return result;
+        }
 
         private ipsFormsDesign.Model.Customer Cabinet_OnGridRowSelectedChaged(int id)
         {

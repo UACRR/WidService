@@ -24,8 +24,10 @@ namespace IpsViewComponentLibrary
         public event UpdateData OnGridRowSelectedChaged;
 
         public delegate void ButtonBackClick(int custId);
-
         public event ButtonBackClick OnButtonBackClick;
+
+        public event EventHandler OnAddNewCustomer;
+
         public GlobalControlConsumerCabinet()
         {
             InitializeComponent();
@@ -75,6 +77,11 @@ namespace IpsViewComponentLibrary
         private void btnBack_Click(object sender, EventArgs e)
         {
             OnButtonBackClick?.Invoke((int)gvConsumerList.CurrentRow.Cells["CustId"].Value);
+        }
+
+        private void btnNewConsumer_Click(object sender, EventArgs e)
+        {
+            OnAddNewCustomer?.Invoke(this,EventArgs.Empty);
         }
     }
 }

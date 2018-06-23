@@ -124,6 +124,7 @@
             this.btnNewConsumer.TabIndex = 4;
             this.btnNewConsumer.Text = "Новий споживач";
             this.btnNewConsumer.ThemeName = "Office2007Silver";
+            this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 
             // txtSearch
             // 

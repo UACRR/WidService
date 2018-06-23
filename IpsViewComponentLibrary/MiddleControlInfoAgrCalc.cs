@@ -59,7 +59,7 @@ namespace IpsViewComponentLibrary
                         License =
                             _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
                         Series = string.Empty,
-                        AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
+                        AgrNumber = licenseParam?.LicNum ?? string.Empty,
                         DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
                         DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
                         Amount = licenseParam?.MinAmount ?? default(decimal),
@@ -112,11 +112,12 @@ namespace IpsViewComponentLibrary
         private void SetAgrInfoData(int idItem = 0)
         {
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
-
-            agreementInfoCtrl.NumberAgr = license?.Agr?.AgrNumber;
-            agreementInfoCtrl.Agent = "";
-            agreementInfoCtrl.DateAgr = license?.Agr?.AgrDate?.ToString("dd.MM.yyyy");
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+
+            agreementInfoCtrl.NumberAgr = licenseParam?.LicNum;
+            agreementInfoCtrl.Agent = "";
+            agreementInfoCtrl.DateAgr = licenseParam?.LicDate?.ToString("dd.MM.yyyy");
+            
 
             agreementInfoCtrl.DateBegin = licenseParam?.DateBegin?.ToShortDateString();
             agreementInfoCtrl.DateEnd = licenseParam?.DateEnd?.ToShortDateString();

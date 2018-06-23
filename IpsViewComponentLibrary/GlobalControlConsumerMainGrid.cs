@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary
     {
         public delegate void GridButtonClick(int id);
         public event GridButtonClick OnGridButtonClick;
+        public event EventHandler OnAddNewCustomer;
 
         public GlobalControlConsumerMainGrid()
         {
@@ -49,5 +50,9 @@ namespace IpsViewComponentLibrary
                 gvViewConsumers.CurrentRow = gvViewConsumers.Rows[gvViewConsumers.Rows.Where(rec => (int)rec.Cells["CustId"].Value == custId).Select(rec => rec.Index).SingleOrDefault()];
         }
 
+        private void btnNewConsumer_Click(object sender, EventArgs e)
+        {
+            OnAddNewCustomer?.Invoke(this,EventArgs.Empty);
+        }
     }
 }

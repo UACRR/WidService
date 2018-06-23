@@ -64,12 +64,12 @@
             gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
             gridViewTextBoxColumn1.Name = "Innokpo";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 84;
+            gridViewTextBoxColumn1.Width = 85;
             gridViewTextBoxColumn2.FieldName = "name";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "Name";
-            gridViewTextBoxColumn2.Width = 200;
+            gridViewTextBoxColumn2.Width = 201;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.DataType = typeof(int);
             gridViewTextBoxColumn3.FieldName = "countAgree";
@@ -154,6 +154,7 @@
             this.btnNewConsumer.Text = "Новий споживач";
             this.btnNewConsumer.TextWrap = true;
             this.btnNewConsumer.ThemeName = "Office2007Silver";
+            this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 
             // mсInfoAgrCalc
             // 
