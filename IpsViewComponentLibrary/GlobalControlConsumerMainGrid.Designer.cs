@@ -49,12 +49,12 @@
             this.gvViewConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvViewConsumers.EnableCustomFiltering = true;
             this.gvViewConsumers.Location = new System.Drawing.Point(3, 34);
             // 
             // 
             // 
             this.gvViewConsumers.MasterTemplate.AllowAddNewRow = false;
-            this.gvViewConsumers.MasterTemplate.AllowColumnReorder = false;
             this.gvViewConsumers.MasterTemplate.AllowDeleteRow = false;
             this.gvViewConsumers.MasterTemplate.AllowDragToGroup = false;
             this.gvViewConsumers.MasterTemplate.AllowEditRow = false;
@@ -106,15 +106,18 @@
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
             gridViewCommandColumn1});
+            this.gvViewConsumers.MasterTemplate.EnableCustomFiltering = true;
+            this.gvViewConsumers.MasterTemplate.EnableFiltering = true;
             this.gvViewConsumers.MasterTemplate.EnableGrouping = false;
+            this.gvViewConsumers.MasterTemplate.ShowFilteringRow = false;
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
             this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewConsumers.ReadOnly = true;
             this.gvViewConsumers.Size = new System.Drawing.Size(1034, 547);
             this.gvViewConsumers.TabIndex = 3;
             this.gvViewConsumers.ThemeName = "Office2007Silver";
             this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
+            this.gvViewConsumers.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewConsumers_CustomFiltering);
             // 
             // btnNewConsumer
             // 
@@ -133,6 +136,7 @@
             this.txtSearch.NullText = "Пошук";
             this.txtSearch.Size = new System.Drawing.Size(479, 20);
             this.txtSearch.TabIndex = 5;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImage = null;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;

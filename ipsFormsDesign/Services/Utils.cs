@@ -89,6 +89,32 @@ namespace ipsFormsDesign
             str = str.Substring(1, 1).ToUpper() + str.Substring(2);
             return str;
         }
+        public static string NumPhraseL(ulong Value, bool IsMale)
+        {
+            if (Value == 0UL) return "Нуль";
+            string[] Dek1 = { "", " од", " дв", " три", " чотири", " п'ять", " шість", " сім", " вісім", " дев'ять", " десять", " одинадцять", " дванадцять", " тринадцять", " чотирнадцять", " п'ятнадцять", " шістнадцять", " сімнадцять", " вісімнадцять", " дев'ятнадцять" };
+            string[] Dek2 = { "", "", " двадцять", " тридцять", " сорок", " п'ятдесят", " шістдесят", " сімдесят", " вісімдесят", " дев'яносто" };
+            string[] Dek3 = { "", " сто", " двісті", " триста", " чотириста", " п'ятсот", " шістсот", " сімсот", " вісімсот", " дев'ятсот" };
+            string[] Th = { "", "", " тисяч", " мільйон", " міліард", " триліон", " квадриліон", " квинтиліон" };
+            string str = "";
+            for (byte th = 1; Value > 0; th++)
+            {
+                ushort gr = (ushort)(Value % 1000);
+                Value = (Value - gr) / 1000;
+                if (gr > 0)
+                {
+                    byte d3 = (byte)((gr - gr % 100) / 100);
+                    byte d1 = (byte)(gr % 10);
+                    byte d2 = (byte)((gr - d3 * 100 - d1) / 10);
+                    if (d2 == 1) d1 += (byte)10;
+                    bool ismale = (th > 2) || ((th == 1) && IsMale);
+                    str = Dek3[d3] + Dek2[d2] + Dek1[d1] + EndDek1(d1, ismale) + Th[th] + EndTh(th, d1) + str;
+                };
+            };
+    //        str = str.Substring(1, 1).ToUpper() + str.Substring(2);
+            return str;
+        }
+
 
         #region Private members
         private static string CurPhrase(decimal money,
@@ -126,7 +152,7 @@ namespace ipsFormsDesign
         {
             bool In234 = ((Dek >= 2) && (Dek <= 4));
             bool More4 = ((Dek > 4) || (Dek == 0));
-            if (((ThNum > 2) && In234) || ((ThNum == 2) && (Dek == 1))) return "і";
+            if (((ThNum > 2) && In234) || ((ThNum == 2) && (Dek == 1))) return "и";
             else if ((ThNum > 2) && More4) return "ів";
             else if ((ThNum == 2) && In234) return "і";
             else return "";
@@ -142,7 +168,7 @@ namespace ipsFormsDesign
             else
             {
                 if (IsMale) return "а";
-                else return "а";
+                else return "і";
             }
         }
         #endregion

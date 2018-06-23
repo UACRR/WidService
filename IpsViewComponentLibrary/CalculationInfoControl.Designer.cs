@@ -299,7 +299,6 @@
             this.gvUserMoneys.Size = new System.Drawing.Size(1026, 107);
             this.gvUserMoneys.TabIndex = 8;
             this.gvUserMoneys.ThemeName = "Office2007Silver";
-            this.gvUserMoneys.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvUserMoneys_CurrentRowChanged);
             // 
             // radLabel1
             // 
@@ -361,9 +360,9 @@
             gridViewTextBoxColumn19.Name = "PeriodPayment";
             gridViewTextBoxColumn19.Width = 144;
             gridViewDecimalColumn11.EnableExpressionEditor = false;
-            gridViewDecimalColumn11.FieldName = "Arrears";
+            gridViewDecimalColumn11.FieldName = "Debt";
             gridViewDecimalColumn11.HeaderText = "Борг";
-            gridViewDecimalColumn11.Name = "Arrears";
+            gridViewDecimalColumn11.Name = "Debt";
             gridViewDecimalColumn11.ReadOnly = true;
             gridViewDecimalColumn11.Width = 106;
             gridViewTextBoxColumn20.FieldName = "LicenseId";

@@ -511,8 +511,6 @@ namespace RightholderWorkplace
             relation.ParentColumnNames.Add("ObjId");
             relation.ChildColumnNames.Add("ObjId");
             gvChangeCopyrights.Relations.Add(relation);
-
-            gvChangeCopyrightsTemplate.AllowAddNewRow = false;
         }
 
         #region Objectrights page
@@ -748,60 +746,39 @@ namespace RightholderWorkplace
             // transform from single table to Authors and Copyright tables
             var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
 
-            objectAuthorRightholderList.ForEach(ar => _objectRight.Authors.Add(new Authors
+            _objectRight.Authors.Clear();
+            objectAuthorRightholderList.Select(ar =>
             {
-                AuthId = ar.AuthId,
-                ObjId = ar.ObjId,
-                RoleCode = ar.RoleCode,
-                CustId = ar.CustId,
-                AuthorName = ar.AuthorName,
-                FolkType = ar.FolkType,
-            }));
+                return new Authors
+                {
+                    AuthId = ar.AuthId,
+                    ObjId = ar.ObjId,
+                    RoleCode = ar.RoleCode,
+                    CustId = ar.CustId,
+                    AuthorName = ar.AuthorName,
+                    FolkType = ar.FolkType,
+                };
+            }).ToList().ForEach( item => _objectRight.Authors.Add( item ));
 
-            //_objectRight.Authors = objectAuthorRightholderList.Select(ar =>
-            //{
-            //    return new Authors
-            //    {
-            //        AuthId = ar.AuthId,
-            //        ObjId = ar.ObjId,
-            //        RoleCode = ar.RoleCode,
-            //        CustId = ar.CustId,
-            //        AuthorName = ar.AuthorName,
-            //        FolkType = ar.FolkType,
-            //    };
-            //}).ToList();
+            _objectRight.CopyRight.Clear();
+            objectAuthorRightholderList
+                .Where(ar => ar.IsRightholder)
+                .Select(ar =>
+                {
+                    return new CopyRight
+                    {
+                        CRightId = ar.CRightId ?? 0,
+                        CustId = (int)ar.CustId,
+                        ObjId = ar.ObjId,
+                        RoleCode = ar.RoleCode,
+                        Rate = ar.Rate,
+                        BeginDate = ar.BeginDate,
+                        EndDate = ar.EndDate,
+                        Status = ar.CopyrightStatus,
+                    };
+                }).ToList().ForEach( item => _objectRight.CopyRight.Add( item ));
 
-            objectAuthorRightholderList.ForEach(ar => _objectRight.CopyRight.Add(
-               new CopyRight
-               {
-                   CRightId = ar.CRightId ?? 0,
-                   CustId = (int)ar.CustId,
-                   ObjId = ar.ObjId,
-                   RoleCode = ar.RoleCode,
-                   Rate = ar.Rate,
-                   BeginDate = ar.BeginDate,
-                   EndDate = ar.EndDate,
-                   Status = ar.CopyrightStatus,
-               }
-                ));
-            //_objectRight.CopyRight = objectAuthorRightholderList
-            //    .Where(ar => ar.IsRightholder)
-            //    .Select(ar =>
-            //    {
-            //        return |new CopyRight
-            //        {
-            //            CRightId = ar.CRightId ?? 0,
-            //            CustId = (int)ar.CustId,
-            //            ObjId = ar.ObjId,
-            //            RoleCode = ar.RoleCode,
-            //            Rate = ar.Rate,
-            //            BeginDate = ar.BeginDate,
-            //            EndDate = ar.EndDate,
-            //            Status = ar.CopyrightStatus,
-            //        };
-            //    }).ToList();
-
-            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100)
+            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100m)
             {
                 MessageBox.Show("Загальний відсоток володіння не може бути більше 100.", "Помилка");
                 return;
@@ -855,6 +832,14 @@ namespace RightholderWorkplace
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             SetTooltipTextFromHeader(sender, e);
+        }
+
+        private void gvObjectAuthorsRightholders_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            if (e.Column.Name == "EndDate" && e.CellElement.Text == (new DateTime(3000,1,1)).ToShortDateString())
+            {
+                e.CellElement.Text = "Не обмежено";
+            }
         }
 
         #endregion
@@ -963,13 +948,13 @@ namespace RightholderWorkplace
 
         #region Change rightholders page
 
-        private BindingList<ObjectCopyright> _objectCopyrightList = new BindingList<ObjectCopyright>();
+        private BindingList<ObjectCopyright> _objectsCopyrightList = new BindingList<ObjectCopyright>();
 
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView e)
         {
             objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
-            _objectCopyrightList.Clear();
-            objectCopyrightBindingSource.DataSource = _objectCopyrightList;
+            _objectsCopyrightList.Clear();
+            objectCopyrightBindingSource.DataSource = _objectsCopyrightList;
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
@@ -1000,10 +985,36 @@ namespace RightholderWorkplace
                         Name = addedRightholder.Name,
                         Rate = 0,
                     };
-                    _objectCopyrightList.Add(newObjectCopyright);
+                    _objectsCopyrightList.Add(newObjectCopyright);
                 });
 
+                DistributePersent();
+
                 gvChangeCopyrights.MasterTemplate.ExpandAll();
+            }
+        }
+
+        private void DistributePersent()
+        {
+            foreach (var row in gvChangeCopyrights.Rows)
+            {
+                // if manual distribution is set then continue
+                if (row.Cells["IsManualPersent"].Value != null && (bool)row.Cells["IsManualPersent"].Value)
+                    continue;
+
+                var obj = row.DataBoundItem as ObjectRightForRightholder;
+
+                var copyrightList = _objectsCopyrightList.Where(cr => cr.ObjId == obj.ObjId);
+                var copyrightCount = copyrightList.Count();
+                double newRate = (obj.RateRh ?? 0) / copyrightCount;
+                double newRoundRate = Math.Round(newRate, 2);
+                var delta = (newRate - newRoundRate) * copyrightCount;
+
+                foreach (var copyright in copyrightList)
+                {
+                    copyright.Rate = newRoundRate + delta;
+                    delta = 0.0;
+                }
             }
         }
 
@@ -1015,6 +1026,20 @@ namespace RightholderWorkplace
                 e.RowElement.GradientStyle = GradientStyles.Solid;
                 e.RowElement.BackColor = Color.LightGray;
                 e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+            }
+        }
+
+        private void gvChangeCopyrights_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        {
+            if (e.Column.Name == "Rate")
+            {
+                var parentRow = e.Row.Parent as GridViewHierarchyRowInfo;
+
+                // if manual distribution is not set then cancel
+                if (parentRow.Cells["IsManualPersent"].Value == null || !(bool)parentRow.Cells["IsManualPersent"].Value)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 

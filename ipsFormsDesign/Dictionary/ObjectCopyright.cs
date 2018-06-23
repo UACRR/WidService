@@ -12,6 +12,6 @@ namespace ipsFormsDesign.Dictionary
         public string InnerCode { get; set; }
         public string InterCode { get; set; }
         public string Name { get; set; }
-        public decimal Rate { get; set; }
+        public double Rate { get; set; }
     }
 }

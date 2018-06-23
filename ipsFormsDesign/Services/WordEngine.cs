@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using ipsFormsDesign.Interfaces;
-
 namespace ipsFormsDesign.Services
 {
     public class WordEngine
@@ -110,9 +109,9 @@ namespace ipsFormsDesign.Services
                     customerName = anketaCompany.Name;
                     leAddress = anketaCompany.LeAddress != null ?
                         $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
-                    reAddress = anketaPerson.ReAddress != null ?
+                    reAddress = anketaCompany.JaAddress != null ?
                         $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
-                    faAddress = anketaPerson.FaAddress != null ?
+                    faAddress = anketaCompany.FaAddress != null ?
                         $"{countries[anketaCompany.FaCountry ?? "804"].CountryName} {anketaCompany.FaCity} {anketaCompany.FaAddress}" : faAddress;
 
                     var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
@@ -134,6 +133,9 @@ namespace ipsFormsDesign.Services
                     switch (title)
                     {
                         case "docNumberC":
+                            item.Range.Text = agr.AgrNumber;
+                            break;
+                        case "docNumberR":
                             item.Range.Text = agr.AgrNumber;
                             break;
                         case "docDate":
@@ -256,6 +258,8 @@ namespace ipsFormsDesign.Services
         /// <param name="Consumer"></param>
         public void processConsumer(string pathTemplate, Customer cust, AgreementMaster agr)
         {
+
+            
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var docFile = tempFileName + ".docx";
@@ -268,91 +272,272 @@ namespace ipsFormsDesign.Services
 
             try
             {
-                app = new Application();
+                var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+                var regions = _dic.region.ToDictionary(rec => rec.CodeI);
+                var period = _dic.period.ToDictionary(rec => rec.CodeI);
+                var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
+                    app = new Application();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
 
                 // замінити вміст
-                AgreementAddRh agrRh = agr.AgreementAddRh.Where(item => item.Version == agr.Version).SingleOrDefault();
+                //AgreementAddRh agrRh = agr.AgreementAddRh.Where(item => item.Version == agr.Version).SingleOrDefault();
                 // Customer cust = agr.Cust;
-       //         AnketaPerson anketa = cust.Person.AnketaPerson.Where(rec => rec.Version == cust.AnkVersion).First();  
+                LicenseAgreement licAgr = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
+                LicenseAgrParam  licenseAgrParam = licAgr?.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).SingleOrDefault();
+
+                PaidPeriod paidPeriod = licAgr?.PaidPeriod.FirstOrDefault();
+
+                AnketaPerson anketaPerson = cust.Person?.AnketaPerson.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
+                AnketaCompany anketaCompany = cust.Company?.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
                 BankAccount bankacc = cust.BankAccount.FirstOrDefault();
-                   AnketaCompany anketaComp = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
                 Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
+                Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
+                var clnBusinessPlaceHotel = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 1) || (rec.PlCode == 2)).ToList();
+                var clnBusinessPlaceMarket = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 8).ToList();
+                var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
+                var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 5).ToList();
+
+                string customerName = string.Empty;
+                string leAddress = string.Empty;
+                string reAddress = string.Empty;
+                string faAddress = string.Empty;
+                string phoneHome = string.Empty;
+                string phoneWork = string.Empty;
+                string phone = string.Empty;
+                string eMail = string.Empty;
+                DateTime? createDate = DateTime.Today;
+                string Okpo = string.Empty;
+                string СstPersonReason = string.Empty;
+                string DocDate = string.Empty;
+                string DocDateEnd = string.Empty;
+                string LicNum = string.Empty;
+                string prcntInc = string.Empty;
+                string minRltGrn = string.Empty;
+                string minRltKop = string.Empty;
+                string pay_period = string.Empty;
+                string pay_period2 = string.Empty;
+                string prcntPrl = string.Empty;
+                string registerDate = string.Empty;
+                string registerNumber = string.Empty;
+                string numberVAT = string.Empty;
+                string typeVat = string.Empty;
+                string cstPerson = string.Empty;
+                string cstContPerson = string.Empty;
+                string cstContPersonPhone = string.Empty;
+                string СPaidPeriod = string.Empty;
+                string CPaidData = string.Empty;
+
+                if (cust.CustType < 3) // фіз. особа
+                {
+                    customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
+                    leAddress = anketaPerson.LeAddress != null ?
+                        $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
+                    reAddress = anketaPerson.ReAddress != null ?
+                        $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
+                    faAddress = anketaPerson.FaAddress != null ?
+                        $"{countries[anketaPerson.FaCountry ?? "804"].CountryName} {anketaPerson.FaCity} {anketaPerson.FaAddress}" : faAddress;
+
+                    phoneHome = anketaPerson.PhoneHome;
+                    phoneWork = anketaPerson.PhoneMobileExtra;
+                    phone = anketaPerson.PhoneMobileMain;
+                    eMail = anketaPerson.EMail;
+                    createDate = anketaPerson.BirthDate;
+                    Okpo = anketaPerson.Inn;
+                    cstPerson = customerName;
+                    cstContPerson = customerName;
+                    cstContPersonPhone = phoneWork;
+                }
+                else // юр. особа
+                {
+                    customerName = anketaCompany.Name;
+                    leAddress = anketaCompany.LeAddress != null ?
+                        $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
+                    reAddress = anketaCompany.JaAddress != null ?
+                        $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
+                    faAddress = anketaCompany.FaAddress != null ?
+                        $"{countries[anketaCompany.FaCountry ?? "804"].CountryName} {anketaCompany.FaCity} {anketaCompany.FaAddress}" : faAddress;
+                    
+
+                    var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
+                    phoneWork = bossEmployee?.Empl.PhoneNumber ?? string.Empty;
+                    eMail = bossEmployee?.Empl.Email ?? string.Empty;
+                    createDate = anketaCompany.RegistrDate;
+                    Okpo = anketaCompany.Okpo;
+                    СstPersonReason = bossEmployee?.RelDocument;
+                    cstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
+                    cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
+                    cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
+
+                }
+
+                
+
+
+                DocDate = $"{licAgr?.LicDate:dd.mm.yyyy}";
+                LicNum = licAgr?.LicNum;
+                prcntInc = licenseAgrParam?.RateAmount.ToString();
+                minRltGrn = licenseAgrParam?.MinAmount.ToString();
+                minRltKop = ((int)((licenseAgrParam?.MinAmount ?? 0- (int)(licenseAgrParam?.MinAmount ?? 0)) * 100) ) .ToString();
+                pay_period = $"{period[licenseAgrParam?.PeriodCode ?? 1].Name}";
+                pay_period2 = $"{period[licenseAgrParam?.PeriodCode ?? 1].NameR}";
+                DocDateEnd = $"{licenseAgrParam?.DateEnd:dd.MM.yyyy}";
+                prcntPrl = licenseAgrParam?.AddRate?.ToString();
+                registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
+                registerNumber = anketaCompany?.RegistrNumber?.ToString();
+                numberVAT = anketaCompany?.NumberVat.ToString();
+                typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
+
 
                 foreach (ContentControl item in list)
                 {
                     item.LockContentControl = false;
                     item.Temporary = true;
                     string title = item.Title.Trim();
+
                     switch (title)
+
                     {
                         case "docNumberC":
-                            item.Range.Text = agr.AgrNumber;
+                            item.Range.Text = LicNum;
                             break;
-                        case "docNumberYear":
-                            item.Range.Text = $"{agr.AgrDate:yy}";
+                        case "docDate":
+                            item.Range.Text = DocDate;
+                            break;
+                         case "docNumberYear":
+                            item.Range.Text = $"{licAgr.LicDate:yy}";
                             break;
                         case "docDateBegin":
-                            item.Range.Text = $"{agr.AgrDate:dd.MM.yyyy}";
+                            item.Range.Text = $"{licenseAgrParam?.DateBegin:dd.MM.yyyy}";
                             break;
+
                         case "СstName":
-                            item.Range.Text = $"{anketaComp.Name} ";
+                            item.Range.Text = customerName;
                             break;
+
                             
- /*                      case "СstPerson":
-                            item.Range.Text = $"{anketaComp.C} {anketa.FirstName} {anketa.SurName ?? string.Empty}";
+                        case "CstPerson":
+                            item.Range.Text = cstPerson;
                             break;
-
-
+                        case "CstPersonReason":
+                            item.Range.Text = СstPersonReason;
+                            break;
                         case "СstNikName":
-                            item.Range.Text = $"{anketa.NikName ?? string.Empty}";
+                            item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
                             break;
-   */                     case "TableKind":
+                        case "TableKind":
                             formTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
                             break;
                         case "TableTrrUse":
                             formTableInUse(item.Range.Tables, cust.RightHolder);
                             break;
-                        case "TableTrrNotUse":
-                            formTableExclude(item.Range.Tables, cust.RightHolder);
+                        case "TablePLh":
+                            formTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
                             break;
-                        case "prcntARlt":
-                            item.Range.Text = $"{agrRh.RateCommiss:0}";
+                        case "TablePLsm":
+                            formTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
                             break;
-                        case "prcntARltText":
-                            item.Range.Text = Utils.NumPhrase(Convert.ToUInt32(agrRh.RateCommiss), true);
+                        case "TablePLfe":
+                            formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
                             break;
-                        case "prcntARltJ":
-                            item.Range.Text = $"{agrRh.RateCourt:0}";
+                        case "TablePLk":
+                            formTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
+
                             break;
-                        case "prcntARltJText":
-                            item.Range.Text = Utils.NumPhrase(Convert.ToUInt32(agrRh.RateCourt), true); ;
+                        case "prcntInc":
+                            item.Range.Text = prcntInc;
                             break;
- /*                       case "СstLegalAddress":
-                            item.Range.Text = anketa.LeAddress;
+                       case "prcntIncText":
+                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.RateAmount), true);
+                            break;
+                        case "minRltGrn":
+                            item.Range.Text = minRltGrn;
+                            break;
+                       case "minRltGrnText":
+                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.MinAmount), true); ;
+                            break;
+                        case "minRltKop":
+                            item.Range.Text = minRltKop;
+                            break;
+                        case "rltPayPeriod":
+                            item.Range.Text = pay_period;
+                            break;
+                        case "rltPayPeriod2":
+                            item.Range.Text = pay_period2;
+                            break;
+                        case "docDateEnd":
+                            item.Range.Text = DocDateEnd;
+                            break;
+                        case "prcntPrl":
+                            item.Range.Text = prcntPrl;
+                            break;
+                        case "prcntPrlText":
+                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.AddRate), true);
+                            break;
+                        case "СstLegalAddress":
+                            item.Range.Text = reAddress;
                             break;
                         case "СstResidentialAddress":
-                            item.Range.Text = anketa.ReAddress;
+                            item.Range.Text = faAddress;
                             break;
+                        case "СstCorrespAddress":
+                            item.Range.Text = leAddress;
+                            break;
+
+
                         case "СstBDate":
-                            item.Range.Text = $"{anketa.BirthDate:dd.MM.yyyy}";
+                            item.Range.Text = createDate == null ? string.Empty : $"{createDate:dd.MM.yyyy}";
                             break;
-                        case "СstINN":
-                            item.Range.Text = anketa.Inn;
+
+                        case "СstEDRPOU":
+                            item.Range.Text = Okpo;
                             break;
-                        case "СstPasport":
-                            item.Range.Text = $"{anketa.PUseries} {anketa.PUnumber}";
-                            break;
-                        case "СstPasportIssued":
-                            item.Range.Text = $"{anketa.PUissuedWho} {anketa.PUissuedWhen:dd.MM.yyyy}";
-                            break;
- */                       case "СstBankName":
+                        case "СstBankName":
                             item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
                             break;
                         case "СstBankMFO":
                             item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
+                            break;
+                        case "СstAcc":
+                            item.Range.Text = $"{bankacc?.AccountNumber ?? string.Empty}";
+                            break;
+                        case "СstRegNumber":
+                            item.Range.Text =registerNumber;
+                            break;
+                        case "СstRegData":
+                            item.Range.Text = registerDate;
+                            break;
+                        case "СstVAT":
+                            item.Range.Text = numberVAT;
+                            break;
+                        case "СstVATType":
+                            item.Range.Text = typeVat;
+                            break;
+
+                        case "СstContPerson":
+                            item.Range.Text = cstContPerson;
+                            break;
+
+                        case "СstContPersonPhone":
+                            item.Range.Text = cstContPersonPhone;
+                            break;
+
+                        case "СPaidPeriod":
+                            item.Range.Text = СPaidPeriod;
+                            break;
+
+                        case "СPaidData":
+                            item.Range.Text = CPaidData;
+                            break;
+
+
+
+                        case "СstPasport":
+                            item.Range.Text = $"{anketaPerson.PUseries} {anketaPerson.PUnumber}";
+                            break;
+                        case "СstPasportIssued":
+                            item.Range.Text = $"{anketaPerson.PUissuedWho} {anketaPerson.PUissuedWhen:dd.MM.yyyy}";
                             break;
                         case "СstBankEDRPOU":
                             item.Range.Text = $"{bankacc?.MfoOkpo ?? string.Empty}";
@@ -360,22 +545,19 @@ namespace ipsFormsDesign.Services
                         case "СstBankAcc":
                             item.Range.Text = $"{bankacc?.TransitNumber ?? string.Empty}";
                             break;
-                        case "СstAcc":
-                            item.Range.Text = $"{bankacc?.AccountNumber ?? string.Empty}";
-                            break;
-  /*                      case "СstPhoneHome":
-                            item.Range.Text = $"{anketa.PhoneHome}";
+                        case "СstPhoneHome":
+                            item.Range.Text = phoneHome;
                             break;
                         case "СstPhone":
-                            item.Range.Text = $"{anketa.PhoneMobileMain}";
+                            item.Range.Text = phone;
                             break;
                         case "СstPhoneWork":
-                            item.Range.Text = $"{anketa.PhoneMobileExtra}";
+                            item.Range.Text = phoneWork;
                             break;
                         case "СstEmail":
-                            item.Range.Text = $"{anketa.EMail}";
+                            item.Range.Text = eMail;
                             break;
-*/                        default:
+                        default:
                             item.Delete();
                             break;
 
@@ -391,6 +573,233 @@ namespace ipsFormsDesign.Services
                 if (app != null)
                     app.Quit();
                 app = null;
+            }
+        }
+
+        public void processAction (string pathTemplate, Customer cust, LicenseAgreement licAgr, PaidPeriod period)
+        {
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var docFile = tempFileName + ".docx";
+
+            if (File.Exists(docFile))
+                File.Delete(docFile);
+
+            File.Copy(pathTemplate, docFile);
+            // відкрити шаблон
+            AnketaCompany anketaCompany = cust.Company?.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
+            BankAccount bankacc = cust.BankAccount.FirstOrDefault();
+            Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
+            Employee EmployeeBooker = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 2).SingleOrDefault()?.Empl;
+            try
+            {
+                var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+                var regions = _dic.region.ToDictionary(rec => rec.CodeI);
+                var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
+                var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
+
+
+                app = new Application();
+                innerDoc = app.Documents.Open(docFile);
+                // отримати ControlContent
+                var list = innerDoc.ContentControls;
+
+                string LicNum = licAgr.LicNum;
+                string CPaidPeriod = string.Empty;
+                string CPaidData = string.Empty;
+                string DocDate = string.Empty;
+                string customerName = string.Empty;
+                string CstPerson = string.Empty;
+                string CstPersonReason = string.Empty;
+                string CstCorrespAddress = string.Empty;
+                string phoneHome = string.Empty;
+                string phoneWork = string.Empty;
+                string phone = string.Empty;
+                string eMail = string.Empty;
+                string CstBooker = string.Empty;
+                string CPaidAmountGrn = string.Empty;
+                string CPaidAmountGrnText = string.Empty;
+                string CPaidAmountKop = string.Empty;
+                string CPaidAmountKopText = string.Empty;
+                string CstEDRPOU  = anketaCompany.Okpo;
+
+                LicNum = licAgr.LicNum;
+                DocDate = $"{licAgr.LicDate:dd.MM.yyyy}";
+                CPaidPeriod = period.PeriodName;
+                CPaidData = $"{ DateTime.Today:dd.MM.yyyy}";
+                customerName = anketaCompany.Name;
+                CstPersonReason = bossEmployee?.RelDocument;
+                CstPerson = $"{Employee.LastName} {Employee.FirstName} {Employee.SurName ?? string.Empty}";
+                CstBooker = $"{EmployeeBooker.LastName} {EmployeeBooker.FirstName} {EmployeeBooker.SurName ?? string.Empty}";
+                CPaidAmountGrn = period.Amount.ToString();
+                CPaidAmountGrnText = Utils.NumPhraseL(Convert.ToUInt32(period.Amount), false);
+                CPaidAmountKop = ((int)((period.Amount - (int)period.Amount) * 100)).ToString();
+                CPaidAmountKopText = Utils.NumPhraseL(Convert.ToUInt32(((int)((period.Amount - (int)period.Amount) * 100))), false);
+                CstCorrespAddress = anketaCompany.LeAddress != null ?
+                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : CstCorrespAddress;
+
+
+                foreach (ContentControl item in list)
+                {
+                    item.LockContentControl = false;
+                    item.Temporary = true;
+                    string title = item.Title.Trim();
+                    switch (title)
+                    {
+                        case "docNumberC":
+                            item.Range.Text = LicNum;
+                            break;
+                        case "docDate":
+                            item.Range.Text = DocDate;
+                            break;
+                        case "CPaidPeriod":
+                            item.Range.Text = CPaidPeriod;
+                            break;
+                        case "CPaidData":
+                            item.Range.Text = CPaidData;
+                            break;
+                        case "CstName":
+                            item.Range.Text = customerName;
+                            break;
+                        case "CstPerson":
+                            item.Range.Text = CstPerson;
+                            break;
+                        case "CstPersonReason":
+                            item.Range.Text = CstPersonReason;
+                            break;
+                        case "CstBooker":
+                            item.Range.Text = CstBooker;
+                            break;
+                        case "CPaidAmountGrn":
+                            item.Range.Text = CPaidAmountGrn;
+                            break;
+                        case "CPaidAmountGrnText":
+                            item.Range.Text = CPaidAmountGrnText;
+                            break;
+                        case "CPaidAmountKop":
+                            item.Range.Text = CPaidAmountKop;
+                            break;
+                        case "CPaidAmountKopText":
+                            item.Range.Text = CPaidAmountKopText;
+                            break;
+                        case "CstEDRPOU":
+                            item.Range.Text = CstEDRPOU;
+                            break;
+                        case "CstCorrespAddress":
+                            item.Range.Text = CstCorrespAddress;
+                            break;
+
+
+                    } // for each
+                }
+                    innerDoc.Save();
+                    innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
+                    innerDoc.Close();
+            }
+            finally
+            {
+                if (app != null)
+                    app.Quit();
+                app = null;
+            }
+        }
+
+
+private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+        //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace )
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+      
+                curRow.Cells[2].Range.Text = places.PlaceName+","+places.PlaceCity+","+places.PlaceAddress;
+                foreach ( var place in item.ClnPlaceHoll )
+                {
+                    curRow = table.Rows.Add();
+                    curRow.Cells[3].Range.Text = place.HollName;
+                    curRow.Cells[4].Range.Text = place.SqHoll.ToString();
+                    curRow.Cells[5].Range.Text = place.HollNum.ToString();
+                }
+            }
+        }
+
+        private void formTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+                curRow = table.Rows.Add();
+                index++;
+                var place = item.ClnPlaceHoll.FirstOrDefault();
+                curRow.Cells[1].Range.Text = index.ToString();
+                curRow.Cells[2].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
+                curRow.Cells[3].Range.Text = places.PlaceName;
+                curRow.Cells[4].Range.Text = place.SqHoll.ToString();
+
+            }
+        }
+
+        private void formTableTheaterPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName;
+                curRow.Cells[5].Range.Text =  places.PlaceCity + "," + places.PlaceAddress;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+                    curRow = table.Rows.Add();
+                    curRow.Cells[3].Range.Text = place.HollName;
+                    curRow.Cells[4].Range.Text = place.HollNum.ToString();
+                }
+            }
+        }
+
+        private void formTableBarPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+                curRow = table.Rows.Add();
+                index++;
+                var place = item.ClnPlaceHoll.FirstOrDefault();
+                curRow.Cells[1].Range.Text = index.ToString();
+                curRow.Cells[2].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
+                curRow.Cells[3].Range.Text = places.PlaceName;
+               
+
             }
         }
 
