@@ -67,6 +67,11 @@
     <Reference Include="itext.svg, Version=7.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itext7.7.1.2\lib\net40\itext.svg.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -88,16 +93,20 @@
       <HintPath>..\lib\RCWF\2018.2.515.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2018.2.515.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2018.2.511.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2018.2.511.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7" />
     <Reference Include="TelerikCommon, Version=2018.2.515.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2018.2.515.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddPremisesForm.cs">
@@ -105,6 +114,12 @@
     </Compile>
     <Compile Include="AddPremisesForm.Designer.cs">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddressLetter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddressLetter.Designer.cs">
+      <DependentUpon>AddressLetter.cs</DependentUpon>
     </Compile>
     <Compile Include="AnketaAddNamesView.cs">
       <SubType>Form</SubType>
@@ -118,11 +133,17 @@
     <Compile Include="AnketaAddNickView.Designer.cs">
       <DependentUpon>AnketaAddNickView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuthorItemView.cs">
+    <Compile Include="AuthorRightholderItemView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuthorItemView.Designer.cs">
-      <DependentUpon>AuthorItemView.cs</DependentUpon>
+    <Compile Include="AuthorRightholderItemView.Designer.cs">
+      <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalculationInfoControlNew.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalculationInfoControlNew.Designer.cs">
+      <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
     </Compile>
     <Compile Include="CalculationInfoControl.cs">
       <SubType>UserControl</SubType>
@@ -167,11 +188,23 @@
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtensionUtils.cs" />
+    <Compile Include="GlobalControlConsumerAnketa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalControlConsumerAnketa.Designer.cs">
+      <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalControlConsumerCabinet.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GlobalControlConsumerCabinet.Designer.cs">
       <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalControlConsumerMainGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalControlConsumerMainGrid.Designer.cs">
+      <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="InformationAboutTheContractTitleControl.cs">
       <SubType>UserControl</SubType>
@@ -251,11 +284,47 @@
     <Compile Include="IpsExclusionsLimitationsControl.Designer.cs">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainViewSwitcher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainViewSwitcher.Designer.cs">
+      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlAddress.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAddress.Designer.cs">
+      <DependentUpon>MiddleControlAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlAgreementAnketaType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
+      <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlBankRequisites.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlBankRequisites.Designer.cs">
+      <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlClientName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlClientName.Designer.cs">
+      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiddleControlInfoAgrCalc.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MiddleControlInfoAgrCalc.Designer.cs">
       <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlManagers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlManagers.Designer.cs">
+      <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </Compile>
     <Compile Include="PassportControl.cs">
       <SubType>UserControl</SubType>
@@ -287,11 +356,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RadioPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RegistrationPersonsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportExcelViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportExcelViewForm.cs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportExcelViewForm.cs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportExcelViewForm.Designer.cs">
+      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportsControl.cs">
       <SubType>UserControl</SubType>
@@ -299,11 +382,11 @@
     <Compile Include="ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderPersonInfo.cs">
+    <Compile Include="RightholderSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RightholderPersonInfo.Designer.cs">
-      <DependentUpon>RightholderPersonInfo.cs</DependentUpon>
+    <Compile Include="RightholderSelectorControl.Designer.cs">
+      <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderSelectionView.cs">
       <SubType>Form</SubType>
@@ -328,6 +411,9 @@
     <EmbeddedResource Include="AddPremisesForm.resx">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddressLetter.resx">
+      <DependentUpon>AddressLetter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,8 +426,11 @@
     <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AuthorItemView.resx">
-      <DependentUpon>AuthorItemView.cs</DependentUpon>
+    <EmbeddedResource Include="AuthorRightholderItemView.resx">
+      <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalculationInfoControlNew.resx">
+      <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalculationInfoControl.resx">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
@@ -370,8 +459,14 @@
     <EmbeddedResource Include="ExpandedFormForAnketaPersonRightHolder.resx">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GlobalControlConsumerAnketa.resx">
+      <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GlobalControlConsumerCabinet.resx">
       <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalControlConsumerMainGrid.resx">
+      <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
@@ -400,8 +495,26 @@
     <EmbeddedResource Include="IpsExclusionsLimitationsControl.resx">
       <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainViewSwitcher.resx">
+      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAddress.resx">
+      <DependentUpon>MiddleControlAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
+      <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlBankRequisites.resx">
+      <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlClientName.resx">
+      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlInfoAgrCalc.resx">
       <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlManagers.resx">
+      <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PassportControl.resx">
       <DependentUpon>PassportControl.cs</DependentUpon>
@@ -423,11 +536,18 @@
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportExcelViewForm.cs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportExcelViewForm.cs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportExcelViewForm.resx">
+      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderPersonInfo.resx">
-      <DependentUpon>RightholderPersonInfo.cs</DependentUpon>
+    <EmbeddedResource Include="RightholderSelectorControl.resx">
+      <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderSelectionView.resx">
       <DependentUpon>RightholderSelectionView.cs</DependentUpon>
@@ -440,6 +560,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
     <None Include="Resources\createAct.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -481,6 +605,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\viewAct.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,24 +8,24 @@ namespace ipsFormsDesign.Model
     {
         public Period()
         {
-            AgreementAddBr = new HashSet<AgreementAddBr>();
-            AgreementAddPartner = new HashSet<AgreementAddPartner>();
-            AgreementAddRh = new HashSet<AgreementAddRh>();
-            LicenseAgrParam = new HashSet<LicenseAgrParam>();
-            PaidPeriod = new HashSet<PaidPeriod>();
-            PeriodTr = new HashSet<PeriodTr>();
+            AgreementAddBr = new ObservableListSource<AgreementAddBr>();
+            AgreementAddPartner = new ObservableListSource<AgreementAddPartner>();
+            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
+            LicenseAgrParam = new ObservableListSource<LicenseAgrParam>();
+            PaidPeriod = new ObservableListSource<PaidPeriod>();
+            PeriodTr = new ObservableListSource<PeriodTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
         public string NameR { get; set; }
 
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
-        public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
-        public ICollection<PaidPeriod> PaidPeriod { get; set; }
-        public ICollection<PeriodTr> PeriodTr { get; set; }
+        public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
+        public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
+        public ObservableListSource<PeriodTr> PeriodTr { get; set; }
     }
 }
 

@@ -8,8 +8,9 @@ namespace ipsFormsDesign.Model
     {
         public EtGenre()
         {
-            EtGenreRate = new HashSet<EtGenreRate>();
-            EtGenreRole = new HashSet<EtGenreRole>();
+            EtGenreRate = new ObservableListSource<EtGenreRate>();
+            EtGenreRole = new ObservableListSource<EtGenreRole>();
+            RelEtGenre = new ObservableListSource<RelEtGenre>();
         }
 
         public int CodeI { get; set; }
@@ -17,8 +18,9 @@ namespace ipsFormsDesign.Model
         public int? CategoryCode { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<EtGenreRate> EtGenreRate { get; set; }
-        public ICollection<EtGenreRole> EtGenreRole { get; set; }
+        public ObservableListSource<EtGenreRate> EtGenreRate { get; set; }
+        public ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
+        public ObservableListSource<RelEtGenre> RelEtGenre { get; set; }
     }
 }
 

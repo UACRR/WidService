@@ -41,8 +41,6 @@
             this.lblLastName = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxPseudonym = new Telerik.WinControls.UI.RadTextBox();
             this.lblPseudonym = new Telerik.WinControls.UI.RadLabel();
-            this.btnMoreLastName = new Telerik.WinControls.UI.RadButton();
-            this.btnMoreName = new Telerik.WinControls.UI.RadButton();
             this.btnMoreSurName = new Telerik.WinControls.UI.RadButton();
             this.btnMorePseudonym = new Telerik.WinControls.UI.RadButton();
             this.radDropDownListSex = new Telerik.WinControls.UI.RadDropDownList();
@@ -59,8 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxPseudonym)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPseudonym)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMoreLastName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMoreName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMoreSurName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMorePseudonym)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownListSex)).BeginInit();
@@ -90,7 +86,7 @@
             this.rtxtBoxMidleName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "SurName", true));
             this.rtxtBoxMidleName.Location = new System.Drawing.Point(115, 52);
             this.rtxtBoxMidleName.Name = "rtxtBoxMidleName";
-            this.rtxtBoxMidleName.Size = new System.Drawing.Size(434, 20);
+            this.rtxtBoxMidleName.Size = new System.Drawing.Size(417, 20);
             this.rtxtBoxMidleName.TabIndex = 4;
             // 
             // anketaPersonBindingSource
@@ -112,7 +108,7 @@
             this.rtxtBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "FirstName", true));
             this.rtxtBoxFirstName.Location = new System.Drawing.Point(115, 27);
             this.rtxtBoxFirstName.Name = "rtxtBoxFirstName";
-            this.rtxtBoxFirstName.Size = new System.Drawing.Size(434, 20);
+            this.rtxtBoxFirstName.Size = new System.Drawing.Size(417, 20);
             this.rtxtBoxFirstName.TabIndex = 2;
             // 
             // lblFirstName
@@ -146,7 +142,7 @@
             this.rtxtBoxLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "LastName", true));
             this.rtxtBoxLastName.Location = new System.Drawing.Point(115, 2);
             this.rtxtBoxLastName.Name = "rtxtBoxLastName";
-            this.rtxtBoxLastName.Size = new System.Drawing.Size(434, 20);
+            this.rtxtBoxLastName.Size = new System.Drawing.Size(417, 20);
             this.rtxtBoxLastName.TabIndex = 0;
             // 
             // lblLastName
@@ -164,7 +160,7 @@
             this.rtxtBoxPseudonym.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "NikName", true));
             this.rtxtBoxPseudonym.Location = new System.Drawing.Point(115, 78);
             this.rtxtBoxPseudonym.Name = "rtxtBoxPseudonym";
-            this.rtxtBoxPseudonym.Size = new System.Drawing.Size(434, 20);
+            this.rtxtBoxPseudonym.Size = new System.Drawing.Size(417, 20);
             this.rtxtBoxPseudonym.TabIndex = 6;
             // 
             // lblPseudonym
@@ -176,32 +172,12 @@
             this.lblPseudonym.TabIndex = 6;
             this.lblPseudonym.Text = "Псевдонім (сценічне ім\'я):";
             // 
-            // btnMoreLastName
-            // 
-            this.btnMoreLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoreLastName.Location = new System.Drawing.Point(555, 2);
-            this.btnMoreLastName.Name = "btnMoreLastName";
-            this.btnMoreLastName.Size = new System.Drawing.Size(87, 20);
-            this.btnMoreLastName.TabIndex = 1;
-            this.btnMoreLastName.Text = "Ще, інша мова";
-            this.btnMoreLastName.Click += new System.EventHandler(this.btnMoreLastName_Click);
-            // 
-            // btnMoreName
-            // 
-            this.btnMoreName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoreName.Location = new System.Drawing.Point(555, 27);
-            this.btnMoreName.Name = "btnMoreName";
-            this.btnMoreName.Size = new System.Drawing.Size(87, 20);
-            this.btnMoreName.TabIndex = 3;
-            this.btnMoreName.Text = "Ще, інша мова";
-            this.btnMoreName.Click += new System.EventHandler(this.btnMoreName_Click);
-            // 
             // btnMoreSurName
             // 
             this.btnMoreSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoreSurName.Location = new System.Drawing.Point(555, 52);
+            this.btnMoreSurName.Location = new System.Drawing.Point(538, 52);
             this.btnMoreSurName.Name = "btnMoreSurName";
-            this.btnMoreSurName.Size = new System.Drawing.Size(87, 20);
+            this.btnMoreSurName.Size = new System.Drawing.Size(104, 20);
             this.btnMoreSurName.TabIndex = 5;
             this.btnMoreSurName.Text = "Ще, інша мова";
             this.btnMoreSurName.Click += new System.EventHandler(this.btnMoreSurName_Click);
@@ -209,9 +185,9 @@
             // btnMorePseudonym
             // 
             this.btnMorePseudonym.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMorePseudonym.Location = new System.Drawing.Point(555, 78);
+            this.btnMorePseudonym.Location = new System.Drawing.Point(538, 78);
             this.btnMorePseudonym.Name = "btnMorePseudonym";
-            this.btnMorePseudonym.Size = new System.Drawing.Size(87, 20);
+            this.btnMorePseudonym.Size = new System.Drawing.Size(104, 20);
             this.btnMorePseudonym.TabIndex = 7;
             this.btnMorePseudonym.Text = "Ще";
             this.btnMorePseudonym.Click += new System.EventHandler(this.btnMorePseudonym_Click);
@@ -235,8 +211,6 @@
             this.Controls.Add(this.radDropDownListSex);
             this.Controls.Add(this.btnMorePseudonym);
             this.Controls.Add(this.btnMoreSurName);
-            this.Controls.Add(this.btnMoreName);
-            this.Controls.Add(this.btnMoreLastName);
             this.Controls.Add(this.rtxtBoxPseudonym);
             this.Controls.Add(this.lblPseudonym);
             this.Controls.Add(this.lblSex);
@@ -263,8 +237,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxPseudonym)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPseudonym)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMoreLastName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMoreName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMoreSurName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMorePseudonym)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownListSex)).EndInit();
@@ -286,8 +258,6 @@
         private Telerik.WinControls.UI.RadLabel lblLastName;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxPseudonym;
         private Telerik.WinControls.UI.RadLabel lblPseudonym;
-        private Telerik.WinControls.UI.RadButton btnMoreLastName;
-        private Telerik.WinControls.UI.RadButton btnMoreName;
         private Telerik.WinControls.UI.RadButton btnMoreSurName;
         private Telerik.WinControls.UI.RadButton btnMorePseudonym;
         private System.Windows.Forms.BindingSource anketaPersonBindingSource;

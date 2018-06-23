@@ -8,11 +8,11 @@ namespace ipsFormsDesign.Model
     {
         public PopGenre()
         {
-            PopGenreTr = new HashSet<PopGenreTr>();
-            RelGenreAdapt = new HashSet<RelGenreAdapt>();
-            RelGenreMovie = new HashSet<RelGenreMovie>();
-            RelGenreSerial = new HashSet<RelGenreSerial>();
-            RelPopGenre = new HashSet<RelPopGenre>();
+            PopGenreTr = new ObservableListSource<PopGenreTr>();
+            RelGenreAdapt = new ObservableListSource<RelGenreAdapt>();
+            RelGenreMovie = new ObservableListSource<RelGenreMovie>();
+            RelGenreSerial = new ObservableListSource<RelGenreSerial>();
+            RelPopGenre = new ObservableListSource<RelPopGenre>();
         }
 
         public int CategoryCode { get; set; }
@@ -20,11 +20,11 @@ namespace ipsFormsDesign.Model
         public int Id { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<PopGenreTr> PopGenreTr { get; set; }
-        public ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
-        public ICollection<RelGenreMovie> RelGenreMovie { get; set; }
-        public ICollection<RelGenreSerial> RelGenreSerial { get; set; }
-        public ICollection<RelPopGenre> RelPopGenre { get; set; }
+        public ObservableListSource<PopGenreTr> PopGenreTr { get; set; }
+        public ObservableListSource<RelGenreAdapt> RelGenreAdapt { get; set; }
+        public ObservableListSource<RelGenreMovie> RelGenreMovie { get; set; }
+        public ObservableListSource<RelGenreSerial> RelGenreSerial { get; set; }
+        public ObservableListSource<RelPopGenre> RelPopGenre { get; set; }
     }
 }
 

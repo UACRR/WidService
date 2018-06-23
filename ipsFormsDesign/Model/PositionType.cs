@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public PositionType()
         {
-            PositionTypeTr = new HashSet<PositionTypeTr>();
-            RelEmployee = new HashSet<RelEmployee>();
+            PositionTypeTr = new ObservableListSource<PositionTypeTr>();
+            RelEmployee = new ObservableListSource<RelEmployee>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<PositionTypeTr> PositionTypeTr { get; set; }
-        public ICollection<RelEmployee> RelEmployee { get; set; }
+        public ObservableListSource<PositionTypeTr> PositionTypeTr { get; set; }
+        public ObservableListSource<RelEmployee> RelEmployee { get; set; }
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -25,13 +26,21 @@ namespace ipsmedserviceapp.Model
         public int? DistType { get; set; }
         public int? CustId { get; set; }
 
+        [JsonIgnore]
         public CopyrightKind CRkindCodeNavigation { get; set; }
+        [JsonIgnore]
         public Client Cust { get; set; }
+        [JsonIgnore]
         public Partner Partner { get; set; }
+        [JsonIgnore]
         public PaidPeriod Period { get; set; }
+        [JsonIgnore]
         public Register Reg { get; set; }
+        [JsonIgnore]
         public BrRegister RegIdBrNavigation { get; set; }
+        [JsonIgnore]
         public DistribStatus StatusNavigation { get; set; }
         public ICollection<DistributionItem> DistributionItem { get; set; }
     }
 }
+

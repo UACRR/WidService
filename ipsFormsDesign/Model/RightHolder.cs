@@ -8,16 +8,16 @@ namespace ipsFormsDesign.Model
     {
         public RightHolder()
         {
-            AgreementAddRh = new HashSet<AgreementAddRh>();
-            AnketaAddNick = new HashSet<AnketaAddNick>();
-            Authors = new HashSet<Authors>();
-            CopyRight = new HashSet<CopyRight>();
-            LicAuthor = new HashSet<LicAuthor>();
-            RegisterCount = new HashSet<RegisterCount>();
-            ReqAgreement = new HashSet<ReqAgreement>();
-            TermsOfService = new HashSet<TermsOfService>();
-            TerritoryExclude = new HashSet<TerritoryExclude>();
-            TerritoryInclude = new HashSet<TerritoryInclude>();
+            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
+            AnketaAddNick = new ObservableListSource<AnketaAddNick>();
+            Authors = new ObservableListSource<Authors>();
+            CopyRight = new ObservableListSource<CopyRight>();
+            LicAuthor = new ObservableListSource<LicAuthor>();
+            RegisterCount = new ObservableListSource<RegisterCount>();
+            ReqAgreement = new ObservableListSource<ReqAgreement>();
+            TermsOfService = new ObservableListSource<TermsOfService>();
+            TerritoryExclude = new ObservableListSource<TerritoryExclude>();
+            TerritoryInclude = new ObservableListSource<TerritoryInclude>();
         }
 
         public int CustId { get; set; }
@@ -27,16 +27,16 @@ namespace ipsFormsDesign.Model
         public string InnerCode { get; set; }
 
         public Customer Cust { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<LicAuthor> LicAuthor { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
-        public ICollection<TermsOfService> TermsOfService { get; set; }
-        public ICollection<TerritoryExclude> TerritoryExclude { get; set; }
-        public ICollection<TerritoryInclude> TerritoryInclude { get; set; }
+        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public ObservableListSource<AnketaAddNick> AnketaAddNick { get; set; }
+        public ObservableListSource<Authors> Authors { get; set; }
+        public ObservableListSource<CopyRight> CopyRight { get; set; }
+        public ObservableListSource<LicAuthor> LicAuthor { get; set; }
+        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        public ObservableListSource<TermsOfService> TermsOfService { get; set; }
+        public ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
+        public ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
 

@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public ReqAgreement()
         {
-            ReqTrade = new HashSet<ReqTrade>();
+            ReqTrade = new ObservableListSource<ReqTrade>();
         }
 
         public int RAgrId { get; set; }
@@ -31,7 +31,7 @@ namespace ipsFormsDesign.Model
         public RightHolder CustIdRhNavigation { get; set; }
         public Request Req { get; set; }
         public ReqAgreementStatus StatusNavigation { get; set; }
-        public ICollection<ReqTrade> ReqTrade { get; set; }
+        public ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }
 

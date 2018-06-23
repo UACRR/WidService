@@ -21,7 +21,11 @@ namespace TestMVCStack.Interface
     {
         void Done();
         void Cancel();
-        void Save( object item );
+    }
+
+    public interface IPresenterNested : IPresenter
+    {
+        void Save(object item);
         void AddNew();
         void EditItem(object item);
         void NestPanel();

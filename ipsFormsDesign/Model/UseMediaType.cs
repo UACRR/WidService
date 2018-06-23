@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public UseMediaType()
         {
-            RelReqMedia = new HashSet<RelReqMedia>();
-            UseMediaTypeTr = new HashSet<UseMediaTypeTr>();
+            RelReqMedia = new ObservableListSource<RelReqMedia>();
+            UseMediaTypeTr = new ObservableListSource<UseMediaTypeTr>();
         }
 
         public int CodeI { get; set; }
@@ -19,8 +19,8 @@ namespace ipsFormsDesign.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public RequestType ReqTypeNavigation { get; set; }
-        public ICollection<RelReqMedia> RelReqMedia { get; set; }
-        public ICollection<UseMediaTypeTr> UseMediaTypeTr { get; set; }
+        public ObservableListSource<RelReqMedia> RelReqMedia { get; set; }
+        public ObservableListSource<UseMediaTypeTr> UseMediaTypeTr { get; set; }
     }
 }
 

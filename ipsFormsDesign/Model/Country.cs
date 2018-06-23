@@ -8,18 +8,18 @@ namespace ipsFormsDesign.Model
     {
         public Country()
         {
-            AnketaCompanyFaCountryNavigation = new HashSet<AnketaCompany>();
-            AnketaCompanyJaCountryNavigation = new HashSet<AnketaCompany>();
-            AnketaCompanyLeCountryNavigation = new HashSet<AnketaCompany>();
-            AnketaPersonCitizenshipNavigation = new HashSet<AnketaPerson>();
-            AnketaPersonFaCountryNavigation = new HashSet<AnketaPerson>();
-            AnketaPersonReCountryNavigation = new HashSet<AnketaPerson>();
-            CountryTr = new HashSet<CountryTr>();
-            KlR030 = new HashSet<KlR030>();
-            ReqCustomer = new HashSet<ReqCustomer>();
-            ReqLocationUse = new HashSet<ReqLocationUse>();
-            TerritoryExclude = new HashSet<TerritoryExclude>();
-            TerritoryInclude = new HashSet<TerritoryInclude>();
+            AnketaCompanyFaCountryNavigation = new ObservableListSource<AnketaCompany>();
+            AnketaCompanyJaCountryNavigation = new ObservableListSource<AnketaCompany>();
+            AnketaCompanyLeCountryNavigation = new ObservableListSource<AnketaCompany>();
+            AnketaPersonCitizenshipNavigation = new ObservableListSource<AnketaPerson>();
+            AnketaPersonFaCountryNavigation = new ObservableListSource<AnketaPerson>();
+            AnketaPersonReCountryNavigation = new ObservableListSource<AnketaPerson>();
+            CountryTr = new ObservableListSource<CountryTr>();
+            KlR030 = new ObservableListSource<KlR030>();
+            ReqCustomer = new ObservableListSource<ReqCustomer>();
+            ReqLocationUse = new ObservableListSource<ReqLocationUse>();
+            TerritoryExclude = new ObservableListSource<TerritoryExclude>();
+            TerritoryInclude = new ObservableListSource<TerritoryInclude>();
         }
 
         public int? ContinentCode { get; set; }
@@ -32,18 +32,18 @@ namespace ipsFormsDesign.Model
         public int? OrderBy { get; set; }
 
         public Continent ContinentCodeNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }
-        public ICollection<CountryTr> CountryTr { get; set; }
-        public ICollection<KlR030> KlR030 { get; set; }
-        public ICollection<ReqCustomer> ReqCustomer { get; set; }
-        public ICollection<ReqLocationUse> ReqLocationUse { get; set; }
-        public ICollection<TerritoryExclude> TerritoryExclude { get; set; }
-        public ICollection<TerritoryInclude> TerritoryInclude { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }
+        public ObservableListSource<CountryTr> CountryTr { get; set; }
+        public ObservableListSource<KlR030> KlR030 { get; set; }
+        public ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
+        public ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
+        public ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
+        public ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
 

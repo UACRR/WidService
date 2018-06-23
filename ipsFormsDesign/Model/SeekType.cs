@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public SeekType()
         {
-            SeekObject = new HashSet<SeekObject>();
-            SeekTypeTr = new HashSet<SeekTypeTr>();
+            SeekObject = new ObservableListSource<SeekObject>();
+            SeekTypeTr = new ObservableListSource<SeekTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<SeekObject> SeekObject { get; set; }
-        public ICollection<SeekTypeTr> SeekTypeTr { get; set; }
+        public ObservableListSource<SeekObject> SeekObject { get; set; }
+        public ObservableListSource<SeekTypeTr> SeekTypeTr { get; set; }
     }
 }
 

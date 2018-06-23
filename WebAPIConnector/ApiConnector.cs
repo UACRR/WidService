@@ -51,14 +51,16 @@ namespace WebAPIConnector
         /// <returns></returns>
         public List<T> GetList<T>( string url )
         {
+                
             string retApiString = client.GetStringAsync(url).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
-            List<T> list = array.Select( rec => {
+            List<T> list = array.Select(rec => {
                 var item = rec.ToObject<T>();
                 return item;
             }).ToList();
-            
+
             return list;
+
         }
 
        

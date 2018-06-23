@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public Partner()
         {
-            AgreementAddPartner = new HashSet<AgreementAddPartner>();
-            Distribution = new HashSet<Distribution>();
-            PartnerClient = new HashSet<PartnerClient>();
+            AgreementAddPartner = new ObservableListSource<AgreementAddPartner>();
+            Distribution = new ObservableListSource<Distribution>();
+            PartnerClient = new ObservableListSource<PartnerClient>();
         }
 
         public int CustId { get; set; }
 
         public Customer Cust { get; set; }
-        public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
-        public ICollection<PartnerClient> PartnerClient { get; set; }
+        public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public ObservableListSource<Distribution> Distribution { get; set; }
+        public ObservableListSource<PartnerClient> PartnerClient { get; set; }
     }
 }
 

@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public RegisterItem()
         {
-            RegisterCount = new HashSet<RegisterCount>();
+            RegisterCount = new ObservableListSource<RegisterCount>();
         }
 
         public int RegId { get; set; }
@@ -19,15 +19,15 @@ namespace ipsFormsDesign.Model
         public string Performer { get; set; }
         public string AuthorMusic { get; set; }
         public string AuthorText { get; set; }
-        public double? DurationUse { get; set; }
         public int? CountUse { get; set; }
-        public double? DurationItem { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
+        public TimeSpan? DurationUse { get; set; }
+        public TimeSpan? DurationItem { get; set; }
 
         public ObjectRight Obj { get; set; }
         public Register Reg { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
+        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }
 }
 

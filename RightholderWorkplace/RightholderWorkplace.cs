@@ -2,6 +2,7 @@
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary;
 using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.Data;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
@@ -33,6 +35,8 @@ namespace RightholderWorkplace
         ObjectRightDictionaries _dictionariesObjectRight;
         List<TermsOfServiceWrapper> _termsOfServices;
         RightHolder _rightHolder;
+
+        ObjectRightService _objectRightService = new ObjectRightService();
 
         #region IRightholderForm immplementation
 
@@ -129,9 +133,12 @@ namespace RightholderWorkplace
         {
             InitializeComponent();
 
+            WireUpObjectsRightsPageEvents();
+
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+            actualObjectsPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
@@ -157,6 +164,15 @@ namespace RightholderWorkplace
         }
 
         #region Rightholders page
+
+        public RightholderMainView SelectedRightholder
+        {
+            get
+            {
+                return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
+            }
+            set { }
+        }
 
         #region Next / Prev buttons
 
@@ -230,7 +246,7 @@ namespace RightholderWorkplace
 
         private void btnNextAgreement_Click(object sender, EventArgs e)
         {
-            createRightholderTerritoryLimitationsPage.Enabled = true;
+            createRightholderAgreementPage.Enabled = true;
             newCreateRightholderPageView.SelectedPage = createRightholderAgreementPage;
         }
 
@@ -356,25 +372,55 @@ namespace RightholderWorkplace
 
         private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            int custId = Convert.ToInt32(gvRightholdersList.CurrentRow.Cells["CustId"].Value);
-            _customer = GetCustomer(custId);
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                EditRightholder();
+            }
+            else if (currentColumnName == "ObjectListColumn")
+            {
+                ShowObjectsRightsForRightholder(SelectedRightholder);
+            }
+        }
+
+        private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
+        {
+            EditRightholder();
+        }
+
+        private void miSaveRightholder_Click(object sender, EventArgs e)
+        {
+            SaveRightholder(accept: false);
+        }
+
+        private void miAcceptAndSaveRightholder_Click(object sender, EventArgs e)
+        {
+            SaveRightholder(accept: true);
+        }
+
+        #endregion
+
+        #region Rightholder page Helpers
+
+        private void EditRightholder(RightholderMainView rightholder = null)
+        {
+            if (rightholder == null)
+                rightholder = SelectedRightholder;
+
+            _customer = GetCustomer(rightholder.CustId);
 
             UpdateDataSources();
-            //SetDataSources();
-            //SetConsumerPageView();
 
             for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
             {
                 newCreateRightholderPageView.Pages[i].Enabled = true;
             }
 
+            MainPageView.SelectedPage = mainPageRightholders;
             newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
             newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
-        }
-
-        private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
-        {
-            gvRightholdersList_CommandCellClick(sender, null);
+            pdfvRightholderAgreement.UnloadDocument();
         }
 
         private void SaveRightholder(bool accept)
@@ -394,16 +440,6 @@ namespace RightholderWorkplace
             UpdateRightholdersList();
 
             newRightholdersPageView.SelectedPage = newRightholdersListPage;
-        }
-
-        private void miSaveRightholder_Click(object sender, EventArgs e)
-        {
-            SaveRightholder(accept: false);
-        }
-
-        private void miAcceptAndSaveRightholder_Click(object sender, EventArgs e)
-        {
-            SaveRightholder(accept: true);
         }
 
         #endregion
@@ -441,78 +477,485 @@ namespace RightholderWorkplace
             }
 
             // if type of collection is HashSet, then adding new row is not allowed
-            _customer.RightHolder.TerritoryExclude = _customer.RightHolder.TerritoryExclude.ToList();
-            _customer.RightHolder.TerritoryInclude = _customer.RightHolder.TerritoryInclude.ToList();
+            _customer.RightHolder.TerritoryExclude = _customer.RightHolder.TerritoryExclude;
+            _customer.RightHolder.TerritoryInclude = _customer.RightHolder.TerritoryInclude;
 
             rightHolderBindingSource.DataSource = _customer.RightHolder;
         }
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
-            var service = new ObjectRightService();
+            _dictionariesObjectRight = _objectRightService.GetDictionary();
 
-            _dictionariesObjectRight = service.GetDictionary();
-            var objectsRightsList = service.GetMainView();
-            var objectRightContainer = service.GetData(5848);
-            _objectRight = objectRightContainer.objectRight;
-            var rigthholdersObjectsRights = service.GetRightholdersObjectsRights(131);
+            SetObjectRightDictionaries();
 
-            // dictionaries
-            ddlGenreType.DataSource = _dictionariesObjectRight.genreType;
-            ddlGenreType.ValueMember = "CodeI";
-            ddlGenreType.DisplayMember = "Name";
+            UpdateObjectRightsList();
 
-            ddlSpecType.DataSource = _dictionariesObjectRight.specType;
-            ddlSpecType.ValueMember = "CodeI";
-            ddlSpecType.DisplayMember = "Name";
+            FilterDescriptor filterByName = new FilterDescriptor();
+            filterByName.PropertyName = "CodeI";
+            filterByName.Operator = FilterOperator.IsEqualTo;
+            filterByName.Value = 1;
+            filterByName.IsFilterEditor = true;
+            gvObjectAddNames.FilterDescriptors.Add(filterByName);
 
-            var columnRoleAuth = gvObjectAuthors.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRoleAuth.DataSource = _dictionariesObjectRight.creativeRoleType;
-            columnRoleAuth.ValueMember = "CodeI";
-            columnRoleAuth.DisplayMember = "Name";
-
-            var columnRoleRh = gvObjectRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
-            columnRoleRh.DataSource = _dictionariesObjectRight.creativeRoleType;
-            columnRoleRh.ValueMember = "CodeI";
-            columnRoleRh.DisplayMember = "Name";
-
-            var columnRh = gvObjectRightholders.Columns["CustId"] as GridViewComboBoxColumn;
-            columnRh.DataSource = objectRightContainer.rhList;
-            columnRh.ValueMember = "CustId";
-            columnRh.DisplayMember = "Name";
-
-            // update bidings
-            gvObjectsRightsList.DataSource = objectsRightsList;
-            objectRightBindingSource.DataSource = _objectRight;
-            objectRightForRightholderBindingSource.DataSource = rigthholdersObjectsRights;
-            mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
-            authorsBindingSource.DataSource = _objectRight.Authors;
-            copyRightBindingSource.DataSource = _objectRight.CopyRight;
+            FilterDescriptor filterByPerformer = new FilterDescriptor();
+            filterByPerformer.PropertyName = "CodeI";
+            filterByPerformer.Operator = FilterOperator.IsEqualTo;
+            filterByPerformer.Value = 2;
+            filterByPerformer.IsFilterEditor = true;
+            gvObjectPerformers.FilterDescriptors.Add(filterByPerformer);
         }
 
         #region Objectrights page
 
-        private void btnSaveTest_Click(object sender, EventArgs e)
-        {
-            var service = new ObjectRightService();
+        private RadPageViewPage _previousPage;
 
-            service.Save(_objectRight);
-        }
-
-        private void gvObjectAuthors_DoubleClick(object sender, EventArgs e)
+        public ObjectRightMainView SelectedObjectRight
         {
-            using (var authorItemView = new AuthorItemView(authorsBindingSource, _dictionariesObjectRight))
+            get
             {
-                authorItemView.StartPosition = FormStartPosition.CenterParent;
-                authorItemView.ShowDialog();
-                authorsBindingSource.ResetBindings(false);
+                return gvObjectsRightsList.CurrentRow.DataBoundItem as ObjectRightMainView;
+            }
+            set
+            {
+                var row = gvObjectsRightsList.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == value.ObjId);
+                if (row != null)
+                {
+                    gvObjectsRightsList.CurrentRow = row;
+                }
             }
         }
 
-        private void gvObjectsRightsList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        public int SelectedRghtholdersObjectRightId
+        {
+            get
+            {
+                return (gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder).ObjId;
+            }
+            set
+            {
+                var row = gvRightholdersObjectsRights.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == value);
+                if (row != null)
+                {
+                    gvRightholdersObjectsRights.CurrentRow = row;
+                }
+            }
+        }
+
+        public ObjectAuthorRightholder SelectedObjectAuthorRightholder
+        {
+            get
+            {
+                return gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
+            }
+            set { }
+        }
+
+        private void SetObjectRightDictionaries()
+        {
+            ddlSpecType.DataSource = _dictionariesObjectRight.specType;
+            ddlSpecType.ValueMember = "CodeI";
+            ddlSpecType.DisplayMember = "Name";
+
+            var columnRoleCode = gvObjectAuthorsRightholders.Columns["RoleCode"] as GridViewComboBoxColumn;
+            columnRoleCode.DataSource = _dictionariesObjectRight.creativeRoleType;
+            columnRoleCode.ValueMember = "CodeI";
+            columnRoleCode.DisplayMember = "Name";
+
+            var columnFolkType = gvObjectAuthorsRightholders.Columns["FolkType"] as GridViewComboBoxColumn;
+            columnFolkType.DataSource = _dictionariesObjectRight.folkType;
+            columnFolkType.ValueMember = "CodeI";
+            columnFolkType.DisplayMember = "Name";
+
+            //var columnCopyrightStatus = gvObjectAuthorsRightholders.Columns["CopyrightStatus"] as GridViewCheckBoxColumn;
+            //columnCopyrightStatus.NullValue = false;
+            //columnCopyrightStatus.DataSourceNullValue = false;
+        }
+
+        private void SetAvalaibleGenres(int category)
+        {
+            ddlGenreType.DataSource = _dictionariesObjectRight.genreType.Where(g => g.CategoryCode == category);
+            ddlGenreType.ValueMember = "CodeI";
+            ddlGenreType.DisplayMember = "Name";
+        }
+
+        private void WireUpObjectsRightsPageEvents()
+        {
+            ctrlRightholderSelector.RightholderChanged += CtrlRightholderSelector_RightholderChanged;
+            ctrlRightholderSelector.ShowAnketaCommandExecuted += CtrlRightholderSelector_ShowAnketaCommandExecuted;
+        }
+
+        private void CtrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
+        {
+            UpdateRightholdersObjectsRightList();
+        }
+
+        private void CtrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e)
+        {
+            if (ctrlRightholderSelector.Rightholder != null)
+                EditRightholder(ctrlRightholderSelector.Rightholder);
+        }
+
+        #region Objectrights list event handlers
+
+        private void miAddMusicalComposition_Click(object sender, EventArgs e)
+        {
+            if (sender is RadMenuItem menuItem)
+            {
+                int category;
+                if (int.TryParse(menuItem.Tag.ToString(), out category))
+                {
+                    AddObjectRight(category);
+                }
+            }
+        }
+
+        private void AddObjectRight(int category)
+        {
+            if (category == 0)
+                return;
+
+            _objectRight = _objectRightService.NewObjectRight(category);
+
+            SetAvalaibleGenres(category);
+            UpdateObjectRightDataSources(_objectRight, null);
+
+            MainPageView.SelectedPage = mainPageRightsObjects;
+            objectsPageView.SelectedPage = actualObjectsPage;
+            actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+        }
+
+        private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                EditObjectRight();
+            }
+        }
+
+        private void gvObjectsRightsList_DoubleClick(object sender, EventArgs e)
+        {
+            EditObjectRight();
+        }
+
+        private void EditObjectRight(int objId = 0)
+        {
+            _previousPage = objectsPageView.SelectedPage;
+
+            if (objId == 0)
+                objId = SelectedObjectRight.ObjId;
+
+            var objectRightContainer = _objectRightService.GetData(objId);
+
+            SetAvalaibleGenres(objectRightContainer.objectRight.CategoryCode);
+            UpdateObjectRightDataSources(objectRightContainer.objectRight, objectRightContainer.rhList);
+
+            CalculateTotalPersent();
+
+            MainPageView.SelectedPage = mainPageRightsObjects;
+            objectsPageView.SelectedPage = actualObjectsPage;
+            actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+        }
+
+        private void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholders)
+        {
+            _objectRight = objectRight;
+
+            if (rightholders == null)
+                rightholders = new List<ViewCustomer>();
+
+            objectRightBindingSource.DataSource = _objectRight;
+            mediaTrackBindingSource.DataSource = _objectRight.MediaTrack;
+
+            _objectRight.SeekObject = _objectRight.SeekObject;
+            seekObjectBindingSource.DataSource = _objectRight.SeekObject;
+
+            // transform Authors and Copyright table into single table
+            var objectAuthorRightholderList = _objectRight.Authors.Select(a =>
+            {
+
+                var foundedCopyright = _objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId);
+                var foundedRightholder = rightholders.FirstOrDefault(r => r.custId == a.CustId);
+
+                return new ObjectAuthorRightholder
+                {
+                    AuthId = a.AuthId,
+                    ObjId = a.ObjId,
+                    RoleCode = a.RoleCode,
+                    FolkType = a.FolkType,
+                    AuthorName = a.AuthorName,
+                    IsRightholder = a.CustId != null,
+                    CustId = a.CustId,
+                    CRightId = foundedCopyright?.CRightId,
+                    CopyrightStatus = foundedCopyright?.Status,
+                    CommunityName = foundedRightholder?.Community_Name,
+                    Rate = foundedCopyright?.Rate,
+                    BeginDate = foundedCopyright?.BeginDate,
+                    EndDate = foundedCopyright?.EndDate,
+                };
+            }).ToList();
+
+            objectAuthorRightholderBindingSource.DataSource = objectAuthorRightholderList;
+        }
+
+        #endregion
+
+        #region Objectrights item event handlers
+
+        private void gvObjectAuthorsRightholders_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                EditObjectAuthorRightholder();
+            }
+            else if (currentColumnName == "DeleteColumn")
+            {
+                DeleteObjectAuthorRightholder();
+            }
+        }
+
+        private void gvObjectAuthorsRightholders_DoubleClick(object sender, EventArgs e)
+        {
+            EditObjectAuthorRightholder();
+        }
+
+        private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
+        {
+            var objectAuthorRightholder = new ObjectAuthorRightholder();
+            EditObjectAuthorRightholder(objectAuthorRightholder);
+        }
+
+        private void btnObjectRightItemCancel_Click(object sender, EventArgs e)
+        {
+            objectsPageView.SelectedPage = _previousPage;
+            actualObjectsPageView.SelectedPage = actualObjectsListPage;
+        }
+
+        private void btnObjectRightItemSave_Click(object sender, EventArgs e)
+        {
+            if (_objectRight == null)
+            {
+                return;
+            }
+
+            // transform from single table to Authors and Copyright tables
+            var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
+
+            objectAuthorRightholderList.ForEach(ar => _objectRight.Authors.Add(new Authors
+            {
+                AuthId = ar.AuthId,
+                ObjId = ar.ObjId,
+                RoleCode = ar.RoleCode,
+                CustId = ar.CustId,
+                AuthorName = ar.AuthorName,
+                FolkType = ar.FolkType,
+            }));
+
+            //_objectRight.Authors = objectAuthorRightholderList.Select(ar =>
+            //{
+            //    return new Authors
+            //    {
+            //        AuthId = ar.AuthId,
+            //        ObjId = ar.ObjId,
+            //        RoleCode = ar.RoleCode,
+            //        CustId = ar.CustId,
+            //        AuthorName = ar.AuthorName,
+            //        FolkType = ar.FolkType,
+            //    };
+            //}).ToList();
+
+            objectAuthorRightholderList.ForEach(ar => _objectRight.CopyRight.Add(
+               new CopyRight
+               {
+                   CRightId = ar.CRightId ?? 0,
+                   CustId = (int)ar.CustId,
+                   ObjId = ar.ObjId,
+                   RoleCode = ar.RoleCode,
+                   Rate = ar.Rate,
+                   BeginDate = ar.BeginDate,
+                   EndDate = ar.EndDate,
+                   Status = ar.CopyrightStatus,
+               }
+                ));
+            //_objectRight.CopyRight = objectAuthorRightholderList
+            //    .Where(ar => ar.IsRightholder)
+            //    .Select(ar =>
+            //    {
+            //        return |new CopyRight
+            //        {
+            //            CRightId = ar.CRightId ?? 0,
+            //            CustId = (int)ar.CustId,
+            //            ObjId = ar.ObjId,
+            //            RoleCode = ar.RoleCode,
+            //            Rate = ar.Rate,
+            //            BeginDate = ar.BeginDate,
+            //            EndDate = ar.EndDate,
+            //            Status = ar.CopyrightStatus,
+            //        };
+            //    }).ToList();
+
+            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100)
+            {
+                MessageBox.Show("Загальний відсоток володіння не може бути більше 100.", "Помилка");
+                return;
+            }
+
+            _objectRightService.Save(_objectRight);
+
+            if (_previousPage == actualObjectsPage)
+            {
+                UpdateObjectRightsList();
+                SelectedObjectRight = new ObjectRightMainView { ObjId = _objectRight.ObjId };
+            }
+            else if (_previousPage == rightholdersObjectsPage)
+            {
+                UpdateRightholdersObjectsRightList(_objectRight.ObjId);
+            }
+
+            objectsPageView.SelectedPage = _previousPage;
+            actualObjectsPageView.SelectedPage = actualObjectsListPage;
+        }
+
+        private void btnAddObjectAddName_Click(object sender, EventArgs e)
+        {
+            AddRowToGrid(gvObjectAddNames);
+        }
+
+        private void btnDeleteObjectAddName_Click(object sender, EventArgs e)
+        {
+            gvObjectAddNames.Rows.Remove(gvObjectAddNames.CurrentRow);
+        }
+
+        private void btnAddObjectPerformer_Click(object sender, EventArgs e)
+        {
+            AddRowToGrid(gvObjectPerformers);
+        }
+
+        private void btnDeleteObjectPerformer_Click(object sender, EventArgs e)
+        {
+            gvObjectPerformers.Rows.Remove(gvObjectPerformers.CurrentRow);
+        }
+
+        private void AddRowToGrid(RadGridView gridView)
+        {
+            var filterValue = gridView.FilterDescriptors.FirstOrDefault()?.Value;
+
+            var newRow = gridView.Rows.AddNew();
+            newRow.Cells["CodeI"].Value = filterValue;
+            newRow.Cells["Name"].BeginEdit();
+        }
+
+        private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             SetTooltipTextFromHeader(sender, e);
         }
+
+        #endregion
+
+        #region Rightholders objectrights list event handlers
+
+        private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                EditObjectRight(SelectedRghtholdersObjectRightId);
+            }
+        }
+
+        private void gvRightholdersObjectsRights_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column is GridViewCommandColumn)
+                return;
+
+            EditObjectRight(SelectedRghtholdersObjectRightId);
+        }
+
+        #endregion
+
+        #region Objectrights page helpers
+
+        private void UpdateObjectRightsList()
+        {
+            var objectsRightsList = _objectRightService.GetMainView();
+
+            gvObjectsRightsList.DataSource = objectsRightsList;
+        }
+
+        private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0)
+        {
+            var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
+
+            objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
+
+            if (selectedObjectId != 0)
+            {
+                SelectedRghtholdersObjectRightId = selectedObjectId;
+            }
+        }
+
+        private void ShowObjectsRightsForRightholder(RightholderMainView selectedRightholder)
+        {
+            MainPageView.SelectedPage = mainPageRightsObjects;
+            objectsPageView.SelectedPage = rightholdersObjectsPage;
+
+            ctrlRightholderSelector.Rightholder = selectedRightholder;
+        }
+
+        private void EditObjectAuthorRightholder(ObjectAuthorRightholder objectAuthorRightholder = null)
+        {
+            if (objectAuthorRightholder == null)
+                objectAuthorRightholder = SelectedObjectAuthorRightholder;
+
+
+            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight, _objectRight.CategoryCode))
+            {
+                objectAuthorRightholderBindingSource.RaiseListChangedEvents = false;
+
+                authorRightholderItemView.StartPosition = FormStartPosition.CenterParent;
+                authorRightholderItemView.ShowDialog();
+
+                objectAuthorRightholderBindingSource.RaiseListChangedEvents = true;
+
+                if (authorRightholderItemView.DialogResult == DialogResult.OK && objectAuthorRightholderBindingSource.IndexOf(objectAuthorRightholder) == -1)
+                {
+                    objectAuthorRightholderBindingSource.Add(objectAuthorRightholder);
+                }
+
+                CalculateTotalPersent();
+            }
+
+            MainPageView.SelectedPage = mainPageRightsObjects;
+            objectsPageView.SelectedPage = actualObjectsPage;
+            actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+        }
+
+        private void DeleteObjectAuthorRightholder()
+        {
+            objectAuthorRightholderBindingSource.Remove(SelectedObjectAuthorRightholder);
+            CalculateTotalPersent();
+        }
+
+        private void CalculateTotalPersent()
+        {
+            var list = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>();
+
+            var totalPersent = list.Where(ar => ar.Rate != null).Sum(s => s.Rate);
+
+            txtTotalPersent.Text = totalPersent.ToString();
+
+            if (totalPersent > 100)
+                txtTotalPersent.ForeColor = Color.Red;
+            else
+                txtTotalPersent.ForeColor = SystemColors.ControlText;
+        }
+
+        #endregion
 
         #endregion
 

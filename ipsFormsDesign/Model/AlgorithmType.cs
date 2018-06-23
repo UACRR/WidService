@@ -8,13 +8,13 @@ namespace ipsFormsDesign.Model
     {
         public AlgorithmType()
         {
-            AlgorithmTypeTr = new HashSet<AlgorithmTypeTr>();
+            AlgorithmTypeTr = new ObservableListSource<AlgorithmTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AlgorithmTypeTr> AlgorithmTypeTr { get; set; }
+        public ObservableListSource<AlgorithmTypeTr> AlgorithmTypeTr { get; set; }
     }
 }
 

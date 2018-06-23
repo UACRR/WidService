@@ -8,11 +8,11 @@ namespace ipsFormsDesign.Model
     {
         public KindComposition()
         {
-            KindCompositionTr = new HashSet<KindCompositionTr>();
-            ModifyMusicType = new HashSet<ModifyMusicType>();
-            ModifyTextType = new HashSet<ModifyTextType>();
-            ModifyType = new HashSet<ModifyType>();
-            Request = new HashSet<Request>();
+            KindCompositionTr = new ObservableListSource<KindCompositionTr>();
+            ModifyMusicType = new ObservableListSource<ModifyMusicType>();
+            ModifyTextType = new ObservableListSource<ModifyTextType>();
+            ModifyType = new ObservableListSource<ModifyType>();
+            Request = new ObservableListSource<Request>();
         }
 
         public int CodeI { get; set; }
@@ -20,11 +20,11 @@ namespace ipsFormsDesign.Model
         public int CategoryCode { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ICollection<KindCompositionTr> KindCompositionTr { get; set; }
-        public ICollection<ModifyMusicType> ModifyMusicType { get; set; }
-        public ICollection<ModifyTextType> ModifyTextType { get; set; }
-        public ICollection<ModifyType> ModifyType { get; set; }
-        public ICollection<Request> Request { get; set; }
+        public ObservableListSource<KindCompositionTr> KindCompositionTr { get; set; }
+        public ObservableListSource<ModifyMusicType> ModifyMusicType { get; set; }
+        public ObservableListSource<ModifyTextType> ModifyTextType { get; set; }
+        public ObservableListSource<ModifyType> ModifyType { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
     }
 }
 

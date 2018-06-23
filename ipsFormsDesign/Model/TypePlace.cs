@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public TypePlace()
         {
-            ClnBusinessPlace = new HashSet<ClnBusinessPlace>();
-            TypePlaceTr = new HashSet<TypePlaceTr>();
+            ClnBusinessPlace = new ObservableListSource<ClnBusinessPlace>();
+            TypePlaceTr = new ObservableListSource<TypePlaceTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
-        public ICollection<TypePlaceTr> TypePlaceTr { get; set; }
+        public ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        public ObservableListSource<TypePlaceTr> TypePlaceTr { get; set; }
     }
 }
 

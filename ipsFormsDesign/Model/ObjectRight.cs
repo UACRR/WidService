@@ -8,18 +8,19 @@ namespace ipsFormsDesign.Model
     {
         public ObjectRight()
         {
-            Account = new HashSet<Account>();
-            Authors = new HashSet<Authors>();
-            BrRegItem = new HashSet<BrRegItem>();
-            CopyRight = new HashSet<CopyRight>();
-            DistributionItem = new HashSet<DistributionItem>();
-            LicenseBigR = new HashSet<LicenseBigR>();
-            MusicalDesign = new HashSet<MusicalDesign>();
-            PortalObjectRights = new HashSet<PortalObjectRights>();
-            RegisterItem = new HashSet<RegisterItem>();
-            RelPopGenre = new HashSet<RelPopGenre>();
-            Request = new HashSet<Request>();
-            SeekObject = new HashSet<SeekObject>();
+            Account = new ObservableListSource<Account>();
+            Authors = new ObservableListSource<Authors>();
+            BrRegItem = new ObservableListSource<BrRegItem>();
+            CopyRight = new ObservableListSource<CopyRight>();
+            DistributionItem = new ObservableListSource<DistributionItem>();
+            LicenseBigR = new ObservableListSource<LicenseBigR>();
+            MusicalDesign = new ObservableListSource<MusicalDesign>();
+            PortalObjectRights = new ObservableListSource<PortalObjectRights>();
+            RegisterItem = new ObservableListSource<RegisterItem>();
+            RelObjPerformer = new ObservableListSource<RelObjPerformer>();
+            RelPopGenre = new ObservableListSource<RelPopGenre>();
+            Request = new ObservableListSource<Request>();
+            SeekObject = new ObservableListSource<SeekObject>();
         }
 
         public int CategoryCode { get; set; }
@@ -43,18 +44,19 @@ namespace ipsFormsDesign.Model
         public SpecType SpecTypeNavigation { get; set; }
         public ObjectStatus StatusNavigation { get; set; }
         public MediaTrack MediaTrack { get; set; }
-        public ICollection<Account> Account { get; set; }
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<BrRegItem> BrRegItem { get; set; }
-        public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<DistributionItem> DistributionItem { get; set; }
-        public ICollection<LicenseBigR> LicenseBigR { get; set; }
-        public ICollection<MusicalDesign> MusicalDesign { get; set; }
-        public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
-        public ICollection<RegisterItem> RegisterItem { get; set; }
-        public ICollection<RelPopGenre> RelPopGenre { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<SeekObject> SeekObject { get; set; }
+        public ObservableListSource<Account> Account { get; set; }
+        public ObservableListSource<Authors> Authors { get; set; }
+        public ObservableListSource<BrRegItem> BrRegItem { get; set; }
+        public ObservableListSource<CopyRight> CopyRight { get; set; }
+        public ObservableListSource<DistributionItem> DistributionItem { get; set; }
+        public ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
+        public ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
+        public ObservableListSource<PortalObjectRights> PortalObjectRights { get; set; }
+        public ObservableListSource<RegisterItem> RegisterItem { get; set; }
+        public ObservableListSource<RelObjPerformer> RelObjPerformer { get; set; }
+        public ObservableListSource<RelPopGenre> RelPopGenre { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
+        public ObservableListSource<SeekObject> SeekObject { get; set; }
     }
 }
 

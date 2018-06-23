@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -18,14 +19,17 @@ namespace ipsmedserviceapp.Model
         public string Performer { get; set; }
         public string AuthorMusic { get; set; }
         public string AuthorText { get; set; }
-        public double? DurationUse { get; set; }
         public int? CountUse { get; set; }
-        public double? DurationItem { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
+        public TimeSpan? DurationUse { get; set; }
+        public TimeSpan? DurationItem { get; set; }
 
+        [JsonIgnore]
         public ObjectRight Obj { get; set; }
+        [JsonIgnore]
         public Register Reg { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
     }
 }
+

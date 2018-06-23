@@ -1,6 +1,8 @@
-﻿using ipsFormsDesign.Model;
+﻿using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -16,17 +18,18 @@ namespace ipsFormsDesign.Dictionary
         // ActivityType
         public static implicit operator ActivityType(DictBaseTypeI test)
         {
-            return new ActivityType { CodeI = test.CodeI, Name = test.Name, ActivityTypeTr = test.DictTrI.Select(rec => new ActivityTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new ActivityType { CodeI = test.CodeI, Name = test.Name,
+                ActivityTypeTr = new ObservableListSource<ActivityTypeTr>( test.DictTrI.Select(rec => new ActivityTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList()) };
         }
         public static implicit operator DictBaseTypeI(ActivityType test)
         {
-            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.ActivityTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI =  new ObservableListSource<DictTrI>( test.ActivityTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList()) };
         }
 
         // CustomerStatus
         public static implicit operator CustomerStatus(DictBaseTypeI test)
         {
-            return new CustomerStatus { CodeI = test.CodeI, Name = test.Name, CustomerStatusTr = test.DictTrI.Select(rec => new CustomerStatusTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new CustomerStatus { CodeI = test.CodeI, Name = test.Name, CustomerStatusTr = new ObservableListSource<CustomerStatusTr>( test.DictTrI.Select(rec => new CustomerStatusTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList()) };
         }
         public static implicit operator DictBaseTypeI(CustomerStatus test)
         {
@@ -36,7 +39,7 @@ namespace ipsFormsDesign.Dictionary
         // CustomerType
         public static implicit operator CustomerType(DictBaseTypeI test)
         {
-            return new CustomerType { CodeI = test.CodeI, Name = test.Name, CustomerTypeTr = test.DictTrI.Select(rec => new CustomerTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new CustomerType { CodeI = test.CodeI, Name = test.Name, CustomerTypeTr = new ObservableListSource<CustomerTypeTr>( test.DictTrI.Select(rec => new CustomerTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList()) };
         }
         public static implicit operator DictBaseTypeI(CustomerType test)
         {
@@ -45,7 +48,7 @@ namespace ipsFormsDesign.Dictionary
         // Region
         public static implicit operator Region(DictBaseTypeI test)
         {
-            return new Region { CodeI = test.CodeI, Name = test.Name, RegionTr = test.DictTrI.Select(rec => new RegionTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new Region { CodeI = test.CodeI, Name = test.Name, RegionTr = new ObservableListSource<RegionTr> (test.DictTrI.Select(rec => new RegionTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList()) };
         }
         public static implicit operator DictBaseTypeI(Region test)
         {
@@ -54,7 +57,7 @@ namespace ipsFormsDesign.Dictionary
         // ResidentType
         public static implicit operator ResidentType(DictBaseTypeI test)
         {
-            return new ResidentType { CodeI = test.CodeI, Name = test.Name, ResidentTypeTr = test.DictTrI.Select(rec => new ResidentTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new ResidentType { CodeI = test.CodeI, Name = test.Name, ResidentTypeTr = new ObservableListSource<ResidentTypeTr>( test.DictTrI.Select(rec => new ResidentTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() ) };
         }
         public static implicit operator DictBaseTypeI(ResidentType test)
         {
@@ -63,7 +66,7 @@ namespace ipsFormsDesign.Dictionary
         // SexType
         public static implicit operator SexType(DictBaseTypeI test)
         {
-            return new SexType { CodeI = test.CodeI, Name = test.Name, SexTypeTr = test.DictTrI.Select(rec => new SexTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new SexType { CodeI = test.CodeI, Name = test.Name, SexTypeTr = new ObservableListSource<SexTypeTr>( test.DictTrI.Select(rec => new SexTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList()) };
         }
         public static implicit operator DictBaseTypeI(SexType test)
         {
@@ -72,7 +75,7 @@ namespace ipsFormsDesign.Dictionary
         // TypePlace
         public static implicit operator TypePlace(DictBaseTypeI test)
         {
-            return new TypePlace { CodeI = test.CodeI, Name = test.Name, TypePlaceTr = test.DictTrI.Select(rec => new TypePlaceTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new TypePlace { CodeI = test.CodeI, Name = test.Name, TypePlaceTr = new ObservableListSource<TypePlaceTr>( test.DictTrI.Select(rec => new TypePlaceTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList()) };
         }
         public static implicit operator DictBaseTypeI(TypePlace test)
         {
@@ -81,7 +84,7 @@ namespace ipsFormsDesign.Dictionary
         // TypeVAT
         public static implicit operator TypeVat(DictBaseTypeI test)
         {
-            return new TypeVat { CodeI = test.CodeI, Name = test.Name, TypeVattr = test.DictTrI.Select(rec => new TypeVattr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new TypeVat { CodeI = test.CodeI, Name = test.Name, TypeVattr = new ObservableListSource<TypeVattr>( test.DictTrI.Select(rec => new TypeVattr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList()) };
         }
         public static implicit operator DictBaseTypeI(TypeVat test)
         {

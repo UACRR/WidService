@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public ReqAgreementStatus()
         {
-            ReqAgreement = new HashSet<ReqAgreement>();
+            ReqAgreement = new ObservableListSource<ReqAgreement>();
         }
 
         public int StatusCode { get; set; }
@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Model
         public string StatusNameRu { get; set; }
         public string StatusNameEn { get; set; }
 
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
+        public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
     }
 }
 

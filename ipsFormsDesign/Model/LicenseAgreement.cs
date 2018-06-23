@@ -8,12 +8,12 @@ namespace ipsFormsDesign.Model
     {
         public LicenseAgreement()
         {
-            BrRegItem = new HashSet<BrRegItem>();
-            LicPlace = new HashSet<LicPlace>();
-            License = new HashSet<License>();
-            LicenseAgrParam = new HashSet<LicenseAgrParam>();
-            MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
-            PaidPeriod = new HashSet<PaidPeriod>();
+            BrRegItem = new ObservableListSource<BrRegItem>();
+            LicPlace = new ObservableListSource<LicPlace>();
+            License = new ObservableListSource<License>();
+            LicenseAgrParam = new ObservableListSource<LicenseAgrParam>();
+            MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
+            PaidPeriod = new ObservableListSource<PaidPeriod>();
         }
 
         public int LicId { get; set; }
@@ -34,12 +34,12 @@ namespace ipsFormsDesign.Model
         public AgreementStatus LicStatusNavigation { get; set; }
         public LicenseType LicTypeNavigation { get; set; }
         public LicenseBigR LicenseBigR { get; set; }
-        public ICollection<BrRegItem> BrRegItem { get; set; }
-        public ICollection<LicPlace> LicPlace { get; set; }
-        public ICollection<License> License { get; set; }
-        public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ICollection<PaidPeriod> PaidPeriod { get; set; }
+        public ObservableListSource<BrRegItem> BrRegItem { get; set; }
+        public ObservableListSource<LicPlace> LicPlace { get; set; }
+        public ObservableListSource<License> License { get; set; }
+        public ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
     }
 }
 

@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public KindFilm()
         {
-            KindFilmTr = new HashSet<KindFilmTr>();
-            RequestMovie = new HashSet<RequestMovie>();
+            KindFilmTr = new ObservableListSource<KindFilmTr>();
+            RequestMovie = new ObservableListSource<RequestMovie>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<KindFilmTr> KindFilmTr { get; set; }
-        public ICollection<RequestMovie> RequestMovie { get; set; }
+        public ObservableListSource<KindFilmTr> KindFilmTr { get; set; }
+        public ObservableListSource<RequestMovie> RequestMovie { get; set; }
     }
 }
 

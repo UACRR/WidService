@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public ModifyMusicType()
         {
-            ModifyMusicTypeTr = new HashSet<ModifyMusicTypeTr>();
-            RequestAdapt = new HashSet<RequestAdapt>();
+            ModifyMusicTypeTr = new ObservableListSource<ModifyMusicTypeTr>();
+            RequestAdapt = new ObservableListSource<RequestAdapt>();
         }
 
         public int CodeI { get; set; }
@@ -19,8 +19,8 @@ namespace ipsFormsDesign.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public KindComposition KindCompCodeNavigation { get; set; }
-        public ICollection<ModifyMusicTypeTr> ModifyMusicTypeTr { get; set; }
-        public ICollection<RequestAdapt> RequestAdapt { get; set; }
+        public ObservableListSource<ModifyMusicTypeTr> ModifyMusicTypeTr { get; set; }
+        public ObservableListSource<RequestAdapt> RequestAdapt { get; set; }
     }
 }
 

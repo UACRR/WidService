@@ -8,10 +8,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using Telerik.WinControls;
-
+using Telerik.WinControls.UI;
 
 
 namespace ConsumerWorkplace_v_1._0
@@ -20,15 +22,35 @@ namespace ConsumerWorkplace_v_1._0
     {
         private bool nextPage = false;
         private sbyte validTabs = 0;
-        
+        private SwitchPresenter _presenter;
+        private ConsumerService _service;
 
         public event Func<bool> Save;
 
         public ConsumerWorkplace()
         {
+            RadTreeNode[] list = new[]
+            {
+                new RadTreeNode {Text = "Всі", Value = ConsumerFilterEnum.All},
+                new RadTreeNode {Text = "Діючі", Value = ConsumerFilterEnum.Working},
+                new RadTreeNode {Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
+                new RadTreeNode {Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation},
+                new RadTreeNode {Text = "Не розподіленні", Value = ConsumerFilterEnum.ForDistribution}
+            };
+            
+            
             InitializeComponent();
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
             placesCtrlConsumerPlaces.OnEnabledChangeWhenEditOrAddPremises += PlacesCtrlConsumerPlaces_OnEnabledChangeWhenEditOrAddPremises;
+
+            foreach (var item in list)
+            {
+                radTreeView1.Nodes.Add(item);
+            }
+
+            _service = new ConsumerService();
+            _presenter = new SwitchPresenter( mainViewSwitcher1, _service, radTreeView1 );
+            radTreeView1.SelectedNode = radTreeView1.Nodes["Всі"];
 
         }
 
@@ -71,10 +93,13 @@ namespace ConsumerWorkplace_v_1._0
             rpvConsumers.SelectedPage = pageConsumersAnketa;
             pageAllAnketa.SelectedPage = pvConsumerLicenseType;
             pageAllAnketa.SelectedPage = pvConsumerClientName;
-            if(!clientNameCheckBoxPlaces.Checked)
-                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = Color.DarkGray;
-            else
-                pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = DefaultForeColor;
+
+            foreach (var page in pageAllAnketa.Pages)
+            {
+                page.Item.ForeColor = DefaultForeColor;
+            }
+
+            pageAllAnketa.Pages["pvConsumerPlaces"].Item.ForeColor = !clientNameCheckBoxPlaces.Checked ? Color.DarkGray : DefaultForeColor;
         }
 
         /// <summary>
@@ -108,7 +133,7 @@ namespace ConsumerWorkplace_v_1._0
         private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             int custId = Convert.ToInt32(rGridViewConsumers.Rows[e.RowIndex].Cells["CustId"].Value);
-            _cust = GetCustomer(custId);
+            SetData( GetCustomer(custId) );
             if (_cust?.Client?.ClnBusinessPlace != null)
                 IsPlaceIn = _cust.Client.ClnBusinessPlace.Count != 0;
             SetDataSources();
@@ -141,21 +166,21 @@ namespace ConsumerWorkplace_v_1._0
             lblTabLicenseTypeClientName.Text = clientNameCtrlAnketaCompany.CompanyFullName;
 
             anketaCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            anketaCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            anketaCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            anketaCtrlTitleLbl.ContractBeginDate = curLicAgreement?.DateBegin?.ToShortDateString();
+            anketaCtrlTitleLbl.ContractNumber = curLicAgreement?.LicNum ?? String.Empty;
 
             managersCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            managersCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            managersCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            managersCtrlTitleLbl.ContractBeginDate = curLicAgreement?.DateBegin?.ToShortDateString();
+            managersCtrlTitleLbl.ContractNumber = curLicAgreement?.LicNum ?? String.Empty;
 
             placesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            placesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            placesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
+            placesCtrlTitleLbl.ContractBeginDate = curLicAgreement?.DateBegin?.ToShortDateString();
+            placesCtrlTitleLbl.ContractNumber = curLicAgreement?.LicNum ?? String.Empty;
 
             bankRequisitesCtrlTitleLbl.ClientName = clientNameCtrlAnketaCompany.CompanyFullName;
-            bankRequisitesCtrlTitleLbl.ContractBeginDate = licenseTypeCtrlContractConsumerMain.ContractBeginDate;
-            bankRequisitesCtrlTitleLbl.ContractNumber = licenseTypeCtrlContractConsumerMain.ContractNumber;
-            
+            bankRequisitesCtrlTitleLbl.ContractBeginDate = curLicAgreement?.DateBegin?.ToShortDateString();
+            bankRequisitesCtrlTitleLbl.ContractNumber = curLicAgreement?.LicNum ?? String.Empty;
+
         }
 
         /// <summary>
@@ -440,7 +465,7 @@ namespace ConsumerWorkplace_v_1._0
 
                 bankRequisitesCtrlBankAccount.DataSource = bankAccount;
 
-                RelEmployee relEmpl = _cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).FirstOrDefault();
+                RelEmployee relEmpl = _cust.Company.RelEmployee.FirstOrDefault(rec => rec.PositionCode == 1);
                 if(relEmpl == null)
                 {
                     relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
@@ -448,6 +473,7 @@ namespace ConsumerWorkplace_v_1._0
                 }
 
                 iRelEmployeeBindingSource.DataSource = relEmpl;
+
                 iEmployeeBindingSource.DataSource = relEmpl.Empl;
 
                 relEmpl = _cust.Company.RelEmployee.FirstOrDefault(rec => rec.PositionCode == 2);
@@ -471,7 +497,6 @@ namespace ConsumerWorkplace_v_1._0
                 
                 var licenseParam = license.LicenseAgrParam.Where(rec => rec.LicVersion == license.LicVersion).SingleOrDefault();
                 
-                var agrMaster = license.Agr;
 
 
                 //iAgreementMasterBindingSource.DataSource = agrMaster;
@@ -500,21 +525,16 @@ namespace ConsumerWorkplace_v_1._0
 
                 anketaDictionatiesBindingSource.DataSource = _dic;
 
-                clientNameCtrlAnketaCompany.ActivityCodeDataSource = _dic.activityType;
-                clientNameCtrlAnketaCompany.ActivityCodeValueMember = "codeI";
-                clientNameCtrlAnketaCompany.ActivityCodeDisplayMember = "name";
+
                 clientNameCtrlAnketaCompany.DataSource = anketa;
 
                 clientNameCtrlRegistrationsCompany.TypesVatDataSource = _dic.typeVat;
 
                 iAgrLicenseTypeBindingSource.DataSource = _dic.agrLicenseType;
 
-                licenseTypeCtrlContractConsumerMain.DataSource = agrMaster;
-                licenseTypeCtrlContractConsumerMain.DateDataSource = licenseParam;
-                licenseTypeCtrlContractConsumerMain.ContrNumber = "AgrNumber";
-                licenseTypeCtrlContractConsumerMain.AgrDateDataMember = "AgrDate";
-                licenseTypeCtrlContractConsumerMain.BeginDateDataMember = "DateBegin";
-                licenseTypeCtrlContractConsumerMain.EndDateDataMember = "DateEnd";
+                licenseAgrParamBindingSource.DataSource = licenseParam;
+                licenseTypeCtrlContractConsumerMain.DataSource = licenseParam;
+
 
                 licenseTypeCtrlContractConsumerDetail.DataSourceBinding = licenseParam;
                 licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataSource = _dic.period;
@@ -541,10 +561,9 @@ namespace ConsumerWorkplace_v_1._0
                 iPositionTypeBindingSource.DataSource = _dic.positionType;
 
                 placesCtrlConsumerPlaces.SetData(_cust);
-                if (_cust.Client.ClnBusinessPlace.Count != 0)
-                    placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace);
-                else
-                    placesCtrlConsumerPlaces.SetGridDataSource(null);
+                placesCtrlConsumerPlaces.SetGridDataSource(_cust.Client.ClnBusinessPlace.Count != 0
+                    ? _cust.Client.ClnBusinessPlace
+                    : null);
 
                 //placesCtrlConsumerPlaces.RegionsPlacesCtrlDataSource = _dic.region;
                 //placesCtrlConsumerPlaces.RegionsPlacesCtrlDisplayMember = "name";
@@ -618,9 +637,12 @@ namespace ConsumerWorkplace_v_1._0
 
 
         Customer _cust = null;
+        LicenseAgrParam curLicAgreement = null;
         public void SetData(ICustomer data)
         {
             _cust = (Customer)data;
+            var licAgr = _cust.Client.LicenseAgreement.FirstOrDefault();
+            curLicAgreement = licAgr?.LicenseAgrParam.Where(item => item.LicVersion == licAgr.LicVersion).SingleOrDefault();
         }
 
         public void GetData(ICustomer data)
@@ -639,11 +661,8 @@ namespace ConsumerWorkplace_v_1._0
         /// </summary>
         public bool IsPlaceIn
         {
-            get { if (_cust == null || _cust.Client.ClnBusinessPlace.Count == 0)
-                    return false;
-                return true;
-            }
-            set{ }
+            get => _cust != null && _cust.Client.ClnBusinessPlace.Count != 0;
+            set {  }
         }
 
         public Func<IList<ConsumerMainView>> getMainViewData { get; set; }

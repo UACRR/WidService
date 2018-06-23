@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public PaymentKind()
         {
-            PaymentCase = new HashSet<PaymentCase>();
-            PaymentKindTr = new HashSet<PaymentKindTr>();
+            PaymentCase = new ObservableListSource<PaymentCase>();
+            PaymentKindTr = new ObservableListSource<PaymentKindTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<PaymentCase> PaymentCase { get; set; }
-        public ICollection<PaymentKindTr> PaymentKindTr { get; set; }
+        public ObservableListSource<PaymentCase> PaymentCase { get; set; }
+        public ObservableListSource<PaymentKindTr> PaymentKindTr { get; set; }
     }
 }
 

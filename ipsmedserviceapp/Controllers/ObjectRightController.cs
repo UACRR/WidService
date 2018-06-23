@@ -53,11 +53,32 @@ namespace ipsmedserviceapp.Controllers
         private void updateObjectRight(ObjectRight sors, ObjectRight dest)
         {
             dest.SetFields(sors);
+            if (sors.MediaTrack != null && dest.MediaTrack == null)
+            {
+                dest.MediaTrack = new MediaTrack();
+            }
             dest.MediaTrack.SetFields(sors.MediaTrack);
+            dest.MediaTrack.Duration = sors.MediaTrack.Duration;
             dest.MediaTrack.Name = sors.Name;
             _dbContext.UpdateList(sors.CopyRight, dest.CopyRight, i => { }, (l, r) => l.CRightId == r.CRightId);
             _dbContext.UpdateList(sors.Authors, dest.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
+            _dbContext.UpdateList(sors.SeekObject, dest.SeekObject, i => { }, (l, r) => l.Id == r.Id);
 
+            if (dest.CategoryCode == 5)
+            {
+                // update authors or lyrics, composers from Authors
+                var lyrics = dest.Authors.Where(a => a.RoleCode == 1).Select(a => a.AuthorName).ToList();
+                var composers = dest.Authors.Where(a => a.RoleCode == 2).Select(a => a.AuthorName).ToList();
+
+                dest.MediaTrack.Lyrics = string.Join(", ", lyrics);
+                dest.MediaTrack.Composers = string.Join(", ", composers);
+                dest.Author = string.Join(", ", dest.MediaTrack.Lyrics, dest.MediaTrack.Composers);
+
+                // update performers from SeekObject
+                var performers = dest.SeekObject.Where(so => so.CodeI == 2).Select(so => so.Name).ToList();
+                dest.Performer = string.Join(", ", performers);
+                dest.MediaTrack.Performers = dest.Performer;
+            }
         }
 
         /// <summary>
@@ -114,7 +135,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 case 5:
                     {
-                        addObject.MediaTrack = new MediaTrack();
+                        addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0,0,0) };
                     }
                     break;
             }

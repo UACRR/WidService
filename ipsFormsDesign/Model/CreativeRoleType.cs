@@ -8,12 +8,12 @@ namespace ipsFormsDesign.Model
     {
         public CreativeRoleType()
         {
-            Authors = new HashSet<Authors>();
-            CopyRight = new HashSet<CopyRight>();
-            CreativeRoleTypeTr = new HashSet<CreativeRoleTypeTr>();
-            LicAuthor = new HashSet<LicAuthor>();
-            RelEtRole = new HashSet<RelEtRole>();
-            RelGenreRole = new HashSet<RelGenreRole>();
+            Authors = new ObservableListSource<Authors>();
+            CopyRight = new ObservableListSource<CopyRight>();
+            CreativeRoleTypeTr = new ObservableListSource<CreativeRoleTypeTr>();
+            LicAuthor = new ObservableListSource<LicAuthor>();
+            RelEtRole = new ObservableListSource<RelEtRole>();
+            RelGenreRole = new ObservableListSource<RelGenreRole>();
         }
 
         public int CodeI { get; set; }
@@ -23,12 +23,13 @@ namespace ipsFormsDesign.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public CopyrightType CrtypeNavigation { get; set; }
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
-        public ICollection<LicAuthor> LicAuthor { get; set; }
-        public ICollection<RelEtRole> RelEtRole { get; set; }
-        public ICollection<RelGenreRole> RelGenreRole { get; set; }
+        public CreativeTranslate CreativeTranslate { get; set; }
+        public ObservableListSource<Authors> Authors { get; set; }
+        public ObservableListSource<CopyRight> CopyRight { get; set; }
+        public ObservableListSource<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
+        public ObservableListSource<LicAuthor> LicAuthor { get; set; }
+        public ObservableListSource<RelEtRole> RelEtRole { get; set; }
+        public ObservableListSource<RelGenreRole> RelGenreRole { get; set; }
     }
 }
 

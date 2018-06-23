@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public ReqCustomer()
         {
-            Request = new HashSet<Request>();
+            Request = new ObservableListSource<Request>();
         }
 
         public int ReqCustId { get; set; }
@@ -23,7 +23,7 @@ namespace ipsFormsDesign.Model
         public ActivityType ActivityCodeNavigation { get; set; }
         public Country CountryCodeNavigation { get; set; }
         public Customer Cust { get; set; }
-        public ICollection<Request> Request { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
     }
 }
 

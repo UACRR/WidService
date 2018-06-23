@@ -8,12 +8,12 @@ namespace ipsFormsDesign.Model
     {
         public CopyrightKind()
         {
-            AgrLicenseType = new HashSet<AgrLicenseType>();
-            CopyrightKindTr = new HashSet<CopyrightKindTr>();
-            Distribution = new HashSet<Distribution>();
-            RegisterCount = new HashSet<RegisterCount>();
-            RelLicCopyR = new HashSet<RelLicCopyR>();
-            TermsOfService = new HashSet<TermsOfService>();
+            AgrLicenseType = new ObservableListSource<AgrLicenseType>();
+            CopyrightKindTr = new ObservableListSource<CopyrightKindTr>();
+            Distribution = new ObservableListSource<Distribution>();
+            RegisterCount = new ObservableListSource<RegisterCount>();
+            RelLicCopyR = new ObservableListSource<RelLicCopyR>();
+            TermsOfService = new ObservableListSource<TermsOfService>();
         }
 
         public int CodeI { get; set; }
@@ -22,12 +22,12 @@ namespace ipsFormsDesign.Model
 
         public CrkindGroup CrGroupCodeNavigation { get; set; }
         public PortalSupportRights PortalSupportRights { get; set; }
-        public ICollection<AgrLicenseType> AgrLicenseType { get; set; }
-        public ICollection<CopyrightKindTr> CopyrightKindTr { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
-        public ICollection<RelLicCopyR> RelLicCopyR { get; set; }
-        public ICollection<TermsOfService> TermsOfService { get; set; }
+        public ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
+        public ObservableListSource<CopyrightKindTr> CopyrightKindTr { get; set; }
+        public ObservableListSource<Distribution> Distribution { get; set; }
+        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public ObservableListSource<RelLicCopyR> RelLicCopyR { get; set; }
+        public ObservableListSource<TermsOfService> TermsOfService { get; set; }
     }
 }
 

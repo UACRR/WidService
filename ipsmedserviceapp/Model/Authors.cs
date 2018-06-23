@@ -11,8 +11,10 @@ namespace ipsmedserviceapp.Model
         public int? CustId { get; set; }
         public string AuthorName { get; set; }
         public int? IsFolkOrUnknown { get; set; }
+        public int? FolkType { get; set; }
 
         public RightHolder Cust { get; set; }
+        public FolkType FolkTypeNavigation { get; set; }
         public ObjectRight Obj { get; set; }
         public CreativeRoleType RoleCodeNavigation { get; set; }
     }

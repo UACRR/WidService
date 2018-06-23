@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public ModifyTextType()
         {
-            ModifyTextTypeTr = new HashSet<ModifyTextTypeTr>();
-            RequestAdapt = new HashSet<RequestAdapt>();
+            ModifyTextTypeTr = new ObservableListSource<ModifyTextTypeTr>();
+            RequestAdapt = new ObservableListSource<RequestAdapt>();
         }
 
         public int CodeI { get; set; }
@@ -19,8 +19,8 @@ namespace ipsFormsDesign.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public KindComposition KindCompCodeNavigation { get; set; }
-        public ICollection<ModifyTextTypeTr> ModifyTextTypeTr { get; set; }
-        public ICollection<RequestAdapt> RequestAdapt { get; set; }
+        public ObservableListSource<ModifyTextTypeTr> ModifyTextTypeTr { get; set; }
+        public ObservableListSource<RequestAdapt> RequestAdapt { get; set; }
     }
 }
 

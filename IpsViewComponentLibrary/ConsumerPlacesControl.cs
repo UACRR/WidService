@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Interfaces;
 
 namespace ipsAnketaClient
 {
@@ -99,13 +100,13 @@ namespace ipsAnketaClient
             lblLocation.Text = string.Empty;
 
             premisesType = new IpsPremisesTypeControl();
-            premisesType.OnBtnAddPremisesClick += PremisesType_OnBtnAddPremisesClick; ;
-            premisesType.OnBtnDeletePremisesClick += PremisesType_OnBtnDeletePremisesClick; ;
-            premisesType.OnBtnEditPremisesClick += PremisesType_OnBtnEditPremisesClick; ;
+            premisesType.OnBtnAddPremisesClick += PremisesType_OnBtnAddPremisesClick; 
+            premisesType.OnBtnDeletePremisesClick += PremisesType_OnBtnDeletePremisesClick; 
+            premisesType.OnBtnEditPremisesClick += PremisesType_OnBtnEditPremisesClick; 
             premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            premisesType.Location = new Point(10, 155); ;
+            premisesType.Location = new Point(10, 155); 
             premisesType.Width = addressControl.Width;
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height + 235);//   + 240
+            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height + 230);//   + 240
 
             rPanelAdd.Controls.Add(premisesType);
         }
@@ -125,7 +126,7 @@ namespace ipsAnketaClient
             if (premisesType != null)
             {
                 rPanelAdd.Controls.Remove(premisesType);
-                rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height - 235);//   - 240
+                rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height - 230);//   - 240
                 rPanelAdd.Refresh();
                 premisesType.OnBtnAddPremisesClick -= PremisesType_OnBtnAddPremisesClick;
                 premisesType.OnBtnDeletePremisesClick -= PremisesType_OnBtnDeletePremisesClick;
@@ -143,8 +144,8 @@ namespace ipsAnketaClient
             isNewInst = false;
             newPlace = new List<ClnPlaceHoll>();
 
-            if(data.Client.ClnBusinessPlace.Count != 0)
-                SetGridDataSource(data.Client.ClnBusinessPlace);
+            if(data?.Client?.ClnBusinessPlace?.Count != 0)
+                SetGridDataSource(data?.Client?.ClnBusinessPlace);
         }
 
         public void ClearData()
@@ -329,10 +330,10 @@ namespace ipsAnketaClient
                     CodeI = 1,
                     Name = "Готель",
                     ClnBusinessPlace = null,
-                    TypePlaceTr = new List<TypePlaceTr> {
-                        new TypePlaceTr{ CodeI = 1, Name = "Hotel", Lang = "En" },
-                        new TypePlaceTr{ CodeI = 1, Name = "Гостиница", Lang = "Ru" },
-                        new TypePlaceTr{ CodeI = 1, Name = "Готель", Lang = "Uk" } }
+                    //TypePlaceTr = new List<TypePlaceTr> {
+                    //    new TypePlaceTr{ CodeI = 1, Name = "Hotel", Lang = "En" },
+                    //    new TypePlaceTr{ CodeI = 1, Name = "Гостиница", Lang = "Ru" },
+                    //    new TypePlaceTr{ CodeI = 1, Name = "Готель", Lang = "Uk" } }
                 };
             newPlace = new List<ClnPlaceHoll>();
             rTxtBoxTypeInst.Text = rBtnAddHotel.Text;
@@ -355,10 +356,10 @@ namespace ipsAnketaClient
                 CodeI = 2,
                 Name = "Ресторан",
                 ClnBusinessPlace = null,
-                TypePlaceTr = new List<TypePlaceTr> {
-                    new TypePlaceTr{ CodeI = 2, Name = "Restaurant", Lang = "En" },
-                    new TypePlaceTr{ CodeI = 2, Name = "Ресторан", Lang = "Ru" },
-                    new TypePlaceTr{ CodeI = 2, Name = "Ресторан", Lang = "Uk" } }
+                //TypePlaceTr = new List<TypePlaceTr> {
+                //    new TypePlaceTr{ CodeI = 2, Name = "Restaurant", Lang = "En" },
+                //    new TypePlaceTr{ CodeI = 2, Name = "Ресторан", Lang = "Ru" },
+                //    new TypePlaceTr{ CodeI = 2, Name = "Ресторан", Lang = "Uk" } }
             };
             newPlace = new List<ClnPlaceHoll>();
             rTxtBoxTypeInst.Text = rBtnAddRestaurant.Text;
@@ -381,10 +382,11 @@ namespace ipsAnketaClient
                 CodeI = 4,
                 Name = "Нічні клуби/Платний вхід",
                 ClnBusinessPlace = null,
-                TypePlaceTr = new List<TypePlaceTr> {
-                    new TypePlaceTr{ CodeI = 4, Name = "Night clubs/Paid entrance", Lang = "En" },
-                    new TypePlaceTr{ CodeI = 4, Name = "Ночные клубы/Платный вход", Lang = "Ru" },
-                    new TypePlaceTr{ CodeI = 4, Name = "Нічні клуби/Платний вхід", Lang = "Uk" } }
+                //    TypePlaceTr = new List<TypePlaceTr> {
+                //        new TypePlaceTr{ CodeI = 4, Name = "Night clubs/Paid entrance", Lang = "En" },
+                //        new TypePlaceTr{ CodeI = 4, Name = "Ночные клубы/Платный вход", Lang = "Ru" },
+                //        new TypePlaceTr{ CodeI = 4, Name = "Нічні клуби/Платний вхід", Lang = "Uk" } }
+                //
             };
             rTxtBoxTypeInst.Text = rBtnAddNightClub.Text;
             rPanelAdd.Visible = true;
@@ -406,10 +408,10 @@ namespace ipsAnketaClient
                 CodeI = 3,
                 Name = "Нічні клуби/Безкоштовний вхід",
                 ClnBusinessPlace = null,
-                TypePlaceTr = new List<TypePlaceTr> {
-                    new TypePlaceTr{ CodeI = 3, Name = "Night clubs/Free entrance", Lang = "En" },
-                    new TypePlaceTr{ CodeI = 3, Name = "Ночные клубы/Бесплатный вход", Lang = "Ru" },
-                    new TypePlaceTr{ CodeI = 3, Name = "Нічні клуби/Безкоштовний вхід", Lang = "Uk" } }
+                //TypePlaceTr = new List<TypePlaceTr> {
+                //    new TypePlaceTr{ CodeI = 3, Name = "Night clubs/Free entrance", Lang = "En" },
+                //    new TypePlaceTr{ CodeI = 3, Name = "Ночные клубы/Бесплатный вход", Lang = "Ru" },
+                //    new TypePlaceTr{ CodeI = 3, Name = "Нічні клуби/Безкоштовний вхід", Lang = "Uk" } }
             };
             rTxtBoxTypeInst.Text = rBtnAddNightClubFree.Text;
             rPanelAdd.Visible = true;
@@ -431,10 +433,10 @@ namespace ipsAnketaClient
                 CodeI = 5,
                 Name = "Кафе/Бар - Їдальня",
                 ClnBusinessPlace = null,
-                TypePlaceTr = new List<TypePlaceTr> {
-                    new TypePlaceTr{ CodeI = 5, Name = "Cafe / Bar / Bistro", Lang = "En" },
-                    new TypePlaceTr{ CodeI = 5, Name = "Кафе / Бар - Столовая", Lang = "Ru" },
-                    new TypePlaceTr{ CodeI = 5, Name = "Кафе / Бар - Їдальня", Lang = "Uk" } }
+                //TypePlaceTr = new List<TypePlaceTr> {
+                //    new TypePlaceTr{ CodeI = 5, Name = "Cafe / Bar / Bistro", Lang = "En" },
+                //    new TypePlaceTr{ CodeI = 5, Name = "Кафе / Бар - Столовая", Lang = "Ru" },
+                //    new TypePlaceTr{ CodeI = 5, Name = "Кафе / Бар - Їдальня", Lang = "Uk" } }
             };
             rTxtBoxTypeInst.Text = rBtnAddCaffeOrBar.Text;
             rPanelAdd.Visible = true;
@@ -456,10 +458,10 @@ namespace ipsAnketaClient
                 CodeI = 6,
                 Name = "Театр/Оперета",
                 ClnBusinessPlace = null,
-                TypePlaceTr = new List<TypePlaceTr> {
-                    new TypePlaceTr{ CodeI = 6, Name = "", Lang = "En" },
-                    new TypePlaceTr{ CodeI = 6, Name = "", Lang = "Ru" },
-                    new TypePlaceTr{ CodeI = 6, Name = "Театр/Оперета", Lang = "Uk" } }
+                //TypePlaceTr = new List<TypePlaceTr> {
+                //    new TypePlaceTr{ CodeI = 6, Name = "", Lang = "En" },
+                //    new TypePlaceTr{ CodeI = 6, Name = "", Lang = "Ru" },
+                //    new TypePlaceTr{ CodeI = 6, Name = "Театр/Оперета", Lang = "Uk" } }
             };
             rTxtBoxTypeInst.Text = rBtnAddTheaterOrOpera.Text;
             rPanelAdd.Visible = true;
@@ -547,14 +549,17 @@ namespace ipsAnketaClient
                     PlaceAddress = addressControl.StreetName,
                     FreeEntry = typePlace.CodeI != 4, // безкоштовний/платний вхід
                     PlCodeNavigation = typePlace, //тип закладу,
-                    ClnPlaceHoll = IsNeedPremissesType ? newPlace : new List<ClnPlaceHoll>
+                    ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>(IsNeedPremissesType ?
+                                    newPlace :
+                                    new List<ClnPlaceHoll>
                     {
                         new ClnPlaceHoll
                         {
                             HollNum = typePlace.CodeI == 3 ? null : new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)),
                             SqHoll = typePlace.CodeI == 3 ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null,
                         }
-                    } //приміщення: IsNeedPremissesType-treu якщо з приміщеннями
+                    }) 
+                //приміщення: IsNeedPremissesType-treu якщо з приміщеннями
                 };
 
                  data.Client.ClnBusinessPlace.Add(newInst);

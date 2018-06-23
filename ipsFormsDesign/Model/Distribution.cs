@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public Distribution()
         {
-            DistributionItem = new HashSet<DistributionItem>();
+            DistributionItem = new ObservableListSource<DistributionItem>();
         }
 
         public int DistId { get; set; }
@@ -33,7 +33,7 @@ namespace ipsFormsDesign.Model
         public Register Reg { get; set; }
         public BrRegister RegIdBrNavigation { get; set; }
         public DistribStatus StatusNavigation { get; set; }
-        public ICollection<DistributionItem> DistributionItem { get; set; }
+        public ObservableListSource<DistributionItem> DistributionItem { get; set; }
     }
 }
 

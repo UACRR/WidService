@@ -8,9 +8,9 @@ namespace ipsFormsDesign.Model
     {
         public KlR030()
         {
-            BankAccount = new HashSet<BankAccount>();
-            CurrencyCourse = new HashSet<CurrencyCourse>();
-            KlR030tr = new HashSet<KlR030tr>();
+            BankAccount = new ObservableListSource<BankAccount>();
+            CurrencyCourse = new ObservableListSource<CurrencyCourse>();
+            KlR030tr = new ObservableListSource<KlR030tr>();
         }
 
         public string R030 { get; set; }
@@ -24,9 +24,9 @@ namespace ipsFormsDesign.Model
 
         public Country CountryCodeNavigation { get; set; }
         public KlR031 R031Navigation { get; set; }
-        public ICollection<BankAccount> BankAccount { get; set; }
-        public ICollection<CurrencyCourse> CurrencyCourse { get; set; }
-        public ICollection<KlR030tr> KlR030tr { get; set; }
+        public ObservableListSource<BankAccount> BankAccount { get; set; }
+        public ObservableListSource<CurrencyCourse> CurrencyCourse { get; set; }
+        public ObservableListSource<KlR030tr> KlR030tr { get; set; }
     }
 }
 

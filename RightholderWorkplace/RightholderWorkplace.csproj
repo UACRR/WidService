@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="netstandard" />
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -90,6 +91,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
@@ -101,6 +103,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IMediaTrack.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IObjectRight.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRightHolder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ISeekObject.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ITerritoryExclude.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ObjectRightDictionaries.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightHolderMainView.datasource" />

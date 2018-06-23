@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public RegisterStatus()
         {
-            BrRegister = new HashSet<BrRegister>();
-            Register = new HashSet<Register>();
-            RegisterStatusTr = new HashSet<RegisterStatusTr>();
+            BrRegister = new ObservableListSource<BrRegister>();
+            Register = new ObservableListSource<Register>();
+            RegisterStatusTr = new ObservableListSource<RegisterStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<Register> Register { get; set; }
-        public ICollection<RegisterStatusTr> RegisterStatusTr { get; set; }
+        public ObservableListSource<BrRegister> BrRegister { get; set; }
+        public ObservableListSource<Register> Register { get; set; }
+        public ObservableListSource<RegisterStatusTr> RegisterStatusTr { get; set; }
     }
 }
 

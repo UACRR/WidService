@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public AccountStatus()
         {
-            Account = new HashSet<Account>();
-            AccountStatusTr = new HashSet<AccountStatusTr>();
+            Account = new ObservableListSource<Account>();
+            AccountStatusTr = new ObservableListSource<AccountStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Account> Account { get; set; }
-        public ICollection<AccountStatusTr> AccountStatusTr { get; set; }
+        public ObservableListSource<Account> Account { get; set; }
+        public ObservableListSource<AccountStatusTr> AccountStatusTr { get; set; }
     }
 }
 

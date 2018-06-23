@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public PaymentStatus()
         {
-            DocPreparePay = new HashSet<DocPreparePay>();
-            PayTurn = new HashSet<PayTurn>();
-            PaymentStatusTr = new HashSet<PaymentStatusTr>();
+            DocPreparePay = new ObservableListSource<DocPreparePay>();
+            PayTurn = new ObservableListSource<PayTurn>();
+            PaymentStatusTr = new ObservableListSource<PaymentStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<DocPreparePay> DocPreparePay { get; set; }
-        public ICollection<PayTurn> PayTurn { get; set; }
-        public ICollection<PaymentStatusTr> PaymentStatusTr { get; set; }
+        public ObservableListSource<DocPreparePay> DocPreparePay { get; set; }
+        public ObservableListSource<PayTurn> PayTurn { get; set; }
+        public ObservableListSource<PaymentStatusTr> PaymentStatusTr { get; set; }
     }
 }
 

@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public RequestSerial()
         {
-            RelGenreSerial = new HashSet<RelGenreSerial>();
-            RelSerialEpisode = new HashSet<RelSerialEpisode>();
+            RelGenreSerial = new ObservableListSource<RelGenreSerial>();
+            RelSerialEpisode = new ObservableListSource<RelSerialEpisode>();
         }
 
         public int ReqId { get; set; }
@@ -21,8 +21,8 @@ namespace ipsFormsDesign.Model
 
         public KindSerial KindSerialNavigation { get; set; }
         public Request Req { get; set; }
-        public ICollection<RelGenreSerial> RelGenreSerial { get; set; }
-        public ICollection<RelSerialEpisode> RelSerialEpisode { get; set; }
+        public ObservableListSource<RelGenreSerial> RelGenreSerial { get; set; }
+        public ObservableListSource<RelSerialEpisode> RelSerialEpisode { get; set; }
     }
 }
 

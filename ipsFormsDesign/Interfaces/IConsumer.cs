@@ -2,11 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 
 
 namespace ipsFormsDesign.Interfaces
 {
-
+    public interface IConsumerPresenter
+    {
+        Control view { get; }
+        void SetFilter(ConsumerFilterEnum what);
+    }
+    
     public interface IConsumerForm
     {
         event Func<bool> Save; 

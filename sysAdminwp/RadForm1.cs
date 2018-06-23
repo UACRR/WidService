@@ -262,13 +262,19 @@ namespace sysAdminwp
             radTBNameEn.Clear();
             radTBNameRu.Clear();
             radTBNameUa.Clear();
-            
+            radPanelChange.Enabled = true;
+
         }
 
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
+            var result = connector.DeleteItem(Url, radGridView1.CurrentRow.Cells["Code"].Value.ToString());
             
+            list = connector.GetList<DictBaseTypeI>(Url);
+            radGridView1.DataSource = GetData(list);
+            UpdateEditPanel();
+
         }
 
         //кнопка збереження
@@ -329,9 +335,11 @@ namespace sysAdminwp
                              UpdateEditPanel();
                              radPanelChange.Enabled = false;
                              radTxtBoxSearchData.Enabled = false;
-                             radBtnAdd.Enabled = false;
                              radBtnRemove.Enabled = false;
-                         }
+
+                             radBtnAdd.Enabled = true;
+                             return;
+                        }
                      }
                  }
 

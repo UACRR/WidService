@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public BrRegister()
         {
-            BrRegItem = new HashSet<BrRegItem>();
-            Distribution = new HashSet<Distribution>();
+            BrRegItem = new ObservableListSource<BrRegItem>();
+            Distribution = new ObservableListSource<Distribution>();
         }
 
         public int RegId { get; set; }
@@ -28,8 +28,8 @@ namespace ipsFormsDesign.Model
         public Register ReqIdSrNavigation { get; set; }
         public RegisterStatus StatusNavigation { get; set; }
         public AspNetUsers User { get; set; }
-        public ICollection<BrRegItem> BrRegItem { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
+        public ObservableListSource<BrRegItem> BrRegItem { get; set; }
+        public ObservableListSource<Distribution> Distribution { get; set; }
     }
 }
 

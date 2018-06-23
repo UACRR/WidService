@@ -8,13 +8,13 @@ namespace ipsFormsDesign.Model
     {
         public LegalBasis()
         {
-            LegalBasisTr = new HashSet<LegalBasisTr>();
+            LegalBasisTr = new ObservableListSource<LegalBasisTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<LegalBasisTr> LegalBasisTr { get; set; }
+        public ObservableListSource<LegalBasisTr> LegalBasisTr { get; set; }
     }
 }
 

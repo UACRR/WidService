@@ -8,9 +8,9 @@ namespace ipsFormsDesign.Model
     {
         public ClnBusinessPlace()
         {
-            ClnPlaceHoll = new HashSet<ClnPlaceHoll>();
-            LicPlace = new HashSet<LicPlace>();
-            License = new HashSet<License>();
+            ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>();
+            LicPlace = new ObservableListSource<LicPlace>();
+            License = new ObservableListSource<License>();
         }
 
         public int PlaceId { get; set; }
@@ -26,9 +26,9 @@ namespace ipsFormsDesign.Model
 
         public Client Cust { get; set; }
         public TypePlace PlCodeNavigation { get; set; }
-        public ICollection<ClnPlaceHoll> ClnPlaceHoll { get; set; }
-        public ICollection<LicPlace> LicPlace { get; set; }
-        public ICollection<License> License { get; set; }
+        public ObservableListSource<ClnPlaceHoll> ClnPlaceHoll { get; set; }
+        public ObservableListSource<LicPlace> LicPlace { get; set; }
+        public ObservableListSource<License> License { get; set; }
     }
 }
 

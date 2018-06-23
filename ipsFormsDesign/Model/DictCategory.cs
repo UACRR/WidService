@@ -8,13 +8,13 @@ namespace ipsFormsDesign.Model
     {
         public DictCategory()
         {
-            DicCategoryItems = new HashSet<DicCategoryItems>();
+            DicCategoryItems = new ObservableListSource<DicCategoryItems>();
         }
 
         public int Code { get; set; }
         public string Name { get; set; }
 
-        public ICollection<DicCategoryItems> DicCategoryItems { get; set; }
+        public ObservableListSource<DicCategoryItems> DicCategoryItems { get; set; }
     }
 }
 

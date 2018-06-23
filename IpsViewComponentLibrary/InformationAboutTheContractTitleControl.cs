@@ -238,8 +238,8 @@ namespace IpsViewComponentLibrary
         public void SetData(object objMain, object objSecond = null, object other = null)
         {
             Type t = objMain.GetType();
-            if (t.IsEnum || objMain.GetType().IsEnum)
-                ;
+            //if (t.IsEnum || objMain.GetType().IsEnum)
+            //    ;
         }
 
         /// <summary>

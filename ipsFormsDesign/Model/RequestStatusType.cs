@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public RequestStatusType()
         {
-            Request = new HashSet<Request>();
-            RequestStatusTypeTr = new HashSet<RequestStatusTypeTr>();
+            Request = new ObservableListSource<Request>();
+            RequestStatusTypeTr = new ObservableListSource<RequestStatusTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Request> Request { get; set; }
-        public ICollection<RequestStatusTypeTr> RequestStatusTypeTr { get; set; }
+        public ObservableListSource<Request> Request { get; set; }
+        public ObservableListSource<RequestStatusTypeTr> RequestStatusTypeTr { get; set; }
     }
 }
 

@@ -8,11 +8,11 @@ namespace ipsFormsDesign.Model
     {
         public Request()
         {
-            DocReq = new HashSet<DocReq>();
-            RelReqMedia = new HashSet<RelReqMedia>();
-            ReqAgreement = new HashSet<ReqAgreement>();
-            ReqLocationUse = new HashSet<ReqLocationUse>();
-            ReqTrade = new HashSet<ReqTrade>();
+            DocReq = new ObservableListSource<DocReq>();
+            RelReqMedia = new ObservableListSource<RelReqMedia>();
+            ReqAgreement = new ObservableListSource<ReqAgreement>();
+            ReqLocationUse = new ObservableListSource<ReqLocationUse>();
+            ReqTrade = new ObservableListSource<ReqTrade>();
         }
 
         public int ReqId { get; set; }
@@ -22,7 +22,6 @@ namespace ipsFormsDesign.Model
         public int? CountUse { get; set; }
         public DateTime? BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public double? DurationUse { get; set; }
         public int Reqstatus { get; set; }
         public int? CustId { get; set; }
         public string UserId { get; set; }
@@ -39,6 +38,7 @@ namespace ipsFormsDesign.Model
         public string R030 { get; set; }
         public decimal? ReqAmount { get; set; }
         public string WorkName { get; set; }
+        public TimeSpan? DurationUse { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
         public Customer Cust { get; set; }
@@ -59,11 +59,11 @@ namespace ipsFormsDesign.Model
         public RequestOther RequestOther { get; set; }
         public RequestSerial RequestSerial { get; set; }
         public RequestTvradio RequestTvradio { get; set; }
-        public ICollection<DocReq> DocReq { get; set; }
-        public ICollection<RelReqMedia> RelReqMedia { get; set; }
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
-        public ICollection<ReqLocationUse> ReqLocationUse { get; set; }
-        public ICollection<ReqTrade> ReqTrade { get; set; }
+        public ObservableListSource<DocReq> DocReq { get; set; }
+        public ObservableListSource<RelReqMedia> RelReqMedia { get; set; }
+        public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        public ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
+        public ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }
 

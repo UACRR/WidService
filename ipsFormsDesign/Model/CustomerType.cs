@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public CustomerType()
         {
-            Customer = new HashSet<Customer>();
-            CustomerTypeTr = new HashSet<CustomerTypeTr>();
+            Customer = new ObservableListSource<Customer>();
+            CustomerTypeTr = new ObservableListSource<CustomerTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Customer> Customer { get; set; }
-        public ICollection<CustomerTypeTr> CustomerTypeTr { get; set; }
+        public ObservableListSource<Customer> Customer { get; set; }
+        public ObservableListSource<CustomerTypeTr> CustomerTypeTr { get; set; }
     }
 }
 

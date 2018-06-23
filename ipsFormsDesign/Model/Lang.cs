@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public Lang()
         {
-            AnketaPerson = new HashSet<AnketaPerson>();
-            LangTr = new HashSet<LangTr>();
+            AnketaPerson = new ObservableListSource<AnketaPerson>();
+            LangTr = new ObservableListSource<LangTr>();
         }
 
         public string CodeS { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<LangTr> LangTr { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public ObservableListSource<LangTr> LangTr { get; set; }
     }
 }
 

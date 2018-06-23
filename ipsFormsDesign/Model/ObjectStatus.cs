@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public ObjectStatus()
         {
-            ObjectRight = new HashSet<ObjectRight>();
-            ObjectStatusTr = new HashSet<ObjectStatusTr>();
+            ObjectRight = new ObservableListSource<ObjectRight>();
+            ObjectStatusTr = new ObservableListSource<ObjectStatusTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<ObjectRight> ObjectRight { get; set; }
-        public ICollection<ObjectStatusTr> ObjectStatusTr { get; set; }
+        public ObservableListSource<ObjectRight> ObjectRight { get; set; }
+        public ObservableListSource<ObjectStatusTr> ObjectStatusTr { get; set; }
     }
 }
 

@@ -14,6 +14,9 @@ foreach( $fileName in $files )
     $designContent = [regex]::Replace($content, 'namespace ipsmedserviceapp.Model', 'namespace ipsFormsDesign.Model', [System.Text.RegularExpressions.RegexOptions]::Singleline );  
     $designContent = [regex]::Replace($designContent, 'public partial class (\w+)', 'public partial class $1 : I$1', [System.Text.RegularExpressions.RegexOptions]::Singleline );  
     $designContent = "using ipsFormsDesign.Interfaces;`n" + $designContent;
+    $designContent = [regex]::Replace($designContent, '^(\s+\w+\s+\=\snew )HashSet(<\w+>\(\);)\s', '$1ObservableListSource$2', [System.Text.RegularExpressions.RegexOptions]::Multiline );
+    $designContent = [regex]::Replace($designContent, '(\s+public) ICollection<(\w+)> (\w+ { get; set; })?(\s)', '$1 ObservableListSource<$2> $3$4', [System.Text.RegularExpressions.RegexOptions]::Singleline );
+    $designContent = [regex]::Replace($designContent, '^(\s+).JsonIgnore.\s', '', [System.Text.RegularExpressions.RegexOptions]::Singleline );
     $designContent | Set-Content $formDesignFile;
 
     $content = [regex]::Replace($content, 'namespace ipsmedserviceapp.Model', 'namespace ipsFormsDesign.Model', [System.Text.RegularExpressions.RegexOptions]::Singleline );  
@@ -22,16 +25,20 @@ foreach( $fileName in $files )
     $content = [regex]::Replace($content, '\s+public\s\w+\(\)\s+{\s+.+?}\s+','   ', [System.Text.RegularExpressions.RegexOptions]::Singleline );
     $content = [regex]::Replace($content, '(\n)\r.*}', '$1}', [System.Text.RegularExpressions.RegexOptions]::Singleline );
     $content = [regex]::Replace($content, '(\s+)public', '$1', [System.Text.RegularExpressions.RegexOptions]::Singleline );
+    
 
     $outBuffer=$outBuffer+$content;
     $i = $i + 1;
-    # if($i -ge 2 )
-    # {
-    #     break;
-    # }
+
 }
 
 $outBuffer=$outBuffer+"`n}`n";
 
 $formInterface = [string]::Concat($formDesignPath, "\", "Interfaces\EFInterfaces.cs");
 $outBuffer | Set-Content $formInterface;
+
+$setIgnore = Get-Location;
+$setIgnore = [System.IO.Path]::Combine( $setIgnore, "SetJsonIgnore.ps1" );
+# Split-Path $setIgnore; 
+
+ & $setIgnore;

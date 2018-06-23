@@ -13,13 +13,13 @@ namespace TestMVCStack
 {
     public partial class EditControl1 : UserControl
     {
-        public EditControl1(IPresenter presenter )
+        public EditControl1(IPresenterNested presenter )
         {
             this.presenter = presenter;
             InitializeComponent();
         }
 
-        public IPresenter presenter { get; }
+        public IPresenterNested presenter { get; }
 
         public void SetBindingSource(object Source)
         {

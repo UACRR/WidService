@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public ResidentType()
         {
-            AnketaPerson = new HashSet<AnketaPerson>();
-            ResidentTypeTr = new HashSet<ResidentTypeTr>();
+            AnketaPerson = new ObservableListSource<AnketaPerson>();
+            ResidentTypeTr = new ObservableListSource<ResidentTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<ResidentTypeTr> ResidentTypeTr { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public ObservableListSource<ResidentTypeTr> ResidentTypeTr { get; set; }
     }
 }
 

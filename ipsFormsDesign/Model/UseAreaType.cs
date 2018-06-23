@@ -8,8 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public UseAreaType()
         {
-            RelAdaptUseArea = new HashSet<RelAdaptUseArea>();
-            UseAreaTypeTr = new HashSet<UseAreaTypeTr>();
+            RelAdaptUseArea = new ObservableListSource<RelAdaptUseArea>();
+            UseAreaTypeTr = new ObservableListSource<UseAreaTypeTr>();
         }
 
         public int CodeI { get; set; }
@@ -19,8 +19,8 @@ namespace ipsFormsDesign.Model
 
         public Category CategoryCodeNavigation { get; set; }
         public RequestType ReqTypeNavigation { get; set; }
-        public ICollection<RelAdaptUseArea> RelAdaptUseArea { get; set; }
-        public ICollection<UseAreaTypeTr> UseAreaTypeTr { get; set; }
+        public ObservableListSource<RelAdaptUseArea> RelAdaptUseArea { get; set; }
+        public ObservableListSource<UseAreaTypeTr> UseAreaTypeTr { get; set; }
     }
 }
 
