@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -35,6 +36,15 @@ namespace IpsViewComponentLibrary
             get { return bindingSourceConsumer.DataMember; }
             set { bindingSourceConsumer.DataMember = value; }
         }
+
+        #region // public attribute gor integration to UnitTest
+#if DEBUG
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public RadGridView gvUserMoney { get { return gvUserMoneys; } }
+#endif
+
+        #endregion
 
         private AnketaDictionaties _dict;
         private Customer _data;
@@ -111,26 +121,6 @@ namespace IpsViewComponentLibrary
         // Джерело для [ліцензійних договорів]
         private void SetDataSourceLicenseAgr()
         {
-            //List<GridLicAgr> source = new List<GridLicAgr>();
-            //foreach (var item in _data.Client.LicenseAgreement)
-            //{
-            //    var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
-            //    source.Add(new GridLicAgr
-            //    {
-            //        Id = item?.AgrId ?? default(int),
-            //        LicenseId = item?.LicId ?? default(int),
-            //        License = _dict?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
-            //        Series = string.Empty,
-            //        AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
-            //        DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
-            //        DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
-            //        Amount = licenseParam?.MinAmount ?? default(decimal),
-            //        State = _dict?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
-            //        PeriodPayment = _dict?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
-            //        Debt = ""
-            //    });
-            //}
-            //gvLicenseAgr.DataSource = source;
         }
 
         public object DataSourceReturn

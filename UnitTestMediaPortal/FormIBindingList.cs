@@ -12,6 +12,8 @@ namespace UnitTestMediaPortal
 {
     public partial class FormIBindingList : Form
     {
+        // public 
+
         public FormIBindingList()
         {
             InitializeComponent();
@@ -22,5 +24,6 @@ namespace UnitTestMediaPortal
             get { return calculationInfoNewControl1.DataSource; }
             set { calculationInfoNewControl1.DataSource = value; }
         }
+
     }
 }

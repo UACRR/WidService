@@ -534,11 +534,7 @@ namespace ConsumerWorkplace_v_1._0
 
                 licenseAgrParamBindingSource.DataSource = licenseParam;
                 licenseTypeCtrlContractConsumerMain.DataSource = licenseParam;
-                // licenseTypeCtrlContractConsumerMain.DateDataSource = licenseParam;
-                //licenseTypeCtrlContractConsumerMain.ContrNumber = "LicNum";
-                //licenseTypeCtrlContractConsumerMain.AgrDateDataMember = "LicDate";
-                //licenseTypeCtrlContractConsumerMain.BeginDateDataMember = "DateBegin";
-                //licenseTypeCtrlContractConsumerMain.EndDateDataMember = "DateEnd";
+
 
                 licenseTypeCtrlContractConsumerDetail.DataSourceBinding = licenseParam;
                 licenseTypeCtrlContractConsumerDetail.PeriodPaymentDataSource = _dic.period;
