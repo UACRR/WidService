@@ -511,6 +511,8 @@ namespace RightholderWorkplace
             relation.ParentColumnNames.Add("ObjId");
             relation.ChildColumnNames.Add("ObjId");
             gvChangeCopyrights.Relations.Add(relation);
+
+            dtChangeCopyrightDateFrom.Value = DateTime.Now;
         }
 
         #region Objectrights page
@@ -978,7 +980,7 @@ namespace RightholderWorkplace
                     var newObjectCopyright = new ObjectCopyright
                     {
                         ObjId = or.ObjId,
-                        CustId = or.CustId,
+                        CustId = addedRightholder.CustId,
                         //RoleCode = or.RoleCode, ???
                         InnerCode = addedRightholder.InnerCode,
                         InterCode = addedRightholder.InterCode,
@@ -1040,6 +1042,68 @@ namespace RightholderWorkplace
                 {
                     e.Cancel = true;
                 }
+            }
+        }
+
+        private void btnSaveNewCopyrights_Click(object sender, EventArgs e)
+        {
+            var rightholders = new List<RightHolder>();
+
+            // old rightholder
+            var oldRightholder = new RightHolder
+            {
+                CustId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId,
+                Cust = new Customer { Status = 9 },
+                CopyRight = new ObservableListSource<CopyRight>(),
+            };
+            
+            // old rightholder closed copyrighs
+            foreach (var row in gvChangeCopyrights.Rows)
+            {
+                var obj = row.DataBoundItem as ObjectRightForRightholder;
+
+                oldRightholder.CopyRight.Add(new CopyRight {
+                    ObjId = obj.ObjId,
+                    EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1),
+                });
+            }
+            rightholders.Add(oldRightholder);
+
+
+            // new copyrighs
+            var groupedCopyright = _objectsCopyrightList.GroupBy(oc => oc.CustId);
+
+            foreach (var rightholderGroup in groupedCopyright)
+            {
+                var newRightholder = new RightHolder
+                {
+                    CustId = rightholderGroup.Key,
+                    Cust = new Customer { Status = 9 },
+                    CopyRight = new ObservableListSource<CopyRight>(),
+                    Authors = new ObservableListSource<Authors>(),
+                };
+
+                foreach (var copyright in rightholderGroup)
+                {
+                    newRightholder.Authors.Add(new Authors
+                    {
+                        CustId = newRightholder.CustId,
+                        ObjId = copyright.ObjId,
+                        FolkType = 1,
+                        RoleCode = 8, // Правовласник
+                        AuthorName = copyright.Name,
+                    });
+                    newRightholder.CopyRight.Add(new CopyRight
+                    {
+                        CustId = newRightholder.CustId,
+                        ObjId = copyright.ObjId,
+                        RoleCode = 8, // Правовласник
+                        Rate = (decimal)copyright.Rate, // decimal or double?
+                        BeginDate = dtChangeCopyrightDateFrom.Value,
+                        EndDate = new DateTime(3000,1,1),
+                    });
+                }
+                rightholders.Add(newRightholder);
             }
         }
 
