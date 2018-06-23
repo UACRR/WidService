@@ -16,6 +16,8 @@ namespace TestWord_1
     {
         //      private RightholderService service = new RightholderService();
         private ConsumerService service = new ConsumerService();
+        private RightholderService service1 = new RightholderService();      
+
         private WordEngine wordApp = null;
 
         public RadForm1()
@@ -25,23 +27,96 @@ namespace TestWord_1
 
         protected override void OnLoad(EventArgs e) {
 
+            string Filename = string.Empty;
+
+            Filename = "F_7_Г готелі.docx";
+            //            Filename = "F_4_ТЦ магазини.docx";
+            //            Filename = "F_1_БВ-НК-бари-дискотеки_.docx";
+            //            Filename = "F_3_МБВ.docx";
+            //            Filename = "F_6_МТЦ.docx";
+            //            Filename = "F_Акт_публічне виконання.docx";  
+            Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+            Filename = "F_Акт_публічне сповіщення TV+радио.docx";
+//            Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
             base.OnLoad(e);
-            string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "F_7_Г готелі.docx");
-
-            ProcessWord(template);
+            string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
 
 
+            ProcessWord(template, Filename);
 
         }
 
-        private void ProcessWord(string template)
+        private void ProcessWord(string template, string Filename)
         {
-            Customer cust = service.GetData(135);
-            wordApp = new WordEngine(service.GetDictionary());
+            
+            
+            //         Customer cust = service.GetData(134);
+            Customer cust;
 
-//            wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
-            wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
+            
+
+            switch (Filename)
+            {
+                case "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx":
+                    cust = service1.GetData(131);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
+                break;
+
+                case "F_Акт_публічне виконання.docx":
+                    cust = service.GetData(134);                    
+                    LicenseAgreement licAgr = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
+                    PaidPeriod Period1 = licAgr.PaidPeriod.FirstOrDefault();
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processAction(template, cust, licAgr, Period1);
+                break;
+                case "F_Акт_публічне сповіщення TV+радио.docx":
+                    cust = service.GetData(134);
+                    LicenseAgreement licAgr1 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
+                    PaidPeriod Period2 = licAgr1.PaidPeriod.FirstOrDefault();
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processAction(template, cust, licAgr1, Period2);
+                    break;
+                case "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx":
+                    cust = service.GetData(134);                  
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
+                    break;
+                case "F_7_Г готелі.docx":
+                    cust = service.GetData(134);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
+                    break;
+                case "F_4_ТЦ магазини.docx":
+                    cust = service.GetData(134);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
+                    break;
+                case "F_1_БВ-НК-бари-дискотеки_.docx":
+                    cust = service.GetData(134);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
+                    break;
+                case "F_3_МБВ.docx":
+                    cust = service.GetData(134);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
+                    break;
+                case "F_6_МТЦ.docx":
+                    cust = service.GetData(134);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
+                    break;
+  
+
+                default:
+                    cust = service.GetData(134);                   
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
+                break;
+            }
             radPdfViewer1.LoadDocument(wordApp.Pdf);
+
         }
 
         private void radButton1_Click(object sender, EventArgs e)
