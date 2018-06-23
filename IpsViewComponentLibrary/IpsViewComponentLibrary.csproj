@@ -574,6 +574,8 @@
   <ItemGroup>
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
     <None Include="Resources\createAct.ico" />
   </ItemGroup>
   <ItemGroup>

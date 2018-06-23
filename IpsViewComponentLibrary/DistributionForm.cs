@@ -11,6 +11,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
+//    [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class DistributionForm : Telerik.WinControls.UI.RadForm
     {
         private Customer _cust;
@@ -20,14 +21,16 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public DistributionForm(object undistrinbMoney, object licenseAgr, object source, Customer cust)
+
+        public DistributionForm(object undistrinbMoney, object licenseAgr, object periodsList, Customer cust)
         {
-            var undistribMoneyReceived = undistrinbMoney as MoneyReceived;
-            var licenseAgreementParams = licenseAgr as LicenseAgrParam;
-            _cust = cust;
-            _distribMoneyDataSource = source;
             InitializeComponent();
 
+            bindingSource.DataSource = undistrinbMoney;
+            bindingSourceAgreement.DataSource = licenseAgr;
+            _cust = cust;
+            var source = periodsList as List<GridPeriods>;
+            gvDistributionPayment.DataSource = source;
             SetDataSources();
         }
 
@@ -40,7 +43,7 @@ namespace IpsViewComponentLibrary
         //розподілити кошти по періодах
         private void DistributionMoneys()
         {
-            gvDistributionPayment.DataSource = _distribMoneyDataSource;
+            
         }
 
         private void btnCreateNewPeriod_Click(object sender, EventArgs e)
@@ -51,6 +54,11 @@ namespace IpsViewComponentLibrary
         private void btnSaveDistrib_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
