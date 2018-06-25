@@ -513,6 +513,9 @@ namespace RightholderWorkplace
             gvChangeCopyrights.Relations.Add(relation);
 
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
+            dtChangeCopyrightDateTill.Value = DateTime.Now;
+
+            ctrlChangeRightholderOperation.SelectedValue = 4;
         }
 
         #region Objectrights page
@@ -959,6 +962,17 @@ namespace RightholderWorkplace
             objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
             _objectsCopyrightList.Clear();
             objectCopyrightBindingSource.DataSource = _objectsCopyrightList;
+        }
+
+        private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == 5;
+            var isDeath = ctrlChangeRightholderOperation.SelectedValue == 3;
+
+            lblChangeCopyrightDateTill.Visible = isTransfer;
+            dtChangeCopyrightDateTill.Visible = isTransfer;
+
+            btnBlockRightholder.Visible = isDeath;
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
