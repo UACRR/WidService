@@ -618,6 +618,8 @@ namespace RightholderWorkplace
             if (category == 0)
                 return;
 
+            _previousPage = objectsPageView.SelectedPage;
+
             _objectRight = _objectRightService.NewObjectRight(category);
 
             SetAvalaibleGenres(category);
