@@ -53,6 +53,11 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
+        public Customer ReturnCustomer()
+        {
+            return _cust;
+        }
+
 
         /// <summary>
         /// Перехід на сторінку ДОДАВАННЯ Споживача

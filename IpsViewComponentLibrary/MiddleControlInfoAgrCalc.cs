@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private AnketaDictionaties _dictionaties;
+        private int _idItem;
 
         public MiddleControlInfoAgrCalc()
         {
@@ -56,8 +57,7 @@ namespace IpsViewComponentLibrary
                     source.Add(new GridLicenseAgrView
                     {
                         Id = item?.AgrId ?? default(int),
-                        License =
-                            _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
+                        License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
                         Series = string.Empty,
                         AgrNumber = licenseParam?.LicNum ?? string.Empty,
                         DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
@@ -109,9 +109,10 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetAgrInfoData(int idItem = 0)
         {
+            _idItem = idItem;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
-
+            
             agreementInfoCtrl.NumberAgr = licenseParam?.LicNum;
             agreementInfoCtrl.Agent = "";
             agreementInfoCtrl.DateAgr = licenseParam?.LicDate?.ToString("dd.MM.yyyy");
@@ -161,6 +162,34 @@ namespace IpsViewComponentLibrary
         {
             if(pvMain.SelectedPage == pvReports)
                 reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
+        }
+
+        private void btnProlongation_Click(object sender, EventArgs e)
+        {
+            //TODO: дані для databinding упростити
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+            var anketaCompany = _customer?.Company?.AnketaCompany?.SingleOrDefault();
+            var licenseName = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name;
+
+            if (GetTypeAgrForm())
+            {
+                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, _dictionaties, anketaCompany, licenseName)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+                prolongation.ShowDialog();
+            }
+            else
+            {
+                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces();
+            }
+        }
+
+        //TODO: дописати метод що вертає тип споживача (з або без майданчиків)
+        private bool GetTypeAgrForm()
+        {
+            return true;
         }
     }
 

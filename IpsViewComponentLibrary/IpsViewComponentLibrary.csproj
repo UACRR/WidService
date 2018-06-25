@@ -311,6 +311,12 @@
     <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiddleControlAgreementProlVsPlacesType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAgreementProlVsPlacesType.Designer.cs">
+      <DependentUpon>MiddleControlAgreementProlVsPlacesType.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiddleControlBankRequisites.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -352,6 +358,18 @@
     </Compile>
     <Compile Include="PassportInternationalControl.Designer.cs">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProlongationWithoutPlaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProlongationWithoutPlaces.Designer.cs">
+      <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProlongationWithPlaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProlongationWithPlaces.Designer.cs">
+      <DependentUpon>ProlongationWithPlaces.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IpsServiceComissionControl.cs">
@@ -522,6 +540,9 @@
     <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAgreementProlVsPlacesType.resx">
+      <DependentUpon>MiddleControlAgreementProlVsPlacesType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlBankRequisites.resx">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </EmbeddedResource>
@@ -542,6 +563,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PassportInternationalControl.resx">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProlongationWithoutPlaces.resx">
+      <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProlongationWithPlaces.resx">
+      <DependentUpon>ProlongationWithPlaces.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="IpsServiceComissionControl.resx">
@@ -581,8 +608,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />

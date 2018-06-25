@@ -266,6 +266,8 @@ namespace IpsViewComponentLibrary
             txtNotation.Text = string.Empty;
         }
 
+
+
         /*  - - - НАЗВИ ПОЛІВ
          *
          *NumberAgr = "";
