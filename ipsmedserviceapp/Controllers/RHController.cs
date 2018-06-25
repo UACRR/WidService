@@ -399,7 +399,7 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             try
             {
                 var filterStr = string.Concat( wildcard, "%");
-                var listAuthors = await _dbContext.Authors.FromSql("select * from Authors where authorName like @filter", new SqlParameter("@filter", filterStr )).AsNoTracking().ToArrayAsync();
+                var listAuthors = await _dbContext.getViewData("select distinct authorName from Authors where authorName like @filter", new[] { new SqlParameter("@filter", filterStr) });
                 return Json(listAuthors);
             }
             catch(Exception ex)
