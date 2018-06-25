@@ -36,6 +36,7 @@ namespace RightholderWorkplace
         List<TermsOfServiceWrapper> _termsOfServices;
         RightHolder _rightHolder;
 
+        RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
 
         #region IRightholderForm immplementation
@@ -515,7 +516,7 @@ namespace RightholderWorkplace
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
             dtChangeCopyrightDateTill.Value = DateTime.Now;
 
-            ctrlChangeRightholderOperation.SelectedValue = 4;
+            ctrlChangeRightholderOperation.SelectedValue = 3;
         }
 
         #region Objectrights page
@@ -1069,7 +1070,6 @@ namespace RightholderWorkplace
             var oldRightholder = new RightHolder
             {
                 CustId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId,
-                Cust = new Customer { Status = 9 },
                 CopyRight = new ObservableListSource<CopyRight>(),
             };
             
@@ -1096,12 +1096,22 @@ namespace RightholderWorkplace
                     CustId = rightholderGroup.Key,
                     Cust = new Customer { Status = 9 },
                     CopyRight = new ObservableListSource<CopyRight>(),
-                    Authors = new ObservableListSource<Authors>(),
                 };
 
                 foreach (var copyright in rightholderGroup)
                 {
-                    newRightholder.Authors.Add(new Authors
+                    var newCprt = new CopyRight
+                    {
+                        CustId = newRightholder.CustId,
+                        ObjId = copyright.ObjId,
+                        RoleCode = 8, // Правовласник
+                        Rate = (decimal)copyright.Rate, // decimal or double?
+                        BeginDate = dtChangeCopyrightDateFrom.Value,
+                        EndDate = new DateTime(3000, 1, 1),
+                        //ParentId = 
+                        Obj = new ObjectRight()
+                    };
+                    newCprt.Obj.Authors.Add(new Authors
                     {
                         CustId = newRightholder.CustId,
                         ObjId = copyright.ObjId,
@@ -1109,18 +1119,15 @@ namespace RightholderWorkplace
                         RoleCode = 8, // Правовласник
                         AuthorName = copyright.Name,
                     });
-                    newRightholder.CopyRight.Add(new CopyRight
-                    {
-                        CustId = newRightholder.CustId,
-                        ObjId = copyright.ObjId,
-                        RoleCode = 8, // Правовласник
-                        Rate = (decimal)copyright.Rate, // decimal or double?
-                        BeginDate = dtChangeCopyrightDateFrom.Value,
-                        EndDate = new DateTime(3000,1,1),
-                    });
+                    newRightholder.CopyRight.Add(newCprt);
+                    
+
+                    //newRightholder.Obj.Authors.
                 }
                 rightholders.Add(newRightholder);
             }
+
+            var result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
         }
 
         #endregion

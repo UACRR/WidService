@@ -32,15 +32,20 @@ namespace ipsmedserviceapp.Controllers
         {
             var objectRight = await _dbContext.ObjectRight.Where(rec => rec.ObjId == objid)
                 .Include(rec => rec.Authors)
-                .Include(rec => rec.CopyRight)
+                //.Include(rec => rec.CopyRight)
                 .Include(rec => rec.SeekObject)
                 .Include(rec => rec.MediaTrack)
                 .SingleOrDefaultAsync();
 
-            foreach( var right in objectRight.CopyRight )
-            {
-                await _dbContext.Entry(right).Reference(item => item.Cust).LoadAsync();
-            }
+            await _dbContext.Entry(objectRight).Collection(item => item.CopyRight)
+                .Query()
+                .Where(rec => rec.BeginDate <= DateTime.Today && DateTime.Today <= rec.EndDate)
+                .Include(rec => rec.Cust).LoadAsync();
+
+            //foreach ( var right in objectRight.CopyRight )
+            //{
+            //    await _dbContext.Entry(right).Reference(item => item.Cust).LoadAsync();
+            //}
 
             return objectRight;
         }
