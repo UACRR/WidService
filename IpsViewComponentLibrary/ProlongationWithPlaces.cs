@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
@@ -14,22 +13,38 @@ namespace IpsViewComponentLibrary
 {
     public partial class ProlongationWithPlaces : Telerik.WinControls.UI.RadForm
     {
+        private bool _changesSaved = false;
+        private LicenseAgreement _lic;
+        private LicenseAgrParam _licAgr;
         public ProlongationWithPlaces()
         {
             InitializeComponent();
         }
-        //TODO: переробити databinding LicenseAgrParam
-        public ProlongationWithPlaces(LicenseAgrParam bindAgr, AnketaDictionaties dict, AnketaCompany bindAnketaCompany, string license)
+
+        public ProlongationWithPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict,  string license, LicenseAgreement lic, ObservableListSource<ClnBusinessPlace> places)
         {
-            InitializeComponent();
+            _lic = lic;
+            _licAgr = bindAgr;
+            InitializeComponent(); // * * * 
+            this.FormClosing += ProlongationWithPlaces_FormClosing;
+            ctrlProlongation.DataSourceGrid = places;
+
             ctrlProlongation.Dictionaties = dict;// словник
 
-            ctrlProlongation.DataSourceAgreement = bindAgr; 
+            ctrlProlongation.DataSourceAgreement = bindAgr;
             ctrlProlongation.DataSourceAnketaCompany = bindAnketaCompany;
 
             ctrlProlongation.LicenseName = license; // лбл ліцензії
             ctrlProlongation.LicenseAgrParam = bindAgr;
+        }
+
+        private void ProlongationWithPlaces_FormClosing(object sender, FormClosingEventArgs e)
+        {
             
+            if(_changesSaved)
+                return;
+
+            _lic.LicenseAgrParam.Remove(_licAgr);
         }
     }
 }

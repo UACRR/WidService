@@ -28,34 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlProlongation = new IpsViewComponentLibrary.MiddleControlAgreementProlVsPlacesType();
+            this.ctrlProlongation = new IpsViewComponentLibrary.MiddleControlAgreementProlPlacesType();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlProlongation
             // 
-            this.ctrlProlongation.DataSourceAgreement = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlProlongation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlProlongation.Location = new System.Drawing.Point(0, 0);
-            this.ctrlProlongation.MinimumSize = new System.Drawing.Size(502, 276);
+            this.ctrlProlongation.MinimumSize = new System.Drawing.Size(690, 390);
             this.ctrlProlongation.Name = "ctrlProlongation";
-            this.ctrlProlongation.Size = new System.Drawing.Size(650, 299);
+            this.ctrlProlongation.Size = new System.Drawing.Size(871, 515);
             this.ctrlProlongation.TabIndex = 0;
             // 
-            // ProlongationWithPlaces
+            // ProlongationWithoutPlaces
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 299);
+            this.ClientSize = new System.Drawing.Size(871, 515);
             this.Controls.Add(this.ctrlProlongation);
-            this.MaximumSize = new System.Drawing.Size(929, 331);
-            this.MinimumSize = new System.Drawing.Size(645, 331);
-            this.Name = "ProlongationWithPlaces";
+            this.Name = "ProlongationWithoutPlaces";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.RootElement.MaxSize = new System.Drawing.Size(929, 331);
             this.Text = "Пролонгація договору";
             this.ThemeName = "Office2007Silver";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -65,6 +61,6 @@
 
         #endregion
 
-        private MiddleControlAgreementProlVsPlacesType ctrlProlongation;
+        private MiddleControlAgreementProlPlacesType ctrlProlongation;
     }
 }

@@ -705,7 +705,7 @@ namespace ipsFormsDesign.Services
         }
 
 
-private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;

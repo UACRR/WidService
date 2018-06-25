@@ -30,7 +30,7 @@ namespace ipsFormsDesign.Services
 
         public IList<ConsumerMainView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All )
         {
-            string url = $"consumer/listSR/{what}";
+            string url = $"consumer/listSR/{(int)what}";
             var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
         }

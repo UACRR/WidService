@@ -12,7 +12,7 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class MiddleControlAgreementProlVsPlacesType : UserControl
+    public partial class MiddleControlAgreementProlType : UserControl
     {
         public delegate void SaveChange();
         public event SaveChange OnSaveChangesClick;
@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary
         public delegate void Print();
         public event Print OnPrintClick;
 
-        public MiddleControlAgreementProlVsPlacesType()
+        public MiddleControlAgreementProlType()
         {
             InitializeComponent();
         }
