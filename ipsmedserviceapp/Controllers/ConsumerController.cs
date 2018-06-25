@@ -498,14 +498,61 @@ namespace ipsmedserviceapp.Controllers
 
         }
 
+        public enum ConsumerFilterEnum : int
+        {
+            /// <summary>
+            /// Не визначено
+            /// </summary>
+            None = 0,
+            /// <summary>
+            /// Всі
+            /// </summary>
+            All = 1,
+            /// <summary>
+            /// Діючі
+            /// </summary>
+            Working = 2,
+            /// <summary>
+            /// Для акцепту
+            /// </summary>
+            NotAccepted = 3,
+            /// <summary>
+            /// Для пролонгації
+            /// </summary>
+            ForProlongation = 4,
+            /// <summary>
+            /// Для розподілу
+            /// </summary>
+            ForDistribution = 5
+        }
+
         /// <summary>
         /// Отримати список Споживачів малих прав
         /// </summary>
         /// <returns></returns>
         [HttpGet("listSR/{wtat}")]
-        public async Task<IActionResult> GetListSR( int what )
+        public async Task<IActionResult> GetListSR(ConsumerFilterEnum what )
         {
-            var List = await _dbContext.getViewData("select * from vTsk_1_ListConsumer01", null);
+            string queue = "select * from vTsk_1_ListConsumer01";
+            switch( what )
+            {
+                case ConsumerFilterEnum.All:
+                case ConsumerFilterEnum.None:
+                    break;
+                case ConsumerFilterEnum.Working:
+                    queue = string.Concat(queue, " ", "cntActive > 0");
+                    break;
+                case ConsumerFilterEnum.NotAccepted:
+                    queue = string.Concat(queue, " ", "cntOnAccepting > 0");
+                    break;
+                case ConsumerFilterEnum.ForProlongation:
+                    queue = string.Concat(queue, " ", "cntExtraAgr > 0");
+                    break;
+                case ConsumerFilterEnum.ForDistribution:
+                    queue = string.Concat(queue, " ", "undistribamount > 0");
+                    break;
+            }
+            var List = await _dbContext.getViewData( queue, null);
             return Json(List);
         }
 
