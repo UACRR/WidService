@@ -62,6 +62,13 @@ namespace ipsFormsDesign.Services
         {
             return _webApi.ApiAction<RightHolder>("rh/inheritance", rhId, inheritData);
         }
+
+        public IList<Authors> getAuthorsByFilter( string filterString )
+        {
+            var url = string.Concat("rh/filters/authors/", filterString);
+            var listOfAuthors = _webApi.GetList<Authors>(url);
+            return listOfAuthors;
+        }
 #if DEBUG
         public class DebugInheritData
         {

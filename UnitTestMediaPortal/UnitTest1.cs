@@ -93,6 +93,13 @@ namespace UnitTestMediaPortal
             Assert.AreEqual(checData.listCopyRight.Count, inheritData.Count);
         }
 
+        [TestMethod]  
+        public void testAuthorsFilteredList()
+        {
+            var rhService = new RightholderService();
+            var testList = rhService.getAuthorsByFilter("П");
+            Assert.IsNotNull(testList);
+        }
 
     }
 }
