@@ -69,7 +69,6 @@ namespace ConsumerWorkplace_v_1._0
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.licenseTypeCtrlContractConsumerDetail = new IpsViewComponentLibrary.ContractConsumerDetailControl();
             this.licenseTypeCtrlContractConsumerMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            this.licenseAgrParamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvConsumerAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.addressLetter1 = new IpsViewComponentLibrary.AddressLetter();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
@@ -134,6 +133,7 @@ namespace ConsumerWorkplace_v_1._0
             this.mainViewSwitcher1 = new IpsViewComponentLibrary.MainViewSwitcher();
             this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
             this.radPageViewPage7 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.licenseAgrParamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
@@ -178,7 +178,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).BeginInit();
             this.pvConsumerAnketa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlRegion)).BeginInit();
@@ -261,6 +260,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.consumerMainViewBindingSource)).BeginInit();
             this.pageSmallRights.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).BeginInit();
             this.pageViewOwner.SuspendLayout();
@@ -302,7 +302,6 @@ namespace ConsumerWorkplace_v_1._0
             // pageBigRights
             // 
             this.pageBigRights.Controls.Add(this.rPageViewSmallRights);
-            this.pageBigRights.Enabled = false;
             this.pageBigRights.ItemSize = new System.Drawing.SizeF(85F, 26F);
             this.pageBigRights.Location = new System.Drawing.Point(10, 31);
             this.pageBigRights.Name = "pageBigRights";
@@ -708,21 +707,13 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // licenseTypeCtrlContractConsumerMain
             // 
-            //this.licenseTypeCtrlContractConsumerMain.AgrDateDataMember = null;
-            //this.licenseTypeCtrlContractConsumerMain.BeginDateDataMember = null;
-            //this.licenseTypeCtrlContractConsumerMain.ContrNumber = null;
-            //this.licenseTypeCtrlContractConsumerMain.DataSource = null;
-            //this.licenseTypeCtrlContractConsumerMain.EndDateDataMember = null;
+            this.licenseTypeCtrlContractConsumerMain.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.licenseTypeCtrlContractConsumerMain.Location = new System.Drawing.Point(3, 73);
             this.licenseTypeCtrlContractConsumerMain.Margin = new System.Windows.Forms.Padding(4);
             this.licenseTypeCtrlContractConsumerMain.MaximumSize = new System.Drawing.Size(636, 60);
             this.licenseTypeCtrlContractConsumerMain.Name = "licenseTypeCtrlContractConsumerMain";
             this.licenseTypeCtrlContractConsumerMain.Size = new System.Drawing.Size(536, 60);
             this.licenseTypeCtrlContractConsumerMain.TabIndex = 1;
-            // 
-            // licenseAgrParamBindingSource
-            // 
-            this.licenseAgrParamBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // pvConsumerAnketa
             // 
@@ -1948,6 +1939,10 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage7.Size = new System.Drawing.Size(1257, 652);
             this.radPageViewPage7.Text = "Фіксація правопорушень";
             // 
+            // licenseAgrParamBindingSource
+            // 
+            this.licenseAgrParamBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            // 
             // pageViewOwner
             // 
             this.pageViewOwner.Controls.Add(this.radPageViewPage1);
@@ -2081,7 +2076,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.rbtnNextAnketa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTabLicenseTypeClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).EndInit();
             this.pvConsumerAnketa.ResumeLayout(false);
             this.pvConsumerAnketa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter1.DdlCountry)).EndInit();
@@ -2168,6 +2162,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.consumerMainViewBindingSource)).EndInit();
             this.pageSmallRights.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).EndInit();
             this.pageViewOwner.ResumeLayout(false);

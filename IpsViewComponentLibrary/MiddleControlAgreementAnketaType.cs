@@ -27,6 +27,7 @@ namespace IpsViewComponentLibrary
 
 
             ddlLicType.DataSource = dictionaties?.agrLicenseType;
+            ddlLicType.DataBindings.Clear();
             ddlLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", license, "LicCode", true));
 
             ddlLicType.DisplayMember = "name";
