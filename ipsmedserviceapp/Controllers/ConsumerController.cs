@@ -531,12 +531,12 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("listSR/{whatId}")]
-        public async Task<IActionResult> GetListSR(int whatId )
+        public async Task<IActionResult> GetListSR(int whatId)
         {
             ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
 
             string queue = "select * from vTsk_1_ListConsumer01";
-            switch( what )
+            switch (what)
             {
                 case ConsumerFilterEnum.All:
                 case ConsumerFilterEnum.None:
@@ -554,7 +554,7 @@ namespace ipsmedserviceapp.Controllers
                     queue = string.Concat(queue, " ", "where undistribamount > 0");
                     break;
             }
-            var List = await _dbContext.getViewData( queue, null);
+            var List = await _dbContext.getViewData(queue, null);
             return Json(List);
         }
 
@@ -608,6 +608,100 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
         } // GetPeriodDetail(int licid)
 
+        #region Action FOR LICENSEAGREEMENT
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="licid"></param>
+        /// <param name="version"></param>
+        /// <param name="status"></param>
+        private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, int? oldStatus, int status, bool toChangeVersion )
+        {
+            var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid && rec.LicStatus != 4 ).SingleOrDefaultAsync();
+            await _dbContext.Entry(licAgreement).Collection(item => item.LicenseAgrParam)
+                .Query()
+                .Where(rec => rec.LicVersion == version).LoadAsync();
+
+            LicenseAgrParam licParam = null;
+
+            licParam = licAgreement.LicenseAgrParam.Where(rec => rec.LicVersion == version && rec.LicStatus != 4
+                            && (rec.LicStatus == (oldStatus == null ? rec.LicStatus : oldStatus ))).SingleOrDefault();
+            if (licParam == null)
+                throw new ArgumentException("Bad Verion or Status License Agreement For Accept");
+
+            if (toChangeVersion)
+            {
+                licAgreement.LicStatus = status;
+                licAgreement.LicVersion = version;
+            }
+            licParam.LicStatus = status;
+            licParam.ModifyDate = DateTime.Now;
+
+            return licAgreement;
+
+        }
+        /// <summary>
+        /// Акцептувати Ліценз. Договір або Доп договір до нього
+        /// </summary>
+        /// <param name="licid">Id Ліцензійного договору</param>
+        /// <param name="version">Версія доп угоди</param>
+        /// <returns></returns>
+        [HttpPost("license/accept/{licid}/{version}")]
+        public async Task<IActionResult> LicenseActionAccept(int licid, int version)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+
+                await setLicAgrStatus(licid, version, 1, 2, true);
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.InnerException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Закрити Ліценз. Договір або Доп договір до нього
+        /// </summary>
+        /// <param name="licid">Id Ліцензійного договору</param>
+        /// <param name="version">Версія доп угоди</param>
+        /// <returns></returns>
+        [HttpPost("license/close/{licid}/{version}")]
+        public async Task<IActionResult> LicenseActionClose(int licid, int version)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+
+                var licAgreement = await setLicAgrStatus(licid, version, null, 4, false );
+                if (licAgreement.LicenseAgrParam.Where(rec => rec.LicStatus != 4).Count() == 0)
+                    licAgreement.LicStatus = 4;
+
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.InnerException.Message);
+            }
+        }
+
+
+        #endregion 
         #region Register POST PUT DELETE
         /// <summary>
         /// Отримати детальну інформацію по звіту періоду
@@ -824,7 +918,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
             memoryStream.Position = 0;
 
-            return File(memoryStream, "application/vnd.ms-word", Path.GetFileName( consumerPath ));
+            return File(memoryStream, "application/vnd.ms-word", Path.GetFileName(consumerPath));
         }
 
 
