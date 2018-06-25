@@ -16,7 +16,11 @@ namespace IpsViewComponentLibrary
     {
         private bool _changesSaved = false;
         private LicenseAgreement _lic;
+        private AnketaDictionaties _dict;
+        private Customer _cust;
         private LicenseAgrParam _licAgr;
+
+        public event EventHandler OnPrintClick;
 
         public ProlongationWithoutPlaces()
         {
@@ -24,10 +28,12 @@ namespace IpsViewComponentLibrary
         }
 
         //TODO: переробити databinding LicenseAgrParam
-        public ProlongationWithoutPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict, string license, LicenseAgreement lic = null)
+        public ProlongationWithoutPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict, string license, LicenseAgreement lic, Customer customer)
         {
             _lic = lic;
             _licAgr = bindAgr;
+            _dict = dict;
+            _cust = customer;
             InitializeComponent();
             this.FormClosing += ProlongationWithoutPlaces_FormClosing;
             ctrlProlongation.OnSaveChangesClick += CtrlProlongation_OnSaveChangesClick;
@@ -45,7 +51,11 @@ namespace IpsViewComponentLibrary
 
         private void CtrlProlongation_OnPrintClick()
         {
-            //TODO друк договору з без майданчиків
+            ViewAndPrintAgreement print =new ViewAndPrintAgreement(dictionaties: _dict, customer: _cust, licenseAgreement: _lic)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            print.ShowDialog();
         }
 
         private void CtrlProlongation_OnSaveChangesClick()
