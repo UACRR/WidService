@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary
 {
-    partial class MiddleControlAgreementProlVsPlacesType
+    partial class MiddleControlAgreementProlType
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -94,19 +94,13 @@
             // ctrlAgrSecond
             // 
             this.ctrlAgrSecond.AutoprolongationPercent = null;
-            this.ctrlAgrSecond.DataSourceBinding = null;
             this.ctrlAgrSecond.IsAutoprolongation = false;
+            this.ctrlAgrSecond.MinPayment = null;
+            this.ctrlAgrSecond.PercentPayment = null;
             this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
             this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
             this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.MinPayment = null;
             this.ctrlAgrSecond.Name = "ctrlAgrSecond";
-            this.ctrlAgrSecond.PercentPayment = null;
-            this.ctrlAgrSecond.PeriodPaymentDataMember = null;
-            this.ctrlAgrSecond.PeriodPaymentDataSource = null;
-            this.ctrlAgrSecond.PeriodPaymentDisplayMember = "";
-            this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
-            this.ctrlAgrSecond.PeriodPaymentValueMember = "";
             this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
             this.ctrlAgrSecond.TabIndex = 17;
             // 

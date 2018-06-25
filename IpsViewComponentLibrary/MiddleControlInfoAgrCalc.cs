@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
@@ -166,30 +167,49 @@ namespace IpsViewComponentLibrary
 
         private void btnProlongation_Click(object sender, EventArgs e)
         {
-            //TODO: дані для databinding упростити
+            
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
-            var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+            var licParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+            LicenseAgrParam newLicense = new LicenseAgrParam();
+            newLicense.SetFields(licParam);
+            newLicense.LicDate = DateTime.Now;
+            newLicense.DateBegin = DateTime.Now;
+            newLicense.DateEnd = DateTime.Now.AddYears(1);
+            newLicense.LicVersion++;
+            license?.LicenseAgrParam?.Add(newLicense);
+
+            var licenseParam = license?.LicenseAgrParam.LastOrDefault();
+
             var anketaCompany = _customer?.Company?.AnketaCompany?.SingleOrDefault();
             var licenseName = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name;
 
             if (GetTypeAgrForm())
             {
-                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, _dictionaties, anketaCompany, licenseName)
+                //з майданчиками
+                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer?.Client?.ClnBusinessPlace)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+
+                prolongation.ShowDialog();
+            }
+            else
+            {
+                // без майданчиків
+                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
                 prolongation.ShowDialog();
             }
-            else
-            {
-                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces();
-            }
         }
 
-        //TODO: дописати метод що вертає тип споживача (з або без майданчиків)
+        // true - з майданчиками, false - без майданчиків
         private bool GetTypeAgrForm()
         {
-            return true;
+            if(_customer.Client.ClnBusinessPlace.Count > 0)
+                return true;
+            return false;
         }
     }
 

@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.lblTitleClientName = new Telerik.WinControls.UI.RadLabel();
             this.bindingSourceAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
@@ -46,6 +46,7 @@
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
+            this.btnAddPlace = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).BeginInit();
@@ -58,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddPlace)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -81,7 +83,7 @@
             this.lblTitleClientName.Location = new System.Drawing.Point(86, 3);
             this.lblTitleClientName.Name = "lblTitleClientName";
             this.lblTitleClientName.Padding = new System.Windows.Forms.Padding(0, 0, 60, 0);
-            this.lblTitleClientName.Size = new System.Drawing.Size(826, 22);
+            this.lblTitleClientName.Size = new System.Drawing.Size(601, 22);
             this.lblTitleClientName.TabIndex = 21;
             this.lblTitleClientName.Text = "Назва «Клієнта»";
             this.lblTitleClientName.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -124,25 +126,25 @@
             // 
             // panel
             // 
-            this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.Controls.Add(this.btnPrint);
             this.panel.Controls.Add(this.ctrlAgrSecond);
-            this.panel.Location = new System.Drawing.Point(4, 242);
+            this.panel.Location = new System.Drawing.Point(4, 285);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(908, 123);
+            this.panel.Size = new System.Drawing.Size(683, 125);
             this.panel.TabIndex = 26;
             // 
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(783, 100);
+            this.btnPrint.Location = new System.Drawing.Point(558, 102);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(122, 20);
             this.btnPrint.TabIndex = 21;
             this.btnPrint.Text = "Друкувати договір";
             this.btnPrint.ThemeName = "Office2007Silver";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // lblTitleLicAgr
             // 
@@ -152,7 +154,7 @@
             this.lblTitleLicAgr.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblTitleLicAgr.Location = new System.Drawing.Point(4, 86);
             this.lblTitleLicAgr.Name = "lblTitleLicAgr";
-            this.lblTitleLicAgr.Size = new System.Drawing.Size(908, 40);
+            this.lblTitleLicAgr.Size = new System.Drawing.Size(683, 40);
             this.lblTitleLicAgr.TabIndex = 24;
             this.lblTitleLicAgr.Text = "license type ";
             this.lblTitleLicAgr.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
@@ -160,16 +162,18 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(795, 371);
+            this.btnSave.Location = new System.Drawing.Point(570, 416);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(117, 24);
             this.btnSave.TabIndex = 27;
             this.btnSave.Text = "Зберегти зміни";
             this.btnSave.ThemeName = "Office2007Silver";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(14, 232);
+            this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radLabel3.Location = new System.Drawing.Point(14, 275);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(116, 18);
             this.radLabel3.TabIndex = 25;
@@ -177,6 +181,9 @@
             // 
             // gvPlaces
             // 
+            this.gvPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvPlaces.Location = new System.Drawing.Point(3, 133);
             // 
             // 
@@ -187,38 +194,56 @@
             this.gvPlaces.MasterTemplate.AllowDragToGroup = false;
             this.gvPlaces.MasterTemplate.AllowEditRow = false;
             this.gvPlaces.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.HeaderText = "n/n";
-            gridViewTextBoxColumn1.MaxWidth = 70;
-            gridViewTextBoxColumn1.MinWidth = 70;
-            gridViewTextBoxColumn1.Name = "column1";
-            gridViewTextBoxColumn1.Width = 70;
-            gridViewTextBoxColumn2.HeaderText = "Фактична адреса закладу";
-            gridViewTextBoxColumn2.Name = "column2";
-            gridViewTextBoxColumn2.Width = 425;
-            gridViewTextBoxColumn3.HeaderText = "Назва Закладу";
-            gridViewTextBoxColumn3.Name = "column3";
-            gridViewTextBoxColumn3.Width = 261;
-            gridViewTextBoxColumn4.HeaderText = "Сума";
-            gridViewTextBoxColumn4.MaxWidth = 135;
-            gridViewTextBoxColumn4.MinWidth = 120;
-            gridViewTextBoxColumn4.Name = "column4";
-            gridViewTextBoxColumn4.Width = 135;
+            gridViewTextBoxColumn9.FieldName = "PlaceId";
+            gridViewTextBoxColumn9.HeaderText = "n/n";
+            gridViewTextBoxColumn9.MaxWidth = 70;
+            gridViewTextBoxColumn9.MinWidth = 70;
+            gridViewTextBoxColumn9.Name = "PlaceId";
+            gridViewTextBoxColumn9.Width = 70;
+            gridViewTextBoxColumn10.FieldName = "PlaceAddress";
+            gridViewTextBoxColumn10.HeaderText = "Фактична адреса закладу";
+            gridViewTextBoxColumn10.Name = "PlaceAddress";
+            gridViewTextBoxColumn10.Width = 318;
+            gridViewTextBoxColumn11.FieldName = "PlaceName";
+            gridViewTextBoxColumn11.HeaderText = "Назва Закладу";
+            gridViewTextBoxColumn11.Name = "PlaceName";
+            gridViewTextBoxColumn11.Width = 158;
+            gridViewTextBoxColumn12.FieldName = "PlCode";
+            gridViewTextBoxColumn12.HeaderText = "Сума";
+            gridViewTextBoxColumn12.MaxWidth = 135;
+            gridViewTextBoxColumn12.MinWidth = 120;
+            gridViewTextBoxColumn12.Name = "PlCode";
+            gridViewTextBoxColumn12.Width = 120;
             this.gvPlaces.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4});
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12});
             this.gvPlaces.MasterTemplate.EnableGrouping = false;
-            this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvPlaces.Name = "gvPlaces";
+            this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPlaces.ReadOnly = true;
-            this.gvPlaces.Size = new System.Drawing.Size(909, 93);
+            this.gvPlaces.Size = new System.Drawing.Size(684, 108);
             this.gvPlaces.TabIndex = 28;
+            this.gvPlaces.ThemeName = "Office2007Silver";
             // 
-            // MiddleControlAgreementProlWithoutPlacesType
+            // btnAddPlace
+            // 
+            this.btnAddPlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddPlace.Location = new System.Drawing.Point(7, 247);
+            this.btnAddPlace.Name = "btnAddPlace";
+            this.btnAddPlace.Size = new System.Drawing.Size(122, 22);
+            this.btnAddPlace.TabIndex = 29;
+            this.btnAddPlace.Text = "Додати заклад";
+            this.btnAddPlace.ThemeName = "Office2007Silver";
+            this.btnAddPlace.Click += new System.EventHandler(this.btnAddPlace_Click);
+            // 
+            // MiddleControlAgreementProlPlacesType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnAddPlace);
             this.Controls.Add(this.gvPlaces);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.lblTitleClientName);
@@ -227,8 +252,9 @@
             this.Controls.Add(this.panel);
             this.Controls.Add(this.lblTitleLicAgr);
             this.Controls.Add(this.btnSave);
-            this.Name = "MiddleControlAgreementProlWithoutPlacesType";
-            this.Size = new System.Drawing.Size(915, 398);
+            this.MinimumSize = new System.Drawing.Size(690, 390);
+            this.Name = "MiddleControlAgreementProlPlacesType";
+            this.Size = new System.Drawing.Size(690, 443);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).EndInit();
@@ -241,6 +267,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddPlace)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +287,6 @@
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadGridView gvPlaces;
+        private Telerik.WinControls.UI.RadButton btnAddPlace;
     }
 }
