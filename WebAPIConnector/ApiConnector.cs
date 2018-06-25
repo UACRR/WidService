@@ -87,7 +87,8 @@ namespace WebAPIConnector
             var responce = client.PostAsync(idUrl, content) .GetAwaiter().GetResult();
             if(responce.IsSuccessStatusCode == true)
             {
-                JObject retObj = JObject.Parse(responce.Content.ReadAsStringAsync().Result);
+                string contentResponce = responce.Content.ReadAsStringAsync().Result;
+                JObject retObj = JObject.Parse(contentResponce);
 
                 return retObj.ToObject<TResult>();
 

@@ -90,7 +90,7 @@ namespace UnitTestMediaPortal
             // Виконати передачу прав
             var checData = service.InheritDebug(checkCustId, inheritData);
             // Перевірити передачу прав
-
+            Assert.AreEqual(checData.listCopyRight.Count, inheritData.Count);
         }
 
 

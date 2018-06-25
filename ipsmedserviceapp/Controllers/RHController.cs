@@ -507,7 +507,7 @@ t2.custId = @custid
         private async Task<IActionResult> getDebugInfoForSetRHInheritance(int rhId, [FromBody]List<RightHolder> body)
         {
             DateTime checkDate = DateTime.Today;
-            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate >= checkDate && item.EndDate <= checkDate)
+            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && item.EndDate >= checkDate)
                     .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).AsNoTracking().ToListAsync();
 

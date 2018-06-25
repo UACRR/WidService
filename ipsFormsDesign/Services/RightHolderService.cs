@@ -65,11 +65,17 @@ namespace ipsFormsDesign.Services
 #if DEBUG
         public class DebugInheritData
         {
-            List<CopyRight> listCopyRight { get; }
-            List<Authors> authtors { get; }
-            List<CopyRight> inheriers { get; }
+            public DebugInheritData()
+            {
+                listCopyRight = new List<CopyRight>();
+                authtors = new List<Authors>();
+                inheriers = new List<CopyRight>();
+            }
+            public List<CopyRight> listCopyRight { get; }
+            public List<Authors> authtors { get; }
+            public List<CopyRight> inheriers { get; }
         }
-        public object InheritDebug(int checkCustId, List<RightHolder> inheritData)
+        public DebugInheritData InheritDebug(int checkCustId, List<RightHolder> inheritData)
         {
             return _webApi.ApiFunc<RightHolder, DebugInheritData>("rh/inheritancedebug", checkCustId, inheritData);
         }
