@@ -384,6 +384,31 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
         }
 
+        #region Методи отримання допоміжної інформації по правовласникам
+        /// <summary>
+        /// Отримати масив авторів по першим літарам назви
+        /// </summary>
+        /// <param name="wildcard">Фільтр</param>
+        /// <returns>Масив Authors</returns>
+        [HttpGet("filters/authors/{wildcard}")]
+        public async Task<IActionResult> GetFilteredAuthors( string wildcard)
+        {
+            if (String.IsNullOrWhiteSpace(wildcard))
+                return BadRequest("Empty Filter");
+
+            try
+            {
+                var filterStr = string.Concat( wildcard, "%");
+                var listAuthors = await _dbContext.Authors.FromSql("select * from Authors where authorName like @filter", new SqlParameter("@filter", filterStr )).AsNoTracking().ToArrayAsync();
+                return Json(listAuthors);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.InnerException.Message);
+            }
+
+        }
+        #endregion
         #region inheritance
 
         /// <summary>
