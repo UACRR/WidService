@@ -196,7 +196,7 @@ namespace IpsViewComponentLibrary
             else
             {
                 // без майданчиків
-                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license)
+                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license,_customer)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
