@@ -40,6 +40,8 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TerritoryInclude)
                         .Include(item => item.RightHolder)
+                            .ThenInclude(rh => rh.CopyRight)
+                        .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.AnketaAddNick)
                         .SingleOrDefaultAsync();
 
@@ -390,10 +392,10 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         /// <param name="rhId"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        private async Task<bool> internalRHInheritance(int rhId, List<RightHolder> body )
+        private async Task<bool> internalRHInheritance(int rhId, List<RightHolder> body)
         {
             // Права Автора / Правовласника
-            DateTime checkDate = DateTime.Today;
+            DateTime checkDate = body.Where(rec=>rec.CustId == rhId).SingleOrDefault()?.CopyRight.SingleOrDefault()?.EndDate ?? DateTime.Today;
             var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && item.EndDate >= checkDate)
                                 .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
                                 .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).ToListAsync();
@@ -414,54 +416,70 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
             // Об'єкти правовласника
             var objects = await _dbContext.ObjectRight.FromSql(@"
-select t1.* 
+select distinct t1.* 
 from ObjectRight t1
 join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
 where
 t2.custId = @custid
-", new SqlParameter("@custid", rhId)).AsNoTracking().ToListAsync();
+", new SqlParameter("@custid", rhId)).ToDictionaryAsync( rec => rec.ObjId );
 
 
             // Автора об'єктів
             var authtors = await _dbContext.Authors.FromSql(@"
-select t1.* 
+select distinct t1.* 
 from Authors t1
 join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
 where
 t2.custId = @custid
 ", new SqlParameter("@custid", rhId)).AsNoTracking().ToListAsync();
 
-            // Проставляємо кінцеву дату права
-            DateTime endDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
-            listCopyRight.ForEach(item => {
-                //
-                item.EndDate = endDate;
+            //DateTime checkDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
+            DateTime beginDate = checkDate.AddDays(1);
 
-            });
-
+            try
+            { 
             // Оброблюємо нових правовласників
             body.Where(rec => rec.CustId != rhId).ToList()
-                .ForEach(item => {
-                        // Додаємо нові права
-                        foreach (var cright in item.CopyRight)
+                .ForEach(item =>
+                {
+                    // Додаємо нові права
+                    foreach (var cright in listCopyRight)
                     {
                         CopyRight addItem = new CopyRight();
-                        addItem.SetFields(cright);
+                        // addItem.CRightId
+                        addItem.SetFields(cright, new[] { "CRightId" });
+                        addItem.CustId = item.CustId;
+                        addItem.BeginDate = beginDate;
+                        // objects[(int)cright.ObjId].CopyRight.Add(addItem);
                         _dbContext.CopyRight.Add(addItem);
                     }
-                        // Додаємо Авторів
-                        foreach (var author in item.Authors)
+                    // Додаємо Авторів
+                    foreach (var author in item.Authors)
                     {
                         if (authtors.Any(rec => rec.ObjId == author.ObjId && rec.CustId == author.CustId && rec.RoleCode == author.RoleCode))
                             continue;
 
                         Authors addAutor = new Authors();
-                        addAutor.SetFields(author);
+                        addAutor.SetFields(author, new[] { "AuthId" });
+                        // addAutor.AuthId
+                        // objects[addAutor.ObjId].Authors.Add(addAutor);
                         _dbContext.Authors.Add(addAutor);
                     }
                 });
 
-            return true;
+                // Проставляємо кінцеву дату права
+                listCopyRight.ForEach(item =>
+                {
+                    //
+                    item.EndDate = checkDate;
+
+                });
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
 
         }
         /// <summary>
@@ -473,12 +491,12 @@ t2.custId = @custid
         /// </param>
         /// <returns>Ok</returns>
         [HttpPost("inheritance/{rhId}")]
-        public async Task<IActionResult> SetRHInheritance( int rhId, [FromBody]List<RightHolder> body)
+        public async Task<IActionResult> SetRHInheritance(int rhId, [FromBody]List<RightHolder> body)
         {
             IDbContextTransaction tran = null;
             try
             {
-                if ( await internalRHInheritance(rhId, body) == false)
+                if (await internalRHInheritance(rhId, body) == false)
                     return Ok();
 
                 tran = await _dbContext.Database.BeginTransactionAsync();
@@ -506,13 +524,14 @@ t2.custId = @custid
         /// <returns></returns>
         private async Task<IActionResult> getDebugInfoForSetRHInheritance(int rhId, [FromBody]List<RightHolder> body)
         {
-            DateTime checkDate = DateTime.Today;
-            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && item.EndDate >= checkDate)
+            DateTime checkDate = body.Where( rec => rec.CustId == rhId ).SingleOrDefault()?.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
+
+            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && checkDate <= item.EndDate )
                     .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).AsNoTracking().ToListAsync();
 
             var authtors = await _dbContext.Authors.FromSql(@"
-select t1.* 
+select distinct t1.* 
 from Authors t1
 join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
 where
@@ -523,13 +542,13 @@ t2.custId = @custid
             DateTime endDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
 
             var inheriers = await _dbContext.CopyRight.FromSql(@"
-select t3.* 
+select distinct t3.* 
 from ObjectRight t1
 join CopyRight t2 on t2.objId = t1.objId and @dateend between t2.beginDate and t2.endDate
 join CopyRight t3 on t3.objId = t1.objId and @dateend < t3.beginDate
 where
 t2.custId = @custid
-", new SqlParameter("@custid", rhId), new SqlParameter("@dateend", endDate) ).AsNoTracking().ToListAsync();
+", new SqlParameter("@custid", rhId), new SqlParameter("@dateend", endDate)).AsNoTracking().ToListAsync();
 
 
             return Json(new { listCopyRight, authtors, inheriers });
@@ -562,16 +581,16 @@ t2.custId = @custid
                 return result;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 tran?.Rollback();
-                return BadRequest();
+                return BadRequest( ex.Message );
             }
         }
 
 #endif
-#endregion
+        #endregion
 
     }
 }

@@ -54,7 +54,7 @@ namespace UnitTestMediaPortal
         [TestMethod]
         public void TestInherit()
         {
-            int checkCustId = 145;
+            int checkCustId = 148;
             var service = new RightholderService();
             // Сформувати дані по старому правовласнику
             Customer cust = service.GetData(checkCustId);

@@ -57,6 +57,7 @@
         <noignore>TerritoryInclude</noignore>
         <noignore>AnketaAddNick</noignore>
         <noignore>CopyRight</noignore>
+        <noignore>Cust</noignore>
     </item>
     <item Name="AgreementAddRh">
     </item>
