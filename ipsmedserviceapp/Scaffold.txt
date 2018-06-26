@@ -117,7 +117,7 @@
 "Language",
 "LegalBasis",
 "LegalBasisTr",
-"LicAuthor",
+"LicAuthorBR",
 "License",
 "LicenseAgreement",
 "LicenseAgrParam",
@@ -175,6 +175,8 @@
 "PortalSupportRights",
 "PositionType",
 "PositionTypeTr",
+"PrePayType",
+"PrePayTypeTr",
 "Region",
 "RegionTr",
 "Register",
@@ -258,7 +260,10 @@
 "UsesKind",
 "UsesKindTr",
 "UsesType",
-"UsesTypeTr"
+"UsesTypeTr",
+"WorkRH",
+"WorkType",
+"WorkTypeTr"
 );
 
 Scaffold-DbContext -Context MediaServiceContext -Provider Microsoft.EntityFrameworkCore.SqlServer -Connection "Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True" -OutputDir Model -Tables $tables -Force -ErrorAction Ignore
