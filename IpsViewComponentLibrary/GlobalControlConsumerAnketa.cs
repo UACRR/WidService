@@ -15,7 +15,8 @@ namespace IpsViewComponentLibrary
     public partial class GlobalControlConsumerAnketa : UserControl
     {
         private int _visiblePage;
-        private readonly Dictionary<int,string[]> _buttonsName = new Dictionary<int, string[]>
+        private bool isEdit = false;
+        private Dictionary<int, string[]> _buttonsName = new Dictionary<int, string[]>
         {
             {1, new []{"","Адреса >"} },
             {2, new []{"< Назва","Керівники >"} },
@@ -41,6 +42,8 @@ namespace IpsViewComponentLibrary
            set => ctrlClientName.IsPlaceIn = value;
         }
 
+        public Customer GetCustomer => _cust;
+
         public delegate string GeneratePdfDoc(Customer customer, AnketaDictionaties dictionaties);
         public event GeneratePdfDoc OnDocumentNeedGenerate;
 
@@ -63,8 +66,10 @@ namespace IpsViewComponentLibrary
         /// Ініціалізація даних для контрола (DATABINDING)
         /// </summary>
         /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
-        public void InitializeControl(bool isNew = false)
+        public void InitializeControl(bool isNew = true)
         {
+            isEdit = !isNew;
+            SetTypePages(isNew);
             SetColorTabs(isNew);
 
             ctrlClientName.SetDataSources(_cust,_anketaDictionaries); // - - - - - - - -  Назва клієнта
@@ -84,6 +89,21 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
+        /// Ввімкненість вкладок 'договору' та 'друку'
+        /// </summary>
+        /// <param name="isnew">true(default) - новий споживач, стандартна фарма, false - редагування існуючого споживача</param>
+        private void SetTypePages(bool isnew)
+        {
+            if(isnew)
+            {
+                return;
+            }
+          
+            pvAgreement.Enabled = false;
+            pvPrint.Enabled = false;
+        }
+
+        /// <summary>
         /// Обов'язковий метод 
         /// </summary>
         /// <param name="cust"></param>
@@ -99,9 +119,56 @@ namespace IpsViewComponentLibrary
         /// Перевірка на валідність даних
         /// </summary>
         /// <returns></returns>
-        private bool Validator()
+        private bool Validator(byte type)
         {
-            return true;
+
+            bool isValid = true;
+
+            switch (type)
+            {
+                case 1: // - Назва клієнта
+                {
+                    isValid = ctrlClientName.Validator();
+                }
+                    break;
+                case 2: // - Адреса
+                {
+                    isValid = ctrlAddress.Validator();
+                }
+                    break;
+            
+                case 3: // - Керівники
+                {
+                    isValid = ctrlManagers.Validator();
+                }
+                    break;
+            
+                case 4: //- Майданчики
+                {
+                    //TODO: якщо не додано жодного майданчику видавати помилку
+                    isValid = true;
+                }
+                    break;
+            
+                case 5: // - Банківські реквізити
+                {
+                    ctrlBankRequisites.Validator();
+                }
+                    break;
+            
+                case 6: // - Договір
+                {
+                    isValid = ctrlAgreement.Validator();
+                }
+                    break;
+                case 7: // - Друк (не потребує)
+                {
+                    isValid = true;
+                }
+                    break;
+            }
+
+            return isValid;
         }
 
         #region BUTTONS NAVIGATION
@@ -135,6 +202,12 @@ namespace IpsViewComponentLibrary
                     break;
                 case 5:
                     {
+                        if (isEdit)
+                        {
+                            _btnType = ButtonType.None;
+                            OnBtnSaveClick?.Invoke(_cust);
+                            return;
+                        }
                         pageAnketaConsumer.SelectedPage = pvAgreement;
                         ctrlAgreement.SetDefaultListItem();
                     }
@@ -227,7 +300,7 @@ namespace IpsViewComponentLibrary
         /// Set color page view tabs
         /// </summary>
         /// <param name="isNew">If new item set 'true' - set gray color, else 'false' - set default color</param>
-        private void SetColorTabs(bool isNew = false)
+        private void SetColorTabs(bool isNew)
         {
             switch (isNew)
             {
@@ -248,7 +321,7 @@ namespace IpsViewComponentLibrary
                     {
                         page.Item.ForeColor = DefaultForeColor;
                     }
-                    _nextPageNumber = 10;
+                    _nextPageNumber = 5;
                 }
                     break;
             }
@@ -257,7 +330,8 @@ namespace IpsViewComponentLibrary
         //зміна кольору вкладки з майданчиками при виборі чекбокса
         private void CtrlClientName_OnContainPlacesChanged(object sender, EventArgs e)
         {
-            pageAnketaConsumer.Pages[3].Item.ForeColor = IsContainPlaces ? DefaultForeColor : Color.DarkGray;
+            if(_nextPageNumber >= 4)
+                pageAnketaConsumer.Pages[3].Item.ForeColor = IsContainPlaces ? DefaultForeColor : Color.DarkGray;
         }
 
         //переходи по вкладкам (кнопки та кліки)
@@ -269,8 +343,15 @@ namespace IpsViewComponentLibrary
             {
                 case ButtonType.Next:
                     {
-                        if (Validator())
+                        if (Validator((byte)_visiblePage))
                         {
+                            if (isEdit && e.Page.TabIndex == 4)
+                            {
+                                btnNext.Enabled = false;
+                            }
+                            else if (btnNext.Enabled == false)
+                                btnNext.Enabled = true;
+
                             if (e.Page.TabIndex == 3 && !IsContainPlaces)
                             {
                                 _visiblePage++;
@@ -300,6 +381,9 @@ namespace IpsViewComponentLibrary
 
                 case ButtonType.Previos:
                     {
+                        if (btnNext.Enabled == false)
+                            btnNext.Enabled = true;
+
                         if (e.Page.TabIndex == 3 && !IsContainPlaces)
                         {
                             _visiblePage--;
@@ -319,13 +403,20 @@ namespace IpsViewComponentLibrary
 
                 case ButtonType.None:
                     {
+                        if (isEdit && e.Page.TabIndex == 4)
+                        {
+                            btnNext.Enabled = false;
+                        }
+                        else if (btnNext.Enabled == false)
+                            btnNext.Enabled = true;
+
                         if (e.Page.TabIndex == 3 && !IsContainPlaces)
                         {
                             e.Cancel = true;
                         }
                         else
                         {
-                            if (e.Page.TabIndex < _nextPageNumber && Validator())
+                            if (e.Page.TabIndex < _nextPageNumber && Validator((byte)_visiblePage))
                             {
                                 _visiblePage = e.Page.TabIndex + 1;
                                 ChangeButtonsName(_visiblePage);

@@ -16,17 +16,25 @@ namespace IpsViewComponentLibrary
         private bool _changesSaved = false;
         private LicenseAgreement _lic;
         private LicenseAgrParam _licAgr;
+        private AnketaDictionaties _dict;
+        private Customer _cust;
         public ProlongationWithPlaces()
         {
             InitializeComponent();
         }
 
-        public ProlongationWithPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict,  string license, LicenseAgreement lic, ObservableListSource<ClnBusinessPlace> places)
+        public ProlongationWithPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict,  string license, LicenseAgreement lic, ObservableListSource<ClnBusinessPlace> places, Customer cust)
         {
             _lic = lic;
             _licAgr = bindAgr;
+            _dict = dict;
+            _cust = cust;
+
             InitializeComponent(); // * * * 
             this.FormClosing += ProlongationWithPlaces_FormClosing;
+            ctrlProlongation.OnPrintClick += CtrlProlongation_OnPrintClick;
+            ctrlProlongation.OnSaveChangesClick += CtrlProlongation_OnSaveChangesClick;
+
             ctrlProlongation.DataSourceGrid = places;
 
             ctrlProlongation.Dictionaties = dict;// словник
@@ -36,6 +44,20 @@ namespace IpsViewComponentLibrary
 
             ctrlProlongation.LicenseName = license; // лбл ліцензії
             ctrlProlongation.LicenseAgrParam = bindAgr;
+        }
+
+        private void CtrlProlongation_OnSaveChangesClick()
+        {
+            //TODO: реалізувати збереження
+        }
+
+        private void CtrlProlongation_OnPrintClick()
+        {
+            ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dict, customer: _cust, licenseAgreement: _lic)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            print.ShowDialog();
         }
 
         private void ProlongationWithPlaces_FormClosing(object sender, FormClosingEventArgs e)

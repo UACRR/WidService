@@ -186,7 +186,7 @@ namespace IpsViewComponentLibrary
             if (GetTypeAgrForm())
             {
                 //з майданчиками
-                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer?.Client?.ClnBusinessPlace)
+                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer?.Client?.ClnBusinessPlace, _customer)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
@@ -196,7 +196,7 @@ namespace IpsViewComponentLibrary
             else
             {
                 // без майданчиків
-                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license,_customer)
+                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
