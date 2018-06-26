@@ -259,7 +259,7 @@ namespace ipsFormsDesign.Services
         public void processConsumer(string pathTemplate, Customer cust, AgreementMaster agr)
         {
 
-            
+
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var docFile = tempFileName + ".docx";
@@ -276,7 +276,7 @@ namespace ipsFormsDesign.Services
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
                 var period = _dic.period.ToDictionary(rec => rec.CodeI);
                 var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
-                    app = new Application();
+                app = new Application();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -285,7 +285,7 @@ namespace ipsFormsDesign.Services
                 //AgreementAddRh agrRh = agr.AgreementAddRh.Where(item => item.Version == agr.Version).SingleOrDefault();
                 // Customer cust = agr.Cust;
                 LicenseAgreement licAgr = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
-                LicenseAgrParam  licenseAgrParam = licAgr?.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).SingleOrDefault();
+                LicenseAgrParam licenseAgrParam = licAgr?.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).SingleOrDefault();
 
                 PaidPeriod paidPeriod = licAgr?.PaidPeriod.FirstOrDefault();
 
@@ -297,7 +297,16 @@ namespace ipsFormsDesign.Services
                 var clnBusinessPlaceHotel = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 1) || (rec.PlCode == 2)).ToList();
                 var clnBusinessPlaceMarket = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 8).ToList();
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
-                var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 5).ToList();
+                var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 3) || (rec.PlCode == 4) 
+                 || (rec.PlCode == 5)).ToList();
+                AgreementAddBr agreementAddBr;
+                agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.IsCurrent == 1)?.SingleOrDefault();
+                
+
+
+
+                //GdocDateC =
+                //GdocNumber = agr.AgreementAddBr?.addNumber.Where(rec => rec.IsCurrent == 1)?.First()  ?? agr.AgrNumber.ToString();
 
                 string customerName = string.Empty;
                 string leAddress = string.Empty;
@@ -328,6 +337,13 @@ namespace ipsFormsDesign.Services
                 string cstContPersonPhone = string.Empty;
                 string СPaidPeriod = string.Empty;
                 string CPaidData = string.Empty;
+                string fop = String.Empty;
+                string vOsobi = String.Empty;
+                string naPidstav = String.Empty;
+                string GdocNumber = String.Empty;
+                string GdocDateC = String.Empty;
+                string GdocDateBeginC = String.Empty;
+                string GdocDateEndC = String.Empty;
 
                 if (cust.CustType < 3) // фіз. особа
                 {
@@ -348,6 +364,10 @@ namespace ipsFormsDesign.Services
                     cstPerson = customerName;
                     cstContPerson = customerName;
                     cstContPersonPhone = phoneWork;
+                    if (cust.CustType == 2)
+                        {
+                            fop = " Фізична особа - підприємець ";
+                        }
                 }
                 else // юр. особа
                 {
@@ -369,11 +389,14 @@ namespace ipsFormsDesign.Services
                     cstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
                     cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
                     cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
-
+                    vOsobi = " в особі ";
+                    naPidstav = " = що діє на підставі ";
                 }
 
-                
-
+                GdocDateC = $"{agreementAddBr?.AddDate:dd.MM.yyyy}";
+                GdocDateBeginC = $"{agreementAddBr?.DateBegin:dd.MM.yyyy}";
+                GdocDateEndC = $"{agreementAddBr?.DateEnd:dd.MM.yyyy}";
+                GdocNumber = agreementAddBr?.AddNumber?.ToString() ?? agr.AgrNumber?.ToString();
 
                 DocDate = $"{licAgr?.LicDate:dd.mm.yyyy}";
                 LicNum = licAgr?.LicNum;
@@ -399,6 +422,10 @@ namespace ipsFormsDesign.Services
                     switch (title)
 
                     {
+                        case "GdocNumber":
+                            item.Range.Text = GdocNumber;
+                            break;
+
                         case "docNumberC":
                             item.Range.Text = LicNum;
                             break;

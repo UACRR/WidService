@@ -36,8 +36,9 @@ namespace TestWord_1
             //            Filename = "F_6_МТЦ.docx";
             //            Filename = "F_Акт_публічне виконання.docx";  
             Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
-            Filename = "F_Акт_публічне сповіщення TV+радио.docx";
-//            Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
+  //          Filename = "F_Акт_публічне сповіщення TV+радио.docx";
+    //        Filename = "F_Акт_публічне сповіщення кTV.docx";
+            //            Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
 
@@ -77,8 +78,15 @@ namespace TestWord_1
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.processAction(template, cust, licAgr1, Period2);
                     break;
+                case "F_Акт_публічне сповіщення кTV.docx":
+                    cust = service.GetData(134);
+                    LicenseAgreement licAgr2 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
+                    PaidPeriod Period3 = licAgr2.PaidPeriod.FirstOrDefault();
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processAction(template, cust, licAgr2, Period3);
+                    break;
                 case "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx":
-                    cust = service.GetData(134);                  
+                    cust = service.GetData(142);                  
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.processConsumer(template, cust, cust.AgreementMaster.First());
                     break;
