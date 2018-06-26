@@ -114,7 +114,7 @@ namespace IpsViewComponentLibrary
             _anketaDictionaries = dict;
         }
 
-        //TODO: дописати валідатора
+
         /// <summary>
         /// Перевірка на валідність даних
         /// </summary>
