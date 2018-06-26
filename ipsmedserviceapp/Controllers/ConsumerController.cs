@@ -52,7 +52,6 @@ namespace ipsmedserviceapp.Controllers
                     .Query()
                     .Where(agree => agree.LicStatus < 4)
                     .Include(item => item.Agr)
-                    .Include(item => item.License)
                     .Include(rec => rec.PaidPeriod)
                     .LoadAsync();
 
@@ -61,6 +60,7 @@ namespace ipsmedserviceapp.Controllers
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
                     .Where(rec => rec.LicVersion >= license.LicVersion)
+                    .Include( rec => rec.License )
                     .LoadAsync();
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
@@ -148,7 +148,7 @@ namespace ipsmedserviceapp.Controllers
                     // Delete LicenseAgreement
                     var agreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
                     var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
-                    _dbContext.License.RemoveRange(delLicense.License.ToArray());
+
 
                     agreeItem.LicenseAgreement.Remove(delLicense);
                     dest.Client.LicenseAgreement.Remove(item);
@@ -171,8 +171,15 @@ namespace ipsmedserviceapp.Controllers
 
                     var license = dest.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
                     license.SetFields(item);
-                    _dbContext.UpdateList(item.License, license.License, i => { }, (l, r) => l.PlaceId == r.PlaceId);
-                    _dbContext.AppendList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
+                    _dbContext.UpdateList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
+
+                    var sorsDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
+                    foreach( var destParam in license.LicenseAgrParam )
+                    {
+                        var sorsParam = sorsDic[destParam.LicVersion];
+                        _dbContext.UpdateList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId );
+                    }
+
 
                 });
                 // Add
@@ -192,7 +199,6 @@ namespace ipsmedserviceapp.Controllers
 
                     var addLicItem = new LicenseAgreement { LicVersion = 1 };
                     addLicItem.SetFields(item, new[] { "LicId" });
-                    _dbContext.AppendList(item.License, addLicItem.License, i => { }, (l, r) => l.PlaceId == r.PlaceId);
                     _dbContext.AppendList(item.LicenseAgrParam, addLicItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
 
                     dest.Client.LicenseAgreement.Add(addLicItem);
@@ -392,7 +398,14 @@ namespace ipsmedserviceapp.Controllers
                     LicenseAgreement addItem = new LicenseAgreement();
                     addItem.SetFields(item, new[] { "CustId", "AgrId" });
                     _dbContext.AppendList(item.LicenseAgrParam, addItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
-                    _dbContext.AppendList(item.License, addItem.License, i => { }, (l, r) => l.PlaceId == r.PlaceId);
+
+                    var destAgrParamDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
+                    foreach ( var destParam in addItem.LicenseAgrParam )
+                    {
+                        var sorsParam = destAgrParamDic[destParam.LicVersion];
+                        _dbContext.AppendList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId );
+                    }
+
 
                     addAgreeMAster.LicenseAgreement.Add(addItem);
                     addCustomer.Client.LicenseAgreement.Add(addItem);
