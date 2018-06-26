@@ -47,14 +47,19 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
                         .SingleOrDefaultAsync();
             // Отримати дані по Контрактах
+            await _dbContext.Entry(cust).Collection(rec => rec.AgreementMaster).Query()
+                .Where(rec => rec.AgrType == 2 && rec.AgrStatus < 4)
+                .Include(rec=>rec.AgreementAddBr)
+                .LoadAsync();
+
             if (cust.Client.LicenseAgreement.Count > 0)
                 await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                     .Query()
                     .Where(agree => agree.LicStatus < 4)
-                    .Include(item => item.Agr)
                     .Include(item => item.License)
                     .Include(rec => rec.PaidPeriod)
                     .LoadAsync();
+
 
             foreach (var license in cust.Client.LicenseAgreement)
             {
