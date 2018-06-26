@@ -20,12 +20,15 @@ namespace IpsViewComponentLibrary
         private readonly ObjectAuthorRightholder _authorRightholder;
         private readonly ObjectRightDictionaries _dictionaries;
         private readonly int _category;
+        private readonly RightholderService _rightholderService;
 
         public AuthorRightholderItemView(ObjectAuthorRightholder authorRightholder, ObjectRightDictionaries dictionaries, int category)
         {
             InitializeComponent();
 
             StartPosition = FormStartPosition.CenterParent;
+
+            _rightholderService = new RightholderService();
 
             _authorRightholder = authorRightholder;
             _authorRightholder.BeginEdit();
@@ -116,22 +119,28 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        #region Autocomplite
 
-        private List<string> _authors = new List<string>();
-
-        private void txtAuthorNameAutocomplite_TextChanged(object sender, EventArgs e)
+        private void GetAuthors(string filter)
         {
-            if (txtAuthorNameAutocomplite.Text != string.Empty && txtAuthorNameAutocomplite.Text.Length > 1)
+            var authors = _rightholderService.getAuthorsByFilter(filter).Select(a => a.AuthorName).ToArray();
+
+            txtAuthorName.AutoCompleteCustomSource.AddRange(authors);
+        }
+
+        private void txtAuthorName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAuthorName.Text.Length >= 1 && txtAuthorName.AutoCompleteCustomSource.Count == 0)
             {
-                GetNames(txtAuthorNameAutocomplite.Text);
+                GetAuthors(txtAuthorName.Text);
+            }
+
+            if (txtAuthorName.Text == string.Empty && txtAuthorName.AutoCompleteCustomSource.Count != 0)
+            {
+                txtAuthorName.AutoCompleteCustomSource.Clear();
             }
         }
 
-        private void GetNames(string filter)
-        {
-            var testlist = new List<string> { "fa", "fd", "fg", "dt", "dh", "dz", "jk", "jl" };
-
-            txtAuthorNameAutocomplite.AutoCompleteCustomSource = testlist.Where(s => s.StartsWith(filter)).ToList();
-        }
+        #endregion
     }
 }
