@@ -12,8 +12,8 @@ namespace ipsmedserviceapp.Model
         public string ObjName { get; set; }
         public string NameMusician { get; set; }
         public string NameSinger { get; set; }
-        public decimal? Duration { get; set; }
         public int? NumbPerfom { get; set; }
+        public TimeSpan? Duration { get; set; }
 
         public LicenseBigR Lic { get; set; }
         public ObjectRight Obj { get; set; }

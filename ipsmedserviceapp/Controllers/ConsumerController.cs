@@ -60,7 +60,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
-                    .Where(rec => rec.LicVersion == license.LicVersion)
+                    .Where(rec => rec.LicVersion >= license.LicVersion)
                     .LoadAsync();
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();

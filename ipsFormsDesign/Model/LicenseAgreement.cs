@@ -10,7 +10,6 @@ namespace ipsFormsDesign.Model
         {
             BrRegItem = new ObservableListSource<BrRegItem>();
             LicPlace = new ObservableListSource<LicPlace>();
-            License = new ObservableListSource<License>();
             LicenseAgrParam = new ObservableListSource<LicenseAgrParam>();
             MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
             PaidPeriod = new ObservableListSource<PaidPeriod>();
@@ -36,7 +35,6 @@ namespace ipsFormsDesign.Model
         public LicenseBigR LicenseBigR { get; set; }
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<LicPlace> LicPlace { get; set; }
-        public ObservableListSource<License> License { get; set; }
         public ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
         public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
