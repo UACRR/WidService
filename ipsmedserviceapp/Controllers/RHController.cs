@@ -476,9 +476,6 @@ t2.custId = @custid
                         CopyRight addItem = new CopyRight();
                         // addItem.CRightId
                         addItem.SetFields(cright, new[] { "CRightId" });
-                        //addItem.CustId = item.CustId;
-                        //addItem.BeginDate = beginDate;
-                        // objects[(int)cright.ObjId].CopyRight.Add(addItem);
                         _dbContext.CopyRight.Add(addItem);
 
                         foreach (var author in cright.Obj.Authors)
@@ -489,7 +486,6 @@ t2.custId = @custid
                             Authors addAutor = new Authors();
                             addAutor.SetFields(author, new[] { "AuthId" });
                             // addAutor.AuthId
-                            // objects[addAutor.ObjId].Authors.Add(addAutor);
                             _dbContext.Authors.Add(addAutor);
                         }
                     }
