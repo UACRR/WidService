@@ -93,7 +93,7 @@
             this.gvPeriodsPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvPeriodsPayment.AutoScroll = true;
-            this.gvPeriodsPayment.Location = new System.Drawing.Point(3, 313);
+            this.gvPeriodsPayment.Location = new System.Drawing.Point(3, 340);
             // 
             // 
             // 
@@ -160,7 +160,7 @@
             this.gvPayments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvPayments.Location = new System.Drawing.Point(3, 463);
+            this.gvPayments.Location = new System.Drawing.Point(3, 490);
             // 
             // 
             // 
@@ -213,17 +213,17 @@
             this.gvPayments.ReadOnly = true;
             this.gvPayments.ShowGroupPanel = false;
             this.gvPayments.ShowGroupPanelScrollbars = false;
-            this.gvPayments.Size = new System.Drawing.Size(1026, 114);
+            this.gvPayments.Size = new System.Drawing.Size(1026, 153);
             this.gvPayments.TabIndex = 1;
             this.gvPayments.ThemeName = "Office2007Silver";
             // 
             // btnDistribute
             // 
-            this.btnDistribute.Location = new System.Drawing.Point(13, 433);
+            this.btnDistribute.Location = new System.Drawing.Point(3, 287);
             this.btnDistribute.Name = "btnDistribute";
             this.btnDistribute.Size = new System.Drawing.Size(110, 24);
             this.btnDistribute.TabIndex = 3;
-            this.btnDistribute.Text = "Розподілити";
+            this.btnDistribute.Text = "Прив\'язати суму";
             this.btnDistribute.ThemeName = "Office2007Silver";
             this.btnDistribute.Click += new System.EventHandler(this.btnDistribute_Click);
             // 
@@ -233,7 +233,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitlePeriod.AutoSize = false;
             this.lblTitlePeriod.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTitlePeriod.Location = new System.Drawing.Point(129, 433);
+            this.lblTitlePeriod.Location = new System.Drawing.Point(129, 460);
             this.lblTitlePeriod.Name = "lblTitlePeriod";
             this.lblTitlePeriod.Size = new System.Drawing.Size(765, 24);
             this.lblTitlePeriod.TabIndex = 6;
@@ -270,7 +270,7 @@
             gridViewDecimalColumn8.Name = "Amount";
             gridViewDecimalColumn8.Width = 122;
             gridViewDecimalColumn9.FieldName = "DestribAmount";
-            gridViewDecimalColumn9.HeaderText = "Сума для прив\'язки";
+            gridViewDecimalColumn9.HeaderText = "Прив\'язана сума";
             gridViewDecimalColumn9.Name = "DestribAmount";
             gridViewDecimalColumn9.Width = 122;
             gridViewTextBoxColumn11.FieldName = "GoalInvoice";
@@ -404,7 +404,7 @@
             // 
             this.radLabel3.AutoSize = false;
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(3, 286);
+            this.radLabel3.Location = new System.Drawing.Point(3, 313);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(325, 21);
             this.radLabel3.TabIndex = 12;
@@ -426,7 +426,7 @@
             this.MaximumSize = new System.Drawing.Size(3000, 1000);
             this.MinimumSize = new System.Drawing.Size(400, 562);
             this.Name = "CalculationInfoControl";
-            this.Size = new System.Drawing.Size(1032, 580);
+            this.Size = new System.Drawing.Size(1032, 649);
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPayments.MasterTemplate)).EndInit();
