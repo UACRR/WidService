@@ -71,7 +71,7 @@ namespace ConsumerWorkplace_v_1._0
 
                 mainGrid.Dock = DockStyle.Fill;
             }
-
+            mainGrid.FilterString = cabinet?.FilterString ?? string.Empty;
             if (id != 0)
                 mainGrid.SetSelectCustomer(id);
 
@@ -89,10 +89,9 @@ namespace ConsumerWorkplace_v_1._0
                 cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
                 cabinet.SetDictionary(_service.GetDictionary());
                 cabinet.SetGridDataSource(getMainView());
-
                 cabinet.Dock = DockStyle.Fill;
             }
-
+            cabinet.FilterString = mainGrid?.FilterString ?? string.Empty;
             cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;
             _switcher.SwitchView(cabinet);

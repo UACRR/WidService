@@ -188,7 +188,13 @@ namespace IpsViewComponentLibrary
         private void btnDistribute_Click(object sender, EventArgs e)
         {
             //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
-            DistributionForm distr = new DistributionForm(gvUserMoneys.DataSource, gvPeriodsPayment.DataSource, _data);
+
+            //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
+            MoneyReceived moneyReceived = _data?.Client?.MoneyReceived?.Where(rec => rec.PaidId == (int)gvUserMoneys.CurrentRow.Cells["PaidId"].Value).SingleOrDefault();
+            var lic = _data?.Client?.LicenseAgreement.SingleOrDefault(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value);
+            var licenseParam = lic?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == lic.LicVersion);
+
+            DistributionForm distr = new DistributionForm(moneyReceived, licenseParam, gvPeriodsPayment.DataSource, _data);
             distr.StartPosition = FormStartPosition.CenterScreen;
             distr.ShowDialog();
         }

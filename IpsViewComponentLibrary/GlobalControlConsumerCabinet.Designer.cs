@@ -50,6 +50,7 @@
             // 
             this.gvConsumerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.gvConsumerList.EnableCustomFiltering = true;
             this.gvConsumerList.Location = new System.Drawing.Point(3, 29);
             // 
             // 
@@ -99,7 +100,10 @@
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5});
+            this.gvConsumerList.MasterTemplate.EnableCustomFiltering = true;
+            this.gvConsumerList.MasterTemplate.EnableFiltering = true;
             this.gvConsumerList.MasterTemplate.EnableGrouping = false;
+            this.gvConsumerList.MasterTemplate.ShowFilteringRow = false;
             this.gvConsumerList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvConsumerList.Name = "gvConsumerList";
             this.gvConsumerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -108,6 +112,7 @@
             this.gvConsumerList.TabIndex = 4;
             this.gvConsumerList.ThemeName = "Office2007Silver";
             this.gvConsumerList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvConsumerList_CurrentRowChanged);
+            this.gvConsumerList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvConsumerList_CustomFiltering);
             // 
             // btnBack
             // 
@@ -128,6 +133,7 @@
             this.txtSearch.NullText = "Пошук";
             this.txtSearch.Size = new System.Drawing.Size(306, 20);
             this.txtSearch.TabIndex = 6;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImage = null;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;

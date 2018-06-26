@@ -213,6 +213,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\F_Тестовий шаблон.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

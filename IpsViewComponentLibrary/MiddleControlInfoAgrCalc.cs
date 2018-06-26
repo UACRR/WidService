@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
@@ -16,6 +17,7 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private AnketaDictionaties _dictionaties;
+        private int _idItem;
 
         public MiddleControlInfoAgrCalc()
         {
@@ -56,8 +58,7 @@ namespace IpsViewComponentLibrary
                     source.Add(new GridLicenseAgrView
                     {
                         Id = item?.AgrId ?? default(int),
-                        License =
-                            _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
+                        License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
                         Series = string.Empty,
                         AgrNumber = licenseParam?.LicNum ?? string.Empty,
                         DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
@@ -96,11 +97,9 @@ namespace IpsViewComponentLibrary
                                       manager?.Empl?.SurName;
 
             userInfoCtrl.PhoneManager = manager?.Empl?.PhoneNumber;
-            userInfoCtrl.WorkPositionManager = "";//уточнити
             userInfoCtrl.PibContactPerson = contactPerson?.Empl?.FirstName + " " +
                                             contactPerson?.Empl?.LastName + " " +
                                             contactPerson?.Empl?.SurName;
-            userInfoCtrl.WorkPositionContactPerson = "";
             userInfoCtrl.PhoneContactPerson = contactPerson?.Empl?.PhoneNumber;
             userInfoCtrl.EmailContactPerson = contactPerson?.Empl?.Email;
             userInfoCtrl.OrganisationForm = "";
@@ -111,9 +110,10 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetAgrInfoData(int idItem = 0)
         {
+            _idItem = idItem;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
-
+            
             agreementInfoCtrl.NumberAgr = licenseParam?.LicNum;
             agreementInfoCtrl.Agent = "";
             agreementInfoCtrl.DateAgr = licenseParam?.LicDate?.ToString("dd.MM.yyyy");
@@ -163,6 +163,53 @@ namespace IpsViewComponentLibrary
         {
             if(pvMain.SelectedPage == pvReports)
                 reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
+        }
+
+        private void btnProlongation_Click(object sender, EventArgs e)
+        {
+            
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            var licParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+            LicenseAgrParam newLicense = new LicenseAgrParam();
+            newLicense.SetFields(licParam);
+            newLicense.LicDate = DateTime.Now;
+            newLicense.DateBegin = DateTime.Now;
+            newLicense.DateEnd = DateTime.Now.AddYears(1);
+            newLicense.LicVersion++;
+            license?.LicenseAgrParam?.Add(newLicense);
+
+            var licenseParam = license?.LicenseAgrParam.LastOrDefault();
+
+            var anketaCompany = _customer?.Company?.AnketaCompany?.SingleOrDefault();
+            var licenseName = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name;
+
+            if (GetTypeAgrForm())
+            {
+                //з майданчиками
+                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer?.Client?.ClnBusinessPlace)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+
+                prolongation.ShowDialog();
+            }
+            else
+            {
+                // без майданчиків
+                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license,_customer)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+                prolongation.ShowDialog();
+            }
+        }
+
+        // true - з майданчиками, false - без майданчиків
+        private bool GetTypeAgrForm()
+        {
+            if(_customer.Client.ClnBusinessPlace.Count > 0)
+                return true;
+            return false;
         }
     }
 

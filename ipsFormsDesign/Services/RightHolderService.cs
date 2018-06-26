@@ -57,5 +57,35 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<RightholderMainView>(resourceUrl);
             return list;
         }
+
+        public bool Inherit(int rhId, List<RightHolder> inheritData)
+        {
+            return _webApi.ApiAction<RightHolder>("rh/inheritance", rhId, inheritData);
+        }
+
+        public IList<Authors> getAuthorsByFilter( string filterString )
+        {
+            var url = string.Concat("rh/filters/authors/", filterString);
+            var listOfAuthors = _webApi.GetList<Authors>(url);
+            return listOfAuthors;
+        }
+#if DEBUG
+        public class DebugInheritData
+        {
+            public DebugInheritData()
+            {
+                listCopyRight = new List<CopyRight>();
+                authtors = new List<Authors>();
+                inheriers = new List<CopyRight>();
+            }
+            public List<CopyRight> listCopyRight { get; }
+            public List<Authors> authtors { get; }
+            public List<CopyRight> inheriers { get; }
+        }
+        public DebugInheritData InheritDebug(int checkCustId, List<RightHolder> inheritData)
+        {
+            return _webApi.ApiFunc<RightHolder, DebugInheritData>("rh/inheritancedebug", checkCustId, inheritData);
+        }
+# endif
     }
 }

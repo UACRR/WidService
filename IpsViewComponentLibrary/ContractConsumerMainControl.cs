@@ -27,8 +27,8 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get => bindingSource1.DataSource;
-            set => bindingSource1.DataSource = value;
+            get => bindingSource.DataSource;
+            set => bindingSource.DataSource = value;
         }
 
         //public string ContractNumber => rtxtBoxContrNumber.Text;
@@ -102,9 +102,9 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
             //rdtPickerAgrDate.Value = DateTime.Now;
             //rdtPickerDateBegin.Value = DateTime.Now;
-            //rdtPickerAgrDate.SetUserCalendarSettingsm();
-            //rdtPickerDateBegin.SetUserCalendarSettingsm();
-            //rdtPickerDateEnd.SetUserCalendarSettingsm();
+            rdtPickerAgrDate.SetUserCalendarSettingsm();
+            rdtPickerDateBegin.SetUserCalendarSettingsm();
+            rdtPickerDateEnd.SetUserCalendarSettingsm();
         }
 
         public bool Validator()

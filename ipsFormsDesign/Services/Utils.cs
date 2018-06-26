@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace ipsFormsDesign
@@ -7,6 +8,46 @@ namespace ipsFormsDesign
     public static class Utils
     {
 
+        public static void SetFields(this object dest, object source, string[] FieldExclude = null)
+        {
+            if (ReferenceEquals(dest, source)) return;
+            if ((dest == null) || (source == null)) return;
+            if (dest.GetType() != source.GetType()) return;
+
+            List<string> excludeList = new List<string>();
+            if (FieldExclude != null)
+            {
+                excludeList.AddRange(FieldExclude);
+                excludeList.Sort();
+            }
+
+            foreach (var property in dest.GetType().GetProperties())
+            {
+                if (excludeList.Contains(property.Name))
+                    continue;
+
+                // If nullable
+                Type checkType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+                TypeInfo ti = checkType == null ? property.GetType().GetTypeInfo() : checkType.GetTypeInfo();
+
+                if (!(ti.IsPrimitive == true
+                  || checkType == typeof(string)
+                  || checkType == typeof(Decimal)
+                  || checkType == typeof(DateTime)))
+                    continue;
+
+                var objValue = property.GetValue(dest);
+                var anotherValue = property.GetValue(source);
+                //Recursion
+                if (anotherValue == null)
+                {
+                    if (objValue != null)
+                        property.SetValue(dest, anotherValue, null);
+                }
+                else if (objValue == null || !objValue.Equals(anotherValue))
+                    property.SetValue(dest, anotherValue, null);
+            }
+        }
 
         /// <summary>
         /// Класс отображения суммы прописью.

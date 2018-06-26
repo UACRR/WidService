@@ -129,6 +129,7 @@ namespace sysAdminwp
             // 
             // 
             this.radGridView1.MasterTemplate.AllowAddNewRow = false;
+            this.radGridView1.MasterTemplate.AllowDeleteRow = false;
             this.radGridView1.MasterTemplate.AllowEditRow = false;
             this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             this.radGridView1.MasterTemplate.EnableCustomFiltering = true;

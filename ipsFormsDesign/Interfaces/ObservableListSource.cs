@@ -18,6 +18,8 @@ namespace ipsFormsDesign.Interfaces
         {
         }
 
+        public ICollection<T> list { get { return this; } }
+
         public ObservableListSource(IList<T> list)
         {
             _bindingList = new BindingList<T>(list);

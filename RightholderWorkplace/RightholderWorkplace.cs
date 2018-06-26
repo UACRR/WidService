@@ -36,6 +36,7 @@ namespace RightholderWorkplace
         List<TermsOfServiceWrapper> _termsOfServices;
         RightHolder _rightHolder;
 
+        RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
 
         #region IRightholderForm immplementation
@@ -511,6 +512,11 @@ namespace RightholderWorkplace
             relation.ParentColumnNames.Add("ObjId");
             relation.ChildColumnNames.Add("ObjId");
             gvChangeCopyrights.Relations.Add(relation);
+
+            dtChangeCopyrightDateFrom.Value = DateTime.Now;
+            dtChangeCopyrightDateTill.Value = DateTime.Now;
+
+            ctrlChangeRightholderOperation.SelectedValue = 3;
         }
 
         #region Objectrights page
@@ -615,6 +621,8 @@ namespace RightholderWorkplace
         {
             if (category == 0)
                 return;
+
+            _previousPage = objectsPageView.SelectedPage;
 
             _objectRight = _objectRightService.NewObjectRight(category);
 
@@ -746,60 +754,39 @@ namespace RightholderWorkplace
             // transform from single table to Authors and Copyright tables
             var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
 
-            objectAuthorRightholderList.ForEach(ar => _objectRight.Authors.Add(new Authors
+            _objectRight.Authors.Clear();
+            objectAuthorRightholderList.Select(ar =>
             {
-                AuthId = ar.AuthId,
-                ObjId = ar.ObjId,
-                RoleCode = ar.RoleCode,
-                CustId = ar.CustId,
-                AuthorName = ar.AuthorName,
-                FolkType = ar.FolkType,
-            }));
+                return new Authors
+                {
+                    AuthId = ar.AuthId,
+                    ObjId = ar.ObjId,
+                    RoleCode = ar.RoleCode,
+                    CustId = ar.CustId,
+                    AuthorName = ar.AuthorName,
+                    FolkType = ar.FolkType,
+                };
+            }).ToList().ForEach( item => _objectRight.Authors.Add( item ));
 
-            //_objectRight.Authors = objectAuthorRightholderList.Select(ar =>
-            //{
-            //    return new Authors
-            //    {
-            //        AuthId = ar.AuthId,
-            //        ObjId = ar.ObjId,
-            //        RoleCode = ar.RoleCode,
-            //        CustId = ar.CustId,
-            //        AuthorName = ar.AuthorName,
-            //        FolkType = ar.FolkType,
-            //    };
-            //}).ToList();
+            _objectRight.CopyRight.Clear();
+            objectAuthorRightholderList
+                .Where(ar => ar.IsRightholder)
+                .Select(ar =>
+                {
+                    return new CopyRight
+                    {
+                        CRightId = ar.CRightId ?? 0,
+                        CustId = (int)ar.CustId,
+                        ObjId = ar.ObjId,
+                        RoleCode = ar.RoleCode,
+                        Rate = ar.Rate,
+                        BeginDate = ar.BeginDate,
+                        EndDate = ar.EndDate,
+                        Status = ar.CopyrightStatus,
+                    };
+                }).ToList().ForEach( item => _objectRight.CopyRight.Add( item ));
 
-            objectAuthorRightholderList.ForEach(ar => _objectRight.CopyRight.Add(
-               new CopyRight
-               {
-                   CRightId = ar.CRightId ?? 0,
-                   CustId = (int)ar.CustId,
-                   ObjId = ar.ObjId,
-                   RoleCode = ar.RoleCode,
-                   Rate = ar.Rate,
-                   BeginDate = ar.BeginDate,
-                   EndDate = ar.EndDate,
-                   Status = ar.CopyrightStatus,
-               }
-                ));
-            //_objectRight.CopyRight = objectAuthorRightholderList
-            //    .Where(ar => ar.IsRightholder)
-            //    .Select(ar =>
-            //    {
-            //        return |new CopyRight
-            //        {
-            //            CRightId = ar.CRightId ?? 0,
-            //            CustId = (int)ar.CustId,
-            //            ObjId = ar.ObjId,
-            //            RoleCode = ar.RoleCode,
-            //            Rate = ar.Rate,
-            //            BeginDate = ar.BeginDate,
-            //            EndDate = ar.EndDate,
-            //            Status = ar.CopyrightStatus,
-            //        };
-            //    }).ToList();
-
-            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100)
+            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100m)
             {
                 MessageBox.Show("Загальний відсоток володіння не може бути більше 100.", "Помилка");
                 return;
@@ -853,6 +840,14 @@ namespace RightholderWorkplace
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             SetTooltipTextFromHeader(sender, e);
+        }
+
+        private void gvObjectAuthorsRightholders_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            if (e.Column.Name == "EndDate" && e.CellElement.Text == (new DateTime(3000,1,1)).ToShortDateString())
+            {
+                e.CellElement.Text = "Не обмежено";
+            }
         }
 
         #endregion
@@ -970,6 +965,17 @@ namespace RightholderWorkplace
             objectCopyrightBindingSource.DataSource = _objectsCopyrightList;
         }
 
+        private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == 5;
+            var isDeath = ctrlChangeRightholderOperation.SelectedValue == 3;
+
+            lblChangeCopyrightDateTill.Visible = isTransfer;
+            dtChangeCopyrightDateTill.Visible = isTransfer;
+
+            btnBlockRightholder.Visible = isDeath;
+        }
+
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
         {
             using (var selectionView = new RightholderSelectionView())
@@ -991,7 +997,7 @@ namespace RightholderWorkplace
                     var newObjectCopyright = new ObjectCopyright
                     {
                         ObjId = or.ObjId,
-                        CustId = or.CustId,
+                        CustId = addedRightholder.CustId,
                         //RoleCode = or.RoleCode, ???
                         InnerCode = addedRightholder.InnerCode,
                         InterCode = addedRightholder.InterCode,
@@ -1054,6 +1060,74 @@ namespace RightholderWorkplace
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void btnSaveNewCopyrights_Click(object sender, EventArgs e)
+        {
+            var rightholders = new List<RightHolder>();
+
+            // old rightholder
+            var oldRightholder = new RightHolder
+            {
+                CustId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId,
+                CopyRight = new ObservableListSource<CopyRight>(),
+            };
+            
+            // old rightholder closed copyrighs
+            foreach (var row in gvChangeCopyrights.Rows)
+            {
+                var obj = row.DataBoundItem as ObjectRightForRightholder;
+
+                oldRightholder.CopyRight.Add(new CopyRight {
+                    ObjId = obj.ObjId,
+                    EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1),
+                });
+            }
+            rightholders.Add(oldRightholder);
+
+
+            // new copyrighs
+            var groupedCopyright = _objectsCopyrightList.GroupBy(oc => oc.CustId);
+
+            foreach (var rightholderGroup in groupedCopyright)
+            {
+                var newRightholder = new RightHolder
+                {
+                    CustId = rightholderGroup.Key,
+                    Cust = new Customer { Status = 9 },
+                    CopyRight = new ObservableListSource<CopyRight>(),
+                };
+
+                foreach (var copyright in rightholderGroup)
+                {
+                    var newCprt = new CopyRight
+                    {
+                        CustId = newRightholder.CustId,
+                        ObjId = copyright.ObjId,
+                        RoleCode = 8, // Правовласник
+                        Rate = (decimal)copyright.Rate, // decimal or double?
+                        BeginDate = dtChangeCopyrightDateFrom.Value,
+                        EndDate = new DateTime(3000, 1, 1),
+                        //ParentId = 
+                        Obj = new ObjectRight()
+                    };
+                    newCprt.Obj.Authors.Add(new Authors
+                    {
+                        CustId = newRightholder.CustId,
+                        ObjId = copyright.ObjId,
+                        FolkType = 1,
+                        RoleCode = 8, // Правовласник
+                        AuthorName = copyright.Name,
+                    });
+                    newRightholder.CopyRight.Add(newCprt);
+                    
+
+                    //newRightholder.Obj.Authors.
+                }
+                rightholders.Add(newRightholder);
+            }
+
+            var result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
         }
 
         #endregion

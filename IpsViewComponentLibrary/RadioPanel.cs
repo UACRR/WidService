@@ -39,6 +39,7 @@ namespace IpsViewComponentLibrary
                 {
                     _selectedValue = null;
                 }
+                OnSelectedValueChanged();
             }
         }
 
@@ -59,8 +60,13 @@ namespace IpsViewComponentLibrary
                  && int.TryParse(radio.Tag.ToString(), out val))
             {
                 _selectedValue = val;
-                SelectedValueChanged(this, new EventArgs());
+                OnSelectedValueChanged();
             }
+        }
+
+        private void OnSelectedValueChanged()
+        {
+            SelectedValueChanged(this, new EventArgs());
         }
     }
 }
