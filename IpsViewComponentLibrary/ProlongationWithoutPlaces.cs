@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary
         private Customer _cust;
         private LicenseAgrParam _licAgr;
 
-        public event EventHandler OnPrintClick;
+        public event EventHandler OnSaveProlongation;
 
         public ProlongationWithoutPlaces()
         {
@@ -51,8 +51,9 @@ namespace IpsViewComponentLibrary
 
         private void CtrlProlongation_OnPrintClick()
         {
-            ViewAndPrintAgreement print =new ViewAndPrintAgreement(dictionaties: _dict, customer: _cust, licenseAgreement: _lic)
+            ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dict, customer: _cust, licenseAgreement: _lic)
             {
+                WindowState = FormWindowState.Maximized,
                 StartPosition = FormStartPosition.CenterScreen
             };
             print.ShowDialog();
@@ -62,6 +63,7 @@ namespace IpsViewComponentLibrary
         {
             _changesSaved = true;
             //TODO зберігання даних
+            OnSaveProlongation?.Invoke(this,EventArgs.Empty);
             Close();
         }
 

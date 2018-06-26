@@ -19,13 +19,21 @@ namespace IpsViewComponentLibrary
 
         public delegate void Print();
         public event Print OnPrintClick;
-
-        
+        private Customer _customer;
+        private ObservableListSource<ClnBusinessPlace> _places = new ObservableListSource<ClnBusinessPlace>();
+        private ObservableListSource<ClnBusinessPlace> _tempPlaces;
 
         public MiddleControlAgreementProlPlacesType()
         {
             InitializeComponent();
         }
+
+        public void InitializeObjects(Customer cust, ObservableListSource<ClnBusinessPlace> places)
+        {
+            _customer = cust;
+            _tempPlaces = places;
+        }
+
 
         public string LicenseName
         {
@@ -97,12 +105,25 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            _customer.Client.ClnBusinessPlace = _places;
+
             OnSaveChangesClick?.Invoke();
         }
 
         private void gvPlaces_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            //TODO: checkbox event обрані майданчики додати до ліцензії;
+            //TODO: checkbox event обрані майданчики додати до ліцензії
+
+            var id = (int)e.Row.Cells["PlaceId"].Value;
+            if (e?.Value != null && (bool)e.Value)
+            {
+                _places.Add(_tempPlaces.SingleOrDefault(rec => rec.PlaceId == id));
+            }
+            else if (e?.Value != null && !(bool)e.Value)
+            {
+                _places.Remove(_tempPlaces.SingleOrDefault(rec => rec.PlaceId == id));
+            }
+
         }
     }
 }

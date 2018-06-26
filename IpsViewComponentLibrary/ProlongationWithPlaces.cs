@@ -35,6 +35,8 @@ namespace IpsViewComponentLibrary
             ctrlProlongation.OnPrintClick += CtrlProlongation_OnPrintClick;
             ctrlProlongation.OnSaveChangesClick += CtrlProlongation_OnSaveChangesClick;
 
+            ctrlProlongation.InitializeObjects(cust, places);
+
             ctrlProlongation.DataSourceGrid = places;
 
             ctrlProlongation.Dictionaties = dict;// словник
@@ -55,6 +57,7 @@ namespace IpsViewComponentLibrary
         {
             ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dict, customer: _cust, licenseAgreement: _lic)
             {
+                WindowState = FormWindowState.Maximized,
                 StartPosition = FormStartPosition.CenterScreen
             };
             print.ShowDialog();

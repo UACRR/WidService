@@ -32,6 +32,9 @@ namespace IpsViewComponentLibrary
         public delegate void EditCustomer(int id);
         public event EditCustomer OnEditCustomer;
 
+        public delegate bool SaveCustomer(Customer customer);
+        public event SaveCustomer OnSaveCustomer;
+
         public string FilterString
         {
             get => txtSearch.Text;
@@ -42,6 +45,20 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
+            mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
+        }
+
+        private void MсInfoAgrCalc_OnCustomerSave(Customer customer)
+        {
+            var result = OnSaveCustomer?.Invoke(customer) ?? false;
+            if (result)
+            {
+                MessageBox.Show("Пролонгація успішно додана!","Збережено",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Не пролонговано!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void GvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
