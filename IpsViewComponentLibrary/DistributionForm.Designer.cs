@@ -95,7 +95,7 @@ namespace IpsViewComponentLibrary
             this.gvDistributionPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvDistributionPayment.AutoScroll = true;
-            this.gvDistributionPayment.Location = new System.Drawing.Point(12, 131);
+            this.gvDistributionPayment.Location = new System.Drawing.Point(12, 129);
             // 
             // 
             // 
@@ -152,7 +152,7 @@ namespace IpsViewComponentLibrary
             // btnCreateNewPeriod
             // 
             this.btnCreateNewPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateNewPeriod.Location = new System.Drawing.Point(12, 333);
+            this.btnCreateNewPeriod.Location = new System.Drawing.Point(12, 331);
             this.btnCreateNewPeriod.Name = "btnCreateNewPeriod";
             this.btnCreateNewPeriod.Size = new System.Drawing.Size(151, 24);
             this.btnCreateNewPeriod.TabIndex = 11;
@@ -163,7 +163,8 @@ namespace IpsViewComponentLibrary
             // btnSaveDistrib
             // 
             this.btnSaveDistrib.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSaveDistrib.Location = new System.Drawing.Point(169, 333);
+            this.btnSaveDistrib.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSaveDistrib.Location = new System.Drawing.Point(169, 331);
             this.btnSaveDistrib.Name = "btnSaveDistrib";
             this.btnSaveDistrib.Size = new System.Drawing.Size(110, 24);
             this.btnSaveDistrib.TabIndex = 12;
@@ -174,7 +175,8 @@ namespace IpsViewComponentLibrary
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Location = new System.Drawing.Point(864, 333);
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Location = new System.Drawing.Point(864, 331);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(110, 24);
             this.btnExit.TabIndex = 13;
@@ -349,6 +351,7 @@ namespace IpsViewComponentLibrary
             // 
             // DistributionForm
             // 
+            this.AcceptButton = this.btnSaveDistrib;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 375);
