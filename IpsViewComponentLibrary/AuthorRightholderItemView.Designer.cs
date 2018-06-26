@@ -152,7 +152,7 @@
             this.pvParameters.Controls.Add(this.pvpFolk);
             this.pvParameters.Location = new System.Drawing.Point(0, 80);
             this.pvParameters.Name = "pvParameters";
-            this.pvParameters.SelectedPage = this.pvpAuthorRightholder;
+            this.pvParameters.SelectedPage = this.pvpNotProtected;
             this.pvParameters.Size = new System.Drawing.Size(546, 183);
             this.pvParameters.TabIndex = 59;
             this.pvParameters.ThemeName = "Office2013Light";
@@ -322,12 +322,15 @@
             // 
             // txtAuthorName
             // 
+            this.txtAuthorName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtAuthorName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAuthorName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "AuthorName", true));
             this.txtAuthorName.Location = new System.Drawing.Point(114, 3);
             this.txtAuthorName.Name = "txtAuthorName";
             this.txtAuthorName.Size = new System.Drawing.Size(415, 21);
             this.txtAuthorName.TabIndex = 60;
             this.txtAuthorName.ThemeName = "Office2013Light";
+            this.txtAuthorName.TextChanged += new System.EventHandler(this.txtAuthorName_TextChanged);
             // 
             // radLabel2
             // 
