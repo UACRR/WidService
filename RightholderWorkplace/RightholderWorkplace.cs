@@ -330,7 +330,7 @@ namespace RightholderWorkplace
             var acceptColumn = gvRightholdersList.Columns["AcceptColumn"];
 
             editColumn.IsVisible = true;
-            acceptColumn.IsVisible = _rightholderStatusType != RightholderStatusType.Active;
+            acceptColumn.IsVisible = (_rightholderStatusType == RightholderStatusType.New || _rightholderStatusType == RightholderStatusType.NotAccepted);
         }
 
         private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)

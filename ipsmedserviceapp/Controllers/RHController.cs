@@ -112,6 +112,18 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                 {
                     queryText = queryText + " where status = 2";
                 }
+                else if (filterType.ToLower() == "inheritance")
+                {
+                    queryText = queryText + " where status = 7";
+                }
+                else if (filterType.ToLower() == "blocked")
+                {
+                    queryText = queryText + " where status = 8";
+                }
+                else if (filterType.ToLower() == "closed")
+                {
+                    queryText = queryText + " where status = 9";
+                }
             }
 
             var List = await _dbContext.getViewData(queryText, null);
