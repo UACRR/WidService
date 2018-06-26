@@ -30,7 +30,6 @@ namespace ipsmedserviceapp.Model
         public AgreementType AgrTypeNavigation { get; set; }
         [JsonIgnore]
         public Customer Cust { get; set; }
-        [JsonIgnore]
         public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
         [JsonIgnore]
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }

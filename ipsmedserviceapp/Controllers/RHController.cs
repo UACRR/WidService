@@ -476,9 +476,6 @@ t2.custId = @custid
                         CopyRight addItem = new CopyRight();
                         // addItem.CRightId
                         addItem.SetFields(cright, new[] { "CRightId" });
-                        //addItem.CustId = item.CustId;
-                        //addItem.BeginDate = beginDate;
-                        // objects[(int)cright.ObjId].CopyRight.Add(addItem);
                         _dbContext.CopyRight.Add(addItem);
 
                         foreach (var author in cright.Obj.Authors)
@@ -489,7 +486,6 @@ t2.custId = @custid
                             Authors addAutor = new Authors();
                             addAutor.SetFields(author, new[] { "AuthId" });
                             // addAutor.AuthId
-                            // objects[addAutor.ObjId].Authors.Add(addAutor);
                             _dbContext.Authors.Add(addAutor);
                         }
                     }
@@ -517,6 +513,24 @@ t2.custId = @custid
             {
                 return false;
             }
+
+        }
+        /// <summary>
+        /// Зміна правовласника по спадщині
+        /// </summary>
+        /// <param name="rhId">Ід старого правовласника</param>
+        /// <param name="body">Список нових правовласників
+        ///                    та запис по старому правовласнику з датою завершення володінням правами 
+        /// </param>
+        /// <returns>Ok</returns>
+        [HttpPost("inheritance/{rhId}")]
+        public async Task<IActionResult> SetRHInheritance(int rhId, [FromBody]List<RightHolder> body)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                if (await internalRHInheritance(rhId, body) == false)
+                    return Ok();
 
         }
         /// <summary>

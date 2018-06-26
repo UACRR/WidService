@@ -61,8 +61,11 @@
     </item>
     <item Name="AgreementAddRh">
     </item>
+    <item Name="AgreementAddBr">
+    </item>
     <item Name="AgreementMaster">
         <noignore>AgreementAddRh</noignore>
+        <noignore>AgreementAddBr</noignore>
     </item>
     <item Name="Register">
         <noignore>Distribution</noignore>

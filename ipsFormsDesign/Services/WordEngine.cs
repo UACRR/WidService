@@ -286,7 +286,7 @@ namespace ipsFormsDesign.Services
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
                 var period = _dic.period.ToDictionary(rec => rec.CodeI);
                 var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
-                app = new Application();
+                    app = new Application();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -294,8 +294,8 @@ namespace ipsFormsDesign.Services
                 // замінити вміст
                 //AgreementAddRh agrRh = agr.AgreementAddRh.Where(item => item.Version == agr.Version).SingleOrDefault();
                 // Customer cust = agr.Cust;
-                LicenseAgreement licAgr = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
-                LicenseAgrParam licenseAgrParam = licAgr?.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).SingleOrDefault();
+                LicenseAgreement licAgr = agr;
+                LicenseAgrParam licenseAgrParam = licAgr?.LicenseAgrParam.Where(rec => rec.LicVersion == version).SingleOrDefault();
 
                 PaidPeriod paidPeriod = licAgr?.PaidPeriod.FirstOrDefault();
 
@@ -304,6 +304,8 @@ namespace ipsFormsDesign.Services
                 BankAccount bankacc = cust.BankAccount.FirstOrDefault();
                 Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
                 Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
+
+
                 var clnBusinessPlaceHotel = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 1) || (rec.PlCode == 2)).ToList();
                 var clnBusinessPlaceMarket = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 8).ToList();
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
@@ -314,9 +316,10 @@ namespace ipsFormsDesign.Services
 
 
 
-
-                //GdocDateC =
-                //GdocNumber = agr.AgreementAddBr?.addNumber.Where(rec => rec.IsCurrent == 1)?.First()  ?? agr.AgrNumber.ToString();
+                app = new Application();
+                innerDoc = app.Documents.Open(docFile);
+                // отримати ControlContent
+                var list = innerDoc.ContentControls;
 
                 string customerName = string.Empty;
                 string leAddress = string.Empty;
@@ -424,7 +427,10 @@ namespace ipsFormsDesign.Services
                     switch (title)
 
                     {
-  
+                        case "GdocNumberC":
+                            item.Range.Text = GdocNumber;
+                            break;
+
                         case "docNumberC":
                             item.Range.Text = LicNum;
                             break;
