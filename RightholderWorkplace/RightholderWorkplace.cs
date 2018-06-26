@@ -170,7 +170,14 @@ namespace RightholderWorkplace
             {
                 return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
             }
-            set { }
+            set
+            {
+                var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == value.CustId);
+                if (row != null)
+                {
+                    gvRightholdersList.CurrentRow = row;
+                }
+            }
         }
 
         #region Next / Prev buttons
@@ -306,10 +313,15 @@ namespace RightholderWorkplace
             UpdateRightholdersList();
         }
 
-        private void UpdateRightholdersList()
+        private void UpdateRightholdersList(RightholderMainView selectedRightholder = null)
         {
             var list = GetMainViewDataByStatus(_rightholderStatusType);
             rightHolderMainViewBindingSource.DataSource = list;
+
+            if (selectedRightholder != null)
+            {
+                SelectedRightholder = selectedRightholder;
+            }
         }
 
         private void SetRightholdersListColumns()
@@ -562,6 +574,7 @@ namespace RightholderWorkplace
                 return gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
             }
             set { }
+
         }
 
         private void SetObjectRightDictionaries()
@@ -806,6 +819,8 @@ namespace RightholderWorkplace
 
             objectsPageView.SelectedPage = _previousPage;
             actualObjectsPageView.SelectedPage = actualObjectsListPage;
+
+            UpdateRightholdersList(SelectedRightholder);
         }
 
         private void btnAddObjectAddName_Click(object sender, EventArgs e)
@@ -1132,6 +1147,7 @@ namespace RightholderWorkplace
             MessageBox.Show("Зміна правовласників виконана успішно.");
 
             ctrlRightholdersObjectsForChange.SelectedRightholder = _objectsCopyrightList.FirstOrDefault()?.Rightholder;
+            UpdateRightholdersList(SelectedRightholder);
         }
 
         private void ctrlRightholdersObjectsForChange_EditObjectCommandExecuted(object sender, int objId)
