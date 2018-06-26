@@ -1003,6 +1003,7 @@ namespace RightholderWorkplace
                         InterCode = addedRightholder.InterCode,
                         Name = addedRightholder.Name,
                         Rate = 0,
+                        Rightholder = addedRightholder,
                     };
                     _objectsCopyrightList.Add(newObjectCopyright);
                 });
@@ -1072,17 +1073,19 @@ namespace RightholderWorkplace
                 CustId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId,
                 CopyRight = new ObservableListSource<CopyRight>(),
             };
-            
-            // old rightholder closed copyrighs
-            foreach (var row in gvChangeCopyrights.Rows)
-            {
-                var obj = row.DataBoundItem as ObjectRightForRightholder;
 
-                oldRightholder.CopyRight.Add(new CopyRight {
-                    ObjId = obj.ObjId,
-                    EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1),
-                });
-            }
+            oldRightholder.CopyRight.Add(new CopyRight { EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1) });
+            
+            //// old rightholder closed copyrighs
+            //foreach (var row in gvChangeCopyrights.Rows)
+            //{
+            //    var obj = row.DataBoundItem as ObjectRightForRightholder;
+
+            //    oldRightholder.CopyRight.Add(new CopyRight {
+            //        ObjId = obj.ObjId,
+            //        EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1),
+            //    });
+            //}
             rightholders.Add(oldRightholder);
 
 
@@ -1120,14 +1123,20 @@ namespace RightholderWorkplace
                         AuthorName = copyright.Name,
                     });
                     newRightholder.CopyRight.Add(newCprt);
-                    
-
-                    //newRightholder.Obj.Authors.
                 }
                 rightholders.Add(newRightholder);
             }
 
             var result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
+
+            MessageBox.Show("Зміна правовласників виконана успішно.");
+
+            ctrlRightholdersObjectsForChange.SelectedRightholder = _objectsCopyrightList.FirstOrDefault()?.Rightholder;
+        }
+
+        private void ctrlRightholdersObjectsForChange_EditObjectCommandExecuted(object sender, int objId)
+        {
+            EditObjectRight(objId);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,5 +14,6 @@ namespace ipsFormsDesign.Dictionary
         public string InterCode { get; set; }
         public string Name { get; set; }
         public double Rate { get; set; }
+        public RightholderMainView Rightholder { get; set; }
     }
 }
