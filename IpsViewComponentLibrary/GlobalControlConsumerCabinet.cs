@@ -29,6 +29,9 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler OnAddNewCustomer;
 
+        public delegate void EditCustomer(int id);
+        public event EditCustomer OnEditCustomer;
+
         public string FilterString
         {
             get => txtSearch.Text;
@@ -95,7 +98,7 @@ namespace IpsViewComponentLibrary
         {
             OnButtonBackClick?.Invoke(_rowId);
         }
-
+        //новий споживач
         private void btnNewConsumer_Click(object sender, EventArgs e)
         {
             OnAddNewCustomer?.Invoke(this,EventArgs.Empty);
@@ -146,6 +149,11 @@ namespace IpsViewComponentLibrary
 
                 gvConsumerList.EndUpdate(false);
             }
+        }
+
+        private void btnEditAgr_Click(object sender, EventArgs e)
+        {
+            OnEditCustomer?.Invoke(_rowId);
         }
     }
 }

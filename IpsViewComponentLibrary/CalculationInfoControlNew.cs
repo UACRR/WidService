@@ -187,9 +187,6 @@ namespace IpsViewComponentLibrary
 
         private void btnDistribute_Click(object sender, EventArgs e)
         {
-            //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
-
-            //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
             MoneyReceived moneyReceived = _data?.Client?.MoneyReceived?.Where(rec => rec.PaidId == (int)gvUserMoneys.CurrentRow.Cells["PaidId"].Value).SingleOrDefault();
             var lic = _data?.Client?.LicenseAgreement.SingleOrDefault(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value);
             var licenseParam = lic?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == lic.LicVersion);

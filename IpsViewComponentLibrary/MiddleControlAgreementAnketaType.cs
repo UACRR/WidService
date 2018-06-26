@@ -67,6 +67,11 @@ namespace IpsViewComponentLibrary
             
         }
 
+        public bool Validator()
+        {
+            return ctrlAgreementMain.Validator() && ctrlAgreementSecond.Validator();
+        }
+
         internal void SetDefaultListItem()
         {
             if (ddlLicType.Items.Count != 0)

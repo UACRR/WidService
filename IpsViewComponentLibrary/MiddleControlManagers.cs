@@ -61,6 +61,11 @@ namespace IpsViewComponentLibrary
             lblTitle.Text = anketa?.Name;
         }
 
+        public bool Validator()
+        {
+            return ctrlHeadBoss.Validator() && ctrlBookkeeper.Validator() && ctrlContactPerson.Validator();
+        }
+
         internal void SetDefaultState()
         {
             if (ddlPosition.Items.Count != 0)

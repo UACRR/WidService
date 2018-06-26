@@ -65,6 +65,11 @@ namespace IpsViewComponentLibrary
             lblTitle.Text = anketa?.Name;
         }
 
+        public bool Validator()
+        {
+            return addressFactual.Validator() && addressLegal.Validator() && addressLetter.Validator();
+        }
+
 
         // з юридичної до фактичної
         private void btnCopyFromJaToFa_Click(object sender, EventArgs e)

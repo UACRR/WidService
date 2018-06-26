@@ -99,5 +99,10 @@ namespace IpsViewComponentLibrary
         {
             OnSaveChangesClick?.Invoke();
         }
+
+        private void gvPlaces_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            //TODO: checkbox event обрані майданчики додати до ліцензії;
+        }
     }
 }

@@ -25,14 +25,20 @@ namespace IpsViewComponentLibrary
             
         }
 
-        public AnketaConsumerForm(Customer customer, AnketaDictionaties dictionaties)
+        public AnketaConsumerForm(Customer customer, AnketaDictionaties dictionaties, bool isNew = true)
         {
             InitializeComponent();
             ctrlConsumerAnketa.OnBtnSaveClick += CtrlConsumerAnketa_OnBtnSaveClick;
             _customer = customer;
             _dictionaties = dictionaties;
             ctrlConsumerAnketa.SetDataAndDictionaries(customer, dictionaties);
-            ctrlConsumerAnketa.InitializeControl(true);
+            ctrlConsumerAnketa.InitializeControl(isNew);
+            if (!isNew)
+            {
+                btnSave.Visible = true;
+                btnCancel.Visible = true;
+                Text = "Редагування анкети споживача";
+            }
         }
 
 
@@ -45,8 +51,26 @@ namespace IpsViewComponentLibrary
                 Close();
             }
             else
-                MessageBox.Show("Не вдалося додати нового користувача!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Не вдалося додати нового споживача дані!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Дійсно скасувати всі зміни та вийти?","Повідомлення",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            var result = OnSaveCustomerNeed?.Invoke(ctrlConsumerAnketa.GetCustomer) ?? false;
+            if (result)
+            {
+                MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+            }
+            else
+                MessageBox.Show("Не вдалося зберегти дані!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        }
     }
 }

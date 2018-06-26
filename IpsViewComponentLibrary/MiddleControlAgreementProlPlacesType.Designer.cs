@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.lblTitleClientName = new Telerik.WinControls.UI.RadLabel();
             this.bindingSourceAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
@@ -192,41 +193,49 @@
             this.gvPlaces.MasterTemplate.AllowColumnReorder = false;
             this.gvPlaces.MasterTemplate.AllowDeleteRow = false;
             this.gvPlaces.MasterTemplate.AllowDragToGroup = false;
-            this.gvPlaces.MasterTemplate.AllowEditRow = false;
             this.gvPlaces.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn9.FieldName = "PlaceId";
-            gridViewTextBoxColumn9.HeaderText = "n/n";
-            gridViewTextBoxColumn9.MaxWidth = 70;
-            gridViewTextBoxColumn9.MinWidth = 70;
-            gridViewTextBoxColumn9.Name = "PlaceId";
-            gridViewTextBoxColumn9.Width = 70;
-            gridViewTextBoxColumn10.FieldName = "PlaceAddress";
-            gridViewTextBoxColumn10.HeaderText = "Фактична адреса закладу";
-            gridViewTextBoxColumn10.Name = "PlaceAddress";
-            gridViewTextBoxColumn10.Width = 318;
-            gridViewTextBoxColumn11.FieldName = "PlaceName";
-            gridViewTextBoxColumn11.HeaderText = "Назва Закладу";
-            gridViewTextBoxColumn11.Name = "PlaceName";
-            gridViewTextBoxColumn11.Width = 158;
-            gridViewTextBoxColumn12.FieldName = "PlCode";
-            gridViewTextBoxColumn12.HeaderText = "Сума";
-            gridViewTextBoxColumn12.MaxWidth = 135;
-            gridViewTextBoxColumn12.MinWidth = 120;
-            gridViewTextBoxColumn12.Name = "PlCode";
-            gridViewTextBoxColumn12.Width = 120;
+            gridViewTextBoxColumn1.FieldName = "PlaceId";
+            gridViewTextBoxColumn1.HeaderText = "n/n";
+            gridViewTextBoxColumn1.MaxWidth = 70;
+            gridViewTextBoxColumn1.MinWidth = 70;
+            gridViewTextBoxColumn1.Name = "PlaceId";
+            gridViewTextBoxColumn1.ReadOnly = true;
+            gridViewTextBoxColumn1.Width = 70;
+            gridViewTextBoxColumn2.FieldName = "PlaceAddress";
+            gridViewTextBoxColumn2.HeaderText = "Фактична адреса закладу";
+            gridViewTextBoxColumn2.Name = "PlaceAddress";
+            gridViewTextBoxColumn2.ReadOnly = true;
+            gridViewTextBoxColumn2.Width = 296;
+            gridViewTextBoxColumn3.FieldName = "PlaceName";
+            gridViewTextBoxColumn3.HeaderText = "Назва Закладу";
+            gridViewTextBoxColumn3.Name = "PlaceName";
+            gridViewTextBoxColumn3.ReadOnly = true;
+            gridViewTextBoxColumn3.Width = 147;
+            gridViewTextBoxColumn4.FieldName = "PlCode";
+            gridViewTextBoxColumn4.HeaderText = "Сума";
+            gridViewTextBoxColumn4.MaxWidth = 135;
+            gridViewTextBoxColumn4.MinWidth = 120;
+            gridViewTextBoxColumn4.Name = "PlCode";
+            gridViewTextBoxColumn4.ReadOnly = true;
+            gridViewTextBoxColumn4.Width = 120;
+            gridViewCheckBoxColumn1.FieldName = "CheckIn";
+            gridViewCheckBoxColumn1.HeaderText = "";
+            gridViewCheckBoxColumn1.Name = "CheckIn";
+            gridViewCheckBoxColumn1.Width = 34;
             this.gvPlaces.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewCheckBoxColumn1});
             this.gvPlaces.MasterTemplate.EnableGrouping = false;
-            this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvPlaces.Name = "gvPlaces";
             this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvPlaces.ReadOnly = true;
             this.gvPlaces.Size = new System.Drawing.Size(684, 108);
             this.gvPlaces.TabIndex = 28;
             this.gvPlaces.ThemeName = "Office2007Silver";
+            this.gvPlaces.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPlaces_CellValueChanged);
             // 
             // btnAddPlace
             // 
@@ -272,6 +281,8 @@
             this.PerformLayout();
 
         }
+
+
 
         #endregion
 

@@ -45,7 +45,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetDataSource()
         {
-            //TODO: витягти записи де кошти не розподілені
+            //TODO: витягти записи де кошти не розподілені (вибірка)
             var dsourceUserMoney = _data?.Client?.MoneyReceived?.ToList();
             gvUserMoneys.DataSource = dsourceUserMoney;
             //встановити джерело для [Активні договора]
