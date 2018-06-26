@@ -53,6 +53,13 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!IsValid())
+            {
+                MessageBox.Show("Не вірно введені дані. Об'єкт не записаний.");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
             _authorRightholder.EndEdit();
 
             DialogResult = DialogResult.OK;
@@ -142,5 +149,29 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
+
+        private bool IsValid()
+        {
+            //foreach (Control control in errorProvider.ContainerControl.Controls)
+            //{
+            //    if (errorProvider.GetError(control) != "")
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            if (errorProvider.GetError(mtxtRate) != "")
+                return false;
+
+            return true;
+        }
+
+        private void mtxtRate_Validated(object sender, EventArgs e)
+        {
+            if (_authorRightholder.Rate > 100)
+                errorProvider.SetError(mtxtRate, "Відсоток володіння не може бути більше 100%.");
+            else
+                errorProvider.SetError(mtxtRate, "");
+        }
     }
 }

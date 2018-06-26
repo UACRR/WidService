@@ -16,7 +16,17 @@ namespace ipsFormsDesign.Dictionary
         public int? CopyrightStatus { get; set; }
         public int? StatusZayavky { get; set; }
         public string CommunityName { get; set; }
-        public decimal? Rate { get; set; }
+
+        private decimal? _rate;
+        public decimal? Rate
+        {
+            get { return _rate; }
+            set
+            {
+                _rate = value;
+                OnPropertyChanged(nameof(Rate));
+            }
+        }
 
         private DateTime? _beginDate;
         public DateTime? BeginDate
