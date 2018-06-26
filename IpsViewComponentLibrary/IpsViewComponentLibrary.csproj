@@ -67,6 +67,9 @@
     <Reference Include="itext.svg, Version=7.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itext7.7.1.2\lib\net40\itext.svg.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault">
+      <HintPath>..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.azure.keyvault\2.3.2\lib\netstandard1.4\Microsoft.Azure.KeyVault.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -308,6 +311,18 @@
     <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiddleControlAgreementProlType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAgreementProlType.Designer.cs">
+      <DependentUpon>MiddleControlAgreementProlType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlAgreementProlPlacesType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAgreementProlPlacesType.Designer.cs">
+      <DependentUpon>MiddleControlAgreementProlPlacesType.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiddleControlBankRequisites.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -349,6 +364,18 @@
     </Compile>
     <Compile Include="PassportInternationalControl.Designer.cs">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProlongationWithPlaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProlongationWithPlaces.Designer.cs">
+      <DependentUpon>ProlongationWithPlaces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProlongationWithoutPlaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProlongationWithoutPlaces.Designer.cs">
+      <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IpsServiceComissionControl.cs">
@@ -417,6 +444,12 @@
     </Compile>
     <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAndPrintAgreement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewAndPrintAgreement.Designer.cs">
+      <DependentUpon>ViewAndPrintAgreement.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -519,6 +552,12 @@
     <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAgreementProlType.resx">
+      <DependentUpon>MiddleControlAgreementProlType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAgreementProlPlacesType.resx">
+      <DependentUpon>MiddleControlAgreementProlPlacesType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlBankRequisites.resx">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </EmbeddedResource>
@@ -539,6 +578,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PassportInternationalControl.resx">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProlongationWithPlaces.resx">
+      <DependentUpon>ProlongationWithPlaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProlongationWithoutPlaces.resx">
+      <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="IpsServiceComissionControl.resx">
@@ -576,10 +621,15 @@
     <EmbeddedResource Include="TerritoryIncludeExcludeControl.resx">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ViewAndPrintAgreement.resx">
+      <DependentUpon>ViewAndPrintAgreement.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />

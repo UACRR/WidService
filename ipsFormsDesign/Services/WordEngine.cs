@@ -26,7 +26,7 @@ namespace ipsFormsDesign.Services
         {
             if (tempFileName == null) return;
 
-                var docFile = tempFileName + ".docx";
+            var docFile = tempFileName + ".docx";
             if (File.Exists(docFile))
                 File.Delete(docFile);
 
@@ -73,7 +73,7 @@ namespace ipsFormsDesign.Services
                 AnketaPerson anketaPerson = cust.Person?.AnketaPerson.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
                 AnketaCompany anketaCompany = cust.Company?.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
                 BankAccount bankacc = cust.BankAccount.FirstOrDefault();
-             //   AnketaCompany anketaComp = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
+                //   AnketaCompany anketaComp = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
 
                 string customerName = string.Empty;
                 string leAddress = string.Empty;
@@ -85,8 +85,8 @@ namespace ipsFormsDesign.Services
                 string eMail = string.Empty;
                 DateTime? createDate = DateTime.Today;
                 string Okpo = string.Empty;
-                
-                if( cust.CustType < 3 ) // фіз. особа
+
+                if (cust.CustType < 3) // фіз. особа
                 {
                     customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                     leAddress = anketaPerson.LeAddress != null ?
@@ -256,7 +256,17 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="pathTemplate"></param>
         /// <param name="Consumer"></param>
-        public void processConsumer(string pathTemplate, Customer cust, AgreementMaster agr)
+        public void processConsumer(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement lic)
+        {
+            processConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
+        }
+
+        /// <summary>
+        /// Друк доп угоди по ліцензійному договору
+        /// </summary>
+        /// <param name="pathTemplate"></param>
+        /// <param name="Consumer"></param>
+        public void processConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
         {
 
 
@@ -276,7 +286,7 @@ namespace ipsFormsDesign.Services
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
                 var period = _dic.period.ToDictionary(rec => rec.CodeI);
                 var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
-                app = new Application();
+                    app = new Application();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -284,8 +294,8 @@ namespace ipsFormsDesign.Services
                 // замінити вміст
                 //AgreementAddRh agrRh = agr.AgreementAddRh.Where(item => item.Version == agr.Version).SingleOrDefault();
                 // Customer cust = agr.Cust;
-                LicenseAgreement licAgr = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
-                LicenseAgrParam licenseAgrParam = licAgr?.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).SingleOrDefault();
+                LicenseAgreement licAgr = agr;
+                LicenseAgrParam licenseAgrParam = licAgr?.LicenseAgrParam.Where(rec => rec.LicVersion == version).SingleOrDefault();
 
                 PaidPeriod paidPeriod = licAgr?.PaidPeriod.FirstOrDefault();
 
@@ -294,19 +304,17 @@ namespace ipsFormsDesign.Services
                 BankAccount bankacc = cust.BankAccount.FirstOrDefault();
                 Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
                 Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
+
+
                 var clnBusinessPlaceHotel = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 1) || (rec.PlCode == 2)).ToList();
                 var clnBusinessPlaceMarket = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 8).ToList();
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
-                var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 3) || (rec.PlCode == 4) 
-                 || (rec.PlCode == 5)).ToList();
-                AgreementAddBr agreementAddBr;
-                agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.IsCurrent == 1)?.SingleOrDefault();
-                
+                var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 5).ToList();
 
-
-
-                //GdocDateC =
-                //GdocNumber = agr.AgreementAddBr?.addNumber.Where(rec => rec.IsCurrent == 1)?.First()  ?? agr.AgrNumber.ToString();
+                app = new Application();
+                innerDoc = app.Documents.Open(docFile);
+                // отримати ControlContent
+                var list = innerDoc.ContentControls;
 
                 string customerName = string.Empty;
                 string leAddress = string.Empty;
@@ -378,7 +386,7 @@ namespace ipsFormsDesign.Services
                         $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
                     faAddress = anketaCompany.FaAddress != null ?
                         $"{countries[anketaCompany.FaCountry ?? "804"].CountryName} {anketaCompany.FaCity} {anketaCompany.FaAddress}" : faAddress;
-                    
+
 
                     var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
                     phoneWork = bossEmployee?.Empl.PhoneNumber ?? string.Empty;
@@ -402,7 +410,7 @@ namespace ipsFormsDesign.Services
                 LicNum = licAgr?.LicNum;
                 prcntInc = licenseAgrParam?.RateAmount.ToString();
                 minRltGrn = licenseAgrParam?.MinAmount.ToString();
-                minRltKop = ((int)((licenseAgrParam?.MinAmount ?? 0- (int)(licenseAgrParam?.MinAmount ?? 0)) * 100) ) .ToString();
+                minRltKop = ((int)((licenseAgrParam?.MinAmount ?? 0 - (int)(licenseAgrParam?.MinAmount ?? 0)) * 100)).ToString();
                 pay_period = $"{period[licenseAgrParam?.PeriodCode ?? 1].Name}";
                 pay_period2 = $"{period[licenseAgrParam?.PeriodCode ?? 1].NameR}";
                 DocDateEnd = $"{licenseAgrParam?.DateEnd:dd.MM.yyyy}";
@@ -432,7 +440,7 @@ namespace ipsFormsDesign.Services
                         case "docDate":
                             item.Range.Text = DocDate;
                             break;
-                         case "docNumberYear":
+                        case "docNumberYear":
                             item.Range.Text = $"{licAgr.LicDate:yy}";
                             break;
                         case "docDateBegin":
@@ -443,7 +451,7 @@ namespace ipsFormsDesign.Services
                             item.Range.Text = customerName;
                             break;
 
-                            
+
                         case "CstPerson":
                             item.Range.Text = cstPerson;
                             break;
@@ -475,13 +483,13 @@ namespace ipsFormsDesign.Services
                         case "prcntInc":
                             item.Range.Text = prcntInc;
                             break;
-                       case "prcntIncText":
+                        case "prcntIncText":
                             item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.RateAmount), true);
                             break;
                         case "minRltGrn":
                             item.Range.Text = minRltGrn;
                             break;
-                       case "minRltGrnText":
+                        case "minRltGrnText":
                             item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.MinAmount), true); ;
                             break;
                         case "minRltKop":
@@ -530,7 +538,7 @@ namespace ipsFormsDesign.Services
                             item.Range.Text = $"{bankacc?.AccountNumber ?? string.Empty}";
                             break;
                         case "СstRegNumber":
-                            item.Range.Text =registerNumber;
+                            item.Range.Text = registerNumber;
                             break;
                         case "СstRegData":
                             item.Range.Text = registerDate;
@@ -603,7 +611,14 @@ namespace ipsFormsDesign.Services
             }
         }
 
-        public void processAction (string pathTemplate, Customer cust, LicenseAgreement licAgr, PaidPeriod period)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pathTemplate"></param>
+        /// <param name="cust"></param>
+        /// <param name="licAgr"></param>
+        /// <param name="period"></param>
+        public void processAction(string pathTemplate, Customer cust, LicenseAgreement licAgr, PaidPeriod period)
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -648,7 +663,7 @@ namespace ipsFormsDesign.Services
                 string CPaidAmountGrnText = string.Empty;
                 string CPaidAmountKop = string.Empty;
                 string CPaidAmountKopText = string.Empty;
-                string CstEDRPOU  = anketaCompany.Okpo;
+                string CstEDRPOU = anketaCompany.Okpo;
 
                 LicNum = licAgr.LicNum;
                 DocDate = $"{licAgr.LicDate:dd.MM.yyyy}";
@@ -719,9 +734,9 @@ namespace ipsFormsDesign.Services
 
                     } // for each
                 }
-                    innerDoc.Save();
-                    innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
-                    innerDoc.Close();
+                innerDoc.Save();
+                innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
+                innerDoc.Close();
             }
             finally
             {
@@ -732,24 +747,24 @@ namespace ipsFormsDesign.Services
         }
 
 
-private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
-        //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
-            foreach (var item in BuisnessPlace )
+            foreach (var item in BuisnessPlace)
             {
                 places = item;
 
                 curRow = table.Rows.Add();
                 curRow.Cells[1].Range.Text = index.ToString();
                 index++;
-      
-                curRow.Cells[2].Range.Text = places.PlaceName+","+places.PlaceCity+","+places.PlaceAddress;
-                foreach ( var place in item.ClnPlaceHoll )
+
+                curRow.Cells[2].Range.Text = places.PlaceName + "," + places.PlaceCity + "," + places.PlaceAddress;
+                foreach (var place in item.ClnPlaceHoll)
                 {
                     curRow = table.Rows.Add();
                     curRow.Cells[3].Range.Text = place.HollName;
@@ -798,7 +813,7 @@ private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace
                 index++;
 
                 curRow.Cells[2].Range.Text = places.PlaceName;
-                curRow.Cells[5].Range.Text =  places.PlaceCity + "," + places.PlaceAddress;
+                curRow.Cells[5].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
                 foreach (var place in item.ClnPlaceHoll)
                 {
                     curRow = table.Rows.Add();
@@ -825,7 +840,7 @@ private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace
                 curRow.Cells[1].Range.Text = index.ToString();
                 curRow.Cells[2].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
                 curRow.Cells[3].Range.Text = places.PlaceName;
-               
+
 
             }
         }
@@ -835,10 +850,10 @@ private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace
         {
             if (tables.Count == 0) return;
             Table table = tables[1];
-            if(table.Rows.Count > 0)
-            table.Rows.Delete();
+            if (table.Rows.Count > 0)
+                table.Rows.Delete();
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-            Row curRow = null ;
+            Row curRow = null;
             foreach (var item in rightHolder.TerritoryExclude)
             {
                 curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
@@ -920,8 +935,6 @@ private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace
         }
 
         // зберігти
-
-
     }
 }
 

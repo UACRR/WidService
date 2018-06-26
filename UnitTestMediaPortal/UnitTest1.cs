@@ -6,8 +6,12 @@ using ipsAnketaClient;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using WebAPIConnector;
+using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using System.ComponentModel;
+using ipsFormsDesign.Services;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace UnitTestMediaPortal
 {
@@ -15,7 +19,7 @@ namespace UnitTestMediaPortal
     public class UnitTestBinding
     {
         private ApiConnector api = null;
-        private Customer testCust = null;
+
 
         [TestInitialize]
         public void Initialize()
@@ -47,6 +51,55 @@ namespace UnitTestMediaPortal
             form.Dispose();
         }
 
+        [TestMethod]
+        public void TestInherit()
+        {
+            int checkCustId = 148;
+            var service = new RightholderService();
+            // Сформувати дані по старому правовласнику
+            Customer cust = service.GetData(checkCustId);
+            // Отримати Список Правовласників
+            var inherCust = service.GetMainView().Where(rec => rec.CustId != checkCustId).FirstOrDefault();
+            // Записати дані по старому правовласнику
+            List<RightHolder> inheritData = new List<RightHolder>();
+            var oldRightHolder = new RightHolder();
+
+            inheritData.Add(oldRightHolder);
+
+            oldRightHolder.SetFields(cust.RightHolder);
+            oldRightHolder.Cust = new Customer();
+            oldRightHolder.Cust.SetFields(cust);
+            oldRightHolder.Cust.Status = 9;
+
+            oldRightHolder.CopyRight.Add(new CopyRight { EndDate = DateTime.Today.AddDays(-1) });
+
+            // записати дані по новому правовласнику
+            var inherRh = new RightHolder { CustId = inherCust.CustId };
+            inheritData.Add(inherRh);
+
+            foreach (var item in cust.RightHolder.CopyRight)
+            {
+                CopyRight addCopyRight = new CopyRight();
+                addCopyRight.SetFields(item);
+                addCopyRight.CustId = inherCust.CustId;
+                addCopyRight.RoleCode = 8;
+
+                inherRh.CopyRight.Add(addCopyRight);
+            }
+
+            // Виконати передачу прав
+            var checData = service.InheritDebug(checkCustId, inheritData);
+            // Перевірити передачу прав
+            Assert.AreEqual(checData.listCopyRight.Count, inheritData.Count);
+        }
+
+        [TestMethod]  
+        public void testAuthorsFilteredList()
+        {
+            var rhService = new RightholderService();
+            var testList = rhService.getAuthorsByFilter("П");
+            Assert.IsNotNull(testList);
+        }
 
     }
 }

@@ -275,11 +275,14 @@
             // 
             // txtNotation
             // 
+            this.txtNotation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNotation.AutoScroll = true;
             this.txtNotation.Location = new System.Drawing.Point(64, 176);
             this.txtNotation.Multiline = true;
             this.txtNotation.Name = "txtNotation";
-            this.txtNotation.Size = new System.Drawing.Size(717, 77);
+            this.txtNotation.Size = new System.Drawing.Size(717, 78);
             this.txtNotation.TabIndex = 9;
             // 
             // periodCtrl
@@ -291,7 +294,7 @@
             this.periodCtrl.MinimumSize = new System.Drawing.Size(150, 25);
             this.periodCtrl.Name = "periodCtrl";
             this.periodCtrl.Size = new System.Drawing.Size(225, 28);
-            this.periodCtrl.SplitterRatio = 98;
+            this.periodCtrl.SplitterRatio = 96;
             this.periodCtrl.TabIndex = 3;
             this.periodCtrl.TextTitle = "Період звітності";
             this.periodCtrl.TextValue = "Щоночі";
@@ -353,7 +356,7 @@
             this.Controls.Add(this.agentCtrl);
             this.Controls.Add(this.dateCtrl);
             this.Controls.Add(this.numberCtrl);
-            this.MaximumSize = new System.Drawing.Size(788, 257);
+            this.MaximumSize = new System.Drawing.Size(788, 500);
             this.MinimumSize = new System.Drawing.Size(788, 257);
             this.Name = "InformationAboutTheContractTitleControl";
             this.Size = new System.Drawing.Size(788, 257);
