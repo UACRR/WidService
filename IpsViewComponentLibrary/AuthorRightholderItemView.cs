@@ -115,5 +115,23 @@ namespace IpsViewComponentLibrary
                 panelRightholderInfo.Visible = false;
             }
         }
+
+
+        private List<string> _authors = new List<string>();
+
+        private void txtAuthorNameAutocomplite_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAuthorNameAutocomplite.Text != string.Empty && txtAuthorNameAutocomplite.Text.Length > 1)
+            {
+                GetNames(txtAuthorNameAutocomplite.Text);
+            }
+        }
+
+        private void GetNames(string filter)
+        {
+            var testlist = new List<string> { "fa", "fd", "fg", "dt", "dh", "dz", "jk", "jl" };
+
+            txtAuthorNameAutocomplite.AutoCompleteCustomSource = testlist.Where(s => s.StartsWith(filter)).ToList();
+        }
     }
 }

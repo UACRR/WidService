@@ -57,6 +57,8 @@
             this.rdbFolk = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbNotProtected = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbAuthorRightholder = new Telerik.WinControls.UI.RadRadioButton();
+            this.ddlAuthorName = new Telerik.WinControls.UI.RadDropDownList();
+            this.txtAuthorNameAutocomplite = new Telerik.WinControls.UI.RadTextBox();
             this.panelCommand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
@@ -85,6 +87,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbAuthorRightholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlAuthorName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAuthorNameAutocomplite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,7 +156,7 @@
             this.pvParameters.Controls.Add(this.pvpFolk);
             this.pvParameters.Location = new System.Drawing.Point(0, 80);
             this.pvParameters.Name = "pvParameters";
-            this.pvParameters.SelectedPage = this.pvpAuthorRightholder;
+            this.pvParameters.SelectedPage = this.pvpNotProtected;
             this.pvParameters.Size = new System.Drawing.Size(546, 183);
             this.pvParameters.TabIndex = 59;
             this.pvParameters.ThemeName = "Office2013Light";
@@ -312,6 +316,8 @@
             // 
             // pvpNotProtected
             // 
+            this.pvpNotProtected.Controls.Add(this.txtAuthorNameAutocomplite);
+            this.pvpNotProtected.Controls.Add(this.ddlAuthorName);
             this.pvpNotProtected.Controls.Add(this.txtAuthorName);
             this.pvpNotProtected.Controls.Add(this.radLabel2);
             this.pvpNotProtected.ItemSize = new System.Drawing.SizeF(108F, 27F);
@@ -388,6 +394,27 @@
             this.rdbAuthorRightholder.Text = "Автор / правовласник";
             this.rdbAuthorRightholder.ThemeName = "Office2013Light";
             // 
+            // ddlAuthorName
+            // 
+            this.ddlAuthorName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ddlAuthorName.Location = new System.Drawing.Point(114, 31);
+            this.ddlAuthorName.Name = "ddlAuthorName";
+            this.ddlAuthorName.Size = new System.Drawing.Size(415, 21);
+            this.ddlAuthorName.TabIndex = 61;
+            this.ddlAuthorName.ThemeName = "Office2013Light";
+            // 
+            // txtAuthorNameAutocomplite
+            // 
+            this.txtAuthorNameAutocomplite.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAuthorNameAutocomplite.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAuthorNameAutocomplite.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "AuthorName", true));
+            this.txtAuthorNameAutocomplite.Location = new System.Drawing.Point(114, 58);
+            this.txtAuthorNameAutocomplite.Name = "txtAuthorNameAutocomplite";
+            this.txtAuthorNameAutocomplite.Size = new System.Drawing.Size(415, 21);
+            this.txtAuthorNameAutocomplite.TabIndex = 62;
+            this.txtAuthorNameAutocomplite.ThemeName = "Office2013Light";
+            this.txtAuthorNameAutocomplite.TextChanged += new System.EventHandler(this.txtAuthorNameAutocomplite_TextChanged);
+            // 
             // AuthorRightholderItemView
             // 
             this.AcceptButton = this.btnSave;
@@ -440,6 +467,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbAuthorRightholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlAuthorName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAuthorNameAutocomplite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -476,5 +505,7 @@
         private Telerik.WinControls.UI.RadRadioButton rdbFolk;
         private Telerik.WinControls.UI.RadRadioButton rdbNotProtected;
         private Telerik.WinControls.UI.RadRadioButton rdbAuthorRightholder;
+        private Telerik.WinControls.UI.RadDropDownList ddlAuthorName;
+        private Telerik.WinControls.UI.RadTextBox txtAuthorNameAutocomplite;
     }
 }
