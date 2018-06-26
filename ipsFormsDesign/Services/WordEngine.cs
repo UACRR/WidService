@@ -422,7 +422,7 @@ namespace ipsFormsDesign.Services
                     switch (title)
 
                     {
-                        case "GdocNumber":
+                        case "GdocNumberC":
                             item.Range.Text = GdocNumber;
                             break;
 
