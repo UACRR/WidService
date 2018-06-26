@@ -19,6 +19,9 @@ namespace IpsViewComponentLibrary
         private AnketaDictionaties _dictionaties;
         private int _idItem;
 
+        public delegate void CustomerSave(Customer customer);
+        public event CustomerSave OnCustomerSave;
+
         public MiddleControlInfoAgrCalc()
         {
             InitializeComponent();
@@ -176,6 +179,7 @@ namespace IpsViewComponentLibrary
             newLicense.DateBegin = DateTime.Now;
             newLicense.DateEnd = DateTime.Now.AddYears(1);
             newLicense.LicVersion++;
+            //newLicense.LicId = 0;
             license?.LicenseAgrParam?.Add(newLicense);
 
             var licenseParam = license?.LicenseAgrParam.LastOrDefault();
@@ -200,8 +204,14 @@ namespace IpsViewComponentLibrary
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
+                prolongation.OnSaveProlongation += Prolongation_OnSaveProlongation;
                 prolongation.ShowDialog();
             }
+        }
+
+        private void Prolongation_OnSaveProlongation(object sender, EventArgs e)
+        {
+            OnCustomerSave?.Invoke(_customer);
         }
 
         // true - з майданчиками, false - без майданчиків

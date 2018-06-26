@@ -218,6 +218,8 @@
             gridViewTextBoxColumn4.Name = "PlCode";
             gridViewTextBoxColumn4.ReadOnly = true;
             gridViewTextBoxColumn4.Width = 120;
+            gridViewCheckBoxColumn1.Checked = Telerik.WinControls.Enumerations.ToggleState.On;
+            gridViewCheckBoxColumn1.EnableHeaderCheckBox = true;
             gridViewCheckBoxColumn1.FieldName = "CheckIn";
             gridViewCheckBoxColumn1.HeaderText = "";
             gridViewCheckBoxColumn1.Name = "CheckIn";
