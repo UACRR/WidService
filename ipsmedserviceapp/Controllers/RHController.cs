@@ -204,20 +204,18 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             // AnketaAddNick
             _dbContext.UpdateList(sorsCust.RightHolder.AnketaAddNick, destCustomer.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
 
+
             // TermsOfService
-            foreach (var item in sorsCust.RightHolder.TermsOfService)
             {
-                TermsOfService addItem = destCustomer.RightHolder.TermsOfService.Where(rec => rec.CrkindCode == item.CrkindCode).SingleOrDefault();
-                if (addItem == null)
-                    addItem = new TermsOfService();
-
-                addItem.SetFields(item, excludeFields);
-                // CustCmRight
-                var custCmRightToSave = item.CustCmRight.Where(c => c.CmCustId != 0).ToList();
-                _dbContext.UpdateList(custCmRightToSave, addItem.CustCmRight, rec => { }, (l, r) => l.CRkindCode == r.CRkindCode && l.CmCustId == r.CmCustId && l.DateBegin == r.DateBegin);
-
-                destCustomer.RightHolder.TermsOfService.Add(addItem);
+                _dbContext.UpdateList(sorsCust.RightHolder.TermsOfService, destCustomer.RightHolder.TermsOfService, i => { }, (l, r) => l.CrkindCode == r.CrkindCode);
+                var sorseDic = sorsCust.RightHolder.TermsOfService.ToDictionary(rec => rec.CrkindCode);
+                foreach( var destTerm in destCustomer.RightHolder.TermsOfService )
+                {
+                    var sorsTerm = sorseDic[destTerm.CrkindCode];
+                    _dbContext.UpdateList(sorsTerm.CustCmRight, destTerm.CustCmRight, i => { }, (l, r) => l.CustId == r.CustId && l.CmCustId == r.CmCustId && l.DateBegin == r.DateBegin);
+                }
             }
+
 
             if (sorsCust.RightHolder.AroundWord == null || sorsCust.RightHolder.AroundWord == false)
                 sorsCust.RightHolder.TerritoryExclude.Clear();
