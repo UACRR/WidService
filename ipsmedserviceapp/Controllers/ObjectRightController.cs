@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -187,6 +188,23 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> getListObjectRight()
         {
             var list = await _dbContext.getViewData("select * from vTsk_3_ListObjectRight01", null);
+            return Json(list);
+        }
+
+        /// <summary>
+        /// Получити  список об'єктів права autocomlete
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("filteredObjectRights/{filter}")]
+        public async Task<IActionResult> getListObjectRightForAutocomplete(string filter)
+        {
+            string sqlFilter1 = string.Concat("%", filter, "%");
+            string sqlFilter2 = string.Concat(filter, "%");
+
+            var list = await _dbContext.getViewData("select * from vTsk_3_ListObjectRight01 where name like @filter1 or name like @filter2 order by name", new[] {
+                new SqlParameter("@filter1", sqlFilter1)
+                ,new SqlParameter("@filter2", sqlFilter2)
+            });
             return Json(list);
         }
 
