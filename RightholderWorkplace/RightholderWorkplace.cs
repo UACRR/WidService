@@ -328,9 +328,11 @@ namespace RightholderWorkplace
         {
             var editColumn = gvRightholdersList.Columns["EditColumn"];
             var acceptColumn = gvRightholdersList.Columns["AcceptColumn"];
+            var setStatusColumn = gvRightholdersList.Columns["SetStatusColumn"];
 
             editColumn.IsVisible = true;
             acceptColumn.IsVisible = (_rightholderStatusType == RightholderStatusType.New || _rightholderStatusType == RightholderStatusType.NotAccepted);
+            setStatusColumn.IsVisible = (_rightholderStatusType == RightholderStatusType.Active);
         }
 
         private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
@@ -392,6 +394,16 @@ namespace RightholderWorkplace
             else if (currentColumnName == "ObjectListColumn")
             {
                 ShowObjectsRightsForRightholder(SelectedRightholder);
+            }
+            else if (currentColumnName == "SetStatusColumn")
+            {
+                _rightholderService.SetStatus(SelectedRightholder.CustId, RightholderStatusType.Inheritance);
+                UpdateRightholdersList();
+            }
+            else if (currentColumnName == "AcceptColumn")
+            {
+                _rightholderService.SetStatus(SelectedRightholder.CustId, RightholderStatusType.Active);
+                UpdateRightholdersList();
             }
         }
 
