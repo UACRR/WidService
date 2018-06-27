@@ -5,6 +5,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class LicenseAgrParam
     {
+        public LicenseAgrParam()
+        {
+            License = new HashSet<License>();
+        }
+
         public int LicId { get; set; }
         public int LicVersion { get; set; }
         public string LicNum { get; set; }
@@ -28,5 +33,6 @@ namespace ipsmedserviceapp.Model
         public LicenseAgreement Lic { get; set; }
         public AgreementStatus LicStatusNavigation { get; set; }
         public Period PeriodCodeNavigation { get; set; }
+        public ICollection<License> License { get; set; }
     }
 }

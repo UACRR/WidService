@@ -38,6 +38,9 @@ namespace IpsViewComponentLibrary
         public RightholderSelectorControl()
         {
             InitializeComponent();
+
+            lblBirthDate.Text = "";
+            lblProfit.Text = "";
         }
 
         private void ddlSelectedRightholder_PopupOpening(object sender, CancelEventArgs e)

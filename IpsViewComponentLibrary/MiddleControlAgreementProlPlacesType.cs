@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using LicenseForPlaces = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
 {
@@ -19,13 +20,25 @@ namespace IpsViewComponentLibrary
 
         public delegate void Print();
         public event Print OnPrintClick;
-
-        
+        private Customer _customer;
+        private LicenseAgreement _license;
+        private LicenseAgrParam _licenseAgr;
+        private ObservableListSource<ClnBusinessPlace> _places = new ObservableListSource<ClnBusinessPlace>();
+        private ObservableListSource<ClnBusinessPlace> _tempPlaces;
 
         public MiddleControlAgreementProlPlacesType()
         {
             InitializeComponent();
         }
+
+        public void InitializeObjects(Customer cust, ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr)
+        {
+            _customer = cust;
+            _tempPlaces = places;
+            _license = license;
+            _licenseAgr = licenseAgr;
+        }
+
 
         public string LicenseName
         {
@@ -97,7 +110,53 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            
+            _customer.Client.ClnBusinessPlace = _places;
+
             OnSaveChangesClick?.Invoke();
+        }
+
+        private void gvPlaces_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            //TODO: checkbox event обрані майданчики додати до ліцензії
+            var id = (int)e.Row.Cells["PlaceId"].Value;
+            
+            //_licenseAgr.License.Add(new LicenseForPlaces
+            //{
+            //    //LId = <pk>
+            //    PlaceId = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id)?.PlaceId,
+            //    LicId = _licenseAgr.LicId,
+            //    LicVersion = _licenseAgr.LicVersion,
+            //    LNum = "0" + (DateTime.Today.Year - 2000) + @"/"  + (DateTime.Today.DayOfYear),
+            //    LDate = DateTime.Today,
+            //    Place = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id),
+            //    Status = _licenseAgr.LicStatus
+            //});
+            if (_licenseAgr.License == null)
+             _licenseAgr.License = new ObservableListSource<LicenseForPlaces>();   
+            
+            
+            if (e?.Value != null && (bool)e.Value)
+            {
+                _licenseAgr.License.Add(new LicenseForPlaces
+                {
+                    //LId = <pk>
+                    PlaceId = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id)?.PlaceId,
+                    LicId = _licenseAgr.LicId,
+                    LicVersion = _licenseAgr.LicVersion,
+                    LNum = "0" + (DateTime.Today.Year - 2000) + @"/" + (DateTime.Today.DayOfYear),
+                    LDate = DateTime.Today,
+                    Place = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id),
+                    Status = _licenseAgr.LicStatus
+                });
+                //_places.Add(_tempPlaces.SingleOrDefault(rec => rec.PlaceId == id));
+            }
+            else if (e?.Value != null && !(bool)e.Value)
+            {
+                _licenseAgr.License.Remove(_licenseAgr.License.SingleOrDefault(rec => rec.PlaceId == id));
+                //_places.Remove(_tempPlaces.SingleOrDefault(rec => rec.PlaceId == id));
+            }
+
         }
     }
 }

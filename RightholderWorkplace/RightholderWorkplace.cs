@@ -170,7 +170,14 @@ namespace RightholderWorkplace
             {
                 return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
             }
-            set { }
+            set
+            {
+                var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == value.CustId);
+                if (row != null)
+                {
+                    gvRightholdersList.CurrentRow = row;
+                }
+            }
         }
 
         #region Next / Prev buttons
@@ -306,10 +313,15 @@ namespace RightholderWorkplace
             UpdateRightholdersList();
         }
 
-        private void UpdateRightholdersList()
+        private void UpdateRightholdersList(RightholderMainView selectedRightholder = null)
         {
             var list = GetMainViewDataByStatus(_rightholderStatusType);
             rightHolderMainViewBindingSource.DataSource = list;
+
+            if (selectedRightholder != null)
+            {
+                SelectedRightholder = selectedRightholder;
+            }
         }
 
         private void SetRightholdersListColumns()
@@ -318,7 +330,7 @@ namespace RightholderWorkplace
             var acceptColumn = gvRightholdersList.Columns["AcceptColumn"];
 
             editColumn.IsVisible = true;
-            acceptColumn.IsVisible = _rightholderStatusType != RightholderStatusType.Active;
+            acceptColumn.IsVisible = (_rightholderStatusType == RightholderStatusType.New || _rightholderStatusType == RightholderStatusType.NotAccepted);
         }
 
         private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
@@ -562,6 +574,7 @@ namespace RightholderWorkplace
                 return gvObjectAuthorsRightholders.CurrentRow.DataBoundItem as ObjectAuthorRightholder;
             }
             set { }
+
         }
 
         private void SetObjectRightDictionaries()
@@ -806,6 +819,8 @@ namespace RightholderWorkplace
 
             objectsPageView.SelectedPage = _previousPage;
             actualObjectsPageView.SelectedPage = actualObjectsListPage;
+
+            UpdateRightholdersList(SelectedRightholder);
         }
 
         private void btnAddObjectAddName_Click(object sender, EventArgs e)
@@ -1003,6 +1018,7 @@ namespace RightholderWorkplace
                         InterCode = addedRightholder.InterCode,
                         Name = addedRightholder.Name,
                         Rate = 0,
+                        Rightholder = addedRightholder,
                     };
                     _objectsCopyrightList.Add(newObjectCopyright);
                 });
@@ -1072,17 +1088,19 @@ namespace RightholderWorkplace
                 CustId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId,
                 CopyRight = new ObservableListSource<CopyRight>(),
             };
-            
-            // old rightholder closed copyrighs
-            foreach (var row in gvChangeCopyrights.Rows)
-            {
-                var obj = row.DataBoundItem as ObjectRightForRightholder;
 
-                oldRightholder.CopyRight.Add(new CopyRight {
-                    ObjId = obj.ObjId,
-                    EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1),
-                });
-            }
+            oldRightholder.CopyRight.Add(new CopyRight { EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1) });
+            
+            //// old rightholder closed copyrighs
+            //foreach (var row in gvChangeCopyrights.Rows)
+            //{
+            //    var obj = row.DataBoundItem as ObjectRightForRightholder;
+
+            //    oldRightholder.CopyRight.Add(new CopyRight {
+            //        ObjId = obj.ObjId,
+            //        EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1),
+            //    });
+            //}
             rightholders.Add(oldRightholder);
 
 
@@ -1120,14 +1138,21 @@ namespace RightholderWorkplace
                         AuthorName = copyright.Name,
                     });
                     newRightholder.CopyRight.Add(newCprt);
-                    
-
-                    //newRightholder.Obj.Authors.
                 }
                 rightholders.Add(newRightholder);
             }
 
             var result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
+
+            MessageBox.Show("Зміна правовласників виконана успішно.");
+
+            ctrlRightholdersObjectsForChange.SelectedRightholder = _objectsCopyrightList.FirstOrDefault()?.Rightholder;
+            UpdateRightholdersList(SelectedRightholder);
+        }
+
+        private void ctrlRightholdersObjectsForChange_EditObjectCommandExecuted(object sender, int objId)
+        {
+            EditObjectRight(objId);
         }
 
         #endregion

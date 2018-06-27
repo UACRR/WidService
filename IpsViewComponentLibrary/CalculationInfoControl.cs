@@ -45,12 +45,17 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetDataSource()
         {
-            //TODO: витягти записи де кошти не розподілені
-            var dsourceUserMoney = _data?.Client?.MoneyReceived?.ToList();
-            gvUserMoneys.DataSource = dsourceUserMoney;
+            //TODO: витягти записи де кошти не розподілені (вибірка)
+            PaymentResivedSetSource();
             //встановити джерело для [Активні договора]
             SetDataSourceLicenseAgr();
 
+        }
+
+        private void PaymentResivedSetSource()
+        {
+            var dsourceUserMoney = _data?.Client.MoneyReceived.Where(rec => rec.Amount > rec.DestribAmount).ToList();
+            gvUserMoneys.DataSource = dsourceUserMoney;
         }
 
         // подія зміни обраного рядка [ліцензійних договорів (активні договора) ]
@@ -88,6 +93,8 @@ namespace IpsViewComponentLibrary
                 var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
                 var period = _data.Client.LicenseAgreement.Where(recId => recId.LicId == licenseParam?.LicId).Select(rec => rec.PaidPeriod).SingleOrDefault();
                 var debt = period?.Sum(paidPeriod => paidPeriod.Amount - (paidPeriod.Distribamount + paidPeriod.Undistribamount));
+                if (debt < 0)
+                    debt = 0;
 
                 source.Add(new GridLicAgr
                 {
@@ -134,7 +141,7 @@ namespace IpsViewComponentLibrary
                     AmountBound = paidPeriod.Distribamount + paidPeriod.Undistribamount,
                     Distribamount = paidPeriod.Distribamount,
                     Undistribamount = paidPeriod.Undistribamount,
-                    Arrears = paidPeriod.Amount - (paidPeriod.Distribamount + paidPeriod.Undistribamount)
+                    Arrears = Math.Max( 0,  paidPeriod.Amount - (paidPeriod.Distribamount + paidPeriod.Undistribamount))
                 });
             }
             gvPeriodsPayment.DataSource = source;
@@ -172,6 +179,9 @@ namespace IpsViewComponentLibrary
         private void btnDistribute_Click(object sender, EventArgs e)
         {
             //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
+            if (gvUserMoneys.RowCount == 0 || gvUserMoneys.CurrentRow == null)
+                return;
+
             MoneyReceived moneyReceived = _data?.Client?.MoneyReceived?.Where(rec => rec.PaidId == (int)gvUserMoneys.CurrentRow.Cells["PaidId"].Value).SingleOrDefault();
             var lic = _data?.Client?.LicenseAgreement.SingleOrDefault(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value);
             var licenseParam = lic?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == lic.LicVersion);
@@ -180,7 +190,10 @@ namespace IpsViewComponentLibrary
 
             DistributionForm distr = new DistributionForm(moneyReceived, licenseParam, gvPeriodsPayment.DataSource, _data);
             distr.StartPosition = FormStartPosition.CenterScreen;
-            distr.ShowDialog();
+            if ( distr.ShowDialog() == DialogResult.OK )
+            {
+                PaymentResivedSetSource();
+            }
         }
     }
 

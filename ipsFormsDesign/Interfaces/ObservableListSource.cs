@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using ipsFormsDesign.Model;
 
 namespace ipsFormsDesign.Interfaces
 {
@@ -41,7 +39,5 @@ namespace ipsFormsDesign.Interfaces
             return new BindingList<T>(this);
         }
 
-
-         
     }
 }

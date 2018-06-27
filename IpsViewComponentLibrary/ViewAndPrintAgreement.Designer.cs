@@ -97,7 +97,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "ViewAndPrintAgreement";
+            this.Text = "Перегляд та друк договору";
             this.ThemeName = "Office2007Silver";
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).EndInit();

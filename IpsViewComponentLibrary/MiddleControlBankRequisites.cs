@@ -28,5 +28,10 @@ namespace IpsViewComponentLibrary
             ctrlBankAccount.DataSource = bankAccount;
             lblTitle.Text = anketa?.Name;
         }
+
+        public bool Validator()
+        {
+            return ctrlBankAccount.Validator();
+        }
     }
 }

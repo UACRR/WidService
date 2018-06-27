@@ -31,13 +31,13 @@ namespace IpsViewComponentLibrary
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.gvDistributionPayment = new Telerik.WinControls.UI.RadGridView();
             this.btnCreateNewPeriod = new Telerik.WinControls.UI.RadButton();
@@ -95,7 +95,7 @@ namespace IpsViewComponentLibrary
             this.gvDistributionPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvDistributionPayment.AutoScroll = true;
-            this.gvDistributionPayment.Location = new System.Drawing.Point(12, 133);
+            this.gvDistributionPayment.Location = new System.Drawing.Point(12, 129);
             // 
             // 
             // 
@@ -104,44 +104,44 @@ namespace IpsViewComponentLibrary
             this.gvDistributionPayment.MasterTemplate.AllowDeleteRow = false;
             this.gvDistributionPayment.MasterTemplate.AllowDragToGroup = false;
             this.gvDistributionPayment.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn4.FieldName = "PeriodName";
-            gridViewTextBoxColumn4.HeaderText = "Період";
-            gridViewTextBoxColumn4.Name = "PeriodName";
-            gridViewTextBoxColumn4.ReadOnly = true;
-            gridViewTextBoxColumn4.Width = 176;
-            gridViewTextBoxColumn5.FieldName = "Status";
-            gridViewTextBoxColumn5.HeaderText = "Стан періоду";
-            gridViewTextBoxColumn5.Name = "Status";
-            gridViewTextBoxColumn5.ReadOnly = true;
-            gridViewTextBoxColumn5.Width = 147;
-            gridViewDecimalColumn4.FieldName = "Amount";
-            gridViewDecimalColumn4.HeaderText = "Вимога";
-            gridViewDecimalColumn4.Name = "Amount";
-            gridViewDecimalColumn4.ReadOnly = true;
-            gridViewDecimalColumn4.Width = 169;
-            gridViewDecimalColumn5.FieldName = "AmountBound";
-            gridViewDecimalColumn5.HeaderText = "Прив\'язано";
-            gridViewDecimalColumn5.Name = "AmountBound";
-            gridViewDecimalColumn5.ReadOnly = true;
-            gridViewDecimalColumn5.Width = 169;
-            gridViewDecimalColumn6.FieldName = "Arrears";
-            gridViewDecimalColumn6.HeaderText = "Борг";
-            gridViewDecimalColumn6.Name = "Arrears";
-            gridViewDecimalColumn6.ReadOnly = true;
-            gridViewDecimalColumn6.Width = 146;
-            gridViewTextBoxColumn6.DataType = typeof(decimal);
-            gridViewTextBoxColumn6.FieldName = "DistAmount";
-            gridViewTextBoxColumn6.HeaderText = "Сума прив\'язки";
-            gridViewTextBoxColumn6.Name = "DistAmount";
-            gridViewTextBoxColumn6.Width = 139;
+            gridViewTextBoxColumn1.FieldName = "PeriodName";
+            gridViewTextBoxColumn1.HeaderText = "Період";
+            gridViewTextBoxColumn1.Name = "PeriodName";
+            gridViewTextBoxColumn1.ReadOnly = true;
+            gridViewTextBoxColumn1.Width = 176;
+            gridViewTextBoxColumn2.FieldName = "Status";
+            gridViewTextBoxColumn2.HeaderText = "Стан періоду";
+            gridViewTextBoxColumn2.Name = "Status";
+            gridViewTextBoxColumn2.ReadOnly = true;
+            gridViewTextBoxColumn2.Width = 147;
+            gridViewDecimalColumn1.FieldName = "Amount";
+            gridViewDecimalColumn1.HeaderText = "Вимога";
+            gridViewDecimalColumn1.Name = "Amount";
+            gridViewDecimalColumn1.ReadOnly = true;
+            gridViewDecimalColumn1.Width = 169;
+            gridViewDecimalColumn2.FieldName = "AmountBound";
+            gridViewDecimalColumn2.HeaderText = "Прив\'язано";
+            gridViewDecimalColumn2.Name = "AmountBound";
+            gridViewDecimalColumn2.ReadOnly = true;
+            gridViewDecimalColumn2.Width = 169;
+            gridViewDecimalColumn3.FieldName = "Arrears";
+            gridViewDecimalColumn3.HeaderText = "Борг";
+            gridViewDecimalColumn3.Name = "Arrears";
+            gridViewDecimalColumn3.ReadOnly = true;
+            gridViewDecimalColumn3.Width = 146;
+            gridViewTextBoxColumn3.DataType = typeof(decimal);
+            gridViewTextBoxColumn3.FieldName = "DistAmount";
+            gridViewTextBoxColumn3.HeaderText = "Сума прив\'язки";
+            gridViewTextBoxColumn3.Name = "DistAmount";
+            gridViewTextBoxColumn3.Width = 139;
             this.gvDistributionPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewDecimalColumn4,
-            gridViewDecimalColumn5,
-            gridViewDecimalColumn6,
-            gridViewTextBoxColumn6});
-            this.gvDistributionPayment.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewDecimalColumn1,
+            gridViewDecimalColumn2,
+            gridViewDecimalColumn3,
+            gridViewTextBoxColumn3});
+            this.gvDistributionPayment.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvDistributionPayment.Name = "gvDistributionPayment";
             this.gvDistributionPayment.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvDistributionPayment.ShowGroupPanel = false;
@@ -152,7 +152,7 @@ namespace IpsViewComponentLibrary
             // btnCreateNewPeriod
             // 
             this.btnCreateNewPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateNewPeriod.Location = new System.Drawing.Point(12, 335);
+            this.btnCreateNewPeriod.Location = new System.Drawing.Point(12, 331);
             this.btnCreateNewPeriod.Name = "btnCreateNewPeriod";
             this.btnCreateNewPeriod.Size = new System.Drawing.Size(151, 24);
             this.btnCreateNewPeriod.TabIndex = 11;
@@ -163,7 +163,8 @@ namespace IpsViewComponentLibrary
             // btnSaveDistrib
             // 
             this.btnSaveDistrib.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSaveDistrib.Location = new System.Drawing.Point(169, 335);
+            this.btnSaveDistrib.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSaveDistrib.Location = new System.Drawing.Point(169, 331);
             this.btnSaveDistrib.Name = "btnSaveDistrib";
             this.btnSaveDistrib.Size = new System.Drawing.Size(110, 24);
             this.btnSaveDistrib.TabIndex = 12;
@@ -174,7 +175,8 @@ namespace IpsViewComponentLibrary
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Location = new System.Drawing.Point(864, 335);
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Location = new System.Drawing.Point(864, 331);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(110, 24);
             this.btnExit.TabIndex = 13;
@@ -349,6 +351,7 @@ namespace IpsViewComponentLibrary
             // 
             // DistributionForm
             // 
+            this.AcceptButton = this.btnSaveDistrib;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(986, 375);

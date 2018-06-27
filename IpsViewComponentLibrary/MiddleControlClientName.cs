@@ -51,6 +51,11 @@ namespace IpsViewComponentLibrary
             checkClientName.Checked = cust != null && cust?.Client?.ClnBusinessPlace?.Count != 0;
         }
 
+        public bool Validator()
+        {
+            return ctrlAnketaCompany.Validator() && ctrlRegistrationsCompany.Validator();
+        }
+
         public bool IsPlaceIn
         {
             get => checkClientName.Checked;

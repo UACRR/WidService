@@ -33,7 +33,6 @@
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.ddlRoleCode = new Telerik.WinControls.UI.RadDropDownList();
-            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.pvParameters = new Telerik.WinControls.UI.RadPageView();
             this.pvpAuthorRightholder = new Telerik.WinControls.UI.RadPageViewPage();
@@ -53,6 +52,8 @@
             this.txtAuthorName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.pvpFolk = new Telerik.WinControls.UI.RadPageViewPage();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.rpanelFolkType = new IpsViewComponentLibrary.RadioPanel();
             this.rdbFolk = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbNotProtected = new Telerik.WinControls.UI.RadRadioButton();
@@ -61,7 +62,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRoleCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvParameters)).BeginInit();
             this.pvParameters.SuspendLayout();
@@ -81,6 +81,8 @@
             this.pvpNotProtected.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
             this.rpanelFolkType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbNotProtected)).BeginInit();
@@ -132,10 +134,6 @@
             this.ddlRoleCode.TabIndex = 55;
             this.ddlRoleCode.ThemeName = "Office2013Light";
             // 
-            // objectAuthorRightholderBindingSource
-            // 
-            this.objectAuthorRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
-            // 
             // radLabel21
             // 
             this.radLabel21.Location = new System.Drawing.Point(8, 21);
@@ -165,10 +163,10 @@
             this.pvpAuthorRightholder.Controls.Add(this.checkIsRightholder);
             this.pvpAuthorRightholder.Controls.Add(this.lblAuthorRightholder);
             this.pvpAuthorRightholder.Controls.Add(this.ddlRightholder);
-            this.pvpAuthorRightholder.ItemSize = new System.Drawing.SizeF(137F, 27F);
+            this.pvpAuthorRightholder.ItemSize = new System.Drawing.SizeF(135F, 25F);
             this.pvpAuthorRightholder.Location = new System.Drawing.Point(5, 5);
             this.pvpAuthorRightholder.Name = "pvpAuthorRightholder";
-            this.pvpAuthorRightholder.Size = new System.Drawing.Size(536, 147);
+            this.pvpAuthorRightholder.Size = new System.Drawing.Size(536, 149);
             this.pvpAuthorRightholder.Text = "pvpAuthorRightholder";
             // 
             // panelRightholderInfo
@@ -269,6 +267,7 @@
             this.mtxtRate.TabStop = false;
             this.mtxtRate.Text = "0,00";
             this.mtxtRate.ThemeName = "Office2013Light";
+            this.mtxtRate.Validated += new System.EventHandler(this.mtxtRate_Validated);
             // 
             // radLabel3
             // 
@@ -314,7 +313,7 @@
             // 
             this.pvpNotProtected.Controls.Add(this.txtAuthorName);
             this.pvpNotProtected.Controls.Add(this.radLabel2);
-            this.pvpNotProtected.ItemSize = new System.Drawing.SizeF(108F, 27F);
+            this.pvpNotProtected.ItemSize = new System.Drawing.SizeF(106F, 25F);
             this.pvpNotProtected.Location = new System.Drawing.Point(5, 5);
             this.pvpNotProtected.Name = "pvpNotProtected";
             this.pvpNotProtected.Size = new System.Drawing.Size(536, 147);
@@ -322,12 +321,15 @@
             // 
             // txtAuthorName
             // 
+            this.txtAuthorName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtAuthorName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAuthorName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "AuthorName", true));
             this.txtAuthorName.Location = new System.Drawing.Point(114, 3);
             this.txtAuthorName.Name = "txtAuthorName";
             this.txtAuthorName.Size = new System.Drawing.Size(415, 21);
             this.txtAuthorName.TabIndex = 60;
             this.txtAuthorName.ThemeName = "Office2013Light";
+            this.txtAuthorName.TextChanged += new System.EventHandler(this.txtAuthorName_TextChanged);
             // 
             // radLabel2
             // 
@@ -340,11 +342,20 @@
             // 
             // pvpFolk
             // 
-            this.pvpFolk.ItemSize = new System.Drawing.SizeF(57F, 27F);
+            this.pvpFolk.ItemSize = new System.Drawing.SizeF(55F, 25F);
             this.pvpFolk.Location = new System.Drawing.Point(5, 5);
             this.pvpFolk.Name = "pvpFolk";
             this.pvpFolk.Size = new System.Drawing.Size(536, 145);
             this.pvpFolk.Text = "pvpFolk";
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            // 
+            // objectAuthorRightholderBindingSource
+            // 
+            this.objectAuthorRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
             // 
             // rpanelFolkType
             // 
@@ -412,7 +423,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRoleCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvParameters)).EndInit();
             this.pvParameters.ResumeLayout(false);
@@ -435,6 +445,8 @@
             this.pvpNotProtected.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthorName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
             this.rpanelFolkType.ResumeLayout(false);
             this.rpanelFolkType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbFolk)).EndInit();
@@ -476,5 +488,6 @@
         private Telerik.WinControls.UI.RadRadioButton rdbFolk;
         private Telerik.WinControls.UI.RadRadioButton rdbNotProtected;
         private Telerik.WinControls.UI.RadRadioButton rdbAuthorRightholder;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

@@ -21,8 +21,16 @@ namespace ipsmedserviceapp.Controllers
             _dbContext = dbContext;
         }
 
-
-        private async Task<Customer> GetRightHolderAllData(int id)
+        /// <summary>
+        /// Отримати структуру Правовласника
+        /// </summary>
+        /// <param name="id">Ід Правовласника</param>
+        /// <param name="forSync">
+        /// true - TermOfService only DataBase
+        /// false - TermOfService with Dictionary
+        /// </param>
+        /// <returns></returns>
+        private async Task<Customer> GetRightHolderAllData(int id, bool forSync = false)
         {
             var cust = await _dbContext.Customer.Where(row => row.CustId == id)
                         .Include(item => item.Company)
@@ -34,8 +42,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.BankAccount)
                         .Include(item => item.AnketaAddName)
                         .Include(item => item.RightHolder)
-                            .ThenInclude(rh => rh.TermsOfService)
-                        .Include(item => item.RightHolder)
+                            .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TerritoryExclude)
                         .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TerritoryInclude)
@@ -47,13 +54,21 @@ namespace ipsmedserviceapp.Controllers
 
             var currDate = DateTime.Now.Date;
 
-            await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,0) as ourService
+            if (!forSync)
+                await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,1) as ourService
 from CopyrightKind t1
 left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.codeI", new SqlParameter("@custid", id))
-                .Include(tos => tos.CrkindCodeNavigation)
-                    .ThenInclude(ck => ck.CrGroupCodeNavigation)
-                .Where(tos => tos.CustId == id)
-                .LoadAsync();
+                    .Include(tos => tos.CrkindCodeNavigation)
+                        .ThenInclude(ck => ck.CrGroupCodeNavigation)
+                    .Where(tos => tos.CustId == id)
+                    .LoadAsync();
+            else
+                await _dbContext.Entry(cust.RightHolder).Collection(rec => rec.TermsOfService)
+                    //.Query()
+                    //    .Include(tos => tos.CrkindCodeNavigation)
+                    //    .ThenInclude(ck => ck.CrGroupCodeNavigation)
+                        .LoadAsync();
+
 
             await _dbContext.CustCmRight
                 .FromSql("select * from CustCmRight where custId = @custId and getdate() between dateBegin and dateEnd", new SqlParameter("custId", id))
@@ -111,6 +126,18 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                 else if (filterType.ToLower() == "active")
                 {
                     queryText = queryText + " where status = 2";
+                }
+                else if (filterType.ToLower() == "inheritance")
+                {
+                    queryText = queryText + " where status = 7";
+                }
+                else if (filterType.ToLower() == "blocked")
+                {
+                    queryText = queryText + " where status = 8";
+                }
+                else if (filterType.ToLower() == "closed")
+                {
+                    queryText = queryText + " where status = 9";
                 }
             }
 
@@ -192,20 +219,34 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             // AnketaAddNick
             _dbContext.UpdateList(sorsCust.RightHolder.AnketaAddNick, destCustomer.RightHolder.AnketaAddNick, row => { }, (sorsItem, destItem) => sorsItem.AddId == destItem.AddId);
 
+
             // TermsOfService
-            foreach (var item in sorsCust.RightHolder.TermsOfService)
             {
-                TermsOfService addItem = destCustomer.RightHolder.TermsOfService.Where(rec => rec.CrkindCode == item.CrkindCode).SingleOrDefault();
-                if (addItem == null)
-                    addItem = new TermsOfService();
+                _dbContext.UpdateList(sorsCust.RightHolder.TermsOfService, destCustomer.RightHolder.TermsOfService, i => { }, (l, r) => l.CrkindCode == r.CrkindCode);
+                var sorseDic = sorsCust.RightHolder.TermsOfService.ToDictionary(rec => rec.CrkindCode);
+                var commutitiDic = new Dictionary<int, Community>();
+                foreach (var destTerm in destCustomer.RightHolder.TermsOfService)
+                {
+                    var sorsTerm = sorseDic[destTerm.CrkindCode];
+                    _dbContext.UpdateList(sorsTerm.CustCmRight.Where(item=>item.CmCustId!=0).ToList(), destTerm.CustCmRight, i => {
+                        Community atachCom = null;
+                        if (!commutitiDic.Keys.Contains(i.CmCustId))
+                        {
+                            atachCom = new Community { CustId = i.CmCustId };
 
-                addItem.SetFields(item, excludeFields);
-                // CustCmRight
-                var custCmRightToSave = item.CustCmRight.Where(c => c.CmCustId != 0).ToList();
-                _dbContext.UpdateList(custCmRightToSave, addItem.CustCmRight, rec => { }, (l, r) => l.CRkindCode == r.CRkindCode && l.CmCustId == r.CmCustId && l.DateBegin == r.DateBegin);
-
-                destCustomer.RightHolder.TermsOfService.Add(addItem);
+                            _dbContext.Attach(atachCom);
+                            commutitiDic.Add(i.CmCustId, atachCom);
+                        }
+                        else
+                            atachCom = commutitiDic[i.CmCustId];
+                        atachCom.CustCmRight.Add(i);
+                    }, (l, r) => l.CustId == r.CustId
+                                        && l.CRkindCode == r.CRkindCode
+                                        && l.CmCustId == r.CmCustId
+                                        && l.DateBegin == r.DateBegin/*, new[] { "CustId", "CRkindCode" }*/);
+                }
             }
+
 
             if (sorsCust.RightHolder.AroundWord == null || sorsCust.RightHolder.AroundWord == false)
                 sorsCust.RightHolder.TerritoryExclude.Clear();
@@ -365,7 +406,7 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
             try
             {
-                var dest = await GetRightHolderAllData(rhId);
+                var dest = await GetRightHolderAllData(rhId, true);
                 updateRihtholder(updCustomer, dest);
                 tran = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
@@ -391,18 +432,18 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         /// <param name="wildcard">Фільтр</param>
         /// <returns>Масив Authors</returns>
         [HttpGet("filters/authors/{wildcard}")]
-        public async Task<IActionResult> GetFilteredAuthors( string wildcard)
+        public async Task<IActionResult> GetFilteredAuthors(string wildcard)
         {
             if (String.IsNullOrWhiteSpace(wildcard))
                 return BadRequest("Empty Filter");
 
             try
             {
-                var filterStr = string.Concat( wildcard, "%");
+                var filterStr = string.Concat(wildcard, "%");
                 var listAuthors = await _dbContext.getViewData("select distinct authorName from Authors where authorName like @filter", new[] { new SqlParameter("@filter", filterStr) });
                 return Json(listAuthors);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.InnerException.Message);
             }
@@ -420,7 +461,7 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         private async Task<bool> internalRHInheritance(int rhId, List<RightHolder> body)
         {
             // Права Автора / Правовласника
-            DateTime checkDate = body.Where(rec=>rec.CustId == rhId).SingleOrDefault()?.CopyRight.SingleOrDefault()?.EndDate ?? DateTime.Today;
+            DateTime checkDate = body.Where(rec => rec.CustId == rhId).SingleOrDefault()?.CopyRight.SingleOrDefault()?.EndDate ?? DateTime.Today;
             var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && item.EndDate >= checkDate)
                                 .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
                                 .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).ToListAsync();
@@ -448,7 +489,7 @@ from ObjectRight t1
 join CopyRight t2 on t2.objId = t1.objId and getdate() between t2.beginDate and t2.endDate
 where
 t2.custId = @custid
-", new SqlParameter("@custid", rhId)).ToDictionaryAsync( rec => rec.ObjId );
+", new SqlParameter("@custid", rhId)).ToDictionaryAsync(rec => rec.ObjId);
 
 
             // Автора об'єктів
@@ -463,32 +504,32 @@ t2.custId = @custid
             //DateTime checkDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
             DateTime beginDate = checkDate.AddDays(1);
 
-            
+
             try
-            { 
-            // Оброблюємо нових правовласників
-            body.Where(rec => rec.CustId != rhId).ToList()
-                .ForEach(item =>
-                {
-                    // Додаємо нові права
-                    foreach (var cright in item.CopyRight )
+            {
+                // Оброблюємо нових правовласників
+                body.Where(rec => rec.CustId != rhId).ToList()
+                    .ForEach(item =>
                     {
-                        CopyRight addItem = new CopyRight();
+                    // Додаємо нові права
+                    foreach (var cright in item.CopyRight)
+                        {
+                            CopyRight addItem = new CopyRight();
                         // addItem.CRightId
                         addItem.SetFields(cright, new[] { "CRightId" });
-                        _dbContext.CopyRight.Add(addItem);
+                            _dbContext.CopyRight.Add(addItem);
 
-                        foreach (var author in cright.Obj.Authors)
-                        {
-                            if (authtors.Any(rec => rec.ObjId == author.ObjId && rec.CustId == author.CustId && rec.RoleCode == author.RoleCode))
-                                continue;
+                            foreach (var author in cright.Obj.Authors)
+                            {
+                                if (authtors.Any(rec => rec.ObjId == author.ObjId && rec.CustId == author.CustId && rec.RoleCode == author.RoleCode))
+                                    continue;
 
-                            Authors addAutor = new Authors();
-                            addAutor.SetFields(author, new[] { "AuthId" });
+                                Authors addAutor = new Authors();
+                                addAutor.SetFields(author, new[] { "AuthId" });
                             // addAutor.AuthId
                             _dbContext.Authors.Add(addAutor);
+                            }
                         }
-                    }
                     // Додаємо Авторів
                 });
 
@@ -509,7 +550,7 @@ t2.custId = @custid
                 });
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -559,9 +600,9 @@ t2.custId = @custid
         /// <returns></returns>
         private async Task<IActionResult> getDebugInfoForSetRHInheritance(int rhId, [FromBody]List<RightHolder> body)
         {
-            DateTime checkDate = body.Where( rec => rec.CustId == rhId ).SingleOrDefault()?.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
+            DateTime checkDate = body.Where(rec => rec.CustId == rhId).SingleOrDefault()?.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
 
-            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && checkDate <= item.EndDate )
+            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && checkDate <= item.EndDate)
                     .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).AsNoTracking().ToListAsync();
 
@@ -571,7 +612,7 @@ from Authors t1
 join CopyRight t2 on t2.objId = t1.objId and @checkDate between t2.beginDate and t2.endDate
 where
 t2.custId = @custid
-", new SqlParameter("@custid", rhId), new SqlParameter("@checkDate", checkDate )).AsNoTracking().ToListAsync();
+", new SqlParameter("@custid", rhId), new SqlParameter("@checkDate", checkDate)).AsNoTracking().ToListAsync();
 
             var oldBodyCust = body.Where(rec => rec.CustId == rhId).SingleOrDefault();
             DateTime endDate = checkDate.AddDays(-1);
@@ -620,7 +661,7 @@ t2.custId = @custid
             {
 
                 tran?.Rollback();
-                return BadRequest( ex.Message );
+                return BadRequest(ex.Message);
             }
         }
 

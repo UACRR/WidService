@@ -87,6 +87,8 @@ namespace ConsumerWorkplace_v_1._0
                 cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
+                cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
+                cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
                 cabinet.SetDictionary(_service.GetDictionary());
                 cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;
@@ -95,6 +97,16 @@ namespace ConsumerWorkplace_v_1._0
             cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;
             _switcher.SwitchView(cabinet);
+        }
+
+        private bool Cabinet_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
+        {
+            return _service.Save(customer);
+        }
+
+        private void Cabinet_OnEditCustomer1(int id)
+        {
+            EditConsumer(id);
         }
 
         private void Cabinet_OnAddNewCustomer(object sender, EventArgs e)
@@ -107,6 +119,29 @@ namespace ConsumerWorkplace_v_1._0
             NewConsumer();
         }
 
+        /// <summary>
+        /// Редагування існуючого споживача юридичної особи
+        /// </summary>
+        private void EditConsumer(int custId)
+        {
+
+            var _cust = _service.GetData(custId);
+            var _dict = _service.GetDictionary();
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, false) { StartPosition = FormStartPosition.CenterParent };
+            form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
+            form.ShowDialog();
+            form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
+            if (!form.Disposing)
+            {
+                form.Dispose();
+                form = null;
+                GC.Collect();
+            }
+        }
+
+        /// <summary>
+        /// Додавання нового споживача юридична особа (діалогова форма)
+        /// </summary>
         private void NewConsumer()
         {
             int custType = 3; // Юридична особа

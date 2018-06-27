@@ -56,5 +56,10 @@ namespace IpsViewComponentLibrary
         /// <param name="cust">Дані споживача</param>
         /// <param name="dictionaties">Словники</param>
         void SetDataSources(Customer cust, AnketaDictionaties dictionaties);
+
+        /// <summary>
+        /// Перевірка на правильність введених даних
+        /// </summary>
+        bool Validator();
     }
 }

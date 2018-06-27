@@ -6,6 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class LicenseAgrParam : ILicenseAgrParam
     {
+        public LicenseAgrParam()
+        {
+            License = new ObservableListSource<License>();
+        }
+
         public int LicId { get; set; }
         public int LicVersion { get; set; }
         public string LicNum { get; set; }
@@ -29,6 +34,7 @@ namespace ipsFormsDesign.Model
         public LicenseAgreement Lic { get; set; }
         public AgreementStatus LicStatusNavigation { get; set; }
         public Period PeriodCodeNavigation { get; set; }
+        public ObservableListSource<License> License { get; set; }
     }
 }
 

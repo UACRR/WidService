@@ -38,6 +38,7 @@ namespace IpsViewComponentLibrary
         public RightholderMainView SelectedRightholder
         {
             get { return ctrlRightholderSelector.Rightholder; }
+            set { ctrlRightholderSelector.Rightholder = value; }
         }
 
         public List<ObjectRightForRightholder> ObjectsRightsList
@@ -64,7 +65,6 @@ namespace IpsViewComponentLibrary
 
             if (currentColumnName == "EditColumn")
             {
-                //EditObjectRight(SelectedRghtholdersObjectRightId);
                 OnEditObjectCommandExecuted(SelectedObjectRightId);
             }
         }
@@ -74,7 +74,6 @@ namespace IpsViewComponentLibrary
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            //EditObjectRight(SelectedRghtholdersObjectRightId);
             OnEditObjectCommandExecuted(SelectedObjectRightId);
         }
 

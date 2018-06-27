@@ -5,6 +5,12 @@ namespace ipsmedserviceapp.Model
 {
     public partial class CopyRight
     {
+        public CopyRight()
+        {
+            LicAuthorBr = new HashSet<LicAuthorBr>();
+            WorkRh = new HashSet<WorkRh>();
+        }
+
         public int CRightId { get; set; }
         public int CustId { get; set; }
         public int? ObjId { get; set; }
@@ -27,5 +33,7 @@ namespace ipsmedserviceapp.Model
         public CreativeRoleType RoleCodeNavigation { get; set; }
         public CrightStatus StatusNavigation { get; set; }
         public CopyRtranslate CopyRtranslate { get; set; }
+        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        public ICollection<WorkRh> WorkRh { get; set; }
     }
 }

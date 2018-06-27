@@ -20,12 +20,15 @@ namespace IpsViewComponentLibrary
         private readonly ObjectAuthorRightholder _authorRightholder;
         private readonly ObjectRightDictionaries _dictionaries;
         private readonly int _category;
+        private readonly RightholderService _rightholderService;
 
         public AuthorRightholderItemView(ObjectAuthorRightholder authorRightholder, ObjectRightDictionaries dictionaries, int category)
         {
             InitializeComponent();
 
             StartPosition = FormStartPosition.CenterParent;
+
+            _rightholderService = new RightholderService();
 
             _authorRightholder = authorRightholder;
             _authorRightholder.BeginEdit();
@@ -50,6 +53,13 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!IsValid())
+            {
+                MessageBox.Show("Не вірно введені дані. Об'єкт не записаний.");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
             _authorRightholder.EndEdit();
 
             DialogResult = DialogResult.OK;
@@ -114,6 +124,54 @@ namespace IpsViewComponentLibrary
                 ddlRightholder.ReadOnly = false;
                 panelRightholderInfo.Visible = false;
             }
+        }
+
+        #region Autocomplite
+
+        private void GetAuthors(string filter)
+        {
+            var authors = _rightholderService.getAuthorsByFilter(filter).Select(a => a.AuthorName).ToArray();
+
+            txtAuthorName.AutoCompleteCustomSource.AddRange(authors);
+        }
+
+        private void txtAuthorName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtAuthorName.Text.Length >= 1 && txtAuthorName.AutoCompleteCustomSource.Count == 0)
+            {
+                GetAuthors(txtAuthorName.Text);
+            }
+
+            if (txtAuthorName.Text == string.Empty && txtAuthorName.AutoCompleteCustomSource.Count != 0)
+            {
+                txtAuthorName.AutoCompleteCustomSource.Clear();
+            }
+        }
+
+        #endregion
+
+        private bool IsValid()
+        {
+            //foreach (Control control in errorProvider.ContainerControl.Controls)
+            //{
+            //    if (errorProvider.GetError(control) != "")
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            if (errorProvider.GetError(mtxtRate) != "")
+                return false;
+
+            return true;
+        }
+
+        private void mtxtRate_Validated(object sender, EventArgs e)
+        {
+            if (_authorRightholder.Rate > 100)
+                errorProvider.SetError(mtxtRate, "Відсоток володіння не може бути більше 100%.");
+            else
+                errorProvider.SetError(mtxtRate, "");
         }
     }
 }
