@@ -101,7 +101,8 @@ namespace ConsumerWorkplace_v_1._0
 
         private bool Cabinet_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
         {
-            return _service.Save(customer);
+            var relust = _service.Save(customer);
+            return relust;
         }
 
         private void Cabinet_OnEditCustomer1(int id)
@@ -137,6 +138,7 @@ namespace ConsumerWorkplace_v_1._0
                 form = null;
                 GC.Collect();
             }
+            UpdateData(_cust.CustId);
         }
 
         /// <summary>
@@ -156,6 +158,22 @@ namespace ConsumerWorkplace_v_1._0
                 form.Dispose();
                 form = null;
                 GC.Collect();
+            }
+            UpdateData(_cust.CustId);
+        }
+
+        private void UpdateData(int id)
+        {
+            if(_currentControl == cabinet)
+            {
+                cabinet?.SetGridDataSource(getMainView());
+                cabinet?.SetSelectCustomer(id);
+            }
+
+            if (_currentControl == mainGrid)
+            {
+                mainGrid?.SetGridDataSource(getMainView());
+                mainGrid?.SetSelectCustomer(id);
             }
         }
 

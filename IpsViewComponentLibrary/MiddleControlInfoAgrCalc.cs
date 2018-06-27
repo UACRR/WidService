@@ -352,11 +352,14 @@ namespace IpsViewComponentLibrary
             {
                 CustId = _customer.CustId,
                 LicVersion = 1,
+                LicStatus = 0,
+                LicCode = 1,
                 LicenseAgrParam = new ObservableListSource<LicenseAgrParam>
                 {
                     new LicenseAgrParam
                     {
-                        LicVersion = 1
+                        LicVersion = 1,
+                        LicStatus = 0,
                     }
                 },
                 
@@ -364,6 +367,17 @@ namespace IpsViewComponentLibrary
             var license = _customer?.Client?.LicenseAgreement?.LastOrDefault();
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
             RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forNew);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            var _lic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.AgrId == _idItem);
+            ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dictionaties, customer: _customer, licenseAgreement: _lic)
+            {
+                WindowState = FormWindowState.Maximized,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            print.ShowDialog();
         }
     }
 
