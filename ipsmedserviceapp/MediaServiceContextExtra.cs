@@ -16,18 +16,22 @@ namespace ipsmedserviceapp.Model
         {
         }
 
-        public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId) where T : class
+        public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => Entry(item).State = EntityState.Deleted);
-            tempList.ForEach(item => dest.Remove(item));
+            tempList.ForEach(item => { Entry(item).State = EntityState.Deleted; dest.Remove(item); });
             // Змінюємо спільні записи
             tempList = sors.Where(row => dest.Any(item => compId(row, item))).ToList();
             tempList.ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
             // Додаємо нові
             tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => { sors.Remove(item); maxId(item); dest.Add(item); });
+            tempList.ForEach(item => {
+                T addItem = new T();
+                addItem.SetFields(item, excludeField);
+                dest.Add(addItem);
+                maxId(addItem);
+            });
 
         }
 
@@ -50,8 +54,8 @@ namespace ipsmedserviceapp.Model
             {
                 T addItem = new T();
                 addItem.SetFields(item, excludeField);
-                maxId(addItem);
                 dest.Add(addItem);
+                maxId(addItem);
             });
 
 
