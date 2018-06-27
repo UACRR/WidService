@@ -283,7 +283,7 @@ namespace IpsViewComponentLibrary
                 return;
 
             var licenseParam = license.LicenseAgrParam.Where( rec => rec.LicVersion == license.LicVersion ).SingleOrDefault();
-            RunDialogForLicenseAgrParam(license, licenseParam);
+            RunDialogForLicenseAgrParam(license, licenseParam,DialogGoal.forEdit);
         }
         /// <summary>
         /// 
@@ -325,7 +325,7 @@ namespace IpsViewComponentLibrary
             license?.LicenseAgrParam?.Add(newLicense);
 
             var licenseParam = license?.LicenseAgrParam.LastOrDefault();
-            RunDialogForLicenseAgrParam(license, licenseParam);
+            RunDialogForLicenseAgrParam(license, licenseParam,DialogGoal.forProlongation);
         }
 
         private void Prolongation_OnSaveProlongationWithoutPlaces(object sender, EventArgs e)
@@ -344,6 +344,26 @@ namespace IpsViewComponentLibrary
             if (_customer.Client.ClnBusinessPlace.Count > 0)
                 return true;
             return false;
+        }
+
+        private void btnAddAgreement_Click(object sender, EventArgs e)
+        {
+            _customer.Client.LicenseAgreement.Add(new LicenseAgreement
+            {
+                CustId = _customer.CustId,
+                LicVersion = 1,
+                LicenseAgrParam = new ObservableListSource<LicenseAgrParam>
+                {
+                    new LicenseAgrParam
+                    {
+                        LicVersion = 1
+                    }
+                },
+                
+            });
+            var license = _customer?.Client?.LicenseAgreement?.LastOrDefault();
+            var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+            RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forNew);
         }
     }
 

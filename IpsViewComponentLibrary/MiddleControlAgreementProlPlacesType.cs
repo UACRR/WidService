@@ -40,6 +40,19 @@ namespace IpsViewComponentLibrary
 
             licenseAgreementBindingSource.DataSource = license;
             bindingSourceDictionary.DataSource = Dictionaties.agrLicenseType;
+            
+        }
+
+        public bool CanChangeLicense
+        {
+            get => ddlLicType.ReadOnly;
+            set => ddlLicType.ReadOnly = !value;
+        }
+
+        public bool LicenseEnabled
+        {
+            get => ddlLicType.Enabled;
+            set => ddlLicType.Enabled = value;
         }
 
         //TODO: джерело даних з розрахованою сумою
