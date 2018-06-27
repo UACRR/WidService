@@ -93,6 +93,7 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn7 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn8 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn24 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -514,7 +515,7 @@
             this.objectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.objectsPageView.Location = new System.Drawing.Point(0, 0);
             this.objectsPageView.Name = "objectsPageView";
-            this.objectsPageView.SelectedPage = this.rightholdersObjectsPage;
+            this.objectsPageView.SelectedPage = this.actualObjectsPage;
             this.objectsPageView.Size = new System.Drawing.Size(1182, 632);
             this.objectsPageView.TabIndex = 0;
             this.objectsPageView.ThemeName = "Office2013Light";
@@ -525,7 +526,6 @@
             // actualObjectsPage
             // 
             this.actualObjectsPage.Controls.Add(this.actualObjectsPageView);
-            this.actualObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.actualObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.actualObjectsPage.Name = "actualObjectsPage";
             this.actualObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -550,7 +550,6 @@
             // 
             this.actualObjectsListPage.Controls.Add(this.ddbAddObjectRight);
             this.actualObjectsListPage.Controls.Add(this.gvObjectsRightsList);
-            this.actualObjectsListPage.ItemSize = new System.Drawing.SizeF(27F, 133F);
             this.actualObjectsListPage.Location = new System.Drawing.Point(31, 5);
             this.actualObjectsListPage.Name = "actualObjectsListPage";
             this.actualObjectsListPage.Size = new System.Drawing.Size(953, 612);
@@ -685,7 +684,6 @@
             this.actualObjectsItemPage.Controls.Add(this.btnObjectRightItemCancel);
             this.actualObjectsItemPage.Controls.Add(this.btnObjectRightItemSave);
             this.actualObjectsItemPage.Controls.Add(this.radLabel13);
-            this.actualObjectsItemPage.ItemSize = new System.Drawing.SizeF(27F, 140F);
             this.actualObjectsItemPage.Location = new System.Drawing.Point(31, 5);
             this.actualObjectsItemPage.Name = "actualObjectsItemPage";
             this.actualObjectsItemPage.Size = new System.Drawing.Size(953, 612);
@@ -1299,7 +1297,6 @@
             // 
             this.rightholdersObjectsPage.Controls.Add(this.ctrlRightholderSelector);
             this.rightholdersObjectsPage.Controls.Add(this.gvRightholdersObjectsRights);
-            this.rightholdersObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.rightholdersObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.rightholdersObjectsPage.Name = "rightholdersObjectsPage";
             this.rightholdersObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -1441,7 +1438,6 @@
             // 
             // notAcceptedObjectsPage
             // 
-            this.notAcceptedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.notAcceptedObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.notAcceptedObjectsPage.Name = "notAcceptedObjectsPage";
             this.notAcceptedObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -1449,7 +1445,6 @@
             // 
             // newObjectsPage
             // 
-            this.newObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.newObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.newObjectsPage.Name = "newObjectsPage";
             this.newObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -1457,7 +1452,6 @@
             // 
             // notLinkedObjectsPage
             // 
-            this.notLinkedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.notLinkedObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.notLinkedObjectsPage.Name = "notLinkedObjectsPage";
             this.notLinkedObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -1655,17 +1649,17 @@
             gridViewTextBoxColumn19.HeaderText = "Шифр автора / правовласника";
             gridViewTextBoxColumn19.IsAutoGenerated = true;
             gridViewTextBoxColumn19.Name = "InnerCode";
-            gridViewTextBoxColumn19.Width = 87;
+            gridViewTextBoxColumn19.Width = 72;
             gridViewTextBoxColumn20.FieldName = "InterCode";
             gridViewTextBoxColumn20.HeaderText = "IPI";
             gridViewTextBoxColumn20.IsAutoGenerated = true;
             gridViewTextBoxColumn20.Name = "InterCode";
-            gridViewTextBoxColumn20.Width = 87;
+            gridViewTextBoxColumn20.Width = 72;
             gridViewTextBoxColumn21.FieldName = "Name";
             gridViewTextBoxColumn21.HeaderText = "Правовласник";
             gridViewTextBoxColumn21.IsAutoGenerated = true;
             gridViewTextBoxColumn21.Name = "Name";
-            gridViewTextBoxColumn21.Width = 218;
+            gridViewTextBoxColumn21.Width = 186;
             gridViewDateTimeColumn3.AllowResize = false;
             gridViewDateTimeColumn3.FieldName = "RegistrDate";
             gridViewDateTimeColumn3.FormatString = "{0:dd/MM/yyyy}";
@@ -1679,7 +1673,6 @@
             gridViewDecimalColumn22.HeaderText = "К-ть об\'єктів";
             gridViewDecimalColumn22.IsAutoGenerated = true;
             gridViewDecimalColumn22.Name = "CntObj";
-            gridViewDecimalColumn22.Width = 53;
             gridViewDecimalColumn23.AllowResize = false;
             gridViewDecimalColumn23.FieldName = "YearProfit";
             gridViewDecimalColumn23.FormatString = "{0:N2}";
@@ -1690,7 +1683,7 @@
             gridViewTextBoxColumn22.FieldName = "Community_Name";
             gridViewTextBoxColumn22.HeaderText = "Cпільнота";
             gridViewTextBoxColumn22.Name = "Community_Name";
-            gridViewTextBoxColumn22.Width = 136;
+            gridViewTextBoxColumn22.Width = 125;
             gridViewCommandColumn5.AllowResize = false;
             gridViewCommandColumn5.DefaultText = "Підтвердити";
             gridViewCommandColumn5.HeaderText = "";
@@ -1712,6 +1705,13 @@
             gridViewCommandColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn7.UseDefaultText = true;
             gridViewCommandColumn7.Width = 80;
+            gridViewCommandColumn8.AllowResize = false;
+            gridViewCommandColumn8.DefaultText = "Блок. (спадщ.)";
+            gridViewCommandColumn8.HeaderText = "";
+            gridViewCommandColumn8.Name = "SetStatusColumn";
+            gridViewCommandColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn8.UseDefaultText = true;
+            gridViewCommandColumn8.Width = 77;
             this.gvRightholdersList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn18,
             gridViewTextBoxColumn19,
@@ -1723,7 +1723,8 @@
             gridViewTextBoxColumn22,
             gridViewCommandColumn5,
             gridViewCommandColumn6,
-            gridViewCommandColumn7});
+            gridViewCommandColumn7,
+            gridViewCommandColumn8});
             this.gvRightholdersList.MasterTemplate.DataSource = this.rightHolderMainViewBindingSource;
             this.gvRightholdersList.MasterTemplate.ShowRowHeaderColumn = false;
             this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition6;
@@ -3343,7 +3344,7 @@
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageRightsObjects;
+            this.MainPageView.SelectedPage = this.mainPageRightholders;
             this.MainPageView.Size = new System.Drawing.Size(1192, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";

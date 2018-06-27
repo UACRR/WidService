@@ -58,6 +58,11 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
+        public bool SetStatus(int CustId, RightholderStatusType status)
+        {
+            return _webApi.UpdateItem("rh/setstatus", CustId.ToString(), status);
+        }
+
         public bool Inherit(int rhId, List<RightHolder> inheritData)
         {
             return _webApi.ApiAction<RightHolder>("rh/inheritance", rhId, inheritData);
@@ -86,6 +91,6 @@ namespace ipsFormsDesign.Services
         {
             return _webApi.ApiFunc<RightHolder, DebugInheritData>("rh/inheritancedebug", checkCustId, inheritData);
         }
-# endif
+#endif
     }
 }
