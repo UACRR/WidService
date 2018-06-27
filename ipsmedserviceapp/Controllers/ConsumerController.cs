@@ -65,7 +65,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
-                    .Where(rec => rec.LicVersion == license.LicVersion)
+                    .Where(rec => rec.LicVersion >= license.LicVersion)
                     .LoadAsync();
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
@@ -101,6 +101,39 @@ namespace ipsmedserviceapp.Controllers
             return Json(cust);
         }
 
+        /// <summary>
+        /// Проставление идентификаторов для новіх записей
+        /// </summary>
+        /// <param name="updCustomer"></param>
+        private void setNewIdetifies(Customer updCustomer )
+        {
+            int index = -1;
+
+            updCustomer.AgreementMaster.Where(rec => rec.AgrId == 0).ToList()
+                .ForEach(item => {
+                    item.AgrId = index;
+                    item.AgreementAddBr.ToList().ForEach( itemBr => { itemBr.AgrId = index; });
+                    index--;
+                });
+
+            int licid = -1;
+            updCustomer.Client.LicenseAgreement.Where(rec => rec.LicId == 0).ToList()
+                .ForEach(item => {
+                    item.LicId = licid;
+                    if( item.Agr.AgrId == 0)
+                    {
+                        item.Agr.AgrId = index;
+                        item.AgrId = index;
+                        index--;
+                    }
+
+                    item.LicenseAgrParam.ToList().ForEach(subItem => { subItem.LicId = licid; });
+                    item.License.ToList().ForEach(subItem => { subItem.LicId = licid; });
+                    item.LicenseBigR.LicId = licid;
+                    licid--;
+
+                });
+        }
         /// <summary>
         /// Зберегти Споживача до Id
         /// </summary>
@@ -204,6 +237,24 @@ namespace ipsmedserviceapp.Controllers
                     destAgreeItem.LicenseAgreement.Add(addLicItem);
                 }
                 );
+
+                var destAgreement = dest.AgreementMaster.ToDictionary(rec => rec.AgrId);
+                // AgreementAddBr
+                foreach( var agr in updCustomer.AgreementMaster )
+                {
+                    if(!destAgreement.Keys.Contains( agr.AgrId))
+                    {
+                        AgreementMaster addAgr = new AgreementMaster();
+                        addAgr.SetFields(agr);
+                        dest.AgreementMaster.Add(addAgr);
+                        destAgreement.Add(addAgr.AgrId, addAgr);
+                    }
+
+                    if (agr.AgreementAddBr.Count == 0)
+                        continue;
+                    var destAgr = destAgreement[agr.AgrId];
+                    _dbContext.AppendList(agr.AgreementAddBr, destAgr.AgreementAddBr, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
+                }
 
 
                 if (dest.CustType == 3) // Company
