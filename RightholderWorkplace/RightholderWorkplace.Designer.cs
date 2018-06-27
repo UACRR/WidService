@@ -3014,7 +3014,6 @@
             // 
             // dtChangeCopyrightDateTill
             // 
-            this.dtChangeCopyrightDateTill.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.objectAuthorRightholderBindingSource, "BeginDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.dtChangeCopyrightDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateTill.Location = new System.Drawing.Point(235, 34);
             this.dtChangeCopyrightDateTill.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -3105,7 +3104,6 @@
             // 
             // dtChangeCopyrightDateFrom
             // 
-            this.dtChangeCopyrightDateFrom.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.objectAuthorRightholderBindingSource, "BeginDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.dtChangeCopyrightDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateFrom.Location = new System.Drawing.Point(80, 34);
             this.dtChangeCopyrightDateFrom.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
