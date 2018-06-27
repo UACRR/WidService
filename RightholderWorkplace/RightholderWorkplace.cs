@@ -1293,9 +1293,13 @@ namespace RightholderWorkplace
             }
         }
 
+        private List<ObjectRightMainView> _autocompliteObjects = new List<ObjectRightMainView>();
+
         private void GetObjectNames(string filter)
         {
-            var names = _objectRightService.GetObjectsByFilter(filter).Select(o => o.Name).ToArray();
+            _autocompliteObjects = _objectRightService.GetObjectsByFilter(filter);
+            var names = _autocompliteObjects.Select(o => o.Name).ToArray();
+
 
             txtObjectName.AutoCompleteCustomSource.AddRange(names);
         }
@@ -1310,6 +1314,17 @@ namespace RightholderWorkplace
             if (txtObjectName.Text.Length < 2 && txtObjectName.AutoCompleteCustomSource.Count != 0)
             {
                 txtObjectName.AutoCompleteCustomSource.Clear();
+                _autocompliteObjects.Clear();
+            }
+        }
+
+        private void txtObjectName_Leave(object sender, EventArgs e)
+        {
+            var obj = _autocompliteObjects.FirstOrDefault(o => o.Name == txtObjectName.Text);
+            if (obj != null)
+            {
+                var objContainer = _objectRightService.GetData(obj.ObjId);
+                UpdateObjectRightDataSources(objContainer.objectRight, objContainer.rhList);
             }
         }
     }

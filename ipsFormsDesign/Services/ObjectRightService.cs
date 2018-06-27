@@ -24,7 +24,7 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
-        public IList<ObjectRightMainView> GetObjectsByFilter( string filter )
+        public List<ObjectRightMainView> GetObjectsByFilter( string filter )
         {
             string url = string.Concat("objectright/filteredObjectRights/", filter);
             var list = _webApi.GetList<ObjectRightMainView>(url);

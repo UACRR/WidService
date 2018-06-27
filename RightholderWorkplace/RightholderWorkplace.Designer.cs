@@ -1234,6 +1234,7 @@
             this.txtObjectName.TabIndex = 56;
             this.txtObjectName.ThemeName = "Office2013Light";
             this.txtObjectName.TextChanged += new System.EventHandler(this.txtObjectName_TextChanged);
+            this.txtObjectName.Leave += new System.EventHandler(this.txtObjectName_Leave);
             // 
             // objectRightBindingSource
             // 
