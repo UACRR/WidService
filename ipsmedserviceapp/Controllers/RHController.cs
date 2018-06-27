@@ -42,8 +42,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.BankAccount)
                         .Include(item => item.AnketaAddName)
                         .Include(item => item.RightHolder)
-                            .ThenInclude(rh => rh.TermsOfService)
-                        .Include(item => item.RightHolder)
+                            .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TerritoryExclude)
                         .Include(item => item.RightHolder)
                             .ThenInclude(rh => rh.TerritoryInclude)
@@ -56,7 +55,7 @@ namespace ipsmedserviceapp.Controllers
             var currDate = DateTime.Now.Date;
 
             if (!forSync)
-                await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,0) as ourService
+                await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,1) as ourService
 from CopyrightKind t1
 left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.codeI", new SqlParameter("@custid", id))
                     .Include(tos => tos.CrkindCodeNavigation)
@@ -225,10 +224,26 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             {
                 _dbContext.UpdateList(sorsCust.RightHolder.TermsOfService, destCustomer.RightHolder.TermsOfService, i => { }, (l, r) => l.CrkindCode == r.CrkindCode);
                 var sorseDic = sorsCust.RightHolder.TermsOfService.ToDictionary(rec => rec.CrkindCode);
+                var commutitiDic = new Dictionary<int, Community>();
                 foreach (var destTerm in destCustomer.RightHolder.TermsOfService)
                 {
                     var sorsTerm = sorseDic[destTerm.CrkindCode];
-                    _dbContext.UpdateList(sorsTerm.CustCmRight, destTerm.CustCmRight, i => { }, (l, r) => l.CustId == r.CustId && l.CmCustId == r.CmCustId && l.DateBegin == r.DateBegin);
+                    _dbContext.UpdateList(sorsTerm.CustCmRight.Where(item=>item.CmCustId!=0).ToList(), destTerm.CustCmRight, i => {
+                        Community atachCom = null;
+                        if (!commutitiDic.Keys.Contains(i.CmCustId))
+                        {
+                            atachCom = new Community { CustId = i.CmCustId };
+
+                            _dbContext.Attach(atachCom);
+                            commutitiDic.Add(i.CmCustId, atachCom);
+                        }
+                        else
+                            atachCom = commutitiDic[i.CmCustId];
+                        atachCom.CustCmRight.Add(i);
+                    }, (l, r) => l.CustId == r.CustId
+                                        && l.CRkindCode == r.CRkindCode
+                                        && l.CmCustId == r.CmCustId
+                                        && l.DateBegin == r.DateBegin/*, new[] { "CustId", "CRkindCode" }*/);
                 }
             }
 
