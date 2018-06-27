@@ -58,7 +58,5 @@ namespace ipsFormsDesign.Services
             var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
             return item;
         }
-
-        public 
     }
 }
