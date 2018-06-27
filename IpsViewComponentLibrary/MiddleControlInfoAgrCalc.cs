@@ -283,7 +283,7 @@ namespace IpsViewComponentLibrary
                 return;
 
             var licenseParam = license.LicenseAgrParam.Where( rec => rec.LicVersion == license.LicVersion ).SingleOrDefault();
-            RunDialogForLicenseAgrParam(license, licenseParam);
+            RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forEdit);
         }
         /// <summary>
         /// 
@@ -325,7 +325,7 @@ namespace IpsViewComponentLibrary
             license?.LicenseAgrParam?.Add(newLicense);
 
             var licenseParam = license?.LicenseAgrParam.LastOrDefault();
-            RunDialogForLicenseAgrParam(license, licenseParam);
+            RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forProlongation);
         }
 
         private void Prolongation_OnSaveProlongationWithoutPlaces(object sender, EventArgs e)
