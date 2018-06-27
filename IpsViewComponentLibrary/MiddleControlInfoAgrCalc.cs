@@ -177,8 +177,8 @@ namespace IpsViewComponentLibrary
 
         private void SetDefaultPages()
         {
-            pvSecond.SelectedPage = pvSecond.DefaultPage;
-            pvMain.SelectedPage = pvMain.DefaultPage;
+            //pvSecond.SelectedPage = pvSecond.DefaultPage;
+            //pvMain.SelectedPage = pvMain.DefaultPage;
         }
 
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
