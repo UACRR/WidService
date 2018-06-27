@@ -307,19 +307,9 @@ namespace ipsFormsDesign.Services
 
 
                 var clnBusinessPlaceHotel = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 1) || (rec.PlCode == 2)).ToList();
-                var clnBusinessPlaceMarket = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 8).ToList();
-                var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
+                var clnBusinessPlaceMarket = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 8).ToList();              
                 var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 3) || (rec.PlCode == 4)
                  || (rec.PlCode == 5)).ToList();
-                //AgreementAddBr agreementAddBr;
-                //agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.IsCurrent == 1)?.SingleOrDefault();
-
-
-
-                app = new Application();
-                innerDoc = app.Documents.Open(docFile);
-                // отримати ControlContent
-                var list = innerDoc.ContentControls;
 
                 string customerName = string.Empty;
                 string leAddress = string.Empty;
@@ -352,7 +342,7 @@ namespace ipsFormsDesign.Services
                 string CPaidData = string.Empty;
                 string fop = String.Empty;
                 string vOsobi = String.Empty;
-                string naPidstav = String.Empty;
+                string naPidstavi = String.Empty;
 
                 if (cust.CustType < 3) // фіз. особа
                 {
@@ -399,7 +389,7 @@ namespace ipsFormsDesign.Services
                     cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
                     cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
                     vOsobi = " в особі ";
-                    naPidstav = " = що діє на підставі ";
+                    naPidstavi = " = що діє на підставі ";
                 }
 
  
@@ -427,9 +417,6 @@ namespace ipsFormsDesign.Services
                     switch (title)
 
                     {
-                        case "GdocNumberC":
-                            item.Range.Text = GdocNumber;
-                            break;
 
                         case "docNumberC":
                             item.Range.Text = LicNum;
@@ -443,6 +430,20 @@ namespace ipsFormsDesign.Services
                         case "docDateBegin":
                             item.Range.Text = $"{licenseAgrParam?.DateBegin:dd.MM.yyyy}";
                             break;
+
+
+                        case "fop":
+                            item.Range.Text = fop;
+                            break;
+                        case "vOsobi":
+                            item.Range.Text = vOsobi;
+                            break;
+                        case "naPidstavi":
+                            item.Range.Text = naPidstavi;
+                            break;
+
+
+
 
                         case "СstName":
                             item.Range.Text = customerName;
@@ -472,10 +473,6 @@ namespace ipsFormsDesign.Services
                             break;
                         case "TablePLfe":
                             formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
-                            break;
-                        case "TablePLk":
-                            formTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
-
                             break;
                         case "prcntInc":
                             item.Range.Text = prcntInc;
@@ -634,23 +631,13 @@ namespace ipsFormsDesign.Services
                 var list = innerDoc.ContentControls;
 
                 // замінити вміст
-                //AgreementAddRh agrRh = agr.AgreementAddRh.Where(item => item.Version == agr.Version).SingleOrDefault();
-                // Customer cust = agr.Cust;
-                LicenseAgreement licAgr = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
-                LicenseAgrParam licenseAgrParam = licAgr?.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).SingleOrDefault();
-
-                PaidPeriod paidPeriod = licAgr?.PaidPeriod.FirstOrDefault();
-
+ 
                 AnketaPerson anketaPerson = cust.Person?.AnketaPerson.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
                 AnketaCompany anketaCompany = cust.Company?.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
                 BankAccount bankacc = cust.BankAccount.FirstOrDefault();
                 Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
                 Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
-                var clnBusinessPlaceHotel = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 1) || (rec.PlCode == 2)).ToList();
-                var clnBusinessPlaceMarket = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 8).ToList();
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
-                var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 3) || (rec.PlCode == 4)
-                 || (rec.PlCode == 5)).ToList();
                 AgreementAddBr agreementAddBr;
                 agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.IsCurrent == 1)?.SingleOrDefault();
 
@@ -665,15 +652,6 @@ namespace ipsFormsDesign.Services
                 DateTime? createDate = DateTime.Today;
                 string Okpo = string.Empty;
                 string СstPersonReason = string.Empty;
-                string DocDate = string.Empty;
-                string DocDateEnd = string.Empty;
-                string LicNum = string.Empty;
-                string prcntInc = string.Empty;
-                string minRltGrn = string.Empty;
-                string minRltKop = string.Empty;
-                string pay_period = string.Empty;
-                string pay_period2 = string.Empty;
-                string prcntPrl = string.Empty;
                 string registerDate = string.Empty;
                 string registerNumber = string.Empty;
                 string numberVAT = string.Empty;
@@ -681,11 +659,9 @@ namespace ipsFormsDesign.Services
                 string cstPerson = string.Empty;
                 string cstContPerson = string.Empty;
                 string cstContPersonPhone = string.Empty;
-                string СPaidPeriod = string.Empty;
-                string CPaidData = string.Empty;
                 string fop = String.Empty;
                 string vOsobi = String.Empty;
-                string naPidstav = String.Empty;
+                string naPidstavi = String.Empty;
                 string GdocNumber = String.Empty;
                 string GdocDateC = String.Empty;
                 string GdocDateBeginC = String.Empty;
@@ -736,7 +712,7 @@ namespace ipsFormsDesign.Services
                     cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
                     cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
                     vOsobi = " в особі ";
-                    naPidstav = " = що діє на підставі ";
+                    naPidstavi = "  що діє на підставі ";
                 }
 
                 GdocDateC = $"{agreementAddBr?.AddDate:dd.MM.yyyy}";
@@ -744,15 +720,6 @@ namespace ipsFormsDesign.Services
                 GdocDateEndC = $"{agreementAddBr?.DateEnd:dd.MM.yyyy}";
                 GdocNumber = agreementAddBr?.AddNumber?.ToString() ?? agr.AgrNumber?.ToString();
 
-                DocDate = $"{licAgr?.LicDate:dd.mm.yyyy}";
-                LicNum = licAgr?.LicNum;
-                prcntInc = licenseAgrParam?.RateAmount.ToString();
-                minRltGrn = licenseAgrParam?.MinAmount.ToString();
-                minRltKop = ((int)((licenseAgrParam?.MinAmount ?? 0 - (int)(licenseAgrParam?.MinAmount ?? 0)) * 100)).ToString();
-                pay_period = $"{period[licenseAgrParam?.PeriodCode ?? 1].Name}";
-                pay_period2 = $"{period[licenseAgrParam?.PeriodCode ?? 1].NameR}";
-                DocDateEnd = $"{licenseAgrParam?.DateEnd:dd.MM.yyyy}";
-                prcntPrl = licenseAgrParam?.AddRate?.ToString();
                 registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
@@ -768,7 +735,7 @@ namespace ipsFormsDesign.Services
                     switch (title)
 
                     {
-                        case "GdocNumber":
+                        case "GdocNumberC":
                             item.Range.Text = GdocNumber;
                             break;
                         case "GdocDateC":
@@ -786,71 +753,20 @@ namespace ipsFormsDesign.Services
                         case "CstPerson":
                             item.Range.Text = cstPerson;
                             break;
+                        case "naPidstavi":
+                            item.Range.Text = naPidstavi;
+                            break;
                         case "CstPersonReason":
                             item.Range.Text = СstPersonReason;
                             break;
                         case "TablePLk":
                             formTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
-
-
-
-                        case "docDateBegin":
-                            item.Range.Text = $"{licenseAgrParam?.DateBegin:dd.MM.yyyy}";
                             break;
-
-
-
-                        case "СstNikName":
-                            item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
+                        case "GdocDateBeginC":
+                            item.Range.Text = GdocDateBeginC;
                             break;
-                        case "TableKind":
-                            formTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
-                            break;
-                        case "TableTrrUse":
-                            formTableInUse(item.Range.Tables, cust.RightHolder);
-                            break;
-                        case "TablePLh":
-                            formTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
-                            break;
-                        case "TablePLsm":
-                            formTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
-                            break;
-                        case "TablePLfe":
-                            formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
-                            break;
-                        case "TablePLk":
-                            formTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
-
-                            break;
-                        case "prcntInc":
-                            item.Range.Text = prcntInc;
-                            break;
-                        case "prcntIncText":
-                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.RateAmount), true);
-                            break;
-                        case "minRltGrn":
-                            item.Range.Text = minRltGrn;
-                            break;
-                        case "minRltGrnText":
-                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.MinAmount), true); ;
-                            break;
-                        case "minRltKop":
-                            item.Range.Text = minRltKop;
-                            break;
-                        case "rltPayPeriod":
-                            item.Range.Text = pay_period;
-                            break;
-                        case "rltPayPeriod2":
-                            item.Range.Text = pay_period2;
-                            break;
-                        case "docDateEnd":
-                            item.Range.Text = DocDateEnd;
-                            break;
-                        case "prcntPrl":
-                            item.Range.Text = prcntPrl;
-                            break;
-                        case "prcntPrlText":
-                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.AddRate), true);
+                        case "GdocDateEndC":
+                            item.Range.Text = GdocDateEndC;
                             break;
                         case "СstLegalAddress":
                             item.Range.Text = reAddress;
@@ -861,13 +777,10 @@ namespace ipsFormsDesign.Services
                         case "СstCorrespAddress":
                             item.Range.Text = leAddress;
                             break;
-
-
-                        case "СstBDate":
-                            item.Range.Text = createDate == null ? string.Empty : $"{createDate:dd.MM.yyyy}";
+                        case "СstPhone":
+                            item.Range.Text = phone;
                             break;
-
-                        case "СstEDRPOU":
+                        case "CstEDRPOU":
                             item.Range.Text = Okpo;
                             break;
                         case "СstBankName":
@@ -891,48 +804,11 @@ namespace ipsFormsDesign.Services
                         case "СstVATType":
                             item.Range.Text = typeVat;
                             break;
-
-                        case "СstContPerson":
-                            item.Range.Text = cstContPerson;
-                            break;
-
-                        case "СstContPersonPhone":
-                            item.Range.Text = cstContPersonPhone;
-                            break;
-
-                        case "СPaidPeriod":
-                            item.Range.Text = СPaidPeriod;
-                            break;
-
-                        case "СPaidData":
-                            item.Range.Text = CPaidData;
-                            break;
-
-
-
-                        case "СstPasport":
-                            item.Range.Text = $"{anketaPerson.PUseries} {anketaPerson.PUnumber}";
-                            break;
-                        case "СstPasportIssued":
-                            item.Range.Text = $"{anketaPerson.PUissuedWho} {anketaPerson.PUissuedWhen:dd.MM.yyyy}";
-                            break;
-                        case "СstBankEDRPOU":
-                            item.Range.Text = $"{bankacc?.MfoOkpo ?? string.Empty}";
-                            break;
-                        case "СstBankAcc":
-                            item.Range.Text = $"{bankacc?.TransitNumber ?? string.Empty}";
-                            break;
-                        case "СstPhoneHome":
-                            item.Range.Text = phoneHome;
-                            break;
-                        case "СstPhone":
-                            item.Range.Text = phone;
-                            break;
-                        case "СstPhoneWork":
-                            item.Range.Text = phoneWork;
-                            break;
                         case "СstEmail":
                             item.Range.Text = eMail;
+                            break;
+                        case "СstContPerson":
+                            item.Range.Text = cstContPerson;
                             break;
                         default:
                             item.Delete();
