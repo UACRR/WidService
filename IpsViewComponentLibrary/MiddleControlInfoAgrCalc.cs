@@ -199,44 +199,7 @@ namespace IpsViewComponentLibrary
         }
 
 
-        //private void btnEditDoc_Click(object sender, EventArgs e)
-        //{
 
-        //    var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
-        //    if (license == null)
-        //        return;
-
-        //    var licParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
-        //    var licVersion = license?.LicenseAgrParam.Max(rec => rec.LicVersion);
-        //    LicenseAgrParam newLicense = null;
-        //    // Кількість доп угод з версією більшою за поточну > 0
-        //    if (license.LicenseAgrParam.Count(rec => rec.LicVersion > license.LicVersion) > 0)
-        //    {
-        //        // -- Взяти наступну версію
-        //        newLicense = license.LicenseAgrParam.Where(rec => rec.LicVersion > license.LicVersion).OrderBy(rec => rec.LicVersion).First();
-        //        // -- Сінхронізувати з поточною, окрім версії
-        //        newLicense.SetFields(licParam, new[] { "LicVersion" });
-        //    }
-        //    // Інакше == 0
-        //    else
-        //    {
-        //        // -- Створити нову
-        //        // -- Збільшити версію на 1
-        //        newLicense = new LicenseAgrParam();
-
-        //        newLicense.SetFields(licParam);
-        //        newLicense.LicDate = DateTime.Now;
-        //        newLicense.DateBegin = DateTime.Now;
-        //        newLicense.DateEnd = DateTime.Now.AddYears(1);
-        //        newLicense.LicVersion = (licVersion ?? 0) + 1;
-        //    }
-        //    //newLicense.LicId = 0;
-        //    license?.LicenseAgrParam?.Add(newLicense);
-
-        //    var licenseParam = license.LicenseAgrParam.LastOrDefault();
-
-        //    RunDialogForLicenseAgrParam(license, licenseParam);
-        //}
 
         /// <summary>
         /// Визом метода активації договору
