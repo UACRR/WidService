@@ -43,11 +43,13 @@
             this.ctrlAgrSecond = new IpsViewComponentLibrary.ContractConsumerDetailControl();
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.btnPrint = new Telerik.WinControls.UI.RadButton();
-            this.lblTitleLicAgr = new Telerik.WinControls.UI.RadLabel();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
-            this.btnAddPlace = new Telerik.WinControls.UI.RadButton();
+            this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
+            this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).BeginInit();
@@ -55,12 +57,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTitleLicAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddPlace)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -147,19 +151,6 @@
             this.btnPrint.ThemeName = "Office2007Silver";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // lblTitleLicAgr
-            // 
-            this.lblTitleLicAgr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitleLicAgr.AutoSize = false;
-            this.lblTitleLicAgr.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTitleLicAgr.Location = new System.Drawing.Point(4, 86);
-            this.lblTitleLicAgr.Name = "lblTitleLicAgr";
-            this.lblTitleLicAgr.Size = new System.Drawing.Size(683, 40);
-            this.lblTitleLicAgr.TabIndex = 24;
-            this.lblTitleLicAgr.Text = "license type ";
-            this.lblTitleLicAgr.TextAlignment = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -185,7 +176,7 @@
             this.gvPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvPlaces.Location = new System.Drawing.Point(3, 133);
+            this.gvPlaces.Location = new System.Drawing.Point(3, 114);
             // 
             // 
             // 
@@ -234,34 +225,56 @@
             this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvPlaces.Name = "gvPlaces";
             this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvPlaces.Size = new System.Drawing.Size(684, 108);
+            this.gvPlaces.Size = new System.Drawing.Size(684, 155);
             this.gvPlaces.TabIndex = 28;
             this.gvPlaces.ThemeName = "Office2007Silver";
             this.gvPlaces.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPlaces_CellValueChanged);
             // 
-            // btnAddPlace
+            // ddlLicType
             // 
-            this.btnAddPlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddPlace.Location = new System.Drawing.Point(7, 247);
-            this.btnAddPlace.Name = "btnAddPlace";
-            this.btnAddPlace.Size = new System.Drawing.Size(122, 22);
-            this.btnAddPlace.TabIndex = 29;
-            this.btnAddPlace.Text = "Додати заклад";
-            this.btnAddPlace.ThemeName = "Office2007Silver";
-            this.btnAddPlace.Click += new System.EventHandler(this.btnAddPlace_Click);
+            this.ddlLicType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.licenseAgreementBindingSource, "LicCode", true));
+            this.ddlLicType.DataSource = this.bindingSourceDictionary;
+            this.ddlLicType.DisplayMember = "Name";
+            this.ddlLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlLicType.Location = new System.Drawing.Point(96, 88);
+            this.ddlLicType.Name = "ddlLicType";
+            this.ddlLicType.Size = new System.Drawing.Size(588, 20);
+            this.ddlLicType.TabIndex = 30;
+            this.ddlLicType.ValueMember = "CodeI";
+            ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            ((Telerik.WinControls.UI.StackLayoutElement)(this.ddlLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.AutoSize = false;
+            this.radLabel2.Location = new System.Drawing.Point(17, 88);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(73, 18);
+            this.radLabel2.TabIndex = 31;
+            this.radLabel2.Text = "Тип ліцензії";
+            // 
+            // bindingSourceDictionary
+            // 
+            this.bindingSourceDictionary.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
+            // 
+            // licenseAgreementBindingSource
+            // 
+            this.licenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
             // 
             // MiddleControlAgreementProlPlacesType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnAddPlace);
+            this.Controls.Add(this.ddlLicType);
+            this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.gvPlaces);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.lblTitleClientName);
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.ctrlAgrMain);
             this.Controls.Add(this.panel);
-            this.Controls.Add(this.lblTitleLicAgr);
             this.Controls.Add(this.btnSave);
             this.MinimumSize = new System.Drawing.Size(690, 390);
             this.Name = "MiddleControlAgreementProlPlacesType";
@@ -273,12 +286,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTitleLicAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddPlace)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,10 +311,12 @@
         private ContractConsumerDetailControl ctrlAgrSecond;
         private Telerik.WinControls.UI.RadPanel panel;
         private Telerik.WinControls.UI.RadButton btnPrint;
-        private Telerik.WinControls.UI.RadLabel lblTitleLicAgr;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadGridView gvPlaces;
-        private Telerik.WinControls.UI.RadButton btnAddPlace;
+        private Telerik.WinControls.UI.RadDropDownList ddlLicType;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private System.Windows.Forms.BindingSource licenseAgreementBindingSource;
+        private System.Windows.Forms.BindingSource bindingSourceDictionary;
     }
 }
