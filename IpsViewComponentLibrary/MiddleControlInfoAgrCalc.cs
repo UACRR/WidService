@@ -13,21 +13,7 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
-    public enum DialogGoal
-    {
-        /// <summary>
-        /// Створення нового контракту
-        /// </summary>
-        forNew,
-        /// <summary>
-        /// Редагування поточного договору
-        /// </summary>
-        forEdit,
-        /// <summary>
-        /// Створення або редагування доп угоди на пролонгацію 
-        /// </summary>
-        forProlongation
-    }
+
     public partial class MiddleControlInfoAgrCalc : UserControl
     {
         private Customer _customer;
