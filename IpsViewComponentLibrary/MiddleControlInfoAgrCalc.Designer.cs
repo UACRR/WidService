@@ -53,7 +53,7 @@
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.pvSecond = new Telerik.WinControls.UI.RadPageView();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.btnEditAgreement = new Telerik.WinControls.UI.RadButton();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.btnProlongation = new Telerik.WinControls.UI.RadButton();
             this.agreementInfoCtrl = new IpsViewComponentLibrary.InformationAboutTheContractTitleControl();
@@ -73,7 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pvSecond)).BeginInit();
             this.pvSecond.SuspendLayout();
             this.pvAgreement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnProlongation)).BeginInit();
             this.pvCalculation.SuspendLayout();
@@ -212,7 +212,7 @@
             // pvAgreement
             // 
             this.pvAgreement.AutoScroll = true;
-            this.pvAgreement.Controls.Add(this.radButton2);
+            this.pvAgreement.Controls.Add(this.btnEditAgreement);
             this.pvAgreement.Controls.Add(this.radButton1);
             this.pvAgreement.Controls.Add(this.btnProlongation);
             this.pvAgreement.Controls.Add(this.agreementInfoCtrl);
@@ -222,14 +222,14 @@
             this.pvAgreement.Size = new System.Drawing.Size(982, 478);
             this.pvAgreement.Text = "Договір";
             // 
-            // radButton2
+            // btnEditAgreement
             // 
-            this.radButton2.Location = new System.Drawing.Point(798, 30);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(86, 38);
-            this.radButton2.TabIndex = 2;
-            this.radButton2.Text = "Редагувати договір";
-            this.radButton2.TextWrap = true;
+            this.btnEditAgreement.Location = new System.Drawing.Point(798, 30);
+            this.btnEditAgreement.Name = "btnEditAgreement";
+            this.btnEditAgreement.Size = new System.Drawing.Size(86, 38);
+            this.btnEditAgreement.TabIndex = 2;
+            this.btnEditAgreement.Text = "Редагувати договір";
+            this.btnEditAgreement.TextWrap = true;
             // 
             // radButton1
             // 
@@ -439,7 +439,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pvSecond)).EndInit();
             this.pvSecond.ResumeLayout(false);
             this.pvAgreement.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnProlongation)).EndInit();
             this.pvCalculation.ResumeLayout(false);
@@ -467,7 +467,7 @@
         private ReportsControl reportsControl;
         private Telerik.WinControls.UI.RadButton btnProlongation;
         private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton btnEditAgreement;
         private Telerik.WinControls.UI.RadPageViewPage pvMoreAgreements;
         private Telerik.WinControls.UI.RadGridView gvMoreAgr;
     }

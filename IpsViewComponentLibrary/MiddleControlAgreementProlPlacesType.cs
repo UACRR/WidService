@@ -110,9 +110,6 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
-            //_customer.Client.ClnBusinessPlace = _places;
-
             OnSaveChangesClick?.Invoke();
         }
 

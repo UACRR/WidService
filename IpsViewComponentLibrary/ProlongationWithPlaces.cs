@@ -18,6 +18,10 @@ namespace IpsViewComponentLibrary
         private LicenseAgrParam _licAgr;
         private AnketaDictionaties _dict;
         private Customer _cust;
+
+        public event EventHandler OnSaveProlongation;
+
+
         public ProlongationWithPlaces()
         {
             InitializeComponent();
@@ -50,7 +54,9 @@ namespace IpsViewComponentLibrary
 
         private void CtrlProlongation_OnSaveChangesClick()
         {
-            //TODO: реалізувати збереження
+            _changesSaved = true;
+            OnSaveProlongation?.Invoke(this, EventArgs.Empty);
+            Close();
         }
 
         private void CtrlProlongation_OnPrintClick()
