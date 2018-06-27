@@ -82,9 +82,13 @@ namespace IpsViewComponentLibrary
 
         private void gvExlusionsLimitations_CellFormatting(object sender, CellFormattingEventArgs e)
         {
-            if (e.Column.FieldName == "DateEnd" && e.CellElement.Text == DateTime.MinValue.ToShortDateString())
+            if (e.Column.FieldName == "DateEnd")
             {
-                e.CellElement.Text = string.Empty;
+                if (e.CellElement.Text == DateTime.MinValue.ToShortDateString())
+                    e.CellElement.Text = "";
+
+                if (e.CellElement.Text == (new DateTime(3000, 1, 1)).ToShortDateString())
+                    e.CellElement.Text = "Не обмежено";
             }
         }
 
@@ -115,6 +119,10 @@ namespace IpsViewComponentLibrary
             {
                 row.Cells["CommunityCustId"].Value = null;
                 row.Cells["DateEnd"].Value = null;
+            }
+            else
+            {
+                row.Cells["DateEnd"].Value = new DateTime(3000,1,1);
             }
         }
     }
