@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary
 {
@@ -437,10 +438,17 @@ namespace IpsViewComponentLibrary
 
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
-            var pdfDoc = OnDocumentNeedGenerate?.Invoke(_cust, _anketaDictionaries);
+            WordEngine wordEngine = new WordEngine(_anketaDictionaries);
+            var licenseAgreement = _cust?.Client?.LicenseAgreement?.FirstOrDefault();
+            int version = licenseAgreement?.LicVersion ?? default(int);
+            string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            templateName = string.Concat(@"Templates\", templateName);
             
-            if(!string.IsNullOrEmpty(pdfDoc))
-                radPdfViewer.LoadDocument(pdfDoc);
+            
+            wordEngine.processConsumer(templateName, _cust, licenseAgreement, version);
+            var pdf = wordEngine.Pdf;
+            radPdfViewer.LoadDocument(pdf);
+            
         }
     }
 
