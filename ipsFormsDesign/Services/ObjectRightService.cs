@@ -24,6 +24,13 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
+        public IList<ObjectRightMainView> GetObjectsByFilter( string filter )
+        {
+            string url = string.Concat("objectright/filteredObjectRights/", filter);
+            var list = _webApi.GetList<ObjectRightMainView>(url);
+            return list;
+        }
+
         public IList<ObjectRightForRightholder> GetRightholdersObjectsRights(int custId)
         {
             var list = _webApi.GetList<ObjectRightForRightholder>($"objectright/view/list_0302/{custId}");
@@ -51,5 +58,7 @@ namespace ipsFormsDesign.Services
             var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
             return item;
         }
+
+        public 
     }
 }
