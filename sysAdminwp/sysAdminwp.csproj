@@ -129,10 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
-    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
-      <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
-      <Name>ipsFormsDesign</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
       <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
       <Name>WebAPIConnector</Name>
