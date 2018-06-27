@@ -993,6 +993,17 @@ namespace RightholderWorkplace
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
         {
+            if (ctrlRightholdersObjectsForChange.SelectedRightholder == null)
+            {
+                MessageBox.Show("Виберіть правовласника, чиї об'єкти треба передати.");
+                return;
+            }
+            if (ctrlRightholdersObjectsForChange.SelectedRightholder != null && ctrlRightholdersObjectsForChange.ObjectsRightsList.Count == 0)
+            {
+                MessageBox.Show("У вибраного правовласника відсутні об'єкти для передачі.");
+                return;
+            }
+
             using (var selectionView = new RightholderSelectionView())
             {
                 selectionView.RightholderSelected += SelectionView_RightholderSelected;
@@ -1002,6 +1013,17 @@ namespace RightholderWorkplace
 
         private void SelectionView_RightholderSelected(object sender, RightholderMainView addedRightholder)
         {
+            if (ctrlRightholdersObjectsForChange.SelectedRightholder.CustId == addedRightholder.CustId)
+            {
+                MessageBox.Show("Не можна додати правовласника, з якого передаються об'єкти, в якості правонаступника.");
+                return;
+            }
+            if (_objectsCopyrightList.Any(oc => oc.CustId == addedRightholder.CustId))
+            {
+                MessageBox.Show("Вибраний правовласник вже є в списку правонаступників.");
+                return;
+            }
+
             var objectsRightsList = ctrlRightholdersObjectsForChange.ObjectsRightsList;
 
             using (gvChangeCopyrights.DeferRefresh())
@@ -1080,6 +1102,12 @@ namespace RightholderWorkplace
 
         private void btnSaveNewCopyrights_Click(object sender, EventArgs e)
         {
+            if (_objectsCopyrightList.Count == 0)
+            {
+                MessageBox.Show("Додайте нових правонаступників.");
+                return;
+            }
+
             var rightholders = new List<RightHolder>();
 
             // old rightholder
