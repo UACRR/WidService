@@ -62,7 +62,6 @@ namespace IpsViewComponentLibrary
         private void CtrlProlongation_OnSaveChangesClick()
         {
             _changesSaved = true;
-            //TODO зберігання даних
             OnSaveProlongation?.Invoke(this,EventArgs.Empty);
             Close();
         }
