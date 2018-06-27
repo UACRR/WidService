@@ -345,6 +345,26 @@ namespace IpsViewComponentLibrary
                 return true;
             return false;
         }
+
+        private void btnAddAgreement_Click(object sender, EventArgs e)
+        {
+            _customer.Client.LicenseAgreement.Add(new LicenseAgreement
+            {
+                CustId = _customer.CustId,
+                LicVersion = 1,
+                LicenseAgrParam = new ObservableListSource<LicenseAgrParam>
+                {
+                    new LicenseAgrParam
+                    {
+                        LicVersion = 1
+                    }
+                },
+                
+            });
+            var license = _customer?.Client?.LicenseAgreement?.LastOrDefault();
+            var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+            RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forNew);
+        }
     }
 
     public class GridLicenseAgrView
