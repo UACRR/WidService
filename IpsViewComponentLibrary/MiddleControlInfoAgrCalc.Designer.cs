@@ -230,6 +230,7 @@
             this.btnEditAgreement.TabIndex = 2;
             this.btnEditAgreement.Text = "Редагувати договір";
             this.btnEditAgreement.TextWrap = true;
+            this.btnEditAgreement.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // radButton1
             // 
