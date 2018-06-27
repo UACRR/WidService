@@ -254,7 +254,7 @@ namespace IpsViewComponentLibrary
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
-
+                prolongation.OnSaveProlongation += Prolongation_OnSaveProlongationWithPlaces;
                 prolongation.ShowDialog();
             }
             else
@@ -264,10 +264,12 @@ namespace IpsViewComponentLibrary
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
-                prolongation.OnSaveProlongation += Prolongation_OnSaveProlongation;
+                prolongation.OnSaveProlongation += Prolongation_OnSaveProlongationWithoutPlaces;
                 prolongation.ShowDialog();
             }
         }
+
+
 
         /// <summary>
         /// 
@@ -329,12 +331,17 @@ namespace IpsViewComponentLibrary
             //    {
             //        StartPosition = FormStartPosition.CenterParent
             //    };
-            //    prolongation.OnSaveProlongation += Prolongation_OnSaveProlongation;
+            //    prolongation.OnSaveProlongation += Prolongation_OnSaveProlongationWithoutPlaces;
             //    prolongation.ShowDialog();
             //}
         }
 
-        private void Prolongation_OnSaveProlongation(object sender, EventArgs e)
+        private void Prolongation_OnSaveProlongationWithoutPlaces(object sender, EventArgs e)
+        {
+            OnCustomerSave?.Invoke(_customer);
+        }
+
+        private void Prolongation_OnSaveProlongationWithPlaces(object sender, EventArgs e)
         {
             OnCustomerSave?.Invoke(_customer);
         }
