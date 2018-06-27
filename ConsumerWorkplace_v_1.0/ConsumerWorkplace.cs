@@ -40,6 +40,9 @@ namespace ConsumerWorkplace_v_1._0
             
             
             InitializeComponent();
+
+            ThemeResolutionService.ApplicationThemeName = "Office2013Light";
+
             rpvConsumers.ViewElement.Visibility = ElementVisibility.Hidden; // приховання вкладок
 
             foreach (var item in list)
