@@ -147,6 +147,7 @@ namespace ConsumerWorkplace_v_1._0
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pageBigRights.SuspendLayout();
@@ -2042,7 +2043,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Головне вікно";
-            this.ThemeName = "Office2007Silver";
+            this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).EndInit();
             this.pageParentConsumers.ResumeLayout(false);
             this.pageBigRights.ResumeLayout(false);
@@ -2284,5 +2285,6 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage5;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage6;
         private System.Windows.Forms.BindingSource licenseAgrParamBindingSource;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

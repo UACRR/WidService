@@ -102,6 +102,7 @@ namespace ConsumerWorkplace_v_1._0
         private bool Cabinet_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
         {
             var relust = _service.Save(customer);
+            UpdateData(customer.CustId);
             return relust;
         }
 
