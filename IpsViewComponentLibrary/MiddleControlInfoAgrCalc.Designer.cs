@@ -65,6 +65,7 @@
             this.pvMoreAgreements = new Telerik.WinControls.UI.RadPageViewPage();
             this.gvMoreAgr = new Telerik.WinControls.UI.RadGridView();
             this.userInfoCtrl = new IpsViewComponentLibrary.InformationOfUserControl();
+            this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
             this.pvActiveAgr.SuspendLayout();
@@ -81,6 +82,7 @@
             this.pvMoreAgreements.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreAgr.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).BeginInit();
             this.SuspendLayout();
             // 
             // pvMain
@@ -212,6 +214,7 @@
             // pvAgreement
             // 
             this.pvAgreement.AutoScroll = true;
+            this.pvAgreement.Controls.Add(this.btnAddAgreement);
             this.pvAgreement.Controls.Add(this.btnEditAgreement);
             this.pvAgreement.Controls.Add(this.radButton1);
             this.pvAgreement.Controls.Add(this.btnProlongation);
@@ -224,7 +227,7 @@
             // 
             // btnEditAgreement
             // 
-            this.btnEditAgreement.Location = new System.Drawing.Point(798, 30);
+            this.btnEditAgreement.Location = new System.Drawing.Point(890, 30);
             this.btnEditAgreement.Name = "btnEditAgreement";
             this.btnEditAgreement.Size = new System.Drawing.Size(86, 38);
             this.btnEditAgreement.TabIndex = 2;
@@ -235,7 +238,7 @@
             // radButton1
             // 
             this.radButton1.Enabled = false;
-            this.radButton1.Location = new System.Drawing.Point(798, 116);
+            this.radButton1.Location = new System.Drawing.Point(890, 74);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(86, 38);
             this.radButton1.TabIndex = 3;
@@ -423,6 +426,16 @@
             this.userInfoCtrl.Size = new System.Drawing.Size(912, 209);
             this.userInfoCtrl.TabIndex = 3;
             // 
+            // btnAddAgreement
+            // 
+            this.btnAddAgreement.Location = new System.Drawing.Point(798, 29);
+            this.btnAddAgreement.Name = "btnAddAgreement";
+            this.btnAddAgreement.Size = new System.Drawing.Size(86, 38);
+            this.btnAddAgreement.TabIndex = 4;
+            this.btnAddAgreement.Text = "Додати новий договір";
+            this.btnAddAgreement.TextWrap = true;
+            this.btnAddAgreement.Click += new System.EventHandler(this.btnAddAgreement_Click);
+            // 
             // MiddleControlInfoAgrCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,6 +461,7 @@
             this.pvMoreAgreements.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreAgr.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreAgr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -471,5 +485,6 @@
         private Telerik.WinControls.UI.RadButton btnEditAgreement;
         private Telerik.WinControls.UI.RadPageViewPage pvMoreAgreements;
         private Telerik.WinControls.UI.RadGridView gvMoreAgr;
+        private Telerik.WinControls.UI.RadButton btnAddAgreement;
     }
 }
