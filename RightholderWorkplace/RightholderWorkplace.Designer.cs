@@ -1225,6 +1225,8 @@
             // 
             // txtObjectName
             // 
+            this.txtObjectName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtObjectName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtObjectName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectRightBindingSource, "Name", true));
             this.txtObjectName.Location = new System.Drawing.Point(135, 1);
             this.txtObjectName.Name = "txtObjectName";

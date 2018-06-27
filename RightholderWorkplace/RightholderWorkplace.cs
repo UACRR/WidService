@@ -1302,12 +1302,12 @@ namespace RightholderWorkplace
 
         private void txtObjectName_TextChanged(object sender, EventArgs e)
         {
-            if (txtObjectName.Text.Length >= 1 && txtObjectName.AutoCompleteCustomSource.Count == 0)
+            if (txtObjectName.Text.Length >= 2 && txtObjectName.AutoCompleteCustomSource.Count == 0)
             {
                 GetObjectNames(txtObjectName.Text);
             }
 
-            if (txtObjectName.Text == string.Empty && txtObjectName.AutoCompleteCustomSource.Count != 0)
+            if (txtObjectName.Text.Length < 2 && txtObjectName.AutoCompleteCustomSource.Count != 0)
             {
                 txtObjectName.AutoCompleteCustomSource.Clear();
             }
