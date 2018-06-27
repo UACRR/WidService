@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -36,9 +35,9 @@
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.communityInfoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.communityInfoBindingSource = new System.Windows.Forms.BindingSource();
             this.gvExlusionsLimitations = new Telerik.WinControls.UI.RadGridView();
-            this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource();
             ((System.ComponentModel.ISupportInitialize)(this.communityInfoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExlusionsLimitations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvExlusionsLimitations.MasterTemplate)).BeginInit();
