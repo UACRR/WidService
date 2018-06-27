@@ -999,8 +999,6 @@ namespace RightholderWorkplace
 
             lblChangeCopyrightDateTill.Visible = isTransfer;
             dtChangeCopyrightDateTill.Visible = isTransfer;
-
-            btnBlockRightholder.Visible = isDeath;
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
