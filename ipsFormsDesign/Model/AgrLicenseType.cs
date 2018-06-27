@@ -18,6 +18,7 @@ namespace ipsFormsDesign.Model
         public int? KindCode { get; set; }
         public int? UsesKind { get; set; }
         public string TemplateName { get; set; }
+        public bool? NeedPlace { get; set; }
 
         public CopyrightKind KindCodeNavigation { get; set; }
         public UsesKind UsesKindNavigation { get; set; }
