@@ -13,6 +13,21 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
+    public enum DialogGoal
+    {
+        /// <summary>
+        /// Створення нового контракту
+        /// </summary>
+        forNew,
+        /// <summary>
+        /// Редагування поточного договору
+        /// </summary>
+        forEdit,
+        /// <summary>
+        /// Створення або редагування доп угоди на пролонгацію 
+        /// </summary>
+        forProlongation
+    }
     public partial class MiddleControlInfoAgrCalc : UserControl
     {
         private Customer _customer;
@@ -242,7 +257,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="license"></param>
         /// <param name="licenseParam"></param>
-        private void RunDialogForLicenseAgrParam(LicenseAgreement license, LicenseAgrParam licenseParam)
+        private void RunDialogForLicenseAgrParam(LicenseAgreement license, LicenseAgrParam licenseParam, DialogGoal goal )
         {
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var licenseName = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name;
@@ -250,7 +265,7 @@ namespace IpsViewComponentLibrary
             if (GetTypeAgrForm())
             {
                 //з майданчиками
-                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, _customer?.Client?.ClnBusinessPlace, _customer)
+                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, _customer?.Client?.ClnBusinessPlace, _customer, goal)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
@@ -260,7 +275,7 @@ namespace IpsViewComponentLibrary
             else
             {
                 // без майданчиків
-                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer)
+                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer, goal)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };

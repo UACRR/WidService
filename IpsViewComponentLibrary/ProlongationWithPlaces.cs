@@ -27,7 +27,7 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public ProlongationWithPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict, LicenseAgreement lic, ObservableListSource<ClnBusinessPlace> places, Customer cust)
+        public ProlongationWithPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict, LicenseAgreement lic, ObservableListSource<ClnBusinessPlace> places, Customer cust, DialogGoal goal)
         {
             _lic = lic;
             _licAgr = bindAgr;
