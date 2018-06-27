@@ -16,7 +16,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ConsumerWorkplace form = new ConsumerWorkplace();
+            ConsumerWorkplace form = new ConsumerWorkplace(TypeRights.All);
             ConsumerService model = new ConsumerService();
             FormPresenter control = new FormPresenter(form, model);
             form.WindowState = FormWindowState.Maximized;
