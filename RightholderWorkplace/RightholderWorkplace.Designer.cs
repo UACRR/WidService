@@ -546,7 +546,7 @@
             this.actualObjectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.actualObjectsPageView.Location = new System.Drawing.Point(0, 0);
             this.actualObjectsPageView.Name = "actualObjectsPageView";
-            this.actualObjectsPageView.SelectedPage = this.actualObjectsListPage;
+            this.actualObjectsPageView.SelectedPage = this.actualObjectsItemPage;
             this.actualObjectsPageView.Size = new System.Drawing.Size(989, 622);
             this.actualObjectsPageView.TabIndex = 0;
             this.actualObjectsPageView.ThemeName = "Office2013Light";
@@ -761,6 +761,7 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
+            this.splitPanel1.ThemeName = "Office2013Light";
             // 
             // txtTotalPersent
             // 
@@ -976,6 +977,7 @@
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
+            this.splitPanel2.ThemeName = "Office2013Light";
             // 
             // radSplitContainer2
             // 
@@ -1010,6 +1012,7 @@
             this.splitPanel3.TabIndex = 0;
             this.splitPanel3.TabStop = false;
             this.splitPanel3.Text = "splitPanel3";
+            this.splitPanel3.ThemeName = "Office2013Light";
             // 
             // btnDeleteObjectAddName
             // 
@@ -1116,6 +1119,7 @@
             this.splitPanel4.TabIndex = 1;
             this.splitPanel4.TabStop = false;
             this.splitPanel4.Text = "splitPanel4";
+            this.splitPanel4.ThemeName = "Office2013Light";
             // 
             // btnDeleteObjectPerformer
             // 
@@ -1221,12 +1225,15 @@
             // 
             // txtObjectName
             // 
+            this.txtObjectName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtObjectName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtObjectName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectRightBindingSource, "Name", true));
             this.txtObjectName.Location = new System.Drawing.Point(135, 1);
             this.txtObjectName.Name = "txtObjectName";
             this.txtObjectName.Size = new System.Drawing.Size(513, 21);
             this.txtObjectName.TabIndex = 56;
             this.txtObjectName.ThemeName = "Office2013Light";
+            this.txtObjectName.TextChanged += new System.EventHandler(this.txtObjectName_TextChanged);
             // 
             // objectRightBindingSource
             // 

@@ -1292,5 +1292,25 @@ namespace RightholderWorkplace
                 gvObjectsRightsList.EndUpdate(false);
             }
         }
+
+        private void GetObjectNames(string filter)
+        {
+            var names = _objectRightService.GetObjectsByFilter(filter).Select(o => o.Name).ToArray();
+
+            txtObjectName.AutoCompleteCustomSource.AddRange(names);
+        }
+
+        private void txtObjectName_TextChanged(object sender, EventArgs e)
+        {
+            if (txtObjectName.Text.Length >= 2 && txtObjectName.AutoCompleteCustomSource.Count == 0)
+            {
+                GetObjectNames(txtObjectName.Text);
+            }
+
+            if (txtObjectName.Text.Length < 2 && txtObjectName.AutoCompleteCustomSource.Count != 0)
+            {
+                txtObjectName.AutoCompleteCustomSource.Clear();
+            }
+        }
     }
 }

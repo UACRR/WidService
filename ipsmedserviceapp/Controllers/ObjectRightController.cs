@@ -198,12 +198,11 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("filteredObjectRights/{filter}")]
         public async Task<IActionResult> getListObjectRightForAutocomplete(string filter)
         {
-            string sqlFilter1 = string.Concat("%", filter, "%");
+            // string sqlFilter1 = string.Concat("%", filter, "%");
             string sqlFilter2 = string.Concat(filter, "%");
 
-            var list = await _dbContext.getViewData("select * from vTsk_3_ListObjectRight01 where name like @filter1 or name like @filter2 order by name", new[] {
-                new SqlParameter("@filter1", sqlFilter1)
-                ,new SqlParameter("@filter2", sqlFilter2)
+            var list = await _dbContext.getViewData("select * from vTsk_3_ListObjectRight01 where name like @filter2 order by name", new[] {
+                new SqlParameter("@filter2", sqlFilter2)
             });
             return Json(list);
         }
