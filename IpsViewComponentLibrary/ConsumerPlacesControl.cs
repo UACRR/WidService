@@ -297,9 +297,15 @@ namespace ipsAnketaClient
 
         private void EditPremises_OnUpdateData()
         {
-            var editdata = data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
-            premisesType.SetDataSource(data,IdItemOfSelectRow,typePremises);
-            premisesType.SetDataSource(newPlace);
+            //var editdata = data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
+            if (isNewInst)
+            {
+                premisesType.SetDataSource(newPlace);
+            }
+            else
+            {
+                premisesType.SetDataSource(data, IdItemOfSelectRow, typePremises);
+            }
             premisesType.RefreshGrid();
         }
 
