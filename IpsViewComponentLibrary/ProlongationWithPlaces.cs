@@ -35,7 +35,7 @@ namespace IpsViewComponentLibrary
             ctrlProlongation.OnPrintClick += CtrlProlongation_OnPrintClick;
             ctrlProlongation.OnSaveChangesClick += CtrlProlongation_OnSaveChangesClick;
 
-            ctrlProlongation.InitializeObjects(cust, places);
+            ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr);
 
             ctrlProlongation.DataSourceGrid = places;
 

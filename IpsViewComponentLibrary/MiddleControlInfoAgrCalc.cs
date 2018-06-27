@@ -44,6 +44,7 @@ namespace IpsViewComponentLibrary
             //SetAgrInfoData();
             SetCalculationData();
             SetLicenseAgrGridDataSource();
+            SetLicenseAgrMoreGridDataSource();
             reportsControl.SetData(cust);
         }
 
@@ -80,6 +81,31 @@ namespace IpsViewComponentLibrary
             gvLicenseAgr.DataSource = source;
             gvLicenseAgr.MasterTemplate.Refresh();
             gvLicenseAgr.Update();
+        }
+
+        private void SetLicenseAgrMoreGridDataSource()
+        {
+            List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
+            if (_customer?.Client.LicenseAgreement != null)
+                foreach (var item in _customer.Client.LicenseAgreement)
+                {
+                    source.AddRange(item.LicenseAgrParam.Where(rec => rec.LicVersion > item.LicVersion)
+                        .Select(licAgr => new GridLicenseAgrView
+                        {
+                            Id = item?.AgrId ?? default(int),
+                            License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
+                            Series = string.Empty,
+                            AgrNumber = licAgr?.LicNum ?? string.Empty,
+                            DateBegin = licAgr?.DateBegin?.ToShortDateString() ?? string.Empty,
+                            DateEnd = licAgr?.DateEnd?.ToShortDateString() ?? string.Empty,
+                            State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licAgr?.LicStatus)?.Name ?? string.Empty,
+                            PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licAgr?.PeriodCode)?.Name ?? string.Empty
+                        }));
+                }
+
+            gvMoreAgr.DataSource = source;
+            gvMoreAgr.MasterTemplate.Refresh();
+            gvMoreAgr.Update();
         }
 
         /// <summary>
