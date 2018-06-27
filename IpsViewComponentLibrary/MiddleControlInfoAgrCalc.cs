@@ -285,7 +285,7 @@ namespace IpsViewComponentLibrary
             var licVersion = license?.LicenseAgrParam.Max(rec => rec.LicVersion);
             LicenseAgrParam newLicense = null;
             // Кількість доп угод з версією більшою за поточну > 0
-            if (license.LicenseAgrParam.Count(rec => rec.LicVersion > license.LicVersion) > 0)
+            if (license.LicenseAgrParam.Count(rec => rec.LicStatus < 4 && rec.LicVersion > license.LicVersion) > 0)
             {
                 // -- Взяти наступну версію
                 newLicense = license.LicenseAgrParam.Where(rec => rec.LicVersion > license.LicVersion).OrderBy(rec => rec.LicVersion).First();
