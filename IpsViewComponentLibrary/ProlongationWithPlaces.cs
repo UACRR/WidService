@@ -27,7 +27,7 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public ProlongationWithPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict,  string license, LicenseAgreement lic, ObservableListSource<ClnBusinessPlace> places, Customer cust)
+        public ProlongationWithPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict, LicenseAgreement lic, ObservableListSource<ClnBusinessPlace> places, Customer cust)
         {
             _lic = lic;
             _licAgr = bindAgr;
@@ -38,17 +38,14 @@ namespace IpsViewComponentLibrary
             this.FormClosing += ProlongationWithPlaces_FormClosing;
             ctrlProlongation.OnPrintClick += CtrlProlongation_OnPrintClick;
             ctrlProlongation.OnSaveChangesClick += CtrlProlongation_OnSaveChangesClick;
-
+            ctrlProlongation.Dictionaties = dict; // словник
             ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr);
 
             ctrlProlongation.DataSourceGrid = places;
 
-            ctrlProlongation.Dictionaties = dict;// словник
-
             ctrlProlongation.DataSourceAgreement = bindAgr;
             ctrlProlongation.DataSourceAnketaCompany = bindAnketaCompany;
-
-            ctrlProlongation.LicenseName = license; // лбл ліцензії
+            
             ctrlProlongation.LicenseAgrParam = bindAgr;
         }
 
