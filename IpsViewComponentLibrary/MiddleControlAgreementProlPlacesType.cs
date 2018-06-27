@@ -37,13 +37,9 @@ namespace IpsViewComponentLibrary
             _tempPlaces = places;
             _license = license;
             _licenseAgr = licenseAgr;
-        }
 
-
-        public string LicenseName
-        {
-            get => lblTitleLicAgr.Text;
-            set => lblTitleLicAgr.Text = value;
+            licenseAgreementBindingSource.DataSource = license;
+            bindingSourceDictionary.DataSource = Dictionaties.agrLicenseType;
         }
 
         //TODO: джерело даних з розрахованою сумою

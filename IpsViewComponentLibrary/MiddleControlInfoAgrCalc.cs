@@ -250,7 +250,7 @@ namespace IpsViewComponentLibrary
             if (GetTypeAgrForm())
             {
                 //з майданчиками
-                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer?.Client?.ClnBusinessPlace, _customer)
+                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, _customer?.Client?.ClnBusinessPlace, _customer)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
