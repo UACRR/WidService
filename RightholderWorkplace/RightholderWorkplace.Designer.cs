@@ -276,7 +276,6 @@
             this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
             this.dtChangeCopyrightDateTill = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblChangeCopyrightDateTill = new Telerik.WinControls.UI.RadLabel();
-            this.btnBlockRightholder = new Telerik.WinControls.UI.RadButton();
             this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.RadioPanel();
             this.rdbDeath = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbTransfer = new Telerik.WinControls.UI.RadRadioButton();
@@ -466,7 +465,6 @@
             this.splitPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBlockRightholder)).BeginInit();
             this.ctrlChangeRightholderOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbTransfer)).BeginInit();
@@ -1475,7 +1473,7 @@
             this.rightholdersPageView.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
-            this.rightholdersPageView.SelectedPage = this.rightholdersPage;
+            this.rightholdersPageView.SelectedPage = this.rightholdersChangePage;
             this.rightholdersPageView.Size = new System.Drawing.Size(1182, 632);
             this.rightholdersPageView.TabIndex = 0;
             this.rightholdersPageView.ThemeName = "Office2013Light";
@@ -2974,6 +2972,7 @@
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
+            this.splitPanel5.ThemeName = "Office2013Light";
             // 
             // ctrlRightholdersObjectsForChange
             // 
@@ -2993,7 +2992,6 @@
             // 
             this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateTill);
             this.splitPanel6.Controls.Add(this.lblChangeCopyrightDateTill);
-            this.splitPanel6.Controls.Add(this.btnBlockRightholder);
             this.splitPanel6.Controls.Add(this.ctrlChangeRightholderOperation);
             this.splitPanel6.Controls.Add(this.btnSaveNewCopyrights);
             this.splitPanel6.Controls.Add(this.btnAddNewRightholder);
@@ -3012,6 +3010,7 @@
             this.splitPanel6.TabIndex = 1;
             this.splitPanel6.TabStop = false;
             this.splitPanel6.Text = "splitPanel6";
+            this.splitPanel6.ThemeName = "Office2013Light";
             // 
             // dtChangeCopyrightDateTill
             // 
@@ -3037,15 +3036,6 @@
             this.lblChangeCopyrightDateTill.TabIndex = 76;
             this.lblChangeCopyrightDateTill.Text = "по";
             this.lblChangeCopyrightDateTill.ThemeName = "Office2013Light";
-            // 
-            // btnBlockRightholder
-            // 
-            this.btnBlockRightholder.Location = new System.Drawing.Point(285, 4);
-            this.btnBlockRightholder.Name = "btnBlockRightholder";
-            this.btnBlockRightholder.Size = new System.Drawing.Size(110, 24);
-            this.btnBlockRightholder.TabIndex = 75;
-            this.btnBlockRightholder.Text = "Заблокувати";
-            this.btnBlockRightholder.ThemeName = "Office2013Light";
             // 
             // ctrlChangeRightholderOperation
             // 
@@ -3585,7 +3575,6 @@
             this.splitPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBlockRightholder)).EndInit();
             this.ctrlChangeRightholderOperation.ResumeLayout(false);
             this.ctrlChangeRightholderOperation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).EndInit();
@@ -3778,7 +3767,6 @@
         private Telerik.WinControls.UI.RadRadioButton rdbDeath;
         private Telerik.WinControls.UI.RadRadioButton rdbTransfer;
         private Telerik.WinControls.UI.RadRadioButton rdbAlienation;
-        private Telerik.WinControls.UI.RadButton btnBlockRightholder;
         private Telerik.WinControls.UI.RadDateTimePicker dtChangeCopyrightDateTill;
         private Telerik.WinControls.UI.RadLabel lblChangeCopyrightDateTill;
         private Telerik.WinControls.UI.RadToggleButton tbtnBlocked;
