@@ -175,6 +175,9 @@ namespace IpsViewComponentLibrary
             calculationCtrl.SetData(_customer);
         }
 
+        /// <summary>
+        /// Встановлення початкових вкладок
+        /// </summary>
         private void SetDefaultPages()
         {
             //pvSecond.SelectedPage = pvSecond.DefaultPage;
