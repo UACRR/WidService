@@ -101,5 +101,15 @@ namespace UnitTestMediaPortal
             Assert.IsNotNull(testList);
         }
 
+        [TestMethod]
+        public void TestAutoCombleteTextBox()
+        {
+            TestTextBoxAuto form = new TestTextBoxAuto();
+            form.Load+= (sender, e) => (sender as TestTextBoxAuto).Visible = true;
+            var retCode = form.ShowDialog();
+
+            Assert.AreEqual(retCode, DialogResult.OK);
+        }
+
     }
 }

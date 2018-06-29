@@ -81,6 +81,15 @@
     <Compile Include="FormIBindingList.Designer.cs">
       <DependentUpon>FormIBindingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadTextBoxAuto.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TestTextBoxAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestTextBoxAuto.Designer.cs">
+      <DependentUpon>TestTextBoxAuto.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -115,6 +124,9 @@
       <DependentUpon>FormIBindingList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="TestTextBoxAuto.resx">
+      <DependentUpon>TestTextBoxAuto.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
