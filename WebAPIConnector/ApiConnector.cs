@@ -19,7 +19,7 @@ namespace WebAPIConnector
     {
         private HttpClient client = new HttpClient();
 
-        public ApiConnector( )
+        public ApiConnector()
         {
             string Uri = configUrl();
 
@@ -49,12 +49,13 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public List<T> GetList<T>( string url )
+        public List<T> GetList<T>(string url)
         {
-                
+
             string retApiString = client.GetStringAsync(url).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
-            List<T> list = array.Select(rec => {
+            List<T> list = array.Select(rec =>
+            {
                 var item = rec.ToObject<T>();
                 return item;
             }).ToList();
@@ -80,12 +81,12 @@ namespace WebAPIConnector
         /// <param name="id"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public TResult ApiFunc<T, TResult>( string url, int id, List<T> data) where TResult : class
+        public TResult ApiFunc<T, TResult>(string url, int id, List<T> data) where TResult : class
         {
             string idUrl = $"{url}/{id}";
             StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            var responce = client.PostAsync(idUrl, content) .GetAwaiter().GetResult();
-            if(responce.IsSuccessStatusCode == true)
+            var responce = client.PostAsync(idUrl, content).GetAwaiter().GetResult();
+            if (responce.IsSuccessStatusCode == true)
             {
                 string contentResponce = responce.Content.ReadAsStringAsync().Result;
                 JObject retObj = JObject.Parse(contentResponce);
@@ -105,7 +106,7 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public T GetItemById<T>(string url, string id )
+        public T GetItemById<T>(string url, string id)
         {
             string idUrl = $"{url}/{id}";
             string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
@@ -125,7 +126,7 @@ namespace WebAPIConnector
         {
 
             StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
-            var result = client.PostAsync( url, content ).GetAwaiter().GetResult();
+            var result = client.PostAsync(url, content).GetAwaiter().GetResult();
 
             return result.IsSuccessStatusCode;
         }
@@ -163,6 +164,44 @@ namespace WebAPIConnector
             return result.IsSuccessStatusCode;
         }
 
+        /// <summary>
+        /// Збереження файлу в папці споживача
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="fileName"></param>
+        /// <param name="fileStream"></param>
+        public async Task uploadFile(string url, string fileName, Stream fileStream)
+        {
+            using (var content = new MultipartFormDataContent())
+            {
+                var fileContent = new StreamContent(fileStream);
+                content.Headers.ContentType.MediaType = "multipart/form-data";
+
+                // fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/pot"); // "gettext" POT format
+
+                content.Add(fileContent, "file", fileName);
+
+                var statusResult = await client.PostAsync(url, content);
+                var statusString = await statusResult.Content.ReadAsStringAsync();
+            }
+        }
+        /// <summary>
+        /// Отримати файл із папки Споживача
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public async Task<Stream> downloadFile(string url)
+        {
+            try
+            {
+                var stream = await client.GetStreamAsync(url);
+                return stream;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

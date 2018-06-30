@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
+using System.IO;
 
 namespace ipsFormsDesign.Services
 {
@@ -49,6 +50,18 @@ namespace ipsFormsDesign.Services
             }
 
             return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
+        }
+
+        public void uploadDocument(int custId, int typeDocument, string fileName, Stream Document)
+        {
+            string url = $"consumer/Document/{custId}/{typeDocument}";
+            _webApi.uploadFile(url, fileName, Document).GetAwaiter().GetResult();
+        }
+
+        public Stream downloadDocument(int custId, int typeDocument, string fileName)
+        {
+            string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";
+            return _webApi.downloadFile(url).GetAwaiter().GetResult();
         }
     }
 }

@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
 
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -876,16 +879,22 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         [HttpPost("Document/{custId}/{typeDocument}")]
         public async Task<ActionResult> UploadDocument(int custId, int typeDocument, IFormFile file)
         {
+
             // Перевірка існування дерикторії
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
             string consumerPath = Path.Combine(documentsFolder, custId.ToString());
             if (!Directory.Exists(consumerPath))
                 Directory.CreateDirectory(consumerPath);
 
-            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            consumerPath = Path.Combine(consumerPath, "Consumer");
             if (!Directory.Exists(consumerPath))
                 Directory.CreateDirectory(consumerPath);
 
+            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+            
+            //var file = files.First();
             consumerPath = Path.Combine(consumerPath, file.FileName);
 
             if (System.IO.File.Exists(consumerPath))
@@ -906,8 +915,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="custId"></param>
         /// <param name="typeDocument"></param>
         /// <returns></returns>
-        [HttpGet("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> DownloadDocument(int custId, int typeDocument, string fileName)
+        [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
+        public IActionResult DownloadDocument(int custId, int typeDocument, string fileName, CancellationToken token )
         {
 
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
@@ -915,23 +924,37 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             if (!Directory.Exists(consumerPath))
                 return BadRequest();
 
-            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            consumerPath = Path.Combine(consumerPath, "Consumer", typeDocument.ToString());
             if (!Directory.Exists(consumerPath))
                 return BadRequest();
 
             consumerPath = Path.Combine(consumerPath, fileName);
 
             if (!System.IO.File.Exists(consumerPath))
-                return BadRequest();
+                return null;
 
-            var memoryStream = new MemoryStream();
-            using (var stream = new FileStream(consumerPath, FileMode.Open))
-            {
-                await stream.CopyToAsync(memoryStream);
-            }
-            memoryStream.Position = 0;
+            var file = System.IO.File.OpenRead(consumerPath);
+            var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
 
-            return File(memoryStream, "application/vnd.ms-word", Path.GetFileName(consumerPath));
+            return retStream;
+
+            //try
+            //{
+            //    //var memoryStream = new MemoryStream();
+            //    using (var stream = new FileStream(consumerPath, FileMode.Open))
+            //    //var stream = new FileStream(consumerPath, FileMode.Open);
+            //    {
+            //        await stream.CopyToAsync(memoryStream);
+
+            //        memoryStream.Position = 0;
+            //        var retStream = File(memoryStream, "application/vnd.ms-word", Path.GetFileName(consumerPath));
+            //        return retStream;
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    return BadRequest(ex.InnerException.Message);
+            //}
         }
 
 
