@@ -575,6 +575,38 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Отримати список Споживачів малих прав
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("listBR/{whatId}")]
+        public async Task<IActionResult> GetListBR(int whatId)
+        {
+            ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
+
+            string queue = "select * from vTsk_1_ListConsumer02";
+            switch (what)
+            {
+                case ConsumerFilterEnum.All:
+                case ConsumerFilterEnum.None:
+                    break;
+                case ConsumerFilterEnum.Working:
+                    queue = string.Concat(queue, " ", "where cntActive > 0");
+                    break;
+                case ConsumerFilterEnum.NotAccepted:
+                    queue = string.Concat(queue, " ", "where cntOnAccepting > 0");
+                    break;
+                case ConsumerFilterEnum.ForProlongation:
+                    queue = string.Concat(queue, " ", "where cntExtraAgr > 0");
+                    break;
+                case ConsumerFilterEnum.ForDistribution:
+                    queue = string.Concat(queue, " ", "where undistribamount > 0");
+                    break;
+            }
+            var List = await _dbContext.getViewData(queue, null);
+            return Json(List);
+        }
+
+        /// <summary>
         /// Отримати детальну інформацію по періодам оплати договору
         /// </summary>
         /// <param name="licid"></param>

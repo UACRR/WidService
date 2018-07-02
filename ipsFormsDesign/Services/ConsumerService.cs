@@ -29,9 +29,16 @@ namespace ipsFormsDesign.Services
             return getMainView(ConsumerFilterEnum.All);
         }
 
-        public IList<ConsumerMainView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All )
+        public IList<ConsumerMainView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listSR/{(int)what}";
+            var anketaDic = _webApi.GetList<ConsumerMainView>(url);
+            return anketaDic;
+        }
+
+        public IList<ConsumerMainView> getMainViewBR(ConsumerFilterEnum what = ConsumerFilterEnum.All)
+        {
+            string url = $"consumer/listBR/{(int)what}";
             var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
         }
