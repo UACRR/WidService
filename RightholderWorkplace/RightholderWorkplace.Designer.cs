@@ -170,6 +170,8 @@
             this.btnObjectRightItemSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.rightholdersObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ddbAddObjectRightForRightholder = new Telerik.WinControls.UI.RadDropDownButton();
+            this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholderSelector = new IpsViewComponentLibrary.RightholderSelectorControl();
             this.gvRightholdersObjectsRights = new Telerik.WinControls.UI.RadGridView();
             this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -357,6 +359,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             this.rightholdersObjectsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
@@ -523,7 +526,7 @@
             this.objectsPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.objectsPageView.Location = new System.Drawing.Point(0, 0);
             this.objectsPageView.Name = "objectsPageView";
-            this.objectsPageView.SelectedPage = this.actualObjectsPage;
+            this.objectsPageView.SelectedPage = this.rightholdersObjectsPage;
             this.objectsPageView.Size = new System.Drawing.Size(1182, 632);
             this.objectsPageView.TabIndex = 0;
             this.objectsPageView.ThemeName = "Office2013Light";
@@ -1345,6 +1348,7 @@
             // 
             // rightholdersObjectsPage
             // 
+            this.rightholdersObjectsPage.Controls.Add(this.ddbAddObjectRightForRightholder);
             this.rightholdersObjectsPage.Controls.Add(this.ctrlRightholderSelector);
             this.rightholdersObjectsPage.Controls.Add(this.gvRightholdersObjectsRights);
             this.rightholdersObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
@@ -1352,6 +1356,26 @@
             this.rightholdersObjectsPage.Name = "rightholdersObjectsPage";
             this.rightholdersObjectsPage.Size = new System.Drawing.Size(989, 622);
             this.rightholdersObjectsPage.Text = "Об\'єкти права правовласника";
+            // 
+            // ddbAddObjectRightForRightholder
+            // 
+            this.ddbAddObjectRightForRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ddbAddObjectRightForRightholder.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.miAddMusicalCompositionForRightholder});
+            this.ddbAddObjectRightForRightholder.Location = new System.Drawing.Point(0, 595);
+            this.ddbAddObjectRightForRightholder.Name = "ddbAddObjectRightForRightholder";
+            this.ddbAddObjectRightForRightholder.Size = new System.Drawing.Size(140, 24);
+            this.ddbAddObjectRightForRightholder.TabIndex = 5;
+            this.ddbAddObjectRightForRightholder.Text = "Додати";
+            this.ddbAddObjectRightForRightholder.ThemeName = "Office2013Light";
+            // 
+            // miAddMusicalCompositionForRightholder
+            // 
+            this.miAddMusicalCompositionForRightholder.Name = "miAddMusicalCompositionForRightholder";
+            this.miAddMusicalCompositionForRightholder.Tag = "5";
+            this.miAddMusicalCompositionForRightholder.Text = "Музичні твори з текстом і без тексту";
+            this.miAddMusicalCompositionForRightholder.UseCompatibleTextRendering = false;
+            this.miAddMusicalCompositionForRightholder.Click += new System.EventHandler(this.miAddMusicalCompositionForRightholder_Click);
             // 
             // ctrlRightholderSelector
             // 
@@ -1477,7 +1501,7 @@
             this.gvRightholdersObjectsRights.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.gvRightholdersObjectsRights.Name = "gvRightholdersObjectsRights";
             this.gvRightholdersObjectsRights.ShowGroupPanel = false;
-            this.gvRightholdersObjectsRights.Size = new System.Drawing.Size(989, 580);
+            this.gvRightholdersObjectsRights.Size = new System.Drawing.Size(989, 550);
             this.gvRightholdersObjectsRights.TabIndex = 1;
             this.gvRightholdersObjectsRights.ThemeName = "Office2013Light";
             this.gvRightholdersObjectsRights.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersObjectsRights_CellDoubleClick);
@@ -3532,6 +3556,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             this.rightholdersObjectsPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersObjectsRights)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).EndInit();
@@ -3861,5 +3886,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel23;
         private IpsViewComponentLibrary.RadTextBoxAuto autoObjectName;
         private Telerik.WinControls.UI.RadButton btnNewObject;
+        private Telerik.WinControls.UI.RadDropDownButton ddbAddObjectRightForRightholder;
+        private Telerik.WinControls.UI.RadMenuItem miAddMusicalCompositionForRightholder;
     }
 }
