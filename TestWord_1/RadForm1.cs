@@ -107,34 +107,34 @@ namespace TestWord_1
                     cust = service.GetData(134);
                     LicenseAgreement licAgr3 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First(), licAgr3);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr3);
                     break;
                 case "F_4_ТЦ магазини.docx":
                     cust = service.GetData(134);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
                     break;
                 case "F_1_БВ-НК-бари-дискотеки_.docx":
                     cust = service.GetData(134);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
                     break;
                 case "F_3_МБВ.docx":
                     cust = service.GetData(134);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
                     break;
                 case "F_6_МТЦ.docx":
                     cust = service.GetData(134);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
                     break;
   
 
                 default:
                     cust = service.GetData(134);                   
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
                     break;
             }
             radPdfViewer1.LoadDocument(wordApp.Pdf);
