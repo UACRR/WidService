@@ -18,7 +18,7 @@ namespace IpsViewComponentLibrary
         private LicenseAgrParam _licAgr;
         private AnketaDictionaties _dict;
         private Customer _cust;
-
+        private DialogGoal _goal;
         public event EventHandler OnSaveProlongation;
 
 
@@ -41,6 +41,7 @@ namespace IpsViewComponentLibrary
             _licAgr = bindAgr;
             _dict = dict;
             _cust = cust;
+            _goal = goal;
 
             InitializeComponent(); // * * * 
             this.FormClosing += ProlongationWithPlaces_FormClosing;
@@ -85,7 +86,7 @@ namespace IpsViewComponentLibrary
             if (_changesSaved)
                 return;
 
-            if (_lic.LicId == 0)
+            if (_goal != DialogGoal.forEdit)
                 _lic.LicenseAgrParam.Remove(_licAgr);
         }
     }

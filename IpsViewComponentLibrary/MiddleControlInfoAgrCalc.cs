@@ -248,7 +248,7 @@ namespace IpsViewComponentLibrary
             if (license == null)
                 return;
 
-            var licenseParam = license.LicenseAgrParam.Where( rec => rec.LicVersion == license.LicVersion ).SingleOrDefault();
+            var licenseParam = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion) ?? license.LicenseAgrParam.SingleOrDefault();
             RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forEdit);
         }
         /// <summary>
@@ -319,16 +319,21 @@ namespace IpsViewComponentLibrary
                 CustId = _customer.CustId,
                 LicVersion = 1,
                 LicStatus = 0,
-                LicCode = 1,
+                LicCode = Rights == TypeRights.SmallRights ? 1 : Rights == TypeRights.BigRights ? 10 : default(int), 
                 LicenseAgrParam = new ObservableListSource<LicenseAgrParam>
                 {
                     new LicenseAgrParam
                     {
                         LicVersion = 1,
+                        LicDate = DateTime.Today,
+                        DateBegin = DateTime.Today,
+                        DateEnd = DateTime.Today.AddYears(1),
                         LicStatus = 0,
                     }
                 },
-                
+                LicDate = DateTime.Today,
+
+
             });
             var license = _customer?.Client?.LicenseAgreement?.LastOrDefault();
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
