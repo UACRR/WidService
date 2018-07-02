@@ -47,6 +47,14 @@ namespace IpsViewComponentLibrary
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
             mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
         }
+        public GlobalControlConsumerCabinet(TypeRights typeRights = TypeRights.SmallRights)
+        {
+            InitializeComponent();
+            gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
+            mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
+            mсInfoAgrCalc.Rights = typeRights;
+
+        }
 
         private void MсInfoAgrCalc_OnCustomerSave(Customer customer)
         {

@@ -23,6 +23,8 @@ namespace IpsViewComponentLibrary
         public delegate void CustomerSave(Customer customer);
         public event CustomerSave OnCustomerSave;
 
+        public TypeRights Rights { get; set; }
+
         public MiddleControlInfoAgrCalc()
         {
             InitializeComponent();
@@ -214,7 +216,8 @@ namespace IpsViewComponentLibrary
             if (GetTypeAgrForm())
             {
                 //з майданчиками
-                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, _customer?.Client?.ClnBusinessPlace, _customer, goal)
+                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, 
+                                                            _customer?.Client?.ClnBusinessPlace, _customer, goal, typeRights:Rights)
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };

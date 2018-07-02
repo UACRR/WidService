@@ -26,14 +26,16 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
         }
-
+        
         public ProlongationWithPlaces(LicenseAgrParam bindAgr, 
                                       AnketaCompany bindAnketaCompany, 
                                       AnketaDictionaties dict, 
                                       LicenseAgreement lic, 
                                       ObservableListSource<ClnBusinessPlace> places, 
                                       Customer cust, 
-                                      DialogGoal goal){
+                                      DialogGoal goal,
+                                      TypeRights typeRights = TypeRights.SmallRights)
+        {
         // * * * * * * * * 
             _lic = lic;
             _licAgr = bindAgr;
@@ -44,7 +46,10 @@ namespace IpsViewComponentLibrary
             this.FormClosing += ProlongationWithPlaces_FormClosing;
             ctrlProlongation.OnPrintClick += CtrlProlongation_OnPrintClick;
             ctrlProlongation.OnSaveChangesClick += CtrlProlongation_OnSaveChangesClick;
+            ctrlProlongation.Rights = typeRights;
             ctrlProlongation.Dictionaties = dict; // словник
+
+
             ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr);
 
             ctrlProlongation.DataSourceGrid = places;
@@ -54,7 +59,7 @@ namespace IpsViewComponentLibrary
             
             ctrlProlongation.LicenseAgrParam = bindAgr;
 
-            ctrlProlongation.CanChangeLicense = goal == DialogGoal.forNew;
+            ctrlProlongation.LicenseEnabled = goal == DialogGoal.forNew;
         }
 
         private void CtrlProlongation_OnSaveChangesClick()
