@@ -62,6 +62,12 @@ namespace ipsmedserviceapp.Controllers
 
             foreach (var license in cust.Client.LicenseAgreement)
             {
+                // AggreAddBr
+                await _dbContext.Entry(license.Agr).Collection(rec => rec.AgreementAddBr)
+                    .Query()
+                    .Where(item => item.Version == license.Agr.Version)
+                    .LoadAsync();
+
                 // Лцензії для майданчиків
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
@@ -76,6 +82,7 @@ namespace ipsmedserviceapp.Controllers
                         .Query()
                         .Where(rec => rec.DateClose == null || rec.DateClose > DateTime.Today)
                         .LoadAsync();
+
 
             }
 
@@ -203,6 +210,7 @@ namespace ipsmedserviceapp.Controllers
                 }
                 // AgreementMaster
                 _dbContext.LicenseAgreement.Remove(item);
+
             }
             );
 
@@ -237,6 +245,7 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.UpdateList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId);
                 }
 
+                _dbContext.UpdateList(agreeItemSors.AgreementAddBr, agreeItemDest.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
 
             });
             // Add
@@ -268,6 +277,7 @@ namespace ipsmedserviceapp.Controllers
                 }
                 destCustomer.Client.LicenseAgreement.Add(addLicItem);
                 destAgreeItem.LicenseAgreement.Add(addLicItem);
+                _dbContext.AppendList(agreeItem.AgreementAddBr, destAgreeItem.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
             }
             );
 
