@@ -1293,34 +1293,31 @@ namespace RightholderWorkplace
             }
         }
 
-        private List<ObjectRightMainView> _autocompliteObjects = new List<ObjectRightMainView>();
-
-        private void GetObjectNames(string filter)
+        private void GetObjects(string filter)
         {
-            _autocompliteObjects = _objectRightService.GetObjectsByFilter(filter);
-            var names = _autocompliteObjects.Select(o => o.Name).ToArray();
+            var autocompliteObjects = _objectRightService.GetObjectsByFilter(filter);
 
-
-            txtObjectName.AutoCompleteCustomSource.AddRange(names);
+            autocompliteObjects.ForEach(o => autoObjectName.AutoCompleteItems.Add(
+                new RadListDataItem($"{o.Name} / {o.Author} / {o.Performer}", o))
+            );
         }
 
-        private void txtObjectName_TextChanged(object sender, EventArgs e)
+        private void autoObjectName_TextChanged(object sender, EventArgs e)
         {
-            if (txtObjectName.Text.Length >= 2 && txtObjectName.AutoCompleteCustomSource.Count == 0)
+            if (autoObjectName.Text.Length >= 2 && autoObjectName.AutoCompleteItems.Count == 0)
             {
-                GetObjectNames(txtObjectName.Text);
+                GetObjects(autoObjectName.Text);
             }
 
-            if (txtObjectName.Text.Length < 2 && txtObjectName.AutoCompleteCustomSource.Count != 0)
+            if (autoObjectName.Text.Length < 2 && autoObjectName.AutoCompleteItems.Count != 0)
             {
-                txtObjectName.AutoCompleteCustomSource.Clear();
-                _autocompliteObjects.Clear();
+                autoObjectName.AutoCompleteItems.Clear();
             }
         }
 
-        private void txtObjectName_Leave(object sender, EventArgs e)
+        private void autoObjectName_ListItemSelected(object sender, RadListDataItem item)
         {
-            var obj = _autocompliteObjects.FirstOrDefault(o => o.Name == txtObjectName.Text);
+            var obj = item.Value as ObjectRightMainView;
             if (obj != null)
             {
                 var objContainer = _objectRightService.GetData(obj.ObjId);
