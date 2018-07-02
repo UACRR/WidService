@@ -13,33 +13,17 @@ namespace IpsViewComponentLibrary
     public class RadTextBoxAuto : RadTextBoxControl
     {
         public Action<RadListDataItem> AcceptAuto { set; get; }
-        private int index = -1;
-        private RadListDataItem currentItem = null;
+        //private int index = -1;
+        //private RadListDataItem currentItem = null;
         public RadTextBoxAuto()
             : base()
         {
             // acceptAuto = action;
             ListElement.ElementTree.Control.KeyDown += new KeyEventHandler(radTextBoxControl1_KeyDown);
             ListElement.ElementTree.Control.Click += this.OnListElementClick;
-            ListElement.SelectedIndexChanged += ListElement_SelectedIndexChanged;
-            ListElement.DataBindingComplete += ListElement_ItemsChanged;
-        }
-
-        private void ListElement_ItemsChanged(object sender, ListBindingCompleteEventArgs e)
-        {
-            index = -1;
-            currentItem = null;
-        }
-
-        private void ListElement_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-
-            RadTextBoxListElement elements = (RadTextBoxListElement)sender;
-            if (index == e.Position || e.Position < 0) return;
-            index = e.Position;
-            currentItem = elements.Items.Skip(index).FirstOrDefault();
 
         }
+
 
         private void OnListElementClick(object sender, EventArgs e)
         {
@@ -50,7 +34,7 @@ namespace IpsViewComponentLibrary
         {
             if (AcceptAuto == null) return;
             ComponentThemableElementTree elementTree = ListElement.ElementTree;
-            Point mousePosition = elementTree.Control.PointToClient(Control.MousePosition);
+            Point mousePosition = elementTree.Control.PointToClient(MousePosition);
             RadElement element = elementTree.GetElementAtPoint(mousePosition);
 
 
