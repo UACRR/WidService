@@ -660,7 +660,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void AddObjectRight(int category, RightholderMainView forRightholder = null)
+        private void AddObjectRight(int category, RightholderMainView forRightholder = null, string name = null)
         {
             if (category == 0)
                 return;
@@ -670,6 +670,9 @@ namespace RightholderWorkplace
             _previousPage = objectsPageView.SelectedPage;
 
             _objectRight = _objectRightService.NewObjectRight(category);
+
+            if (name != null)
+                _objectRight.Name = name;
 
             SetAvalaibleGenres(category);
             UpdateObjectRightDataSources(_objectRight, null);
@@ -1362,11 +1365,7 @@ namespace RightholderWorkplace
             if (_objectRight == null)
                 return;
 
-            var tmpName = autoObjectName.Text;
-
-            AddObjectRight(_objectRight.CategoryCode, _forRightholder);
-
-            autoObjectName.Text = tmpName;
+            AddObjectRight(_objectRight.CategoryCode, _forRightholder, autoObjectName.Text);
         }
     }
 }
