@@ -83,7 +83,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (cabinet == null)
             {
-                cabinet = new GlobalControlConsumerCabinet(TypeRights.BigRights);
+                cabinet = new GlobalControlConsumerCabinet(TypeRights.SmallRights);
                 cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
@@ -93,6 +93,8 @@ namespace ConsumerWorkplace_v_1._0
                 cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;
             }
+
+            cabinet.Rights = TypeRights.SmallRights;
             cabinet.FilterString = mainGrid?.FilterString ?? string.Empty;
             cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;

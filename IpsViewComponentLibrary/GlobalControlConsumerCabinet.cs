@@ -41,19 +41,21 @@ namespace IpsViewComponentLibrary
             set => txtSearch.Text = value;
         }
 
+        public TypeRights Rights { get; set; }
+
         public GlobalControlConsumerCabinet()
         {
             InitializeComponent();
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
             mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
         }
-        public GlobalControlConsumerCabinet(TypeRights typeRights = TypeRights.SmallRights)
+        public GlobalControlConsumerCabinet(TypeRights typeRights)
         {
             InitializeComponent();
+            Rights = typeRights;
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
             mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
-            mсInfoAgrCalc.Rights = typeRights;
-
+            mсInfoAgrCalc.Rights = Rights;
         }
 
         private void MсInfoAgrCalc_OnCustomerSave(Customer customer)
