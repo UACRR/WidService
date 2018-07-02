@@ -31,6 +31,9 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
+        public TypeRights Rights { get; set; }
+        public AnketaDictionaties Dictionaties { get; set; }
+
         public void InitializeObjects(Customer cust, ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr)
         {
             _customer = cust;
@@ -39,8 +42,24 @@ namespace IpsViewComponentLibrary
             _licenseAgr = licenseAgr;
 
             licenseAgreementBindingSource.DataSource = license;
-            bindingSourceDictionary.DataSource = Dictionaties.agrLicenseType;
-            
+
+            if (bindingSourceDictionary.DataSource != null)
+            {
+                bindingSourceDictionary.DataSource = null;
+                //bindingSourceDictionary.Clear();
+            }
+
+            bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
+            {
+                switch (Rights)
+                {
+                    case TypeRights.SmallRights:
+                        return rec.UsesKind != 1;
+                    case TypeRights.BigRights:
+                        return rec.UsesKind == 1;
+                }
+                return true;
+            });
         }
 
         public bool CanChangeLicense
@@ -105,12 +124,6 @@ namespace IpsViewComponentLibrary
 
         }
 
-        public AnketaDictionaties Dictionaties { get; set; }
-
-        private void btnAddPlace_Click(object sender, EventArgs e)
-        {
-            //TODO: додавання майданчика
-        }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {

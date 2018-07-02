@@ -83,7 +83,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (cabinet == null)
             {
-                cabinet = new GlobalControlConsumerCabinet();
+                cabinet = new GlobalControlConsumerCabinet(TypeRights.BigRights);
                 cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
