@@ -148,7 +148,7 @@ namespace ConsumerWorkplace_v_1._0
             int custType = 3; // Юридична особа
             var _cust = _service.NewCustomer(custType);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict) { StartPosition = FormStartPosition.CenterParent };
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, true, TypeRights.BigRights) { StartPosition = FormStartPosition.CenterParent };
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
             form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
