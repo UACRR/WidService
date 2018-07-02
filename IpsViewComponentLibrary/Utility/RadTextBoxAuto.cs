@@ -24,12 +24,19 @@ namespace IpsViewComponentLibrary
 
         }
 
-
+        /// <summary>
+        /// Подія натиску клавіші мишки на елемент списку
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnListElementClick(object sender, EventArgs e)
         {
             FireClick();
         }
 
+        /// <summary>
+        /// Метод отриманя елемента на якому натиснута клавіша мишки 
+        /// </summary>
         private void FireClick()
         {
             if (AcceptAuto == null) return;
@@ -53,7 +60,7 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
-        /// 
+        /// Ввод з клавіатури
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
