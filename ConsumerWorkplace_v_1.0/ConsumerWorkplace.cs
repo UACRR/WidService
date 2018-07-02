@@ -12,6 +12,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 

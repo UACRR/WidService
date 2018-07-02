@@ -28,7 +28,6 @@ namespace ConsumerWorkplace_v_1._0
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _service = service;
             SwitchToGrid();
-
         }
 
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
@@ -128,7 +127,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             var _cust = _service.GetData(custId);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, false) { StartPosition = FormStartPosition.CenterParent };
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, false, TypeRights.BigRights ) { StartPosition = FormStartPosition.CenterParent };
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
             form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
@@ -162,6 +161,10 @@ namespace ConsumerWorkplace_v_1._0
             UpdateData(_cust.CustId);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         private void UpdateData(int id)
         {
             if (_currentControl == cabinet)
@@ -177,6 +180,11 @@ namespace ConsumerWorkplace_v_1._0
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <returns></returns>
         private bool Form_OnSaveCustomerNeed(ipsFormsDesign.Model.Customer cust)
         {
             var result = _service.Save(cust);

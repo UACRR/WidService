@@ -152,14 +152,6 @@ namespace IpsViewComponentLibrary
 
         private bool IsValid()
         {
-            //foreach (Control control in errorProvider.ContainerControl.Controls)
-            //{
-            //    if (errorProvider.GetError(control) != "")
-            //    {
-            //        return false;
-            //    }
-            //}
-
             if (errorProvider.GetError(mtxtRate) != "")
                 return false;
 
