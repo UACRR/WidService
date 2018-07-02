@@ -46,9 +46,11 @@
             this.lblTitle.Size = new System.Drawing.Size(132, 22);
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Назва «Клієнта»";
+            this.lblTitle.ThemeName = "Office2013Light";
             // 
             // ctrlAgreementMain
             // 
+            this.ctrlAgreementMain.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 56);
             this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementMain.Name = "ctrlAgreementMain";
@@ -57,6 +59,7 @@
             // 
             // ctrlAgreementSecond
             // 
+            this.ctrlAgreementSecond.AutoprolongationDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgreementSecond.AutoprolongationPercent = null;
             this.ctrlAgreementSecond.DataSourceBinding = null;
             this.ctrlAgreementSecond.IsAutoprolongation = false;
@@ -66,8 +69,10 @@
             this.ctrlAgreementSecond.MinPayment = null;
             this.ctrlAgreementSecond.Name = "ctrlAgreementSecond";
             this.ctrlAgreementSecond.PercentPayment = null;
+            this.ctrlAgreementSecond.PeriodPaymentDataMember = null;
             this.ctrlAgreementSecond.PeriodPaymentDataSource = null;
             this.ctrlAgreementSecond.PeriodPaymentDisplayMember = "";
+            this.ctrlAgreementSecond.PeriodPaymentSelectedValue = null;
             this.ctrlAgreementSecond.PeriodPaymentValueMember = "";
             this.ctrlAgreementSecond.Size = new System.Drawing.Size(480, 105);
             this.ctrlAgreementSecond.TabIndex = 11;
@@ -75,10 +80,11 @@
             // ddlLicType
             // 
             this.ddlLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlLicType.Location = new System.Drawing.Point(76, 30);
+            this.ddlLicType.Location = new System.Drawing.Point(82, 30);
             this.ddlLicType.Name = "ddlLicType";
-            this.ddlLicType.Size = new System.Drawing.Size(340, 20);
+            this.ddlLicType.Size = new System.Drawing.Size(334, 21);
             this.ddlLicType.TabIndex = 12;
+            this.ddlLicType.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.StackLayoutElement)(this.ddlLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
             // 
@@ -86,9 +92,10 @@
             // 
             this.radLabel1.Location = new System.Drawing.Point(3, 30);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(67, 18);
+            this.radLabel1.Size = new System.Drawing.Size(73, 19);
             this.radLabel1.TabIndex = 13;
             this.radLabel1.Text = "Тип ліцензії";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // MiddleControlAgreementAnketaType
             // 

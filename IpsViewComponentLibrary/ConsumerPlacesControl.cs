@@ -604,6 +604,17 @@ namespace ipsAnketaClient
 
         }
 
+        private void btnDeletePlace_Click(object sender, EventArgs e)
+        {
+            if(rGridViewInstitution.Rows.Count == 0)
+                return;
+            if (MessageBox.Show("Ви дійсно хочете видалити обраний майданчик?", "Підтвердження",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            var itemId = (int)rGridViewInstitution.CurrentRow.Cells["PlaceId"].Value;
+            var itemName = rGridViewInstitution.CurrentRow.Cells["PlaceName"].Value.ToString();
+            data.Client.ClnBusinessPlace.Remove(data.Client.ClnBusinessPlace.Where(rec => rec.PlaceId == itemId).SingleOrDefault(rec => rec.PlaceName == itemName));
+        }
+
         /// <summary>
         /// СКАСУВАТИ
         /// </summary>
