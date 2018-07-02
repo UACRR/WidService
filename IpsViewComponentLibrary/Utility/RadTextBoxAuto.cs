@@ -12,16 +12,21 @@ namespace IpsViewComponentLibrary
 {
     public class RadTextBoxAuto : RadTextBoxControl
     {
-        public Action<RadListDataItem> AcceptAuto { set; get; }
-        //private int index = -1;
-        //private RadListDataItem currentItem = null;
+        public override string ThemeClassName
+        {
+            get
+            {
+                return typeof(RadTextBoxControl).FullName;
+            }
+        }
+
+        public event EventHandler<RadListDataItem> ListItemSelected;
+
         public RadTextBoxAuto()
             : base()
         {
-            // acceptAuto = action;
             ListElement.ElementTree.Control.KeyDown += new KeyEventHandler(radTextBoxControl1_KeyDown);
             ListElement.ElementTree.Control.Click += this.OnListElementClick;
-
         }
 
         /// <summary>
@@ -39,24 +44,23 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void FireClick()
         {
-            if (AcceptAuto == null) return;
+            if (ListItemSelected == null)
+                return;
+
             ComponentThemableElementTree elementTree = ListElement.ElementTree;
             Point mousePosition = elementTree.Control.PointToClient(MousePosition);
             RadElement element = elementTree.GetElementAtPoint(mousePosition);
-
 
             while (element != null)
             {
                 if (element is RadListVisualItem item)
                 {
-                    AcceptAuto(item.Data);
+                    OnListItemSelected(item.Data);
                     break;
                 }
 
                 element = element.Parent;
             }
-
-
         }
 
         /// <summary>
@@ -75,9 +79,14 @@ namespace IpsViewComponentLibrary
 
                 if (item != null)
                 {
-                    AcceptAuto(item as RadListDataItem);
+                    OnListItemSelected(item as RadListDataItem);
                 }
             }
+        }
+
+        protected void OnListItemSelected(RadListDataItem item)
+        {
+            ListItemSelected(this, item);
         }
     }
 }
