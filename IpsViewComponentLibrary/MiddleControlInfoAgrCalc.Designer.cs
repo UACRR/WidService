@@ -206,7 +206,7 @@
             this.pvSecond.Location = new System.Drawing.Point(2, 140);
             this.pvSecond.Name = "pvSecond";
             this.pvSecond.SelectedPage = this.pvAgreement;
-            this.pvSecond.Size = new System.Drawing.Size(1059, 501);
+            this.pvSecond.Size = new System.Drawing.Size(1059, 503);
             this.pvSecond.TabIndex = 2;
             this.pvSecond.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvSecond.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -225,7 +225,7 @@
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(53F, 24F);
             this.pvAgreement.Location = new System.Drawing.Point(62, 10);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(986, 480);
+            this.pvAgreement.Size = new System.Drawing.Size(986, 482);
             this.pvAgreement.Text = "Договір";
             // 
             // btnPrint

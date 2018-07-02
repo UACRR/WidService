@@ -56,7 +56,7 @@ namespace ipsmedserviceapp.Controllers
                     .Where(agree => agree.LicStatus < 4)
                     .Include(item => item.Agr)
                     .Include(item => item.LicCodeNavigation)
-                    .Include(item => item.LicenseBigR ).ThenInclude( rec => rec.Obj )
+                    .Include(item => item.LicenseBigR).ThenInclude(rec => rec.Obj)
                     .Include(rec => rec.PaidPeriod)
                     .LoadAsync();
 
@@ -66,7 +66,7 @@ namespace ipsmedserviceapp.Controllers
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
                     .Where(rec => rec.LicVersion >= license.LicVersion)
-                    .Include( rec => rec.License )
+                    .Include(rec => rec.License)
                     .LoadAsync();
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
@@ -160,15 +160,19 @@ namespace ipsmedserviceapp.Controllers
                 {
                     // Delete LicenseAgreement
                     var agreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
-
-
-                    agreeItem.LicenseAgreement.Remove(delLicense);
+                    // var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
+                    agreeItem.LicenseAgreement.Remove(item);
                     dest.Client.LicenseAgreement.Remove(item);
 
+                    // LicenseBigR
+                    if (item.LicenseBigR != null)
+                    {
 
+                        _dbContext.LicAuthorBr.RemoveRange(item.LicenseBigR.LicAuthorBr);
+                        _dbContext.LicenseBigR.Remove(item.LicenseBigR);
+                    }
                     // AgreementMaster
-                    _dbContext.LicenseAgreement.Remove(delLicense);
+                    _dbContext.LicenseAgreement.Remove(item);
                 }
                 );
 
@@ -186,11 +190,21 @@ namespace ipsmedserviceapp.Controllers
                     license.SetFields(item);
                     _dbContext.UpdateList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
 
+                    if (item.LicenseBigR != null)
+                    {
+                        if (license.LicenseBigR == null)
+                            license.LicenseBigR = new LicenseBigR();
+                        license.LicenseBigR.SetFields(item.LicenseBigR);
+
+                        _dbContext.UpdateList(item.LicenseBigR.LicAuthorBr, license.LicenseBigR.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
+                    }
+
+
                     var sorsDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
-                    foreach( var destParam in license.LicenseAgrParam )
+                    foreach (var destParam in license.LicenseAgrParam)
                     {
                         var sorsParam = sorsDic[destParam.LicVersion];
-                        _dbContext.UpdateList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId );
+                        _dbContext.UpdateList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId);
                     }
 
 
@@ -214,6 +228,14 @@ namespace ipsmedserviceapp.Controllers
                     addLicItem.SetFields(item, new[] { "LicId" });
                     _dbContext.AppendList(item.LicenseAgrParam, addLicItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
 
+                    if (item.LicenseBigR != null)
+                    {
+                        addLicItem.LicenseBigR = new LicenseBigR();
+                        addLicItem.LicenseBigR.SetFields(item.LicenseBigR);
+                        _dbContext.AppendList(item.LicenseBigR.LicAuthorBr, addLicItem.LicenseBigR.LicAuthorBr
+                                    , i => { }
+                                    , (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
+                    }
                     dest.Client.LicenseAgreement.Add(addLicItem);
                     destAgreeItem.LicenseAgreement.Add(addLicItem);
                 }
@@ -413,10 +435,10 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.AppendList(item.LicenseAgrParam, addItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
 
                     var destAgrParamDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
-                    foreach ( var destParam in addItem.LicenseAgrParam )
+                    foreach (var destParam in addItem.LicenseAgrParam)
                     {
                         var sorsParam = destAgrParamDic[destParam.LicVersion];
-                        _dbContext.AppendList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId );
+                        _dbContext.AppendList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId);
                     }
 
 
@@ -674,9 +696,9 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="licid"></param>
         /// <param name="version"></param>
         /// <param name="status"></param>
-        private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, int? oldStatus, int status, bool toChangeVersion )
+        private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, int? oldStatus, int status, bool toChangeVersion)
         {
-            var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid && rec.LicStatus != 4 ).SingleOrDefaultAsync();
+            var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid && rec.LicStatus != 4).SingleOrDefaultAsync();
             await _dbContext.Entry(licAgreement).Collection(item => item.LicenseAgrParam)
                 .Query()
                 .Where(rec => rec.LicVersion == version).LoadAsync();
@@ -684,7 +706,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             LicenseAgrParam licParam = null;
 
             licParam = licAgreement.LicenseAgrParam.Where(rec => rec.LicVersion == version && rec.LicStatus != 4
-                            && (rec.LicStatus == (oldStatus == null ? rec.LicStatus : oldStatus ))).SingleOrDefault();
+                            && (rec.LicStatus == (oldStatus == null ? rec.LicStatus : oldStatus))).SingleOrDefault();
             if (licParam == null)
                 throw new ArgumentException("Bad Verion or Status License Agreement For Accept");
 
@@ -740,7 +762,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             try
             {
 
-                var licAgreement = await setLicAgrStatus(licid, version, null, 4, false );
+                var licAgreement = await setLicAgrStatus(licid, version, null, 4, false);
                 if (licAgreement.LicenseAgrParam.Where(rec => rec.LicStatus != 4).Count() == 0)
                     licAgreement.LicStatus = 4;
 
@@ -935,7 +957,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
             if (!Directory.Exists(consumerPath))
                 Directory.CreateDirectory(consumerPath);
-            
+
             //var file = files.First();
             consumerPath = Path.Combine(consumerPath, file.FileName);
 
@@ -958,7 +980,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="typeDocument"></param>
         /// <returns></returns>
         [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
-        public IActionResult DownloadDocument(int custId, int typeDocument, string fileName, CancellationToken token )
+        public IActionResult DownloadDocument(int custId, int typeDocument, string fileName, CancellationToken token)
         {
 
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
