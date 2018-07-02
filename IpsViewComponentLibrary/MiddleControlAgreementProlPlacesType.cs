@@ -43,12 +43,6 @@ namespace IpsViewComponentLibrary
 
             licenseAgreementBindingSource.DataSource = license;
 
-            if (bindingSourceDictionary.DataSource != null)
-            {
-                bindingSourceDictionary.DataSource = null;
-                //bindingSourceDictionary.Clear();
-            }
-
             bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
             {
                 switch (Rights)
