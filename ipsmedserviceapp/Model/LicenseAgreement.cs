@@ -36,7 +36,6 @@ namespace ipsmedserviceapp.Model
         public AgreementStatus LicStatusNavigation { get; set; }
         [JsonIgnore]
         public LicenseType LicTypeNavigation { get; set; }
-        [JsonIgnore]
         public LicenseBigR LicenseBigR { get; set; }
         [JsonIgnore]
         public ICollection<BrRegItem> BrRegItem { get; set; }

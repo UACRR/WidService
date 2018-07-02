@@ -55,11 +55,14 @@ namespace ipsmedserviceapp.Controllers
                     .Query()
                     .Where(agree => agree.LicStatus < 4)
                     .Include(item => item.Agr)
+                    .Include(item => item.LicCodeNavigation)
+                    .Include(item => item.LicenseBigR ).ThenInclude( rec => rec.Obj )
                     .Include(rec => rec.PaidPeriod)
                     .LoadAsync();
 
             foreach (var license in cust.Client.LicenseAgreement)
             {
+                // Лцензії для майданчиків
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
                     .Where(rec => rec.LicVersion >= license.LicVersion)
@@ -67,6 +70,13 @@ namespace ipsmedserviceapp.Controllers
                     .LoadAsync();
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
+                // Великі права
+                if (license.LicenseBigR != null)
+                    await _dbContext.Entry(license.LicenseBigR).Collection(rec => rec.LicAuthorBr)
+                        .Query()
+                        .Where(rec => rec.DateClose == null || rec.DateClose > DateTime.Today)
+                        .LoadAsync();
+
             }
 
             // Отримати Майданчики
