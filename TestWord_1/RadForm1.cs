@@ -74,7 +74,8 @@ namespace TestWord_1
                     */
                     cust = service.GetData(142);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumerBR(template, cust, cust.AgreementMaster.First());
+                    LicenseAgreement licA = cust.Client.LicenseAgreement?.First();
+                    wordApp.processConsumerBR(template, cust, cust.AgreementMaster.First(), licA);
                     break;
 
                 case "F_Акт_публічне виконання.docx":
@@ -101,7 +102,7 @@ namespace TestWord_1
                 case "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx":
                     cust = service.GetData(142);                  
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumerBR(template, cust, cust.AgreementMaster.First());
+                    wordApp.processConsumerBR(template, cust, cust.AgreementMaster.First(), null);
                     break;
                 case "F_7_Г готелі.docx":
                     cust = service.GetData(134);

@@ -663,7 +663,7 @@ namespace ipsFormsDesign.Services
             }
         }
 
-        public void processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agr)
+        public void processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agr,LicenseAgreement licA )
         {
 
 
@@ -695,6 +695,7 @@ namespace ipsFormsDesign.Services
                 BankAccount bankacc = cust.BankAccount.FirstOrDefault();
                 Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
                 Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
+
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
                 AgreementAddBr agreementAddBr;
                 agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.IsCurrent == 1)?.SingleOrDefault();
@@ -724,6 +725,10 @@ namespace ipsFormsDesign.Services
                 string GdocDateC = String.Empty;
                 string GdocDateBeginC = String.Empty;
                 string GdocDateEndC = String.Empty;
+                string ShowName = String.Empty;
+                string ShowAct = String.Empty;
+                string docNumberC = String.Empty;
+                string docDateC = String.Empty;
 
                 if (cust.CustType < 3) // фіз. особа
                 {
@@ -782,7 +787,12 @@ namespace ipsFormsDesign.Services
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
+                ShowName = licA.LicenseBigR.Obj.Name?.ToString();
+                ShowAct = licA.LicenseBigR.Obj.ActCode?.ToString();
+                docNumberC = licA.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).Single().LicNum ;
 
+                LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).Single();
+                docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
 
                 foreach (ContentControl item in list)
                 {
@@ -802,7 +812,7 @@ namespace ipsFormsDesign.Services
                         case "fop":
                             item.Range.Text = fop;
                             break;
-                        case "СstName":
+                        case "CstName":
                             item.Range.Text = customerName;
                             break;
                         case "vOsobi":
@@ -868,7 +878,21 @@ namespace ipsFormsDesign.Services
                         case "СstContPerson":
                             item.Range.Text = cstContPerson;
                             break;
+                        case "ShowName":
+                            item.Range.Text = ShowName;
+                            break;
+                        case "ShowAct":
+                            item.Range.Text = ShowAct;
+                            break;
+                        case "docNumberC":
+                            item.Range.Text = docNumberC;
+                            break;
+                        case "docDateC":
+                            item.Range.Text = docDateC;
+                            break;
+
                         default:
+
                             item.Delete();
                             break;
 
