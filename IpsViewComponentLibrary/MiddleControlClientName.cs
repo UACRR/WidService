@@ -53,7 +53,18 @@ namespace IpsViewComponentLibrary
 
         public bool Validator()
         {
-            return ctrlAnketaCompany.Validator() && ctrlRegistrationsCompany.Validator();
+            bool isvalid = true;
+
+            if(!ctrlAnketaCompany.Validator())
+                isvalid = false;
+            if (!ctrlRegistrationsCompany.Validator())
+                isvalid = false;
+
+            return isvalid;
+
+                    
+
+            return isvalid;
         }
 
         public bool IsPlaceIn

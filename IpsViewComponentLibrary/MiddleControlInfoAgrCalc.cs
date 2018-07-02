@@ -251,6 +251,7 @@ namespace IpsViewComponentLibrary
             var licenseParam = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion) ?? license.LicenseAgrParam.SingleOrDefault();
             RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forEdit);
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -325,9 +326,9 @@ namespace IpsViewComponentLibrary
                     new LicenseAgrParam
                     {
                         LicVersion = 1,
-                        LicDate = DateTime.Today,
-                        DateBegin = DateTime.Today,
-                        DateEnd = DateTime.Today.AddYears(1),
+                        //LicDate = DateTime.Today,
+                        //DateBegin = DateTime.Today,
+                        //DateEnd = DateTime.Today.AddYears(1),
                         LicStatus = 0,
                     }
                 },
