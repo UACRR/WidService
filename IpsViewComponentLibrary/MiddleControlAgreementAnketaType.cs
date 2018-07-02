@@ -55,7 +55,7 @@ namespace IpsViewComponentLibrary
             ctrlAgreementMain.DataSource = licenseParam;
             
             ctrlAgreementSecond.DataSourceBinding = licenseParam;
-            ctrlAgreementSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
+            ctrlAgreementSecond.AutoprolongationDataSource = licenseParam;
             ctrlAgreementSecond.MinPayment = "MinAmount";
             ctrlAgreementSecond.PercentPayment = "RateAmount";
 
