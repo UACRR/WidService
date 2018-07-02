@@ -642,10 +642,30 @@ namespace RightholderWorkplace
             }
         }
 
-        private void AddObjectRight(int category)
+        private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
+        {
+            if (ctrlRightholderSelector.Rightholder == null)
+            {
+                MessageBox.Show("Оберіть правовласника.");
+                return;
+            }
+
+            if (sender is RadMenuItem menuItem)
+            {
+                int category;
+                if (int.TryParse(menuItem.Tag.ToString(), out category))
+                {
+                    AddObjectRight(category, ctrlRightholderSelector.Rightholder);
+                }
+            }
+        }
+
+        private void AddObjectRight(int category, RightholderMainView forRightholder = null)
         {
             if (category == 0)
                 return;
+
+            _forRightholder = forRightholder;
 
             _previousPage = objectsPageView.SelectedPage;
 
@@ -738,6 +758,8 @@ namespace RightholderWorkplace
 
         #region Objectrights item event handlers
 
+        private RightholderMainView _forRightholder;
+
         private void gvObjectAuthorsRightholders_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var currentColumnName = e.Column.Name;
@@ -760,6 +782,16 @@ namespace RightholderWorkplace
         private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
         {
             var objectAuthorRightholder = new ObjectAuthorRightholder();
+
+            if (_forRightholder != null)
+            {
+                objectAuthorRightholder.FolkType = 1;
+                objectAuthorRightholder.IsRightholder = true;
+                objectAuthorRightholder.AuthorName = _forRightholder.Name;
+                objectAuthorRightholder.CustId = _forRightholder.CustId;
+                objectAuthorRightholder.CommunityName = _forRightholder.Community_Name;
+            }
+
             EditObjectAuthorRightholder(objectAuthorRightholder);
         }
 
@@ -1332,7 +1364,7 @@ namespace RightholderWorkplace
 
             var tmpName = autoObjectName.Text;
 
-            AddObjectRight(_objectRight.CategoryCode);
+            AddObjectRight(_objectRight.CategoryCode, _forRightholder);
 
             autoObjectName.Text = tmpName;
         }
