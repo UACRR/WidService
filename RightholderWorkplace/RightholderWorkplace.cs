@@ -667,12 +667,12 @@ namespace RightholderWorkplace
 
             _forRightholder = forRightholder;
 
-            _previousPage = objectsPageView.SelectedPage;
-
             _objectRight = _objectRightService.NewObjectRight(category);
 
             if (name != null)
                 _objectRight.Name = name;
+            else
+                _previousPage = objectsPageView.SelectedPage; // TODO: no need to change _previousPage if it is adding new object by btnNewObject button click
 
             SetAvalaibleGenres(category);
             UpdateObjectRightDataSources(_objectRight, null);
