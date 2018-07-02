@@ -83,19 +83,21 @@
             // 
             this.txtOnBasicsIfHeadBoss.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(337, 82);
+            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(351, 82);
             this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
-            this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(411, 20);
+            this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(397, 21);
             this.txtOnBasicsIfHeadBoss.TabIndex = 18;
+            this.txtOnBasicsIfHeadBoss.ThemeName = "Office2013Light";
             // 
             // radLabel8
             // 
             this.radLabel8.AutoSize = false;
             this.radLabel8.Location = new System.Drawing.Point(89, 82);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(242, 20);
+            this.radLabel8.Size = new System.Drawing.Size(256, 20);
             this.radLabel8.TabIndex = 10;
             this.radLabel8.Text = "На основі чого діє якщо посада «директор»";
+            this.radLabel8.ThemeName = "Office2013Light";
             // 
             // radLabel7
             // 
@@ -176,6 +178,11 @@
             this.ctrlHeadBoss.TxtEmail.Location = new System.Drawing.Point(487, 34);
             this.ctrlHeadBoss.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtEmail.Name = "txtEmail";
+            // 
+            // 
+            // 
+            this.ctrlHeadBoss.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 44, 175, 0);
+            this.ctrlHeadBoss.TxtEmail.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtEmail.Size = new System.Drawing.Size(206, 20);
             this.ctrlHeadBoss.TxtEmail.TabIndex = 4;
             // 
@@ -186,6 +193,11 @@
             this.ctrlHeadBoss.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtFirstName.Name = "txtFirstName";
             this.ctrlHeadBoss.TxtFirstName.NullText = "Ім\'я";
+            // 
+            // 
+            // 
+            this.ctrlHeadBoss.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 13, 173, 0);
+            this.ctrlHeadBoss.TxtFirstName.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtFirstName.Size = new System.Drawing.Size(204, 20);
             this.ctrlHeadBoss.TxtFirstName.TabIndex = 1;
             // 
@@ -196,6 +208,11 @@
             this.ctrlHeadBoss.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtLastName.Name = "txtLastName";
             this.ctrlHeadBoss.TxtLastName.NullText = "Прізвище";
+            // 
+            // 
+            // 
+            this.ctrlHeadBoss.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 14, 173, 0);
+            this.ctrlHeadBoss.TxtLastName.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtLastName.Size = new System.Drawing.Size(204, 20);
             this.ctrlHeadBoss.TxtLastName.TabIndex = 0;
             // 
@@ -206,6 +223,11 @@
             this.ctrlHeadBoss.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtPhone.MaxLength = 13;
             this.ctrlHeadBoss.TxtPhone.Name = "txtPhone";
+            // 
+            // 
+            // 
+            this.ctrlHeadBoss.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 46, 173, 0);
+            this.ctrlHeadBoss.TxtPhone.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtPhone.Size = new System.Drawing.Size(204, 20);
             this.ctrlHeadBoss.TxtPhone.TabIndex = 3;
             // 
@@ -216,6 +238,11 @@
             this.ctrlHeadBoss.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtSurName.Name = "txtSurName";
             this.ctrlHeadBoss.TxtSurName.NullText = "По батькові";
+            // 
+            // 
+            // 
+            this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 14, 175, 0);
+            this.ctrlHeadBoss.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlHeadBoss.TxtSurName.TabIndex = 2;
             // 
@@ -248,7 +275,7 @@
             // 
             // 
             // 
-            this.ctrlBookkeeper.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 44, 175, 0);
+            this.ctrlBookkeeper.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 36, 206, 20);
             this.ctrlBookkeeper.TxtEmail.RootElement.StretchVertically = true;
             this.ctrlBookkeeper.TxtEmail.Size = new System.Drawing.Size(206, 20);
             this.ctrlBookkeeper.TxtEmail.TabIndex = 4;
@@ -263,7 +290,7 @@
             // 
             // 
             // 
-            this.ctrlBookkeeper.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 13, 173, 0);
+            this.ctrlBookkeeper.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(260, 4, 204, 20);
             this.ctrlBookkeeper.TxtFirstName.RootElement.StretchVertically = true;
             this.ctrlBookkeeper.TxtFirstName.Size = new System.Drawing.Size(204, 20);
             this.ctrlBookkeeper.TxtFirstName.TabIndex = 1;
@@ -278,7 +305,7 @@
             // 
             // 
             // 
-            this.ctrlBookkeeper.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 14, 173, 0);
+            this.ctrlBookkeeper.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 204, 20);
             this.ctrlBookkeeper.TxtLastName.RootElement.StretchVertically = true;
             this.ctrlBookkeeper.TxtLastName.Size = new System.Drawing.Size(204, 20);
             this.ctrlBookkeeper.TxtLastName.TabIndex = 0;
@@ -293,7 +320,7 @@
             // 
             // 
             // 
-            this.ctrlBookkeeper.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 46, 173, 0);
+            this.ctrlBookkeeper.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 204, 20);
             this.ctrlBookkeeper.TxtPhone.RootElement.StretchVertically = true;
             this.ctrlBookkeeper.TxtPhone.Size = new System.Drawing.Size(204, 20);
             this.ctrlBookkeeper.TxtPhone.TabIndex = 3;
@@ -308,7 +335,7 @@
             // 
             // 
             // 
-            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 14, 175, 0);
+            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
             this.ctrlBookkeeper.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlBookkeeper.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlBookkeeper.TxtSurName.TabIndex = 2;
@@ -333,7 +360,7 @@
             // 
             // 
             // 
-            this.ctrlContactPerson.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 44, 175, 0);
+            this.ctrlContactPerson.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 36, 206, 20);
             this.ctrlContactPerson.TxtEmail.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtEmail.Size = new System.Drawing.Size(206, 20);
             this.ctrlContactPerson.TxtEmail.TabIndex = 4;
@@ -348,7 +375,7 @@
             // 
             // 
             // 
-            this.ctrlContactPerson.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 13, 173, 0);
+            this.ctrlContactPerson.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(260, 4, 204, 20);
             this.ctrlContactPerson.TxtFirstName.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtFirstName.Size = new System.Drawing.Size(204, 20);
             this.ctrlContactPerson.TxtFirstName.TabIndex = 1;
@@ -363,7 +390,7 @@
             // 
             // 
             // 
-            this.ctrlContactPerson.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 14, 173, 0);
+            this.ctrlContactPerson.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 204, 20);
             this.ctrlContactPerson.TxtLastName.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtLastName.Size = new System.Drawing.Size(204, 20);
             this.ctrlContactPerson.TxtLastName.TabIndex = 0;
@@ -378,7 +405,7 @@
             // 
             // 
             // 
-            this.ctrlContactPerson.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 46, 173, 0);
+            this.ctrlContactPerson.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 204, 20);
             this.ctrlContactPerson.TxtPhone.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtPhone.Size = new System.Drawing.Size(204, 20);
             this.ctrlContactPerson.TxtPhone.TabIndex = 3;
@@ -393,7 +420,7 @@
             // 
             // 
             // 
-            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 14, 175, 0);
+            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
             this.ctrlContactPerson.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlContactPerson.TxtSurName.TabIndex = 2;

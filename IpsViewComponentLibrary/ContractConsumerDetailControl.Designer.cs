@@ -31,8 +31,8 @@ namespace IpsViewComponentLibrary
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -40,10 +40,10 @@ namespace IpsViewComponentLibrary
             this.rtxtBoxAuthorPaymentPercent = new Telerik.WinControls.UI.RadTextBox();
             this.rtxtBoxMinAuthorPayment = new Telerik.WinControls.UI.RadTextBox();
             this.rCheckBoxAutoprolongation = new Telerik.WinControls.UI.RadCheckBox();
+            this.bsCheckedProlongation = new System.Windows.Forms.BindingSource(this.components);
             this.txtPercentAutoProl = new Telerik.WinControls.UI.RadTextBox();
             this.rddListPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
             this.rddListTypeAutoProl = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsCheckedProlongation = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -51,99 +51,110 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxAuthorPaymentPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMinAuthorPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rCheckBoxAutoprolongation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCheckedProlongation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCheckedProlongation)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
             // 
             this.radLabel1.Location = new System.Drawing.Point(4, 4);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(124, 18);
+            this.radLabel1.Size = new System.Drawing.Size(135, 19);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Авторська винагорода";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
             this.radLabel2.Location = new System.Drawing.Point(234, 4);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(99, 18);
+            this.radLabel2.Size = new System.Drawing.Size(107, 19);
             this.radLabel2.TabIndex = 1;
             this.radLabel2.Text = "але не менше ніж";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
             this.radLabel3.Location = new System.Drawing.Point(453, 4);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(24, 18);
+            this.radLabel3.Size = new System.Drawing.Size(26, 19);
             this.radLabel3.TabIndex = 1;
             this.radLabel3.Text = "грн";
+            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
             this.radLabel4.Location = new System.Drawing.Point(4, 78);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(129, 18);
+            this.radLabel4.Size = new System.Drawing.Size(141, 19);
             this.radLabel4.TabIndex = 5;
             this.radLabel4.Text = "Періодичність платежів";
+            this.radLabel4.ThemeName = "Office2013Light";
             // 
             // rtxtBoxAuthorPaymentPercent
             // 
-            this.rtxtBoxAuthorPaymentPercent.Location = new System.Drawing.Point(139, 3);
+            this.rtxtBoxAuthorPaymentPercent.Location = new System.Drawing.Point(145, 3);
             this.rtxtBoxAuthorPaymentPercent.Name = "rtxtBoxAuthorPaymentPercent";
-            this.rtxtBoxAuthorPaymentPercent.Size = new System.Drawing.Size(78, 20);
+            this.rtxtBoxAuthorPaymentPercent.NullText = "  %";
+            this.rtxtBoxAuthorPaymentPercent.Size = new System.Drawing.Size(83, 21);
             this.rtxtBoxAuthorPaymentPercent.TabIndex = 0;
+            this.rtxtBoxAuthorPaymentPercent.ThemeName = "Office2013Light";
             // 
             // rtxtBoxMinAuthorPayment
             // 
-            this.rtxtBoxMinAuthorPayment.Location = new System.Drawing.Point(339, 3);
+            this.rtxtBoxMinAuthorPayment.Location = new System.Drawing.Point(347, 3);
             this.rtxtBoxMinAuthorPayment.Name = "rtxtBoxMinAuthorPayment";
-            this.rtxtBoxMinAuthorPayment.Size = new System.Drawing.Size(108, 20);
+            this.rtxtBoxMinAuthorPayment.Size = new System.Drawing.Size(100, 21);
             this.rtxtBoxMinAuthorPayment.TabIndex = 1;
+            this.rtxtBoxMinAuthorPayment.ThemeName = "Office2013Light";
             // 
             // rCheckBoxAutoprolongation
             // 
-            this.rCheckBoxAutoprolongation.DataBindings.Add(new System.Windows.Forms.Binding("IsChecked", this.bsCheckedProlongation, "IsAutoprolog", true, DataSourceUpdateMode.OnPropertyChanged, false));
+            this.rCheckBoxAutoprolongation.DataBindings.Add(new System.Windows.Forms.Binding("IsChecked", this.bsCheckedProlongation, "IsAutoprolog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, false));
             this.rCheckBoxAutoprolongation.Location = new System.Drawing.Point(4, 28);
             this.rCheckBoxAutoprolongation.Name = "rCheckBoxAutoprolongation";
-            this.rCheckBoxAutoprolongation.Size = new System.Drawing.Size(109, 18);
+            this.rCheckBoxAutoprolongation.Size = new System.Drawing.Size(121, 19);
             this.rCheckBoxAutoprolongation.TabIndex = 2;
             this.rCheckBoxAutoprolongation.Text = "Автопролонгація";
+            this.rCheckBoxAutoprolongation.ThemeName = "Office2013Light";
             this.rCheckBoxAutoprolongation.CheckStateChanged += new System.EventHandler(this.rCheckBoxAutoprolongation_CheckStateChanged);
+            // 
+            // bsCheckedProlongation
+            // 
+            this.bsCheckedProlongation.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // txtPercentAutoProl
             // 
             this.txtPercentAutoProl.Location = new System.Drawing.Point(411, 52);
             this.txtPercentAutoProl.Name = "txtPercentAutoProl";
-            this.txtPercentAutoProl.Size = new System.Drawing.Size(59, 20);
+            this.txtPercentAutoProl.Size = new System.Drawing.Size(59, 21);
             this.txtPercentAutoProl.TabIndex = 4;
+            this.txtPercentAutoProl.ThemeName = "Office2013Light";
             // 
             // rddListPeriodPayment
             // 
             this.rddListPeriodPayment.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.rddListPeriodPayment.Location = new System.Drawing.Point(139, 78);
+            this.rddListPeriodPayment.Location = new System.Drawing.Point(147, 78);
             this.rddListPeriodPayment.Name = "rddListPeriodPayment";
-            this.rddListPeriodPayment.Size = new System.Drawing.Size(194, 20);
+            this.rddListPeriodPayment.Size = new System.Drawing.Size(194, 21);
             this.rddListPeriodPayment.TabIndex = 5;
+            this.rddListPeriodPayment.ThemeName = "Office2013Light";
             // 
             // rddListTypeAutoProl
             // 
             this.rddListTypeAutoProl.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem3.Text = "з підвищенням авторської винагороди за попередній рік";
-            radListDataItem4.Text = "індекс інфляції";
-            this.rddListTypeAutoProl.Items.Add(radListDataItem3);
-            this.rddListTypeAutoProl.Items.Add(radListDataItem4);
+            radListDataItem1.Text = "з підвищенням авторської винагороди за попередній рік";
+            radListDataItem2.Text = "індекс інфляції";
+            this.rddListTypeAutoProl.Items.Add(radListDataItem1);
+            this.rddListTypeAutoProl.Items.Add(radListDataItem2);
             this.rddListTypeAutoProl.Location = new System.Drawing.Point(4, 52);
             this.rddListTypeAutoProl.Name = "rddListTypeAutoProl";
-            this.rddListTypeAutoProl.Size = new System.Drawing.Size(401, 20);
+            this.rddListTypeAutoProl.Size = new System.Drawing.Size(401, 21);
             this.rddListTypeAutoProl.TabIndex = 3;
+            this.rddListTypeAutoProl.ThemeName = "Office2013Light";
             this.rddListTypeAutoProl.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rddListTypeAutoProl_SelectedIndexChanged);
-            // 
-            // bsCheckedProlongation
-            // 
-            this.bsCheckedProlongation.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // ContractConsumerDetailControl
             // 
@@ -170,10 +181,10 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxAuthorPaymentPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMinAuthorPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rCheckBoxAutoprolongation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCheckedProlongation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCheckedProlongation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -76,11 +76,11 @@
             // 
             this.rTxtBoxTownName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rTxtBoxTownName.Location = new System.Drawing.Point(352, 37);
+            this.rTxtBoxTownName.Location = new System.Drawing.Point(365, 37);
             this.rTxtBoxTownName.Name = "rTxtBoxTownName";
-            this.rTxtBoxTownName.Size = new System.Drawing.Size(153, 20);
+            this.rTxtBoxTownName.Size = new System.Drawing.Size(172, 21);
             this.rTxtBoxTownName.TabIndex = 0;
-            this.rTxtBoxTownName.ThemeName = "Office2007Silver";
+            this.rTxtBoxTownName.ThemeName = "Office2013Light";
             // 
             // rLblMainHeader
             // 
@@ -91,6 +91,7 @@
             this.rLblMainHeader.TabIndex = 0;
             this.rLblMainHeader.Text = "Адреса закладу";
             this.rLblMainHeader.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.rLblMainHeader.ThemeName = "Office2013Light";
             // 
             // lblTown
             // 
@@ -98,9 +99,10 @@
             this.lblTown.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTown.Location = new System.Drawing.Point(256, 39);
             this.lblTown.Name = "lblTown";
-            this.lblTown.Size = new System.Drawing.Size(90, 17);
+            this.lblTown.Size = new System.Drawing.Size(103, 17);
             this.lblTown.TabIndex = 0;
             this.lblTown.Text = "<html>Населений пункт</html>";
+            this.lblTown.ThemeName = "Office2013Light";
             // 
             // lblRegion
             // 
@@ -111,6 +113,7 @@
             this.lblRegion.TabIndex = 1;
             this.lblRegion.Text = "Область";
             this.lblRegion.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRegion.ThemeName = "Office2013Light";
             // 
             // lblStreet
             // 
@@ -121,6 +124,7 @@
             this.lblStreet.TabIndex = 2;
             this.lblStreet.Text = "Вулиця";
             this.lblStreet.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblStreet.ThemeName = "Office2013Light";
             // 
             // rDropListRegion
             // 
@@ -180,9 +184,9 @@
             this.rDropListRegion.Location = new System.Drawing.Point(69, 37);
             this.rDropListRegion.Name = "rDropListRegion";
             this.rDropListRegion.NullText = "Оберіть область";
-            this.rDropListRegion.Size = new System.Drawing.Size(181, 20);
+            this.rDropListRegion.Size = new System.Drawing.Size(181, 21);
             this.rDropListRegion.TabIndex = 1;
-            this.rDropListRegion.ThemeName = "Office2007Silver";
+            this.rDropListRegion.ThemeName = "Office2013Light";
             this.rDropListRegion.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rDropListRegion_SelectedIndexChanged);
             // 
             // rTxtBoxNameStreet
@@ -192,9 +196,9 @@
             this.rTxtBoxNameStreet.Location = new System.Drawing.Point(69, 64);
             this.rTxtBoxNameStreet.Name = "rTxtBoxNameStreet";
             this.rTxtBoxNameStreet.NullText = " Назва вулиці / № будинку ";
-            this.rTxtBoxNameStreet.Size = new System.Drawing.Size(436, 20);
+            this.rTxtBoxNameStreet.Size = new System.Drawing.Size(468, 21);
             this.rTxtBoxNameStreet.TabIndex = 2;
-            this.rTxtBoxNameStreet.ThemeName = "Office2007Silver";
+            this.rTxtBoxNameStreet.ThemeName = "Office2013Light";
             // 
             // radSeparator1
             // 
@@ -202,9 +206,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(156, 3);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(349, 30);
+            this.radSeparator1.Size = new System.Drawing.Size(381, 30);
             this.radSeparator1.TabIndex = 0;
-            this.radSeparator1.ThemeName = "Office2007Silver";
+            this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // IpsAddressExpandedControl
             // 
@@ -221,7 +225,7 @@
             this.MaximumSize = new System.Drawing.Size(662, 89);
             this.MinimumSize = new System.Drawing.Size(400, 89);
             this.Name = "IpsAddressExpandedControl";
-            this.Size = new System.Drawing.Size(512, 89);
+            this.Size = new System.Drawing.Size(544, 89);
             ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxTownName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblMainHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTown)).EndInit();
