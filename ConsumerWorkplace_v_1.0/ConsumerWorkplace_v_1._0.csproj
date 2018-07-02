@@ -144,7 +144,6 @@
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TypeRights.cs" />
     <EmbeddedResource Include="ConsumerCabinet.resx">
       <DependentUpon>ConsumerCabinet.cs</DependentUpon>
     </EmbeddedResource>

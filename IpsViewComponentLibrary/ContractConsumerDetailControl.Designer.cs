@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Windows.Forms;
+
+namespace IpsViewComponentLibrary
 {
     partial class ContractConsumerDetailControl
     {
@@ -28,8 +30,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
+            this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -40,6 +43,7 @@
             this.txtPercentAutoProl = new Telerik.WinControls.UI.RadTextBox();
             this.rddListPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
             this.rddListTypeAutoProl = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsCheckedProlongation = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -50,6 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCheckedProlongation)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -100,6 +105,7 @@
             // 
             // rCheckBoxAutoprolongation
             // 
+            this.rCheckBoxAutoprolongation.DataBindings.Add(new System.Windows.Forms.Binding("IsChecked", this.bsCheckedProlongation, "IsAutoprolog", true, DataSourceUpdateMode.OnPropertyChanged, false));
             this.rCheckBoxAutoprolongation.Location = new System.Drawing.Point(4, 28);
             this.rCheckBoxAutoprolongation.Name = "rCheckBoxAutoprolongation";
             this.rCheckBoxAutoprolongation.Size = new System.Drawing.Size(109, 18);
@@ -125,15 +131,19 @@
             // rddListTypeAutoProl
             // 
             this.rddListTypeAutoProl.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            radListDataItem1.Text = "з підвищенням авторської винагороди за попередній рік";
-            radListDataItem2.Text = "індекс інфляції";
-            this.rddListTypeAutoProl.Items.Add(radListDataItem1);
-            this.rddListTypeAutoProl.Items.Add(radListDataItem2);
+            radListDataItem3.Text = "з підвищенням авторської винагороди за попередній рік";
+            radListDataItem4.Text = "індекс інфляції";
+            this.rddListTypeAutoProl.Items.Add(radListDataItem3);
+            this.rddListTypeAutoProl.Items.Add(radListDataItem4);
             this.rddListTypeAutoProl.Location = new System.Drawing.Point(4, 52);
             this.rddListTypeAutoProl.Name = "rddListTypeAutoProl";
             this.rddListTypeAutoProl.Size = new System.Drawing.Size(401, 20);
             this.rddListTypeAutoProl.TabIndex = 3;
             this.rddListTypeAutoProl.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rddListTypeAutoProl_SelectedIndexChanged);
+            // 
+            // bsCheckedProlongation
+            // 
+            this.bsCheckedProlongation.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // ContractConsumerDetailControl
             // 
@@ -163,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCheckedProlongation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,5 +191,6 @@
         private Telerik.WinControls.UI.RadTextBox txtPercentAutoProl;
         private Telerik.WinControls.UI.RadDropDownList rddListPeriodPayment;
         private Telerik.WinControls.UI.RadDropDownList rddListTypeAutoProl;
+        private System.Windows.Forms.BindingSource bsCheckedProlongation;
     }
 }
