@@ -102,14 +102,14 @@ namespace ipsmedserviceapp
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
+            })
+            .UseAuthentication();
 
-            app.UseAuthentication();
+
             loggerFactory.AddConsole();
 
             app.UseRequestLocalization(BuildLocalizationOptions());
-            app.UseMvc()
-            ;
+            app.UseMvc();
         }
 
         // Culture
