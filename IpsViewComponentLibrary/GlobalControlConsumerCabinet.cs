@@ -47,17 +47,25 @@ namespace IpsViewComponentLibrary
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
             mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
         }
+        public GlobalControlConsumerCabinet(TypeRights typeRights = TypeRights.SmallRights)
+        {
+            InitializeComponent();
+            gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
+            mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
+            mсInfoAgrCalc.Rights = typeRights;
+
+        }
 
         private void MсInfoAgrCalc_OnCustomerSave(Customer customer)
         {
             var result = OnSaveCustomer?.Invoke(customer) ?? false;
             if (result)
             {
-                MessageBox.Show("Пролонгація успішно додана!","Збережено",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Успішно збережено!","Збережено",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Не пролонговано!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

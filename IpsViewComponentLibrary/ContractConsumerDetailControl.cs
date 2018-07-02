@@ -22,7 +22,8 @@ namespace IpsViewComponentLibrary
         public ContractConsumerDetailControl()
         {
             InitializeComponent();
-            
+            rddListTypeAutoProl.Enabled = false;
+            txtPercentAutoProl.Enabled = false;
         }
 
         public void SetDefaultState()
@@ -35,6 +36,14 @@ namespace IpsViewComponentLibrary
                 rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.Last.Index;
                 rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.First.Index;
             }
+        }
+
+        [Category("Dictionaries")]
+        [AttributeProvider(typeof(IListSource))]
+        public object AutoprolongationDataSource
+        {
+            get => bsCheckedProlongation.DataSource;
+            set => bsCheckedProlongation.DataSource = value;
         }
 
         /// <summary>
@@ -154,8 +163,8 @@ namespace IpsViewComponentLibrary
         [Category("Data")]
         public bool IsAutoprolongation
         {
-            get => rCheckBoxAutoprolongation.Checked;
-            set => rCheckBoxAutoprolongation.Checked = value;
+            get => rCheckBoxAutoprolongation.IsChecked;
+            set => rCheckBoxAutoprolongation.IsChecked = value;
         }
         
         private void rCheckBoxAutoprolongation_CheckStateChanged(object sender, EventArgs e)

@@ -31,19 +31,41 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
+        public TypeRights Rights { get; set; }
+        public AnketaDictionaties Dictionaties { get; set; }
+
         public void InitializeObjects(Customer cust, ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr)
         {
             _customer = cust;
             _tempPlaces = places;
             _license = license;
             _licenseAgr = licenseAgr;
+
+            licenseAgreementBindingSource.DataSource = license;
+
+            bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
+            {
+                switch (Rights)
+                {
+                    case TypeRights.SmallRights:
+                        return rec.UsesKind != 1;
+                    case TypeRights.BigRights:
+                        return rec.UsesKind == 1;
+                }
+                return true;
+            });
         }
 
-
-        public string LicenseName
+        public bool CanChangeLicense
         {
-            get => lblTitleLicAgr.Text;
-            set => lblTitleLicAgr.Text = value;
+            get => ddlLicType.ReadOnly;
+            set => ddlLicType.ReadOnly = !value;
+        }
+
+        public bool LicenseEnabled
+        {
+            get => ddlLicType.Enabled;
+            set => ddlLicType.Enabled = value;
         }
 
         //TODO: джерело даних з розрахованою сумою
@@ -76,7 +98,7 @@ namespace IpsViewComponentLibrary
             {
                 var licenseParam = value;
                 ctrlAgrSecond.DataSourceBinding = licenseParam;
-                ctrlAgrSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
+                ctrlAgrSecond.AutoprolongationDataSource = licenseParam;
                 ctrlAgrSecond.MinPayment = "MinAmount";
                 ctrlAgrSecond.PercentPayment = "RateAmount";
 
@@ -96,12 +118,6 @@ namespace IpsViewComponentLibrary
 
         }
 
-        public AnketaDictionaties Dictionaties { get; set; }
-
-        private void btnAddPlace_Click(object sender, EventArgs e)
-        {
-            //TODO: додавання майданчика
-        }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
@@ -110,9 +126,6 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
-            _customer.Client.ClnBusinessPlace = _places;
-
             OnSaveChangesClick?.Invoke();
         }
 

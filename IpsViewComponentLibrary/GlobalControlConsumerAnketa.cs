@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary
 {
@@ -35,6 +36,7 @@ namespace IpsViewComponentLibrary
         private Customer _cust;
         private AnketaDictionaties _anketaDictionaries;
 
+        public TypeRights typeRights { get; set; } = TypeRights.SmallRights;
         //властивість наявності майданчиків
         public bool IsContainPlaces
         {
@@ -57,9 +59,8 @@ namespace IpsViewComponentLibrary
             _visiblePage = 1;
             ChangeButtonsName(_visiblePage);
             btnBack.Visible = false;
-
-            ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged; // при зміні наявності майданчиків
             
+            ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged; // при зміні наявності майданчиків
         }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace IpsViewComponentLibrary
         /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
         public void InitializeControl(bool isNew = true)
         {
+
             isEdit = !isNew;
             SetTypePages(isNew);
             SetColorTabs(isNew);
@@ -83,6 +85,8 @@ namespace IpsViewComponentLibrary
                 _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust,_anketaDictionaries); // - - - - - -  Банківські реквізити
+
+            ctrlAgreement.typeRights = typeRights;                    // - - - - - - - -  Договір
             ctrlAgreement.SetDataSources(_cust,_anketaDictionaries);  // - - - - - - - -  Договір
 
             ctrlClientName.SetDefaultState();
@@ -437,10 +441,17 @@ namespace IpsViewComponentLibrary
 
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
-            var pdfDoc = OnDocumentNeedGenerate?.Invoke(_cust, _anketaDictionaries);
+            WordEngine wordEngine = new WordEngine(_anketaDictionaries);
+            var licenseAgreement = _cust?.Client?.LicenseAgreement?.FirstOrDefault();
+            int version = licenseAgreement?.LicVersion ?? default(int);
+            string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            templateName = string.Concat(@"Templates\", templateName);
             
-            if(!string.IsNullOrEmpty(pdfDoc))
-                radPdfViewer.LoadDocument(pdfDoc);
+            
+            wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version);
+            var pdf = wordEngine.Pdf;
+            radPdfViewer.LoadDocument(pdf);
+            
         }
     }
 

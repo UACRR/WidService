@@ -15,6 +15,7 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private AnketaDictionaties _dictionaties;
+        private TypeRights _isBigRights = TypeRights.All;
 
         public delegate bool ReturnSaveCustomer(Customer cust);
         public event ReturnSaveCustomer OnSaveCustomerNeed;
@@ -24,13 +25,22 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
             
         }
-
-        public AnketaConsumerForm(Customer customer, AnketaDictionaties dictionaties, bool isNew = true)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="dictionaties"></param>
+        /// <param name="isNew"></param>
+        /// <param name="isBigRights"></param>
+        public AnketaConsumerForm(Customer customer, AnketaDictionaties dictionaties, bool isNew = true, TypeRights typeRights = TypeRights.SmallRights )
         {
             InitializeComponent();
+
+            _isBigRights = typeRights;
             ctrlConsumerAnketa.OnBtnSaveClick += CtrlConsumerAnketa_OnBtnSaveClick;
             _customer = customer;
             _dictionaties = dictionaties;
+            ctrlConsumerAnketa.typeRights = typeRights;
             ctrlConsumerAnketa.SetDataAndDictionaries(customer, dictionaties);
             ctrlConsumerAnketa.InitializeControl(isNew);
             if (!isNew)
@@ -41,7 +51,10 @@ namespace IpsViewComponentLibrary
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cust"></param>
         private void CtrlConsumerAnketa_OnBtnSaveClick(Customer cust)
         {
             var result = OnSaveCustomerNeed?.Invoke(cust) ?? false;
@@ -54,12 +67,22 @@ namespace IpsViewComponentLibrary
                 MessageBox.Show("Не вдалося додати нового споживача дані!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             if(MessageBox.Show("Дійсно скасувати всі зміни та вийти?","Повідомлення",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                 Close();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
 

@@ -19,14 +19,30 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
+        /// <summary>
+        /// Тип права
+        /// </summary>
+        public TypeRights typeRights { get; set; } = TypeRights.SmallRights;
+
+        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties )
         {
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
             var license = cust?.Client?.LicenseAgreement?.FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == license?.LicVersion);
 
 
-            ddlLicType.DataSource = dictionaties?.agrLicenseType;
+            ddlLicType.DataSource = dictionaties?.agrLicenseType.Where( rec => 
+            {
+                switch (typeRights)
+                {
+                    case TypeRights.SmallRights:
+                        return rec.UsesKind != 1;
+                    case TypeRights.BigRights:
+                        return rec.UsesKind == 1;
+                }
+                return true;
+            });
+
             ddlLicType.DataBindings.Clear();
             ddlLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", license, "LicCode", true));
 
@@ -37,15 +53,9 @@ namespace IpsViewComponentLibrary
             
 
             ctrlAgreementMain.DataSource = licenseParam;
-            // ctrlAgreementMain.DateDataSource = licenseParam;
-            //ctrlAgreementMain.ContrNumber = "LicNum";
-            //ctrlAgreementMain.AgrDateDataMember = "LicDate";
-            //ctrlAgreementMain.BeginDateDataMember = "DateBegin";
-            //ctrlAgreementMain.EndDateDataMember = "DateEnd";
-
             
             ctrlAgreementSecond.DataSourceBinding = licenseParam;
-            ctrlAgreementSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
+            ctrlAgreementSecond.AutoprolongationDataSource = licenseParam;
             ctrlAgreementSecond.MinPayment = "MinAmount";
             ctrlAgreementSecond.PercentPayment = "RateAmount";
 

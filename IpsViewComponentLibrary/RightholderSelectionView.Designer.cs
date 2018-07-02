@@ -44,12 +44,16 @@
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.rightholderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gvRightholdersList = new Telerik.WinControls.UI.RadGridView();
+            this.txtSearchRightholder = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.panelCommand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearchRightholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,13 +97,15 @@
             // 
             // gvRightholdersList
             // 
-            this.gvRightholdersList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvRightholdersList.Location = new System.Drawing.Point(0, 0);
+            this.gvRightholdersList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvRightholdersList.EnableCustomFiltering = true;
+            this.gvRightholdersList.Location = new System.Drawing.Point(0, 27);
             // 
             // 
             // 
             this.gvRightholdersList.MasterTemplate.AllowAddNewRow = false;
-            this.gvRightholdersList.MasterTemplate.AllowSearchRow = true;
             this.gvRightholdersList.MasterTemplate.AutoGenerateColumns = false;
             this.gvRightholdersList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
@@ -164,16 +170,38 @@
             gridViewTextBoxColumn5,
             gridViewCommandColumn1});
             this.gvRightholdersList.MasterTemplate.DataSource = this.rightholderMainViewBindingSource;
+            this.gvRightholdersList.MasterTemplate.EnableCustomFiltering = true;
+            this.gvRightholdersList.MasterTemplate.EnableFiltering = true;
+            this.gvRightholdersList.MasterTemplate.ShowFilteringRow = false;
             this.gvRightholdersList.MasterTemplate.ShowRowHeaderColumn = false;
             this.gvRightholdersList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvRightholdersList.Name = "gvRightholdersList";
             this.gvRightholdersList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvRightholdersList.ReadOnly = true;
             this.gvRightholdersList.ShowGroupPanel = false;
-            this.gvRightholdersList.Size = new System.Drawing.Size(803, 362);
+            this.gvRightholdersList.Size = new System.Drawing.Size(803, 335);
             this.gvRightholdersList.TabIndex = 3;
             this.gvRightholdersList.ThemeName = "Office2013Light";
+            this.gvRightholdersList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvRightholdersList_CustomFiltering);
             this.gvRightholdersList.DoubleClick += new System.EventHandler(this.gvRightholdersList_DoubleClick);
+            // 
+            // txtSearchRightholder
+            // 
+            this.txtSearchRightholder.Location = new System.Drawing.Point(53, 0);
+            this.txtSearchRightholder.Name = "txtSearchRightholder";
+            this.txtSearchRightholder.Size = new System.Drawing.Size(640, 21);
+            this.txtSearchRightholder.TabIndex = 23;
+            this.txtSearchRightholder.ThemeName = "Office2013Light";
+            this.txtSearchRightholder.TextChanged += new System.EventHandler(this.txtSearchRightholder_TextChanged);
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(0, 0);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(47, 19);
+            this.radLabel1.TabIndex = 22;
+            this.radLabel1.Text = "Пошук:";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // RightholderSelectionView
             // 
@@ -182,6 +210,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(803, 393);
+            this.Controls.Add(this.txtSearchRightholder);
+            this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.gvRightholdersList);
             this.Controls.Add(this.panelCommand);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -198,8 +228,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearchRightholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -210,5 +243,7 @@
         private Telerik.WinControls.UI.RadButton btnOk;
         private System.Windows.Forms.BindingSource rightholderMainViewBindingSource;
         private Telerik.WinControls.UI.RadGridView gvRightholdersList;
+        private Telerik.WinControls.UI.RadTextBox txtSearchRightholder;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
     }
 }

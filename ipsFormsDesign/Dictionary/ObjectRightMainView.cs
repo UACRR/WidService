@@ -14,6 +14,7 @@ namespace ipsFormsDesign.Dictionary
         public TimeSpan Duration { get; set; }
         public string SpecName { get; set; }
         public double RateTotal { get; set; }
+        public string Author { get; set; }
         public string Performer { get; set; }
         public double Profit { get; set; }
     }

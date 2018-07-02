@@ -12,6 +12,7 @@ using System.ComponentModel;
 using ipsFormsDesign.Services;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace UnitTestMediaPortal
 {
@@ -99,6 +100,39 @@ namespace UnitTestMediaPortal
             var rhService = new RightholderService();
             var testList = rhService.getAuthorsByFilter("П");
             Assert.IsNotNull(testList);
+        }
+
+        [TestMethod]
+        public void TestAutoCombleteTextBox()
+        {
+            TestTextBoxAuto form = new TestTextBoxAuto();
+            form.Load+= (sender, e) => (sender as TestTextBoxAuto).Visible = true;
+            var retCode = form.ShowDialog();
+
+            Assert.AreEqual(retCode, DialogResult.OK);
+        }
+
+        [TestMethod]
+        public void TestPutDocument()
+        {
+            ConsumerService service = new ConsumerService();
+            Customer cust = service.GetData( 135 );
+            service.uploadDocument(135, 1, "F_6_МТЦ.docx", new FileStream("Documents\\F_6_МТЦ.docx", FileMode.Open));
+        }
+
+        [TestMethod]
+        public void TestDownLoad()
+        {
+            ConsumerService service = new ConsumerService();
+            var dic = service.GetDictionary();
+            Customer cust = service.GetData(135);
+            Stream fileStream = service.downloadDocument(135, 1, "F_6_МТЦ.docx");
+            Assert.IsNotNull(fileStream);
+            WordEngine eng = new WordEngine(dic);
+            var licAgr = cust.Client.LicenseAgreement.First();
+            eng.ProcessConsumer( fileStream, cust, licAgr, licAgr.LicVersion ?? 1);
+
+            Assert.IsTrue(File.Exists(eng.Pdf));
         }
 
     }

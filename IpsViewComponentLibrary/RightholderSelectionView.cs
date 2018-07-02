@@ -80,5 +80,48 @@ namespace IpsViewComponentLibrary
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void txtSearchRightholder_TextChanged(object sender, EventArgs e)
+        {
+            gvRightholdersList.MasterTemplate.Refresh();
+        }
+
+        private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSearchRightholder.Text))
+            {
+                gvRightholdersList.BeginUpdate();
+                e.Visible = true;
+                for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                gvRightholdersList.EndUpdate(false);
+                return;
+            }
+
+            gvRightholdersList.BeginUpdate();
+            e.Visible = false;
+            for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
+            {
+                //якщо поле пусте
+                if (e.Row.Cells[i].Value == null)
+                    continue;
+
+                string text = e.Row.Cells[i].Value.ToString();
+                if (text.IndexOf(txtSearchRightholder.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                {
+                    e.Visible = true;
+                    e.Row.Cells[i].Style.CustomizeFill = true;
+                    e.Row.Cells[i].Style.DrawFill = true;
+                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
+                }
+                else
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                gvRightholdersList.EndUpdate(false);
+            }
+        }
     }
 }

@@ -53,17 +53,19 @@
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.pvSecond = new Telerik.WinControls.UI.RadPageView();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.btnPrint = new Telerik.WinControls.UI.RadButton();
+            this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
+            this.btnEditAgreement = new Telerik.WinControls.UI.RadButton();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.btnProlongation = new Telerik.WinControls.UI.RadButton();
-            this.agreementInfoCtrl = new IpsViewComponentLibrary.InformationAboutTheContractTitleControl();
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.calculationCtrl = new IpsViewComponentLibrary.CalculationInfoControl();
             this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
-            this.reportsControl = new IpsViewComponentLibrary.ReportsControl();
             this.pvMoreAgreements = new Telerik.WinControls.UI.RadPageViewPage();
             this.gvMoreAgr = new Telerik.WinControls.UI.RadGridView();
+            this.agreementInfoCtrl = new IpsViewComponentLibrary.InformationAboutTheContractTitleControl();
+            this.calculationCtrl = new IpsViewComponentLibrary.CalculationInfoControl();
+            this.reportsControl = new IpsViewComponentLibrary.ReportsControl();
             this.userInfoCtrl = new IpsViewComponentLibrary.InformationOfUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
@@ -73,7 +75,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pvSecond)).BeginInit();
             this.pvSecond.SuspendLayout();
             this.pvAgreement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnProlongation)).BeginInit();
             this.pvCalculation.SuspendLayout();
@@ -107,10 +111,10 @@
             // 
             this.pvActiveAgr.Controls.Add(this.gvLicenseAgr);
             this.pvActiveAgr.Controls.Add(this.pvSecond);
-            this.pvActiveAgr.ItemSize = new System.Drawing.SizeF(107F, 26F);
-            this.pvActiveAgr.Location = new System.Drawing.Point(10, 35);
+            this.pvActiveAgr.ItemSize = new System.Drawing.SizeF(104F, 24F);
+            this.pvActiveAgr.Location = new System.Drawing.Point(10, 33);
             this.pvActiveAgr.Name = "pvActiveAgr";
-            this.pvActiveAgr.Size = new System.Drawing.Size(1061, 633);
+            this.pvActiveAgr.Size = new System.Drawing.Size(1061, 635);
             this.pvActiveAgr.Text = "Активні договора";
             // 
             // gvLicenseAgr
@@ -130,7 +134,7 @@
             gridViewTextBoxColumn1.FieldName = "License";
             gridViewTextBoxColumn1.HeaderText = "Ліцензія";
             gridViewTextBoxColumn1.Name = "License";
-            gridViewTextBoxColumn1.Width = 188;
+            gridViewTextBoxColumn1.Width = 186;
             gridViewTextBoxColumn2.FieldName = "Series";
             gridViewTextBoxColumn2.HeaderText = "Серія";
             gridViewTextBoxColumn2.Name = "Series";
@@ -138,32 +142,32 @@
             gridViewTextBoxColumn3.FieldName = "AgrNumber";
             gridViewTextBoxColumn3.HeaderText = "Номер договору";
             gridViewTextBoxColumn3.Name = "AgrNumber";
-            gridViewTextBoxColumn3.Width = 129;
+            gridViewTextBoxColumn3.Width = 128;
             gridViewTextBoxColumn4.FieldName = "DateBegin";
             gridViewTextBoxColumn4.HeaderText = "Дата початку";
             gridViewTextBoxColumn4.Name = "DateBegin";
-            gridViewTextBoxColumn4.Width = 104;
+            gridViewTextBoxColumn4.Width = 103;
             gridViewTextBoxColumn5.FieldName = "DateEnd";
             gridViewTextBoxColumn5.HeaderText = "Дата завершення";
             gridViewTextBoxColumn5.Name = "DateEnd";
-            gridViewTextBoxColumn5.Width = 109;
+            gridViewTextBoxColumn5.Width = 108;
             gridViewDecimalColumn1.FieldName = "Amount";
             gridViewDecimalColumn1.HeaderText = "Сума";
             gridViewDecimalColumn1.Name = "Amount";
-            gridViewDecimalColumn1.Width = 93;
+            gridViewDecimalColumn1.Width = 92;
             gridViewTextBoxColumn6.FieldName = "State";
             gridViewTextBoxColumn6.HeaderText = "Стан";
             gridViewTextBoxColumn6.Name = "State";
-            gridViewTextBoxColumn6.Width = 93;
+            gridViewTextBoxColumn6.Width = 92;
             gridViewTextBoxColumn7.FieldName = "PeriodPayment";
             gridViewTextBoxColumn7.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn7.Name = "PeriodPayment";
-            gridViewTextBoxColumn7.Width = 133;
+            gridViewTextBoxColumn7.Width = 132;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "DateLastPayment";
             gridViewTextBoxColumn8.HeaderText = "Дата останньої оплати";
             gridViewTextBoxColumn8.Name = "DateLastPayment";
-            gridViewTextBoxColumn8.Width = 143;
+            gridViewTextBoxColumn8.Width = 142;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "Id";
             gridViewTextBoxColumn9.HeaderText = "Id";
@@ -202,7 +206,7 @@
             this.pvSecond.Location = new System.Drawing.Point(2, 140);
             this.pvSecond.Name = "pvSecond";
             this.pvSecond.SelectedPage = this.pvAgreement;
-            this.pvSecond.Size = new System.Drawing.Size(1059, 499);
+            this.pvSecond.Size = new System.Drawing.Size(1059, 503);
             this.pvSecond.TabIndex = 2;
             this.pvSecond.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvSecond.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -212,29 +216,52 @@
             // pvAgreement
             // 
             this.pvAgreement.AutoScroll = true;
-            this.pvAgreement.Controls.Add(this.radButton2);
+            this.pvAgreement.Controls.Add(this.btnPrint);
+            this.pvAgreement.Controls.Add(this.btnAddAgreement);
+            this.pvAgreement.Controls.Add(this.btnEditAgreement);
             this.pvAgreement.Controls.Add(this.radButton1);
             this.pvAgreement.Controls.Add(this.btnProlongation);
             this.pvAgreement.Controls.Add(this.agreementInfoCtrl);
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(57F, 26F);
-            this.pvAgreement.Location = new System.Drawing.Point(66, 10);
+            this.pvAgreement.ItemSize = new System.Drawing.SizeF(53F, 24F);
+            this.pvAgreement.Location = new System.Drawing.Point(62, 10);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(982, 478);
+            this.pvAgreement.Size = new System.Drawing.Size(986, 482);
             this.pvAgreement.Text = "Договір";
             // 
-            // radButton2
+            // btnPrint
             // 
-            this.radButton2.Location = new System.Drawing.Point(798, 30);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(86, 38);
-            this.radButton2.TabIndex = 2;
-            this.radButton2.Text = "Редагувати договір";
-            this.radButton2.TextWrap = true;
+            this.btnPrint.Location = new System.Drawing.Point(798, 117);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(86, 38);
+            this.btnPrint.TabIndex = 5;
+            this.btnPrint.Text = "Друкувати договір";
+            this.btnPrint.TextWrap = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnAddAgreement
+            // 
+            this.btnAddAgreement.Location = new System.Drawing.Point(798, 29);
+            this.btnAddAgreement.Name = "btnAddAgreement";
+            this.btnAddAgreement.Size = new System.Drawing.Size(86, 38);
+            this.btnAddAgreement.TabIndex = 4;
+            this.btnAddAgreement.Text = "Додати новий договір";
+            this.btnAddAgreement.TextWrap = true;
+            this.btnAddAgreement.Click += new System.EventHandler(this.btnAddAgreement_Click);
+            // 
+            // btnEditAgreement
+            // 
+            this.btnEditAgreement.Location = new System.Drawing.Point(890, 29);
+            this.btnEditAgreement.Name = "btnEditAgreement";
+            this.btnEditAgreement.Size = new System.Drawing.Size(86, 38);
+            this.btnEditAgreement.TabIndex = 2;
+            this.btnEditAgreement.Text = "Редагувати договір";
+            this.btnEditAgreement.TextWrap = true;
+            this.btnEditAgreement.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // radButton1
             // 
             this.radButton1.Enabled = false;
-            this.radButton1.Location = new System.Drawing.Point(798, 116);
+            this.radButton1.Location = new System.Drawing.Point(890, 73);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(86, 38);
             this.radButton1.TabIndex = 3;
@@ -251,36 +278,9 @@
             this.btnProlongation.TextWrap = true;
             this.btnProlongation.Click += new System.EventHandler(this.btnProlongation_Click);
             // 
-            // agreementInfoCtrl
-            // 
-            this.agreementInfoCtrl.Agent = "";
-            this.agreementInfoCtrl.Amount = "94500";
-            this.agreementInfoCtrl.Bank = "960";
-            this.agreementInfoCtrl.DateAgr = "12.12.2020";
-            this.agreementInfoCtrl.DateBegin = "10.10.1010";
-            this.agreementInfoCtrl.DateEnd = "10.10.1010";
-            this.agreementInfoCtrl.DistributedAmount = "640";
-            this.agreementInfoCtrl.Implementation = "Немає акту";
-            this.agreementInfoCtrl.IsAttach = false;
-            this.agreementInfoCtrl.IsPaid = false;
-            this.agreementInfoCtrl.IsProlongation = false;
-            this.agreementInfoCtrl.IsState = false;
-            this.agreementInfoCtrl.Location = new System.Drawing.Point(3, 3);
-            this.agreementInfoCtrl.MaximumSize = new System.Drawing.Size(788, 277);
-            this.agreementInfoCtrl.MinimumSize = new System.Drawing.Size(788, 277);
-            this.agreementInfoCtrl.MinPayment = "14799.50";
-            this.agreementInfoCtrl.Name = "agreementInfoCtrl";
-            this.agreementInfoCtrl.Notation = "";
-            this.agreementInfoCtrl.NumberAgr = "КБЦКП - 95/87845-45а";
-            this.agreementInfoCtrl.Percent = "3";
-            this.agreementInfoCtrl.PeriodReportind = "Щоночі";
-            this.agreementInfoCtrl.Size = new System.Drawing.Size(788, 277);
-            this.agreementInfoCtrl.State = "Не дійсний";
-            this.agreementInfoCtrl.TabIndex = 0;
-            // 
             // pvHistory
             // 
-            this.pvHistory.ItemSize = new System.Drawing.SizeF(57F, 26F);
+            this.pvHistory.ItemSize = new System.Drawing.SizeF(53F, 24F);
             this.pvHistory.Location = new System.Drawing.Point(66, 10);
             this.pvHistory.Name = "pvHistory";
             this.pvHistory.Size = new System.Drawing.Size(982, 349);
@@ -290,48 +290,26 @@
             // 
             this.pvCalculation.AutoScroll = true;
             this.pvCalculation.Controls.Add(this.calculationCtrl);
-            this.pvCalculation.ItemSize = new System.Drawing.SizeF(78F, 26F);
+            this.pvCalculation.ItemSize = new System.Drawing.SizeF(72F, 24F);
             this.pvCalculation.Location = new System.Drawing.Point(10, 35);
             this.pvCalculation.Name = "pvCalculation";
             this.pvCalculation.Size = new System.Drawing.Size(1061, 633);
             this.pvCalculation.Text = "Розрахунки";
             // 
-            // calculationCtrl
-            // 
-            this.calculationCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.calculationCtrl.AutoScroll = true;
-            this.calculationCtrl.Location = new System.Drawing.Point(0, 0);
-            this.calculationCtrl.MaximumSize = new System.Drawing.Size(3000, 1000);
-            this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
-            this.calculationCtrl.Name = "calculationCtrl";
-            this.calculationCtrl.Size = new System.Drawing.Size(1061, 595);
-            this.calculationCtrl.TabIndex = 0;
-            // 
             // pvReports
             // 
             this.pvReports.AutoScroll = true;
             this.pvReports.Controls.Add(this.reportsControl);
-            this.pvReports.ItemSize = new System.Drawing.SizeF(43F, 26F);
+            this.pvReports.ItemSize = new System.Drawing.SizeF(38F, 24F);
             this.pvReports.Location = new System.Drawing.Point(10, 35);
             this.pvReports.Name = "pvReports";
             this.pvReports.Size = new System.Drawing.Size(1061, 633);
             this.pvReports.Text = "Звіти";
             // 
-            // reportsControl
-            // 
-            this.reportsControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.reportsControl.Location = new System.Drawing.Point(4, 4);
-            this.reportsControl.MinimumSize = new System.Drawing.Size(700, 470);
-            this.reportsControl.Name = "reportsControl";
-            this.reportsControl.Size = new System.Drawing.Size(1057, 470);
-            this.reportsControl.TabIndex = 0;
-            // 
             // pvMoreAgreements
             // 
             this.pvMoreAgreements.Controls.Add(this.gvMoreAgr);
-            this.pvMoreAgreements.ItemSize = new System.Drawing.SizeF(121F, 26F);
+            this.pvMoreAgreements.ItemSize = new System.Drawing.SizeF(116F, 24F);
             this.pvMoreAgreements.Location = new System.Drawing.Point(10, 35);
             this.pvMoreAgreements.Name = "pvMoreAgreements";
             this.pvMoreAgreements.Size = new System.Drawing.Size(1061, 633);
@@ -403,6 +381,55 @@
             this.gvMoreAgr.TabIndex = 12;
             this.gvMoreAgr.ThemeName = "Office2007Silver";
             // 
+            // agreementInfoCtrl
+            // 
+            this.agreementInfoCtrl.Agent = "";
+            this.agreementInfoCtrl.Amount = "94500";
+            this.agreementInfoCtrl.Bank = "960";
+            this.agreementInfoCtrl.DateAgr = "12.12.2020";
+            this.agreementInfoCtrl.DateBegin = "10.10.1010";
+            this.agreementInfoCtrl.DateEnd = "10.10.1010";
+            this.agreementInfoCtrl.DistributedAmount = "640";
+            this.agreementInfoCtrl.Implementation = "Немає акту";
+            this.agreementInfoCtrl.IsAttach = false;
+            this.agreementInfoCtrl.IsPaid = false;
+            this.agreementInfoCtrl.IsProlongation = false;
+            this.agreementInfoCtrl.IsState = false;
+            this.agreementInfoCtrl.Location = new System.Drawing.Point(3, 3);
+            this.agreementInfoCtrl.MaximumSize = new System.Drawing.Size(788, 277);
+            this.agreementInfoCtrl.MinimumSize = new System.Drawing.Size(788, 277);
+            this.agreementInfoCtrl.MinPayment = "14799.50";
+            this.agreementInfoCtrl.Name = "agreementInfoCtrl";
+            this.agreementInfoCtrl.Notation = "";
+            this.agreementInfoCtrl.NumberAgr = "КБЦКП - 95/87845-45а";
+            this.agreementInfoCtrl.Percent = "3";
+            this.agreementInfoCtrl.PeriodReportind = "Щоночі";
+            this.agreementInfoCtrl.Size = new System.Drawing.Size(788, 277);
+            this.agreementInfoCtrl.State = "Не дійсний";
+            this.agreementInfoCtrl.TabIndex = 0;
+            // 
+            // calculationCtrl
+            // 
+            this.calculationCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.calculationCtrl.AutoScroll = true;
+            this.calculationCtrl.Location = new System.Drawing.Point(0, 0);
+            this.calculationCtrl.MaximumSize = new System.Drawing.Size(3000, 1000);
+            this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
+            this.calculationCtrl.Name = "calculationCtrl";
+            this.calculationCtrl.Size = new System.Drawing.Size(1061, 595);
+            this.calculationCtrl.TabIndex = 0;
+            // 
+            // reportsControl
+            // 
+            this.reportsControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportsControl.Location = new System.Drawing.Point(4, 4);
+            this.reportsControl.MinimumSize = new System.Drawing.Size(700, 470);
+            this.reportsControl.Name = "reportsControl";
+            this.reportsControl.Size = new System.Drawing.Size(1057, 470);
+            this.reportsControl.TabIndex = 0;
+            // 
             // userInfoCtrl
             // 
             this.userInfoCtrl.Edrpou = "46546545";
@@ -439,7 +466,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pvSecond)).EndInit();
             this.pvSecond.ResumeLayout(false);
             this.pvAgreement.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnProlongation)).EndInit();
             this.pvCalculation.ResumeLayout(false);
@@ -467,8 +496,10 @@
         private ReportsControl reportsControl;
         private Telerik.WinControls.UI.RadButton btnProlongation;
         private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton btnEditAgreement;
         private Telerik.WinControls.UI.RadPageViewPage pvMoreAgreements;
         private Telerik.WinControls.UI.RadGridView gvMoreAgr;
+        private Telerik.WinControls.UI.RadButton btnAddAgreement;
+        private Telerik.WinControls.UI.RadButton btnPrint;
     }
 }

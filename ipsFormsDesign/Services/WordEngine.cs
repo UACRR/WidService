@@ -22,6 +22,9 @@ namespace ipsFormsDesign.Services
             _dic = dic;
         }
 
+        /// <summary>
+        /// Видалення тимчасових файлів
+        /// </summary>
         private void clearFiles()
         {
             if (tempFileName == null) return;
@@ -37,11 +40,32 @@ namespace ipsFormsDesign.Services
         ~WordEngine()
         {
             clearFiles();
+            if (app != null)
+                app.Quit();
         }
 
         public string Pdf { get { return tempFileName + ".pdf"; } }
 
+        /// <summary>
+        /// Формування Генерального договору з Правовласником 
+        /// </summary>
+        /// <param name="streamTemplate"></param>
+        /// <param name="cust"></param>
+        /// <param name="agr"></param>
+        public void processRightHolder(Stream streamTemplate, Customer cust, AgreementMaster agr)
+        {
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            clearFiles();
 
+            var docFile = tempFileName + ".docx";
+            using (var docStream = new FileStream(docFile, FileMode.CreateNew))
+            {
+                streamTemplate.CopyTo(docStream);
+            }
+
+            innerProcesRightHolder(cust, agr);
+
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -58,6 +82,16 @@ namespace ipsFormsDesign.Services
             File.Copy(pathTemplate, docFile);
             // відкрити шаблон
 
+            innerProcesRightHolder(cust, agr);
+        }
+        /// <summary>
+        /// Формування документу (внутріній метод)
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <param name="agr"></param>
+        private void innerProcesRightHolder(Customer cust, AgreementMaster agr)
+        {
+            var docFile = tempFileName + ".docx";
             try
             {
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
@@ -249,16 +283,32 @@ namespace ipsFormsDesign.Services
                     app.Quit();
                 app = null;
             }
-        }
 
+        }
         /// <summary>
-        /// 
+        /// Друк доп угоди по ліцензійному договору with Stream
         /// </summary>
         /// <param name="pathTemplate"></param>
-        /// <param name="Consumer"></param>
-        public void processConsumer(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement lic)
+        /// <param name="cust"></param>
+        /// <param name="agr"></param>
+        /// <param name="lic"></param>
+        public void ProcessConsumer(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement lic)
         {
-            processConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
+            ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
+        }
+        /// <summary>
+        /// Друк доп угоди по ліцензійному договору with FileName
+        /// </summary>
+        /// <param name="pathTemplate"></param>
+        /// <param name="Consumer"></param> 
+        public void ProcessConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
+        {
+            string docFile = PrepareWork();
+            System.IO.File.Copy(pathTemplate, docFile);
+
+            // відкрити шаблон
+
+            InnerProcessConsumer(cust, agr, version, docFile);
         }
 
         /// <summary>
@@ -266,20 +316,28 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="pathTemplate"></param>
         /// <param name="Consumer"></param>
-        public void processConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
+        public void ProcessConsumer(Stream streamTemplate, Customer cust, LicenseAgreement agr, int version)
         {
+            string docFile = PrepareWork();
 
+            using (var fileDoc = new FileStream(docFile, FileMode.CreateNew))
+            {
+                streamTemplate.CopyTo(fileDoc);
+            }
 
-            // копіювати в тимчасову папку
-            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            var docFile = tempFileName + ".docx";
-
-            if (File.Exists(docFile))
-                File.Delete(docFile);
-
-            File.Copy(pathTemplate, docFile);
             // відкрити шаблон
 
+            InnerProcessConsumer(cust, agr, version, docFile);
+        }
+        /// <summary>
+        /// Внутрішній метод формування договору з Споживачем
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <param name="agr"></param>
+        /// <param name="version"></param>
+        /// <param name="docFile"></param>
+        private void InnerProcessConsumer(Customer cust, LicenseAgreement agr, int version, string docFile)
+        {
             try
             {
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
@@ -829,6 +887,17 @@ namespace ipsFormsDesign.Services
             }
         }
 
+        private string PrepareWork()
+        {
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var docFile = tempFileName + ".docx";
+
+            if (File.Exists(docFile))
+                File.Delete(docFile);
+            return docFile;
+        }
+
 
 
         /// <summary>
@@ -966,7 +1035,6 @@ namespace ipsFormsDesign.Services
             }
         }
 
-
         private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
@@ -1064,7 +1132,6 @@ namespace ipsFormsDesign.Services
 
             }
         }
-
 
         private void formTableExclude(Tables tables, RightHolder rightHolder)
         {

@@ -54,7 +54,7 @@ namespace IpsViewComponentLibrary
             {
                 var licenseParam = value;
                 ctrlAgrSecond.DataSourceBinding = licenseParam;
-                ctrlAgrSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
+                ctrlAgrSecond.AutoprolongationDataSource = licenseParam;
                 ctrlAgrSecond.MinPayment = "MinAmount";
                 ctrlAgrSecond.PercentPayment = "RateAmount";
 

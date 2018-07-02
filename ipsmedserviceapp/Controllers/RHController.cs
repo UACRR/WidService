@@ -450,6 +450,37 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
         }
         #endregion
+
+        #region Methods for change rightholder status
+
+        [HttpPut("setstatus/{rhId}")]
+        public async Task<IActionResult> SetStatus(int rhId, [FromBody] int newStatus)
+        {
+            var customer = await _dbContext.Customer.FirstOrDefaultAsync(c => c.CustId == rhId);
+
+            if (customer == null)
+                return NotFound();
+
+            if (newStatus == 7 && customer.Status == 2)
+            {
+                customer.Status = newStatus;
+                await _dbContext.SaveChangesAsync();
+            }
+            else if (newStatus == 2 && customer.Status <= 1)
+            {
+                customer.Status = newStatus;
+                await _dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status406NotAcceptable);
+            }
+
+            return Ok();
+        }
+
+        #endregion
+
         #region inheritance
 
         /// <summary>

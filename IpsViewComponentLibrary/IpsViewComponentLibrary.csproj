@@ -445,6 +445,9 @@
     <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utility\RadTextBoxAuto.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ViewAndPrintAgreement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -629,6 +632,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />

@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary
         }
 
         //TODO: переробити databinding LicenseAgrParam
-        public ProlongationWithoutPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict, string license, LicenseAgreement lic, Customer customer)
+        public ProlongationWithoutPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict, string license, LicenseAgreement lic, Customer customer, DialogGoal goal)
         {
             _lic = lic;
             _licAgr = bindAgr;
@@ -62,7 +62,6 @@ namespace IpsViewComponentLibrary
         private void CtrlProlongation_OnSaveChangesClick()
         {
             _changesSaved = true;
-            //TODO зберігання даних
             OnSaveProlongation?.Invoke(this,EventArgs.Empty);
             Close();
         }
