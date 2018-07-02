@@ -1324,5 +1324,17 @@ namespace RightholderWorkplace
                 UpdateObjectRightDataSources(objContainer.objectRight, objContainer.rhList);
             }
         }
+
+        private void btnNewObject_Click(object sender, EventArgs e)
+        {
+            if (_objectRight == null)
+                return;
+
+            var tmpName = autoObjectName.Text;
+
+            AddObjectRight(_objectRight.CategoryCode);
+
+            autoObjectName.Text = tmpName;
+        }
     }
 }
