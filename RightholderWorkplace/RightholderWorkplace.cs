@@ -929,6 +929,46 @@ namespace RightholderWorkplace
             }
         }
 
+        private void GetObjects(string filter)
+        {
+            var autocompliteObjects = _objectRightService.GetObjectsByFilter(filter);
+
+            autocompliteObjects.ForEach(o => autoObjectName.AutoCompleteItems.Add(
+                new RadListDataItem($"{o.Name} / {o.Author} / {o.Performer}", o))
+            );
+        }
+
+        private void autoObjectName_TextChanged(object sender, EventArgs e)
+        {
+            if (autoObjectName.Text.Length >= 2 && autoObjectName.AutoCompleteItems.Count == 0)
+            {
+                GetObjects(autoObjectName.Text);
+            }
+
+            if (autoObjectName.Text.Length < 2 && autoObjectName.AutoCompleteItems.Count != 0)
+            {
+                autoObjectName.AutoCompleteItems.Clear();
+            }
+        }
+
+        private void autoObjectName_ListItemSelected(object sender, RadListDataItem item)
+        {
+            var obj = item.Value as ObjectRightMainView;
+            if (obj != null)
+            {
+                var objContainer = _objectRightService.GetData(obj.ObjId);
+                UpdateObjectRightDataSources(objContainer.objectRight, objContainer.rhList);
+            }
+        }
+
+        private void btnNewObject_Click(object sender, EventArgs e)
+        {
+            if (_objectRight == null)
+                return;
+
+            AddObjectRight(_objectRight.CategoryCode, _forRightholder, autoObjectName.Text);
+        }
+
         #endregion
 
         #region Rightholders objectrights list event handlers
@@ -1037,7 +1077,7 @@ namespace RightholderWorkplace
 
         private BindingList<ObjectCopyright> _objectsCopyrightList = new BindingList<ObjectCopyright>();
 
-        private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView e)
+        private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
             objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
             _objectsCopyrightList.Clear();
@@ -1233,6 +1273,11 @@ namespace RightholderWorkplace
             UpdateRightholdersList(SelectedRightholder);
         }
 
+        private void btnCancelNewCopyright_Click(object sender, EventArgs e)
+        {
+            ctrlRightholdersObjectsForChange.SelectedRightholder = null;
+        }
+
         private void ctrlRightholdersObjectsForChange_EditObjectCommandExecuted(object sender, int objId)
         {
             EditObjectRight(objId);
@@ -1336,46 +1381,6 @@ namespace RightholderWorkplace
                 }
                 gvObjectsRightsList.EndUpdate(false);
             }
-        }
-
-        private void GetObjects(string filter)
-        {
-            var autocompliteObjects = _objectRightService.GetObjectsByFilter(filter);
-
-            autocompliteObjects.ForEach(o => autoObjectName.AutoCompleteItems.Add(
-                new RadListDataItem($"{o.Name} / {o.Author} / {o.Performer}", o))
-            );
-        }
-
-        private void autoObjectName_TextChanged(object sender, EventArgs e)
-        {
-            if (autoObjectName.Text.Length >= 2 && autoObjectName.AutoCompleteItems.Count == 0)
-            {
-                GetObjects(autoObjectName.Text);
-            }
-
-            if (autoObjectName.Text.Length < 2 && autoObjectName.AutoCompleteItems.Count != 0)
-            {
-                autoObjectName.AutoCompleteItems.Clear();
-            }
-        }
-
-        private void autoObjectName_ListItemSelected(object sender, RadListDataItem item)
-        {
-            var obj = item.Value as ObjectRightMainView;
-            if (obj != null)
-            {
-                var objContainer = _objectRightService.GetData(obj.ObjId);
-                UpdateObjectRightDataSources(objContainer.objectRight, objContainer.rhList);
-            }
-        }
-
-        private void btnNewObject_Click(object sender, EventArgs e)
-        {
-            if (_objectRight == null)
-                return;
-
-            AddObjectRight(_objectRight.CategoryCode, _forRightholder, autoObjectName.Text);
         }
     }
 }
