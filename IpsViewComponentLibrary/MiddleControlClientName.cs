@@ -24,6 +24,7 @@ namespace IpsViewComponentLibrary
         public MiddleControlClientName()
         {
             InitializeComponent();
+            ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
         }
 
         public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
