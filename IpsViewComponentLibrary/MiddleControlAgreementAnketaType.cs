@@ -29,7 +29,6 @@ namespace IpsViewComponentLibrary
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
             var license = cust?.Client?.LicenseAgreement?.FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == license?.LicVersion);
-            //TODO: ПЕРЕВІРИТИ
             if(license != null)
                 license.LicCode = typeRights == TypeRights.SmallRights ? 1 : typeRights == TypeRights.BigRights ? 10 : throw new ArgumentException();
 

@@ -29,7 +29,39 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             SetDefaultPages();
+        }
 
+        /// <summary>
+        /// Очищення даних 
+        /// </summary>
+        private void ClearData()
+        {
+            SetDefaultPages();
+            userInfoCtrl.SetEmptyFields();
+            agreementInfoCtrl.SetEmpty();
+            gvLicenseAgr.DataSource = new object();
+        }
+
+        /// <summary>
+        /// Зміна активованості та очищення даних коли анкету не обрано
+        /// </summary>
+        /// <param name="anketaCount">Параметр наявності анкет</param>
+        public void SetStateWhenChangeAnketaCount(AnketaCount anketaCount)
+        {
+            switch (anketaCount)
+            {
+                case AnketaCount.Empty:
+                {
+                    ClearData();
+                    pvMain.Enabled = false;
+                    return;
+                }
+                case AnketaCount.NotEmpty:
+                {
+                    pvMain.Enabled = true;
+                    return;
+                }
+            }
         }
 
         public void SetDictionary(AnketaDictionaties dict)
@@ -40,7 +72,6 @@ namespace IpsViewComponentLibrary
 
         public void SetCustomerData(Customer cust)
         {
-            SetDefaultPages();
             _customer = cust;
             SetUserInfoData();
             gvLicenseAgr.DataSource = new object();
@@ -49,6 +80,7 @@ namespace IpsViewComponentLibrary
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
             reportsControl.SetData(cust);
+            reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
         }
 
         /// <summary>
@@ -183,8 +215,8 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetDefaultPages()
         {
-            //pvSecond.SelectedPage = pvSecond.DefaultPage;
-            //pvMain.SelectedPage = pvMain.DefaultPage;
+            pvSecond.SelectedPage = pvSecond.DefaultPage;
+            pvMain.SelectedPage = pvMain.DefaultPage;
         }
 
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
@@ -193,14 +225,7 @@ namespace IpsViewComponentLibrary
             if (!isInt) return;
             SetAgrInfoData(result);
         }
-
-        private void pvMain_SelectedPageChanged(object sender, EventArgs e)
-        {
-            if (pvMain.SelectedPage == pvReports)
-                reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
-        }
-
-
+        
 
 
         /// <summary>
@@ -313,6 +338,7 @@ namespace IpsViewComponentLibrary
             return false;
         }
 
+        //кнопка додати договір
         private void btnAddAgreement_Click(object sender, EventArgs e)
         {
             _customer.Client.LicenseAgreement.Add(new LicenseAgreement
@@ -341,6 +367,7 @@ namespace IpsViewComponentLibrary
             RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forNew);
         }
 
+        //кнопка друк
         private void btnPrint_Click(object sender, EventArgs e)
         {
             var _lic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.AgrId == _idItem);
@@ -351,6 +378,21 @@ namespace IpsViewComponentLibrary
             };
             print.ShowDialog();
         }
+    }
+
+    /// <summary>
+    /// Кількість анкет користувачів
+    /// </summary>
+    public enum AnketaCount
+    {
+        /// <summary>
+        /// Немає жодної анкети
+        /// </summary>
+        Empty,
+        /// <summary>
+        /// Присутня принаймні одна анкета
+        /// </summary>
+        NotEmpty
     }
 
     public class GridLicenseAgrView
