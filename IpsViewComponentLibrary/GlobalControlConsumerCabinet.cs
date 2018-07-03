@@ -110,9 +110,16 @@ namespace IpsViewComponentLibrary
         {
             int custId = (int?) e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
             if (custId != -1)
+            {
+                btnEditAgr.Enabled = true;
+                mсInfoAgrCalc.SetStateWhenChangeAnketaCount(AnketaCount.NotEmpty);
                 mсInfoAgrCalc.SetCustomerData(OnGridRowSelectedChaged?.Invoke(custId)); //здійснює оновлення даних
+            }
             else
-                ;//TODO: встановити пусті значення
+            {
+                mсInfoAgrCalc.SetStateWhenChangeAnketaCount(AnketaCount.Empty);
+                btnEditAgr.Enabled = false;
+            }
         }
 
         public void SetFilter( object _choice )
