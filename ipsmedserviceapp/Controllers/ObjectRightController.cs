@@ -29,7 +29,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="objid"></param>
         /// <returns></returns>
-        private async Task<ObjectRight> getObjectRightById( int objid )
+        private async Task<ObjectRight> getObjectRightById(int objid)
         {
             var objectRight = await _dbContext.ObjectRight.Where(rec => rec.ObjId == objid)
                 .Include(rec => rec.Authors)
@@ -40,12 +40,10 @@ namespace ipsmedserviceapp.Controllers
             await _dbContext.Entry(objectRight).Collection(item => item.CopyRight)
                 .Query()
                 .Where(rec => rec.BeginDate <= DateTime.Today && DateTime.Today <= rec.EndDate)
-                .Include(rec => rec.Cust).LoadAsync();
+                .Include(rec => rec.Cust)
+                .Include(rec => rec.WorkRh)
+                .LoadAsync();
 
-            //foreach ( var right in objectRight.CopyRight )
-            //{
-            //    await _dbContext.Entry(right).Reference(item => item.Cust).LoadAsync();
-            //}
 
             return objectRight;
         }
@@ -68,6 +66,16 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.UpdateList(sors.CopyRight, dest.CopyRight, i => { }, (l, r) => l.CRightId == r.CRightId);
             _dbContext.UpdateList(sors.Authors, dest.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
             _dbContext.UpdateList(sors.SeekObject, dest.SeekObject, i => { }, (l, r) => l.Id == r.Id);
+
+            // Update WorkRh
+            {
+                var dicCopyRight = sors.CopyRight.ToDictionary(rec => rec.CRightId);
+                foreach ( var item in dest.CopyRight )
+                {
+                    var sorsItem = dicCopyRight[item.CRightId];
+                    _dbContext.UpdateList(sorsItem.WorkRh, item.WorkRh, i=> { }, (l,r)=>l.WorkId == r.WorkId );
+                }
+            }
 
             if (dest.CategoryCode == 5)
             {
@@ -97,7 +105,7 @@ namespace ipsmedserviceapp.Controllers
             var or = await getObjectRightById(objid);
             var rhList = await _dbContext.getViewData($"select * from ft_ObjectRightCustomerForm01({objid})", null);
 
-            return Json( new { objectRight = or, rhList});
+            return Json(new { objectRight = or, rhList });
         }
 
         /// <summary>
@@ -106,7 +114,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="objid">Ідентифікатор об'єкту</param>
         /// <returns>Структура даних обїекту</returns>
         [HttpPut("detail/{objid}")]
-        public async Task<IActionResult> UpdateObjectRightById(int objid, [FromBody] ObjectRight body )
+        public async Task<IActionResult> UpdateObjectRightById(int objid, [FromBody] ObjectRight body)
         {
             IDbContextTransaction tran = null;
             try
@@ -120,7 +128,7 @@ namespace ipsmedserviceapp.Controllers
                 return Json(dest);
 
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 tran?.Rollback();
                 return BadRequest(ex.Message);
@@ -133,28 +141,28 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="CategoryCode"></param>
         /// <returns></returns>
         [HttpGet("new/{CategoryCode}")]
-        public  IActionResult getObjectRightWildCard( int CategoryCode )
+        public IActionResult getObjectRightWildCard(int CategoryCode)
         {
             ObjectRight addObject = new ObjectRight { CategoryCode = CategoryCode };
-            switch( CategoryCode )
+            switch (CategoryCode)
             {
                 case 5:
                     {
-                        addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0,0,0) };
+                        addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0, 0, 0) };
                     }
                     break;
             }
 
             return Json(addObject);
         }
-        
+
         /// <summary>
         /// Створення нового об'єкту права
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
         [HttpPost("newobject")]
-        public async Task<IActionResult> createObjectRight([FromBody] ObjectRight body )
+        public async Task<IActionResult> createObjectRight([FromBody] ObjectRight body)
         {
             ObjectRight addObject = new ObjectRight { CategoryCode = body.CategoryCode };
             IDbContextTransaction tran = null;
@@ -172,7 +180,7 @@ namespace ipsmedserviceapp.Controllers
                 return Json(addObject);
 
             }
-            catch( Exception ex )
+            catch (Exception ex)
             {
                 tran?.Rollback();
                 return BadRequest(ex.Message);
