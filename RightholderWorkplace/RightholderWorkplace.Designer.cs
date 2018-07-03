@@ -280,6 +280,7 @@
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
             this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholdersObjectsRightsControl();
             this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
+            this.btnCancelNewCopyright = new Telerik.WinControls.UI.RadButton();
             this.dtChangeCopyrightDateTill = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblChangeCopyrightDateTill = new Telerik.WinControls.UI.RadLabel();
             this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.RadioPanel();
@@ -482,6 +483,7 @@
             this.splitPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).BeginInit();
             this.splitPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancelNewCopyright)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).BeginInit();
             this.ctrlChangeRightholderOperation.SuspendLayout();
@@ -1553,7 +1555,7 @@
             this.rightholdersPageView.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
-            this.rightholdersPageView.SelectedPage = this.rightholdersPage;
+            this.rightholdersPageView.SelectedPage = this.rightholdersChangePage;
             this.rightholdersPageView.Size = new System.Drawing.Size(1182, 632);
             this.rightholdersPageView.TabIndex = 0;
             this.rightholdersPageView.ThemeName = "Office2013Light";
@@ -1784,7 +1786,7 @@
             gridViewTextBoxColumn22.Name = "Community_Name";
             gridViewTextBoxColumn22.Width = 144;
             gridViewCommandColumn5.AllowResize = false;
-            gridViewCommandColumn5.DefaultText = "Статус";
+            gridViewCommandColumn5.DefaultText = "Зм. статус";
             gridViewCommandColumn5.HeaderText = "";
             gridViewCommandColumn5.Name = "SetStatusColumn";
             gridViewCommandColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3069,6 +3071,7 @@
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
+            this.splitPanel5.ThemeName = "Office2013Light";
             // 
             // ctrlRightholdersObjectsForChange
             // 
@@ -3086,6 +3089,7 @@
             // 
             // splitPanel6
             // 
+            this.splitPanel6.Controls.Add(this.btnCancelNewCopyright);
             this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateTill);
             this.splitPanel6.Controls.Add(this.lblChangeCopyrightDateTill);
             this.splitPanel6.Controls.Add(this.ctrlChangeRightholderOperation);
@@ -3106,6 +3110,18 @@
             this.splitPanel6.TabIndex = 1;
             this.splitPanel6.TabStop = false;
             this.splitPanel6.Text = "splitPanel6";
+            this.splitPanel6.ThemeName = "Office2013Light";
+            // 
+            // btnCancelNewCopyright
+            // 
+            this.btnCancelNewCopyright.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelNewCopyright.Location = new System.Drawing.Point(675, 432);
+            this.btnCancelNewCopyright.Name = "btnCancelNewCopyright";
+            this.btnCancelNewCopyright.Size = new System.Drawing.Size(175, 24);
+            this.btnCancelNewCopyright.TabIndex = 74;
+            this.btnCancelNewCopyright.Text = "Скасувати";
+            this.btnCancelNewCopyright.ThemeName = "Office2013Light";
+            this.btnCancelNewCopyright.Click += new System.EventHandler(this.btnCancelNewCopyright_Click);
             // 
             // dtChangeCopyrightDateTill
             // 
@@ -3746,6 +3762,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).EndInit();
             this.splitPanel6.ResumeLayout(false);
             this.splitPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancelNewCopyright)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).EndInit();
             this.ctrlChangeRightholderOperation.ResumeLayout(false);
@@ -3960,5 +3977,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem2;
         private Telerik.WinControls.UI.RadMenuButtonItem radMenuButtonItem2;
         private Telerik.WinControls.UI.RadMenuHeaderItem radMenuHeaderItem1;
+        private Telerik.WinControls.UI.RadButton btnCancelNewCopyright;
     }
 }
