@@ -100,8 +100,8 @@ namespace ipsAnketaClient
             lblLocation.Text = string.Empty;
 
             premisesType = new IpsPremisesTypeControl();
-            premisesType.OnBtnAddPremisesClick += PremisesType_OnBtnAddPremisesClick; 
-            premisesType.OnBtnDeletePremisesClick += PremisesType_OnBtnDeletePremisesClick; 
+            premisesType.OnBtnAddPremisesClick += PremisesType_OnBtnAddPremisesClick;
+            premisesType.OnBtnDeletePremisesClick += PremisesType_OnBtnDeletePremisesClick; ; 
             premisesType.OnBtnEditPremisesClick += PremisesType_OnBtnEditPremisesClick; 
             premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
             premisesType.Location = new Point(10, 155); 
@@ -109,6 +109,15 @@ namespace ipsAnketaClient
             rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height + 230);//   + 240
 
             rPanelAdd.Controls.Add(premisesType);
+        }
+
+        /// <summary>
+        /// Видалити приміщення
+        /// </summary>
+        private void PremisesType_OnBtnDeletePremisesClick(ClnPlaceHoll deleteHoll)
+        {
+            var item = rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace;
+            item?.ClnPlaceHoll.Remove(deleteHoll);
         }
 
         /// <summary>
@@ -310,15 +319,6 @@ namespace ipsAnketaClient
         }
 
         #endregion
-
-
-        /// <summary>
-        /// Видалити приміщення
-        /// </summary>
-        private void PremisesType_OnBtnDeletePremisesClick()
-        {
-            MessageBox.Show(premisesType.IdSelectedRow.ToString());
-        }
 
 
 

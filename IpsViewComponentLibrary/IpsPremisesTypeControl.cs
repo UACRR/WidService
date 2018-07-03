@@ -13,6 +13,8 @@ namespace IpsViewComponentLibrary
 {
     public partial class IpsPremisesTypeControl : UserControl
     {
+        //TODO REFACTOR CODE! видалти непотрібні класи, генерації
+
         private Customer dataTemp;
         private int _idSelectedRow;
         private string _idSelectedRowString;
@@ -28,7 +30,7 @@ namespace IpsViewComponentLibrary
         }
 
         public delegate void AddPremises();
-        public delegate void DeletePremises();
+        public delegate void DeletePremises(ClnPlaceHoll deleteHoll);
         public delegate void EditPremises();
 
         public event AddPremises OnBtnAddPremisesClick;
@@ -68,7 +70,9 @@ namespace IpsViewComponentLibrary
             byte? type = (byte?) sourceData.Client.ClnBusinessPlace.SingleOrDefault(idItem => idItem.PlaceId == id)?.PlCode;
             SetGridType(type ?? prem);
                 if(prem == 0)
-            rGridViewPremises.DataSource = data;
+            //rGridViewPremises.DataSource = data;
+            rGridViewPremises.DataSource = places;
+
         }
 
         public void SetDataSource(List<ClnPlaceHoll> sourceData)
@@ -86,7 +90,8 @@ namespace IpsViewComponentLibrary
                 };
                 data.Add(temp);
             }
-            rGridViewPremises.DataSource = data;
+            rGridViewPremises.DataSource = sourceData;
+            //rGridViewPremises.DataSource = data;
         }
 
 
@@ -100,14 +105,14 @@ namespace IpsViewComponentLibrary
             {
                 case 1:
                 {
-                    rGridViewPremises.Columns["CountPlace"].IsVisible = false;
-                    rGridViewPremises.Columns["Meterage"].IsVisible = true;
+                    rGridViewPremises.Columns["HollNum"].IsVisible = false;
+                    rGridViewPremises.Columns["SqHoll"].IsVisible = true;
                 }break;
 
                 case 2:
                 {
-                    rGridViewPremises.Columns["Meterage"].IsVisible = false;
-                    rGridViewPremises.Columns["CountPlace"].IsVisible = true;
+                    rGridViewPremises.Columns["SqHoll"].IsVisible = false;
+                    rGridViewPremises.Columns["HollNum"].IsVisible = true;
                 }break;
             }
         }
@@ -117,19 +122,18 @@ namespace IpsViewComponentLibrary
                 if(rGridViewPremises.Rows.Count == 0) return;
             
             if (rGridViewPremises.CurrentRow.Cells[0].Value != null)
-                _idSelectedRow = Convert.ToInt32(rGridViewPremises.CurrentRow.Cells["IdItem"].Value);
+                _idSelectedRow = Convert.ToInt32(rGridViewPremises.CurrentRow.Cells["HollId"].Value);
             if(_idSelectedRow == 0)
-               _idSelectedRowString = rGridViewPremises.CurrentRow.Cells["TypePremisesName"].Value.ToString();
+               _idSelectedRowString = rGridViewPremises.CurrentRow.Cells["HollName"].Value.ToString();
             OnBtnEditPremisesClick?.Invoke();
         }
 
         private void radBtnDeletePremises_Click(object sender, EventArgs e)
         {
-                if (rGridViewPremises.Rows.Count == 0) return;
+            if (rGridViewPremises.Rows.Count == 0) return;
 
-            if (rGridViewPremises.CurrentRow.Cells[0].Value != null)
-                _idSelectedRow = Convert.ToInt32(rGridViewPremises.CurrentRow.Cells["IdItem"].Value);
-            OnBtnDeletePremisesClick?.Invoke();
+            var deleteItem = rGridViewPremises.CurrentRow.DataBoundItem as ClnPlaceHoll;
+            OnBtnDeletePremisesClick?.Invoke(deleteItem);
         }
 
         public List<ClnPlaceHoll> GetData(int idRowInst)
