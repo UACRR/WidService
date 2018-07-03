@@ -4,6 +4,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using RightholderWorkplace.Localisation;
+using RightholderWorkplace.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -308,8 +309,6 @@ namespace RightholderWorkplace
         {
             _rightholderStatusType = rightholderStatusType;
 
-            SetRightholdersListColumns();
-
             UpdateRightholdersList();
         }
 
@@ -322,17 +321,6 @@ namespace RightholderWorkplace
             {
                 SelectedRightholder = selectedRightholder;
             }
-        }
-
-        private void SetRightholdersListColumns()
-        {
-            var editColumn = gvRightholdersList.Columns["EditColumn"];
-            var acceptColumn = gvRightholdersList.Columns["AcceptColumn"];
-            var setStatusColumn = gvRightholdersList.Columns["SetStatusColumn"];
-
-            editColumn.IsVisible = true;
-            acceptColumn.IsVisible = (_rightholderStatusType == RightholderStatusType.New || _rightholderStatusType == RightholderStatusType.NotAccepted);
-            setStatusColumn.IsVisible = (_rightholderStatusType == RightholderStatusType.Active);
         }
 
         private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
@@ -397,13 +385,41 @@ namespace RightholderWorkplace
             }
             else if (currentColumnName == "SetStatusColumn")
             {
-                _rightholderService.SetStatus(SelectedRightholder.CustId, RightholderStatusType.Inheritance);
-                UpdateRightholdersList();
+                ShowChangeRightholderStatusMenu();
             }
             else if (currentColumnName == "AcceptColumn")
             {
                 _rightholderService.SetStatus(SelectedRightholder.CustId, RightholderStatusType.Active);
                 UpdateRightholdersList();
+            }
+        }
+
+        private void ShowChangeRightholderStatusMenu()
+        {
+            var rightholder = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
+
+            if (rightholder != null)
+            {
+                Point absolutePosition = gvRightholdersList.CurrentCell.PointToScreen(gvRightholdersList.CurrentCell.Location);
+                absolutePosition.Y += gvRightholdersList.CurrentCell.Size.Height;
+
+                var menu = RightholderStatusMenuFactory.Create((RightholderStatusType)rightholder.Status, RightholderStatusMenu_Click);
+                menu.Show(absolutePosition);
+            }
+        }
+
+        private void RightholderStatusMenu_Click(object sender, EventArgs e)
+        {
+            if (sender is RadMenuItem menuItem)
+            {
+                var newStatus = (RightholderStatusType)menuItem.Tag;
+
+                var result = _rightholderService.SetStatus(SelectedRightholder.CustId, newStatus);
+
+                if (result)
+                    UpdateRightholdersList();
+                else
+                    MessageBox.Show("Не вдалося змінити статус.", "Помилка");
             }
         }
 
