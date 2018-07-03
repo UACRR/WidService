@@ -32,8 +32,12 @@
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
+            this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).BeginInit();
+            this.radPdfViewer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +78,7 @@
             this.radPdfViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPdfViewer.Controls.Add(this.radWaitingBar1);
             this.radPdfViewer.EnableThumbnails = false;
             this.radPdfViewer.Location = new System.Drawing.Point(0, 44);
             this.radPdfViewer.Name = "radPdfViewer";
@@ -84,6 +89,27 @@
             ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
             ((Telerik.WinControls.UI.ThumbnailListElement)(this.radPdfViewer.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            // 
+            // radWaitingBar1
+            // 
+            this.radWaitingBar1.BackColor = System.Drawing.Color.Transparent;
+            this.radWaitingBar1.Location = new System.Drawing.Point(503, 240);
+            this.radWaitingBar1.Name = "radWaitingBar1";
+            this.radWaitingBar1.Size = new System.Drawing.Size(86, 70);
+            this.radWaitingBar1.TabIndex = 0;
+            this.radWaitingBar1.Text = "radWaitingBar1";
+            this.radWaitingBar1.Visible = false;
+            this.radWaitingBar1.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.radWaitingBar1.WaitingSpeed = 50;
+            this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            this.radWaitingBar1.WaitingStarted += new System.EventHandler(this.radWaitingBar1_WaitingStarted);
+            this.radWaitingBar1.WaitingStopped += new System.EventHandler(this.radWaitingBar1_WaitingStopped);
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.AutoSize = true;
+            this.lineRingWaitingBarIndicatorElement1.AutoToolTip = true;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             // 
             // ViewAndPrintAgreement
             // 
@@ -99,8 +125,11 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Перегляд та друк договору";
             this.ThemeName = "Office2007Silver";
+            this.ClientSizeChanged += new System.EventHandler(this.radWaitingBar1_ParentChanged);
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).EndInit();
+            this.radPdfViewer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -112,5 +141,7 @@
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
         private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator;
         private Telerik.WinControls.UI.RadPdfViewer radPdfViewer;
+        private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }
