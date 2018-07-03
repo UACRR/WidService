@@ -31,7 +31,6 @@
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
             this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator5 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator4 = new Telerik.WinControls.UI.RadSeparator();
@@ -39,13 +38,11 @@
             this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlHeadBoss = new IpsViewComponentLibrary.IpsBossNameContactsControl();
-            this.ddlPosition = new Telerik.WinControls.UI.RadDropDownList();
             this.ctrlBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
             this.ctrlContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).BeginInit();
@@ -57,7 +54,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtSurName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtLastName)).BeginInit();
@@ -83,35 +79,29 @@
             // 
             this.txtOnBasicsIfHeadBoss.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(351, 82);
+            this.txtOnBasicsIfHeadBoss.AutoSize = false;
+            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(154, 58);
+            this.txtOnBasicsIfHeadBoss.Multiline = true;
             this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
-            this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(397, 21);
+            this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(594, 20);
             this.txtOnBasicsIfHeadBoss.TabIndex = 18;
             this.txtOnBasicsIfHeadBoss.ThemeName = "Office2013Light";
             // 
             // radLabel8
             // 
             this.radLabel8.AutoSize = false;
-            this.radLabel8.Location = new System.Drawing.Point(89, 82);
+            this.radLabel8.Location = new System.Drawing.Point(55, 58);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(256, 20);
+            this.radLabel8.Size = new System.Drawing.Size(93, 20);
             this.radLabel8.TabIndex = 10;
-            this.radLabel8.Text = "На основі чого діє якщо посада «директор»";
+            this.radLabel8.Text = "Діє на основі:";
             this.radLabel8.ThemeName = "Office2013Light";
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.Location = new System.Drawing.Point(39, 56);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(44, 18);
-            this.radLabel7.TabIndex = 11;
-            this.radLabel7.Text = "Посада";
             // 
             // radSeparator5
             // 
             this.radSeparator5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator5.Location = new System.Drawing.Point(142, 259);
+            this.radSeparator5.Location = new System.Drawing.Point(142, 235);
             this.radSeparator5.Name = "radSeparator5";
             this.radSeparator5.Size = new System.Drawing.Size(595, 21);
             this.radSeparator5.TabIndex = 12;
@@ -119,7 +109,7 @@
             // radLabel6
             // 
             this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel6.Location = new System.Drawing.Point(4, 259);
+            this.radLabel6.Location = new System.Drawing.Point(4, 235);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(109, 21);
             this.radLabel6.TabIndex = 13;
@@ -129,7 +119,7 @@
             // 
             this.radSeparator4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator4.Location = new System.Drawing.Point(96, 170);
+            this.radSeparator4.Location = new System.Drawing.Point(96, 146);
             this.radSeparator4.Name = "radSeparator4";
             this.radSeparator4.Size = new System.Drawing.Size(642, 21);
             this.radSeparator4.TabIndex = 14;
@@ -137,7 +127,7 @@
             // radLabel5
             // 
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel5.Location = new System.Drawing.Point(4, 170);
+            this.radLabel5.Location = new System.Drawing.Point(4, 146);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(66, 21);
             this.radLabel5.TabIndex = 15;
@@ -167,7 +157,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlHeadBoss.DataMember = "";
             this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
-            this.ctrlHeadBoss.Location = new System.Drawing.Point(55, 108);
+            this.ctrlHeadBoss.Location = new System.Drawing.Point(55, 84);
             this.ctrlHeadBoss.Name = "ctrlHeadBoss";
             this.ctrlHeadBoss.Size = new System.Drawing.Size(693, 56);
             this.ctrlHeadBoss.TabIndex = 19;
@@ -175,13 +165,13 @@
             // 
             // 
             this.ctrlHeadBoss.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtEmail.Location = new System.Drawing.Point(487, 34);
+            this.ctrlHeadBoss.TxtEmail.Location = new System.Drawing.Point(487, 35);
             this.ctrlHeadBoss.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtEmail.Name = "txtEmail";
             // 
             // 
             // 
-            this.ctrlHeadBoss.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 44, 175, 0);
+            this.ctrlHeadBoss.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 36, 206, 20);
             this.ctrlHeadBoss.TxtEmail.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtEmail.Size = new System.Drawing.Size(206, 20);
             this.ctrlHeadBoss.TxtEmail.TabIndex = 4;
@@ -189,14 +179,14 @@
             // 
             // 
             this.ctrlHeadBoss.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtFirstName.Location = new System.Drawing.Point(260, 3);
+            this.ctrlHeadBoss.TxtFirstName.Location = new System.Drawing.Point(260, 4);
             this.ctrlHeadBoss.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtFirstName.Name = "txtFirstName";
             this.ctrlHeadBoss.TxtFirstName.NullText = "Ім\'я";
             // 
             // 
             // 
-            this.ctrlHeadBoss.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 13, 173, 0);
+            this.ctrlHeadBoss.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(260, 4, 204, 20);
             this.ctrlHeadBoss.TxtFirstName.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtFirstName.Size = new System.Drawing.Size(204, 20);
             this.ctrlHeadBoss.TxtFirstName.TabIndex = 1;
@@ -204,14 +194,14 @@
             // 
             // 
             this.ctrlHeadBoss.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtLastName.Location = new System.Drawing.Point(33, 3);
+            this.ctrlHeadBoss.TxtLastName.Location = new System.Drawing.Point(33, 4);
             this.ctrlHeadBoss.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtLastName.Name = "txtLastName";
             this.ctrlHeadBoss.TxtLastName.NullText = "Прізвище";
             // 
             // 
             // 
-            this.ctrlHeadBoss.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 14, 173, 0);
+            this.ctrlHeadBoss.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 204, 20);
             this.ctrlHeadBoss.TxtLastName.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtLastName.Size = new System.Drawing.Size(204, 20);
             this.ctrlHeadBoss.TxtLastName.TabIndex = 0;
@@ -219,14 +209,14 @@
             // 
             // 
             this.ctrlHeadBoss.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtPhone.Location = new System.Drawing.Point(33, 34);
+            this.ctrlHeadBoss.TxtPhone.Location = new System.Drawing.Point(33, 35);
             this.ctrlHeadBoss.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtPhone.MaxLength = 13;
             this.ctrlHeadBoss.TxtPhone.Name = "txtPhone";
             // 
             // 
             // 
-            this.ctrlHeadBoss.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 46, 173, 0);
+            this.ctrlHeadBoss.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 204, 20);
             this.ctrlHeadBoss.TxtPhone.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtPhone.Size = new System.Drawing.Size(204, 20);
             this.ctrlHeadBoss.TxtPhone.TabIndex = 3;
@@ -234,26 +224,17 @@
             // 
             // 
             this.ctrlHeadBoss.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtSurName.Location = new System.Drawing.Point(487, 3);
+            this.ctrlHeadBoss.TxtSurName.Location = new System.Drawing.Point(487, 4);
             this.ctrlHeadBoss.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtSurName.Name = "txtSurName";
             this.ctrlHeadBoss.TxtSurName.NullText = "По батькові";
             // 
             // 
             // 
-            this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 14, 175, 0);
+            this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
             this.ctrlHeadBoss.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlHeadBoss.TxtSurName.TabIndex = 2;
-            // 
-            // ddlPosition
-            // 
-            this.ddlPosition.DisplayMember = "Name";
-            this.ddlPosition.Location = new System.Drawing.Point(89, 56);
-            this.ddlPosition.Name = "ddlPosition";
-            this.ddlPosition.Size = new System.Drawing.Size(206, 20);
-            this.ddlPosition.TabIndex = 20;
-            this.ddlPosition.ValueMember = "CodeI";
             // 
             // ctrlBookkeeper
             // 
@@ -261,7 +242,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlBookkeeper.DataMember = "";
             this.ctrlBookkeeper.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
-            this.ctrlBookkeeper.Location = new System.Drawing.Point(55, 197);
+            this.ctrlBookkeeper.Location = new System.Drawing.Point(55, 173);
             this.ctrlBookkeeper.Name = "ctrlBookkeeper";
             this.ctrlBookkeeper.Size = new System.Drawing.Size(693, 56);
             this.ctrlBookkeeper.TabIndex = 21;
@@ -269,7 +250,7 @@
             // 
             // 
             this.ctrlBookkeeper.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtEmail.Location = new System.Drawing.Point(487, 34);
+            this.ctrlBookkeeper.TxtEmail.Location = new System.Drawing.Point(487, 35);
             this.ctrlBookkeeper.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlBookkeeper.TxtEmail.Name = "txtEmail";
             // 
@@ -283,7 +264,7 @@
             // 
             // 
             this.ctrlBookkeeper.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtFirstName.Location = new System.Drawing.Point(260, 3);
+            this.ctrlBookkeeper.TxtFirstName.Location = new System.Drawing.Point(260, 4);
             this.ctrlBookkeeper.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlBookkeeper.TxtFirstName.Name = "txtFirstName";
             this.ctrlBookkeeper.TxtFirstName.NullText = "Ім\'я";
@@ -298,7 +279,7 @@
             // 
             // 
             this.ctrlBookkeeper.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtLastName.Location = new System.Drawing.Point(33, 3);
+            this.ctrlBookkeeper.TxtLastName.Location = new System.Drawing.Point(33, 4);
             this.ctrlBookkeeper.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlBookkeeper.TxtLastName.Name = "txtLastName";
             this.ctrlBookkeeper.TxtLastName.NullText = "Прізвище";
@@ -313,7 +294,7 @@
             // 
             // 
             this.ctrlBookkeeper.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtPhone.Location = new System.Drawing.Point(33, 34);
+            this.ctrlBookkeeper.TxtPhone.Location = new System.Drawing.Point(33, 35);
             this.ctrlBookkeeper.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlBookkeeper.TxtPhone.MaxLength = 13;
             this.ctrlBookkeeper.TxtPhone.Name = "txtPhone";
@@ -328,14 +309,14 @@
             // 
             // 
             this.ctrlBookkeeper.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtSurName.Location = new System.Drawing.Point(487, 3);
+            this.ctrlBookkeeper.TxtSurName.Location = new System.Drawing.Point(487, 4);
             this.ctrlBookkeeper.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlBookkeeper.TxtSurName.Name = "txtSurName";
             this.ctrlBookkeeper.TxtSurName.NullText = "По батькові";
             // 
             // 
             // 
-            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
+            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
             this.ctrlBookkeeper.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlBookkeeper.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlBookkeeper.TxtSurName.TabIndex = 2;
@@ -346,7 +327,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlContactPerson.DataMember = "";
             this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
-            this.ctrlContactPerson.Location = new System.Drawing.Point(55, 286);
+            this.ctrlContactPerson.Location = new System.Drawing.Point(55, 262);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
             this.ctrlContactPerson.Size = new System.Drawing.Size(693, 56);
             this.ctrlContactPerson.TabIndex = 22;
@@ -354,7 +335,7 @@
             // 
             // 
             this.ctrlContactPerson.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtEmail.Location = new System.Drawing.Point(487, 34);
+            this.ctrlContactPerson.TxtEmail.Location = new System.Drawing.Point(487, 35);
             this.ctrlContactPerson.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlContactPerson.TxtEmail.Name = "txtEmail";
             // 
@@ -368,7 +349,7 @@
             // 
             // 
             this.ctrlContactPerson.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtFirstName.Location = new System.Drawing.Point(260, 3);
+            this.ctrlContactPerson.TxtFirstName.Location = new System.Drawing.Point(260, 4);
             this.ctrlContactPerson.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlContactPerson.TxtFirstName.Name = "txtFirstName";
             this.ctrlContactPerson.TxtFirstName.NullText = "Ім\'я";
@@ -383,7 +364,7 @@
             // 
             // 
             this.ctrlContactPerson.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtLastName.Location = new System.Drawing.Point(33, 3);
+            this.ctrlContactPerson.TxtLastName.Location = new System.Drawing.Point(33, 4);
             this.ctrlContactPerson.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlContactPerson.TxtLastName.Name = "txtLastName";
             this.ctrlContactPerson.TxtLastName.NullText = "Прізвище";
@@ -398,7 +379,7 @@
             // 
             // 
             this.ctrlContactPerson.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtPhone.Location = new System.Drawing.Point(33, 34);
+            this.ctrlContactPerson.TxtPhone.Location = new System.Drawing.Point(33, 35);
             this.ctrlContactPerson.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlContactPerson.TxtPhone.MaxLength = 13;
             this.ctrlContactPerson.TxtPhone.Name = "txtPhone";
@@ -413,14 +394,14 @@
             // 
             // 
             this.ctrlContactPerson.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtSurName.Location = new System.Drawing.Point(487, 3);
+            this.ctrlContactPerson.TxtSurName.Location = new System.Drawing.Point(487, 4);
             this.ctrlContactPerson.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlContactPerson.TxtSurName.Name = "txtSurName";
             this.ctrlContactPerson.TxtSurName.NullText = "По батькові";
             // 
             // 
             // 
-            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
+            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
             this.ctrlContactPerson.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlContactPerson.TxtSurName.TabIndex = 2;
@@ -432,10 +413,8 @@
             this.Controls.Add(this.ctrlContactPerson);
             this.Controls.Add(this.ctrlBookkeeper);
             this.Controls.Add(this.txtOnBasicsIfHeadBoss);
-            this.Controls.Add(this.ddlPosition);
             this.Controls.Add(this.ctrlHeadBoss);
             this.Controls.Add(this.radLabel8);
-            this.Controls.Add(this.radLabel7);
             this.Controls.Add(this.radSeparator5);
             this.Controls.Add(this.radLabel6);
             this.Controls.Add(this.radSeparator4);
@@ -450,7 +429,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator4)).EndInit();
@@ -462,7 +440,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtSurName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtLastName)).EndInit();
@@ -483,7 +460,6 @@
         private Telerik.WinControls.UI.RadLabel lblTitle;
         private Telerik.WinControls.UI.RadTextBox txtOnBasicsIfHeadBoss;
         private Telerik.WinControls.UI.RadLabel radLabel8;
-        private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadSeparator radSeparator5;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadSeparator radSeparator4;
@@ -491,7 +467,6 @@
         private Telerik.WinControls.UI.RadSeparator radSeparator3;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private IpsBossNameContactsControl ctrlHeadBoss;
-        private Telerik.WinControls.UI.RadDropDownList ddlPosition;
         private IpsBossNameContactsControl ctrlBookkeeper;
         private IpsBossNameContactsControl ctrlContactPerson;
     }

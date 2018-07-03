@@ -177,7 +177,7 @@ namespace IpsViewComponentLibrary
         private void SetAgrInfoData(int idItem = 0)
         {
             _idItem = idItem;
-            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
 
             agreementInfoCtrl.NumberAgr = licenseParam?.LicNum;
