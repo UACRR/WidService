@@ -347,6 +347,18 @@
     <Compile Include="MiddleControlManagers.Designer.cs">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectRightListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightListControl.Designer.cs">
+      <DependentUpon>ObjectRightListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightSelectionView.Designer.cs">
+      <DependentUpon>ObjectRightSelectionView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PassportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -572,6 +584,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlManagers.resx">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightListControl.resx">
+      <DependentUpon>ObjectRightListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightSelectionView.resx">
+      <DependentUpon>ObjectRightSelectionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PassportControl.resx">
       <DependentUpon>PassportControl.cs</DependentUpon>
