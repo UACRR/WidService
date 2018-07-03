@@ -153,6 +153,7 @@ namespace ConsumerWorkplace_v_1._0
             var _cust = _service.NewCustomer(custType);
             var _dict = _service.GetDictionary();
             AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict) {StartPosition = FormStartPosition.CenterParent};
+            
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
             form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
