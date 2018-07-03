@@ -336,16 +336,15 @@ namespace RightholderWorkplace
 
             var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx");
 
-            var wordEngine = new WordEngine(_dictionaries);
-
             btnGenerateRightholderAgreement.Enabled = false;
             waitbarAgreement.StartWaiting();
 
-            await Task.Factory.StartNew(() => wordEngine.processRightHolder(template, _customer, _customer.AgreementMaster.First()));
+            var wordEngine = new WordEngine(_dictionaries);
+            await wordEngine.processRightHolder(template, _customer, _customer.AgreementMaster.First());
 
             pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
-
             waitbarAgreement.StopWaiting();
+
             btnGenerateRightholderAgreement.Enabled = true;
         }
 
