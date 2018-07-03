@@ -27,7 +27,7 @@ namespace IpsViewComponentLibrary
             ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
         }
 
-        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties, )
+        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties )
         {
             _cust = cust;
             _dictionaties = dictionaties;
