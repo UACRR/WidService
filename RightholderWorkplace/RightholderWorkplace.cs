@@ -877,6 +877,7 @@ namespace RightholderWorkplace
             }
             else if (_previousPage == rightholdersObjectsPage)
             {
+                UpdateObjectRightsList();
                 UpdateRightholdersObjectsRightList(_objectRight.ObjId);
             }
 
@@ -1180,21 +1181,13 @@ namespace RightholderWorkplace
 
             oldRightholder.CopyRight.Add(new CopyRight { EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1) });
             
-            //// old rightholder closed copyrighs
-            //foreach (var row in gvChangeCopyrights.Rows)
-            //{
-            //    var obj = row.DataBoundItem as ObjectRightForRightholder;
-
-            //    oldRightholder.CopyRight.Add(new CopyRight {
-            //        ObjId = obj.ObjId,
-            //        EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1),
-            //    });
-            //}
             rightholders.Add(oldRightholder);
 
 
             // new copyrighs
-            var groupedCopyright = _objectsCopyrightList.GroupBy(oc => oc.CustId);
+            var groupedCopyright = _objectsCopyrightList
+                .Where(oc => oc.Rate != 0)
+                .GroupBy(oc => oc.CustId);
 
             foreach (var rightholderGroup in groupedCopyright)
             {
@@ -1212,11 +1205,12 @@ namespace RightholderWorkplace
                         CustId = newRightholder.CustId,
                         ObjId = copyright.ObjId,
                         RoleCode = 8, // Правовласник
+                        LBasis = 3,
                         Rate = (decimal)copyright.Rate, // decimal or double?
                         BeginDate = dtChangeCopyrightDateFrom.Value,
                         EndDate = new DateTime(3000, 1, 1),
                         //ParentId = 
-                        Obj = new ObjectRight()
+                        Obj = new ObjectRight(),
                     };
                     newCprt.Obj.Authors.Add(new Authors
                     {
