@@ -657,24 +657,6 @@ namespace RightholderWorkplace
             }
         }
 
-        private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
-        {
-            if (ctrlRightholderSelector.Rightholder == null)
-            {
-                MessageBox.Show("Оберіть правовласника.");
-                return;
-            }
-
-            if (sender is RadMenuItem menuItem)
-            {
-                int category;
-                if (int.TryParse(menuItem.Tag.ToString(), out category))
-                {
-                    AddObjectRight(category, ctrlRightholderSelector.Rightholder);
-                }
-            }
-        }
-
         private void AddObjectRight(int category, RightholderMainView forRightholder = null, string name = null)
         {
             if (category == 0)
@@ -803,6 +785,7 @@ namespace RightholderWorkplace
 
             if (_forRightholder != null)
             {
+                // TODO: move to ObjectAuthorRightholder constructor
                 objectAuthorRightholder.FolkType = 1;
                 objectAuthorRightholder.IsRightholder = true;
                 objectAuthorRightholder.AuthorName = _forRightholder.Name;
@@ -988,6 +971,87 @@ namespace RightholderWorkplace
                 return;
 
             EditObjectRight(SelectedRghtholdersObjectRightId);
+        }
+
+        private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
+        {
+            if (!IsRightholderSelected())
+                return;
+
+            if (sender is RadMenuItem menuItem)
+            {
+                int category;
+                if (int.TryParse(menuItem.Tag.ToString(), out category))
+                {
+                    AddObjectRight(category, ctrlRightholderSelector.Rightholder);
+                }
+            }
+        }
+
+        private void btnAddExistingObjectRightForRightholder_Click(object sender, EventArgs e)
+        {
+            if (!IsRightholderSelected())
+                return;
+
+            using (var selectionView = new ObjectRightSelectionView())
+            {
+                selectionView.ObjectSelected += SelectionView_ObjectSelected;
+                selectionView.ShowDialog();
+            }
+        }
+
+        private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
+        {
+            var selectedRightholder = ctrlRightholderSelector.Rightholder;
+            var objectRightContainer = _objectRightService.GetData(selectedObject.ObjId);
+            var objectRight = objectRightContainer.objectRight;
+            
+            if (objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) >= 100)
+            {
+                MessageBox.Show("Спільний відсоток володіння для вибраного об'єкта вже становить 100%.");
+                return;
+            }
+
+            //if (objectRight.CopyRight.Any(cr => cr.CustId == selectedRightholder.CustId))
+            //{
+            //    // може бути, що додається копірайт для цього ж об'єкта, але по іншій творчій ролі - треба подумати
+            //    MessageBox.Show("");
+            //    return;
+            //}
+
+            var objectAuthorRightholder = new ObjectAuthorRightholder();
+            // TODO: move to ObjectAuthorRightholder constructor
+            objectAuthorRightholder.FolkType = 1;
+            objectAuthorRightholder.IsRightholder = true;
+            objectAuthorRightholder.AuthorName = selectedRightholder.Name;
+            objectAuthorRightholder.CustId = selectedRightholder.CustId;
+            objectAuthorRightholder.CommunityName = selectedRightholder.Community_Name;
+
+            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight, objectRight.CategoryCode))
+            {
+                authorRightholderItemView.ShowDialog();
+
+                if (authorRightholderItemView.DialogResult == DialogResult.OK)
+                {
+                    objectRight.CopyRight.Add(objectAuthorRightholder); // ця логіка є тільки в методі збереження об'єкта права, move logic for add copyright to objectRight extension method
+                    objectRight.Authors.Add(objectAuthorRightholder);   // ця логіка є тільки в методі збереження об'єкта права
+                }
+
+                // check total persent, move total persent calculation to objectRight extension method
+
+                // save object right
+            }
+        }
+
+        private bool IsRightholderSelected()
+        {
+            if (ctrlRightholderSelector.Rightholder == null)
+            {
+                MessageBox.Show("Оберіть правовласника.");
+                return false;
+            }
+
+            return true;
         }
 
         #endregion
@@ -1339,12 +1403,12 @@ namespace RightholderWorkplace
             }
         }
 
-        private void txtSearchObject_TextChanged(object sender, EventArgs e)
+        private void txtSearchObject_TextChanged(object sender, EventArgs e) // moved, and all methods for gvObjectsRightsList
         {
             gvObjectsRightsList.MasterTemplate.Refresh();
         }
 
-        private void gvObjectsRightsList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
+        private void gvObjectsRightsList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e) // moved
         {
             if (string.IsNullOrEmpty(txtSearchObject.Text))
             {
