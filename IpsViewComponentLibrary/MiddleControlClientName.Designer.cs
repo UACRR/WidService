@@ -60,7 +60,6 @@
             this.ctrlRegistrationsCompany.DtRegisterDate.CalendarSize = new System.Drawing.Size(220, 180);
             this.ctrlRegistrationsCompany.DtRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.ctrlRegistrationsCompany.DtRegisterDate.Location = new System.Drawing.Point(278, 38);
-            this.ctrlRegistrationsCompany.DtRegisterDate.MaxDate = new System.DateTime(2018, 6, 19, 0, 0, 0, 0);
             this.ctrlRegistrationsCompany.DtRegisterDate.Name = "dtRegisterDate";
             // 
             // 
