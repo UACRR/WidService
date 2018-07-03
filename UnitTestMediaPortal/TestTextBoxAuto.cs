@@ -22,30 +22,43 @@ namespace UnitTestMediaPortal
         {
             InitializeComponent();
             radTextBoxAuto1.AcceptAuto = fireAuto;
-            radTextBoxAuto1.AutoCompleteMode = AutoCompleteMode.Suggest;
-            radTextBoxAuto1.TextChanged += radTextBoxAuto1_TextChanged; 
+            radTextBoxAuto1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            radTextBoxAuto1.TextChanged += radTextBoxAuto1_TextChanged;
 
 
         }
 
         private void radTextBoxAuto1_TextChanged(object sender, EventArgs e)
         {
-            if (radTextBoxAuto1.Text.Length >= 2 && radTextBoxAuto1.AutoCompleteItems.Count == 0)
+            if (radTextBoxAuto1.Text.Length >= 1 && radTextBoxAuto1.AutoCompleteItems.Count == 0)
             {
-                RadListDataItemCollection autoCompleteItems = this.radTextBoxAuto1.AutoCompleteItems;
-                autoCompleteItems.Add(new RadListDataItem("Luke", 1));
-                autoCompleteItems.Add(new RadListDataItem("Max", 2));
-                autoCompleteItems.Add(new RadListDataItem("Adam 1",3));
-                autoCompleteItems.Add(new RadListDataItem("Adam 2",4));
-                autoCompleteItems.Add(new RadListDataItem("Adam 3",5));
-                autoCompleteItems.Add(new RadListDataItem("Henry",6));
-                autoCompleteItems.Add(new RadListDataItem("Jack",7));
-                autoCompleteItems.Add(new RadListDataItem("Ben",8));
-                autoCompleteItems.Add(new RadListDataItem("Tyler",9));
-                autoCompleteItems.Add(new RadListDataItem("Ethan",10));
-                autoCompleteItems.Add(new RadListDataItem("David",11));
-                autoCompleteItems.Add(new RadListDataItem("Mike",12));
-            };
+                var dataSource = new List<RadListDataItem>();
+                dataSource.AddRange(new[]             {
+                    new RadListDataItem("Luke", 1 ),
+                    new RadListDataItem("Max", 2),
+                    new RadListDataItem("Adam 1", 3),
+                    new RadListDataItem("Adam 2", 4),
+                    new RadListDataItem("Adam 3", 5),
+                    new RadListDataItem("Henry", 6),
+                    new RadListDataItem("Jack", 7),
+                    new RadListDataItem("Ben", 8),
+                    new RadListDataItem("Tyler", 9),
+                    new RadListDataItem("Ethan", 10),
+                    new RadListDataItem("David", 11),
+                    new RadListDataItem("Mike", 12)}
+                    );
+
+                // RadListDataItem test = null;
+
+                radTextBoxAuto1.AutoCompleteDataSource = dataSource;
+                radTextBoxAuto1.AutoCompleteDisplayMember = "DisplayValue";
+
+            }
+
+
+
         }
+
     }
+
 }

@@ -40,8 +40,8 @@ namespace IpsViewComponentLibrary
         //властивість наявності майданчиків
         public bool IsContainPlaces
         {
-           get => ctrlClientName.IsPlaceIn;
-           set => ctrlClientName.IsPlaceIn = value;
+            get => ctrlClientName.IsPlaceIn;
+            set => ctrlClientName.IsPlaceIn = value;
         }
 
         public Customer GetCustomer => _cust;
@@ -59,7 +59,7 @@ namespace IpsViewComponentLibrary
             _visiblePage = 1;
             ChangeButtonsName(_visiblePage);
             btnBack.Visible = false;
-            
+
             ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged; // при зміні наявності майданчиків
         }
 
@@ -74,9 +74,9 @@ namespace IpsViewComponentLibrary
             SetTypePages(isNew);
             SetColorTabs(isNew);
 
-            ctrlClientName.SetDataSources(_cust,_anketaDictionaries); // - - - - - - - -  Назва клієнта
-            ctrlAddress.SetDataSources(_cust,_anketaDictionaries);    // - - - - - - - -  Адреса
-            ctrlManagers.SetDataSources(_cust,_anketaDictionaries);   // - - - - - - - -  Керівники
+            ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
+            ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
+            ctrlManagers.SetDataSources(_cust, _anketaDictionaries);   // - - - - - - - -  Керівники
             ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
             ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
                 ? _cust?.Client?.ClnBusinessPlace // - - - - - - - - - - - - - - - - - - 
@@ -84,10 +84,10 @@ namespace IpsViewComponentLibrary
             ctrlPlacesTitle.Text =              // - - - - - - - - - - - - - - - - - - -
                 _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
-            ctrlBankRequisites.SetDataSources(_cust,_anketaDictionaries); // - - - - - -  Банківські реквізити
+            ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
 
             ctrlAgreement.typeRights = typeRights;                    // - - - - - - - -  Договір
-            ctrlAgreement.SetDataSources(_cust,_anketaDictionaries);  // - - - - - - - -  Договір
+            ctrlAgreement.SetDataSources(_cust, _anketaDictionaries);  // - - - - - - - -  Договір
 
             ctrlClientName.SetDefaultState();
         }
@@ -98,11 +98,11 @@ namespace IpsViewComponentLibrary
         /// <param name="isnew">true(default) - новий споживач, стандартна фарма, false - редагування існуючого споживача</param>
         private void SetTypePages(bool isnew)
         {
-            if(isnew)
+            if (isnew)
             {
                 return;
             }
-          
+
             pvAgreement.Enabled = false;
             pvPrint.Enabled = false;
         }
@@ -131,44 +131,44 @@ namespace IpsViewComponentLibrary
             switch (type)
             {
                 case 1: // - Назва клієнта
-                {
-                    isValid = ctrlClientName.Validator();
-                }
+                    {
+                        isValid = ctrlClientName.Validator();
+                    }
                     break;
                 case 2: // - Адреса
-                {
-                    isValid = ctrlAddress.Validator();
-                }
+                    {
+                        isValid = ctrlAddress.Validator();
+                    }
                     break;
-            
+
                 case 3: // - Керівники
-                {
-                    isValid = ctrlManagers.Validator();
-                }
+                    {
+                        isValid = ctrlManagers.Validator();
+                    }
                     break;
-            
+
                 case 4: //- Майданчики
-                {
-                    //TODO: якщо не додано жодного майданчику видавати помилку
-                    isValid = true;
-                }
+                    {
+                        //TODO: якщо не додано жодного майданчику видавати помилку
+                        isValid = true;
+                    }
                     break;
-            
+
                 case 5: // - Банківські реквізити
-                {
-                    ctrlBankRequisites.Validator();
-                }
+                    {
+                        ctrlBankRequisites.Validator();
+                    }
                     break;
-            
+
                 case 6: // - Договір
-                {
-                    isValid = ctrlAgreement.Validator();
-                }
+                    {
+                        isValid = ctrlAgreement.Validator();
+                    }
                     break;
                 case 7: // - Друк (не потребує)
-                {
-                    isValid = true;
-                }
+                    {
+                        isValid = true;
+                    }
                     break;
             }
 
@@ -191,7 +191,7 @@ namespace IpsViewComponentLibrary
                 case 2:
                     {
                         pageAnketaConsumer.SelectedPage = pvManagers;
-                        
+
                     }
                     break;
                 case 3:
@@ -222,10 +222,10 @@ namespace IpsViewComponentLibrary
                     }
                     break;
                 case 7:
-                {
-                    _btnType = ButtonType.None;
-                    OnBtnSaveClick?.Invoke(_cust);
-                }
+                    {
+                        _btnType = ButtonType.None;
+                        OnBtnSaveClick?.Invoke(_cust);
+                    }
                     break;
             }
         }
@@ -281,8 +281,8 @@ namespace IpsViewComponentLibrary
             string[] names = _buttonsName[key];
             btnBack.Text = names[0];
             btnNext.Text = names[1];
-            
-            if(!IsContainPlaces)
+
+            if (!IsContainPlaces)
             {
                 if (key == 3)
                 {
@@ -309,24 +309,24 @@ namespace IpsViewComponentLibrary
             switch (isNew)
             {
                 case true:
-                {
-                    foreach (var page in pageAnketaConsumer.Pages)
                     {
-                        page.Item.ForeColor = Color.DarkGray;
+                        foreach (var page in pageAnketaConsumer.Pages)
+                        {
+                            page.Item.ForeColor = Color.DarkGray;
+                        }
+                        pageAnketaConsumer.Pages[0].Item.ForeColor = DefaultForeColor;
+                        _nextPageNumber = 1;
                     }
-                    pageAnketaConsumer.Pages[0].Item.ForeColor = DefaultForeColor;
-                    _nextPageNumber = 1;
-                }
                     break;
 
                 case false:
-                {
-                    foreach (var page in pageAnketaConsumer.Pages)
                     {
-                        page.Item.ForeColor = DefaultForeColor;
+                        foreach (var page in pageAnketaConsumer.Pages)
+                        {
+                            page.Item.ForeColor = DefaultForeColor;
+                        }
+                        _nextPageNumber = 5;
                     }
-                    _nextPageNumber = 5;
-                }
                     break;
             }
         }
@@ -334,7 +334,7 @@ namespace IpsViewComponentLibrary
         //зміна кольору вкладки з майданчиками при виборі чекбокса
         private void CtrlClientName_OnContainPlacesChanged(object sender, EventArgs e)
         {
-            if(_nextPageNumber >= 4)
+            if (_nextPageNumber >= 4)
                 pageAnketaConsumer.Pages[3].Item.ForeColor = IsContainPlaces ? DefaultForeColor : Color.DarkGray;
         }
 
@@ -439,20 +439,49 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
-        private void btnLoadPdf_Click(object sender, EventArgs e)
+        private async Task<WordEngine> LoadPdfDocAsync()
         {
             WordEngine wordEngine = new WordEngine(_anketaDictionaries);
+
             var licenseAgreement = _cust?.Client?.LicenseAgreement?.FirstOrDefault();
             int version = licenseAgreement?.LicVersion ?? default(int);
             string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
             templateName = string.Concat(@"Templates\", templateName);
-            
-            
-            wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version).GetAwaiter().GetResult();
-            var pdf = wordEngine.Pdf;
-            radPdfViewer.LoadDocument(pdf);
-            
+            await wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version);
+
+            return wordEngine;
         }
+
+        private void btnLoadPdf_Click(object sender, EventArgs e)
+        {
+            radWaitingBar1.StartWaiting();
+            var wordEngine = Task.Run(()=> LoadPdfDocAsync()).GetAwaiter().GetResult();
+            radWaitingBar1.StopWaiting();
+            radPdfViewer.LoadDocument(wordEngine.Pdf);
+        }
+
+        private void radWaitingBar1_WaitingStarted(object sender, EventArgs e)
+        {
+            radWaitingBar1.Visible = true;
+        }
+
+        private void radWaitingBar1_WaitingStopped(object sender, EventArgs e)
+        {
+            radWaitingBar1.Visible = false;
+
+        }
+
+        //private void radPdfViewer_ClientSizeChanged(object sender, EventArgs e)
+        //{
+        //    var pdfLoc = Location;
+        //    var pdfSize = Size;
+        //    var waitSize = radWaitingBar1.Size;
+
+        //    radWaitingBar1.Location = new Point(
+        //        pdfLoc.X + pdfSize.Width / 2 - waitSize.Width / 2,
+        //        pdfLoc.Y + pdfSize.Height / 2 - waitSize.Height / 2
+        //        );
+        //}
     }
 
     internal enum ButtonType

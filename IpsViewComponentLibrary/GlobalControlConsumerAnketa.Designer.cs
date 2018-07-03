@@ -47,6 +47,8 @@
             this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
+            this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.btnNext = new Telerik.WinControls.UI.RadButton();
             this.btnBack = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
@@ -62,6 +64,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).BeginInit();
+            this.radPdfViewer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
             this.SuspendLayout();
@@ -292,6 +296,7 @@
             this.radPdfViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPdfViewer.Controls.Add(this.radWaitingBar1);
             this.radPdfViewer.EnableThumbnails = false;
             this.radPdfViewer.Location = new System.Drawing.Point(-1, 82);
             this.radPdfViewer.Name = "radPdfViewer";
@@ -302,6 +307,26 @@
             ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
             ((Telerik.WinControls.UI.ThumbnailListElement)(this.radPdfViewer.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            // 
+            // radWaitingBar1
+            // 
+            this.radWaitingBar1.AssociatedControl = this.radPdfViewer;
+            this.radWaitingBar1.BackColor = System.Drawing.Color.Transparent;
+            this.radWaitingBar1.Location = new System.Drawing.Point(464, 211);
+            this.radWaitingBar1.Name = "radWaitingBar1";
+            this.radWaitingBar1.Size = new System.Drawing.Size(70, 70);
+            this.radWaitingBar1.TabIndex = 0;
+            this.radWaitingBar1.Text = "radWaitingBar1";
+            this.radWaitingBar1.Visible = false;
+            this.radWaitingBar1.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.radWaitingBar1.WaitingSpeed = 50;
+            this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            this.radWaitingBar1.WaitingStarted += new System.EventHandler(this.radWaitingBar1_WaitingStarted);
+            this.radWaitingBar1.WaitingStopped += new System.EventHandler(this.radWaitingBar1_WaitingStopped);
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             // 
             // btnNext
             // 
@@ -349,6 +374,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).EndInit();
+            this.radPdfViewer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
             this.ResumeLayout(false);
@@ -377,5 +404,7 @@
         private MiddleControlAgreementAnketaType ctrlAgreement;
         private ipsAnketaClient.ConsumerPlacesControl ctrlPlaces;
         private Telerik.WinControls.UI.RadButton btnLoadPdf;
+        private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

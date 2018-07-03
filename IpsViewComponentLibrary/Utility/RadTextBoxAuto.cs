@@ -73,14 +73,7 @@ namespace IpsViewComponentLibrary
 
             if (ListElement.ActiveItem != null && (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter))
             {
-                var dropDown = sender as ComponentThemableElementTree;
-
-                RadListDataItem item = AutoCompleteItems.Where(rec => rec.Value == ListElement.ActiveItem.Value).FirstOrDefault();
-
-                if (item != null)
-                {
-                    OnListItemSelected(item as RadListDataItem);
-                }
+                OnListItemSelected(ListElement.ActiveItem);
             }
         }
 

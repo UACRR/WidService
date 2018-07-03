@@ -487,7 +487,7 @@ namespace ipsFormsDesign.Services
             prcntPrl = licenseAgrParam?.AddRate?.ToString();
             registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
             registerNumber = anketaCompany?.RegistrNumber?.ToString();
-            numberVAT = anketaCompany?.NumberVat.ToString();
+            numberVAT = anketaCompany?.NumberVat?.ToString() ?? string.Empty;
             typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
 
 

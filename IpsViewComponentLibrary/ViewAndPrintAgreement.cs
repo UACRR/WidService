@@ -54,11 +54,6 @@ namespace IpsViewComponentLibrary
             radWaitingBar1.Visible = false;
         }
 
-        private void radWaitingBar1_ClientSizeChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void radWaitingBar1_ParentChanged(object sender, EventArgs e)
         {
             var clnSize = radWaitingBar1.Size;
