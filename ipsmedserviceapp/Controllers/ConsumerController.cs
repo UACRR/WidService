@@ -406,6 +406,14 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Дані по LicenseAgrParam -> LicenseAgreement Для нового Споживача
+        /// </summary>
+        /// <param name="sorsCustomer"></param>
+        private void fillLicenseAgreement(Customer sorsCustomer)
+        {
+
+        }
+        /// <summary>
         /// Збереження нового Споживача
         /// </summary>
         /// <param name="sorsCustomer"></param>
