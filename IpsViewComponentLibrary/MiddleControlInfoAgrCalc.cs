@@ -114,7 +114,6 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Інформація користувача
         /// </summary>
-        /// <param name="custId"></param>
         private void SetUserInfoData()
         {
             var userInfo = _customer?.Company?.AnketaCompany?.SingleOrDefault();
@@ -127,6 +126,7 @@ namespace IpsViewComponentLibrary
             userInfoCtrl.PibManager = manager?.Empl?.FirstName + " " +
                                       manager?.Empl?.LastName + " " +
                                       manager?.Empl?.SurName;
+            userInfoCtrl.EmailManager = manager?.Empl?.Email;
 
             userInfoCtrl.PhoneManager = manager?.Empl?.PhoneNumber;
             userInfoCtrl.PibContactPerson = contactPerson?.Empl?.FirstName + " " +
