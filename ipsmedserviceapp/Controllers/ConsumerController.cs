@@ -411,7 +411,18 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="sorsCustomer"></param>
         private void fillLicenseAgreement(Customer sorsCustomer)
         {
+            foreach ( var item in sorsCustomer.Client.LicenseAgreement )
+            {
+                item.Agr.AgrStatus = 2;
+                var param = item.LicenseAgrParam.Where(rec => rec.LicVersion == item.LicVersion).Single();
+                item.LicNum = param.LicNum;
+                item.LicDate = param.LicDate;
+                /// ***** Потрібно змінити після підключення кабінету
+                item.LicStatus = 2;
+                param.LicStatus = 2;
 
+
+            }
         }
         /// <summary>
         /// Збереження нового Споживача
@@ -429,6 +440,7 @@ namespace ipsmedserviceapp.Controllers
                 if (!(sorsCustomer.CustType > 0 && sorsCustomer.CustType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
+                fillLicenseAgreement(sorsCustomer);
                 // Збереження Customer
                 Customer destConsumer = new Customer();
                 _dbContext.Customer.Add(destConsumer);

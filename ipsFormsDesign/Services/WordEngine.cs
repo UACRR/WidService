@@ -2,13 +2,16 @@
 using Microsoft.Office.Interop.Word;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using ipsFormsDesign.Interfaces;
+using System.ComponentModel;
+
 namespace ipsFormsDesign.Services
 {
-    public class WordEngine
+    public class WordEngine : Component
     {
 
         private static Application app;
@@ -16,9 +19,22 @@ namespace ipsFormsDesign.Services
         private string tempFileName = string.Empty;
         private AnketaDictionaties _dic = null;
 
+        /// <summary>
+        /// Запуск Word async mode
+        /// </summary>
+        /// <returns></returns>
+        internal async Task<Application> StartWorsAppAsync()
+        {
+            await System.Threading.Tasks.Task.Run(() => {
+                if (app == null)
+                    app = new Application();
+            });
+            return app;
+        }
+
         public WordEngine(AnketaDictionaties dic)
         {
-            app = null;
+            app = StartWorsAppAsync().GetAwaiter().GetResult();
             _dic = dic;
         }
 
@@ -37,12 +53,40 @@ namespace ipsFormsDesign.Services
             if (File.Exists(docFile))
                 File.Delete(docFile);
         }
+
+        internal async System.Threading.Tasks.Task CloseWordAppAsync()
+        {
+            await System.Threading.Tasks.Task.Run(() =>
+            {
+                if (app != null)
+                    app.Quit();
+                app = null;
+            });
+        }
+
+
+        private bool disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                clearFiles();
+                CloseWordAppAsync().GetAwaiter().GetResult();
+                disposed = true;
+            }
+
+            base.Dispose(disposing);
+        }
+
         ~WordEngine()
         {
-            clearFiles();
-            if (app != null)
-                app.Quit();
+            Dispose(true);
         }
+
+        
 
         public string Pdf { get { return tempFileName + ".pdf"; } }
 
@@ -96,7 +140,7 @@ namespace ipsFormsDesign.Services
             {
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
-                app = new Application();
+                app = StartWorsAppAsync().Result;
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -365,7 +409,7 @@ namespace ipsFormsDesign.Services
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
                 var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 5).ToList();
 
-                app = new Application();
+                app = StartWorsAppAsync().Result;
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -688,7 +732,7 @@ namespace ipsFormsDesign.Services
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
 
 
-                app = new Application();
+                app = StartWorsAppAsync().Result;
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
