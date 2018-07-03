@@ -448,7 +448,7 @@ namespace IpsViewComponentLibrary
             templateName = string.Concat(@"Templates\", templateName);
             
             
-            wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version);
+            wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version).GetAwaiter().GetResult();
             var pdf = wordEngine.Pdf;
             radPdfViewer.LoadDocument(pdf);
             
