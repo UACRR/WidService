@@ -15,7 +15,6 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private AnketaDictionaties _dictionaties;
-        private TypeRights _isBigRights = TypeRights.All;
 
         public delegate bool ReturnSaveCustomer(Customer cust);
         public event ReturnSaveCustomer OnSaveCustomerNeed;
@@ -35,8 +34,7 @@ namespace IpsViewComponentLibrary
         public AnketaConsumerForm(Customer customer, AnketaDictionaties dictionaties, bool isNew = true, TypeRights typeRights = TypeRights.SmallRights )
         {
             InitializeComponent();
-
-            _isBigRights = typeRights;
+            
             ctrlConsumerAnketa.OnBtnSaveClick += CtrlConsumerAnketa_OnBtnSaveClick;
             _customer = customer;
             _dictionaties = dictionaties;

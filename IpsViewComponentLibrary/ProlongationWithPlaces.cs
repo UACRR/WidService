@@ -87,7 +87,10 @@ namespace IpsViewComponentLibrary
                 return;
 
             if (_goal != DialogGoal.forEdit)
+            {
                 _lic.LicenseAgrParam.Remove(_licAgr);
+                _cust.Client.LicenseAgreement.Remove(_lic);
+            }
         }
     }
 }

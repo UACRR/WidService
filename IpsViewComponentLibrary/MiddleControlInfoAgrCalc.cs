@@ -114,7 +114,6 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Інформація користувача
         /// </summary>
-        /// <param name="custId"></param>
         private void SetUserInfoData()
         {
             var userInfo = _customer?.Company?.AnketaCompany?.SingleOrDefault();
@@ -127,6 +126,7 @@ namespace IpsViewComponentLibrary
             userInfoCtrl.PibManager = manager?.Empl?.FirstName + " " +
                                       manager?.Empl?.LastName + " " +
                                       manager?.Empl?.SurName;
+            userInfoCtrl.EmailManager = manager?.Empl?.Email;
 
             userInfoCtrl.PhoneManager = manager?.Empl?.PhoneNumber;
             userInfoCtrl.PibContactPerson = contactPerson?.Empl?.FirstName + " " +
@@ -251,6 +251,7 @@ namespace IpsViewComponentLibrary
             var licenseParam = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion) ?? license.LicenseAgrParam.SingleOrDefault();
             RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forEdit);
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -325,9 +326,9 @@ namespace IpsViewComponentLibrary
                     new LicenseAgrParam
                     {
                         LicVersion = 1,
-                        LicDate = DateTime.Today,
-                        DateBegin = DateTime.Today,
-                        DateEnd = DateTime.Today.AddYears(1),
+                        //LicDate = DateTime.Today,
+                        //DateBegin = DateTime.Today,
+                        //DateEnd = DateTime.Today.AddYears(1),
                         LicStatus = 0,
                     }
                 },
