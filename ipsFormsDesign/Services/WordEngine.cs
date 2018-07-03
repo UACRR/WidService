@@ -23,16 +23,19 @@ namespace ipsFormsDesign.Services
         /// Запуск Word async mode
         /// </summary>
         /// <returns></returns>
-        internal Application StartWorsAppAsync()
+        internal Task<Application> StartWorsAppAsync()
         {
-            if (app == null)
-                app = new Application();
-            return app;
+            System.Threading.Tasks.Task.Run(() => {
+                if (app == null)
+                    app = new Application();
+            }).GetAwaiter().GetResult();
+
+            return System.Threading.Tasks.Task.FromResult<Application>(app);
         }
 
         public WordEngine(AnketaDictionaties dic)
         {
-            app = StartWorsAppAsync();
+            app = StartWorsAppAsync().GetAwaiter().GetResult();
             _dic = dic;
         }
 
@@ -136,7 +139,7 @@ namespace ipsFormsDesign.Services
             {
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
-                app = StartWorsAppAsync();
+                app = StartWorsAppAsync().GetAwaiter().GetResult();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -402,7 +405,7 @@ namespace ipsFormsDesign.Services
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
                 var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 5).ToList();
 
-                app = StartWorsAppAsync();
+                app = StartWorsAppAsync().GetAwaiter().GetResult();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -722,7 +725,7 @@ namespace ipsFormsDesign.Services
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
 
 
-                app = StartWorsAppAsync();
+                app = StartWorsAppAsync().GetAwaiter().GetResult();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
