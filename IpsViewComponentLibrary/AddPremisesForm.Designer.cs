@@ -34,6 +34,7 @@
             this.lblMetrsPlaceTxt = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxTypePremisses = new Telerik.WinControls.UI.RadTextBox();
             this.rtxtBoxMetersPlaces = new Telerik.WinControls.UI.RadTextBox();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypePremisses)).BeginInit();
@@ -147,5 +148,6 @@
         private Telerik.WinControls.UI.RadLabel lblMetrsPlaceTxt;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxTypePremisses;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxMetersPlaces;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

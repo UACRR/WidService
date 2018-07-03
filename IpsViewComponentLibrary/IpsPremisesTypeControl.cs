@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
@@ -16,6 +17,7 @@ namespace IpsViewComponentLibrary
         //TODO REFACTOR CODE! видалти непотрібні класи, генерації
 
         private Customer dataTemp;
+        private ClnBusinessPlace _place;
         private int _idSelectedRow;
         private string _idSelectedRowString;
 
@@ -75,7 +77,25 @@ namespace IpsViewComponentLibrary
 
         }
 
-        public void SetDataSource(List<ClnPlaceHoll> sourceData)
+        /// <summary>
+        /// Джерело даних для зал майданчиків
+        /// </summary>
+        /// <param name="sourceData"></param>
+        /// <param name="place"></param>
+        public void SetDataSource(Customer sourceData, ClnBusinessPlace place)
+        {
+            dataTemp = sourceData;
+            _place = place;
+
+            var placeList = place.ClnPlaceHoll.list;
+
+            byte? type = (byte?)place?.PlCode;
+            SetGridType(type ?? 0);
+            rGridViewPremises.DataSource = placeList;
+
+        }
+
+        public void SetDataSource(ObservableListSource<ClnPlaceHoll> sourceData)
         {
             List<PremisesInstitution> data = new List<PremisesInstitution>();
             PremisesInstitution temp;
@@ -133,20 +153,25 @@ namespace IpsViewComponentLibrary
             if (rGridViewPremises.Rows.Count == 0) return;
 
             var deleteItem = rGridViewPremises.CurrentRow.DataBoundItem as ClnPlaceHoll;
-            OnBtnDeletePremisesClick?.Invoke(deleteItem);
+            var place = rGridViewPremises.DataSource as ObservableListSource<ClnPlaceHoll>;
+            place.Remove(deleteItem);
+            //OnBtnDeletePremisesClick?.Invoke(deleteItem);
         }
 
-        public List<ClnPlaceHoll> GetData(int idRowInst)
+        public ObservableListSource<ClnPlaceHoll> GetData(int idRowInst)
         {
-            List<ClnPlaceHoll> list = new List<ClnPlaceHoll>();
-
+            ObservableListSource<ClnPlaceHoll> list = new ObservableListSource<ClnPlaceHoll>();
+            
             if (dataTemp != null && dataTemp.Client.ClnBusinessPlace.Select(item => item.ClnPlaceHoll).Any())
             {
                 var v = dataTemp.Client.ClnBusinessPlace.Where(id=>id.PlaceId==idRowInst).Select(item => item.ClnPlaceHoll).SingleOrDefault();//
-                if (v != null) list.AddRange(v); // був форіч
+                if (v != null)
+                    foreach (var clnPlaceHoll in v)
+                        list.Add(clnPlaceHoll);
+                    
                 return list;
             }
-            return new List<ClnPlaceHoll>();
+            return new ObservableListSource<ClnPlaceHoll>();
         }
 
         public void RefreshGrid()
