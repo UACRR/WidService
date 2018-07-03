@@ -95,13 +95,20 @@ namespace IpsViewComponentLibrary
         {
             var _objectRightService = new ObjectRightService(); // TODO: move to presenter
 
-            var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
-
-            objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
-
-            if (selectedObjectId != 0)
+            if (ctrlRightholderSelector.Rightholder != null)
             {
-                SelectedObjectRightId = selectedObjectId;
+                var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
+
+                objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
+
+                if (selectedObjectId != 0)
+                {
+                    SelectedObjectRightId = selectedObjectId;
+                }
+            }
+            else
+            {
+                objectRightForRightholderBindingSource.DataSource = null;
             }
         }
 
