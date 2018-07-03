@@ -1784,7 +1784,7 @@
             gridViewTextBoxColumn22.Name = "Community_Name";
             gridViewTextBoxColumn22.Width = 144;
             gridViewCommandColumn5.AllowResize = false;
-            gridViewCommandColumn5.DefaultText = "Статус";
+            gridViewCommandColumn5.DefaultText = "Зм. статус";
             gridViewCommandColumn5.HeaderText = "";
             gridViewCommandColumn5.Name = "SetStatusColumn";
             gridViewCommandColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
