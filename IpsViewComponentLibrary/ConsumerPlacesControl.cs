@@ -116,8 +116,11 @@ namespace ipsAnketaClient
         /// </summary>
         private void PremisesType_OnBtnDeletePremisesClick(ClnPlaceHoll deleteHoll)
         {
-            var item = rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace;
-            item?.ClnPlaceHoll.Remove(deleteHoll);
+            if (MessageBox.Show("Підтвердження", "Видалити залу?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var item = rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace;
+                item?.ClnPlaceHoll.Remove(deleteHoll);
+            }
         }
 
         /// <summary>
