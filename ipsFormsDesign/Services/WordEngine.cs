@@ -542,7 +542,7 @@ namespace ipsFormsDesign.Services
                             item.Range.Text = minRltGrn;
                             break;
                         case "minRltGrnText":
-                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.MinAmount), true); ;
+                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.MinAmount), true); 
                             break;
                         case "minRltKop":
                             item.Range.Text = minRltKop;
@@ -698,7 +698,7 @@ namespace ipsFormsDesign.Services
 
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
                 AgreementAddBr agreementAddBr;
-                agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.IsCurrent == 1)?.SingleOrDefault();
+                agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.Version == agr.Version)?.SingleOrDefault();
 
                 string customerName = string.Empty;
                 string leAddress = string.Empty;
@@ -729,6 +729,9 @@ namespace ipsFormsDesign.Services
                 string ShowAct = String.Empty;
                 string docNumberC = String.Empty;
                 string docDateC = String.Empty;
+                string prcntShow = string.Empty;
+                string prcntShowText = string.Empty;
+                
 
                 if (cust.CustType < 3) // фіз. особа
                 {
@@ -791,8 +794,20 @@ namespace ipsFormsDesign.Services
                 ShowAct = licA.LicenseBigR.Obj.ActCode?.ToString();
                 docNumberC = licA.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).Single().LicNum ;
 
-                LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).Single();
-                docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
+                LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => (rec.LicId == licA.LicId) & (rec.LicVersion == licA.LicVersion)).Single();
+                docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";               
+                prcntShow = licA.LicenseBigR.Rate?.ToString();
+                prcntShowText =  Utils.GrnPhrase(Convert.ToDecimal(licA.LicenseBigR.Rate));
+
+//                decimal pPayShowGrn = 0;
+  //              var array_licAuthorB = licA.LicenseBigR.LicAuthorBr.ToArray;
+    //            foreach (prepaySum? item )
+
+
+
+//                pPayShowGrn = 
+
+
 
                 foreach (ContentControl item in list)
                 {
@@ -890,6 +905,11 @@ namespace ipsFormsDesign.Services
                         case "docDateC":
                             item.Range.Text = docDateC;
                             break;
+                        case "prcntShow":
+                            item.Range.Text = prcntShow;
+                            break;
+
+                            
 
                         default:
 
