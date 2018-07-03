@@ -64,7 +64,8 @@ namespace IpsViewComponentLibrary
                     var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
                     source.Add(new GridLicenseAgrView
                     {
-                        Id = item?.AgrId ?? default(int),
+                        Id = item.AgrId,
+                        LicId = item.LicId,
                         License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
                         Series = string.Empty,
                         AgrNumber = licenseParam?.LicNum ?? string.Empty,
@@ -95,7 +96,8 @@ namespace IpsViewComponentLibrary
                     source.AddRange(item.LicenseAgrParam.Where(rec => rec.LicVersion > item.LicVersion)
                         .Select(licAgr => new GridLicenseAgrView
                         {
-                            Id = item?.AgrId ?? default(int),
+                            Id = item.AgrId,
+                            LicId = item.LicId,
                             License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
                             Series = string.Empty,
                             AgrNumber = licAgr?.LicNum ?? string.Empty,
@@ -189,9 +191,13 @@ namespace IpsViewComponentLibrary
 
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            bool isInt = Int32.TryParse(e.CurrentRow.Cells["Id"].Value.ToString(), out int result);
-            if (!isInt) return;
-            SetAgrInfoData(result);
+            var curRow = e.CurrentRow.DataBoundItem as GridLicenseAgrView;
+
+            //bool isInt = Int32.TryParse(e.CurrentRow.Cells["Id"].Value.ToString(), out int result);
+            //if (!isInt) return;
+            //SetAgrInfoData(result);
+            if (curRow == null) return;
+            SetAgrInfoData(curRow.LicId);
         }
 
         private void pvMain_SelectedPageChanged(object sender, EventArgs e)
@@ -244,7 +250,7 @@ namespace IpsViewComponentLibrary
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
-            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             if (license == null)
                 return;
 
@@ -260,7 +266,7 @@ namespace IpsViewComponentLibrary
         private void btnProlongation_Click(object sender, EventArgs e)
         {
 
-            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.AgrId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             if (license == null)
                 return;
 
@@ -343,7 +349,7 @@ namespace IpsViewComponentLibrary
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            var _lic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.AgrId == _idItem);
+            var _lic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _idItem);
             ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dictionaties, customer: _customer, licenseAgreement: _lic)
             {
                 WindowState = FormWindowState.Maximized,
@@ -365,5 +371,6 @@ namespace IpsViewComponentLibrary
         public string State { get; set; }
         public string PeriodPayment { get; set; }
         public string DateLastPayment { get; set; }
+        public int LicId { get; set;  }
     }
 }

@@ -11,7 +11,7 @@ using System.ComponentModel;
 
 namespace ipsFormsDesign.Services
 {
-    public class WordEngine : Component
+    public class WordEngine // : Component
     {
 
         private static Application app;
@@ -23,18 +23,16 @@ namespace ipsFormsDesign.Services
         /// Запуск Word async mode
         /// </summary>
         /// <returns></returns>
-        internal async Task<Application> StartWorsAppAsync()
+        internal Application StartWorsAppAsync()
         {
-            await System.Threading.Tasks.Task.Run(() => {
-                if (app == null)
-                    app = new Application();
-            });
+            if (app == null)
+                app = new Application();
             return app;
         }
 
         public WordEngine(AnketaDictionaties dic)
         {
-            app = StartWorsAppAsync().GetAwaiter().GetResult();
+            app = StartWorsAppAsync();
             _dic = dic;
         }
 
@@ -54,39 +52,37 @@ namespace ipsFormsDesign.Services
                 File.Delete(docFile);
         }
 
-        internal async System.Threading.Tasks.Task CloseWordAppAsync()
+        internal void CloseWordAppAsync()
         {
-            await System.Threading.Tasks.Task.Run(() =>
-            {
-                if (app != null)
-                    app.Quit();
-                app = null;
-            });
+            if (app != null)
+                app.Quit();
+            app = null;
         }
 
 
         private bool disposed = false;
-        protected override void Dispose(bool disposing)
-        {
-            if (disposed)
-                return;
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposed)
+        //        return;
 
-            if (disposing)
-            {
-                clearFiles();
-                CloseWordAppAsync().GetAwaiter().GetResult();
-                disposed = true;
-            }
+        //    if (disposing)
+        //    {
+        //        clearFiles();
+        //        CloseWordAppAsync().GetAwaiter().GetResult();
+        //        disposed = true;
+        //    }
 
-            base.Dispose(disposing);
-        }
+        //    base.Dispose(disposing);
+        //}
 
         ~WordEngine()
         {
-            Dispose(true);
+            clearFiles();
+            CloseWordAppAsync();
         }
 
-        
+
 
         public string Pdf { get { return tempFileName + ".pdf"; } }
 
@@ -140,7 +136,7 @@ namespace ipsFormsDesign.Services
             {
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
-                app = StartWorsAppAsync().Result;
+                app = StartWorsAppAsync();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -323,9 +319,6 @@ namespace ipsFormsDesign.Services
             }
             finally
             {
-                if (app != null)
-                    app.Quit();
-                app = null;
             }
 
         }
@@ -409,7 +402,7 @@ namespace ipsFormsDesign.Services
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
                 var clnBusinessPlaceBar = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 5).ToList();
 
-                app = StartWorsAppAsync().Result;
+                app = StartWorsAppAsync();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -685,9 +678,6 @@ namespace ipsFormsDesign.Services
             }
             finally
             {
-                if (app != null)
-                    app.Quit();
-                app = null;
             }
         }
 
@@ -732,7 +722,7 @@ namespace ipsFormsDesign.Services
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
 
 
-                app = StartWorsAppAsync().Result;
+                app = StartWorsAppAsync();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
                 var list = innerDoc.ContentControls;
@@ -831,9 +821,6 @@ namespace ipsFormsDesign.Services
             }
             finally
             {
-                if (app != null)
-                    app.Quit();
-                app = null;
             }
         }
 
