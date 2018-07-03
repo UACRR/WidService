@@ -86,7 +86,7 @@ namespace ipsFormsDesign
                     str = Dek3[d3] + Dek2[d2] + Dek1[d1] + EndDek1(d1, ismale) + Th[th] + EndTh(th, d1) + str;
                 };
             };
-            str = str.Substring(1, 1).ToUpper() + str.Substring(2);
+/*           str = str.Substring(1, 1).ToUpper() + str.Substring(2);*/
             return str;
         }
         public static string NumPhraseL(ulong Value, bool IsMale)
@@ -111,7 +111,7 @@ namespace ipsFormsDesign
                     str = Dek3[d3] + Dek2[d2] + Dek1[d1] + EndDek1(d1, ismale) + Th[th] + EndTh(th, d1) + str;
                 };
             };
-    //        str = str.Substring(1, 1).ToUpper() + str.Substring(2);
+/*        str = str.Substring(1, 1).ToUpper() + str.Substring(2); */
             return str;
         }
 
