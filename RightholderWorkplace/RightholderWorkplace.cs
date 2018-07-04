@@ -177,6 +177,7 @@ namespace RightholderWorkplace
                 if (row != null)
                 {
                     gvRightholdersList.CurrentRow = row;
+                    gvRightholdersList.TableElement.ScrollToRow(row);
                 }
             }
         }
@@ -574,6 +575,7 @@ namespace RightholderWorkplace
                 if (row != null)
                 {
                     gvObjectsRightsList.CurrentRow = row;
+                    gvObjectsRightsList.TableElement.ScrollToRow(row);
                 }
             }
         }
@@ -590,6 +592,7 @@ namespace RightholderWorkplace
                 if (row != null)
                 {
                     gvRightholdersObjectsRights.CurrentRow = row;
+                    gvRightholdersObjectsRights.TableElement.ScrollToRow(row);
                 }
             }
         }
@@ -803,41 +806,13 @@ namespace RightholderWorkplace
             _forRightholder = null;
 
             // transform from single table to Authors and Copyright tables
-            var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
-
             _objectRight.Authors.Clear();
-            objectAuthorRightholderList.Select(ar =>
-            {
-                return new Authors
-                {
-                    AuthId = ar.AuthId,
-                    ObjId = ar.ObjId,
-                    RoleCode = ar.RoleCode,
-                    CustId = ar.CustId,
-                    AuthorName = ar.AuthorName,
-                    FolkType = ar.FolkType,
-                };
-            }).ToList().ForEach( item => _objectRight.Authors.Add( item ));
-
             _objectRight.CopyRight.Clear();
-            objectAuthorRightholderList
-                .Where(ar => ar.IsRightholder)
-                .Select(ar =>
-                {
-                    return new CopyRight
-                    {
-                        CRightId = ar.CRightId ?? 0,
-                        CustId = (int)ar.CustId,
-                        ObjId = ar.ObjId,
-                        RoleCode = ar.RoleCode,
-                        Rate = ar.Rate,
-                        BeginDate = ar.BeginDate,
-                        EndDate = ar.EndDate,
-                        Status = ar.CopyrightStatus,
-                    };
-                }).ToList().ForEach( item => _objectRight.CopyRight.Add( item ));
 
-            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100m) // TODO: move to extension method
+            var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
+            objectAuthorRightholderList.ForEach(ar => _objectRight.AddObjectAuthorRightholder(ar));
+
+            if (_objectRight.CopyRight.GetTotalRate() > 100)
             {
                 MessageBox.Show("Загальний відсоток володіння не може бути більше 100.", "Помилка");
                 return;
