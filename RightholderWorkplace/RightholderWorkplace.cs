@@ -834,7 +834,7 @@ namespace RightholderWorkplace
                     };
                 }).ToList().ForEach( item => _objectRight.CopyRight.Add( item ));
 
-            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100m)
+            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100m) // TODO: move to extension method
             {
                 MessageBox.Show("Загальний відсоток володіння не може бути більше 100.", "Помилка");
                 return;
@@ -996,7 +996,7 @@ namespace RightholderWorkplace
             var objectRightContainer = _objectRightService.GetData(selectedObject.ObjId);
             var objectRight = objectRightContainer.objectRight;
             
-            if (objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) >= 100)
+            if (objectRight.CopyRight.GetTotalRate() >= 100)
             {
                 MessageBox.Show("Спільний відсоток володіння для вибраного об'єкта вже становить 100%.");
                 return;
@@ -1009,7 +1009,7 @@ namespace RightholderWorkplace
             //    return;
             //}
 
-            var objectAuthorRightholder = new ObjectAuthorRightholder(_forRightholder);
+            var objectAuthorRightholder = new ObjectAuthorRightholder(selectedRightholder);
 
             using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight, objectRight.CategoryCode))
             {
@@ -1017,13 +1017,24 @@ namespace RightholderWorkplace
 
                 if (authorRightholderItemView.DialogResult == DialogResult.OK)
                 {
-                    //objectRight.CopyRight.Add(objectAuthorRightholder); // ця логіка є тільки в методі збереження об'єкта права, move logic for add copyright to objectRight extension method
-                    //objectRight.Authors.Add(objectAuthorRightholder);   // ця логіка є тільки в методі збереження об'єкта права
+                    objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
                 }
 
-                // check total persent, move total persent calculation to objectRight extension method
+                if (objectRight.CopyRight.GetTotalRate() > 100)
+                {
+                    MessageBox.Show("Спільний відсоток володіння з врахуванням доданого перевищує 100%. Об'єкт не доданий.");
+                    return;
+                }
 
-                // save object right
+                var result = _objectRightService.Save(objectRight);
+
+                if (result)
+                {
+                    UpdateRightholdersObjectsRightList(objectRight.ObjId);
+                    UpdateObjectRightsList();
+                }
+                else
+                    MessageBox.Show("Не вдалося зберегти зміни. Об'єкт не доданий.", "Помилка");
             }
         }
 
