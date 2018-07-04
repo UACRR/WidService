@@ -40,6 +40,7 @@ namespace IpsViewComponentLibrary
                     if (row != null)
                     {
                         gvObjectsRightsList.CurrentRow = row;
+                        gvObjectsRightsList.TableElement.ScrollToRow(row);
                     }
                 }
             }
@@ -54,10 +55,22 @@ namespace IpsViewComponentLibrary
 
             if (!IsDesignMode)
             {
-                var service = new ObjectRightService();
-                var list = service.GetMainView();
-                objectRightMainViewBindingSource.DataSource = list;
+                UpdateList();
             }
+        }
+
+        public void UpdateList()
+        {
+            UpdateList(SelectedObject);
+        }
+
+        public void UpdateList(ObjectRightMainView currentObject)
+        {
+            var service = new ObjectRightService();
+            var list = service.GetMainView();
+            objectRightMainViewBindingSource.DataSource = list;
+
+            SelectedObject = currentObject;
         }
 
         private void gvObjectsRightsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
