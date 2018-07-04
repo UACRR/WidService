@@ -815,6 +815,7 @@ namespace RightholderWorkplace
 
         private void btnObjectRightItemCancel_Click(object sender, EventArgs e)
         {
+            _forRightholder = null;
             objectsPageView.SelectedPage = _previousPage;
             actualObjectsPageView.SelectedPage = actualObjectsListPage;
         }
@@ -825,6 +826,8 @@ namespace RightholderWorkplace
             {
                 return;
             }
+
+            _forRightholder = null;
 
             // transform from single table to Authors and Copyright tables
             var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
@@ -1296,6 +1299,8 @@ namespace RightholderWorkplace
 
         #endregion
 
+        #region Search rightholder and object
+
         private void txtSearchRightholder_TextChanged(object sender, EventArgs e)
         {
             gvRightholdersList.MasterTemplate.Refresh();
@@ -1381,5 +1386,7 @@ namespace RightholderWorkplace
                 gvObjectsRightsList.EndUpdate(false);
             }
         }
+
+        #endregion
     }
 }
