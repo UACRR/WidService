@@ -749,9 +749,14 @@ namespace ipsFormsDesign.Services
                 string ShowAct = String.Empty;
                 string docNumberC = String.Empty;
                 string docDateC = String.Empty;
+                string docDateEndС = String.Empty;
                 string prcntShow = string.Empty;
                 string prcntShowText = string.Empty;
-                
+                string pPayShowGrnText = string.Empty;
+                string pPayShowKop = string.Empty;
+                string PayShowDataDo = string.Empty;
+                string aPayShowGrnText = string.Empty;
+                string aPayShowKop = string.Empty;
 
                 if (cust.CustType < 3) // фіз. особа
                 {
@@ -812,22 +817,33 @@ namespace ipsFormsDesign.Services
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
                 ShowName = licA.LicenseBigR.Obj.Name?.ToString();
                 ShowAct = licA.LicenseBigR.Obj.ActCode?.ToString();
-                docNumberC = licA.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).Single().LicNum;
-
-                LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => (rec.LicId == licA.LicId) & (rec.LicVersion == licA.LicVersion)).Single();
-                docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";               
+                docNumberC = licA.LicenseAgrParam.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum ;
+                LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => (rec.LicId == licA.LicId) &
+                        (rec.LicVersion == licA.LicVersion)).Single();
+                docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
+                docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
                 prcntShow = licA.LicenseBigR.Rate?.ToString();
                 prcntShowText =  Utils.GrnPhrase(Convert.ToDecimal(licA.LicenseBigR.Rate));
+                PayShowDataDo = $"{licA.LicenseBigR.PrepayDateDo:dd.MM.yyyy}";
+                decimal pPayShowGrn = 0;
+                decimal aPayShowGrn = 0;
+                var array_licAuthorB = licA.LicenseBigR.LicAuthorBr.ToList();
+                foreach (LicAuthorBr item in array_licAuthorB )
+                {
+                    if (item.PrepayType == 1)
+                    {
+                        pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                    }
+                    if (item.PrepayType == 2)
+                    {
+                        aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                    }
 
-//                decimal pPayShowGrn = 0;
-  //              var array_licAuthorB = licA.LicenseBigR.LicAuthorBr.ToArray;
-    //            foreach (prepaySum? item )
-
-
-
-//                pPayShowGrn = 
-
-
+                }
+                pPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(pPayShowGrn)), false);
+                pPayShowKop = ((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)).ToString();
+                aPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(aPayShowGrn)), false);
+                aPayShowKop = ((int)((aPayShowGrn - (int)(aPayShowGrn)) * 100)).ToString();
 
                 foreach (ContentControl item in list)
                 {
@@ -870,11 +886,11 @@ namespace ipsFormsDesign.Services
                             break;
                         case "GdocDateEndC":
                             item.Range.Text = GdocDateEndC;
-                            break;
-                        case "СstLegalAddress":
+                            break;                       
+                        case "CstLegalAddress":
                             item.Range.Text = reAddress;
-                            break;
-                        case "СstResidentialAddress":
+                            break;                        
+                        case "CstResidentialAddress":
                             item.Range.Text = faAddress;
                             break;
                         case "СstCorrespAddress":
@@ -886,32 +902,35 @@ namespace ipsFormsDesign.Services
                         case "CstEDRPOU":
                             item.Range.Text = Okpo;
                             break;
-                        case "СstBankName":
+                        case "CstBankName":
                             item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
                             break;
-                        case "СstBankMFO":
+                        case "CstBankMFO":
                             item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
                             break;
-                        case "СstAcc":
+                        case "CstAcc":
                             item.Range.Text = $"{bankacc?.AccountNumber ?? string.Empty}";
                             break;
-                        case "СstRegNumber":
+                        case "CstRegNumber":
                             item.Range.Text = registerNumber;
                             break;
-                        case "СstRegData":
+                        case "CstRegData":
                             item.Range.Text = registerDate;
                             break;
-                        case "СstVAT":
+                        case "CstVAT":
                             item.Range.Text = numberVAT;
                             break;
-                        case "СstVATType":
+                        case "CstVATType":
                             item.Range.Text = typeVat;
                             break;
-                        case "СstEmail":
+                        case "CstEmail":
                             item.Range.Text = eMail;
                             break;
-                        case "СstContPerson":
+                        case "CstContPerson":
                             item.Range.Text = cstContPerson;
+                            break;
+                        case "CstContPersonPhone":
+                            item.Range.Text = cstContPersonPhone;
                             break;
                         case "ShowName":
                             item.Range.Text = ShowName;
@@ -928,8 +947,33 @@ namespace ipsFormsDesign.Services
                         case "prcntShow":
                             item.Range.Text = prcntShow;
                             break;
-
-                            
+                        case "pPayShowGrn":
+                            item.Range.Text = ((int)(pPayShowGrn)).ToString();
+                            break;
+                        case "pPayShowGrnText":
+                            item.Range.Text = pPayShowGrnText;
+                            break;
+                        case "pPayShowKop":
+                            item.Range.Text = pPayShowKop;
+                            break;
+                        case "aPayShowGrn":
+                            item.Range.Text = ((int)(aPayShowGrn)).ToString();
+                            break;
+                        case "aPayShowGrnText":
+                            item.Range.Text = aPayShowGrnText;
+                            break;
+                        case "aPayShowKop":
+                            item.Range.Text = aPayShowKop;
+                            break;
+                        case "PayShowDataDo":
+                            item.Range.Text = PayShowDataDo;
+                            break;
+                        case "docDateEndС":
+                            item.Range.Text = docDateEndС;
+                            break;
+                        case "TableAvtor":
+                            formTableAvtor(item.Range.Tables,  array_licAuthorB );
+                            break;
 
                         default:
 
@@ -1068,9 +1112,42 @@ namespace ipsFormsDesign.Services
                 innerDoc.Save();
                 innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
                 innerDoc.Close();
-            } );
+            }
+            finally
+            {
+                if (app != null)
+                    app.Quit();
+                app = null;
+            }
         }
 
+        
+        private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
+        {
+            LicAuthorBr authorBr;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in alicAuthorB)
+            {
+                authorBr = item;
+                curRow = table.Rows.Add();
+                index++;
+                curRow.Cells[1].Range.Text = authorBr.RoleType.ToString();
+                curRow.Cells[2].Range.Text = authorBr.NameAuthor;
+                curRow.Cells[3].Range.Text = "Україна";
+                curRow.Cells[4].Range.Text = "";
+                curRow.Cells[5].Range.Text = authorBr.Rate.ToString();
+                curRow.Cells[6].Range.Text = "гривня";
+                curRow.Cells[7].Range.Text = authorBr.PrepaySum.ToString();
+                curRow.Cells[8].Range.Text = "";
+            }
+
+
+
+        }
         private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
