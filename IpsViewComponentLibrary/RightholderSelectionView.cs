@@ -75,10 +75,15 @@ namespace IpsViewComponentLibrary
         {
             var item = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
 
-            OnRightholderSelected(item);
+            if (item != null)
+            {
+                OnRightholderSelected(item);
 
-            DialogResult = DialogResult.OK;
-            Close();
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+                DialogResult = DialogResult.None;
         }
 
         private void txtSearchRightholder_TextChanged(object sender, EventArgs e)

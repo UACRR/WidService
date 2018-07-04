@@ -657,24 +657,6 @@ namespace RightholderWorkplace
             }
         }
 
-        private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
-        {
-            if (ctrlRightholderSelector.Rightholder == null)
-            {
-                MessageBox.Show("Оберіть правовласника.");
-                return;
-            }
-
-            if (sender is RadMenuItem menuItem)
-            {
-                int category;
-                if (int.TryParse(menuItem.Tag.ToString(), out category))
-                {
-                    AddObjectRight(category, ctrlRightholderSelector.Rightholder);
-                }
-            }
-        }
-
         private void AddObjectRight(int category, RightholderMainView forRightholder = null, string name = null)
         {
             if (category == 0)
@@ -799,16 +781,7 @@ namespace RightholderWorkplace
 
         private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
         {
-            var objectAuthorRightholder = new ObjectAuthorRightholder();
-
-            if (_forRightholder != null)
-            {
-                objectAuthorRightholder.FolkType = 1;
-                objectAuthorRightholder.IsRightholder = true;
-                objectAuthorRightholder.AuthorName = _forRightholder.Name;
-                objectAuthorRightholder.CustId = _forRightholder.CustId;
-                objectAuthorRightholder.CommunityName = _forRightholder.Community_Name;
-            }
+            var objectAuthorRightholder = new ObjectAuthorRightholder(_forRightholder);
 
             EditObjectAuthorRightholder(objectAuthorRightholder);
         }
@@ -864,7 +837,7 @@ namespace RightholderWorkplace
                     };
                 }).ToList().ForEach( item => _objectRight.CopyRight.Add( item ));
 
-            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100m)
+            if (_objectRight.CopyRight.Where(cr => cr.Rate != null).Sum(cr => cr.Rate) > 100m) // TODO: move to extension method
             {
                 MessageBox.Show("Загальний відсоток володіння не може бути більше 100.", "Помилка");
                 return;
@@ -993,6 +966,92 @@ namespace RightholderWorkplace
             EditObjectRight(SelectedRghtholdersObjectRightId);
         }
 
+        private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
+        {
+            if (!IsRightholderSelected())
+                return;
+
+            if (sender is RadMenuItem menuItem)
+            {
+                int category;
+                if (int.TryParse(menuItem.Tag.ToString(), out category))
+                {
+                    AddObjectRight(category, ctrlRightholderSelector.Rightholder);
+                }
+            }
+        }
+
+        private void btnAddExistingObjectRightForRightholder_Click(object sender, EventArgs e)
+        {
+            if (!IsRightholderSelected())
+                return;
+
+            using (var selectionView = new ObjectRightSelectionView())
+            {
+                selectionView.ObjectSelected += SelectionView_ObjectSelected;
+                selectionView.ShowDialog();
+            }
+        }
+
+        private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
+        {
+            var selectedRightholder = ctrlRightholderSelector.Rightholder;
+            var objectRightContainer = _objectRightService.GetData(selectedObject.ObjId);
+            var objectRight = objectRightContainer.objectRight;
+            
+            if (objectRight.CopyRight.GetTotalRate() >= 100)
+            {
+                MessageBox.Show("Спільний відсоток володіння для вибраного об'єкта вже становить 100%.");
+                return;
+            }
+
+            //if (objectRight.CopyRight.Any(cr => cr.CustId == selectedRightholder.CustId))
+            //{
+            //    // може бути, що додається копірайт для цього ж об'єкта, але по іншій творчій ролі - треба подумати
+            //    MessageBox.Show("");
+            //    return;
+            //}
+
+            var objectAuthorRightholder = new ObjectAuthorRightholder(selectedRightholder);
+
+            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight, objectRight.CategoryCode))
+            {
+                authorRightholderItemView.ShowDialog();
+
+                if (authorRightholderItemView.DialogResult == DialogResult.OK)
+                {
+                    objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
+                }
+
+                if (objectRight.CopyRight.GetTotalRate() > 100)
+                {
+                    MessageBox.Show("Спільний відсоток володіння з врахуванням доданого перевищує 100%. Об'єкт не доданий.");
+                    return;
+                }
+
+                var result = _objectRightService.Save(objectRight);
+
+                if (result)
+                {
+                    UpdateRightholdersObjectsRightList(objectRight.ObjId);
+                    UpdateObjectRightsList();
+                }
+                else
+                    MessageBox.Show("Не вдалося зберегти зміни. Об'єкт не доданий.", "Помилка");
+            }
+        }
+
+        private bool IsRightholderSelected()
+        {
+            if (ctrlRightholderSelector.Rightholder == null)
+            {
+                MessageBox.Show("Оберіть правовласника.");
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
 
         #region Objectrights page helpers
@@ -1028,7 +1087,6 @@ namespace RightholderWorkplace
         {
             if (objectAuthorRightholder == null)
                 objectAuthorRightholder = SelectedObjectAuthorRightholder;
-
 
             using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight, _objectRight.CategoryCode))
             {
@@ -1344,12 +1402,12 @@ namespace RightholderWorkplace
             }
         }
 
-        private void txtSearchObject_TextChanged(object sender, EventArgs e)
+        private void txtSearchObject_TextChanged(object sender, EventArgs e) // moved, and all methods for gvObjectsRightsList
         {
             gvObjectsRightsList.MasterTemplate.Refresh();
         }
 
-        private void gvObjectsRightsList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
+        private void gvObjectsRightsList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e) // moved
         {
             if (string.IsNullOrEmpty(txtSearchObject.Text))
             {

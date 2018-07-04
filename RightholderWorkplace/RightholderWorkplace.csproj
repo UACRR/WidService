@@ -75,6 +75,7 @@
       <DependentUpon>RightholderWorkplace.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderWorkplacePresenter.cs" />
+    <Compile Include="Utilities\ObjectRightExtensions.cs" />
     <Compile Include="Utilities\RightholderStatusMenuFactory.cs" />
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="RightholderWorkplace.resx">
