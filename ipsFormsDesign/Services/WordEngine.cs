@@ -476,7 +476,7 @@ namespace ipsFormsDesign.Services
             }
 
 
-            DocDate = $"{licAgr?.LicDate:dd.mm.yyyy}";
+            DocDate = $"{licAgr?.LicDate:dd.MM.yyyy}";
             LicNum = licAgr?.LicNum;
             prcntInc = licenseAgrParam?.RateAmount.ToString();
             minRltGrn = licenseAgrParam?.MinAmount.ToString();
@@ -504,7 +504,7 @@ namespace ipsFormsDesign.Services
                     case "docNumberC":
                         item.Range.Text = LicNum;
                         break;
-                    case "docDate":
+                    case "docDateC":
                         item.Range.Text = DocDate;
                         break;
                     case "docNumberYear":
