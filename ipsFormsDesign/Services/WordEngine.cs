@@ -401,6 +401,7 @@ namespace ipsFormsDesign.Services
                 string fop = String.Empty;
                 string vOsobi = String.Empty;
                 string naPidstavi = String.Empty;
+                string prcntIncText = String.Empty;
 
                 if (cust.CustType < 3) // фіз. особа
                 {
@@ -447,7 +448,7 @@ namespace ipsFormsDesign.Services
                     cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
                     cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
                     vOsobi = " в особі ";
-                    naPidstavi = " = що діє на підставі ";
+                    naPidstavi = "  що діє на підставі ";
                 }
 
  
@@ -455,17 +456,15 @@ namespace ipsFormsDesign.Services
                 LicNum = licAgr?.LicNum;
                 prcntInc = licenseAgrParam?.RateAmount.ToString();
                 minRltGrn = licenseAgrParam?.MinAmount.ToString();
-                minRltKop = ((int)((licenseAgrParam?.MinAmount ?? 0 - (int)(licenseAgrParam?.MinAmount ?? 0)) * 100)).ToString();
+                minRltKop = ((int)((licenseAgrParam?.MinAmount  - (int)(licenseAgrParam?.MinAmount )) * 100)).ToString();
                 pay_period = $"{period[licenseAgrParam?.PeriodCode ?? 1].Name}";
                 pay_period2 = $"{period[licenseAgrParam?.PeriodCode ?? 1].NameR}";
                 DocDateEnd = $"{licenseAgrParam?.DateEnd:dd.MM.yyyy}";
                 prcntPrl = licenseAgrParam?.AddRate?.ToString();
                 registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
-                numberVAT = anketaCompany?.NumberVat.ToString();
+                numberVAT = anketaCompany?.NumberVat?.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
-
-
                 foreach (ContentControl item in list)
                 {
                     item.LockContentControl = false;
@@ -533,16 +532,17 @@ namespace ipsFormsDesign.Services
                             formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
                             break;
                         case "prcntInc":
-                            item.Range.Text = prcntInc;
+                            item.Range.Text = prcntInc + "%";
                             break;
                         case "prcntIncText":
-                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.RateAmount), true);
+                            prcntIncText = Utils.PrcnPhrase(Convert.ToDecimal(licenseAgrParam.RateAmount));
+                            item.Range.Text = prcntIncText;
                             break;
                         case "minRltGrn":
                             item.Range.Text = minRltGrn;
                             break;
                         case "minRltGrnText":
-                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.MinAmount), true); 
+                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32((int)licenseAgrParam.MinAmount), true); 
                             break;
                         case "minRltKop":
                             item.Range.Text = minRltKop;

@@ -62,11 +62,15 @@ namespace ipsFormsDesign
             return CurPhrase(money, "гривня", "гривні", "гривень", "копійка", "копійки", "копійок");
         }
 
+        public static string PrcnPhrase(decimal money)
+        {
+            return CurPhrase(money, "цілий", "цілих", "цілих", "сотих", "сотих", "сотих");
+        }
 
 
         public static string NumPhrase(ulong Value, bool IsMale)
         {
-            if (Value == 0UL) return "Нуль";
+            if (Value == 0UL) return "нуль";
             string[] Dek1 = { "", " од", " дв", " три", " чотири", " п'ять", " шість", " сім", " вісім", " дев'ять", " десять", " одинадцять", " дванадцять", " тринадцять", " чотирнадцять", " п'ятнадцять", " шістнадцять", " сімнадцять", " вісімнадцять", " дев'ятнадцять" };
             string[] Dek2 = { "", "", " двадцять", " тридцять", " сорок", " п'ятдесят", " шістдесят", " сімдесят", " вісімдесят", " дев'яносто" };
             string[] Dek3 = { "", " сто", " двісті", " триста", " чотириста", " п'ятсот", " шістсот", " сімсот", " вісімсот", " дев'ятсот" };
@@ -91,7 +95,7 @@ namespace ipsFormsDesign
         }
         public static string NumPhraseL(ulong Value, bool IsMale)
         {
-            if (Value == 0UL) return "Нуль";
+            if (Value == 0UL) return "нуль";
             string[] Dek1 = { "", " од", " дв", " три", " чотири", " п'ять", " шість", " сім", " вісім", " дев'ять", " десять", " одинадцять", " дванадцять", " тринадцять", " чотирнадцять", " п'ятнадцять", " шістнадцять", " сімнадцять", " вісімнадцять", " дев'ятнадцять" };
             string[] Dek2 = { "", "", " двадцять", " тридцять", " сорок", " п'ятдесят", " шістдесят", " сімдесят", " вісімдесят", " дев'яносто" };
             string[] Dek3 = { "", " сто", " двісті", " триста", " чотириста", " п'ятсот", " шістсот", " сімсот", " вісімсот", " дев'ятсот" };
@@ -135,8 +139,10 @@ namespace ipsFormsDesign
                 case 4: str += word234; break;
                 default: str += wordmore; break;
             }
-            byte fracpart = decimal.ToByte((money - decintpart) * 100M);
-            str += " " + ((fracpart < 10) ? "0" : "") + fracpart.ToString() + " ";
+            ulong fracpart = decimal.ToUInt64((money - decintpart) * 100M);
+/*            str += " " + ((fracpart < 10) ? "0" : "") + fracpart.ToString() + " ";*/
+	    string str1 = NumPhrase(fracpart, true );
+            str += " " + str1 + " ";
             if (fracpart > 19) fracpart = (byte)(fracpart % 10);
             switch (fracpart)
             {

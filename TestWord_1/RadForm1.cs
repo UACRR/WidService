@@ -35,7 +35,7 @@ namespace TestWord_1
             //            Filename = "F_3_МБВ.docx";
             //            Filename = "F_6_МТЦ.docx";
             //            Filename = "F_Акт_публічне виконання.docx";  
-                     Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+             //        Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
             //          Filename = "F_Акт_публічне сповіщення TV+радио.docx";
             //        Filename = "F_Акт_публічне сповіщення кTV.docx";
             //            Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
@@ -113,7 +113,7 @@ namespace TestWord_1
                     wordApp.processConsumerBR(template, cust, agreementMaster11,licA11);
                     break;
                 case "F_7_Г готелі.docx":
-                    cust = service.GetData(134);
+                    cust = service.GetData(226);
                     LicenseAgreement licAgr3 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr3);
