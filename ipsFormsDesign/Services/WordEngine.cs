@@ -69,6 +69,7 @@ namespace ipsFormsDesign.Services
 
             if (File.Exists(docFile))
                 File.Delete(docFile);
+
             return docFile;
         }
 
@@ -320,6 +321,9 @@ namespace ipsFormsDesign.Services
         /// <param name="lic"></param>
         public async System.Threading.Tasks.Task ProcessConsumer(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement lic)
         {
+            if (lic.LicCode == 10 || lic.LicCode == 28)
+                processConsumerBR(pathTemplate, cust, agr, lic);
+
             await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
         }
         /// <summary>
@@ -329,11 +333,14 @@ namespace ipsFormsDesign.Services
         /// <param name="Consumer"></param> 
         public async System.Threading.Tasks.Task ProcessConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
         {
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             string docFile = PrepareWork();
             System.IO.File.Copy(pathTemplate, docFile);
 
-            // відкрити шаблон
+            if (agr.LicCode == 10 || agr.LicCode == 28)
+                await processConsumerBR(pathTemplate, cust, agr.Agr, agr);
 
+            // відкрити шаблон
             await System.Threading.Tasks.Task.Run(() => InnerProcessConsumer(cust, agr, version, docFile));
         }
         /// <summary>
@@ -691,14 +698,12 @@ namespace ipsFormsDesign.Services
         public async System.Threading.Tasks.Task processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement licA)
         {
             // копіювати в тимчасову папку
-            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            PrepareWork();
+            var docFile = tempFileName + ".docx";
 
             // відкрити шаблон
 
             await System.Threading.Tasks.Task.Run(() =>
             {
-                var docFile = tempFileName + ".docx";
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
                 var period = _dic.period.ToDictionary(rec => rec.CodeI);
@@ -815,31 +820,32 @@ namespace ipsFormsDesign.Services
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
-                ShowName = licA.LicenseBigR.Obj.Name?.ToString();
-                ShowAct = licA.LicenseBigR.Obj.ActCode?.ToString();
+                ShowName = licA.LicenseBigR?.Obj.Name?.ToString();
+                ShowAct = licA.LicenseBigR?.Obj.ActCode?.ToString();
                 docNumberC = licA.LicenseAgrParam.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum;
                 LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => (rec.LicId == licA.LicId) &
                         (rec.LicVersion == licA.LicVersion)).Single();
                 docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
                 docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
-                prcntShow = licA.LicenseBigR.Rate?.ToString();
-                prcntShowText = Utils.GrnPhrase(Convert.ToDecimal(licA.LicenseBigR.Rate));
-                PayShowDataDo = $"{licA.LicenseBigR.PrepayDateDo:dd.MM.yyyy}";
+                prcntShow = licA.LicenseBigR?.Rate?.ToString();
+                prcntShowText = Utils.GrnPhrase(Convert.ToDecimal(licA.LicenseBigR?.Rate));
+                PayShowDataDo = $"{licA.LicenseBigR?.PrepayDateDo:dd.MM.yyyy}";
                 decimal pPayShowGrn = 0;
                 decimal aPayShowGrn = 0;
-                var array_licAuthorB = licA.LicenseBigR.LicAuthorBr.ToList();
-                foreach (LicAuthorBr item in array_licAuthorB)
-                {
-                    if (item.PrepayType == 1)
+                var array_licAuthorB = licA.LicenseBigR?.LicAuthorBr.ToList();
+                if (array_licAuthorB != null)
+                    foreach (LicAuthorBr item in array_licAuthorB)
                     {
-                        pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
-                    }
-                    if (item.PrepayType == 2)
-                    {
-                        aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
-                    }
+                        if (item.PrepayType == 1)
+                        {
+                            pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                        }
+                        if (item.PrepayType == 2)
+                        {
+                            aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                        }
 
-                }
+                    }
                 pPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(pPayShowGrn)), false);
                 pPayShowKop = ((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)).ToString();
                 aPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(aPayShowGrn)), false);
@@ -1120,217 +1126,217 @@ namespace ipsFormsDesign.Services
 
 
         private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
+        {
+            LicAuthorBr authorBr;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in alicAuthorB)
             {
-                LicAuthorBr authorBr;
-                if (tables.Count == 0) return;
-                Table table = tables[1];
-                //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-                Row curRow = null;
-                int index = 1;
-                foreach (var item in alicAuthorB)
-                {
-                    authorBr = item;
-                    curRow = table.Rows.Add();
-                    index++;
-                    curRow.Cells[1].Range.Text = authorBr.RoleType.ToString();
-                    curRow.Cells[2].Range.Text = authorBr.NameAuthor;
-                    curRow.Cells[3].Range.Text = "Україна";
-                    curRow.Cells[4].Range.Text = "";
-                    curRow.Cells[5].Range.Text = authorBr.Rate.ToString();
-                    curRow.Cells[6].Range.Text = "гривня";
-                    curRow.Cells[7].Range.Text = authorBr.PrepaySum.ToString();
-                    curRow.Cells[8].Range.Text = "";
-                }
-
-
-
-            }
-            private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
-            {
-                ClnBusinessPlace places;
-                if (tables.Count == 0) return;
-                Table table = tables[1];
-                //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-                Row curRow = null;
-                int index = 1;
-                foreach (var item in BuisnessPlace)
-                {
-                    places = item;
-
-                    curRow = table.Rows.Add();
-                    curRow.Cells[1].Range.Text = index.ToString();
-                    index++;
-
-                    curRow.Cells[2].Range.Text = places.PlaceName + "," + places.PlaceCity + "," + places.PlaceAddress;
-                    foreach (var place in item.ClnPlaceHoll)
-                    {
-                        curRow = table.Rows.Add();
-                        curRow.Cells[3].Range.Text = place.HollName;
-                        curRow.Cells[4].Range.Text = place.SqHoll.ToString();
-                        curRow.Cells[5].Range.Text = place.HollNum.ToString();
-                    }
-                }
+                authorBr = item;
+                curRow = table.Rows.Add();
+                index++;
+                curRow.Cells[1].Range.Text = authorBr.RoleType.ToString();
+                curRow.Cells[2].Range.Text = authorBr.NameAuthor;
+                curRow.Cells[3].Range.Text = "Україна";
+                curRow.Cells[4].Range.Text = "";
+                curRow.Cells[5].Range.Text = authorBr.Rate.ToString();
+                curRow.Cells[6].Range.Text = "гривня";
+                curRow.Cells[7].Range.Text = authorBr.PrepaySum.ToString();
+                curRow.Cells[8].Range.Text = "";
             }
 
-            private void formTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+
+
+        }
+        private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
             {
-                ClnBusinessPlace places;
-                if (tables.Count == 0) return;
-                Table table = tables[1];
-                //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-                Row curRow = null;
-                int index = 1;
-                foreach (var item in BuisnessPlace)
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName + "," + places.PlaceCity + "," + places.PlaceAddress;
+                foreach (var place in item.ClnPlaceHoll)
                 {
-                    places = item;
                     curRow = table.Rows.Add();
-                    index++;
-                    var place = item.ClnPlaceHoll.FirstOrDefault();
-                    curRow.Cells[1].Range.Text = index.ToString();
-                    curRow.Cells[2].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
-                    curRow.Cells[3].Range.Text = places.PlaceName;
+                    curRow.Cells[3].Range.Text = place.HollName;
                     curRow.Cells[4].Range.Text = place.SqHoll.ToString();
-
+                    curRow.Cells[5].Range.Text = place.HollNum.ToString();
                 }
             }
+        }
 
-            private void formTableTheaterPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        private void formTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
             {
-                ClnBusinessPlace places;
-                if (tables.Count == 0) return;
-                Table table = tables[1];
-                //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-                Row curRow = null;
-                int index = 1;
-                foreach (var item in BuisnessPlace)
-                {
-                    places = item;
+                places = item;
+                curRow = table.Rows.Add();
+                index++;
+                var place = item.ClnPlaceHoll.FirstOrDefault();
+                curRow.Cells[1].Range.Text = index.ToString();
+                curRow.Cells[2].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
+                curRow.Cells[3].Range.Text = places.PlaceName;
+                curRow.Cells[4].Range.Text = place.SqHoll.ToString();
 
+            }
+        }
+
+        private void formTableTheaterPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName;
+                curRow.Cells[5].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
+                foreach (var place in item.ClnPlaceHoll)
+                {
                     curRow = table.Rows.Add();
-                    curRow.Cells[1].Range.Text = index.ToString();
-                    index++;
-
-                    curRow.Cells[2].Range.Text = places.PlaceName;
-                    curRow.Cells[5].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
-                    foreach (var place in item.ClnPlaceHoll)
-                    {
-                        curRow = table.Rows.Add();
-                        curRow.Cells[3].Range.Text = place.HollName;
-                        curRow.Cells[4].Range.Text = place.HollNum.ToString();
-                    }
+                    curRow.Cells[3].Range.Text = place.HollName;
+                    curRow.Cells[4].Range.Text = place.HollNum.ToString();
                 }
             }
+        }
 
-            private void formTableBarPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        private void formTableBarPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
             {
-                ClnBusinessPlace places;
-                if (tables.Count == 0) return;
-                Table table = tables[1];
-                //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-                Row curRow = null;
-                int index = 1;
-                foreach (var item in BuisnessPlace)
-                {
-                    places = item;
-                    curRow = table.Rows.Add();
-                    index++;
-                    var place = item.ClnPlaceHoll.FirstOrDefault();
-                    curRow.Cells[1].Range.Text = index.ToString();
-                    curRow.Cells[2].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
-                    curRow.Cells[3].Range.Text = places.PlaceName;
+                places = item;
+                curRow = table.Rows.Add();
+                index++;
+                var place = item.ClnPlaceHoll.FirstOrDefault();
+                curRow.Cells[1].Range.Text = index.ToString();
+                curRow.Cells[2].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
+                curRow.Cells[3].Range.Text = places.PlaceName;
 
 
-                }
+            }
+        }
+
+        private void formTableExclude(Tables tables, RightHolder rightHolder)
+        {
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            foreach (var item in rightHolder.TerritoryExclude)
+            {
+                curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
+            }
+        }
+
+        private void formTableInUse(Tables tables, RightHolder rightHolder)
+        {
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+
+            var list = rightHolder.TerritoryInclude;
+
+            if (list.Count == 0)
+            {
+                table.Rows.Delete();
+                return;
             }
 
-            private void formTableExclude(Tables tables, RightHolder rightHolder)
-            {
-                if (tables.Count == 0) return;
-                Table table = tables[1];
+            for (int i = table.Rows.Count; i > 2; i--)
+                table.Rows[i].Delete();
 
-                var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-                Row curRow = null;
-                foreach (var item in rightHolder.TerritoryExclude)
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+
+            Row curRow = null;
+            if (rightHolder.AroundWord == true)
+            {
+                curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                curRow.Cells[1].Range.Text = "Всіх країн світу";
+            }
+            else
+                foreach (var item in rightHolder.TerritoryInclude)
                 {
+
                     curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
                     curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
                 }
-            }
-
-            private void formTableInUse(Tables tables, RightHolder rightHolder)
-            {
-                if (tables.Count == 0) return;
-                Table table = tables[1];
-
-                var list = rightHolder.TerritoryInclude;
-
-                if (list.Count == 0)
-                {
-                    table.Rows.Delete();
-                    return;
-                }
-
-                for (int i = table.Rows.Count; i > 2; i--)
-                    table.Rows[i].Delete();
-
-                var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-
-                Row curRow = null;
-                if (rightHolder.AroundWord == true)
-                {
-                    curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
-                    curRow.Cells[1].Range.Text = "Всіх країн світу";
-                }
-                else
-                    foreach (var item in rightHolder.TerritoryInclude)
-                    {
-
-                        curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
-                        curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
-                    }
-            }
-
-            private void formTermUse(Tables tables, ICollection<TermsOfService> termsOfServices)
-            {
-                if (tables.Count == 0) return;
-                Table table = tables[1];
-                Dictionary<int, List<TermsOfService>> body = new Dictionary<int, List<TermsOfService>>();
-                Dictionary<int, string> group = new Dictionary<int, string>();
-
-
-
-                foreach (var item in termsOfServices)
-                {
-                    int groupId = item.CrkindCodeNavigation.CrGroupCodeNavigation.CodeI;
-                    if (!group.Keys.Contains(groupId))
-                    {
-                        group.Add(groupId, item.CrkindCodeNavigation.CrGroupCodeNavigation.Name);
-                        body.Add(groupId, new List<TermsOfService>());
-                    }
-                    body[groupId].Add(item);
-                }
-
-                foreach (var groupId in group.Keys)
-                {
-                    var groupName = group[groupId];
-                    var curRow = table.Rows.Add();
-                    Range cellRng = curRow.Cells[1].Range;
-
-                    cellRng.Text = groupName;
-                    //cellRng.Bold = 1;
-                    //cellRng.Font.Size = cellRng.Font.Size + 1;
-                    //cellRng.
-                    var listTerm = body[groupId];
-                    foreach (var item in listTerm)
-                    {
-                        curRow = table.Rows.Add();
-                        curRow.Cells[1].Range.Text = item.CrkindCodeNavigation.Name;
-                        curRow.Cells[2].Range.Text = item.OurService == true ? "Tak" : "Ні";
-                    }
-                }
-            }
-
-            // зберігти
         }
+
+        private void formTermUse(Tables tables, ICollection<TermsOfService> termsOfServices)
+        {
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            Dictionary<int, List<TermsOfService>> body = new Dictionary<int, List<TermsOfService>>();
+            Dictionary<int, string> group = new Dictionary<int, string>();
+
+
+
+            foreach (var item in termsOfServices)
+            {
+                int groupId = item.CrkindCodeNavigation.CrGroupCodeNavigation.CodeI;
+                if (!group.Keys.Contains(groupId))
+                {
+                    group.Add(groupId, item.CrkindCodeNavigation.CrGroupCodeNavigation.Name);
+                    body.Add(groupId, new List<TermsOfService>());
+                }
+                body[groupId].Add(item);
+            }
+
+            foreach (var groupId in group.Keys)
+            {
+                var groupName = group[groupId];
+                var curRow = table.Rows.Add();
+                Range cellRng = curRow.Cells[1].Range;
+
+                cellRng.Text = groupName;
+                //cellRng.Bold = 1;
+                //cellRng.Font.Size = cellRng.Font.Size + 1;
+                //cellRng.
+                var listTerm = body[groupId];
+                foreach (var item in listTerm)
+                {
+                    curRow = table.Rows.Add();
+                    curRow.Cells[1].Range.Text = item.CrkindCodeNavigation.Name;
+                    curRow.Cells[2].Range.Text = item.OurService == true ? "Tak" : "Ні";
+                }
+            }
+        }
+
+        // зберігти
     }
+}
 
