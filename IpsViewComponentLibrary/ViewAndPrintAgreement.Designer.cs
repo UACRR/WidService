@@ -47,7 +47,7 @@
             this.radPdfViewerNavigator.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(0, 0);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1157, 38);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(992, 38);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2007Silver";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -82,7 +82,7 @@
             this.radPdfViewer.EnableThumbnails = false;
             this.radPdfViewer.Location = new System.Drawing.Point(0, 44);
             this.radPdfViewer.Name = "radPdfViewer";
-            this.radPdfViewer.Size = new System.Drawing.Size(1157, 515);
+            this.radPdfViewer.Size = new System.Drawing.Size(992, 524);
             this.radPdfViewer.TabIndex = 3;
             this.radPdfViewer.ThemeName = "Office2007Silver";
             this.radPdfViewer.ThumbnailsScaleFactor = 0.15F;
@@ -93,7 +93,7 @@
             // radWaitingBar1
             // 
             this.radWaitingBar1.BackColor = System.Drawing.Color.Transparent;
-            this.radWaitingBar1.Location = new System.Drawing.Point(503, 240);
+            this.radWaitingBar1.Location = new System.Drawing.Point(453, 227);
             this.radWaitingBar1.Name = "radWaitingBar1";
             this.radWaitingBar1.Size = new System.Drawing.Size(86, 70);
             this.radWaitingBar1.TabIndex = 0;
@@ -115,7 +115,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 560);
+            this.ClientSize = new System.Drawing.Size(992, 568);
             this.Controls.Add(this.radPdfViewerNavigator);
             this.Controls.Add(this.radPdfViewer);
             this.Name = "ViewAndPrintAgreement";
