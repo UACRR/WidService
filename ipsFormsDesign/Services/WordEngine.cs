@@ -533,69 +533,69 @@ namespace ipsFormsDesign.Services
                         break;
 
 
-                    case "CstPerson":
-                        item.Range.Text = cstPerson;
-                        break;
-                    case "CstPersonReason":
-                        item.Range.Text = СstPersonReason;
-                        break;
-                    case "СstNikName":
-                        item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
-                        break;
-                    case "TableKind":
-                        formTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
-                        break;
-                    case "TableTrrUse":
-                        formTableInUse(item.Range.Tables, cust.RightHolder);
-                        break;
-                    case "TablePLh":
-                        formTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
-                        break;
-                    case "TablePLsm":
-                        formTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
-                        break;
-                    case "TablePLfe":
-                        formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
-                        break;
-                    case "prcntInc":
-                        item.Range.Text = prcntInc;
-                        break;
-                    case "prcntIncText":
-                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.RateAmount), true);
-                        break;
-                    case "minRltGrn":
-                        item.Range.Text = minRltGrn;
-                        break;
-                    case "minRltGrnText":
-                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.MinAmount), true); ;
-                        break;
-                    case "minRltKop":
-                        item.Range.Text = minRltKop;
-                        break;
-                    case "rltPayPeriod":
-                        item.Range.Text = pay_period;
-                        break;
-                    case "rltPayPeriod2":
-                        item.Range.Text = pay_period2;
-                        break;
-                    case "docDateEnd":
-                        item.Range.Text = DocDateEnd;
-                        break;
-                    case "prcntPrl":
-                        item.Range.Text = prcntPrl;
-                        break;
-                    case "prcntPrlText":
-                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.AddRate), true);
-                        break;
-                    case "СstLegalAddress":
-                        item.Range.Text = reAddress;
-                        break;
-                    case "СstResidentialAddress":
-                        item.Range.Text = faAddress;
-                        break;
-                    case "СstCorrespAddress":
-                        item.Range.Text = leAddress;
-                        break;
+                        case "CstPerson":
+                            item.Range.Text = cstPerson;
+                            break;
+                        case "CstPersonReason":
+                            item.Range.Text = СstPersonReason;
+                            break;
+                        case "СstNikName":
+                            item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
+                            break;
+                        case "TableKind":
+                            formTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
+                            break;
+                        case "TableTrrUse":
+                            formTableInUse(item.Range.Tables, cust.RightHolder);
+                            break;
+                        case "TablePLh":
+                            formTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
+                            break;
+                        case "TablePLsm":
+                            formTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
+                            break;
+                        case "TablePLfe":
+                            formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
+                            break;
+                        case "prcntInc":
+                            item.Range.Text = prcntInc;
+                            break;
+                        case "prcntIncText":
+                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.RateAmount), true);
+                            break;
+                        case "minRltGrn":
+                            item.Range.Text = minRltGrn;
+                            break;
+                        case "minRltGrnText":
+                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.MinAmount), true); 
+                            break;
+                        case "minRltKop":
+                            item.Range.Text = minRltKop;
+                            break;
+                        case "rltPayPeriod":
+                            item.Range.Text = pay_period;
+                            break;
+                        case "rltPayPeriod2":
+                            item.Range.Text = pay_period2;
+                            break;
+                        case "docDateEnd":
+                            item.Range.Text = DocDateEnd;
+                            break;
+                        case "prcntPrl":
+                            item.Range.Text = prcntPrl;
+                            break;
+                        case "prcntPrlText":
+                            item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.AddRate), true);
+                            break;
+                        case "СstLegalAddress":
+                            item.Range.Text = reAddress;
+                            break;
+                        case "СstResidentialAddress":
+                            item.Range.Text = faAddress;
+                            break;
+                        case "СstCorrespAddress":
+                            item.Range.Text = leAddress;
+                            break;
 
 
                     case "СstBDate":
@@ -718,7 +718,7 @@ namespace ipsFormsDesign.Services
 
                 var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
                 AgreementAddBr agreementAddBr;
-                agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.IsCurrent == 1)?.SingleOrDefault();
+                agreementAddBr = agr.AgreementAddBr?.Where(rec => rec.Version == agr.Version)?.SingleOrDefault();
 
                 string customerName = string.Empty;
                 string leAddress = string.Empty;
@@ -749,6 +749,9 @@ namespace ipsFormsDesign.Services
                 string ShowAct = String.Empty;
                 string docNumberC = String.Empty;
                 string docDateC = String.Empty;
+                string prcntShow = string.Empty;
+                string prcntShowText = string.Empty;
+                
 
                 if (cust.CustType < 3) // фіз. особа
                 {
@@ -811,8 +814,20 @@ namespace ipsFormsDesign.Services
                 ShowAct = licA.LicenseBigR.Obj.ActCode?.ToString();
                 docNumberC = licA.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).Single().LicNum;
 
-                LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => rec.IsCurrent == 1).Single();
-                docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
+                LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => (rec.LicId == licA.LicId) & (rec.LicVersion == licA.LicVersion)).Single();
+                docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";               
+                prcntShow = licA.LicenseBigR.Rate?.ToString();
+                prcntShowText =  Utils.GrnPhrase(Convert.ToDecimal(licA.LicenseBigR.Rate));
+
+//                decimal pPayShowGrn = 0;
+  //              var array_licAuthorB = licA.LicenseBigR.LicAuthorBr.ToArray;
+    //            foreach (prepaySum? item )
+
+
+
+//                pPayShowGrn = 
+
+
 
                 foreach (ContentControl item in list)
                 {
@@ -910,6 +925,11 @@ namespace ipsFormsDesign.Services
                         case "docDateC":
                             item.Range.Text = docDateC;
                             break;
+                        case "prcntShow":
+                            item.Range.Text = prcntShow;
+                            break;
+
+                            
 
                         default:
 
