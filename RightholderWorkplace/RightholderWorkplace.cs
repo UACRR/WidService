@@ -781,17 +781,7 @@ namespace RightholderWorkplace
 
         private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
         {
-            var objectAuthorRightholder = new ObjectAuthorRightholder();
-
-            if (_forRightholder != null)
-            {
-                // TODO: move to ObjectAuthorRightholder constructor
-                objectAuthorRightholder.FolkType = 1;
-                objectAuthorRightholder.IsRightholder = true;
-                objectAuthorRightholder.AuthorName = _forRightholder.Name;
-                objectAuthorRightholder.CustId = _forRightholder.CustId;
-                objectAuthorRightholder.CommunityName = _forRightholder.Community_Name;
-            }
+            var objectAuthorRightholder = new ObjectAuthorRightholder(_forRightholder);
 
             EditObjectAuthorRightholder(objectAuthorRightholder);
         }
@@ -1019,13 +1009,7 @@ namespace RightholderWorkplace
             //    return;
             //}
 
-            var objectAuthorRightholder = new ObjectAuthorRightholder();
-            // TODO: move to ObjectAuthorRightholder constructor
-            objectAuthorRightholder.FolkType = 1;
-            objectAuthorRightholder.IsRightholder = true;
-            objectAuthorRightholder.AuthorName = selectedRightholder.Name;
-            objectAuthorRightholder.CustId = selectedRightholder.CustId;
-            objectAuthorRightholder.CommunityName = selectedRightholder.Community_Name;
+            var objectAuthorRightholder = new ObjectAuthorRightholder(_forRightholder);
 
             using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight, objectRight.CategoryCode))
             {
@@ -1033,8 +1017,8 @@ namespace RightholderWorkplace
 
                 if (authorRightholderItemView.DialogResult == DialogResult.OK)
                 {
-                    objectRight.CopyRight.Add(objectAuthorRightholder); // ця логіка є тільки в методі збереження об'єкта права, move logic for add copyright to objectRight extension method
-                    objectRight.Authors.Add(objectAuthorRightholder);   // ця логіка є тільки в методі збереження об'єкта права
+                    //objectRight.CopyRight.Add(objectAuthorRightholder); // ця логіка є тільки в методі збереження об'єкта права, move logic for add copyright to objectRight extension method
+                    //objectRight.Authors.Add(objectAuthorRightholder);   // ця логіка є тільки в методі збереження об'єкта права
                 }
 
                 // check total persent, move total persent calculation to objectRight extension method
@@ -1089,7 +1073,6 @@ namespace RightholderWorkplace
         {
             if (objectAuthorRightholder == null)
                 objectAuthorRightholder = SelectedObjectAuthorRightholder;
-
 
             using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionariesObjectRight, _objectRight.CategoryCode))
             {
