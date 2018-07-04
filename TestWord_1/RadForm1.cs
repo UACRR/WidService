@@ -74,8 +74,12 @@ namespace TestWord_1
                     */
                     cust = service.GetData(142);
                     wordApp = new WordEngine(service.GetDictionary());
-                    LicenseAgreement licA = cust.Client.LicenseAgreement?.First();
-                    wordApp.processConsumerBR(template, cust, cust.AgreementMaster.First(), licA);
+                    
+// для теста берем agrid=13;
+                    AgreementMaster agreementMaster = cust.AgreementMaster?.Where(rec => rec.AgrId == 13).Single();
+// для теста берем agrid=13 и licid=3;
+                    LicenseAgreement licA = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 13 &  rec.LicId == 3)).Single();
+                    wordApp.processConsumerBR(template, cust, agreementMaster , licA);
                     break;
 
                 case "F_Акт_публічне виконання.docx":
