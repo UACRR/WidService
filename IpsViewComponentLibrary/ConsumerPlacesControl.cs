@@ -20,7 +20,7 @@ namespace ipsAnketaClient
         #region FIELDS
 
         private Customer data;
-        private List<ClnPlaceHoll> newPlace;
+        private ObservableListSource<ClnPlaceHoll> newPlace;
         private IpsPremisesTypeControl premisesType;
         private AddPremisesForm newPremises;
         private AddPremisesForm editPremises;
@@ -116,9 +116,10 @@ namespace ipsAnketaClient
         /// </summary>
         private void PremisesType_OnBtnDeletePremisesClick(ClnPlaceHoll deleteHoll)
         {
-            if (MessageBox.Show("Підтвердження", "Видалити залу?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Видалити залу?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var item = rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace;
+                
                 item?.ClnPlaceHoll.Remove(deleteHoll);
             }
         }
@@ -153,8 +154,9 @@ namespace ipsAnketaClient
             rGridViewInstitution.Enabled = true;
             IsNeedPremissesType = false;
             rBtnEditInst.Enabled = true;
+            btnDeletePlace.Enabled = true;
             isNewInst = false;
-            newPlace = new List<ClnPlaceHoll>();
+            newPlace = new ObservableListSource<ClnPlaceHoll>();
 
             if(data?.Client?.ClnBusinessPlace?.Count != 0)
                 SetGridDataSource(data?.Client?.ClnBusinessPlace);
@@ -241,11 +243,17 @@ namespace ipsAnketaClient
             else//існуючий заклад
             {
                 int idRow = Convert.ToInt32(rGridViewInstitution.CurrentRow.Cells[0].Value);
-                newPremises = new AddPremisesForm(premisesType.GetData(idRow), idRow);
-                //premisesType.IdSelectedRow;
+                if(idRow != 0)
+                    newPremises = new AddPremisesForm(premisesType.GetData(idRow), idRow);
+                else
+                {
+                    var place = rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace;
+                    newPremises = new AddPremisesForm(place?.ClnPlaceHoll, idRow);
+                    //newPremises.SetTypePremises(Convert.ToByte(data.Client.ClnBusinessPlace.SingleOrDefault(item => item.PlaceId == idRow).PlCode));
+                }
+                newPremises.SetTypePremises(Convert.ToByte((rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace)?.PlCode));
                 newPremises.OnInsertData += NewPremises_OnInsertData;
                 newPremises.StartPosition = FormStartPosition.CenterScreen;
-                newPremises.SetTypePremises(Convert.ToByte(data.Client.ClnBusinessPlace.SingleOrDefault(item => item.PlaceId == idRow).PlCode));
                 newPremises.ShowDialog();
                 newPremises.OnInsertData -= NewPremises_OnInsertData;
                 newPremises = null;
@@ -266,14 +274,17 @@ namespace ipsAnketaClient
                 editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow);
             else if (isNewInst)
                 editPremises = new AddPremisesForm(newPlace, premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
-            else 
+            else if (idRow == 0)
+            {
+                if(rGridViewInstitution.CurrentRow.DataBoundItem is ClnBusinessPlace item)
+                    editPremises = new AddPremisesForm(item.ClnPlaceHoll, premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
+            }
+            else
                 editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
+
             editPremises.OnUpdateData += EditPremises_OnUpdateData; ;
             editPremises.StartPosition = FormStartPosition.CenterScreen;
-            if(!isNewInst)
-                 editPremises.SetTypePremises(Convert.ToByte(data?.Client?.ClnBusinessPlace?.SingleOrDefault(item => item?.PlaceId == idRow)?.PlCode));
-            else
-                 editPremises.SetTypePremises(typePremises);
+            editPremises.SetTypePremises(!isNewInst ? Convert.ToByte((rGridViewInstitution?.CurrentRow?.DataBoundItem as ClnBusinessPlace)?.PlCode) : typePremises);
             editPremises.ShowDialog();
             editPremises.OnUpdateData -= EditPremises_OnUpdateData;
             editPremises = null;
@@ -297,10 +308,20 @@ namespace ipsAnketaClient
             }
             else//існуючий заклад
             {
-                var editdata = data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
+                var editData = IdItemOfSelectRow != 0 
+                    ? data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault() 
+                    : (rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace)?.ClnPlaceHoll;
 
-                editdata.Add(temp.LastOrDefault());
-                premisesType.SetDataSource(data, IdItemOfSelectRow);
+                if (editData == null) return;
+
+                if(IdItemOfSelectRow != 0)
+                    editData.Add(temp.LastOrDefault());
+
+                if(IdItemOfSelectRow != 0)
+                    premisesType.SetDataSource(data, IdItemOfSelectRow);
+                else
+                    premisesType.SetDataSource(data, rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace);
+
                 premisesType.RefreshGrid();
 
                 //* * * ЗБЕРЕГТИ ЗМІНИ
@@ -316,7 +337,7 @@ namespace ipsAnketaClient
             }
             else
             {
-                premisesType.SetDataSource(data, IdItemOfSelectRow, typePremises);
+                //premisesType.SetDataSource(data, IdItemOfSelectRow, typePremises);
             }
             premisesType.RefreshGrid();
         }
@@ -344,7 +365,7 @@ namespace ipsAnketaClient
                     //    new TypePlaceTr{ CodeI = 1, Name = "Гостиница", Lang = "Ru" },
                     //    new TypePlaceTr{ CodeI = 1, Name = "Готель", Lang = "Uk" } }
                 };
-            newPlace = new List<ClnPlaceHoll>();
+            newPlace = new ObservableListSource<ClnPlaceHoll>();
             rTxtBoxTypeInst.Text = rBtnAddHotel.Text;
             InitializePremiseslComponent();
             rPanelAdd.Visible = true;
@@ -370,7 +391,7 @@ namespace ipsAnketaClient
                 //    new TypePlaceTr{ CodeI = 2, Name = "Ресторан", Lang = "Ru" },
                 //    new TypePlaceTr{ CodeI = 2, Name = "Ресторан", Lang = "Uk" } }
             };
-            newPlace = new List<ClnPlaceHoll>();
+            newPlace = new ObservableListSource<ClnPlaceHoll>();
             rTxtBoxTypeInst.Text = rBtnAddRestaurant.Text;
             InitializePremiseslComponent();
             rPanelAdd.Visible = true;
@@ -494,10 +515,53 @@ namespace ipsAnketaClient
         /// <param name="e"></param>
         private void rBtnEditInst_Click(object sender, EventArgs e)
         {
-            if(rGridViewInstitution.RowCount == 0 || rGridViewInstitution.CurrentRow.Cells[0].Value.ToString() == "0")
+            if(rGridViewInstitution.RowCount == 0)
                 return;
+
+            IdItemOfSelectRow = (int)rGridViewInstitution.CurrentRow.Cells[0].Value;
+
+            ClnBusinessPlace localBusinessPlace = new ClnBusinessPlace();
+            switch (rGridViewInstitution.CurrentRow.DataBoundItem)
+            {
+                case ClnBusinessPlace businessPlace when (businessPlace.PlCodeNavigation.CodeI == 1 || businessPlace.PlCodeNavigation.CodeI == 2):
+                {
+                    localBusinessPlace = businessPlace;
+                    InitializePremiseslComponent();
+                    IsNeedPremissesType = true;
+                    premisesType.SetDataSource(data, localBusinessPlace);
+                } break;
+
+                case ClnBusinessPlace businessPlace when (businessPlace.PlCodeNavigation.CodeI > 2):
+                {
+                    localBusinessPlace = businessPlace;
+                    var countOrMeters = businessPlace.ClnPlaceHoll.SingleOrDefault();
+                    var count = countOrMeters?.HollNum;
+                    rTxtBoxCountOrMeters.Text = (countOrMeters?.HollNum ?? countOrMeters?.SqHoll)?.ToString();
+                    lblLocation.Text = count != null ? "Кількість місць" : "Метраж";
+                    rTxtBoxCountOrMeters.Visible = true;
+                    lblLocation.Visible = true;
+                } break;
+            }
+
+            rTxtBoxNameInst.Text = localBusinessPlace.PlaceName;
+            rTxtBoxTypeInst.Text = localBusinessPlace.PlCodeNavigation.Name;
+
+            addressControl.SetAddressForEditCustomer(localBusinessPlace);
+
+            rPanelAdd.Visible = true;
+            rDropDownBtnAddInst.Enabled = false;
+            rGridViewInstitution.Enabled = false;
+            rBtnEditInst.Enabled = false;
+            btnDeletePlace.Enabled = false;
+
+            OnEnabledChangeWhenEditOrAddPremises?.Invoke();
+
+            return;
+
+            // * * * *
             if (rGridViewInstitution.CurrentRow.Cells[0].Value.GetType() != typeof(Int32))
                 return;
+
             IdItemOfSelectRow = (int)rGridViewInstitution.CurrentRow.Cells[0].Value;
             var typePlace = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlCodeNavigation).SingleOrDefault();
             if (typePlace != null)
@@ -531,7 +595,7 @@ namespace ipsAnketaClient
 
             OnEnabledChangeWhenEditOrAddPremises?.Invoke();
         }
-
+        ObservableListSource<ClnPlaceHoll> newPlace1 = new ObservableListSource<ClnPlaceHoll>();
         /// <summary>
         /// ЗБЕРЕГТИ
         /// </summary>
@@ -558,17 +622,23 @@ namespace ipsAnketaClient
                     PlaceAddress = addressControl.StreetName,
                     FreeEntry = typePlace.CodeI != 4, // безкоштовний/платний вхід
                     PlCodeNavigation = typePlace, //тип закладу,
-                    ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>(IsNeedPremissesType ?
-                                    newPlace :
-                                    new List<ClnPlaceHoll>
-                    {
-                        new ClnPlaceHoll
-                        {
-                            HollNum = typePlace.CodeI == 3 ? null : new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)),
-                            SqHoll = typePlace.CodeI == 3 ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null,
-                        }
-                    }) 
-                //приміщення: IsNeedPremissesType-treu якщо з приміщеннями
+                    ClnPlaceHoll = IsNeedPremissesType ?
+                        newPlace :
+                        new ObservableListSource<ClnPlaceHoll>{
+                            new ClnPlaceHoll
+                            {
+                                HollNum = typePlace.CodeI == 3 ? null : new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)),
+                                SqHoll = typePlace.CodeI == 3 ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null,
+                            }}
+                    //ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>(IsNeedPremissesType ?
+                    //                newPlace :
+                    //                new List<ClnPlaceHoll>{
+                    //                        new ClnPlaceHoll
+                    //                        {
+                    //                            HollNum = typePlace.CodeI == 3 ? null : new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)),
+                    //                            SqHoll = typePlace.CodeI == 3 ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null,
+                    //                        }})
+                    //приміщення: IsNeedPremissesType-treu якщо з приміщеннями
                 };
 
                  data.Client.ClnBusinessPlace.Add(newInst);
@@ -576,8 +646,8 @@ namespace ipsAnketaClient
             else // існуючий заклад
             {
                 int idRow = Convert.ToInt32(rGridViewInstitution.CurrentRow.Cells[0].Value);
-                var item = data.Client.ClnBusinessPlace.SingleOrDefault(idItem => idItem.PlaceId == idRow);
-                if (item != null)
+                //var item = data.Client.ClnBusinessPlace.SingleOrDefault(idItem => idItem.PlaceId == idRow);
+                if (rGridViewInstitution.CurrentRow.DataBoundItem is ClnBusinessPlace item)
                 {
                     item.PlaceName = rTxtBoxNameInst.Text;
                     item.PlaceRegion = addressControl.RegionCode;
@@ -611,7 +681,7 @@ namespace ipsAnketaClient
         {
             if(rGridViewInstitution.Rows.Count == 0)
                 return;
-            if (MessageBox.Show("Ви дійсно хочете видалити обраний майданчик?", "Підтвердження",
+            if (MessageBox.Show("Ви дійсно хочете видалити обраний заклад?", "Підтвердження",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             var itemId = (int)rGridViewInstitution.CurrentRow.Cells["PlaceId"].Value;
             var itemName = rGridViewInstitution.CurrentRow.Cells["PlaceName"].Value.ToString();

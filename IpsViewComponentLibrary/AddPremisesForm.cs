@@ -7,13 +7,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
 using Telerik.WinControls;
 
 namespace ipsAnketaClient
 {
     public partial class AddPremisesForm : Telerik.WinControls.UI.RadForm
     {
-        private List<ClnPlaceHoll> _data;
+        private ObservableListSource<ClnPlaceHoll> _data;
         private int _idEditItem;
         private int _idPlace;
         private byte typePremises;
@@ -33,14 +34,14 @@ namespace ipsAnketaClient
             //_data = new List<ClnPlaceHoll>();
         }
 
-        public AddPremisesForm(List<ClnPlaceHoll> data, int placeId)
+        public AddPremisesForm(ObservableListSource<ClnPlaceHoll> data, int placeId)
         {
             InitializeComponent();
             _data = data;
             _idPlace = placeId;
         }
 
-        public AddPremisesForm(List<ClnPlaceHoll> data, int id, int placeId, string stringId = null)
+        public AddPremisesForm(ObservableListSource<ClnPlaceHoll> data, int id, int placeId, string stringId = null)
         {
             InitializeComponent();
             _data = data;
@@ -216,7 +217,7 @@ namespace ipsAnketaClient
                 rtxtBoxMetersPlaces.Text = places.ToString();
         }
 
-        public List<ClnPlaceHoll> DataFotInsert()
+        public ObservableListSource<ClnPlaceHoll> DataFotInsert()
         {
             var data = new ClnPlaceHoll
             {
@@ -229,7 +230,7 @@ namespace ipsAnketaClient
             if (_data!=null)
                 _data.Add(data);
             else
-                _data = new List<ClnPlaceHoll>
+                _data = new ObservableListSource<ClnPlaceHoll>
                 {
                     data
                 };
@@ -237,7 +238,7 @@ namespace ipsAnketaClient
             return _data;
         }
 
-        public List<ClnPlaceHoll> DataForUpdate()
+        public ObservableListSource<ClnPlaceHoll> DataForUpdate()
         {
             ClnPlaceHoll editRow = null;
             if (_idEditItem != 0)

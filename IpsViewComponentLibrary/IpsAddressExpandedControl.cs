@@ -116,6 +116,18 @@ namespace IpsViewComponentLibrary
             rTxtBoxNameStreet.Text = _streetAddress;
         }
 
+        public void SetAddressForEditCustomer(ClnBusinessPlace place)
+        {
+            _nameTown = place.PlaceCity;
+            _regionCode = place.PlaceRegion ?? 1;
+            rDropListRegion.SelectedIndex = _regionCode;
+            _nameRegion = rDropListRegion.SelectedItem.Text;
+            _streetAddress = place.PlaceAddress;
+
+            rTxtBoxTownName.Text = _nameTown;
+            rTxtBoxNameStreet.Text = _streetAddress;
+        }
+
         private void rDropListRegion_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             _regionCode = rDropListRegion.SelectedItem.Index;
