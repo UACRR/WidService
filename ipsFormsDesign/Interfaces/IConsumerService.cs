@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Dictionary;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,5 +17,6 @@ namespace ipsFormsDesign.Interfaces
     public interface IConsumerService : IModel
     {
         IList<ConsumerMainView> getMainView();
+        IList<AutoCompleteData> getAutoCompleteList(string filter);
     }
 }

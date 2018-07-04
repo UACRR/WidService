@@ -1,12 +1,35 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace ipsFormsDesign
 {
     public static class Utils
     {
+        // Deep clone
+        //public static T DeepClone<T>(this T a)
+        //{
+        //    using (MemoryStream stream = new MemoryStream())
+        //    {
+        //        BinaryFormatter formatter = new BinaryFormatter();
+        //        formatter.Serialize(stream, a);
+        //        stream.Position = 0;
+        //        return (T)formatter.Deserialize(stream);
+        //    }
+        //}
+
+        public static T CloneJson<T>(this T source)
+        {
+            if (object.ReferenceEquals(source, null))
+            {
+                return default(T);
+            }
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
+        }
 
         public static void SetFields(this object dest, object source, string[] FieldExclude = null)
         {

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -67,13 +68,19 @@ namespace IpsViewComponentLibrary
         /// Ініціалізація даних для контрола (DATABINDING)
         /// </summary>
         /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
-        public void InitializeControl(bool isNew = true)
+        public void InitializeControl(
+            Func<string, IList<AutoCompleteData>> _getAutoCompList,
+            Func<int, Customer> _getCustomerAnketa, 
+            bool isNew = true)
         {
 
             isEdit = !isNew;
             SetTypePages(isNew);
             SetColorTabs(isNew);
-
+            if(isNew)
+            {
+                ctrlClientName.SetAutoComplete(_getAutoCompList, _getCustomerAnketa);
+            }
             ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
             ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
             ctrlManagers.SetDataSources(_cust, _anketaDictionaries);   // - - - - - - - -  Керівники
@@ -455,7 +462,10 @@ namespace IpsViewComponentLibrary
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
             radWaitingBar1.StartWaiting();
-            var wordEngine = Task.Run(()=> LoadPdfDocAsync()).GetAwaiter().GetResult();
+            var task = Task.Run(()=> LoadPdfDocAsync());
+            task.Wait();
+            var wordEngine = task.Result;
+            // var wordEngine = Task.Run(()=> LoadPdfDocAsync()).GetAwaiter().GetResult();
             radWaitingBar1.StopWaiting();
             radPdfViewer.LoadDocument(wordEngine.Pdf);
         }

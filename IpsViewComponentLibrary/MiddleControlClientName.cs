@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -18,6 +19,8 @@ namespace IpsViewComponentLibrary
 
         private Customer _cust;
         private AnketaDictionaties _dictionaties;
+        private Func<string, List<AutoCompleteData>> getAutoCompList;
+        private Func<int, Customer> getCustomerAnketa;
 
         public event EventHandler OnContainPlacesChanged;
 
@@ -63,9 +66,6 @@ namespace IpsViewComponentLibrary
 
             return isvalid;
 
-                    
-
-            return isvalid;
         }
 
         public bool IsPlaceIn
@@ -82,6 +82,11 @@ namespace IpsViewComponentLibrary
         internal void SetDefaultState()
         {
             ctrlRegistrationsCompany.SetDefaultState();
+        }
+
+        internal void SetAutoComplete(Func<string, IList<AutoCompleteData>> _getAutoCompList, Func<int, Customer> _getCustomerAnketa)
+        {
+            ctrlAnketaCompany.SetAutoComplete(_getAutoCompList, _getCustomerAnketa);
         }
     }
 }

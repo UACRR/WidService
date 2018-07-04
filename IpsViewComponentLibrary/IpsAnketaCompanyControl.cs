@@ -8,12 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsAnketaCompanyControl : UserControl
     {
+        private Func<string, IList<AutoCompleteData>> getAutoCompList;
+        private Func<int, Customer> getCustomerAnketa;
+
         public IpsAnketaCompanyControl()
         {
             InitializeComponent();
@@ -59,13 +65,6 @@ namespace IpsViewComponentLibrary
             else
                 radLabel1.ForeColor = Color.Black;
 
-           //if (txtShortName.Text == string.Empty)
-           //{
-           //    radLabel2.ForeColor = Color.FromArgb(180, 255, 0, 2);
-           //    isValid = false;
-           //}
-           //else
-           //    radLabel2.ForeColor = Color.Black;
 
             return isValid;
         }
@@ -74,8 +73,52 @@ namespace IpsViewComponentLibrary
         {
             txtName.Clear();
             txtShortName.Clear();
-            //ddlActivityCode
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_getAutoCompList"></param>
+        /// <param name="_getCustomerAnketa"></param>
+        internal void SetAutoComplete(Func<string, IList<AutoCompleteData>> _getAutoCompList, Func<int, Customer> _getCustomerAnketa)
+        {
+            getAutoCompList = _getAutoCompList;
+            getCustomerAnketa = _getCustomerAnketa;
+            txtName.ListItemSelected += TxtName_ListItemSelected;
+            txtName.TextChanged += TxtName_TextChanged;
+        }
+
+        private void TxtName_ListItemSelected(object sender, Telerik.WinControls.UI.RadListDataItem e)
+        {
+            var getCustomer = getCustomerAnketa((int)e.Value);
+            //var anketa = getCustomer.Company.AnketaCompany.Where(rec => rec.Version == getCustomer.AnkVersion).Single();
+            //DataSource = anketa;
+        }
+
+        string _cacheSearch = string.Empty;
+        private void TxtName_TextChanged(object sender, EventArgs e)
+        {
+            if (getAutoCompList == null || getCustomerAnketa == null)
+                return;
+            // Якщо анкета існуючого клієнту
+            if (anketaCompanyBindingSource.DataSource is AnketaCompany @company && @company.CustId != 0)
+                return;
+            if( txtName.Text.Length > 0 )
+            {
+                if(_cacheSearch.Length == 0
+                    || !_cacheSearch.StartsWith(txtName.Text.Substring(0,1))
+                    || _cacheSearch.Length > txtName.Text.Length + 2 // видалення з пошуку по 2 символи
+                    || _cacheSearch.Length + 2 < txtName.Text.Length
+                    )
+                {
+                    _cacheSearch = txtName.Text;
+                    var list = getAutoCompList(_cacheSearch).Select(rec=>new RadListDataItem(rec.DisplayValue, rec.Value));
+                    txtName.AutoCompleteDataSource = list;
+                }
+            }
+        }
+
+
         #endregion
     }
 }
