@@ -33,6 +33,7 @@
     <Reference Include="Microsoft.AspNetCore.Mvc.Core">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.0.4\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -44,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />
     <Compile Include="Dictionary\ConsumerFilterEnum.cs" />
     <Compile Include="Dictionary\DictBaseTypeI.cs" />

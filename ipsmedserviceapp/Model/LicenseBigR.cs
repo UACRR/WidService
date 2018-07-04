@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -23,9 +24,12 @@ namespace ipsmedserviceapp.Model
         public decimal? Rate { get; set; }
         public DateTime? PrepayDateDo { get; set; }
 
+        [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
         public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        [JsonIgnore]
         public ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }
+

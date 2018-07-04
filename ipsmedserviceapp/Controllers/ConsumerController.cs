@@ -554,6 +554,16 @@ namespace ipsmedserviceapp.Controllers
             var List = await _dbContext.getViewData(queue, null);
             return Json(List);
         }
+        [HttpGet("listAll/{filter}")]
+        public async Task<IActionResult> GetFilteredList( string filter)
+        {
+            string normalizeFilter = string.Concat(filter, "%");
+            var list = await _dbContext.getViewData("select name, custid from vCustomer where custType = 3 and name like @filter", new[] { new SqlParameter("@filter", normalizeFilter) });
+
+            var retList = list.Select(rec => new { displayValue = rec["name"], value = rec["custid"] }).ToArray();
+
+            return Json(retList);
+        }
 
         /// <summary>
         /// Отримати детальну інформацію по періодам оплати договору

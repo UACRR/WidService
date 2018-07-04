@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -31,3 +31,4 @@ namespace ipsmedserviceapp.Model
         public Period PeriodCodeNavigation { get; set; }
     }
 }
+

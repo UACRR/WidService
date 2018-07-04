@@ -168,6 +168,7 @@ namespace ConsumerWorkplace_v_1._0
         public Func<int, Customer> NewCustomer { get; set; }
         public Func<int, Customer> GetCustomer { get; set; }
         public Func<Customer, bool> SaveCustomer { get; set; }
+        public Func<string, IList<AutoCompleteData>> GetAutoCompList { get; set; }
 
         public void EndPresenterLink()
         {
