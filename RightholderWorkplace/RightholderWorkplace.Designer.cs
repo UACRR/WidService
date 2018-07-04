@@ -1371,6 +1371,7 @@
             // 
             // btnAddExistingObjectRightForRightholder
             // 
+            this.btnAddExistingObjectRightForRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddExistingObjectRightForRightholder.Location = new System.Drawing.Point(146, 595);
             this.btnAddExistingObjectRightForRightholder.Name = "btnAddExistingObjectRightForRightholder";
             this.btnAddExistingObjectRightForRightholder.Size = new System.Drawing.Size(140, 24);
