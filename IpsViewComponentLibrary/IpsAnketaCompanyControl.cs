@@ -86,34 +86,60 @@ namespace IpsViewComponentLibrary
             getCustomerAnketa = _getCustomerAnketa;
             txtName.ListItemSelected += TxtName_ListItemSelected;
             txtName.TextChanged += TxtName_TextChanged;
+            txtName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         }
 
+        bool inProcess = false;
         private void TxtName_ListItemSelected(object sender, Telerik.WinControls.UI.RadListDataItem e)
         {
-            var getCustomer = getCustomerAnketa((int)e.Value);
+            inProcess = true;
+            RadListDataItem curItem = (RadListDataItem)e.Value;
+            var getCustomer = getCustomerAnketa((int)curItem.Value);
+            txtName.Text = (DataSource as AnketaCompany).Name;
             //var anketa = getCustomer.Company.AnketaCompany.Where(rec => rec.Version == getCustomer.AnkVersion).Single();
             //DataSource = anketa;
+            inProcess = false;
         }
 
         string _cacheSearch = string.Empty;
+        private int startChar = 0;
         private void TxtName_TextChanged(object sender, EventArgs e)
         {
-            if (getAutoCompList == null || getCustomerAnketa == null)
+            if (inProcess || getAutoCompList == null || getCustomerAnketa == null)
                 return;
             // Якщо анкета існуючого клієнту
             if (anketaCompanyBindingSource.DataSource is AnketaCompany @company && @company.CustId != 0)
                 return;
-            if( txtName.Text.Length > 0 )
+            if( txtName.Text.Trim().Length > 0 )
             {
                 if(_cacheSearch.Length == 0
-                    || !_cacheSearch.StartsWith(txtName.Text.Substring(0,1))
-                    || _cacheSearch.Length > txtName.Text.Length + 2 // видалення з пошуку по 2 символи
-                    || _cacheSearch.Length + 2 < txtName.Text.Length
+                    || !_cacheSearch.ToUpper().StartsWith(txtName.Text.Substring(startChar, 1).ToUpper())
+                    || !_cacheSearch.ToUpper().StartsWith(txtName.Text.Substring(0,1).ToUpper())
+                    //|| _cacheSearch.Length > txtName.Text.Length + 2 // видалення з пошуку по 2 символи
+                    //|| _cacheSearch.Length + 2 < txtName.Text.Length
                     )
                 {
-                    _cacheSearch = txtName.Text;
-                    var list = getAutoCompList(_cacheSearch).Select(rec=>new RadListDataItem(rec.DisplayValue, rec.Value));
+                    inProcess = true;
+                    _cacheSearch = txtName.Text.Trim();
+                    if(!char.IsLetterOrDigit( _cacheSearch[0] ) )
+                    {
+                        _cacheSearch = string.Concat("%", _cacheSearch);
+                        startChar = 1;
+                    }
+                    else
+                    {
+                        startChar = 0;
+
+                    }
+
+                    var list = getAutoCompList(_cacheSearch).Select(rec=>{
+                            return new RadListDataItem(rec.DisplayValue, rec.Value);
+                    })?.ToArray();
+                    var tmpText = txtName.Text;
+                    //txtName.Clear();
                     txtName.AutoCompleteDataSource = list;
+                    //txtName.Text = tmpText;
+                    inProcess = false;
                 }
             }
         }

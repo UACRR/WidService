@@ -83,6 +83,7 @@ namespace IpsViewComponentLibrary
 
             _customer = retCustomer;
             ctrlConsumerAnketa.SetDataAndDictionaries(retCustomer, _dictionaties);
+            ctrlConsumerAnketa.ReInitControl();
 
             return retCustomer;
             
