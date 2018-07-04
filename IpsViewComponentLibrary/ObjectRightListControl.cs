@@ -46,6 +46,7 @@ namespace IpsViewComponentLibrary
         }
 
         public event EventHandler<ObjectRightMainView> ObjectSelected = delegate { };
+        public event EventHandler<ObjectRightMainView> EditCommandExecuted = delegate { };
 
         public ObjectRightListControl()
         {
@@ -67,10 +68,27 @@ namespace IpsViewComponentLibrary
             OnObjectSelected(SelectedObject);
         }
 
-        protected void OnObjectSelected(ObjectRightMainView selectedObject)
+        private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                OnEditCommandExecuted(SelectedObject);
+            }
+        }
+
+        protected virtual void OnObjectSelected(ObjectRightMainView selectedObject)
         {
             ObjectSelected(this, selectedObject);
         }
+
+        protected virtual void OnEditCommandExecuted(ObjectRightMainView selectedObject)
+        {
+            EditCommandExecuted(this, selectedObject);
+        }
+
+        #region Search
 
         private void txtSearchObject_TextChanged(object sender, EventArgs e)
         {
@@ -114,5 +132,7 @@ namespace IpsViewComponentLibrary
                 gvObjectsRightsList.EndUpdate(false);
             }
         }
+
+        #endregion
     }
 }
