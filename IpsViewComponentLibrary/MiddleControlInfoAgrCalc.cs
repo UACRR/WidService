@@ -250,6 +250,10 @@ namespace IpsViewComponentLibrary
                 ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, 
                                                             _customer?.Client?.ClnBusinessPlace, _customer, goal, typeRights:Rights)
                 {
+                    Text = goal == DialogGoal.forEdit ? "Редагування договору" 
+                         : goal == DialogGoal.forProlongation ? "Пролонгація договору" 
+                         : goal == DialogGoal.forNew ? "Додавання нового договору" 
+                         : string.Empty,
                     StartPosition = FormStartPosition.CenterParent
                 };
                 prolongation.OnSaveProlongation += Prolongation_OnSaveProlongationWithPlaces;
