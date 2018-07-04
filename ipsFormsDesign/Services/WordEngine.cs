@@ -774,7 +774,7 @@ namespace ipsFormsDesign.Services
 
 
                     var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
-                    phoneWork = bossEmployee?.Empl.PhoneNumber ?? string.Empty;
+                    phone = bossEmployee?.Empl.PhoneNumber ?? string.Empty;
                     eMail = bossEmployee?.Empl.Email ?? string.Empty;
                     createDate = anketaCompany.RegistrDate;
                     Okpo = anketaCompany.Okpo;
@@ -795,30 +795,33 @@ namespace ipsFormsDesign.Services
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
-                ShowName = licA.LicenseBigR.Obj.Name?.ToString();
-                ShowAct = licA.LicenseBigR.Obj.ActCode?.ToString();
-                docNumberC = licA.LicenseAgrParam.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum ;
-                LicenseAgrParam licagr = licA.LicenseAgrParam.Where(rec => (rec.LicId == licA.LicId) &
+                ShowName = licA?.LicenseBigR?.Obj?.Name?.ToString();
+                ShowAct = licA?.LicenseBigR?.Obj?.ActCode?.ToString();
+                docNumberC = licA?.LicenseAgrParam?.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum ;
+                LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
                         (rec.LicVersion == licA.LicVersion)).Single();
                 docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
                 docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
-                prcntShow = licA.LicenseBigR.Rate?.ToString();
-                prcntShowText =  Utils.GrnPhrase(Convert.ToDecimal(licA.LicenseBigR.Rate));
-                PayShowDataDo = $"{licA.LicenseBigR.PrepayDateDo:dd.MM.yyyy}";
+                prcntShow = licA?.LicenseBigR?.Rate?.ToString();
+                prcntShowText =  Utils.GrnPhrase(Convert.ToDecimal(licA?.LicenseBigR?.Rate));
+                PayShowDataDo = $"{licA?.LicenseBigR?.PrepayDateDo:dd.MM.yyyy}";
                 decimal pPayShowGrn = 0;
                 decimal aPayShowGrn = 0;
-                var array_licAuthorB = licA.LicenseBigR.LicAuthorBr.ToList();
-                foreach (LicAuthorBr item in array_licAuthorB )
+                var array_licAuthorB = licA?.LicenseBigR?.LicAuthorBr?.ToList();
+                if (array_licAuthorB != null)
                 {
-                    if (item.PrepayType == 1)
+                    foreach (LicAuthorBr item in array_licAuthorB)
                     {
-                        pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
-                    }
-                    if (item.PrepayType == 2)
-                    {
-                        aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
-                    }
+                        if (item.PrepayType == 1)
+                        {
+                            pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                        }
+                        if (item.PrepayType == 2)
+                        {
+                            aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                        }
 
+                    }
                 }
                 pPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(pPayShowGrn)), false);
                 pPayShowKop = ((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)).ToString();
@@ -885,7 +888,7 @@ namespace ipsFormsDesign.Services
                         case "CstBankName":
                             item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
                             break;
-                        case "CstBankMFO":
+                        case "CstBankMfo":
                             item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
                             break;
                         case "CstAcc":
