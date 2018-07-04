@@ -530,8 +530,6 @@ namespace RightholderWorkplace
 
             SetObjectRightDictionaries();
 
-            UpdateObjectRightsList();
-
             FilterDescriptor filterByName = new FilterDescriptor();
             filterByName.PropertyName = "CodeI";
             filterByName.Operator = FilterOperator.IsEqualTo;
@@ -567,6 +565,9 @@ namespace RightholderWorkplace
         {
             get
             {
+                if (gvRightholdersObjectsRights.CurrentRow == null)
+                    return 0;
+
                 return (gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder).ObjId;
             }
             set
@@ -797,13 +798,13 @@ namespace RightholderWorkplace
 
             if (_previousPage == actualObjectsPage)
             {
-                UpdateObjectRightsList();
-                //SelectedObjectRight = new ObjectRightMainView { ObjId = _objectRight.ObjId }; // to move
+                ctrlObjectRightList.UpdateList(new ObjectRightMainView { ObjId = _objectRight.ObjId });
+                UpdateRightholdersObjectsRightList(SelectedRghtholdersObjectRightId);
             }
             else if (_previousPage == rightholdersObjectsPage)
             {
-                UpdateObjectRightsList();
                 UpdateRightholdersObjectsRightList(_objectRight.ObjId);
+                ctrlObjectRightList.UpdateList();
             }
 
             objectsPageView.SelectedPage = _previousPage;
@@ -984,7 +985,7 @@ namespace RightholderWorkplace
                 if (result)
                 {
                     UpdateRightholdersObjectsRightList(objectRight.ObjId);
-                    UpdateObjectRightsList();
+                    ctrlObjectRightList.UpdateList();
                 }
                 else
                     MessageBox.Show("Не вдалося зберегти зміни. Об'єкт не доданий.", "Помилка");
@@ -1006,15 +1007,11 @@ namespace RightholderWorkplace
 
         #region Objectrights page helpers
 
-        private void UpdateObjectRightsList() // to move
-        {
-        //    var objectsRightsList = _objectRightService.GetMainView();
-
-        //    gvObjectsRightsList.DataSource = objectsRightsList;
-        }
-
         private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0) // moved
         {
+            if (ctrlRightholderSelector.Rightholder == null)
+                return;
+
             var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
 
             objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
