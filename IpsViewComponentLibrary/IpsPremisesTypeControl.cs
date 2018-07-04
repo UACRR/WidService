@@ -161,7 +161,8 @@ namespace IpsViewComponentLibrary
         public ObservableListSource<ClnPlaceHoll> GetData(int idRowInst)
         {
             ObservableListSource<ClnPlaceHoll> list = new ObservableListSource<ClnPlaceHoll>();
-            
+            if (idRowInst != 0)
+                
             if (dataTemp != null && dataTemp.Client.ClnBusinessPlace.Select(item => item.ClnPlaceHoll).Any())
             {
                 var v = dataTemp.Client.ClnBusinessPlace.Where(id=>id.PlaceId==idRowInst).Select(item => item.ClnPlaceHoll).SingleOrDefault();//

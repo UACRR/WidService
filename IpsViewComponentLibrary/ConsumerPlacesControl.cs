@@ -243,11 +243,17 @@ namespace ipsAnketaClient
             else//існуючий заклад
             {
                 int idRow = Convert.ToInt32(rGridViewInstitution.CurrentRow.Cells[0].Value);
-                newPremises = new AddPremisesForm(premisesType.GetData(idRow), idRow);
-                //premisesType.IdSelectedRow;
+                if(idRow != 0)
+                    newPremises = new AddPremisesForm(premisesType.GetData(idRow), idRow);
+                else
+                {
+                    var place = rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace;
+                    newPremises = new AddPremisesForm(place?.ClnPlaceHoll, idRow);
+                    //newPremises.SetTypePremises(Convert.ToByte(data.Client.ClnBusinessPlace.SingleOrDefault(item => item.PlaceId == idRow).PlCode));
+                }
+                newPremises.SetTypePremises(Convert.ToByte((rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace)?.PlCode));
                 newPremises.OnInsertData += NewPremises_OnInsertData;
                 newPremises.StartPosition = FormStartPosition.CenterScreen;
-                newPremises.SetTypePremises(Convert.ToByte(data.Client.ClnBusinessPlace.SingleOrDefault(item => item.PlaceId == idRow).PlCode));
                 newPremises.ShowDialog();
                 newPremises.OnInsertData -= NewPremises_OnInsertData;
                 newPremises = null;
@@ -268,14 +274,17 @@ namespace ipsAnketaClient
                 editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow);
             else if (isNewInst)
                 editPremises = new AddPremisesForm(newPlace, premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
-            else 
+            else if (idRow == 0)
+            {
+                if(rGridViewInstitution.CurrentRow.DataBoundItem is ClnBusinessPlace item)
+                    editPremises = new AddPremisesForm(item.ClnPlaceHoll, premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
+            }
+            else
                 editPremises = new AddPremisesForm(premisesType.GetData(idRow), premisesType.IdSelectedRow, idRow, premisesType.IdSelectedRowStr);
+
             editPremises.OnUpdateData += EditPremises_OnUpdateData; ;
             editPremises.StartPosition = FormStartPosition.CenterScreen;
-            if(!isNewInst)
-                 editPremises.SetTypePremises(Convert.ToByte(data?.Client?.ClnBusinessPlace?.SingleOrDefault(item => item?.PlaceId == idRow)?.PlCode));
-            else
-                 editPremises.SetTypePremises(typePremises);
+            editPremises.SetTypePremises(!isNewInst ? Convert.ToByte((rGridViewInstitution?.CurrentRow?.DataBoundItem as ClnBusinessPlace)?.PlCode) : typePremises);
             editPremises.ShowDialog();
             editPremises.OnUpdateData -= EditPremises_OnUpdateData;
             editPremises = null;
@@ -299,10 +308,20 @@ namespace ipsAnketaClient
             }
             else//існуючий заклад
             {
-                var editdata = data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
+                var editData = IdItemOfSelectRow != 0 
+                    ? data.Client.ClnBusinessPlace.Where(iditem => iditem.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault() 
+                    : (rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace)?.ClnPlaceHoll;
 
-                editdata.Add(temp.LastOrDefault());
-                premisesType.SetDataSource(data, IdItemOfSelectRow);
+                if (editData == null) return;
+
+                if(IdItemOfSelectRow != 0)
+                    editData.Add(temp.LastOrDefault());
+
+                if(IdItemOfSelectRow != 0)
+                    premisesType.SetDataSource(data, IdItemOfSelectRow);
+                else
+                    premisesType.SetDataSource(data, rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace);
+
                 premisesType.RefreshGrid();
 
                 //* * * ЗБЕРЕГТИ ЗМІНИ
