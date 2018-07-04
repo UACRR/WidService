@@ -40,12 +40,14 @@ namespace IpsViewComponentLibrary
                     if (row != null)
                     {
                         gvObjectsRightsList.CurrentRow = row;
+                        gvObjectsRightsList.TableElement.ScrollToRow(row);
                     }
                 }
             }
         }
 
         public event EventHandler<ObjectRightMainView> ObjectSelected = delegate { };
+        public event EventHandler<ObjectRightMainView> EditCommandExecuted = delegate { };
 
         public ObjectRightListControl()
         {
@@ -53,10 +55,22 @@ namespace IpsViewComponentLibrary
 
             if (!IsDesignMode)
             {
-                var service = new ObjectRightService();
-                var list = service.GetMainView();
-                objectRightMainViewBindingSource.DataSource = list;
+                UpdateList();
             }
+        }
+
+        public void UpdateList()
+        {
+            UpdateList(SelectedObject);
+        }
+
+        public void UpdateList(ObjectRightMainView currentObject)
+        {
+            var service = new ObjectRightService();
+            var list = service.GetMainView();
+            objectRightMainViewBindingSource.DataSource = list;
+
+            SelectedObject = currentObject;
         }
 
         private void gvObjectsRightsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
@@ -67,10 +81,27 @@ namespace IpsViewComponentLibrary
             OnObjectSelected(SelectedObject);
         }
 
-        protected void OnObjectSelected(ObjectRightMainView selectedObject)
+        private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                OnEditCommandExecuted(SelectedObject);
+            }
+        }
+
+        protected virtual void OnObjectSelected(ObjectRightMainView selectedObject)
         {
             ObjectSelected(this, selectedObject);
         }
+
+        protected virtual void OnEditCommandExecuted(ObjectRightMainView selectedObject)
+        {
+            EditCommandExecuted(this, selectedObject);
+        }
+
+        #region Search
 
         private void txtSearchObject_TextChanged(object sender, EventArgs e)
         {
@@ -114,5 +145,7 @@ namespace IpsViewComponentLibrary
                 gvObjectsRightsList.EndUpdate(false);
             }
         }
+
+        #endregion
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -42,7 +43,7 @@
             this.txtSearchObject = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
-            this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource();
+            this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchObject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
@@ -136,6 +137,7 @@
             gridViewCommandColumn1.DefaultText = "Редагувати";
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Name = "EditColumn";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.UseDefaultText = true;
             gridViewCommandColumn1.Width = 81;
             this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
@@ -161,6 +163,7 @@
             this.gvObjectsRightsList.TabIndex = 22;
             this.gvObjectsRightsList.ThemeName = "Office2013Light";
             this.gvObjectsRightsList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvObjectsRightsList_CellDoubleClick);
+            this.gvObjectsRightsList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectsRightsList_CommandCellClick);
             this.gvObjectsRightsList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvObjectsRightsList_CustomFiltering);
             // 
             // objectRightMainViewBindingSource

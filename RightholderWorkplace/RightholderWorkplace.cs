@@ -530,8 +530,6 @@ namespace RightholderWorkplace
 
             SetObjectRightDictionaries();
 
-            UpdateObjectRightsList();
-
             FilterDescriptor filterByName = new FilterDescriptor();
             filterByName.PropertyName = "CodeI";
             filterByName.Operator = FilterOperator.IsEqualTo;
@@ -563,27 +561,13 @@ namespace RightholderWorkplace
 
         private RadPageViewPage _previousPage;
 
-        public ObjectRightMainView SelectedObjectRight
-        {
-            get
-            {
-                return gvObjectsRightsList.CurrentRow.DataBoundItem as ObjectRightMainView;
-            }
-            set
-            {
-                var row = gvObjectsRightsList.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == value.ObjId);
-                if (row != null)
-                {
-                    gvObjectsRightsList.CurrentRow = row;
-                    gvObjectsRightsList.TableElement.ScrollToRow(row);
-                }
-            }
-        }
-
         public int SelectedRghtholdersObjectRightId // moved
         {
             get
             {
+                if (gvRightholdersObjectsRights.CurrentRow == null)
+                    return 0;
+
                 return (gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder).ObjId;
             }
             set
@@ -682,27 +666,19 @@ namespace RightholderWorkplace
             actualObjectsPageView.SelectedPage = actualObjectsItemPage;
         }
 
-        private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void ctrlObjectRightList_EditCommandExecuted(object sender, ObjectRightMainView selectedObject)
         {
-            var currentColumnName = e.Column.Name;
-
-            if (currentColumnName == "EditColumn")
-            {
-                EditObjectRight();
-            }
+            EditObjectRight(selectedObject.ObjId);
         }
 
-        private void gvObjectsRightsList_DoubleClick(object sender, EventArgs e)
+        private void ctrlObjectRightList_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
-            EditObjectRight();
+            EditObjectRight(selectedObject.ObjId);
         }
 
-        private void EditObjectRight(int objId = 0) // subscribe to EditObjectCommandExecuted
+        private void EditObjectRight(int objId)
         {
             _previousPage = objectsPageView.SelectedPage;
-
-            if (objId == 0)
-                objId = SelectedObjectRight.ObjId;
 
             var objectRightContainer = _objectRightService.GetData(objId);
 
@@ -822,13 +798,13 @@ namespace RightholderWorkplace
 
             if (_previousPage == actualObjectsPage)
             {
-                UpdateObjectRightsList();
-                SelectedObjectRight = new ObjectRightMainView { ObjId = _objectRight.ObjId };
+                ctrlObjectRightList.UpdateList(new ObjectRightMainView { ObjId = _objectRight.ObjId });
+                UpdateRightholdersObjectsRightList(SelectedRghtholdersObjectRightId);
             }
             else if (_previousPage == rightholdersObjectsPage)
             {
-                UpdateObjectRightsList();
                 UpdateRightholdersObjectsRightList(_objectRight.ObjId);
+                ctrlObjectRightList.UpdateList();
             }
 
             objectsPageView.SelectedPage = _previousPage;
@@ -1009,7 +985,7 @@ namespace RightholderWorkplace
                 if (result)
                 {
                     UpdateRightholdersObjectsRightList(objectRight.ObjId);
-                    UpdateObjectRightsList();
+                    ctrlObjectRightList.UpdateList();
                 }
                 else
                     MessageBox.Show("Не вдалося зберегти зміни. Об'єкт не доданий.", "Помилка");
@@ -1031,15 +1007,11 @@ namespace RightholderWorkplace
 
         #region Objectrights page helpers
 
-        private void UpdateObjectRightsList()
-        {
-            var objectsRightsList = _objectRightService.GetMainView();
-
-            gvObjectsRightsList.DataSource = objectsRightsList;
-        }
-
         private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0) // moved
         {
+            if (ctrlRightholderSelector.Rightholder == null)
+                return;
+
             var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
 
             objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
@@ -1332,7 +1304,7 @@ namespace RightholderWorkplace
 
         #endregion
 
-        #region Search rightholder and object
+        #region Search rightholder
 
         private void txtSearchRightholder_TextChanged(object sender, EventArgs e)
         {
@@ -1374,49 +1346,6 @@ namespace RightholderWorkplace
                     e.Row.Cells[i].Style.Reset();
                 }
                 gvRightholdersList.EndUpdate(false);
-            }
-        }
-
-        private void txtSearchObject_TextChanged(object sender, EventArgs e) // moved, and all methods for gvObjectsRightsList
-        {
-            gvObjectsRightsList.MasterTemplate.Refresh();
-        }
-
-        private void gvObjectsRightsList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e) // moved
-        {
-            if (string.IsNullOrEmpty(txtSearchObject.Text))
-            {
-                gvObjectsRightsList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvObjectsRightsList.EndUpdate(false);
-                return;
-            }
-
-            gvObjectsRightsList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearchObject.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvObjectsRightsList.EndUpdate(false);
             }
         }
 
