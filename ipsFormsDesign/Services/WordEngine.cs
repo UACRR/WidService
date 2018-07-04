@@ -1247,8 +1247,7 @@ namespace ipsFormsDesign.Services
             {
                 if (tables.Count == 0) return;
                 Table table = tables[1];
-                if (table.Rows.Count > 0)
-                    table.Rows.Delete();
+
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
                 Row curRow = null;
                 foreach (var item in rightHolder.TerritoryExclude)
