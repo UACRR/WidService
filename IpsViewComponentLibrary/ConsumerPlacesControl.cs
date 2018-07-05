@@ -27,6 +27,7 @@ namespace ipsAnketaClient
         private ObservableListSource<ClnPlaceHoll> _newPlace;
         private IpsPremisesTypeControl _premisesType;
         private TypePlace _typePlace;
+        private AnketaDictionaties _dic;
 
         #endregion
 
@@ -45,8 +46,9 @@ namespace ipsAnketaClient
         /// Встановити джерело даних для Grid
         /// </summary>
         /// <param name="data"></param>
-        public void SetGridDataSource(object dataSource)
+        public void SetGridDataSource(object dataSource, AnketaDictionaties dic )
         {
+            _dic = dic;
             if (dataSource!=null)
             {
                 rGridViewInstitution.DataSource = new List<ClnBusinessPlace>
@@ -63,6 +65,25 @@ namespace ipsAnketaClient
             rGridViewInstitution.Update();
             rGridViewInstitution.MasterTemplate.Refresh();
             rGridViewInstitution.Refresh();
+            SetMenuItems();
+        }
+
+        private void SetMenuItems()
+        {
+            rDropDownBtnAddInst.Items.Clear();
+            foreach (var typePlace in _dic.typePlace )
+            {
+
+                RadMenuItem item = new RadMenuItem( typePlace.Name );
+                item.Click += Item_Click;
+                rDropDownBtnAddInst.Items.Add(item);
+            }
+        }
+
+        private void Item_Click(object sender, EventArgs e)
+        {
+            //
+            
         }
 
         /// <summary>
@@ -73,7 +94,7 @@ namespace ipsAnketaClient
         {
             if(Data != null)
                 _data = Data;
-        }
+        } 
 
         // * * * PRIVATES
 
@@ -157,7 +178,7 @@ namespace ipsAnketaClient
             _newPlace = new ObservableListSource<ClnPlaceHoll>();
 
             if(_data?.Client?.ClnBusinessPlace?.Count != 0)
-                SetGridDataSource(_data?.Client?.ClnBusinessPlace);
+                SetGridDataSource(_data?.Client?.ClnBusinessPlace, _dic );
 
             _typeInstitution = TypeInstitution.NonExistentInstitution;
             _typeOfPremises = TypeOfPremises.Number;
