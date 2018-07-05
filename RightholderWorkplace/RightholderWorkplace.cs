@@ -647,18 +647,25 @@ namespace RightholderWorkplace
 
         private void EditObjectRight(int objId)
         {
-            _previousPage = objectsPageView.SelectedPage;
+            using (var view = new ObjectRightItemView())
+            {
+                var presenter = new ObjectRightItemPresenter(view);
+                MessageBox.Show(objId.ToString());
+                presenter.Run();
+            }
 
-            var objectRightContainer = _objectRightService.GetData(objId);
+            //_previousPage = objectsPageView.SelectedPage;
 
-            SetAvalaibleGenres(objectRightContainer.objectRight.CategoryCode);
-            UpdateObjectRightDataSources(objectRightContainer.objectRight, objectRightContainer.rhList);
+            //var objectRightContainer = _objectRightService.GetData(objId);
 
-            CalculateTotalPersent();
+            //SetAvalaibleGenres(objectRightContainer.objectRight.CategoryCode);
+            //UpdateObjectRightDataSources(objectRightContainer.objectRight, objectRightContainer.rhList);
 
-            MainPageView.SelectedPage = mainPageRightsObjects;
-            objectsPageView.SelectedPage = actualObjectsPage;
-            actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+            //CalculateTotalPersent();
+
+            //MainPageView.SelectedPage = mainPageRightsObjects;
+            //objectsPageView.SelectedPage = actualObjectsPage;
+            //actualObjectsPageView.SelectedPage = actualObjectsItemPage;
         }
 
         private void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholders)
