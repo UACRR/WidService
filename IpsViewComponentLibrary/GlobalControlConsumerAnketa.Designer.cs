@@ -186,7 +186,6 @@
             this.ctrlPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlPlaces.AutoSize = true;
-            this.ctrlPlaces.IdItemOfSelectRow = 0;
             this.ctrlPlaces.Location = new System.Drawing.Point(4, 64);
             this.ctrlPlaces.MinimumSize = new System.Drawing.Size(800, 512);
             this.ctrlPlaces.Name = "ctrlPlaces";

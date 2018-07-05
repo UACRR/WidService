@@ -15,32 +15,21 @@ namespace IpsViewComponentLibrary
 {
     public partial class IpsPremisesTypeControl : UserControl
     {
-        //TODO REFACTOR CODE! видалти непотрібні класи, генерації
         private TypeOfPremises _typeOfPremises;
-
-        private Customer dataTemp;
         private ClnBusinessPlace _place;
-
-
-        private int _idSelectedRow;
-        private string _idSelectedRowString;
-
-        //id рядка приміщення закладу
-        public int IdSelectedRow
-        {
-            get => _idSelectedRow;
-        }
-        public string IdSelectedRowStr
-        {
-            get => _idSelectedRowString;
-        }
         
-
+        /// <summary>
+        /// Default constructor do not work
+        /// </summary>
         public IpsPremisesTypeControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Конструктор з ініціалізацією типу майданчика
+        /// </summary>
+        /// <param name="typeOfPremises">Тип майданчика</param>
         public IpsPremisesTypeControl(TypeOfPremises typeOfPremises)
         {
             InitializeComponent();
@@ -65,14 +54,14 @@ namespace IpsViewComponentLibrary
             GC.Collect();
         }
 
-        //додає нове приміщення
+        //додавання нового приміщення
         private void AddPremisesFormForm_OnSaveNewClnPlaceHoll(ClnPlaceHoll clnPlaceHoll)
         {
-            //TODO якщо новий заклад
             if(_place == null)
                 _place = new ClnBusinessPlace();
             if(_place.ClnPlaceHoll == null)
                 _place.ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>();
+
             _place.ClnPlaceHoll.Add(clnPlaceHoll);
         }
 
@@ -91,7 +80,10 @@ namespace IpsViewComponentLibrary
 
         }
 
-
+        /// <summary>
+        /// Вибір режиму відображення (метраж / кількість місць) 
+        /// </summary>
+        /// <param name="type"></param>
         public void SetGridType(TypeOfPremises type)
         {
             switch (type)
@@ -150,38 +142,14 @@ namespace IpsViewComponentLibrary
             place?.Remove(deleteItem);
         }
 
-
-
-        public ObservableListSource<ClnPlaceHoll> GetData(int idRowInst)
-        {
-            ObservableListSource<ClnPlaceHoll> list = new ObservableListSource<ClnPlaceHoll>();
-            if (idRowInst != 0)
-                
-            if (dataTemp != null && dataTemp.Client.ClnBusinessPlace.Select(item => item.ClnPlaceHoll).Any())
-            {
-                var v = dataTemp.Client.ClnBusinessPlace.Where(id=>id.PlaceId==idRowInst).Select(item => item.ClnPlaceHoll).SingleOrDefault();//
-                if (v != null)
-                    foreach (var clnPlaceHoll in v)
-                        list.Add(clnPlaceHoll);
-                    
-                return list;
-            }
-            return new ObservableListSource<ClnPlaceHoll>();
-        }
-
+        /// <summary>
+        /// Оновлення грід
+        /// </summary>
         public void RefreshGrid()
         {
             rGridViewPremises.Update();
             rGridViewPremises.MasterTemplate.Refresh();
             rGridViewPremises.Refresh();
         }
-    }
-
-    internal class PremisesInstitution
-    {
-        public int? IdItem { get; set; }
-        public string TypePremisesName { get; set; }
-        public int? CountPlace { get; set; }
-        public decimal? Meterage { get; set; }
     }
 }

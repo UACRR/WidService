@@ -146,6 +146,21 @@ namespace IpsViewComponentLibrary
         NonExistentInstitution
     }
 
+    /// <summary>
+    /// Типи майданчиків
+    /// </summary>
+    public enum ExistencePlaces
+    {
+        /// <summary>
+        /// Один майданчик
+        /// </summary>
+        SinglePlace,
+        /// <summary>
+        /// Багато майданчиків
+        /// </summary>
+        ManyPlaces
+    }
+
     #endregion
 
 

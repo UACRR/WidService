@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
-        /// Очищення тестбоксів
+        /// Очищення txtbox (місто, регіон(початкове значення), вулиця)
         /// </summary>
         public void SetEmpty()
         {
@@ -93,6 +93,9 @@ namespace IpsViewComponentLibrary
             return valid;
         }
 
+        /// <summary>
+        /// Стандартний колір надписів (місто, регіон, вулиця)
+        /// </summary>
         public void DefaultColorLabels()
         {
             lblTown.ForeColor = Color.Black;

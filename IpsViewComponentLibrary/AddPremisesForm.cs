@@ -26,17 +26,8 @@ namespace ipsAnketaClient
         public event SaveNewClnPlaceHoll OnSaveNewClnPlaceHoll;
         //***
         private ObservableListSource<ClnPlaceHoll> _data;
-        private int _idEditItem;
-        private int _idPlace;
-        private byte typePremises;
         private bool _isEdit = false;
-        private string _stringId;
-
-        public delegate void SaveDataForUpdate();
-        public delegate void SaveDataForInsert();
-
-        public event SaveDataForUpdate OnUpdateData;
-        public event SaveDataForInsert OnInsertData;
+        
 
         /// <summary>
         /// Default constructor do not work
@@ -49,7 +40,9 @@ namespace ipsAnketaClient
         /// <summary>
         /// Конструктор для редагування або додавання приміщення закладу
         /// </summary>
-        /// <param name="clnPlaceHoll">Дані майданчика</param>
+        /// <param name="clnPlaceHoll">Дані майданчиків</param>
+        /// <param name="typePremises">Тип майданчика</param>
+        /// <param name="typeFrom">Тип ініціалізованої форми приміщення закладу</param>
         public AddPremisesForm(ClnPlaceHoll clnPlaceHoll, TypeOfPremises typePremises, TypeOfFormPremisesInitialization typeFrom)
         {
             InitializeComponent();
@@ -65,7 +58,6 @@ namespace ipsAnketaClient
             SetEditData();
             
         }
-
 
         /// <summary>
         ///  ДІЇ КНОПКИ [ДОДАТИ ПРИМІЩЕННЯ]/[ЗБЕРЕГТИ]
@@ -114,6 +106,7 @@ namespace ipsAnketaClient
                 : _typePremises == TypeOfPremises.Meters ? "Метраж" : string.Empty;
         }
 
+        //TODO: тестувати валідатор / реконструювати
         /// <summary>
         /// Перевірка правильності введення
         /// </summary>
@@ -148,30 +141,21 @@ namespace ipsAnketaClient
             }
             else
                 lblMetrsPlaceTxt.ForeColor = Color.Black;
-
-            if(_data != null)
-            foreach (var clnPlaceHoll in _data)
-            {
-                if (clnPlaceHoll.HollName == rtxtBoxTypePremisses.Text && clnPlaceHoll.HollId == 0)
-                    count++;
-            }
-
-            if (count >= 2 && _isEdit)
-            {
-                MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                lblTypePremisses.ForeColor = Color.Crimson;
-                return false;
-            }
-            else if (count >= 1 && !_isEdit)
-            {
-                MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                lblTypePremisses.ForeColor = Color.Crimson;
-                return false;
-            }
-
-
+            
+            //if (count >= 2 && _isEdit)
+            //{
+            //    MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
+            //        MessageBoxIcon.Warning);
+            //    lblTypePremisses.ForeColor = Color.Crimson;
+            //    return false;
+            //}
+            //else if (count >= 1 && !_isEdit)
+            //{
+            //    MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
+            //        MessageBoxIcon.Warning);
+            //    lblTypePremisses.ForeColor = Color.Crimson;
+            //    return false;
+            //}
 
             if (isNotEmpty&&isNumber)
                 return true;
@@ -187,7 +171,6 @@ namespace ipsAnketaClient
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
             return false;
         }
 
@@ -224,98 +207,5 @@ namespace ipsAnketaClient
             }
             return _clnPlaceHoll;
         }
-
-
-
-
-        public ObservableListSource<ClnPlaceHoll> DataFotInsert()
-        {
-            var data = new ClnPlaceHoll
-            {
-                //HollId = автоінкримент
-                HollName = rtxtBoxTypePremisses.Text,
-                HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
-                SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
-                PlaceId = _idPlace
-            };
-            if (_data!=null)
-                _data.Add(data);
-            else
-                _data = new ObservableListSource<ClnPlaceHoll>
-                {
-                    data
-                };
-            
-            return _data;
-        }
-
-        public ObservableListSource<ClnPlaceHoll> DataForUpdate()
-        {
-            ClnPlaceHoll editRow = null;
-            if (_idEditItem != 0)
-                editRow = _data.SingleOrDefault(id => id.HollId == _idEditItem);
-            
-            if (_stringId != null)
-                editRow = _data.SingleOrDefault(idStr => idStr.HollName == _stringId);
-            
-
-            if (editRow != null)
-            {
-                editRow.HollName = rtxtBoxTypePremisses.Text;
-                editRow.HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
-                editRow.SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
-            }
-            return _data;
-        }
-
-        public void SetTypePremises(byte type)
-        {
-            if (type != 0)
-                switch (type)
-                {
-                    case 1:
-                    {
-                        lblMetrsPlaceTxt.Text = "Метраж";
-                        typePremises = 1;
-                    }
-                        break;
-
-                    case 2:
-                    {
-                        lblMetrsPlaceTxt.Text = "Кількість місць";
-                        typePremises = 2;
-                    }
-                        break;
-                }
-        }
-
-        public AddPremisesForm(ObservableListSource<ClnPlaceHoll> data, int placeId)
-        {
-            InitializeComponent();
-            _data = data;
-            _idPlace = placeId;
-        }
-
-        public AddPremisesForm(ObservableListSource<ClnPlaceHoll> data, int id, int placeId, string stringId = null)
-        {
-            InitializeComponent();
-            _data = data;
-            _isEdit = true;
-            _idEditItem = id;
-            _idPlace = placeId;
-            rBtnAdd.Text = "Зберегти";
-            this.Text = "Редагувати приміщення закладу";
-            _stringId = stringId;
-            try
-            {
-                SetEditData();
-            }
-            catch (Exception e)
-            {
-
-                MessageBox.Show(e.Message, e.HResult.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
     }
 }
