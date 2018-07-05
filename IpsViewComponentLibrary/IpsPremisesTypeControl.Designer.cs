@@ -32,7 +32,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.rLblPremises = new Telerik.WinControls.UI.RadLabel();
             this.rGridViewPremises = new Telerik.WinControls.UI.RadGridView();
@@ -84,27 +83,21 @@
             gridViewTextBoxColumn2.FieldName = "HollName";
             gridViewTextBoxColumn2.HeaderText = "Тип приміщення";
             gridViewTextBoxColumn2.Name = "HollName";
-            gridViewTextBoxColumn2.Width = 359;
-            gridViewTextBoxColumn3.FieldName = "HollNum";
+            gridViewTextBoxColumn2.Width = 420;
+            gridViewTextBoxColumn3.FieldName = "ValuePlace";
             gridViewTextBoxColumn3.HeaderText = "Місць";
-            gridViewTextBoxColumn3.Name = "HollNum";
-            gridViewTextBoxColumn3.Width = 72;
-            gridViewTextBoxColumn4.FieldName = "SqHoll";
-            gridViewTextBoxColumn4.HeaderText = "Метраж";
-            gridViewTextBoxColumn4.Name = "SqHoll";
-            gridViewTextBoxColumn4.UseDataTypeConverterWhenSorting = true;
-            gridViewTextBoxColumn4.Width = 74;
-            gridViewTextBoxColumn5.FieldName = "PlaceId";
-            gridViewTextBoxColumn5.HeaderText = "PlaceId";
-            gridViewTextBoxColumn5.IsVisible = false;
-            gridViewTextBoxColumn5.Name = "PlaceId";
-            gridViewTextBoxColumn5.Width = 46;
+            gridViewTextBoxColumn3.Name = "ValuePlace";
+            gridViewTextBoxColumn3.Width = 84;
+            gridViewTextBoxColumn4.FieldName = "PlaceId";
+            gridViewTextBoxColumn4.HeaderText = "PlaceId";
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.Name = "PlaceId";
+            gridViewTextBoxColumn4.Width = 46;
             this.rGridViewPremises.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn4});
             this.rGridViewPremises.MasterTemplate.EnableGrouping = false;
             this.rGridViewPremises.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rGridViewPremises.Name = "rGridViewPremises";

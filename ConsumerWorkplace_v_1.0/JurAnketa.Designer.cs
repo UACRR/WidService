@@ -1156,7 +1156,6 @@
             this.placesCtrlConsumerPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.placesCtrlConsumerPlaces.AutoSize = true;
-            this.placesCtrlConsumerPlaces.IdItemOfSelectRow = 0;
             this.placesCtrlConsumerPlaces.Location = new System.Drawing.Point(4, 71);
             this.placesCtrlConsumerPlaces.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.placesCtrlConsumerPlaces.Name = "placesCtrlConsumerPlaces";

@@ -46,22 +46,16 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.rBtnEditInst = new Telerik.WinControls.UI.RadButton();
             this.rDropDownBtnAddInst = new Telerik.WinControls.UI.RadDropDownButton();
-            this.rBtnAddHotel = new Telerik.WinControls.UI.RadMenuItem();
-            this.rBtnAddRestaurant = new Telerik.WinControls.UI.RadMenuItem();
-            this.rBtnAddNightClub = new Telerik.WinControls.UI.RadMenuItem();
-            this.rBtnAddNightClubFree = new Telerik.WinControls.UI.RadMenuItem();
-            this.rBtnAddCaffeOrBar = new Telerik.WinControls.UI.RadMenuItem();
-            this.rBtnAddTheaterOrOpera = new Telerik.WinControls.UI.RadMenuItem();
             this.rPanelAdd = new Telerik.WinControls.UI.RadPanel();
-            this.rTxtBoxCountOrMeters = new Telerik.WinControls.UI.RadTextBox();
+            this.txtPlaceValue = new Telerik.WinControls.UI.RadTextBox();
             this.lblLocation = new System.Windows.Forms.Label();
             this.addressControl = new IpsViewComponentLibrary.IpsAddressExpandedControl();
             this.rBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.rBtnSave = new Telerik.WinControls.UI.RadButton();
             this.rLblTypeInst = new Telerik.WinControls.UI.RadLabel();
             this.rLblName = new Telerik.WinControls.UI.RadLabel();
-            this.rTxtBoxTypeInst = new Telerik.WinControls.UI.RadTextBox();
-            this.rTxtBoxNameInst = new Telerik.WinControls.UI.RadTextBox();
+            this.txtPlaceType = new Telerik.WinControls.UI.RadTextBox();
+            this.txtPlaceName = new Telerik.WinControls.UI.RadTextBox();
             this.rGridViewInstitution = new Telerik.WinControls.UI.RadGridView();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.btnDeletePlace = new Telerik.WinControls.UI.RadButton();
@@ -69,13 +63,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.rDropDownBtnAddInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rPanelAdd)).BeginInit();
             this.rPanelAdd.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxTypeInst)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxNameInst)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePlace)).BeginInit();
@@ -93,13 +87,6 @@
             // 
             // rDropDownBtnAddInst
             // 
-            this.rDropDownBtnAddInst.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.rBtnAddHotel,
-            this.rBtnAddRestaurant,
-            this.rBtnAddNightClub,
-            this.rBtnAddNightClubFree,
-            this.rBtnAddCaffeOrBar,
-            this.rBtnAddTheaterOrOpera});
             this.rDropDownBtnAddInst.Location = new System.Drawing.Point(3, 254);
             this.rDropDownBtnAddInst.Name = "rDropDownBtnAddInst";
             this.rDropDownBtnAddInst.Size = new System.Drawing.Size(140, 24);
@@ -107,76 +94,38 @@
             this.rDropDownBtnAddInst.Text = "Додати заклад";
             this.rDropDownBtnAddInst.ThemeName = "Office2007Silver";
             // 
-            // rBtnAddHotel
-            // 
-            this.rBtnAddHotel.Name = "rBtnAddHotel";
-            this.rBtnAddHotel.Text = "Готель";
-            this.rBtnAddHotel.UseCompatibleTextRendering = false;
-            this.rBtnAddHotel.Click += new System.EventHandler(this.rBtnAddHotel_Click);
-            // 
-            // rBtnAddRestaurant
-            // 
-            this.rBtnAddRestaurant.AccessibleDescription = "Додати ресторан";
-            this.rBtnAddRestaurant.Name = "rBtnAddRestaurant";
-            this.rBtnAddRestaurant.Text = "Ресторан";
-            this.rBtnAddRestaurant.UseCompatibleTextRendering = false;
-            this.rBtnAddRestaurant.Click += new System.EventHandler(this.rBtnAddRestaurant_Click);
-            // 
-            // rBtnAddNightClub
-            // 
-            this.rBtnAddNightClub.Name = "rBtnAddNightClub";
-            this.rBtnAddNightClub.Text = "Нічні клуби/Платний вхід";
-            this.rBtnAddNightClub.UseCompatibleTextRendering = false;
-            this.rBtnAddNightClub.Click += new System.EventHandler(this.rBtnAddNightClub_Click);
-            // 
-            // rBtnAddNightClubFree
-            // 
-            this.rBtnAddNightClubFree.Name = "rBtnAddNightClubFree";
-            this.rBtnAddNightClubFree.Text = "Нічні клуби/Безкоштовний вхід";
-            this.rBtnAddNightClubFree.UseCompatibleTextRendering = false;
-            this.rBtnAddNightClubFree.Click += new System.EventHandler(this.rBtnAddNightClubFree_Click);
-            // 
-            // rBtnAddCaffeOrBar
-            // 
-            this.rBtnAddCaffeOrBar.Name = "rBtnAddCaffeOrBar";
-            this.rBtnAddCaffeOrBar.Text = "Кафе / Бар - Їдальня";
-            this.rBtnAddCaffeOrBar.UseCompatibleTextRendering = false;
-            this.rBtnAddCaffeOrBar.Click += new System.EventHandler(this.rBtnAddCaffeOrBar_Click);
-            // 
-            // rBtnAddTheaterOrOpera
-            // 
-            this.rBtnAddTheaterOrOpera.Name = "rBtnAddTheaterOrOpera";
-            this.rBtnAddTheaterOrOpera.Text = "Театр/Оперета";
-            this.rBtnAddTheaterOrOpera.UseCompatibleTextRendering = false;
-            this.rBtnAddTheaterOrOpera.Click += new System.EventHandler(this.rBtnAddTheaterOrOpera_Click);
-            // 
             // rPanelAdd
             // 
             this.rPanelAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rPanelAdd.AutoScroll = true;
-            this.rPanelAdd.Controls.Add(this.rTxtBoxCountOrMeters);
+            this.rPanelAdd.Controls.Add(this.txtPlaceValue);
             this.rPanelAdd.Controls.Add(this.lblLocation);
             this.rPanelAdd.Controls.Add(this.addressControl);
             this.rPanelAdd.Controls.Add(this.rBtnCancel);
             this.rPanelAdd.Controls.Add(this.rBtnSave);
             this.rPanelAdd.Controls.Add(this.rLblTypeInst);
             this.rPanelAdd.Controls.Add(this.rLblName);
-            this.rPanelAdd.Controls.Add(this.rTxtBoxTypeInst);
-            this.rPanelAdd.Controls.Add(this.rTxtBoxNameInst);
+            this.rPanelAdd.Controls.Add(this.txtPlaceType);
+            this.rPanelAdd.Controls.Add(this.txtPlaceName);
             this.rPanelAdd.Location = new System.Drawing.Point(3, 293);
             this.rPanelAdd.Name = "rPanelAdd";
             this.rPanelAdd.Size = new System.Drawing.Size(794, 216);
             this.rPanelAdd.TabIndex = 6;
             this.rPanelAdd.Visible = false;
             // 
-            // rTxtBoxCountOrMeters
+            // txtPlaceValue
             // 
-            this.rTxtBoxCountOrMeters.Location = new System.Drawing.Point(134, 157);
-            this.rTxtBoxCountOrMeters.Name = "rTxtBoxCountOrMeters";
-            this.rTxtBoxCountOrMeters.Size = new System.Drawing.Size(96, 20);
-            this.rTxtBoxCountOrMeters.TabIndex = 3;
-            this.rTxtBoxCountOrMeters.ThemeName = "Office2007Silver";
+            this.txtPlaceValue.Location = new System.Drawing.Point(134, 157);
+            this.txtPlaceValue.MaximumSize = new System.Drawing.Size(481, 20);
+            this.txtPlaceValue.Name = "txtPlaceValue";
+            // 
+            // 
+            // 
+            this.txtPlaceValue.RootElement.MaxSize = new System.Drawing.Size(481, 20);
+            this.txtPlaceValue.Size = new System.Drawing.Size(96, 20);
+            this.txtPlaceValue.TabIndex = 3;
+            this.txtPlaceValue.ThemeName = "Office2007Silver";
             // 
             // lblLocation
             // 
@@ -185,7 +134,7 @@
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(118, 22);
             this.lblLocation.TabIndex = 3;
-            this.lblLocation.Text = "label1";
+            this.lblLocation.Text = "textChange";
             this.lblLocation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // addressControl
@@ -241,23 +190,23 @@
             this.rLblName.Text = "Назва закладу";
             this.rLblName.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // rTxtBoxTypeInst
+            // txtPlaceType
             // 
-            this.rTxtBoxTypeInst.Location = new System.Drawing.Point(134, 37);
-            this.rTxtBoxTypeInst.Name = "rTxtBoxTypeInst";
-            this.rTxtBoxTypeInst.ReadOnly = true;
-            this.rTxtBoxTypeInst.Size = new System.Drawing.Size(283, 20);
-            this.rTxtBoxTypeInst.TabIndex = 1;
-            this.rTxtBoxTypeInst.ThemeName = "Office2007Silver";
+            this.txtPlaceType.Location = new System.Drawing.Point(134, 37);
+            this.txtPlaceType.Name = "txtPlaceType";
+            this.txtPlaceType.ReadOnly = true;
+            this.txtPlaceType.Size = new System.Drawing.Size(283, 20);
+            this.txtPlaceType.TabIndex = 1;
+            this.txtPlaceType.ThemeName = "Office2007Silver";
             // 
-            // rTxtBoxNameInst
+            // txtPlaceName
             // 
-            this.rTxtBoxNameInst.BackColor = System.Drawing.Color.White;
-            this.rTxtBoxNameInst.Location = new System.Drawing.Point(134, 11);
-            this.rTxtBoxNameInst.Name = "rTxtBoxNameInst";
-            this.rTxtBoxNameInst.Size = new System.Drawing.Size(456, 20);
-            this.rTxtBoxNameInst.TabIndex = 0;
-            this.rTxtBoxNameInst.ThemeName = "Office2007Silver";
+            this.txtPlaceName.BackColor = System.Drawing.Color.White;
+            this.txtPlaceName.Location = new System.Drawing.Point(134, 11);
+            this.txtPlaceName.Name = "txtPlaceName";
+            this.txtPlaceName.Size = new System.Drawing.Size(456, 20);
+            this.txtPlaceName.TabIndex = 0;
+            this.txtPlaceName.ThemeName = "Office2007Silver";
             // 
             // rGridViewInstitution
             // 
@@ -406,13 +355,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.rPanelAdd)).EndInit();
             this.rPanelAdd.ResumeLayout(false);
             this.rPanelAdd.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxCountOrMeters)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rBtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxTypeInst)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rTxtBoxNameInst)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewInstitution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePlace)).EndInit();
@@ -424,22 +373,16 @@
 
         private Telerik.WinControls.UI.RadButton rBtnEditInst;
         private Telerik.WinControls.UI.RadDropDownButton rDropDownBtnAddInst;
-        private Telerik.WinControls.UI.RadMenuItem rBtnAddHotel;
-        private Telerik.WinControls.UI.RadMenuItem rBtnAddRestaurant;
-        private Telerik.WinControls.UI.RadMenuItem rBtnAddNightClub;
-        private Telerik.WinControls.UI.RadMenuItem rBtnAddNightClubFree;
-        private Telerik.WinControls.UI.RadMenuItem rBtnAddCaffeOrBar;
-        private Telerik.WinControls.UI.RadMenuItem rBtnAddTheaterOrOpera;
         private Telerik.WinControls.UI.RadPanel rPanelAdd;
-        private Telerik.WinControls.UI.RadTextBox rTxtBoxCountOrMeters;
+        private Telerik.WinControls.UI.RadTextBox txtPlaceValue;
         private System.Windows.Forms.Label lblLocation;
         private IpsViewComponentLibrary.IpsAddressExpandedControl addressControl;
         private Telerik.WinControls.UI.RadButton rBtnCancel;
         private Telerik.WinControls.UI.RadButton rBtnSave;
         private Telerik.WinControls.UI.RadLabel rLblTypeInst;
         private Telerik.WinControls.UI.RadLabel rLblName;
-        private Telerik.WinControls.UI.RadTextBox rTxtBoxTypeInst;
-        private Telerik.WinControls.UI.RadTextBox rTxtBoxNameInst;
+        private Telerik.WinControls.UI.RadTextBox txtPlaceType;
+        private Telerik.WinControls.UI.RadTextBox txtPlaceName;
         private Telerik.WinControls.UI.RadGridView rGridViewInstitution;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
         private Telerik.WinControls.UI.RadButton btnDeletePlace;

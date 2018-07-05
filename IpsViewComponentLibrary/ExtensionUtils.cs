@@ -100,4 +100,75 @@ namespace IpsViewComponentLibrary
         /// </summary>
         All
     }
+
+    #region МАЙДАНЧИКИ
+
+    /// <summary>
+    /// Тип ініціалізації форми приміщення завкладу
+    /// </summary>
+    public enum PremisesFormTypeInitialization
+    {
+        /// <summary>
+        /// Редагування
+        /// </summary>
+        Edit,
+        /// <summary>
+        /// Створення нового
+        /// </summary>
+        CreateNew
+    }
+
+    /// <summary>
+    /// Тип вимірювання майданчика
+    /// </summary>
+    public enum MeasurementOfPremises
+    {
+        /// <summary>
+        /// Площа
+        /// </summary>
+        Area = 1,
+        /// <summary>
+        /// Кількість місць
+        /// </summary>
+        Number = 2,
+        /// <summary>
+        /// Інше
+        /// </summary>
+        Other = 3,
+        Empty = 0
+    }
+
+    /// <summary>
+    /// Тип закладу що редагується
+    /// </summary>
+    public enum TypeInstitution
+    {
+        /// <summary>
+        /// Заклад додано, відображається на грід
+        /// </summary>
+        ExistingInstitution,
+        /// <summary>
+        /// Заклад було щойно створено
+        /// </summary>
+        NonExistentInstitution
+    }
+
+    /// <summary>
+    /// Типи майданчиків
+    /// </summary>
+    public enum ExistencePlaces
+    {
+        /// <summary>
+        /// Один майданчик
+        /// </summary>
+        SinglePlace,
+        /// <summary>
+        /// Багато майданчиків
+        /// </summary>
+        ManyPlaces
+    }
+
+    #endregion
+
+
 }
