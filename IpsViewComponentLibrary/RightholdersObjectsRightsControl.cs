@@ -87,9 +87,9 @@ namespace IpsViewComponentLibrary
             OnRightholderChanged(selectedRightholder);
         }
 
-        private void ctrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e)
+        private void ctrlRightholderSelector_ShowAnketaCommandExecuted(object sender, RightholderMainView selectedRighthoder)
         {
-            OnShowAnketaCommandExetuted(ctrlRightholderSelector.Rightholder);
+            OnShowAnketaCommandExetuted(selectedRighthoder);
         }
 
         private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0)

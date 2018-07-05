@@ -561,26 +561,6 @@ namespace RightholderWorkplace
 
         private RadPageViewPage _previousPage;
 
-        //public int SelectedRghtholdersObjectRightId // to move
-        //{
-        //    get
-        //    {
-        //        if (gvRightholdersObjectsRights.CurrentRow == null)
-        //            return 0;
-
-        //        return (gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder).ObjId;
-        //    }
-        //    set
-        //    {
-        //        var row = gvRightholdersObjectsRights.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == value);
-        //        if (row != null)
-        //        {
-        //            gvRightholdersObjectsRights.CurrentRow = row;
-        //            gvRightholdersObjectsRights.TableElement.ScrollToRow(row);
-        //        }
-        //    }
-        //}
-
         public ObjectAuthorRightholder SelectedObjectAuthorRightholder
         {
             get
@@ -617,17 +597,6 @@ namespace RightholderWorkplace
             ddlGenreType.DataSource = _dictionariesObjectRight.genreType.Where(g => g.CategoryCode == category);
             ddlGenreType.ValueMember = "CodeI";
             ddlGenreType.DisplayMember = "Name";
-        }
-
-        private void CtrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder) // to move
-        {
-            UpdateRightholdersObjectsRightList();
-        }
-
-        private void CtrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e) // to move
-        {
-            //if (ctrlRightholderSelector.Rightholder != null)
-            //    EditRightholder(ctrlRightholderSelector.Rightholder);
         }
 
         #region Objectrights list event handlers
