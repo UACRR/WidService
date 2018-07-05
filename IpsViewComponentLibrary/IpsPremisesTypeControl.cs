@@ -15,7 +15,7 @@ namespace IpsViewComponentLibrary
 {
     public partial class IpsPremisesTypeControl : UserControl
     {
-        private TypeOfPremises _typeOfPremises;
+        private MeasurementOfPremises _measurementOfPremises;
         private ClnBusinessPlace _place;
         
         /// <summary>
@@ -29,12 +29,12 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Конструктор з ініціалізацією типу майданчика
         /// </summary>
-        /// <param name="typeOfPremises">Тип майданчика</param>
-        public IpsPremisesTypeControl(TypeOfPremises typeOfPremises)
+        /// <param name="measurementOfPremises">Тип майданчика</param>
+        public IpsPremisesTypeControl(MeasurementOfPremises measurementOfPremises)
         {
             InitializeComponent();
-            _typeOfPremises = typeOfPremises;
-            SetGridType(typeOfPremises);
+            _measurementOfPremises = measurementOfPremises;
+            SetGridColumnHeaderText(measurementOfPremises);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void rBtnAddPremises_Click(object sender, EventArgs e)
         {
-            AddPremisesForm addPremisesFormForm = new AddPremisesForm(new ClnPlaceHoll(), _typeOfPremises, TypeOfFormPremisesInitialization.CreateNew);
+            AddPremisesForm addPremisesFormForm = new AddPremisesForm(new ClnPlaceHoll(), _measurementOfPremises, PremisesFormTypeInitialization.CreateNew);
             addPremisesFormForm.StartPosition = FormStartPosition.CenterScreen;
             addPremisesFormForm.OnNeedUpdateDataGrid += PremisesForm_OnNeedUpdateDataGrid;
             addPremisesFormForm.OnSaveNewClnPlaceHoll += AddPremisesFormForm_OnSaveNewClnPlaceHoll;
@@ -83,23 +83,17 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Вибір режиму відображення (метраж / кількість місць) 
         /// </summary>
-        /// <param name="type"></param>
-        public void SetGridType(TypeOfPremises type)
+        /// <param name="measurement"></param>
+        private void SetGridColumnHeaderText(MeasurementOfPremises measurement)
         {
-            switch (type)
+            switch (measurement)
             {
-                case TypeOfPremises.Meters:
-                {
-                    rGridViewPremises.Columns["HollNum"].IsVisible = false;
-                    rGridViewPremises.Columns["SqHoll"].IsVisible = true;
-                }
+                case MeasurementOfPremises.Number:
+                    rGridViewPremises.Columns["ValuePlace"].HeaderText = "Кількість місць";
                     break;
 
-                case TypeOfPremises.Number:
-                {
-                    rGridViewPremises.Columns["SqHoll"].IsVisible = false;
-                    rGridViewPremises.Columns["HollNum"].IsVisible = true;
-                }
+                case MeasurementOfPremises.Area:
+                    rGridViewPremises.Columns["ValuePlace"].HeaderText = "Площа";
                     break;
             }
         }
@@ -114,7 +108,7 @@ namespace IpsViewComponentLibrary
             if(rGridViewPremises.Rows.Count == 0) return;
 
             var editItem = rGridViewPremises.CurrentRow.DataBoundItem as ClnPlaceHoll;
-            AddPremisesForm editForm = new AddPremisesForm(editItem, _typeOfPremises, TypeOfFormPremisesInitialization.Edit);
+            AddPremisesForm editForm = new AddPremisesForm(editItem, _measurementOfPremises, PremisesFormTypeInitialization.Edit);
             editForm.StartPosition = FormStartPosition.CenterScreen;
             editForm.OnNeedUpdateDataGrid += PremisesForm_OnNeedUpdateDataGrid;
             editForm.ShowDialog();

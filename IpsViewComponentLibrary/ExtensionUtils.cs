@@ -106,7 +106,7 @@ namespace IpsViewComponentLibrary
     /// <summary>
     /// Тип ініціалізації форми приміщення завкладу
     /// </summary>
-    public enum TypeOfFormPremisesInitialization
+    public enum PremisesFormTypeInitialization
     {
         /// <summary>
         /// Редагування
@@ -119,19 +119,23 @@ namespace IpsViewComponentLibrary
     }
 
     /// <summary>
-    /// Тип майданчика
+    /// Тип вимірювання майданчика
     /// </summary>
-    public enum TypeOfPremises
+    public enum MeasurementOfPremises
     {
+        /// <summary>
+        /// Площа
+        /// </summary>
+        Area = 1,
         /// <summary>
         /// Кількість місць
         /// </summary>
-        Number,
+        Number = 2,
         /// <summary>
-        /// Метраж
+        /// Інше
         /// </summary>
-        Meters,
-        Empty
+        Other = 3,
+        Empty = 0
     }
 
     /// <summary>

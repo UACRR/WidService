@@ -21,7 +21,7 @@ namespace ipsAnketaClient
 
         private TypeInstitution _typeInstitution = TypeInstitution.NonExistentInstitution;
         private ExistencePlaces _existencePlaces;
-        private TypeOfPremises _typeOfPremises = TypeOfPremises.Number;
+        private MeasurementOfPremises _measurementOfPremises = MeasurementOfPremises.Area;
         private ClnBusinessPlace _clnBusinessPlace;
         private Customer _data;
         private ObservableListSource<ClnPlaceHoll> _newPlace;
@@ -68,22 +68,69 @@ namespace ipsAnketaClient
             SetMenuItems();
         }
 
+        /// <summary>
+        /// Встановити випадаючі кнопки
+        /// </summary>
         private void SetMenuItems()
         {
             rDropDownBtnAddInst.Items.Clear();
             foreach (var typePlace in _dic.typePlace )
             {
 
-                RadMenuItem item = new RadMenuItem( typePlace.Name );
+                RadMenuItem item = new RadMenuItem( typePlace.Name, typePlace );
                 item.Click += Item_Click;
                 rDropDownBtnAddInst.Items.Add(item);
             }
         }
 
+
+        //TODO: як дізнатись холів багато чи він один?
         private void Item_Click(object sender, EventArgs e)
         {
-            //TODO: реалізувати подію
-            
+            var objTag = sender as RadMenuItem;
+            if(!(objTag?.Tag is TypePlace typePlace)) return;
+
+            //тип вимірювання майданчика
+            _measurementOfPremises = typePlace.ParamType == 1 ? MeasurementOfPremises.Area 
+                                   : typePlace.ParamType == 2 ? MeasurementOfPremises.Number
+                                   : typePlace.ParamType == 3 ? MeasurementOfPremises.Other
+                                   : MeasurementOfPremises.Empty;
+
+            if (typePlace.CodeI == 1 || typePlace.CodeI == 2)
+                _existencePlaces = ExistencePlaces.ManyPlaces;
+            else
+                _existencePlaces = ExistencePlaces.SinglePlace;
+
+            //ініціалізація об'єктів
+            _typePlace = typePlace;
+            _newPlace = new ObservableListSource<ClnPlaceHoll>();
+            rTxtBoxTypeInst.Text = typePlace.Name;
+            rPanelAdd.Visible = true;
+            rDropDownBtnAddInst.Enabled = false;
+            rGridViewInstitution.Enabled = false;
+            rBtnEditInst.Enabled = false;
+            //конструювання типу додавання приміщень: заклад з холами / заклад з single холом
+            switch (_existencePlaces)
+            {
+                case ExistencePlaces.SinglePlace:
+                {
+                    rTxtBoxCountOrMeters.Visible = true;
+                    lblLocation.Visible = true;
+                    lblLocation.Text = _measurementOfPremises == MeasurementOfPremises.Area ? "Площа"
+                                     : _measurementOfPremises == MeasurementOfPremises.Number ? "Кількість місць"
+                                     : _measurementOfPremises == MeasurementOfPremises.Other ? "Інше"
+                                     : string.Empty;
+                    rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
+                    CreateNewPlace();
+                }
+                    break;
+
+                case ExistencePlaces.ManyPlaces:
+                {
+                    InitializePremiseslComponent();
+                }
+                    break;
+            }
         }
 
         /// <summary>
@@ -107,7 +154,7 @@ namespace ipsAnketaClient
             lblLocation.Visible = false;
             lblLocation.Text = string.Empty;
 
-            _premisesType = new IpsPremisesTypeControl(_typeOfPremises);
+            _premisesType = new IpsPremisesTypeControl(_measurementOfPremises);
             
             _premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
             _premisesType.Location = new Point(10, 155); 
@@ -131,11 +178,6 @@ namespace ipsAnketaClient
         /// </summary>
         private void CreateNewPlace()
         {
-            if (_typePlace.CodeI == 1 || _typePlace.CodeI == 2)
-                _existencePlaces = ExistencePlaces.ManyPlaces;
-            else
-                _existencePlaces = ExistencePlaces.SinglePlace;
-
             _clnBusinessPlace = new ClnBusinessPlace
             {
                 //PlaceId = 100, //id елемента, null?
@@ -181,7 +223,7 @@ namespace ipsAnketaClient
                 SetGridDataSource(_data?.Client?.ClnBusinessPlace, _dic );
 
             _typeInstitution = TypeInstitution.NonExistentInstitution;
-            _typeOfPremises = TypeOfPremises.Number;
+            _measurementOfPremises = MeasurementOfPremises.Area;
         }
 
         /// <summary>
@@ -258,9 +300,8 @@ namespace ipsAnketaClient
             rDropDownBtnAddInst.Enabled = false;
             rGridViewInstitution.Enabled = false;
             rBtnEditInst.Enabled = false;
-            _typeOfPremises = TypeOfPremises.Meters;
+            _measurementOfPremises = MeasurementOfPremises.Number;
             InitializePremiseslComponent();
-            _premisesType.SetGridType(_typeOfPremises);
         }
         
         //  РЕСТОРАН
@@ -278,9 +319,8 @@ namespace ipsAnketaClient
             rDropDownBtnAddInst.Enabled = false;
             rBtnEditInst.Enabled = false;
             rGridViewInstitution.Enabled = false;
-            _typeOfPremises = TypeOfPremises.Number;
+            _measurementOfPremises = MeasurementOfPremises.Area;
             InitializePremiseslComponent();
-            _premisesType.SetGridType(_typeOfPremises);
         }
         
         //  НІЧНИЙ КЛУБ
@@ -318,7 +358,7 @@ namespace ipsAnketaClient
             rTxtBoxCountOrMeters.Visible = true;
             lblLocation.Visible = true;
             lblLocation.Text = "Метраж";
-            _typeOfPremises = TypeOfPremises.Meters;
+            _measurementOfPremises = MeasurementOfPremises.Number;
             rDropDownBtnAddInst.Enabled = false;
             rBtnEditInst.Enabled = false;
             rGridViewInstitution.Enabled = false;
@@ -388,7 +428,7 @@ namespace ipsAnketaClient
                 else
                     _existencePlaces = ExistencePlaces.SinglePlace;
 
-                _typeOfPremises = cln.PlCode == 1 || cln.PlCode == 4 ? TypeOfPremises.Meters : TypeOfPremises.Number;
+                _measurementOfPremises = cln.PlCode == 1 || cln.PlCode == 4 ? MeasurementOfPremises.Number : MeasurementOfPremises.Area;
             }
             
             ClnBusinessPlace localBusinessPlace = new ClnBusinessPlace();
@@ -404,10 +444,30 @@ namespace ipsAnketaClient
                 case ClnBusinessPlace businessPlace when (businessPlace.PlCodeNavigation.CodeI > 2):
                 {
                     localBusinessPlace = businessPlace;
-                    var countOrMeters = businessPlace.ClnPlaceHoll.SingleOrDefault();
-                    var count = countOrMeters?.HollNum;
-                    rTxtBoxCountOrMeters.Text = (countOrMeters?.HollNum ?? countOrMeters?.SqHoll)?.ToString();
-                    lblLocation.Text = count != null ? "Кількість місць" : "Метраж";
+
+                    switch (_measurementOfPremises)
+                    {
+                        case MeasurementOfPremises.Area:
+                        {
+                            rTxtBoxCountOrMeters.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValuePlace;
+                            lblLocation.Text = "Площа";
+                        }
+                            break;
+
+                        case MeasurementOfPremises.Number:
+                        {
+                            rTxtBoxCountOrMeters.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValuePlace;
+                            lblLocation.Text = "Кількість місць";
+                        }
+                            break;
+
+                        case MeasurementOfPremises.Other:
+                        {
+                            rTxtBoxCountOrMeters.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValueAdd;
+                            lblLocation.Text = "Інше";
+                        }
+                            break;
+                    }
                     rTxtBoxCountOrMeters.Visible = true;
                     lblLocation.Visible = true;
                 } break;
@@ -447,20 +507,7 @@ namespace ipsAnketaClient
                 _clnBusinessPlace.PlaceRegion = addressControl.RegionCode;
                 _clnBusinessPlace.PlaceCity = addressControl.TownName;
                 _clnBusinessPlace.PlaceAddress = addressControl.StreetName;
-
-                if (_existencePlaces == ExistencePlaces.SinglePlace)
-                {
-                    var place = _clnBusinessPlace.ClnPlaceHoll.SingleOrDefault();
-                    if (place != null)
-                    {
-                        place.HollNum = _typeOfPremises == TypeOfPremises.Number
-                            ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
-                            : null;
-                        place.SqHoll = _typeOfPremises == TypeOfPremises.Meters
-                            ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
-                            : null;
-                    }
-                }
+                TrySetSinglePlaceValues(_clnBusinessPlace);
 
                 _data.Client.ClnBusinessPlace.Add(_clnBusinessPlace);
             }
@@ -472,22 +519,37 @@ namespace ipsAnketaClient
                     item.PlaceRegion = addressControl.RegionCode;
                     item.PlaceCity = addressControl.TownName;
                     item.PlaceAddress = addressControl.StreetName;
-                    if (_existencePlaces == ExistencePlaces.SinglePlace)
-                    {
-                        var place = item.ClnPlaceHoll.SingleOrDefault();
-                        if (place != null)
-                        {
-                            place.HollNum = _typeOfPremises == TypeOfPremises.Number
-                                ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
-                                : null;
-                            place.SqHoll = _typeOfPremises == TypeOfPremises.Meters
-                                ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
-                                : null;
-                        }
-                    }
+                    TrySetSinglePlaceValues(item);
                 }
             }
             SetDefaultState();
+        }
+
+        /// <summary>
+        /// Присвоїти дані у випадку якщо майданчики не додаються
+        /// </summary>
+        /// <param name="itemPlace"></param>
+        private void TrySetSinglePlaceValues(ClnBusinessPlace itemPlace)
+        {
+            if (_existencePlaces == ExistencePlaces.SinglePlace)
+            {
+                var place = itemPlace.ClnPlaceHoll.SingleOrDefault();
+                if (place != null)
+                {
+                    switch (_measurementOfPremises)
+                    {
+                        case MeasurementOfPremises.Area:
+                            place.ValuePlace = rTxtBoxCountOrMeters.Text;
+                            break;
+                        case MeasurementOfPremises.Number:
+                            place.ValuePlace = rTxtBoxCountOrMeters.Text;
+                            break;
+                        case MeasurementOfPremises.Other:
+                            place.ValueAdd = rTxtBoxCountOrMeters.Text;
+                            break;
+                    }
+                }
+            }
         }
 
         /// <summary>

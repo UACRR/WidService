@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
-        /// Встановлення значень
+        /// Встановлення значень назви міста та адреси
         /// </summary>
         public void SetValues()
         {

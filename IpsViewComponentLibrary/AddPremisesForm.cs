@@ -17,8 +17,8 @@ namespace ipsAnketaClient
     {
 
         private ClnPlaceHoll _clnPlaceHoll;
-        private TypeOfFormPremisesInitialization _typeFromOfFormPremisesInitialization = TypeOfFormPremisesInitialization.CreateNew;
-        private TypeOfPremises _typePremises;
+        private PremisesFormTypeInitialization _premisesFormTypeFromInitialization = PremisesFormTypeInitialization.CreateNew;
+        private MeasurementOfPremises _measurementPremises;
 
         public event EventHandler OnNeedUpdateDataGrid;
 
@@ -41,15 +41,15 @@ namespace ipsAnketaClient
         /// Конструктор для редагування або додавання приміщення закладу
         /// </summary>
         /// <param name="clnPlaceHoll">Дані майданчиків</param>
-        /// <param name="typePremises">Тип майданчика</param>
-        /// <param name="typeFrom">Тип ініціалізованої форми приміщення закладу</param>
-        public AddPremisesForm(ClnPlaceHoll clnPlaceHoll, TypeOfPremises typePremises, TypeOfFormPremisesInitialization typeFrom)
+        /// <param name="measurementPremises">Тип вимірювання майданчика</param>
+        /// <param name="premisesFormTypeFrom">Тип ініціалізованої форми приміщення закладу</param>
+        public AddPremisesForm(ClnPlaceHoll clnPlaceHoll, MeasurementOfPremises measurementPremises, PremisesFormTypeInitialization premisesFormTypeFrom)
         {
             InitializeComponent();
             _clnPlaceHoll = clnPlaceHoll;
-            _typePremises = typePremises;
-            _typeFromOfFormPremisesInitialization = typeFrom;
-            if (typeFrom == TypeOfFormPremisesInitialization.Edit)
+            _measurementPremises = measurementPremises;
+            _premisesFormTypeFromInitialization = premisesFormTypeFrom;
+            if (premisesFormTypeFrom == PremisesFormTypeInitialization.Edit)
             {
                 rBtnAdd.Text = "Зберегти";
                 this.Text = "Редагувати приміщення закладу";
@@ -68,14 +68,14 @@ namespace ipsAnketaClient
         {
             if (Validator())
             {
-                switch (_typeFromOfFormPremisesInitialization)
+                switch (_premisesFormTypeFromInitialization)
                 {
-                    case TypeOfFormPremisesInitialization.CreateNew:
+                    case PremisesFormTypeInitialization.CreateNew:
                     {
                         OnSaveNewClnPlaceHoll?.Invoke(GetClnPlaceHoll());
                     }
                         break;
-                    case TypeOfFormPremisesInitialization.Edit:
+                    case PremisesFormTypeInitialization.Edit:
                     {
                         GetClnPlaceHoll();
                     }
@@ -102,8 +102,8 @@ namespace ipsAnketaClient
         /// </summary>
         private void SetTypePremises()
         {
-            lblMetrsPlaceTxt.Text = _typePremises == TypeOfPremises.Number ? "Кількість місць"
-                : _typePremises == TypeOfPremises.Meters ? "Метраж" : string.Empty;
+            lblTitlePlace.Text = _measurementPremises == MeasurementOfPremises.Area ? "Площа"
+                : _measurementPremises == MeasurementOfPremises.Number ? "Кількість місць" : string.Empty;
         }
 
         //TODO: тестувати валідатор / реконструювати
@@ -117,7 +117,7 @@ namespace ipsAnketaClient
             bool isNumber = true;
             bool isNotEmpty = true;
             Int32 tryparse;
-            if (rtxtBoxTypePremisses.Text == string.Empty)
+            if (txtPlaceName.Text == string.Empty)
             {
                 isNotEmpty = false;
                 lblTypePremisses.ForeColor = Color.Crimson;
@@ -125,22 +125,22 @@ namespace ipsAnketaClient
             else
                 lblTypePremisses.ForeColor = Color.Black;
 
-            if (rtxtBoxMetersPlaces.Text == string.Empty)
+            if (txtPlaceValue.Text == string.Empty)
             {
                 isNotEmpty = false;
-                lblMetrsPlaceTxt.ForeColor = Color.Crimson;
+                lblTitlePlace.ForeColor = Color.Crimson;
             }
             else
-                lblMetrsPlaceTxt.ForeColor = Color.Black;
+                lblTitlePlace.ForeColor = Color.Black;
 
 
-            if (!Int32.TryParse(rtxtBoxMetersPlaces.Text, out tryparse))
+            if (!Int32.TryParse(txtPlaceValue.Text, out tryparse))
             {
-                lblMetrsPlaceTxt.ForeColor = Color.Crimson;
+                lblTitlePlace.ForeColor = Color.Crimson;
                 isNumber = false;
             }
             else
-                lblMetrsPlaceTxt.ForeColor = Color.Black;
+                lblTitlePlace.ForeColor = Color.Black;
             
             //if (count >= 2 && _isEdit)
             //{
@@ -179,10 +179,8 @@ namespace ipsAnketaClient
         /// </summary>
         private void SetEditData()
         {
-            rtxtBoxTypePremisses.Text = _clnPlaceHoll.HollName;
-            rtxtBoxMetersPlaces.Text = _typePremises == TypeOfPremises.Meters ? _clnPlaceHoll.SqHoll.ToString() 
-                                     : _typePremises == TypeOfPremises.Number ? _clnPlaceHoll.HollNum.ToString()
-                                     : string.Empty; //throw new Exception("Неможливо визначити тип приміщення!");
+            txtPlaceName.Text = _clnPlaceHoll.HollName;
+            txtPlaceValue.Text = _measurementPremises == MeasurementOfPremises.Other ? _clnPlaceHoll.ValueAdd : _clnPlaceHoll.ValuePlace;
         }
 
         /// <summary>
@@ -191,20 +189,23 @@ namespace ipsAnketaClient
         /// <returns>Приміщення закладу</returns>
         public ClnPlaceHoll GetClnPlaceHoll()
         {
-            _clnPlaceHoll.HollName = rtxtBoxTypePremisses.Text;
-            switch (_typePremises)
+            _clnPlaceHoll.HollName = txtPlaceName.Text;
+
+            switch (_measurementPremises)
             {
-                case TypeOfPremises.Meters:
-                {
-                    _clnPlaceHoll.SqHoll = Convert.ToInt32(rtxtBoxMetersPlaces.Text);
-                    return _clnPlaceHoll;
-                }
-                case TypeOfPremises.Number:
-                {
-                    _clnPlaceHoll.HollNum = Convert.ToInt32(rtxtBoxMetersPlaces.Text);
-                    return _clnPlaceHoll;
-                }
+                case MeasurementOfPremises.Other:
+                    _clnPlaceHoll.ValueAdd = txtPlaceValue.Text;
+                    break;
+
+                case MeasurementOfPremises.Area:
+                    _clnPlaceHoll.ValuePlace = txtPlaceValue.Text;
+                    break;
+
+                case MeasurementOfPremises.Number:
+                    _clnPlaceHoll.ValuePlace = txtPlaceValue.Text;
+                    break;
             }
+
             return _clnPlaceHoll;
         }
     }
