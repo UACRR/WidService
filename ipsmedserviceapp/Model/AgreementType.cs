@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         {
             AgreementMaster = new HashSet<AgreementMaster>();
             AgreementTypeTr = new HashSet<AgreementTypeTr>();
+            RelDocAgrType = new HashSet<RelDocAgrType>();
         }
 
         public int CodeI { get; set; }
@@ -17,5 +18,6 @@ namespace ipsmedserviceapp.Model
 
         public ICollection<AgreementMaster> AgreementMaster { get; set; }
         public ICollection<AgreementTypeTr> AgreementTypeTr { get; set; }
+        public ICollection<RelDocAgrType> RelDocAgrType { get; set; }
     }
 }

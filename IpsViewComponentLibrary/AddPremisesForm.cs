@@ -189,11 +189,11 @@ namespace ipsAnketaClient
             if(_idEditItem != 0)
             {
                     rtxtBoxTypePremisses.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item =>item.HollName).SingleOrDefault();
-                var numeric = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.HollNum).SingleOrDefault();
-                if(numeric != 0)
-                    rtxtBoxMetersPlaces.Text = _data.Where(idItem=>idItem.HollId == _idEditItem).Select(item=>item.HollNum).SingleOrDefault().ToString();
-                else
-                    rtxtBoxMetersPlaces.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.SqHoll).SingleOrDefault().ToString();
+                //var numeric = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.HollNum).SingleOrDefault();
+                //if(numeric != 0)
+                //    rtxtBoxMetersPlaces.Text = _data.Where(idItem=>idItem.HollId == _idEditItem).Select(item=>item.HollNum).SingleOrDefault().ToString();
+                //else
+                //    rtxtBoxMetersPlaces.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.SqHoll).SingleOrDefault().ToString();
             }
             else
             {
@@ -209,12 +209,12 @@ namespace ipsAnketaClient
             var edItem = _data.SingleOrDefault(item => item.HollName == hollname);
             
             rtxtBoxTypePremisses.Text = edItem?.HollName;
-            var holl = edItem?.HollNum;
-            var places = edItem?.SqHoll;
-            if (holl != null && holl != 0)
-                rtxtBoxMetersPlaces.Text = holl.ToString();
-            else if (places != null && places != 0)
-                rtxtBoxMetersPlaces.Text = places.ToString();
+            //var holl = edItem?.HollNum;
+            //var places = edItem?.SqHoll;
+            //if (holl != null && holl != 0)
+            //    rtxtBoxMetersPlaces.Text = holl.ToString();
+            //else if (places != null && places != 0)
+            //    rtxtBoxMetersPlaces.Text = places.ToString();
         }
 
         public ObservableListSource<ClnPlaceHoll> DataFotInsert()
@@ -223,8 +223,8 @@ namespace ipsAnketaClient
             {
                 //HollId = автоінкримент
                 HollName = rtxtBoxTypePremisses.Text,
-                HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
-                SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
+                //HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
+                //SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
                 PlaceId = _idPlace
             };
             if (_data!=null)
@@ -251,8 +251,8 @@ namespace ipsAnketaClient
             if (editRow != null)
             {
                 editRow.HollName = rtxtBoxTypePremisses.Text;
-                editRow.HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
-                editRow.SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
+                //editRow.HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
+                //editRow.SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
             }
             return _data;
         }

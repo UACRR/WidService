@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         {
             AgreementMaster = new ObservableListSource<AgreementMaster>();
             AgreementTypeTr = new ObservableListSource<AgreementTypeTr>();
+            RelDocAgrType = new ObservableListSource<RelDocAgrType>();
         }
 
         public int CodeI { get; set; }
@@ -18,6 +19,7 @@ namespace ipsFormsDesign.Model
 
         public ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
         public ObservableListSource<AgreementTypeTr> AgreementTypeTr { get; set; }
+        public ObservableListSource<RelDocAgrType> RelDocAgrType { get; set; }
     }
 }
 

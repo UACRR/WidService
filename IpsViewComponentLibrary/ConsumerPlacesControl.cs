@@ -535,9 +535,9 @@ namespace ipsAnketaClient
                 {
                     localBusinessPlace = businessPlace;
                     var countOrMeters = businessPlace.ClnPlaceHoll.SingleOrDefault();
-                    var count = countOrMeters?.HollNum;
-                    rTxtBoxCountOrMeters.Text = (countOrMeters?.HollNum ?? countOrMeters?.SqHoll)?.ToString();
-                    lblLocation.Text = count != null ? "Кількість місць" : "Метраж";
+                    //var count = countOrMeters?.HollNum;
+                    //rTxtBoxCountOrMeters.Text = (countOrMeters?.HollNum ?? countOrMeters?.SqHoll)?.ToString();
+                    // lblLocation.Text = count != null ? "Кількість місць" : "Метраж";
                     rTxtBoxCountOrMeters.Visible = true;
                     lblLocation.Visible = true;
                 } break;
@@ -559,41 +559,41 @@ namespace ipsAnketaClient
             return;
 
             // * * * *
-            if (rGridViewInstitution.CurrentRow.Cells[0].Value.GetType() != typeof(Int32))
-                return;
+            //if (rGridViewInstitution.CurrentRow.Cells[0].Value.GetType() != typeof(Int32))
+            //    return;
 
-            IdItemOfSelectRow = (int)rGridViewInstitution.CurrentRow.Cells[0].Value;
-            var typePlace = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlCodeNavigation).SingleOrDefault();
-            if (typePlace != null)
-                if (typePlace.CodeI == 1 || typePlace.CodeI == 2)
-                {
-                    InitializePremiseslComponent();
-                    IsNeedPremissesType = true;
-                    premisesType.SetDataSource(data, IdItemOfSelectRow);
+            //IdItemOfSelectRow = (int)rGridViewInstitution.CurrentRow.Cells[0].Value;
+            //var typePlace = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlCodeNavigation).SingleOrDefault();
+            //if (typePlace != null)
+            //    if (typePlace.CodeI == 1 || typePlace.CodeI == 2)
+            //    {
+            //        InitializePremiseslComponent();
+            //        IsNeedPremissesType = true;
+            //        premisesType.SetDataSource(data, IdItemOfSelectRow);
 
-                }
-                else if (typePlace.CodeI > 2)
-                {
-                    var countOrMeters = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
-                    var count = countOrMeters?.Select(item => item.HollNum).FirstOrDefault();
-                    rTxtBoxCountOrMeters.Text = count != null ? count.ToString() : countOrMeters?.Select(item => item.SqHoll).SingleOrDefault().ToString();
-                    lblLocation.Text = count!=null? "Кількість місць" : "Метраж";
-                    rTxtBoxCountOrMeters.Visible = true;
-                    lblLocation.Visible = true;
-                }
+            //    }
+            //    else if (typePlace.CodeI > 2)
+            //    {
+            //        var countOrMeters = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.ClnPlaceHoll).SingleOrDefault();
+            //        var count = countOrMeters?.Select(item => item.HollNum).FirstOrDefault();
+            //        rTxtBoxCountOrMeters.Text = count != null ? count.ToString() : countOrMeters?.Select(item => item.SqHoll).SingleOrDefault().ToString();
+            //        lblLocation.Text = count!=null? "Кількість місць" : "Метраж";
+            //        rTxtBoxCountOrMeters.Visible = true;
+            //        lblLocation.Visible = true;
+            //    }
 
-            rTxtBoxNameInst.Text = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlaceName).SingleOrDefault();
-            var type = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlCodeNavigation).SingleOrDefault();
-            if (type != null)
-                rTxtBoxTypeInst.Text = type.Name;
-            addressControl.SetAddressForEditCustomer(data, IdItemOfSelectRow);
+            //rTxtBoxNameInst.Text = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlaceName).SingleOrDefault();
+            //var type = data.Client.ClnBusinessPlace.Where(itemId => itemId.PlaceId == IdItemOfSelectRow).Select(item => item.PlCodeNavigation).SingleOrDefault();
+            //if (type != null)
+            //    rTxtBoxTypeInst.Text = type.Name;
+            //addressControl.SetAddressForEditCustomer(data, IdItemOfSelectRow);
 
-            rPanelAdd.Visible = true;
-            rDropDownBtnAddInst.Enabled = false;
-            rGridViewInstitution.Enabled = false;
-            rBtnEditInst.Enabled = false;
+            //rPanelAdd.Visible = true;
+            //rDropDownBtnAddInst.Enabled = false;
+            //rGridViewInstitution.Enabled = false;
+            //rBtnEditInst.Enabled = false;
 
-            OnEnabledChangeWhenEditOrAddPremises?.Invoke();
+            //OnEnabledChangeWhenEditOrAddPremises?.Invoke();
         }
         ObservableListSource<ClnPlaceHoll> newPlace1 = new ObservableListSource<ClnPlaceHoll>();
         /// <summary>
@@ -627,8 +627,8 @@ namespace ipsAnketaClient
                         new ObservableListSource<ClnPlaceHoll>{
                             new ClnPlaceHoll
                             {
-                                HollNum = typePlace.CodeI == 3 ? null : new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)),
-                                SqHoll = typePlace.CodeI == 3 ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null,
+                                //HollNum = typePlace.CodeI == 3 ? null : new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)),
+                                //SqHoll = typePlace.CodeI == 3 ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text)) : null,
                             }}
                     //ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>(IsNeedPremissesType ?
                     //                newPlace :
@@ -658,12 +658,12 @@ namespace ipsAnketaClient
                         var place = item.ClnPlaceHoll.SingleOrDefault();
                         if (place != null)
                         {
-                            place.HollNum = lblLocation.Text == "Кількість місць"
-                                ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
-                                : null;
-                            place.SqHoll = lblLocation.Text == "Метраж"
-                                ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
-                                : null;
+                            //place.HollNum = lblLocation.Text == "Кількість місць"
+                            //    ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
+                            //    : null;
+                            //place.SqHoll = lblLocation.Text == "Метраж"
+                            //    ? new int?(Convert.ToInt32(rTxtBoxCountOrMeters.Text))
+                            //    : null;
                         }
                     }
                 }

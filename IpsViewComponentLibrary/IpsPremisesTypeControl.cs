@@ -63,8 +63,8 @@ namespace IpsViewComponentLibrary
                     {
                         IdItem = item.HollId,
                         TypePremisesName = item.HollName,
-                        CountPlace = item.HollNum,
-                        Meterage = item.SqHoll
+                        //CountPlace = item.HollNum,
+                        //Meterage = item.SqHoll
                     };
                     data.Add(temp);
                 }
@@ -104,9 +104,9 @@ namespace IpsViewComponentLibrary
                 temp = new PremisesInstitution
                 {
                     IdItem = item.HollId,
-                    TypePremisesName = item.HollName,
-                    CountPlace = item.HollNum,
-                    Meterage = item.SqHoll
+                    TypePremisesName = item.HollName
+                    //CountPlace = item.HollNum,
+                    //Meterage = item.SqHoll
                 };
                 data.Add(temp);
             }

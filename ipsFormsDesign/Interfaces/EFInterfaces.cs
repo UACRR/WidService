@@ -428,6 +428,28 @@ public interface ICategoryTr
 }
 public interface IClient
     {    int CustId { get; set; }
+         string ClientBrand { get; set; }
+         string ClientGroup { get; set; }
+}
+public interface IClientBrand
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IClientBrandTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
+public interface IClientGroup
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IClientGroupTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
 }
 public interface IClnBusinessPlace
     {    int PlaceId { get; set; }
@@ -446,9 +468,8 @@ public interface IClnPlaceHoll
          int HollId { get; set; }
          int? PlaceId { get; set; }
          string HollName { get; set; }
-         int? HollNum { get; set; }
-         bool? ÑalcNum { get; set; }
-         decimal? SqHoll { get; set; }
+         string ValuePlace { get; set; }
+         string ValueAdd { get; set; }
 }
 public interface ICommentCause
     {    int CauseCode { get; set; }
@@ -520,14 +541,13 @@ public interface ICopyRtranslate
          string LangTo { get; set; }
 }
 public interface ICounterNumber
-    {
-         int CounterId { get; set; }
+    {    int CounterId { get; set; }
          string Name { get; set; }
          int? CNum { get; set; }
          string Prefix { get; set; }
          string SymbolN { get; set; }
          short? TemplYear { get; set; }
-    }
+}
 public interface ICountry
     {    int? ContinentCode { get; set; }
          string CountryCode { get; set; }
@@ -783,10 +803,9 @@ public interface IDocumentStatusTr
          string Name { get; set; }
 }
 public interface IDocumentType
-    {
-         int CodeI { get; set; }
+    {    int CodeI { get; set; }
          string Name { get; set; }
-    }
+}
 public interface IDocumentTypeTr
     {
          int CodeI { get; set; }
@@ -1547,6 +1566,18 @@ public interface IRelAdaptUseArea
          int ReqId { get; set; }
          int UseAreaTypeCode { get; set; }
 }
+public interface IRelCounterDoc
+    {
+         int CDocId { get; set; }
+         int CounterId { get; set; }
+         int DocType { get; set; }
+         int? LicType { get; set; }
+}
+public interface IRelDocAgrType
+    {
+         int AgrType { get; set; }
+         int DocType { get; set; }
+}
 public interface IRelEmployee
     {
          int Emplid { get; set; }
@@ -1966,6 +1997,18 @@ public interface ITypeMethodGetTr
 }
 public interface ITypePlace
     {    int CodeI { get; set; }
+         string Name { get; set; }
+         bool? IsHoll { get; set; }
+         int? ParamType { get; set; }
+}
+public interface ITypePlaceParam
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface ITypePlaceParamTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
          string Name { get; set; }
 }
 public interface ITypePlaceTr

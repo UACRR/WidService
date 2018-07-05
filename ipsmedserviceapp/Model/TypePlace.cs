@@ -14,7 +14,11 @@ namespace ipsmedserviceapp.Model
 
         public int CodeI { get; set; }
         public string Name { get; set; }
+        public bool? IsHoll { get; set; }
+        public int? ParamType { get; set; }
 
+        [JsonIgnore]
+        public TypePlaceParam ParamTypeNavigation { get; set; }
         [JsonIgnore]
         public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         [JsonIgnore]
