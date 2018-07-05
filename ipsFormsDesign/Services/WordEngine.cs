@@ -803,7 +803,7 @@ namespace ipsFormsDesign.Services
                 docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
                 docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
                 prcntShow = licA?.LicenseBigR?.Rate?.ToString();
-                prcntShowText =  Utils.GrnPhrase(Convert.ToDecimal(licA?.LicenseBigR?.Rate));
+                prcntShowText =  Utils.PrcnPhrase(Convert.ToDecimal(licA?.LicenseBigR?.Rate));
                 PayShowDataDo = $"{licA?.LicenseBigR?.PrepayDateDo:dd.MM.yyyy}";
                 decimal pPayShowGrn = 0;
                 decimal aPayShowGrn = 0;
@@ -929,6 +929,9 @@ namespace ipsFormsDesign.Services
                             break;
                         case "prcntShow":
                             item.Range.Text = prcntShow;
+                            break;
+                        case "prcntShowText":
+                            item.Range.Text = prcntShowText;
                             break;
                         case "pPayShowGrn":
                             item.Range.Text = ((int)(pPayShowGrn)).ToString();
