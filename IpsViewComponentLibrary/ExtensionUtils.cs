@@ -45,10 +45,7 @@ namespace IpsViewComponentLibrary
         private static void TodayButton_Click(object sender, EventArgs e)
         {
             // var container = (sender as RadControl).GetContainerControl();
-            RadDateTimePickerDropDown dtPickerDropDown = (sender as RadButtonElement).ElementTree.Control.Parent as RadDateTimePickerDropDown;
-            if (dtPickerDropDown == null)
-                return;
-            var dtPicker = (RadDateTimePicker)dtPickerDropDown.OwnerControl;
+            var dtPicker = ((Telerik.WinControls.UI.RadDateTimePickerDropDown)((Telerik.WinControls.RadElement)sender).ElementTree.Control.Parent).OwnerControl as RadDateTimePicker;
             if (dtPicker != null)
                 dtPicker.Value = DateTime.Now;
         }
