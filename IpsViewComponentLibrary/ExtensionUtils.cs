@@ -13,7 +13,7 @@ namespace IpsViewComponentLibrary
 {
     public static class ExtensionUtils
     {
-        private static RadDateTimePicker _dtPicker;
+        // private static RadDateTimePicker _dtPicker;
 
         /// <summary>
         /// Незмінний розмір, кнопка "Сьогодні" посередині, навігація по місяцях/роках зумом
@@ -21,8 +21,8 @@ namespace IpsViewComponentLibrary
         /// <param name="dtPicker"></param>
         public static void SetUserCalendarSettingsm(this RadDateTimePicker dtPicker)
         {
-            _dtPicker = dtPicker;
-            if(dtPicker == null) return;
+            //_dtPicker = dtPicker;
+            //if(dtPicker == null) return;
             dtPicker.DateTimePickerElement.Calendar.HeaderNavigationMode = HeaderNavigationMode.Zoom;
             //dtTetsDate.DateTimePickerElement.Calendar.TodayButton.ShowBorder = true;
             dtPicker.DateTimePickerElement.Calendar.TodayButton.Text = "Сьогодні";
@@ -44,7 +44,13 @@ namespace IpsViewComponentLibrary
 
         private static void TodayButton_Click(object sender, EventArgs e)
         {
-            _dtPicker.Value = DateTime.Now;
+            // var container = (sender as RadControl).GetContainerControl();
+            RadDateTimePickerDropDown dtPickerDropDown = (sender as RadButtonElement).ElementTree.Control.Parent as RadDateTimePickerDropDown;
+            if (dtPickerDropDown == null)
+                return;
+            var dtPicker = (RadDateTimePicker)dtPickerDropDown.OwnerControl;
+            if (dtPicker != null)
+                dtPicker.Value = DateTime.Now;
         }
     }
 
@@ -55,7 +61,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="cust">Дані споживача</param>
         /// <param name="dictionaties">Словники</param>
-        void SetDataSources(Customer cust, AnketaDictionaties dictionaties );
+        void SetDataSources(Customer cust, AnketaDictionaties dictionaties);
 
         /// <summary>
         /// Перевірка на правильність введених даних
