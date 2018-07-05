@@ -49,8 +49,9 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        public event EventHandler<RightholderMainView> RightholderChanged = delegate { };
         public event EventHandler<int> EditObjectCommandExecuted = delegate { };
+        public event EventHandler<RightholderMainView> RightholderChanged = delegate { };
+        public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted = delegate { };
 
         public RightholdersObjectsRightsControl()
         {
@@ -88,7 +89,7 @@ namespace IpsViewComponentLibrary
 
         private void ctrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e)
         {
-
+            OnShowAnketaCommandExetuted(ctrlRightholderSelector.Rightholder);
         }
 
         private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0)
@@ -114,14 +115,19 @@ namespace IpsViewComponentLibrary
 
         #region Raise event methods
 
+        protected void OnEditObjectCommandExecuted(int objId)
+        {
+            EditObjectCommandExecuted(this, objId);
+        }
+
         protected void OnRightholderChanged(RightholderMainView selectedRightholder)
         {
             RightholderChanged(this, selectedRightholder);
         }
 
-        protected void OnEditObjectCommandExecuted(int objId)
+        protected void OnShowAnketaCommandExetuted(RightholderMainView selectedRightholder)
         {
-            EditObjectCommandExecuted(this, objId);
+            ShowAnketaCommandExetuted(this, selectedRightholder);
         }
 
         #endregion
