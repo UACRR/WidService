@@ -888,7 +888,7 @@ namespace RightholderWorkplace
                 int category;
                 if (int.TryParse(menuItem.Tag.ToString(), out category))
                 {
-                    //AddObjectRight(category, ctrlRightholderSelector.Rightholder); // to fix
+                    AddObjectRight(category, ctrlRightholdersObjectsRight.SelectedRightholder);
                 }
             }
         }
@@ -907,7 +907,7 @@ namespace RightholderWorkplace
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
-            var selectedRightholder = new RightholderMainView(); //ctrlRightholderSelector.Rightholder; // to fix
+            var selectedRightholder = ctrlRightholdersObjectsRight.SelectedRightholder;
             var objectRightContainer = _objectRightService.GetData(selectedObject.ObjId);
             var objectRight = objectRightContainer.objectRight;
             
@@ -955,11 +955,11 @@ namespace RightholderWorkplace
 
         private bool IsRightholderSelected()
         {
-            //if (ctrlRightholderSelector.Rightholder == null) // to fix
-            //{
-            //    MessageBox.Show("Оберіть правовласника.");
-            //    return false;
-            //}
+            if (ctrlRightholdersObjectsRight.SelectedRightholder == null)
+            {
+                MessageBox.Show("Оберіть правовласника.");
+                return false;
+            }
 
             return true;
         }
@@ -988,7 +988,7 @@ namespace RightholderWorkplace
             MainPageView.SelectedPage = mainPageRightsObjects;
             objectsPageView.SelectedPage = rightholdersObjectsPage;
 
-            //ctrlRightholderSelector.Rightholder = selectedRightholder; // to fix
+            ctrlRightholdersObjectsRight.SelectedRightholder = selectedRightholder;
         }
 
         private void EditObjectAuthorRightholder(ObjectAuthorRightholder objectAuthorRightholder = null)
