@@ -75,7 +75,7 @@ namespace IpsViewComponentLibrary
             ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
             ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
                 ? _cust?.Client?.ClnBusinessPlace // - - - - - - - - - - - - - - - - - - 
-                : null);                          // - - - - - - - - - - - - - - - - - -
+                : null, _anketaDictionaries );                          // - - - - - - - - - - - - - - - - - -
             ctrlPlacesTitle.Text =              // - - - - - - - - - - - - - - - - - - -
                 _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
