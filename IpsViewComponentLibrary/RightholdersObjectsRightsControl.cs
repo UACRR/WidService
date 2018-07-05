@@ -16,21 +16,28 @@ namespace IpsViewComponentLibrary
 {
     public partial class RightholdersObjectsRightsControl : UserControl
     {
-        public int SelectedObjectRightId
+        public ObjectRightForRightholder _objectRight;
+        public ObjectRightForRightholder SelectedObject
         {
             get
             {
                 if (gvRightholdersObjectsRights.CurrentRow == null)
-                    return 0;
+                    return null;
 
-                return (gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder).ObjId;
+                return gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder;
             }
             set
             {
-                var row = gvRightholdersObjectsRights.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == value);
-                if (row != null)
+                if (_objectRight != value)
                 {
-                    gvRightholdersObjectsRights.CurrentRow = row;
+                    _objectRight = value;
+
+                    var row = gvRightholdersObjectsRights.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == _objectRight.ObjId);
+                    if (row != null)
+                    {
+                        gvRightholdersObjectsRights.CurrentRow = row;
+                        gvRightholdersObjectsRights.TableElement.ScrollToRow(row);
+                    }
                 }
             }
         }
@@ -49,7 +56,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        public event EventHandler<int> EditObjectCommandExecuted = delegate { };
+        public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted = delegate { };
         public event EventHandler<RightholderMainView> RightholderChanged = delegate { };
         public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted = delegate { };
 
@@ -57,7 +64,30 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
         }
-        
+
+        public void UpdateList()
+        {
+            UpdateList(SelectedObject);
+        }
+
+        public void UpdateList(ObjectRightForRightholder currentObject)
+        {
+            var service = new ObjectRightService();
+
+            if (ctrlRightholderSelector.Rightholder != null)
+            {
+                var rightholdersObjectsRightsList = service.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
+
+                objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
+
+                SelectedObject = currentObject;
+            }
+            else
+            {
+                objectRightForRightholderBindingSource.DataSource = null;
+            }
+        }
+
         #region gvRightholdersObjectsRights event handlers
 
         private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -66,7 +96,7 @@ namespace IpsViewComponentLibrary
 
             if (currentColumnName == "EditColumn")
             {
-                OnEditObjectCommandExecuted(SelectedObjectRightId);
+                OnEditObjectCommandExecuted(SelectedObject);
             }
         }
 
@@ -75,14 +105,14 @@ namespace IpsViewComponentLibrary
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            OnEditObjectCommandExecuted(SelectedObjectRightId);
+            OnEditObjectCommandExecuted(SelectedObject);
         }
 
         #endregion
 
         private void ctrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
-            UpdateRightholdersObjectsRightList();
+            UpdateList();
 
             OnRightholderChanged(selectedRightholder);
         }
@@ -92,32 +122,11 @@ namespace IpsViewComponentLibrary
             OnShowAnketaCommandExetuted(selectedRighthoder);
         }
 
-        private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0)
-        {
-            var _objectRightService = new ObjectRightService(); // TODO: move to presenter
-
-            if (ctrlRightholderSelector.Rightholder != null)
-            {
-                var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
-
-                objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
-
-                if (selectedObjectId != 0)
-                {
-                    SelectedObjectRightId = selectedObjectId;
-                }
-            }
-            else
-            {
-                objectRightForRightholderBindingSource.DataSource = null;
-            }
-        }
-
         #region Raise event methods
 
-        protected void OnEditObjectCommandExecuted(int objId)
+        protected void OnEditObjectCommandExecuted(ObjectRightForRightholder selectedObject)
         {
-            EditObjectCommandExecuted(this, objId);
+            EditObjectCommandExecuted(this, selectedObject);
         }
 
         protected void OnRightholderChanged(RightholderMainView selectedRightholder)
