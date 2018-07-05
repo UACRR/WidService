@@ -30,16 +30,16 @@ namespace TestWord_1
             string Filename = string.Empty;
 
             Filename = "F_7_Г готелі.docx";
-            //            Filename = "F_4_ТЦ магазини.docx";
+                        Filename = "F_4_ТЦ магазини.docx";
             //            Filename = "F_1_БВ-НК-бари-дискотеки_.docx";
             //            Filename = "F_3_МБВ.docx";
             //            Filename = "F_6_МТЦ.docx";
             //            Filename = "F_Акт_публічне виконання.docx";  
-                     Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+              //       Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
             //          Filename = "F_Акт_публічне сповіщення TV+радио.docx";
             //        Filename = "F_Акт_публічне сповіщення кTV.docx";
             //            Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
-            Filename = "F_Лицензионный договор на спектакль (БП).docx";
+            //Filename = "F_Лицензионный договор на спектакль (БП).docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
 
@@ -120,23 +120,27 @@ namespace TestWord_1
                     break;
                 case "F_4_ТЦ магазини.docx":
                     cust = service.GetData(134);
+                    LicenseAgreement licAgr4 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr4);
                     break;
                 case "F_1_БВ-НК-бари-дискотеки_.docx":
                     cust = service.GetData(134);
+                    LicenseAgreement licAgr5 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr5);
                     break;
                 case "F_3_МБВ.docx":
                     cust = service.GetData(134);
+                    LicenseAgreement licAgr6 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr6);
                     break;
                 case "F_6_МТЦ.docx":
                     cust = service.GetData(134);
+                    LicenseAgreement licAgr7 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr7);
                     break;
   
 

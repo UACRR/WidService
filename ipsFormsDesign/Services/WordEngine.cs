@@ -1200,7 +1200,7 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[1].Range.Text = index.ToString();
                 curRow.Cells[2].Range.Text = places.PlaceCity + "," + places.PlaceAddress;
                 curRow.Cells[3].Range.Text = places.PlaceName;
-                curRow.Cells[4].Range.Text = place.SqHoll.ToString();
+//                curRow.Cells[4].Range.Text = places.ClnPlaceHoll?.First().SqHoll?.ToString();
 
             }
         }
