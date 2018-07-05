@@ -82,7 +82,7 @@ namespace ipsAnketaClient
 
         private void Item_Click(object sender, EventArgs e)
         {
-            //
+            //TODO: реалізувати подію
             
         }
 
