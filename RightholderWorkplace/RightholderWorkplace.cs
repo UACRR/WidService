@@ -561,25 +561,25 @@ namespace RightholderWorkplace
 
         private RadPageViewPage _previousPage;
 
-        public int SelectedRghtholdersObjectRightId // moved
-        {
-            get
-            {
-                if (gvRightholdersObjectsRights.CurrentRow == null)
-                    return 0;
+        //public int SelectedRghtholdersObjectRightId // to move
+        //{
+        //    get
+        //    {
+        //        if (gvRightholdersObjectsRights.CurrentRow == null)
+        //            return 0;
 
-                return (gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder).ObjId;
-            }
-            set
-            {
-                var row = gvRightholdersObjectsRights.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == value);
-                if (row != null)
-                {
-                    gvRightholdersObjectsRights.CurrentRow = row;
-                    gvRightholdersObjectsRights.TableElement.ScrollToRow(row);
-                }
-            }
-        }
+        //        return (gvRightholdersObjectsRights.CurrentRow.DataBoundItem as ObjectRightForRightholder).ObjId;
+        //    }
+        //    set
+        //    {
+        //        var row = gvRightholdersObjectsRights.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == value);
+        //        if (row != null)
+        //        {
+        //            gvRightholdersObjectsRights.CurrentRow = row;
+        //            gvRightholdersObjectsRights.TableElement.ScrollToRow(row);
+        //        }
+        //    }
+        //}
 
         public ObjectAuthorRightholder SelectedObjectAuthorRightholder
         {
@@ -619,15 +619,15 @@ namespace RightholderWorkplace
             ddlGenreType.DisplayMember = "Name";
         }
 
-        private void CtrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
+        private void CtrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder) // to move
         {
             UpdateRightholdersObjectsRightList();
         }
 
-        private void CtrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e)
+        private void CtrlRightholderSelector_ShowAnketaCommandExecuted(object sender, EventArgs e) // to move
         {
-            if (ctrlRightholderSelector.Rightholder != null)
-                EditRightholder(ctrlRightholderSelector.Rightholder);
+            //if (ctrlRightholderSelector.Rightholder != null)
+            //    EditRightholder(ctrlRightholderSelector.Rightholder);
         }
 
         #region Objectrights list event handlers
@@ -799,7 +799,7 @@ namespace RightholderWorkplace
             if (_previousPage == actualObjectsPage)
             {
                 ctrlObjectRightList.UpdateList(new ObjectRightMainView { ObjId = _objectRight.ObjId });
-                UpdateRightholdersObjectsRightList(SelectedRghtholdersObjectRightId);
+                //UpdateRightholdersObjectsRightList(SelectedRghtholdersObjectRightId); // to fix
             }
             else if (_previousPage == rightholdersObjectsPage)
             {
@@ -899,22 +899,14 @@ namespace RightholderWorkplace
 
         #region Rightholders objectrights list event handlers
 
-        private void gvRightholdersObjectsRights_CommandCellClick(object sender, GridViewCellEventArgs e) // moved
+        private void ctrlRightholdersObjectsRight_EditObjectCommandExecuted(object sender, int selectedObjectRightId)
         {
-            var currentColumnName = e.Column.Name;
-
-            if (currentColumnName == "EditColumn")
-            {
-                EditObjectRight(SelectedRghtholdersObjectRightId);
-            }
+            EditObjectRight(selectedObjectRightId);
         }
 
-        private void gvRightholdersObjectsRights_CellDoubleClick(object sender, GridViewCellEventArgs e) // moved
+        private void ctrlRightholdersObjectsRight_ShowAnketaCommandExetuted(object sender, RightholderMainView selectedRightholder)
         {
-            if (e.Column is GridViewCommandColumn)
-                return;
-
-            EditObjectRight(SelectedRghtholdersObjectRightId);
+            EditRightholder(selectedRightholder);
         }
 
         private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
@@ -927,7 +919,7 @@ namespace RightholderWorkplace
                 int category;
                 if (int.TryParse(menuItem.Tag.ToString(), out category))
                 {
-                    AddObjectRight(category, ctrlRightholderSelector.Rightholder);
+                    //AddObjectRight(category, ctrlRightholderSelector.Rightholder); // to fix
                 }
             }
         }
@@ -946,7 +938,7 @@ namespace RightholderWorkplace
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
-            var selectedRightholder = ctrlRightholderSelector.Rightholder;
+            var selectedRightholder = new RightholderMainView(); //ctrlRightholderSelector.Rightholder; // to fix
             var objectRightContainer = _objectRightService.GetData(selectedObject.ObjId);
             var objectRight = objectRightContainer.objectRight;
             
@@ -994,11 +986,11 @@ namespace RightholderWorkplace
 
         private bool IsRightholderSelected()
         {
-            if (ctrlRightholderSelector.Rightholder == null)
-            {
-                MessageBox.Show("Оберіть правовласника.");
-                return false;
-            }
+            //if (ctrlRightholderSelector.Rightholder == null) // to fix
+            //{
+            //    MessageBox.Show("Оберіть правовласника.");
+            //    return false;
+            //}
 
             return true;
         }
@@ -1009,16 +1001,16 @@ namespace RightholderWorkplace
 
         private void UpdateRightholdersObjectsRightList(int selectedObjectId = 0) // moved
         {
-            if (ctrlRightholderSelector.Rightholder == null)
-                return;
+            //if (ctrlRightholderSelector.Rightholder == null) // to fix
+            //    return;
 
-            var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
+            //var rightholdersObjectsRightsList = _objectRightService.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
 
-            objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
+            //objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
 
             if (selectedObjectId != 0)
             {
-                SelectedRghtholdersObjectRightId = selectedObjectId;
+                //SelectedRghtholdersObjectRightId = selectedObjectId; // to fix
             }
         }
 
@@ -1027,7 +1019,7 @@ namespace RightholderWorkplace
             MainPageView.SelectedPage = mainPageRightsObjects;
             objectsPageView.SelectedPage = rightholdersObjectsPage;
 
-            ctrlRightholderSelector.Rightholder = selectedRightholder;
+            //ctrlRightholderSelector.Rightholder = selectedRightholder; // to fix
         }
 
         private void EditObjectAuthorRightholder(ObjectAuthorRightholder objectAuthorRightholder = null)
