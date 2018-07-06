@@ -46,8 +46,8 @@ public interface IAgreementAddBr
     {
          int AgrId { get; set; }
          int Version { get; set; }
-         string AddNumber { get; set; }
-         DateTime? AddDate { get; set; }
+         string AgrNumber { get; set; }
+         DateTime? AgrDate { get; set; }
          DateTime? DateBegin { get; set; }
          DateTime? DateEnd { get; set; }
          int? PeriodCode { get; set; }
@@ -70,8 +70,8 @@ public interface IAgreementAddPartner
          decimal? NoCourtRate { get; set; }
          decimal? CourtCompRate { get; set; }
          int Version { get; set; }
-         string AddNumber { get; set; }
-         DateTime? AddDate { get; set; }
+         string AgrNumber { get; set; }
+         DateTime? AgrDate { get; set; }
          DateTime? DateBegin { get; set; }
          DateTime? DateEnd { get; set; }
          int? PeriodCode { get; set; }
@@ -89,8 +89,8 @@ public interface IAgreementAddRh
          string ResponsUser { get; set; }
          int? CustId { get; set; }
          int Version { get; set; }
-         string AddNumber { get; set; }
-         DateTime? AddDate { get; set; }
+         string AgrNumber { get; set; }
+         DateTime? AgrDate { get; set; }
          DateTime? DateBegin { get; set; }
          DateTime? DateEnd { get; set; }
          int? PeriodCode { get; set; }
@@ -1107,6 +1107,7 @@ public interface ILicenseBigR
          string WhereTour { get; set; }
          decimal? Rate { get; set; }
          DateTime? PrepayDateDo { get; set; }
+         int LicVersion { get; set; }
 }
 public interface ILicenseClass
     {
@@ -1253,6 +1254,7 @@ public interface IMusicalDesign
          string NameSinger { get; set; }
          int? NumbPerfom { get; set; }
          TimeSpan? Duration { get; set; }
+         int? LicVersion { get; set; }
 }
 public interface IMyAnketa
     {    int CustId { get; set; }

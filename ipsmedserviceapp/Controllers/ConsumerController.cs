@@ -77,11 +77,11 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
                 // Великі права
-                if (license.LicenseBigR != null)
-                    await _dbContext.Entry(license.LicenseBigR).Collection(rec => rec.LicAuthorBr)
-                        .Query()
-                        .Where(rec => rec.DateClose == null || rec.DateClose > DateTime.Today)
-                        .LoadAsync();
+                //if (license.LicenseBigR != null)
+                //    await _dbContext.Entry(license.LicenseBigR).Collection(rec => rec.LicAuthorBr)
+                //        .Query()
+                //        .Where(rec => rec.DateClose == null || rec.DateClose > DateTime.Today)
+                //        .LoadAsync();
 
 
             }
@@ -205,7 +205,7 @@ namespace ipsmedserviceapp.Controllers
                 if (item.LicenseBigR != null)
                 {
 
-                    _dbContext.LicAuthorBr.RemoveRange(item.LicenseBigR.LicAuthorBr);
+                    //_dbContext.LicAuthorBr.RemoveRange(item.LicenseBigR.LicAuthorBr);
                     _dbContext.LicenseBigR.Remove(item.LicenseBigR);
                 }
                 // AgreementMaster
@@ -234,7 +234,7 @@ namespace ipsmedserviceapp.Controllers
                         license.LicenseBigR = new LicenseBigR();
                     license.LicenseBigR.SetFields(item.LicenseBigR);
 
-                    _dbContext.UpdateList(item.LicenseBigR.LicAuthorBr, license.LicenseBigR.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
+                    //_dbContext.UpdateList(item.LicenseBigR.LicAuthorBr, license.LicenseBigR.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
                 }
 
 
@@ -271,9 +271,9 @@ namespace ipsmedserviceapp.Controllers
                 {
                     addLicItem.LicenseBigR = new LicenseBigR();
                     addLicItem.LicenseBigR.SetFields(item.LicenseBigR);
-                    _dbContext.AppendList(item.LicenseBigR.LicAuthorBr, addLicItem.LicenseBigR.LicAuthorBr
-                                , i => { }
-                                , (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
+                    //_dbContext.AppendList(item.LicenseBigR.LicAuthorBr, addLicItem.LicenseBigR.LicAuthorBr
+                    //            , i => { }
+                    //            , (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
                 }
                 destCustomer.Client.LicenseAgreement.Add(addLicItem);
                 destAgreeItem.LicenseAgreement.Add(addLicItem);
@@ -415,8 +415,6 @@ namespace ipsmedserviceapp.Controllers
             {
                 item.Agr.AgrStatus = 2;
                 var param = item.LicenseAgrParam.Where(rec => rec.LicVersion == item.LicVersion).Single();
-                item.LicNum = param.LicNum;
-                item.LicDate = param.LicDate;
                 /// ***** Потрібно змінити після підключення кабінету
                 item.LicStatus = 2;
                 param.LicStatus = 2;

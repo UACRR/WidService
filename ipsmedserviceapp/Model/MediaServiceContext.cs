@@ -470,12 +470,12 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Version).HasColumnName("version");
 
-                entity.Property(e => e.AddDate)
-                    .HasColumnName("addDate")
+                entity.Property(e => e.AgrDate)
+                    .HasColumnName("agrDate")
                     .HasColumnType("date");
 
-                entity.Property(e => e.AddNumber)
-                    .HasColumnName("addNumber")
+                entity.Property(e => e.AgrNumber)
+                    .HasColumnName("agrNumber")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
@@ -536,12 +536,12 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Version).HasColumnName("version");
 
-                entity.Property(e => e.AddDate)
-                    .HasColumnName("addDate")
+                entity.Property(e => e.AgrDate)
+                    .HasColumnName("agrDate")
                     .HasColumnType("date");
 
-                entity.Property(e => e.AddNumber)
-                    .HasColumnName("addNumber")
+                entity.Property(e => e.AgrNumber)
+                    .HasColumnName("agrNumber")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
@@ -632,12 +632,12 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Version).HasColumnName("version");
 
-                entity.Property(e => e.AddDate)
-                    .HasColumnName("addDate")
+                entity.Property(e => e.AgrDate)
+                    .HasColumnName("agrDate")
                     .HasColumnType("date");
 
-                entity.Property(e => e.AddNumber)
-                    .HasColumnName("addNumber")
+                entity.Property(e => e.AgrNumber)
+                    .HasColumnName("agrNumber")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
@@ -4420,11 +4420,11 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<LicenseBigR>(entity =>
             {
-                entity.HasKey(e => e.LicId);
+                entity.HasKey(e => new { e.LicId, e.LicVersion });
 
-                entity.Property(e => e.LicId)
-                    .HasColumnName("licId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
+                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
 
                 entity.Property(e => e.DatePremiere)
                     .HasColumnName("datePremiere")
@@ -4462,8 +4462,8 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Lic)
-                    .WithOne(p => p.LicenseBigR)
-                    .HasForeignKey<LicenseBigR>(d => d.LicId)
+                    .WithMany(p => p.LicenseBigR)
+                    .HasForeignKey(d => d.LicId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICENSEB_REFERENCE_LICENSEA");
 
@@ -4997,6 +4997,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
+                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
+
                 entity.Property(e => e.NameMusician)
                     .HasColumnName("nameMusician")
                     .HasMaxLength(256)
@@ -5016,16 +5018,15 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Objid).HasColumnName("objid");
 
-                entity.HasOne(d => d.Lic)
-                    .WithMany(p => p.MusicalDesign)
-                    .HasForeignKey(d => d.LicId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MUSICALD_REFERENCE_LICENSEB");
-
                 entity.HasOne(d => d.Obj)
                     .WithMany(p => p.MusicalDesign)
                     .HasForeignKey(d => d.Objid)
                     .HasConstraintName("FK_MUSICALD_REFERENCE_OBJECTRI");
+
+                entity.HasOne(d => d.Lic)
+                    .WithMany(p => p.MusicalDesign)
+                    .HasForeignKey(d => new { d.LicId, d.LicVersion })
+                    .HasConstraintName("FK_MUSICALD_REFERENCE_LICENSEB");
             });
 
             modelBuilder.Entity<MyAnketa>(entity =>

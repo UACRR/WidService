@@ -22,6 +22,7 @@ namespace ipsFormsDesign.Model
         public string WhereTour { get; set; }
         public decimal? Rate { get; set; }
         public DateTime? PrepayDateDo { get; set; }
+        public int LicVersion { get; set; }
 
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }

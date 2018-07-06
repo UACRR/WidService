@@ -22,6 +22,7 @@ namespace ipsmedserviceapp.Model
         public string WhereTour { get; set; }
         public decimal? Rate { get; set; }
         public DateTime? PrepayDateDo { get; set; }
+        public int LicVersion { get; set; }
 
         [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
