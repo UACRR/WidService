@@ -25,6 +25,7 @@ namespace IpsViewComponentLibrary
         private LicenseAgrParam _licenseAgr;
         private ObservableListSource<ClnBusinessPlace> _places = new ObservableListSource<ClnBusinessPlace>();
         private ObservableListSource<ClnBusinessPlace> _tempPlaces;
+        private ConsumerAgreementInitType _agreementInitType = ConsumerAgreementInitType.None;
 
         public MiddleControlAgreementProlPlacesType()
         {
@@ -34,14 +35,19 @@ namespace IpsViewComponentLibrary
         public TypeRights Rights { get; set; }
         public AnketaDictionaties Dictionaties { get; set; }
 
-        public void InitializeObjects(Customer cust, ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr)
+        public void InitializeObjects(Customer cust, ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
         {
+            _agreementInitType = agreementInitType;
             _customer = cust;
             _tempPlaces = places;
             _license = license;
             _licenseAgr = licenseAgr;
 
             licenseAgreementBindingSource.DataSource = license;
+
+
+            //TODO: джерело даних з розрахованою сумою
+            gvPlaces.DataSource = SetChoosePlaces();
 
             bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
             {
@@ -66,13 +72,6 @@ namespace IpsViewComponentLibrary
         {
             get => ddlLicType.Enabled;
             set => ddlLicType.Enabled = value;
-        }
-
-        //TODO: джерело даних з розрахованою сумою
-        public object DataSourceGrid
-        {
-            get => gvPlaces.DataSource;
-            set => gvPlaces.DataSource = value;
         }
 
         [Category("Data")]
@@ -133,18 +132,7 @@ namespace IpsViewComponentLibrary
         {
             //TODO: checkbox event обрані майданчики додати до ліцензії
             var id = (int)e.Row.Cells["PlaceId"].Value;
-            
-            //_licenseAgr.License.Add(new LicenseForPlaces
-            //{
-            //    //LId = <pk>
-            //    PlaceId = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id)?.PlaceId,
-            //    LicId = _licenseAgr.LicId,
-            //    LicVersion = _licenseAgr.LicVersion,
-            //    LNum = "0" + (DateTime.Today.Year - 2000) + @"/"  + (DateTime.Today.DayOfYear),
-            //    LDate = DateTime.Today,
-            //    Place = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id),
-            //    Status = _licenseAgr.LicStatus
-            //});
+
             if (_licenseAgr.License == null)
              _licenseAgr.License = new ObservableListSource<LicenseForPlaces>();   
             
@@ -170,6 +158,21 @@ namespace IpsViewComponentLibrary
                 //_places.Remove(_tempPlaces.SingleOrDefault(rec => rec.PlaceId == id));
             }
 
+        }
+
+        //обрати чекбокс майданчиків що в ліцензії
+        private ObservableListSource<ClnBusinessPlace> SetChoosePlaces()
+        {
+            if (_agreementInitType == ConsumerAgreementInitType.AddNewAgreement)
+                return _tempPlaces;
+            //TODO для пролонгіції та редагування
+            ObservableListSource<ClnBusinessPlace> places = new ObservableListSource<ClnBusinessPlace>();
+            foreach (var item in _licenseAgr.License)
+            {
+                places.Add(_tempPlaces?.Where(rec => rec?.PlaceId == item?.PlaceId).SingleOrDefault());
+            }
+
+            return places;
         }
     }
 }

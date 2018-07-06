@@ -50,10 +50,13 @@ namespace IpsViewComponentLibrary
             ctrlProlongation.Rights = typeRights;
             ctrlProlongation.Dictionaties = dict; // словник
 
+            ConsumerAgreementInitType caType = ConsumerAgreementInitType.None;
+            if (goal == DialogGoal.forNew)
+                caType = ConsumerAgreementInitType.AddNewAgreement;
+            else if (goal == DialogGoal.forEdit || goal == DialogGoal.forProlongation)
+                caType = ConsumerAgreementInitType.EditAgreement;
 
-            ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr);
-
-            ctrlProlongation.DataSourceGrid = places;
+            ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr, caType);
 
             ctrlProlongation.DataSourceAgreement = bindAgr;
             ctrlProlongation.DataSourceAnketaCompany = bindAnketaCompany;

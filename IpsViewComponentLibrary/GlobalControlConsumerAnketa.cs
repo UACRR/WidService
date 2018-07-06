@@ -31,6 +31,7 @@ namespace IpsViewComponentLibrary
             {12, new []{ "< Керівники", "Договір >" } }
         };
 
+        private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
         private ButtonType _btnType = ButtonType.None;
         private byte _nextPageNumber;
 
@@ -82,7 +83,7 @@ namespace IpsViewComponentLibrary
             ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
 
             ctrlAgreement.typeRights = typeRights;                    // - - - - - - - -  Договір
-            ctrlAgreement.SetDataSources(_cust, _anketaDictionaries);  // - - - - - - - -  Договір
+            ctrlAgreement.SetDataSources(_cust, _anketaDictionaries, _anketeType);  // - - - - - - - -  Договір
 
             ctrlClientName.SetDefaultState();
 
@@ -97,7 +98,7 @@ namespace IpsViewComponentLibrary
             Func<int, Customer> _getCustomerAnketa,
             bool isNew = true)
         {
-
+            _anketeType = isNew ? ConsumerAnketeType.CreateNewAnketa : ConsumerAnketeType.EditAnketa;
             isEdit = !isNew;
 
             if (isNew)
