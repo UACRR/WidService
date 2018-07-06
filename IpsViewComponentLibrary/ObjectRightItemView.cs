@@ -62,6 +62,11 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        public List<ObjectAuthorRightholder> ObjectAuthorRightholderList
+        {
+            get { return objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList(); }
+        }
+
         public ObjectRightItemView()
         {
             InitializeComponent();
@@ -111,7 +116,7 @@ namespace IpsViewComponentLibrary
 
         public void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholderList)
         {
-            // TODO: move map to presenter and bind to binding sources exposes from view - think about it
+            // TODO: move map to presenter and bind to binding sources exposes from view - think about it (there is ObjectAuthorRightholderList property)
 
             ObjectRight = objectRight;
 
@@ -152,8 +157,10 @@ namespace IpsViewComponentLibrary
             objectAuthorRightholderBindingSource.DataSource = objectAuthorRightholderList;
         }
 
-
-
+        public void ShowError(string message)
+        {
+            MessageBox.Show(message, "Помилка");
+        }
 
         private void UpdateAutocompliteItems(string filter)
         {
@@ -235,52 +242,11 @@ namespace IpsViewComponentLibrary
             //EditObjectAuthorRightholder(objectAuthorRightholder);
         }
 
-        private void btnObjectRightItemCancel_Click(object sender, EventArgs e) // to fix
+        private void btnObjectRightItemSave_Click(object sender, EventArgs e)
         {
-            //_forRightholder = null;
-            //objectsPageView.SelectedPage = _previousPage;
-            //actualObjectsPageView.SelectedPage = actualObjectsListPage;
-        }
+            Presenter.Save();
 
-        private void btnObjectRightItemSave_Click(object sender, EventArgs e) // to fix
-        {
-            //if (_objectRight == null)
-            //{
-            //    return;
-            //}
-
-            //_forRightholder = null;
-
-            //// transform from single table to Authors and Copyright tables
-            //_objectRight.Authors.Clear();
-            //_objectRight.CopyRight.Clear();
-
-            //var objectAuthorRightholderList = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList();
-            //objectAuthorRightholderList.ForEach(ar => _objectRight.AddObjectAuthorRightholder(ar));
-
-            //if (_objectRight.CopyRight.GetTotalRate() > 100)
-            //{
-            //    MessageBox.Show("Загальний відсоток володіння не може бути більше 100.", "Помилка");
-            //    return;
-            //}
-
-            //_objectRightService.Save(_objectRight);
-
-            //if (_previousPage == actualObjectsPage)
-            //{
-            //    ctrlObjectRightList.UpdateList(new ObjectRightMainView { ObjId = _objectRight.ObjId });
-            //    ctrlRightholdersObjectsRight.UpdateList();
-            //}
-            //else if (_previousPage == rightholdersObjectsPage)
-            //{
-            //    ctrlRightholdersObjectsRight.UpdateList(new ObjectRightForRightholder { ObjId = _objectRight.ObjId });
-            //    ctrlObjectRightList.UpdateList();
-            //}
-
-            //objectsPageView.SelectedPage = _previousPage;
-            //actualObjectsPageView.SelectedPage = actualObjectsListPage;
-
-            //UpdateRightholdersList(SelectedRightholder);
+            // TODO: Raise broadcast event object right updated
         }
 
         private void btnAddObjectAddName_Click(object sender, EventArgs e)

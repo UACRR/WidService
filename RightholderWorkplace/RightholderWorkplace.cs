@@ -2,10 +2,10 @@
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
-using RightholderWorkplace.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -619,6 +619,8 @@ namespace RightholderWorkplace
             if (category == 0)
                 return;
 
+            _previousPage = objectsPageView.SelectedPage; // TODO
+
             _forRightholder = forRightholder;
 
             using (var view = new ObjectRightItemView())
@@ -627,19 +629,7 @@ namespace RightholderWorkplace
                 presenter.ShowNew(category, _forRightholder);
             }
 
-            //_objectRight = _objectRightService.NewObjectRight(category);
-
-            //if (name != null)
-            //    _objectRight.Name = name;
-            //else
-            //    _previousPage = objectsPageView.SelectedPage; // TODO: no need to change _previousPage if it is adding new object by btnNewObject button click
-
-            //SetAvalaibleGenres(category);
-            //UpdateObjectRightDataSources(_objectRight, null);
-
-            //MainPageView.SelectedPage = mainPageRightsObjects;
-            //objectsPageView.SelectedPage = actualObjectsPage;
-            //actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+            UpdateLists(0);
         }
 
         private void ctrlObjectRightList_EditCommandExecuted(object sender, ObjectRightMainView selectedObject)
@@ -654,24 +644,33 @@ namespace RightholderWorkplace
 
         private void EditObjectRight(int objId)
         {
+            _previousPage = objectsPageView.SelectedPage; // TODO
+
             using (var view = new ObjectRightItemView())
             {
                 var presenter = new ObjectRightItemPresenter(view);
                 presenter.Show(objId);
             }
 
-            //_previousPage = objectsPageView.SelectedPage;
+            UpdateLists(objId);
+        }
 
-            //var objectRightContainer = _objectRightService.GetData(objId);
+        private void UpdateLists(int objId)
+        {
+            // TODO: Update list using broadcast event {
+            if (_previousPage == actualObjectsPage)
+            {
+                ctrlObjectRightList.UpdateList(new ObjectRightMainView { ObjId = objId });
+                ctrlRightholdersObjectsRight.UpdateList();
+            }
+            else if (_previousPage == rightholdersObjectsPage)
+            {
+                ctrlRightholdersObjectsRight.UpdateList(new ObjectRightForRightholder { ObjId = objId });
+                ctrlObjectRightList.UpdateList();
+            }
 
-            //SetAvalaibleGenres(objectRightContainer.objectRight.CategoryCode);
-            //UpdateObjectRightDataSources(objectRightContainer.objectRight, objectRightContainer.rhList);
-
-            //CalculateTotalPersent();
-
-            //MainPageView.SelectedPage = mainPageRightsObjects;
-            //objectsPageView.SelectedPage = actualObjectsPage;
-            //actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+            UpdateRightholdersList(SelectedRightholder);
+            // } TODO
         }
 
         private void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholders) // to move

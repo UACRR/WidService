@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RightholderWorkplace.Utilities
+namespace ipsFormsDesign.Utilities
 {
     public static class ObjectRightExtensions
     {

@@ -706,7 +706,6 @@
             this.btnObjectRightItemCancel.TabIndex = 15;
             this.btnObjectRightItemCancel.Text = "Скасувати";
             this.btnObjectRightItemCancel.ThemeName = "Office2013Light";
-            this.btnObjectRightItemCancel.Click += new System.EventHandler(this.btnObjectRightItemCancel_Click);
             // 
             // ddlSpecType
             // 

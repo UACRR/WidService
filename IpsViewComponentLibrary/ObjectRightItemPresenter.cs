@@ -3,6 +3,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Utilities;
 using System.Collections.Generic;
 
 namespace IpsViewComponentLibrary
@@ -70,6 +71,32 @@ namespace IpsViewComponentLibrary
 
                 SetObjectRigth(newObjectRight);
             }
+        }
+
+        public void Save()
+        {
+            if (_objectRight != null)
+            {
+                // map from single table to Authors and Copyright tables
+                _objectRight.Authors.Clear();
+                _objectRight.CopyRight.Clear();
+                _view.ObjectAuthorRightholderList.ForEach(ar => _objectRight.AddObjectAuthorRightholder(ar));
+
+                if (_objectRight.CopyRight.GetTotalRate() > 100)
+                {
+                    _view.ShowError("Загальний відсоток володіння не може бути більше 100.");
+                    return;
+                }
+
+                var result = _objectRightService.Save(_objectRight);
+
+                // TODO: Raise broadcast event object right updated
+
+                if (!result)
+                    _view.ShowError("Не вдалося зберегти об'єкт.");
+            }
+
+            _view.Close();
         }
 
         private void SetObjectRigth(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
