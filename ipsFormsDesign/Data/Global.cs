@@ -35,8 +35,9 @@ namespace ipsFormsDesign.Data
         {
             await Task.Run(() =>
             {
+                // По замовчуваню
                 AnketaDictionatiesField.Add(typeof(object), new[] { new BindingField { SorsField = "CodeI", DestField = "ValueMember" }, new BindingField { SorsField = "Name", DestField = "DisplayMember" } });
-                //            Country t = new Country();
+                // Country t = new Country();
                 AnketaDictionatiesField.Add(typeof(Country), new[] { new BindingField { SorsField = "CountryCode" , DestField = "ValueMember" }, new BindingField { SorsField = "CountryNameShort", DestField = "DisplayMember" } });
             });
         }
@@ -70,6 +71,8 @@ namespace ipsFormsDesign.Data
             setAnketaDictProperties();
             AnketaDictionatiesChanged(null, EventArgs.Empty);
         }
+
+
         /// <summary>
         /// -- Звязуємо поля довідника з полями контрола --
         /// </summary>
@@ -80,6 +83,7 @@ namespace ipsFormsDesign.Data
 
             if (AnketaDictionaties == null)
                 return;
+
             if (!AnketaDictionatiesProperties.Keys.Contains(typeDic)) return;
             var controlProperties = control.GetType().GetProperties().ToDictionary(rec => rec.Name);
 

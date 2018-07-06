@@ -292,7 +292,11 @@ namespace IpsViewComponentLibrary
 
         private void ddlTypeVat_SelectedValueChanged(object sender, EventArgs e)
         {
-             if(ddlTypeVat.SelectedValue.ToString() == "2")
+
+            if (ddlTypeVat.SelectedValue == null)
+                return;
+
+            if (ddlTypeVat.SelectedValue.ToString() == "2")
              {
                 lblIPN.Enabled = false;
                 txtNumberVat.Enabled = false;
