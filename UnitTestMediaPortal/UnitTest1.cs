@@ -135,5 +135,14 @@ namespace UnitTestMediaPortal
             Assert.IsTrue(File.Exists(eng.Pdf));
         }
 
+        [TestMethod]
+        public void TestGlobal()
+        {
+            ConsumerService _service = new ConsumerService();
+            TestGlobalcs form = new TestGlobalcs();
+            form.SetDic(_service.GetDictionary());
+            form.ShowDialog();
+        }
+
     }
 }

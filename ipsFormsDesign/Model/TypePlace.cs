@@ -14,7 +14,10 @@ namespace ipsFormsDesign.Model
 
         public int CodeI { get; set; }
         public string Name { get; set; }
+        public bool? IsHoll { get; set; }
+        public int? ParamType { get; set; }
 
+        public TypePlaceParam ParamTypeNavigation { get; set; }
         public ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         public ObservableListSource<TypePlaceTr> TypePlaceTr { get; set; }
     }

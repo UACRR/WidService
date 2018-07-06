@@ -113,6 +113,10 @@
     <Compile Include="Model\CategoryStatusTypeTr.cs" />
     <Compile Include="Model\CategoryTr.cs" />
     <Compile Include="Model\Client.cs" />
+    <Compile Include="Model\ClientBrand.cs" />
+    <Compile Include="Model\ClientBrandTr.cs" />
+    <Compile Include="Model\ClientGroup.cs" />
+    <Compile Include="Model\ClientGroupTr.cs" />
     <Compile Include="Model\ClnBusinessPlace.cs" />
     <Compile Include="Model\ClnPlaceHoll.cs" />
     <Compile Include="Model\CommentCause.cs" />
@@ -269,6 +273,8 @@
     <Compile Include="Model\RegisterStatus.cs" />
     <Compile Include="Model\RegisterStatusTr.cs" />
     <Compile Include="Model\RelAdaptUseArea.cs" />
+    <Compile Include="Model\RelCounterDoc.cs" />
+    <Compile Include="Model\RelDocAgrType.cs" />
     <Compile Include="Model\RelEmployee.cs" />
     <Compile Include="Model\RelEtGenre.cs" />
     <Compile Include="Model\RelEtRole.cs" />
@@ -332,6 +338,8 @@
     <Compile Include="Model\TypeMethodGet.cs" />
     <Compile Include="Model\TypeMethodGetTr.cs" />
     <Compile Include="Model\TypePlace.cs" />
+    <Compile Include="Model\TypePlaceParam.cs" />
+    <Compile Include="Model\TypePlaceParamTr.cs" />
     <Compile Include="Model\TypePlaceTr.cs" />
     <Compile Include="Model\TypeVat.cs" />
     <Compile Include="Model\TypeVattr.cs" />
@@ -351,6 +359,7 @@
     <Compile Include="Model\WorkTypeTr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ConsumerService.cs" />
+    <Compile Include="Data\Global.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
     <Compile Include="Services\RightHolderService.cs" />
     <Compile Include="Services\Utils.cs" />

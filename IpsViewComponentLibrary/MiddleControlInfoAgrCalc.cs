@@ -367,10 +367,7 @@ namespace IpsViewComponentLibrary
                         //DateEnd = DateTime.Today.AddYears(1),
                         LicStatus = 0,
                     }
-                },
-                LicDate = DateTime.Today,
-
-
+                }
             });
             var license = _customer?.Client?.LicenseAgreement?.LastOrDefault();
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);

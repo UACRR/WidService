@@ -8,7 +8,6 @@ namespace ipsmedserviceapp.Model
     {
         public LicenseBigR()
         {
-            LicAuthorBr = new HashSet<LicAuthorBr>();
             MusicalDesign = new HashSet<MusicalDesign>();
         }
 
@@ -23,11 +22,11 @@ namespace ipsmedserviceapp.Model
         public string WhereTour { get; set; }
         public decimal? Rate { get; set; }
         public DateTime? PrepayDateDo { get; set; }
+        public int LicVersion { get; set; }
 
         [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
-        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
         [JsonIgnore]
         public ICollection<MusicalDesign> MusicalDesign { get; set; }
     }

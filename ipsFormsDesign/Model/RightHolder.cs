@@ -12,7 +12,6 @@ namespace ipsFormsDesign.Model
             AnketaAddNick = new ObservableListSource<AnketaAddNick>();
             Authors = new ObservableListSource<Authors>();
             CopyRight = new ObservableListSource<CopyRight>();
-            LicAuthorBr = new ObservableListSource<LicAuthorBr>();
             RegisterCount = new ObservableListSource<RegisterCount>();
             ReqAgreement = new ObservableListSource<ReqAgreement>();
             TermsOfService = new ObservableListSource<TermsOfService>();
@@ -31,7 +30,6 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<AnketaAddNick> AnketaAddNick { get; set; }
         public ObservableListSource<Authors> Authors { get; set; }
         public ObservableListSource<CopyRight> CopyRight { get; set; }
-        public ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
         public ObservableListSource<RegisterCount> RegisterCount { get; set; }
         public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
         public ObservableListSource<TermsOfService> TermsOfService { get; set; }

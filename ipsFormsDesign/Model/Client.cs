@@ -19,6 +19,8 @@ namespace ipsFormsDesign.Model
         }
 
         public int CustId { get; set; }
+        public string ClientBrand { get; set; }
+        public string ClientGroup { get; set; }
 
         public Customer Cust { get; set; }
         public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
