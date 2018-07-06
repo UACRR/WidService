@@ -158,7 +158,7 @@ namespace IpsViewComponentLibrary
             if (txtEmail.Text.Length > 0)
             {
                 var symbols = txtEmail.Text.ToCharArray();
-                if (symbols.Last() == 46)
+                if (symbols.Last() == 46 && e.KeyChar == 46)
                     e.Handled = true;
             }
 
