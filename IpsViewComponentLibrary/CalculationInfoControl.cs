@@ -102,7 +102,7 @@ namespace IpsViewComponentLibrary
                     LicenseId = item?.LicId ?? default(int),
                     License = _dict?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
                     Series = string.Empty,
-                    AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
+                    AgrNumber = licenseParam?.LicNum ?? string.Empty,
                     DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
                     DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
                     Amount = licenseParam?.MinAmount ?? default(decimal),

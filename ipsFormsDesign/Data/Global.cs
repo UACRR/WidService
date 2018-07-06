@@ -27,6 +27,9 @@ namespace ipsFormsDesign.Data
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static void setAnketaDictProperties()
         {
             AnketaDictionatiesProperties.Clear();
@@ -41,12 +44,22 @@ namespace ipsFormsDesign.Data
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_dic"></param>
         public static void SetAnketaDictionaties(AnketaDictionaties _dic)
         {
             AnketaDictionaties = _dic;
             setAnketaDictProperties();
             AnketaDictionatiesChanged(null, EventArgs.Empty);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="typeDic"></param>
+        /// <param name="control"></param>
         public static void LinkToAnketaDictionaties(Type typeDic, Control control)
         {
             if (AnketaDictionaties == null)

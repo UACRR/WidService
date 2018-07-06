@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
 
 namespace UnitTestMediaPortal
 {
@@ -18,9 +19,10 @@ namespace UnitTestMediaPortal
             InitializeComponent();
             radDropDownList1.DataSource = IpsGlobal.AnketaDictionaties?.country;
             // IpsGlobal.Dic?.country[0].CountryNameShort;
-            radDropDownList1.ValueMember = "CountryCode";
-            radDropDownList1.DisplayMember = "CountryNameShort";
+            //radDropDownList1.ValueMember = "CountryCode";
+            //radDropDownList1.DisplayMember = "CountryNameShort";
 
+            IpsGlobal.LinkToAnketaDictionaties(typeof(Country), this);
             IpsGlobal.AnketaDictionatiesChanged += IpsGlobal_DicChanged;
         }
 

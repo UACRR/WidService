@@ -182,13 +182,13 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = agrRh.AgrNumber;
                         break;
                     case "docNumberR":
-                        item.Range.Text = agr.AgrNumber;
+                        item.Range.Text = agrRh.AgrNumber;
                         break;
                     case "docDate":
-                        item.Range.Text = $"{agr.AgrDate:dd.MM.yyyy}";
+                        item.Range.Text = $"{agrRh.AgrDate:dd.MM.yyyy}";
                         break;
                     case "docNumberYear":
-                        item.Range.Text = $"{agr.AgrDate:yy}";
+                        item.Range.Text = $"{agrRh.AgrDate:yy}";
                         break;
                     case "docDateBegin":
                         item.Range.Text = $"{agrRh.DateBegin:dd.MM.yyyy}";
@@ -783,43 +783,43 @@ namespace ipsFormsDesign.Services
                     naPidstavi = "  що діє на підставі ";
                 }
 
-                GdocDateC = $"{agreementAddBr?.AddDate:dd.MM.yyyy}";
+                GdocDateC = $"{agreementAddBr?.AgrDate:dd.MM.yyyy}";
                 GdocDateBeginC = $"{agreementAddBr?.DateBegin:dd.MM.yyyy}";
                 GdocDateEndC = $"{agreementAddBr?.DateEnd:dd.MM.yyyy}";
-                GdocNumber = agreementAddBr?.AddNumber?.ToString() ?? agr.AgrNumber?.ToString();
+                GdocNumber = agreementAddBr?.AgrNumber?.ToString() ?? agr.AgrNumber?.ToString();
 
                 registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
-                ShowName = licA?.LicenseBigR?.Obj?.Name?.ToString();
-                ShowAct = licA?.LicenseBigR?.Obj?.ActCode?.ToString();
+                //ShowName = licA?.LicenseBigR?.Obj?.Name?.ToString();
+                //ShowAct = licA?.LicenseBigR?.Obj?.ActCode?.ToString();
                 docNumberC = licA?.LicenseAgrParam?.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum;
                 LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
                         (rec.LicVersion == licA.LicVersion)).Single();
                 docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
                 docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
-                prcntShow = licA?.LicenseBigR?.Rate?.ToString();
-                prcntShowText = Utils.PrcnPhrase(Convert.ToDecimal(licA?.LicenseBigR?.Rate));
-                PayShowDataDo = $"{licA?.LicenseBigR?.PrepayDateDo:dd.MM.yyyy}";
+                //prcntShow = licA?.LicenseBigR?.Rate?.ToString();
+                //prcntShowText = Utils.PrcnPhrase(Convert.ToDecimal(licA?.LicenseBigR?.Rate));
+                //PayShowDataDo = $"{licA?.LicenseBigR?.PrepayDateDo:dd.MM.yyyy}";
                 decimal pPayShowGrn = 0;
                 decimal aPayShowGrn = 0;
-                var array_licAuthorB = licA?.LicenseBigR?.LicAuthorBr?.ToList();
-                if (array_licAuthorB != null)
-                {
-                    foreach (LicAuthorBr item in array_licAuthorB)
-                    {
-                        if (item.PrepayType == 1)
-                        {
-                            pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
-                        }
-                        if (item.PrepayType == 2)
-                        {
-                            aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
-                        }
+                //var array_licAuthorB = licA?.LicenseBigR?.LicAuthorBr?.ToList();
+                //if (array_licAuthorB != null)
+                //{
+                //    foreach (LicAuthorBr item in array_licAuthorB)
+                //    {
+                //        if (item.PrepayType == 1)
+                //        {
+                //            pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                //        }
+                //        if (item.PrepayType == 2)
+                //        {
+                //            aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                //        }
 
-                    }
-                }
+                //    }
+                //}
                 pPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(pPayShowGrn)), false);
                 pPayShowKop = ((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)).ToString();
                 aPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(aPayShowGrn)), false);
@@ -955,7 +955,7 @@ namespace ipsFormsDesign.Services
                             item.Range.Text = docDateEndС;
                             break;
                         case "TableAvtor":
-                            formTableAvtor(item.Range.Tables, array_licAuthorB);
+                            //formTableAvtor(item.Range.Tables, array_licAuthorB);
                             break;
 
                         default:
@@ -1128,8 +1128,8 @@ namespace ipsFormsDesign.Services
                 authorBr = item;
                 curRow = table.Rows.Add();
                 index++;
-                curRow.Cells[1].Range.Text = authorBr.RoleType.ToString();
-                curRow.Cells[2].Range.Text = authorBr.NameAuthor;
+                //curRow.Cells[1].Range.Text = authorBr.RoleType.ToString();
+                //curRow.Cells[2].Range.Text = authorBr.NameAuthor;
                 curRow.Cells[3].Range.Text = "Україна";
                 curRow.Cells[4].Range.Text = "";
                 curRow.Cells[5].Range.Text = authorBr.Rate.ToString();

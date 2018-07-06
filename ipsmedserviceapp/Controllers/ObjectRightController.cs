@@ -73,7 +73,7 @@ namespace ipsmedserviceapp.Controllers
                 foreach ( var item in dest.CopyRight )
                 {
                     var sorsItem = dicCopyRight[item.CRightId];
-                    _dbContext.UpdateList(sorsItem.WorkRh, item.WorkRh, i=> { }, (l,r)=>l.WorkId == r.WorkId );
+                    item.WorkRh.SetFields(sorsItem.WorkRh);
                 }
             }
 
