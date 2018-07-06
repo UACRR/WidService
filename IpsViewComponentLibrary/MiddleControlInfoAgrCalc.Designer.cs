@@ -309,7 +309,7 @@
             this.pvHistory.ItemSize = new System.Drawing.SizeF(57F, 26F);
             this.pvHistory.Location = new System.Drawing.Point(66, 10);
             this.pvHistory.Name = "pvHistory";
-            this.pvHistory.Size = new System.Drawing.Size(982, 349);
+            this.pvHistory.Size = new System.Drawing.Size(982, 482);
             this.pvHistory.Text = "Історія";
             // 
             // pvCalculation

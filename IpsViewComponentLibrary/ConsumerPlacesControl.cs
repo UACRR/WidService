@@ -83,8 +83,6 @@ namespace ipsAnketaClient
             }
         }
 
-
-        //TODO: як дізнатись холів багато чи він один?
         /// <summary>
         /// Винекнення події додавання нового закладу (click on drop down btn)
         /// </summary>
@@ -101,10 +99,12 @@ namespace ipsAnketaClient
                                    : typePlace.ParamType == 3 ? MeasurementOfPremises.Other
                                    : MeasurementOfPremises.Empty;
 
-            if (typePlace.CodeI == 1 || typePlace.CodeI == 2)
-                _existencePlaces = ExistencePlaces.ManyPlaces;
-            else
-                _existencePlaces = ExistencePlaces.SinglePlace;
+            //багато чи один майданчик
+            _existencePlaces = typePlace.IsHoll != null && (bool)typePlace.IsHoll ? ExistencePlaces.ManyPlaces : ExistencePlaces.SinglePlace;
+            //if (typePlace.CodeI == 1 || typePlace.CodeI == 2)
+            //    _existencePlaces = ExistencePlaces.ManyPlaces;
+            //else
+            //    _existencePlaces = ExistencePlaces.SinglePlace;
 
             //ініціалізація об'єктів
             _typePlace = typePlace;
