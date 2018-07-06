@@ -137,13 +137,13 @@ namespace IpsViewComponentLibrary
             else
                 radLabel3.ForeColor = Color.Black;
 
-            //if (rtxtBoxAuthorPaymentPercent.Text == string.Empty)
-            //{
-            //    isValid = false;
-            //    radLabel1.ForeColor = Color.FromArgb(180, 255, 0, 2); ;
-            //}
-            //else
-            //    radLabel1.ForeColor = Color.Black;
+            if(txtPhone.Text != string.Empty && txtPhone.Text.Length<13)
+            {
+                isValid = false;
+                radLabel2.ForeColor = Color.FromArgb(180, 255, 0, 2); ;
+            }
+            else
+                radLabel2.ForeColor = Color.Black;
 
             return isValid;
         }
@@ -179,6 +179,25 @@ namespace IpsViewComponentLibrary
             {
                 e.Handled = true;
             }
+
+            if (txtPhone.Text == string.Empty && char.IsDigit(ch))
+            {
+                e.Handled = true;
+                txtPhone.Text = phoneCode + e.KeyChar;
+                txtPhone.Select(txtPhone.Text.Length, 0);
+            }
+        }
+
+        private void txtPhone_Enter(object sender, EventArgs e)
+        {
+            if (txtPhone.Text == string.Empty)
+                txtPhone.Text = phoneCode;
+        }
+
+        private void txtPhone_Leave(object sender, EventArgs e)
+        {
+            if(txtPhone.Text == phoneCode)
+                txtPhone.Clear();
         }
     }
 }
