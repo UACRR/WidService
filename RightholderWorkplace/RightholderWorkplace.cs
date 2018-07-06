@@ -620,19 +620,25 @@ namespace RightholderWorkplace
 
             _forRightholder = forRightholder;
 
-            _objectRight = _objectRightService.NewObjectRight(category);
+            using (var view = new ObjectRightItemView())
+            {
+                var presenter = new ObjectRightItemPresenter(view);
+                presenter.ShowNew(category, _forRightholder);
+            }
 
-            if (name != null)
-                _objectRight.Name = name;
-            else
-                _previousPage = objectsPageView.SelectedPage; // TODO: no need to change _previousPage if it is adding new object by btnNewObject button click
+            //_objectRight = _objectRightService.NewObjectRight(category);
 
-            SetAvalaibleGenres(category);
-            UpdateObjectRightDataSources(_objectRight, null);
+            //if (name != null)
+            //    _objectRight.Name = name;
+            //else
+            //    _previousPage = objectsPageView.SelectedPage; // TODO: no need to change _previousPage if it is adding new object by btnNewObject button click
 
-            MainPageView.SelectedPage = mainPageRightsObjects;
-            objectsPageView.SelectedPage = actualObjectsPage;
-            actualObjectsPageView.SelectedPage = actualObjectsItemPage;
+            //SetAvalaibleGenres(category);
+            //UpdateObjectRightDataSources(_objectRight, null);
+
+            //MainPageView.SelectedPage = mainPageRightsObjects;
+            //objectsPageView.SelectedPage = actualObjectsPage;
+            //actualObjectsPageView.SelectedPage = actualObjectsItemPage;
         }
 
         private void ctrlObjectRightList_EditCommandExecuted(object sender, ObjectRightMainView selectedObject)
@@ -650,8 +656,7 @@ namespace RightholderWorkplace
             using (var view = new ObjectRightItemView())
             {
                 var presenter = new ObjectRightItemPresenter(view);
-                MessageBox.Show(objId.ToString());
-                presenter.Run();
+                presenter.Show(objId);
             }
 
             //_previousPage = objectsPageView.SelectedPage;

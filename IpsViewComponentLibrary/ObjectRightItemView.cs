@@ -1,4 +1,6 @@
-﻿using ipsFormsDesign.Interfaces;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +27,9 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        public ObjectRight ObjectRight { get; set; }
+        public IList<ViewCustomer> RightholderList { private get; set; }
+
         public ObjectRightItemView()
         {
             InitializeComponent();
@@ -32,6 +37,7 @@ namespace IpsViewComponentLibrary
 
         public void Run()
         {
+            MessageBox.Show(ObjectRight.Name);
             ShowDialog();
         }
     }
