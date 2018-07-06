@@ -2,6 +2,7 @@
 using Microsoft.Office.Interop.Word;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -71,7 +72,7 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="pathTemplate"></param>
         /// <param name="rightHolder"></param>
-        public void processRightHolder(string pathTemplate, Customer cust, AgreementMaster agr)
+        public async System.Threading.Tasks.Task processRightHolder(string pathTemplate, Customer cust, AgreementMaster agr)
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -82,7 +83,7 @@ namespace ipsFormsDesign.Services
             File.Copy(pathTemplate, docFile);
             // відкрити шаблон
 
-            innerProcesRightHolder(cust, agr);
+            await System.Threading.Tasks.Task.Run(()=> innerProcesRightHolder(cust, agr));
         }
         /// <summary>
         /// Формування документу (внутріній метод)
@@ -301,14 +302,14 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="pathTemplate"></param>
         /// <param name="Consumer"></param> 
-        public void ProcessConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
+        public async System.Threading.Tasks.Task ProcessConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
         {
             string docFile = PrepareWork();
             System.IO.File.Copy(pathTemplate, docFile);
 
             // відкрити шаблон
 
-            InnerProcessConsumer(cust, agr, version, docFile);
+            await System.Threading.Tasks.Task.Run(()=> InnerProcessConsumer(cust, agr, version, docFile));
         }
 
         /// <summary>
@@ -1177,8 +1178,8 @@ namespace ipsFormsDesign.Services
                 {
                     curRow = table.Rows.Add();
                     curRow.Cells[3].Range.Text = place.HollName;
-                    curRow.Cells[4].Range.Text = place.SqHoll.ToString();
-                    curRow.Cells[5].Range.Text = place.HollNum.ToString();
+                    //curRow.Cells[4].Range.Text = place.SqHoll.ToString();
+                    //curRow.Cells[5].Range.Text = place.HollNum.ToString();
                 }
             }
         }
@@ -1227,7 +1228,7 @@ namespace ipsFormsDesign.Services
                 {
                     curRow = table.Rows.Add();
                     curRow.Cells[3].Range.Text = place.HollName;
-                    curRow.Cells[4].Range.Text = place.HollNum.ToString();
+                    //curRow.Cells[4].Range.Text = place.HollNum.ToString();
                 }
             }
         }
