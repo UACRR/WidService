@@ -202,12 +202,12 @@ namespace ipsmedserviceapp.Controllers
                 destCustomer.Client.LicenseAgreement.Remove(item);
 
                 // LicenseBigR
-                if (item.LicenseBigR != null)
-                {
+                //if (item.LicenseBigR != null)
+                //{
 
-                    //_dbContext.LicAuthorBr.RemoveRange(item.LicenseBigR.LicAuthorBr);
-                    _dbContext.LicenseBigR.Remove(item.LicenseBigR);
-                }
+                //    //_dbContext.LicAuthorBr.RemoveRange(item.LicenseBigR.LicAuthorBr);
+                //    _dbContext.LicenseBigR.Remove(item.LicenseBigR);
+                //}
                 // AgreementMaster
                 _dbContext.LicenseAgreement.Remove(item);
 
@@ -230,8 +230,8 @@ namespace ipsmedserviceapp.Controllers
 
                 if (item.LicenseBigR != null)
                 {
-                    if (license.LicenseBigR == null)
-                        license.LicenseBigR = new LicenseBigR();
+                    //if (license.LicenseBigR == null)
+                    //    license.LicenseBigR = new LicenseBigR();
                     license.LicenseBigR.SetFields(item.LicenseBigR);
 
                     //_dbContext.UpdateList(item.LicenseBigR.LicAuthorBr, license.LicenseBigR.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
@@ -269,7 +269,7 @@ namespace ipsmedserviceapp.Controllers
 
                 if (item.LicenseBigR != null)
                 {
-                    addLicItem.LicenseBigR = new LicenseBigR();
+                    //addLicItem.LicenseBigR = new LicenseBigR();
                     addLicItem.LicenseBigR.SetFields(item.LicenseBigR);
                     //_dbContext.AppendList(item.LicenseBigR.LicAuthorBr, addLicItem.LicenseBigR.LicAuthorBr
                     //            , i => { }
