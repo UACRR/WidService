@@ -154,20 +154,20 @@ namespace IpsViewComponentLibrary
 
 
 
-        private void GetObjects(string filter) // to fix - move to presenter
+        private void UpdateAutocompliteItems(string filter)
         {
-            //var autocompliteObjects = _objectRightService.GetObjectsByFilter(filter);
+            var objects = Presenter.GetObjectsForAutocomplite(filter);
 
-            //autocompliteObjects.ForEach(o => autoObjectName.AutoCompleteItems.Add(
-            //    new RadListDataItem($"{o.Name} / {o.Author} / {o.Performer}", o))
-            //);
+            objects.ForEach(o => autoObjectName.AutoCompleteItems.Add(
+                new RadListDataItem($"{o.Name} / {o.Author} / {o.Performer}", o))
+            );
         }
 
-        private void autoObjectName_TextChanged(object sender, EventArgs e) // to fix - use presenter
+        private void autoObjectName_TextChanged(object sender, EventArgs e)
         {
             if (autoObjectName.Text.Length >= 2 && autoObjectName.AutoCompleteItems.Count == 0)
             {
-                GetObjects(autoObjectName.Text);
+                UpdateAutocompliteItems(autoObjectName.Text);
             }
 
             if (autoObjectName.Text.Length < 2 && autoObjectName.AutoCompleteItems.Count != 0)
@@ -176,22 +176,20 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void autoObjectName_ListItemSelected(object sender, RadListDataItem item) // to fix
+        private void autoObjectName_ListItemSelected(object sender, RadListDataItem item)
         {
-            var obj = item.Value as ObjectRightMainView;
-            if (obj != null)
+            if (item.Value is ObjectRightMainView obj)
             {
-                //var objContainer = _objectRightService.GetData(obj.ObjId);
-                //UpdateObjectRightDataSources(objContainer.objectRight, objContainer.rhList);
+                Presenter.ObjectNameAutocompliteListItemSelected(obj.ObjId);
             }
         }
 
-        private void btnNewObject_Click(object sender, EventArgs e) // to fix - rebind new object with the same Name
+        private void btnNewObject_Click(object sender, EventArgs e)
         {
             if (ObjectRight == null)
                 return;
 
-            //AddObjectRight(_objectRight.CategoryCode, _forRightholder, autoObjectName.Text);
+            Presenter.NewObject();
         }
 
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)

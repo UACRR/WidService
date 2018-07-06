@@ -215,7 +215,8 @@
             this.txtTotalPersent.Name = "txtTotalPersent";
             this.txtTotalPersent.ReadOnly = true;
             this.txtTotalPersent.Size = new System.Drawing.Size(44, 21);
-            this.txtTotalPersent.TabIndex = 74;
+            this.txtTotalPersent.TabIndex = 16;
+            this.txtTotalPersent.TabStop = false;
             this.txtTotalPersent.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTotalPersent.ThemeName = "Office2013Light";
             // 
@@ -378,7 +379,7 @@
             this.gvObjectAuthorsRightholders.Name = "gvObjectAuthorsRightholders";
             this.gvObjectAuthorsRightholders.ShowGroupPanel = false;
             this.gvObjectAuthorsRightholders.Size = new System.Drawing.Size(944, 187);
-            this.gvObjectAuthorsRightholders.TabIndex = 73;
+            this.gvObjectAuthorsRightholders.TabIndex = 6;
             this.gvObjectAuthorsRightholders.ThemeName = "Office2013Light";
             this.gvObjectAuthorsRightholders.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvObjectAuthorsRightholders_CellFormatting);
             this.gvObjectAuthorsRightholders.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvObjectAuthorsRightholders_CellDoubleClick);
@@ -391,7 +392,7 @@
             this.btnAddAuthorRightholder.Location = new System.Drawing.Point(3, 221);
             this.btnAddAuthorRightholder.Name = "btnAddAuthorRightholder";
             this.btnAddAuthorRightholder.Size = new System.Drawing.Size(110, 24);
-            this.btnAddAuthorRightholder.TabIndex = 75;
+            this.btnAddAuthorRightholder.TabIndex = 7;
             this.btnAddAuthorRightholder.Text = "Додати";
             this.btnAddAuthorRightholder.ThemeName = "Office2013Light";
             this.btnAddAuthorRightholder.Click += new System.EventHandler(this.btnAddAuthorRightholder_Click);
@@ -462,7 +463,7 @@
             this.btnDeleteObjectAddName.Location = new System.Drawing.Point(361, 64);
             this.btnDeleteObjectAddName.Name = "btnDeleteObjectAddName";
             this.btnDeleteObjectAddName.Size = new System.Drawing.Size(110, 24);
-            this.btnDeleteObjectAddName.TabIndex = 77;
+            this.btnDeleteObjectAddName.TabIndex = 10;
             this.btnDeleteObjectAddName.Text = "Видалити";
             this.btnDeleteObjectAddName.ThemeName = "Office2013Light";
             this.btnDeleteObjectAddName.Click += new System.EventHandler(this.btnDeleteObjectAddName_Click);
@@ -473,7 +474,7 @@
             this.btnAddObjectAddName.Location = new System.Drawing.Point(361, 34);
             this.btnAddObjectAddName.Name = "btnAddObjectAddName";
             this.btnAddObjectAddName.Size = new System.Drawing.Size(110, 24);
-            this.btnAddObjectAddName.TabIndex = 76;
+            this.btnAddObjectAddName.TabIndex = 9;
             this.btnAddObjectAddName.Text = "Додати";
             this.btnAddObjectAddName.ThemeName = "Office2013Light";
             this.btnAddObjectAddName.Click += new System.EventHandler(this.btnAddObjectAddName_Click);
@@ -529,7 +530,7 @@
             this.gvObjectAddNames.Name = "gvObjectAddNames";
             this.gvObjectAddNames.ShowGroupPanel = false;
             this.gvObjectAddNames.Size = new System.Drawing.Size(352, 211);
-            this.gvObjectAddNames.TabIndex = 73;
+            this.gvObjectAddNames.TabIndex = 8;
             this.gvObjectAddNames.ThemeName = "Office2013Light";
             // 
             // radLabel17
@@ -565,7 +566,7 @@
             this.btnDeleteObjectPerformer.Location = new System.Drawing.Point(361, 64);
             this.btnDeleteObjectPerformer.Name = "btnDeleteObjectPerformer";
             this.btnDeleteObjectPerformer.Size = new System.Drawing.Size(110, 24);
-            this.btnDeleteObjectPerformer.TabIndex = 80;
+            this.btnDeleteObjectPerformer.TabIndex = 13;
             this.btnDeleteObjectPerformer.Text = "Видалити";
             this.btnDeleteObjectPerformer.ThemeName = "Office2013Light";
             this.btnDeleteObjectPerformer.Click += new System.EventHandler(this.btnDeleteObjectPerformer_Click);
@@ -576,7 +577,7 @@
             this.btnAddObjectPerformer.Location = new System.Drawing.Point(361, 34);
             this.btnAddObjectPerformer.Name = "btnAddObjectPerformer";
             this.btnAddObjectPerformer.Size = new System.Drawing.Size(110, 24);
-            this.btnAddObjectPerformer.TabIndex = 79;
+            this.btnAddObjectPerformer.TabIndex = 12;
             this.btnAddObjectPerformer.Text = "Додати";
             this.btnAddObjectPerformer.ThemeName = "Office2013Light";
             this.btnAddObjectPerformer.Click += new System.EventHandler(this.btnAddObjectPerformer_Click);
@@ -632,7 +633,7 @@
             this.gvObjectPerformers.Name = "gvObjectPerformers";
             this.gvObjectPerformers.ShowGroupPanel = false;
             this.gvObjectPerformers.Size = new System.Drawing.Size(352, 211);
-            this.gvObjectPerformers.TabIndex = 78;
+            this.gvObjectPerformers.TabIndex = 11;
             this.gvObjectPerformers.ThemeName = "Office2013Light";
             // 
             // radLabel21
@@ -661,7 +662,7 @@
             this.mebDuration.MaskType = Telerik.WinControls.UI.MaskType.Standard;
             this.mebDuration.Name = "mebDuration";
             this.mebDuration.Size = new System.Drawing.Size(54, 21);
-            this.mebDuration.TabIndex = 86;
+            this.mebDuration.TabIndex = 5;
             this.mebDuration.TabStop = false;
             this.mebDuration.Text = "__:__:__";
             this.mebDuration.ThemeName = "Office2013Light";
@@ -673,7 +674,7 @@
             this.ddlGenreType.Location = new System.Drawing.Point(138, 30);
             this.ddlGenreType.Name = "ddlGenreType";
             this.ddlGenreType.Size = new System.Drawing.Size(197, 21);
-            this.ddlGenreType.TabIndex = 81;
+            this.ddlGenreType.TabIndex = 2;
             this.ddlGenreType.ThemeName = "Office2013Light";
             // 
             // txtISWC
@@ -682,7 +683,7 @@
             this.txtISWC.Location = new System.Drawing.Point(138, 58);
             this.txtISWC.Name = "txtISWC";
             this.txtISWC.Size = new System.Drawing.Size(197, 21);
-            this.txtISWC.TabIndex = 83;
+            this.txtISWC.TabIndex = 4;
             this.txtISWC.ThemeName = "Office2013Light";
             // 
             // radLabel20
@@ -697,10 +698,11 @@
             // btnObjectRightItemCancel
             // 
             this.btnObjectRightItemCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnObjectRightItemCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnObjectRightItemCancel.Location = new System.Drawing.Point(6, 587);
             this.btnObjectRightItemCancel.Name = "btnObjectRightItemCancel";
             this.btnObjectRightItemCancel.Size = new System.Drawing.Size(175, 24);
-            this.btnObjectRightItemCancel.TabIndex = 84;
+            this.btnObjectRightItemCancel.TabIndex = 15;
             this.btnObjectRightItemCancel.Text = "Скасувати";
             this.btnObjectRightItemCancel.ThemeName = "Office2013Light";
             this.btnObjectRightItemCancel.Click += new System.EventHandler(this.btnObjectRightItemCancel_Click);
@@ -711,7 +713,7 @@
             this.ddlSpecType.Location = new System.Drawing.Point(454, 30);
             this.ddlSpecType.Name = "ddlSpecType";
             this.ddlSpecType.Size = new System.Drawing.Size(197, 21);
-            this.ddlSpecType.TabIndex = 82;
+            this.ddlSpecType.TabIndex = 3;
             this.ddlSpecType.ThemeName = "Office2013Light";
             // 
             // radLabel16
@@ -738,7 +740,7 @@
             this.btnObjectRightItemSave.Location = new System.Drawing.Point(778, 587);
             this.btnObjectRightItemSave.Name = "btnObjectRightItemSave";
             this.btnObjectRightItemSave.Size = new System.Drawing.Size(175, 24);
-            this.btnObjectRightItemSave.TabIndex = 85;
+            this.btnObjectRightItemSave.TabIndex = 14;
             this.btnObjectRightItemSave.Text = "Зберегти";
             this.btnObjectRightItemSave.ThemeName = "Office2013Light";
             this.btnObjectRightItemSave.Click += new System.EventHandler(this.btnObjectRightItemSave_Click);
@@ -759,15 +761,17 @@
             this.autoObjectName.Location = new System.Drawing.Point(138, 2);
             this.autoObjectName.Name = "autoObjectName";
             this.autoObjectName.Size = new System.Drawing.Size(513, 21);
-            this.autoObjectName.TabIndex = 88;
+            this.autoObjectName.TabIndex = 1;
             this.autoObjectName.ThemeName = "Office2013Light";
             this.autoObjectName.ListItemSelected += new System.EventHandler<Telerik.WinControls.UI.RadListDataItem>(this.autoObjectName_ListItemSelected);
             this.autoObjectName.TextChanged += new System.EventHandler(this.autoObjectName_TextChanged);
             // 
             // ObjectRightItemView
             // 
+            this.AcceptButton = this.btnObjectRightItemSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnObjectRightItemCancel;
             this.ClientSize = new System.Drawing.Size(958, 613);
             this.Controls.Add(this.btnNewObject);
             this.Controls.Add(this.autoObjectName);

@@ -746,7 +746,7 @@ namespace RightholderWorkplace
             EditObjectAuthorRightholder(objectAuthorRightholder);
         }
 
-        private void btnObjectRightItemCancel_Click(object sender, EventArgs e) // tp move
+        private void btnObjectRightItemCancel_Click(object sender, EventArgs e) // to move
         {
             _forRightholder = null;
             objectsPageView.SelectedPage = _previousPage;
