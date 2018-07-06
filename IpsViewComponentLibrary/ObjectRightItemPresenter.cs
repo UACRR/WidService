@@ -22,8 +22,11 @@ namespace IpsViewComponentLibrary
 
         public void Run(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
         {
-            _view.ObjectRight = objectRight;
-            _view.RightholderList = rightholderList;
+            //_view.RightholderList = rightholderList;
+            //_view.ObjectRight = objectRight;
+
+            _view.SetDictionaries(_objectRightService.GetDictionary(), objectRight.CategoryCode);
+            _view.UpdateObjectRightDataSources(objectRight, rightholderList);
             _view.Run();
         }
 

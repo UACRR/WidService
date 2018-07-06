@@ -530,14 +530,14 @@ namespace RightholderWorkplace
 
             SetObjectRightDictionaries();
 
-            FilterDescriptor filterByName = new FilterDescriptor();
+            FilterDescriptor filterByName = new FilterDescriptor(); // to move
             filterByName.PropertyName = "CodeI";
             filterByName.Operator = FilterOperator.IsEqualTo;
             filterByName.Value = 1;
             filterByName.IsFilterEditor = true;
             gvObjectAddNames.FilterDescriptors.Add(filterByName);
 
-            FilterDescriptor filterByPerformer = new FilterDescriptor();
+            FilterDescriptor filterByPerformer = new FilterDescriptor(); // to move
             filterByPerformer.PropertyName = "CodeI";
             filterByPerformer.Operator = FilterOperator.IsEqualTo;
             filterByPerformer.Value = 2;
@@ -561,7 +561,7 @@ namespace RightholderWorkplace
 
         private RadPageViewPage _previousPage;
 
-        public ObjectAuthorRightholder SelectedObjectAuthorRightholder
+        public ObjectAuthorRightholder SelectedObjectAuthorRightholder // to move
         {
             get
             {
@@ -571,7 +571,7 @@ namespace RightholderWorkplace
 
         }
 
-        private void SetObjectRightDictionaries()
+        private void SetObjectRightDictionaries() // to move
         {
             ddlSpecType.DataSource = _dictionariesObjectRight.specType;
             ddlSpecType.ValueMember = "CodeI";
@@ -592,7 +592,7 @@ namespace RightholderWorkplace
             //columnCopyrightStatus.DataSourceNullValue = false;
         }
 
-        private void SetAvalaibleGenres(int category)
+        private void SetAvalaibleGenres(int category) // to move
         {
             ddlGenreType.DataSource = _dictionariesObjectRight.genreType.Where(g => g.CategoryCode == category);
             ddlGenreType.ValueMember = "CodeI";
@@ -673,7 +673,7 @@ namespace RightholderWorkplace
             //actualObjectsPageView.SelectedPage = actualObjectsItemPage;
         }
 
-        private void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholders)
+        private void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholders) // to move
         {
             _objectRight = objectRight;
 
@@ -718,9 +718,9 @@ namespace RightholderWorkplace
 
         #region Objectrights item event handlers
 
-        private RightholderMainView _forRightholder;
+        private RightholderMainView _forRightholder; // to move
 
-        private void gvObjectAuthorsRightholders_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void gvObjectAuthorsRightholders_CommandCellClick(object sender, GridViewCellEventArgs e) // to move
         {
             var currentColumnName = e.Column.Name;
 
@@ -734,26 +734,26 @@ namespace RightholderWorkplace
             }
         }
 
-        private void gvObjectAuthorsRightholders_DoubleClick(object sender, EventArgs e)
+        private void gvObjectAuthorsRightholders_DoubleClick(object sender, EventArgs e) // to move
         {
             EditObjectAuthorRightholder();
         }
 
-        private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
+        private void btnAddAuthorRightholder_Click(object sender, EventArgs e) // to move
         {
             var objectAuthorRightholder = new ObjectAuthorRightholder(_forRightholder);
 
             EditObjectAuthorRightholder(objectAuthorRightholder);
         }
 
-        private void btnObjectRightItemCancel_Click(object sender, EventArgs e)
+        private void btnObjectRightItemCancel_Click(object sender, EventArgs e) // tp move
         {
             _forRightholder = null;
             objectsPageView.SelectedPage = _previousPage;
             actualObjectsPageView.SelectedPage = actualObjectsListPage;
         }
 
-        private void btnObjectRightItemSave_Click(object sender, EventArgs e)
+        private void btnObjectRightItemSave_Click(object sender, EventArgs e) // to move
         {
             if (_objectRight == null)
             {
@@ -794,27 +794,27 @@ namespace RightholderWorkplace
             UpdateRightholdersList(SelectedRightholder);
         }
 
-        private void btnAddObjectAddName_Click(object sender, EventArgs e)
+        private void btnAddObjectAddName_Click(object sender, EventArgs e) // to move
         {
             AddRowToGrid(gvObjectAddNames);
         }
 
-        private void btnDeleteObjectAddName_Click(object sender, EventArgs e)
+        private void btnDeleteObjectAddName_Click(object sender, EventArgs e) // to move
         {
             gvObjectAddNames.Rows.Remove(gvObjectAddNames.CurrentRow);
         }
 
-        private void btnAddObjectPerformer_Click(object sender, EventArgs e)
+        private void btnAddObjectPerformer_Click(object sender, EventArgs e) // to move
         {
             AddRowToGrid(gvObjectPerformers);
         }
 
-        private void btnDeleteObjectPerformer_Click(object sender, EventArgs e)
+        private void btnDeleteObjectPerformer_Click(object sender, EventArgs e) // to move
         {
             gvObjectPerformers.Rows.Remove(gvObjectPerformers.CurrentRow);
         }
 
-        private void AddRowToGrid(RadGridView gridView)
+        private void AddRowToGrid(RadGridView gridView) // to move
         {
             var filterValue = gridView.FilterDescriptors.FirstOrDefault()?.Value;
 
@@ -823,12 +823,12 @@ namespace RightholderWorkplace
             newRow.Cells["Name"].BeginEdit();
         }
 
-        private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
+        private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e) // to move
         {
             SetTooltipTextFromHeader(sender, e);
         }
 
-        private void gvObjectAuthorsRightholders_CellFormatting(object sender, CellFormattingEventArgs e)
+        private void gvObjectAuthorsRightholders_CellFormatting(object sender, CellFormattingEventArgs e) // to move
         {
             if (e.Column.Name == "EndDate" && e.CellElement.Text == (new DateTime(3000,1,1)).ToShortDateString())
             {
@@ -836,7 +836,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void GetObjects(string filter)
+        private void GetObjects(string filter) // to move
         {
             var autocompliteObjects = _objectRightService.GetObjectsByFilter(filter);
 
@@ -845,7 +845,7 @@ namespace RightholderWorkplace
             );
         }
 
-        private void autoObjectName_TextChanged(object sender, EventArgs e)
+        private void autoObjectName_TextChanged(object sender, EventArgs e) // to move
         {
             if (autoObjectName.Text.Length >= 2 && autoObjectName.AutoCompleteItems.Count == 0)
             {
@@ -858,7 +858,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void autoObjectName_ListItemSelected(object sender, RadListDataItem item)
+        private void autoObjectName_ListItemSelected(object sender, RadListDataItem item) // to move
         {
             var obj = item.Value as ObjectRightMainView;
             if (obj != null)
@@ -868,7 +868,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void btnNewObject_Click(object sender, EventArgs e)
+        private void btnNewObject_Click(object sender, EventArgs e) // to move
         {
             if (_objectRight == null)
                 return;
