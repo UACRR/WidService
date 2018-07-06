@@ -21,6 +21,7 @@ namespace ipsFormsDesign.Interfaces
         Func<int, Customer> NewCustomer { get; set; }
         Func<int, Customer> GetCustomer { get; set; }
         Func<Customer, bool> SaveCustomer { get; set; }
+        Func<string, IList<AutoCompleteData>> GetAutoCompList { get; set; }
         void EndPresenterLink();
 
         void SetData(ICustomer data);

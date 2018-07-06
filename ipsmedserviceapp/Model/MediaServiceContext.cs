@@ -48,6 +48,10 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
         public virtual DbSet<CategoryTr> CategoryTr { get; set; }
         public virtual DbSet<Client> Client { get; set; }
+        public virtual DbSet<ClientBrand> ClientBrand { get; set; }
+        public virtual DbSet<ClientBrandTr> ClientBrandTr { get; set; }
+        public virtual DbSet<ClientGroup> ClientGroup { get; set; }
+        public virtual DbSet<ClientGroupTr> ClientGroupTr { get; set; }
         public virtual DbSet<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         public virtual DbSet<ClnPlaceHoll> ClnPlaceHoll { get; set; }
         public virtual DbSet<CommentCause> CommentCause { get; set; }
@@ -192,6 +196,8 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<RegisterStatus> RegisterStatus { get; set; }
         public virtual DbSet<RegisterStatusTr> RegisterStatusTr { get; set; }
         public virtual DbSet<RelAdaptUseArea> RelAdaptUseArea { get; set; }
+        public virtual DbSet<RelCounterDoc> RelCounterDoc { get; set; }
+        public virtual DbSet<RelDocAgrType> RelDocAgrType { get; set; }
         public virtual DbSet<RelEmployee> RelEmployee { get; set; }
         public virtual DbSet<RelEtGenre> RelEtGenre { get; set; }
         public virtual DbSet<RelEtRole> RelEtRole { get; set; }
@@ -253,6 +259,8 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<TypeMethodGet> TypeMethodGet { get; set; }
         public virtual DbSet<TypeMethodGetTr> TypeMethodGetTr { get; set; }
         public virtual DbSet<TypePlace> TypePlace { get; set; }
+        public virtual DbSet<TypePlaceParam> TypePlaceParam { get; set; }
+        public virtual DbSet<TypePlaceParamTr> TypePlaceParamTr { get; set; }
         public virtual DbSet<TypePlaceTr> TypePlaceTr { get; set; }
         public virtual DbSet<TypeVat> TypeVat { get; set; }
         public virtual DbSet<TypeVattr> TypeVattr { get; set; }
@@ -276,7 +284,7 @@ namespace ipsmedserviceapp.Model
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                //optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+//                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -2069,11 +2077,95 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("custId")
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.ClientBrand)
+                    .HasColumnName("clientBrand")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ClientGroup)
+                    .HasColumnName("clientGroup")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.Cust)
                     .WithOne(p => p.Client)
                     .HasForeignKey<Client>(d => d.CustId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CLIENT_REFERENCE_CUSTOMER");
+            });
+
+            modelBuilder.Entity<ClientBrand>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ClientBrandTr>(entity =>
+            {
+                entity.HasKey(e => new { e.Lang, e.CodeI });
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.ClientBrandTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CLIENTBR_REFERENCE_CLIENTBR");
+            });
+
+            modelBuilder.Entity<ClientGroup>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ClientGroupTr>(entity =>
+            {
+                entity.HasKey(e => new { e.Lang, e.CodeI });
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.ClientGroupTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CLIENTGR_REFERENCE_CLIENTGR");
             });
 
             modelBuilder.Entity<ClnBusinessPlace>(entity =>
@@ -2136,15 +2228,17 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.HollNum).HasColumnName("hollNum");
-
                 entity.Property(e => e.PlaceId).HasColumnName("placeId");
 
-                entity.Property(e => e.SqHoll)
-                    .HasColumnName("sqHoll")
-                    .HasColumnType("numeric(10, 2)");
+                entity.Property(e => e.ValueAdd)
+                    .HasColumnName("valueAdd")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.СalcNum).HasColumnName("сalcNum");
+                entity.Property(e => e.ValuePlace)
+                    .HasColumnName("valuePlace")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Place)
                     .WithMany(p => p.ClnPlaceHoll)
@@ -2453,11 +2547,9 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<CounterNumber>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.CounterId);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.CounterId).HasColumnName("counterId");
 
                 entity.Property(e => e.CNum).HasColumnName("cNum");
 
@@ -2470,6 +2562,12 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("prefix")
                     .HasMaxLength(10)
                     .IsUnicode(false);
+
+                entity.Property(e => e.SymbolN)
+                    .HasColumnName("symbolN")
+                    .HasColumnType("char(1)");
+
+                entity.Property(e => e.TemplYear).HasColumnName("templYear");
             });
 
             modelBuilder.Entity<Country>(entity =>
@@ -5107,6 +5205,9 @@ namespace ipsmedserviceapp.Model
                 entity.HasIndex(e => e.ReqId)
                     .HasName("Relationship_13_FK");
 
+                entity.HasIndex(e => new { e.Name, e.Author, e.Performer })
+                    .HasName("idx_name");
+
                 entity.Property(e => e.ObjId).HasColumnName("objId");
 
                 entity.Property(e => e.ActCode).HasColumnName("actCode");
@@ -6131,6 +6232,59 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.UseAreaTypeCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELADAPT_REFERENCE_USEAREAT");
+            });
+
+            modelBuilder.Entity<RelCounterDoc>(entity =>
+            {
+                entity.HasKey(e => e.CDocId);
+
+                entity.ToTable("relCounterDoc");
+
+                entity.Property(e => e.CDocId).HasColumnName("cDocId");
+
+                entity.Property(e => e.CounterId).HasColumnName("counterId");
+
+                entity.Property(e => e.DocType).HasColumnName("docType");
+
+                entity.Property(e => e.LicType).HasColumnName("licType");
+
+                entity.HasOne(d => d.Counter)
+                    .WithMany(p => p.RelCounterDoc)
+                    .HasForeignKey(d => d.CounterId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RELCOUNT_REFERENCE_COUNTERN");
+
+                entity.HasOne(d => d.DocTypeNavigation)
+                    .WithMany(p => p.RelCounterDoc)
+                    .HasForeignKey(d => d.DocType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RELCOUNT_REFERENCE_DOCUMENT");
+
+                entity.HasOne(d => d.LicTypeNavigation)
+                    .WithMany(p => p.RelCounterDoc)
+                    .HasForeignKey(d => d.LicType)
+                    .HasConstraintName("FK_RELCOUNT_REFERENCE_AGRLICEN");
+            });
+
+            modelBuilder.Entity<RelDocAgrType>(entity =>
+            {
+                entity.HasKey(e => new { e.AgrType, e.DocType });
+
+                entity.Property(e => e.AgrType).HasColumnName("agrType");
+
+                entity.Property(e => e.DocType).HasColumnName("docType");
+
+                entity.HasOne(d => d.AgrTypeNavigation)
+                    .WithMany(p => p.RelDocAgrType)
+                    .HasForeignKey(d => d.AgrType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RELDOCAG_REFERENCE_AGREEMEN");
+
+                entity.HasOne(d => d.DocTypeNavigation)
+                    .WithMany(p => p.RelDocAgrType)
+                    .HasForeignKey(d => d.DocType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_RELDOCAG_REFERENCE_DOCUMENT");
             });
 
             modelBuilder.Entity<RelEmployee>(entity =>
@@ -7819,10 +7973,55 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.IsHoll).HasColumnName("isHoll");
+
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.ParamType).HasColumnName("paramType");
+
+                entity.HasOne(d => d.ParamTypeNavigation)
+                    .WithMany(p => p.TypePlace)
+                    .HasForeignKey(d => d.ParamType)
+                    .HasConstraintName("FK_TYPEPLAC_REF_TYPEPLAC");
+            });
+
+            modelBuilder.Entity<TypePlaceParam>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasColumnType("char(100)");
+            });
+
+            modelBuilder.Entity<TypePlaceParamTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasColumnType("char(2)");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.TypePlaceParamTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_TYPEPLAC_REF_TYPEPLACTR");
             });
 
             modelBuilder.Entity<TypePlaceTr>(entity =>

@@ -9,9 +9,8 @@ namespace ipsFormsDesign.Model
         public int HollId { get; set; }
         public int? PlaceId { get; set; }
         public string HollName { get; set; }
-        public int? HollNum { get; set; }
-        public bool? ÑalcNum { get; set; }
-        public decimal? SqHoll { get; set; }
+        public string ValuePlace { get; set; }
+        public string ValueAdd { get; set; }
 
         public ClnBusinessPlace Place { get; set; }
     }

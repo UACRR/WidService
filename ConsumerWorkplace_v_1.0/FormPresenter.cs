@@ -20,6 +20,7 @@ namespace ConsumerWorkplace_v_1._0
             _form.NewCustomer = _service.NewCustomer;
             _form.SaveCustomer = _service.Save;
             _form.GetCustomer = _service.GetData;
+            _form.GetAutoCompList = _service.getAutoCompleteList;
             _form.EndPresenterLink();
         }
     }

@@ -65,9 +65,11 @@
             gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.FieldName = "innokpo";
             gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
+            gridViewTextBoxColumn1.Multiline = true;
             gridViewTextBoxColumn1.Name = "Innokpo";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn1.Width = 85;
+            gridViewTextBoxColumn1.WrapText = true;
             gridViewTextBoxColumn2.FieldName = "name";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Multiline = true;
@@ -78,6 +80,7 @@
             gridViewTextBoxColumn3.FieldName = "countAgree";
             gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
             gridViewTextBoxColumn3.IsVisible = false;
+            gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "CountAgree";
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn3.Width = 19;
@@ -86,6 +89,7 @@
             gridViewTextBoxColumn4.FieldName = "undistribamount";
             gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "Undistribamount";
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn4.Width = 24;
@@ -94,8 +98,10 @@
             gridViewTextBoxColumn5.FieldName = "CustId";
             gridViewTextBoxColumn5.HeaderText = "ID";
             gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "CustId";
             gridViewTextBoxColumn5.Width = 42;
+            gridViewTextBoxColumn5.WrapText = true;
             this.gvConsumerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -172,6 +178,7 @@
             this.mсInfoAgrCalc.AutoScroll = true;
             this.mсInfoAgrCalc.Location = new System.Drawing.Point(315, 29);
             this.mсInfoAgrCalc.Name = "mсInfoAgrCalc";
+            this.mсInfoAgrCalc.Rights = IpsViewComponentLibrary.TypeRights.BigRights;
             this.mсInfoAgrCalc.Size = new System.Drawing.Size(1069, 664);
             this.mсInfoAgrCalc.TabIndex = 0;
             // 

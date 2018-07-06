@@ -68,7 +68,7 @@
             this.checkAttach.AutoSize = false;
             this.checkAttach.Location = new System.Drawing.Point(249, 38);
             this.checkAttach.Name = "checkAttach";
-            this.checkAttach.Size = new System.Drawing.Size(232, 28);
+            this.checkAttach.Size = new System.Drawing.Size(308, 28);
             this.checkAttach.TabIndex = 4;
             this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
             // 

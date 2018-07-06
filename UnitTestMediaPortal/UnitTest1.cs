@@ -125,14 +125,23 @@ namespace UnitTestMediaPortal
         {
             ConsumerService service = new ConsumerService();
             var dic = service.GetDictionary();
+            WordEngine eng = new WordEngine(dic);
             Customer cust = service.GetData(135);
             Stream fileStream = service.downloadDocument(135, 1, "F_6_МТЦ.docx");
             Assert.IsNotNull(fileStream);
-            WordEngine eng = new WordEngine(dic);
             var licAgr = cust.Client.LicenseAgreement.First();
             eng.ProcessConsumer( fileStream, cust, licAgr, licAgr.LicVersion ?? 1);
 
             Assert.IsTrue(File.Exists(eng.Pdf));
+        }
+
+        [TestMethod]
+        public void TestGlobal()
+        {
+            ConsumerService _service = new ConsumerService();
+            TestGlobalcs form = new TestGlobalcs();
+            form.SetDic(_service.GetDictionary());
+            form.ShowDialog();
         }
 
     }

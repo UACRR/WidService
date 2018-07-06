@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         {
             AgrLicenseTypeTr = new HashSet<AgrLicenseTypeTr>();
             LicenseAgreement = new HashSet<LicenseAgreement>();
+            RelCounterDoc = new HashSet<RelCounterDoc>();
             RelLicCopyR = new HashSet<RelLicCopyR>();
         }
 
@@ -23,6 +24,7 @@ namespace ipsmedserviceapp.Model
         public UsesKind UsesKindNavigation { get; set; }
         public ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public ICollection<RelCounterDoc> RelCounterDoc { get; set; }
         public ICollection<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }

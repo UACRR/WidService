@@ -58,13 +58,14 @@
             this.rLblPremises.TabIndex = 0;
             this.rLblPremises.Text = "Приміщення закладу";
             this.rLblPremises.TextAlignment = System.Drawing.ContentAlignment.BottomLeft;
+            this.rLblPremises.ThemeName = "Office2013Light";
             // 
             // rGridViewPremises
             // 
             this.rGridViewPremises.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rGridViewPremises.Location = new System.Drawing.Point(17, 35);
+            this.rGridViewPremises.Location = new System.Drawing.Point(3, 35);
             // 
             // 
             // 
@@ -72,25 +73,26 @@
             this.rGridViewPremises.MasterTemplate.AllowColumnReorder = false;
             this.rGridViewPremises.MasterTemplate.AllowDragToGroup = false;
             this.rGridViewPremises.MasterTemplate.AllowEditRow = false;
+            this.rGridViewPremises.MasterTemplate.AutoGenerateColumns = false;
             this.rGridViewPremises.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "IdItem";
+            gridViewTextBoxColumn1.FieldName = "HollId";
             gridViewTextBoxColumn1.HeaderText = "IdItem";
             gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "IdItem";
+            gridViewTextBoxColumn1.Name = "HollId";
             gridViewTextBoxColumn1.Width = 45;
-            gridViewTextBoxColumn2.FieldName = "TypePremisesName";
+            gridViewTextBoxColumn2.FieldName = "HollName";
             gridViewTextBoxColumn2.HeaderText = "Тип приміщення";
-            gridViewTextBoxColumn2.Name = "TypePremisesName";
-            gridViewTextBoxColumn2.Width = 353;
-            gridViewTextBoxColumn3.FieldName = "CountPlace";
+            gridViewTextBoxColumn2.Name = "HollName";
+            gridViewTextBoxColumn2.Width = 420;
+            gridViewTextBoxColumn3.FieldName = "ValuePlace";
             gridViewTextBoxColumn3.HeaderText = "Місць";
-            gridViewTextBoxColumn3.Name = "CountPlace";
-            gridViewTextBoxColumn3.Width = 71;
-            gridViewTextBoxColumn4.FieldName = "Meterage";
-            gridViewTextBoxColumn4.HeaderText = "Метраж";
-            gridViewTextBoxColumn4.Name = "Meterage";
-            gridViewTextBoxColumn4.UseDataTypeConverterWhenSorting = true;
-            gridViewTextBoxColumn4.Width = 72;
+            gridViewTextBoxColumn3.Name = "ValuePlace";
+            gridViewTextBoxColumn3.Width = 84;
+            gridViewTextBoxColumn4.FieldName = "PlaceId";
+            gridViewTextBoxColumn4.HeaderText = "PlaceId";
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.Name = "PlaceId";
+            gridViewTextBoxColumn4.Width = 46;
             this.rGridViewPremises.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -101,9 +103,9 @@
             this.rGridViewPremises.Name = "rGridViewPremises";
             this.rGridViewPremises.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewPremises.ReadOnly = true;
-            this.rGridViewPremises.Size = new System.Drawing.Size(515, 192);
+            this.rGridViewPremises.Size = new System.Drawing.Size(529, 192);
             this.rGridViewPremises.TabIndex = 0;
-            this.rGridViewPremises.ThemeName = "Office2007Silver";
+            this.rGridViewPremises.ThemeName = "Office2013Light";
             // 
             // rBtnAddPremises
             // 
@@ -113,7 +115,7 @@
             this.rBtnAddPremises.Size = new System.Drawing.Size(138, 24);
             this.rBtnAddPremises.TabIndex = 1;
             this.rBtnAddPremises.Text = "Додати приміщення";
-            this.rBtnAddPremises.ThemeName = "Office2007Silver";
+            this.rBtnAddPremises.ThemeName = "Office2013Light";
             this.rBtnAddPremises.Click += new System.EventHandler(this.rBtnAddPremises_Click);
             // 
             // radSeparator1
@@ -124,28 +126,28 @@
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(353, 20);
             this.radSeparator1.TabIndex = 0;
-            this.radSeparator1.ThemeName = "Office2007Silver";
+            this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // rBtnEditPremises
             // 
             this.rBtnEditPremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.rBtnEditPremises.Location = new System.Drawing.Point(162, 233);
             this.rBtnEditPremises.Name = "rBtnEditPremises";
-            this.rBtnEditPremises.Size = new System.Drawing.Size(138, 24);
+            this.rBtnEditPremises.Size = new System.Drawing.Size(144, 24);
             this.rBtnEditPremises.TabIndex = 2;
             this.rBtnEditPremises.Text = "Редагувати приміщення";
-            this.rBtnEditPremises.ThemeName = "Office2007Silver";
+            this.rBtnEditPremises.ThemeName = "Office2013Light";
             this.rBtnEditPremises.Click += new System.EventHandler(this.rBtnEditPremises_Click);
             // 
             // radBtnDeletePremises
             // 
             this.radBtnDeletePremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radBtnDeletePremises.Location = new System.Drawing.Point(407, 233);
+            this.radBtnDeletePremises.Location = new System.Drawing.Point(392, 233);
             this.radBtnDeletePremises.Name = "radBtnDeletePremises";
-            this.radBtnDeletePremises.Size = new System.Drawing.Size(125, 24);
+            this.radBtnDeletePremises.Size = new System.Drawing.Size(140, 24);
             this.radBtnDeletePremises.TabIndex = 3;
             this.radBtnDeletePremises.Text = "Видалити приміщення";
-            this.radBtnDeletePremises.ThemeName = "Office2007Silver";
+            this.radBtnDeletePremises.ThemeName = "Office2013Light";
             this.radBtnDeletePremises.Click += new System.EventHandler(this.radBtnDeletePremises_Click);
             // 
             // IpsPremisesTypeControl

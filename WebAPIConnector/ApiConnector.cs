@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Configuration;
 using System.IO;
+using System.Web;
+using System.Net;
 
 namespace WebAPIConnector
 {
@@ -52,6 +54,7 @@ namespace WebAPIConnector
         public List<T> GetList<T>(string url)
         {
 
+            string encodeUrl = WebUtility.UrlEncode(url);
             string retApiString = client.GetStringAsync(url).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
             List<T> list = array.Select(rec =>

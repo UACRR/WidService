@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -18,15 +19,18 @@ namespace IpsViewComponentLibrary
 
         private Customer _cust;
         private AnketaDictionaties _dictionaties;
+        private Func<string, List<AutoCompleteData>> getAutoCompList;
+        private Func<int, Customer> getCustomerAnketa;
 
         public event EventHandler OnContainPlacesChanged;
 
         public MiddleControlClientName()
         {
             InitializeComponent();
+            ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
         }
 
-        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
+        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties )
         {
             _cust = cust;
             _dictionaties = dictionaties;
@@ -53,7 +57,15 @@ namespace IpsViewComponentLibrary
 
         public bool Validator()
         {
-            return ctrlAnketaCompany.Validator() && ctrlRegistrationsCompany.Validator();
+            bool isvalid = true;
+
+            if(!ctrlAnketaCompany.Validator())
+                isvalid = false;
+            if (!ctrlRegistrationsCompany.Validator())
+                isvalid = false;
+
+            return isvalid;
+
         }
 
         public bool IsPlaceIn
@@ -70,6 +82,11 @@ namespace IpsViewComponentLibrary
         internal void SetDefaultState()
         {
             ctrlRegistrationsCompany.SetDefaultState();
+        }
+
+        internal void SetAutoComplete(Func<string, IList<AutoCompleteData>> _getAutoCompList, Func<int, Customer> _getCustomerAnketa)
+        {
+            ctrlAnketaCompany.SetAutoComplete(_getAutoCompList, _getCustomerAnketa);
         }
     }
 }

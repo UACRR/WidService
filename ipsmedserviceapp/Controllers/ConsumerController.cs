@@ -406,6 +406,25 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Дані по LicenseAgrParam -> LicenseAgreement Для нового Споживача
+        /// </summary>
+        /// <param name="sorsCustomer"></param>
+        private void fillLicenseAgreement(Customer sorsCustomer)
+        {
+            foreach ( var item in sorsCustomer.Client.LicenseAgreement )
+            {
+                item.Agr.AgrStatus = 2;
+                var param = item.LicenseAgrParam.Where(rec => rec.LicVersion == item.LicVersion).Single();
+                item.LicNum = param.LicNum;
+                item.LicDate = param.LicDate;
+                /// ***** Потрібно змінити після підключення кабінету
+                item.LicStatus = 2;
+                param.LicStatus = 2;
+
+
+            }
+        }
+        /// <summary>
         /// Збереження нового Споживача
         /// </summary>
         /// <param name="sorsCustomer"></param>
@@ -421,6 +440,7 @@ namespace ipsmedserviceapp.Controllers
                 if (!(sorsCustomer.CustType > 0 && sorsCustomer.CustType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
+                fillLicenseAgreement(sorsCustomer);
                 // Збереження Customer
                 Customer destConsumer = new Customer();
                 _dbContext.Customer.Add(destConsumer);
@@ -533,6 +553,16 @@ namespace ipsmedserviceapp.Controllers
             }
             var List = await _dbContext.getViewData(queue, null);
             return Json(List);
+        }
+        [HttpGet("listAll/{filter}")]
+        public async Task<IActionResult> GetFilteredList( string filter)
+        {
+            string normalizeFilter = string.Concat(filter, "%");
+            var list = await _dbContext.getViewData("select name, custid from vCustomer where custType = 3 and name like @filter", new[] { new SqlParameter("@filter", normalizeFilter) });
+
+            var retList = list.Select(rec => new { displayValue = rec["name"], value = rec["custid"] }).ToArray();
+
+            return Json(retList);
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace IpsViewComponentLibrary
 {
     public static class ExtensionUtils
     {
-        private static RadDateTimePicker _dtPicker;
+        // private static RadDateTimePicker _dtPicker;
 
         /// <summary>
         /// Незмінний розмір, кнопка "Сьогодні" посередині, навігація по місяцях/роках зумом
@@ -21,8 +21,8 @@ namespace IpsViewComponentLibrary
         /// <param name="dtPicker"></param>
         public static void SetUserCalendarSettingsm(this RadDateTimePicker dtPicker)
         {
-            _dtPicker = dtPicker;
-            if(dtPicker == null) return;
+            //_dtPicker = dtPicker;
+            //if(dtPicker == null) return;
             dtPicker.DateTimePickerElement.Calendar.HeaderNavigationMode = HeaderNavigationMode.Zoom;
             //dtTetsDate.DateTimePickerElement.Calendar.TodayButton.ShowBorder = true;
             dtPicker.DateTimePickerElement.Calendar.TodayButton.Text = "Сьогодні";
@@ -44,7 +44,10 @@ namespace IpsViewComponentLibrary
 
         private static void TodayButton_Click(object sender, EventArgs e)
         {
-            _dtPicker.Value = DateTime.Now;
+            // var container = (sender as RadControl).GetContainerControl();
+            var dtPicker = ((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl as RadDateTimePicker;
+            if (dtPicker != null)
+                dtPicker.Value = DateTime.Now;
         }
     }
 
@@ -55,7 +58,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="cust">Дані споживача</param>
         /// <param name="dictionaties">Словники</param>
-        void SetDataSources(Customer cust, AnketaDictionaties dictionaties );
+        void SetDataSources(Customer cust, AnketaDictionaties dictionaties);
 
         /// <summary>
         /// Перевірка на правильність введених даних
@@ -97,4 +100,75 @@ namespace IpsViewComponentLibrary
         /// </summary>
         All
     }
+
+    #region МАЙДАНЧИКИ
+
+    /// <summary>
+    /// Тип ініціалізації форми приміщення завкладу
+    /// </summary>
+    public enum PremisesFormTypeInitialization
+    {
+        /// <summary>
+        /// Редагування
+        /// </summary>
+        Edit,
+        /// <summary>
+        /// Створення нового
+        /// </summary>
+        CreateNew
+    }
+
+    /// <summary>
+    /// Тип вимірювання майданчика
+    /// </summary>
+    public enum MeasurementOfPremises
+    {
+        /// <summary>
+        /// Площа
+        /// </summary>
+        Area = 1,
+        /// <summary>
+        /// Кількість місць
+        /// </summary>
+        Number = 2,
+        /// <summary>
+        /// Інше
+        /// </summary>
+        Other = 3,
+        Empty = 0
+    }
+
+    /// <summary>
+    /// Тип закладу що редагується
+    /// </summary>
+    public enum TypeInstitution
+    {
+        /// <summary>
+        /// Заклад додано, відображається на грід
+        /// </summary>
+        ExistingInstitution,
+        /// <summary>
+        /// Заклад було щойно створено
+        /// </summary>
+        NonExistentInstitution
+    }
+
+    /// <summary>
+    /// Типи майданчиків
+    /// </summary>
+    public enum ExistencePlaces
+    {
+        /// <summary>
+        /// Один майданчик
+        /// </summary>
+        SinglePlace,
+        /// <summary>
+        /// Багато майданчиків
+        /// </summary>
+        ManyPlaces
+    }
+
+    #endregion
+
+
 }

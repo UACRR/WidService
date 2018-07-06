@@ -43,6 +43,18 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
+        /// <summary>
+        /// Получити дані для авто заповнення
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public IList<AutoCompleteData> getAutoCompleteList( string filter)
+        {
+            string url = $"consumer/listAll/{filter}";
+            var list = _webApi.GetList<AutoCompleteData>(url);
+            return list;
+        }
+
         public Customer NewCustomer(int custType)
         {
             var anketaDic = _webApi.GetItemById<Customer>("consumer/newconsumer", custType.ToString());

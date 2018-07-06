@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Interfaces;
+using System;
 using System.ComponentModel;
 
 namespace ipsFormsDesign.Dictionary
@@ -105,6 +106,17 @@ namespace ipsFormsDesign.Dictionary
         public ObjectAuthorRightholder()
         {
             _folkType = 1;
+        }
+
+        public ObjectAuthorRightholder(RightholderMainView defaultRightholder) : this()
+        {
+            if (defaultRightholder != null)
+            {
+                IsRightholder = true;
+                AuthorName = defaultRightholder.Name;
+                CustId = defaultRightholder.CustId;
+                CommunityName = defaultRightholder.Community_Name;
+            }
         }
 
         private void ClearRightholderData()

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtShortName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtName = new Telerik.WinControls.UI.RadTextBox();
+            this.txtName = new RadTextBoxAuto();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
@@ -114,7 +114,7 @@
 
         #endregion
         private Telerik.WinControls.UI.RadTextBox txtShortName;
-        private Telerik.WinControls.UI.RadTextBox txtName;
+        private RadTextBoxAuto txtName;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;

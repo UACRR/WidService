@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +19,7 @@ namespace UnitTestMediaPortal
 
         public FormIBindingList()
         {
+            IpsGlobal.SetAnketaDictionaties(null);
             InitializeComponent();
         }
 

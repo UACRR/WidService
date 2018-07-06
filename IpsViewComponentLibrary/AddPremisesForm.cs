@@ -7,105 +7,106 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
+using IpsViewComponentLibrary;
 using Telerik.WinControls;
 
 namespace ipsAnketaClient
 {
     public partial class AddPremisesForm : Telerik.WinControls.UI.RadForm
     {
-        private List<ClnPlaceHoll> _data;
-        private int _idEditItem;
-        private int _idPlace;
-        private byte typePremises;
+
+        private ClnPlaceHoll _clnPlaceHoll;
+        private PremisesFormTypeInitialization _premisesFormTypeFromInitialization = PremisesFormTypeInitialization.CreateNew;
+        private MeasurementOfPremises _measurementPremises;
+
+        public event EventHandler OnNeedUpdateDataGrid;
+
+        public delegate void SaveNewClnPlaceHoll(ClnPlaceHoll clnPlaceHoll);
+        public event SaveNewClnPlaceHoll OnSaveNewClnPlaceHoll;
+        //***
+        private ObservableListSource<ClnPlaceHoll> _data;
         private bool _isEdit = false;
-        private string _stringId;
+        
 
-        public delegate void SaveDataForUpdate();
-
-        public delegate void SaveDataForInsert();
-
-        public event SaveDataForUpdate OnUpdateData;
-        public event SaveDataForInsert OnInsertData;
-
+        /// <summary>
+        /// Default constructor do not work
+        /// </summary>
         public AddPremisesForm()
         {
             InitializeComponent();
-            //_data = new List<ClnPlaceHoll>();
         }
 
-        public AddPremisesForm(List<ClnPlaceHoll> data, int placeId)
+        /// <summary>
+        /// Конструктор для редагування або додавання приміщення закладу
+        /// </summary>
+        /// <param name="clnPlaceHoll">Дані майданчиків</param>
+        /// <param name="measurementPremises">Тип вимірювання майданчика</param>
+        /// <param name="premisesFormTypeFrom">Тип ініціалізованої форми приміщення закладу</param>
+        public AddPremisesForm(ClnPlaceHoll clnPlaceHoll, MeasurementOfPremises measurementPremises, PremisesFormTypeInitialization premisesFormTypeFrom)
         {
             InitializeComponent();
-            _data = data;
-            _idPlace = placeId;
+            _clnPlaceHoll = clnPlaceHoll;
+            _measurementPremises = measurementPremises;
+            _premisesFormTypeFromInitialization = premisesFormTypeFrom;
+            if (premisesFormTypeFrom == PremisesFormTypeInitialization.Edit)
+            {
+                rBtnAdd.Text = "Зберегти";
+                this.Text = "Редагувати приміщення закладу";
+            }
+            SetTypePremises();
+            SetEditData();
+            
         }
 
-        public AddPremisesForm(List<ClnPlaceHoll> data, int id, int placeId, string stringId = null)
-        {
-            InitializeComponent();
-            _data = data;
-            _isEdit = true;
-            _idEditItem = id;
-            _idPlace = placeId;
-            rBtnAdd.Text = "Зберегти";
-            this.Text = "Редагувати приміщення закладу";
-            _stringId = stringId;
-            try
-            {
-                SetEditData();
-            }
-            catch (Exception e)
-            {
-
-                MessageBox.Show(e.Message, e.HResult.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void SetTypePremises(byte type)
-        {
-            if(type!=0)
-            switch (type)
-            {
-                case 1:
-                {
-                    lblMetrsPlaceTxt.Text = "Метраж";
-                    typePremises = 1;
-                }break;
-
-                case 2:
-                {
-                    lblMetrsPlaceTxt.Text = "Кількість місць";
-                    typePremises = 2;
-                }break;
-            }
-        }
-
+        /// <summary>
+        ///  ДІЇ КНОПКИ [ДОДАТИ ПРИМІЩЕННЯ]/[ЗБЕРЕГТИ]
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rBtnAdd_Click(object sender, EventArgs e)
         {
             if (Validator())
             {
-                if (_isEdit)
+                switch (_premisesFormTypeFromInitialization)
                 {
-                    DataForUpdate();
-                    OnUpdateData?.Invoke();
-                    
+                    case PremisesFormTypeInitialization.CreateNew:
+                    {
+                        OnSaveNewClnPlaceHoll?.Invoke(GetClnPlaceHoll());
+                    }
+                        break;
+                    case PremisesFormTypeInitialization.Edit:
+                    {
+                        GetClnPlaceHoll();
+                    }
+                        break;
                 }
-                else // inserted
-                {
-                    //DataFotInsert();
-                    OnInsertData?.Invoke();
-                    
-                }
-                //if (MessageBox.Show("Дані додано!","",MessageBoxButtons.OK, MessageBoxIcon.Asterisk) == DialogResult.OK)
-                    Close();
+
+                OnNeedUpdateDataGrid?.Invoke(sender,e);
+                Close();
             }
         }
 
+        /// <summary>
+        /// ДІЇ КНОПКИ [СКАСУВАТИ]
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rBtnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Встановити тип приміщення: з метражом або кількістю місць
+        /// </summary>
+        private void SetTypePremises()
+        {
+            lblTitlePlace.Text = _measurementPremises == MeasurementOfPremises.Area ? "Площа"
+                : _measurementPremises == MeasurementOfPremises.Number ? "Кількість місць" : string.Empty;
+        }
+
+        //TODO: тестувати валідатор / реконструювати
         /// <summary>
         /// Перевірка правильності введення
         /// </summary>
@@ -116,7 +117,7 @@ namespace ipsAnketaClient
             bool isNumber = true;
             bool isNotEmpty = true;
             Int32 tryparse;
-            if (rtxtBoxTypePremisses.Text == string.Empty)
+            if (txtPlaceName.Text == string.Empty)
             {
                 isNotEmpty = false;
                 lblTypePremisses.ForeColor = Color.Crimson;
@@ -124,46 +125,37 @@ namespace ipsAnketaClient
             else
                 lblTypePremisses.ForeColor = Color.Black;
 
-            if (rtxtBoxMetersPlaces.Text == string.Empty)
+            if (txtPlaceValue.Text == string.Empty)
             {
                 isNotEmpty = false;
-                lblMetrsPlaceTxt.ForeColor = Color.Crimson;
+                lblTitlePlace.ForeColor = Color.Crimson;
             }
             else
-                lblMetrsPlaceTxt.ForeColor = Color.Black;
+                lblTitlePlace.ForeColor = Color.Black;
 
 
-            if (!Int32.TryParse(rtxtBoxMetersPlaces.Text, out tryparse))
+            if (!Int32.TryParse(txtPlaceValue.Text, out tryparse))
             {
-                lblMetrsPlaceTxt.ForeColor = Color.Crimson;
+                lblTitlePlace.ForeColor = Color.Crimson;
                 isNumber = false;
             }
             else
-                lblMetrsPlaceTxt.ForeColor = Color.Black;
-
-            if(_data != null)
-            foreach (var clnPlaceHoll in _data)
-            {
-                if (clnPlaceHoll.HollName == rtxtBoxTypePremisses.Text && clnPlaceHoll.HollId == 0)
-                    count++;
-            }
-
-            if (count >= 2 && _isEdit)
-            {
-                MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                lblTypePremisses.ForeColor = Color.Crimson;
-                return false;
-            }
-            else if (count >= 1 && !_isEdit)
-            {
-                MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                lblTypePremisses.ForeColor = Color.Crimson;
-                return false;
-            }
-
-
+                lblTitlePlace.ForeColor = Color.Black;
+            
+            //if (count >= 2 && _isEdit)
+            //{
+            //    MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
+            //        MessageBoxIcon.Warning);
+            //    lblTypePremisses.ForeColor = Color.Crimson;
+            //    return false;
+            //}
+            //else if (count >= 1 && !_isEdit)
+            //{
+            //    MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
+            //        MessageBoxIcon.Warning);
+            //    lblTypePremisses.ForeColor = Color.Crimson;
+            //    return false;
+            //}
 
             if (isNotEmpty&&isNumber)
                 return true;
@@ -179,81 +171,42 @@ namespace ipsAnketaClient
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
             return false;
         }
 
+        /// <summary>
+        /// Встановити дані для редагування
+        /// </summary>
         private void SetEditData()
         {
-            if(_idEditItem != 0)
-            {
-                    rtxtBoxTypePremisses.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item =>item.HollName).SingleOrDefault();
-                var numeric = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.HollNum).SingleOrDefault();
-                if(numeric != 0)
-                    rtxtBoxMetersPlaces.Text = _data.Where(idItem=>idItem.HollId == _idEditItem).Select(item=>item.HollNum).SingleOrDefault().ToString();
-                else
-                    rtxtBoxMetersPlaces.Text = _data.Where(idItem => idItem.HollId == _idEditItem).Select(item => item.SqHoll).SingleOrDefault().ToString();
-            }
-            else
-            {
-                SetEditDataZeroId(_stringId);
-            }
-
+            txtPlaceName.Text = _clnPlaceHoll.HollName;
+            txtPlaceValue.Text = _measurementPremises == MeasurementOfPremises.Other ? _clnPlaceHoll.ValueAdd : _clnPlaceHoll.ValuePlace;
         }
 
-        private void SetEditDataZeroId(string hollname)
+        /// <summary>
+        /// Отримати редановані/створені дані
+        /// </summary>
+        /// <returns>Приміщення закладу</returns>
+        public ClnPlaceHoll GetClnPlaceHoll()
         {
-            if (hollname == null) return;
-            
-            var edItem = _data.SingleOrDefault(item => item.HollName == hollname);
-            
-            rtxtBoxTypePremisses.Text = edItem?.HollName;
-            var holl = edItem?.HollNum;
-            var places = edItem?.SqHoll;
-            if (holl != null && holl != 0)
-                rtxtBoxMetersPlaces.Text = holl.ToString();
-            else if (places != null && places != 0)
-                rtxtBoxMetersPlaces.Text = places.ToString();
-        }
+            _clnPlaceHoll.HollName = txtPlaceName.Text;
 
-        public List<ClnPlaceHoll> DataFotInsert()
-        {
-            var data = new ClnPlaceHoll
+            switch (_measurementPremises)
             {
-                //HollId = автоінкримент
-                HollName = rtxtBoxTypePremisses.Text,
-                HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
-                SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0,
-                PlaceId = _idPlace
-            };
-            if (_data!=null)
-                _data.Add(data);
-            else
-                _data = new List<ClnPlaceHoll>
-                {
-                    data
-                };
-            
-            return _data;
-        }
+                case MeasurementOfPremises.Other:
+                    _clnPlaceHoll.ValueAdd = txtPlaceValue.Text;
+                    break;
 
-        public List<ClnPlaceHoll> DataForUpdate()
-        {
-            ClnPlaceHoll editRow = null;
-            if (_idEditItem != 0)
-                editRow = _data.SingleOrDefault(id => id.HollId == _idEditItem);
-            
-            if (_stringId != null)
-                editRow = _data.SingleOrDefault(idStr => idStr.HollName == _stringId);
-            
+                case MeasurementOfPremises.Area:
+                    _clnPlaceHoll.ValuePlace = txtPlaceValue.Text;
+                    break;
 
-            if (editRow != null)
-            {
-                editRow.HollName = rtxtBoxTypePremisses.Text;
-                editRow.HollNum = typePremises == 2 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
-                editRow.SqHoll = typePremises == 1 ? Convert.ToInt32(rtxtBoxMetersPlaces.Text) : 0;
+                case MeasurementOfPremises.Number:
+                    _clnPlaceHoll.ValuePlace = txtPlaceValue.Text;
+                    break;
             }
-            return _data;
+
+            return _clnPlaceHoll;
         }
     }
 }
