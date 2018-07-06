@@ -21,7 +21,7 @@ namespace UnitTestMediaPortal
 
         public void SetDic( AnketaDictionaties dic )
         {
-            IpsGlobal.SetDic(dic);
+            IpsGlobal.SetAnketaDictionaties(dic);
         }
         private void testGlobalDic1_Load(object sender, EventArgs e)
         {

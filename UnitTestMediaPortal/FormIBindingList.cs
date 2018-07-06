@@ -19,7 +19,7 @@ namespace UnitTestMediaPortal
 
         public FormIBindingList()
         {
-            IpsGlobal.SetDic(null);
+            IpsGlobal.SetAnketaDictionaties(null);
             InitializeComponent();
         }
 
