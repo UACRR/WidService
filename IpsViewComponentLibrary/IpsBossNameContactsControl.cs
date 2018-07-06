@@ -17,9 +17,11 @@ namespace IpsViewComponentLibrary
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsBossNameContactsControl : UserControl
     {
+        private const string phoneCode = "+380";
         public IpsBossNameContactsControl()
         {
             InitializeComponent();
+            txtPhone.Text = phoneCode;
         }
 
         [Category("Data")]
@@ -98,8 +100,23 @@ namespace IpsViewComponentLibrary
             try
             {
                 var mail = new MailAddress(email);
-                
-                return mail.Address == email;
+                if (mail.Address == email)
+                {
+                    bool havedot = false, havesymboladot = false;
+                    byte countBdot = 0;
+                    var mailHost = mail.Host;
+                    foreach (var symbol in mailHost.ToCharArray())
+                    {
+                        countBdot++;
+                        if (countBdot > 1 && symbol == 46)
+                            havedot = true;
+                        if (havedot && symbol != 46)
+                            havesymboladot = true;
+                    }
+
+                    return havedot && havesymboladot;
+                }
+                return false;
             }
             catch
             {
@@ -134,16 +151,31 @@ namespace IpsViewComponentLibrary
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
+
+            if (txtEmail.Text.Length == 0 && ch == 46)
+                e.Handled = true;
+
+            if (txtEmail.Text.Length > 0)
+            {
+                var symbols = txtEmail.Text.ToCharArray();
+                if (symbols.Last() == 46)
+                    e.Handled = true;
+            }
+
             if (!char.IsDigit(ch) && ch != 8 && !(ch>=64 && ch <= 90) && !(ch >= 97 && ch <= 122) && ch != 45 && ch != 46 && ch != 95)
             {
                 e.Handled = true;
             }
         }
 
+
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8 && ch != 43)
+            if (ch == 8 && txtPhone.Text == phoneCode)
+                e.Handled = true;
+
+            if (!char.IsDigit(ch) && ch != 8)
             {
                 e.Handled = true;
             }
