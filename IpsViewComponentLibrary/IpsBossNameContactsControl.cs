@@ -171,6 +171,16 @@ namespace IpsViewComponentLibrary
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (txtPhone.SelectionLength == txtPhone.TextLength)
+            {
+                e.Handled = true;
+                txtPhone.Text = phoneCode + e.KeyChar;
+                txtPhone.Select(txtPhone.Text.Length, 0);
+            }
+
+            if (txtPhone.SelectionStart < 4 && e.KeyChar != 8)
+                e.Handled = true;
+
             char ch = e.KeyChar;
             if (ch == 8 && txtPhone.Text == phoneCode)
                 e.Handled = true;
