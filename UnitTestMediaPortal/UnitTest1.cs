@@ -141,7 +141,8 @@ namespace UnitTestMediaPortal
             ConsumerService _service = new ConsumerService();
             TestGlobalcs form = new TestGlobalcs();
             form.SetDic(_service.GetDictionary());
-            form.ShowDialog();
+            // form.Visible = true;
+            form.Show(null);
         }
 
     }

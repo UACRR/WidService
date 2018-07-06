@@ -9,23 +9,38 @@ using System.Windows.Forms;
 
 namespace ipsFormsDesign.Data
 {
+    public class BindingField
+    {
+        public string SorsField { get; set; }
+        public string DestField { get; set; }
+    }
     public static class IpsGlobal
     {
         public static event EventHandler AnketaDictionatiesChanged;
         private static Dictionary<Type, IList<object>> AnketaDictionatiesProperties = new Dictionary<Type, IList<object>>();
-        private static Dictionary<Type, string[]> AnketaDictionatiesField = new Dictionary<Type, string[]>();
+        private static Dictionary<Type, BindingField[]> AnketaDictionatiesField = new Dictionary<Type, BindingField[]>();
         public static AnketaDictionaties AnketaDictionaties { get; private set; }
 
 
         static IpsGlobal()
         {
             AnketaDictionaties = null;
-            AnketaDictionatiesField.Add(null, new[] { "CodeI", "Name" });
-//            Country t = new Country();
-            AnketaDictionatiesField.Add(typeof(Country), new[] { "CountryCode", "CountryNameShort" });
-
-
         }
+
+        /// <summary>
+        /// Ініціалізація даних для методу LinkToAnketaDictionaties: -- Звязуємо поля довідника з полями контрола --
+        /// </summary>
+        /// <returns></returns>
+        private static async Task setAnketaDicFieldsAsync()
+        {
+            await Task.Run(() =>
+            {
+                AnketaDictionatiesField.Add(typeof(object), new[] { new BindingField { SorsField = "CodeI", DestField = "ValueMember" }, new BindingField { SorsField = "Name", DestField = "DisplayMember" } });
+                //            Country t = new Country();
+                AnketaDictionatiesField.Add(typeof(Country), new[] { new BindingField { SorsField = "CountryCode" , DestField = "ValueMember" }, new BindingField { SorsField = "CountryNameShort", DestField = "DisplayMember" } });
+            });
+        }
+
 
         /// <summary>
         /// 
@@ -36,7 +51,7 @@ namespace ipsFormsDesign.Data
             foreach (var item in AnketaDictionaties.GetType().GetProperties())
             {
                 Type piType = item.PropertyType;
-                if(piType.IsGenericType && piType.GetGenericTypeDefinition() == typeof(List<>))
+                if (piType.IsGenericType && piType.GetGenericTypeDefinition() == typeof(IList<>))
                 {
                     Type ProperyType = piType.GetGenericArguments()[0];
                     var Value = item.GetValue(AnketaDictionaties) as IList<object>;
@@ -46,7 +61,7 @@ namespace ipsFormsDesign.Data
         }
 
         /// <summary>
-        /// 
+        /// Змінити довідники
         /// </summary>
         /// <param name="_dic"></param>
         public static void SetAnketaDictionaties(AnketaDictionaties _dic)
@@ -56,24 +71,34 @@ namespace ipsFormsDesign.Data
             AnketaDictionatiesChanged(null, EventArgs.Empty);
         }
         /// <summary>
-        /// 
+        /// -- Звязуємо поля довідника з полями контрола --
         /// </summary>
-        /// <param name="typeDic"></param>
-        /// <param name="control"></param>
+        /// <param name="typeDic">Тип довідника</param>
+        /// <param name="control">Об'єкт, який треба прив'язати</param>
         public static void LinkToAnketaDictionaties(Type typeDic, Control control)
         {
+
             if (AnketaDictionaties == null)
                 return;
             if (!AnketaDictionatiesProperties.Keys.Contains(typeDic)) return;
             var controlProperties = control.GetType().GetProperties().ToDictionary(rec => rec.Name);
-            var fields = AnketaDictionatiesField.Keys.Contains(typeDic) ? AnketaDictionatiesField[typeDic] : AnketaDictionatiesField[null];
+
+
+            if (AnketaDictionatiesField.Keys.Count() == 0)
+            {
+                var tsk = Task.Run(() => setAnketaDicFieldsAsync());
+                tsk.Wait();
+            }
+            var fields = AnketaDictionatiesField.Keys.Contains(typeDic) ? AnketaDictionatiesField[typeDic] : AnketaDictionatiesField[typeof(object)];
             Action[] setter = new Action[fields.Count()];
 
-            for( int i = 0, cnt = setter.Count(); i < cnt; i++ )
+            for (int i = 0, cnt = setter.Count(); i < cnt; i++)
             {
-                if (!controlProperties.Keys.Contains(fields[i]))
+                if (!controlProperties.Keys.Contains(fields[i].DestField ))
                     return;
-                setter[i] = () => { var index = i; controlProperties[fields[index]].SetValue(control, fields[index]); };
+
+                var curI = i;
+                setter[i] = () => { var index = curI; controlProperties[fields[index].DestField].SetValue(control, fields[index].SorsField ); };
             }
 
             for (int i = 0, cnt = setter.Count(); i < cnt; i++)

@@ -17,17 +17,19 @@ namespace UnitTestMediaPortal
         public TestGlobalDic()
         {
             InitializeComponent();
-            radDropDownList1.DataSource = IpsGlobal.AnketaDictionaties?.country;
+            if (IpsGlobal.AnketaDictionaties != null)
+                radDropDownList1.DataSource = IpsGlobal.AnketaDictionaties?.country;
             // IpsGlobal.Dic?.country[0].CountryNameShort;
             //radDropDownList1.ValueMember = "CountryCode";
             //radDropDownList1.DisplayMember = "CountryNameShort";
 
-            IpsGlobal.LinkToAnketaDictionaties(typeof(Country), this);
+            IpsGlobal.LinkToAnketaDictionaties(typeof(Country), this.radDropDownList1);
             IpsGlobal.AnketaDictionatiesChanged += IpsGlobal_DicChanged;
         }
 
         private void IpsGlobal_DicChanged(object sender, EventArgs e)
         {
+            IpsGlobal.LinkToAnketaDictionaties(typeof(Country), this.radDropDownList1);
             radDropDownList1.DataSource = IpsGlobal.AnketaDictionaties?.country;
             ;
         }
