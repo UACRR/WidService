@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -194,7 +195,7 @@ namespace IpsViewComponentLibrary
 
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
-            //SetTooltipTextFromHeader(sender, e); // to fix
+            GridViewTooltipHelper.SetTooltipTextForColumnHeader(sender, e);
         }
 
         private void gvObjectAuthorsRightholders_CellFormatting(object sender, CellFormattingEventArgs e)

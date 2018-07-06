@@ -3,6 +3,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
 using RightholderWorkplace.Utilities;
 using System;
@@ -326,7 +327,7 @@ namespace RightholderWorkplace
 
         private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
-            SetTooltipTextFromHeader(sender, e);
+            GridViewTooltipHelper.SetTooltipTextForColumnHeader(sender, e);
         }
 
 
@@ -825,7 +826,7 @@ namespace RightholderWorkplace
 
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e) // to move
         {
-            SetTooltipTextFromHeader(sender, e);
+            GridViewTooltipHelper.SetTooltipTextForColumnHeader(sender, e);
         }
 
         private void gvObjectAuthorsRightholders_CellFormatting(object sender, CellFormattingEventArgs e) // to move
@@ -1246,18 +1247,6 @@ namespace RightholderWorkplace
         private void ctrlRightholdersObjectsForChange_EditObjectCommandExecuted(object sender, ObjectRightForRightholder selectedObject)
         {
             EditObjectRight(selectedObject.ObjId);
-        }
-
-        #endregion
-
-        #region Common Helpers
-
-        private static void SetTooltipTextFromHeader(object sender, ToolTipTextNeededEventArgs e)
-        {
-            if (sender is GridHeaderCellElement headerCell)
-            {
-                e.ToolTipText = headerCell.Text;
-            }
         }
 
         #endregion

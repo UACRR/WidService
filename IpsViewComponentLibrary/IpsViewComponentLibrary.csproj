@@ -483,9 +483,11 @@
     <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utility\RadTextBoxAuto.cs">
+    <Compile Include="Utilities\GridViewTooltipHelper.cs" />
+    <Compile Include="Utilities\RadTextBoxAuto.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utilities\RightholderStatusMenuFactory.cs" />
     <Compile Include="ViewAndPrintAgreement.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -93,6 +93,7 @@
             this.btnObjectRightItemSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.autoObjectName = new IpsViewComponentLibrary.RadTextBoxAuto();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seekObjectBindingSource)).BeginInit();
@@ -211,7 +212,7 @@
             // txtTotalPersent
             // 
             this.txtTotalPersent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalPersent.Location = new System.Drawing.Point(903, 222);
+            this.txtTotalPersent.Location = new System.Drawing.Point(903, 220);
             this.txtTotalPersent.Name = "txtTotalPersent";
             this.txtTotalPersent.ReadOnly = true;
             this.txtTotalPersent.Size = new System.Drawing.Size(44, 21);
@@ -887,5 +888,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel18;
         private Telerik.WinControls.UI.RadButton btnObjectRightItemSave;
         private Telerik.WinControls.UI.RadLabel radLabel13;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
