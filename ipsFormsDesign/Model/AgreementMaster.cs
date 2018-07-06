@@ -17,8 +17,6 @@ namespace ipsFormsDesign.Model
         public int AgrId { get; set; }
         public int CustId { get; set; }
         public int? AgrStatus { get; set; }
-        public string AgrNumber { get; set; }
-        public DateTime? AgrDate { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
         public int? AgrType { get; set; }

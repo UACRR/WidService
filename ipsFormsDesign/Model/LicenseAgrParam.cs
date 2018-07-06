@@ -24,7 +24,6 @@ namespace ipsFormsDesign.Model
         public decimal? IndxInfl { get; set; }
         public int? PeriodCode { get; set; }
         public int? DayForPay { get; set; }
-        public int? IsCurrent { get; set; }
         public int? LicStatus { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }

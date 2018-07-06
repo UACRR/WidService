@@ -53,7 +53,6 @@ public interface IAgreementAddBr
          int? PeriodCode { get; set; }
          int? AgrStatus { get; set; }
          int? DayForPay { get; set; }
-         int? IsCurrent { get; set; }
          int? AnkVersion { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
@@ -71,7 +70,6 @@ public interface IAgreementAddPartner
          decimal? NoCourtRate { get; set; }
          decimal? CourtCompRate { get; set; }
          int Version { get; set; }
-         int? IsCurrent { get; set; }
          string AddNumber { get; set; }
          DateTime? AddDate { get; set; }
          DateTime? DateBegin { get; set; }
@@ -91,7 +89,6 @@ public interface IAgreementAddRh
          string ResponsUser { get; set; }
          int? CustId { get; set; }
          int Version { get; set; }
-         int? IsCurrent { get; set; }
          string AddNumber { get; set; }
          DateTime? AddDate { get; set; }
          DateTime? DateBegin { get; set; }
@@ -108,8 +105,6 @@ public interface IAgreementMaster
     {    int AgrId { get; set; }
          int CustId { get; set; }
          int? AgrStatus { get; set; }
-         string AgrNumber { get; set; }
-         DateTime? AgrDate { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
          int? AgrType { get; set; }
@@ -190,7 +185,6 @@ public interface IAnketaCompany
          int CustId { get; set; }
          int Version { get; set; }
          int? ActivityCode { get; set; }
-         int? IsCurrent { get; set; }
          int Status { get; set; }
          string Name { get; set; }
          string ShortName { get; set; }
@@ -227,7 +221,6 @@ public interface IAnketaPerson
     {
          int CustId { get; set; }
          int Version { get; set; }
-         int? IsCurrent { get; set; }
          int Status { get; set; }
          string FirstName { get; set; }
          string SurName { get; set; }
@@ -495,7 +488,8 @@ public interface IContinentTr
          string Name { get; set; }
 }
 public interface ICopyRight
-    {    int CRightId { get; set; }
+    {
+         int CRightId { get; set; }
          int CustId { get; set; }
          int? ObjId { get; set; }
          int? LBasis { get; set; }
@@ -1048,13 +1042,9 @@ public interface ILicAuthor
          decimal? R030PrePay { get; set; }
 }
 public interface ILicAuthorBr
-    {    int LicAuthorId { get; set; }
-         int? LicId { get; set; }
-         int? CustId { get; set; }
-         int? RoleType { get; set; }
-         int? CRightId { get; set; }
+    {
+         int CRightId { get; set; }
          int? PrepayType { get; set; }
-         string NameAuthor { get; set; }
          DateTime? DateCreate { get; set; }
          DateTime? DateClose { get; set; }
          DateTime? DateModify { get; set; }
@@ -1079,8 +1069,6 @@ public interface ILicenseAgreement
          int LicCode { get; set; }
          int? LicType { get; set; }
          int? CustId { get; set; }
-         string LicNum { get; set; }
-         DateTime? LicDate { get; set; }
          int? LicStatus { get; set; }
          int LicClass { get; set; }
          int AgrId { get; set; }
@@ -1101,7 +1089,6 @@ public interface ILicenseAgrParam
          decimal? IndxInfl { get; set; }
          int? PeriodCode { get; set; }
          int? DayForPay { get; set; }
-         int? IsCurrent { get; set; }
          int? LicStatus { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
@@ -2094,9 +2081,7 @@ public interface IUsesTypeTr
 }
 public interface IWorkRh
     {
-         int WorkId { get; set; }
-         int? LicAutorId { get; set; }
-         int? CRightId { get; set; }
+         int CRightId { get; set; }
          int? WorkTypeRh { get; set; }
          string WorkCommentRh { get; set; }
          DateTime? WorkDateRh { get; set; }

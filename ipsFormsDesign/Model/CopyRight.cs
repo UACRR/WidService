@@ -6,12 +6,6 @@ namespace ipsFormsDesign.Model
 {
     public partial class CopyRight : ICopyRight
     {
-        public CopyRight()
-        {
-            LicAuthorBr = new ObservableListSource<LicAuthorBr>();
-            WorkRh = new ObservableListSource<WorkRh>();
-        }
-
         public int CRightId { get; set; }
         public int CustId { get; set; }
         public int? ObjId { get; set; }
@@ -34,8 +28,8 @@ namespace ipsFormsDesign.Model
         public CreativeRoleType RoleCodeNavigation { get; set; }
         public CrightStatus StatusNavigation { get; set; }
         public CopyRtranslate CopyRtranslate { get; set; }
-        public ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
-        public ObservableListSource<WorkRh> WorkRh { get; set; }
+        public LicAuthorBr LicAuthorBr { get; set; }
+        public WorkRh WorkRh { get; set; }
     }
 }
 

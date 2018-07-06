@@ -8,7 +8,6 @@ namespace ipsmedserviceapp.Model
         public int CustId { get; set; }
         public int Version { get; set; }
         public int? ActivityCode { get; set; }
-        public int? IsCurrent { get; set; }
         public int Status { get; set; }
         public string Name { get; set; }
         public string ShortName { get; set; }

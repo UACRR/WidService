@@ -15,7 +15,6 @@ namespace ipsmedserviceapp.Model
         public int? PeriodCode { get; set; }
         public int? AgrStatus { get; set; }
         public int? DayForPay { get; set; }
-        public int? IsCurrent { get; set; }
         public int? AnkVersion { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }

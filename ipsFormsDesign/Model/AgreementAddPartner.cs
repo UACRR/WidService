@@ -16,7 +16,6 @@ namespace ipsFormsDesign.Model
         public decimal? NoCourtRate { get; set; }
         public decimal? CourtCompRate { get; set; }
         public int Version { get; set; }
-        public int? IsCurrent { get; set; }
         public string AddNumber { get; set; }
         public DateTime? AddDate { get; set; }
         public DateTime? DateBegin { get; set; }

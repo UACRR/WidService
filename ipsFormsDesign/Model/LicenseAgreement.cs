@@ -19,8 +19,6 @@ namespace ipsFormsDesign.Model
         public int LicCode { get; set; }
         public int? LicType { get; set; }
         public int? CustId { get; set; }
-        public string LicNum { get; set; }
-        public DateTime? LicDate { get; set; }
         public int? LicStatus { get; set; }
         public int LicClass { get; set; }
         public int AgrId { get; set; }
