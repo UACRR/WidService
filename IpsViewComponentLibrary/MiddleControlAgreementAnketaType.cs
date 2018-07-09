@@ -110,6 +110,19 @@ namespace IpsViewComponentLibrary
             return ctrlAgreementMain.Validator() && ctrlAgreementSecond.Validator();
         }
 
+        /// <summary>
+        /// Видимість параметрів договору
+        /// </summary>
+        public bool AgreementParamVisible
+        {
+            get => panel.Visible && lblParam.Visible;
+            private set
+            {
+                panel.Visible = typeRights == TypeRights.SmallRights;
+                lblParam.Visible = typeRights == TypeRights.SmallRights;
+            }
+        }
+
         internal void SetDefaultListItem()
         {
             if (ddlLicType.Items.Count != 0)
@@ -148,3 +161,4 @@ namespace IpsViewComponentLibrary
         }
     }
 }
+
