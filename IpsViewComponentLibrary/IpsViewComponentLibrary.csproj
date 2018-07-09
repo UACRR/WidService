@@ -366,6 +366,13 @@
     <Compile Include="MiddleControlManagers.Designer.cs">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectRightItemPresenter.cs" />
+    <Compile Include="ObjectRightItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightItemView.Designer.cs">
+      <DependentUpon>ObjectRightItemView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ObjectRightListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -476,9 +483,11 @@
     <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utility\RadTextBoxAuto.cs">
+    <Compile Include="Utilities\GridViewTooltipHelper.cs" />
+    <Compile Include="Utilities\RadTextBoxAuto.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utilities\RightholderStatusMenuFactory.cs" />
     <Compile Include="ViewAndPrintAgreement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -603,6 +612,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlManagers.resx">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightItemView.resx">
+      <DependentUpon>ObjectRightItemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightListControl.resx">
       <DependentUpon>ObjectRightListControl.cs</DependentUpon>
