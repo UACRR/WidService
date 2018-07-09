@@ -30,23 +30,23 @@
         {
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBoxAuto1 = new UnitTestMediaPortal.RadTextBoxAuto();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.radTextBoxAuto1 = new UnitTestMediaPortal.RadTextBoxAuto();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxAuto1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxAuto1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // radButton1
             // 
-            this.radButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.radButton1.Location = new System.Drawing.Point(13, 105);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(137, 30);
             this.radButton1.TabIndex = 1;
             this.radButton1.Text = "Ok";
+            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
             // 
             // radLabel1
             // 
@@ -57,14 +57,6 @@
             this.radLabel1.TabIndex = 2;
             this.radLabel1.Text = "radLabel1";
             // 
-            // radTextBoxAuto1
-            // 
-            this.radTextBoxAuto1.AcceptAuto = null;
-            this.radTextBoxAuto1.Location = new System.Drawing.Point(13, 13);
-            this.radTextBoxAuto1.Name = "radTextBoxAuto1";
-            this.radTextBoxAuto1.Size = new System.Drawing.Size(697, 25);
-            this.radTextBoxAuto1.TabIndex = 3;
-            // 
             // radButton2
             // 
             this.radButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -74,9 +66,18 @@
             this.radButton2.TabIndex = 2;
             this.radButton2.Text = "Error";
             // 
+            // radTextBoxAuto1
+            // 
+            this.radTextBoxAuto1.AcceptAuto = null;
+            this.radTextBoxAuto1.Location = new System.Drawing.Point(13, 13);
+            this.radTextBoxAuto1.Name = "radTextBoxAuto1";
+            this.radTextBoxAuto1.Size = new System.Drawing.Size(697, 25);
+            this.radTextBoxAuto1.TabIndex = 3;
+            // 
             // TestTextBoxAuto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AcceptButton = this.radButton1;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 147);
             this.Controls.Add(this.radButton2);
@@ -91,8 +92,8 @@
             this.Text = "TestTextBoxAuto";
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxAuto1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxAuto1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
