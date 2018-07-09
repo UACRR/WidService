@@ -35,8 +35,8 @@ namespace TestWord_1
             //            Filename = "F_1_БВ-НК-бари-дискотеки_.docx";
             //            Filename = "F_3_МБВ.docx";
             //            Filename = "F_6_МТЦ.docx";
-            //            Filename = "F_Акт_публічне виконання.docx";  
-                     Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+                        Filename = "F_Акт_публічне виконання.docx";  
+             //        Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
             //          Filename = "F_Акт_публічне сповіщення TV+радио.docx";
             //        Filename = "F_Акт_публічне сповіщення кTV.docx";
             //            Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
