@@ -24,6 +24,7 @@ namespace ipsFormsDesign.Model
         public bool? AroundWord { get; set; }
         public string InterCode { get; set; }
         public string InnerCode { get; set; }
+        public int? RHolderType { get; set; }
 
         public Customer Cust { get; set; }
         public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
