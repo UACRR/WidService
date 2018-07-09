@@ -130,7 +130,6 @@ namespace IpsViewComponentLibrary
 
         private void gvPlaces_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            //TODO: checkbox event обрані майданчики додати до ліцензії
             var id = (int)e.Row.Cells["PlaceId"].Value;
 
             if (_licenseAgr.License == null)
@@ -166,7 +165,6 @@ namespace IpsViewComponentLibrary
             if (_agreementInitType == ConsumerAgreementInitType.EditAgreement ||
                 _agreementInitType == ConsumerAgreementInitType.Prolongation)
             {
-                //todo повторити ліцензію для пролонгації
                 gvPlaces.CellValueChanged -= gvPlaces_CellValueChanged;
                 foreach (var item in _licenseAgr.License)
                 {

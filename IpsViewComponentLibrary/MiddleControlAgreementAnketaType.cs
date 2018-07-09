@@ -44,6 +44,10 @@ namespace IpsViewComponentLibrary
             if(license != null && anketeType == ConsumerAnketeType.CreateNewAnketa)
                 license.LicCode = typeRights == TypeRights.SmallRights ? 1 : typeRights == TypeRights.BigRights ? 10 : throw new ArgumentException();
 
+            //TODO: великі права без пролонгації при автокомпліті можуть заповнитись
+            panel.Visible = typeRights == TypeRights.SmallRights;
+            lblParam.Visible = typeRights == TypeRights.SmallRights;
+
             ddlLicType.DataSource = dictionaties?.agrLicenseType.Where( rec => 
             {
                 switch (typeRights)
@@ -108,19 +112,6 @@ namespace IpsViewComponentLibrary
         public bool Validator()
         {
             return ctrlAgreementMain.Validator() && ctrlAgreementSecond.Validator();
-        }
-
-        /// <summary>
-        /// Видимість параметрів договору
-        /// </summary>
-        public bool AgreementParamVisible
-        {
-            get => panel.Visible && lblParam.Visible;
-            private set
-            {
-                panel.Visible = typeRights == TypeRights.SmallRights;
-                lblParam.Visible = typeRights == TypeRights.SmallRights;
-            }
         }
 
         internal void SetDefaultListItem()

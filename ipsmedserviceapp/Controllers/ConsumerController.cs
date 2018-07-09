@@ -277,7 +277,7 @@ namespace ipsmedserviceapp.Controllers
                 }
                 destCustomer.Client.LicenseAgreement.Add(addLicItem);
                 destAgreeItem.LicenseAgreement.Add(addLicItem);
-                //TODO: для малих прав??
+
                 // old: _dbContext.AppendList(agreeItem?.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
                 if(agreeItem?.AgreementAddBr != null && destAgreeItem?.AgreementAddBr != null)
                     _dbContext.AppendList(agreeItem.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
