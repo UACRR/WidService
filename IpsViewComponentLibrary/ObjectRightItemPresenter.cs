@@ -148,6 +148,8 @@ namespace IpsViewComponentLibrary
             _view.UpdateObjectRightDataSources(objectRight, rightholderList);
 
             // map Authors and Copyright table into single table
+            _view.ObjectAuthorRightholderList.Clear();
+
             foreach (var a in objectRight.Authors)
             {
                 var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
