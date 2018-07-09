@@ -269,14 +269,6 @@ namespace IpsViewComponentLibrary
             else
                 lblIssuedBy.ForeColor = Color.Black;
 
-            //if (txtNumberVat.Text == string.Empty)
-            //{
-            //    lblIPN.ForeColor = Color.FromArgb(180, 255, 0, 2);
-            //    isValid = false;
-            //}
-            //else
-            //    lblIPN.ForeColor = Color.Black;
-
             return isValid;
         }
 

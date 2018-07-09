@@ -93,9 +93,11 @@ namespace ipsFormsDesign.Data
                 var tsk = Task.Run(() => setAnketaDicFieldsAsync());
                 tsk.Wait();
             }
+
             var fields = AnketaDictionatiesField.Keys.Contains(typeDic) ? AnketaDictionatiesField[typeDic] : AnketaDictionatiesField[typeof(object)];
             Action[] setter = new Action[fields.Count()];
 
+            // Формуємо метод рив'зки 
             for (int i = 0, cnt = setter.Count(); i < cnt; i++)
             {
                 if (!controlProperties.Keys.Contains(fields[i].DestField ))
@@ -104,7 +106,7 @@ namespace ipsFormsDesign.Data
                 var curI = i;
                 setter[i] = () => { var index = curI; controlProperties[fields[index].DestField].SetValue(control, fields[index].SorsField ); };
             }
-
+            // Прив'язно
             for (int i = 0, cnt = setter.Count(); i < cnt; i++)
                 setter[i]();
 
