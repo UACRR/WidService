@@ -525,7 +525,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// Отримати список Споживачів малих прав
+        /// Отримати список Споживачів Великих прав
         /// </summary>
         /// <returns></returns>
         [HttpGet("listBR/{whatId}")]
