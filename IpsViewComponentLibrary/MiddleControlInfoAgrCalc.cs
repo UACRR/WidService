@@ -246,7 +246,7 @@ namespace IpsViewComponentLibrary
 
             if (GetTypeAgrForm())
             {
-                //з майданчиками
+                //з майданчиками * * *
                 ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, 
                                                             _customer?.Client?.ClnBusinessPlace, _customer, goal, typeRights:Rights)
                 {

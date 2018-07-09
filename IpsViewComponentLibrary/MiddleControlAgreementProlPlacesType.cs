@@ -47,7 +47,7 @@ namespace IpsViewComponentLibrary
 
 
             //TODO: джерело даних з розрахованою сумою
-            gvPlaces.DataSource = SetChoosePlaces();
+            SetChoosePlaces();
 
             bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
             {
@@ -157,22 +157,22 @@ namespace IpsViewComponentLibrary
                 _licenseAgr.License.Remove(_licenseAgr.License.SingleOrDefault(rec => rec.PlaceId == id));
                 //_places.Remove(_tempPlaces.SingleOrDefault(rec => rec.PlaceId == id));
             }
-
         }
 
         //обрати чекбокс майданчиків що в ліцензії
-        private ObservableListSource<ClnBusinessPlace> SetChoosePlaces()
+        private void SetChoosePlaces()
         {
-            if (_agreementInitType == ConsumerAgreementInitType.AddNewAgreement)
-                return _tempPlaces;
-            //TODO для пролонгіції та редагування
-            ObservableListSource<ClnBusinessPlace> places = new ObservableListSource<ClnBusinessPlace>();
-            foreach (var item in _licenseAgr.License)
+            gvPlaces.DataSource = _tempPlaces;
+            if (_agreementInitType == ConsumerAgreementInitType.EditAgreement ||
+                _agreementInitType == ConsumerAgreementInitType.Prolongation)
             {
-                places.Add(_tempPlaces?.Where(rec => rec?.PlaceId == item?.PlaceId).SingleOrDefault());
+                gvPlaces.CellValueChanged -= gvPlaces_CellValueChanged;
+                foreach (var item in _licenseAgr.License)
+                {
+                    gvPlaces.Rows.SingleOrDefault(row => Convert.ToInt32(row.Cells["PlaceId"].Value) == item.PlaceId).Cells["CheckIn"].Value = true;
+                }
+                gvPlaces.CellValueChanged += gvPlaces_CellValueChanged;
             }
-
-            return places;
         }
     }
 }
