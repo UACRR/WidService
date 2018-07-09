@@ -17,6 +17,8 @@ namespace IpsViewComponentLibrary
         private ObjectRight _objectRight;
         private ObjectRightDictionaries _dictionaries;
 
+        public RightholderMainView DefaultRightholder { get; set; }
+
         public ObjectRightItemPresenter(ObjectRightItemView view)
         {
             _view = view;
@@ -36,13 +38,11 @@ namespace IpsViewComponentLibrary
             _view.Run();
         }
 
-        public void ShowNew(int category, RightholderMainView defaultRightholder) // move defaultRightholder to property
+        public void ShowNew(int category)
         {
             var newObjectRight = _objectRightService.NewObjectRight(category);
 
             Run(newObjectRight);
-
-            // TODO: process default rightholder
         }
 
         public void Show(int objId)
@@ -79,7 +79,13 @@ namespace IpsViewComponentLibrary
 
         public void AddObjectAuthorRightholder()
         {
-            var newObjectAuthorRightholder = new ObjectAuthorRightholder(); // _forRightholder - to fix
+            ObjectAuthorRightholder newObjectAuthorRightholder;
+
+            if (DefaultRightholder == null)
+                newObjectAuthorRightholder = new ObjectAuthorRightholder();
+            else
+                newObjectAuthorRightholder = new ObjectAuthorRightholder(DefaultRightholder);
+
 
             using (var authorRightholderItemView = new AuthorRightholderItemView(newObjectAuthorRightholder, _dictionaries, _objectRight.CategoryCode))
             {

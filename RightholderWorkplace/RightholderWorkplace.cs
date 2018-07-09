@@ -609,24 +609,24 @@ namespace RightholderWorkplace
                 int category;
                 if (int.TryParse(menuItem.Tag.ToString(), out category))
                 {
+                    // TODO: move to presenter
                     AddObjectRight(category);
                 }
             }
         }
 
-        private void AddObjectRight(int category, RightholderMainView forRightholder = null, string name = null)
+        private void AddObjectRight(int category, RightholderMainView defaultRightholder = null)
         {
             if (category == 0)
                 return;
 
             _previousPage = objectsPageView.SelectedPage; // TODO
 
-            _forRightholder = forRightholder;
-
             using (var view = new ObjectRightItemView())
             {
                 var presenter = new ObjectRightItemPresenter(view);
-                presenter.ShowNew(category, _forRightholder);
+                presenter.DefaultRightholder = defaultRightholder;
+                presenter.ShowNew(category);
             }
 
             UpdateLists(0);
@@ -873,7 +873,7 @@ namespace RightholderWorkplace
             if (_objectRight == null)
                 return;
 
-            AddObjectRight(_objectRight.CategoryCode, _forRightholder, autoObjectName.Text);
+            //AddObjectRight(_objectRight.CategoryCode, _forRightholder, autoObjectName.Text);
         }
 
         #endregion
@@ -900,6 +900,7 @@ namespace RightholderWorkplace
                 int category;
                 if (int.TryParse(menuItem.Tag.ToString(), out category))
                 {
+                    // TODO: move to presenter
                     AddObjectRight(category, ctrlRightholdersObjectsRight.SelectedRightholder);
                 }
             }
@@ -910,6 +911,7 @@ namespace RightholderWorkplace
             if (!IsRightholderSelected())
                 return;
 
+            // TODO: move to presenter
             using (var selectionView = new ObjectRightSelectionView())
             {
                 selectionView.ObjectSelected += SelectionView_ObjectSelected;
