@@ -12,6 +12,7 @@ namespace ipsFormsDesign.Model
             EtGenreRole = new ObservableListSource<EtGenreRole>();
             ObjActTr = new ObservableListSource<ObjActTr>();
             ObjectRight = new ObservableListSource<ObjectRight>();
+            RelGenrePercent = new ObservableListSource<RelGenrePercent>();
         }
 
         public int CodeI { get; set; }
@@ -21,6 +22,7 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
         public ObservableListSource<ObjActTr> ObjActTr { get; set; }
         public ObservableListSource<ObjectRight> ObjectRight { get; set; }
+        public ObservableListSource<RelGenrePercent> RelGenrePercent { get; set; }
     }
 }
 

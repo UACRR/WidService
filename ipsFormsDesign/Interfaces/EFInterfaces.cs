@@ -1050,9 +1050,10 @@ public interface ILicAuthorBr
          DateTime? DateModify { get; set; }
          DateTime? DateAccept { get; set; }
          decimal? Rate { get; set; }
-         decimal? R030 { get; set; }
          decimal? PrepaySum { get; set; }
          decimal? PrepaySumAuthor { get; set; }
+         string R030 { get; set; }
+         DateTime? PrepayDateDo { get; set; }
 }
 public interface ILicense
     {
@@ -1106,8 +1107,10 @@ public interface ILicenseBigR
          bool? IsTour { get; set; }
          string WhereTour { get; set; }
          decimal? Rate { get; set; }
-         DateTime? PrepayDateDo { get; set; }
          int LicVersion { get; set; }
+         decimal? PrepayRest { get; set; }
+         string LangCode { get; set; }
+         int? PerformType { get; set; }
 }
 public interface ILicenseClass
     {
@@ -1299,6 +1302,7 @@ public interface IObjectRight
          int? Loadid { get; set; }
          int? SpecType { get; set; }
          int? ActCode { get; set; }
+         string InnerCode { get; set; }
 }
 public interface IObjectStatus
     {    int CodeI { get; set; }
@@ -1410,6 +1414,16 @@ public interface IPayTurn
 public interface IPerformer
     {    int PerId { get; set; }
          string PerName { get; set; }
+}
+public interface IPerformType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IPerformTypetTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
 }
 public interface IPeriod
     {    int CodeI { get; set; }
@@ -1594,10 +1608,18 @@ public interface IRelGenreMovie
          int ReqId { get; set; }
          int GenreId { get; set; }
 }
+public interface IRelGenrePercent
+    {
+         int ActCode { get; set; }
+         int GenreType { get; set; }
+         decimal? Rate { get; set; }
+}
 public interface IRelGenreRole
     {
          int RoleCode { get; set; }
-         int GenreCode { get; set; }
+         int GenreType { get; set; }
+         decimal? Rate { get; set; }
+         int ActCode { get; set; }
 }
 public interface IRelGenreSerial
     {
@@ -1833,12 +1855,23 @@ public interface IResidentTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IRholderType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IRholderTypeTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
 public interface IRightHolder
     {    int CustId { get; set; }
          byte? SignP { get; set; }
          bool? AroundWord { get; set; }
          string InterCode { get; set; }
          string InnerCode { get; set; }
+         int? RHolderType { get; set; }
 }
 public interface ISaldoDay
     {

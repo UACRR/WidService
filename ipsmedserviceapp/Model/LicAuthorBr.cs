@@ -12,9 +12,10 @@ namespace ipsmedserviceapp.Model
         public DateTime? DateModify { get; set; }
         public DateTime? DateAccept { get; set; }
         public decimal? Rate { get; set; }
-        public decimal? R030 { get; set; }
         public decimal? PrepaySum { get; set; }
         public decimal? PrepaySumAuthor { get; set; }
+        public string R030 { get; set; }
+        public DateTime? PrepayDateDo { get; set; }
 
         public CopyRight CRight { get; set; }
         public PrePayType PrepayTypeNavigation { get; set; }

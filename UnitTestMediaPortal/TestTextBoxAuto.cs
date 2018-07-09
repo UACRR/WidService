@@ -61,10 +61,10 @@ namespace UnitTestMediaPortal
 
         private void radButton1_Click(object sender, EventArgs e)
         {
-            if (radTextBoxAuto1.isKeyDownEnterOrTab == true)
-                DialogResult = DialogResult.None;
-            else
-                DialogResult = DialogResult.OK;
+            //if (radTextBoxAuto1.isKeyDownEnterOrTab == true)
+            //    DialogResult = DialogResult.None;
+            //else
+            DialogResult = DialogResult.OK;
 
             radTextBoxAuto1.isKeyDownEnterOrTab = false;
         }

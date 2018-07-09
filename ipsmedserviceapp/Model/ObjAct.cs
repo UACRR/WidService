@@ -11,6 +11,7 @@ namespace ipsmedserviceapp.Model
             EtGenreRole = new HashSet<EtGenreRole>();
             ObjActTr = new HashSet<ObjActTr>();
             ObjectRight = new HashSet<ObjectRight>();
+            RelGenrePercent = new HashSet<RelGenrePercent>();
         }
 
         public int CodeI { get; set; }
@@ -20,5 +21,6 @@ namespace ipsmedserviceapp.Model
         public ICollection<EtGenreRole> EtGenreRole { get; set; }
         public ICollection<ObjActTr> ObjActTr { get; set; }
         public ICollection<ObjectRight> ObjectRight { get; set; }
+        public ICollection<RelGenrePercent> RelGenrePercent { get; set; }
     }
 }
