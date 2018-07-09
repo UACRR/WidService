@@ -166,6 +166,7 @@ namespace IpsViewComponentLibrary
             if (_agreementInitType == ConsumerAgreementInitType.EditAgreement ||
                 _agreementInitType == ConsumerAgreementInitType.Prolongation)
             {
+                //todo повторити ліцензію для пролонгації
                 gvPlaces.CellValueChanged -= gvPlaces_CellValueChanged;
                 foreach (var item in _licenseAgr.License)
                 {

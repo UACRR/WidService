@@ -92,10 +92,15 @@ namespace IpsViewComponentLibrary
             if (_changesSaved)
                 return;
 
-            if (_goal != DialogGoal.forEdit)
+            if (_goal == DialogGoal.forNew)
             {
                 _lic.LicenseAgrParam.Remove(_licAgr);
                 _cust.Client.LicenseAgreement.Remove(_lic);
+            }
+
+            if (_goal == DialogGoal.forProlongation)
+            {
+                _lic.LicenseAgrParam.Remove(_licAgr);
             }
         }
     }

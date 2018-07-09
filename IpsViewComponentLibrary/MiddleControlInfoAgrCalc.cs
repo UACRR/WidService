@@ -307,6 +307,7 @@ namespace IpsViewComponentLibrary
                 newLicense = listDopAgr.OrderBy(rec => rec.LicVersion).Last();
                 // -- Сінхронізувати з поточною, окрім версії
                 newLicense.SetFields(licParam, new[] { "LicVersion" });
+                newLicense.License = licParam?.License;
             }
             // Інакше == 0
             else {
@@ -319,6 +320,7 @@ namespace IpsViewComponentLibrary
                 newLicense.DateBegin = DateTime.Now;
                 newLicense.DateEnd = DateTime.Now.AddYears(1);
                 newLicense.LicVersion = (licVersion ?? 0) + 1;
+                newLicense.License = licParam?.License;
             }
             //newLicense.LicId = 0;
             license?.LicenseAgrParam?.Add(newLicense);

@@ -146,11 +146,11 @@
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrint.Location = new System.Drawing.Point(613, 3);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(67, 33);
+            this.btnPrint.Size = new System.Drawing.Size(67, 43);
             this.btnPrint.TabIndex = 21;
             this.btnPrint.Text = "Друкувати договір";
             this.btnPrint.TextWrap = true;
-            this.btnPrint.ThemeName = "Office2007Silver";
+            this.btnPrint.ThemeName = "Office2013Light";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnSave
@@ -161,7 +161,7 @@
             this.btnSave.Size = new System.Drawing.Size(117, 24);
             this.btnSave.TabIndex = 27;
             this.btnSave.Text = "Зберегти зміни";
-            this.btnSave.ThemeName = "Office2007Silver";
+            this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // radLabel3
