@@ -298,7 +298,8 @@ namespace ipsFormsDesign.Services
         /// <param name="lic"></param>
         public async System.Threading.Tasks.Task ProcessConsumer(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement lic)
         {
-            await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
+            await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1 );
+          //  await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion );
         }
         /// <summary>
         /// Друк доп угоди по ліцензійному договору with FileName
@@ -454,15 +455,23 @@ namespace ipsFormsDesign.Services
             }
 
 
-            DocDate = $"{licenseAgrParam?.LicDate:dd.mm.yyyy}";
+            DocDate = $"{licenseAgrParam?.LicDate:dd.MM.yyyy}";
             LicNum = licenseAgrParam?.LicNum;
-            prcntInc = licenseAgrParam?.RateAmount.ToString();
-            minRltGrn = licenseAgrParam?.MinAmount.ToString();
-            minRltKop = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100)).ToString();
+            prcntInc = $"{licenseAgrParam?.RateAmount:F}";
+            minRltGrn = $"{licenseAgrParam?.MinAmount:F}";
+            int minRltKopInt  = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100));
+            minRltKop = minRltKopInt.ToString();
+            if ( minRltKopInt < 10 )
+                {
+                minRltKop = "0" + minRltKop;
+                }
             pay_period = $"{period[licenseAgrParam?.PeriodCode ?? 1].Name}";
             pay_period2 = $"{period[licenseAgrParam?.PeriodCode ?? 1].NameR}";
             DocDateEnd = $"{licenseAgrParam?.DateEnd:dd.MM.yyyy}";
-            prcntPrl = licenseAgrParam?.AddRate?.ToString();
+///            prcntPrl = licenseAgrParam?.AddRate?.ToString();
+            prcntPrl = $"{licenseAgrParam?.AddRate:F}";
+            
+
             registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
             registerNumber = anketaCompany?.RegistrNumber?.ToString();
             numberVAT = anketaCompany?.NumberVat?.ToString();
@@ -534,7 +543,7 @@ namespace ipsFormsDesign.Services
                         formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
                         break;
                     case "prcntInc":
-                        item.Range.Text = prcntInc + "%";
+                        item.Range.Text = prcntInc ;
                         break;
                     case "prcntIncText":
                         prcntIncText = Utils.PrcnPhrase(Convert.ToDecimal(licenseAgrParam.RateAmount));
@@ -562,7 +571,8 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = prcntPrl;
                         break;
                     case "prcntPrlText":
-                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.AddRate), true);
+                        item.Range.Text = Utils.PrcnPhrase(Convert.ToDecimal(licenseAgrParam.AddRate));
+///                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.AddRate), true);
                         break;
                     case "СstLegalAddress":
                         item.Range.Text = reAddress;
@@ -674,7 +684,7 @@ namespace ipsFormsDesign.Services
             File.Copy(pathTemplate, docFile);
             // відкрити шаблон
 
-            System.Threading.Tasks.Task.Run(() =>
+            await System.Threading.Tasks.Task.Run(() =>
             {
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
