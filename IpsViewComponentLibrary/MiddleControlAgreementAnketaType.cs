@@ -41,7 +41,7 @@ namespace IpsViewComponentLibrary
             var license = cust?.Client?.LicenseAgreement?.FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == license?.LicVersion);
             _licenseAgr = licenseParam;
-            if(license != null)
+            if(license != null && anketeType == ConsumerAnketeType.CreateNewAnketa)
                 license.LicCode = typeRights == TypeRights.SmallRights ? 1 : typeRights == TypeRights.BigRights ? 10 : throw new ArgumentException();
 
             ddlLicType.DataSource = dictionaties?.agrLicenseType.Where( rec => 
