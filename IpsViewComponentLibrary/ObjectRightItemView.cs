@@ -140,7 +140,7 @@ namespace IpsViewComponentLibrary
 
         private void UpdateAutocompliteItems(string filter)
         {
-            var objects = Presenter.GetObjectsForAutocomplite(filter);
+            var objects = _presenter.GetObjectsForAutocomplite(filter);
 
             objects.ForEach(o => autoObjectName.AutoCompleteItems.Add(
                 new RadListDataItem($"{o.Name} / {o.Author} / {o.Performer}", o))
@@ -164,7 +164,7 @@ namespace IpsViewComponentLibrary
         {
             if (item.Value is ObjectRightMainView obj)
             {
-                Presenter.ObjectNameAutocompliteListItemSelected(obj.ObjId);
+                _presenter.ObjectNameAutocompliteListItemSelected(obj.ObjId);
             }
         }
 
@@ -173,7 +173,7 @@ namespace IpsViewComponentLibrary
             if (ObjectRight == null)
                 return;
 
-            Presenter.NewObject();
+            _presenter.NewObject();
         }
 
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
@@ -195,11 +195,11 @@ namespace IpsViewComponentLibrary
 
             if (currentColumnName == "EditColumn")
             {
-                Presenter.EditObjectAuthorRightholder(SelectedObjectAuthorRightholder);
+                _presenter.EditObjectAuthorRightholder(SelectedObjectAuthorRightholder);
             }
             else if (currentColumnName == "DeleteColumn")
             {
-                Presenter.DeleteObjectAuthorRightholder(SelectedObjectAuthorRightholder);
+                _presenter.DeleteObjectAuthorRightholder(SelectedObjectAuthorRightholder);
             }
         }
 
@@ -208,19 +208,17 @@ namespace IpsViewComponentLibrary
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            Presenter.EditObjectAuthorRightholder(SelectedObjectAuthorRightholder);
+            _presenter.EditObjectAuthorRightholder(SelectedObjectAuthorRightholder);
         }
 
         private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
         {
-            Presenter.AddObjectAuthorRightholder();
+            _presenter.AddObjectAuthorRightholder();
         }
 
         private void btnObjectRightItemSave_Click(object sender, EventArgs e)
         {
-            Presenter.Save();
-
-            // TODO: Raise broadcast event object right updated
+            _presenter.Save();
         }
 
         private void objectAuthorRightholderBindingSource_ListChanged(object sender, ListChangedEventArgs e)
