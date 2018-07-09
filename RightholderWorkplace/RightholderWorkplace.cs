@@ -988,7 +988,7 @@ namespace RightholderWorkplace
             ctrlRightholdersObjectsRight.SelectedRightholder = selectedRightholder;
         }
 
-        private void EditObjectAuthorRightholder(ObjectAuthorRightholder objectAuthorRightholder = null)
+        private void EditObjectAuthorRightholder(ObjectAuthorRightholder objectAuthorRightholder = null) // to move
         {
             if (objectAuthorRightholder == null)
                 objectAuthorRightholder = SelectedObjectAuthorRightholder;
@@ -1014,13 +1014,13 @@ namespace RightholderWorkplace
             actualObjectsPageView.SelectedPage = actualObjectsItemPage;
         }
 
-        private void DeleteObjectAuthorRightholder()
+        private void DeleteObjectAuthorRightholder() // to move
         {
             objectAuthorRightholderBindingSource.Remove(SelectedObjectAuthorRightholder);
             CalculateTotalPersent();
         }
 
-        private void CalculateTotalPersent()
+        private void CalculateTotalPersent() // to move
         {
             var list = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>();
 

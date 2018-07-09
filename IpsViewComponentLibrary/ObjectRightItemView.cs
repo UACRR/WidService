@@ -4,11 +4,10 @@ using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.Data;
@@ -62,16 +61,19 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        public List<ObjectAuthorRightholder> ObjectAuthorRightholderList
-        {
-            get { return objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>().ToList(); }
-        }
+        private BindingList<ObjectAuthorRightholder> _objectAuthorRightholderList = new BindingList<ObjectAuthorRightholder>();
+        public Collection<ObjectAuthorRightholder> ObjectAuthorRightholderList => _objectAuthorRightholderList;
 
         public ObjectRightItemView()
         {
             InitializeComponent();
 
-            // filter only add names
+            InitializeGridFilters();
+        }
+
+        private void InitializeGridFilters()
+        {
+            // filter - only add names
             FilterDescriptor filterByName = new FilterDescriptor();
             filterByName.PropertyName = "CodeI";
             filterByName.Operator = FilterOperator.IsEqualTo;
@@ -79,7 +81,7 @@ namespace IpsViewComponentLibrary
             filterByName.IsFilterEditor = true;
             gvObjectAddNames.FilterDescriptors.Add(filterByName);
 
-            // filter only performers
+            // filter - only performers
             FilterDescriptor filterByPerformer = new FilterDescriptor();
             filterByPerformer.PropertyName = "CodeI";
             filterByPerformer.Operator = FilterOperator.IsEqualTo;
@@ -116,12 +118,10 @@ namespace IpsViewComponentLibrary
 
         public void UpdateObjectRightDataSources(ObjectRight objectRight, IList<ViewCustomer> rightholderList)
         {
-            // TODO: move map to presenter and bind to binding sources exposes from view - think about it (there is ObjectAuthorRightholderList property)
+            // TODO: (implemented) move map to presenter and bind to binding sources exposes from view - think about it (there is ObjectAuthorRightholderList property)
+            // TODO: move to constructor, move other binding initialization to constructor, set bindings for MediaTrack, SeekObject in the presenter throught property
 
             ObjectRight = objectRight;
-
-            if (rightholderList == null)
-                rightholderList = new List<ViewCustomer>();
 
             objectRightBindingSource.DataSource = ObjectRight;
             mediaTrackBindingSource.DataSource = ObjectRight.MediaTrack;
@@ -129,32 +129,7 @@ namespace IpsViewComponentLibrary
             ObjectRight.SeekObject = ObjectRight.SeekObject;
             seekObjectBindingSource.DataSource = ObjectRight.SeekObject;
 
-            // map Authors and Copyright table into single table
-            var objectAuthorRightholderList = ObjectRight.Authors.Select(a =>
-            {
-
-                var foundedCopyright = ObjectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
-                var foundedRightholder = rightholderList.FirstOrDefault(r => r.custId == a.CustId);
-
-                return new ObjectAuthorRightholder
-                {
-                    AuthId = a.AuthId,
-                    ObjId = a.ObjId,
-                    RoleCode = a.RoleCode,
-                    FolkType = a.FolkType,
-                    AuthorName = a.AuthorName,
-                    IsRightholder = a.CustId != null,
-                    CustId = a.CustId,
-                    CRightId = foundedCopyright?.CRightId,
-                    CopyrightStatus = foundedCopyright?.Status,
-                    CommunityName = foundedRightholder?.Community_Name,
-                    Rate = foundedCopyright?.Rate,
-                    BeginDate = foundedCopyright?.BeginDate,
-                    EndDate = foundedCopyright?.EndDate,
-                };
-            }).ToList();
-
-            objectAuthorRightholderBindingSource.DataSource = objectAuthorRightholderList;
+            objectAuthorRightholderBindingSource.DataSource = _objectAuthorRightholderList;
         }
 
         public void ShowError(string message)
@@ -219,11 +194,11 @@ namespace IpsViewComponentLibrary
 
             if (currentColumnName == "EditColumn")
             {
-                //EditObjectAuthorRightholder(); // to fix
+                Presenter.EditObjectAuthorRightholder(SelectedObjectAuthorRightholder);
             }
             else if (currentColumnName == "DeleteColumn")
             {
-                //DeleteObjectAuthorRightholder(); // to fix
+                Presenter.DeleteObjectAuthorRightholder(SelectedObjectAuthorRightholder);
             }
         }
 
@@ -232,14 +207,12 @@ namespace IpsViewComponentLibrary
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            //EditObjectAuthorRightholder(); // to fix
+            Presenter.EditObjectAuthorRightholder(SelectedObjectAuthorRightholder);
         }
 
-        private void btnAddAuthorRightholder_Click(object sender, EventArgs e) // to fix
+        private void btnAddAuthorRightholder_Click(object sender, EventArgs e)
         {
-            //var objectAuthorRightholder = new ObjectAuthorRightholder(_forRightholder);
-
-            //EditObjectAuthorRightholder(objectAuthorRightholder);
+            Presenter.AddObjectAuthorRightholder();
         }
 
         private void btnObjectRightItemSave_Click(object sender, EventArgs e)
