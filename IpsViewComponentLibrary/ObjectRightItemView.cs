@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -222,6 +223,11 @@ namespace IpsViewComponentLibrary
             // TODO: Raise broadcast event object right updated
         }
 
+        private void objectAuthorRightholderBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            UpdateTotalPersent();
+        }
+
         private void btnAddObjectAddName_Click(object sender, EventArgs e)
         {
             AddRowToGrid(gvObjectAddNames);
@@ -249,6 +255,20 @@ namespace IpsViewComponentLibrary
             var newRow = gridView.Rows.AddNew();
             newRow.Cells["CodeI"].Value = filterValue;
             newRow.Cells["Name"].BeginEdit();
+        }
+
+        private void UpdateTotalPersent()
+        {
+            var totalPersent = ObjectAuthorRightholderList.Where(ar => ar.Rate != null).Sum(s => s.Rate);
+
+            txtTotalPersent.Text = totalPersent.ToString();
+
+            if (totalPersent == 100)
+                txtTotalPersent.ForeColor = Color.Green;
+            else if (totalPersent > 100)
+                txtTotalPersent.ForeColor = Color.Red;
+            else
+                txtTotalPersent.ForeColor = SystemColors.ControlText;
         }
     }
 }

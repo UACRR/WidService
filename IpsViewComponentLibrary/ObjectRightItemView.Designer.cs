@@ -150,6 +150,7 @@
             // objectAuthorRightholderBindingSource
             // 
             this.objectAuthorRightholderBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholder);
+            this.objectAuthorRightholderBindingSource.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.objectAuthorRightholderBindingSource_ListChanged);
             // 
             // seekObjectBindingSource
             // 

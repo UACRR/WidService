@@ -88,8 +88,6 @@ namespace IpsViewComponentLibrary
                 if (authorRightholderItemView.DialogResult == DialogResult.OK)
                 {
                     _view.ObjectAuthorRightholderList.Add(newObjectAuthorRightholder);
-
-                    //CalculateTotalPersent(); // to fix - update total persent from presenter presenter
                 }
             }
         }
@@ -99,19 +97,12 @@ namespace IpsViewComponentLibrary
             using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _dictionaries, _objectRight.CategoryCode))
             {
                 authorRightholderItemView.ShowDialog();
-
-                if (authorRightholderItemView.DialogResult == DialogResult.OK)
-                {
-                    //CalculateTotalPersent(); // to fix - update total persent from presenter presenter
-                }
             }
         }
 
         public void DeleteObjectAuthorRightholder(ObjectAuthorRightholder objectAuthorRightholder)
         {
             _view.ObjectAuthorRightholderList.Remove(objectAuthorRightholder);
-
-            //CalculateTotalPersent(); // to fix - update total persent from presenter presenter
         }
 
         public void Save()
@@ -173,20 +164,6 @@ namespace IpsViewComponentLibrary
                     EndDate = foundedCopyright?.EndDate,
                 });
             }
-        }
-
-        private void CalculateTotalPersent() // to fix
-        {
-            //var list = objectAuthorRightholderBindingSource.List.Cast<ObjectAuthorRightholder>();
-
-            //var totalPersent = list.Where(ar => ar.Rate != null).Sum(s => s.Rate);
-
-            //txtTotalPersent.Text = totalPersent.ToString();
-
-            //if (totalPersent > 100)
-            //    txtTotalPersent.ForeColor = Color.Red;
-            //else
-            //    txtTotalPersent.ForeColor = SystemColors.ControlText;
         }
     }
 }
