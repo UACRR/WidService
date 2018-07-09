@@ -302,7 +302,7 @@ namespace IpsViewComponentLibrary
                 txtNumberVat.Enabled = false;
                 //txtNumberVat.Clear();
             }
-             if(ddlTypeVat.SelectedValue.ToString() == "1")
+             if(ddlTypeVat?.SelectedValue?.ToString() == "1")
              {
                  lblIPN.Enabled = true;
                  txtNumberVat.Enabled = true;
