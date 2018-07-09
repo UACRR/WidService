@@ -21,11 +21,15 @@ namespace ipsFormsDesign.Model
         public bool? IsTour { get; set; }
         public string WhereTour { get; set; }
         public decimal? Rate { get; set; }
-        public DateTime? PrepayDateDo { get; set; }
         public int LicVersion { get; set; }
+        public decimal? PrepayRest { get; set; }
+        public string LangCode { get; set; }
+        public int? PerformType { get; set; }
 
+        public Language LangCodeNavigation { get; set; }
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
+        public PerformType PerformTypeNavigation { get; set; }
         public ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         {
             CopyRtranslateLangFromNavigation = new HashSet<CopyRtranslate>();
             CopyRtranslateLangToNavigation = new HashSet<CopyRtranslate>();
+            LicenseBigR = new HashSet<LicenseBigR>();
         }
 
         public string CodeS { get; set; }
@@ -19,5 +20,6 @@ namespace ipsmedserviceapp.Model
 
         public ICollection<CopyRtranslate> CopyRtranslateLangFromNavigation { get; set; }
         public ICollection<CopyRtranslate> CopyRtranslateLangToNavigation { get; set; }
+        public ICollection<LicenseBigR> LicenseBigR { get; set; }
     }
 }

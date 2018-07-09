@@ -13,17 +13,20 @@ namespace UnitTestMediaPortal
     public class RadTextBoxAuto : RadTextBoxControl
     {
         public Action<RadListDataItem> AcceptAuto { set; get; }
+        public bool isKeyDownEnterOrTab { get; set; } = false;
         private int index = -1;
         private RadListDataItem currentItem = null;
         public RadTextBoxAuto()
             : base()
         {
             // acceptAuto = action;
-            ListElement.ElementTree.Control.KeyDown += new KeyEventHandler(radTextBoxControl1_KeyDown);
+            ListElement.ElementTree.Control.KeyDown += radTextBoxControl1_KeyDown;
             ListElement.ElementTree.Control.Click += this.OnListElementClick;
             ListElement.SelectedIndexChanged += ListElement_SelectedIndexChanged;
             ListElement.DataBindingComplete += ListElement_ItemsChanged;
+
         }
+
 
         private void ListElement_ItemsChanged(object sender, ListBindingCompleteEventArgs e)
         {
@@ -76,7 +79,8 @@ namespace UnitTestMediaPortal
         private void radTextBoxControl1_KeyDown(object sender, KeyEventArgs e)
         {
 
-            if (ListElement.ActiveItem != null && (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter))
+            isKeyDownEnterOrTab = false;
+            if (ListElement.ActiveItem != null && (e.KeyCode == Keys.Tab ) || (e.KeyCode == Keys.Enter))
             {
                 var dropDown = sender as ComponentThemableElementTree;
 
@@ -85,7 +89,9 @@ namespace UnitTestMediaPortal
                 if (item != null)
                 {
                     AcceptAuto(item as RadListDataItem);
+                    isKeyDownEnterOrTab = true;
                 }
+
             }
         }
     }

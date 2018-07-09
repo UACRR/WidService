@@ -35,8 +35,9 @@ namespace ipsFormsDesign.Data
         {
             await Task.Run(() =>
             {
+                // По замовчуваню
                 AnketaDictionatiesField.Add(typeof(object), new[] { new BindingField { SorsField = "CodeI", DestField = "ValueMember" }, new BindingField { SorsField = "Name", DestField = "DisplayMember" } });
-                //            Country t = new Country();
+                // Country t = new Country();
                 AnketaDictionatiesField.Add(typeof(Country), new[] { new BindingField { SorsField = "CountryCode" , DestField = "ValueMember" }, new BindingField { SorsField = "CountryNameShort", DestField = "DisplayMember" } });
             });
         }
@@ -70,6 +71,8 @@ namespace ipsFormsDesign.Data
             setAnketaDictProperties();
             AnketaDictionatiesChanged(null, EventArgs.Empty);
         }
+
+
         /// <summary>
         /// -- Звязуємо поля довідника з полями контрола --
         /// </summary>
@@ -80,6 +83,7 @@ namespace ipsFormsDesign.Data
 
             if (AnketaDictionaties == null)
                 return;
+
             if (!AnketaDictionatiesProperties.Keys.Contains(typeDic)) return;
             var controlProperties = control.GetType().GetProperties().ToDictionary(rec => rec.Name);
 
@@ -89,9 +93,11 @@ namespace ipsFormsDesign.Data
                 var tsk = Task.Run(() => setAnketaDicFieldsAsync());
                 tsk.Wait();
             }
+
             var fields = AnketaDictionatiesField.Keys.Contains(typeDic) ? AnketaDictionatiesField[typeDic] : AnketaDictionatiesField[typeof(object)];
             Action[] setter = new Action[fields.Count()];
 
+            // Формуємо метод рив'зки 
             for (int i = 0, cnt = setter.Count(); i < cnt; i++)
             {
                 if (!controlProperties.Keys.Contains(fields[i].DestField ))
@@ -100,7 +106,7 @@ namespace ipsFormsDesign.Data
                 var curI = i;
                 setter[i] = () => { var index = curI; controlProperties[fields[index].DestField].SetValue(control, fields[index].SorsField ); };
             }
-
+            // Прив'язно
             for (int i = 0, cnt = setter.Count(); i < cnt; i++)
                 setter[i]();
 

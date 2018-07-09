@@ -235,11 +235,10 @@
             // 
             // ctrlAgreement
             // 
-            this.ctrlAgreement.Location = new System.Drawing.Point(4, 35);
-            this.ctrlAgreement.MaximumSize = new System.Drawing.Size(490, 218);
+            this.ctrlAgreement.Location = new System.Drawing.Point(4, 4);
             this.ctrlAgreement.MinimumSize = new System.Drawing.Size(490, 218);
             this.ctrlAgreement.Name = "ctrlAgreement";
-            this.ctrlAgreement.Size = new System.Drawing.Size(490, 218);
+            this.ctrlAgreement.Size = new System.Drawing.Size(690, 469);
             this.ctrlAgreement.TabIndex = 0;
             this.ctrlAgreement.typeRights = IpsViewComponentLibrary.TypeRights.SmallRights;
             // 
@@ -271,7 +270,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(999, 39);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(999, 0);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -400,11 +399,11 @@
         private MiddleControlAddress ctrlAddress;
         private MiddleControlManagers ctrlManagers;
         private MiddleControlBankRequisites ctrlBankRequisites;
-        private MiddleControlAgreementAnketaType ctrlAgreement;
         private ipsAnketaClient.ConsumerPlacesControl ctrlPlaces;
         private Telerik.WinControls.UI.RadButton btnLoadPdf;
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private MiddleControlAgreementAnketaType ctrlAgreement;
     }
 }

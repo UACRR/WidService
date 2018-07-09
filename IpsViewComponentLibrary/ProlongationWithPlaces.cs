@@ -50,10 +50,16 @@ namespace IpsViewComponentLibrary
             ctrlProlongation.Rights = typeRights;
             ctrlProlongation.Dictionaties = dict; // словник
 
+            ConsumerAgreementInitType caType = ConsumerAgreementInitType.None;
+            //ініціалізувати тип форми (пролонгація, додавання нового і т.д.)
+            if (goal == DialogGoal.forNew)
+                caType = ConsumerAgreementInitType.AddNewAgreement;
+            else if (goal == DialogGoal.forEdit)
+                caType = ConsumerAgreementInitType.EditAgreement;
+            else if (goal == DialogGoal.forProlongation)
+                caType = ConsumerAgreementInitType.Prolongation;
 
-            ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr);
-
-            ctrlProlongation.DataSourceGrid = places;
+            ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr, caType);
 
             ctrlProlongation.DataSourceAgreement = bindAgr;
             ctrlProlongation.DataSourceAnketaCompany = bindAnketaCompany;
@@ -86,10 +92,15 @@ namespace IpsViewComponentLibrary
             if (_changesSaved)
                 return;
 
-            if (_goal != DialogGoal.forEdit)
+            if (_goal == DialogGoal.forNew)
             {
                 _lic.LicenseAgrParam.Remove(_licAgr);
                 _cust.Client.LicenseAgreement.Remove(_lic);
+            }
+
+            if (_goal == DialogGoal.forProlongation)
+            {
+                _lic.LicenseAgrParam.Remove(_licAgr);
             }
         }
     }

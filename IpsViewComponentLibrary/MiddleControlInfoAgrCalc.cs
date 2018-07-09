@@ -104,12 +104,8 @@ namespace IpsViewComponentLibrary
                         DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
                         DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
                         Amount = licenseParam?.MinAmount ?? default(decimal),
-                        State = _dictionaties?.agreementStatus
-                                    ?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ??
-                                string.Empty,
-                        PeriodPayment =
-                            _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ??
-                            string.Empty,
+                        State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
+                        PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
                         DateLastPayment = ""
                     });
                 }
@@ -194,14 +190,15 @@ namespace IpsViewComponentLibrary
             agreementInfoCtrl.MinPayment = licenseParam?.MinAmount.ToString();
 
             agreementInfoCtrl.State = _dictionaties?.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name;
+
+            //TODO: заповнити відсутні дані
             agreementInfoCtrl.Implementation = "";//буде
             agreementInfoCtrl.IsPaid = true;//буде
             agreementInfoCtrl.Bank = "";//буде
             agreementInfoCtrl.Amount = "";//буде
             agreementInfoCtrl.DistributedAmount = "";//буде
             agreementInfoCtrl.Notation = "";//буде
-
-            agreementInfoCtrl.IsAttach = new Random().Next(-10, 10) > 0;
+            agreementInfoCtrl.IsAttach = new Random().Next(-10, 10) > 0; // буде
         }
 
         /// <summary>
@@ -246,7 +243,7 @@ namespace IpsViewComponentLibrary
 
             if (GetTypeAgrForm())
             {
-                //з майданчиками
+                //з майданчиками * * *
                 ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, 
                                                             _customer?.Client?.ClnBusinessPlace, _customer, goal, typeRights:Rights)
                 {
@@ -310,6 +307,7 @@ namespace IpsViewComponentLibrary
                 newLicense = listDopAgr.OrderBy(rec => rec.LicVersion).Last();
                 // -- Сінхронізувати з поточною, окрім версії
                 newLicense.SetFields(licParam, new[] { "LicVersion" });
+                newLicense.License = licParam?.License;
             }
             // Інакше == 0
             else {
@@ -322,6 +320,7 @@ namespace IpsViewComponentLibrary
                 newLicense.DateBegin = DateTime.Now;
                 newLicense.DateEnd = DateTime.Now.AddYears(1);
                 newLicense.LicVersion = (licVersion ?? 0) + 1;
+                newLicense.License = licParam?.License;
             }
             //newLicense.LicId = 0;
             license?.LicenseAgrParam?.Add(newLicense);

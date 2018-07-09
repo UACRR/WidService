@@ -223,5 +223,32 @@ namespace IpsViewComponentLibrary
         {
             set => rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items[value];
         }
+
+        private void rtxtBoxAuthorPaymentPercent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void rtxtBoxMinAuthorPayment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPercentAutoProl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

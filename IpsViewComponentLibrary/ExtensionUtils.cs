@@ -58,6 +58,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="cust">Дані споживача</param>
         /// <param name="dictionaties">Словники</param>
+        /// <param name="anketeType">Тип анкети: редагування/створення нової</param>
         void SetDataSources(Customer cust, AnketaDictionaties dictionaties);
 
         /// <summary>
@@ -166,6 +167,48 @@ namespace IpsViewComponentLibrary
         /// Багато майданчиків
         /// </summary>
         ManyPlaces
+    }
+
+    /// <summary>
+    /// Тип форматування поточної анкети
+    /// </summary>
+    public enum ConsumerAnketeType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Створення нової анкети споживача
+        /// </summary>
+        CreateNewAnketa,
+        /// <summary>
+        /// Редагування існуючої анкети споживача
+        /// </summary>
+        EditAnketa
+    }
+
+    /// <summary>
+    /// Тип ініціалізації, для чого буде застосовуватись
+    /// </summary>
+    public enum ConsumerAgreementInitType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Створення нового договору
+        /// </summary>
+        AddNewAgreement,
+        /// <summary>
+        /// Редагування існуючого договору
+        /// </summary>
+        EditAgreement,
+        /// <summary>
+        /// Пролонгація договору
+        /// </summary>
+        Prolongation
     }
 
     #endregion
