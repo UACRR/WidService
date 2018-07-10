@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -233,8 +234,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        /// <summary>
+        /// Мінімальна допустима сума
+        /// </summary>
+        public decimal MinAmount { get; set; }
+
         private void rtxtBoxMinAuthorPayment_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //TODO контроль мінімальної суми
             char ch = e.KeyChar;
             if (!char.IsDigit(ch) && ch != 8 && ch != 44)
             {

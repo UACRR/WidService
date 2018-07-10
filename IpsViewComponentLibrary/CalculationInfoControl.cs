@@ -178,7 +178,6 @@ namespace IpsViewComponentLibrary
 
         private void btnDistribute_Click(object sender, EventArgs e)
         {
-            //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
             if (gvUserMoneys.RowCount == 0 || gvUserMoneys.CurrentRow == null)
                 return;
 

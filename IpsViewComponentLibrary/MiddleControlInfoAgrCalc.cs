@@ -92,8 +92,11 @@ namespace IpsViewComponentLibrary
             if (_customer?.Client.LicenseAgreement != null)
                 foreach (var item in _customer.Client.LicenseAgreement)
                 {
-                    //
+                    //якщо з малими правами, пропустити
+                    if(Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
+
                     var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
+                    
                     source.Add(new GridLicenseAgrView
                     {
                         Id = item.AgrId,
@@ -109,7 +112,7 @@ namespace IpsViewComponentLibrary
                         DateLastPayment = ""
                     });
                 }
-
+            //
             gvLicenseAgr.DataSource = source;
             gvLicenseAgr.MasterTemplate.Refresh();
             gvLicenseAgr.Update();
@@ -121,6 +124,7 @@ namespace IpsViewComponentLibrary
             if (_customer?.Client.LicenseAgreement != null)
                 foreach (var item in _customer.Client.LicenseAgreement)
                 {
+                    if (Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
                     source.AddRange(item.LicenseAgrParam.Where(rec => rec.LicVersion > item.LicVersion)
                         .Select(licAgr => new GridLicenseAgrView
                         {

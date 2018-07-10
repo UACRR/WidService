@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary
 
         public delegate void Print();
         public event Print OnPrintClick;
+
+        decimal _minAmount = default(decimal);
         private Customer _customer;
         private LicenseAgreement _license;
         private LicenseAgrParam _licenseAgr;
@@ -128,16 +130,16 @@ namespace IpsViewComponentLibrary
             OnSaveChangesClick?.Invoke();
         }
 
+        //при зміні чекбокс
         private void gvPlaces_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            //TODO: checkbox event обрані майданчики додати до ліцензії
             var id = (int)e.Row.Cells["PlaceId"].Value;
 
             if (_licenseAgr.License == null)
              _licenseAgr.License = new ObservableListSource<LicenseForPlaces>();   
             
             
-            if (e?.Value != null && (bool)e.Value)
+            if (e.Value != null && (bool)e.Value)
             {
                 _licenseAgr.License.Add(new LicenseForPlaces
                 {
@@ -150,30 +152,78 @@ namespace IpsViewComponentLibrary
                     Place = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id),
                     Status = _licenseAgr.LicStatus
                 });
-                //_places.Add(_tempPlaces.SingleOrDefault(rec => rec.PlaceId == id));
+                CalculateMinAmount(CalculationMinAmountType.AddCalcValue, e.Row.DataBoundItem as IntermediateDataSourcePlaces);
             }
-            else if (e?.Value != null && !(bool)e.Value)
+            else if (e.Value != null && !(bool)e.Value)
             {
+                CalculateMinAmount(CalculationMinAmountType.DeleteCalcValue, e.Row.DataBoundItem as IntermediateDataSourcePlaces);
                 _licenseAgr.License.Remove(_licenseAgr.License.SingleOrDefault(rec => rec.PlaceId == id));
-                //_places.Remove(_tempPlaces.SingleOrDefault(rec => rec.PlaceId == id));
             }
         }
 
-        //обрати чекбокс майданчиків що в ліцензії
+        //початковий вибір чекбокс майданчиків що в ліцензії
         private void SetChoosePlaces()
         {
-            gvPlaces.DataSource = _tempPlaces;
+            ObservableListSource<IntermediateDataSourcePlaces> dataSource = new ObservableListSource<IntermediateDataSourcePlaces>();
+            foreach (var place in _tempPlaces)
+            {
+                decimal amount = default(decimal);
+
+                foreach (var holl in place.ClnPlaceHoll)
+                {
+                    decimal.TryParse(holl.ValuePlace, out decimal a);
+                    amount += a;
+                }
+
+                dataSource.Add(new IntermediateDataSourcePlaces
+                {
+                    PlaceId = place.PlaceId,
+                    PlaceName = place.PlaceName,
+                    PlaceAddress = place.PlaceAddress,
+                    Amount = amount
+                });
+            }
+            gvPlaces.DataSource = dataSource;
+
             if (_agreementInitType == ConsumerAgreementInitType.EditAgreement ||
                 _agreementInitType == ConsumerAgreementInitType.Prolongation)
             {
-                //todo повторити ліцензію для пролонгації
                 gvPlaces.CellValueChanged -= gvPlaces_CellValueChanged;
                 foreach (var item in _licenseAgr.License)
                 {
-                    gvPlaces.Rows.SingleOrDefault(row => Convert.ToInt32(row.Cells["PlaceId"].Value) == item.PlaceId).Cells["CheckIn"].Value = true;
+                    gvPlaces.Rows.SingleOrDefault(row => Convert.ToInt32(row.Cells["PlaceId"]?.Value) == item.PlaceId).Cells["CheckIn"].Value = true;
+                    var place = gvPlaces.Rows.SingleOrDefault(rec => (int?)rec?.Cells["PlaceId"]?.Value == item.PlaceId)?.DataBoundItem as IntermediateDataSourcePlaces;
+                    CalculateMinAmount(CalculationMinAmountType.AddCalcValue, place);
                 }
                 gvPlaces.CellValueChanged += gvPlaces_CellValueChanged;
             }
         }
+
+        private void CalculateMinAmount(CalculationMinAmountType calcType, IntermediateDataSourcePlaces place)
+        {
+            switch (calcType)
+            {
+                case CalculationMinAmountType.AddCalcValue:
+                    _minAmount += place.Amount;
+                    break;
+            
+                case CalculationMinAmountType.DeleteCalcValue:
+                    _minAmount -= place.Amount;
+                    break;
+            }
+                
+            ctrlAgrSecond.MinAmount = _minAmount;
+        }
+    }
+
+    /// <summary>
+    /// Проміжний клас для відображення даних на грід та зручним обрахуванням суми
+    /// </summary>
+    internal class IntermediateDataSourcePlaces
+    {
+        public int PlaceId { get; set; }
+        public string PlaceAddress { get; set; }
+        public string PlaceName { get; set; }
+        public decimal Amount { get; set; }
     }
 }

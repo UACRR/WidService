@@ -166,7 +166,6 @@ namespace IpsViewComponentLibrary
 
                 case 4: //- Майданчики
                     {
-                        //TODO: якщо не додано жодного майданчику видавати помилку
                         isValid = true;
                     }
                     break;

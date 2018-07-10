@@ -106,7 +106,6 @@ namespace ipsAnketaClient
                 : _measurementPremises == MeasurementOfPremises.Number ? "Кількість місць" : string.Empty;
         }
 
-        //TODO: тестувати валідатор / реконструювати
         /// <summary>
         /// Перевірка правильності введення
         /// </summary>
@@ -141,21 +140,6 @@ namespace ipsAnketaClient
             }
             else
                 lblTitlePlace.ForeColor = Color.Black;
-            
-            //if (count >= 2 && _isEdit)
-            //{
-            //    MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Warning);
-            //    lblTypePremisses.ForeColor = Color.Crimson;
-            //    return false;
-            //}
-            //else if (count >= 1 && !_isEdit)
-            //{
-            //    MessageBox.Show("Зала з таким ім'ям вже існує!", "Повтор найменування!", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Warning);
-            //    lblTypePremisses.ForeColor = Color.Crimson;
-            //    return false;
-            //}
 
             if (isNotEmpty&&isNumber)
                 return true;

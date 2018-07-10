@@ -47,6 +47,7 @@ namespace IpsViewComponentLibrary
             set => bindingSourceAnketaCompany.DataSource = value;
         }
 
+        //TODO: переробити databinding LicenseAgrParam
         public LicenseAgrParam LicenseAgrParam
         {
             get => null;

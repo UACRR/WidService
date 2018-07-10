@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -16,8 +17,15 @@ namespace ipsmedserviceapp.Model
         public decimal? PrepaySumAuthor { get; set; }
         public string R030 { get; set; }
         public DateTime? PrepayDateDo { get; set; }
+        public int? LicId { get; set; }
+        public int? LicVersion { get; set; }
 
+        [JsonIgnore]
         public CopyRight CRight { get; set; }
+        [JsonIgnore]
+        public LicenseBigR Lic { get; set; }
+        [JsonIgnore]
         public PrePayType PrepayTypeNavigation { get; set; }
     }
 }
+

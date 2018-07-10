@@ -1054,6 +1054,8 @@ public interface ILicAuthorBr
          decimal? PrepaySumAuthor { get; set; }
          string R030 { get; set; }
          DateTime? PrepayDateDo { get; set; }
+         int? LicId { get; set; }
+         int? LicVersion { get; set; }
 }
 public interface ILicense
     {

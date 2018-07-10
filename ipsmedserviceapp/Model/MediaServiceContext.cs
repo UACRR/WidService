@@ -4227,6 +4227,10 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("dateModify")
                     .HasColumnType("date");
 
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
+                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
+
                 entity.Property(e => e.PrepayDateDo)
                     .HasColumnName("prepayDateDo")
                     .HasColumnType("date");
@@ -4259,6 +4263,11 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.LicAuthorBr)
                     .HasForeignKey(d => d.PrepayType)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_PREPAYTY");
+
+                entity.HasOne(d => d.Lic)
+                    .WithMany(p => p.LicAuthorBr)
+                    .HasForeignKey(d => new { d.LicId, d.LicVersion })
+                    .HasConstraintName("FK_LICAUTHO_REFERENCE_LICENSEB");
             });
 
             modelBuilder.Entity<License>(entity =>
