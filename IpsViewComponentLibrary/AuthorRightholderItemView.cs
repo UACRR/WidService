@@ -79,6 +79,7 @@ namespace IpsViewComponentLibrary
 
             using (var selectionView = new RightholderSelectionView())
             {
+                selectionView.SelectedRightholder = new RightholderMainView { CustId = _authorRightholder.CustId ?? 0 };
                 selectionView.RightholderSelected += SelectionView_RightholderSelected;
                 selectionView.ShowDialog();
             }
