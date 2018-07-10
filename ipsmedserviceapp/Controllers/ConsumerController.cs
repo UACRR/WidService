@@ -31,6 +31,17 @@ namespace ipsmedserviceapp.Controllers
             _config = config;
         }
 
+
+        private async Task GetConsumerBR( Customer bigRConsumer )
+        {
+            foreach( var item in bigRConsumer.Client.LicenseAgreement.Where( rec => rec.LicenseBigR.Count() > 0 ) )
+            {
+                foreach( var lic in item.LicenseBigR )
+                {
+                    // _dbContext.Entry(lic).Collection( rec => rec.L)
+                }
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -77,6 +88,7 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
                 // Великі права
+                await GetConsumerBR();
                 //if (license.LicenseBigR != null)
                 //    await _dbContext.Entry(license.LicenseBigR).Collection(rec => rec.LicAuthorBr)
                 //        .Query()
