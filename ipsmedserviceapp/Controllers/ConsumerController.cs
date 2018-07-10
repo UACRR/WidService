@@ -41,7 +41,9 @@ namespace ipsmedserviceapp.Controllers
             foreach( var item in bigRConsumer.Client.LicenseAgreement.Where( rec => rec.LicenseBigR.Count() > 0 ) )
             {
                 await _dbContext.Entry(item).Collection(rec => rec.LicenseBigR).Query()
-                    .Include(rec => rec.Obj).ThenInclude(obj=>obj.Authors).LoadAsync();
+                    .Include(rec => rec.Obj).ThenInclude(obj=>obj.Authors)
+                    .Include( rec=> rec.LicAuthorBr )
+                    .LoadAsync();
 
                 foreach( var lic in item.LicenseBigR )
                 {

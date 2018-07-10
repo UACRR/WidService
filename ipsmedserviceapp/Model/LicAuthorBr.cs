@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -19,8 +20,12 @@ namespace ipsmedserviceapp.Model
         public int? LicId { get; set; }
         public int? LicVersion { get; set; }
 
+        [JsonIgnore]
         public CopyRight CRight { get; set; }
+        [JsonIgnore]
         public LicenseBigR Lic { get; set; }
+        [JsonIgnore]
         public PrePayType PrepayTypeNavigation { get; set; }
     }
 }
+

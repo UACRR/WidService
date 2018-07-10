@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -22,12 +23,20 @@ namespace ipsmedserviceapp.Model
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
 
+        [JsonIgnore]
         public RightHolder Cust { get; set; }
+        [JsonIgnore]
         public ObjectRight Obj { get; set; }
+        [JsonIgnore]
         public CreativeRoleType RoleCodeNavigation { get; set; }
+        [JsonIgnore]
         public CrightStatus StatusNavigation { get; set; }
+        [JsonIgnore]
         public CopyRtranslate CopyRtranslate { get; set; }
+        [JsonIgnore]
         public LicAuthorBr LicAuthorBr { get; set; }
+        [JsonIgnore]
         public WorkRh WorkRh { get; set; }
     }
 }
+
