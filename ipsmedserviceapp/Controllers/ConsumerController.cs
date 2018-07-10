@@ -31,15 +31,23 @@ namespace ipsmedserviceapp.Controllers
             _config = config;
         }
 
-
-        private async Task GetConsumerBR( Customer bigRConsumer )
+        /// <summary>
+        /// Додаткові дані по великим правам
+        /// </summary>
+        /// <param name="bigRConsumer"></param>
+        /// <returns></returns>
+        private async Task GetConsumerBR(Customer bigRConsumer)
         {
             foreach( var item in bigRConsumer.Client.LicenseAgreement.Where( rec => rec.LicenseBigR.Count() > 0 ) )
             {
+                await _dbContext.Entry(item).Collection(rec => rec.LicenseBigR).Query()
+                    .Include(rec => rec.Obj).ThenInclude(obj=>obj.Authors).LoadAsync();
+
                 foreach( var lic in item.LicenseBigR )
                 {
-                    // _dbContext.Entry(lic).Collection( rec => rec.L)
+                    await _dbContext.Entry(lic.Obj).Collection(obj => obj.CopyRight).LoadAsync();
                 }
+                
             }
         }
         /// <summary>
@@ -67,18 +75,24 @@ namespace ipsmedserviceapp.Controllers
                     .Where(agree => agree.LicStatus < 4)
                     .Include(item => item.Agr)
                     .Include(item => item.LicCodeNavigation)
-                    .Include(item => item.LicenseBigR).ThenInclude(rec => rec.Obj)
+
                     .Include(rec => rec.PaidPeriod)
                     .LoadAsync();
 
+
+
             foreach (var license in cust.Client.LicenseAgreement)
             {
-                // AggreAddBr
+                // AggreAddBr 
                 await _dbContext.Entry(license.Agr).Collection(rec => rec.AgreementAddBr)
                     .Query()
-                    .Where(item => item.Version == license.Agr.Version)
+                    .Where(item => item.Version >= license.Agr.Version)
                     .LoadAsync();
-
+                // LicenseBigR
+                await _dbContext.Entry(license).Collection(rec => rec.LicenseBigR )
+                    .Query()
+                    .Where(item => item.LicVersion >= license.LicVersion )
+                    .LoadAsync();
                 // Лцензії для майданчиків
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
@@ -88,15 +102,9 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
                 // Великі права
-                await GetConsumerBR();
-                //if (license.LicenseBigR != null)
-                //    await _dbContext.Entry(license.LicenseBigR).Collection(rec => rec.LicAuthorBr)
-                //        .Query()
-                //        .Where(rec => rec.DateClose == null || rec.DateClose > DateTime.Today)
-                //        .LoadAsync();
-
-
             }
+            // Великі права
+            await GetConsumerBR(cust);
 
             // Отримати Майданчики
             foreach (var place in cust.Client.ClnBusinessPlace)
