@@ -125,8 +125,7 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.Name = "rdtPickerDateEnd";
-            this.rdtPickerDateEnd.NullDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
-            this.rdtPickerDateEnd.NullText = "Не обмежено";
+            this.rdtPickerDateEnd.NullText = "Оберіть дату";
             this.rdtPickerDateEnd.Size = new System.Drawing.Size(118, 21);
             this.rdtPickerDateEnd.TabIndex = 3;
             this.rdtPickerDateEnd.TabStop = false;

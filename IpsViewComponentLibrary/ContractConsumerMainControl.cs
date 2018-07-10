@@ -17,6 +17,8 @@ namespace IpsViewComponentLibrary
         private string _dateBeginDataMember = "";
         private string _dateEndDataMember = "";
         private string _agreemnentName = "";
+        private DateTime _dateEndNullDate = new DateTime(1,1,1);
+        private string _dateEndNullText = "";
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -112,6 +114,34 @@ namespace IpsViewComponentLibrary
                 {
                     _agreemnentName = value;
                     lblContrNumb.Text = value;
+                }
+            }
+        }
+
+        [Browsable(true)]
+        public DateTime DateEndNullDate
+        {
+            get { return _dateEndNullDate; }
+            set
+            {
+                if (_dateEndNullDate != value)
+                {
+                    _dateEndNullDate = value;
+                    rdtPickerDateEnd.NullDate = value;
+                }
+            }
+        }
+
+        [Browsable(true)]
+        public string DateEndNullText
+        {
+            get { return _dateEndNullText; }
+            set
+            {
+                if (_dateEndNullText != value)
+                {
+                    _dateEndNullText = value;
+                    rdtPickerDateEnd.NullText = value;
                 }
             }
         }
