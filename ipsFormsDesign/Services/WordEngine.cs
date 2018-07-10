@@ -803,6 +803,10 @@ namespace ipsFormsDesign.Services
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
                 LicenseBigR licenseBigR = licA?.LicenseBigR?.Where( rec => rec.LicVersion == licA.LicVersion).Single();
+                var authors = licenseBigR?.Obj.Authors?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
+
+
+
 
                 ShowName = licenseBigR?.Obj?.Name?.ToString();
                 ShowAct = licenseBigR?.Obj?.ActCode?.ToString();
@@ -810,6 +814,7 @@ namespace ipsFormsDesign.Services
                 docNumberC = licA?.LicenseAgrParam?.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum;
                 LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
                         (rec.LicVersion == licA.LicVersion)).Single();
+                
                 docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
                 docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
                 decimal prcntrate = Convert.ToDecimal(licenseBigR?.Rate);
