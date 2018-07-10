@@ -175,7 +175,7 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
             copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec }));
             var agrMaster = new AgreementMaster { Version = 1, AgrStatus = 0 };
-            agrMaster.AgreementAddRh.Add(new AgreementAddRh { Version = 1, AgrStatus = 0 });
+            agrMaster.AgreementAddRh.Add(new AgreementAddRh { Version = 1, AgrStatus = 0, AgrDate = DateTime.Now, DateBegin = DateTime.Now, DateEnd = new DateTime(3000,1,1) });
 
             newCust.AgreementMaster.Add(agrMaster);
 
