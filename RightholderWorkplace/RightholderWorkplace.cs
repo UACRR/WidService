@@ -504,8 +504,6 @@ namespace RightholderWorkplace
 
             if (agreement != null)
             {
-                agreementMasterBindingSource.DataSource = agreement;
-
                 agreementAddRhBindingSource.DataSource = agreement.AgreementAddRh;
             }
             else
