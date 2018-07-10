@@ -191,15 +191,35 @@ namespace ipsmedserviceapp.Controllers
                 destCustomer.Client.ClnBusinessPlace.Add(clnPlace);
             });
 
-            // Delete
-            List<LicenseAgreement> tempList = destCustomer.Client.LicenseAgreement.Where(row => !sorsCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
-            tempList.ForEach(item =>
+            // LicenseAgreement
             {
+                Dictionary<int, ClnBusinessPlace> dicPlace = sorsCustomer.Client.ClnBusinessPlace.ToDictionary( rec => rec.PlaceId );
+                Action<License> addLicense = (lic) =>
+                {
+                    if (lic.PlaceId == null)
+                        return;
+                    int placeId = (int)lic.PlaceId;
+                    ClnBusinessPlace place = null;
+                    if (!dicPlace.Keys.Contains(placeId))
+                    {
+                        place = new ClnBusinessPlace { PlaceId = placeId };
+                        _dbContext.ClnBusinessPlace.Attach(place);
+                        dicPlace.Add(placeId, place);
+                    }
+                    else
+                        place = dicPlace[placeId];
+
+                    place.License.Add(lic);
+                };
+                // Delete
+                List<LicenseAgreement> tempList = destCustomer.Client.LicenseAgreement.Where(row => !sorsCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
                 // Delete LicenseAgreement
                 var agreeItem = destCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
                 // var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
                 agreeItem.LicenseAgreement.Remove(item);
-                destCustomer.Client.LicenseAgreement.Remove(item);
+                    destCustomer.Client.LicenseAgreement.Remove(item);
 
                 // LicenseBigR
                 //if (item.LicenseBigR != null)
@@ -211,25 +231,25 @@ namespace ipsmedserviceapp.Controllers
                 // AgreementMaster
                 _dbContext.LicenseAgreement.Remove(item);
 
-            }
-            );
+                }
+                );
 
-            // Modify
-            tempList = sorsCustomer.Client.LicenseAgreement.Where(row => destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
-            tempList.ForEach(item =>
-            {
+                // Modify
+                tempList = sorsCustomer.Client.LicenseAgreement.Where(row => destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
 
                 // Delete LicenseAgreement
                 var agreeItemDest = destCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                var agreeItemSors = item.Agr;
-                agreeItemDest.SetFields(agreeItemSors);
+                    var agreeItemSors = item.Agr;
+                    agreeItemDest.SetFields(agreeItemSors);
 
-                var license = destCustomer.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
-                license.SetFields(item);
-                _dbContext.UpdateList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
+                    var license = destCustomer.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
+                    license.SetFields(item);
+                    _dbContext.UpdateList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
 
-                if (item.LicenseBigR != null)
-                {
+                    if (item.LicenseBigR != null)
+                    {
                     //if (license.LicenseBigR == null)
                     //    license.LicenseBigR = new LicenseBigR();
                     license.LicenseBigR.SetFields(item.LicenseBigR);
@@ -238,52 +258,56 @@ namespace ipsmedserviceapp.Controllers
                 }
 
 
-                var sorsDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
-                foreach (var destParam in license.LicenseAgrParam)
+                    var sorsDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
+                    foreach (var destParam in license.LicenseAgrParam)
+                    {
+                        var sorsParam = sorsDic[destParam.LicVersion];
+                        _dbContext.UpdateList(sorsParam.License, destParam.License, i => addLicense(i), (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId, new[] { "LId" });
+                    }
+
+                    _dbContext.UpdateList(agreeItemSors.AgreementAddBr, agreeItemDest.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
+
+                });
+                // Add
+                tempList = sorsCustomer.Client.LicenseAgreement.Where(row => !destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
                 {
-                    var sorsParam = sorsDic[destParam.LicVersion];
-                    _dbContext.UpdateList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId);
-                }
-
-                _dbContext.UpdateList(agreeItemSors.AgreementAddBr, agreeItemDest.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
-
-            });
-            // Add
-            tempList = sorsCustomer.Client.LicenseAgreement.Where(row => !destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
-            tempList.ForEach(item =>
-            {
 
                 // Delete LicenseAgreement
                 var agreeItem = item.Agr;
-                var destAgreeItem = destCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                if (destAgreeItem == null)
-                {
-                    destAgreeItem = new AgreementMaster();
-                    destAgreeItem.SetFields(agreeItem, new[] { "AgrId" });
-                    destCustomer.AgreementMaster.Add(destAgreeItem);
-                }
+                    var destAgreeItem = destCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    if (destAgreeItem == null)
+                    {
+                        destAgreeItem = new AgreementMaster();
+                        destAgreeItem.SetFields(agreeItem, new[] { "AgrId" });
+                        destCustomer.AgreementMaster.Add(destAgreeItem);
+                    }
 
-                var addLicItem = new LicenseAgreement { LicVersion = 1 };
-                addLicItem.SetFields(item, new[] { "LicId" });
-                _dbContext.AppendList(item.LicenseAgrParam, addLicItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
+                    var addLicItem = new LicenseAgreement { LicVersion = 1 };
+                    addLicItem.SetFields(item, new[] { "LicId" });
 
-                if (item.LicenseBigR != null)
-                {
+                    _dbContext.AppendList(item.LicenseAgrParam, addLicItem.LicenseAgrParam, (sors,dest) => {
+                        _dbContext.AppendList(sors.License, dest.License, i => addLicense(i), (l, r) => l.PlaceId == r.PlaceId, new[] { "LId" });
+                    }, (l, r) => l.LicVersion == r.LicVersion);
+
+
+                    if (item.LicenseBigR != null)
+                    {
                     //addLicItem.LicenseBigR = new LicenseBigR();
                     addLicItem.LicenseBigR.SetFields(item.LicenseBigR);
                     //_dbContext.AppendList(item.LicenseBigR.LicAuthorBr, addLicItem.LicenseBigR.LicAuthorBr
                     //            , i => { }
                     //            , (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
                 }
-                destCustomer.Client.LicenseAgreement.Add(addLicItem);
-                destAgreeItem.LicenseAgreement.Add(addLicItem);
+                    destCustomer.Client.LicenseAgreement.Add(addLicItem);
+                    destAgreeItem.LicenseAgreement.Add(addLicItem);
 
                 // old: _dbContext.AppendList(agreeItem?.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
-                if(agreeItem?.AgreementAddBr != null && destAgreeItem?.AgreementAddBr != null)
-                    _dbContext.AppendList(agreeItem.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
+                if (agreeItem?.AgreementAddBr != null && destAgreeItem?.AgreementAddBr != null)
+                        _dbContext.AppendList(agreeItem.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
+                }
+                );
             }
-            );
-
 
             if (destCustomer.CustType == 3) // Company
             {
@@ -414,7 +438,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="sorsCustomer"></param>
         private void fillLicenseAgreement(Customer sorsCustomer)
         {
-            foreach ( var item in sorsCustomer.Client.LicenseAgreement )
+            foreach (var item in sorsCustomer.Client.LicenseAgreement)
             {
                 item.Agr.AgrStatus = 2;
                 var param = item.LicenseAgrParam.Where(rec => rec.LicVersion == item.LicVersion).Single();
@@ -556,7 +580,7 @@ namespace ipsmedserviceapp.Controllers
             return Json(List);
         }
         [HttpGet("listAll/{filter}")]
-        public async Task<IActionResult> GetFilteredList( string filter)
+        public async Task<IActionResult> GetFilteredList(string filter)
         {
             string normalizeFilter = string.Concat(filter, "%");
             var list = await _dbContext.getViewData("select name, custid from vCustomer where custType = 3 and name like @filter", new[] { new SqlParameter("@filter", normalizeFilter) });
