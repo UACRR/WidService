@@ -802,15 +802,19 @@ namespace ipsFormsDesign.Services
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
-                //ShowName = licA?.LicenseBigR?.Obj?.Name?.ToString();
-                //ShowAct = licA?.LicenseBigR?.Obj?.ActCode?.ToString();
+                LicenseBigR licenseBigR = licA?.LicenseBigR?.Where( rec => rec.LicVersion == licA.LicVersion).Single();
+
+                ShowName = licenseBigR?.Obj?.Name?.ToString();
+                ShowAct = licenseBigR?.Obj?.ActCode?.ToString();
+
                 docNumberC = licA?.LicenseAgrParam?.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum;
                 LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
                         (rec.LicVersion == licA.LicVersion)).Single();
                 docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
                 docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
-                //prcntShow = licA?.LicenseBigR?.Rate?.ToString();
-                //prcntShowText = Utils.PrcnPhrase(Convert.ToDecimal(licA?.LicenseBigR?.Rate));
+                decimal prcntrate = Convert.ToDecimal(licenseBigR?.Rate);
+                prcntShow = prcntrate.ToString("F");
+                prcntShowText = Utils.PrcnPhrase(prcntrate);
                 //PayShowDataDo = $"{licA?.LicenseBigR?.PrepayDateDo:dd.MM.yyyy}";
                 decimal pPayShowGrn = 0;
                 decimal aPayShowGrn = 0;
@@ -1059,7 +1063,13 @@ namespace ipsFormsDesign.Services
             CstBooker = $"{EmployeeBooker.LastName} {EmployeeBooker.FirstName} {EmployeeBooker.SurName ?? string.Empty}";
             CPaidAmountGrn = period.Amount.ToString();
             CPaidAmountGrnText = Utils.NumPhraseL(Convert.ToUInt32(period.Amount), false);
-            CPaidAmountKop = ((int)((period.Amount - (int)period.Amount) * 100)).ToString();
+            int CPaidAmountKopInt = ((int)((period.Amount - (int)period.Amount) * 100));
+            CPaidAmountKop = CPaidAmountKopInt.ToString();
+            if (CPaidAmountKopInt < 10)
+                {
+                CPaidAmountKop = "0" + CPaidAmountKop;
+                }
+
             CPaidAmountKopText = Utils.NumPhraseL(Convert.ToUInt32(((int)((period.Amount - (int)period.Amount) * 100))), false);
             CstCorrespAddress = anketaCompany.LeAddress != null ?
                 $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : CstCorrespAddress;
