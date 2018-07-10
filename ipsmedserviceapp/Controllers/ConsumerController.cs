@@ -226,6 +226,8 @@ namespace ipsmedserviceapp.Controllers
 
                 var license = destCustomer.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
                 license.SetFields(item);
+
+
                 _dbContext.UpdateList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
 
                 if (item.LicenseBigR != null)
@@ -237,7 +239,6 @@ namespace ipsmedserviceapp.Controllers
                     //_dbContext.UpdateList(item.LicenseBigR.LicAuthorBr, license.LicenseBigR.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
                 }
 
-
                 var sorsDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
                 foreach (var destParam in license.LicenseAgrParam)
                 {
@@ -247,7 +248,9 @@ namespace ipsmedserviceapp.Controllers
 
                 _dbContext.UpdateList(agreeItemSors.AgreementAddBr, agreeItemDest.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
 
+                
             });
+            ;
             // Add
             tempList = sorsCustomer.Client.LicenseAgreement.Where(row => !destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
             tempList.ForEach(item =>
