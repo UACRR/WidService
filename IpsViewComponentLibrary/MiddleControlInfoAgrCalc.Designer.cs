@@ -53,6 +53,7 @@
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.pvSecond = new Telerik.WinControls.UI.RadPageView();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.btnDeleteAgr = new Telerik.WinControls.UI.RadButton();
             this.btnPrint = new Telerik.WinControls.UI.RadButton();
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.btnEditAgreement = new Telerik.WinControls.UI.RadButton();
@@ -75,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pvSecond)).BeginInit();
             this.pvSecond.SuspendLayout();
             this.pvAgreement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgreement)).BeginInit();
@@ -215,6 +217,7 @@
             // pvAgreement
             // 
             this.pvAgreement.AutoScroll = true;
+            this.pvAgreement.Controls.Add(this.btnDeleteAgr);
             this.pvAgreement.Controls.Add(this.btnPrint);
             this.pvAgreement.Controls.Add(this.btnAddAgreement);
             this.pvAgreement.Controls.Add(this.btnEditAgreement);
@@ -226,6 +229,17 @@
             this.pvAgreement.Name = "pvAgreement";
             this.pvAgreement.Size = new System.Drawing.Size(982, 484);
             this.pvAgreement.Text = "Договір";
+            // 
+            // btnDeleteAgr
+            // 
+            this.btnDeleteAgr.Location = new System.Drawing.Point(890, 117);
+            this.btnDeleteAgr.Name = "btnDeleteAgr";
+            this.btnDeleteAgr.Size = new System.Drawing.Size(87, 38);
+            this.btnDeleteAgr.TabIndex = 6;
+            this.btnDeleteAgr.Text = "Видалити договір";
+            this.btnDeleteAgr.TextWrap = true;
+            this.btnDeleteAgr.ThemeName = "Office2013Light";
+            this.btnDeleteAgr.Click += new System.EventHandler(this.btnDeleteAgr_Click);
             // 
             // btnPrint
             // 
@@ -301,7 +315,6 @@
             this.agreementInfoCtrl.MinimumSize = new System.Drawing.Size(788, 277);
             this.agreementInfoCtrl.MinPayment = "14799.50";
             this.agreementInfoCtrl.Name = "agreementInfoCtrl";
-            this.agreementInfoCtrl.Notation = "";
             this.agreementInfoCtrl.NumberAgr = "КБЦКП - 95/87845-45а";
             this.agreementInfoCtrl.Percent = "3";
             this.agreementInfoCtrl.PeriodReportind = "Щоночі";
@@ -470,6 +483,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pvSecond)).EndInit();
             this.pvSecond.ResumeLayout(false);
             this.pvAgreement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgreement)).EndInit();
@@ -505,5 +519,6 @@
         private Telerik.WinControls.UI.RadGridView gvMoreAgr;
         private Telerik.WinControls.UI.RadButton btnAddAgreement;
         private Telerik.WinControls.UI.RadButton btnPrint;
+        private Telerik.WinControls.UI.RadButton btnDeleteAgr;
     }
 }
