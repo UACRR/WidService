@@ -510,6 +510,10 @@ namespace RightholderWorkplace
             {
                 agreement = new AgreementMaster();
                 _customer.AgreementMaster.Add(agreement);
+                var agreementAddRh = new AgreementAddRh();
+                agreement.AgreementAddRh.Add(agreementAddRh);
+
+                agreementAddRhBindingSource.DataSource = agreementAddRh;
             }
 
             // if type of collection is HashSet, then adding new row is not allowed

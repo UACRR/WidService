@@ -174,7 +174,10 @@ namespace IpsViewComponentLibrary
             if (txtPhone.SelectionLength == txtPhone.TextLength)
             {
                 e.Handled = true;
-                txtPhone.Text = phoneCode + e.KeyChar;
+
+                txtPhone.Text = phoneCode + (e.KeyChar == 8 ? string.Empty : e.KeyChar.ToString());
+
+                //txtPhone.Text = phoneCode + e.KeyChar;
                 txtPhone.Select(txtPhone.Text.Length, 0);
             }
 
