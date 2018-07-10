@@ -218,6 +218,13 @@ namespace IpsViewComponentLibrary
 
         private void btnObjectRightItemSave_Click(object sender, EventArgs e)
         {
+            if (!ValidateChildren())
+            {
+                MessageBox.Show("Не вірно введені дані. Об'єкт не записаний.");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
             _presenter.Save();
         }
 
@@ -268,5 +275,20 @@ namespace IpsViewComponentLibrary
             else
                 txtTotalPersent.ForeColor = SystemColors.ControlText;
         }
+
+        #region Validation
+
+        private void autoObjectName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(autoObjectName.Text))
+            {
+                errorProvider.SetError(autoObjectName, "Назва об'єкта є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(autoObjectName, "");
+        }
+
+        #endregion
     }
 }
