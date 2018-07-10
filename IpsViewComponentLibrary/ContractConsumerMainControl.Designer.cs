@@ -34,6 +34,7 @@ namespace IpsViewComponentLibrary
         {
             this.components = new System.ComponentModel.Container();
             this.rdtPickerAgrDate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxContrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
@@ -42,8 +43,8 @@ namespace IpsViewComponentLibrary
             this.lblContrDoFrom = new Telerik.WinControls.UI.RadLabel();
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
             this.lblContrDo = new Telerik.WinControls.UI.RadLabel();
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).BeginInit();
@@ -52,7 +53,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rdtPickerAgrDate
@@ -69,7 +69,10 @@ namespace IpsViewComponentLibrary
             this.rdtPickerAgrDate.TabStop = false;
             this.rdtPickerAgrDate.Text = "09.07.2018";
             this.rdtPickerAgrDate.ThemeName = "Office2013Light";
-            this.rdtPickerAgrDate.Value = new System.DateTime(2018, 7, 9, 17, 20, 27, 342);
+            // 
+            // bindingSource
+            // 
+            this.bindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // lblContrFrom
             // 
@@ -82,7 +85,7 @@ namespace IpsViewComponentLibrary
             // 
             // rtxtBoxContrNumber
             // 
-            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "LicNum", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "LicNum", true));
             this.rtxtBoxContrNumber.Location = new System.Drawing.Point(169, 2);
             this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
             this.rtxtBoxContrNumber.NullText = "Номер договору";
@@ -113,7 +116,6 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateBegin.TabStop = false;
             this.rdtPickerDateBegin.Text = "09.07.2018";
             this.rdtPickerDateBegin.ThemeName = "Office2013Light";
-            this.rdtPickerDateBegin.Value = new System.DateTime(2018, 7, 9, 17, 20, 27, 422);
             this.rdtPickerDateBegin.ValueChanged += new System.EventHandler(this.rdtPickerDateBegin_ValueChanged);
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.rdtPickerDateBegin.GetChildAt(0))).Text = "";
             // 
@@ -131,7 +133,6 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateEnd.TabStop = false;
             this.rdtPickerDateEnd.Text = "09.07.2018";
             this.rdtPickerDateEnd.ThemeName = "Office2013Light";
-            this.rdtPickerDateEnd.Value = new System.DateTime(2018, 7, 9, 17, 32, 51, 0);
             // 
             // lblContrDoFrom
             // 
@@ -160,10 +161,6 @@ namespace IpsViewComponentLibrary
             this.lblContrDo.Text = "ДІЯ ДОГОВОРУ";
             this.lblContrDo.ThemeName = "Office2013Light";
             // 
-            // bindingSource
-            // 
-            this.bindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
-            // 
             // ContractConsumerMainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,6 +178,7 @@ namespace IpsViewComponentLibrary
             this.Name = "ContractConsumerMainControl";
             this.Size = new System.Drawing.Size(477, 49);
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).EndInit();
@@ -189,7 +187,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

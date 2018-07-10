@@ -33,6 +33,11 @@ namespace IpsViewComponentLibrary
                 rdtPickerDateEnd.DataBindings.Clear();
 
                 bindingSource.DataSource = value;
+
+                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bindingSource, "LicNum", true, DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bindingSource, "LicDate", true, DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bindingSource, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bindingSource, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged));
             }
         }
 
