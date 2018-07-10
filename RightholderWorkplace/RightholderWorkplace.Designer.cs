@@ -909,7 +909,6 @@
             // ctrlAgreementNumberDate
             // 
             this.ctrlAgreementNumberDate.AgreementName = "ДОГОВІР";
-            this.ctrlAgreementNumberDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ctrlAgreementNumberDate.DataSource = this.agreementAddRhBindingSource;
             this.ctrlAgreementNumberDate.DateBeginDataMember = "DateBegin";
             this.ctrlAgreementNumberDate.DateDataMember = "AgrDate";
@@ -941,7 +940,7 @@
             // btnNextAnketa
             // 
             this.btnNextAnketa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextAnketa.Location = new System.Drawing.Point(675, 538);
+            this.btnNextAnketa.Location = new System.Drawing.Point(671, 538);
             this.btnNextAnketa.Name = "btnNextAnketa";
             this.btnNextAnketa.Size = new System.Drawing.Size(175, 24);
             this.btnNextAnketa.TabIndex = 4;

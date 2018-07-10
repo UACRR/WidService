@@ -49,7 +49,7 @@ namespace IpsViewComponentLibrary
                 {
                     _numberDataMember = value;
                     rtxtBoxContrNumber.DataBindings.Clear();
-                    rtxtBoxContrNumber.DataBindings.Add("Text", bindingSource, _numberDataMember, true, DataSourceUpdateMode.OnPropertyChanged); // ""
+                    rtxtBoxContrNumber.DataBindings.Add("Text", bindingSource, _numberDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace IpsViewComponentLibrary
                 {
                     _dateDataMember = value;
                     rdtPickerAgrDate.DataBindings.Clear();
-                    rdtPickerAgrDate.DataBindings.Add("Value", bindingSource, _dateDataMember, true, DataSourceUpdateMode.OnPropertyChanged); // new DateTime(1900, 1, 1)
+                    rdtPickerAgrDate.DataBindings.Add("Value", bindingSource, _dateDataMember, true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(1, 1, 1));
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace IpsViewComponentLibrary
                 {
                     _dateBeginDataMember = value;
                     rdtPickerDateBegin.DataBindings.Clear();
-                    rdtPickerDateBegin.DataBindings.Add("Value", bindingSource, _dateBeginDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
+                    rdtPickerDateBegin.DataBindings.Add("Value", bindingSource, _dateBeginDataMember, true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(1, 1, 1));
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace IpsViewComponentLibrary
                 {
                     _dateEndDataMember = value;
                     rdtPickerDateEnd.DataBindings.Clear();
-                    rdtPickerDateEnd.DataBindings.Add("Value", bindingSource, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
+                    rdtPickerDateEnd.DataBindings.Add("Value", bindingSource, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged, _dateEndNullDate);
                 }
             }
         }
@@ -128,6 +128,10 @@ namespace IpsViewComponentLibrary
                 {
                     _dateEndNullDate = value;
                     rdtPickerDateEnd.NullDate = value;
+
+                    // update binding
+                    rdtPickerDateEnd.DataBindings.Clear();
+                    rdtPickerDateEnd.DataBindings.Add("Value", bindingSource, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged, _dateEndNullDate);
                 }
             }
         }
