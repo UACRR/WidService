@@ -453,6 +453,12 @@
     <Compile Include="ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RightholderListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderListControl.Designer.cs">
+      <DependentUpon>RightholderListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -657,6 +663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderListControl.resx">
+      <DependentUpon>RightholderListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderSelectorControl.resx">
       <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
