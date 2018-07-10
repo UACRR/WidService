@@ -16,6 +16,7 @@ namespace ipsFormsDesign.Interfaces
         IList<CopyrightKind> copyrightKind { get; set; }
         IList<CopyrightType> copyrightType { get; set; }
         IList<Country> country { get; set; }
+        IList<CreativeRoleType> creativeRoleType { get; set; }
         IList<CrkindGroup> crkindGroup { get; set; }
         IList<CustomerStatus> customerStatus { get; set; }
         IList<CustomerType> customerType { get; set; }
