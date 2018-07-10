@@ -6,6 +6,7 @@ using System.Text;
 using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
 using System.IO;
+using System.Dynamic;
 
 namespace ipsFormsDesign.Services
 {
@@ -41,6 +42,14 @@ namespace ipsFormsDesign.Services
             string url = $"consumer/listBR/{(int)what}";
             var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
+        }
+
+        public IList<ExpandoObject> getBRListNew()
+        {
+            string url = $"consumer/listBRNew";
+            var anketaDic = _webApi.GetList<ExpandoObject>(url);
+            return anketaDic;
+
         }
 
         /// <summary>
