@@ -39,6 +39,7 @@ namespace IpsViewComponentLibrary
                     if (row != null)
                     {
                         gvRightholdersList.CurrentRow = row;
+                        gvRightholdersList.TableElement.ScrollToRow(row);
                     }
                 }
             }
