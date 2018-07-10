@@ -50,6 +50,7 @@
             this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).BeginInit();
@@ -99,10 +100,17 @@
             // 
             // ctrlAgrMain
             // 
+            this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DataSource = this.bindingSourceAgr;
+            this.ctrlAgrMain.DateBeginDataMember = "";
+            this.ctrlAgrMain.DateDataMember = "";
+            this.ctrlAgrMain.DateEndDataMember = "";
+            this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
+            this.ctrlAgrMain.DateEndNullText = "";
             this.ctrlAgrMain.Location = new System.Drawing.Point(14, 31);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";
+            this.ctrlAgrMain.NumberDataMember = "";
             this.ctrlAgrMain.Size = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.TabIndex = 23;
             // 
@@ -321,5 +329,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.Windows.Forms.BindingSource licenseAgreementBindingSource;
         private System.Windows.Forms.BindingSource bindingSourceDictionary;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
