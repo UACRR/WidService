@@ -29,6 +29,12 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             SetDefaultPages();
+            agreementInfoCtrl.OnSaveCommentNeed += AgreementInfoCtrl_OnSaveCommentNeed;
+        }
+
+        private void AgreementInfoCtrl_OnSaveCommentNeed(object sender, EventArgs e)
+        {
+            OnCustomerSave?.Invoke(_customer);
         }
 
         /// <summary>
@@ -81,6 +87,7 @@ namespace IpsViewComponentLibrary
             SetLicenseAgrMoreGridDataSource();
             reportsControl.SetData(cust);
             reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
+            
         }
 
         /// <summary>
@@ -193,6 +200,8 @@ namespace IpsViewComponentLibrary
             agreementInfoCtrl.Percent = licenseParam?.RateAmount?.ToString();
             agreementInfoCtrl.MinPayment = licenseParam?.MinAmount.ToString();
 
+            agreementInfoCtrl.CommentDataSource = licenseParam;
+
             agreementInfoCtrl.State = _dictionaties?.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name;
 
             //TODO: заповнити відсутні дані
@@ -201,7 +210,6 @@ namespace IpsViewComponentLibrary
             agreementInfoCtrl.Bank = "";//буде
             agreementInfoCtrl.Amount = "";//буде
             agreementInfoCtrl.DistributedAmount = "";//буде
-            agreementInfoCtrl.Notation = "";//буде
             agreementInfoCtrl.IsAttach = new Random().Next(-10, 10) > 0; // буде
         }
 
@@ -224,12 +232,12 @@ namespace IpsViewComponentLibrary
 
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            var curRow = e.CurrentRow.DataBoundItem as GridLicenseAgrView;
-
             //bool isInt = Int32.TryParse(e.CurrentRow.Cells["Id"].Value.ToString(), out int result);
             //if (!isInt) return;
             //SetAgrInfoData(result);
-            if (curRow == null) return;
+            if (!(e.CurrentRow.DataBoundItem is GridLicenseAgrView curRow)) return;
+
+            btnDeleteAgr.Enabled = curRow.State == "Не підтверджений";
             SetAgrInfoData(curRow.LicId);
         }
         
@@ -387,6 +395,11 @@ namespace IpsViewComponentLibrary
                 StartPosition = FormStartPosition.CenterScreen
             };
             print.ShowDialog();
+        }
+
+        private void btnDeleteAgr_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

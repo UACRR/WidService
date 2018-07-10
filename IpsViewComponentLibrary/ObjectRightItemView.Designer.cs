@@ -94,6 +94,7 @@
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.autoObjectName = new IpsViewComponentLibrary.RadTextBoxAuto();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seekObjectBindingSource)).BeginInit();
@@ -140,6 +141,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoObjectName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,7 +164,7 @@
             // 
             // btnNewObject
             // 
-            this.btnNewObject.Location = new System.Drawing.Point(657, 2);
+            this.btnNewObject.Location = new System.Drawing.Point(670, 2);
             this.btnNewObject.Name = "btnNewObject";
             this.btnNewObject.Size = new System.Drawing.Size(76, 21);
             this.btnNewObject.TabIndex = 89;
@@ -766,12 +768,19 @@
             this.autoObjectName.ThemeName = "Office2013Light";
             this.autoObjectName.ListItemSelected += new System.EventHandler<Telerik.WinControls.UI.RadListDataItem>(this.autoObjectName_ListItemSelected);
             this.autoObjectName.TextChanged += new System.EventHandler(this.autoObjectName_TextChanged);
+            this.autoObjectName.Validating += new System.ComponentModel.CancelEventHandler(this.autoObjectName_Validating);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
             // 
             // ObjectRightItemView
             // 
             this.AcceptButton = this.btnObjectRightItemSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnObjectRightItemCancel;
             this.ClientSize = new System.Drawing.Size(958, 613);
             this.Controls.Add(this.btnNewObject);
@@ -844,6 +853,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnObjectRightItemSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoObjectName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -889,5 +899,6 @@
         private Telerik.WinControls.UI.RadButton btnObjectRightItemSave;
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
