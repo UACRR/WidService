@@ -250,6 +250,8 @@
     <Compile Include="Model\PayMethodTypeTr.cs" />
     <Compile Include="Model\PayTurn.cs" />
     <Compile Include="Model\Performer.cs" />
+    <Compile Include="Model\PerformType.cs" />
+    <Compile Include="Model\PerformTypetTr.cs" />
     <Compile Include="Model\Period.cs" />
     <Compile Include="Model\PeriodStatus.cs" />
     <Compile Include="Model\PeriodStatusTr.cs" />
@@ -280,6 +282,7 @@
     <Compile Include="Model\RelEtRole.cs" />
     <Compile Include="Model\RelGenreAdapt.cs" />
     <Compile Include="Model\RelGenreMovie.cs" />
+    <Compile Include="Model\RelGenrePercent.cs" />
     <Compile Include="Model\RelGenreRole.cs" />
     <Compile Include="Model\RelGenreSerial.cs" />
     <Compile Include="Model\RelLicCopyR.cs" />

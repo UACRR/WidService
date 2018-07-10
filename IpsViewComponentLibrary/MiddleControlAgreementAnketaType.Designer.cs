@@ -40,14 +40,14 @@
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.lblParam = new Telerik.WinControls.UI.RadLabel();
             this.panel = new Telerik.WinControls.UI.RadPanel();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             this.SuspendLayout();
@@ -173,14 +173,14 @@
             this.gvPlaces.ThemeName = "Office2007Silver";
             this.gvPlaces.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPlaces_CellValueChanged);
             // 
-            // radLabel3
+            // lblParam
             // 
-            this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel3.Location = new System.Drawing.Point(13, 266);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(116, 18);
-            this.radLabel3.TabIndex = 29;
-            this.radLabel3.Text = "Параметри договору";
+            this.lblParam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblParam.Location = new System.Drawing.Point(13, 266);
+            this.lblParam.Name = "lblParam";
+            this.lblParam.Size = new System.Drawing.Size(116, 18);
+            this.lblParam.TabIndex = 29;
+            this.lblParam.Text = "Параметри договору";
             // 
             // panel
             // 
@@ -196,7 +196,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gvPlaces);
-            this.Controls.Add(this.radLabel3);
+            this.Controls.Add(this.lblParam);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.ddlLicType);
             this.Controls.Add(this.radLabel1);
@@ -210,7 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblParam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -226,7 +226,7 @@
         private Telerik.WinControls.UI.RadDropDownList ddlLicType;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadGridView gvPlaces;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel lblParam;
         private Telerik.WinControls.UI.RadPanel panel;
     }
 }
