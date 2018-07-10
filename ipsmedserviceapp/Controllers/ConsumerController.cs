@@ -613,6 +613,16 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Отримати список Споживачів Великих прав
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("listBRNew")]
+        public async Task<IActionResult> GetListBRNew()
+        {
+            var List = await _dbContext.getViewData("select * from vtsk_1_MasterListBR", null);
+            return Json(List);
+        }
+        /// <summary>
         /// Отримати детальну інформацію по періодам оплати договору
         /// </summary>
         /// <param name="licid"></param>

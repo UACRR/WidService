@@ -38,7 +38,7 @@ namespace ipsFormsDesign.Interfaces
         IList<CommunityInfo> communities { get; set; }
     }
 
-    public class AnketaDictionaties : ICunsomerDic
+    public class AnketaDictionaties 
     {
         public IList<ActivityType> activityType {get; set;}
         public IList<AgrLicenseType> agrLicenseType {get; set;}
