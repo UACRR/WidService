@@ -211,6 +211,25 @@ namespace IpsViewComponentLibrary
         Prolongation
     }
 
+    /// <summary>
+    /// Для визначення видаляти чи додавати в мінімальну суму вартість майданчика
+    /// </summary>
+    public enum CalculationMinAmountType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Видалити вартість майданчика з мінімальної суми
+        /// </summary>
+        DeleteCalcValue,
+        /// <summary>
+        /// Додати вартість майданчика в мінімальну суму
+        /// </summary>
+        AddCalcValue,
+    }
+
     #endregion
 
 
