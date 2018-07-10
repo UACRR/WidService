@@ -88,7 +88,7 @@ namespace ipsmedserviceapp.Controllers
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
                 // Великі права
-                await GetConsumerBR();
+                //await GetConsumerBR();
                 //if (license.LicenseBigR != null)
                 //    await _dbContext.Entry(license.LicenseBigR).Collection(rec => rec.LicAuthorBr)
                 //        .Query()
