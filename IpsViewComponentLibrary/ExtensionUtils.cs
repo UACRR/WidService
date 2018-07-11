@@ -67,40 +67,7 @@ namespace IpsViewComponentLibrary
         bool Validator();
     }
 
-    public enum DialogGoal
-    {
-        /// <summary>
-        /// Створення нового контракту
-        /// </summary>
-        forNew,
-        /// <summary>
-        /// Редагування поточного договору
-        /// </summary>
-        forEdit,
-        /// <summary>
-        /// Створення або редагування доп угоди на пролонгацію 
-        /// </summary>
-        forProlongation
-    }
 
-    /// <summary>
-    /// Типи прав
-    /// </summary>
-    public enum TypeRights
-    {
-        /// <summary>
-        /// Великі права
-        /// </summary>
-        BigRights,
-        /// <summary>
-        /// Малі права
-        /// </summary>
-        SmallRights,
-        /// <summary>
-        /// FOR DEVELOPERS
-        /// </summary>
-        All
-    }
 
     #region МАЙДАНЧИКИ
 
