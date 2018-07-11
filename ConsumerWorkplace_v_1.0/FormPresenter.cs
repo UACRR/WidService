@@ -15,12 +15,12 @@ namespace ConsumerWorkplace_v_1._0
         {
             _form = form;
             _service = service;
-            _form.getMainViewData = _service.getMainView;
+            _form.getMainViewData = _service.GetMainView;
             _form.SetDictionary(_service.GetDictionary());
             _form.NewCustomer = _service.NewCustomer;
             _form.SaveCustomer = _service.Save;
             _form.GetCustomer = _service.GetData;
-            _form.GetAutoCompList = _service.getAutoCompleteList;
+            _form.GetAutoCompList = _service.GetAutoCompleteList;
             _form.EndPresenterLink();
         }
     }

@@ -7,11 +7,11 @@ namespace ipsFormsDesign.Interfaces
 {
     public class ConsumerMainView
     {
-        public int custId { get; set; }
-        public string innokpo { get; set; }
-        public string name { get; set; }
-        public int countAgree { get; set; }
-        public decimal undistribamount { get; set; }
+        public int CustId { get; set; }
+        public string Innokpo { get; set; }
+        public string Name { get; set; }
+        public int CountAgree { get; set; }
+        public decimal Undistribamount { get; set; }
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// ЄДРПОУ
         /// </summary>
-        public string INNOKPO { get; set; }
+        public string Innokpo { get; set; }
         /// <summary>
         /// Ід Генеральной угоди
         /// </summary>
@@ -78,57 +78,57 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Кількість
         /// </summary>
-        public int countLic1Active { get; set; }
+        public int CountLic1Active { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int countLic1NoActive { get; set; }
+        public int CountLic1NoActive { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int countLic1ToProlong { get; set; }
+        public int CountLic1ToProlong { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int countLic2Active { get; set; }
+        public int CountLic2Active { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int countLic2NoActive { get; set; }
+        public int CountLic2NoActive { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int countLic3Active { get; set; }
+        public int CountLic3Active { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int countLic3NoActive { get; set; }
+        public int CountLic3NoActive { get; set; }
         /// <summary>
         /// Сума
         /// </summary>
-        public decimal undistribAmount { get; set; }
+        public decimal UndistribAmount { get; set; }
         /// <summary>
         /// Сума
         /// </summary>
-        public decimal borg { get; set; }
+        public decimal Borg { get; set; }
         /// <summary>
         /// Сума
         /// </summary>
-        public decimal unattachAmount { get; set; }
+        public decimal UnattachAmount { get; set; }
         /// <summary>
         /// Ід Партнера
         /// </summary>
-        public int clcustId { get; set; }
+        public int ClcustId { get; set; }
         /// <summary>
         /// Назва Партнера
         /// </summary>
-        public string partnerName { get; set; }
+        public string PartnerName { get; set; }
 
     }
 
     public interface IConsumerService : IModel
     {
-        IList<ConsumerMainView> getMainView();
-        IList<AutoCompleteData> getAutoCompleteList(string filter);
+        IList<ConsumerMainView> GetMainView();
+        IList<AutoCompleteData> GetAutoCompleteList(string filter);
     }
 }
