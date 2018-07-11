@@ -568,7 +568,7 @@ namespace ipsmedserviceapp.Controllers
             // Request
             Request = 4,
             // Certificate
-            Certificate = 5,
+            Reference = 5,
             // All documents
             All
 
@@ -630,7 +630,7 @@ namespace ipsmedserviceapp.Controllers
                 { ConsumerFilterEnum.Working, "statusLic2Active=1"  },
                 { ConsumerFilterEnum.NotActive, "statusLic2Noactive=1"}
             } },
-            { TypeBRDocument.Certificate, new Dictionary<ConsumerFilterEnum, string> {
+            { TypeBRDocument.Reference, new Dictionary<ConsumerFilterEnum, string> {
                 { ConsumerFilterEnum.All, "countLic3Active+countLic3NoActive>0"  },
                 { ConsumerFilterEnum.Working, "statusLic3Active=1"  },
                 { ConsumerFilterEnum.NotActive, "statusLic3Noactive=1"}

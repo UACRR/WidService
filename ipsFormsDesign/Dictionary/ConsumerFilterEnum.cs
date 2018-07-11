@@ -102,7 +102,7 @@ namespace ipsFormsDesign.Dictionary
         // Request
         Request = 4,
         // Certificate
-        certificate = 5,
+        Reference = 5,
         // All documents
         All 
 
