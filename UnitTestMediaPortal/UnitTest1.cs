@@ -145,5 +145,17 @@ namespace UnitTestMediaPortal
             form.Show(null);
         }
 
+        [TestMethod]
+        public void TestExpandoObject()
+        {
+            ConsumerService _service = new ConsumerService();
+            var list = _service.getBRListNew();
+            RadTestExpandoObject form = new RadTestExpandoObject();
+            form.DataSource = list;
+
+            form.ShowDialog();
+
+        }
+
     }
 }

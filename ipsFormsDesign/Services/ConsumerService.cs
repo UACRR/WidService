@@ -44,10 +44,10 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
-        public IList<ExpandoObject> getBRListNew()
+        public IList<dynamic> getBRListNew()
         {
             string url = $"consumer/listBRNew";
-            var anketaDic = _webApi.GetList<ExpandoObject>(url);
+            var anketaDic = _webApi.GetList<dynamic>(url);
             return anketaDic;
 
         }

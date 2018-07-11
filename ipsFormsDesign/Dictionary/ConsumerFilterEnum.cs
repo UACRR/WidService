@@ -4,6 +4,9 @@ using System.Text;
 
 namespace ipsFormsDesign.Dictionary
 {
+    /// <summary>
+    /// Тип фільтру для Споживачів
+    /// </summary>
     public enum ConsumerFilterEnum : int
     {
         /// <summary>
@@ -29,6 +32,61 @@ namespace ipsFormsDesign.Dictionary
         /// <summary>
         /// Для розподілу
         /// </summary>
-        ForDistribution = 5
+        ForDistribution = 5,
+        /// <summary>
+        /// Активні
+        /// </summary>
+        Active,
+        /// <summary>
+        /// Не активні
+        /// </summary>
+        NotActive,
+        /// <summary>
+        /// Заборгованість
+        /// </summary>
+        Debt,
+        /// <summary>
+        /// В роботі(прийом звітів)
+        /// </summary>
+        InWork
+
+    }
+
+    /// <summary>
+    /// Тип діалогу 
+    /// </summary>
+    public enum DialogGoal
+    {
+        /// <summary>
+        /// Створення нового контракту
+        /// </summary>
+        forNew,
+        /// <summary>
+        /// Редагування поточного договору
+        /// </summary>
+        forEdit,
+        /// <summary>
+        /// Створення або редагування доп угоди на пролонгацію 
+        /// </summary>
+        forProlongation
+    }
+
+    /// <summary>
+    /// Типи прав
+    /// </summary>
+    public enum TypeRights
+    {
+        /// <summary>
+        /// Великі права
+        /// </summary>
+        BigRights,
+        /// <summary>
+        /// Малі права
+        /// </summary>
+        SmallRights,
+        /// <summary>
+        /// FOR DEVELOPERS
+        /// </summary>
+        All
     }
 }
