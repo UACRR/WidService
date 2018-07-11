@@ -57,6 +57,23 @@ namespace IpsViewComponentLibrary
             set => bsAnketaCompany.DataSource = value;
         }
 
+        /// <summary>
+        /// Перевірка на правильність введених полів
+        /// </summary>
+        /// <returns></returns>
+        public bool Validator()
+        {
+            return ctrlAgreementMain.Validator();
+        }
+
+        /// <summary>
+        /// Для великих прав в режимі додавання нової анкети доступні тільки генеральні договора
+        /// </summary>
+        internal void SetBigRightsLicenseAgrType()
+        {
+            ddlLicType.ReadOnly = true;
+        }
+
         private void txtDayForPay_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
@@ -64,8 +81,11 @@ namespace IpsViewComponentLibrary
             {
                 e.Handled = true;
             }
+        }
 
-            if (Convert.ToInt32(txtDayForPay.Text) > 31)
+        private void txtDayForPay_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(txtDayForPay.Text, out int val) && val > 31)
                 txtDayForPay.Text = "31";
         }
     }
