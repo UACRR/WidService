@@ -82,6 +82,8 @@ namespace IpsViewComponentLibrary
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
 
+
+
             ctrlAgreement.typeRights = typeRights;                    // - - - - - - - -  Договір
             ctrlAgreement.SetDataSources(_cust, _anketaDictionaries, _anketeType);  // - - - - - - - -  Договір
 
@@ -489,18 +491,6 @@ namespace IpsViewComponentLibrary
             radWaitingBar1.Visible = false;
 
         }
-
-        //private void radPdfViewer_ClientSizeChanged(object sender, EventArgs e)
-        //{
-        //    var pdfLoc = Location;
-        //    var pdfSize = Size;
-        //    var waitSize = radWaitingBar1.Size;
-
-        //    radWaitingBar1.Location = new Point(
-        //        pdfLoc.X + pdfSize.Width / 2 - waitSize.Width / 2,
-        //        pdfLoc.Y + pdfSize.Height / 2 - waitSize.Height / 2
-        //        );
-        //}
     }
 
     internal enum ButtonType

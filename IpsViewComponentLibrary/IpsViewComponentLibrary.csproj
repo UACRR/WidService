@@ -330,6 +330,12 @@
     <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiddleControlAgreementBigRights.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAgreementBigRights.Designer.cs">
+      <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiddleControlAgreementProlType.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -601,6 +607,9 @@
     <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAgreementBigRights.resx">
+      <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlAgreementProlType.resx">
       <DependentUpon>MiddleControlAgreementProlType.cs</DependentUpon>
     </EmbeddedResource>
@@ -696,6 +705,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Resources\createAct.ico" />
   </ItemGroup>
   <ItemGroup>
