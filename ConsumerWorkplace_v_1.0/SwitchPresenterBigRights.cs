@@ -15,9 +15,8 @@ namespace ConsumerWorkplace_v_1._0
     class SwitchPresenterBigRights
     {
         private readonly MainViewSwitcher _switcher;
-        private GlobalControlConsumerCabinet cabinet = null;
-        private GlobalControlConsumerMainGrid mainGrid = null;
         private GlobalControlConsumerMainGridBR _mainGridBr = null;
+        private GlobalControlConsumerCabinetBR _cabinetBr = null;
         private Control _currentControl = null;
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private ConsumerService _service = null;
@@ -38,14 +37,7 @@ namespace ConsumerWorkplace_v_1._0
             _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
             _mainGridBr?.SetGridDataSource(getMainView());
-            //mainGrid?.SetGridDataSource(getMainView());
-            cabinet?.SetGridDataSource(getMainView());
-        }
-
-
-        private void Cabinet_OnButtonBackClick(int custId)
-        {
-            SwitchToGrid(custId);
+            _cabinetBr?.SetGridDataSource(getMainView());
         }
 
         public IList<ConsumerMainView> getMainView()
@@ -68,7 +60,7 @@ namespace ConsumerWorkplace_v_1._0
                 _mainGridBr.Dock = DockStyle.Fill;
             }
 
-            _mainGridBr.FilterString = cabinet?.FilterString ?? string.Empty;
+            _mainGridBr.FilterString = _cabinetBr?.FilterString ?? string.Empty;
             if(id!=0)
                 _mainGridBr.SetSelectCustomer(id);
 
@@ -77,12 +69,64 @@ namespace ConsumerWorkplace_v_1._0
             _switcher.SwitchView(_mainGridBr);
         }
 
-        //перейти з гріда до кабінету
+        /// <summary>
+        /// Перейти з гріда до кабінету
+        /// </summary>
+        /// <param name="id">ID запису який було обрано до переходу</param>
+        public void SwitchToCabinet(int id)
+        {
+            if (_cabinetBr == null)
+            {
+                _cabinetBr = new GlobalControlConsumerCabinetBR();
+                _cabinetBr.OnBackToGridNeed += CabinetBr_OnBackToGridNeed;
+                _cabinetBr.OnCustomerUpdateDataNeed += CabinetBr_OnCustomerUpdateDataNeed;
+                _cabinetBr.OnAddNewCustomer += _cabinetBr_OnAddNewCustomer;
+                _cabinetBr.OnEditCustomer += _cabinetBr_OnEditCustomer;
+                _cabinetBr.OnSaveCustomer += _cabinetBr_OnSaveCustomer;
+                _cabinetBr.SetAnketaDictionaties(_service.GetDictionary());
+                _cabinetBr.SetGridDataSource(getMainView());
+                _cabinetBr.Dock = DockStyle.Fill;
+            }
+
+            _cabinetBr.FilterString = _mainGridBr?.FilterString ?? string.Empty;
+            _cabinetBr.SetSelectCustomer(id);
+            _currentControl = _cabinetBr;
+            _switcher.SwitchView(_cabinetBr);
+        }
+
+        private bool _cabinetBr_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
+        {
+            var relust = _service.Save(customer);
+            UpdateData(customer.CustId);
+            return relust;
+        }
+
+        private void _cabinetBr_OnEditCustomer(int id)
+        {
+            EditJuridicalConsumer(id);
+        }
+
+        private void _cabinetBr_OnAddNewCustomer(object sender, EventArgs e)
+        {
+            NewJuridicalConsumer();
+        }
+
+        private ipsFormsDesign.Model.Customer CabinetBr_OnCustomerUpdateDataNeed(int id)
+        {
+            return _service.GetData(id);
+        }
+
+        private void CabinetBr_OnBackToGridNeed(int custId)
+        {
+            SwitchToGrid(custId);
+        }
+
         private void MainGridBr_OnGridButtonViewClick(int id)
         {
             SwitchToCabinet(id);
         }
 
+        //додавання нового користувача (випадаючі кнопки)
         private void MainGridBr_OnAddNewCustomer(PersonType person)
         {
             switch (person)
@@ -98,53 +142,11 @@ namespace ConsumerWorkplace_v_1._0
             }
         }
 
-        public void SwitchToCabinet(int id)
-        {
-            if (cabinet == null)
-            {
-                cabinet = new GlobalControlConsumerCabinet(TypeRights.BigRights);
-                cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
-                cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
-                cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
-                cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
-                cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
-                cabinet.SetDictionary(_service.GetDictionary());
-                cabinet.SetGridDataSource(getMainView());
-                cabinet.Dock = DockStyle.Fill;
-            }
-            cabinet.Rights = TypeRights.BigRights;
-            cabinet.FilterString = mainGrid?.FilterString ?? string.Empty;
-            cabinet.SetSelectCustomer(id);
-            _currentControl = cabinet;
-            _switcher.SwitchView(cabinet);
-        }
-
-        private bool Cabinet_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
-        {
-            var relust = _service.Save(customer);
-            UpdateData(customer.CustId);
-            return relust;
-        }
-
-        private void Cabinet_OnEditCustomer1(int id)
-        {
-            EditConsumer(id);
-        }
-
-        private void Cabinet_OnAddNewCustomer(object sender, EventArgs e)
-        {
-            NewJuridicalConsumer();
-        }
-
-        private void MainGrid_OnAddNewCustomer(object sender, EventArgs e)
-        {
-            NewJuridicalConsumer();
-        }
 
         /// <summary>
         /// Редагування існуючого споживача юридичної особи
         /// </summary>
-        private void EditConsumer(int custId)
+        private void EditJuridicalConsumer(int custId)
         {
             var _cust = _service.GetData(custId);
             var _dict = _service.GetDictionary();
@@ -183,26 +185,26 @@ namespace ConsumerWorkplace_v_1._0
         }
 
         /// <summary>
-        /// 
+        /// Оновлення даних
         /// </summary>
         /// <param name="id"></param>
         private void UpdateData(int id)
         {
-            if (_currentControl == cabinet)
+            if (_currentControl == _cabinetBr)
             {
-                cabinet?.SetGridDataSource(getMainView());
-                cabinet?.SetSelectCustomer(id);
+                _cabinetBr?.SetGridDataSource(getMainView());
+                _cabinetBr?.SetSelectCustomer(id);
             }
 
-            if (_currentControl == mainGrid)
+            if (_currentControl == _mainGridBr)
             {
-                mainGrid?.SetGridDataSource(getMainView());
-                mainGrid?.SetSelectCustomer(id);
+                _mainGridBr?.SetGridDataSource(getMainView());
+                _mainGridBr?.SetSelectCustomer(id);
             }
         }
 
         /// <summary>
-        /// 
+        /// Збереження даних
         /// </summary>
         /// <param name="cust"></param>
         /// <returns></returns>
@@ -210,11 +212,6 @@ namespace ConsumerWorkplace_v_1._0
         {
             var result = _service.Save(cust);
             return result;
-        }
-
-        private ipsFormsDesign.Model.Customer Cabinet_OnGridRowSelectedChaged(int id)
-        {
-            return _service.GetData(id);
         }
 
         public void Done()

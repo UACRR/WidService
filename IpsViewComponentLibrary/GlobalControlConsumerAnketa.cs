@@ -86,7 +86,8 @@ namespace IpsViewComponentLibrary
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
 
-            InitAgreementType(typeRights);
+            if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
+                InitAgreementType(typeRights);
 
            
             ctrlClientName.SetDefaultState();
@@ -110,6 +111,7 @@ namespace IpsViewComponentLibrary
                         Size = new Size(596, 200),
                         TabIndex = 0
                     };
+
                     if(_cust.Client.LicenseAgreement.SingleOrDefault()?.LicCode != null)
                         _cust.Client.LicenseAgreement.SingleOrDefault().LicCode = 28;
 

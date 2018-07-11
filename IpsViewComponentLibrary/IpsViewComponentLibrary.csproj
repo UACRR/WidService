@@ -228,6 +228,12 @@
     <Compile Include="GlobalControlConsumerCabinet.Designer.cs">
       <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalControlConsumerCabinetBR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalControlConsumerCabinetBR.Designer.cs">
+      <DependentUpon>GlobalControlConsumerCabinetBR.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalControlConsumerMainGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -359,6 +365,12 @@
     </Compile>
     <Compile Include="MiddleControlBankRequisites.Designer.cs">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinet.Designer.cs">
+      <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlClientName.cs">
       <SubType>UserControl</SubType>
@@ -574,6 +586,9 @@
     <EmbeddedResource Include="GlobalControlConsumerCabinet.resx">
       <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GlobalControlConsumerCabinetBR.resx">
+      <DependentUpon>GlobalControlConsumerCabinetBR.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GlobalControlConsumerMainGrid.resx">
       <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -627,6 +642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlBankRequisites.resx">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinet.resx">
+      <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
