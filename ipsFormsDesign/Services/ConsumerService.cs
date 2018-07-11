@@ -25,7 +25,7 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
-        public IList<ConsumerMainView> getMainView()
+        public IList<ConsumerMainView> GetMainView()
         {
             return getMainView(ConsumerFilterEnum.All);
         }
@@ -54,7 +54,7 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public IList<AutoCompleteData> getAutoCompleteList( string filter)
+        public IList<AutoCompleteData> GetAutoCompleteList( string filter)
         {
             string url = $"consumer/listAll/{filter}";
             var list = _webApi.GetList<AutoCompleteData>(url);

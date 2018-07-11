@@ -52,6 +52,7 @@
             // 
             this.gvConsumerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.gvConsumerList.AutoSizeRows = true;
             this.gvConsumerList.EnableCustomFiltering = true;
             this.gvConsumerList.Location = new System.Drawing.Point(3, 29);
             // 

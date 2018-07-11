@@ -107,4 +107,19 @@ namespace ipsFormsDesign.Dictionary
         All 
 
     }
+
+    /// <summary>
+    /// Тип особи користувача
+    /// </summary>
+    public enum PersonType
+    {
+        /// <summary>
+        /// Фізична особа
+        /// </summary>
+        PhysicalPerson,
+        /// <summary>
+        /// Юридична особа
+        /// </summary>
+        JuridicalPerson
+    }
 }

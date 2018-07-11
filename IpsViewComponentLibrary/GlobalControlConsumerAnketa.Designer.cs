@@ -42,7 +42,6 @@
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankRequisites = new IpsViewComponentLibrary.MiddleControlBankRequisites();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgreement = new IpsViewComponentLibrary.MiddleControlAgreementAnketaType();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
@@ -60,7 +59,6 @@
             this.pvPlaces.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlPlacesTitle)).BeginInit();
             this.pvBankRequisites.SuspendLayout();
-            this.pvAgreement.SuspendLayout();
             this.pvPrint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).BeginInit();
@@ -226,21 +224,11 @@
             // 
             // pvAgreement
             // 
-            this.pvAgreement.Controls.Add(this.ctrlAgreement);
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvAgreement.Location = new System.Drawing.Point(133, 10);
             this.pvAgreement.Name = "pvAgreement";
             this.pvAgreement.Size = new System.Drawing.Size(1005, 643);
             this.pvAgreement.Text = "Договір";
-            // 
-            // ctrlAgreement
-            // 
-            this.ctrlAgreement.Location = new System.Drawing.Point(4, 4);
-            this.ctrlAgreement.MinimumSize = new System.Drawing.Size(490, 218);
-            this.ctrlAgreement.Name = "ctrlAgreement";
-            this.ctrlAgreement.Size = new System.Drawing.Size(690, 469);
-            this.ctrlAgreement.TabIndex = 0;
-            this.ctrlAgreement.typeRights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             // 
             // pvPrint
             // 
@@ -270,7 +258,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(999, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(999, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -321,6 +309,9 @@
             this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             this.radWaitingBar1.WaitingStarted += new System.EventHandler(this.radWaitingBar1_WaitingStarted);
             this.radWaitingBar1.WaitingStopped += new System.EventHandler(this.radWaitingBar1_WaitingStopped);
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.radWaitingBar1.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
             // lineRingWaitingBarIndicatorElement1
             // 
@@ -366,7 +357,6 @@
             this.pvPlaces.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlPlacesTitle)).EndInit();
             this.pvBankRequisites.ResumeLayout(false);
-            this.pvAgreement.ResumeLayout(false);
             this.pvPrint.ResumeLayout(false);
             this.pvPrint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).EndInit();
@@ -404,6 +394,6 @@
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private MiddleControlAgreementAnketaType ctrlAgreement;
+        
     }
 }

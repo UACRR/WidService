@@ -7,11 +7,11 @@ namespace ipsFormsDesign.Interfaces
 {
     public class ConsumerMainView
     {
-        public int custId { get; set; }
-        public string innokpo { get; set; }
-        public string name { get; set; }
-        public int countAgree { get; set; }
-        public decimal undistribamount { get; set; }
+        public int CustId { get; set; }
+        public string Innokpo { get; set; }
+        public string Name { get; set; }
+        public int CountAgree { get; set; }
+        public decimal Undistribamount { get; set; }
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// ЄДРПОУ
         /// </summary>
-        public string INNOKPO { get; set; }
+        public string Innokpo { get; set; }
         /// <summary>
         /// Ід Генеральной угоди
         /// </summary>
@@ -128,7 +128,7 @@ namespace ipsFormsDesign.Interfaces
 
     public interface IConsumerService : IModel
     {
-        IList<ConsumerMainView> getMainView();
-        IList<AutoCompleteData> getAutoCompleteList(string filter);
+        IList<ConsumerMainView> GetMainView();
+        IList<AutoCompleteData> GetAutoCompleteList(string filter);
     }
 }
