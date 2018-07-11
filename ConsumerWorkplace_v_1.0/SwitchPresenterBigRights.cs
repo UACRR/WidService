@@ -43,13 +43,6 @@ namespace ConsumerWorkplace_v_1._0
         }
 
 
-        //перейти з гріда до кабінету
-        private void MainGrid_OnGridButtonClick(int custId)
-        {
-            SwitchToCabinet(custId);
-        }
-
-        //перейти з кабінету до гріда
         private void Cabinet_OnButtonBackClick(int custId)
         {
             SwitchToGrid(custId);
@@ -60,6 +53,10 @@ namespace ConsumerWorkplace_v_1._0
             return _service.getMainViewBR(_currentNodeValue);
         }
 
+        /// <summary>
+        /// Перейти з кабінету до гріда
+        /// </summary>
+        /// <param name="id">ID запису який було обрано до переходу</param>
         public void SwitchToGrid(int id = 0)
         {
             if (_mainGridBr == null)
@@ -75,31 +72,15 @@ namespace ConsumerWorkplace_v_1._0
             if(id!=0)
                 _mainGridBr.SetSelectCustomer(id);
 
-            //if (mainGrid == null)
-            //{
-            //    mainGrid = new GlobalControlConsumerMainGrid();
-            //    mainGrid.OnGridButtonClick += MainGrid_OnGridButtonClick;
-            //    mainGrid.OnAddNewCustomer += MainGrid_OnAddNewCustomer;
-            //    mainGrid.SetDictionary(_service.GetDictionary());
-            //    mainGrid.SetGridDataSource(getMainView());
-
-            //    mainGrid.Dock = DockStyle.Fill;
-            //}
-            //mainGrid.FilterString = cabinet?.FilterString ?? string.Empty;
-            //if (id != 0)
-            //    mainGrid.SetSelectCustomer(id);
-
-            //_currentControl = mainGrid;
-            //_switcher.SwitchView(mainGrid);
-
 
             _currentControl = _mainGridBr;
             _switcher.SwitchView(_mainGridBr);
         }
 
+        //перейти з гріда до кабінету
         private void MainGridBr_OnGridButtonViewClick(int id)
         {
-            throw new NotImplementedException();
+            SwitchToCabinet(id);
         }
 
         private void MainGridBr_OnAddNewCustomer(PersonType person)

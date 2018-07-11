@@ -81,8 +81,19 @@ namespace IpsViewComponentLibrary
 
         private void gvViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            
+            switch (e.Column.FieldName)
+            {
+                case "btnsFiles":
+                {
+                    ;//TODO: перегляд файлів(великі права основний грід)
+                }break;
 
+                case "btnsView":
+                {
+                    OnGridButtonViewClick?.Invoke(_rowId);
+                }
+                    break;
+            }
         }
 
         private void gvViewConsumers_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
