@@ -17,6 +17,7 @@ namespace ConsumerWorkplace_v_1._0
         private readonly MainViewSwitcher _switcher;
         private GlobalControlConsumerCabinet cabinet = null;
         private GlobalControlConsumerMainGrid mainGrid = null;
+        private GlobalControlConsumerMainGridBR _mainGridBr = null;
         private Control _currentControl = null;
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private ConsumerService _service = null;
@@ -36,7 +37,8 @@ namespace ConsumerWorkplace_v_1._0
                 return;
             _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            mainGrid?.SetGridDataSource(getMainView());
+            _mainGridBr?.SetGridDataSource(getMainView());
+            //mainGrid?.SetGridDataSource(getMainView());
             cabinet?.SetGridDataSource(getMainView());
         }
 
@@ -60,22 +62,59 @@ namespace ConsumerWorkplace_v_1._0
 
         public void SwitchToGrid(int id = 0)
         {
-            if (mainGrid == null)
+            if (_mainGridBr == null)
             {
-                mainGrid = new GlobalControlConsumerMainGrid();
-                mainGrid.OnGridButtonClick += MainGrid_OnGridButtonClick;
-                mainGrid.OnAddNewCustomer += MainGrid_OnAddNewCustomer;
-                mainGrid.SetDictionary(_service.GetDictionary());
-                mainGrid.SetGridDataSource(getMainView());
-
-                mainGrid.Dock = DockStyle.Fill;
+                _mainGridBr = new GlobalControlConsumerMainGridBR();
+                _mainGridBr.OnAddNewCustomer += MainGridBr_OnAddNewCustomer;
+                _mainGridBr.OnGridButtonViewClick += MainGridBr_OnGridButtonViewClick;
+                _mainGridBr.SetGridDataSource(getMainView());
+                _mainGridBr.Dock = DockStyle.Fill;
             }
-            mainGrid.FilterString = cabinet?.FilterString ?? string.Empty;
-            if (id != 0)
-                mainGrid.SetSelectCustomer(id);
 
-            _currentControl = mainGrid;
-            _switcher.SwitchView(mainGrid);
+            _mainGridBr.FilterString = cabinet?.FilterString ?? string.Empty;
+            if(id!=0)
+                _mainGridBr.SetSelectCustomer(id);
+
+            //if (mainGrid == null)
+            //{
+            //    mainGrid = new GlobalControlConsumerMainGrid();
+            //    mainGrid.OnGridButtonClick += MainGrid_OnGridButtonClick;
+            //    mainGrid.OnAddNewCustomer += MainGrid_OnAddNewCustomer;
+            //    mainGrid.SetDictionary(_service.GetDictionary());
+            //    mainGrid.SetGridDataSource(getMainView());
+
+            //    mainGrid.Dock = DockStyle.Fill;
+            //}
+            //mainGrid.FilterString = cabinet?.FilterString ?? string.Empty;
+            //if (id != 0)
+            //    mainGrid.SetSelectCustomer(id);
+
+            //_currentControl = mainGrid;
+            //_switcher.SwitchView(mainGrid);
+
+
+            _currentControl = _mainGridBr;
+            _switcher.SwitchView(_mainGridBr);
+        }
+
+        private void MainGridBr_OnGridButtonViewClick(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MainGridBr_OnAddNewCustomer(PersonType person)
+        {
+            switch (person)
+            {
+                case PersonType.PhysicalPerson:
+                    //
+                    break;
+                case PersonType.JuridicalPerson:
+                {
+                    NewJuridicalConsumer();
+                }
+                    break;
+            }
         }
 
         public void SwitchToCabinet(int id)
@@ -113,12 +152,12 @@ namespace ConsumerWorkplace_v_1._0
 
         private void Cabinet_OnAddNewCustomer(object sender, EventArgs e)
         {
-            NewConsumer();
+            NewJuridicalConsumer();
         }
 
         private void MainGrid_OnAddNewCustomer(object sender, EventArgs e)
         {
-            NewConsumer();
+            NewJuridicalConsumer();
         }
 
         /// <summary>
@@ -144,7 +183,7 @@ namespace ConsumerWorkplace_v_1._0
         /// <summary>
         /// Додавання нового споживача юридична особа (діалогова форма)
         /// </summary>
-        private void NewConsumer()
+        private void NewJuridicalConsumer()
         {
             int custType = 3; // Юридична особа
             var _cust = _service.NewCustomer(custType);

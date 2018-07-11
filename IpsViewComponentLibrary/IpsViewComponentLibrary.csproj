@@ -234,6 +234,12 @@
     <Compile Include="GlobalControlConsumerMainGrid.Designer.cs">
       <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalControlConsumerMainGridBR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GlobalControlConsumerMainGridBR.Designer.cs">
+      <DependentUpon>GlobalControlConsumerMainGridBR.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformationAboutTheContractTitleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -571,6 +577,9 @@
     <EmbeddedResource Include="GlobalControlConsumerMainGrid.resx">
       <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GlobalControlConsumerMainGridBR.resx">
+      <DependentUpon>GlobalControlConsumerMainGridBR.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -748,6 +757,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
