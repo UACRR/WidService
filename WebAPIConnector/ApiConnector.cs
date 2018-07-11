@@ -73,7 +73,7 @@ namespace WebAPIConnector
         {
             string runUrl = url;
             if (listParam.Count() > 0)
-                runUrl = string.Concat(runUrl, @"/", AsQueryString(listParam));
+                runUrl = string.Concat(runUrl, AsQueryString(listParam));
 
             string encodeUrl = WebUtility.UrlEncode(url);
             string retApiString = client.GetStringAsync(url).GetAwaiter().GetResult();

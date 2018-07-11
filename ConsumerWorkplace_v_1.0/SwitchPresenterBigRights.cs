@@ -55,7 +55,8 @@ namespace ConsumerWorkplace_v_1._0
 
         public IList<ConsumerMainView> getMainView()
         {
-            return _service.getMainViewBR(_currentNodeValue);
+            // return _service.getMainViewBR(_currentNodeValue);
+            return new List<ConsumerMainView>();
         }
 
         public void SwitchToGrid(int id = 0)

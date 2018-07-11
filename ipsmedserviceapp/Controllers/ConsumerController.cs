@@ -643,7 +643,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("listBR")]
-        public async Task<IActionResult> GetListBR([FromQuery] int whatId, [FromQuery] int typeDocId)
+        public async Task<IActionResult> GetListBR([FromQuery(Name= "whatId")] int whatId, [FromQuery(Name= "typeDocId")] int typeDocId)
         {
             ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
             TypeBRDocument typeDoc = Enum.Parse<TypeBRDocument>(typeDocId.ToString());
@@ -667,10 +667,10 @@ namespace ipsmedserviceapp.Controllers
                 }
             }
             // Недопустиміе параметрі запроса для вібора всех елементов
-            else if (typeDoc == TypeBRDocument.All && !validQueryForAllDocs.Keys.Contains(what))
-                queue = queue + " where 1 != 0";  // условие для вібора пустого множества
-            else
+            else if (typeDoc == TypeBRDocument.All && validQueryForAllDocs.Keys.Contains(what))
                 queue = $"{queue} where {validQueryForAllDocs[what]}";
+            else
+                queue = queue + " where 1 != 0";  // условие для вібора пустого множества
 
 
             var List = await _dbContext.getViewData(queue, null);
