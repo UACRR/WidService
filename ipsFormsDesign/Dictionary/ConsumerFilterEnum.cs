@@ -14,17 +14,17 @@ namespace ipsFormsDesign.Dictionary
         /// </summary>
         None = 0,
         /// <summary>
-        /// Всі
-        /// </summary>
-        All = 1,
-        /// <summary>
         /// Діючі
         /// </summary>
-        Working = 2,
+        Working = 1,
         /// <summary>
         /// Для акцепту
         /// </summary>
-        NotAccepted = 3,
+        NotAccepted = 2,
+        /// <summary>
+        /// Не активні
+        /// </summary>
+        NotActive = 3,
         /// <summary>
         /// Для пролонгації
         /// </summary>
@@ -36,20 +36,19 @@ namespace ipsFormsDesign.Dictionary
         /// <summary>
         /// Активні
         /// </summary>
-        Active,
-        /// <summary>
-        /// Не активні
-        /// </summary>
-        NotActive,
+        // Active = 2,
         /// <summary>
         /// Заборгованість
         /// </summary>
-        Debt,
+        Debt = 6,
         /// <summary>
         /// В роботі(прийом звітів)
         /// </summary>
-        InWork
-
+        UnattachData = 7,
+        /// <summary>
+        /// Всі
+        /// </summary>
+        All 
     }
 
     /// <summary>
@@ -88,5 +87,24 @@ namespace ipsFormsDesign.Dictionary
         /// FOR DEVELOPERS
         /// </summary>
         All
+    }
+
+    /// <summary>
+    /// Типи документів Великих прав для запиту
+    /// </summary>
+    public enum TypeBRDocument
+    {
+        None = 0,
+        // General agreement
+        GenAgreement = 2,
+        // License agreement
+        LicAgreement = 3,
+        // Request
+        Request = 4,
+        // Certificate
+        certificate = 5,
+        // All documents
+        All 
+
     }
 }

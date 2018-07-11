@@ -37,20 +37,17 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
-        public IList<ConsumerMainView> getMainViewBR(ConsumerFilterEnum what = ConsumerFilterEnum.All)
+        public IList<ConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All,  ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
-            string url = $"consumer/listBR/{(int)what}";
-            var anketaDic = _webApi.GetList<ConsumerMainView>(url);
+            string url = $"consumer/listBR";
+            KeyValuePair<string, string>[] param = new[] {
+                new KeyValuePair<string, string>("whatId", ((int)what).ToString()),
+                new KeyValuePair<string, string>("typeDocId", ((int)typeDoc).ToString())
+            };
+            var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param );
             return anketaDic;
         }
 
-        public IList<dynamic> getBRListNew()
-        {
-            string url = $"consumer/listBRNew";
-            var anketaDic = _webApi.GetList<dynamic>(url);
-            return anketaDic;
-
-        }
 
         /// <summary>
         /// Получити дані для авто заповнення
