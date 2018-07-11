@@ -19,6 +19,7 @@ namespace ConsumerWorkplace_v_1._0
         private GlobalControlConsumerCabinetBR _cabinetBr = null;
         private Control _currentControl = null;
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
+        private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
         private ConsumerService _service = null;
 
 
@@ -34,16 +35,27 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (_currentControl == null)
                 return;
-            _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
+
+            if (e.Node.Value is ConsumerFilterEnum @curEnum)
+            {
+                _currentNodeDocType = e.Node.Parent?.Value is TypeBRDocument @element ? @element : TypeBRDocument.All;
+                _currentNodeValue = @curEnum;
+            }
+            else
+            {
+                _currentNodeDocType = e.Node.Value is TypeBRDocument @element ? @element : TypeBRDocument.GenAgreement;
+                _currentNodeValue = ConsumerFilterEnum.All;
+            }
+            // _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            _mainGridBr?.SetGridDataSource(getMainView());
-            _cabinetBr?.SetGridDataSource(getMainView());
+            _mainGridBr?.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
+            _cabinetBr?.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
         }
 
-        public IList<ConsumerMainView> getMainView()
+        public IList<ConsumerBigRightView> getMainView(TypeBRDocument typeDoc, ConsumerFilterEnum what)
         {
-            // return _service.getMainViewBR(_currentNodeValue);
-            return new List<ConsumerMainView>();
+            return _service.getMainViewBR(typeDoc, what);
+            // return new List<ConsumerBigRightView>( typeDoc, what );
         }
 
         /// <summary>
@@ -57,7 +69,7 @@ namespace ConsumerWorkplace_v_1._0
                 _mainGridBr = new GlobalControlConsumerMainGridBR();
                 _mainGridBr.OnAddNewCustomer += MainGridBr_OnAddNewCustomer;
                 _mainGridBr.OnGridButtonViewClick += MainGridBr_OnGridButtonViewClick;
-                _mainGridBr.SetGridDataSource(getMainView());
+                _mainGridBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _mainGridBr.Dock = DockStyle.Fill;
             }
 
@@ -85,7 +97,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnEditCustomer += _cabinetBr_OnEditCustomer;
                 _cabinetBr.OnSaveCustomer += _cabinetBr_OnSaveCustomer;
                 _cabinetBr.SetAnketaDictionaties(_service.GetDictionary());
-                _cabinetBr.SetGridDataSource(getMainView());
+                _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
             }
 
@@ -193,13 +205,13 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (_currentControl == _cabinetBr)
             {
-                _cabinetBr?.SetGridDataSource(getMainView());
+                _cabinetBr?.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr?.SetSelectCustomer(id);
             }
 
             if (_currentControl == _mainGridBr)
             {
-                _mainGridBr?.SetGridDataSource(getMainView());
+                _mainGridBr?.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _mainGridBr?.SetSelectCustomer(id);
             }
         }

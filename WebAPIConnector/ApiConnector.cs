@@ -75,8 +75,8 @@ namespace WebAPIConnector
             if (listParam.Count() > 0)
                 runUrl = string.Concat(runUrl, AsQueryString(listParam));
 
-            string encodeUrl = WebUtility.UrlEncode(url);
-            string retApiString = client.GetStringAsync(url).GetAwaiter().GetResult();
+ 
+            string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
             List<T> list = array.Select(rec =>
             {
