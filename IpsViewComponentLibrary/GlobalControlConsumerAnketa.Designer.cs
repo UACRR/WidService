@@ -240,7 +240,7 @@
             this.ctrlAgreement.Name = "ctrlAgreement";
             this.ctrlAgreement.Size = new System.Drawing.Size(690, 469);
             this.ctrlAgreement.TabIndex = 0;
-            this.ctrlAgreement.typeRights = IpsViewComponentLibrary.TypeRights.SmallRights;
+            this.ctrlAgreement.typeRights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             // 
             // pvPrint
             // 
