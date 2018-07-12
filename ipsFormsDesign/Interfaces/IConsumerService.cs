@@ -48,6 +48,14 @@ namespace ipsFormsDesign.Interfaces
         /// </summary>
         public DateTime AgrDate { get; set; }
         /// <summary>
+        /// Дата початку дії
+        /// </summary>
+        public DateTime DateBegin { get; set; }
+        /// <summary>
+        /// Кінцева дата дії
+        /// </summary>
+        public DateTime DateEnd { get; set; }
+        /// <summary>
         ///  Назва Споживача
         /// </summary>
         public string Name { get; set; }
@@ -115,6 +123,14 @@ namespace ipsFormsDesign.Interfaces
         /// Сума
         /// </summary>
         public decimal UnattachAmount { get; set; }
+        /// <summary>
+        /// Сума
+        /// </summary>
+        public decimal PrePayRest { get; set; }
+        /// <summary>
+        /// Дата останього платежу
+        /// </summary>
+        public DateTime DatePayLast { get; set; }
         /// <summary>
         /// Ід Партнера
         /// </summary>
