@@ -94,17 +94,30 @@ namespace ipsFormsDesign.Dictionary
     /// </summary>
     public enum TypeBRDocument
     {
+        /// <summary>
+        /// Empty
+        /// </summary>
         None = 0,
-        // General agreement
+        /// <summary>
+        /// Генеральна угода
+        /// </summary>
         GenAgreement = 2,
-        // License agreement
+        /// <summary>
+        /// Ліцензійна угода
+        /// </summary>
         LicAgreement = 3,
-        // Request
+        /// <summary>
+        /// Заявки
+        /// </summary>
         Request = 4,
-        // Certificate
+        /// <summary>
+        /// Довідки
+        /// </summary>
         Reference = 5,
-        // All documents
-        All 
+        /// <summary>
+        ///  All documents
+        /// </summary>
+        All
 
     }
 

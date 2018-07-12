@@ -13,8 +13,6 @@ namespace IpsViewComponentLibrary
 {
     public static class ExtensionUtils
     {
-        // private static RadDateTimePicker _dtPicker;
-
         /// <summary>
         /// Незмінний розмір, кнопка "Сьогодні" посередині, навігація по місяцях/роках зумом
         /// </summary>
@@ -199,5 +197,47 @@ namespace IpsViewComponentLibrary
 
     #endregion
 
+    /// <summary>
+    /// Тип вкладки кабінету великих прав
+    /// </summary>
+    public enum CabinetTabType
+    {
+        /// <summary>
+        /// Ліцензії
+        /// </summary>
+        Licenses,
+        /// <summary>
+        /// Розрахунки
+        /// </summary>
+        Calculations,
+        /// <summary>
+        /// Розрахункові листи
+        /// </summary>
+        Payslips,
+        /// <summary>
+        /// Заявки
+        /// </summary>
+        Requests,
+        /// <summary>
+        /// Довідки
+        /// </summary>
+        References,
+        /// <summary>
+        /// Контакти
+        /// </summary>
+        Contacts,
+        /// <summary>
+        /// Генеральна угода
+        /// </summary>
+        GeneralAgreement,
+        /// <summary>
+        /// Файли
+        /// </summary>
+        Files,
+        /// <summary>
+        /// Представник
+        /// </summary>
+        Agent
+    }
 
 }
