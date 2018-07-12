@@ -784,9 +784,9 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("seekType", await _dbContext.SeekType.AsNoTracking().ToListAsync());
             retDictionary.Add("specType", await _dbContext.SpecType.AsNoTracking().ToListAsync());
             retDictionary.Add("folkType", await _dbContext.FolkType.AsNoTracking().ToListAsync());
+            retDictionary.Add("registerStatuses", await _dbContext.RegisterStatus.AsNoTracking().ToListAsync());
 
             return Json(retDictionary);
         }
-
-        }
     }
+}

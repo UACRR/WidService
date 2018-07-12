@@ -477,6 +477,12 @@
     <Compile Include="RadioPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="RegisterListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RegisterListControl.Designer.cs">
+      <DependentUpon>RegisterListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistrationPersonsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -720,6 +726,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="RegisterListControl.resx">
+      <DependentUpon>RegisterListControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -759,6 +768,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterListViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />

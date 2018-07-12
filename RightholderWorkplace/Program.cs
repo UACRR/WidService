@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Services;
+﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Services;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,6 +16,9 @@ namespace RightholderWorkplace
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            var objectrightService = new ObjectRightService();
+            IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
             RightholderWorkplace form = new RightholderWorkplace();
             RightholderService service = new RightholderService();
