@@ -841,6 +841,15 @@ namespace ipsFormsDesign.Services
                                  select new TbAuthorPrc
                                  { RoleName = crt.Name, AuthorName = aut.AuthorName, RoleRate = cpr.RoleRate ?? 0 }).ToList();
 
+    /*        var ttt = (from aut in authors
+                       from crt in creativeRole
+                       .Where (crt => crt.CodeI == aut.RoleCode )
+                             .DefaultIfEmpty()
+                       select new 
+                       { RoleName = crt.Name, AuthorName = aut.AuthorName
+                       }).ToList();
+
+*/
                 var TbAL = (from aut in authors
                             join crt in creativeRole on aut.RoleCode equals crt.CodeI
                             join cpr in copyright on aut.CustId   equals  cpr.CustId
