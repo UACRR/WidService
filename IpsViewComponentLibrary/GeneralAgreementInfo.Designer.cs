@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtClient = new Telerik.WinControls.UI.RadTextBox();
+            this.bsAgreementAddBR = new System.Windows.Forms.BindingSource(this.components);
             this.txtAgrNumberBr = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtDateBegin = new Telerik.WinControls.UI.RadTextBox();
@@ -47,9 +48,9 @@
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgent = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.bsAgreementAddBR = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumberBr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDateBegin)).BeginInit();
@@ -66,7 +67,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBR)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -85,6 +85,10 @@
             this.txtClient.ReadOnly = true;
             this.txtClient.Size = new System.Drawing.Size(424, 20);
             this.txtClient.TabIndex = 1;
+            // 
+            // bsAgreementAddBR
+            // 
+            this.bsAgreementAddBR.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             // 
             // txtAgrNumberBr
             // 
@@ -218,10 +222,6 @@
             this.radLabel9.TabIndex = 16;
             this.radLabel9.Text = "Представник";
             // 
-            // bsAgreementAddBR
-            // 
-            this.bsAgreementAddBR.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            // 
             // GeneralAgreementInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,10 +244,13 @@
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.txtClient);
             this.Controls.Add(this.radLabel1);
+            this.MaximumSize = new System.Drawing.Size(705, 79);
+            this.MinimumSize = new System.Drawing.Size(705, 79);
             this.Name = "GeneralAgreementInfo";
             this.Size = new System.Drawing.Size(705, 79);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumberBr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDateBegin)).EndInit();
@@ -264,7 +267,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBR)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
