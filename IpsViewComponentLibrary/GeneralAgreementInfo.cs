@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary
 {
@@ -15,6 +16,17 @@ namespace IpsViewComponentLibrary
         public GeneralAgreementInfo()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Об'єкт ConsumerBigRightView
+        /// </summary>
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSource
+        {
+            get => bsAgreementAddBR.DataSource;
+            set => bsAgreementAddBR.DataSource = value;
         }
     }
 }
