@@ -49,25 +49,37 @@
             this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
             this.gvRegisterList = new Telerik.WinControls.UI.RadGridView();
             this.registerListViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dtCreateDateFrom = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.dtCreateDateTill = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.btnClearFrom = new Telerik.WinControls.UI.RadButton();
+            this.btnClearTill = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchRegister)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerListViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCreateDateFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCreateDateTill)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearTill)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearchRegister
             // 
-            this.txtSearchRegister.Location = new System.Drawing.Point(56, 3);
+            this.txtSearchRegister.Location = new System.Drawing.Point(102, 28);
             this.txtSearchRegister.Name = "txtSearchRegister";
-            this.txtSearchRegister.Size = new System.Drawing.Size(641, 21);
+            this.txtSearchRegister.Size = new System.Drawing.Size(595, 21);
             this.txtSearchRegister.TabIndex = 26;
             this.txtSearchRegister.ThemeName = "Office2013Light";
             this.txtSearchRegister.TextChanged += new System.EventHandler(this.txtSearchRegister_TextChanged);
             // 
             // radLabel23
             // 
-            this.radLabel23.Location = new System.Drawing.Point(3, 3);
+            this.radLabel23.Location = new System.Drawing.Point(3, 28);
             this.radLabel23.Name = "radLabel23";
             this.radLabel23.Size = new System.Drawing.Size(47, 19);
             this.radLabel23.TabIndex = 25;
@@ -80,7 +92,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvRegisterList.EnableCustomFiltering = true;
-            this.gvRegisterList.Location = new System.Drawing.Point(4, 30);
+            this.gvRegisterList.Location = new System.Drawing.Point(4, 55);
             // 
             // 
             // 
@@ -195,7 +207,7 @@
             this.gvRegisterList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvRegisterList.Name = "gvRegisterList";
             this.gvRegisterList.ShowGroupPanel = false;
-            this.gvRegisterList.Size = new System.Drawing.Size(693, 318);
+            this.gvRegisterList.Size = new System.Drawing.Size(693, 293);
             this.gvRegisterList.TabIndex = 27;
             this.gvRegisterList.ThemeName = "Office2013Light";
             this.gvRegisterList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRegisterList_CellDoubleClick);
@@ -206,10 +218,80 @@
             // 
             this.registerListViewModelBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterListViewModel);
             // 
+            // dtCreateDateFrom
+            // 
+            this.dtCreateDateFrom.Culture = new System.Globalization.CultureInfo("uk-UA");
+            this.dtCreateDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtCreateDateFrom.Location = new System.Drawing.Point(102, 4);
+            this.dtCreateDateFrom.Name = "dtCreateDateFrom";
+            this.dtCreateDateFrom.Size = new System.Drawing.Size(100, 21);
+            this.dtCreateDateFrom.TabIndex = 28;
+            this.dtCreateDateFrom.TabStop = false;
+            this.dtCreateDateFrom.ThemeName = "Office2013Light";
+            this.dtCreateDateFrom.Value = new System.DateTime(((long)(0)));
+            this.dtCreateDateFrom.ValueChanged += new System.EventHandler(this.dtCreateDateFrom_ValueChanged);
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(4, 4);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(95, 19);
+            this.radLabel1.TabIndex = 29;
+            this.radLabel1.Text = "Дата створення";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(230, 5);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(11, 19);
+            this.radLabel2.TabIndex = 30;
+            this.radLabel2.Text = "-";
+            this.radLabel2.ThemeName = "Office2013Light";
+            // 
+            // dtCreateDateTill
+            // 
+            this.dtCreateDateTill.Culture = new System.Globalization.CultureInfo("uk-UA");
+            this.dtCreateDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtCreateDateTill.Location = new System.Drawing.Point(247, 4);
+            this.dtCreateDateTill.Name = "dtCreateDateTill";
+            this.dtCreateDateTill.Size = new System.Drawing.Size(100, 21);
+            this.dtCreateDateTill.TabIndex = 29;
+            this.dtCreateDateTill.TabStop = false;
+            this.dtCreateDateTill.ThemeName = "Office2013Light";
+            this.dtCreateDateTill.Value = new System.DateTime(((long)(0)));
+            this.dtCreateDateTill.ValueChanged += new System.EventHandler(this.dtCreateDateTill_ValueChanged);
+            // 
+            // btnClearFrom
+            // 
+            this.btnClearFrom.Location = new System.Drawing.Point(201, 4);
+            this.btnClearFrom.Name = "btnClearFrom";
+            this.btnClearFrom.Size = new System.Drawing.Size(23, 21);
+            this.btnClearFrom.TabIndex = 31;
+            this.btnClearFrom.Text = "X";
+            this.btnClearFrom.ThemeName = "Office2013Light";
+            this.btnClearFrom.Click += new System.EventHandler(this.btnClearFrom_Click);
+            // 
+            // btnClearTill
+            // 
+            this.btnClearTill.Location = new System.Drawing.Point(346, 4);
+            this.btnClearTill.Name = "btnClearTill";
+            this.btnClearTill.Size = new System.Drawing.Size(23, 21);
+            this.btnClearTill.TabIndex = 32;
+            this.btnClearTill.Text = "X";
+            this.btnClearTill.ThemeName = "Office2013Light";
+            this.btnClearTill.Click += new System.EventHandler(this.btnClearTill_Click);
+            // 
             // RegisterListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnClearTill);
+            this.Controls.Add(this.btnClearFrom);
+            this.Controls.Add(this.dtCreateDateTill);
+            this.Controls.Add(this.radLabel2);
+            this.Controls.Add(this.radLabel1);
+            this.Controls.Add(this.dtCreateDateFrom);
             this.Controls.Add(this.gvRegisterList);
             this.Controls.Add(this.txtSearchRegister);
             this.Controls.Add(this.radLabel23);
@@ -220,6 +302,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerListViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCreateDateFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCreateDateTill)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearTill)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,5 +320,11 @@
         private Telerik.WinControls.UI.RadLabel radLabel23;
         private Telerik.WinControls.UI.RadGridView gvRegisterList;
         private System.Windows.Forms.BindingSource registerListViewModelBindingSource;
+        private Telerik.WinControls.UI.RadDateTimePicker dtCreateDateFrom;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.UI.RadDateTimePicker dtCreateDateTill;
+        private Telerik.WinControls.UI.RadButton btnClearFrom;
+        private Telerik.WinControls.UI.RadButton btnClearTill;
     }
 }

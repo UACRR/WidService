@@ -48,6 +48,9 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
+            dtCreateDateFrom.SetUserCalendarSettingsm();
+            dtCreateDateTill.SetUserCalendarSettingsm();
+
             if (!IsDesignMode)
             {
                 UpdateList();
@@ -61,8 +64,16 @@ namespace IpsViewComponentLibrary
 
         public void UpdateList(RegisterListViewModel currentRegister)
         {
+            var filter = new RegisterFilter();
+
+            if (dtCreateDateFrom.Value != DateTime.MinValue)
+                filter.BeginDate = dtCreateDateFrom.Value;
+
+            if (dtCreateDateTill.Value != DateTime.MinValue)
+                filter.EndDate = dtCreateDateTill.Value;
+
             var service = new RegisterService();
-            var list = service.GetListByFilter(new RegisterFilter());
+            var list = service.GetListByFilter(filter);
             registerListViewModelBindingSource.DataSource = list;
 
             SelectedRegister = currentRegister;
@@ -84,6 +95,26 @@ namespace IpsViewComponentLibrary
             {
                 OnEditCommandExecuted(SelectedRegister);
             }
+        }
+
+        private void dtCreateDateFrom_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void dtCreateDateTill_ValueChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void btnClearFrom_Click(object sender, EventArgs e)
+        {
+            dtCreateDateFrom.Value = DateTime.MinValue;
+        }
+
+        private void btnClearTill_Click(object sender, EventArgs e)
+        {
+            dtCreateDateTill.Value = DateTime.MinValue;
         }
 
         protected virtual void OnRegisterSelected(RegisterListViewModel selectedRegister)
