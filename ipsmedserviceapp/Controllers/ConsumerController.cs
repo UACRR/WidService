@@ -678,6 +678,20 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(List);
         }
+
+        //TODO test method
+        [HttpGet("listBR/{custId}")]
+        public async Task<IActionResult> GetLicensesForCustId(int custId)
+        {
+            string queue = "select * from vTsk_vBRLicense where custId = @custId";
+
+            var List = await _dbContext.getViewData(queue, new [] {new SqlParameter("@custId", custId)  });
+
+
+            return Json(List);
+        }
+
+
         [HttpGet("listAll/{filter}")]
         public async Task<IActionResult> GetFilteredList(string filter)
         {

@@ -62,7 +62,7 @@
             this.txtShow.Name = "txtShow";
             this.txtShow.Size = new System.Drawing.Size(230, 26);
             this.txtShow.TabIndex = 2;
-            this.txtShow.Text = "Рр 0123456789";
+            this.txtShow.ThemeName = "Office2013Light";
             // 
             // splitContainer
             // 
@@ -93,9 +93,10 @@
             // 
             // 
             // 
-            this.radSeparator.RootElement.ControlBounds = new System.Drawing.Rectangle(-1, 19, 234, 19);
+            this.radSeparator.RootElement.ControlBounds = new System.Drawing.Rectangle(-1, 19, 200, 4);
             this.radSeparator.Size = new System.Drawing.Size(234, 10);
             this.radSeparator.TabIndex = 5;
+            this.radSeparator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.SeparatorElement)(this.radSeparator.GetChildAt(0))).BorderWidth = 3F;
             ((Telerik.WinControls.UI.SeparatorElement)(this.radSeparator.GetChildAt(0))).BorderTopWidth = 3F;
             ((Telerik.WinControls.UI.SeparatorElement)(this.radSeparator.GetChildAt(0))).BorderGradientStyle = Telerik.WinControls.GradientStyles.Solid;

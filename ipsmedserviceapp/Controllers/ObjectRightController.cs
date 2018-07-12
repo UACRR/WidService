@@ -271,39 +271,6 @@ namespace ipsmedserviceapp.Controllers
             return Json(list);
         }
 
-        /// <summary>
-        /// ведомость
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("view/list_0401")]
-        public async Task<IActionResult> vtsk_3_R_04()
-        {
-            var list = await _dbContext.getViewData("select * from vtsk_3_R_04", null);
-            return Json(list);
-        }
-
-        /// <summary>
-        /// ведомость акц
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("view/list_0402")]
-        public async Task<IActionResult> vtsk_3_R_05()
-        {
-            var list = await _dbContext.getViewData("select * from vtsk_3_R_05", null);
-            return Json(list);
-        }
-
-        /// <summary>
-        /// Ведомость история
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("view/list_0403")]
-        public async Task<IActionResult> vtsk_3_R_06()
-        {
-            var list = await _dbContext.getViewData("select * from vtsk_3_R_06", null);
-            return Json(list);
-        }
-
         #endregion
 
     }

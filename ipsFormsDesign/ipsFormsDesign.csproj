@@ -57,6 +57,8 @@
     <Compile Include="Dictionary\ObjectAuthorRightholder.cs" />
     <Compile Include="Dictionary\ObjectCopyright.cs" />
     <Compile Include="Dictionary\ObjectRightMainView.cs" />
+    <Compile Include="Dictionary\RegisterFilter.cs" />
+    <Compile Include="Dictionary\RegisterListViewModel.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />
     <Compile Include="Dictionary\TermsOfServiceWrapper.cs" />
     <Compile Include="Interfaces\EFInterfaces.cs" />
@@ -364,6 +366,7 @@
     <Compile Include="Services\ConsumerService.cs" />
     <Compile Include="Data\Global.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
+    <Compile Include="Services\RegisterService.cs" />
     <Compile Include="Services\RightHolderService.cs" />
     <Compile Include="Services\Utils.cs" />
     <Compile Include="Services\WordEngine.cs" />
