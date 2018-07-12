@@ -51,6 +51,8 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             ctrlCabinet.OnSaveCustomerNeed += CtrlCabinet_OnSaveCustomerNeed;
+            ctrlCabinet.SetCustomer(_customer);
+            ctrlCabinet.SetDictionaries(_anketaDictionaties);
         }
 
         private void CtrlCabinet_OnSaveCustomerNeed(object sender, EventArgs e)
