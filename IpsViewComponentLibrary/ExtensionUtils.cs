@@ -203,6 +203,10 @@ namespace IpsViewComponentLibrary
     public enum CabinetTabType
     {
         /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
         /// Ліцензії
         /// </summary>
         Licenses,

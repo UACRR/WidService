@@ -216,6 +216,12 @@
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtensionUtils.cs" />
+    <Compile Include="GeneralAgreementInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GeneralAgreementInfo.Designer.cs">
+      <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalControlConsumerAnketa.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -371,6 +377,12 @@
     </Compile>
     <Compile Include="MiddleControlCabinet.Designer.cs">
       <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetLicenses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetLicenses.Designer.cs">
+      <DependentUpon>MiddleControlCabinetLicenses.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlClientName.cs">
       <SubType>UserControl</SubType>
@@ -580,6 +592,9 @@
     <EmbeddedResource Include="ExpandedFormForAnketaPersonRightHolder.resx">
       <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GeneralAgreementInfo.resx">
+      <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GlobalControlConsumerAnketa.resx">
       <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
     </EmbeddedResource>
@@ -645,6 +660,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinet.resx">
       <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetLicenses.resx">
+      <DependentUpon>MiddleControlCabinetLicenses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
@@ -727,6 +745,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />

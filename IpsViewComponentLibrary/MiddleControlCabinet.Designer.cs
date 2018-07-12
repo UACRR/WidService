@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.pageView = new Telerik.WinControls.UI.RadPageView();
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pvLicence = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvRequest = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvReference = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +47,7 @@
             // 
             this.pageView.Controls.Add(this.pvLicence);
             this.pageView.Controls.Add(this.pvCalculation);
-            this.pageView.Controls.Add(this.pvReports);
+            this.pageView.Controls.Add(this.pvPayslips);
             this.pageView.Controls.Add(this.pvRequest);
             this.pageView.Controls.Add(this.pvReference);
             this.pageView.Controls.Add(this.pvContacts);
@@ -61,6 +61,7 @@
             this.pageView.Size = new System.Drawing.Size(846, 514);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
+            this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ShowItemPinButton = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ShowItemCloseButton = false;
@@ -79,23 +80,23 @@
             this.pvCalculation.ItemSize = new System.Drawing.SizeF(80F, 27F);
             this.pvCalculation.Location = new System.Drawing.Point(5, 31);
             this.pvCalculation.Name = "pvCalculation";
-            this.pvCalculation.Size = new System.Drawing.Size(914, 518);
+            this.pvCalculation.Size = new System.Drawing.Size(836, 478);
             this.pvCalculation.Text = "Розрахунки";
             // 
-            // pvReports
+            // pvPayslips
             // 
-            this.pvReports.ItemSize = new System.Drawing.SizeF(43F, 27F);
-            this.pvReports.Location = new System.Drawing.Point(5, 31);
-            this.pvReports.Name = "pvReports";
-            this.pvReports.Size = new System.Drawing.Size(914, 518);
-            this.pvReports.Text = "Звіти";
+            this.pvPayslips.ItemSize = new System.Drawing.SizeF(35F, 27F);
+            this.pvPayslips.Location = new System.Drawing.Point(5, 31);
+            this.pvPayslips.Name = "pvPayslips";
+            this.pvPayslips.Size = new System.Drawing.Size(836, 478);
+            this.pvPayslips.Text = "Р/Л";
             // 
             // pvRequest
             // 
             this.pvRequest.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvRequest.Location = new System.Drawing.Point(5, 31);
             this.pvRequest.Name = "pvRequest";
-            this.pvRequest.Size = new System.Drawing.Size(914, 518);
+            this.pvRequest.Size = new System.Drawing.Size(836, 478);
             this.pvRequest.Text = "Заявки";
             // 
             // pvReference
@@ -103,7 +104,7 @@
             this.pvReference.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvReference.Location = new System.Drawing.Point(5, 31);
             this.pvReference.Name = "pvReference";
-            this.pvReference.Size = new System.Drawing.Size(914, 518);
+            this.pvReference.Size = new System.Drawing.Size(836, 478);
             this.pvReference.Text = "Довідки";
             // 
             // pvContacts
@@ -111,7 +112,7 @@
             this.pvContacts.ItemSize = new System.Drawing.SizeF(66F, 27F);
             this.pvContacts.Location = new System.Drawing.Point(5, 31);
             this.pvContacts.Name = "pvContacts";
-            this.pvContacts.Size = new System.Drawing.Size(914, 518);
+            this.pvContacts.Size = new System.Drawing.Size(836, 478);
             this.pvContacts.Text = "Контакти";
             // 
             // pvGeneralAgreement
@@ -119,7 +120,7 @@
             this.pvGeneralAgreement.ItemSize = new System.Drawing.SizeF(71F, 27F);
             this.pvGeneralAgreement.Location = new System.Drawing.Point(5, 31);
             this.pvGeneralAgreement.Name = "pvGeneralAgreement";
-            this.pvGeneralAgreement.Size = new System.Drawing.Size(914, 518);
+            this.pvGeneralAgreement.Size = new System.Drawing.Size(836, 478);
             this.pvGeneralAgreement.Text = "Ген. угода";
             // 
             // pvFiles
@@ -127,7 +128,7 @@
             this.pvFiles.ItemSize = new System.Drawing.SizeF(51F, 27F);
             this.pvFiles.Location = new System.Drawing.Point(5, 31);
             this.pvFiles.Name = "pvFiles";
-            this.pvFiles.Size = new System.Drawing.Size(914, 518);
+            this.pvFiles.Size = new System.Drawing.Size(836, 478);
             this.pvFiles.Text = "Файли";
             // 
             // pvAgent
@@ -135,7 +136,7 @@
             this.pvAgent.ItemSize = new System.Drawing.SizeF(88F, 27F);
             this.pvAgent.Location = new System.Drawing.Point(5, 31);
             this.pvAgent.Name = "pvAgent";
-            this.pvAgent.Size = new System.Drawing.Size(914, 518);
+            this.pvAgent.Size = new System.Drawing.Size(836, 478);
             this.pvAgent.Text = "Представник";
             // 
             // MiddleControlCabinet
@@ -156,7 +157,7 @@
         private Telerik.WinControls.UI.RadPageView pageView;
         private Telerik.WinControls.UI.RadPageViewPage pvLicence;
         private Telerik.WinControls.UI.RadPageViewPage pvCalculation;
-        private Telerik.WinControls.UI.RadPageViewPage pvReports;
+        private Telerik.WinControls.UI.RadPageViewPage pvPayslips;
         private Telerik.WinControls.UI.RadPageViewPage pvRequest;
         private Telerik.WinControls.UI.RadPageViewPage pvReference;
         private Telerik.WinControls.UI.RadPageViewPage pvContacts;
