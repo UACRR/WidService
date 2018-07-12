@@ -149,7 +149,7 @@ namespace UnitTestMediaPortal
         public void TestExpandoObject()
         {
             ConsumerService _service = new ConsumerService();
-            var list = _service.getBRListNew();
+            var list = _service.getMainViewBR(ipsFormsDesign.Dictionary.TypeBRDocument.GenAgreement, ipsFormsDesign.Dictionary.ConsumerFilterEnum.Working );
             RadTestExpandoObject form = new RadTestExpandoObject();
             form.DataSource = list;
 

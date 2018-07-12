@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TestWord_1
@@ -34,12 +35,12 @@ namespace TestWord_1
             //            Filename = "F_1_БВ-НК-бари-дискотеки_.docx";
             //            Filename = "F_3_МБВ.docx";
             //            Filename = "F_6_МТЦ.docx";
-            //            Filename = "F_Акт_публічне виконання.docx";  
-              //       Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+                        Filename = "F_Акт_публічне виконання.docx";  
+                     Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
             //          Filename = "F_Акт_публічне сповіщення TV+радио.docx";
             //        Filename = "F_Акт_публічне сповіщення кTV.docx";
             //            Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
-            //Filename = "F_Лицензионный договор на спектакль (БП).docx";
+            Filename = "F_Лицензионный договор на спектакль (БП).docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
 
@@ -48,7 +49,7 @@ namespace TestWord_1
 
         }
 
-        private void ProcessWord(string template, string Filename)
+        private async Task ProcessWord(string template, string Filename)
         {
             
             
@@ -62,7 +63,7 @@ namespace TestWord_1
                 case "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx":
                     cust = service1.GetData(131);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
+                    await wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
                 case "F_Лицензионный договор на спектакль (БП).docx":
                     /*                    cust = service.GetData(134);
@@ -79,7 +80,7 @@ namespace TestWord_1
                     AgreementMaster agreementMaster = cust.AgreementMaster?.Where(rec => rec.AgrId == 13).Single();
 // для теста берем agrid=13 и licid=3;
                     LicenseAgreement licA = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 13 &  rec.LicId == 3)).Single();
-                    wordApp.processConsumerBR(template, cust, agreementMaster , licA);
+                    await wordApp.processConsumerBR(template, cust, agreementMaster , licA);
                     break;
 
                 case "F_Акт_публічне виконання.docx":
@@ -110,44 +111,45 @@ namespace TestWord_1
                     // для теста берем agrid=13 и licid=3;
                     LicenseAgreement licA11 = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 13 & rec.LicId == 3)).Single();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumerBR(template, cust, agreementMaster11, null);
+                    await wordApp.processConsumerBR(template, cust, agreementMaster11, null);
                     break;
                 case "F_7_Г готелі.docx":
                     cust = service.GetData(226);
                     LicenseAgreement licAgr3 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr3);
+                    await wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr3);
                     break;
                 case "F_4_ТЦ магазини.docx":
                     cust = service.GetData(134);
                     LicenseAgreement licAgr4 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr4);
+                    await wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr4);
+ ///                   await wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
                     break;
                 case "F_1_БВ-НК-бари-дискотеки_.docx":
                     cust = service.GetData(134);
                     LicenseAgreement licAgr5 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr5);
+                    await wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr5);
                     break;
                 case "F_3_МБВ.docx":
                     cust = service.GetData(134);
                     LicenseAgreement licAgr6 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr6);
+                    await wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr6);
                     break;
                 case "F_6_МТЦ.docx":
                     cust = service.GetData(134);
                     LicenseAgreement licAgr7 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr7);
+                    await wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr7);
                     break;
   
 
                 default:
                     cust = service.GetData(134);                   
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
+                    await wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), null);
                     break;
             }
             radPdfViewer1.LoadDocument(wordApp.Pdf);

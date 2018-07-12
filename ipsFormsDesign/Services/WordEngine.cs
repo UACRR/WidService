@@ -299,6 +299,7 @@ namespace ipsFormsDesign.Services
         public async System.Threading.Tasks.Task ProcessConsumer(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement lic)
         {
             await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
+            //  await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion );
         }
         /// <summary>
         /// Друк доп угоди по ліцензійному договору with FileName
@@ -454,15 +455,23 @@ namespace ipsFormsDesign.Services
             }
 
 
-            DocDate = $"{licenseAgrParam?.LicDate:dd.mm.yyyy}";
+            DocDate = $"{licenseAgrParam?.LicDate:dd.MM.yyyy}";
             LicNum = licenseAgrParam?.LicNum;
-            prcntInc = licenseAgrParam?.RateAmount.ToString();
-            minRltGrn = licenseAgrParam?.MinAmount.ToString();
-            minRltKop = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100)).ToString();
+            prcntInc = $"{licenseAgrParam?.RateAmount:F}";
+            minRltGrn = $"{licenseAgrParam?.MinAmount:F}";
+            int minRltKopInt = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100));
+            minRltKop = minRltKopInt.ToString();
+            if (minRltKopInt < 10)
+            {
+                minRltKop = "0" + minRltKop;
+            }
             pay_period = $"{period[licenseAgrParam?.PeriodCode ?? 1].Name}";
             pay_period2 = $"{period[licenseAgrParam?.PeriodCode ?? 1].NameR}";
             DocDateEnd = $"{licenseAgrParam?.DateEnd:dd.MM.yyyy}";
-            prcntPrl = licenseAgrParam?.AddRate?.ToString();
+            ///            prcntPrl = licenseAgrParam?.AddRate?.ToString();
+            prcntPrl = $"{licenseAgrParam?.AddRate:F}";
+
+
             registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
             registerNumber = anketaCompany?.RegistrNumber?.ToString();
             numberVAT = anketaCompany?.NumberVat?.ToString();
@@ -534,7 +543,7 @@ namespace ipsFormsDesign.Services
                         formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
                         break;
                     case "prcntInc":
-                        item.Range.Text = prcntInc + "%";
+                        item.Range.Text = prcntInc;
                         break;
                     case "prcntIncText":
                         prcntIncText = Utils.PrcnPhrase(Convert.ToDecimal(licenseAgrParam.RateAmount));
@@ -562,7 +571,8 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = prcntPrl;
                         break;
                     case "prcntPrlText":
-                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.AddRate), true);
+                        item.Range.Text = Utils.PrcnPhrase(Convert.ToDecimal(licenseAgrParam.AddRate));
+                        ///                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32(licenseAgrParam.AddRate), true);
                         break;
                     case "СstLegalAddress":
                         item.Range.Text = reAddress;
@@ -660,6 +670,29 @@ namespace ipsFormsDesign.Services
 
         }
 
+        class TbAuthorPrc
+        {
+            public string RoleName { get; set; }
+            public string AuthorName { get; set; }
+            public decimal RoleRate { get; set; }
+            public string CountryName { get; set; }
+        }
+        class TbAuthorL
+        {
+            public string RoleName { get; set; }
+            public string AuthorName { get; set; }           
+            public string CountryName { get; set; }       
+            public decimal? prepaySum { get; set; }
+            public string Currency { get; set; }
+            public DateTime? prepayDateDo { get; set; }
+        }
+        class currency
+        {
+            public string r030 { get; set; }
+            public string countryCode { get; set; }
+            public string a3  { get; set;  }
+        }
+
         public async System.Threading.Tasks.Task processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agrMain, LicenseAgreement licA)
         {
 
@@ -674,12 +707,16 @@ namespace ipsFormsDesign.Services
             File.Copy(pathTemplate, docFile);
             // відкрити шаблон
 
-            System.Threading.Tasks.Task.Run(() =>
+            await System.Threading.Tasks.Task.Run(() =>
             {
                 var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
                 var period = _dic.period.ToDictionary(rec => rec.CodeI);
                 var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
+                var KL030 = (from kl in _dic.klR030 
+                             select new currency { r030 = kl.R030, countryCode = kl.CountryCode, a3 = kl.A3 }
+                );
+
                 app = StartWordApp();
                 innerDoc = app.Documents.Open(docFile);
                 // отримати ControlContent
@@ -792,15 +829,60 @@ namespace ipsFormsDesign.Services
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
-                //ShowName = licA?.LicenseBigR?.Obj?.Name?.ToString();
-                //ShowAct = licA?.LicenseBigR?.Obj?.ActCode?.ToString();
+                LicenseBigR licenseBigR = licA?.LicenseBigR?.Where(rec => rec.LicVersion == licA.LicVersion).Single();
+                var creativeRole = _dic.creativeRoleType;
+                var authors = licenseBigR?.Obj.Authors?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
+                var copyright = licenseBigR?.Obj.CopyRight?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
+                var licauthorbr = licenseBigR?.LicAuthorBr?.Where(rec => rec.LicVersion == licA.LicVersion).ToList();
+
+                var TbAPrc = (from aut in authors
+                                 join crt in creativeRole on aut.RoleCode equals crt.CodeI
+                                 join cpr in copyright on aut.CustId equals cpr.CustId
+                                 select new TbAuthorPrc
+                                 { RoleName = crt.Name, AuthorName = aut.AuthorName, RoleRate = cpr.RoleRate ?? 0 }).ToList();
+
+                var TbAL = (from aut in authors
+                            join crt in creativeRole on aut.RoleCode equals crt.CodeI
+                            join cpr in copyright on aut.CustId   equals  cpr.CustId
+                            join lab in licauthorbr on cpr.CRightId equals lab.CRightId  
+                            where lab.PrepayType == 1
+                            select new TbAuthorL
+                            { RoleName = crt.Name, AuthorName = aut.AuthorName, CountryName= null,
+                                prepaySum = lab.PrepaySum ?? 0,
+                                Currency = lab.R030 ?? "980"
+                                ,prepayDateDo = lab.PrepayDateDo
+                            }).ToList();
+
+                var TbAvAdv = (from aut in authors
+                               join crt in creativeRole on aut.RoleCode equals crt.CodeI
+                               join cpr in copyright on aut.CustId equals cpr.CustId
+                               join lab in licauthorbr on cpr.CRightId equals lab.CRightId
+                               where lab.PrepayType == 2
+                               select new TbAuthorL
+                               {
+                                   RoleName = crt.Name,
+                                   AuthorName = aut.AuthorName,
+                                   CountryName = null,
+                                   prepaySum = lab.PrepaySum ?? 0,
+                                   Currency = lab.R030 ?? "980"
+                                   ,
+                                   prepayDateDo = lab.PrepayDateDo
+                               }).ToList();
+
+
+
+                ShowName = licenseBigR?.Obj?.Name?.ToString();
+                ShowAct = licenseBigR?.Obj?.ActCode?.ToString();
+
                 docNumberC = licA?.LicenseAgrParam?.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum;
                 LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
                         (rec.LicVersion == licA.LicVersion)).Single();
+
                 docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
                 docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
-                //prcntShow = licA?.LicenseBigR?.Rate?.ToString();
-                //prcntShowText = Utils.PrcnPhrase(Convert.ToDecimal(licA?.LicenseBigR?.Rate));
+                decimal prcntrate = Convert.ToDecimal(licenseBigR?.Rate);
+                prcntShow = prcntrate.ToString("F");
+                prcntShowText = Utils.PrcnPhrase(prcntrate);
                 //PayShowDataDo = $"{licA?.LicenseBigR?.PrepayDateDo:dd.MM.yyyy}";
                 decimal pPayShowGrn = 0;
                 decimal aPayShowGrn = 0;
@@ -861,6 +943,17 @@ namespace ipsFormsDesign.Services
                         case "TablePLk":
                             formTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
                             break;
+                        case "TableAvtorPrc":
+                            formTableAvtorPrc(item.Range.Tables, TbAPrc);
+                            break;
+                        case "TableAvtorLmp":
+                            formTableAvtorLmp(item.Range.Tables, TbAL);
+                            break;
+                        case "TableAvtorAdv":
+                            formTableAvtorLmp(item.Range.Tables, TbAvAdv);
+                            break;
+
+
                         case "GdocDateBeginC":
                             item.Range.Text = GdocDateBeginC;
                             break;
@@ -1049,7 +1142,13 @@ namespace ipsFormsDesign.Services
             CstBooker = $"{EmployeeBooker.LastName} {EmployeeBooker.FirstName} {EmployeeBooker.SurName ?? string.Empty}";
             CPaidAmountGrn = period.Amount.ToString();
             CPaidAmountGrnText = Utils.NumPhraseL(Convert.ToUInt32(period.Amount), false);
-            CPaidAmountKop = ((int)((period.Amount - (int)period.Amount) * 100)).ToString();
+            int CPaidAmountKopInt = ((int)((period.Amount - (int)period.Amount) * 100));
+            CPaidAmountKop = CPaidAmountKopInt.ToString();
+            if (CPaidAmountKopInt < 10)
+            {
+                CPaidAmountKop = "0" + CPaidAmountKop;
+            }
+
             CPaidAmountKopText = Utils.NumPhraseL(Convert.ToUInt32(((int)((period.Amount - (int)period.Amount) * 100))), false);
             CstCorrespAddress = anketaCompany.LeAddress != null ?
                 $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : CstCorrespAddress;
@@ -1114,8 +1213,50 @@ namespace ipsFormsDesign.Services
 
         }
 
+        private void formTableAvtorPrc(Tables tables, List<TbAuthorPrc> list)
+        {
+            TbAuthorPrc tbAuthorPrc;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in list)
+            {
+                tbAuthorPrc = item;
+                curRow = table.Rows.Add();
+                index++;
+                curRow.Cells[1].Range.Text = tbAuthorPrc.RoleName.ToString();
+                curRow.Cells[2].Range.Text = tbAuthorPrc.AuthorName.ToString();
+                curRow.Cells[3].Range.Text = "Україна";
+                curRow.Cells[4].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
+            }
+        }
+        private void formTableAvtorLmp(Tables tables, List<TbAuthorL> list)
+        {
+            TbAuthorL tbAuthorL;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in list)
+            {
+                tbAuthorL = item;
+                curRow = table.Rows.Add();
+                index++;
+                curRow.Cells[1].Range.Text = tbAuthorL.RoleName.ToString();
+                curRow.Cells[2].Range.Text = tbAuthorL.AuthorName.ToString();
+                curRow.Cells[3].Range.Text = "Україна";
+                curRow.Cells[4].Range.Text = (Convert.ToDecimal(tbAuthorL.prepaySum)).ToString("F");
+                curRow.Cells[5].Range.Text = tbAuthorL.Currency.ToString();
+                curRow.Cells[6].Range.Text = $"{tbAuthorL.prepayDateDo:dd.MM.yyyy}";
+            }
+        }
 
-        private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
+    
+
+
+
+            private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
         {
             LicAuthorBr authorBr;
             if (tables.Count == 0) return;

@@ -29,48 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ctrlAgreementMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.bsLicAgrParam = new System.Windows.Forms.BindingSource(this.components);
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
+            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
+            this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictAgrLicType = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ddlPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsDictPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtDayForPay = new Telerik.WinControls.UI.RadTextBox();
-            this.bsDictAgrLicType = new System.Windows.Forms.BindingSource(this.components);
-            this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bsLicAgrParam = new System.Windows.Forms.BindingSource(this.components);
-            this.bsDictPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
-            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlAgreementMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictAgrLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictAgrLicType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctrlAgreementMain
+            // bsLicAgrParam
             // 
-            this.ctrlAgreementMain.AgreementName = "";
-            this.ctrlAgreementMain.DataSource = this.bsLicAgrParam;
-            this.ctrlAgreementMain.DateBeginDataMember = "";
-            this.ctrlAgreementMain.DateDataMember = "";
-            this.ctrlAgreementMain.DateEndDataMember = "";
-            this.ctrlAgreementMain.DateEndNullDate = new System.DateTime(((long)(0)));
-            this.ctrlAgreementMain.DateEndNullText = "";
-            this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 36);
-            this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);
-            this.ctrlAgreementMain.Name = "ctrlAgreementMain";
-            this.ctrlAgreementMain.NumberDataMember = "";
-            this.ctrlAgreementMain.Size = new System.Drawing.Size(477, 49);
-            this.ctrlAgreementMain.TabIndex = 33;
+            this.bsLicAgrParam.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // lblTitle
             // 
@@ -82,6 +70,10 @@
             this.lblTitle.TabIndex = 32;
             this.lblTitle.Text = "Назва Клієнта";
             this.lblTitle.ThemeName = "Office2013Light";
+            // 
+            // bsAnketaCompany
+            // 
+            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // ddlLicType
             // 
@@ -100,6 +92,14 @@
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.StackLayoutElement)(this.ddlLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
             // 
+            // licenseAgreementBindingSource
+            // 
+            this.licenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            // 
+            // bsDictAgrLicType
+            // 
+            this.bsDictAgrLicType.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
+            // 
             // radLabel1
             // 
             this.radLabel1.Location = new System.Drawing.Point(3, 91);
@@ -113,18 +113,22 @@
             // 
             this.ddlPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicAgrParam, "PeriodCode", true));
             this.ddlPeriodPayment.DataSource = this.bsDictPaidPeriod;
-            this.ddlPeriodPayment.DisplayMember = "CodeI";
+            this.ddlPeriodPayment.DisplayMember = "Name";
             this.ddlPeriodPayment.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlPeriodPayment.Location = new System.Drawing.Point(150, 143);
+            this.ddlPeriodPayment.Location = new System.Drawing.Point(150, 178);
             this.ddlPeriodPayment.Name = "ddlPeriodPayment";
             this.ddlPeriodPayment.Size = new System.Drawing.Size(194, 21);
             this.ddlPeriodPayment.TabIndex = 38;
             this.ddlPeriodPayment.ThemeName = "Office2013Light";
             this.ddlPeriodPayment.ValueMember = "CodeI";
             // 
+            // bsDictPaidPeriod
+            // 
+            this.bsDictPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.Period);
+            // 
             // radLabel4
             // 
-            this.radLabel4.Location = new System.Drawing.Point(3, 143);
+            this.radLabel4.Location = new System.Drawing.Point(3, 178);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(141, 19);
             this.radLabel4.TabIndex = 39;
@@ -133,7 +137,7 @@
             // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(3, 118);
+            this.radLabel2.Location = new System.Drawing.Point(3, 153);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(155, 19);
             this.radLabel2.TabIndex = 40;
@@ -143,32 +147,29 @@
             // txtDayForPay
             // 
             this.txtDayForPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicAgrParam, "DayForPay", true));
-            this.txtDayForPay.Location = new System.Drawing.Point(164, 118);
+            this.txtDayForPay.Location = new System.Drawing.Point(164, 153);
             this.txtDayForPay.Name = "txtDayForPay";
             this.txtDayForPay.Size = new System.Drawing.Size(48, 21);
             this.txtDayForPay.TabIndex = 41;
             this.txtDayForPay.ThemeName = "Office2013Light";
+            this.txtDayForPay.TextChanged += new System.EventHandler(this.txtDayForPay_TextChanged);
             this.txtDayForPay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDayForPay_KeyPress);
             // 
-            // bsDictAgrLicType
+            // ctrlAgreementMain
             // 
-            this.bsDictAgrLicType.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
-            // 
-            // licenseAgreementBindingSource
-            // 
-            this.licenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
-            // 
-            // bsLicAgrParam
-            // 
-            this.bsLicAgrParam.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
-            // 
-            // bsDictPaidPeriod
-            // 
-            this.bsDictPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.Period);
-            // 
-            // bsAnketaCompany
-            // 
-            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
+            this.ctrlAgreementMain.AgreementName = "";
+            this.ctrlAgreementMain.DataSource = this.bsLicAgrParam;
+            this.ctrlAgreementMain.DateBeginDataMember = "";
+            this.ctrlAgreementMain.DateDataMember = "";
+            this.ctrlAgreementMain.DateEndDataMember = "";
+            this.ctrlAgreementMain.DateEndNullDate = new System.DateTime(((long)(0)));
+            this.ctrlAgreementMain.DateEndNullText = "";
+            this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 36);
+            this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);
+            this.ctrlAgreementMain.Name = "ctrlAgreementMain";
+            this.ctrlAgreementMain.NumberDataMember = "";
+            this.ctrlAgreementMain.Size = new System.Drawing.Size(477, 49);
+            this.ctrlAgreementMain.TabIndex = 33;
             // 
             // MiddleControlAgreementBigRights
             // 
@@ -182,22 +183,22 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.ddlLicType);
             this.Controls.Add(this.radLabel1);
-            this.MaximumSize = new System.Drawing.Size(900, 167);
-            this.MinimumSize = new System.Drawing.Size(500, 167);
+            this.MaximumSize = new System.Drawing.Size(900, 200);
+            this.MinimumSize = new System.Drawing.Size(500, 200);
             this.Name = "MiddleControlAgreementBigRights";
-            this.Size = new System.Drawing.Size(596, 167);
+            this.Size = new System.Drawing.Size(596, 200);
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictAgrLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictAgrLicType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

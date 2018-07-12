@@ -45,17 +45,38 @@ namespace WebAPIConnector
 
         }
 
+        private string AsQueryString(IEnumerable<KeyValuePair<string, string>> parameters)
+        {
+            if (!parameters.Any())
+                return "";
+
+            var builder = new StringBuilder("?");
+
+            var separator = "";
+            foreach (var kvp in parameters.Where(kvp => kvp.Value != null))
+            {
+                builder.AppendFormat("{0}{1}={2}", separator, WebUtility.UrlEncode(kvp.Key), WebUtility.UrlEncode(kvp.Value.ToString()));
+
+                separator = "&";
+            }
+
+            return builder.ToString();
+        }
+
         /// <summary>
         /// Получити список об'єктів з серверу додатків
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public List<T> GetList<T>(string url)
+        public List<T> GetList<T>(string url, params KeyValuePair<string, string>[] listParam)
         {
+            string runUrl = url;
+            if (listParam.Count() > 0)
+                runUrl = string.Concat(runUrl, AsQueryString(listParam));
 
-            string encodeUrl = WebUtility.UrlEncode(url);
-            string retApiString = client.GetStringAsync(url).GetAwaiter().GetResult();
+ 
+            string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
             List<T> list = array.Select(rec =>
             {
