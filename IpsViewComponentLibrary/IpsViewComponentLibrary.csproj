@@ -252,6 +252,12 @@
     <Compile Include="GlobalControlConsumerMainGridBR.Designer.cs">
       <DependentUpon>GlobalControlConsumerMainGridBR.cs</DependentUpon>
     </Compile>
+    <Compile Include="InformationAgrBR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InformationAgrBR.Designer.cs">
+      <DependentUpon>InformationAgrBR.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformationAboutTheContractTitleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -463,6 +469,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="RadioPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -610,6 +621,9 @@
     <EmbeddedResource Include="GlobalControlConsumerMainGridBR.resx">
       <DependentUpon>GlobalControlConsumerMainGridBR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InformationAgrBR.resx">
+      <DependentUpon>InformationAgrBR.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -753,6 +767,10 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\createAct.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -798,6 +816,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\file.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

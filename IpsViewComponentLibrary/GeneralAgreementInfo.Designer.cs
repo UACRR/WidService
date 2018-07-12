@@ -73,9 +73,10 @@
             // 
             this.radLabel1.Location = new System.Drawing.Point(4, 4);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(38, 18);
+            this.radLabel1.Size = new System.Drawing.Size(41, 19);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Клієнт";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // txtClient
             // 
@@ -83,8 +84,9 @@
             this.txtClient.Location = new System.Drawing.Point(48, 3);
             this.txtClient.Name = "txtClient";
             this.txtClient.ReadOnly = true;
-            this.txtClient.Size = new System.Drawing.Size(424, 20);
+            this.txtClient.Size = new System.Drawing.Size(424, 21);
             this.txtClient.TabIndex = 1;
+            this.txtClient.ThemeName = "Office2013Light";
             // 
             // bsAgreementAddBR
             // 
@@ -96,48 +98,56 @@
             this.txtAgrNumberBr.Location = new System.Drawing.Point(578, 3);
             this.txtAgrNumberBr.Name = "txtAgrNumberBr";
             this.txtAgrNumberBr.ReadOnly = true;
-            this.txtAgrNumberBr.Size = new System.Drawing.Size(124, 20);
+            this.txtAgrNumberBr.Size = new System.Drawing.Size(124, 21);
             this.txtAgrNumberBr.TabIndex = 3;
+            this.txtAgrNumberBr.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
             this.radLabel2.Location = new System.Drawing.Point(478, 4);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(94, 18);
+            this.radLabel2.Size = new System.Drawing.Size(102, 19);
             this.radLabel2.TabIndex = 2;
             this.radLabel2.Text = "№ Ген. договору";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // txtDateBegin
             // 
+            this.txtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "", "d"));
             this.txtDateBegin.Location = new System.Drawing.Point(84, 29);
             this.txtDateBegin.Name = "txtDateBegin";
             this.txtDateBegin.ReadOnly = true;
-            this.txtDateBegin.Size = new System.Drawing.Size(70, 20);
+            this.txtDateBegin.Size = new System.Drawing.Size(70, 21);
             this.txtDateBegin.TabIndex = 5;
+            this.txtDateBegin.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
             this.radLabel3.Location = new System.Drawing.Point(4, 30);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(74, 18);
+            this.radLabel3.Size = new System.Drawing.Size(81, 19);
             this.radLabel3.TabIndex = 4;
             this.radLabel3.Text = "Дата початку";
+            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // txtAvance
             // 
+            this.txtAvance.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "PrePayRest", true));
             this.txtAvance.Location = new System.Drawing.Point(603, 29);
             this.txtAvance.Name = "txtAvance";
             this.txtAvance.ReadOnly = true;
-            this.txtAvance.Size = new System.Drawing.Size(99, 20);
+            this.txtAvance.Size = new System.Drawing.Size(99, 21);
             this.txtAvance.TabIndex = 7;
+            this.txtAvance.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
             this.radLabel4.Location = new System.Drawing.Point(560, 30);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(37, 18);
+            this.radLabel4.Size = new System.Drawing.Size(40, 19);
             this.radLabel4.TabIndex = 6;
             this.radLabel4.Text = "Аванс";
+            this.radLabel4.ThemeName = "Office2013Light";
             // 
             // txtBorg
             // 
@@ -145,32 +155,37 @@
             this.txtBorg.Location = new System.Drawing.Point(444, 29);
             this.txtBorg.Name = "txtBorg";
             this.txtBorg.ReadOnly = true;
-            this.txtBorg.Size = new System.Drawing.Size(110, 20);
+            this.txtBorg.Size = new System.Drawing.Size(110, 21);
             this.txtBorg.TabIndex = 9;
+            this.txtBorg.ThemeName = "Office2013Light";
             // 
             // radLabel5
             // 
             this.radLabel5.Location = new System.Drawing.Point(352, 29);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(86, 18);
+            this.radLabel5.Size = new System.Drawing.Size(93, 19);
             this.radLabel5.TabIndex = 8;
             this.radLabel5.Text = "Заборгованість";
+            this.radLabel5.ThemeName = "Office2013Light";
             // 
             // txtDateEnd
             // 
+            this.txtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "", "d"));
             this.txtDateEnd.Location = new System.Drawing.Point(227, 29);
             this.txtDateEnd.Name = "txtDateEnd";
             this.txtDateEnd.ReadOnly = true;
-            this.txtDateEnd.Size = new System.Drawing.Size(70, 20);
+            this.txtDateEnd.Size = new System.Drawing.Size(70, 21);
             this.txtDateEnd.TabIndex = 11;
+            this.txtDateEnd.ThemeName = "Office2013Light";
             // 
             // radLabel6
             // 
             this.radLabel6.Location = new System.Drawing.Point(160, 29);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(61, 18);
+            this.radLabel6.Size = new System.Drawing.Size(66, 19);
             this.radLabel6.TabIndex = 10;
             this.radLabel6.Text = "Дата кінця";
+            this.radLabel6.ThemeName = "Office2013Light";
             // 
             // txtState
             // 
@@ -178,32 +193,37 @@
             this.txtState.Location = new System.Drawing.Point(40, 55);
             this.txtState.Name = "txtState";
             this.txtState.ReadOnly = true;
-            this.txtState.Size = new System.Drawing.Size(137, 20);
+            this.txtState.Size = new System.Drawing.Size(137, 21);
             this.txtState.TabIndex = 13;
+            this.txtState.ThemeName = "Office2013Light";
             // 
             // radLabel7
             // 
             this.radLabel7.Location = new System.Drawing.Point(4, 56);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(30, 18);
+            this.radLabel7.Size = new System.Drawing.Size(33, 19);
             this.radLabel7.TabIndex = 12;
             this.radLabel7.Text = "Стан";
+            this.radLabel7.ThemeName = "Office2013Light";
             // 
             // txtDateLastPay
             // 
+            this.txtDateLastPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DatePayLast", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "", "d"));
             this.txtDateLastPay.Location = new System.Drawing.Point(312, 55);
             this.txtDateLastPay.Name = "txtDateLastPay";
             this.txtDateLastPay.ReadOnly = true;
-            this.txtDateLastPay.Size = new System.Drawing.Size(70, 20);
+            this.txtDateLastPay.Size = new System.Drawing.Size(70, 21);
             this.txtDateLastPay.TabIndex = 15;
+            this.txtDateLastPay.ThemeName = "Office2013Light";
             // 
             // radLabel8
             // 
             this.radLabel8.Location = new System.Drawing.Point(183, 56);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(123, 18);
+            this.radLabel8.Size = new System.Drawing.Size(134, 19);
             this.radLabel8.TabIndex = 14;
             this.radLabel8.Text = "Дата останньої оплати";
+            this.radLabel8.ThemeName = "Office2013Light";
             // 
             // txtAgent
             // 
@@ -211,16 +231,18 @@
             this.txtAgent.Location = new System.Drawing.Point(467, 55);
             this.txtAgent.Name = "txtAgent";
             this.txtAgent.ReadOnly = true;
-            this.txtAgent.Size = new System.Drawing.Size(235, 20);
+            this.txtAgent.Size = new System.Drawing.Size(235, 21);
             this.txtAgent.TabIndex = 17;
+            this.txtAgent.ThemeName = "Office2013Light";
             // 
             // radLabel9
             // 
             this.radLabel9.Location = new System.Drawing.Point(388, 56);
             this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(73, 18);
+            this.radLabel9.Size = new System.Drawing.Size(80, 19);
             this.radLabel9.TabIndex = 16;
             this.radLabel9.Text = "Представник";
+            this.radLabel9.ThemeName = "Office2013Light";
             // 
             // GeneralAgreementInfo
             // 
