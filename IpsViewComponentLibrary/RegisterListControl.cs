@@ -3,7 +3,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using Telerik.WinControls.UI;
 
@@ -32,10 +34,13 @@ namespace IpsViewComponentLibrary
                 {
                     _register = value;
 
-                    var row = gvRegisterList.Rows.FirstOrDefault(r => (int)r.Cells["RegId"].Value == _register.RegId);
-                    if (row != null)
+                    if (_register != null)
                     {
-                        gvRegisterList.CurrentRow = row;
+                        var row = gvRegisterList.Rows.FirstOrDefault(r => (int)r.Cells["RegId"].Value == _register.RegId);
+                        if (row != null)
+                        {
+                            gvRegisterList.CurrentRow = row;
+                        }
                     }
                 }
             }
@@ -53,8 +58,19 @@ namespace IpsViewComponentLibrary
 
             if (!IsDesignMode)
             {
+                SetDictionaries();
                 UpdateList();
             }
+        }
+
+        private void SetDictionaries()
+        {
+            var statuses = IpsGlobal.ObjectRightDictionaries.RegisterStatuses;
+            statuses.Insert(0, new RegisterStatus { CodeI = -1, Name = "Всі" });
+
+            ddlStatus.ValueMember = "CodeI";
+            ddlStatus.DisplayMember = "Name";
+            ddlStatus.DataSource = statuses;
         }
 
         public void UpdateList()
@@ -65,6 +81,10 @@ namespace IpsViewComponentLibrary
         public void UpdateList(RegisterListViewModel currentRegister)
         {
             var filter = new RegisterFilter();
+
+            //var selectedStatus = ddlStatus.SelectedValue as RegisterStatus;
+            if (ddlStatus.SelectedValue != null && (int)ddlStatus.SelectedValue != -1)
+                filter.Status = (int)ddlStatus.SelectedValue;
 
             if (dtCreateDateFrom.Value != DateTime.MinValue)
                 filter.BeginDate = dtCreateDateFrom.Value;
@@ -95,6 +115,11 @@ namespace IpsViewComponentLibrary
             {
                 OnEditCommandExecuted(SelectedRegister);
             }
+        }
+
+        private void ddlStatus_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UpdateList();
         }
 
         private void dtCreateDateFrom_ValueChanged(object sender, EventArgs e)
