@@ -48,6 +48,14 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
+        public IList<dynamic> GetAgreementsBigRight(string custId)
+        {
+            string url = $"consumer/listBR/" + custId;
+            var agr = _webApi.GetListAgreement<dynamic>(url);
+            return agr;
+        }
+
+
 
         /// <summary>
         /// Получити дані для авто заповнення

@@ -126,6 +126,7 @@ namespace ConsumerWorkplace_v_1._0
 
         private ipsFormsDesign.Model.Customer CabinetBr_OnCustomerUpdateDataNeed(int id)
         {
+            _service.GetAgreementsBigRight(id.ToString());
             return _service.GetData(id);
         }
 

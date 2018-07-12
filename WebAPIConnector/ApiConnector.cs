@@ -88,6 +88,21 @@ namespace WebAPIConnector
 
         }
 
+        public List<T> GetListAgreement<T>(string url)
+        {
+            string runUrl = url;
+
+            string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+            JArray array = JArray.Parse(retApiString);
+            List<T> list = array.Select(rec =>
+            {
+                var item = rec.ToObject<T>();
+                return item;
+            }).ToList();
+
+            return list;
+        }
+
         public bool ApiAction<T>(string url, int rhId, List<T> inheritData)
         {
             string idUrl = $"{url}/{rhId}";
