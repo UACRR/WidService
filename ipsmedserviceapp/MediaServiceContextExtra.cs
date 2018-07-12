@@ -104,7 +104,13 @@ namespace ipsmedserviceapp.Model
                     comm.CommandText = sqlCommand;
                     if (param != null && param.Length > 0)
                     {
-                        comm.Parameters.AddRange(param);
+                        foreach (var p in param)
+                        {
+                            if (p.Value == null)
+                                p.Value = DBNull.Value;
+
+                            comm.Parameters.Add(p);
+                        }
                     }
 
                     var reader = await comm.ExecuteReaderAsync();
