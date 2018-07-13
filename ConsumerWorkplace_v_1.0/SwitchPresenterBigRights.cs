@@ -129,7 +129,6 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetDataCustomer(_service.GetData(id));
             _cabinetBr.SetDataAgreementView(_service.GetAgreementsBigRight(id.ToString()));
             
-            _cabinetBr.UpdateControlData();
         }
 
         private void CabinetBr_OnBackToGridNeed(int custId)

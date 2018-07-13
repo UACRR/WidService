@@ -28,6 +28,8 @@ namespace IpsViewComponentLibrary
             {"pvAgent", CabinetTabType.Agent}
         };
         private Customer _customer = null;
+        private ConsumerBigRightView _brView;
+        private IList<VbrLicense> _brLicenses;
         private AnketaDictionaties _anketaDictionaties = null;
         private CabinetTabType _currenCabinetTab = CabinetTabType.Licenses;
 
@@ -46,9 +48,11 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public void SetAndUpdateData(Customer customer)
+        public void SetAndUpdateData(Customer customer, ConsumerBigRightView brView, IList<VbrLicense> brLicenses)
         {
             _customer = customer;
+            _brView = brView;
+            _brLicenses = brLicenses;
             UpdateCurentTab(_currenCabinetTab);
         }
 
@@ -60,7 +64,8 @@ namespace IpsViewComponentLibrary
                     break;
                 case CabinetTabType.Licenses:
                 {
-                    
+                    ctrlLicense.SetDataSources(_brView);
+                    ctrlLicense.SetData(_customer,_brLicenses,_brLicenses);
                 }
                     break;
                 case CabinetTabType.Calculations:
