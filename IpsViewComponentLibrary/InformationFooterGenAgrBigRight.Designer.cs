@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Windows.Forms;
+
+namespace IpsViewComponentLibrary
 {
     partial class InformationFooterGenAgrBigRight
     {
@@ -28,62 +30,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.agrNumber = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.components = new System.ComponentModel.Container();
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
-            this.distribAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.amount = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.bank = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
-            this.paymentStatus = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.acting = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.state = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.bindRequest = new System.Windows.Forms.Label();
+            this.bindReference = new System.Windows.Forms.Label();
+            this.bsVbrLicense = new System.Windows.Forms.BindingSource(this.components);
+            this.distribAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.unAttackAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.attachAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.noAcceptReference = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.noAcceptRequest = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.activeRequestReference = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.noProlongLicense = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.noAcceptLicense = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.activeLicense = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.partnerName = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.agrDate = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.agrNumber = new IpsViewComponentLibrary.SingleShowInformationControl();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).BeginInit();
             this.radPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
-            this.radPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsVbrLicense)).BeginInit();
             this.SuspendLayout();
-            // 
-            // agrNumber
-            // 
-            this.agrNumber.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agrNumber.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.agrNumber.Location = new System.Drawing.Point(3, 3);
-            this.agrNumber.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.agrNumber.MinimumSize = new System.Drawing.Size(150, 25);
-            this.agrNumber.Name = "agrNumber";
-            this.agrNumber.Size = new System.Drawing.Size(188, 28);
-            this.agrNumber.SplitterRatio = 90;
-            this.agrNumber.StringFormat = "0";
-            this.agrNumber.TabIndex = 0;
-            this.agrNumber.TextTitle = "№ договору";
-            this.agrNumber.TextValue = "";
-            this.agrNumber.ValueDataMemger = "";
-            this.agrNumber.ValueDataSource = null;
             // 
             // panel
             // 
             this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel.Controls.Add(this.bindReference);
+            this.panel.Controls.Add(this.bindRequest);
             this.panel.Controls.Add(this.radPanel4);
-            this.panel.Controls.Add(this.radPanel3);
             this.panel.Controls.Add(this.radPanel2);
             this.panel.Controls.Add(this.radPanel1);
             this.panel.Controls.Add(this.partnerName);
@@ -98,13 +83,61 @@
             // radPanel4
             // 
             this.radPanel4.Controls.Add(this.distribAmount);
-            this.radPanel4.Controls.Add(this.amount);
-            this.radPanel4.Controls.Add(this.bank);
-            this.radPanel4.Location = new System.Drawing.Point(684, 37);
+            this.radPanel4.Controls.Add(this.unAttackAmount);
+            this.radPanel4.Controls.Add(this.attachAmount);
+            this.radPanel4.Location = new System.Drawing.Point(539, 37);
             this.radPanel4.Name = "radPanel4";
-            this.radPanel4.Size = new System.Drawing.Size(217, 106);
+            this.radPanel4.Size = new System.Drawing.Size(232, 106);
             this.radPanel4.TabIndex = 6;
             this.radPanel4.ThemeName = "Office2013Light";
+            // 
+            // radPanel2
+            // 
+            this.radPanel2.Controls.Add(this.noAcceptReference);
+            this.radPanel2.Controls.Add(this.noAcceptRequest);
+            this.radPanel2.Controls.Add(this.activeRequestReference);
+            this.radPanel2.Location = new System.Drawing.Point(280, 37);
+            this.radPanel2.Name = "radPanel2";
+            this.radPanel2.Size = new System.Drawing.Size(223, 106);
+            this.radPanel2.TabIndex = 4;
+            this.radPanel2.ThemeName = "Office2013Light";
+            // 
+            // radPanel1
+            // 
+            this.radPanel1.Controls.Add(this.noProlongLicense);
+            this.radPanel1.Controls.Add(this.noAcceptLicense);
+            this.radPanel1.Controls.Add(this.activeLicense);
+            this.radPanel1.Location = new System.Drawing.Point(19, 37);
+            this.radPanel1.Name = "radPanel1";
+            this.radPanel1.Size = new System.Drawing.Size(223, 106);
+            this.radPanel1.TabIndex = 3;
+            this.radPanel1.ThemeName = "Office2013Light";
+            // 
+            // bindRequest
+            // 
+            this.bindRequest.AutoSize = true;
+            this.bindRequest.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVbrLicense, "CountLic2Active", true));
+            this.bindRequest.Location = new System.Drawing.Point(864, 64);
+            this.bindRequest.Name = "bindRequest";
+            this.bindRequest.Size = new System.Drawing.Size(27, 15);
+            this.bindRequest.TabIndex = 7;
+            this.bindRequest.Text = "Req";
+            this.bindRequest.Visible = false;
+            // 
+            // bindReference
+            // 
+            this.bindReference.AutoSize = true;
+            this.bindReference.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsVbrLicense, "CountLic3Active", true));
+            this.bindReference.Location = new System.Drawing.Point(864, 79);
+            this.bindReference.Name = "bindReference";
+            this.bindReference.Size = new System.Drawing.Size(24, 15);
+            this.bindReference.TabIndex = 8;
+            this.bindReference.Text = "Ref";
+            this.bindReference.Visible = false;
+            // 
+            // bsVbrLicense
+            // 
+            this.bsVbrLicense.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             // 
             // distribAmount
             // 
@@ -112,135 +145,59 @@
             this.distribAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
             this.distribAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.distribAmount.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "PrePayRest", true));
             this.distribAmount.Location = new System.Drawing.Point(3, 71);
             this.distribAmount.MaximumSize = new System.Drawing.Size(1000, 28);
             this.distribAmount.MinimumSize = new System.Drawing.Size(150, 25);
             this.distribAmount.Name = "distribAmount";
-            this.distribAmount.Size = new System.Drawing.Size(211, 28);
-            this.distribAmount.SplitterRatio = 120;
+            this.distribAmount.Size = new System.Drawing.Size(226, 28);
+            this.distribAmount.SplitterRatio = 145;
             this.distribAmount.StringFormat = "0";
             this.distribAmount.TabIndex = 6;
-            this.distribAmount.TextTitle = "Розподілена сума";
+            this.distribAmount.TextTitle = "Залишок авансів";
             this.distribAmount.TextValue = "";
             this.distribAmount.ValueDataMemger = "";
             this.distribAmount.ValueDataSource = null;
             // 
-            // amount
+            // unAttackAmount
             // 
-            this.amount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.amount.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.amount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.unAttackAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.unAttackAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
+            this.unAttackAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.amount.Location = new System.Drawing.Point(3, 37);
-            this.amount.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.amount.MinimumSize = new System.Drawing.Size(150, 25);
-            this.amount.Name = "amount";
-            this.amount.Size = new System.Drawing.Size(211, 28);
-            this.amount.SplitterRatio = 120;
-            this.amount.StringFormat = "0";
-            this.amount.TabIndex = 5;
-            this.amount.TextTitle = "Сума звірки";
-            this.amount.TextValue = "";
-            this.amount.ValueDataMemger = "";
-            this.amount.ValueDataSource = null;
+            this.unAttackAmount.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "UnattachAmount", true));
+            this.unAttackAmount.Location = new System.Drawing.Point(3, 37);
+            this.unAttackAmount.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.unAttackAmount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.unAttackAmount.Name = "unAttackAmount";
+            this.unAttackAmount.Size = new System.Drawing.Size(226, 28);
+            this.unAttackAmount.SplitterRatio = 145;
+            this.unAttackAmount.StringFormat = "0";
+            this.unAttackAmount.TabIndex = 5;
+            this.unAttackAmount.TextTitle = "Неприв\'язаних коштів";
+            this.unAttackAmount.TextValue = "";
+            this.unAttackAmount.ValueDataMemger = "";
+            this.unAttackAmount.ValueDataSource = null;
             // 
-            // bank
+            // attachAmount
             // 
-            this.bank.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bank.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bank.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.attachAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.attachAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
+            this.attachAmount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bank.Location = new System.Drawing.Point(3, 3);
-            this.bank.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.bank.MinimumSize = new System.Drawing.Size(150, 25);
-            this.bank.Name = "bank";
-            this.bank.Size = new System.Drawing.Size(211, 28);
-            this.bank.SplitterRatio = 120;
-            this.bank.StringFormat = "0";
-            this.bank.TabIndex = 4;
-            this.bank.TextTitle = "Банк";
-            this.bank.TextValue = "";
-            this.bank.ValueDataMemger = "";
-            this.bank.ValueDataSource = null;
-            // 
-            // radPanel3
-            // 
-            this.radPanel3.Controls.Add(this.paymentStatus);
-            this.radPanel3.Controls.Add(this.acting);
-            this.radPanel3.Controls.Add(this.state);
-            this.radPanel3.Location = new System.Drawing.Point(461, 37);
-            this.radPanel3.Name = "radPanel3";
-            this.radPanel3.Size = new System.Drawing.Size(217, 106);
-            this.radPanel3.TabIndex = 5;
-            this.radPanel3.ThemeName = "Office2013Light";
-            // 
-            // paymentStatus
-            // 
-            this.paymentStatus.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.paymentStatus.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.paymentStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.paymentStatus.Location = new System.Drawing.Point(3, 71);
-            this.paymentStatus.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.paymentStatus.MinimumSize = new System.Drawing.Size(150, 25);
-            this.paymentStatus.Name = "paymentStatus";
-            this.paymentStatus.Size = new System.Drawing.Size(211, 28);
-            this.paymentStatus.SplitterRatio = 103;
-            this.paymentStatus.StringFormat = "0";
-            this.paymentStatus.TabIndex = 6;
-            this.paymentStatus.TextTitle = "Статус оплати";
-            this.paymentStatus.TextValue = "";
-            this.paymentStatus.ValueDataMemger = "";
-            this.paymentStatus.ValueDataSource = null;
-            // 
-            // acting
-            // 
-            this.acting.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.acting.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.acting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.acting.Location = new System.Drawing.Point(3, 37);
-            this.acting.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.acting.MinimumSize = new System.Drawing.Size(150, 25);
-            this.acting.Name = "acting";
-            this.acting.Size = new System.Drawing.Size(211, 28);
-            this.acting.SplitterRatio = 103;
-            this.acting.StringFormat = "0";
-            this.acting.TabIndex = 5;
-            this.acting.TextTitle = "Виконання";
-            this.acting.TextValue = "";
-            this.acting.ValueDataMemger = "";
-            this.acting.ValueDataSource = null;
-            // 
-            // state
-            // 
-            this.state.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.state.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.state.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.state.Location = new System.Drawing.Point(3, 3);
-            this.state.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.state.MinimumSize = new System.Drawing.Size(150, 25);
-            this.state.Name = "state";
-            this.state.Size = new System.Drawing.Size(211, 28);
-            this.state.SplitterRatio = 103;
-            this.state.StringFormat = "0";
-            this.state.TabIndex = 4;
-            this.state.TextTitle = "Стан";
-            this.state.TextValue = "";
-            this.state.ValueDataMemger = "";
-            this.state.ValueDataSource = null;
-            // 
-            // radPanel2
-            // 
-            this.radPanel2.Controls.Add(this.noAcceptReference);
-            this.radPanel2.Controls.Add(this.noAcceptRequest);
-            this.radPanel2.Controls.Add(this.activeRequestReference);
-            this.radPanel2.Location = new System.Drawing.Point(232, 37);
-            this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(223, 106);
-            this.radPanel2.TabIndex = 4;
-            this.radPanel2.ThemeName = "Office2013Light";
+            this.attachAmount.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "Borg", true));
+            this.attachAmount.Location = new System.Drawing.Point(3, 3);
+            this.attachAmount.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.attachAmount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.attachAmount.Name = "attachAmount";
+            this.attachAmount.Size = new System.Drawing.Size(226, 28);
+            this.attachAmount.SplitterRatio = 145;
+            this.attachAmount.StringFormat = "0";
+            this.attachAmount.TabIndex = 4;
+            this.attachAmount.TextTitle = "Заборгованість";
+            this.attachAmount.TextValue = "";
+            this.attachAmount.ValueDataMemger = "";
+            this.attachAmount.ValueDataSource = null;
             // 
             // noAcceptReference
             // 
@@ -248,6 +205,7 @@
             this.noAcceptReference.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
             this.noAcceptReference.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.noAcceptReference.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "CountLic3NoActive", true));
             this.noAcceptReference.Location = new System.Drawing.Point(3, 71);
             this.noAcceptReference.MaximumSize = new System.Drawing.Size(1000, 28);
             this.noAcceptReference.MinimumSize = new System.Drawing.Size(150, 25);
@@ -267,6 +225,7 @@
             this.noAcceptRequest.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
             this.noAcceptRequest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.noAcceptRequest.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "CountLic2NoActive", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.noAcceptRequest.Location = new System.Drawing.Point(3, 37);
             this.noAcceptRequest.MaximumSize = new System.Drawing.Size(1000, 28);
             this.noAcceptRequest.MinimumSize = new System.Drawing.Size(150, 25);
@@ -299,23 +258,13 @@
             this.activeRequestReference.ValueDataMemger = "";
             this.activeRequestReference.ValueDataSource = null;
             // 
-            // radPanel1
-            // 
-            this.radPanel1.Controls.Add(this.noProlongLicense);
-            this.radPanel1.Controls.Add(this.noAcceptLicense);
-            this.radPanel1.Controls.Add(this.activeLicense);
-            this.radPanel1.Location = new System.Drawing.Point(3, 37);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(223, 106);
-            this.radPanel1.TabIndex = 3;
-            this.radPanel1.ThemeName = "Office2013Light";
-            // 
             // noProlongLicense
             // 
             this.noProlongLicense.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.noProlongLicense.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
             this.noProlongLicense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.noProlongLicense.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "CountLic1ToProlong", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.noProlongLicense.Location = new System.Drawing.Point(3, 71);
             this.noProlongLicense.MaximumSize = new System.Drawing.Size(1000, 28);
             this.noProlongLicense.MinimumSize = new System.Drawing.Size(150, 25);
@@ -335,6 +284,7 @@
             this.noAcceptLicense.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
             this.noAcceptLicense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.noAcceptLicense.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "CountLic1NoActive", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.noAcceptLicense.Location = new System.Drawing.Point(3, 37);
             this.noAcceptLicense.MaximumSize = new System.Drawing.Size(1000, 28);
             this.noAcceptLicense.MinimumSize = new System.Drawing.Size(150, 25);
@@ -354,6 +304,7 @@
             this.activeLicense.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
             this.activeLicense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.activeLicense.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "CountLic1Active", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.activeLicense.Location = new System.Drawing.Point(3, 3);
             this.activeLicense.MaximumSize = new System.Drawing.Size(1000, 28);
             this.activeLicense.MinimumSize = new System.Drawing.Size(150, 25);
@@ -371,6 +322,7 @@
             // 
             this.partnerName.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.partnerName.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.partnerName.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "PartnerName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.partnerName.Location = new System.Drawing.Point(391, 3);
             this.partnerName.MaximumSize = new System.Drawing.Size(1000, 28);
             this.partnerName.MinimumSize = new System.Drawing.Size(150, 25);
@@ -388,6 +340,7 @@
             // 
             this.agrDate.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.agrDate.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
+            this.agrDate.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "AgrDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.agrDate.Location = new System.Drawing.Point(197, 3);
             this.agrDate.MaximumSize = new System.Drawing.Size(1000, 28);
             this.agrDate.MinimumSize = new System.Drawing.Size(150, 25);
@@ -401,6 +354,24 @@
             this.agrDate.ValueDataMemger = "";
             this.agrDate.ValueDataSource = null;
             // 
+            // agrNumber
+            // 
+            this.agrNumber.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.agrNumber.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
+            this.agrNumber.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsVbrLicense, "AgrNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.agrNumber.Location = new System.Drawing.Point(3, 3);
+            this.agrNumber.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.agrNumber.MinimumSize = new System.Drawing.Size(150, 25);
+            this.agrNumber.Name = "agrNumber";
+            this.agrNumber.Size = new System.Drawing.Size(188, 28);
+            this.agrNumber.SplitterRatio = 90;
+            this.agrNumber.StringFormat = "0";
+            this.agrNumber.TabIndex = 0;
+            this.agrNumber.TextTitle = "№ договору";
+            this.agrNumber.TextValue = "";
+            this.agrNumber.ValueDataMemger = "";
+            this.agrNumber.ValueDataSource = null;
+            // 
             // InformationFooterGenAgrBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,14 +383,14 @@
             this.Size = new System.Drawing.Size(912, 155);
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel4)).EndInit();
             this.radPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
-            this.radPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsVbrLicense)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -432,12 +403,8 @@
         private SingleShowInformationControl agrDate;
         private Telerik.WinControls.UI.RadPanel radPanel4;
         private SingleShowInformationControl distribAmount;
-        private SingleShowInformationControl amount;
-        private SingleShowInformationControl bank;
-        private Telerik.WinControls.UI.RadPanel radPanel3;
-        private SingleShowInformationControl paymentStatus;
-        private SingleShowInformationControl acting;
-        private SingleShowInformationControl state;
+        private SingleShowInformationControl unAttackAmount;
+        private SingleShowInformationControl attachAmount;
         private Telerik.WinControls.UI.RadPanel radPanel2;
         private SingleShowInformationControl noAcceptReference;
         private SingleShowInformationControl noAcceptRequest;
@@ -446,5 +413,8 @@
         private SingleShowInformationControl noProlongLicense;
         private SingleShowInformationControl noAcceptLicense;
         private SingleShowInformationControl activeLicense;
+        private System.Windows.Forms.BindingSource bsVbrLicense;
+        private Label bindReference;
+        private Label bindRequest;
     }
 }

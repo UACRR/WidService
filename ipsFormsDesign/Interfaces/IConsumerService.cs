@@ -46,7 +46,7 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Дата ген. угоди
         /// </summary>
-        public DateTime? AgrTime { get; set; }
+        public DateTime? AgrDate { get; set; }
         /// <summary>
         /// Дата початку дії
         /// </summary>

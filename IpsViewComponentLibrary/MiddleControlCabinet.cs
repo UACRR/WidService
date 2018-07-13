@@ -79,6 +79,9 @@ namespace IpsViewComponentLibrary
                 case CabinetTabType.Contacts:
                     break;
                 case CabinetTabType.GeneralAgreement:
+                {
+                    ctrlGeneralAgreement.SetAndUpdateData(_customer,_brView,_brLicenses);
+                }
                     break;
                 case CabinetTabType.Files:
                     break;

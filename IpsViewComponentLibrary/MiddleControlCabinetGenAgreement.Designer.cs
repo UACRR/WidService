@@ -113,34 +113,36 @@
             gridViewTextBoxColumn2.Name = "Name";
             gridViewTextBoxColumn2.Width = 414;
             gridViewTextBoxColumn2.WrapText = true;
-            gridViewTextBoxColumn3.FieldName = "JaCity";
+            gridViewTextBoxColumn3.FieldName = "AgrNumber";
             gridViewTextBoxColumn3.HeaderText = "№ ген. договору";
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
-            gridViewTextBoxColumn3.Name = "JaCity";
+            gridViewTextBoxColumn3.Name = "AgrNumber";
             gridViewTextBoxColumn3.Width = 150;
             gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.FieldName = "CountLic2Active";
+            gridViewTextBoxColumn4.FieldName = "DateBegin";
+            gridViewTextBoxColumn4.FormatString = "{0:d}";
             gridViewTextBoxColumn4.HeaderText = "Дата початку";
             gridViewTextBoxColumn4.MaxWidth = 100;
             gridViewTextBoxColumn4.MinWidth = 100;
             gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "CountLic2Active";
+            gridViewTextBoxColumn4.Name = "DateBegin";
             gridViewTextBoxColumn4.Width = 100;
             gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.FieldName = "CountLic3Active";
+            gridViewTextBoxColumn5.FieldName = "DateEnd";
+            gridViewTextBoxColumn5.FormatString = "{0:d}";
             gridViewTextBoxColumn5.HeaderText = "Дата завершення";
             gridViewTextBoxColumn5.MaxWidth = 100;
             gridViewTextBoxColumn5.MinWidth = 100;
             gridViewTextBoxColumn5.Multiline = true;
-            gridViewTextBoxColumn5.Name = "CountLic3Active";
+            gridViewTextBoxColumn5.Name = "DateEnd";
             gridViewTextBoxColumn5.Width = 100;
             gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.FieldName = "PartnerName";
+            gridViewTextBoxColumn6.FieldName = "StatusName";
             gridViewTextBoxColumn6.HeaderText = "Стан";
             gridViewTextBoxColumn6.MaxWidth = 120;
             gridViewTextBoxColumn6.MinWidth = 120;
-            gridViewTextBoxColumn6.Name = "PartnerName";
+            gridViewTextBoxColumn6.Name = "StatusName";
             gridViewTextBoxColumn6.Width = 120;
             this.gvGenAgrLicences.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
@@ -159,6 +161,7 @@
             this.gvGenAgrLicences.Size = new System.Drawing.Size(906, 173);
             this.gvGenAgrLicences.TabIndex = 8;
             this.gvGenAgrLicences.ThemeName = "Office2013Light";
+            this.gvGenAgrLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvGenAgrLicences_CurrentRowChanged);
             // 
             // btnView
             // 
@@ -202,6 +205,7 @@
             // 
             // ctrlFooterInfo
             // 
+            this.ctrlFooterInfo.DataSourceLicense = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             this.ctrlFooterInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ctrlFooterInfo.Location = new System.Drawing.Point(0, 435);
             this.ctrlFooterInfo.MaximumSize = new System.Drawing.Size(912, 155);
