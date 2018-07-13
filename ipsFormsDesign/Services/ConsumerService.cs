@@ -57,6 +57,13 @@ namespace ipsFormsDesign.Services
             return agr;
         }
 
+        public IList<BigRightMasterGenAgr> GetAgrMasterBigRight(string custId)
+        {
+            string url = $"consumer/listBR/agrmaster/" + custId;
+
+            var agr = _webApi.GetListAgreement<BigRightMasterGenAgr>(url);
+            return agr;
+        }
 
 
         /// <summary>

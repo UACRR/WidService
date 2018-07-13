@@ -191,4 +191,23 @@ namespace ipsFormsDesign.Interfaces
         public string Comment { get; set; }
         public string R030 { get; set; }
     }
+
+    /// <summary>
+    /// Дані генеральних угод
+    /// </summary>
+    public class BigRightMasterGenAgr
+    {
+        public DateTime agrDate { get; set; }
+        public DateTime dateBegin { get; set; }
+        public DateTime dateEnd { get; set; }
+        public int agrid { get; set; }
+        public int version { get; set; }
+        public int custId { get; set; }
+        public int agrStatus { get; set; }
+        public string custName { get; set; }
+        public string shortName { get; set; }
+        public string clientGroup { get; set; }
+        public string clientBrand { get; set; }
+        public string statusName { get; set; }
+    }
 }
