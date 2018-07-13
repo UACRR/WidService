@@ -79,5 +79,18 @@ namespace ipsmedserviceapp.Controllers
                 .Include(r => r.RegisterItem)
                 .FirstOrDefaultAsync(r => r.RegId == regId);
         }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchObjectRights([FromQuery] string name, [FromQuery] string authtors, [FromQuery] string performers)
+        {
+
+            var list = await _dbContext.getViewData("select * from [dbo].[ft_tsk_3_SearchObj](@name, @authtors, @performers )", 
+                new[] { new SqlParameter("@name", !string.IsNullOrEmpty(name) ? (object)name : DBNull.Value ),
+                        new SqlParameter("@authtors", !string.IsNullOrEmpty(name) ? (object)authtors : DBNull.Value ),
+                        new SqlParameter("@performers", !string.IsNullOrEmpty(name) ? (object)performers : DBNull.Value ) }
+                );
+
+            return Json(list);
+        }
     }
 }

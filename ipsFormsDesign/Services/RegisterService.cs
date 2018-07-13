@@ -30,5 +30,18 @@ namespace ipsFormsDesign.Services
             var item = _webApi.GetItemById<Register>("register", regId.ToString());
             return item;
         }
+
+        public List<RegisterSearchObject> SearchObjects( string name, string authtors, string performers )
+        {
+            KeyValuePair<string, string>[] param = {
+                new KeyValuePair<string, string>("name",name),
+                new KeyValuePair<string, string>("authtors",authtors),
+                new KeyValuePair<string, string>("performers",performers)
+            };
+
+            var list = _webApi.GetList<RegisterSearchObject>("register/search", param );
+
+            return list;
+        }
     }
 }
