@@ -7,10 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel.Design;
 
 namespace IpsViewComponentLibrary
 {
-    [ComplexBindingProperties("ValueDataSource",  "ValueDataMemger")]
+    //[DefaultBindingProperty("ValueDataMemger")]
+    //[HelpKeywordAttribute(typeof(UserControl))]
+    //[ToolboxItem("System.Windows.Forms.Design.AutoSizeToolboxItem,System.Design")]
     public partial class SingleShowInformationControl : UserControl
     {
         private BindingSource _bindingSource = new BindingSource();
@@ -26,8 +29,8 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Джерело даних
         /// </summary>
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
+        //[Category("Data")]
+        //[AttributeProvider(typeof(IListSource))]
         public object ValueDataSource
         {
             get => _bindingSource.DataSource;
@@ -37,20 +40,20 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Назва поля для binding
         /// </summary>
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //[Category("Data")]
+        [Bindable(true, BindingDirection.TwoWay)]
         public string ValueDataMemger
         {
-            get => _dataMember;
-            set
-            {
-                if(_dataMember != value)
-                {
-                    _dataMember = value;
-                    txtShow.DataBindings.Clear();
-                    txtShow.DataBindings.Add("Text", _bindingSource, _dataMember, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty, _stringFormat);
-                }
-            }
+            get => txtShow.Text;
+            set => txtShow.Text = value;
+            //{
+            //    //if(_dataMember != value)
+            //    //{
+            //    //    _dataMember = value;
+            //    //    txtShow.DataBindings.Clear();
+            //    //    txtShow.DataBindings.Add("Text", _bindingSource, _dataMember, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty, _stringFormat);
+            //    //}
+            //}
         }
 
         /// <summary>
