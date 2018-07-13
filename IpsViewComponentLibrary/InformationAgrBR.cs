@@ -31,11 +31,6 @@ namespace IpsViewComponentLibrary
             set => bindingSourceComment.DataSource = value;
         }
 
-        public void SetDataSource(object obj)
-        {
-            
-        }
-
         public object InfoDataSource
         {
             get => bsAgreementView.DataSource;

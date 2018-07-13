@@ -14,11 +14,18 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlCabinetLicenses : UserControl
     {
+
+        private Customer _customer;
+        private AnketaDictionaties _dictionaties;
         public MiddleControlCabinetLicenses()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Джерело даних шапки
+        /// </summary>
+        /// <param name="comsumerBigRightView"></param>
         public void SetDataSources(object comsumerBigRightView)
         {
             ctrlAgrInfo.DataSource = comsumerBigRightView;
@@ -26,17 +33,20 @@ namespace IpsViewComponentLibrary
 
         public void SetDictionary(AnketaDictionaties dictionaties)
         {
-
+            _dictionaties = dictionaties;
         }
 
-        public void SetCustomer(Customer customer)
+        public void SetData(Customer customer, object sourceGrid, object sourceInfo)
         {
+            _customer = customer;
+            gvViewLicences.DataSource = sourceGrid;
 
         }
 
         private void gvViewConsumers_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-
+            //todo переформувати 
+            ctrlInformation.InfoDataSource = e.CurrentRow.DataBoundItem;
         }
 
         #region FILTERING (пошук)
@@ -90,5 +100,26 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
+        private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            //TODO видалення ліцензії
+            
+            //_customer.Client.LicenseAgreement.SingleOrDefault()?.LicenseBigR.Remove();
+        }
+
+        private void btnCloseAgr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnToProlongation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnToAccept_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

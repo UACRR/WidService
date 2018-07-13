@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public void SetCustomer(Customer customer)
+        public void SetAndUpdateData(Customer customer)
         {
             _customer = customer;
             UpdateCurentTab(_currenCabinetTab);
@@ -59,6 +59,9 @@ namespace IpsViewComponentLibrary
                 case CabinetTabType.None:
                     break;
                 case CabinetTabType.Licenses:
+                {
+                    
+                }
                     break;
                 case CabinetTabType.Calculations:
                     break;
