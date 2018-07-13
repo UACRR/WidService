@@ -34,14 +34,13 @@ namespace IpsViewComponentLibrary
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtNotation = new Telerik.WinControls.UI.RadTextBoxControl();
-            this.bindingSourceComment = new System.Windows.Forms.BindingSource(this.components);
-            this.bsAgreementView = new System.Windows.Forms.BindingSource(this.components);
             this.btnSaveComment = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.cAvanceRemainder = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cAvanceOfAgr = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.bsAgreementView = new System.Windows.Forms.BindingSource(this.components);
             this.cIsProlong = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cValuta = new IpsViewComponentLibrary.SingleShowInformationControl();
@@ -51,13 +50,12 @@ namespace IpsViewComponentLibrary
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceComment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementView)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanel1
@@ -84,17 +82,13 @@ namespace IpsViewComponentLibrary
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNotation.AutoScroll = true;
-            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceComment, "Comment", true));
+            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementView, "Comment", true));
             this.txtNotation.Location = new System.Drawing.Point(76, 129);
             this.txtNotation.Multiline = true;
             this.txtNotation.Name = "txtNotation";
             this.txtNotation.Size = new System.Drawing.Size(509, 94);
             this.txtNotation.TabIndex = 9;
             this.txtNotation.ThemeName = "Office2013Light";
-            // 
-            // bindingSourceComment
-            // 
-            this.bindingSourceComment.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // btnSaveComment
             // 
@@ -168,6 +162,10 @@ namespace IpsViewComponentLibrary
             this.cAvanceOfAgr.ValueDataMemger = "";
             this.cAvanceOfAgr.ValueDataSource = null;
             // 
+            // bsAgreementView
+            // 
+            this.bsAgreementView.DataSource = typeof(ipsFormsDesign.Interfaces.VbrLicense);
+            // 
             // cIsProlong
             // 
             this.cIsProlong.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
@@ -189,6 +187,7 @@ namespace IpsViewComponentLibrary
             // 
             this.cAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.cAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
+            this.cAmount.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsAgreementView, "TicketPriceNC", true));
             this.cAmount.Location = new System.Drawing.Point(3, 42);
             this.cAmount.MaximumSize = new System.Drawing.Size(1000, 28);
             this.cAmount.MinimumSize = new System.Drawing.Size(150, 25);
@@ -206,6 +205,7 @@ namespace IpsViewComponentLibrary
             // 
             this.cValuta.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.cValuta.AlignmentValue = System.Drawing.ContentAlignment.MiddleRight;
+            this.cValuta.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsAgreementView, "TicketPriceUSD", true));
             this.cValuta.Location = new System.Drawing.Point(3, 15);
             this.cValuta.MaximumSize = new System.Drawing.Size(1000, 28);
             this.cValuta.MinimumSize = new System.Drawing.Size(150, 25);
@@ -215,7 +215,7 @@ namespace IpsViewComponentLibrary
             this.cValuta.StringFormat = "";
             this.cValuta.TabIndex = 9;
             this.cValuta.TextTitle = "Валюта";
-            this.cValuta.TextValue = "10000,00";
+            this.cValuta.TextValue = "";
             this.cValuta.ValueDataMemger = "";
             this.cValuta.ValueDataSource = null;
             // 
@@ -223,6 +223,7 @@ namespace IpsViewComponentLibrary
             // 
             this.cDate.AlignmentTitle = System.Drawing.ContentAlignment.MiddleRight;
             this.cDate.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cDate.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsAgreementView, "LicDate", true));
             this.cDate.Location = new System.Drawing.Point(191, 4);
             this.cDate.MaximumSize = new System.Drawing.Size(1000, 28);
             this.cDate.MinimumSize = new System.Drawing.Size(100, 25);
@@ -234,11 +235,13 @@ namespace IpsViewComponentLibrary
             this.cDate.TextTitle = "Дата";
             this.cDate.TextValue = "";
             this.cDate.ValueDataMemger = "";
+            this.cDate.ValueDataSource = null;
             // 
             // cAgrNumber
             // 
             this.cAgrNumber.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
             this.cAgrNumber.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cAgrNumber.DataBindings.Add(new System.Windows.Forms.Binding("ValueDataMemger", this.bsAgreementView, "AgrNumber", true));
             this.cAgrNumber.Location = new System.Drawing.Point(4, 4);
             this.cAgrNumber.MaximumSize = new System.Drawing.Size(1000, 28);
             this.cAgrNumber.MinimumSize = new System.Drawing.Size(150, 25);
@@ -250,6 +253,7 @@ namespace IpsViewComponentLibrary
             this.cAgrNumber.TextTitle = "Номер";
             this.cAgrNumber.TextValue = "";
             this.cAgrNumber.ValueDataMemger = "";
+            this.cAgrNumber.ValueDataSource = null;
             // 
             // InformationAgrBR
             // 
@@ -273,13 +277,12 @@ namespace IpsViewComponentLibrary
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceComment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,7 +298,6 @@ namespace IpsViewComponentLibrary
         private SingleShowInformationControl cIsProlong;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadTextBoxControl txtNotation;
-        private System.Windows.Forms.BindingSource bindingSourceComment;
         private Telerik.WinControls.UI.RadButton btnSaveComment;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;

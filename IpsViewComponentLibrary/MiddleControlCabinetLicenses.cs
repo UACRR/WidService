@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary
             _dictionaties = dictionaties;
         }
 
-        public void SetData(Customer customer, object sourceGrid, object sourceInfo)
+        public void SetData(Customer customer, object sourceGrid)
         {
             _customer = customer;
             gvViewLicences.DataSource = sourceGrid;
@@ -45,8 +45,7 @@ namespace IpsViewComponentLibrary
 
         private void gvViewConsumers_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            //todo переформувати 
-            ctrlInformation.InfoDataSource = e.CurrentRow.DataBoundItem;
+            ctrlInformation.InfoDataSource = e.CurrentRow.DataBoundItem as VbrLicense;
         }
 
         #region FILTERING (пошук)

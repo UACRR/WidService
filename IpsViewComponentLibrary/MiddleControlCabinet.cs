@@ -65,7 +65,7 @@ namespace IpsViewComponentLibrary
                 case CabinetTabType.Licenses:
                 {
                     ctrlLicense.SetDataSources(_brView);
-                    ctrlLicense.SetData(_customer,_brLicenses,_brLicenses);
+                    ctrlLicense.SetData(_customer,_brLicenses);
                 }
                     break;
                 case CabinetTabType.Calculations:

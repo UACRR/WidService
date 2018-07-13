@@ -73,6 +73,7 @@
             this.panelUserInfo.Size = new System.Drawing.Size(906, 194);
             this.panelUserInfo.TabIndex = 0;
             this.panelUserInfo.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.panelUserInfo.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
@@ -92,9 +93,12 @@
             this.groupholdingCtrl.Name = "groupholdingCtrl";
             this.groupholdingCtrl.Size = new System.Drawing.Size(328, 35);
             this.groupholdingCtrl.SplitterRatio = 100;
+            this.groupholdingCtrl.StringFormat = "";
             this.groupholdingCtrl.TabIndex = 5;
             this.groupholdingCtrl.TextTitle = "Група / Холдінг";
             this.groupholdingCtrl.TextValue = "Копірайт";
+            this.groupholdingCtrl.ValueDataMemger = "Копірайт";
+            this.groupholdingCtrl.ValueDataSource = null;
             this.groupholdingCtrl.Visible = false;
             // 
             // radLabel2
@@ -114,6 +118,7 @@
             this.panelMeneger.Name = "panelMeneger";
             this.panelMeneger.Size = new System.Drawing.Size(385, 106);
             this.panelMeneger.TabIndex = 4;
+            this.panelMeneger.ThemeName = "Office2013Light";
             // 
             // managerEmail
             // 
@@ -125,9 +130,12 @@
             this.managerEmail.Name = "managerEmail";
             this.managerEmail.Size = new System.Drawing.Size(302, 35);
             this.managerEmail.SplitterRatio = 50;
+            this.managerEmail.StringFormat = "";
             this.managerEmail.TabIndex = 6;
             this.managerEmail.TextTitle = "E-Mail";
             this.managerEmail.TextValue = "qwerty@qwer.ty";
+            this.managerEmail.ValueDataMemger = "qwerty@qwer.ty";
+            this.managerEmail.ValueDataSource = null;
             // 
             // managerPhoneCtrl
             // 
@@ -139,9 +147,12 @@
             this.managerPhoneCtrl.Name = "managerPhoneCtrl";
             this.managerPhoneCtrl.Size = new System.Drawing.Size(163, 35);
             this.managerPhoneCtrl.SplitterRatio = 50;
+            this.managerPhoneCtrl.StringFormat = "";
             this.managerPhoneCtrl.TabIndex = 3;
             this.managerPhoneCtrl.TextTitle = "Тел.";
             this.managerPhoneCtrl.TextValue = "+380999999999";
+            this.managerPhoneCtrl.ValueDataMemger = "+380999999999";
+            this.managerPhoneCtrl.ValueDataSource = null;
             // 
             // managerPibCtrl
             // 
@@ -153,9 +164,12 @@
             this.managerPibCtrl.Name = "managerPibCtrl";
             this.managerPibCtrl.Size = new System.Drawing.Size(379, 35);
             this.managerPibCtrl.SplitterRatio = 50;
+            this.managerPibCtrl.StringFormat = "";
             this.managerPibCtrl.TabIndex = 1;
             this.managerPibCtrl.TextTitle = "ПІБ";
             this.managerPibCtrl.TextValue = "Прізвище КапецьякевеличезнеІм\'я Побатькові";
+            this.managerPibCtrl.ValueDataMemger = "Прізвище КапецьякевеличезнеІм\'я Побатькові";
+            this.managerPibCtrl.ValueDataSource = null;
             // 
             // panelContactPerson
             // 
@@ -166,6 +180,7 @@
             this.panelContactPerson.Name = "panelContactPerson";
             this.panelContactPerson.Size = new System.Drawing.Size(507, 106);
             this.panelContactPerson.TabIndex = 3;
+            this.panelContactPerson.ThemeName = "Office2013Light";
             // 
             // contactPersEmailCtrl
             // 
@@ -177,9 +192,12 @@
             this.contactPersEmailCtrl.Name = "contactPersEmailCtrl";
             this.contactPersEmailCtrl.Size = new System.Drawing.Size(321, 35);
             this.contactPersEmailCtrl.SplitterRatio = 44;
+            this.contactPersEmailCtrl.StringFormat = "";
             this.contactPersEmailCtrl.TabIndex = 5;
             this.contactPersEmailCtrl.TextTitle = "E-Mail";
             this.contactPersEmailCtrl.TextValue = "qwerty@qwer.ty";
+            this.contactPersEmailCtrl.ValueDataMemger = "qwerty@qwer.ty";
+            this.contactPersEmailCtrl.ValueDataSource = null;
             // 
             // contactPersPhoneCtrl
             // 
@@ -191,9 +209,12 @@
             this.contactPersPhoneCtrl.Name = "contactPersPhoneCtrl";
             this.contactPersPhoneCtrl.Size = new System.Drawing.Size(163, 35);
             this.contactPersPhoneCtrl.SplitterRatio = 50;
+            this.contactPersPhoneCtrl.StringFormat = "";
             this.contactPersPhoneCtrl.TabIndex = 2;
             this.contactPersPhoneCtrl.TextTitle = "Тел.";
             this.contactPersPhoneCtrl.TextValue = "+380999999999";
+            this.contactPersPhoneCtrl.ValueDataMemger = "+380999999999";
+            this.contactPersPhoneCtrl.ValueDataSource = null;
             // 
             // contactPersPibCtrl
             // 
@@ -205,9 +226,12 @@
             this.contactPersPibCtrl.Name = "contactPersPibCtrl";
             this.contactPersPibCtrl.Size = new System.Drawing.Size(499, 35);
             this.contactPersPibCtrl.SplitterRatio = 50;
+            this.contactPersPibCtrl.StringFormat = "";
             this.contactPersPibCtrl.TabIndex = 0;
             this.contactPersPibCtrl.TextTitle = "ПІБ";
             this.contactPersPibCtrl.TextValue = "Прізвище Ім\'я Побатькові";
+            this.contactPersPibCtrl.ValueDataMemger = "Прізвище Ім\'я Побатькові";
+            this.contactPersPibCtrl.ValueDataSource = null;
             // 
             // organisationFormCtrl
             // 
@@ -219,9 +243,12 @@
             this.organisationFormCtrl.Name = "organisationFormCtrl";
             this.organisationFormCtrl.Size = new System.Drawing.Size(270, 35);
             this.organisationFormCtrl.SplitterRatio = 140;
+            this.organisationFormCtrl.StringFormat = "";
             this.organisationFormCtrl.TabIndex = 2;
             this.organisationFormCtrl.TextTitle = "Організаційна форма";
             this.organisationFormCtrl.TextValue = "ТОВ";
+            this.organisationFormCtrl.ValueDataMemger = "ТОВ";
+            this.organisationFormCtrl.ValueDataSource = null;
             this.organisationFormCtrl.Visible = false;
             // 
             // edrpouCtrl
@@ -234,9 +261,12 @@
             this.edrpouCtrl.Name = "edrpouCtrl";
             this.edrpouCtrl.Size = new System.Drawing.Size(223, 35);
             this.edrpouCtrl.SplitterRatio = 58;
+            this.edrpouCtrl.StringFormat = "";
             this.edrpouCtrl.TabIndex = 1;
             this.edrpouCtrl.TextTitle = "ЄДРПОУ";
             this.edrpouCtrl.TextValue = "46546545";
+            this.edrpouCtrl.ValueDataMemger = "46546545";
+            this.edrpouCtrl.ValueDataSource = null;
             // 
             // nameCtrl
             // 
@@ -248,9 +278,12 @@
             this.nameCtrl.Name = "nameCtrl";
             this.nameCtrl.Size = new System.Drawing.Size(499, 35);
             this.nameCtrl.SplitterRatio = 58;
+            this.nameCtrl.StringFormat = "";
             this.nameCtrl.TabIndex = 0;
             this.nameCtrl.TextTitle = "Назва";
             this.nameCtrl.TextValue = "ррррр";
+            this.nameCtrl.ValueDataMemger = "ррррр";
+            this.nameCtrl.ValueDataSource = null;
             // 
             // radLabel1
             // 
