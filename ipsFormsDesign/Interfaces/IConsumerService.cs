@@ -150,34 +150,34 @@ namespace ipsFormsDesign.Interfaces
 
     public class VbrLicense
     {
-        public DateTime AgrDateTime { get; set; }
-        public DateTime DateTimeBegin { get; set; }
-        public DateTime DateTimeEnd { get; set; }
-        public DateTime LicDateTime { get; set; }
-        public DateTime LicDateTimeBegin { get; set; }
-        public DateTime LicDateTimeEnd { get; set; }
-        public DateTime DateTimePremiere { get; set; }
-        public int LicType { get; set; }
-        public int CustId { get; set; }
+        public DateTime? AgrDate { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
+        public DateTime? LicDate { get; set; }
+        public DateTime? LicDateBegin { get; set; }
+        public DateTime? LicDateEnd { get; set; }
+        public DateTime? DatePremiere { get; set; }
+        public int? LicType { get; set; }
+        public int? CustId { get; set; }
         public int AgrId { get; set; }
-        public int AgrStatus { get; set; }
+        public int? AgrStatus { get; set; }
         public int LicId { get; set; }
         public int LicVersion { get; set; }
-        public int LicStatus { get; set; }
-        public int Objid { get; set; }
-        public int ObjStatus { get; set; }
-        public int GenreType { get; set; }
-        public int PerformNumb { get; set; }
-        public decimal Borg { get; set; }
-        public decimal PrepayPaush { get; set; }
-        public decimal PrepayAvans { get; set; }
-        public decimal PrepayRest { get; set; }
-        public decimal TicketPriceNc { get; set; }
-        public decimal TicketPriceUsd { get; set; }
-        public bool IsTour { get; set; }
-        public decimal GenreRate72 { get; set; }
-        public decimal Rate { get; set; }
-        public decimal FillingRate { get; set; }
+        public int? LicStatus { get; set; }
+        public int? Objid { get; set; }
+        public int? ObjStatus { get; set; }
+        public int? GenreType { get; set; }
+        public int? PerformNumb { get; set; }
+        public decimal? Borg { get; set; }
+        public decimal? PrepayPaush { get; set; }
+        public decimal? PrepayAvans { get; set; }
+        public decimal? PrepayRest { get; set; }
+        public decimal? TicketPriceNC { get; set; }
+        public decimal? TicketPriceUSD { get; set; }
+        public bool? IsTour { get; set; }
+        public decimal? GenreRate72 { get; set; }
+        public decimal? Rate { get; set; }
+        public decimal? FillingRate { get; set; }
         public string LicTypeName { get; set; }
         public string Name { get; set; }
         public string AgrNumber { get; set; }
