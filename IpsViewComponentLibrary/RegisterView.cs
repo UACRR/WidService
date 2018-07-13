@@ -59,5 +59,14 @@ namespace IpsViewComponentLibrary
             registerBindingSource.DataSource = register;
             ctrlRegisterItemList.DataSource = register.RegisterItem;
         }
+
+        private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItem e)
+        {
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view);
+                presenter.Show();
+            }
+        }
     }
 }

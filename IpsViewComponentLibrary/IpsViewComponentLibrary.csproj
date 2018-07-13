@@ -555,6 +555,13 @@
     <Compile Include="RightholdersObjectsRightsControl.Designer.cs">
       <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearchObjectPresenter.cs" />
+    <Compile Include="SearchObjectView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchObjectView.Designer.cs">
+      <DependentUpon>SearchObjectView.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingleShowInformationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -790,6 +797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RightholdersObjectsRightsControl.resx">
       <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchObjectView.resx">
+      <DependentUpon>SearchObjectView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingleShowInformationControl.resx">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>

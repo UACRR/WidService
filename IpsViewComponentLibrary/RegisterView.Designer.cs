@@ -33,7 +33,6 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.ddlStatus = new Telerik.WinControls.UI.RadDropDownList();
-            this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dtCreateDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.txtNumber = new Telerik.WinControls.UI.RadTextBox();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
@@ -47,11 +46,11 @@
             this.radButton5 = new Telerik.WinControls.UI.RadButton();
             this.radButton4 = new Telerik.WinControls.UI.RadButton();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
+            this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -66,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,10 +105,6 @@
             this.ddlStatus.Size = new System.Drawing.Size(158, 21);
             this.ddlStatus.TabIndex = 3;
             this.ddlStatus.ThemeName = "Office2013Light";
-            // 
-            // registerBindingSource
-            // 
-            this.registerBindingSource.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
             // dtCreateDate
             // 
@@ -252,6 +248,11 @@
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
             this.ctrlRegisterItemList.Size = new System.Drawing.Size(859, 281);
             this.ctrlRegisterItemList.TabIndex = 6;
+            this.ctrlRegisterItemList.FindCommandExecuted += new System.EventHandler<ipsFormsDesign.Model.RegisterItem>(this.ctrlRegisterItemList_FindCommandExecuted);
+            // 
+            // registerBindingSource
+            // 
+            this.registerBindingSource.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
             // RegisterView
             // 
@@ -283,7 +284,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
@@ -298,6 +298,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
