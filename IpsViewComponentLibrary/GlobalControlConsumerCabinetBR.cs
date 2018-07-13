@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary
         private readonly TypeRights Rights = TypeRights.BigRights;
         private AnketaDictionaties _anketaDictionaties;
         private Customer _customer;
+        private IList<ConsumerBigRightView> _brData;
+        private IList<VbrLicense> _agrData;
 
         public delegate void BackToMainGrid(int custId);
         /// <summary>
@@ -51,7 +53,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             ctrlCabinet.OnSaveCustomerNeed += CtrlCabinet_OnSaveCustomerNeed;
-            ctrlCabinet.SetAndUpdateData(_customer);
+            //ctrlCabinet.SetAndUpdateData(_customer);
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
         }
 
@@ -64,8 +66,9 @@ namespace IpsViewComponentLibrary
         /// Встановлення джерела даних для гріда
         /// </summary>
         /// <param name="source">Об'єкт джерела даних</param>
-        public void SetGridDataSource(object source)
+        public void SetGridDataSource(IList<ConsumerBigRightView> source)
         {
+            _brData = source;
             gvConsumerList.DataSource = source;
         }
 
@@ -79,18 +82,9 @@ namespace IpsViewComponentLibrary
             _customer = customer;
         }
 
-        public void SetDataAgreementView(object obj)
+        public void SetDataAgreementView(IList<VbrLicense> agrData)
         {
-            //TODO view для ліцензій великих прав
-        }
-
-        /// <summary>
-        /// Примусове оновлення даних
-        /// </summary>
-        public void UpdateControlData()
-        {
-            ctrlCabinet.SetAndUpdateData(_customer);
-
+            _agrData = agrData;
         }
 
         public void SetSelectCustomer(int custId)
@@ -108,6 +102,7 @@ namespace IpsViewComponentLibrary
             if(_rowId != -1)
             {
                 OnCustomerUpdateDataNeed?.Invoke(_rowId);
+                ctrlCabinet.SetAndUpdateData(_customer, e.CurrentRow.DataBoundItem as ConsumerBigRightView,_agrData);
             }
         }
 

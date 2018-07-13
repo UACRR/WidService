@@ -48,9 +48,11 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
+
         public IList<VbrLicense> GetAgreementsBigRight(string custId)
         {
             string url = $"consumer/listBR/" + custId;
+
             var agr = _webApi.GetListAgreement<VbrLicense>(url);
             return agr;
         }

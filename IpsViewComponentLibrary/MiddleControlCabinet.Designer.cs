@@ -39,8 +39,10 @@
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlLicense = new IpsViewComponentLibrary.MiddleControlCabinetLicenses();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
+            this.pvLicence.SuspendLayout();
             this.SuspendLayout();
             // 
             // pageView
@@ -58,7 +60,7 @@
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvLicence;
-            this.pageView.Size = new System.Drawing.Size(846, 514);
+            this.pageView.Size = new System.Drawing.Size(1063, 587);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
             this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
@@ -69,10 +71,11 @@
             // 
             // pvLicence
             // 
+            this.pvLicence.Controls.Add(this.ctrlLicense);
             this.pvLicence.ItemSize = new System.Drawing.SizeF(58F, 27F);
             this.pvLicence.Location = new System.Drawing.Point(5, 31);
             this.pvLicence.Name = "pvLicence";
-            this.pvLicence.Size = new System.Drawing.Size(836, 478);
+            this.pvLicence.Size = new System.Drawing.Size(1053, 551);
             this.pvLicence.Text = "Ліцензії";
             // 
             // pvCalculation
@@ -139,15 +142,25 @@
             this.pvAgent.Size = new System.Drawing.Size(836, 478);
             this.pvAgent.Text = "Представник";
             // 
+            // ctrlLicense
+            // 
+            this.ctrlLicense.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlLicense.Location = new System.Drawing.Point(0, 0);
+            this.ctrlLicense.MinimumSize = new System.Drawing.Size(822, 538);
+            this.ctrlLicense.Name = "ctrlLicense";
+            this.ctrlLicense.Size = new System.Drawing.Size(1053, 551);
+            this.ctrlLicense.TabIndex = 0;
+            // 
             // MiddleControlCabinet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pageView);
             this.Name = "MiddleControlCabinet";
-            this.Size = new System.Drawing.Size(846, 514);
+            this.Size = new System.Drawing.Size(1063, 587);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
+            this.pvLicence.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -165,5 +178,6 @@
         private Telerik.WinControls.UI.RadPageViewPage pvFiles;
         private Telerik.WinControls.UI.RadPageViewPage pvAgent;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private MiddleControlCabinetLicenses ctrlLicense;
     }
 }

@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public void SetAndUpdateData(Customer customer)
+        public void SetAndUpdateData(Customer customer, ConsumerBigRightView brView, IList<VbrLicense> brLicenses)
         {
             _customer = customer;
             UpdateCurentTab(_currenCabinetTab);

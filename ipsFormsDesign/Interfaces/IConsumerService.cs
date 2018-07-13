@@ -150,13 +150,13 @@ namespace ipsFormsDesign.Interfaces
 
     public class VbrLicense
     {
-        public DateTime AgrDateTime { get; set; }
-        public DateTime DateTimeBegin { get; set; }
-        public DateTime DateTimeEnd { get; set; }
-        public DateTime LicDateTime { get; set; }
-        public DateTime LicDateTimeBegin { get; set; }
-        public DateTime LicDateTimeEnd { get; set; }
-        public DateTime DateTimePremiere { get; set; }
+        public DateTime AgrDate { get; set; }
+        public DateTime DateBegin { get; set; }
+        public DateTime DateEnd { get; set; }
+        public DateTime LicDate { get; set; }
+        public DateTime LicDateBegin { get; set; }
+        public DateTime LicDateEnd { get; set; }
+        public DateTime DatePremiere { get; set; }
         public int LicType { get; set; }
         public int CustId { get; set; }
         public int AgrId { get; set; }
@@ -168,7 +168,7 @@ namespace ipsFormsDesign.Interfaces
         public int ObjStatus { get; set; }
         public int GenreType { get; set; }
         public int PerformNumb { get; set; }
-        public decimal Borg { get; set; }
+        public decimal? Borg { get; set; }
         public decimal PrepayPaush { get; set; }
         public decimal PrepayAvans { get; set; }
         public decimal PrepayRest { get; set; }
