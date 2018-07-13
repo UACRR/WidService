@@ -13,6 +13,8 @@ namespace IpsViewComponentLibrary
 {
     public partial class RegisterListControl : UserControl
     {
+        private readonly RegisterService _registerService;
+
         protected bool IsDesignMode
         {
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
@@ -53,6 +55,8 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
+            _registerService = new RegisterService();
+
             dtCreateDateFrom.SetUserCalendarSettingsm();
             dtCreateDateTill.SetUserCalendarSettingsm();
 
@@ -92,8 +96,7 @@ namespace IpsViewComponentLibrary
             if (dtCreateDateTill.Value != DateTime.MinValue)
                 filter.EndDate = dtCreateDateTill.Value;
 
-            var service = new RegisterService();
-            var list = service.GetListByFilter(filter);
+            var list = _registerService.GetListByFilter(filter);
             registerListViewModelBindingSource.DataSource = list;
 
             SelectedRegister = currentRegister;
@@ -104,7 +107,8 @@ namespace IpsViewComponentLibrary
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            OnRegisterSelected(SelectedRegister);
+            //OnRegisterSelected(SelectedRegister);
+            EditRegister(SelectedRegister);
         }
 
         private void gvRegisterList_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -113,7 +117,8 @@ namespace IpsViewComponentLibrary
 
             if (currentColumnName == "EditColumn")
             {
-                OnEditCommandExecuted(SelectedRegister);
+                //OnEditCommandExecuted(SelectedRegister);
+                EditRegister(SelectedRegister);
             }
         }
 
@@ -140,6 +145,15 @@ namespace IpsViewComponentLibrary
         private void btnClearTill_Click(object sender, EventArgs e)
         {
             dtCreateDateTill.Value = DateTime.MinValue;
+        }
+
+        private void EditRegister(RegisterListViewModel selectedRegister)
+        {
+            using (var view = new RegisterView())
+            {
+                var presenter = new RegisterPresenter(view, _registerService);
+                presenter.Show(selectedRegister.RegId);
+            }
         }
 
         protected virtual void OnRegisterSelected(RegisterListViewModel selectedRegister)
