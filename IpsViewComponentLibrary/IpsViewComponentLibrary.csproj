@@ -489,6 +489,12 @@
     <Compile Include="RadioPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="RegisterItemListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RegisterItemListControl.Designer.cs">
+      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegisterListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -750,6 +756,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterItemListControl.resx">
+      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterListControl.resx">
       <DependentUpon>RegisterListControl.cs</DependentUpon>

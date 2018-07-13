@@ -33,16 +33,17 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.ddlStatus = new Telerik.WinControls.UI.RadDropDownList();
+            this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dtCreateDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.txtNumber = new Telerik.WinControls.UI.RadTextBox();
-            this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,6 +84,10 @@
             this.ddlStatus.TabIndex = 3;
             this.ddlStatus.ThemeName = "Office2013Light";
             // 
+            // registerBindingSource
+            // 
+            this.registerBindingSource.DataSource = typeof(ipsFormsDesign.Model.Register);
+            // 
             // dtCreateDate
             // 
             this.dtCreateDate.Culture = new System.Globalization.CultureInfo("uk-UA");
@@ -108,15 +113,22 @@
             this.txtNumber.TabIndex = 5;
             this.txtNumber.ThemeName = "Office2013Light";
             // 
-            // registerBindingSource
+            // ctrlRegisterItemList
             // 
-            this.registerBindingSource.DataSource = typeof(ipsFormsDesign.Model.Register);
+            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 41);
+            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(859, 346);
+            this.ctrlRegisterItemList.TabIndex = 6;
             // 
             // RegisterView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(857, 433);
+            this.Controls.Add(this.ctrlRegisterItemList);
             this.Controls.Add(this.txtNumber);
             this.Controls.Add(this.dtCreateDate);
             this.Controls.Add(this.ddlStatus);
@@ -135,9 +147,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -153,5 +165,6 @@
         private Telerik.WinControls.UI.RadDateTimePicker dtCreateDate;
         private Telerik.WinControls.UI.RadTextBox txtNumber;
         private System.Windows.Forms.BindingSource registerBindingSource;
+        private RegisterItemListControl ctrlRegisterItemList;
     }
 }
