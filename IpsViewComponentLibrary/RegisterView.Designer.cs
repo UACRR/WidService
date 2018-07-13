@@ -36,7 +36,6 @@
             this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dtCreateDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.txtNumber = new Telerik.WinControls.UI.RadTextBox();
-            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
@@ -47,6 +46,7 @@
             this.radButton3 = new Telerik.WinControls.UI.RadButton();
             this.radButton5 = new Telerik.WinControls.UI.RadButton();
             this.radButton4 = new Telerik.WinControls.UI.RadButton();
+            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -135,17 +135,6 @@
             this.txtNumber.TabIndex = 5;
             this.txtNumber.ThemeName = "Office2013Light";
             // 
-            // ctrlRegisterItemList
-            // 
-            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 41);
-            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
-            this.ctrlRegisterItemList.SelectedRegisterItem = null;
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(859, 281);
-            this.ctrlRegisterItemList.TabIndex = 6;
-            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -166,7 +155,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(175, 24);
             this.btnSave.TabIndex = 17;
-            this.btnSave.Text = "Скасувати";
+            this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
             // 
             // radGroupBox1
@@ -252,6 +241,17 @@
             this.radButton4.TabIndex = 0;
             this.radButton4.Text = "Прив\'язати автоматично";
             this.radButton4.ThemeName = "Office2013Light";
+            // 
+            // ctrlRegisterItemList
+            // 
+            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 41);
+            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
+            this.ctrlRegisterItemList.SelectedRegisterItem = null;
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(859, 281);
+            this.ctrlRegisterItemList.TabIndex = 6;
             // 
             // RegisterView
             // 
