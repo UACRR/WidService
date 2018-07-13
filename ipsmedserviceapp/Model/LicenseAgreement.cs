@@ -11,6 +11,7 @@ namespace ipsmedserviceapp.Model
             BrRegItem = new HashSet<BrRegItem>();
             LicPlace = new HashSet<LicPlace>();
             LicenseAgrParam = new HashSet<LicenseAgrParam>();
+            LicenseBigR = new HashSet<LicenseBigR>();
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
             PaidPeriod = new HashSet<PaidPeriod>();
         }
@@ -19,8 +20,6 @@ namespace ipsmedserviceapp.Model
         public int LicCode { get; set; }
         public int? LicType { get; set; }
         public int? CustId { get; set; }
-        public string LicNum { get; set; }
-        public DateTime? LicDate { get; set; }
         public int? LicStatus { get; set; }
         public int LicClass { get; set; }
         public int AgrId { get; set; }
@@ -37,12 +36,11 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public LicenseType LicTypeNavigation { get; set; }
         [JsonIgnore]
-        public LicenseBigR LicenseBigR { get; set; }
-        [JsonIgnore]
         public ICollection<BrRegItem> BrRegItem { get; set; }
         [JsonIgnore]
         public ICollection<LicPlace> LicPlace { get; set; }
         public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public ICollection<LicenseBigR> LicenseBigR { get; set; }
         [JsonIgnore]
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ICollection<PaidPeriod> PaidPeriod { get; set; }

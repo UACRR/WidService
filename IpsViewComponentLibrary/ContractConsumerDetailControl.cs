@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,8 @@ namespace IpsViewComponentLibrary
         public ContractConsumerDetailControl()
         {
             InitializeComponent();
-            
+            rddListTypeAutoProl.Enabled = false;
+            txtPercentAutoProl.Enabled = false;
         }
 
         public void SetDefaultState()
@@ -35,6 +37,14 @@ namespace IpsViewComponentLibrary
                 rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.Last.Index;
                 rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.First.Index;
             }
+        }
+
+        [Category("Dictionaries")]
+        [AttributeProvider(typeof(IListSource))]
+        public object AutoprolongationDataSource
+        {
+            get => bsCheckedProlongation.DataSource;
+            set => bsCheckedProlongation.DataSource = value;
         }
 
         /// <summary>
@@ -154,8 +164,8 @@ namespace IpsViewComponentLibrary
         [Category("Data")]
         public bool IsAutoprolongation
         {
-            get => rCheckBoxAutoprolongation.Checked;
-            set => rCheckBoxAutoprolongation.Checked = value;
+            get => rCheckBoxAutoprolongation.IsChecked;
+            set => rCheckBoxAutoprolongation.IsChecked = value;
         }
         
         private void rCheckBoxAutoprolongation_CheckStateChanged(object sender, EventArgs e)
@@ -213,6 +223,39 @@ namespace IpsViewComponentLibrary
         public int SelectedItem
         {
             set => rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items[value];
+        }
+
+        private void rtxtBoxAuthorPaymentPercent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Мінімальна допустима сума
+        /// </summary>
+        public decimal MinAmount { get; set; }
+
+        private void rtxtBoxMinAuthorPayment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //TODO контроль мінімальної суми
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPercentAutoProl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

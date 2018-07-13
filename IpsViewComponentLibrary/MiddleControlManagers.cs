@@ -28,12 +28,6 @@ namespace IpsViewComponentLibrary
                 relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
                 cust?.Company?.RelEmployee?.Add(relEmpl);
             }
-            ddlPosition.DataBindings.Clear();
-            ddlPosition.DataBindings.Add("SelectedValue", relEmpl, "PositionCode", true); // посада
-            ddlPosition.DataSource = dictionaties.positionType;
-            ddlPosition.ValueMember = "CodeI";
-            ddlPosition.DisplayMember = "Name";
-            ddlPosition.SelectedValue = "PositionCode";
 
             txtOnBasicsIfHeadBoss.DataBindings.Clear();
             txtOnBasicsIfHeadBoss.DataBindings.Add("Text", relEmpl, "RelDocument", true); // на основі чого діє
@@ -64,15 +58,6 @@ namespace IpsViewComponentLibrary
         public bool Validator()
         {
             return ctrlHeadBoss.Validator() && ctrlBookkeeper.Validator() && ctrlContactPerson.Validator();
-        }
-
-        internal void SetDefaultState()
-        {
-            if (ddlPosition.Items.Count != 0)
-            {
-                ddlPosition.SelectedItem = ddlPosition.Items.Last;
-                ddlPosition.SelectedItem = ddlPosition.Items.First;
-            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
@@ -27,7 +28,7 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        //TODO: переробити databinding LicenseAgrParam
+        
         public ProlongationWithoutPlaces(LicenseAgrParam bindAgr, AnketaCompany bindAnketaCompany, AnketaDictionaties dict, string license, LicenseAgreement lic, Customer customer, DialogGoal goal)
         {
             _lic = lic;

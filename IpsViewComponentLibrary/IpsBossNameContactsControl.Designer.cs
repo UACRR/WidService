@@ -87,9 +87,13 @@
             this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtPhone.MaxLength = 13;
             this.txtPhone.Name = "txtPhone";
+            this.txtPhone.NullText = "+380## ### ## ##";
             this.txtPhone.Size = new System.Drawing.Size(173, 20);
             this.txtPhone.TabIndex = 3;
+            this.txtPhone.ThemeName = "Office2013Light";
+            this.txtPhone.Enter += new System.EventHandler(this.txtPhone_Enter);
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
+            this.txtPhone.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // employeeBindingSource
             // 
@@ -105,6 +109,7 @@
             this.txtSurName.NullText = "По батькові";
             this.txtSurName.Size = new System.Drawing.Size(175, 20);
             this.txtSurName.TabIndex = 2;
+            this.txtSurName.ThemeName = "Office2013Light";
             // 
             // txtFirstName
             // 
@@ -116,6 +121,7 @@
             this.txtFirstName.NullText = "Ім\'я";
             this.txtFirstName.Size = new System.Drawing.Size(173, 20);
             this.txtFirstName.TabIndex = 1;
+            this.txtFirstName.ThemeName = "Office2013Light";
             // 
             // txtLastName
             // 
@@ -127,6 +133,7 @@
             this.txtLastName.NullText = "Прізвище";
             this.txtLastName.Size = new System.Drawing.Size(173, 20);
             this.txtLastName.TabIndex = 0;
+            this.txtLastName.ThemeName = "Office2013Light";
             // 
             // radLabel1
             // 
@@ -136,6 +143,7 @@
             this.radLabel1.Size = new System.Drawing.Size(24, 18);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "ПІБ:";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
@@ -145,16 +153,18 @@
             this.radLabel2.Size = new System.Drawing.Size(24, 18);
             this.radLabel2.TabIndex = 3;
             this.radLabel2.Text = "Тел.:";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
             this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel3.AutoSize = false;
-            this.radLabel3.Location = new System.Drawing.Point(293, 32);
+            this.radLabel3.Location = new System.Drawing.Point(283, 32);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(106, 22);
+            this.radLabel3.Size = new System.Drawing.Size(116, 22);
             this.radLabel3.TabIndex = 4;
             this.radLabel3.Text = "Електронна пошта:";
+            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // txtEmail
             // 
@@ -163,8 +173,10 @@
             this.txtEmail.Location = new System.Drawing.Point(425, 34);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtEmail.Name = "txtEmail";
+            this.txtEmail.NullText = "#####@####.##";
             this.txtEmail.Size = new System.Drawing.Size(175, 20);
             this.txtEmail.TabIndex = 4;
+            this.txtEmail.ThemeName = "Office2013Light";
             this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // IpsBossNameContactsControl

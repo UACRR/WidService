@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         {
             GenreTypeTr = new HashSet<GenreTypeTr>();
             RelEtGenre = new HashSet<RelEtGenre>();
+            RelGenrePercent = new HashSet<RelGenrePercent>();
             RelGenreRole = new HashSet<RelGenreRole>();
         }
 
@@ -19,6 +20,7 @@ namespace ipsmedserviceapp.Model
         public Category CategoryCodeNavigation { get; set; }
         public ICollection<GenreTypeTr> GenreTypeTr { get; set; }
         public ICollection<RelEtGenre> RelEtGenre { get; set; }
+        public ICollection<RelGenrePercent> RelGenrePercent { get; set; }
         public ICollection<RelGenreRole> RelGenreRole { get; set; }
     }
 }

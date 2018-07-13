@@ -13,16 +13,14 @@ namespace IpsViewComponentLibrary
 {
     public static class ExtensionUtils
     {
-        private static RadDateTimePicker _dtPicker;
-
         /// <summary>
         /// Незмінний розмір, кнопка "Сьогодні" посередині, навігація по місяцях/роках зумом
         /// </summary>
         /// <param name="dtPicker"></param>
         public static void SetUserCalendarSettingsm(this RadDateTimePicker dtPicker)
         {
-            _dtPicker = dtPicker;
-            if(dtPicker == null) return;
+            //_dtPicker = dtPicker;
+            //if(dtPicker == null) return;
             dtPicker.DateTimePickerElement.Calendar.HeaderNavigationMode = HeaderNavigationMode.Zoom;
             //dtTetsDate.DateTimePickerElement.Calendar.TodayButton.ShowBorder = true;
             dtPicker.DateTimePickerElement.Calendar.TodayButton.Text = "Сьогодні";
@@ -44,7 +42,10 @@ namespace IpsViewComponentLibrary
 
         private static void TodayButton_Click(object sender, EventArgs e)
         {
-            _dtPicker.Value = DateTime.Now;
+            // var container = (sender as RadControl).GetContainerControl();
+            var dtPicker = ((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl as RadDateTimePicker;
+            if (dtPicker != null)
+                dtPicker.Value = DateTime.Now;
         }
     }
 
@@ -55,6 +56,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="cust">Дані споживача</param>
         /// <param name="dictionaties">Словники</param>
+        /// <param name="anketeType">Тип анкети: редагування/створення нової</param>
         void SetDataSources(Customer cust, AnketaDictionaties dictionaties);
 
         /// <summary>
@@ -63,19 +65,183 @@ namespace IpsViewComponentLibrary
         bool Validator();
     }
 
-    public enum DialogGoal
+
+
+    #region МАЙДАНЧИКИ
+
+    /// <summary>
+    /// Тип ініціалізації форми приміщення завкладу
+    /// </summary>
+    public enum PremisesFormTypeInitialization
     {
         /// <summary>
-        /// Створення нового контракту
+        /// Редагування
         /// </summary>
-        forNew,
+        Edit,
         /// <summary>
-        /// Редагування поточного договору
+        /// Створення нового
         /// </summary>
-        forEdit,
-        /// <summary>
-        /// Створення або редагування доп угоди на пролонгацію 
-        /// </summary>
-        forProlongation
+        CreateNew
     }
+
+    /// <summary>
+    /// Тип вимірювання майданчика
+    /// </summary>
+    public enum MeasurementOfPremises
+    {
+        /// <summary>
+        /// Площа
+        /// </summary>
+        Area = 1,
+        /// <summary>
+        /// Кількість місць
+        /// </summary>
+        Number = 2,
+        /// <summary>
+        /// Інше
+        /// </summary>
+        Other = 3,
+        Empty = 0
+    }
+
+    /// <summary>
+    /// Тип закладу що редагується
+    /// </summary>
+    public enum TypeInstitution
+    {
+        /// <summary>
+        /// Заклад додано, відображається на грід
+        /// </summary>
+        ExistingInstitution,
+        /// <summary>
+        /// Заклад було щойно створено
+        /// </summary>
+        NonExistentInstitution
+    }
+
+    /// <summary>
+    /// Типи майданчиків
+    /// </summary>
+    public enum ExistencePlaces
+    {
+        /// <summary>
+        /// Один майданчик
+        /// </summary>
+        SinglePlace,
+        /// <summary>
+        /// Багато майданчиків
+        /// </summary>
+        ManyPlaces
+    }
+
+    /// <summary>
+    /// Тип форматування поточної анкети
+    /// </summary>
+    public enum ConsumerAnketeType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Створення нової анкети споживача
+        /// </summary>
+        CreateNewAnketa,
+        /// <summary>
+        /// Редагування існуючої анкети споживача
+        /// </summary>
+        EditAnketa
+    }
+
+    /// <summary>
+    /// Тип ініціалізації, для чого буде застосовуватись
+    /// </summary>
+    public enum ConsumerAgreementInitType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Створення нового договору
+        /// </summary>
+        AddNewAgreement,
+        /// <summary>
+        /// Редагування існуючого договору
+        /// </summary>
+        EditAgreement,
+        /// <summary>
+        /// Пролонгація договору
+        /// </summary>
+        Prolongation
+    }
+
+    /// <summary>
+    /// Для визначення видаляти чи додавати в мінімальну суму вартість майданчика
+    /// </summary>
+    public enum CalculationMinAmountType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Видалити вартість майданчика з мінімальної суми
+        /// </summary>
+        DeleteCalcValue,
+        /// <summary>
+        /// Додати вартість майданчика в мінімальну суму
+        /// </summary>
+        AddCalcValue,
+    }
+
+    #endregion
+
+    /// <summary>
+    /// Тип вкладки кабінету великих прав
+    /// </summary>
+    public enum CabinetTabType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Ліцензії
+        /// </summary>
+        Licenses,
+        /// <summary>
+        /// Розрахунки
+        /// </summary>
+        Calculations,
+        /// <summary>
+        /// Розрахункові листи
+        /// </summary>
+        Payslips,
+        /// <summary>
+        /// Заявки
+        /// </summary>
+        Requests,
+        /// <summary>
+        /// Довідки
+        /// </summary>
+        References,
+        /// <summary>
+        /// Контакти
+        /// </summary>
+        Contacts,
+        /// <summary>
+        /// Генеральна угода
+        /// </summary>
+        GeneralAgreement,
+        /// <summary>
+        /// Файли
+        /// </summary>
+        Files,
+        /// <summary>
+        /// Представник
+        /// </summary>
+        Agent
+    }
+
 }

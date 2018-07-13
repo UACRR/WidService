@@ -64,26 +64,26 @@
             gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
             gridViewTextBoxColumn1.Name = "Innokpo";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 131;
+            gridViewTextBoxColumn1.Width = 137;
             gridViewTextBoxColumn2.FieldName = "name";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "Name";
-            gridViewTextBoxColumn2.Width = 538;
+            gridViewTextBoxColumn2.Width = 563;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.DataType = typeof(int);
             gridViewTextBoxColumn3.FieldName = "countAgree";
             gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
             gridViewTextBoxColumn3.Name = "CountAgree";
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn3.Width = 131;
+            gridViewTextBoxColumn3.Width = 137;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(double);
             gridViewTextBoxColumn4.FieldName = "undistribamount";
             gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn4.Name = "Undistribamount";
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 147;
+            gridViewTextBoxColumn4.Width = 155;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "custId";
@@ -95,10 +95,14 @@
             gridViewCommandColumn1.DefaultText = "Відкрити";
             gridViewCommandColumn1.FieldName = "btnsEdit";
             gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn1.MaxWidth = 25;
+            gridViewCommandColumn1.MinWidth = 25;
             gridViewCommandColumn1.Name = "btnsEdit";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.Width = 70;
+            gridViewCommandColumn1.Width = 25;
             this.gvViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

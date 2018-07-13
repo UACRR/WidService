@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -29,17 +31,23 @@ namespace IpsViewComponentLibrary
             {12, new []{ "< Керівники", "Договір >" } }
         };
 
+        private MiddleControlAgreementAnketaType ctrlAgreementSmallRights;
+        private MiddleControlAgreementBigRights ctrlAgreementBigRights;
+
+        private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
         private ButtonType _btnType = ButtonType.None;
         private byte _nextPageNumber;
+        private readonly Point _LocationPoint = new Point(4,4);
 
         private Customer _cust;
         private AnketaDictionaties _anketaDictionaries;
 
+        public TypeRights typeRights { get; set; } = TypeRights.SmallRights;
         //властивість наявності майданчиків
         public bool IsContainPlaces
         {
-           get => ctrlClientName.IsPlaceIn;
-           set => ctrlClientName.IsPlaceIn = value;
+            get => ctrlClientName.IsPlaceIn;
+            set => ctrlClientName.IsPlaceIn = value;
         }
 
         public Customer GetCustomer => _cust;
@@ -59,33 +67,102 @@ namespace IpsViewComponentLibrary
             btnBack.Visible = false;
 
             ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged; // при зміні наявності майданчиків
-            
+        }
+
+
+        public void ReInitControl()
+        {
+            SetTypePages(!isEdit);
+            SetColorTabs(!isEdit);
+            ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
+            ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
+            ctrlManagers.SetDataSources(_cust, _anketaDictionaries);   // - - - - - - - -  Керівники
+            ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
+            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
+                ? _cust?.Client?.ClnBusinessPlace // - - - - - - - - - - - - - - - - - - 
+                : null, _anketaDictionaries );                          // - - - - - - - - - - - - - - - - - -
+            ctrlPlacesTitle.Text =              // - - - - - - - - - - - - - - - - - - -
+                _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
+                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
+            ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
+
+            if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
+                InitAgreementType(typeRights);
+
+           
+            ctrlClientName.SetDefaultState();
+
+        }
+
+        //ініціалізація контрола договору за типом прав
+        private void InitAgreementType(TypeRights rights)
+        {
+            switch (rights)
+            {
+                case TypeRights.BigRights:
+                {
+                    //ініціалізація форми договору великих прав
+                    ctrlAgreementBigRights = new MiddleControlAgreementBigRights
+                    {
+                        Location = _LocationPoint,
+                        MaximumSize = new Size(900, 200),
+                        MinimumSize = new Size(500, 200),
+                        Name = "ctrlAgreementBigRights",
+                        Size = new Size(596, 200),
+                        TabIndex = 0
+                    };
+
+                    if(_cust.Client.LicenseAgreement.SingleOrDefault()?.LicCode != null)
+                        _cust.Client.LicenseAgreement.SingleOrDefault().LicCode = 28;
+
+                    pvAgreement.Controls.Add(ctrlAgreementBigRights);
+                    ctrlAgreementBigRights.DictionaryAgrLicTypeDataSource = _anketaDictionaries.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
+                    ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
+                    ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.AnketaCompany;// typeof(AnketaCompany);
+                    ctrlAgreementBigRights.LicAgrDataSource = _cust.Client.LicenseAgreement;// typeof(LicenseAgreement);
+                    ctrlAgreementBigRights.LicenseAgrParamDataSource = _cust.Client.LicenseAgreement.SingleOrDefault()?.LicenseAgrParam.SingleOrDefault(); // typeof(LicenseAgrParam);
+                    
+                }
+                    break;
+
+                case TypeRights.SmallRights:
+                {
+                    //Ініціалізація форми договору малих прав
+                    ctrlAgreementSmallRights = new MiddleControlAgreementAnketaType
+                    {
+                        Location = _LocationPoint,
+                        MinimumSize = new Size(490, 218),
+                        Name = "ctrlAgreementSmallRights",
+                        Size = new Size(690, 469),
+                        TabIndex = 0
+                    };
+                    pvAgreement.Controls.Add(ctrlAgreementSmallRights);
+
+                    ctrlAgreementSmallRights.typeRights = typeRights; // - - - - - - - - - - - - - - - - - - - - - - - -  Договір
+                    ctrlAgreementSmallRights.SetDataSources(_cust, _anketaDictionaries, _anketeType); // - - - - - - - -  Договір
+                }
+                    break;
+            }
         }
 
         /// <summary>
         /// Ініціалізація даних для контрола (DATABINDING)
         /// </summary>
         /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
-        public void InitializeControl(bool isNew = true)
+        public void InitializeControl(
+            Func<string, IList<AutoCompleteData>> _getAutoCompList,
+            Func<int, Customer> _getCustomerAnketa,
+            bool isNew = true)
         {
+            _anketeType = isNew ? ConsumerAnketeType.CreateNewAnketa : ConsumerAnketeType.EditAnketa;
             isEdit = !isNew;
-            SetTypePages(isNew);
-            SetColorTabs(isNew);
 
-            ctrlClientName.SetDataSources(_cust,_anketaDictionaries); // - - - - - - - -  Назва клієнта
-            ctrlAddress.SetDataSources(_cust,_anketaDictionaries);    // - - - - - - - -  Адреса
-            ctrlManagers.SetDataSources(_cust,_anketaDictionaries);   // - - - - - - - -  Керівники
-            ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
-            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
-                ? _cust?.Client?.ClnBusinessPlace // - - - - - - - - - - - - - - - - - - 
-                : null);                          // - - - - - - - - - - - - - - - - - -
-            ctrlPlacesTitle.Text =              // - - - - - - - - - - - - - - - - - - -
-                _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
-                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
-            ctrlBankRequisites.SetDataSources(_cust,_anketaDictionaries); // - - - - - -  Банківські реквізити
-            ctrlAgreement.SetDataSources(_cust,_anketaDictionaries);  // - - - - - - - -  Договір
+            if (isNew)
+            {
+                ctrlClientName.SetAutoComplete(_getAutoCompList, _getCustomerAnketa);
+            }
 
-            ctrlClientName.SetDefaultState();
+            ReInitControl();
         }
 
         /// <summary>
@@ -94,11 +171,11 @@ namespace IpsViewComponentLibrary
         /// <param name="isnew">true(default) - новий споживач, стандартна фарма, false - редагування існуючого споживача</param>
         private void SetTypePages(bool isnew)
         {
-            if(isnew)
+            if (isnew)
             {
                 return;
             }
-          
+
             pvAgreement.Enabled = false;
             pvPrint.Enabled = false;
         }
@@ -127,44 +204,46 @@ namespace IpsViewComponentLibrary
             switch (type)
             {
                 case 1: // - Назва клієнта
-                {
-                    isValid = ctrlClientName.Validator();
-                }
+                    {
+                        isValid = ctrlClientName.Validator();
+                    }
                     break;
                 case 2: // - Адреса
-                {
-                    isValid = ctrlAddress.Validator();
-                }
+                    {
+                        isValid = ctrlAddress.Validator();
+                    }
                     break;
-            
+
                 case 3: // - Керівники
-                {
-                    isValid = ctrlManagers.Validator();
-                }
+                    {
+                        isValid = ctrlManagers.Validator();
+                    }
                     break;
-            
+
                 case 4: //- Майданчики
-                {
-                    //TODO: якщо не додано жодного майданчику видавати помилку
-                    isValid = true;
-                }
+                    {
+                        isValid = true;
+                    }
                     break;
-            
+
                 case 5: // - Банківські реквізити
-                {
-                    ctrlBankRequisites.Validator();
-                }
+                    {
+                        ctrlBankRequisites.Validator();
+                    }
                     break;
-            
+
                 case 6: // - Договір
-                {
-                    isValid = ctrlAgreement.Validator();
-                }
+                    {
+                        if(typeRights == TypeRights.SmallRights)
+                            isValid = ctrlAgreementSmallRights.Validator();
+                        if (typeRights == TypeRights.BigRights)
+                            isValid = ctrlAgreementBigRights.Validator();
+                    }
                     break;
                 case 7: // - Друк (не потребує)
-                {
-                    isValid = true;
-                }
+                    {
+                        isValid = true;
+                    }
                     break;
             }
 
@@ -187,7 +266,7 @@ namespace IpsViewComponentLibrary
                 case 2:
                     {
                         pageAnketaConsumer.SelectedPage = pvManagers;
-                        
+
                     }
                     break;
                 case 3:
@@ -209,7 +288,11 @@ namespace IpsViewComponentLibrary
                             return;
                         }
                         pageAnketaConsumer.SelectedPage = pvAgreement;
-                        ctrlAgreement.SetDefaultListItem();
+
+                        if(typeRights == TypeRights.SmallRights)
+                            ctrlAgreementSmallRights.SetDefaultListItem();
+                        if(typeRights == TypeRights.BigRights)
+                            ctrlAgreementBigRights.SetBigRightsLicenseAgrType();
                     }
                     break;
                 case 6:
@@ -218,10 +301,10 @@ namespace IpsViewComponentLibrary
                     }
                     break;
                 case 7:
-                {
-                    _btnType = ButtonType.None;
-                    OnBtnSaveClick?.Invoke(_cust);
-                }
+                    {
+                        _btnType = ButtonType.None;
+                        OnBtnSaveClick?.Invoke(_cust);
+                    }
                     break;
             }
         }
@@ -277,8 +360,8 @@ namespace IpsViewComponentLibrary
             string[] names = _buttonsName[key];
             btnBack.Text = names[0];
             btnNext.Text = names[1];
-            
-            if(!IsContainPlaces)
+
+            if (!IsContainPlaces)
             {
                 if (key == 3)
                 {
@@ -305,24 +388,24 @@ namespace IpsViewComponentLibrary
             switch (isNew)
             {
                 case true:
-                {
-                    foreach (var page in pageAnketaConsumer.Pages)
                     {
-                        page.Item.ForeColor = Color.DarkGray;
+                        foreach (var page in pageAnketaConsumer.Pages)
+                        {
+                            page.Item.ForeColor = Color.DarkGray;
+                        }
+                        pageAnketaConsumer.Pages[0].Item.ForeColor = DefaultForeColor;
+                        _nextPageNumber = 1;
                     }
-                    pageAnketaConsumer.Pages[0].Item.ForeColor = DefaultForeColor;
-                    _nextPageNumber = 1;
-                }
                     break;
 
                 case false:
-                {
-                    foreach (var page in pageAnketaConsumer.Pages)
                     {
-                        page.Item.ForeColor = DefaultForeColor;
+                        foreach (var page in pageAnketaConsumer.Pages)
+                        {
+                            page.Item.ForeColor = DefaultForeColor;
+                        }
+                        _nextPageNumber = 5;
                     }
-                    _nextPageNumber = 5;
-                }
                     break;
             }
         }
@@ -330,7 +413,7 @@ namespace IpsViewComponentLibrary
         //зміна кольору вкладки з майданчиками при виборі чекбокса
         private void CtrlClientName_OnContainPlacesChanged(object sender, EventArgs e)
         {
-            if(_nextPageNumber >= 4)
+            if (_nextPageNumber >= 4)
                 pageAnketaConsumer.Pages[3].Item.ForeColor = IsContainPlaces ? DefaultForeColor : Color.DarkGray;
         }
 
@@ -435,12 +518,39 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
+        private async Task<WordEngine> LoadPdfDocAsync()
+        {
+            WordEngine wordEngine = new WordEngine(_anketaDictionaries);
+
+            var licenseAgreement = _cust?.Client?.LicenseAgreement?.FirstOrDefault();
+            int version = licenseAgreement?.LicVersion ?? default(int);
+            string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            templateName = string.Concat(@"Templates\", templateName);
+            await wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version);
+
+            return wordEngine;
+        }
+
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
-            var pdfDoc = OnDocumentNeedGenerate?.Invoke(_cust, _anketaDictionaries);
-            
-            if(!string.IsNullOrEmpty(pdfDoc))
-                radPdfViewer.LoadDocument(pdfDoc);
+            radWaitingBar1.StartWaiting();
+            var task = Task.Run(() => LoadPdfDocAsync());
+            task.Wait();
+            var wordEngine = task.Result;
+            // var wordEngine = Task.Run(()=> LoadPdfDocAsync()).GetAwaiter().GetResult();
+            radWaitingBar1.StopWaiting();
+            radPdfViewer.LoadDocument(wordEngine.Pdf);
+        }
+
+        private void radWaitingBar1_WaitingStarted(object sender, EventArgs e)
+        {
+            radWaitingBar1.Visible = true;
+        }
+
+        private void radWaitingBar1_WaitingStopped(object sender, EventArgs e)
+        {
+            radWaitingBar1.Visible = false;
+
         }
     }
 

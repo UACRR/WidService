@@ -11,6 +11,7 @@ namespace ipsFormsDesign.Model
             BrRegItem = new ObservableListSource<BrRegItem>();
             LicPlace = new ObservableListSource<LicPlace>();
             LicenseAgrParam = new ObservableListSource<LicenseAgrParam>();
+            LicenseBigR = new ObservableListSource<LicenseBigR>();
             MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
             PaidPeriod = new ObservableListSource<PaidPeriod>();
         }
@@ -19,8 +20,6 @@ namespace ipsFormsDesign.Model
         public int LicCode { get; set; }
         public int? LicType { get; set; }
         public int? CustId { get; set; }
-        public string LicNum { get; set; }
-        public DateTime? LicDate { get; set; }
         public int? LicStatus { get; set; }
         public int LicClass { get; set; }
         public int AgrId { get; set; }
@@ -32,10 +31,10 @@ namespace ipsFormsDesign.Model
         public AgrLicenseType LicCodeNavigation { get; set; }
         public AgreementStatus LicStatusNavigation { get; set; }
         public LicenseType LicTypeNavigation { get; set; }
-        public LicenseBigR LicenseBigR { get; set; }
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<LicPlace> LicPlace { get; set; }
         public ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
         public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
     }

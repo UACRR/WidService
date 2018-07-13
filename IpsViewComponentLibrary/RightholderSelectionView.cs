@@ -15,26 +15,10 @@ namespace IpsViewComponentLibrary
 {
     public partial class RightholderSelectionView : Telerik.WinControls.UI.RadForm
     {
-        private RightholderMainView _rightholder;
         public RightholderMainView SelectedRightholder
         {
-            get
-            {
-                return gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
-            }
-            set
-            {
-                if (_rightholder != value)
-                {
-                    _rightholder = value;
-
-                    var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _rightholder.CustId);
-                    if (row != null)
-                    {
-                        gvRightholdersList.CurrentRow = row;
-                    }
-                }
-            }
+            get => ctrlRightholderList.SelectedRightholder;
+            set => ctrlRightholderList.SelectedRightholder = value;
         }
 
         public event EventHandler<RightholderMainView> RightholderSelected;
@@ -44,10 +28,6 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
 
             StartPosition = FormStartPosition.CenterParent;
-
-            var service = new RightholderService();
-            var list = service.GetMainView();
-            rightholderMainViewBindingSource.DataSource = list;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -61,7 +41,7 @@ namespace IpsViewComponentLibrary
             SelectAndClose();
         }
 
-        private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
+        private void ctrlRightholderList_RightholderSelected(object sender, RightholderMainView selectedRightholder)
         {
             SelectAndClose();
         }
@@ -73,55 +53,17 @@ namespace IpsViewComponentLibrary
 
         private void SelectAndClose()
         {
-            var item = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
+            var item = ctrlRightholderList.SelectedRightholder;
 
-            OnRightholderSelected(item);
-
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void txtSearchRightholder_TextChanged(object sender, EventArgs e)
-        {
-            gvRightholdersList.MasterTemplate.Refresh();
-        }
-
-        private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearchRightholder.Text))
+            if (item != null)
             {
-                gvRightholdersList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRightholdersList.EndUpdate(false);
-                return;
-            }
+                OnRightholderSelected(item);
 
-            gvRightholdersList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearchRightholder.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRightholdersList.EndUpdate(false);
+                DialogResult = DialogResult.OK;
+                Close();
             }
+            else
+                DialogResult = DialogResult.None;
         }
     }
 }

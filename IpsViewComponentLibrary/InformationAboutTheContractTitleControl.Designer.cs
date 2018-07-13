@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Windows.Forms;
+
+namespace IpsViewComponentLibrary
 {
     partial class InformationAboutTheContractTitleControl
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.isProlongationCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
@@ -46,10 +49,12 @@
             this.bankCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtNotation = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.bindingSourceComment = new System.Windows.Forms.BindingSource(this.components);
             this.periodCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.agentCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.dateCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.numberCtrl = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.btnSaveComment = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
@@ -61,6 +66,8 @@
             this.radPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceComment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveComment)).BeginInit();
             this.SuspendLayout();
             // 
             // checkAttach
@@ -68,7 +75,7 @@
             this.checkAttach.AutoSize = false;
             this.checkAttach.Location = new System.Drawing.Point(249, 38);
             this.checkAttach.Name = "checkAttach";
-            this.checkAttach.Size = new System.Drawing.Size(232, 28);
+            this.checkAttach.Size = new System.Drawing.Size(308, 28);
             this.checkAttach.TabIndex = 4;
             this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
             // 
@@ -267,7 +274,7 @@
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(4, 176);
+            this.radLabel1.Location = new System.Drawing.Point(16, 176);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(54, 18);
             this.radLabel1.TabIndex = 8;
@@ -279,11 +286,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNotation.AutoScroll = true;
-            this.txtNotation.Location = new System.Drawing.Point(64, 176);
+            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceComment, "Comment", true));
+            this.txtNotation.Location = new System.Drawing.Point(76, 176);
             this.txtNotation.Multiline = true;
             this.txtNotation.Name = "txtNotation";
-            this.txtNotation.Size = new System.Drawing.Size(717, 78);
+            this.txtNotation.Size = new System.Drawing.Size(705, 78);
             this.txtNotation.TabIndex = 9;
+            // 
+            // bindingSourceComment
+            // 
+            this.bindingSourceComment.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // periodCtrl
             // 
@@ -341,10 +353,23 @@
             this.numberCtrl.TextTitle = "Номер";
             this.numberCtrl.TextValue = "КБЦКП - 95/87845-45а";
             // 
+            // btnSaveComment
+            // 
+            this.btnSaveComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSaveComment.Location = new System.Drawing.Point(4, 220);
+            this.btnSaveComment.Name = "btnSaveComment";
+            this.btnSaveComment.Size = new System.Drawing.Size(66, 34);
+            this.btnSaveComment.TabIndex = 10;
+            this.btnSaveComment.Text = "Зберегти примітку";
+            this.btnSaveComment.TextWrap = true;
+            this.btnSaveComment.ThemeName = "Office2013Light";
+            this.btnSaveComment.Click += new System.EventHandler(this.btnSaveComment_Click);
+            // 
             // InformationAboutTheContractTitleControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSaveComment);
             this.Controls.Add(this.txtNotation);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radPanel4);
@@ -371,6 +396,8 @@
             this.radPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceComment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveComment)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +427,7 @@
         private SingleShowInformationControl bankCtrl;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadTextBoxControl txtNotation;
+        private System.Windows.Forms.BindingSource bindingSourceComment;
+        private Telerik.WinControls.UI.RadButton btnSaveComment;
     }
 }

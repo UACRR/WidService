@@ -17,8 +17,6 @@ namespace ipsmedserviceapp.Model
         public int AgrId { get; set; }
         public int CustId { get; set; }
         public int? AgrStatus { get; set; }
-        public string AgrNumber { get; set; }
-        public DateTime? AgrDate { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
         public int? AgrType { get; set; }
@@ -30,7 +28,6 @@ namespace ipsmedserviceapp.Model
         public AgreementType AgrTypeNavigation { get; set; }
         [JsonIgnore]
         public Customer Cust { get; set; }
-        [JsonIgnore]
         public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
         [JsonIgnore]
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }

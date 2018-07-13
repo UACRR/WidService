@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
@@ -18,21 +21,44 @@ namespace IpsViewComponentLibrary
 
         public delegate bool ReturnSaveCustomer(Customer cust);
         public event ReturnSaveCustomer OnSaveCustomerNeed;
+        private Func<string, IList<AutoCompleteData>> getAutoCompList;
+        private Func<int, Customer> getCustomerAnketa;
 
         public AnketaConsumerForm()
         {
             InitializeComponent();
-            
+
         }
 
-        public AnketaConsumerForm(Customer customer, AnketaDictionaties dictionaties, bool isNew = true)
+        Customer newCustomerCopy = null;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="dictionaties"></param>
+        /// <param name="isNew"></param>
+        /// <param name="isBigRights"></param>
+        public AnketaConsumerForm(Customer customer,
+            AnketaDictionaties dictionaties,
+            Func<string, IList<AutoCompleteData>> _getAutoCompList,
+            Func<int, Customer> _getCustomerAnketa,
+            bool isNew = true,
+            TypeRights typeRights = TypeRights.SmallRights
+            )
         {
+
             InitializeComponent();
+
+            newCustomerCopy = customer.CloneJson();
+
+            getAutoCompList = _getAutoCompList;
+            getCustomerAnketa = _getCustomerAnketa;
             ctrlConsumerAnketa.OnBtnSaveClick += CtrlConsumerAnketa_OnBtnSaveClick;
             _customer = customer;
             _dictionaties = dictionaties;
+            ctrlConsumerAnketa.typeRights = typeRights;
             ctrlConsumerAnketa.SetDataAndDictionaries(customer, dictionaties);
-            ctrlConsumerAnketa.InitializeControl(isNew);
+            ctrlConsumerAnketa.InitializeControl(getAutoCompList, getExistsCustomer, isNew);
             if (!isNew)
             {
                 btnSave.Visible = true;
@@ -41,7 +67,31 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        public Customer getExistsCustomer(int custId)
+        {
+            Customer retCustomer = null;
+            if (custId == 0)
+            {
+                retCustomer = newCustomerCopy.CloneJson();
+            }
+            else
+            {
+                retCustomer = getCustomerAnketa(custId);
+                var newLic = newCustomerCopy.Client.LicenseAgreement.First().CloneJson();
+                retCustomer.Client.LicenseAgreement.Add(newLic);
+            }
 
+            _customer = retCustomer;
+            ctrlConsumerAnketa.SetDataAndDictionaries(retCustomer, _dictionaties);
+            ctrlConsumerAnketa.ReInitControl();
+
+            return retCustomer;
+            
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cust"></param>
         private void CtrlConsumerAnketa_OnBtnSaveClick(Customer cust)
         {
             var result = OnSaveCustomerNeed?.Invoke(cust) ?? false;
@@ -51,15 +101,25 @@ namespace IpsViewComponentLibrary
                 Close();
             }
             else
-                MessageBox.Show("Не вдалося додати нового споживача дані!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Не вдалося додати нового споживача!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Дійсно скасувати всі зміни та вийти?","Повідомлення",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Дійсно скасувати всі зміни та вийти?", "Повідомлення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 Close();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
 

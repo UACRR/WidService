@@ -174,8 +174,8 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                 .AsNoTracking().ToListAsync();
 
             copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec }));
-            var agrMaster = new AgreementMaster { Version = 1, AgrStatus = 0 };
-            agrMaster.AgreementAddRh.Add(new AgreementAddRh { Version = 1, AgrStatus = 0 });
+            var agrMaster = new AgreementMaster { Version = 1, AgrStatus = 0, AgrType = 1 };
+            agrMaster.AgreementAddRh.Add(new AgreementAddRh { Version = 1, AgrStatus = 0, AgrDate = DateTime.Now, DateBegin = DateTime.Now, DateEnd = new DateTime(3000,1,1) });
 
             newCust.AgreementMaster.Add(agrMaster);
 
@@ -461,12 +461,16 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             if (customer == null)
                 return NotFound();
 
-            if (newStatus == 7 && customer.Status == 2)
-            {
-                customer.Status = newStatus;
-                await _dbContext.SaveChangesAsync();
-            }
-            else if (newStatus == 2 && customer.Status <= 1)
+            List<int> allowedStatuses = new List<int>();
+
+            if (customer.Status == 2)
+                allowedStatuses.AddRange(new[] { 7, 8, 9 });
+            else if (customer.Status == 9)
+                allowedStatuses.Add(2);
+            else
+                allowedStatuses.AddRange(new[] { 2, 9 });
+
+            if (allowedStatuses.Contains(newStatus))
             {
                 customer.Status = newStatus;
                 await _dbContext.SaveChangesAsync();
@@ -587,6 +591,8 @@ t2.custId = @custid
             }
 
         }
+
+        
         /// <summary>
         /// Зміна правовласника по спадщині
         /// </summary>

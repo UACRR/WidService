@@ -83,7 +83,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (cabinet == null)
             {
-                cabinet = new GlobalControlConsumerCabinet();
+                cabinet = new GlobalControlConsumerCabinet(TypeRights.SmallRights);
                 cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
@@ -93,6 +93,8 @@ namespace ConsumerWorkplace_v_1._0
                 cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;
             }
+
+            cabinet.Rights = TypeRights.SmallRights;
             cabinet.FilterString = mainGrid?.FilterString ?? string.Empty;
             cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;
@@ -129,7 +131,7 @@ namespace ConsumerWorkplace_v_1._0
 
             var _cust = _service.GetData(custId);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, false) { StartPosition = FormStartPosition.CenterParent };
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData,false) { StartPosition = FormStartPosition.CenterParent };
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
             form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
@@ -150,7 +152,8 @@ namespace ConsumerWorkplace_v_1._0
             int custType = 3; // Юридична особа
             var _cust = _service.NewCustomer(custType);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict) {StartPosition = FormStartPosition.CenterParent};
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData ) {StartPosition = FormStartPosition.CenterParent};
+            
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
             form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;

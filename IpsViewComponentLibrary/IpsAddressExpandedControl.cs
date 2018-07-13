@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
-        /// Встановлення значень
+        /// Встановлення значень назви міста та адреси
         /// </summary>
         public void SetValues()
         {
@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
-        /// Очищення тестбоксів
+        /// Очищення txtbox (місто, регіон(початкове значення), вулиця)
         /// </summary>
         public void SetEmpty()
         {
@@ -93,6 +93,9 @@ namespace IpsViewComponentLibrary
             return valid;
         }
 
+        /// <summary>
+        /// Стандартний колір надписів (місто, регіон, вулиця)
+        /// </summary>
         public void DefaultColorLabels()
         {
             lblTown.ForeColor = Color.Black;
@@ -111,6 +114,18 @@ namespace IpsViewComponentLibrary
 
             //_nubmerBuild;
             //_numberOffice;
+
+            rTxtBoxTownName.Text = _nameTown;
+            rTxtBoxNameStreet.Text = _streetAddress;
+        }
+
+        public void SetAddressForEditCustomer(ClnBusinessPlace place)
+        {
+            _nameTown = place.PlaceCity;
+            _regionCode = place.PlaceRegion ?? 1;
+            rDropListRegion.SelectedIndex = _regionCode;
+            _nameRegion = rDropListRegion.SelectedItem.Text;
+            _streetAddress = place.PlaceAddress;
 
             rTxtBoxTownName.Text = _nameTown;
             rTxtBoxNameStreet.Text = _streetAddress;

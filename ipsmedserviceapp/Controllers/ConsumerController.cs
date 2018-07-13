@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
 
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -28,6 +31,27 @@ namespace ipsmedserviceapp.Controllers
             _config = config;
         }
 
+        /// <summary>
+        /// Додаткові дані по великим правам
+        /// </summary>
+        /// <param name="bigRConsumer"></param>
+        /// <returns></returns>
+        private async Task GetConsumerBR(Customer bigRConsumer)
+        {
+            foreach (var item in bigRConsumer.Client.LicenseAgreement.Where(rec => rec.LicenseBigR.Count() > 0))
+            {
+                await _dbContext.Entry(item).Collection(rec => rec.LicenseBigR).Query()
+                    .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors)
+                    .Include(rec => rec.LicAuthorBr)
+                    .LoadAsync();
+
+                foreach (var lic in item.LicenseBigR)
+                {
+                    await _dbContext.Entry(lic.Obj).Collection(obj => obj.CopyRight).LoadAsync();
+                }
+
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -52,19 +76,37 @@ namespace ipsmedserviceapp.Controllers
                     .Query()
                     .Where(agree => agree.LicStatus < 4)
                     .Include(item => item.Agr)
+                    .Include(item => item.LicCodeNavigation)
+
                     .Include(rec => rec.PaidPeriod)
                     .LoadAsync();
 
+
+
             foreach (var license in cust.Client.LicenseAgreement)
             {
+                // AggreAddBr 
+                await _dbContext.Entry(license.Agr).Collection(rec => rec.AgreementAddBr)
+                    .Query()
+                    .Where(item => item.Version >= license.Agr.Version)
+                    .LoadAsync();
+                // LicenseBigR
+                await _dbContext.Entry(license).Collection(rec => rec.LicenseBigR)
+                    .Query()
+                    .Where(item => item.LicVersion >= license.LicVersion)
+                    .LoadAsync();
+                // Лцензії для майданчиків
                 await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
                     .Query()
                     .Where(rec => rec.LicVersion >= license.LicVersion)
-                    .Include( rec => rec.License )
+                    .Include(rec => rec.License)
                     .LoadAsync();
 
                 await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
+                // Великі права
             }
+            // Великі права
+            await GetConsumerBR(cust);
 
             // Отримати Майданчики
             foreach (var place in cust.Client.ClnBusinessPlace)
@@ -102,183 +144,14 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
         [HttpPut("detail/{id}")]
-        public async Task<IActionResult> SaveConsumerById(int id, [FromBody] Customer updCustomer)
+        public async Task<IActionResult> SaveConsumerById(int id, [FromBody] Customer sorsCustomer)
         {
             IDbContextTransaction tran = null;
+            var destConsumer = await GetConsumerAllData(id);
             try
             {
-                var dest = await GetConsumerAllData(id);
                 // Customer
-                dest.SetFields(updCustomer);
-                //.Include(item => item.BankAccount)
-                _dbContext.UpdateList(updCustomer.BankAccount, dest.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
-                //.Include(item => item.RightHolder)
-                dest.Client.SetFields(updCustomer.Client);
-                dest.Company.SetFields(updCustomer.Company);
-                //dest.Company.RelEmployee.SetFields(updCustomer.Company.RelEmployee);
-
-                // 
-                var places = dest.Client.ClnBusinessPlace.Where(rec => !updCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
-                places.ForEach(item =>
-                {
-                    _dbContext.ClnPlaceHoll.RemoveRange(item.ClnPlaceHoll);
-                    _dbContext.ClnBusinessPlace.Remove(item);
-                });
-
-                places = dest.Client.ClnBusinessPlace.Where(rec => updCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
-                places.ForEach(item =>
-                {
-                    var sorsItem = updCustomer.Client.ClnBusinessPlace.Where(rec => item.PlaceId == rec.PlaceId).SingleOrDefault();
-                    _dbContext.UpdateList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.HollId == r.HollId);
-                    item.SetFields(sorsItem);
-                });
-                places = updCustomer.Client.ClnBusinessPlace.Where(rec => !dest.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
-                places.ForEach(item =>
-                {
-                    ClnBusinessPlace clnPlace = new ClnBusinessPlace();
-                    clnPlace.SetFields(item);
-                    _dbContext.AppendList(item.ClnPlaceHoll, clnPlace.ClnPlaceHoll, i => { }, (l, r) => l.PlaceId == r.PlaceId);
-                    dest.Client.ClnBusinessPlace.Add(clnPlace);
-                });
-
-                // Delete
-                List<LicenseAgreement> tempList = dest.Client.LicenseAgreement.Where(row => !updCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
-                tempList.ForEach(item =>
-                {
-                    // Delete LicenseAgreement
-                    var agreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
-
-
-                    agreeItem.LicenseAgreement.Remove(delLicense);
-                    dest.Client.LicenseAgreement.Remove(item);
-
-
-                    // AgreementMaster
-                    _dbContext.LicenseAgreement.Remove(delLicense);
-                }
-                );
-
-                // Modify
-                tempList = updCustomer.Client.LicenseAgreement.Where(row => dest.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
-                tempList.ForEach(item =>
-                {
-
-                    // Delete LicenseAgreement
-                    var agreeItemDest = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    var agreeItemSors = item.Agr;
-                    agreeItemDest.SetFields(agreeItemSors);
-
-                    var license = dest.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
-                    license.SetFields(item);
-                    _dbContext.UpdateList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
-
-                    var sorsDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
-                    foreach( var destParam in license.LicenseAgrParam )
-                    {
-                        var sorsParam = sorsDic[destParam.LicVersion];
-                        _dbContext.UpdateList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId );
-                    }
-
-
-                });
-                // Add
-                tempList = updCustomer.Client.LicenseAgreement.Where(row => !dest.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
-                tempList.ForEach(item =>
-                {
-
-                    // Delete LicenseAgreement
-                    var agreeItem = item.Agr;
-                    var destAgreeItem = dest.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
-                    if (destAgreeItem == null)
-                    {
-                        destAgreeItem = new AgreementMaster();
-                        destAgreeItem.SetFields(agreeItem, new[] { "AgrId" });
-                        dest.AgreementMaster.Add(destAgreeItem);
-                    }
-
-                    var addLicItem = new LicenseAgreement { LicVersion = 1 };
-                    addLicItem.SetFields(item, new[] { "LicId" });
-                    _dbContext.AppendList(item.LicenseAgrParam, addLicItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
-
-                    dest.Client.LicenseAgreement.Add(addLicItem);
-                    destAgreeItem.LicenseAgreement.Add(addLicItem);
-                }
-                );
-
-
-                if (dest.CustType == 3) // Company
-                {
-                    //.Include(item => item.Company)
-                    if (dest.Company == null)
-                        dest.Company = new Company();
-
-                    //.Include(item => item.AnketaCompany)
-                    var sorsList = updCustomer.Company.AnketaCompany.ToList();
-                    _dbContext.UpdateList(sorsList, dest.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
-                    //.Include(comp => comp.RelEmployee)
-                    var relEmployeeList = updCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
-
-                    var listRel = dest.Company.RelEmployee.Where(rec => !relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
-                    listRel.ForEach(delitem =>
-                    {
-                        _dbContext.Employee.Remove(delitem.Empl);
-                        _dbContext.RelEmployee.Remove(delitem);
-                        dest.Company.RelEmployee.Remove(delitem);
-
-                    });
-
-
-
-                    listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
-                    listRel.ForEach(updItem =>
-                    {
-                        var sorsItem = listRel.SingleOrDefault(item => item.Emplid == updItem.Emplid && item.PositionCode == updItem.PositionCode);
-                        updItem.SetFields(sorsItem);
-                        updItem.Empl.SetFields(sorsItem?.Empl);
-                    });
-
-                    //
-                    // десь тут
-                    //
-                    var relEmpl = updCustomer.Company.RelEmployee.Select(items => items.Empl).ToList();
-                    listRel = dest.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
-
-                    listRel.ForEach(updEmpl =>
-                    {
-                        var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
-                        updEmpl.SetFields(updCustomer.Company.RelEmployee.SingleOrDefault(item => item.Emplid == updEmpl.Emplid && item.PositionCode == updEmpl.PositionCode));
-                        updEmpl.Empl.SetFields(sourceItem);
-                    });
-
-
-                    var testOne = listRel;
-
-                    listRel = relEmployeeList.Where(rec => !dest.Company.RelEmployee.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
-                    listRel.ForEach(addItem =>
-                    {
-                        Employee addEmpl = new Employee();
-                        addEmpl.SetFields(addItem.Empl);
-                        RelEmployee addRelItem = new RelEmployee { Empl = addEmpl };
-                        addRelItem.SetFields(addItem);
-                        addEmpl.CustId = addRelItem.CustId;
-                        dest.Employee.Add(addEmpl);
-                        dest.Company.RelEmployee.Add(addRelItem);
-                    });
-
-                    var testMany = listRel;
-
-                }
-                else
-                {
-                    //.Include(item => item.Person)
-                    if (dest.Person == null)
-                        dest.Person = new Person();
-                    _dbContext.AppendList(updCustomer.Person.AnketaPerson, dest.Person.AnketaPerson, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
-                    //.Include(item => item.AnketaPerson)
-                }
-
-                //.Include(item => item.Community)
+                InternalUpdateConsumer(sorsCustomer, destConsumer);
 
                 tran = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
@@ -286,7 +159,7 @@ namespace ipsmedserviceapp.Controllers
                 tran = null;
 
 
-                return Json(dest);
+                return Json(destConsumer);
             }
             catch (Exception ex)
             {
@@ -294,6 +167,243 @@ namespace ipsmedserviceapp.Controllers
                     tran.Rollback();
                 return BadRequest(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Внутрішній метод збереження змін по Споживачу
+        /// </summary>
+        /// <param name="sorsCustomer"></param>
+        /// <param name="destCustomer"></param>
+        private void InternalUpdateConsumer(Customer sorsCustomer, Customer destCustomer)
+        {
+            destCustomer.SetFields(sorsCustomer);
+            //.Include(item => item.BankAccount)
+            _dbContext.UpdateList(sorsCustomer.BankAccount, destCustomer.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
+            //.Include(item => item.RightHolder)
+            if (destCustomer.Client == null)
+                destCustomer.Client = new Client();
+            destCustomer.Client.SetFields(sorsCustomer.Client);
+
+            if (sorsCustomer.Company != null && destCustomer.Company == null)
+                destCustomer.Company = new Company();
+            destCustomer.Company.SetFields(sorsCustomer.Company);
+            //dest.Company.RelEmployee.SetFields(updCustomer.Company.RelEmployee);
+
+            // 
+            var places = destCustomer.Client.ClnBusinessPlace.Where(rec => !sorsCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
+            places.ForEach(item =>
+            {
+                _dbContext.ClnPlaceHoll.RemoveRange(item.ClnPlaceHoll);
+                _dbContext.ClnBusinessPlace.Remove(item);
+            });
+
+            places = destCustomer.Client.ClnBusinessPlace.Where(rec => sorsCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
+            places.ForEach(item =>
+            {
+                var sorsItem = sorsCustomer.Client.ClnBusinessPlace.Where(rec => item.PlaceId == rec.PlaceId).SingleOrDefault();
+                _dbContext.UpdateList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.HollId == r.HollId);
+                item.SetFields(sorsItem);
+            });
+            places = sorsCustomer.Client.ClnBusinessPlace.Where(rec => !destCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
+            places.ForEach(item =>
+            {
+                ClnBusinessPlace clnPlace = new ClnBusinessPlace();
+                clnPlace.SetFields(item);
+                _dbContext.AppendList(item.ClnPlaceHoll, clnPlace.ClnPlaceHoll, i => { }, (l, r) => l.PlaceId == r.PlaceId);
+                destCustomer.Client.ClnBusinessPlace.Add(clnPlace);
+            });
+
+            // LicenseAgreement
+            {
+                Dictionary<int, ClnBusinessPlace> dicPlace = sorsCustomer.Client.ClnBusinessPlace.ToDictionary(rec => rec.PlaceId);
+                Action<License> addLicense = (lic) =>
+                {
+                    if (lic.PlaceId == null)
+                        return;
+                    int placeId = (int)lic.PlaceId;
+                    ClnBusinessPlace place = null;
+                    if (!dicPlace.Keys.Contains(placeId))
+                    {
+                        place = new ClnBusinessPlace { PlaceId = placeId };
+                        _dbContext.ClnBusinessPlace.Attach(place);
+                        dicPlace.Add(placeId, place);
+                    }
+                    else
+                        place = dicPlace[placeId];
+
+                    place.License.Add(lic);
+                };
+                // Delete
+                List<LicenseAgreement> tempList = destCustomer.Client.LicenseAgreement.Where(row => !sorsCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+                    // Delete LicenseAgreement
+                    var agreeItem = destCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    // var delLicense = agreeItem.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
+                    agreeItem.LicenseAgreement.Remove(item);
+                    destCustomer.Client.LicenseAgreement.Remove(item);
+
+                    // LicenseBigR
+                    //if (item.LicenseBigR != null)
+                    //{
+
+                    //    //_dbContext.LicAuthorBr.RemoveRange(item.LicenseBigR.LicAuthorBr);
+                    //    _dbContext.LicenseBigR.Remove(item.LicenseBigR);
+                    //}
+                    // AgreementMaster
+                    _dbContext.LicenseAgreement.Remove(item);
+
+                }
+                );
+
+                // Modify
+                tempList = sorsCustomer.Client.LicenseAgreement.Where(row => destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+
+                    // Delete LicenseAgreement
+                    var agreeItemDest = destCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    var agreeItemSors = item.Agr;
+                    agreeItemDest.SetFields(agreeItemSors);
+
+                    var license = destCustomer.Client.LicenseAgreement.Where(rec => rec.LicId == item.LicId).SingleOrDefault();
+                    license.SetFields(item);
+                    _dbContext.UpdateList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
+
+                    if (item.LicenseBigR != null)
+                    {
+                        //if (license.LicenseBigR == null)
+                        //    license.LicenseBigR = new LicenseBigR();
+                        license.LicenseBigR.SetFields(item.LicenseBigR);
+
+                        //_dbContext.UpdateList(item.LicenseBigR.LicAuthorBr, license.LicenseBigR.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
+                    }
+
+
+                    var sorsDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
+                    foreach (var destParam in license.LicenseAgrParam)
+                    {
+                        var sorsParam = sorsDic[destParam.LicVersion];
+                        _dbContext.UpdateList(sorsParam.License, destParam.License, i => addLicense(i), (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId, new[] { "LId" });
+                    }
+
+                    _dbContext.UpdateList(agreeItemSors.AgreementAddBr, agreeItemDest.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
+
+                });
+                // Add
+                tempList = sorsCustomer.Client.LicenseAgreement.Where(row => !destCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
+                tempList.ForEach(item =>
+                {
+
+                    // Delete LicenseAgreement
+                    var agreeItem = item.Agr;
+                    var destAgreeItem = destCustomer.AgreementMaster.Where(rec => rec.AgrId == item.AgrId).SingleOrDefault();
+                    if (destAgreeItem == null)
+                    {
+                        destAgreeItem = new AgreementMaster();
+                        destAgreeItem.SetFields(agreeItem, new[] { "AgrId" });
+                        destCustomer.AgreementMaster.Add(destAgreeItem);
+                    }
+
+                    var addLicItem = new LicenseAgreement { LicVersion = 1 };
+                    addLicItem.SetFields(item, new[] { "LicId" });
+
+                    _dbContext.AppendList(item.LicenseAgrParam, addLicItem.LicenseAgrParam, (sors, dest) =>
+                    {
+                        _dbContext.AppendList(sors.License, dest.License, i => addLicense(i), (l, r) => l.PlaceId == r.PlaceId, new[] { "LId" });
+                    }, (l, r) => l.LicVersion == r.LicVersion);
+
+
+                    if (item.LicenseBigR != null)
+                    {
+                        //addLicItem.LicenseBigR = new LicenseBigR();
+                        addLicItem.LicenseBigR.SetFields(item.LicenseBigR);
+                        //_dbContext.AppendList(item.LicenseBigR.LicAuthorBr, addLicItem.LicenseBigR.LicAuthorBr
+                        //            , i => { }
+                        //            , (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
+                    }
+                    destCustomer.Client.LicenseAgreement.Add(addLicItem);
+                    destAgreeItem.LicenseAgreement.Add(addLicItem);
+
+                    // old: _dbContext.AppendList(agreeItem?.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
+                    if (agreeItem?.AgreementAddBr != null && destAgreeItem?.AgreementAddBr != null)
+                        _dbContext.AppendList(agreeItem.AgreementAddBr, destAgreeItem?.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
+                }
+                );
+            }
+
+            if (destCustomer.CustType == 3) // Company
+            {
+                //.Include(item => item.Company)
+                if (destCustomer.Company == null)
+                    destCustomer.Company = new Company();
+
+                //.Include(item => item.AnketaCompany)
+                var sorsList = sorsCustomer.Company.AnketaCompany.ToList();
+                _dbContext.UpdateList(sorsList, destCustomer.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                //.Include(comp => comp.RelEmployee)
+                var relEmployeeList = sorsCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
+
+                var listRel = destCustomer.Company.RelEmployee.Where(rec => !relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                listRel.ForEach(delitem =>
+                {
+                    _dbContext.Employee.Remove(delitem.Empl);
+                    _dbContext.RelEmployee.Remove(delitem);
+                    destCustomer.Company.RelEmployee.Remove(delitem);
+
+                });
+
+
+
+                listRel = destCustomer.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                listRel.ForEach(updItem =>
+                {
+                    var sorsItem = listRel.SingleOrDefault(item => item.Emplid == updItem.Emplid && item.PositionCode == updItem.PositionCode);
+                    updItem.SetFields(sorsItem);
+                    updItem.Empl.SetFields(sorsItem?.Empl);
+                });
+
+                //
+                // десь тут
+                //
+                var relEmpl = sorsCustomer.Company.RelEmployee.Select(items => items.Empl).ToList();
+                listRel = destCustomer.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+
+                listRel.ForEach(updEmpl =>
+                {
+                    var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
+                    updEmpl.SetFields(sorsCustomer.Company.RelEmployee.SingleOrDefault(item => item.Emplid == updEmpl.Emplid && item.PositionCode == updEmpl.PositionCode));
+                    updEmpl.Empl.SetFields(sourceItem);
+                });
+
+
+                var testOne = listRel;
+
+                listRel = relEmployeeList.Where(rec => !destCustomer.Company.RelEmployee.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                listRel.ForEach(addItem =>
+                {
+                    Employee addEmpl = new Employee();
+                    addEmpl.SetFields(addItem.Empl);
+                    RelEmployee addRelItem = new RelEmployee { Empl = addEmpl };
+                    addRelItem.SetFields(addItem);
+                    addEmpl.CustId = addRelItem.CustId;
+                    destCustomer.Employee.Add(addEmpl);
+                    destCustomer.Company.RelEmployee.Add(addRelItem);
+                });
+
+                var testMany = listRel;
+
+            }
+            else
+            {
+                //.Include(item => item.Person)
+                if (destCustomer.Person == null)
+                    destCustomer.Person = new Person();
+                _dbContext.AppendList(sorsCustomer.Person.AnketaPerson, destCustomer.Person.AnketaPerson, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+                //.Include(item => item.AnketaPerson)
+            }
+
+            //.Include(item => item.Community)
         }
 
 
@@ -346,161 +456,51 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// Дані по LicenseAgrParam -> LicenseAgreement Для нового Споживача
+        /// </summary>
+        /// <param name="sorsCustomer"></param>
+        private void fillLicenseAgreement(Customer sorsCustomer)
+        {
+            foreach (var item in sorsCustomer.Client.LicenseAgreement)
+            {
+                item.Agr.AgrStatus = 2;
+                var param = item.LicenseAgrParam.Where(rec => rec.LicVersion == item.LicVersion).Single();
+                /// ***** Потрібно змінити після підключення кабінету
+                item.LicStatus = 2;
+                param.LicStatus = 2;
+
+
+            }
+        }
+        /// <summary>
         /// Збереження нового Споживача
         /// </summary>
-        /// <param name="newCustomer"></param>
+        /// <param name="sorsCustomer"></param>
         /// <returns></returns>
         [HttpPost("newconsumer")]
-        public async Task<IActionResult> NewConsumer([FromBody] Customer newCustomer)
+        public async Task<IActionResult> NewConsumer([FromBody] Customer sorsCustomer)
         {
             IDbContextTransaction tran = null;
             try
             {
-                if (newCustomer == null)
+                if (sorsCustomer == null)
                     throw new Exception("new consumer is empty");
-                if (!(newCustomer.CustType > 0 && newCustomer.CustType < 4))
+                if (!(sorsCustomer.CustType > 0 && sorsCustomer.CustType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
+                fillLicenseAgreement(sorsCustomer);
                 // Збереження Customer
-                Customer addCustomer = new Customer();
-                addCustomer.SetFields(newCustomer, new[] { "CustId" });
-                _dbContext.Customer.Add(addCustomer);
+                Customer destConsumer = new Customer();
+                _dbContext.Customer.Add(destConsumer);
 
-                // Збереження Client
-                addCustomer.Client = new Client();
-                addCustomer.Client.SetFields(newCustomer.Client, new[] { "CustId" });
-
-
-                // Збереження BankAccount
-                var bankAccList = newCustomer.BankAccount.ToList();
-                bankAccList.ForEach(rec =>
-                {
-                    BankAccount addAcc = new BankAccount();
-                    addAcc.SetFields(rec, new[] { "CustId", "BanAccId" });
-                    addCustomer.BankAccount.Add(addAcc);
-                });
-
-                // Збереження AgreementMaster
-                var licAgreement = newCustomer.Client.LicenseAgreement.ToList();
-
-                foreach (var item in licAgreement)
-                {
-
-                    // Пошук Головного договора 
-                    AgreementMaster addAgreeMAster = addCustomer.AgreementMaster.Where(rec => rec.AgrNumber == item.Agr.AgrNumber && rec.AgrDate == item.Agr.AgrDate).SingleOrDefault();
-                    if (addAgreeMAster == null)
-                    {
-                        addAgreeMAster = new AgreementMaster();
-                        addAgreeMAster.SetFields(item.Agr, new[] { "CustId", "AgrId" });
-                        addCustomer.AgreementMaster.Add(addAgreeMAster);
-                    }
-
-                    LicenseAgreement addItem = new LicenseAgreement();
-                    addItem.SetFields(item, new[] { "CustId", "AgrId" });
-                    _dbContext.AppendList(item.LicenseAgrParam, addItem.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
-
-                    var destAgrParamDic = item.LicenseAgrParam.ToDictionary(rec => rec.LicVersion);
-                    foreach ( var destParam in addItem.LicenseAgrParam )
-                    {
-                        var sorsParam = destAgrParamDic[destParam.LicVersion];
-                        _dbContext.AppendList(sorsParam.License, destParam.License, i => { }, (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId );
-                    }
-
-
-                    addAgreeMAster.LicenseAgreement.Add(addItem);
-                    addCustomer.Client.LicenseAgreement.Add(addItem);
-
-                }
-                // Збереження PartnerClient
-                if (newCustomer.Partner != null)
-                {
-                    addCustomer.Partner = new Partner();
-                }
-
-                // if( newCustomer.Client.PartnerClient)
-                // ClnBusinessPlace
-                foreach (var item in newCustomer.Client.ClnBusinessPlace)
-                {
-                    ClnBusinessPlace placeItem = new ClnBusinessPlace();
-                    placeItem.SetFields(item, new[] { "PlaceId", "CustId" });
-                    addCustomer.Client.ClnBusinessPlace.Add(placeItem);
-                    // ClnPlaceHoll
-                    foreach (var hollItem in item.ClnPlaceHoll)
-                    {
-                        ClnPlaceHoll addHoll = new ClnPlaceHoll();
-                        addHoll.SetFields(hollItem, new[] { "HollId", "PlaceId" });
-                        placeItem.ClnPlaceHoll.Add(addHoll);
-                    }
-                }
-                if (newCustomer.CustType == 3) //   Юридична особа
-                {
-
-                    // Збереження Company
-                    if (newCustomer.Company == null)
-                        throw new Exception("Not input data for Company");
-                    // _dbContext.Entry(newCustomer.Company).State = EntityState.Added;
-                    addCustomer.Company = new Company();
-
-                    // Збереження AnketaCompany
-                    if (newCustomer.Company.AnketaCompany.Count == 0)
-                        throw new Exception("Not input data for AnketaCompany");
-
-                    foreach (var item in newCustomer.Company.AnketaCompany)
-                    {
-                        AnketaCompany addAnketa = new AnketaCompany();
-                        addAnketa.SetFields(item, new[] { "CustId" });
-                        addCustomer.Company.AnketaCompany.Add(item);
-                    }
-
-                    // Збереження RelEmployee
-                    foreach (var item in newCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList())
-                    {
-                        if (item.Empl == null)
-                            continue;
-
-                        RelEmployee relEmpl = new RelEmployee();
-                        relEmpl.SetFields(item, new[] { "CustId", "Emplid" });
-                        Employee emplItem = new Employee { Emplid = item.Empl.Emplid };
-                        // Збереження Employee
-                        if (item.Empl.Emplid == 0)
-                        {
-                            emplItem.SetFields(item.Empl, new[] { "CustId", "Emplid" });
-                            addCustomer.Employee.Add(emplItem);
-                        }
-                        else
-                            _dbContext.Employee.Attach(emplItem);
-                        relEmpl.Empl = emplItem;
-                        addCustomer.Company.RelEmployee.Add(relEmpl);
-                    }
-
-                }
-                else
-                {
-                    // Збереження Person
-                    if (newCustomer.Person == null)
-                        throw new Exception("Not input data for Company");
-                    addCustomer.Person = new Person();
-
-                    // Збереження AnketaPerson
-                    if (newCustomer.Person.AnketaPerson.Count == 0)
-                        throw new Exception("Not input data for AnketaPerson");
-
-                    foreach (var item in newCustomer.Person.AnketaPerson)
-                    {
-                        AnketaPerson addPerson = new AnketaPerson();
-                        addPerson.SetFields(item, new[] { "CustId" });
-                        addCustomer.Person.AnketaPerson.Add(addPerson);
-                        _dbContext.Entry(item).State = EntityState.Added;
-                    }
-                }
-
+                InternalUpdateConsumer(sorsCustomer, destConsumer);
 
                 tran = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
                 tran.Commit();
                 tran = null;
 
-                return await GetConsumerById(addCustomer.CustId);
+                return await GetConsumerById(destConsumer.CustId);
             }
             catch (Exception ex)
             {
@@ -518,17 +518,17 @@ namespace ipsmedserviceapp.Controllers
             /// </summary>
             None = 0,
             /// <summary>
-            /// Всі
-            /// </summary>
-            All = 1,
-            /// <summary>
             /// Діючі
             /// </summary>
-            Working = 2,
+            Working = 1,
             /// <summary>
             /// Для акцепту
             /// </summary>
-            NotAccepted = 3,
+            NotAccepted = 2,
+            /// <summary>
+            /// Не активні
+            /// </summary>
+            NotActive = 3,
             /// <summary>
             /// Для пролонгації
             /// </summary>
@@ -536,7 +536,42 @@ namespace ipsmedserviceapp.Controllers
             /// <summary>
             /// Для розподілу
             /// </summary>
-            ForDistribution = 5
+            ForDistribution = 5,
+            /// <summary>
+            /// Активні
+            /// </summary>
+            // Active = 2,
+            /// <summary>
+            /// Заборгованість
+            /// </summary>
+            Debt = 6,
+            /// <summary>
+            /// В роботі(прийом звітів)
+            /// </summary>
+            UnattachData = 7,
+            /// <summary>
+            /// Всі
+            /// </summary>
+            All
+        }
+
+        /// <summary>
+        /// Типи документів Великих прав для запиту
+        /// </summary>
+        public enum TypeBRDocument
+        {
+            None = 0,
+            // General agreement
+            GenAgreement = 2,
+            // License agreement
+            LicAgreement = 3,
+            // Request
+            Request = 4,
+            // Certificate
+            Reference = 5,
+            // All documents
+            All
+
         }
 
         /// <summary>
@@ -570,6 +605,104 @@ namespace ipsmedserviceapp.Controllers
             var List = await _dbContext.getViewData(queue, null);
             return Json(List);
         }
+
+        #region Зміні для фільтрів
+        Dictionary<ConsumerFilterEnum, string> validQueryForAllDocs = new Dictionary<ConsumerFilterEnum, string> {
+            { ConsumerFilterEnum.ForDistribution, "statusUndistribute=1"},
+            { ConsumerFilterEnum.Debt, "isnull(borg,0)>0"},
+            { ConsumerFilterEnum.UnattachData, "isnull(unattachAmount,0)>0"}
+        };
+
+        Dictionary<TypeBRDocument, Dictionary<ConsumerFilterEnum, string>> validDocRequest = new Dictionary<TypeBRDocument, Dictionary<ConsumerFilterEnum, string>> {
+            { TypeBRDocument.GenAgreement, new Dictionary<ConsumerFilterEnum, string> {
+                { ConsumerFilterEnum.All, ""  },
+                { ConsumerFilterEnum.Working, "statusMasterActive=1"  },
+                { ConsumerFilterEnum.NotActive, "statusMasterNoactive=1"},
+                { ConsumerFilterEnum.ForProlongation, "statusMasterProlong=1"} } },
+            { TypeBRDocument.LicAgreement, new Dictionary<ConsumerFilterEnum, string> {
+                { ConsumerFilterEnum.All, "countLic1NoActive+countLic1Active>0"  },
+                { ConsumerFilterEnum.Working, "statusLic1Active=1"  },
+                { ConsumerFilterEnum.NotActive, "statusLic1Noactive=1"},
+                { ConsumerFilterEnum.ForProlongation, "statusLic1Prolong=1"}
+            } },
+            { TypeBRDocument.Request, new Dictionary<ConsumerFilterEnum, string> {
+                { ConsumerFilterEnum.All, "countLic2Active+countLic2NoActive>0"  },
+                { ConsumerFilterEnum.Working, "statusLic2Active=1"  },
+                { ConsumerFilterEnum.NotActive, "statusLic2Noactive=1"}
+            } },
+            { TypeBRDocument.Reference, new Dictionary<ConsumerFilterEnum, string> {
+                { ConsumerFilterEnum.All, "countLic3Active+countLic3NoActive>0"  },
+                { ConsumerFilterEnum.Working, "statusLic3Active=1"  },
+                { ConsumerFilterEnum.NotActive, "statusLic3Noactive=1"}
+            } }
+        };
+        #endregion
+
+        /// <summary>
+        /// Отримати список Споживачів Великих прав
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("listBR")]
+        public async Task<IActionResult> GetListBR([FromQuery(Name= "whatId")] int whatId, [FromQuery(Name= "typeDocId")] int typeDocId)
+        {
+            ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
+            TypeBRDocument typeDoc = Enum.Parse<TypeBRDocument>(typeDocId.ToString());
+            string queue = "select * from vtsk_1_MasterListBR";
+
+
+            if (validDocRequest.Keys.Contains(typeDoc))
+            {
+                Dictionary<ConsumerFilterEnum, string> filterObject = validDocRequest[typeDoc];
+                if(filterObject.Keys.Contains(what))
+                {
+                    string filter = filterObject[what];
+                    if( !string.IsNullOrEmpty( filter ) )
+                    {
+                        queue = string.Concat(queue, " where ", filter);
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            // Недопустиміе параметрі запроса для вібора всех елементов
+            else if (typeDoc == TypeBRDocument.All && validQueryForAllDocs.Keys.Contains(what))
+                queue = $"{queue} where {validQueryForAllDocs[what]}";
+            else
+                queue = queue + " where 1 != 0";  // условие для вібора пустого множества
+
+
+            var List = await _dbContext.getViewData(queue, null);
+
+
+            return Json(List);
+        }
+
+        //TODO test method
+        [HttpGet("listBR/{custId}")]
+        public async Task<IActionResult> GetLicensesForCustId(int custId)
+        {
+            string queue = "select * from vTsk_vBRLicense where custId = @custId";
+
+            var List = await _dbContext.getViewData(queue, new [] {new SqlParameter("@custId", custId)  });
+
+
+            return Json(List);
+        }
+
+
+        [HttpGet("listAll/{filter}")]
+        public async Task<IActionResult> GetFilteredList(string filter)
+        {
+            string normalizeFilter = string.Concat(filter, "%");
+            var list = await _dbContext.getViewData("select name, custid from vCustomer where custType = 3 and name like @filter", new[] { new SqlParameter("@filter", normalizeFilter) });
+
+            var retList = list.Select(rec => new { displayValue = rec["name"], value = rec["custid"] }).ToArray();
+
+            return Json(retList);
+        }
+
 
         /// <summary>
         /// Отримати детальну інформацію по періодам оплати договору
@@ -629,9 +762,9 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="licid"></param>
         /// <param name="version"></param>
         /// <param name="status"></param>
-        private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, int? oldStatus, int status, bool toChangeVersion )
+        private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, int? oldStatus, int status, bool toChangeVersion)
         {
-            var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid && rec.LicStatus != 4 ).SingleOrDefaultAsync();
+            var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid && rec.LicStatus != 4).SingleOrDefaultAsync();
             await _dbContext.Entry(licAgreement).Collection(item => item.LicenseAgrParam)
                 .Query()
                 .Where(rec => rec.LicVersion == version).LoadAsync();
@@ -639,7 +772,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             LicenseAgrParam licParam = null;
 
             licParam = licAgreement.LicenseAgrParam.Where(rec => rec.LicVersion == version && rec.LicStatus != 4
-                            && (rec.LicStatus == (oldStatus == null ? rec.LicStatus : oldStatus ))).SingleOrDefault();
+                            && (rec.LicStatus == (oldStatus == null ? rec.LicStatus : oldStatus))).SingleOrDefault();
             if (licParam == null)
                 throw new ArgumentException("Bad Verion or Status License Agreement For Accept");
 
@@ -695,7 +828,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             try
             {
 
-                var licAgreement = await setLicAgrStatus(licid, version, null, 4, false );
+                var licAgreement = await setLicAgrStatus(licid, version, null, 4, false);
                 if (licAgreement.LicenseAgrParam.Where(rec => rec.LicStatus != 4).Count() == 0)
                     licAgreement.LicStatus = 4;
 
@@ -876,9 +1009,14 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         [HttpPost("Document/{custId}/{typeDocument}")]
         public async Task<ActionResult> UploadDocument(int custId, int typeDocument, IFormFile file)
         {
+
             // Перевірка існування дерикторії
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
             string consumerPath = Path.Combine(documentsFolder, custId.ToString());
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+
+            consumerPath = Path.Combine(consumerPath, "Consumer");
             if (!Directory.Exists(consumerPath))
                 Directory.CreateDirectory(consumerPath);
 
@@ -886,6 +1024,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             if (!Directory.Exists(consumerPath))
                 Directory.CreateDirectory(consumerPath);
 
+            //var file = files.First();
             consumerPath = Path.Combine(consumerPath, file.FileName);
 
             if (System.IO.File.Exists(consumerPath))
@@ -906,8 +1045,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="custId"></param>
         /// <param name="typeDocument"></param>
         /// <returns></returns>
-        [HttpGet("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> DownloadDocument(int custId, int typeDocument, string fileName)
+        [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
+        public IActionResult DownloadDocument(int custId, int typeDocument, string fileName, CancellationToken token)
         {
 
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
@@ -915,23 +1054,37 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             if (!Directory.Exists(consumerPath))
                 return BadRequest();
 
-            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            consumerPath = Path.Combine(consumerPath, "Consumer", typeDocument.ToString());
             if (!Directory.Exists(consumerPath))
                 return BadRequest();
 
             consumerPath = Path.Combine(consumerPath, fileName);
 
             if (!System.IO.File.Exists(consumerPath))
-                return BadRequest();
+                return null;
 
-            var memoryStream = new MemoryStream();
-            using (var stream = new FileStream(consumerPath, FileMode.Open))
-            {
-                await stream.CopyToAsync(memoryStream);
-            }
-            memoryStream.Position = 0;
+            var file = System.IO.File.OpenRead(consumerPath);
+            var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
 
-            return File(memoryStream, "application/vnd.ms-word", Path.GetFileName(consumerPath));
+            return retStream;
+
+            //try
+            //{
+            //    //var memoryStream = new MemoryStream();
+            //    using (var stream = new FileStream(consumerPath, FileMode.Open))
+            //    //var stream = new FileStream(consumerPath, FileMode.Open);
+            //    {
+            //        await stream.CopyToAsync(memoryStream);
+
+            //        memoryStream.Position = 0;
+            //        var retStream = File(memoryStream, "application/vnd.ms-word", Path.GetFileName(consumerPath));
+            //        return retStream;
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    return BadRequest(ex.InnerException.Message);
+            //}
         }
 
 

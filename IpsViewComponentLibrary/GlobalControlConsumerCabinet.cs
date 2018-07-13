@@ -41,11 +41,21 @@ namespace IpsViewComponentLibrary
             set => txtSearch.Text = value;
         }
 
+        public TypeRights Rights { get; set; }
+
         public GlobalControlConsumerCabinet()
         {
             InitializeComponent();
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
             mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
+        }
+        public GlobalControlConsumerCabinet(TypeRights typeRights)
+        {
+            InitializeComponent();
+            Rights = typeRights;
+            gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
+            mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
+            mсInfoAgrCalc.Rights = Rights;
         }
 
         private void MсInfoAgrCalc_OnCustomerSave(Customer customer)
@@ -53,11 +63,11 @@ namespace IpsViewComponentLibrary
             var result = OnSaveCustomer?.Invoke(customer) ?? false;
             if (result)
             {
-                MessageBox.Show("Пролонгація успішно додана!","Збережено",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Успішно збережено!","Збережено",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Не пролонговано!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -100,9 +110,16 @@ namespace IpsViewComponentLibrary
         {
             int custId = (int?) e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
             if (custId != -1)
+            {
+                btnEditAgr.Enabled = true;
+                mсInfoAgrCalc.SetStateWhenChangeAnketaCount(AnketaCount.NotEmpty);
                 mсInfoAgrCalc.SetCustomerData(OnGridRowSelectedChaged?.Invoke(custId)); //здійснює оновлення даних
+            }
             else
-                ;//TODO: встановити пусті значення
+            {
+                mсInfoAgrCalc.SetStateWhenChangeAnketaCount(AnketaCount.Empty);
+                btnEditAgr.Enabled = false;
+            }
         }
 
         public void SetFilter( object _choice )

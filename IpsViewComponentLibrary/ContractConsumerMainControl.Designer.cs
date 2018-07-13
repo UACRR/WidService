@@ -57,18 +57,18 @@ namespace IpsViewComponentLibrary
             // 
             // rdtPickerAgrDate
             // 
-            this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource, "LicDate", true));
+            this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource, "LicDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rdtPickerAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerAgrDate.Location = new System.Drawing.Point(354, 1);
+            this.rdtPickerAgrDate.Location = new System.Drawing.Point(356, 1);
             this.rdtPickerAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.rdtPickerAgrDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerAgrDate.Name = "rdtPickerAgrDate";
-            this.rdtPickerAgrDate.NullDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerAgrDate.NullText = "Оберіть дату";
-            this.rdtPickerAgrDate.Size = new System.Drawing.Size(120, 20);
+            this.rdtPickerAgrDate.Size = new System.Drawing.Size(118, 21);
             this.rdtPickerAgrDate.TabIndex = 1;
             this.rdtPickerAgrDate.TabStop = false;
-            this.rdtPickerAgrDate.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.rdtPickerAgrDate.Text = "09.07.2018";
+            this.rdtPickerAgrDate.ThemeName = "Office2013Light";
             // 
             // bindingSource
             // 
@@ -78,82 +78,88 @@ namespace IpsViewComponentLibrary
             // 
             this.lblContrFrom.Location = new System.Drawing.Point(327, 3);
             this.lblContrFrom.Name = "lblContrFrom";
-            this.lblContrFrom.Size = new System.Drawing.Size(21, 18);
+            this.lblContrFrom.Size = new System.Drawing.Size(23, 19);
             this.lblContrFrom.TabIndex = 1;
             this.lblContrFrom.Text = "від";
+            this.lblContrFrom.ThemeName = "Office2013Light";
             // 
             // rtxtBoxContrNumber
             // 
             this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "LicNum", true));
-            this.rtxtBoxContrNumber.Location = new System.Drawing.Point(156, 2);
+            this.rtxtBoxContrNumber.Location = new System.Drawing.Point(169, 2);
             this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
             this.rtxtBoxContrNumber.NullText = "Номер договору";
-            this.rtxtBoxContrNumber.Size = new System.Drawing.Size(165, 20);
+            this.rtxtBoxContrNumber.Size = new System.Drawing.Size(152, 21);
             this.rtxtBoxContrNumber.TabIndex = 0;
+            this.rtxtBoxContrNumber.ThemeName = "Office2013Light";
             // 
             // lblContrNumb
             // 
             this.lblContrNumb.Location = new System.Drawing.Point(3, 3);
             this.lblContrNumb.Name = "lblContrNumb";
-            this.lblContrNumb.Size = new System.Drawing.Size(147, 18);
+            this.lblContrNumb.Size = new System.Drawing.Size(160, 19);
             this.lblContrNumb.TabIndex = 0;
             this.lblContrNumb.Text = "ЛІЦЕНЗІЙНИЙ ДОГОВІР №";
+            this.lblContrNumb.ThemeName = "Office2013Light";
             // 
             // rdtPickerDateBegin
             // 
-            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource, "DateBegin", true));
+            this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerDateBegin.Location = new System.Drawing.Point(156, 26);
-            this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 5, 31, 0, 0, 0, 0);
+            this.rdtPickerDateBegin.Location = new System.Drawing.Point(169, 26);
+            this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.Name = "rdtPickerDateBegin";
-            this.rdtPickerDateBegin.NullDate = new System.DateTime(2018, 6, 13, 16, 4, 23, 37);
-            this.rdtPickerDateBegin.NullText = "  /  /";
-            this.rdtPickerDateBegin.Size = new System.Drawing.Size(120, 20);
+            this.rdtPickerDateBegin.NullText = "Оберіть дату";
+            this.rdtPickerDateBegin.Size = new System.Drawing.Size(107, 21);
             this.rdtPickerDateBegin.TabIndex = 2;
             this.rdtPickerDateBegin.TabStop = false;
-            this.rdtPickerDateBegin.Value = new System.DateTime(2018, 6, 13, 16, 4, 23, 37);
+            this.rdtPickerDateBegin.Text = "09.07.2018";
+            this.rdtPickerDateBegin.ThemeName = "Office2013Light";
             this.rdtPickerDateBegin.ValueChanged += new System.EventHandler(this.rdtPickerDateBegin_ValueChanged);
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.rdtPickerDateBegin.GetChildAt(0))).Text = "";
             // 
             // rdtPickerDateEnd
             // 
-            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource, "DateEnd", true));
+            this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rdtPickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerDateEnd.Location = new System.Drawing.Point(354, 25);
+            this.rdtPickerDateEnd.Location = new System.Drawing.Point(356, 25);
             this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.Name = "rdtPickerDateEnd";
-            this.rdtPickerDateEnd.NullDate = new System.DateTime(2018, 6, 22, 18, 0, 58, 293);
-            this.rdtPickerDateEnd.NullText = "  /  /";
-            this.rdtPickerDateEnd.Size = new System.Drawing.Size(120, 20);
+            this.rdtPickerDateEnd.NullText = "Оберіть дату";
+            this.rdtPickerDateEnd.Size = new System.Drawing.Size(118, 21);
             this.rdtPickerDateEnd.TabIndex = 3;
             this.rdtPickerDateEnd.TabStop = false;
-            this.rdtPickerDateEnd.Value = new System.DateTime(2018, 6, 22, 18, 0, 58, 293);
+            this.rdtPickerDateEnd.Text = "09.07.2018";
+            this.rdtPickerDateEnd.ThemeName = "Office2013Light";
             // 
             // lblContrDoFrom
             // 
-            this.lblContrDoFrom.Location = new System.Drawing.Point(129, 28);
+            this.lblContrDoFrom.Location = new System.Drawing.Point(140, 28);
             this.lblContrDoFrom.Name = "lblContrDoFrom";
-            this.lblContrDoFrom.Size = new System.Drawing.Size(21, 18);
+            this.lblContrDoFrom.Size = new System.Drawing.Size(23, 19);
             this.lblContrDoFrom.TabIndex = 2;
             this.lblContrDoFrom.Text = "від";
+            this.lblContrDoFrom.ThemeName = "Office2013Light";
             // 
             // lblContrDoTo
             // 
-            this.lblContrDoTo.Location = new System.Drawing.Point(327, 27);
+            this.lblContrDoTo.Location = new System.Drawing.Point(329, 27);
             this.lblContrDoTo.Name = "lblContrDoTo";
-            this.lblContrDoTo.Size = new System.Drawing.Size(19, 18);
+            this.lblContrDoTo.Size = new System.Drawing.Size(21, 19);
             this.lblContrDoTo.TabIndex = 3;
             this.lblContrDoTo.Text = "до";
+            this.lblContrDoTo.ThemeName = "Office2013Light";
             // 
             // lblContrDo
             // 
             this.lblContrDo.Location = new System.Drawing.Point(3, 28);
             this.lblContrDo.Name = "lblContrDo";
-            this.lblContrDo.Size = new System.Drawing.Size(85, 18);
+            this.lblContrDo.Size = new System.Drawing.Size(92, 19);
             this.lblContrDo.TabIndex = 2;
             this.lblContrDo.Text = "ДІЯ ДОГОВОРУ";
+            this.lblContrDo.ThemeName = "Office2013Light";
             // 
             // ContractConsumerMainControl
             // 

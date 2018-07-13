@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtShortName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtName = new Telerik.WinControls.UI.RadTextBox();
+            this.txtName = new RadTextBoxAuto();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
@@ -59,6 +59,7 @@
             this.txtShortName.RootElement.MaxSize = new System.Drawing.Size(350, 20);
             this.txtShortName.Size = new System.Drawing.Size(333, 20);
             this.txtShortName.TabIndex = 1;
+            this.txtShortName.ThemeName = "Office2013Light";
             // 
             // txtName
             // 
@@ -67,24 +68,27 @@
             this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true));
             this.txtName.Location = new System.Drawing.Point(119, 1);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(333, 20);
+            this.txtName.Size = new System.Drawing.Size(333, 21);
             this.txtName.TabIndex = 0;
+            this.txtName.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
             this.radLabel2.Location = new System.Drawing.Point(2, 27);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(83, 18);
+            this.radLabel2.Size = new System.Drawing.Size(91, 19);
             this.radLabel2.TabIndex = 1;
             this.radLabel2.Text = "Коротка назва:";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel1
             // 
             this.radLabel1.Location = new System.Drawing.Point(2, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(79, 18);
+            this.radLabel1.Size = new System.Drawing.Size(86, 19);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Назва клієнта:";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // IpsAnketaCompanyControl
             // 
@@ -110,7 +114,7 @@
 
         #endregion
         private Telerik.WinControls.UI.RadTextBox txtShortName;
-        private Telerik.WinControls.UI.RadTextBox txtName;
+        private RadTextBoxAuto txtName;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;

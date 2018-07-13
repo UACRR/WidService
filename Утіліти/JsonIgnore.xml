@@ -8,7 +8,6 @@
         <noignore>Community</noignore>
         <noignore>AnketaAddName</noignore>
         <noignore>AgreementMaster</noignore>
-
     </item>
     <item name="Client">
         <noignore>ClnBusinessPlace</noignore>
@@ -21,6 +20,7 @@
         <noignore>LicenseAgrParam</noignore>
         <noignore>PaidPeriod</noignore>
         <noignore>Register</noignore>
+        <noignore>LicenseBigR</noignore>
     </item>
     <item Name="ClnBusinessPlace">
         <noignore>ClnPlaceHoll</noignore>
@@ -33,7 +33,6 @@
     <item Name="Person">
         <noignore>AnketaPerson</noignore>
     </item>
-
     <item Name="RelEmployee">
         <noignore>Empl</noignore>
     </item>
@@ -45,12 +44,14 @@
     <item Name="MoneyPeriodLink">
         <noignore>Paid</noignore>
     </item>
-    <item Name="TypePlace">
+    <item Name="TypePlace"></item>
+    <item Name="License"></item>
+    <item Name="MoneyReceived"></item>
+    <item Name="LicenseBigR">
+        <noignore>ObjectRight</noignore>
+        <noignore>LicAuthorBr</noignore>
     </item>
-    <item Name="License">
-    </item>
-    <item Name="MoneyReceived">
-    </item>
+    <item Name="LicAuthorBr"></item>
     <item Name="RightHolder">
         <noignore>TermsOfService</noignore>
         <noignore>TerritoryExclude</noignore>
@@ -59,10 +60,12 @@
         <noignore>CopyRight</noignore>
         <noignore>Cust</noignore>
     </item>
-    <item Name="AgreementAddRh">
-    </item>
+    <item Name="CopyRight"></item>
+    <item Name="AgreementAddRh"></item>
+    <item Name="AgreementAddBr"></item>
     <item Name="AgreementMaster">
         <noignore>AgreementAddRh</noignore>
+        <noignore>AgreementAddBr</noignore>
     </item>
     <item Name="Register">
         <noignore>Distribution</noignore>
@@ -74,6 +77,4 @@
     <item Name="Distribution">
         <noignore>DistributionItem</noignore>
     </item>
-
-
 </tables>

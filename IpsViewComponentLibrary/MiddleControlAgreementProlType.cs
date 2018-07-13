@@ -47,6 +47,7 @@ namespace IpsViewComponentLibrary
             set => bindingSourceAnketaCompany.DataSource = value;
         }
 
+        //TODO: переробити databinding LicenseAgrParam
         public LicenseAgrParam LicenseAgrParam
         {
             get => null;
@@ -54,7 +55,7 @@ namespace IpsViewComponentLibrary
             {
                 var licenseParam = value;
                 ctrlAgrSecond.DataSourceBinding = licenseParam;
-                ctrlAgrSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
+                ctrlAgrSecond.AutoprolongationDataSource = licenseParam;
                 ctrlAgrSecond.MinPayment = "MinAmount";
                 ctrlAgrSecond.PercentPayment = "RateAmount";
 

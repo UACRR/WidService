@@ -53,7 +53,7 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!IsValid())
+            if (!ValidateChildren())
             {
                 MessageBox.Show("Не вірно введені дані. Об'єкт не записаний.");
                 DialogResult = DialogResult.None;
@@ -79,6 +79,7 @@ namespace IpsViewComponentLibrary
 
             using (var selectionView = new RightholderSelectionView())
             {
+                selectionView.SelectedRightholder = new RightholderMainView { CustId = _authorRightholder.CustId ?? 0 };
                 selectionView.RightholderSelected += SelectionView_RightholderSelected;
                 selectionView.ShowDialog();
             }
@@ -150,28 +151,32 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
-        private bool IsValid()
+        #region Validation
+
+        private void ddlRoleCode_Validating(object sender, CancelEventArgs e)
         {
-            //foreach (Control control in errorProvider.ContainerControl.Controls)
-            //{
-            //    if (errorProvider.GetError(control) != "")
-            //    {
-            //        return false;
-            //    }
-            //}
-
-            if (errorProvider.GetError(mtxtRate) != "")
-                return false;
-
-            return true;
+            if (ddlRoleCode.SelectedValue == null)
+            {
+                errorProvider.SetError(ddlRoleCode, "Оберіть творчу роль.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(ddlRoleCode, "");
         }
 
-        private void mtxtRate_Validated(object sender, EventArgs e)
+        private void mtxtRate_Validating(object sender, CancelEventArgs e)
         {
-            if (_authorRightholder.Rate > 100)
+            var value = decimal.Parse(mtxtRate.Text);
+
+            if (value > 100)
+            {
                 errorProvider.SetError(mtxtRate, "Відсоток володіння не може бути більше 100%.");
+                e.Cancel = true;
+            }
             else
                 errorProvider.SetError(mtxtRate, "");
         }
+
+        #endregion
     }
 }

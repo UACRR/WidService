@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.lblTitleClientName = new Telerik.WinControls.UI.RadLabel();
+            this.bindingSourceAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgrMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.bindingSourceAgr = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgrSecond = new IpsViewComponentLibrary.ContractConsumerDetailControl();
@@ -39,9 +40,9 @@
             this.btnPrint = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.bindingSourceAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleLicAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
@@ -49,7 +50,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -78,6 +78,10 @@
             this.lblTitleClientName.Text = "Назва «Клієнта»";
             this.lblTitleClientName.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // bindingSourceAnketaCompany
+            // 
+            this.bindingSourceAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
+            // 
             // ctrlAgrMain
             // 
             this.ctrlAgrMain.DataSource = this.bindingSourceAgr;
@@ -93,14 +97,21 @@
             // 
             // ctrlAgrSecond
             // 
+            this.ctrlAgrSecond.AutoprolongationDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgrSecond.AutoprolongationPercent = null;
+            this.ctrlAgrSecond.DataSourceBinding = null;
             this.ctrlAgrSecond.IsAutoprolongation = false;
-            this.ctrlAgrSecond.MinPayment = null;
-            this.ctrlAgrSecond.PercentPayment = null;
             this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
             this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
             this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.MinPayment = null;
             this.ctrlAgrSecond.Name = "ctrlAgrSecond";
+            this.ctrlAgrSecond.PercentPayment = null;
+            this.ctrlAgrSecond.PeriodPaymentDataMember = null;
+            this.ctrlAgrSecond.PeriodPaymentDataSource = null;
+            this.ctrlAgrSecond.PeriodPaymentDisplayMember = "";
+            this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
+            this.ctrlAgrSecond.PeriodPaymentValueMember = "";
             this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
             this.ctrlAgrSecond.TabIndex = 17;
             // 
@@ -132,12 +143,13 @@
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(500, 108);
+            this.btnPrint.Location = new System.Drawing.Point(555, 3);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(122, 20);
+            this.btnPrint.Size = new System.Drawing.Size(67, 43);
             this.btnPrint.TabIndex = 21;
             this.btnPrint.Text = "Друкувати договір";
-            this.btnPrint.ThemeName = "Office2007Silver";
+            this.btnPrint.TextWrap = true;
+            this.btnPrint.ThemeName = "Office2013Light";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // radLabel3
@@ -156,14 +168,10 @@
             this.btnSave.Size = new System.Drawing.Size(117, 24);
             this.btnSave.TabIndex = 20;
             this.btnSave.Text = "Зберегти зміни";
-            this.btnSave.ThemeName = "Office2007Silver";
+            this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // bindingSourceAnketaCompany
-            // 
-            this.bindingSourceAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            // 
-            // MiddleControlAgreementProlVsPlacesType
+            // MiddleControlAgreementProlType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,10 +183,11 @@
             this.Controls.Add(this.lblTitleClientName);
             this.Controls.Add(this.lblTitleLicAgr);
             this.MinimumSize = new System.Drawing.Size(502, 276);
-            this.Name = "MiddleControlAgreementProlVsPlacesType";
+            this.Name = "MiddleControlAgreementProlType";
             this.Size = new System.Drawing.Size(631, 299);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleLicAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
@@ -186,7 +195,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

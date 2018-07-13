@@ -10,7 +10,6 @@ namespace ipsmedserviceapp.Model
             Authors = new HashSet<Authors>();
             CopyRight = new HashSet<CopyRight>();
             CreativeRoleTypeTr = new HashSet<CreativeRoleTypeTr>();
-            LicAuthorBr = new HashSet<LicAuthorBr>();
             RelEtRole = new HashSet<RelEtRole>();
             RelGenreRole = new HashSet<RelGenreRole>();
         }
@@ -26,7 +25,6 @@ namespace ipsmedserviceapp.Model
         public ICollection<Authors> Authors { get; set; }
         public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
-        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
         public ICollection<RelEtRole> RelEtRole { get; set; }
         public ICollection<RelGenreRole> RelGenreRole { get; set; }
     }

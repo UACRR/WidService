@@ -5,9 +5,7 @@ namespace ipsmedserviceapp.Model
 {
     public partial class WorkRh
     {
-        public int WorkId { get; set; }
-        public int? LicAutorId { get; set; }
-        public int? CRightId { get; set; }
+        public int CRightId { get; set; }
         public int? WorkTypeRh { get; set; }
         public string WorkCommentRh { get; set; }
         public DateTime? WorkDateRh { get; set; }
@@ -18,7 +16,6 @@ namespace ipsmedserviceapp.Model
         public string ModifyLogin { get; set; }
 
         public CopyRight CRight { get; set; }
-        public LicAuthorBr LicAutor { get; set; }
         public WorkType WorkTypeClNavigation { get; set; }
         public WorkType WorkTypeRhNavigation { get; set; }
     }

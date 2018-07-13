@@ -13,9 +13,22 @@ namespace IpsViewComponentLibrary
 {
     public partial class InformationAboutTheContractTitleControl : UserControl
     {
+        public event EventHandler OnSaveCommentNeed;
+
         public InformationAboutTheContractTitleControl()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Джерело даних для коментаря - об'єкт LicenseAgrParam
+        /// </summary>
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object CommentDataSource
+        {
+            get => bindingSourceComment.DataSource;
+            set => bindingSourceComment.DataSource = value;
         }
 
         /// <summary>
@@ -219,15 +232,6 @@ namespace IpsViewComponentLibrary
             set => distributedAmountCtrl.TextValue = value;
         }
 
-        /// <summary>
-        /// Примітка
-        /// </summary>
-        public string Notation
-        {
-            get => txtNotation.Text;
-            set => txtNotation.Text = value;
-        }
-
 
         /// <summary>
         /// Встановлення даних
@@ -266,7 +270,11 @@ namespace IpsViewComponentLibrary
             txtNotation.Text = string.Empty;
         }
 
-
+        private void btnSaveComment_Click(object sender, EventArgs e)
+        {
+            if (txtNotation.Text != string.Empty)
+                OnSaveCommentNeed?.Invoke(sender, e);
+        }
 
         /*  - - - НАЗВИ ПОЛІВ
          *

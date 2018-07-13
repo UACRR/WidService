@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -21,11 +22,21 @@ namespace ipsmedserviceapp.Model
         public bool? IsTour { get; set; }
         public string WhereTour { get; set; }
         public decimal? Rate { get; set; }
-        public DateTime? PrepayDateDo { get; set; }
+        public int LicVersion { get; set; }
+        public decimal? PrepayRest { get; set; }
+        public string LangCode { get; set; }
+        public int? PerformType { get; set; }
 
+        [JsonIgnore]
+        public Language LangCodeNavigation { get; set; }
+        [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
+        [JsonIgnore]
+        public PerformType PerformTypeNavigation { get; set; }
         public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        [JsonIgnore]
         public ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }
+

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
@@ -18,7 +19,7 @@ namespace IpsViewComponentLibrary
         private LicenseAgrParam _licAgr;
         private AnketaDictionaties _dict;
         private Customer _cust;
-
+        private DialogGoal _goal;
         public event EventHandler OnSaveProlongation;
 
 
@@ -26,35 +27,47 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
         }
-
+        
         public ProlongationWithPlaces(LicenseAgrParam bindAgr, 
                                       AnketaCompany bindAnketaCompany, 
                                       AnketaDictionaties dict, 
                                       LicenseAgreement lic, 
                                       ObservableListSource<ClnBusinessPlace> places, 
                                       Customer cust, 
-                                      DialogGoal goal){
+                                      DialogGoal goal,
+                                      TypeRights typeRights = TypeRights.SmallRights)
+        {
         // * * * * * * * * 
             _lic = lic;
             _licAgr = bindAgr;
             _dict = dict;
             _cust = cust;
+            _goal = goal;
 
             InitializeComponent(); // * * * 
             this.FormClosing += ProlongationWithPlaces_FormClosing;
             ctrlProlongation.OnPrintClick += CtrlProlongation_OnPrintClick;
             ctrlProlongation.OnSaveChangesClick += CtrlProlongation_OnSaveChangesClick;
+            ctrlProlongation.Rights = typeRights;
             ctrlProlongation.Dictionaties = dict; // словник
-            ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr);
 
-            ctrlProlongation.DataSourceGrid = places;
+            ConsumerAgreementInitType caType = ConsumerAgreementInitType.None;
+            //ініціалізувати тип форми (пролонгація, додавання нового і т.д.)
+            if (goal == DialogGoal.forNew)
+                caType = ConsumerAgreementInitType.AddNewAgreement;
+            else if (goal == DialogGoal.forEdit)
+                caType = ConsumerAgreementInitType.EditAgreement;
+            else if (goal == DialogGoal.forProlongation)
+                caType = ConsumerAgreementInitType.Prolongation;
+
+            ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr, caType);
 
             ctrlProlongation.DataSourceAgreement = bindAgr;
             ctrlProlongation.DataSourceAnketaCompany = bindAnketaCompany;
-            
+
             ctrlProlongation.LicenseAgrParam = bindAgr;
 
-            ctrlProlongation.CanChangeLicense = goal == DialogGoal.forNew;
+            ctrlProlongation.LicenseEnabled = goal == DialogGoal.forNew;
         }
 
         private void CtrlProlongation_OnSaveChangesClick()
@@ -76,11 +89,20 @@ namespace IpsViewComponentLibrary
 
         private void ProlongationWithPlaces_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
-            if(_changesSaved)
+
+            if (_changesSaved)
                 return;
 
-            _lic.LicenseAgrParam.Remove(_licAgr);
+            if (_goal == DialogGoal.forNew)
+            {
+                _lic.LicenseAgrParam.Remove(_licAgr);
+                _cust.Client.LicenseAgreement.Remove(_lic);
+            }
+
+            if (_goal == DialogGoal.forProlongation)
+            {
+                _lic.LicenseAgrParam.Remove(_licAgr);
+            }
         }
     }
 }

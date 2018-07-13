@@ -7,26 +7,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using LicenseForPlaces = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class MiddleControlAgreementAnketaType : UserControl, IMiddleCtrlAnketaConsumer
+    public partial class MiddleControlAgreementAnketaType : UserControl//, IMiddleCtrlAnketaConsumer
     {
+        private LicenseAgrParam _licenseAgr;
+        private ConsumerAnketeType _consumerAnketeType = ConsumerAnketeType.None;
+        private Customer _customer;
         public MiddleControlAgreementAnketaType()
         {
             InitializeComponent();
         }
 
-        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
+        /// <summary>
+        /// Тип права
+        /// </summary>
+        public TypeRights typeRights { get; set; } = TypeRights.SmallRights;
+
+        /// <summary>
+        /// Встановлення даних
+        /// </summary>
+        /// <param name="cust">Споживач</param>
+        /// <param name="dictionaties">Словник</param>
+        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties, ConsumerAnketeType anketeType )
         {
+            _consumerAnketeType = anketeType;
+            _customer = cust;
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
             var license = cust?.Client?.LicenseAgreement?.FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == license?.LicVersion);
+            _licenseAgr = licenseParam;
+            if(license != null && anketeType == ConsumerAnketeType.CreateNewAnketa)
+                license.LicCode = typeRights == TypeRights.SmallRights ? 1 : typeRights == TypeRights.BigRights ? 10 : throw new ArgumentException();
 
+            //TODO: великі права без пролонгації при автокомпліті можуть заповнитись
+            panel.Visible = typeRights == TypeRights.SmallRights;
+            lblParam.Visible = typeRights == TypeRights.SmallRights;
 
-            ddlLicType.DataSource = dictionaties?.agrLicenseType;
+            ddlLicType.DataSource = dictionaties?.agrLicenseType.Where( rec => 
+            {
+                switch (typeRights)
+                {
+                    case TypeRights.SmallRights:
+                        return rec.UsesKind != 1;
+                    case TypeRights.BigRights:
+                        return rec.UsesKind == 1;
+                }
+                return true;
+            });
+
             ddlLicType.DataBindings.Clear();
             ddlLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", license, "LicCode", true));
 
@@ -37,15 +71,9 @@ namespace IpsViewComponentLibrary
             
 
             ctrlAgreementMain.DataSource = licenseParam;
-            // ctrlAgreementMain.DateDataSource = licenseParam;
-            //ctrlAgreementMain.ContrNumber = "LicNum";
-            //ctrlAgreementMain.AgrDateDataMember = "LicDate";
-            //ctrlAgreementMain.BeginDateDataMember = "DateBegin";
-            //ctrlAgreementMain.EndDateDataMember = "DateEnd";
-
             
             ctrlAgreementSecond.DataSourceBinding = licenseParam;
-            ctrlAgreementSecond.IsAutoprolongation = licenseParam?.IsAutoprolog ?? false;
+            ctrlAgreementSecond.AutoprolongationDataSource = licenseParam;
             ctrlAgreementSecond.MinPayment = "MinAmount";
             ctrlAgreementSecond.PercentPayment = "RateAmount";
 
@@ -61,10 +89,25 @@ namespace IpsViewComponentLibrary
                 ctrlAgreementSecond.SelectedItem = 0;
             else
                 ctrlAgreementSecond.AutoprolongationPercent = null;
-
-            
             lblTitle.Text = anketa?.Name;
-            
+
+            //TODO: джерело даних з розрахованою сумою
+            gvPlaces.DataSource = SetChoosePlaces();
+        }
+
+        //обрати чекбокс майданчиків що в ліцензії
+        private ObservableListSource<ClnBusinessPlace> SetChoosePlaces()
+        {
+            if (_consumerAnketeType == ConsumerAnketeType.CreateNewAnketa)
+                return _customer.Client.ClnBusinessPlace;
+
+            ObservableListSource <ClnBusinessPlace> places = new ObservableListSource<ClnBusinessPlace>();
+            foreach (var item in _licenseAgr.License)
+            {
+                places.Add(_customer?.Client?.ClnBusinessPlace?.Where(rec => rec?.PlaceId == item?.PlaceId).SingleOrDefault());
+            }
+
+            return places;
         }
 
         public bool Validator()
@@ -82,5 +125,32 @@ namespace IpsViewComponentLibrary
 
             ctrlAgreementSecond.SetDefaultState();
         }
+
+        private void gvPlaces_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            var item = gvPlaces.CurrentRow.DataBoundItem as ClnBusinessPlace;
+
+            if (_licenseAgr.License == null)
+                _licenseAgr.License = new ObservableListSource<LicenseForPlaces>();
+
+            if (e?.Value != null && (bool)e.Value)
+            {
+                _licenseAgr.License.Add(new LicenseForPlaces
+                {
+                    PlaceId = item?.PlaceId,
+                    LicId = _licenseAgr.LicId,
+                    LicVersion = _licenseAgr.LicVersion,
+                    LNum = "0" + (DateTime.Today.Year - 2000) + @"/" + (DateTime.Today.DayOfYear),
+                    LDate = DateTime.Today,
+                    Place = item,
+                    Status = _licenseAgr.LicStatus
+                });
+            }
+            else if (e?.Value != null && !(bool)e.Value)
+            {
+                _licenseAgr.License.Remove(_licenseAgr.License.SingleOrDefault(rec => rec.PlaceId == item?.PlaceId));
+            }
+        }
     }
 }
+

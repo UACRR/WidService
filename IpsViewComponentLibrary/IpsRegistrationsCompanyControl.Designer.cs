@@ -64,95 +64,106 @@ namespace IpsViewComponentLibrary
             this.txtNumberVat.Location = new System.Drawing.Point(436, 85);
             this.txtNumberVat.MaxLength = 12;
             this.txtNumberVat.Name = "txtNumberVat";
-            this.txtNumberVat.Size = new System.Drawing.Size(164, 20);
+            this.txtNumberVat.Size = new System.Drawing.Size(161, 21);
             this.txtNumberVat.TabIndex = 5;
+            this.txtNumberVat.ThemeName = "Office2013Light";
             this.txtNumberVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberVat_KeyPress);
             // 
             // txtRegisterNumber
             // 
-            this.txtRegisterNumber.Location = new System.Drawing.Point(120, 38);
+            this.txtRegisterNumber.Location = new System.Drawing.Point(106, 43);
             this.txtRegisterNumber.Name = "txtRegisterNumber";
-            this.txtRegisterNumber.Size = new System.Drawing.Size(120, 20);
+            this.txtRegisterNumber.Size = new System.Drawing.Size(134, 21);
             this.txtRegisterNumber.TabIndex = 1;
+            this.txtRegisterNumber.ThemeName = "Office2013Light";
             // 
             // txtRegisterWho
             // 
             this.txtRegisterWho.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRegisterWho.Location = new System.Drawing.Point(436, 38);
+            this.txtRegisterWho.Location = new System.Drawing.Point(436, 43);
             this.txtRegisterWho.Name = "txtRegisterWho";
-            this.txtRegisterWho.Size = new System.Drawing.Size(164, 20);
+            this.txtRegisterWho.Size = new System.Drawing.Size(215, 21);
             this.txtRegisterWho.TabIndex = 3;
+            this.txtRegisterWho.ThemeName = "Office2013Light";
             // 
             // dtRegisterDate
             // 
             this.dtRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtRegisterDate.Location = new System.Drawing.Point(278, 38);
+            this.dtRegisterDate.Location = new System.Drawing.Point(278, 43);
+            this.dtRegisterDate.MaxDate = new System.DateTime(2018, 7, 2, 0, 0, 0, 0);
             this.dtRegisterDate.Name = "dtRegisterDate";
-            this.dtRegisterDate.Size = new System.Drawing.Size(92, 20);
+            this.dtRegisterDate.Size = new System.Drawing.Size(92, 21);
             this.dtRegisterDate.TabIndex = 2;
             this.dtRegisterDate.TabStop = false;
+            this.dtRegisterDate.ThemeName = "Office2013Light";
             this.dtRegisterDate.Value = new System.DateTime(((long)(0)));
-            this.dtRegisterDate.MaxDate = DateTime.Today;
             // 
             // txtOkpo
             // 
-            this.txtOkpo.Location = new System.Drawing.Point(120, 1);
+            this.txtOkpo.Location = new System.Drawing.Point(106, 2);
             this.txtOkpo.MaxLength = 10;
             this.txtOkpo.Name = "txtOkpo";
-            this.txtOkpo.Size = new System.Drawing.Size(120, 20);
+            this.txtOkpo.Size = new System.Drawing.Size(134, 21);
             this.txtOkpo.TabIndex = 0;
+            this.txtOkpo.ThemeName = "Office2013Light";
             this.txtOkpo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOkpo_KeyPress);
             // 
             // lblIssuedBy
             // 
-            this.lblIssuedBy.Location = new System.Drawing.Point(376, 40);
+            this.lblIssuedBy.Location = new System.Drawing.Point(376, 44);
             this.lblIssuedBy.Name = "lblIssuedBy";
-            this.lblIssuedBy.Size = new System.Drawing.Size(53, 18);
+            this.lblIssuedBy.Size = new System.Drawing.Size(57, 19);
             this.lblIssuedBy.TabIndex = 3;
             this.lblIssuedBy.Text = "виданий:";
+            this.lblIssuedBy.ThemeName = "Office2013Light";
             // 
             // lblDateBegin
             // 
-            this.lblDateBegin.Location = new System.Drawing.Point(247, 40);
+            this.lblDateBegin.Location = new System.Drawing.Point(247, 44);
             this.lblDateBegin.Name = "lblDateBegin";
-            this.lblDateBegin.Size = new System.Drawing.Size(24, 18);
+            this.lblDateBegin.Size = new System.Drawing.Size(25, 19);
             this.lblDateBegin.TabIndex = 2;
             this.lblDateBegin.Text = "від:";
+            this.lblDateBegin.ThemeName = "Office2013Light";
             // 
             // lblIPN
             // 
-            this.lblIPN.Location = new System.Drawing.Point(311, 85);
+            this.lblIPN.Location = new System.Drawing.Point(305, 85);
             this.lblIPN.Name = "lblIPN";
-            this.lblIPN.Size = new System.Drawing.Size(118, 18);
+            this.lblIPN.Size = new System.Drawing.Size(128, 19);
             this.lblIPN.TabIndex = 5;
             this.lblIPN.Text = "Індивід. подактов. №:";
+            this.lblIPN.ThemeName = "Office2013Light";
             // 
             // lblSvidoctvo
             // 
             this.lblSvidoctvo.AutoSize = false;
             this.lblSvidoctvo.Location = new System.Drawing.Point(3, 24);
             this.lblSvidoctvo.Name = "lblSvidoctvo";
-            this.lblSvidoctvo.Size = new System.Drawing.Size(97, 48);
+            this.lblSvidoctvo.Size = new System.Drawing.Size(97, 52);
             this.lblSvidoctvo.TabIndex = 1;
             this.lblSvidoctvo.Text = "Свідоцтво про державну реєстрацію №:";
+            this.lblSvidoctvo.ThemeName = "Office2013Light";
             // 
             // lbledrpou
             // 
             this.lbledrpou.Location = new System.Drawing.Point(3, 3);
             this.lbledrpou.Name = "lbledrpou";
-            this.lbledrpou.Size = new System.Drawing.Size(53, 18);
+            this.lbledrpou.Size = new System.Drawing.Size(57, 19);
             this.lbledrpou.TabIndex = 0;
             this.lbledrpou.Text = "ЄДРПОУ:";
+            this.lbledrpou.ThemeName = "Office2013Light";
             // 
             // lblTypeTaxpayer
             // 
             this.lblTypeTaxpayer.AutoSize = false;
-            this.lblTypeTaxpayer.Location = new System.Drawing.Point(3, 78);
+            this.lblTypeTaxpayer.Location = new System.Drawing.Point(3, 76);
             this.lblTypeTaxpayer.Name = "lblTypeTaxpayer";
-            this.lblTypeTaxpayer.Size = new System.Drawing.Size(97, 33);
+            this.lblTypeTaxpayer.Size = new System.Drawing.Size(97, 35);
             this.lblTypeTaxpayer.TabIndex = 4;
             this.lblTypeTaxpayer.Text = "Тип платника податків:";
+            this.lblTypeTaxpayer.ThemeName = "Office2013Light";
             // 
             // ddlTypeVat
             // 
@@ -161,10 +172,11 @@ namespace IpsViewComponentLibrary
             this.ddlTypeVat.DefaultItemsCountInDropDown = 5;
             this.ddlTypeVat.DropDownMaxSize = new System.Drawing.Size(300, 120);
             this.ddlTypeVat.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlTypeVat.Location = new System.Drawing.Point(120, 85);
+            this.ddlTypeVat.Location = new System.Drawing.Point(106, 85);
             this.ddlTypeVat.Name = "ddlTypeVat";
-            this.ddlTypeVat.Size = new System.Drawing.Size(120, 20);
+            this.ddlTypeVat.Size = new System.Drawing.Size(134, 21);
             this.ddlTypeVat.TabIndex = 4;
+            this.ddlTypeVat.ThemeName = "Office2013Light";
             this.ddlTypeVat.SelectedValueChanged += new System.EventHandler(this.ddlTypeVat_SelectedValueChanged);
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSize = true;
@@ -191,7 +203,7 @@ namespace IpsViewComponentLibrary
             this.Controls.Add(this.lblSvidoctvo);
             this.Controls.Add(this.lbledrpou);
             this.Name = "IpsRegistrationsCompanyControl";
-            this.Size = new System.Drawing.Size(600, 110);
+            this.Size = new System.Drawing.Size(654, 110);
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterWho)).EndInit();

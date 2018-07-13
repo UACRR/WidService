@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
@@ -44,7 +45,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             _customer = GetCustomer(id);
             globalControlConsumerAnketa1.SetDataAndDictionaries(_customer, _dic); // передати дані та словники
-            globalControlConsumerAnketa1.InitializeControl(false);                // ініціалізація редагування (false), () або створення нового (true)
+            globalControlConsumerAnketa1.InitializeControl(GetAutoCompList, GetCustomer, false);                // ініціалізація редагування (false), () або створення нового (true)
             return GetCustomer(id);
         }
 
@@ -53,6 +54,8 @@ namespace ConsumerWorkplace_v_1._0
         public Func<int, Customer> NewCustomer { get; set; }
         public Func<int, Customer> GetCustomer { get; set; }
         public Func<Customer, bool> SaveCustomer { get; set; }
+        public Func<string, IList<AutoCompleteData>> GetAutoCompList { get; set; }
+
         public void EndPresenterLink()
         {
             if (getMainViewData != null)
