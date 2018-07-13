@@ -54,5 +54,6 @@ namespace ipsFormsDesign.Interfaces
         public IList<SeekType> seekType {get; set; }
         public IList<SpecType> specType {get; set; }
         public IList<SpecType> folkType { get; set; }
+        public IList<RegisterStatus> RegisterStatuses { get; set; }
     }
 }
