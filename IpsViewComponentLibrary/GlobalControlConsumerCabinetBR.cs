@@ -27,7 +27,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         public event BackToMainGrid OnBackToGridNeed;
 
-        public delegate Customer UpdateData(int id);
+        public delegate void UpdateData(int id);
         /// <summary>
         /// Виникає при зміні поточного рядка на грід та потребі оновити дані
         /// </summary>
@@ -51,7 +51,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             ctrlCabinet.OnSaveCustomerNeed += CtrlCabinet_OnSaveCustomerNeed;
-            ctrlCabinet.SetCustomer(_customer);
+            ctrlCabinet.SetAndUpdateData(_customer);
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
         }
 
@@ -69,9 +69,28 @@ namespace IpsViewComponentLibrary
             gvConsumerList.DataSource = source;
         }
 
-        public void SetAnketaDictionaties(AnketaDictionaties aDictionaties)
+        public void SetDataAnketaDictionaties(AnketaDictionaties aDictionaties)
         {
             _anketaDictionaties = aDictionaties;
+        }
+
+        public void SetDataCustomer(Customer customer)
+        {
+            _customer = customer;
+        }
+
+        public void SetDataAgreementView(object obj)
+        {
+            //TODO view для ліцензій великих прав
+        }
+
+        /// <summary>
+        /// Примусове оновлення даних
+        /// </summary>
+        public void UpdateControlData()
+        {
+            ctrlCabinet.SetAndUpdateData(_customer);
+
         }
 
         public void SetSelectCustomer(int custId)
@@ -88,7 +107,7 @@ namespace IpsViewComponentLibrary
 
             if(_rowId != -1)
             {
-                _customer = OnCustomerUpdateDataNeed?.Invoke(_rowId);
+                OnCustomerUpdateDataNeed?.Invoke(_rowId);
             }
         }
 

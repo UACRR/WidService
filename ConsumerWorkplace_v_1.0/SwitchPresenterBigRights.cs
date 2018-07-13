@@ -96,7 +96,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnAddNewCustomer += _cabinetBr_OnAddNewCustomer;
                 _cabinetBr.OnEditCustomer += _cabinetBr_OnEditCustomer;
                 _cabinetBr.OnSaveCustomer += _cabinetBr_OnSaveCustomer;
-                _cabinetBr.SetAnketaDictionaties(_service.GetDictionary());
+                _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
             }
@@ -124,10 +124,12 @@ namespace ConsumerWorkplace_v_1._0
             NewJuridicalConsumer();
         }
 
-        private ipsFormsDesign.Model.Customer CabinetBr_OnCustomerUpdateDataNeed(int id)
+        private void CabinetBr_OnCustomerUpdateDataNeed(int id)
         {
-            _service.GetAgreementsBigRight(id.ToString());
-            return _service.GetData(id);
+            _cabinetBr.SetDataCustomer(_service.GetData(id));
+            _cabinetBr.SetDataAgreementView(_service.GetAgreementsBigRight(id.ToString()));
+            
+            _cabinetBr.UpdateControlData();
         }
 
         private void CabinetBr_OnBackToGridNeed(int custId)
