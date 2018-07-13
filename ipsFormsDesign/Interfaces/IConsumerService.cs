@@ -46,15 +46,15 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Дата ген. угоди
         /// </summary>
-        public DateTime AgrDate { get; set; }
+        public DateTimeTime AgrDateTime { get; set; }
         /// <summary>
         /// Дата початку дії
         /// </summary>
-        public DateTime DateBegin { get; set; }
+        public DateTimeTime DateTimeBegin { get; set; }
         /// <summary>
         /// Кінцева дата дії
         /// </summary>
-        public DateTime DateEnd { get; set; }
+        public DateTimeTime DateTimeEnd { get; set; }
         /// <summary>
         ///  Назва Споживача
         /// </summary>
@@ -130,7 +130,7 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Дата останього платежу
         /// </summary>
-        public DateTime DatePayLast { get; set; }
+        public DateTimeTime DateTimePayLast { get; set; }
         /// <summary>
         /// Ід Партнера
         /// </summary>
@@ -146,5 +146,49 @@ namespace ipsFormsDesign.Interfaces
     {
         IList<ConsumerMainView> GetMainView();
         IList<AutoCompleteData> GetAutoCompleteList(string filter);
+    }
+
+    public class VBRLicense
+    {
+        public DateTime agrDateTime { get; set; }
+        public DateTime DateTimeBegin { get; set; }
+        public DateTime DateTimeEnd { get; set; }
+        public DateTime licDateTime { get; set; }
+        public DateTime licDateTimeBegin { get; set; }
+        public DateTime licDateTimeEnd { get; set; }
+        public DateTime DateTimePremiere { get; set; }
+        public int licType { get; set; }
+        public int custId { get; set; }
+        public int agrId { get; set; }
+        public int agrStatus { get; set; }
+        public int licId { get; set; }
+        public int licVersion { get; set; }
+        public int licStatus { get; set; }
+        public int objid { get; set; }
+        public int objStatus { get; set; }
+        public int genreType { get; set; }
+        public int performNumb { get; set; }
+        public decimal borg { get; set; }
+        public decimal prepayPaush { get; set; }
+        public decimal prepayAvans { get; set; }
+        public decimal prepayRest { get; set; }
+        public decimal ticketPriceNC { get; set; }
+        public decimal ticketPriceUSD { get; set; }
+        public bool isTour { get; set; }
+        public decimal genreRate72 { get; set; }
+        public decimal rate { get; set; }
+        public decimal fillingRate { get; set; }
+        public string licTypeName { get; set; }
+        public string name { get; set; }
+        public string agrNumber { get; set; }
+        public string agrStatusName { get; set; }
+        public string licNum { get; set; }
+        public string licStatusName { get; set; }
+        public string objName { get; set; }
+        public string genreName { get; set; }
+        public string whereTour { get; set; }
+        public string toProlong { get; set; }
+        public string comment { get; set; }
+        public string r030 { get; set; }
     }
 }
