@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,9 @@ namespace IpsViewComponentLibrary
             _view.Presenter = this;
         }
 
-        public void Show()
+        public void Show(RegisterItem registerItem)
         {
+            _view.RegisterItemList.Add(registerItem);
             _view.Run();
         }
     }

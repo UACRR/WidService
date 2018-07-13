@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,9 +22,19 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        private BindingList<RegisterItem> _registerItemList;
+        public ICollection<RegisterItem> RegisterItemList
+        {
+            get { return _registerItemList; }
+        }
+
         public SearchObjectView()
         {
             InitializeComponent();
+
+            _registerItemList = new BindingList<RegisterItem>();
+
+            ctrlRegisterItemList.DataSource = _registerItemList;
         }
 
         public void Run()

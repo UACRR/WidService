@@ -60,12 +60,12 @@ namespace IpsViewComponentLibrary
             ctrlRegisterItemList.DataSource = register.RegisterItem;
         }
 
-        private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItem e)
+        private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItem selectedRegisterItem)
         {
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view);
-                presenter.Show();
+                presenter.Show(selectedRegisterItem);
             }
         }
     }
