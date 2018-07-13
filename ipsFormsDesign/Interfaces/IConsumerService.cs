@@ -46,15 +46,15 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Дата ген. угоди
         /// </summary>
-        public DateTime AgrDateTime { get; set; }
+        public DateTime? AgrTime { get; set; }
         /// <summary>
         /// Дата початку дії
         /// </summary>
-        public DateTime DateTimeBegin { get; set; }
+        public DateTime? DateBegin { get; set; }
         /// <summary>
         /// Кінцева дата дії
         /// </summary>
-        public DateTime DateTimeEnd { get; set; }
+        public DateTime? DateEnd { get; set; }
         /// <summary>
         ///  Назва Споживача
         /// </summary>
@@ -130,7 +130,7 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Дата останього платежу
         /// </summary>
-        public DateTime DateTimePayLast { get; set; }
+        public DateTime DatePayLast { get; set; }
         /// <summary>
         /// Ід Партнера
         /// </summary>

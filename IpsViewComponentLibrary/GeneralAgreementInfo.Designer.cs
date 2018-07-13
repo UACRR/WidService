@@ -113,7 +113,7 @@
             // 
             // txtDateBegin
             // 
-            this.txtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateTimeBegin", true));
+            this.txtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateBegin", true));
             this.txtDateBegin.Location = new System.Drawing.Point(84, 29);
             this.txtDateBegin.Name = "txtDateBegin";
             this.txtDateBegin.ReadOnly = true;
@@ -170,7 +170,7 @@
             // 
             // txtDateEnd
             // 
-            this.txtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateTimeEnd", true));
+            this.txtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateEnd", true));
             this.txtDateEnd.Location = new System.Drawing.Point(227, 29);
             this.txtDateEnd.Name = "txtDateEnd";
             this.txtDateEnd.ReadOnly = true;
@@ -208,7 +208,7 @@
             // 
             // txtDateLastPay
             // 
-            this.txtDateLastPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateTimePayLast", true));
+            this.txtDateLastPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DatePayLast", true));
             this.txtDateLastPay.Location = new System.Drawing.Point(312, 55);
             this.txtDateLastPay.Name = "txtDateLastPay";
             this.txtDateLastPay.ReadOnly = true;
