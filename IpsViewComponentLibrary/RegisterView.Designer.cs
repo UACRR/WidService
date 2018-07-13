@@ -37,6 +37,16 @@
             this.dtCreateDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.txtNumber = new Telerik.WinControls.UI.RadTextBox();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radButton6 = new Telerik.WinControls.UI.RadButton();
+            this.radButton3 = new Telerik.WinControls.UI.RadButton();
+            this.radButton5 = new Telerik.WinControls.UI.RadButton();
+            this.radButton4 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -44,6 +54,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
+            this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,14 +142,128 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 41);
             this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(859, 346);
+            this.ctrlRegisterItemList.SelectedRegisterItem = null;
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(859, 281);
             this.ctrlRegisterItemList.TabIndex = 6;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(3, 394);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(175, 24);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSave.Enabled = false;
+            this.btnSave.Location = new System.Drawing.Point(680, 394);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(175, 24);
+            this.btnSave.TabIndex = 17;
+            this.btnSave.Text = "Скасувати";
+            this.btnSave.ThemeName = "Office2013Light";
+            // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radGroupBox1.Controls.Add(this.radButton2);
+            this.radGroupBox1.Controls.Add(this.radButton1);
+            this.radGroupBox1.HeaderText = "Cтатус";
+            this.radGroupBox1.Location = new System.Drawing.Point(5, 328);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(237, 57);
+            this.radGroupBox1.TabIndex = 18;
+            this.radGroupBox1.Text = "Cтатус";
+            this.radGroupBox1.ThemeName = "Office2013Light";
+            // 
+            // radButton2
+            // 
+            this.radButton2.Location = new System.Drawing.Point(121, 21);
+            this.radButton2.Name = "radButton2";
+            this.radButton2.Size = new System.Drawing.Size(110, 24);
+            this.radButton2.TabIndex = 1;
+            this.radButton2.Text = "Скасувати";
+            this.radButton2.ThemeName = "Office2013Light";
+            // 
+            // radButton1
+            // 
+            this.radButton1.Location = new System.Drawing.Point(5, 21);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(110, 24);
+            this.radButton1.TabIndex = 0;
+            this.radButton1.Text = "Погодити";
+            this.radButton1.ThemeName = "Office2013Light";
+            // 
+            // radGroupBox2
+            // 
+            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radGroupBox2.Controls.Add(this.radButton6);
+            this.radGroupBox2.Controls.Add(this.radButton3);
+            this.radGroupBox2.Controls.Add(this.radButton5);
+            this.radGroupBox2.Controls.Add(this.radButton4);
+            this.radGroupBox2.HeaderText = "Пошук";
+            this.radGroupBox2.Location = new System.Drawing.Point(273, 328);
+            this.radGroupBox2.Name = "radGroupBox2";
+            this.radGroupBox2.Size = new System.Drawing.Size(579, 57);
+            this.radGroupBox2.TabIndex = 19;
+            this.radGroupBox2.Text = "Пошук";
+            this.radGroupBox2.ThemeName = "Office2013Light";
+            // 
+            // radButton6
+            // 
+            this.radButton6.Location = new System.Drawing.Point(441, 21);
+            this.radButton6.Name = "radButton6";
+            this.radButton6.Size = new System.Drawing.Size(131, 24);
+            this.radButton6.TabIndex = 3;
+            this.radButton6.Text = "Шукати вибрані";
+            this.radButton6.ThemeName = "Office2013Light";
+            // 
+            // radButton3
+            // 
+            this.radButton3.Location = new System.Drawing.Point(167, 21);
+            this.radButton3.Name = "radButton3";
+            this.radButton3.Size = new System.Drawing.Size(131, 24);
+            this.radButton3.TabIndex = 1;
+            this.radButton3.Text = "Шукати всі";
+            this.radButton3.ThemeName = "Office2013Light";
+            // 
+            // radButton5
+            // 
+            this.radButton5.Location = new System.Drawing.Point(304, 21);
+            this.radButton5.Name = "radButton5";
+            this.radButton5.Size = new System.Drawing.Size(131, 24);
+            this.radButton5.TabIndex = 2;
+            this.radButton5.Text = "Шукати не знайдені";
+            this.radButton5.ThemeName = "Office2013Light";
+            // 
+            // radButton4
+            // 
+            this.radButton4.Location = new System.Drawing.Point(5, 21);
+            this.radButton4.Name = "radButton4";
+            this.radButton4.Size = new System.Drawing.Size(156, 24);
+            this.radButton4.TabIndex = 0;
+            this.radButton4.Text = "Прив\'язати автоматично";
+            this.radButton4.ThemeName = "Office2013Light";
             // 
             // RegisterView
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 433);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(857, 420);
+            this.Controls.Add(this.radGroupBox2);
+            this.Controls.Add(this.radGroupBox1);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.ctrlRegisterItemList);
             this.Controls.Add(this.txtNumber);
             this.Controls.Add(this.dtCreateDate);
@@ -150,6 +286,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.registerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtCreateDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
+            this.radGroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -166,5 +314,15 @@
         private Telerik.WinControls.UI.RadTextBox txtNumber;
         private System.Windows.Forms.BindingSource registerBindingSource;
         private RegisterItemListControl ctrlRegisterItemList;
+        private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.UI.RadButton btnSave;
+        private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
+        private Telerik.WinControls.UI.RadButton radButton6;
+        private Telerik.WinControls.UI.RadButton radButton3;
+        private Telerik.WinControls.UI.RadButton radButton5;
+        private Telerik.WinControls.UI.RadButton radButton4;
     }
 }
