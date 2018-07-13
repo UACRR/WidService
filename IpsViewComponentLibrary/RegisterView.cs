@@ -57,6 +57,7 @@ namespace IpsViewComponentLibrary
         private void UpdateRegisterDataSources(Register register)
         {
             registerBindingSource.DataSource = register;
+            ctrlRegisterItemList.DataSource = register.RegisterItem;
         }
     }
 }
