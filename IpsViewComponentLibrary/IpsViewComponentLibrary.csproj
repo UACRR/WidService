@@ -264,6 +264,12 @@
     <Compile Include="InformationAboutTheContractTitleControl.Designer.cs">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="InformationFooterGenAgrBigRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InformationFooterGenAgrBigRight.Designer.cs">
+      <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformationOfUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -383,6 +389,12 @@
     </Compile>
     <Compile Include="MiddleControlCabinet.Designer.cs">
       <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetGenAgreement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetGenAgreement.Designer.cs">
+      <DependentUpon>MiddleControlCabinetGenAgreement.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlCabinetLicenses.cs">
       <SubType>UserControl</SubType>
@@ -633,6 +645,9 @@
     <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InformationFooterGenAgrBigRight.resx">
+      <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InformationOfUserControl.resx">
       <DependentUpon>InformationOfUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -680,6 +695,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinet.resx">
       <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetGenAgreement.resx">
+      <DependentUpon>MiddleControlCabinetGenAgreement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetLicenses.resx">
       <DependentUpon>MiddleControlCabinetLicenses.cs</DependentUpon>
