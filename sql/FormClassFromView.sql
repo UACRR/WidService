@@ -14,7 +14,8 @@ case t2.name when 'date' then 'DateTime'
 			 when 'char' then 'string'
 			 else t2.name
 	end
-, '  ',t1.name, ' {get; set;}' )
+
+, case when t1.isnullable = 1 and t2.name not in ( 'varchar', 'char' ) then '?  ' else '  ' end, Upper(Substring(t1.name,1,1)), SUBSTRING( t1.name, 2, LEN( t1.name )), ' {get; set;}' )
 
 from sys.syscolumns t1
 join sys.systypes t2 on t2.xtype = t1.xtype
@@ -23,3 +24,4 @@ where id = object_id(@viewName)
 --select  '04 }'
 
 end
+
