@@ -816,6 +816,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterListViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterSearchObject.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />

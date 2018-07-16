@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Model;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,18 +29,41 @@ namespace IpsViewComponentLibrary
             get { return _registerItemList; }
         }
 
+        private BindingList<RegisterSearchObject> _foundedObjectList;
+        public ICollection<RegisterSearchObject> FoundedObjectList
+        {
+            get { return _foundedObjectList; }
+        }
+
         public SearchObjectView()
         {
             InitializeComponent();
 
             _registerItemList = new BindingList<RegisterItem>();
+            _foundedObjectList = new BindingList<RegisterSearchObject>();
 
             ctrlRegisterItemList.DataSource = _registerItemList;
+            gvFoundedObjectList.DataSource = _foundedObjectList;
         }
 
         public void Run()
         {
             ShowDialog();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            _presenter.Search(ctrlRegisterItemList.SelectedRegisterItem);
+        }
+
+        private void gvFoundedObjectList_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "LinkColumn")
+            {
+                // link
+            }
         }
     }
 }
