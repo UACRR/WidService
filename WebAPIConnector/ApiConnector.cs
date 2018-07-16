@@ -247,7 +247,7 @@ namespace WebAPIConnector
                 // fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/pot"); // "gettext" POT format
 
                 content.Add(new StreamContent(fileStream), "file", fileName);
-                content.Add(new StringContent( comment ) , "comment" );
+
 
                 var statusResult = await client.PostAsync(url, content);
                 var statusString = await statusResult.Content.ReadAsStringAsync();

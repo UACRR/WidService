@@ -89,7 +89,7 @@ namespace ipsmedserviceapp
 
               });
 
-            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            //services.AddAuthentication(IISDefaults.AuthenticationScheme);
 
             services.AddSingleton<IConfiguration>(Configuration);
 
