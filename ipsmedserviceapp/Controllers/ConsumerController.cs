@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
@@ -132,6 +132,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
+        // [Authorize]
         [HttpGet("detail/{id}")]
         public async Task<IActionResult> GetConsumerById(int id)
         {
