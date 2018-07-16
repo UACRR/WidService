@@ -1058,7 +1058,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="typeDocument"></param>
         /// <returns></returns>
         [HttpPost("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, IFormFile file)
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, [FromQuery] string comment,  IFormFile file)
         {
 
             // Перевірка існування дерикторії
@@ -1079,7 +1079,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             var fileRec = await _dbContext.FileCustomer.Where(rec => rec.CustId == custId && rec.DocFile == file.FileName).SingleOrDefaultAsync();
             if (fileRec == null)
             {
-                fileRec = new FileCustomer { CustId = custId, DocFile = file.FileName, CreateDate = DateTime.Now };
+                fileRec = new FileCustomer { CustId = custId, DocFile = file.FileName, CreateDate = DateTime.Now, DocType = typeDocument };
                 _dbContext.FileCustomer.Add(fileRec);
             }
 

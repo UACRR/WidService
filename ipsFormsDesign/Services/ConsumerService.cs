@@ -88,10 +88,11 @@ namespace ipsFormsDesign.Services
 
             return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
-        public void uploadDocument(int custId, int typeDocument, string fileName, Stream Document)
+        public void uploadDocument(int custId, int typeDocument, string fileName, string comment, string Document)
         {
             string url = $"consumer/Document/{custId}/{typeDocument}";
-            _webApi.uploadFile(url, fileName, Document).GetAwaiter().GetResult();
+            using (FileStream document = new FileStream(Document, FileMode.Open))
+                _webApi.uploadFile(url, fileName, comment, document).GetAwaiter().GetResult();
         }
         public Stream downloadDocument(int custId, int typeDocument, string fileName)
         {

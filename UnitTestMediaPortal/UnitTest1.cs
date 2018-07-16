@@ -117,7 +117,7 @@ namespace UnitTestMediaPortal
         {
             ConsumerService service = new ConsumerService();
             Customer cust = service.GetData( 135 );
-            service.uploadDocument(135, 1, "F_6_МТЦ.docx", new FileStream("Documents\\F_6_МТЦ.docx", FileMode.Open));
+            service.uploadDocument(135, 1, "F_6_МТЦ.docx", "comment", ".\\Documents\\F_6_МТЦ.docx");
         }
 
         [TestMethod]
