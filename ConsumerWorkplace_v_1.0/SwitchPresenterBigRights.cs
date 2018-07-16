@@ -126,9 +126,12 @@ namespace ConsumerWorkplace_v_1._0
 
         private void CabinetBr_OnCustomerUpdateDataNeed(int id)
         {
+            _cabinetBr.SetAgrMasterList(_service.getBRView(typeof(BigRightMasterGenAgr), "vTSK_1_BRMaster", id));
+            _cabinetBr.SetDataAgreementView(_service.getBRView(typeof(VbrLicense), "vTsk_vBRLicense", id));
+
             _cabinetBr.SetDataCustomer(_service.GetData(id));
-            _cabinetBr.SetDataAgreementView(_service.GetAgreementsBigRight(id.ToString()));
-            
+
+
         }
 
         private void CabinetBr_OnBackToGridNeed(int custId)

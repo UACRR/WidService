@@ -711,8 +711,8 @@ namespace ipsmedserviceapp.Controllers
             }
             else
             {
-                QueryStr = string.Concat(QueryStr, " where cusrId = @custId");
-                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId) });
+                QueryStr = string.Concat(QueryStr, " where custId = @custId");
+                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId ) });
                 return Json(list);
 
             }
@@ -720,6 +720,17 @@ namespace ipsmedserviceapp.Controllers
         #endregion
 
         //TODO test method
+        [HttpGet("listBR/agrmaster/{custId}")]
+        public async Task<IActionResult> GetAgrForCustId(int custId)
+        {
+            string queue = "select * from vTSK_1_BRMaster where custId = @custId";
+
+            var List = await _dbContext.getViewData(queue, new[] { new SqlParameter("@custId", custId) });
+
+
+            return Json(List);
+        }
+
         [HttpGet("listBR/{custId}")]
         public async Task<IActionResult> GetLicensesForCustId(int custId)
         {
