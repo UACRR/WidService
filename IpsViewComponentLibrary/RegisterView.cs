@@ -1,13 +1,6 @@
 ﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary
 {
@@ -23,15 +16,27 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private Register _register;
         public Register Register
         {
-            get { return _register; }
+            get { return registerBindingSource.DataSource as Register; }
             set
             {
-                _register = value;
+                if (registerBindingSource.DataSource != value)
+                {
+                    registerBindingSource.DataSource = value;
+                }
+            }
+        }
 
-                UpdateRegisterDataSources(_register);
+        public object RegisterItemDataSource
+        {
+            get { return ctrlRegisterItemList.DataSource; }
+            set
+            {
+                if (ctrlRegisterItemList.DataSource != value)
+                {
+                    ctrlRegisterItemList.DataSource = value;
+                }
             }
         }
 
@@ -54,13 +59,7 @@ namespace IpsViewComponentLibrary
             ddlStatus.DataSource = IpsGlobal.ObjectRightDictionaries.RegisterStatuses;
         }
 
-        private void UpdateRegisterDataSources(Register register)
-        {
-            registerBindingSource.DataSource = register;
-            ctrlRegisterItemList.DataSource = register.RegisterItem;
-        }
-
-        private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItem selectedRegisterItem)
+        private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItemViewModel selectedRegisterItem)
         {
             _presenter.SearchObjects(selectedRegisterItem);
         }

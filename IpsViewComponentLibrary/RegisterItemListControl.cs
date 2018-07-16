@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Utilities;
-using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.Data;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -12,25 +12,25 @@ namespace IpsViewComponentLibrary
     {
         public object DataSource
         {
-            get { return gvRegisterItemList.DataSource; }
+            get { return registerItemViewModelBindingSource.DataSource; }
             set
             {
-                if (gvRegisterItemList.DataSource != value)
+                if (registerItemViewModelBindingSource.DataSource != value)
                 {
-                    gvRegisterItemList.DataSource = value;
+                    registerItemViewModelBindingSource.DataSource = value;
                 }
             }
         }
 
-        private RegisterItem _registerItem;
-        public  RegisterItem SelectedRegisterItem
+        private RegisterItemViewModel _registerItem;
+        public RegisterItemViewModel SelectedRegisterItem
         {
             get
             {
                 if (gvRegisterItemList.CurrentRow == null)
                     return null;
 
-                return gvRegisterItemList.CurrentRow.DataBoundItem as RegisterItem;
+                return gvRegisterItemList.CurrentRow.DataBoundItem as RegisterItemViewModel;
             }
             set
             {
@@ -50,13 +50,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        public event EventHandler<RegisterItem> FindCommandExecuted;
-        public event EventHandler<RegisterItem> LinkCommandExecuted;
+        public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
+        public event EventHandler<RegisterItemViewModel> LinkCommandExecuted;
 
         public RegisterItemListControl()
         {
             InitializeComponent();
 
+            gvRegisterItemList.DataSource = registerItemViewModelBindingSource;
             ddlLinkedStatus.SelectedIndex = 0;
         }
 
@@ -99,12 +100,12 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void OnFindCommandExecuted(RegisterItem selectedRegisterItem)
+        private void OnFindCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             FindCommandExecuted?.Invoke(this, selectedRegisterItem);
         }
 
-        private void OnLinkCommandExecuted(RegisterItem selectedRegisterItem)
+        private void OnLinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
         }

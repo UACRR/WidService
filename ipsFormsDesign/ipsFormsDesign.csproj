@@ -58,6 +58,7 @@
     <Compile Include="Dictionary\ObjectCopyright.cs" />
     <Compile Include="Dictionary\ObjectRightMainView.cs" />
     <Compile Include="Dictionary\RegisterFilter.cs" />
+    <Compile Include="Dictionary\RegisterItemViewModel.cs" />
     <Compile Include="Dictionary\RegisterListViewModel.cs" />
     <Compile Include="Dictionary\RegisterSearchObject.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />

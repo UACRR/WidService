@@ -1,5 +1,4 @@
 ﻿using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,11 +22,17 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private BindingList<RegisterItem> _registerItemList;
-        public ICollection<RegisterItem> RegisterItemList
+        public object RegisterItemListDataSource
         {
-            get { return _registerItemList; }
+            get { return ctrlRegisterItemList.DataSource; }
+            set { ctrlRegisterItemList.DataSource = value; }
         }
+
+        //private BindingList<RegisterItemViewModel> _registerItemList;
+        //public ICollection<RegisterItemViewModel> RegisterItemList
+        //{
+        //    get { return _registerItemList; }
+        //}
 
         private BindingList<RegisterSearchObject> _foundedObjectList;
         public ICollection<RegisterSearchObject> FoundedObjectList
@@ -39,10 +44,10 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
-            _registerItemList = new BindingList<RegisterItem>();
+            //_registerItemList = new BindingList<RegisterItemViewModel>();
             _foundedObjectList = new BindingList<RegisterSearchObject>();
 
-            ctrlRegisterItemList.DataSource = _registerItemList;
+            //ctrlRegisterItemList.DataSource = _registerItemList;
             gvFoundedObjectList.DataSource = _foundedObjectList;
         }
 

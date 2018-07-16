@@ -1,5 +1,6 @@
-﻿using ipsFormsDesign.Model;
+﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Services;
+using System.Collections.Generic;
 
 namespace IpsViewComponentLibrary
 {
@@ -7,6 +8,7 @@ namespace IpsViewComponentLibrary
     {
         private readonly SearchObjectView _view;
         private readonly RegisterService _registerService;
+        private readonly List<RegisterItemViewModel> _registerItemList;
 
         public SearchObjectPresenter(SearchObjectView view, RegisterService registerService)
         {
@@ -14,15 +16,19 @@ namespace IpsViewComponentLibrary
             _view.Presenter = this;
 
             _registerService = registerService;
+
+            _registerItemList = new List<RegisterItemViewModel>();
         }
 
-        public void Show(RegisterItem registerItem)
+        public void Show(RegisterItemViewModel registerItem)
         {
-            _view.RegisterItemList.Add(registerItem);
+            _registerItemList.Add(registerItem);
+
+            _view.RegisterItemListDataSource = _registerItemList;
             _view.Run();
         }
 
-        public void Search(RegisterItem registerItem)
+        public void Search(RegisterItemViewModel registerItem)
         {
             _view.FoundedObjectList.Clear();
 
