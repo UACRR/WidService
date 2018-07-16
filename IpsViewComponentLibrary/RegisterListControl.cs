@@ -7,6 +7,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -154,6 +155,11 @@ namespace IpsViewComponentLibrary
                 var presenter = new RegisterPresenter(view, _registerService);
                 presenter.Show(selectedRegister.RegId);
             }
+        }
+
+        private void gvRegisterList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            GridViewTooltipHelper.SetTooltipTextForColumnHeader(sender, e);
         }
 
         protected virtual void OnRegisterSelected(RegisterListViewModel selectedRegister)
