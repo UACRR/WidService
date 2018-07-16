@@ -30,6 +30,7 @@ namespace IpsViewComponentLibrary
         private Customer _customer = null;
         private ConsumerBigRightView _brView;
         private IList<VbrLicense> _brLicenses;
+        private IList<BigRightMasterGenAgr> _genAgrs;
         private AnketaDictionaties _anketaDictionaties = null;
         private CabinetTabType _currenCabinetTab = CabinetTabType.Licenses;
 
@@ -48,11 +49,16 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView brView, IList<VbrLicense> brLicenses)
+        public void SetAndUpdateData(Customer customer, 
+                                     ConsumerBigRightView brView, 
+                                     IList<VbrLicense> brLicenses,
+                                     IList<BigRightMasterGenAgr> genAgrs)
         {
             _customer = customer;
             _brView = brView;
             _brLicenses = brLicenses;
+            _genAgrs = genAgrs;
+
             UpdateCurentTab(_currenCabinetTab);
         }
 
@@ -80,7 +86,7 @@ namespace IpsViewComponentLibrary
                     break;
                 case CabinetTabType.GeneralAgreement:
                 {
-                    ctrlGeneralAgreement.SetAndUpdateData(_customer,_brView,_brLicenses);
+                    ctrlGeneralAgreement.SetAndUpdateData(_customer,_brView, _genAgrs);
                 }
                     break;
                 case CabinetTabType.Files:

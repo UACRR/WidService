@@ -197,17 +197,18 @@ namespace ipsFormsDesign.Interfaces
     /// </summary>
     public class BigRightMasterGenAgr
     {
-        public DateTime agrDate { get; set; }
-        public DateTime dateBegin { get; set; }
-        public DateTime dateEnd { get; set; }
-        public int agrid { get; set; }
-        public int version { get; set; }
-        public int custId { get; set; }
-        public int agrStatus { get; set; }
-        public string custName { get; set; }
-        public string shortName { get; set; }
-        public string clientGroup { get; set; }
-        public string clientBrand { get; set; }
-        public string statusName { get; set; }
+        public DateTime? AgrDate { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
+        public string AgrNumber { get; set; }
+        public int Agrid { get; set; }
+        public int Version { get; set; }
+        public int CustId { get; set; }
+        public int? AgrStatus { get; set; }
+        public string CustName { get; set; }
+        public string ShortName { get; set; }
+        public string ClientGroup { get; set; }
+        public string ClientBrand { get; set; }
+        public string StatusName { get; set; }
     }
 }

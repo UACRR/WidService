@@ -22,6 +22,7 @@ namespace IpsViewComponentLibrary
         private Customer _customer;
         private IList<ConsumerBigRightView> _brData;
         private IList<VbrLicense> _agrData;
+        private IList<BigRightMasterGenAgr> _genAgrs;
 
         public delegate void BackToMainGrid(int custId);
         /// <summary>
@@ -87,6 +88,11 @@ namespace IpsViewComponentLibrary
             _agrData = agrData;
         }
 
+        public void SetAgrMasterList(IList<BigRightMasterGenAgr> genAgrs)
+        {
+            _genAgrs = genAgrs;
+        }
+
         public void SetSelectCustomer(int custId)
         {
             if (gvConsumerList.Rows.Count != 0)
@@ -102,7 +108,7 @@ namespace IpsViewComponentLibrary
             if(_rowId != -1)
             {
                 OnCustomerUpdateDataNeed?.Invoke(_rowId);
-                ctrlCabinet.SetAndUpdateData(_customer, e.CurrentRow.DataBoundItem as ConsumerBigRightView,_agrData);
+                ctrlCabinet.SetAndUpdateData(_customer, e.CurrentRow.DataBoundItem as ConsumerBigRightView, _agrData, _genAgrs);
             }
         }
 

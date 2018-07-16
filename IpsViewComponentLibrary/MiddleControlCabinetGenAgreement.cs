@@ -21,12 +21,13 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<VbrLicense> vbrLicense)
+        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightMasterGenAgr> genAgrs)
         {
             _customer = customer;
             _bigRightView = bigRightView;
             SetBigRightHeaderData();
-            gvGenAgrLicences.DataSource = new List<ConsumerBigRightView> {bigRightView};
+            ctrlFooterInfo.DataSourceLicense = bigRightView;
+            gvGenAgrLicences.DataSource = genAgrs;
         }
 
         private void SetBigRightHeaderData()
@@ -44,11 +45,6 @@ namespace IpsViewComponentLibrary
             ctrlHeaderInfo.PhoneManager = head?.Empl?.PhoneNumber;
             ctrlHeaderInfo.EmailManager = head?.Empl?.Email;
 
-        }
-
-        private void gvGenAgrLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-            ctrlFooterInfo.DataSourceLicense = e.CurrentRow.DataBoundItem as ConsumerBigRightView ?? new ConsumerBigRightView();
         }
     }
 }
