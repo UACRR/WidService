@@ -710,7 +710,7 @@ namespace ipsmedserviceapp.Controllers
             }
             else
             {
-                QueryStr = string.Concat(QueryStr, " where cusrId = @custId");
+                QueryStr = string.Concat(QueryStr, " where custId = @custId");
                 var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId ) });
                 return Json(list);
 

@@ -70,7 +70,7 @@ namespace IpsViewComponentLibrary
         public void SetGridDataSource(IList<ConsumerBigRightView> source)
         {
             _brData = source;
-            gvConsumerList.DataSource = source;
+            gvConsumerList.DataSource = _brData;
         }
 
         public void SetDataAnketaDictionaties(AnketaDictionaties aDictionaties)
@@ -83,14 +83,19 @@ namespace IpsViewComponentLibrary
             _customer = customer;
         }
 
-        public void SetDataAgreementView(IList<VbrLicense> agrData)
+        public void SetDataAgreementView(IList<object> agrData)
         {
-            _agrData = agrData;
+            _agrData = new List<VbrLicense>();
+            foreach (var temp in agrData)
+                _agrData.Add(temp as VbrLicense);
+            
         }
 
-        public void SetAgrMasterList(IList<BigRightMasterGenAgr> genAgrs)
+        public void SetAgrMasterList(IList<object> genAgrs)
         {
-            _genAgrs = genAgrs;
+            _genAgrs = new List<BigRightMasterGenAgr>();
+            foreach (var temp in genAgrs)
+                _genAgrs.Add(temp as BigRightMasterGenAgr);
         }
 
         public void SetSelectCustomer(int custId)
