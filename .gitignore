@@ -57,3 +57,4 @@ Thumbs.db
 *.ai
 /MediaServiceDb/MediaServiceDb.dbmdl
 /MediaServiceDb/MediaServiceDb.jfm
+ipsmedserviceapp/appsettings.Development.json 

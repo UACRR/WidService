@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,8 +42,11 @@ namespace IpsViewComponentLibrary
         public delegate void EditCustomer(int id);
         public event EditCustomer OnEditCustomer;
 
+
         public delegate bool SaveCustomer(Customer customer);
         public event SaveCustomer OnSaveCustomer;//TODO invoke
+
+        public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
 
         public string FilterString
         {
@@ -54,8 +58,14 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             ctrlCabinet.OnSaveCustomerNeed += CtrlCabinet_OnSaveCustomerNeed;
+            ctrlCabinet.OnAddNewDocument += CtrlCabinet_OnAddNewDocument;
             //ctrlCabinet.SetAndUpdateData(_customer);
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private void CtrlCabinet_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
+        {
+            OnAddNewDocument?.Invoke(custId,typeDocument,fileName,comment);
         }
 
         private void CtrlCabinet_OnSaveCustomerNeed(object sender, EventArgs e)

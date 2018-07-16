@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -38,6 +39,7 @@
             this.txtComment = new Telerik.WinControls.UI.RadTextBox();
             this.txtFileName = new Telerik.WinControls.UI.RadTextBox();
             this.btnOpenFileDialog = new Telerik.WinControls.UI.RadButton();
+            this.fileTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -47,6 +49,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenFileDialog)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,14 +97,19 @@
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // ddlDocType
             // 
+            this.ddlDocType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.fileTypeBindingSource, "CodeI", true));
+            this.ddlDocType.DataSource = this.fileTypeBindingSource;
+            this.ddlDocType.DisplayMember = "Name";
             this.ddlDocType.Location = new System.Drawing.Point(101, 12);
             this.ddlDocType.Name = "ddlDocType";
             this.ddlDocType.Size = new System.Drawing.Size(278, 21);
             this.ddlDocType.TabIndex = 5;
             this.ddlDocType.ThemeName = "Office2013Light";
+            this.ddlDocType.ValueMember = "CodeI";
             // 
             // txtComment
             // 
@@ -130,6 +138,10 @@
             this.btnOpenFileDialog.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.btnOpenFileDialog.ThemeName = "Office2013Light";
             this.btnOpenFileDialog.Click += new System.EventHandler(this.btnOpenFileDialog_Click);
+            // 
+            // fileTypeBindingSource
+            // 
+            this.fileTypeBindingSource.DataSource = typeof(ipsFormsDesign.Model.FileType);
             // 
             // AddFileDialogForm
             // 
@@ -162,6 +174,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenFileDialog)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -180,5 +193,6 @@
         private Telerik.WinControls.UI.RadTextBox txtComment;
         private Telerik.WinControls.UI.RadTextBox txtFileName;
         private Telerik.WinControls.UI.RadButton btnOpenFileDialog;
+        private System.Windows.Forms.BindingSource fileTypeBindingSource;
     }
 }

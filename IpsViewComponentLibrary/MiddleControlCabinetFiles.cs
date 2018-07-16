@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,10 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private ConsumerBigRightView _bigRightView;
+
+        public delegate void AddNewDocumentHandler(int custId, int typeDocument, string fileName, string comment);
+        public event AddNewDocumentHandler OnAddNewDocument;
+
         public MiddleControlCabinetFiles()
         {
             InitializeComponent();
@@ -49,8 +54,11 @@ namespace IpsViewComponentLibrary
 
         private void btnAddFile_Click(object sender, EventArgs e)
         {
-            AddFileDialogForm fileDialog = new AddFileDialogForm();
-            fileDialog.ShowDialog();
+            AddFileDialogForm fileAdd = new AddFileDialogForm();
+            if (fileAdd.ShowDialog() == DialogResult.OK)
+            {
+                OnAddNewDocument?.Invoke(_customer.CustId, fileAdd.DocumentType, fileAdd.FileName, fileAdd.Comment);
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,9 +40,17 @@ namespace IpsViewComponentLibrary
         /// </summary>
         public event EventHandler OnSaveCustomerNeed;
 
+        public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
+
         public MiddleControlCabinet()
         {
             InitializeComponent();
+            ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
+        }
+
+        private void CtrlFiles_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
+        {
+            OnAddNewDocument?.Invoke(custId, typeDocument, fileName, comment);
         }
 
         public void SetDictionaries(AnketaDictionaties dictionaries)
