@@ -94,6 +94,7 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSearch.Location = new System.Drawing.Point(7, 279);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(110, 24);
@@ -104,6 +105,9 @@
             // 
             // ctrlRegisterItemList
             // 
+            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(4, 4);
             this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
