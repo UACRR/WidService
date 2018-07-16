@@ -149,9 +149,9 @@ namespace UnitTestMediaPortal
         public void TestExpandoObject()
         {
             ConsumerService _service = new ConsumerService();
-            var list = _service.getBRView(typeof(ConsumerBigRightView), "vTsk_1_BRBid", null );
+            var list = _service.getBRView(typeof(object), "vTSK_1_BRRegister", null );
             RadTestExpandoObject form = new RadTestExpandoObject();
-            form.DataSource = list.Select(rec=>(ConsumerBigRightView)rec).ToList();
+            form.DataSource = list;
 
             form.ShowDialog();
 
