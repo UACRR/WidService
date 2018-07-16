@@ -90,8 +90,14 @@ namespace IpsViewComponentLibrary
                 }
                     break;
                 case CabinetTabType.Files:
+                {
+                    ctrlFiles.SetAndUpdateData(_customer,_brView);
+                }
                     break;
                 case CabinetTabType.Agent:
+                {
+                    ctrlAgent.SetAndUpdateData(_customer,_brView,_genAgrs);
+                }
                     break;
             }
         }
