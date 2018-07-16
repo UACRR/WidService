@@ -131,6 +131,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFileDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFileDialogForm.Designer.cs">
+      <DependentUpon>AddFileDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddPremisesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -628,6 +634,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddFileDialogForm.resx">
+      <DependentUpon>AddFileDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddPremisesForm.resx">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
     </EmbeddedResource>

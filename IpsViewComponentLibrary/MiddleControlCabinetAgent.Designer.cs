@@ -100,7 +100,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvGenAgrLicences.AutoSizeRows = true;
             this.gvGenAgrLicences.EnableCustomFiltering = true;
-            this.gvGenAgrLicences.Location = new System.Drawing.Point(3, 218);
+            this.gvGenAgrLicences.Location = new System.Drawing.Point(3, 215);
             // 
             // 
             // 
@@ -164,7 +164,7 @@
             this.gvGenAgrLicences.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvGenAgrLicences.Name = "gvGenAgrLicences";
             this.gvGenAgrLicences.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvGenAgrLicences.Size = new System.Drawing.Size(907, 136);
+            this.gvGenAgrLicences.Size = new System.Drawing.Size(907, 139);
             this.gvGenAgrLicences.TabIndex = 13;
             this.gvGenAgrLicences.ThemeName = "Office2013Light";
             // 

@@ -40,11 +40,15 @@
             this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlAgent = new IpsViewComponentLibrary.MiddleControlCabinetAgent();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvLicence.SuspendLayout();
             this.pvGeneralAgreement.SuspendLayout();
+            this.pvFiles.SuspendLayout();
+            this.pvAgent.SuspendLayout();
             this.SuspendLayout();
             // 
             // pageView
@@ -149,19 +153,39 @@
             // 
             // pvFiles
             // 
+            this.pvFiles.Controls.Add(this.ctrlFiles);
             this.pvFiles.ItemSize = new System.Drawing.SizeF(51F, 27F);
             this.pvFiles.Location = new System.Drawing.Point(5, 31);
             this.pvFiles.Name = "pvFiles";
-            this.pvFiles.Size = new System.Drawing.Size(836, 478);
+            this.pvFiles.Size = new System.Drawing.Size(1016, 598);
             this.pvFiles.Text = "Файли";
             // 
             // pvAgent
             // 
+            this.pvAgent.Controls.Add(this.ctrlAgent);
             this.pvAgent.ItemSize = new System.Drawing.SizeF(88F, 27F);
             this.pvAgent.Location = new System.Drawing.Point(5, 31);
             this.pvAgent.Name = "pvAgent";
-            this.pvAgent.Size = new System.Drawing.Size(836, 478);
+            this.pvAgent.Size = new System.Drawing.Size(1016, 598);
             this.pvAgent.Text = "Представник";
+            // 
+            // ctrlAgent
+            // 
+            this.ctrlAgent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlAgent.Location = new System.Drawing.Point(0, 0);
+            this.ctrlAgent.MinimumSize = new System.Drawing.Size(913, 527);
+            this.ctrlAgent.Name = "ctrlAgent";
+            this.ctrlAgent.Size = new System.Drawing.Size(1016, 598);
+            this.ctrlAgent.TabIndex = 0;
+            // 
+            // ctrlFiles
+            // 
+            this.ctrlFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlFiles.Location = new System.Drawing.Point(0, 0);
+            this.ctrlFiles.MinimumSize = new System.Drawing.Size(913, 436);
+            this.ctrlFiles.Name = "ctrlFiles";
+            this.ctrlFiles.Size = new System.Drawing.Size(1016, 598);
+            this.ctrlFiles.TabIndex = 0;
             // 
             // MiddleControlCabinet
             // 
@@ -174,6 +198,8 @@
             this.pageView.ResumeLayout(false);
             this.pvLicence.ResumeLayout(false);
             this.pvGeneralAgreement.ResumeLayout(false);
+            this.pvFiles.ResumeLayout(false);
+            this.pvAgent.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -193,5 +219,7 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private MiddleControlCabinetLicenses ctrlLicense;
         private MiddleControlCabinetGenAgreement ctrlGeneralAgreement;
+        private MiddleControlCabinetAgent ctrlAgent;
+        private MiddleControlCabinetFiles ctrlFiles;
     }
 }
