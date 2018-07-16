@@ -143,6 +143,12 @@
     <Compile Include="AddressLetter.Designer.cs">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </Compile>
+    <Compile Include="AgentFooterBR.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AgentFooterBR.Designer.cs">
+      <DependentUpon>AgentFooterBR.cs</DependentUpon>
+    </Compile>
     <Compile Include="AnketaAddNamesView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -621,6 +627,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgentFooterBR.resx">
+      <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
