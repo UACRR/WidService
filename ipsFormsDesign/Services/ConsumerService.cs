@@ -18,25 +18,22 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString() );
             return anketaDic;
         }
-
         public AnketaDictionaties GetDictionary()
         {
             var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary","anketa");
             return anketaDic;
         }
-
         public IList<ConsumerMainView> GetMainView()
         {
             return getMainView(ConsumerFilterEnum.All);
         }
-
         public IList<ConsumerMainView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listSR/{(int)what}";
             var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
         }
-
+        #region BRViews
         public IList<ConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All,  ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listBR";
@@ -47,17 +44,24 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param );
             return anketaDic;
         }
-
-
         public IList<VbrLicense> GetAgreementsBigRight(string custId)
         {
-            string url = $"consumer/listBR/" + custId;
+            string url = $"consumer/viewBR/" + custId;
 
             var agr = _webApi.GetListAgreement<VbrLicense>(url);
             return agr;
         }
 
-
+        public IList<object> getBRView( Type typeResult, string viewName, int? custId )
+        {
+            string url = "consumer/BR/view/list";
+            List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("viewName", viewName) };
+            if (custId != null)
+                param.Add(new KeyValuePair<string, string>("custId", custId.ToString()));
+            var list = _webApi.GetTypedList(typeResult ,url, param.ToArray() );
+            return list;
+        }
+        #endregion
 
         /// <summary>
         /// Получити дані для авто заповнення
@@ -70,13 +74,11 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<AutoCompleteData>(url);
             return list;
         }
-
         public Customer NewCustomer(int custType)
         {
             var anketaDic = _webApi.GetItemById<Customer>("consumer/newconsumer", custType.ToString());
             return anketaDic;
         }
-
         public bool Save(Customer cust)
         {
             if( cust.CustId == 0 ) // Новий споживач
@@ -86,13 +88,11 @@ namespace ipsFormsDesign.Services
 
             return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
-
         public void uploadDocument(int custId, int typeDocument, string fileName, Stream Document)
         {
             string url = $"consumer/Document/{custId}/{typeDocument}";
             _webApi.uploadFile(url, fileName, Document).GetAwaiter().GetResult();
         }
-
         public Stream downloadDocument(int custId, int typeDocument, string fileName)
         {
             string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";

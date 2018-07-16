@@ -87,7 +87,36 @@ namespace WebAPIConnector
             return list;
 
         }
+        /// <summary>
+        /// Получити список об'єктів з серверу додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public List<object> GetTypedList(Type typeResult,  string url, params KeyValuePair<string, string>[] listParam)
+        {
+            string runUrl = url;
+            if (listParam.Count() > 0)
+                runUrl = string.Concat(runUrl, AsQueryString(listParam));
 
+
+            string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+            JArray array = JArray.Parse(retApiString);
+            List<object> list = array.Select(rec =>
+            {
+                var item = rec.ToObject( typeResult );
+                return item;
+            }).ToList();
+
+            return list;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public List<T> GetListAgreement<T>(string url)
         {
             string runUrl = url;

@@ -643,7 +643,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("listBR")]
-        public async Task<IActionResult> GetListBR([FromQuery(Name= "whatId")] int whatId, [FromQuery(Name= "typeDocId")] int typeDocId)
+        public async Task<IActionResult> GetListBR([FromQuery(Name = "whatId")] int whatId, [FromQuery(Name = "typeDocId")] int typeDocId)
         {
             ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
             TypeBRDocument typeDoc = Enum.Parse<TypeBRDocument>(typeDocId.ToString());
@@ -653,10 +653,10 @@ namespace ipsmedserviceapp.Controllers
             if (validDocRequest.Keys.Contains(typeDoc))
             {
                 Dictionary<ConsumerFilterEnum, string> filterObject = validDocRequest[typeDoc];
-                if(filterObject.Keys.Contains(what))
+                if (filterObject.Keys.Contains(what))
                 {
                     string filter = filterObject[what];
-                    if( !string.IsNullOrEmpty( filter ) )
+                    if (!string.IsNullOrEmpty(filter))
                     {
                         queue = string.Concat(queue, " where ", filter);
                     }
@@ -679,13 +679,52 @@ namespace ipsmedserviceapp.Controllers
             return Json(List);
         }
 
+        /// <summary>
+        /// Список представлень для великих прав
+        /// </summary>
+        private Dictionary<string, string> listBrView = new Dictionary<string, string> {
+            { "vTsk_vBRLicense", "vTsk_vBRLicense" },
+            { "vTsk_1_ListConsumer01", "vTsk_1_ListConsumer01" },
+            { "vTsk_1_ListConsumer02", "vTsk_1_ListConsumer02" },
+            { "vTsk_1_BRBid", "vTsk_1_BRBid" },
+            { "vTsk_1_BRBidAuthors", "vTsk_1_BRBidAuthors" },
+            { "vTsk_1_BRNotice", "vTsk_1_BRNotice" },
+            { "vTSK_1_BRMaster", "vTSK_1_BRMaster" },
+            { "vTSK_1_BRRegister", "vTSK_1_BRRegister" },
+            { "vTsk_1_MoneyUndescrib", "vTsk_1_MoneyUndescrib" },
+            { "vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay" }
+        };
+        #region BigRight view
+        [HttpGet("BR/view/list")]
+        public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
+        {
+            if (viewName == null || !listBrView.Keys.Contains(viewName))
+                return BadRequest();
+
+            string QueryStr = string.Concat("select * from ", listBrView[viewName]);
+            // Немає параметру по Споживачу
+            if (custId == null)
+            {
+                var list = await _dbContext.getViewData(QueryStr,null);
+                return Json(list);
+            }
+            else
+            {
+                QueryStr = string.Concat(QueryStr, " where cusrId = @custId");
+                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId ) });
+                return Json(list);
+
+            }
+        }
+        #endregion
+
         //TODO test method
         [HttpGet("listBR/{custId}")]
         public async Task<IActionResult> GetLicensesForCustId(int custId)
         {
             string queue = "select * from vTsk_vBRLicense where custId = @custId";
 
-            var List = await _dbContext.getViewData(queue, new [] {new SqlParameter("@custId", custId)  });
+            var List = await _dbContext.getViewData(queue, new[] { new SqlParameter("@custId", custId) });
 
 
             return Json(List);

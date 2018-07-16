@@ -16,9 +16,6 @@
 /ipsmedserviceapp/bin
 **/with attributes
 
-
-
-
 # dependencies
 /node_modules
 /doc/~*.*
