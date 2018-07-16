@@ -62,12 +62,7 @@ namespace IpsViewComponentLibrary
 
         private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItem selectedRegisterItem)
         {
-            // TODO: move to presenter
-            using (var view = new SearchObjectView())
-            {
-                var presenter = new SearchObjectPresenter(view, new ipsFormsDesign.Services.RegisterService());
-                presenter.Show(selectedRegisterItem);
-            }
+            _presenter.SearchObjects(selectedRegisterItem);
         }
     }
 }

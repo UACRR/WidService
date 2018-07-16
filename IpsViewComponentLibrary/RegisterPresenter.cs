@@ -1,4 +1,6 @@
-﻿using ipsFormsDesign.Services;
+﻿using System;
+using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary
 {
@@ -20,6 +22,15 @@ namespace IpsViewComponentLibrary
             var register = _registerService.GetById(regId);
             _view.Register = register;
             _view.Run();
+        }
+
+        internal void SearchObjects(RegisterItem selectedRegisterItem)
+        {
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, _registerService);
+                presenter.Show(selectedRegisterItem);
+            }
         }
     }
 }
