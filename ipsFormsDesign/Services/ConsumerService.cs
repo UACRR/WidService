@@ -88,9 +88,17 @@ namespace ipsFormsDesign.Services
 
             return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
-        public void uploadDocument(int custId, int typeDocument, string fileName, string comment, string Document)
+        /// <summary>
+        /// Запис файла на сервер
+        /// </summary>
+        /// <param name="custId">Ід користувача</param>
+        /// <param name="typeDocument">Тип зі довідника</param>
+        /// <param name="comment">Коментар</param>
+        /// <param name="Document">назва файлу з повнм шляхом</param>
+        public void uploadDocument(int custId, int typeDocument, string comment, string Document)
         {
             string url = $"consumer/Document/{custId}/{typeDocument}";
+            var fileName = Path.GetFileName(Document);
             using (FileStream document = new FileStream(Document, FileMode.Open))
                 _webApi.uploadFile(url, fileName, comment, document).GetAwaiter().GetResult();
         }
