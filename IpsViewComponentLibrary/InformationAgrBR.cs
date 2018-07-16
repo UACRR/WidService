@@ -21,16 +21,10 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
-        /// Джерело даних для коментаря
+        /// Джерело даних 
         /// </summary>
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
-        public object CommentDataSource
-        {
-            get => bindingSourceComment.DataSource;
-            set => bindingSourceComment.DataSource = value;
-        }
-
         public object InfoDataSource
         {
             get => bsAgreementView.DataSource;

@@ -719,6 +719,17 @@ namespace ipsmedserviceapp.Controllers
         #endregion
 
         //TODO test method
+        [HttpGet("listBR/agrmaster/{custId}")]
+        public async Task<IActionResult> GetAgrForCustId(int custId)
+        {
+            string queue = "select * from vTSK_1_BRMaster where custId = @custId";
+
+            var List = await _dbContext.getViewData(queue, new[] { new SqlParameter("@custId", custId) });
+
+
+            return Json(List);
+        }
+
         [HttpGet("listBR/{custId}")]
         public async Task<IActionResult> GetLicensesForCustId(int custId)
         {

@@ -30,19 +30,21 @@
         {
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvLicence = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlLicense = new IpsViewComponentLibrary.MiddleControlCabinetLicenses();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvRequest = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvReference = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlLicense = new IpsViewComponentLibrary.MiddleControlCabinetLicenses();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvLicence.SuspendLayout();
+            this.pvGeneralAgreement.SuspendLayout();
             this.SuspendLayout();
             // 
             // pageView
@@ -60,7 +62,7 @@
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvLicence;
-            this.pageView.Size = new System.Drawing.Size(1063, 587);
+            this.pageView.Size = new System.Drawing.Size(1026, 634);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
             this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
@@ -75,8 +77,17 @@
             this.pvLicence.ItemSize = new System.Drawing.SizeF(58F, 27F);
             this.pvLicence.Location = new System.Drawing.Point(5, 31);
             this.pvLicence.Name = "pvLicence";
-            this.pvLicence.Size = new System.Drawing.Size(1053, 551);
+            this.pvLicence.Size = new System.Drawing.Size(1016, 598);
             this.pvLicence.Text = "Ліцензії";
+            // 
+            // ctrlLicense
+            // 
+            this.ctrlLicense.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlLicense.Location = new System.Drawing.Point(0, 0);
+            this.ctrlLicense.MinimumSize = new System.Drawing.Size(822, 538);
+            this.ctrlLicense.Name = "ctrlLicense";
+            this.ctrlLicense.Size = new System.Drawing.Size(1016, 598);
+            this.ctrlLicense.TabIndex = 0;
             // 
             // pvCalculation
             // 
@@ -107,7 +118,7 @@
             this.pvReference.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvReference.Location = new System.Drawing.Point(5, 31);
             this.pvReference.Name = "pvReference";
-            this.pvReference.Size = new System.Drawing.Size(836, 478);
+            this.pvReference.Size = new System.Drawing.Size(1016, 598);
             this.pvReference.Text = "Довідки";
             // 
             // pvContacts
@@ -120,11 +131,21 @@
             // 
             // pvGeneralAgreement
             // 
+            this.pvGeneralAgreement.Controls.Add(this.ctrlGeneralAgreement);
             this.pvGeneralAgreement.ItemSize = new System.Drawing.SizeF(71F, 27F);
             this.pvGeneralAgreement.Location = new System.Drawing.Point(5, 31);
             this.pvGeneralAgreement.Name = "pvGeneralAgreement";
-            this.pvGeneralAgreement.Size = new System.Drawing.Size(836, 478);
+            this.pvGeneralAgreement.Size = new System.Drawing.Size(1016, 598);
             this.pvGeneralAgreement.Text = "Ген. угода";
+            // 
+            // ctrlGeneralAgreement
+            // 
+            this.ctrlGeneralAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlGeneralAgreement.Location = new System.Drawing.Point(0, 0);
+            this.ctrlGeneralAgreement.MinimumSize = new System.Drawing.Size(912, 300);
+            this.ctrlGeneralAgreement.Name = "ctrlGeneralAgreement";
+            this.ctrlGeneralAgreement.Size = new System.Drawing.Size(1016, 598);
+            this.ctrlGeneralAgreement.TabIndex = 0;
             // 
             // pvFiles
             // 
@@ -142,25 +163,17 @@
             this.pvAgent.Size = new System.Drawing.Size(836, 478);
             this.pvAgent.Text = "Представник";
             // 
-            // ctrlLicense
-            // 
-            this.ctrlLicense.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlLicense.Location = new System.Drawing.Point(0, 0);
-            this.ctrlLicense.MinimumSize = new System.Drawing.Size(822, 538);
-            this.ctrlLicense.Name = "ctrlLicense";
-            this.ctrlLicense.Size = new System.Drawing.Size(1053, 551);
-            this.ctrlLicense.TabIndex = 0;
-            // 
             // MiddleControlCabinet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pageView);
             this.Name = "MiddleControlCabinet";
-            this.Size = new System.Drawing.Size(1063, 587);
+            this.Size = new System.Drawing.Size(1026, 634);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvLicence.ResumeLayout(false);
+            this.pvGeneralAgreement.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -179,5 +192,6 @@
         private Telerik.WinControls.UI.RadPageViewPage pvAgent;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private MiddleControlCabinetLicenses ctrlLicense;
+        private MiddleControlCabinetGenAgreement ctrlGeneralAgreement;
     }
 }
