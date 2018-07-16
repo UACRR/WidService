@@ -36,14 +36,12 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.InformationOfUserControl();
-            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.gvGenAgrLicences = new Telerik.WinControls.UI.RadGridView();
             this.btnView = new Telerik.WinControls.UI.RadButton();
             this.btnCreateNewAgr = new Telerik.WinControls.UI.RadButton();
             this.btnAccept = new Telerik.WinControls.UI.RadButton();
             this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
             this.ctrlFooterInfo = new IpsViewComponentLibrary.InformationFooterGenAgrBigRight();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnView)).BeginInit();
@@ -74,16 +72,6 @@
             this.ctrlHeaderInfo.Size = new System.Drawing.Size(912, 209);
             this.ctrlHeaderInfo.TabIndex = 0;
             // 
-            // radSeparator1
-            // 
-            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator1.Location = new System.Drawing.Point(4, 210);
-            this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(906, 10);
-            this.radSeparator1.TabIndex = 1;
-            this.radSeparator1.ThemeName = "Office2013Light";
-            // 
             // gvGenAgrLicences
             // 
             this.gvGenAgrLicences.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -91,7 +79,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvGenAgrLicences.AutoSizeRows = true;
             this.gvGenAgrLicences.EnableCustomFiltering = true;
-            this.gvGenAgrLicences.Location = new System.Drawing.Point(4, 226);
+            this.gvGenAgrLicences.Location = new System.Drawing.Point(4, 215);
             // 
             // 
             // 
@@ -155,7 +143,7 @@
             this.gvGenAgrLicences.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvGenAgrLicences.Name = "gvGenAgrLicences";
             this.gvGenAgrLicences.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvGenAgrLicences.Size = new System.Drawing.Size(906, 173);
+            this.gvGenAgrLicences.Size = new System.Drawing.Size(906, 184);
             this.gvGenAgrLicences.TabIndex = 8;
             this.gvGenAgrLicences.ThemeName = "Office2013Light";
             // 
@@ -220,12 +208,10 @@
             this.Controls.Add(this.btnCreateNewAgr);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.gvGenAgrLicences);
-            this.Controls.Add(this.radSeparator1);
             this.Controls.Add(this.ctrlHeaderInfo);
             this.MinimumSize = new System.Drawing.Size(912, 300);
             this.Name = "MiddleControlCabinetGenAgreement";
             this.Size = new System.Drawing.Size(913, 590);
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnView)).EndInit();
@@ -239,7 +225,6 @@
         #endregion
 
         private InformationOfUserControl ctrlHeaderInfo;
-        private Telerik.WinControls.UI.RadSeparator radSeparator1;
         private Telerik.WinControls.UI.RadGridView gvGenAgrLicences;
         private Telerik.WinControls.UI.RadButton btnView;
         private Telerik.WinControls.UI.RadButton btnCreateNewAgr;
