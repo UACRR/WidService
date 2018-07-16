@@ -57,10 +57,32 @@ namespace ipsmedserviceapp.Model
                 dest.Add(addItem);
                 maxId(addItem);
             });
-
-
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sors"></param>
+        /// <param name="dest"></param>
+        /// <param name="maxId"></param>
+        /// <param name="compId"></param>
+        public void AppendList<T>(ICollection<T> sors, ICollection<T> dest, Action<T,T> copyBody, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
+        {
+            // Змінюємо спільні записи
+            List<T> tempList = sors.Where(row => dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => dest.First(row => compId(item, row)).SetFields(item, excludeField));
+            // Додаємо нові
+            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item =>
+            {
+                T addItem = new T();
+                addItem.SetFields(item, excludeField);
+                dest.Add(addItem);
+                copyBody(item, addItem);
+            });
+        }
 
         /// <summary>
         /// Raw Запрос данных из базы данных
@@ -82,7 +104,13 @@ namespace ipsmedserviceapp.Model
                     comm.CommandText = sqlCommand;
                     if (param != null && param.Length > 0)
                     {
-                        comm.Parameters.AddRange(param);
+                        foreach (var p in param)
+                        {
+                            if (p.Value == null)
+                                p.Value = DBNull.Value;
+
+                            comm.Parameters.Add(p);
+                        }
                     }
 
                     var reader = await comm.ExecuteReaderAsync();

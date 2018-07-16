@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         {
             CopyRtranslateLangFromNavigation = new ObservableListSource<CopyRtranslate>();
             CopyRtranslateLangToNavigation = new ObservableListSource<CopyRtranslate>();
+            LicenseBigR = new ObservableListSource<LicenseBigR>();
         }
 
         public string CodeS { get; set; }
@@ -20,6 +21,7 @@ namespace ipsFormsDesign.Model
 
         public ObservableListSource<CopyRtranslate> CopyRtranslateLangFromNavigation { get; set; }
         public ObservableListSource<CopyRtranslate> CopyRtranslateLangToNavigation { get; set; }
+        public ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
     }
 }
 

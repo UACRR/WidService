@@ -38,6 +38,7 @@ namespace ipsFormsDesign.Model
         public int? Loadid { get; set; }
         public int? SpecType { get; set; }
         public int? ActCode { get; set; }
+        public string InnerCode { get; set; }
 
         public ObjAct ActCodeNavigation { get; set; }
         public Category CategoryCodeNavigation { get; set; }

@@ -67,6 +67,7 @@ namespace IpsViewComponentLibrary
             this.rdtPickerAgrDate.Size = new System.Drawing.Size(118, 21);
             this.rdtPickerAgrDate.TabIndex = 1;
             this.rdtPickerAgrDate.TabStop = false;
+            this.rdtPickerAgrDate.Text = "09.07.2018";
             this.rdtPickerAgrDate.ThemeName = "Office2013Light";
             // 
             // bindingSource
@@ -84,7 +85,7 @@ namespace IpsViewComponentLibrary
             // 
             // rtxtBoxContrNumber
             // 
-            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "LicNum", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSource, "LicNum", true));
             this.rtxtBoxContrNumber.Location = new System.Drawing.Point(169, 2);
             this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
             this.rtxtBoxContrNumber.NullText = "Номер договору";
@@ -106,13 +107,14 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateBegin.Location = new System.Drawing.Point(169, 26);
-            this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 5, 31, 0, 0, 0, 0);
+            this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.Name = "rdtPickerDateBegin";
             this.rdtPickerDateBegin.NullText = "Оберіть дату";
             this.rdtPickerDateBegin.Size = new System.Drawing.Size(107, 21);
             this.rdtPickerDateBegin.TabIndex = 2;
             this.rdtPickerDateBegin.TabStop = false;
+            this.rdtPickerDateBegin.Text = "09.07.2018";
             this.rdtPickerDateBegin.ThemeName = "Office2013Light";
             this.rdtPickerDateBegin.ValueChanged += new System.EventHandler(this.rdtPickerDateBegin_ValueChanged);
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.rdtPickerDateBegin.GetChildAt(0))).Text = "";
@@ -129,6 +131,7 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateEnd.Size = new System.Drawing.Size(118, 21);
             this.rdtPickerDateEnd.TabIndex = 3;
             this.rdtPickerDateEnd.TabStop = false;
+            this.rdtPickerDateEnd.Text = "09.07.2018";
             this.rdtPickerDateEnd.ThemeName = "Office2013Light";
             // 
             // lblContrDoFrom

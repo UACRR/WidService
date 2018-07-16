@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
@@ -29,6 +30,12 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             SetDefaultPages();
+            agreementInfoCtrl.OnSaveCommentNeed += AgreementInfoCtrl_OnSaveCommentNeed;
+        }
+
+        private void AgreementInfoCtrl_OnSaveCommentNeed(object sender, EventArgs e)
+        {
+            OnCustomerSave?.Invoke(_customer);
         }
 
         /// <summary>
@@ -81,6 +88,7 @@ namespace IpsViewComponentLibrary
             SetLicenseAgrMoreGridDataSource();
             reportsControl.SetData(cust);
             reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
+            
         }
 
         /// <summary>
@@ -92,8 +100,11 @@ namespace IpsViewComponentLibrary
             if (_customer?.Client.LicenseAgreement != null)
                 foreach (var item in _customer.Client.LicenseAgreement)
                 {
-                    //
+                    //якщо з малими правами, пропустити
+                    if(Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
+
                     var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
+                    
                     source.Add(new GridLicenseAgrView
                     {
                         Id = item.AgrId,
@@ -104,16 +115,12 @@ namespace IpsViewComponentLibrary
                         DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
                         DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
                         Amount = licenseParam?.MinAmount ?? default(decimal),
-                        State = _dictionaties?.agreementStatus
-                                    ?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ??
-                                string.Empty,
-                        PeriodPayment =
-                            _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ??
-                            string.Empty,
+                        State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
+                        PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
                         DateLastPayment = ""
                     });
                 }
-
+            //
             gvLicenseAgr.DataSource = source;
             gvLicenseAgr.MasterTemplate.Refresh();
             gvLicenseAgr.Update();
@@ -125,6 +132,7 @@ namespace IpsViewComponentLibrary
             if (_customer?.Client.LicenseAgreement != null)
                 foreach (var item in _customer.Client.LicenseAgreement)
                 {
+                    if (Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
                     source.AddRange(item.LicenseAgrParam.Where(rec => rec.LicVersion > item.LicVersion)
                         .Select(licAgr => new GridLicenseAgrView
                         {
@@ -193,15 +201,17 @@ namespace IpsViewComponentLibrary
             agreementInfoCtrl.Percent = licenseParam?.RateAmount?.ToString();
             agreementInfoCtrl.MinPayment = licenseParam?.MinAmount.ToString();
 
+            agreementInfoCtrl.CommentDataSource = licenseParam;
+
             agreementInfoCtrl.State = _dictionaties?.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name;
+
+            //TODO: заповнити відсутні дані
             agreementInfoCtrl.Implementation = "";//буде
             agreementInfoCtrl.IsPaid = true;//буде
             agreementInfoCtrl.Bank = "";//буде
             agreementInfoCtrl.Amount = "";//буде
             agreementInfoCtrl.DistributedAmount = "";//буде
-            agreementInfoCtrl.Notation = "";//буде
-
-            agreementInfoCtrl.IsAttach = new Random().Next(-10, 10) > 0;
+            agreementInfoCtrl.IsAttach = new Random().Next(-10, 10) > 0; // буде
         }
 
         /// <summary>
@@ -223,12 +233,12 @@ namespace IpsViewComponentLibrary
 
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            var curRow = e.CurrentRow.DataBoundItem as GridLicenseAgrView;
-
             //bool isInt = Int32.TryParse(e.CurrentRow.Cells["Id"].Value.ToString(), out int result);
             //if (!isInt) return;
             //SetAgrInfoData(result);
-            if (curRow == null) return;
+            if (!(e.CurrentRow.DataBoundItem is GridLicenseAgrView curRow)) return;
+
+            btnDeleteAgr.Enabled = curRow.State == "Не підтверджений";
             SetAgrInfoData(curRow.LicId);
         }
         
@@ -246,10 +256,14 @@ namespace IpsViewComponentLibrary
 
             if (GetTypeAgrForm())
             {
-                //з майданчиками
+                //з майданчиками * * *
                 ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, 
                                                             _customer?.Client?.ClnBusinessPlace, _customer, goal, typeRights:Rights)
                 {
+                    Text = goal == DialogGoal.forEdit ? "Редагування договору" 
+                         : goal == DialogGoal.forProlongation ? "Пролонгація договору" 
+                         : goal == DialogGoal.forNew ? "Додавання нового договору" 
+                         : string.Empty,
                     StartPosition = FormStartPosition.CenterParent
                 };
                 prolongation.OnSaveProlongation += Prolongation_OnSaveProlongationWithPlaces;
@@ -306,6 +320,7 @@ namespace IpsViewComponentLibrary
                 newLicense = listDopAgr.OrderBy(rec => rec.LicVersion).Last();
                 // -- Сінхронізувати з поточною, окрім версії
                 newLicense.SetFields(licParam, new[] { "LicVersion" });
+                newLicense.License = licParam?.License;
             }
             // Інакше == 0
             else {
@@ -318,6 +333,7 @@ namespace IpsViewComponentLibrary
                 newLicense.DateBegin = DateTime.Now;
                 newLicense.DateEnd = DateTime.Now.AddYears(1);
                 newLicense.LicVersion = (licVersion ?? 0) + 1;
+                newLicense.License = licParam?.License;
             }
             //newLicense.LicId = 0;
             license?.LicenseAgrParam?.Add(newLicense);
@@ -363,10 +379,7 @@ namespace IpsViewComponentLibrary
                         //DateEnd = DateTime.Today.AddYears(1),
                         LicStatus = 0,
                     }
-                },
-                LicDate = DateTime.Today,
-
-
+                }
             });
             var license = _customer?.Client?.LicenseAgreement?.LastOrDefault();
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
@@ -383,6 +396,11 @@ namespace IpsViewComponentLibrary
                 StartPosition = FormStartPosition.CenterScreen
             };
             print.ShowDialog();
+        }
+
+        private void btnDeleteAgr_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

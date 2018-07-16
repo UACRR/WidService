@@ -131,7 +131,7 @@ namespace ConsumerWorkplace_v_1._0
 
             var _cust = _service.GetData(custId);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.getAutoCompleteList, _service.GetData,false) { StartPosition = FormStartPosition.CenterParent };
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData,false) { StartPosition = FormStartPosition.CenterParent };
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
             form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
@@ -152,7 +152,7 @@ namespace ConsumerWorkplace_v_1._0
             int custType = 3; // Юридична особа
             var _cust = _service.NewCustomer(custType);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.getAutoCompleteList, _service.GetData ) {StartPosition = FormStartPosition.CenterParent};
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData ) {StartPosition = FormStartPosition.CenterParent};
             
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();

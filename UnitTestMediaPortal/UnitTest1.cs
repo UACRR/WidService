@@ -135,5 +135,27 @@ namespace UnitTestMediaPortal
             Assert.IsTrue(File.Exists(eng.Pdf));
         }
 
+        [TestMethod]
+        public void TestGlobal()
+        {
+            ConsumerService _service = new ConsumerService();
+            TestGlobalcs form = new TestGlobalcs();
+            form.SetDic(_service.GetDictionary());
+            // form.Visible = true;
+            form.Show(null);
+        }
+
+        [TestMethod]
+        public void TestExpandoObject()
+        {
+            ConsumerService _service = new ConsumerService();
+            var list = _service.getMainViewBR(ipsFormsDesign.Dictionary.TypeBRDocument.GenAgreement, ipsFormsDesign.Dictionary.ConsumerFilterEnum.Working );
+            RadTestExpandoObject form = new RadTestExpandoObject();
+            form.DataSource = list;
+
+            form.ShowDialog();
+
+        }
+
     }
 }

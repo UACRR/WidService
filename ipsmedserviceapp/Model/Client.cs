@@ -19,6 +19,8 @@ namespace ipsmedserviceapp.Model
         }
 
         public int CustId { get; set; }
+        public string ClientBrand { get; set; }
+        public string ClientGroup { get; set; }
 
         [JsonIgnore]
         public Customer Cust { get; set; }

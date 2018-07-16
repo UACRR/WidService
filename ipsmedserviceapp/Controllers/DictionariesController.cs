@@ -737,6 +737,7 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("copyrightKind", await _dbContext.CopyrightKind.AsNoTracking().ToListAsync());
             retDictionary.Add("copyrightType", await _dbContext.CopyrightType.AsNoTracking().ToListAsync());
             retDictionary.Add("country", await _dbContext.Country.Where(rec=>rec.ShortChoise == 1).OrderBy( rec => rec.OrderBy ?? 1000 ).AsNoTracking().ToListAsync());
+            retDictionary.Add("creativeRoleType", await _dbContext.CreativeRoleType.AsNoTracking().ToListAsync());
             retDictionary.Add("crkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
             retDictionary.Add("customerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("customerType", await _dbContext.CustomerType.AsNoTracking().ToListAsync());
@@ -750,7 +751,7 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("residentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
             retDictionary.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
             retDictionary.Add("typeMethodGet", await _dbContext.TypeMethodGet.AsNoTracking().ToListAsync());
-            retDictionary.Add("typePlace", await _dbContext.TypePlace.AsNoTracking().ToListAsync());
+            retDictionary.Add("typePlace", await _dbContext.TypePlace.Include(rec=>rec.ParamTypeNavigation).AsNoTracking().ToListAsync());
             retDictionary.Add("typeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
             retDictionary.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
             retDictionary.Add("usesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());
@@ -783,9 +784,9 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("seekType", await _dbContext.SeekType.AsNoTracking().ToListAsync());
             retDictionary.Add("specType", await _dbContext.SpecType.AsNoTracking().ToListAsync());
             retDictionary.Add("folkType", await _dbContext.FolkType.AsNoTracking().ToListAsync());
+            retDictionary.Add("registerStatuses", await _dbContext.RegisterStatus.AsNoTracking().ToListAsync());
 
             return Json(retDictionary);
         }
-
-        }
     }
+}

@@ -52,6 +52,7 @@
             // 
             this.gvConsumerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.gvConsumerList.AutoSizeRows = true;
             this.gvConsumerList.EnableCustomFiltering = true;
             this.gvConsumerList.Location = new System.Drawing.Point(3, 29);
             // 
@@ -178,7 +179,7 @@
             this.mсInfoAgrCalc.AutoScroll = true;
             this.mсInfoAgrCalc.Location = new System.Drawing.Point(315, 29);
             this.mсInfoAgrCalc.Name = "mсInfoAgrCalc";
-            this.mсInfoAgrCalc.Rights = IpsViewComponentLibrary.TypeRights.BigRights;
+            this.mсInfoAgrCalc.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             this.mсInfoAgrCalc.Size = new System.Drawing.Size(1069, 664);
             this.mсInfoAgrCalc.TabIndex = 0;
             // 

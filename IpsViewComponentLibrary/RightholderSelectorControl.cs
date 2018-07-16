@@ -33,7 +33,7 @@ namespace IpsViewComponentLibrary
         }
 
         public event EventHandler<RightholderMainView> RightholderChanged;
-        public event EventHandler ShowAnketaCommandExecuted;
+        public event EventHandler<RightholderMainView> ShowAnketaCommandExecuted;
 
         public RightholderSelectorControl()
         {
@@ -60,7 +60,7 @@ namespace IpsViewComponentLibrary
 
         private void btnAnketa_Click(object sender, EventArgs e)
         {
-            ShowAnketaCommandExecuted?.Invoke(sender, EventArgs.Empty);
+            OnShowAnketaCommandExecuted(_rightholder);
         }
 
         private void UpdateView()
@@ -79,9 +79,15 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void OnRightholderChandged()
+        protected void OnRightholderChandged()
         {
             RightholderChanged?.Invoke(this, _rightholder);
+        }
+
+        protected void OnShowAnketaCommandExecuted(RightholderMainView selectedRightholder)
+        {
+            if (selectedRightholder != null)
+                ShowAnketaCommandExecuted?.Invoke(this, selectedRightholder);
         }
     }
 }

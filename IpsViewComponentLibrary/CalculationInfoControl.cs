@@ -102,7 +102,7 @@ namespace IpsViewComponentLibrary
                     LicenseId = item?.LicId ?? default(int),
                     License = _dict?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
                     Series = string.Empty,
-                    AgrNumber = item?.Agr?.AgrNumber ?? string.Empty,
+                    AgrNumber = licenseParam?.LicNum ?? string.Empty,
                     DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
                     DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
                     Amount = licenseParam?.MinAmount ?? default(decimal),
@@ -178,7 +178,6 @@ namespace IpsViewComponentLibrary
 
         private void btnDistribute_Click(object sender, EventArgs e)
         {
-            //TODO: переробити конструктор, другий параметр повинен створюватись з даних (тестова версія)
             if (gvUserMoneys.RowCount == 0 || gvUserMoneys.CurrentRow == null)
                 return;
 

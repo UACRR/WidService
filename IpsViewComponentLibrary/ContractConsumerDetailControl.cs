@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -222,6 +223,39 @@ namespace IpsViewComponentLibrary
         public int SelectedItem
         {
             set => rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items[value];
+        }
+
+        private void rtxtBoxAuthorPaymentPercent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Мінімальна допустима сума
+        /// </summary>
+        public decimal MinAmount { get; set; }
+
+        private void rtxtBoxMinAuthorPayment_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //TODO контроль мінімальної суми
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPercentAutoProl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

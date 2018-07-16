@@ -12,6 +12,18 @@ namespace IpsViewComponentLibrary
 {
     public partial class InformationOfUserControl : UserControl
     {
+        public bool HoldingVisible
+        {
+            get => groupholdingCtrl.Visible;
+            set => groupholdingCtrl.Visible = value;
+        }
+
+        public bool OrganisationFormVisible
+        {
+            get => organisationFormCtrl.Visible;
+            set => organisationFormCtrl.Visible = value;
+        }
+
         /// <summary>
         /// Назва
         /// </summary>
@@ -60,22 +72,8 @@ namespace IpsViewComponentLibrary
             get => contactPersPhoneCtrl.TextValue;
             set => contactPersPhoneCtrl.TextValue = value;
         }
-        ///// <summary>
-        ///// Мобільний телефон контактної особи
-        ///// </summary>
-        //public string MobilePnoneContactPerson
-        //{
-        //    get => contactPersMobilePhoneCtrl.TextValue;
-        //    set => contactPersMobilePhoneCtrl.TextValue = value;
-        //}
-        ///// <summary>
-        ///// Факс контактної особи
-        ///// </summary>
-        //public string FaksContactPerson
-        //{
-        //    get => contactPersFaksCtrl.TextValue;
-        //    set => contactPersFaksCtrl.TextValue = value;
-        //}
+
+
         /// <summary>
         /// EMail контактної особи
         /// </summary>

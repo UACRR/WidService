@@ -12,7 +12,6 @@ namespace ipsmedserviceapp.Model
             AnketaAddNick = new HashSet<AnketaAddNick>();
             Authors = new HashSet<Authors>();
             CopyRight = new HashSet<CopyRight>();
-            LicAuthorBr = new HashSet<LicAuthorBr>();
             RegisterCount = new HashSet<RegisterCount>();
             ReqAgreement = new HashSet<ReqAgreement>();
             TermsOfService = new HashSet<TermsOfService>();
@@ -25,6 +24,7 @@ namespace ipsmedserviceapp.Model
         public bool? AroundWord { get; set; }
         public string InterCode { get; set; }
         public string InnerCode { get; set; }
+        public int? RHolderType { get; set; }
 
         public Customer Cust { get; set; }
         [JsonIgnore]
@@ -33,8 +33,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public ICollection<Authors> Authors { get; set; }
         public ICollection<CopyRight> CopyRight { get; set; }
-        [JsonIgnore]
-        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
         [JsonIgnore]
         public ICollection<RegisterCount> RegisterCount { get; set; }
         [JsonIgnore]

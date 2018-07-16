@@ -12,6 +12,8 @@ namespace IpsViewComponentLibrary
 {
     public class RadTextBoxAuto : RadTextBoxControl
     {
+        private bool _callProcessDialogKey = true;
+
         public override string ThemeClassName
         {
             get
@@ -27,6 +29,17 @@ namespace IpsViewComponentLibrary
         {
             ListElement.ElementTree.Control.KeyDown += new KeyEventHandler(radTextBoxControl1_KeyDown);
             ListElement.ElementTree.Control.Click += this.OnListElementClick;
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (!_callProcessDialogKey && (keyData == Keys.Tab || keyData == Keys.Enter))
+            {
+                _callProcessDialogKey = true;
+                return true;
+            }
+
+            return base.ProcessDialogKey(keyData);
         }
 
         /// <summary>
@@ -70,9 +83,9 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void radTextBoxControl1_KeyDown(object sender, KeyEventArgs e)
         {
-
             if (ListElement.ActiveItem != null && (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter))
             {
+                _callProcessDialogKey = false;
                 OnListItemSelected(ListElement.ActiveItem);
             }
         }

@@ -15,9 +15,8 @@ namespace ipsmedserviceapp.Model
         public decimal? NoCourtRate { get; set; }
         public decimal? CourtCompRate { get; set; }
         public int Version { get; set; }
-        public int? IsCurrent { get; set; }
-        public string AddNumber { get; set; }
-        public DateTime? AddDate { get; set; }
+        public string AgrNumber { get; set; }
+        public DateTime? AgrDate { get; set; }
         public DateTime? DateBegin { get; set; }
         public DateTime? DateEnd { get; set; }
         public int? PeriodCode { get; set; }

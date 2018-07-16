@@ -4,6 +4,9 @@ using System.Text;
 
 namespace ipsFormsDesign.Dictionary
 {
+    /// <summary>
+    /// Тип фільтру для Споживачів
+    /// </summary>
     public enum ConsumerFilterEnum : int
     {
         /// <summary>
@@ -11,17 +14,17 @@ namespace ipsFormsDesign.Dictionary
         /// </summary>
         None = 0,
         /// <summary>
-        /// Всі
-        /// </summary>
-        All = 1,
-        /// <summary>
         /// Діючі
         /// </summary>
-        Working = 2,
+        Working = 1,
         /// <summary>
         /// Для акцепту
         /// </summary>
-        NotAccepted = 3,
+        NotAccepted = 2,
+        /// <summary>
+        /// Не активні
+        /// </summary>
+        NotActive = 3,
         /// <summary>
         /// Для пролонгації
         /// </summary>
@@ -29,6 +32,107 @@ namespace ipsFormsDesign.Dictionary
         /// <summary>
         /// Для розподілу
         /// </summary>
-        ForDistribution = 5
+        ForDistribution = 5,
+        /// <summary>
+        /// Активні
+        /// </summary>
+        // Active = 2,
+        /// <summary>
+        /// Заборгованість
+        /// </summary>
+        Debt = 6,
+        /// <summary>
+        /// В роботі(прийом звітів)
+        /// </summary>
+        UnattachData = 7,
+        /// <summary>
+        /// Всі
+        /// </summary>
+        All 
+    }
+
+    /// <summary>
+    /// Тип діалогу 
+    /// </summary>
+    public enum DialogGoal
+    {
+        /// <summary>
+        /// Створення нового контракту
+        /// </summary>
+        forNew,
+        /// <summary>
+        /// Редагування поточного договору
+        /// </summary>
+        forEdit,
+        /// <summary>
+        /// Створення або редагування доп угоди на пролонгацію 
+        /// </summary>
+        forProlongation
+    }
+
+    /// <summary>
+    /// Типи прав
+    /// </summary>
+    public enum TypeRights
+    {
+        /// <summary>
+        /// Великі права
+        /// </summary>
+        BigRights,
+        /// <summary>
+        /// Малі права
+        /// </summary>
+        SmallRights,
+        /// <summary>
+        /// FOR DEVELOPERS
+        /// </summary>
+        All
+    }
+
+    /// <summary>
+    /// Типи документів Великих прав для запиту
+    /// </summary>
+    public enum TypeBRDocument
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None = 0,
+        /// <summary>
+        /// Генеральна угода
+        /// </summary>
+        GenAgreement = 2,
+        /// <summary>
+        /// Ліцензійна угода
+        /// </summary>
+        LicAgreement = 3,
+        /// <summary>
+        /// Заявки
+        /// </summary>
+        Request = 4,
+        /// <summary>
+        /// Довідки
+        /// </summary>
+        Reference = 5,
+        /// <summary>
+        ///  All documents
+        /// </summary>
+        All
+
+    }
+
+    /// <summary>
+    /// Тип особи користувача
+    /// </summary>
+    public enum PersonType
+    {
+        /// <summary>
+        /// Фізична особа
+        /// </summary>
+        PhysicalPerson,
+        /// <summary>
+        /// Юридична особа
+        /// </summary>
+        JuridicalPerson
     }
 }

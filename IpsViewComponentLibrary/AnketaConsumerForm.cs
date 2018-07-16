@@ -101,7 +101,7 @@ namespace IpsViewComponentLibrary
                 Close();
             }
             else
-                MessageBox.Show("Не вдалося додати нового споживача дані!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Не вдалося додати нового споживача!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
         /// <summary>

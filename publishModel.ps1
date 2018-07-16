@@ -7,6 +7,10 @@ $i = 0;
 [string]$serialize = [string]::Format( "[Serializable]{0}public partial class", [System.Environment]::NewLine);
 foreach( $fileName in $files )
 {
+    if( $fileName -eq "RelCounterDoc.cs")
+    {
+        $erri = 0;
+    }
     $fullName = [string]::Concat( $modelPath, "\", $fileName );
     $formDesignFile = [string]::Concat( $formDesignPath, '\Model\', $fileName );
     $content = [System.IO.File]::ReadAllText($fullName);
