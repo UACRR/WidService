@@ -390,6 +390,30 @@
     <Compile Include="MiddleControlCabinet.Designer.cs">
       <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiddleControlCabinetAgent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetAgent.Designer.cs">
+      <DependentUpon>MiddleControlCabinetAgent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetCalculation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetCalculation.Designer.cs">
+      <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetContacts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetContacts.Designer.cs">
+      <DependentUpon>MiddleControlCabinetContacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetFiles.Designer.cs">
+      <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiddleControlCabinetGenAgreement.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -401,6 +425,24 @@
     </Compile>
     <Compile Include="MiddleControlCabinetLicenses.Designer.cs">
       <DependentUpon>MiddleControlCabinetLicenses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetPayslips.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetPayslips.Designer.cs">
+      <DependentUpon>MiddleControlCabinetPayslips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetReference.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetReference.Designer.cs">
+      <DependentUpon>MiddleControlCabinetReference.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetRequest.Designer.cs">
+      <DependentUpon>MiddleControlCabinetRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlClientName.cs">
       <SubType>UserControl</SubType>
@@ -703,11 +745,32 @@
     <EmbeddedResource Include="MiddleControlCabinet.resx">
       <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetAgent.resx">
+      <DependentUpon>MiddleControlCabinetAgent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetCalculation.resx">
+      <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetContacts.resx">
+      <DependentUpon>MiddleControlCabinetContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetFiles.resx">
+      <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetGenAgreement.resx">
       <DependentUpon>MiddleControlCabinetGenAgreement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetLicenses.resx">
       <DependentUpon>MiddleControlCabinetLicenses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetPayslips.resx">
+      <DependentUpon>MiddleControlCabinetPayslips.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetReference.resx">
+      <DependentUpon>MiddleControlCabinetReference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetRequest.resx">
+      <DependentUpon>MiddleControlCabinetRequest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
