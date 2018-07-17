@@ -3,6 +3,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace IpsViewComponentLibrary
@@ -26,19 +27,15 @@ namespace IpsViewComponentLibrary
         public void Show(RegisterItemViewModel registerItem)
         {
             _sourceRegisterItemList.Add(registerItem);
+            CopyRegisterItemListToView();
+            _view.Run();
+        }
 
-            foreach (var r in _sourceRegisterItemList)
-            {
-                var clonedRegisterItem = new RegisterItemViewModel();
 
-                Utils.SetFields(clonedRegisterItem, r);
-                clonedRegisterItem.DurationItem = r.DurationItem;
-                clonedRegisterItem.DurationUse = r.DurationUse;
-                clonedRegisterItem.ObjectDuration = r.ObjectDuration;
-
-                _view.RegisterItemList.Add(clonedRegisterItem);
-            }
-
+        public void Show(IEnumerable<RegisterItemViewModel> registerItemList)
+        {
+            _sourceRegisterItemList.AddRange(registerItemList);
+            CopyRegisterItemListToView();
             _view.Run();
         }
 
@@ -83,6 +80,21 @@ namespace IpsViewComponentLibrary
                     foundedRegisterItem.ObjectPerformers = registerItem.ObjectPerformers;
                     foundedRegisterItem.ObjectDuration = registerItem.ObjectDuration;
                 }
+            }
+        }
+
+        private void CopyRegisterItemListToView()
+        {
+            foreach (var r in _sourceRegisterItemList)
+            {
+                var clonedRegisterItem = new RegisterItemViewModel();
+
+                Utils.SetFields(clonedRegisterItem, r);
+                clonedRegisterItem.DurationItem = r.DurationItem;
+                clonedRegisterItem.DurationUse = r.DurationUse;
+                clonedRegisterItem.ObjectDuration = r.ObjectDuration;
+
+                _view.RegisterItemList.Add(clonedRegisterItem);
             }
         }
     }

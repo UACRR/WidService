@@ -1,6 +1,8 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace IpsViewComponentLibrary
 {
@@ -28,23 +30,17 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        public object RegisterItemDataSource
-        {
-            get { return ctrlRegisterItemList.DataSource; }
-            set
-            {
-                if (ctrlRegisterItemList.DataSource != value)
-                {
-                    ctrlRegisterItemList.DataSource = value;
-                }
-            }
-        }
+        public BindingList<RegisterItemViewModel> RegisterItemList { get; private set; } = new BindingList<RegisterItemViewModel>();
+
+        public Collection<RegisterItemViewModel> SelectedRegisterItems { get => ctrlRegisterItemList.SelectedRegisterItems; }
 
         public RegisterView()
         {
             InitializeComponent();
 
             SetDictionaries();
+
+            ctrlRegisterItemList.DataSource = RegisterItemList;
         }
 
         public void Run()
@@ -62,6 +58,21 @@ namespace IpsViewComponentLibrary
         private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItemViewModel selectedRegisterItem)
         {
             _presenter.SearchObjects(selectedRegisterItem);
+        }
+
+        private void btnSearchAll_Click(object sender, System.EventArgs e)
+        {
+            _presenter.SearchObjectsForAll();
+        }
+
+        private void btnSearchNotLinked_Click(object sender, System.EventArgs e)
+        {
+            _presenter.SearchObjectsForNotLinked();
+        }
+
+        private void btnSearchSelected_Click(object sender, System.EventArgs e)
+        {
+            _presenter.SearchObjectsForSelected();
         }
     }
 }

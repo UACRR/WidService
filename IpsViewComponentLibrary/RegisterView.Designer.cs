@@ -42,12 +42,12 @@
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radButton6 = new Telerik.WinControls.UI.RadButton();
-            this.radButton3 = new Telerik.WinControls.UI.RadButton();
-            this.radButton5 = new Telerik.WinControls.UI.RadButton();
+            this.btnSearchSelected = new Telerik.WinControls.UI.RadButton();
+            this.btnSearchAll = new Telerik.WinControls.UI.RadButton();
+            this.btnSearchNotLinked = new Telerik.WinControls.UI.RadButton();
             this.radButton4 = new Telerik.WinControls.UI.RadButton();
-            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -63,9 +63,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchSelected)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchNotLinked)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -195,9 +195,9 @@
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radGroupBox2.Controls.Add(this.radButton6);
-            this.radGroupBox2.Controls.Add(this.radButton3);
-            this.radGroupBox2.Controls.Add(this.radButton5);
+            this.radGroupBox2.Controls.Add(this.btnSearchSelected);
+            this.radGroupBox2.Controls.Add(this.btnSearchAll);
+            this.radGroupBox2.Controls.Add(this.btnSearchNotLinked);
             this.radGroupBox2.Controls.Add(this.radButton4);
             this.radGroupBox2.HeaderText = "Пошук";
             this.radGroupBox2.Location = new System.Drawing.Point(273, 472);
@@ -207,32 +207,35 @@
             this.radGroupBox2.Text = "Пошук";
             this.radGroupBox2.ThemeName = "Office2013Light";
             // 
-            // radButton6
+            // btnSearchSelected
             // 
-            this.radButton6.Location = new System.Drawing.Point(441, 21);
-            this.radButton6.Name = "radButton6";
-            this.radButton6.Size = new System.Drawing.Size(131, 24);
-            this.radButton6.TabIndex = 3;
-            this.radButton6.Text = "Шукати вибрані";
-            this.radButton6.ThemeName = "Office2013Light";
+            this.btnSearchSelected.Location = new System.Drawing.Point(441, 21);
+            this.btnSearchSelected.Name = "btnSearchSelected";
+            this.btnSearchSelected.Size = new System.Drawing.Size(131, 24);
+            this.btnSearchSelected.TabIndex = 3;
+            this.btnSearchSelected.Text = "Шукати вибрані";
+            this.btnSearchSelected.ThemeName = "Office2013Light";
+            this.btnSearchSelected.Click += new System.EventHandler(this.btnSearchSelected_Click);
             // 
-            // radButton3
+            // btnSearchAll
             // 
-            this.radButton3.Location = new System.Drawing.Point(167, 21);
-            this.radButton3.Name = "radButton3";
-            this.radButton3.Size = new System.Drawing.Size(131, 24);
-            this.radButton3.TabIndex = 1;
-            this.radButton3.Text = "Шукати всі";
-            this.radButton3.ThemeName = "Office2013Light";
+            this.btnSearchAll.Location = new System.Drawing.Point(167, 21);
+            this.btnSearchAll.Name = "btnSearchAll";
+            this.btnSearchAll.Size = new System.Drawing.Size(131, 24);
+            this.btnSearchAll.TabIndex = 1;
+            this.btnSearchAll.Text = "Шукати всі";
+            this.btnSearchAll.ThemeName = "Office2013Light";
+            this.btnSearchAll.Click += new System.EventHandler(this.btnSearchAll_Click);
             // 
-            // radButton5
+            // btnSearchNotLinked
             // 
-            this.radButton5.Location = new System.Drawing.Point(304, 21);
-            this.radButton5.Name = "radButton5";
-            this.radButton5.Size = new System.Drawing.Size(131, 24);
-            this.radButton5.TabIndex = 2;
-            this.radButton5.Text = "Шукати не знайдені";
-            this.radButton5.ThemeName = "Office2013Light";
+            this.btnSearchNotLinked.Location = new System.Drawing.Point(304, 21);
+            this.btnSearchNotLinked.Name = "btnSearchNotLinked";
+            this.btnSearchNotLinked.Size = new System.Drawing.Size(131, 24);
+            this.btnSearchNotLinked.TabIndex = 2;
+            this.btnSearchNotLinked.Text = "Шукати не знайдені";
+            this.btnSearchNotLinked.ThemeName = "Office2013Light";
+            this.btnSearchNotLinked.Click += new System.EventHandler(this.btnSearchNotLinked_Click);
             // 
             // radButton4
             // 
@@ -250,6 +253,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 41);
+            this.ctrlRegisterItemList.MultiSelect = true;
             this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
             this.ctrlRegisterItemList.Size = new System.Drawing.Size(1294, 425);
@@ -297,9 +301,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchSelected)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchNotLinked)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -323,9 +327,9 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private Telerik.WinControls.UI.RadButton radButton2;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
-        private Telerik.WinControls.UI.RadButton radButton6;
-        private Telerik.WinControls.UI.RadButton radButton3;
-        private Telerik.WinControls.UI.RadButton radButton5;
+        private Telerik.WinControls.UI.RadButton btnSearchSelected;
+        private Telerik.WinControls.UI.RadButton btnSearchAll;
+        private Telerik.WinControls.UI.RadButton btnSearchNotLinked;
         private Telerik.WinControls.UI.RadButton radButton4;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }

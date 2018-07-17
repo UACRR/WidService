@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using System;
 using System.Linq;
 
 namespace IpsViewComponentLibrary
@@ -34,10 +35,39 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        public void SearchObjectsForAll()
+        {
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, _registerService);
+                presenter.Show(_view.RegisterItemList);
+            }
+        }
+
+        public void SearchObjectsForNotLinked()
+        {
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, _registerService);
+                presenter.Show(_view.RegisterItemList.Where(r => r.ObjId == null));
+            }
+        }
+
+        public void SearchObjectsForSelected()
+        {
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, _registerService);
+                presenter.Show(_view.SelectedRegisterItems);
+            }
+        }
+
         private void UpdateDataBindings(Register register)
         {
             _view.Register = register;
-            _view.RegisterItemDataSource = register.RegisterItem.Select(r =>
+            _view.RegisterItemList.Clear();
+
+            foreach (var r in register.RegisterItem)
             {
                 var rvm = new RegisterItemViewModel
                 {
@@ -62,8 +92,8 @@ namespace IpsViewComponentLibrary
                     rvm.ObjectDuration = r.Obj.MediaTrack.Duration;
                 }
 
-                return rvm;
-            });
+                _view.RegisterItemList.Add(rvm);
+            }
         }
     }
 }
