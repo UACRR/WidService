@@ -19,11 +19,14 @@ namespace WebAPIConnector
     /// </summary>
     public class ApiConnector
     {
-        private HttpClient client = new HttpClient();
+        private HttpClient client = null;
 
         public ApiConnector()
         {
             string Uri = configUrl();
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+            client = new HttpClient(handler);
 
             client.BaseAddress = new Uri(Uri);
             client.DefaultRequestHeaders.Accept.Clear();
