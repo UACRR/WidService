@@ -60,7 +60,6 @@ namespace ipsmedserviceapp.Model
         public ICollection<BankAccount> BankAccount { get; set; }
         [JsonIgnore]
         public ICollection<Employee> Employee { get; set; }
-        [JsonIgnore]
         public ICollection<FileCustomer> FileCustomer { get; set; }
         [JsonIgnore]
         public ICollection<Register> Register { get; set; }

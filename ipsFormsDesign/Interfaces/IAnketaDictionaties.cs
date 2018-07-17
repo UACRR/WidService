@@ -20,6 +20,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<CrkindGroup> crkindGroup {get; set;}
         public IList<CustomerStatus> customerStatus {get; set;}
         public IList<CustomerType> customerType {get; set;}
+        public IList<FileType> fileType { get; set;}
         public IList<KlR030> klR030 {get; set;}
         public IList<LicenseClass> licenseClass {get; set;}
         public IList<LicenseType> licenseType {get; set;}

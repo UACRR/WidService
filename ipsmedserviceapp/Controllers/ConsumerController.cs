@@ -66,6 +66,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Person)
                         .Include(item => item.AnketaPerson)
                         .Include(item => item.BankAccount)
+                        .Include(item => item.FileCustomer)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.LicenseAgreement)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
@@ -131,7 +132,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
-        //[Authorize]
+        // [Authorize]
         [HttpGet("detail/{id}")]
         public async Task<IActionResult> GetConsumerById(int id)
         {
@@ -706,12 +707,12 @@ namespace ipsmedserviceapp.Controllers
             // Немає параметру по Споживачу
             if (custId == null)
             {
-                var list = await _dbContext.getViewData(QueryStr,null);
+                var list = await _dbContext.getViewData(QueryStr, null);
                 return Json(list);
             }
             else
             {
-                QueryStr = string.Concat(QueryStr, " where cusrId = @custId");
+                QueryStr = string.Concat(QueryStr, " where custId = @custId");
                 var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId ) });
                 return Json(list);
 
@@ -720,6 +721,17 @@ namespace ipsmedserviceapp.Controllers
         #endregion
 
         //TODO test method
+        [HttpGet("listBR/agrmaster/{custId}")]
+        public async Task<IActionResult> GetAgrForCustId(int custId)
+        {
+            string queue = "select * from vTSK_1_BRMaster where custId = @custId";
+
+            var List = await _dbContext.getViewData(queue, new[] { new SqlParameter("@custId", custId) });
+
+
+            return Json(List);
+        }
+
         [HttpGet("listBR/{custId}")]
         public async Task<IActionResult> GetLicensesForCustId(int custId)
         {
@@ -1047,7 +1059,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="typeDocument"></param>
         /// <returns></returns>
         [HttpPost("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, IFormFile file)
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, [FromQuery] string comment,  IFormFile file)
         {
 
             // Перевірка існування дерикторії
@@ -1064,15 +1076,58 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             if (!Directory.Exists(consumerPath))
                 Directory.CreateDirectory(consumerPath);
 
-            //var file = files.First();
-            consumerPath = Path.Combine(consumerPath, file.FileName);
-
-            if (System.IO.File.Exists(consumerPath))
-                System.IO.File.Delete(consumerPath);
-            // Зберігаємо файл на сервері
-            using (var stream = new FileStream(consumerPath, FileMode.Create))
+            // Запис бази даних по файлу
+            var fileRec = await _dbContext.FileCustomer.Where(rec => rec.CustId == custId && rec.DocFile == file.FileName).SingleOrDefaultAsync();
+            if (fileRec == null)
             {
-                await file.CopyToAsync(stream);
+                fileRec = new FileCustomer { CustId = custId, DocFile = file.FileName, CreateDate = DateTime.Now, DocType = typeDocument };
+                _dbContext.FileCustomer.Add(fileRec);
+            }
+
+            // var file = files.First();
+            // Зберігаємо файл
+            consumerPath = Path.Combine(consumerPath, file.FileName);
+            var consumerSavePath = string.Concat(consumerPath, ".old");
+            if (System.IO.File.Exists(consumerPath))
+            {
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Delete(consumerSavePath);
+                System.IO.File.Move(consumerPath, consumerSavePath);
+
+
+            }
+
+
+            fileRec.ModifyDate = DateTime.Now;
+            // Зберігаємо файл на сервері
+
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                using (var stream = new FileStream(consumerPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                // Видаляемо збережений файл
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Delete(consumerSavePath);
+
+                tran = null;
+            }
+            catch (Exception)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                if (System.IO.File.Exists(consumerPath))
+                    System.IO.File.Delete(consumerPath);
+
+                // Востанавлюємо збережений файл
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Move(consumerSavePath, consumerPath );
+                return BadRequest();
             }
 
             return Ok();

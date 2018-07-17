@@ -8,6 +8,7 @@
         <noignore>Community</noignore>
         <noignore>AnketaAddName</noignore>
         <noignore>AgreementMaster</noignore>
+        <noignore>FileCustomer</noignore>
     </item>
     <item name="Client">
         <noignore>ClnBusinessPlace</noignore>

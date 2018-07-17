@@ -741,6 +741,7 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("crkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
             retDictionary.Add("customerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("customerType", await _dbContext.CustomerType.AsNoTracking().ToListAsync());
+            retDictionary.Add("fileType", await _dbContext.FileType.AsNoTracking().ToListAsync());
             retDictionary.Add("klR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
             retDictionary.Add("licenseClass", await _dbContext.LicenseClass.AsNoTracking().ToListAsync());
             retDictionary.Add("licenseType", await _dbContext.LicenseType.AsNoTracking().ToListAsync());

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace IpsViewComponentLibrary
         private Customer _customer = null;
         private ConsumerBigRightView _brView;
         private IList<VbrLicense> _brLicenses;
+        private IList<BigRightMasterGenAgr> _genAgrs;
         private AnketaDictionaties _anketaDictionaties = null;
         private CabinetTabType _currenCabinetTab = CabinetTabType.Licenses;
 
@@ -38,9 +40,17 @@ namespace IpsViewComponentLibrary
         /// </summary>
         public event EventHandler OnSaveCustomerNeed;
 
+        public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
+
         public MiddleControlCabinet()
         {
             InitializeComponent();
+            ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
+        }
+
+        private void CtrlFiles_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
+        {
+            OnAddNewDocument?.Invoke(custId, typeDocument, fileName, comment);
         }
 
         public void SetDictionaries(AnketaDictionaties dictionaries)
@@ -48,11 +58,16 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView brView, IList<VbrLicense> brLicenses)
+        public void SetAndUpdateData(Customer customer, 
+                                     ConsumerBigRightView brView, 
+                                     IList<VbrLicense> brLicenses,
+                                     IList<BigRightMasterGenAgr> genAgrs)
         {
             _customer = customer;
             _brView = brView;
             _brLicenses = brLicenses;
+            _genAgrs = genAgrs;
+
             UpdateCurentTab(_currenCabinetTab);
         }
 
@@ -65,7 +80,7 @@ namespace IpsViewComponentLibrary
                 case CabinetTabType.Licenses:
                 {
                     ctrlLicense.SetDataSources(_brView);
-                    ctrlLicense.SetData(_customer,_brLicenses,_brLicenses);
+                    ctrlLicense.SetData(_customer,_brLicenses);
                 }
                     break;
                 case CabinetTabType.Calculations:
@@ -79,10 +94,19 @@ namespace IpsViewComponentLibrary
                 case CabinetTabType.Contacts:
                     break;
                 case CabinetTabType.GeneralAgreement:
+                {
+                    ctrlGeneralAgreement.SetAndUpdateData(_customer,_brView, _genAgrs);
+                }
                     break;
                 case CabinetTabType.Files:
+                {
+                    ctrlFiles.SetAndUpdateData(_customer,_brView);
+                }
                     break;
                 case CabinetTabType.Agent:
+                {
+                    ctrlAgent.SetAndUpdateData(_customer,_brView,_genAgrs);
+                }
                     break;
             }
         }

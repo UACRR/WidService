@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -36,9 +37,9 @@ namespace ConsumerWorkplace_v_1._0
 
         public ConsumerWorkplace(TypeRights rights)
         {
+            IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
             InitializeComponent();
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
-
 
             switch (rights)
             {

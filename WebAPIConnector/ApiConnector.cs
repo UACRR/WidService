@@ -241,16 +241,16 @@ namespace WebAPIConnector
         /// <param name="url"></param>
         /// <param name="fileName"></param>
         /// <param name="fileStream"></param>
-        public async Task uploadFile(string url, string fileName, Stream fileStream)
+        public async Task uploadFile(string url, string fileName, string comment, Stream fileStream)
         {
             using (var content = new MultipartFormDataContent())
             {
-                var fileContent = new StreamContent(fileStream);
                 content.Headers.ContentType.MediaType = "multipart/form-data";
 
                 // fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/pot"); // "gettext" POT format
 
-                content.Add(fileContent, "file", fileName);
+                content.Add(new StreamContent(fileStream), "file", fileName);
+
 
                 var statusResult = await client.PostAsync(url, content);
                 var statusString = await statusResult.Content.ReadAsStringAsync();

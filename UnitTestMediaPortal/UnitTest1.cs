@@ -117,7 +117,7 @@ namespace UnitTestMediaPortal
         {
             ConsumerService service = new ConsumerService();
             Customer cust = service.GetData( 135 );
-            service.uploadDocument(135, 1, "F_6_МТЦ.docx", new FileStream("Documents\\F_6_МТЦ.docx", FileMode.Open));
+            //service.uploadDocument(135, 1, "F_6_МТЦ.docx", "comment", ".\\Documents\\F_6_МТЦ.docx");
         }
 
         [TestMethod]
@@ -149,9 +149,9 @@ namespace UnitTestMediaPortal
         public void TestExpandoObject()
         {
             ConsumerService _service = new ConsumerService();
-            var list = _service.getBRView(typeof(ConsumerBigRightView), "vTsk_1_BRBid", null );
+            var list = _service.getBRView(typeof(object), "vTSK_1_BRRegister", null );
             RadTestExpandoObject form = new RadTestExpandoObject();
-            form.DataSource = list.Select(rec=>(ConsumerBigRightView)rec).ToList();
+            form.DataSource = list;
 
             form.ShowDialog();
 

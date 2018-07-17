@@ -96,6 +96,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnAddNewCustomer += _cabinetBr_OnAddNewCustomer;
                 _cabinetBr.OnEditCustomer += _cabinetBr_OnEditCustomer;
                 _cabinetBr.OnSaveCustomer += _cabinetBr_OnSaveCustomer;
+                _cabinetBr.OnAddNewDocument += CabinetBr_OnAddNewDocument;
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -105,6 +106,11 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetSelectCustomer(id);
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
+        }
+
+        private void CabinetBr_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
+        {
+            _service.uploadDocument(custId, typeDocument, comment, fileName);
         }
 
         private bool _cabinetBr_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
@@ -126,9 +132,12 @@ namespace ConsumerWorkplace_v_1._0
 
         private void CabinetBr_OnCustomerUpdateDataNeed(int id)
         {
+            _cabinetBr.SetAgrMasterList(_service.getBRView(typeof(BigRightMasterGenAgr), "vTSK_1_BRMaster", id));
+            _cabinetBr.SetDataAgreementView(_service.getBRView(typeof(VbrLicense), "vTsk_vBRLicense", id));
+
             _cabinetBr.SetDataCustomer(_service.GetData(id));
-            _cabinetBr.SetDataAgreementView(_service.GetAgreementsBigRight(id.ToString()));
-            
+
+
         }
 
         private void CabinetBr_OnBackToGridNeed(int custId)
