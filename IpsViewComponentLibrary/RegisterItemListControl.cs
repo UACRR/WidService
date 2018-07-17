@@ -67,12 +67,46 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        private bool _allowFindCommand = true;
+        public bool AllowFindCommand
+        {
+            get { return _allowFindCommand; }
+            set
+            {
+                _allowFindCommand = value;
+                SetColumnVisible("FindColumn", _allowFindCommand);
+            }
+        }
+
+        private bool _allowShowObjectCommand = true;
+        public bool AllowShowObjectCommand
+        {
+            get { return _allowShowObjectCommand; }
+            set
+            {
+                _allowShowObjectCommand = value;
+                SetColumnVisible("ObjectColumn", _allowShowObjectCommand);
+            }
+        }
+
+        private bool _allowLinkCommand = true;
+        public bool AllowLinkCommand
+        {
+            get { return _allowLinkCommand; }
+            set
+            {
+                _allowLinkCommand = value;
+                SetColumnVisible("LinkColumn", _allowLinkCommand);
+            }
+        }
+
         public bool MultiSelect
         {
             get => gvRegisterItemList.MultiSelect;
             set => gvRegisterItemList.MultiSelect = value;
         }
 
+        public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
         public event EventHandler<RegisterItemViewModel> LinkCommandExecuted;
 
@@ -95,6 +129,10 @@ namespace IpsViewComponentLibrary
             else if (currentColumnName == "LinkColumn")
             {
                 OnLinkCommandExecuted(SelectedRegisterItem);
+            }
+            else if (currentColumnName == "ObjectColumn")
+            {
+                OnShowObjectCommandExecuted(SelectedRegisterItem);
             }
         }
 
@@ -125,12 +163,25 @@ namespace IpsViewComponentLibrary
 
         private void OnFindCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            FindCommandExecuted?.Invoke(this, selectedRegisterItem);
+            if (_allowFindCommand)
+                FindCommandExecuted?.Invoke(this, selectedRegisterItem);
         }
 
         private void OnLinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
+            if (_allowLinkCommand)
+                LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
+        }
+
+        private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
+        {
+            if (_allowShowObjectCommand)
+                ShowObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
+        }
+
+        private void SetColumnVisible(string columnName, bool isVisible)
+        {
+            gvRegisterItemList.Columns[columnName].IsVisible = isVisible;
         }
     }
 }
