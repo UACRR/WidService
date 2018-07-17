@@ -1059,7 +1059,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="typeDocument"></param>
         /// <returns></returns>
         [HttpPost("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, [FromQuery] string comment,  IFormFile file)
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, string comment,  IFormFile file)
         {
 
             // Перевірка існування дерикторії
@@ -1099,6 +1099,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
             fileRec.ModifyDate = DateTime.Now;
+            fileRec.DocComment = comment;
             // Зберігаємо файл на сервері
 
             var tran = await _dbContext.Database.BeginTransactionAsync();

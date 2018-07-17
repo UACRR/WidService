@@ -116,9 +116,13 @@ namespace UnitTestMediaPortal
         public void TestPutDocument()
         {
             ConsumerService service = new ConsumerService();
-            Customer cust = service.GetData( 135 );
-            //service.uploadDocument(135, 1, "F_6_МТЦ.docx", "comment", ".\\Documents\\F_6_МТЦ.docx");
-            Assert.IsNotNull(cust);
+            // Customer cust = service.GetData( 135 );
+            string comment = "test--test";
+            service.uploadDocument(135, 1, comment, ".\\Documents\\F_6_МТЦ.docx");
+            Customer cust = service.GetData(135);
+            Assert.IsNotNull(cust, "Cust");
+            var file = cust.FileCustomer.Where(rec => rec.DocType == 1 && rec.DocComment == comment).FirstOrDefault();
+            Assert.IsNotNull(file, "File");
         }
 
         [TestMethod]
