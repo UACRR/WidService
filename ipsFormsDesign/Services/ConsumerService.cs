@@ -106,7 +106,7 @@ namespace ipsFormsDesign.Services
         public Stream downloadDocument(int custId, int typeDocument, string fileName)
         {
             string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";
-            return _webApi.downloadFile(url).GetAwaiter().GetResult();
+            return Task.Run(() => _webApi.downloadFile(url)).GetAwaiter().GetResult();
         }
     }
 }

@@ -22,6 +22,9 @@ namespace IpsViewComponentLibrary
         public delegate void AddNewDocumentHandler(int custId, int typeDocument, string fileName, string comment);
         public event AddNewDocumentHandler OnAddNewDocument;
 
+        public delegate void ViewDocumentHandler(int custId, int typeDocument, string fileName);
+        public event ViewDocumentHandler OnViewDocButtonClick;
+
         public MiddleControlCabinetFiles()
         {
             InitializeComponent();
@@ -42,6 +45,7 @@ namespace IpsViewComponentLibrary
                 source.Add(new FilesDataSource
                 {
                     DocId = fileCustomer?.DocId ?? default(int),
+                    DocTypeInt = fileCustomer?.DocType ?? default(int),
                     DocType = IpsGlobal.AnketaDictionaties?.fileType?.SingleOrDefault(rec => rec.CodeI == fileCustomer?.DocType)?.Name,
                     DocComment = fileCustomer?.DocComment,
                     DocFile = fileCustomer?.DocFile
@@ -77,13 +81,15 @@ namespace IpsViewComponentLibrary
 
         private void gvListFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-
+            if(e.Row.DataBoundItem is FilesDataSource rec)
+                OnViewDocButtonClick?.Invoke(_customer.CustId, rec.DocTypeInt, rec.DocFile);
         }
     }
 
     internal class FilesDataSource
     {
         public int DocId { get; set; }
+        public int DocTypeInt { get; set; }
         public string DocType { get; set; }
         public string DocFile { get; set; }
         public string DocComment { get; set; }

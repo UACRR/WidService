@@ -32,6 +32,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.InformationOfUserControl();
@@ -165,26 +166,31 @@
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.Name = "DocId";
-            gridViewTextBoxColumn2.DataType = typeof(int);
-            gridViewTextBoxColumn2.FieldName = "DocType";
-            gridViewTextBoxColumn2.HeaderText = "Тип документу";
-            gridViewTextBoxColumn2.MinWidth = 0;
-            gridViewTextBoxColumn2.Name = "DocType";
-            gridViewTextBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn2.Width = 254;
-            gridViewTextBoxColumn3.FieldName = "DocComment";
-            gridViewTextBoxColumn3.HeaderText = "Коментар";
+            gridViewTextBoxColumn2.FieldName = "DocTypeInt";
+            gridViewTextBoxColumn2.HeaderText = "IdDocType";
+            gridViewTextBoxColumn2.IsVisible = false;
+            gridViewTextBoxColumn2.Name = "DocTypeInt";
+            gridViewTextBoxColumn2.Width = 48;
+            gridViewTextBoxColumn3.DataType = typeof(int);
+            gridViewTextBoxColumn3.FieldName = "DocType";
+            gridViewTextBoxColumn3.HeaderText = "Тип документу";
             gridViewTextBoxColumn3.MinWidth = 0;
-            gridViewTextBoxColumn3.Multiline = true;
-            gridViewTextBoxColumn3.Name = "DocComment";
-            gridViewTextBoxColumn3.Width = 309;
-            gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.FieldName = "DocFile";
-            gridViewTextBoxColumn4.HeaderText = "Файл";
+            gridViewTextBoxColumn3.Name = "DocType";
+            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn3.Width = 254;
+            gridViewTextBoxColumn4.FieldName = "DocComment";
+            gridViewTextBoxColumn4.HeaderText = "Коментар";
+            gridViewTextBoxColumn4.MinWidth = 0;
             gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "DocFile";
-            gridViewTextBoxColumn4.Width = 286;
+            gridViewTextBoxColumn4.Name = "DocComment";
+            gridViewTextBoxColumn4.Width = 309;
             gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.FieldName = "DocFile";
+            gridViewTextBoxColumn5.HeaderText = "Файл";
+            gridViewTextBoxColumn5.Multiline = true;
+            gridViewTextBoxColumn5.Name = "DocFile";
+            gridViewTextBoxColumn5.Width = 286;
+            gridViewTextBoxColumn5.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";
@@ -204,6 +210,7 @@
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
             gridViewCommandColumn1});
             this.gvListFiles.MasterTemplate.EnableCustomFiltering = true;
             this.gvListFiles.MasterTemplate.EnableFiltering = true;

@@ -47,6 +47,7 @@ namespace IpsViewComponentLibrary
         public event SaveCustomer OnSaveCustomer;//TODO invoke
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
+        public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocument;
 
         public string FilterString
         {
@@ -59,8 +60,14 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
             ctrlCabinet.OnSaveCustomerNeed += CtrlCabinet_OnSaveCustomerNeed;
             ctrlCabinet.OnAddNewDocument += CtrlCabinet_OnAddNewDocument;
-            //ctrlCabinet.SetAndUpdateData(_customer);
+            ctrlCabinet.OnViewDocumentNeed += CtrlCabinet_OnViewDocumentNeed;
+
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private void CtrlCabinet_OnViewDocumentNeed(int custId, int typeDocument, string fileName)
+        {
+            OnViewDocument?.Invoke(custId, typeDocument, fileName);
         }
 
         private void CtrlCabinet_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
