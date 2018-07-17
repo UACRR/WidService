@@ -77,6 +77,8 @@ namespace ipsmedserviceapp.Controllers
         {
             return await _dbContext.Register
                 .Include(r => r.RegisterItem)
+                    .ThenInclude(i => i.Obj)
+                        .ThenInclude(o => o.MediaTrack)
                 .FirstOrDefaultAsync(r => r.RegId == regId);
         }
 
