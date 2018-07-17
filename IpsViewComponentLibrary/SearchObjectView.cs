@@ -100,9 +100,9 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnOk_Click(object sender, EventArgs e)
         {
-            _presenter.Save();
+            _presenter.Apply();
         }
     }
 }

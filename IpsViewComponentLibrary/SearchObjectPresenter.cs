@@ -64,10 +64,8 @@ namespace IpsViewComponentLibrary
             registerItem.ObjectDuration = registerSearchObject.Duration;
         }
 
-        public void Save()
+        public void Apply()
         {
-            // TODO: save to db, if success update list
-
             foreach (var registerItem in _view.RegisterItemList)
             {
                 var foundedRegisterItem = _sourceRegisterItemList.FirstOrDefault(r => r.RegId == registerItem.RegId && r.RegIitemId == registerItem.RegIitemId);
