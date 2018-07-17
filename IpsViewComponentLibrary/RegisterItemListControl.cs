@@ -5,6 +5,7 @@ using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.Data;
 using ipsFormsDesign.Dictionary;
+using System.Collections.ObjectModel;
 
 namespace IpsViewComponentLibrary
 {
@@ -48,6 +49,28 @@ namespace IpsViewComponentLibrary
                     }
                 }
             }
+        }
+
+        public Collection<RegisterItemViewModel> SelectedRegisterItems
+        {
+            get
+            {
+                var registerItemsList = new Collection<RegisterItemViewModel>();
+
+                foreach (var row in gvRegisterItemList.SelectedRows)
+                {
+                    var registerItem = row.DataBoundItem as RegisterItemViewModel;
+                    registerItemsList.Add(registerItem);
+                }
+
+                return registerItemsList;
+            }
+        }
+
+        public bool MultiSelect
+        {
+            get => gvRegisterItemList.MultiSelect;
+            set => gvRegisterItemList.MultiSelect = value;
         }
 
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
