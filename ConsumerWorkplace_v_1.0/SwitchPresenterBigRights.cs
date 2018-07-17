@@ -126,28 +126,28 @@ namespace ConsumerWorkplace_v_1._0
         {
             try
             {
-                using (var fileStream = File.Create(fileName))
+                string fullpath = @"DocumentFiles\" + fileName;
+                if (!Directory.Exists("DocumentFiles"))
+                    Directory.CreateDirectory("DocumentFiles");
+                using (var fileStream = File.Create(fullpath)) 
                 {
                     _service.downloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
                 }
 
-                string extn = Path.GetExtension(fileName);
-                if (File.Exists(fileName))
+                string extn = Path.GetExtension(fullpath);
+                if (File.Exists(fullpath))
                 {
-                    string path = @"C:\Users\vpysmennyi\ipssysadmin\ConsumerWorkplace_v_1.0\bin\Debug\"; //TODO: змінити
                     if (extn == ".doc" || extn == ".docx")
                     {
                         MSWord.Application app = new MSWord.Application();
-                        MSWord.Document doc = app.Documents.Open(path + fileName, Type.Missing, true);
+                        MSWord.Document doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
                         app.Visible = true;
-                        //doc.Close(false, Type.Missing, Type.Missing);
-                        //app.Quit(false, false, false);
                         System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
                     }
                     else if (extn == ".xls" || extn == ".xlsx")
                     {
                         MSExcel.Application app = new MSExcel.Application();
-                        var workbook = app.Workbooks.Open(path + fileName, 0, true, 5, null, null, false, MSExcel.XlPlatform.xlWindows);
+                        var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false, MSExcel.XlPlatform.xlWindows);
                         app.Visible = true;
                         System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
                     }
