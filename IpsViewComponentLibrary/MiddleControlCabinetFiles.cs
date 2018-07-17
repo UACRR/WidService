@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
 
@@ -31,8 +32,21 @@ namespace IpsViewComponentLibrary
             _customer = customer;
             _bigRightView = bigRightView;
             SetBigRightHeaderData();
+            SetGridDataSource(_customer?.FileCustomer ?? new ObservableListSource<FileCustomer>());
+        }
 
-            gvListFiles.DataSource = _customer?.FileCustomer ?? new ObservableListSource<FileCustomer>();
+        private void SetGridDataSource(ObservableListSource<FileCustomer> fileCust)
+        {
+            ObservableListSource<FilesDataSource> source = new ObservableListSource<FilesDataSource>();
+            foreach (var fileCustomer in fileCust)
+                source.Add(new FilesDataSource
+                {
+                    DocId = fileCustomer?.DocId ?? default(int),
+                    DocType = IpsGlobal.AnketaDictionaties?.fileType?.SingleOrDefault(rec => rec.CodeI == fileCustomer?.DocType)?.Name,
+                    DocComment = fileCustomer?.DocComment,
+                    DocFile = fileCustomer?.DocFile
+                });
+            gvListFiles.DataSource = source;
         }
 
         private void SetBigRightHeaderData()
@@ -60,5 +74,19 @@ namespace IpsViewComponentLibrary
                 OnAddNewDocument?.Invoke(_customer.CustId, fileAdd.DocumentType, fileAdd.FileName, fileAdd.Comment);
             }
         }
+
+        private void gvListFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+
+        }
+    }
+
+    internal class FilesDataSource
+    {
+        public int DocId { get; set; }
+        public string DocType { get; set; }
+        public string DocFile { get; set; }
+        public string DocComment { get; set; }
     }
 }
+

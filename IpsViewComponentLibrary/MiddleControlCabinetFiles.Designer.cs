@@ -161,28 +161,28 @@
             this.gvListFiles.MasterTemplate.AutoGenerateColumns = false;
             this.gvListFiles.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
-            gridViewTextBoxColumn1.FieldName = "CustId";
+            gridViewTextBoxColumn1.FieldName = "DocId";
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn1.Name = "DocId";
             gridViewTextBoxColumn2.DataType = typeof(int);
-            gridViewTextBoxColumn2.FieldName = "Innokpo";
+            gridViewTextBoxColumn2.FieldName = "DocType";
             gridViewTextBoxColumn2.HeaderText = "Тип документу";
             gridViewTextBoxColumn2.MinWidth = 0;
-            gridViewTextBoxColumn2.Name = "Innokpo";
+            gridViewTextBoxColumn2.Name = "DocType";
             gridViewTextBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn2.Width = 254;
-            gridViewTextBoxColumn3.FieldName = "AgrNumber";
+            gridViewTextBoxColumn3.FieldName = "DocComment";
             gridViewTextBoxColumn3.HeaderText = "Коментар";
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
-            gridViewTextBoxColumn3.Name = "AgrNumber";
+            gridViewTextBoxColumn3.Name = "DocComment";
             gridViewTextBoxColumn3.Width = 309;
             gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.FieldName = "Name";
+            gridViewTextBoxColumn4.FieldName = "DocFile";
             gridViewTextBoxColumn4.HeaderText = "Файл";
             gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "Name";
+            gridViewTextBoxColumn4.Name = "DocFile";
             gridViewTextBoxColumn4.Width = 286;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
@@ -215,6 +215,7 @@
             this.gvListFiles.Size = new System.Drawing.Size(907, 99);
             this.gvListFiles.TabIndex = 7;
             this.gvListFiles.ThemeName = "Office2013Light";
+            this.gvListFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvListFiles_CommandCellClick);
             // 
             // btnAddFile
             // 

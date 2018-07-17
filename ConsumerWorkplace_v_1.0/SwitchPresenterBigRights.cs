@@ -111,6 +111,7 @@ namespace ConsumerWorkplace_v_1._0
         private void CabinetBr_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
         {
             _service.uploadDocument(custId, typeDocument, comment, fileName);
+            UpdateData(custId);
         }
 
         private bool _cabinetBr_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
