@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Dictionary
         New = 0,
         OnAcception = 1,
         Accepted = 2,
-        Comleted = 3,
+        Completed = 3,
         Canceled = 4
     }
 }

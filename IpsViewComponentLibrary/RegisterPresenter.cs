@@ -10,6 +10,7 @@ namespace IpsViewComponentLibrary
     {
         private readonly RegisterView _view;
         private readonly RegisterService _registerService;
+        private Register _register;
 
         public RegisterPresenter(RegisterView view, RegisterService registerService)
         {
@@ -21,8 +22,8 @@ namespace IpsViewComponentLibrary
 
         public void Show(int regId)
         {
-            var register = _registerService.GetById(regId);
-            UpdateDataBindings(register);
+            _register = _registerService.GetById(regId);
+            UpdateDataBindings();
             _view.Run();
         }
 
@@ -62,12 +63,27 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void UpdateDataBindings(Register register)
+        public void SetStatus(RegisterStatusType status)
         {
-            _view.Register = register;
+            var result = true;
+            //var result = _registerService.SetStatus(_register.RegId, status);
+
+            if (result)
+            {
+                _register.RgStatus = (int)status;
+                
+                _view.SetStatus(status);
+            }
+            else
+                _view.ShowError("Не вдалося змінити статус.");
+        }
+
+        private void UpdateDataBindings()
+        {
+            _view.Register = _register;
             _view.RegisterItemList.Clear();
 
-            foreach (var r in register.RegisterItem)
+            foreach (var r in _register.RegisterItem)
             {
                 var rvm = new RegisterItemViewModel
                 {

@@ -1,8 +1,10 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary
 {
@@ -45,7 +47,24 @@ namespace IpsViewComponentLibrary
 
         public void Run()
         {
+            SetControlEnabled((RegisterStatusType)Register.RgStatus);
+            SetAllowedStatus((RegisterStatusType)Register.RgStatus);
+
             ShowDialog();
+        }
+
+        public void ShowError(string message)
+        {
+            MessageBox.Show(message, "Помилка");
+        }
+
+        public void SetStatus(RegisterStatusType status)
+        {
+            ddlStatus.SelectedValue = (int)status;
+
+            SetAllowedStatus(status);
+            SetAllowedCommand(status);
+            SetControlEnabled(status);
         }
 
         private void SetDictionaries()
@@ -55,24 +74,81 @@ namespace IpsViewComponentLibrary
             ddlStatus.DataSource = IpsGlobal.ObjectRightDictionaries.RegisterStatuses;
         }
 
+        private void SetAllowedStatus(RegisterStatusType status)
+        {
+            if (status == RegisterStatusType.New)
+            {
+                btnSetStatus.Text = "На погодження";
+                btnSetStatus.Tag = RegisterStatusType.OnAcception;
+            }
+            else
+            {
+                btnSetStatus.Text = "Погодити";
+                btnSetStatus.Tag = RegisterStatusType.Accepted;
+            }
+        }
+
+        private void SetAllowedCommand(RegisterStatusType status)
+        {
+            if (status == RegisterStatusType.OnAcception)
+            {
+                ctrlRegisterItemList.AllowFindCommand = true;
+                ctrlRegisterItemList.AllowLinkCommand = true;
+            }
+            else
+            {
+                ctrlRegisterItemList.AllowFindCommand = false;
+                ctrlRegisterItemList.AllowLinkCommand = false;
+            }
+        }
+
+        private void SetControlEnabled(RegisterStatusType status)
+        {
+            if (status == RegisterStatusType.New)
+            {
+                gboxStatus.Enabled = true;
+                gboxSearch.Enabled = false;
+            }
+            else if (status == RegisterStatusType.OnAcception)
+            {
+                gboxStatus.Enabled = true;
+                gboxSearch.Enabled = true;
+            }
+            else if (status == RegisterStatusType.Accepted || status == RegisterStatusType.Completed || status == RegisterStatusType.Canceled)
+            {
+                gboxStatus.Enabled = false;
+                gboxSearch.Enabled = false;
+            }
+        }
+
         private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItemViewModel selectedRegisterItem)
         {
             _presenter.SearchObjects(selectedRegisterItem);
         }
 
-        private void btnSearchAll_Click(object sender, System.EventArgs e)
+        private void btnSearchAll_Click(object sender, EventArgs e)
         {
             _presenter.SearchObjectsForAll();
         }
 
-        private void btnSearchNotLinked_Click(object sender, System.EventArgs e)
+        private void btnSearchNotLinked_Click(object sender, EventArgs e)
         {
             _presenter.SearchObjectsForNotLinked();
         }
 
-        private void btnSearchSelected_Click(object sender, System.EventArgs e)
+        private void btnSearchSelected_Click(object sender, EventArgs e)
         {
             _presenter.SearchObjectsForSelected();
+        }
+
+        private void btnSetStatus_Click(object sender, EventArgs e)
+        {
+            _presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag);
+        }
+
+        private void btnSetCanceledStatus_Click(object sender, EventArgs e)
+        {
+            _presenter.SetStatus(RegisterStatusType.Canceled);
         }
     }
 }
