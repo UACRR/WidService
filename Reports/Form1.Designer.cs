@@ -35,11 +35,11 @@
             // reportViewer1
             // 
             this.reportViewer1.AccessibilityKeyMap = null;
-            this.reportViewer1.Location = new System.Drawing.Point(93, 150);
+            this.reportViewer1.Location = new System.Drawing.Point(25, 12);
             this.reportViewer1.Name = "reportViewer1";
             uriReportSource1.Uri = "D:\\work_new\\Reports\\Report2.trdp";
             this.reportViewer1.ReportSource = uriReportSource1;
-            this.reportViewer1.Size = new System.Drawing.Size(836, 150);
+            this.reportViewer1.Size = new System.Drawing.Size(1034, 416);
             this.reportViewer1.TabIndex = 1;
             // 
             // Form1
@@ -50,6 +50,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
