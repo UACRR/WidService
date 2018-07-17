@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.Reporting.UriReportSource uriReportSource1 = new Telerik.Reporting.UriReportSource();
+            Telerik.Reporting.UriReportSource uriReportSource2 = new Telerik.Reporting.UriReportSource();
             this.reportViewer1 = new Telerik.ReportViewer.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.AccessibilityKeyMap = null;
-            this.reportViewer1.Location = new System.Drawing.Point(93, 150);
+            this.reportViewer1.Location = new System.Drawing.Point(2, 12);
             this.reportViewer1.Name = "reportViewer1";
-            uriReportSource1.Uri = "D:\\work_new\\Reports\\Report2.trdp";
-            this.reportViewer1.ReportSource = uriReportSource1;
-            this.reportViewer1.Size = new System.Drawing.Size(836, 150);
+            uriReportSource2.Uri = "D:\\work\\MediaSercice\\reports\\Report2.trdp";
+            this.reportViewer1.ReportSource = uriReportSource2;
+            this.reportViewer1.Size = new System.Drawing.Size(1076, 426);
             this.reportViewer1.TabIndex = 1;
             // 
             // Form1
@@ -50,6 +50,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
