@@ -20,7 +20,7 @@ namespace ipsmedserviceapp.Controllers
         {
             _dbContext = dbContext;
         }
-        
+
         /// <summary>
         /// ведомость
         /// </summary>
@@ -60,6 +60,34 @@ namespace ipsmedserviceapp.Controllers
                 NotFound();
 
             return Json(register);
+        }
+
+        [HttpPut("{regId}")]
+        public async Task<IActionResult> Update(int? regId, [FromBody] Register register)
+        {
+            if (regId == null)
+                BadRequest();
+
+            var foundedRegister = await GetRegisterById((int)regId);
+
+            if (foundedRegister == null)
+                NotFound();
+
+            UpdateRegister(foundedRegister, register);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        private void UpdateRegister(Register destRegister, Register sourceRegister)
+        {
+            var excludeFields = new string[] { "RegId" };
+
+            destRegister.SetFields(sourceRegister, excludeFields);
+
+            var excludeFieldRegisterItem = new string[] { "Obj" };
+            _dbContext.UpdateList(sourceRegister.RegisterItem, destRegister.RegisterItem, r => { }, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId, excludeFieldRegisterItem );
         }
 
         /// <summary>
