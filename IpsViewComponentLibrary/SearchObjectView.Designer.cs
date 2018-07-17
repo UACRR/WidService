@@ -29,22 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.btnSearch = new Telerik.WinControls.UI.RadButton();
-            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.gvFoundedObjectList = new Telerik.WinControls.UI.RadGridView();
             this.registerSearchObjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterItemListControl();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -55,6 +57,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvFoundedObjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFoundedObjectList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerSearchObjectBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,19 +107,10 @@
             this.btnSearch.ThemeName = "Office2013Light";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // ctrlRegisterItemList
-            // 
-            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRegisterItemList.Location = new System.Drawing.Point(4, 4);
-            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
-            this.ctrlRegisterItemList.SelectedRegisterItem = null;
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1191, 269);
-            this.ctrlRegisterItemList.TabIndex = 1;
-            // 
             // splitPanel2
             // 
+            this.splitPanel2.Controls.Add(this.btnSave);
+            this.splitPanel2.Controls.Add(this.btnCancel);
             this.splitPanel2.Controls.Add(this.gvFoundedObjectList);
             this.splitPanel2.Location = new System.Drawing.Point(0, 314);
             this.splitPanel2.Name = "splitPanel2";
@@ -143,62 +138,62 @@
             this.gvFoundedObjectList.MasterTemplate.AllowDeleteRow = false;
             this.gvFoundedObjectList.MasterTemplate.AllowEditRow = false;
             this.gvFoundedObjectList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn1.DataType = typeof(int);
-            gridViewDecimalColumn1.FieldName = "ObjId";
-            gridViewDecimalColumn1.HeaderText = "Шифр об\'єкта";
-            gridViewDecimalColumn1.IsAutoGenerated = true;
-            gridViewDecimalColumn1.Name = "ObjId";
-            gridViewDecimalColumn1.Width = 184;
-            gridViewTextBoxColumn1.FieldName = "Name";
-            gridViewTextBoxColumn1.HeaderText = "Назва";
-            gridViewTextBoxColumn1.IsAutoGenerated = true;
-            gridViewTextBoxColumn1.Name = "Name";
-            gridViewTextBoxColumn1.Width = 184;
-            gridViewTextBoxColumn2.FieldName = "Performer";
-            gridViewTextBoxColumn2.HeaderText = "Виконавець";
-            gridViewTextBoxColumn2.IsAutoGenerated = true;
-            gridViewTextBoxColumn2.Name = "Performer";
-            gridViewTextBoxColumn2.Width = 184;
-            gridViewTextBoxColumn3.FieldName = "Author";
-            gridViewTextBoxColumn3.HeaderText = "Автор";
-            gridViewTextBoxColumn3.IsAutoGenerated = true;
-            gridViewTextBoxColumn3.Name = "Author";
-            gridViewTextBoxColumn3.Width = 184;
-            gridViewTextBoxColumn4.FieldName = "Genre";
-            gridViewTextBoxColumn4.HeaderText = "Жанр";
-            gridViewTextBoxColumn4.IsAutoGenerated = true;
-            gridViewTextBoxColumn4.Name = "Genre";
-            gridViewTextBoxColumn4.Width = 184;
-            gridViewTextBoxColumn5.DataType = typeof(System.Nullable<System.TimeSpan>);
-            gridViewTextBoxColumn5.FieldName = "Duration";
-            gridViewTextBoxColumn5.HeaderText = "Тривалість звучання";
-            gridViewTextBoxColumn5.IsAutoGenerated = true;
-            gridViewTextBoxColumn5.Name = "Duration";
-            gridViewTextBoxColumn5.Width = 185;
-            gridViewCommandColumn1.AllowResize = false;
-            gridViewCommandColumn1.DefaultText = "Прив\'язати";
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Name = "LinkColumn";
-            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.UseDefaultText = true;
-            gridViewCommandColumn1.Width = 81;
+            gridViewDecimalColumn2.DataType = typeof(int);
+            gridViewDecimalColumn2.FieldName = "ObjId";
+            gridViewDecimalColumn2.HeaderText = "Шифр об\'єкта";
+            gridViewDecimalColumn2.IsAutoGenerated = true;
+            gridViewDecimalColumn2.Name = "ObjId";
+            gridViewDecimalColumn2.Width = 183;
+            gridViewTextBoxColumn6.FieldName = "Name";
+            gridViewTextBoxColumn6.HeaderText = "Назва";
+            gridViewTextBoxColumn6.IsAutoGenerated = true;
+            gridViewTextBoxColumn6.Name = "Name";
+            gridViewTextBoxColumn6.Width = 183;
+            gridViewTextBoxColumn7.FieldName = "Performer";
+            gridViewTextBoxColumn7.HeaderText = "Виконавець";
+            gridViewTextBoxColumn7.IsAutoGenerated = true;
+            gridViewTextBoxColumn7.Name = "Performer";
+            gridViewTextBoxColumn7.Width = 183;
+            gridViewTextBoxColumn8.FieldName = "Author";
+            gridViewTextBoxColumn8.HeaderText = "Автор";
+            gridViewTextBoxColumn8.IsAutoGenerated = true;
+            gridViewTextBoxColumn8.Name = "Author";
+            gridViewTextBoxColumn8.Width = 183;
+            gridViewTextBoxColumn9.FieldName = "Genre";
+            gridViewTextBoxColumn9.HeaderText = "Жанр";
+            gridViewTextBoxColumn9.IsAutoGenerated = true;
+            gridViewTextBoxColumn9.Name = "Genre";
+            gridViewTextBoxColumn9.Width = 183;
+            gridViewTextBoxColumn10.DataType = typeof(System.Nullable<System.TimeSpan>);
+            gridViewTextBoxColumn10.FieldName = "Duration";
+            gridViewTextBoxColumn10.HeaderText = "Тривалість звучання";
+            gridViewTextBoxColumn10.IsAutoGenerated = true;
+            gridViewTextBoxColumn10.Name = "Duration";
+            gridViewTextBoxColumn10.Width = 184;
+            gridViewCommandColumn2.AllowResize = false;
+            gridViewCommandColumn2.DefaultText = "Прив\'язати";
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Name = "LinkColumn";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.UseDefaultText = true;
+            gridViewCommandColumn2.Width = 81;
             this.gvFoundedObjectList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn1,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewCommandColumn1});
+            gridViewDecimalColumn2,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewCommandColumn2});
             this.gvFoundedObjectList.MasterTemplate.DataSource = this.registerSearchObjectBindingSource;
             this.gvFoundedObjectList.MasterTemplate.EnableCustomFiltering = true;
             this.gvFoundedObjectList.MasterTemplate.EnableFiltering = true;
             this.gvFoundedObjectList.MasterTemplate.ShowFilteringRow = false;
             this.gvFoundedObjectList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvFoundedObjectList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvFoundedObjectList.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvFoundedObjectList.Name = "gvFoundedObjectList";
             this.gvFoundedObjectList.ShowGroupPanel = false;
-            this.gvFoundedObjectList.Size = new System.Drawing.Size(1182, 259);
+            this.gvFoundedObjectList.Size = new System.Drawing.Size(1182, 267);
             this.gvFoundedObjectList.TabIndex = 28;
             this.gvFoundedObjectList.ThemeName = "Office2013Light";
             this.gvFoundedObjectList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvFoundedObjectList_CommandCellClick);
@@ -206,6 +201,41 @@
             // registerSearchObjectBindingSource
             // 
             this.registerSearchObjectBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterSearchObject);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(7, 276);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(175, 24);
+            this.btnCancel.TabIndex = 29;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
+            // 
+            // ctrlRegisterItemList
+            // 
+            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemList.Location = new System.Drawing.Point(4, 4);
+            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
+            this.ctrlRegisterItemList.SelectedRegisterItem = null;
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1191, 269);
+            this.ctrlRegisterItemList.TabIndex = 1;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSave.Location = new System.Drawing.Point(1014, 276);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(175, 24);
+            this.btnSave.TabIndex = 30;
+            this.btnSave.Text = "Зберегти";
+            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // SearchObjectView
             // 
@@ -230,6 +260,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvFoundedObjectList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvFoundedObjectList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerSearchObjectBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -245,5 +277,7 @@
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
         private System.Windows.Forms.BindingSource registerSearchObjectBindingSource;
         private Telerik.WinControls.UI.RadGridView gvFoundedObjectList;
+        private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.UI.RadButton btnSave;
     }
 }

@@ -1,6 +1,9 @@
-﻿using ipsFormsDesign.Dictionary;
+﻿using ipsFormsDesign;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Services;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace IpsViewComponentLibrary
 {
@@ -8,7 +11,7 @@ namespace IpsViewComponentLibrary
     {
         private readonly SearchObjectView _view;
         private readonly RegisterService _registerService;
-        private readonly List<RegisterItemViewModel> _registerItemList;
+        private readonly List<RegisterItemViewModel> _sourceRegisterItemList;
 
         public SearchObjectPresenter(SearchObjectView view, RegisterService registerService)
         {
@@ -17,14 +20,25 @@ namespace IpsViewComponentLibrary
 
             _registerService = registerService;
 
-            _registerItemList = new List<RegisterItemViewModel>();
+            _sourceRegisterItemList = new List<RegisterItemViewModel>();
         }
 
         public void Show(RegisterItemViewModel registerItem)
         {
-            _registerItemList.Add(registerItem);
+            _sourceRegisterItemList.Add(registerItem);
 
-            _view.RegisterItemListDataSource = _registerItemList;
+            foreach (var r in _sourceRegisterItemList)
+            {
+                var clonedRegisterItem = new RegisterItemViewModel();
+
+                Utils.SetFields(clonedRegisterItem, r);
+                clonedRegisterItem.DurationItem = r.DurationItem;
+                clonedRegisterItem.DurationUse = r.DurationUse;
+                clonedRegisterItem.ObjectDuration = r.ObjectDuration;
+
+                _view.RegisterItemList.Add(clonedRegisterItem);
+            }
+
             _view.Run();
         }
 
@@ -41,6 +55,34 @@ namespace IpsViewComponentLibrary
             foreach (var obj in foundedObject)
             {
                 _view.FoundedObjectList.Add(obj);
+            }
+        }
+
+        public void LinkObjectToRegisterItem(RegisterItemViewModel registerItem, RegisterSearchObject registerSearchObject)
+        {
+            registerItem.ObjId = registerSearchObject.ObjId;
+            registerItem.ObjectName = registerSearchObject.Name;
+            registerItem.ObjectAuthors = registerSearchObject.Author;
+            registerItem.ObjectPerformers = registerSearchObject.Performer;
+            registerItem.ObjectDuration = registerSearchObject.Duration;
+        }
+
+        public void Save()
+        {
+            // TODO: save to db, if success update list
+
+            foreach (var registerItem in _view.RegisterItemList)
+            {
+                var foundedRegisterItem = _sourceRegisterItemList.FirstOrDefault(r => r.RegId == registerItem.RegId && r.RegIitemId == registerItem.RegIitemId);
+
+                if (foundedRegisterItem != null)
+                {
+                    foundedRegisterItem.ObjId = registerItem.ObjId;
+                    foundedRegisterItem.ObjectName = registerItem.ObjectName;
+                    foundedRegisterItem.ObjectAuthors = registerItem.ObjectAuthors;
+                    foundedRegisterItem.ObjectPerformers = registerItem.ObjectPerformers;
+                    foundedRegisterItem.ObjectDuration = registerItem.ObjectDuration;
+                }
             }
         }
     }

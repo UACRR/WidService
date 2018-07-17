@@ -52,8 +52,8 @@ namespace IpsViewComponentLibrary
                     RegId = r.RegId,
                     RegIitemId = r.RegIitemId,
                     ObjId = r.ObjId,
-
                 };
+
                 if (r.Obj != null)
                 {
                     rvm.ObjectName = r.Obj.Name;

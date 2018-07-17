@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -28,11 +29,11 @@ namespace IpsViewComponentLibrary
             set { ctrlRegisterItemList.DataSource = value; }
         }
 
-        //private BindingList<RegisterItemViewModel> _registerItemList;
-        //public ICollection<RegisterItemViewModel> RegisterItemList
-        //{
-        //    get { return _registerItemList; }
-        //}
+        private BindingList<RegisterItemViewModel> _registerItemList;
+        public ICollection<RegisterItemViewModel> RegisterItemList
+        {
+            get { return _registerItemList; }
+        }
 
         private BindingList<RegisterSearchObject> _foundedObjectList;
         public ICollection<RegisterSearchObject> FoundedObjectList
@@ -40,14 +41,42 @@ namespace IpsViewComponentLibrary
             get { return _foundedObjectList; }
         }
 
+        private RegisterSearchObject _registerSearchObject;
+        public RegisterSearchObject SelectedRegisterSearchObject
+        {
+            get
+            {
+                if (gvFoundedObjectList.CurrentRow == null)
+                    return null;
+
+                return gvFoundedObjectList.CurrentRow.DataBoundItem as RegisterSearchObject;
+            }
+            set
+            {
+                if (_registerSearchObject != value)
+                {
+                    _registerSearchObject = value;
+
+                    if (_registerSearchObject != null)
+                    {
+                        var row = gvFoundedObjectList.Rows.FirstOrDefault(r => (int)r.Cells["ObjId"].Value == _registerSearchObject.ObjId);
+                        if (row != null)
+                        {
+                            gvFoundedObjectList.CurrentRow = row;
+                        }
+                    }
+                }
+            }
+        }
+
         public SearchObjectView()
         {
             InitializeComponent();
 
-            //_registerItemList = new BindingList<RegisterItemViewModel>();
+            _registerItemList = new BindingList<RegisterItemViewModel>();
             _foundedObjectList = new BindingList<RegisterSearchObject>();
 
-            //ctrlRegisterItemList.DataSource = _registerItemList;
+            ctrlRegisterItemList.DataSource = _registerItemList;
             gvFoundedObjectList.DataSource = _foundedObjectList;
         }
 
@@ -67,8 +96,13 @@ namespace IpsViewComponentLibrary
 
             if (currentColumnName == "LinkColumn")
             {
-                // link
+                _presenter.LinkObjectToRegisterItem(ctrlRegisterItemList.SelectedRegisterItem, SelectedRegisterSearchObject);
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            _presenter.Save();
         }
     }
 }
