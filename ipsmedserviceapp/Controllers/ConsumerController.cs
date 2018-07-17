@@ -132,7 +132,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
-        // [Authorize]
+        [Authorize]
         [HttpGet("detail/{id}")]
         public async Task<IActionResult> GetConsumerById(int id)
         {

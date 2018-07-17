@@ -13,11 +13,11 @@ namespace ipsmedserviceapp
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                //.UseHttpSys(options =>
-                //{
-                //    options.Authentication.Schemes = Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes.NTLM | Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes.Negotiate;
-                //    options.Authentication.AllowAnonymous = false;
-                //})
+                .UseHttpSys(options =>
+                {
+                    options.Authentication.Schemes = Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes.NTLM | Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes.Negotiate;
+                    options.Authentication.AllowAnonymous = false;
+                })
                 .Build();
     }
 }
