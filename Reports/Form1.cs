@@ -16,10 +16,5 @@ namespace Reports
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            reportViewer1.RefreshReport();
-        }
     }
 }
