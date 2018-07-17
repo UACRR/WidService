@@ -122,5 +122,37 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(list);
         }
+
+        [HttpPut("setstatus/{regId}")]
+        public async Task<IActionResult> SetStatus(int regId, [FromBody] int newStatus)
+        {
+            var register = await _dbContext.Register.FirstOrDefaultAsync(r => r.RegId == regId);
+
+            if (register == null)
+                return NotFound();
+
+            List<int> allowedStatuses = new List<int>();
+
+            if (register.RgStatus == 0)
+                allowedStatuses.AddRange(new[] { 1, 4 });
+            else if (register.RgStatus == 1)
+                allowedStatuses.AddRange(new[] { 2, 4 });
+            else if (register.RgStatus == 2)
+                allowedStatuses.AddRange(new[] { 3 });
+            else
+                allowedStatuses.AddRange(new int[0]);
+
+            if (allowedStatuses.Contains(newStatus))
+            {
+                register.RgStatus = newStatus;
+                await _dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status406NotAcceptable);
+            }
+
+            return Ok();
+        }
     }
 }
