@@ -182,11 +182,13 @@ namespace IpsViewComponentLibrary
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
-            SelectedRegisterItem.ObjId = selectedObject.ObjId;
-            SelectedRegisterItem.ObjectName = selectedObject.Name;
-            SelectedRegisterItem.ObjectAuthors = selectedObject.Author;
-            SelectedRegisterItem.ObjectPerformers = selectedObject.Performer;
-            SelectedRegisterItem.ObjectDuration = selectedObject.Duration;
+            SelectedRegisterItem.SetObjectData(
+                selectedObject.ObjId,
+                selectedObject.Name,
+                selectedObject.Author,
+                selectedObject.Performer,
+                selectedObject.Duration
+            );
         }
 
         private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)

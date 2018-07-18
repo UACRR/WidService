@@ -57,11 +57,13 @@ namespace IpsViewComponentLibrary
 
         public void LinkObjectToRegisterItem(RegisterItemViewModel registerItem, RegisterSearchObject registerSearchObject)
         {
-            registerItem.ObjId = registerSearchObject.ObjId;
-            registerItem.ObjectName = registerSearchObject.Name;
-            registerItem.ObjectAuthors = registerSearchObject.Author;
-            registerItem.ObjectPerformers = registerSearchObject.Performer;
-            registerItem.ObjectDuration = registerSearchObject.Duration;
+            registerItem.SetObjectData(
+                registerSearchObject.ObjId,
+                registerSearchObject.Name,
+                registerSearchObject.Author,
+                registerSearchObject.Performer,
+                registerSearchObject.Duration
+            );
         }
 
         public void Apply()
@@ -72,11 +74,13 @@ namespace IpsViewComponentLibrary
 
                 if (foundedRegisterItem != null)
                 {
-                    foundedRegisterItem.ObjId = registerItem.ObjId;
-                    foundedRegisterItem.ObjectName = registerItem.ObjectName;
-                    foundedRegisterItem.ObjectAuthors = registerItem.ObjectAuthors;
-                    foundedRegisterItem.ObjectPerformers = registerItem.ObjectPerformers;
-                    foundedRegisterItem.ObjectDuration = registerItem.ObjectDuration;
+                    foundedRegisterItem.SetObjectData(
+                        registerItem.ObjId,
+                        registerItem.ObjectName,
+                        registerItem.ObjectAuthors,
+                        registerItem.ObjectPerformers,
+                        registerItem.ObjectDuration
+                    );
                 }
             }
         }

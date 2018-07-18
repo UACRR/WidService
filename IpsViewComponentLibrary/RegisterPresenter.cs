@@ -121,16 +121,10 @@ namespace IpsViewComponentLibrary
                     Performer = r.Performer,
                     RegId = r.RegId,
                     RegIitemId = r.RegIitemId,
-                    ObjId = r.ObjId,
                 };
 
                 if (r.Obj != null)
-                {
-                    rvm.ObjectName = r.Obj.Name;
-                    rvm.ObjectAuthors = r.Obj.Author;
-                    rvm.ObjectPerformers = r.Obj.Performer;
-                    rvm.ObjectDuration = r.Obj.MediaTrack.Duration;
-                }
+                    rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack.Duration);
 
                 _view.RegisterItemList.Add(rvm);
             }

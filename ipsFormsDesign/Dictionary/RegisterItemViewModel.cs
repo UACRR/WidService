@@ -64,6 +64,26 @@ namespace ipsFormsDesign.Dictionary
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public void SetObjectData(int? objId, string name, string authors, string performers, TimeSpan? duration)
+        {
+            ObjId = objId;
+
+            if (objId != null)
+            {
+                ObjectName = name;
+                ObjectAuthors = authors;
+                ObjectPerformers = performers;
+                ObjectDuration = duration;
+            }
+            else
+            {
+                ObjectName = null;
+                ObjectAuthors = null;
+                ObjectPerformers = null;
+                ObjectDuration = null;
+            }
+        }
+
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
