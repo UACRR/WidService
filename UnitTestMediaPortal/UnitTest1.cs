@@ -162,5 +162,11 @@ namespace UnitTestMediaPortal
 
         }
 
+        [TestMethod]
+        public void TestGridPayments()
+        {
+
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,11 @@ namespace TestControls
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void radGridView2_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            var curItem = (ConsumerMainView)radGridView2.CurrentRow.DataBoundItem;
         }
     }
 }
