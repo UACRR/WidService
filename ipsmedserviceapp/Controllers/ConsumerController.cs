@@ -940,7 +940,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 Register addItem = new Register { RgStatus = 1 };
                 // addItem.RegId
                 addItem.SetFields(body, new[] { "RegId" });
-                period.Register.Add(addItem);
+
 
                 int index = 1;
                 _dbContext.AppendList(body.RegisterItem, addItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);

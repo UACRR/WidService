@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
-using Microsoft.Extensions.Configuration;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using MSWord = Microsoft.Office.Interop.Word;
