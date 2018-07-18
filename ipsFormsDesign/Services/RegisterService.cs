@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using System;
 using System.Collections.Generic;
 using WebAPIConnector;
 
@@ -37,6 +38,16 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<RegisterSearchObject>("register/search", param );
 
             return list;
+        }
+
+        public bool Save(Register register)
+        {
+            if (register.RegId == 0)
+            {
+                throw new NotImplementedException();
+            }
+
+            return _webApi.UpdateItem("register", register.RegId.ToString(), register);
         }
 
         public bool SetStatus(int regId, RegisterStatusType status)
