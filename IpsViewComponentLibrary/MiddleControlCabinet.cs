@@ -47,6 +47,7 @@ namespace IpsViewComponentLibrary
         public MiddleControlCabinet()
         {
             InitializeComponent();
+            ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
         }

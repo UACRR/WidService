@@ -13,11 +13,11 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class MiddleControlCabinetRequest : UserControl
+    public partial class MiddleControlCabinetReqRef : UserControl
     {
         private Customer _customer;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
-        public MiddleControlCabinetRequest()
+        public MiddleControlCabinetReqRef()
         {
             InitializeComponent();
             bsDictionary.DataSource = IpsGlobal.AnketaDictionaties.workType;

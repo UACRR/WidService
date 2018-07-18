@@ -444,11 +444,11 @@
     <Compile Include="MiddleControlCabinetReference.Designer.cs">
       <DependentUpon>MiddleControlCabinetReference.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetRequest.cs">
+    <Compile Include="MiddleControlCabinetReqRef.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinetRequest.Designer.cs">
-      <DependentUpon>MiddleControlCabinetRequest.cs</DependentUpon>
+    <Compile Include="MiddleControlCabinetReqRef.Designer.cs">
+      <DependentUpon>MiddleControlCabinetReqRef.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlClientName.cs">
       <SubType>UserControl</SubType>
@@ -784,8 +784,8 @@
     <EmbeddedResource Include="MiddleControlCabinetReference.resx">
       <DependentUpon>MiddleControlCabinetReference.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetRequest.resx">
-      <DependentUpon>MiddleControlCabinetRequest.cs</DependentUpon>
+    <EmbeddedResource Include="MiddleControlCabinetReqRef.resx">
+      <DependentUpon>MiddleControlCabinetReqRef.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>

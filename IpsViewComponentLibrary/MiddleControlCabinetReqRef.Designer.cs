@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary
 {
-    partial class MiddleControlCabinetRequest
+    partial class MiddleControlCabinetReqRef
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
