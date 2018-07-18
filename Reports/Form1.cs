@@ -19,8 +19,6 @@ namespace Reports
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Telerik.Reporting.InstanceReportSource instanceReportSource = (Telerik.Reporting.InstanceReportSource)this.reportViewer1.ReportSource;
-            Telerik.Reporting.Report report = (Telerik.Reporting.Report)instanceReportSource.ReportDocument;
             this.reportViewer1.RefreshReport();
         }
     }
