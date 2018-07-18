@@ -171,12 +171,37 @@ namespace IpsViewComponentLibrary
         {
             if (_allowLinkCommand)
                 LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
+
+            // TODO: move to presenter
+            using (var selectionView = new ObjectRightSelectionView())
+            {
+                selectionView.ObjectSelected += SelectionView_ObjectSelected;
+                selectionView.ShowDialog();
+            }
+        }
+
+        private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
+        {
+            SelectedRegisterItem.ObjId = selectedObject.ObjId;
+            SelectedRegisterItem.ObjectName = selectedObject.Name;
+            SelectedRegisterItem.ObjectAuthors = selectedObject.Author;
+            SelectedRegisterItem.ObjectPerformers = selectedObject.Performer;
+            SelectedRegisterItem.ObjectDuration = selectedObject.Duration;
         }
 
         private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
             if (_allowShowObjectCommand)
                 ShowObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
+
+            if (selectedRegisterItem.ObjId != null)
+            {
+                using (var view = new ObjectRightItemView())
+                {
+                    var presenter = new ObjectRightItemPresenter(view);
+                    presenter.Show((int)selectedRegisterItem.ObjId);
+                }
+            }
         }
 
         private void SetColumnVisible(string columnName, bool isVisible)
