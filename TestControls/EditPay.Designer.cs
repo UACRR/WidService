@@ -225,7 +225,7 @@ namespace TestControls
             this.radPanel3.Controls.Add(this.radTextBox3);
             this.radPanel3.Controls.Add(this.radLabel5);
             this.radPanel3.Controls.Add(this.radLabel6);
-            this.radPanel3.Location = new System.Drawing.Point(8, 30);
+            this.radPanel3.Location = new System.Drawing.Point(8, 27);
             this.radPanel3.Name = "radPanel3";
             this.radPanel3.Size = new System.Drawing.Size(200, 22);
             this.radPanel3.TabIndex = 2;
@@ -350,20 +350,17 @@ namespace TestControls
             this.radPanel6.Size = new System.Drawing.Size(200, 22);
             this.radPanel6.TabIndex = 5;
             // 
-            // radTextBox6
+            // radDropDownList6
             // 
             this.radDropDownList6.AutoSize = false;
             this.radDropDownList6.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bindingSource1, "R030", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.radDropDownList6.DisplayMember = "R030Name";
             this.radDropDownList6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radDropDownList6.Location = new System.Drawing.Point(82, 0);
-            this.radDropDownList6.Name = "radTextBox6";
+            this.radDropDownList6.Name = "radDropDownList6";
             this.radDropDownList6.Size = new System.Drawing.Size(116, 22);
             this.radDropDownList6.TabIndex = 6;
-            this.radDropDownList6.DataSource = IpsGlobal.AnketaDictionaties.klR030;
             this.radDropDownList6.ValueMember = "R030";
-            this.radDropDownList6.DisplayMember = "R030Name";
-
-
             // 
             // radLabel11
             // 
@@ -635,16 +632,19 @@ namespace TestControls
             this.radPanel14.Size = new System.Drawing.Size(200, 20);
             this.radPanel14.TabIndex = 13;
             // 
-            // radTextBox14
+            // radDateTime14
             // 
             this.radDateTime14.AutoSize = false;
             this.radDateTime14.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bindingSource1, "DocDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.radDateTime14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radDateTime14.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.radDateTime14.Location = new System.Drawing.Point(82, 0);
-            this.radDateTime14.Name = "radTextBox14";
+            this.radDateTime14.Name = "radDateTime14";
             this.radDateTime14.Size = new System.Drawing.Size(116, 20);
             this.radDateTime14.TabIndex = 14;
-            this.radDateTime14.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.radDateTime14.TabStop = false;
+            this.radDateTime14.Text = "18.07.2018";
+            this.radDateTime14.Value = new System.DateTime(2018, 7, 18, 18, 7, 39, 102);
             // 
             // radLabel27
             // 
