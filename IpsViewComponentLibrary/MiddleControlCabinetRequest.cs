@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetRequest : UserControl
     {
         private Customer _customer;
+        private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
         public MiddleControlCabinetRequest()
         {
             InitializeComponent();
@@ -33,6 +34,39 @@ namespace IpsViewComponentLibrary
             gvViewRequests.DataSource = listRequests;
             bindingSource1.DataSource = author;
             // gvCreativeRole.DataSource = author;
+        }
+
+        public ControlRequestOrReferenceType TypeControl
+        {
+            get => _typeControl;
+            set
+            {
+                _typeControl = value;
+                SetTypeControl(value);
+            }
+        }
+
+        private void SetTypeControl(ControlRequestOrReferenceType type)
+        {
+            switch (type)
+            {
+                case ControlRequestOrReferenceType.None:
+                    break;
+                case ControlRequestOrReferenceType.Request:
+                {
+                    btnToReference.Visible = true;
+                    btnCreate.Text = "Нова заявка";
+                    btnDelete.Text = "Вилучити заявку";
+                }
+                    break;
+                case ControlRequestOrReferenceType.Reference:
+                {
+                    btnToReference.Visible = false;
+                    btnCreate.Text = "Створити ліцензію";
+                    btnDelete.Text = "Вилучити довідку";
+                }
+                    break;
+            }
         }
 
         private void gvViewRequests_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

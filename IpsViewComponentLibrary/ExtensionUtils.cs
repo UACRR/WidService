@@ -240,4 +240,23 @@ namespace IpsViewComponentLibrary
         Agent
     }
 
+    /// <summary>
+    /// Тип контролу
+    /// </summary>
+    public enum ControlRequestOrReferenceType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Заявка
+        /// </summary>
+        Request,
+        /// <summary>
+        /// Довідка
+        /// </summary>
+        Reference
+    }
+
 }
