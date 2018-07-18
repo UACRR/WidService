@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.Reporting.UriReportSource uriReportSource1 = new Telerik.Reporting.UriReportSource();
+            Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
             this.reportViewer1 = new Telerik.ReportViewer.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
             this.reportViewer1.AccessibilityKeyMap = null;
-            this.reportViewer1.Location = new System.Drawing.Point(72, 12);
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            uriReportSource1.Uri = "D:\\work_new\\reports\\Report2.trdp";
-            this.reportViewer1.ReportSource = uriReportSource1;
-            this.reportViewer1.Size = new System.Drawing.Size(914, 426);
+            typeReportSource1.TypeName = "Reports.Report1, Reports, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
+            this.reportViewer1.ReportSource = typeReportSource1;
+            this.reportViewer1.Size = new System.Drawing.Size(1081, 450);
             this.reportViewer1.TabIndex = 1;
             // 
             // Form1
