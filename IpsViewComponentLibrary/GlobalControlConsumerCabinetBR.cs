@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace IpsViewComponentLibrary
         private Customer _customer;
         private IList<ConsumerBigRightView> _brData;
         private IList<VbrLicense> _agrData;
+        private IList<BigRightMasterGenAgr> _genAgrs;
 
         public delegate void BackToMainGrid(int custId);
         /// <summary>
@@ -40,8 +42,12 @@ namespace IpsViewComponentLibrary
         public delegate void EditCustomer(int id);
         public event EditCustomer OnEditCustomer;
 
+
         public delegate bool SaveCustomer(Customer customer);
         public event SaveCustomer OnSaveCustomer;//TODO invoke
+
+        public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
+        public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocument;
 
         public string FilterString
         {
@@ -53,8 +59,20 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             ctrlCabinet.OnSaveCustomerNeed += CtrlCabinet_OnSaveCustomerNeed;
-            //ctrlCabinet.SetAndUpdateData(_customer);
+            ctrlCabinet.OnAddNewDocument += CtrlCabinet_OnAddNewDocument;
+            ctrlCabinet.OnViewDocumentNeed += CtrlCabinet_OnViewDocumentNeed;
+
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private void CtrlCabinet_OnViewDocumentNeed(int custId, int typeDocument, string fileName)
+        {
+            OnViewDocument?.Invoke(custId, typeDocument, fileName);
+        }
+
+        private void CtrlCabinet_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
+        {
+            OnAddNewDocument?.Invoke(custId,typeDocument,fileName,comment);
         }
 
         private void CtrlCabinet_OnSaveCustomerNeed(object sender, EventArgs e)
@@ -69,7 +87,7 @@ namespace IpsViewComponentLibrary
         public void SetGridDataSource(IList<ConsumerBigRightView> source)
         {
             _brData = source;
-            gvConsumerList.DataSource = source;
+            gvConsumerList.DataSource = _brData;
         }
 
         public void SetDataAnketaDictionaties(AnketaDictionaties aDictionaties)
@@ -82,9 +100,19 @@ namespace IpsViewComponentLibrary
             _customer = customer;
         }
 
-        public void SetDataAgreementView(IList<VbrLicense> agrData)
+        public void SetDataAgreementView(IList<object> agrData)
         {
-            _agrData = agrData;
+            _agrData = new List<VbrLicense>();
+            foreach (var temp in agrData)
+                _agrData.Add(temp as VbrLicense);
+            
+        }
+
+        public void SetAgrMasterList(IList<object> genAgrs)
+        {
+            _genAgrs = new List<BigRightMasterGenAgr>();
+            foreach (var temp in genAgrs)
+                _genAgrs.Add(temp as BigRightMasterGenAgr);
         }
 
         public void SetSelectCustomer(int custId)
@@ -102,7 +130,7 @@ namespace IpsViewComponentLibrary
             if(_rowId != -1)
             {
                 OnCustomerUpdateDataNeed?.Invoke(_rowId);
-                ctrlCabinet.SetAndUpdateData(_customer, e.CurrentRow.DataBoundItem as ConsumerBigRightView,_agrData);
+                ctrlCabinet.SetAndUpdateData(_customer, e.CurrentRow.DataBoundItem as ConsumerBigRightView, _agrData, _genAgrs);
             }
         }
 

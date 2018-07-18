@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
@@ -66,6 +66,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Person)
                         .Include(item => item.AnketaPerson)
                         .Include(item => item.BankAccount)
+                        .Include(item => item.FileCustomer)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.LicenseAgreement)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
@@ -131,6 +132,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("detail/{id}")]
         public async Task<IActionResult> GetConsumerById(int id)
         {
@@ -643,7 +645,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("listBR")]
-        public async Task<IActionResult> GetListBR([FromQuery(Name= "whatId")] int whatId, [FromQuery(Name= "typeDocId")] int typeDocId)
+        public async Task<IActionResult> GetListBR([FromQuery(Name = "whatId")] int whatId, [FromQuery(Name = "typeDocId")] int typeDocId)
         {
             ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
             TypeBRDocument typeDoc = Enum.Parse<TypeBRDocument>(typeDocId.ToString());
@@ -653,10 +655,10 @@ namespace ipsmedserviceapp.Controllers
             if (validDocRequest.Keys.Contains(typeDoc))
             {
                 Dictionary<ConsumerFilterEnum, string> filterObject = validDocRequest[typeDoc];
-                if(filterObject.Keys.Contains(what))
+                if (filterObject.Keys.Contains(what))
                 {
                     string filter = filterObject[what];
-                    if( !string.IsNullOrEmpty( filter ) )
+                    if (!string.IsNullOrEmpty(filter))
                     {
                         queue = string.Concat(queue, " where ", filter);
                     }
@@ -679,13 +681,63 @@ namespace ipsmedserviceapp.Controllers
             return Json(List);
         }
 
+        /// <summary>
+        /// Список представлень для великих прав
+        /// </summary>
+        private Dictionary<string, string> listBrView = new Dictionary<string, string> {
+            { "vTsk_vBRLicense", "vTsk_vBRLicense" },
+            { "vTsk_1_ListConsumer01", "vTsk_1_ListConsumer01" },
+            { "vTsk_1_ListConsumer02", "vTsk_1_ListConsumer02" },
+            { "vTsk_1_BRBid", "vTsk_1_BRBid" },
+            { "vTsk_1_BRBidAuthors", "vTsk_1_BRBidAuthors" },
+            { "vTsk_1_BRNotice", "vTsk_1_BRNotice" },
+            { "vTSK_1_BRMaster", "vTSK_1_BRMaster" },
+            { "vTSK_1_BRRegister", "vTSK_1_BRRegister" },
+            { "vTsk_1_MoneyUndescrib", "vTsk_1_MoneyUndescrib" },
+            { "vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay" }
+        };
+        #region BigRight view
+        [HttpGet("BR/view/list")]
+        public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
+        {
+            if (viewName == null || !listBrView.Keys.Contains(viewName))
+                return BadRequest();
+
+            string QueryStr = string.Concat("select * from ", listBrView[viewName]);
+            // Немає параметру по Споживачу
+            if (custId == null)
+            {
+                var list = await _dbContext.getViewData(QueryStr, null);
+                return Json(list);
+            }
+            else
+            {
+                QueryStr = string.Concat(QueryStr, " where custId = @custId");
+                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId ) });
+                return Json(list);
+
+            }
+        }
+        #endregion
+
         //TODO test method
+        [HttpGet("listBR/agrmaster/{custId}")]
+        public async Task<IActionResult> GetAgrForCustId(int custId)
+        {
+            string queue = "select * from vTSK_1_BRMaster where custId = @custId";
+
+            var List = await _dbContext.getViewData(queue, new[] { new SqlParameter("@custId", custId) });
+
+
+            return Json(List);
+        }
+
         [HttpGet("listBR/{custId}")]
         public async Task<IActionResult> GetLicensesForCustId(int custId)
         {
             string queue = "select * from vTsk_vBRLicense where custId = @custId";
 
-            var List = await _dbContext.getViewData(queue, new [] {new SqlParameter("@custId", custId)  });
+            var List = await _dbContext.getViewData(queue, new[] { new SqlParameter("@custId", custId) });
 
 
             return Json(List);
@@ -888,7 +940,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 Register addItem = new Register { RgStatus = 1 };
                 // addItem.RegId
                 addItem.SetFields(body, new[] { "RegId" });
-                period.Register.Add(addItem);
+
 
                 int index = 1;
                 _dbContext.AppendList(body.RegisterItem, addItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
@@ -1007,7 +1059,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="typeDocument"></param>
         /// <returns></returns>
         [HttpPost("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, IFormFile file)
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, string comment,  IFormFile file)
         {
 
             // Перевірка існування дерикторії
@@ -1024,15 +1076,59 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             if (!Directory.Exists(consumerPath))
                 Directory.CreateDirectory(consumerPath);
 
-            //var file = files.First();
-            consumerPath = Path.Combine(consumerPath, file.FileName);
-
-            if (System.IO.File.Exists(consumerPath))
-                System.IO.File.Delete(consumerPath);
-            // Зберігаємо файл на сервері
-            using (var stream = new FileStream(consumerPath, FileMode.Create))
+            // Запис бази даних по файлу
+            var fileRec = await _dbContext.FileCustomer.Where(rec => rec.CustId == custId && rec.DocFile == file.FileName).SingleOrDefaultAsync();
+            if (fileRec == null)
             {
-                await file.CopyToAsync(stream);
+                fileRec = new FileCustomer { CustId = custId, DocFile = file.FileName, CreateDate = DateTime.Now, DocType = typeDocument };
+                _dbContext.FileCustomer.Add(fileRec);
+            }
+
+            // var file = files.First();
+            // Зберігаємо файл
+            consumerPath = Path.Combine(consumerPath, file.FileName);
+            var consumerSavePath = string.Concat(consumerPath, ".old");
+            if (System.IO.File.Exists(consumerPath))
+            {
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Delete(consumerSavePath);
+                System.IO.File.Move(consumerPath, consumerSavePath);
+
+
+            }
+
+
+            fileRec.ModifyDate = DateTime.Now;
+            fileRec.DocComment = comment;
+            // Зберігаємо файл на сервері
+
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                using (var stream = new FileStream(consumerPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                // Видаляемо збережений файл
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Delete(consumerSavePath);
+
+                tran = null;
+            }
+            catch (Exception)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                if (System.IO.File.Exists(consumerPath))
+                    System.IO.File.Delete(consumerPath);
+
+                // Востанавлюємо збережений файл
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Move(consumerSavePath, consumerPath );
+                return BadRequest();
             }
 
             return Ok();

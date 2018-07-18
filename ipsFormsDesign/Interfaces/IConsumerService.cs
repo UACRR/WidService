@@ -46,7 +46,7 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Дата ген. угоди
         /// </summary>
-        public DateTime? AgrTime { get; set; }
+        public DateTime? AgrDate { get; set; }
         /// <summary>
         /// Дата початку дії
         /// </summary>
@@ -190,5 +190,25 @@ namespace ipsFormsDesign.Interfaces
         public string ToProlong { get; set; }
         public string Comment { get; set; }
         public string R030 { get; set; }
+    }
+
+    /// <summary>
+    /// Дані генеральних угод
+    /// </summary>
+    public class BigRightMasterGenAgr
+    {
+        public DateTime? AgrDate { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
+        public string AgrNumber { get; set; }
+        public int Agrid { get; set; }
+        public int Version { get; set; }
+        public int CustId { get; set; }
+        public int? AgrStatus { get; set; }
+        public string CustName { get; set; }
+        public string ShortName { get; set; }
+        public string ClientGroup { get; set; }
+        public string ClientBrand { get; set; }
+        public string StatusName { get; set; }
     }
 }

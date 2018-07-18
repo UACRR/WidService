@@ -25,6 +25,7 @@ namespace ipsFormsDesign.Model
 
         public Account AccIdDebetNavigation { get; set; }
         public PaymentStatus PayStatusNavigation { get; set; }
+        public Register Reg { get; set; }
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -15,8 +16,12 @@ namespace ipsmedserviceapp.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
 
+        [JsonIgnore]
         public CopyRight CRight { get; set; }
+        [JsonIgnore]
         public WorkType WorkTypeClNavigation { get; set; }
+        [JsonIgnore]
         public WorkType WorkTypeRhNavigation { get; set; }
     }
 }
+

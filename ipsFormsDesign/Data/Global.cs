@@ -70,7 +70,7 @@ namespace ipsFormsDesign.Data
         {
             AnketaDictionaties = _dic;
             setAnketaDictProperties();
-            AnketaDictionatiesChanged(null, EventArgs.Empty);
+            AnketaDictionatiesChanged?.Invoke(null, EventArgs.Empty);
         }
 
         public static void SetObjectRightDictionaries(ObjectRightDictionaries dictionaries)

@@ -116,8 +116,13 @@ namespace UnitTestMediaPortal
         public void TestPutDocument()
         {
             ConsumerService service = new ConsumerService();
-            Customer cust = service.GetData( 135 );
-            service.uploadDocument(135, 1, "F_6_МТЦ.docx", new FileStream("Documents\\F_6_МТЦ.docx", FileMode.Open));
+            // Customer cust = service.GetData( 135 );
+            string comment = "test--test";
+            service.uploadDocument(135, 1, comment, ".\\Documents\\F_6_МТЦ.docx");
+            Customer cust = service.GetData(135);
+            Assert.IsNotNull(cust, "Cust");
+            var file = cust.FileCustomer.Where(rec => rec.DocType == 1 && rec.DocComment == comment).FirstOrDefault();
+            Assert.IsNotNull(file, "File");
         }
 
         [TestMethod]
@@ -149,7 +154,7 @@ namespace UnitTestMediaPortal
         public void TestExpandoObject()
         {
             ConsumerService _service = new ConsumerService();
-            var list = _service.getMainViewBR(ipsFormsDesign.Dictionary.TypeBRDocument.GenAgreement, ipsFormsDesign.Dictionary.ConsumerFilterEnum.Working );
+            var list = _service.getBRView(typeof(object), "vTSK_1_BRRegister", null );
             RadTestExpandoObject form = new RadTestExpandoObject();
             form.DataSource = list;
 

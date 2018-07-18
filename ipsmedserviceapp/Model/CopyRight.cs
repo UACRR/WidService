@@ -35,7 +35,6 @@ namespace ipsmedserviceapp.Model
         public CopyRtranslate CopyRtranslate { get; set; }
         [JsonIgnore]
         public LicAuthorBr LicAuthorBr { get; set; }
-        [JsonIgnore]
         public WorkRh WorkRh { get; set; }
     }
 }

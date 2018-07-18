@@ -11,6 +11,7 @@ namespace ipsFormsDesign.Model
             AnketaCompanyFaCountryNavigation = new ObservableListSource<AnketaCompany>();
             AnketaCompanyJaCountryNavigation = new ObservableListSource<AnketaCompany>();
             AnketaCompanyLeCountryNavigation = new ObservableListSource<AnketaCompany>();
+            AnketaExternal = new ObservableListSource<AnketaExternal>();
             AnketaPersonCitizenshipNavigation = new ObservableListSource<AnketaPerson>();
             AnketaPersonFaCountryNavigation = new ObservableListSource<AnketaPerson>();
             AnketaPersonReCountryNavigation = new ObservableListSource<AnketaPerson>();
@@ -35,6 +36,7 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
         public ObservableListSource<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
         public ObservableListSource<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
+        public ObservableListSource<AnketaExternal> AnketaExternal { get; set; }
         public ObservableListSource<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
         public ObservableListSource<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
         public ObservableListSource<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }

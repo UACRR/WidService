@@ -229,6 +229,7 @@
     <Compile Include="Model\MoneyLinkStatus.cs" />
     <Compile Include="Model\MoneyLinkStatusTr.cs" />
     <Compile Include="Model\MoneyPeriodLink.cs" />
+    <Compile Include="Model\MoneyPrepayLink.cs" />
     <Compile Include="Model\MoneyReceived.cs" />
     <Compile Include="Model\MoneyType.cs" />
     <Compile Include="Model\MoneyTypeTr.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Model\PayTurn.cs" />
     <Compile Include="Model\Performer.cs" />
     <Compile Include="Model\PerformType.cs" />
+    <Compile Include="Model\PerformTypeTr.cs" />
     <Compile Include="Model\PerformTypetTr.cs" />
     <Compile Include="Model\Period.cs" />
     <Compile Include="Model\PeriodStatus.cs" />
@@ -275,8 +277,11 @@
     <Compile Include="Model\Region.cs" />
     <Compile Include="Model\RegionTr.cs" />
     <Compile Include="Model\Register.cs" />
+    <Compile Include="Model\RegisterAuthors.cs" />
     <Compile Include="Model\RegisterCount.cs" />
     <Compile Include="Model\RegisterItem.cs" />
+    <Compile Include="Model\RegisterItemType.cs" />
+    <Compile Include="Model\RegisterRatedList.cs" />
     <Compile Include="Model\RegisterStatus.cs" />
     <Compile Include="Model\RegisterStatusTr.cs" />
     <Compile Include="Model\RelAdaptUseArea.cs" />
@@ -321,6 +326,8 @@
     <Compile Include="Model\RequestTypeTr.cs" />
     <Compile Include="Model\ResidentType.cs" />
     <Compile Include="Model\ResidentTypeTr.cs" />
+    <Compile Include="Model\RholderType.cs" />
+    <Compile Include="Model\RholderTypeTr.cs" />
     <Compile Include="Model\RightHolder.cs" />
     <Compile Include="Model\SaldoDay.cs" />
     <Compile Include="Model\SeekObject.cs" />

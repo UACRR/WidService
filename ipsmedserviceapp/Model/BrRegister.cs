@@ -14,7 +14,6 @@ namespace ipsmedserviceapp.Model
         public int RegId { get; set; }
         public int? PeriodId { get; set; }
         public int? CustId { get; set; }
-        public int? ReqIdSr { get; set; }
         public DateTime? CreateDate { get; set; }
         public decimal? FullAmount { get; set; }
         public decimal? RAmount { get; set; }
@@ -24,7 +23,6 @@ namespace ipsmedserviceapp.Model
 
         public Client Cust { get; set; }
         public PaidPeriod Period { get; set; }
-        public Register ReqIdSrNavigation { get; set; }
         public RegisterStatus StatusNavigation { get; set; }
         public AspNetUsers User { get; set; }
         public ICollection<BrRegItem> BrRegItem { get; set; }

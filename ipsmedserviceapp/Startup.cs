@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Server.HttpSys;
+using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,16 +49,17 @@ namespace ipsmedserviceapp
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
-            services.AddAuthorization(auth =>
-            {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
-                    .RequireAuthenticatedUser()
-                    .Build());
 
-                auth.DefaultPolicy = new AuthorizationPolicyBuilder("Identity.Application").RequireAuthenticatedUser().Build();
+            //services.AddAuthorization(auth =>
+            //{
+            //    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+            //        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+            //        .RequireAuthenticatedUser()
+            //        .Build());
 
-            });
+            //    auth.DefaultPolicy = new AuthorizationPolicyBuilder("Identity.Application").RequireAuthenticatedUser().Build();
+
+            //});
 
             services.AddAuthentication(options =>
             {
@@ -86,7 +89,11 @@ namespace ipsmedserviceapp
                   };
 
               });
-
+#if DEBUG
+            services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
+#else
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+#endif
             services.AddSingleton<IConfiguration>(Configuration);
 
         }
@@ -102,11 +109,11 @@ namespace ipsmedserviceapp
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            })
-            .UseAuthentication();
+            });
 
 
             loggerFactory.AddConsole();
+            app.UseAuthentication();
 
             app.UseRequestLocalization(BuildLocalizationOptions());
             app.UseMvc();

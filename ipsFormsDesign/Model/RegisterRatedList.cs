@@ -1,0 +1,23 @@
+using ipsFormsDesign.Interfaces;
+using System;
+using System.Collections.Generic;
+
+namespace ipsFormsDesign.Model
+{
+    public partial class RegisterRatedList : IRegisterRatedList
+    {
+        public RegisterRatedList()
+        {
+            Register = new ObservableListSource<Register>();
+        }
+
+        public int PeriodId { get; set; }
+        public int RmId { get; set; }
+        public decimal? Amount { get; set; }
+        public decimal? Royalty { get; set; }
+
+        public PaidPeriod Period { get; set; }
+        public ObservableListSource<Register> Register { get; set; }
+    }
+}
+

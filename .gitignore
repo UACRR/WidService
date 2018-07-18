@@ -16,9 +16,6 @@
 /ipsmedserviceapp/bin
 **/with attributes
 
-
-
-
 # dependencies
 /node_modules
 /doc/~*.*
@@ -60,3 +57,4 @@ Thumbs.db
 *.ai
 /MediaServiceDb/MediaServiceDb.dbmdl
 /MediaServiceDb/MediaServiceDb.jfm
+ipsmedserviceapp/appsettings.Development.json 

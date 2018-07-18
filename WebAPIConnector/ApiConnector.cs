@@ -19,11 +19,14 @@ namespace WebAPIConnector
     /// </summary>
     public class ApiConnector
     {
-        private HttpClient client = new HttpClient();
+        private HttpClient client = null;
 
         public ApiConnector()
         {
             string Uri = configUrl();
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+            client = new HttpClient(handler);
 
             client.BaseAddress = new Uri(Uri);
             client.DefaultRequestHeaders.Accept.Clear();
@@ -87,7 +90,36 @@ namespace WebAPIConnector
             return list;
 
         }
+        /// <summary>
+        /// Получити список об'єктів з серверу додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public List<object> GetTypedList(Type typeResult,  string url, params KeyValuePair<string, string>[] listParam)
+        {
+            string runUrl = url;
+            if (listParam.Count() > 0)
+                runUrl = string.Concat(runUrl, AsQueryString(listParam));
 
+
+            string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+            JArray array = JArray.Parse(retApiString);
+            List<object> list = array.Select(rec =>
+            {
+                var item = rec.ToObject( typeResult );
+                return item;
+            }).ToList();
+
+            return list;
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public List<T> GetListAgreement<T>(string url)
         {
             string runUrl = url;
@@ -209,16 +241,17 @@ namespace WebAPIConnector
         /// <param name="url"></param>
         /// <param name="fileName"></param>
         /// <param name="fileStream"></param>
-        public async Task uploadFile(string url, string fileName, Stream fileStream)
+        public async Task uploadFile(string url, string fileName, string comment, Stream fileStream)
         {
             using (var content = new MultipartFormDataContent())
             {
-                var fileContent = new StreamContent(fileStream);
                 content.Headers.ContentType.MediaType = "multipart/form-data";
 
                 // fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/pot"); // "gettext" POT format
 
-                content.Add(fileContent, "file", fileName);
+                content.Add(new StringContent(comment), "comment");
+                content.Add(new StreamContent(fileStream), "file", fileName);
+
 
                 var statusResult = await client.PostAsync(url, content);
                 var statusString = await statusResult.Content.ReadAsStringAsync();

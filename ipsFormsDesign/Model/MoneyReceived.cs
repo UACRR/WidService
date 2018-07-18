@@ -9,6 +9,7 @@ namespace ipsFormsDesign.Model
         public MoneyReceived()
         {
             MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
+            MoneyPrepayLink = new ObservableListSource<MoneyPrepayLink>();
         }
 
         public int PaidId { get; set; }
@@ -19,10 +20,12 @@ namespace ipsFormsDesign.Model
         public string GoalInvoice { get; set; }
         public decimal Amount { get; set; }
         public decimal DestribAmount { get; set; }
+        public decimal? DestribPrepay { get; set; }
 
         public Client Cust { get; set; }
         public MoneyType MoneyTypeNavigation { get; set; }
         public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public ObservableListSource<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
 

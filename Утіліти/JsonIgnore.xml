@@ -8,6 +8,7 @@
         <noignore>Community</noignore>
         <noignore>AnketaAddName</noignore>
         <noignore>AgreementMaster</noignore>
+        <noignore>FileCustomer</noignore>
     </item>
     <item name="Client">
         <noignore>ClnBusinessPlace</noignore>
@@ -60,7 +61,10 @@
         <noignore>CopyRight</noignore>
         <noignore>Cust</noignore>
     </item>
-    <item Name="CopyRight"></item>
+    <item Name="CopyRight">
+        <noignore>WorkRh</noignore>
+    </item>
+    <item Name="WorkRh"></item>
     <item Name="AgreementAddRh"></item>
     <item Name="AgreementAddBr"></item>
     <item Name="AgreementMaster">
@@ -73,7 +77,6 @@
     </item>
     <item Name="RegisterItem">
         <noignore>Obj</noignore>
-        <noignore>RegisterCount</noignore>
     </item>
     <item Name="Distribution">
         <noignore>DistributionItem</noignore>
