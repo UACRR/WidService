@@ -66,15 +66,15 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.mainPageViewDistribution = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlRegisterList = new IpsViewComponentLibrary.RegisterListControl();
+            this.ctrlRegisterList = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
             this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
             this.objectsPageView = new Telerik.WinControls.UI.RadPageView();
             this.actualObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlObjectRightList = new IpsViewComponentLibrary.ObjectRightListControl();
+            this.ctrlObjectRightList = new IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl();
             this.ddbAddObjectRight = new Telerik.WinControls.UI.RadDropDownButton();
             this.miAddMusicalComposition = new Telerik.WinControls.UI.RadMenuItem();
             this.rightholdersObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholdersObjectsRightsControl();
+            this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.btnAddExistingObjectRightForRightholder = new Telerik.WinControls.UI.RadButton();
             this.ddbAddObjectRightForRightholder = new Telerik.WinControls.UI.RadDropDownButton();
             this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
@@ -187,7 +187,7 @@
             this.rightholdersChangePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
-            this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholdersObjectsRightsControl();
+            this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
             this.btnCancelNewCopyright = new Telerik.WinControls.UI.RadButton();
             this.dtChangeCopyrightDateTill = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -2863,7 +2863,7 @@
         private Telerik.WinControls.UI.RadPageViewPage rightholdersChangePage;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer3;
         private Telerik.WinControls.UI.SplitPanel splitPanel5;
-        private IpsViewComponentLibrary.RightholdersObjectsRightsControl ctrlRightholdersObjectsForChange;
+        private IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl ctrlRightholdersObjectsForChange;
         private Telerik.WinControls.UI.SplitPanel splitPanel6;
         private Telerik.WinControls.UI.RadGridView gvChangeCopyrights;
         private Telerik.WinControls.UI.RadLabel radLabel22;
@@ -2895,11 +2895,11 @@
         private Telerik.WinControls.UI.RadMenuHeaderItem radMenuHeaderItem1;
         private Telerik.WinControls.UI.RadButton btnCancelNewCopyright;
         private Telerik.WinControls.UI.RadButton btnAddExistingObjectRightForRightholder;
-        private IpsViewComponentLibrary.RightholdersObjectsRightsControl ctrlRightholdersObjectsRight;
-        private IpsViewComponentLibrary.ObjectRightListControl ctrlObjectRightList;
+        private IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl ctrlRightholdersObjectsRight;
+        private IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl ctrlObjectRightList;
         private Telerik.WinControls.UI.RadDropDownButton ddbAddObjectRight;
         private Telerik.WinControls.UI.RadMenuItem miAddMusicalComposition;
         private IpsViewComponentLibrary.ContractConsumerMainControl ctrlAgreementNumberDate;
-        private IpsViewComponentLibrary.RegisterListControl ctrlRegisterList;
+        private IpsViewComponentLibrary.RegisterControls.RegisterListControl ctrlRegisterList;
     }
 }
