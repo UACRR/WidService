@@ -84,26 +84,27 @@ namespace ipsmedserviceapp.Controllers
 
 
 
-            foreach (var license in cust.Client.LicenseAgreement)
+            foreach (var licAgreement in cust.Client.LicenseAgreement)
             {
                 // AggreAddBr 
-                await _dbContext.Entry(license.Agr).Collection(rec => rec.AgreementAddBr)
+                await _dbContext.Entry(licAgreement.Agr).Collection(rec => rec.AgreementAddBr)
                     .Query()
-                    .Where(item => item.Version >= license.Agr.Version)
+                    .Where(item => item.Version >= licAgreement.Agr.Version)
                     .LoadAsync();
                 // LicenseBigR
-                await _dbContext.Entry(license).Collection(rec => rec.LicenseBigR)
+                await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseBigR)
                     .Query()
-                    .Where(item => item.LicVersion >= license.LicVersion)
+                    .Where(item => item.LicVersion >= licAgreement.LicVersion)
+                    .Include( item => item.Obj ).ThenInclude(obj=>obj.CopyRight).ThenInclude(cprt=>cprt.WorkRh)
                     .LoadAsync();
                 // Лцензії для майданчиків
-                await _dbContext.Entry(license).Collection(rec => rec.LicenseAgrParam)
+                await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
                     .Query()
-                    .Where(rec => rec.LicVersion >= license.LicVersion)
+                    .Where(rec => rec.LicVersion >= licAgreement.LicVersion)
                     .Include(rec => rec.License)
                     .LoadAsync();
 
-                await _dbContext.Entry(license).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
+                await _dbContext.Entry(licAgreement).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
                 // Великі права
             }
             // Великі права

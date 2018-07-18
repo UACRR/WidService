@@ -35,6 +35,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<UserRoleType> userRoleType {get; set;}
         public IList<UsesKind> usesKind {get; set;}
         public IList<UsesType> usesType {get; set;}
+        public IList<WorkType> workType {get; set;}
         public IList<TypeMethodGet> typeMethodGet { get; set; }
         public IList<CommunityInfo> communities { get; set; }
     }

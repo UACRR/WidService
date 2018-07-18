@@ -23,7 +23,6 @@ namespace IpsViewComponentLibrary
             {"pvPayslips" , CabinetTabType.Payslips},
             {"pvRequest" , CabinetTabType.Requests},
             {"pvReference" , CabinetTabType.References},
-            {"pvContacts" , CabinetTabType.Contacts},
             {"pvGeneralAgreement" , CabinetTabType.GeneralAgreement},
             {"pvFiles" , CabinetTabType.Files},
             {"pvAgent", CabinetTabType.Agent}
@@ -32,6 +31,8 @@ namespace IpsViewComponentLibrary
         private ConsumerBigRightView _brView;
         private IList<VbrLicense> _brLicenses;
         private IList<BigRightMasterGenAgr> _genAgrs;
+        private IList<BigRightRequests> _requests;
+        private IList<BigRightRequestBidAuthors> _authors;
         private AnketaDictionaties _anketaDictionaties = null;
         private CabinetTabType _currenCabinetTab = CabinetTabType.Licenses;
 
@@ -68,12 +69,16 @@ namespace IpsViewComponentLibrary
         public void SetAndUpdateData(Customer customer, 
                                      ConsumerBigRightView brView, 
                                      IList<VbrLicense> brLicenses,
-                                     IList<BigRightMasterGenAgr> genAgrs)
+                                     IList<BigRightMasterGenAgr> genAgrs,
+                                     IList<BigRightRequests> requests,
+                                     IList<BigRightRequestBidAuthors> authors)
         {
             _customer = customer;
             _brView = brView;
             _brLicenses = brLicenses;
             _genAgrs = genAgrs;
+            _requests = requests;
+            _authors = authors;
 
             UpdateCurentTab(_currenCabinetTab);
         }
@@ -95,10 +100,11 @@ namespace IpsViewComponentLibrary
                 case CabinetTabType.Payslips:
                     break;
                 case CabinetTabType.Requests:
+                {
+                    ctrlRequest.SetAndUpdateData(_customer,_brView,_requests,_authors);
+                }
                     break;
                 case CabinetTabType.References:
-                    break;
-                case CabinetTabType.Contacts:
                     break;
                 case CabinetTabType.GeneralAgreement:
                 {

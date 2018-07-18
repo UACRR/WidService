@@ -227,10 +227,6 @@ namespace IpsViewComponentLibrary
         /// </summary>
         References,
         /// <summary>
-        /// Контакти
-        /// </summary>
-        Contacts,
-        /// <summary>
         /// Генеральна угода
         /// </summary>
         GeneralAgreement,

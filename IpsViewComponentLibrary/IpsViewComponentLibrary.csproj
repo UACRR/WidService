@@ -414,12 +414,6 @@
     <Compile Include="MiddleControlCabinetCalculation.Designer.cs">
       <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetContacts.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MiddleControlCabinetContacts.Designer.cs">
-      <DependentUpon>MiddleControlCabinetContacts.cs</DependentUpon>
-    </Compile>
     <Compile Include="MiddleControlCabinetFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -775,9 +769,6 @@
     <EmbeddedResource Include="MiddleControlCabinetCalculation.resx">
       <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetContacts.resx">
-      <DependentUpon>MiddleControlCabinetContacts.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetFiles.resx">
       <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>
     </EmbeddedResource>
@@ -887,6 +878,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterListViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightRequestBidAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
@@ -899,6 +891,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -951,6 +944,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\deleteIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
