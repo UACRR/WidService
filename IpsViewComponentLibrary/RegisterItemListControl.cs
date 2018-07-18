@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Utilities;
-using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.Data;
+using ipsFormsDesign.Dictionary;
+using System.Collections.ObjectModel;
 
 namespace IpsViewComponentLibrary
 {
@@ -12,25 +13,25 @@ namespace IpsViewComponentLibrary
     {
         public object DataSource
         {
-            get { return gvRegisterItemList.DataSource; }
+            get { return registerItemViewModelBindingSource.DataSource; }
             set
             {
-                if (gvRegisterItemList.DataSource != value)
+                if (registerItemViewModelBindingSource.DataSource != value)
                 {
-                    gvRegisterItemList.DataSource = value;
+                    registerItemViewModelBindingSource.DataSource = value;
                 }
             }
         }
 
-        private RegisterItem _registerItem;
-        public  RegisterItem SelectedRegisterItem
+        private RegisterItemViewModel _registerItem;
+        public RegisterItemViewModel SelectedRegisterItem
         {
             get
             {
                 if (gvRegisterItemList.CurrentRow == null)
                     return null;
 
-                return gvRegisterItemList.CurrentRow.DataBoundItem as RegisterItem;
+                return gvRegisterItemList.CurrentRow.DataBoundItem as RegisterItemViewModel;
             }
             set
             {
@@ -50,13 +51,70 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        public event EventHandler<RegisterItem> FindCommandExecuted;
-        public event EventHandler<RegisterItem> LinkCommandExecuted;
+        public Collection<RegisterItemViewModel> SelectedRegisterItems
+        {
+            get
+            {
+                var registerItemsList = new Collection<RegisterItemViewModel>();
+
+                foreach (var row in gvRegisterItemList.SelectedRows)
+                {
+                    var registerItem = row.DataBoundItem as RegisterItemViewModel;
+                    registerItemsList.Add(registerItem);
+                }
+
+                return registerItemsList;
+            }
+        }
+
+        private bool _allowFindCommand = true;
+        public bool AllowFindCommand
+        {
+            get { return _allowFindCommand; }
+            set
+            {
+                _allowFindCommand = value;
+                SetColumnVisible("FindColumn", _allowFindCommand);
+            }
+        }
+
+        private bool _allowShowObjectCommand = true;
+        public bool AllowShowObjectCommand
+        {
+            get { return _allowShowObjectCommand; }
+            set
+            {
+                _allowShowObjectCommand = value;
+                SetColumnVisible("ObjectColumn", _allowShowObjectCommand);
+            }
+        }
+
+        private bool _allowLinkCommand = true;
+        public bool AllowLinkCommand
+        {
+            get { return _allowLinkCommand; }
+            set
+            {
+                _allowLinkCommand = value;
+                SetColumnVisible("LinkColumn", _allowLinkCommand);
+            }
+        }
+
+        public bool MultiSelect
+        {
+            get => gvRegisterItemList.MultiSelect;
+            set => gvRegisterItemList.MultiSelect = value;
+        }
+
+        public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
+        public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
+        public event EventHandler<RegisterItemViewModel> LinkCommandExecuted;
 
         public RegisterItemListControl()
         {
             InitializeComponent();
 
+            gvRegisterItemList.DataSource = registerItemViewModelBindingSource;
             ddlLinkedStatus.SelectedIndex = 0;
         }
 
@@ -71,6 +129,10 @@ namespace IpsViewComponentLibrary
             else if (currentColumnName == "LinkColumn")
             {
                 OnLinkCommandExecuted(SelectedRegisterItem);
+            }
+            else if (currentColumnName == "ObjectColumn")
+            {
+                OnShowObjectCommandExecuted(SelectedRegisterItem);
             }
         }
 
@@ -99,14 +161,54 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void OnFindCommandExecuted(RegisterItem selectedRegisterItem)
+        private void OnFindCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            FindCommandExecuted?.Invoke(this, selectedRegisterItem);
+            if (_allowFindCommand)
+                FindCommandExecuted?.Invoke(this, selectedRegisterItem);
         }
 
-        private void OnLinkCommandExecuted(RegisterItem selectedRegisterItem)
+        private void OnLinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
+            if (_allowLinkCommand)
+                LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
+
+            // TODO: move to presenter
+            using (var selectionView = new ObjectRightSelectionView())
+            {
+                selectionView.ObjectSelected += SelectionView_ObjectSelected;
+                selectionView.ShowDialog();
+            }
+        }
+
+        private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
+        {
+            SelectedRegisterItem.SetObjectData(
+                selectedObject.ObjId,
+                selectedObject.Name,
+                selectedObject.Author,
+                selectedObject.Performer,
+                selectedObject.Duration
+            );
+        }
+
+        private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
+        {
+            if (_allowShowObjectCommand)
+                ShowObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
+
+            if (selectedRegisterItem.ObjId != null)
+            {
+                using (var view = new ObjectRightItemView())
+                {
+                    var presenter = new ObjectRightItemPresenter(view);
+                    presenter.Show((int)selectedRegisterItem.ObjId);
+                }
+            }
+        }
+
+        private void SetColumnVisible(string columnName, bool isVisible)
+        {
+            gvRegisterItemList.Columns[columnName].IsVisible = isVisible;
         }
     }
 }

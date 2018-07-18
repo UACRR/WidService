@@ -13,8 +13,8 @@ namespace ipsFormsDesign.Dictionary
         public string PeriodName { get; set; }
         public DateTime CreateDate { get; set; }
         public string UserWho { get; set; }
-        public int CountItem { get; set; }
-        public int CountNoFound { get; set; }
+        public int? CountItem { get; set; }
+        public int? CountNoFound { get; set; }
         public int? CRightCode { get; set; }
         public string CRightName { get; set; }
         public int RgStatus { get; set; }

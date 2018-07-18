@@ -7,6 +7,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -55,13 +56,13 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
-            _registerService = new RegisterService();
-
             dtCreateDateFrom.SetUserCalendarSettingsm();
             dtCreateDateTill.SetUserCalendarSettingsm();
 
             if (!IsDesignMode)
             {
+                _registerService = new RegisterService();
+
                 SetDictionaries();
                 UpdateList();
             }
@@ -154,6 +155,14 @@ namespace IpsViewComponentLibrary
                 var presenter = new RegisterPresenter(view, _registerService);
                 presenter.Show(selectedRegister.RegId);
             }
+
+            // TODO: broadcast event if item update
+            UpdateList();
+        }
+
+        private void gvRegisterList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            GridViewTooltipHelper.SetTooltipTextForColumnHeader(sender, e);
         }
 
         protected virtual void OnRegisterSelected(RegisterListViewModel selectedRegister)

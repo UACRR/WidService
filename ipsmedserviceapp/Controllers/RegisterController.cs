@@ -20,7 +20,7 @@ namespace ipsmedserviceapp.Controllers
         {
             _dbContext = dbContext;
         }
-        
+
         /// <summary>
         /// ведомость
         /// </summary>
@@ -62,6 +62,34 @@ namespace ipsmedserviceapp.Controllers
             return Json(register);
         }
 
+        [HttpPut("{regId}")]
+        public async Task<IActionResult> Update(int? regId, [FromBody] Register register)
+        {
+            if (regId == null)
+                BadRequest();
+
+            var foundedRegister = await GetRegisterById((int)regId);
+
+            if (foundedRegister == null)
+                NotFound();
+
+            UpdateRegister(foundedRegister, register);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        private void UpdateRegister(Register destRegister, Register sourceRegister)
+        {
+            var excludeFields = new string[] { "RegId" };
+
+            destRegister.SetFields(sourceRegister, excludeFields);
+
+            var excludeFieldRegisterItem = new string[] { "Obj" };
+            _dbContext.UpdateList(sourceRegister.RegisterItem, destRegister.RegisterItem, r => { }, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId, excludeFieldRegisterItem );
+        }
+
         /// <summary>
         /// Ведомость история
         /// </summary>
@@ -77,6 +105,8 @@ namespace ipsmedserviceapp.Controllers
         {
             return await _dbContext.Register
                 .Include(r => r.RegisterItem)
+                    .ThenInclude(i => i.Obj)
+                        .ThenInclude(o => o.MediaTrack)
                 .FirstOrDefaultAsync(r => r.RegId == regId);
         }
 
@@ -91,6 +121,38 @@ namespace ipsmedserviceapp.Controllers
                 );
 
             return Json(list);
+        }
+
+        [HttpPut("setstatus/{regId}")]
+        public async Task<IActionResult> SetStatus(int regId, [FromBody] int newStatus)
+        {
+            var register = await _dbContext.Register.FirstOrDefaultAsync(r => r.RegId == regId);
+
+            if (register == null)
+                return NotFound();
+
+            List<int> allowedStatuses = new List<int>();
+
+            if (register.RgStatus == 0)
+                allowedStatuses.AddRange(new[] { 1, 4 });
+            else if (register.RgStatus == 1)
+                allowedStatuses.AddRange(new[] { 2, 4 });
+            else if (register.RgStatus == 2)
+                allowedStatuses.AddRange(new[] { 3 });
+            else
+                allowedStatuses.AddRange(new int[0]);
+
+            if (allowedStatuses.Contains(newStatus))
+            {
+                register.RgStatus = newStatus;
+                await _dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status406NotAcceptable);
+            }
+
+            return Ok();
         }
     }
 }
