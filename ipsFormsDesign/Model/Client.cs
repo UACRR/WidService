@@ -16,6 +16,7 @@ namespace ipsFormsDesign.Model
             MoneyReceived = new ObservableListSource<MoneyReceived>();
             PaidPeriod = new ObservableListSource<PaidPeriod>();
             PartnerClient = new ObservableListSource<PartnerClient>();
+            Register = new ObservableListSource<Register>();
         }
 
         public int CustId { get; set; }
@@ -31,6 +32,7 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<MoneyReceived> MoneyReceived { get; set; }
         public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
         public ObservableListSource<PartnerClient> PartnerClient { get; set; }
+        public ObservableListSource<Register> Register { get; set; }
     }
 }
 
