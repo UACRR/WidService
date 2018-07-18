@@ -146,16 +146,16 @@
     <Compile Include="AgentFooterBR.Designer.cs">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
-    <Compile Include="AnketaAddNamesView.cs">
+    <Compile Include="RightholderControls\AnketaAddNamesView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnketaAddNamesView.Designer.cs">
+    <Compile Include="RightholderControls\AnketaAddNamesView.Designer.cs">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AnketaAddNickView.cs">
+    <Compile Include="RightholderControls\AnketaAddNickView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnketaAddNickView.Designer.cs">
+    <Compile Include="RightholderControls\AnketaAddNickView.Designer.cs">
       <DependentUpon>AnketaAddNickView.cs</DependentUpon>
     </Compile>
     <Compile Include="AnketaConsumerForm.cs">
@@ -164,10 +164,10 @@
     <Compile Include="AnketaConsumerForm.Designer.cs">
       <DependentUpon>AnketaConsumerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuthorRightholderItemView.cs">
+    <Compile Include="ObjectRightControls\AuthorRightholderItemView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuthorRightholderItemView.Designer.cs">
+    <Compile Include="ObjectRightControls\AuthorRightholderItemView.Designer.cs">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
     </Compile>
     <Compile Include="CalculationInfoControlNew.cs">
@@ -211,12 +211,6 @@
     </Compile>
     <Compile Include="DistributionForm.Designer.cs">
       <DependentUpon>DistributionForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ExpandedFormForAnketaPersonRightHolder.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ExpandedFormForAnketaPersonRightHolder.Designer.cs">
-      <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </Compile>
     <Compile Include="ExtensionUtils.cs" />
     <Compile Include="GeneralAgreementInfo.cs">
@@ -453,23 +447,23 @@
     <Compile Include="MiddleControlManagers.Designer.cs">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectRightItemPresenter.cs" />
-    <Compile Include="ObjectRightItemView.cs">
+    <Compile Include="ObjectRightControls\ObjectRightItemPresenter.cs" />
+    <Compile Include="ObjectRightControls\ObjectRightItemView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ObjectRightItemView.Designer.cs">
+    <Compile Include="ObjectRightControls\ObjectRightItemView.Designer.cs">
       <DependentUpon>ObjectRightItemView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectRightListControl.cs">
+    <Compile Include="ObjectRightControls\ObjectRightListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ObjectRightListControl.Designer.cs">
+    <Compile Include="ObjectRightControls\ObjectRightListControl.Designer.cs">
       <DependentUpon>ObjectRightListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectRightSelectionView.cs">
+    <Compile Include="ObjectRightControls\ObjectRightSelectionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ObjectRightSelectionView.Designer.cs">
+    <Compile Include="ObjectRightControls\ObjectRightSelectionView.Designer.cs">
       <DependentUpon>ObjectRightSelectionView.cs</DependentUpon>
     </Compile>
     <Compile Include="PassportControl.cs">
@@ -522,23 +516,23 @@
     <Compile Include="RadioPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Register\RegisterItemListControl.cs">
+    <Compile Include="RegisterControls\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Register\RegisterItemListControl.Designer.cs">
+    <Compile Include="RegisterControls\RegisterItemListControl.Designer.cs">
       <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Register\RegisterListControl.cs">
+    <Compile Include="RegisterControls\RegisterListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Register\RegisterListControl.Designer.cs">
+    <Compile Include="RegisterControls\RegisterListControl.Designer.cs">
       <DependentUpon>RegisterListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Register\RegisterPresenter.cs" />
-    <Compile Include="Register\RegisterView.cs">
+    <Compile Include="RegisterControls\RegisterPresenter.cs" />
+    <Compile Include="RegisterControls\RegisterView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Register\RegisterView.Designer.cs">
+    <Compile Include="RegisterControls\RegisterView.Designer.cs">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistrationPersonsControl.cs">
@@ -564,35 +558,35 @@
     <Compile Include="ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderListControl.cs">
+    <Compile Include="RightholderControls\RightholderListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RightholderListControl.Designer.cs">
+    <Compile Include="RightholderControls\RightholderListControl.Designer.cs">
       <DependentUpon>RightholderListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderSelectorControl.cs">
+    <Compile Include="RightholderControls\RightholderSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RightholderSelectorControl.Designer.cs">
+    <Compile Include="RightholderControls\RightholderSelectorControl.Designer.cs">
       <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderSelectionView.cs">
+    <Compile Include="RightholderControls\RightholderSelectionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RightholderSelectionView.Designer.cs">
+    <Compile Include="RightholderControls\RightholderSelectionView.Designer.cs">
       <DependentUpon>RightholderSelectionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholdersObjectsRightsControl.cs">
+    <Compile Include="RightholderControls\RightholdersObjectsRightsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RightholdersObjectsRightsControl.Designer.cs">
+    <Compile Include="RightholderControls\RightholdersObjectsRightsControl.Designer.cs">
       <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Register\SearchObjectPresenter.cs" />
-    <Compile Include="Register\SearchObjectView.cs">
+    <Compile Include="RegisterControls\SearchObjectPresenter.cs" />
+    <Compile Include="RegisterControls\SearchObjectView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Register\SearchObjectView.Designer.cs">
+    <Compile Include="RegisterControls\SearchObjectView.Designer.cs">
       <DependentUpon>SearchObjectView.cs</DependentUpon>
     </Compile>
     <Compile Include="SingleShowInformationControl.cs">
@@ -632,10 +626,10 @@
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnketaAddNamesView.resx">
+    <EmbeddedResource Include="RightholderControls\AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnketaAddNickView.resx">
+    <EmbeddedResource Include="RightholderControls\AnketaAddNickView.resx">
       <DependentUpon>AnketaAddNickView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaConsumerForm.resx">
@@ -647,7 +641,7 @@
     <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AuthorRightholderItemView.resx">
+    <EmbeddedResource Include="ObjectRightControls\AuthorRightholderItemView.resx">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalculationInfoControlNew.resx">
@@ -676,9 +670,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DistributionForm.resx">
       <DependentUpon>DistributionForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ExpandedFormForAnketaPersonRightHolder.resx">
-      <DependentUpon>ExpandedFormForAnketaPersonRightHolder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralAgreementInfo.resx">
       <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
@@ -785,13 +776,13 @@
     <EmbeddedResource Include="MiddleControlManagers.resx">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ObjectRightItemView.resx">
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightItemView.resx">
       <DependentUpon>ObjectRightItemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ObjectRightListControl.resx">
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightListControl.resx">
       <DependentUpon>ObjectRightListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ObjectRightSelectionView.resx">
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightSelectionView.resx">
       <DependentUpon>ObjectRightSelectionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PassportControl.resx">
@@ -818,13 +809,13 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Register\RegisterItemListControl.resx">
+    <EmbeddedResource Include="RegisterControls\RegisterItemListControl.resx">
       <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Register\RegisterListControl.resx">
+    <EmbeddedResource Include="RegisterControls\RegisterListControl.resx">
       <DependentUpon>RegisterListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Register\RegisterView.resx">
+    <EmbeddedResource Include="RegisterControls\RegisterView.resx">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
@@ -840,19 +831,19 @@
     <EmbeddedResource Include="ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderListControl.resx">
+    <EmbeddedResource Include="RightholderControls\RightholderListControl.resx">
       <DependentUpon>RightholderListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderSelectorControl.resx">
+    <EmbeddedResource Include="RightholderControls\RightholderSelectorControl.resx">
       <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderSelectionView.resx">
+    <EmbeddedResource Include="RightholderControls\RightholderSelectionView.resx">
       <DependentUpon>RightholderSelectionView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholdersObjectsRightsControl.resx">
+    <EmbeddedResource Include="RightholderControls\RightholdersObjectsRightsControl.resx">
       <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Register\SearchObjectView.resx">
+    <EmbeddedResource Include="RegisterControls\SearchObjectView.resx">
       <DependentUpon>SearchObjectView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingleShowInformationControl.resx">
@@ -942,5 +933,6 @@
   <ItemGroup>
     <None Include="Resources\editIcon.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

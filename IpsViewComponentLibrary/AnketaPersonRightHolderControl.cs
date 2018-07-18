@@ -11,6 +11,7 @@ using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
+using IpsViewComponentLibrary.RightholderControls;
 
 namespace DebugFormForControls
 {

@@ -3,7 +3,8 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
-using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.ObjectRightControls;
+using IpsViewComponentLibrary.RightholderControls;
 using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
 using System;
@@ -13,15 +14,11 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
-using Telerik.WinControls.Data;
 using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
-using WebAPIConnector;
 
 namespace RightholderWorkplace
 {
