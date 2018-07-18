@@ -12,7 +12,7 @@ namespace ipsFormsDesign.Dictionary
     public class RegisterSearchObject
     {
 
-        public int Objid { get; set; }
+        public int ObjId { get; set; }
         public string Name { get; set; }
         public string Performer { get; set; }
         public string Author { get; set; }

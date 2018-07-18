@@ -76,7 +76,7 @@
         <noignore>RegisterItem</noignore>
     </item>
     <item Name="RegisterItem">
-        <noignore>RegisterCount</noignore>
+        <noignore>Obj</noignore>
     </item>
     <item Name="Distribution">
         <noignore>DistributionItem</noignore>

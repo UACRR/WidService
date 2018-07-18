@@ -23,7 +23,6 @@ namespace ipsmedserviceapp.Model
 
         [JsonIgnore]
         public RegisterItemType CodeItemNavigation { get; set; }
-        [JsonIgnore]
         public ObjectRight Obj { get; set; }
         [JsonIgnore]
         public Register Reg { get; set; }
