@@ -522,23 +522,23 @@
     <Compile Include="RadioPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RegisterItemListControl.cs">
+    <Compile Include="Register\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RegisterItemListControl.Designer.cs">
+    <Compile Include="Register\RegisterItemListControl.Designer.cs">
       <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegisterListControl.cs">
+    <Compile Include="Register\RegisterListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RegisterListControl.Designer.cs">
+    <Compile Include="Register\RegisterListControl.Designer.cs">
       <DependentUpon>RegisterListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegisterPresenter.cs" />
-    <Compile Include="RegisterView.cs">
+    <Compile Include="Register\RegisterPresenter.cs" />
+    <Compile Include="Register\RegisterView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegisterView.Designer.cs">
+    <Compile Include="Register\RegisterView.Designer.cs">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistrationPersonsControl.cs">
@@ -588,11 +588,11 @@
     <Compile Include="RightholdersObjectsRightsControl.Designer.cs">
       <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchObjectPresenter.cs" />
-    <Compile Include="SearchObjectView.cs">
+    <Compile Include="Register\SearchObjectPresenter.cs" />
+    <Compile Include="Register\SearchObjectView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchObjectView.Designer.cs">
+    <Compile Include="Register\SearchObjectView.Designer.cs">
       <DependentUpon>SearchObjectView.cs</DependentUpon>
     </Compile>
     <Compile Include="SingleShowInformationControl.cs">
@@ -818,13 +818,13 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegisterItemListControl.resx">
+    <EmbeddedResource Include="Register\RegisterItemListControl.resx">
       <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegisterListControl.resx">
+    <EmbeddedResource Include="Register\RegisterListControl.resx">
       <DependentUpon>RegisterListControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegisterView.resx">
+    <EmbeddedResource Include="Register\RegisterView.resx">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
@@ -852,7 +852,7 @@
     <EmbeddedResource Include="RightholdersObjectsRightsControl.resx">
       <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchObjectView.resx">
+    <EmbeddedResource Include="Register\SearchObjectView.resx">
       <DependentUpon>SearchObjectView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingleShowInformationControl.resx">
