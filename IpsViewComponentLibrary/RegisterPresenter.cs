@@ -65,8 +65,7 @@ namespace IpsViewComponentLibrary
 
         public void SetStatus(RegisterStatusType status)
         {
-            var result = true;
-            //var result = _registerService.SetStatus(_register.RegId, status);
+            var result = _registerService.SetStatus(_register.RegId, status);
 
             if (result)
             {
@@ -76,6 +75,31 @@ namespace IpsViewComponentLibrary
             }
             else
                 _view.ShowError("Не вдалося змінити статус.");
+        }
+
+        public void Save()
+        {
+            foreach (var rvm in _view.RegisterItemList)
+            {
+                var foundedRegisterItem = _register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
+
+                if (foundedRegisterItem != null)
+                {
+                    foundedRegisterItem.ItemName = rvm.ItemName;
+                    foundedRegisterItem.AuthorMusic = rvm.AuthorMusic;
+                    foundedRegisterItem.AuthorText = rvm.AuthorText;
+                    foundedRegisterItem.CategoryCode = rvm.CategoryCode;
+                    foundedRegisterItem.CountUse = rvm.CountUse;
+                    foundedRegisterItem.DurationItem = rvm.DurationItem;
+                    foundedRegisterItem.DurationUse = rvm.DurationUse;
+                    foundedRegisterItem.Performer = rvm.Performer;
+                    foundedRegisterItem.RegId = rvm.RegId;
+                    foundedRegisterItem.RegIitemId = rvm.RegIitemId;
+                    foundedRegisterItem.ObjId = rvm.ObjId;
+                };
+            }
+
+            var result = _registerService.Save(_register);
         }
 
         private void UpdateDataBindings()

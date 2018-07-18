@@ -48,6 +48,7 @@ namespace IpsViewComponentLibrary
         public void Run()
         {
             SetControlEnabled((RegisterStatusType)Register.RgStatus);
+            SetAllowedCommand((RegisterStatusType)Register.RgStatus);
             SetAllowedStatus((RegisterStatusType)Register.RgStatus);
 
             ShowDialog();
@@ -149,6 +150,11 @@ namespace IpsViewComponentLibrary
         private void btnSetCanceledStatus_Click(object sender, EventArgs e)
         {
             _presenter.SetStatus(RegisterStatusType.Canceled);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            _presenter.Save();
         }
     }
 }
