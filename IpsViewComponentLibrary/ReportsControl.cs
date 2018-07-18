@@ -87,7 +87,7 @@ namespace IpsViewComponentLibrary
         {
             List<GridReportsP> source = new List<GridReportsP>();
             var paidPeriods = _data?.Client?.LicenseAgreement?.Where(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value).Select(rec => rec.PaidPeriod).SingleOrDefault();
-            var register = paidPeriods?.Where(rec => rec.PeriodId == (int)gvPeriods.CurrentRow.Cells["PeriodId"].Value).Select(rec => rec.Register).SingleOrDefault();
+            var register = paidPeriods?.Where(rec => rec.PeriodId == (int)gvPeriods.CurrentRow.Cells["PeriodId"].Value).SingleOrDefault()?.RegisterRatedList.SingleOrDefault()?.Register;
 
             if (register != null)
             {
