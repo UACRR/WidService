@@ -41,11 +41,18 @@ namespace IpsViewComponentLibrary
         public event EventHandler OnSaveCustomerNeed;
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
+        public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
 
         public MiddleControlCabinet()
         {
             InitializeComponent();
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
+            ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
+        }
+
+        private void CtrlFiles_OnViewDocButtonClick(int custId, int typeDocument, string fileName)
+        {
+            OnViewDocumentNeed?.Invoke(custId, typeDocument, fileName);
         }
 
         private void CtrlFiles_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)

@@ -9,14 +9,14 @@ namespace ipsFormsDesign.Model
         public PerformType()
         {
             LicenseBigR = new ObservableListSource<LicenseBigR>();
-            PerformTypetTr = new ObservableListSource<PerformTypetTr>();
+            PerformTypeTr = new ObservableListSource<PerformTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
         public ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
-        public ObservableListSource<PerformTypetTr> PerformTypetTr { get; set; }
+        public ObservableListSource<PerformTypeTr> PerformTypeTr { get; set; }
     }
 }
 

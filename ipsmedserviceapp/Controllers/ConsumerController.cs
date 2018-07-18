@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -940,7 +941,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 Register addItem = new Register { RgStatus = 1 };
                 // addItem.RegId
                 addItem.SetFields(body, new[] { "RegId" });
-                period.Register.Add(addItem);
+
 
                 int index = 1;
                 _dbContext.AppendList(body.RegisterItem, addItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
@@ -1059,7 +1060,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="typeDocument"></param>
         /// <returns></returns>
         [HttpPost("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, [FromQuery] string comment,  IFormFile file)
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, string comment,  IFormFile file)
         {
 
             // Перевірка існування дерикторії
@@ -1099,6 +1100,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
             fileRec.ModifyDate = DateTime.Now;
+            fileRec.DocComment = comment;
             // Зберігаємо файл на сервері
 
             var tran = await _dbContext.Database.BeginTransactionAsync();
@@ -1185,6 +1187,77 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
         #endregion
+        #region PaydPariod Services
+        /// <summary>
+        /// Отримати Нерозподілені Платежі Споживача
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("PaydPeriod/GetPayments/{custId}")]
+        public async Task<IActionResult> GetConsumerPayments(int custId)
+        {
+            string query = @"
+select t1.* 
+from ExternalPay t1 
+join vCustomer t2 on t2.INNOKPO = t1.okpoCorr and t2.custId = @custId
+left outer join MoneyReceived t3 on t3.paidId = t1.paidId
+where
+t3.paidId is null
+or t3.amount > (t3.destribAmount+t3.destribPrepay)
+";
+            var list = await _dbContext.ExternalPay.FromSql(query, new SqlParameter("@custId", custId)).AsNoTracking().ToArrayAsync();
+            return Json(list);
+        }
+#if DEBUG
+        [HttpPut("PaydPeriod/GetPayments/{custId}")]
+        public async Task<IActionResult> PutExternalPay(int custId, [FromBody] List<ExternalPay> pays )
+        {
+            List<ExternalPay> dest = new List<ExternalPay>();
+            foreach( var item in pays.Where( rec => rec.PaidId == 0))
+            {
+                var addRec = new ExternalPay();
+                addRec.SetFields(item);
+                dest.Add(addRec);
+            }
 
+            await _dbContext.ExternalPay.AddRangeAsync(dest);
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+                foreach( var item in dest )
+                {
+                    MoneyReceived addRec = new MoneyReceived {
+                        PaidId = item.PaidId,
+                        MoneyType = 1,
+                        CustId = custId,
+                        DateInvoice = item.DocDate ?? DateTime.Today,
+                        NumberInvoice = item.DocNum,
+                        GoalInvoice = item.Nplat,
+                        Amount = Convert.ToDecimal( item.SCredit ),
+                        DestribAmount = 0,
+                        DestribPrepay = 0
+                    };
+
+                    await _dbContext.MoneyReceived.AddAsync(addRec);
+                }
+
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+                return Ok();
+
+            }
+            catch (Exception)
+            {
+                tran?.Rollback();
+                return BadRequest();
+            }
+
+
+        }
+#endif
+#endregion
     } // public class ConsumerController : Controller
 }

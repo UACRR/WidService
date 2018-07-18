@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using MSWord = Microsoft.Office.Interop.Word;
+using MSExcel = Microsoft.Office.Interop.Excel;
+
 
 namespace ConsumerWorkplace_v_1._0
 {
@@ -97,6 +99,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnEditCustomer += _cabinetBr_OnEditCustomer;
                 _cabinetBr.OnSaveCustomer += _cabinetBr_OnSaveCustomer;
                 _cabinetBr.OnAddNewDocument += CabinetBr_OnAddNewDocument;
+                _cabinetBr.OnViewDocument += CabinetBr_OnViewDocument;
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -111,6 +114,57 @@ namespace ConsumerWorkplace_v_1._0
         private void CabinetBr_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
         {
             _service.uploadDocument(custId, typeDocument, comment, fileName);
+            UpdateData(custId);
+        }
+
+        private void CabinetBr_OnViewDocument(int custId, int typeDocument, string fileName)
+        {
+            try
+            {
+                string fullpath = @"DocumentFiles\" + fileName;
+                if (!Directory.Exists("DocumentFiles"))
+                    Directory.CreateDirectory("DocumentFiles");
+                using (var fileStream = File.Create(fullpath)) 
+                {
+                    _service.downloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
+                }
+
+                string extn = Path.GetExtension(fullpath);
+                if (File.Exists(fullpath))
+                {
+                    if (extn == ".doc" || extn == ".docx")
+                    {
+                        MSWord.Application app = new MSWord.Application();
+                        MSWord.Document doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
+                        app.Visible = true;
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
+                    }
+                    else if (extn == ".xls" || extn == ".xlsx")
+                    {
+                        MSExcel.Application app = new MSExcel.Application();
+                        var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false, MSExcel.XlPlatform.xlWindows);
+                        app.Visible = true;
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
+                    }
+                }
+            }
+            catch (FileNotFoundException flnfexcpt)
+            {
+                RadMessageBox.ThemeName = "Office2013Light";
+                RadMessageBox.Show("Файл не знайдено: " + flnfexcpt.FileName + "\nПовідомлення: " + flnfexcpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+            catch (FileLoadException flexcpt)
+            {
+                RadMessageBox.ThemeName = "Office2013Light";
+                RadMessageBox.Show("Не можливо відкрити файл: "+ flexcpt.FileName + "\nПовідомлення: " + flexcpt.Message, "Помилка відкривання файла", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+            catch (Exception excpt)
+            {
+                RadMessageBox.ThemeName = "Office2013Light";
+                RadMessageBox.Show("Повідомлення: " + excpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error,
+                    MessageBoxDefaultButton.Button1,
+                    " Data: " + excpt.Data + Environment.NewLine + " StackTrace: " + excpt.StackTrace);
+            }
         }
 
         private bool _cabinetBr_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)

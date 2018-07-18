@@ -10,6 +10,7 @@ namespace ipsmedserviceapp.Model
             AnketaCompanyFaCountryNavigation = new HashSet<AnketaCompany>();
             AnketaCompanyJaCountryNavigation = new HashSet<AnketaCompany>();
             AnketaCompanyLeCountryNavigation = new HashSet<AnketaCompany>();
+            AnketaExternal = new HashSet<AnketaExternal>();
             AnketaPersonCitizenshipNavigation = new HashSet<AnketaPerson>();
             AnketaPersonFaCountryNavigation = new HashSet<AnketaPerson>();
             AnketaPersonReCountryNavigation = new HashSet<AnketaPerson>();
@@ -34,6 +35,7 @@ namespace ipsmedserviceapp.Model
         public ICollection<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
         public ICollection<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
         public ICollection<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
+        public ICollection<AnketaExternal> AnketaExternal { get; set; }
         public ICollection<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
         public ICollection<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
         public ICollection<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }

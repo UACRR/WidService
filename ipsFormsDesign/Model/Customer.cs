@@ -17,7 +17,6 @@ namespace ipsFormsDesign.Model
             BankAccount = new ObservableListSource<BankAccount>();
             Employee = new ObservableListSource<Employee>();
             FileCustomer = new ObservableListSource<FileCustomer>();
-            Register = new ObservableListSource<Register>();
             ReqAgreement = new ObservableListSource<ReqAgreement>();
             ReqCustomer = new ObservableListSource<ReqCustomer>();
             Request = new ObservableListSource<Request>();
@@ -51,7 +50,6 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<BankAccount> BankAccount { get; set; }
         public ObservableListSource<Employee> Employee { get; set; }
         public ObservableListSource<FileCustomer> FileCustomer { get; set; }
-        public ObservableListSource<Register> Register { get; set; }
         public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
         public ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
         public ObservableListSource<Request> Request { get; set; }

@@ -26,6 +26,7 @@ namespace ipsFormsDesign.Model
         public decimal? PrepayRest { get; set; }
         public string LangCode { get; set; }
         public int? PerformType { get; set; }
+        public short? LicTerm { get; set; }
 
         public Language LangCodeNavigation { get; set; }
         public LicenseAgreement Lic { get; set; }

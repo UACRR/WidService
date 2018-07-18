@@ -25,10 +25,14 @@ namespace ipsFormsDesign.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
         public int? Status { get; set; }
+        public int? RegIdSr { get; set; }
+        public decimal? MusicRate { get; set; }
+        public decimal? MusicAmount { get; set; }
 
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
         public BrRegister Reg { get; set; }
+        public Register RegIdSrNavigation { get; set; }
         public ItemStatus StatusNavigation { get; set; }
         public ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }

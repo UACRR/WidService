@@ -17,7 +17,6 @@ namespace ipsmedserviceapp.Model
             BankAccount = new HashSet<BankAccount>();
             Employee = new HashSet<Employee>();
             FileCustomer = new HashSet<FileCustomer>();
-            Register = new HashSet<Register>();
             ReqAgreement = new HashSet<ReqAgreement>();
             ReqCustomer = new HashSet<ReqCustomer>();
             Request = new HashSet<Request>();
@@ -61,8 +60,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public ICollection<Employee> Employee { get; set; }
         public ICollection<FileCustomer> FileCustomer { get; set; }
-        [JsonIgnore]
-        public ICollection<Register> Register { get; set; }
         [JsonIgnore]
         public ICollection<ReqAgreement> ReqAgreement { get; set; }
         [JsonIgnore]
