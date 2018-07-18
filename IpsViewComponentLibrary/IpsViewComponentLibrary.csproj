@@ -414,12 +414,6 @@
     <Compile Include="MiddleControlCabinetCalculation.Designer.cs">
       <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetContacts.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MiddleControlCabinetContacts.Designer.cs">
-      <DependentUpon>MiddleControlCabinetContacts.cs</DependentUpon>
-    </Compile>
     <Compile Include="MiddleControlCabinetFiles.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -444,17 +438,11 @@
     <Compile Include="MiddleControlCabinetPayslips.Designer.cs">
       <DependentUpon>MiddleControlCabinetPayslips.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetReference.cs">
+    <Compile Include="MiddleControlCabinetReqRef.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinetReference.Designer.cs">
-      <DependentUpon>MiddleControlCabinetReference.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MiddleControlCabinetRequest.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MiddleControlCabinetRequest.Designer.cs">
-      <DependentUpon>MiddleControlCabinetRequest.cs</DependentUpon>
+    <Compile Include="MiddleControlCabinetReqRef.Designer.cs">
+      <DependentUpon>MiddleControlCabinetReqRef.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlClientName.cs">
       <SubType>UserControl</SubType>
@@ -775,9 +763,6 @@
     <EmbeddedResource Include="MiddleControlCabinetCalculation.resx">
       <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetContacts.resx">
-      <DependentUpon>MiddleControlCabinetContacts.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetFiles.resx">
       <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>
     </EmbeddedResource>
@@ -790,11 +775,8 @@
     <EmbeddedResource Include="MiddleControlCabinetPayslips.resx">
       <DependentUpon>MiddleControlCabinetPayslips.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetReference.resx">
-      <DependentUpon>MiddleControlCabinetReference.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetRequest.resx">
-      <DependentUpon>MiddleControlCabinetRequest.cs</DependentUpon>
+    <EmbeddedResource Include="MiddleControlCabinetReqRef.resx">
+      <DependentUpon>MiddleControlCabinetReqRef.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
@@ -887,6 +869,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterListViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightRequestBidAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
@@ -899,6 +882,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -951,6 +935,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\deleteIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

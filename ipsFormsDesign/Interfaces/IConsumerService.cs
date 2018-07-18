@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ipsFormsDesign.Model;
 
 namespace ipsFormsDesign.Interfaces
 {
@@ -210,5 +211,44 @@ namespace ipsFormsDesign.Interfaces
         public string ClientGroup { get; set; }
         public string ClientBrand { get; set; }
         public string StatusName { get; set; }
+    }
+
+    public class BigRightRequests
+    {
+        public int CustId { get; set; }
+        public int Objid { get; set; }
+        public string ObjName { get; set; }
+        public string LicNum { get; set; }
+        public DateTime? LicDate { get; set; }
+        public decimal? Rate { get; set; }
+        public DateTime? DatePremiere { get; set; }
+        public DateTime? LicDateEnd { get; set; }
+        public string LicStatusName { get; set; }
+    }
+
+    public class BigRightRequestBidAuthors
+    {
+        public int LicId { get; set; }
+        public int LicVersion { get; set; }
+        public int? CustIdCl { get; set; }
+        public int CRightId { get; set; }
+        public int? PrepayType { get; set; }
+        public int? WorkTypeRH { get; set; }
+        public int? WorkTypeCl { get; set; }
+        public decimal? PrepaySum { get; set; }
+        public decimal? RoleRate { get; set; }
+        public string RoleName { get; set; }
+        public string AuthorName { get; set; }
+        public string InnerCode { get; set; }
+        public string InterCode { get; set; }
+        public string CountryName { get; set; }
+        public string PrepayTypeName { get; set; }
+        public string WorkTypeRHName { get; set; }
+        public string WorkCommentRH { get; set; }
+        public string WorkTypeRHCl { get; set; }
+        public string WorkCoommentCl { get; set; }
+        public string CountryCode { get; set; }
+        public string R030 { get; set; }
+        public WorkRh WorkRh { get; set; }
     }
 }

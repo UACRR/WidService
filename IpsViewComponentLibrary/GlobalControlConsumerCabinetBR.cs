@@ -24,6 +24,8 @@ namespace IpsViewComponentLibrary
         private IList<ConsumerBigRightView> _brData;
         private IList<VbrLicense> _agrData;
         private IList<BigRightMasterGenAgr> _genAgrs;
+        private IList<BigRightRequests> _requests;
+        private IList<BigRightRequestBidAuthors> _authors;
 
         public delegate void BackToMainGrid(int custId);
         /// <summary>
@@ -100,12 +102,40 @@ namespace IpsViewComponentLibrary
             _customer = customer;
         }
 
+        public void SetBigRightBidAuthors(IList<object> authors)
+        {
+            var licDic = _customer.Client.LicenseAgreement.Where(rec=>rec.LicenseBigR.Count > 0).Select(row=>row.LicenseBigR.First(item=>item.LicVersion==row.LicVersion)).ToDictionary(rec => rec.LicId);
+            _authors = authors.Select( row =>
+            {
+                BigRightRequestBidAuthors item = (BigRightRequestBidAuthors) row;
+                if (licDic.Keys.Contains(item.LicId))
+                {
+                    item.WorkRh = licDic[item.LicId].Obj?.CopyRight.First(rec => rec.CRightId == item.CRightId)?.WorkRh ?? new WorkRh
+                    {
+                        WorkTypeCl = default(int),
+                        CRightId = item.CRightId
+                    };
+                }
+                return item;
+            }).ToList();
+        }
+
+        /// <summary>
+        /// Дані для вкладки заявки, грід заявок
+        /// </summary>
+        /// <param name="requestList"></param>
+        public void SetRequestData(IList<object> requestList)
+        {
+            _requests = new List<BigRightRequests>();
+            foreach (var temp in requestList)
+                _requests.Add(temp as BigRightRequests);
+        }
+
         public void SetDataAgreementView(IList<object> agrData)
         {
             _agrData = new List<VbrLicense>();
             foreach (var temp in agrData)
                 _agrData.Add(temp as VbrLicense);
-            
         }
 
         public void SetAgrMasterList(IList<object> genAgrs)
@@ -129,8 +159,15 @@ namespace IpsViewComponentLibrary
 
             if(_rowId != -1)
             {
+                //отримання даних
                 OnCustomerUpdateDataNeed?.Invoke(_rowId);
-                ctrlCabinet.SetAndUpdateData(_customer, e.CurrentRow.DataBoundItem as ConsumerBigRightView, _agrData, _genAgrs);
+                //передача даних
+                ctrlCabinet.SetAndUpdateData(_customer, 
+                                             e?.CurrentRow?.DataBoundItem as ConsumerBigRightView,
+                                             _agrData,
+                                             _genAgrs,
+                                             _requests,
+                                             _authors);
             }
         }
 

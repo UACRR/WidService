@@ -227,10 +227,6 @@ namespace IpsViewComponentLibrary
         /// </summary>
         References,
         /// <summary>
-        /// Контакти
-        /// </summary>
-        Contacts,
-        /// <summary>
         /// Генеральна угода
         /// </summary>
         GeneralAgreement,
@@ -242,6 +238,25 @@ namespace IpsViewComponentLibrary
         /// Представник
         /// </summary>
         Agent
+    }
+
+    /// <summary>
+    /// Тип контролу
+    /// </summary>
+    public enum ControlRequestOrReferenceType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Заявка
+        /// </summary>
+        Request,
+        /// <summary>
+        /// Довідка
+        /// </summary>
+        Reference
     }
 
 }
