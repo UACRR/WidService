@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
@@ -32,7 +33,9 @@ namespace IpsViewComponentLibrary
         private IList<VbrLicense> _brLicenses;
         private IList<BigRightMasterGenAgr> _genAgrs;
         private IList<BigRightRequests> _requests;
+        private IList<BigRightRequests> _reference;
         private IList<BigRightRequestBidAuthors> _authors;
+        private IList<BigRightMoneyUndescrib> _moneyUndescribs;
         private AnketaDictionaties _anketaDictionaties = null;
         private CabinetTabType _currenCabinetTab = CabinetTabType.Licenses;
 
@@ -47,6 +50,9 @@ namespace IpsViewComponentLibrary
         public MiddleControlCabinet()
         {
             InitializeComponent();
+            ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
+            ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
+            ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
@@ -72,14 +78,18 @@ namespace IpsViewComponentLibrary
                                      IList<VbrLicense> brLicenses,
                                      IList<BigRightMasterGenAgr> genAgrs,
                                      IList<BigRightRequests> requests,
-                                     IList<BigRightRequestBidAuthors> authors)
+                                     IList<BigRightRequestBidAuthors> authors,
+                                     IList<BigRightRequests> reference,
+                                     IList<BigRightMoneyUndescrib> moneyUndescribs)
         {
             _customer = customer;
             _brView = brView;
             _brLicenses = brLicenses;
             _genAgrs = genAgrs;
             _requests = requests;
+            _reference = reference;
             _authors = authors;
+            _moneyUndescribs = moneyUndescribs;
 
             UpdateCurentTab(_currenCabinetTab);
         }
@@ -97,6 +107,9 @@ namespace IpsViewComponentLibrary
                 }
                     break;
                 case CabinetTabType.Calculations:
+                {
+                    ctrlCalculation.SetAndUpdateData(_customer, _brView, _genAgrs, _moneyUndescribs);
+                }
                     break;
                 case CabinetTabType.Payslips:
                     break;
@@ -106,6 +119,9 @@ namespace IpsViewComponentLibrary
                 }
                     break;
                 case CabinetTabType.References:
+                {
+                    ctrlReference.SetAndUpdateData(_customer, _brView, _reference, _authors);
+                }
                     break;
                 case CabinetTabType.GeneralAgreement:
                 {

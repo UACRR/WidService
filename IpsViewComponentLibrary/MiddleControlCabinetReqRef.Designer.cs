@@ -259,7 +259,6 @@
             // 
             // btnToReference
             // 
-            this.btnToReference.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToReference.Location = new System.Drawing.Point(607, 104);
             this.btnToReference.Name = "btnToReference";
             this.btnToReference.Size = new System.Drawing.Size(112, 20);
@@ -269,13 +268,13 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreate.Location = new System.Drawing.Point(489, 104);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(112, 20);
             this.btnCreate.TabIndex = 17;
             this.btnCreate.Text = "Нова заявка";
             this.btnCreate.ThemeName = "Office2013Light";
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnToAccept
             // 
@@ -457,7 +456,7 @@
             this.btnCancel.Text = "Скасувати зміни";
             this.btnCancel.ThemeName = "Office2013Light";
             // 
-            // MiddleControlCabinetRequest
+            // MiddleControlCabinetReqRef
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -472,7 +471,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.gvViewRequests);
             this.Controls.Add(this.ctrlAgrInfo);
-            this.Name = "MiddleControlCabinetRequest";
+            this.Name = "MiddleControlCabinetReqRef";
             this.Size = new System.Drawing.Size(1060, 587);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();

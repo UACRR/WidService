@@ -140,6 +140,10 @@ namespace ipsFormsDesign.Interfaces
         /// Назва Партнера
         /// </summary>
         public string PartnerName { get; set; }
+        /// <summary>
+        /// Адреса
+        /// </summary>
+        public string JaAddress { get; set; }
 
     }
 
@@ -250,5 +254,19 @@ namespace ipsFormsDesign.Interfaces
         public string CountryCode { get; set; }
         public string R030 { get; set; }
         public WorkRh WorkRh { get; set; }
+    }
+
+    public class BigRightMoneyUndescrib
+    {
+        public DateTime DateInvoice { get; set; }
+        public int PaidId { get; set; }
+        public int CustId { get; set; }
+        public int MoneyType { get; set; }
+        public decimal Amount { get; set; }
+        public decimal DestribAmount { get; set; }
+        public decimal DestribPrepay { get; set; }
+        public decimal? UndescribAmount { get; set; }
+        public string NumberInvoice { get; set; }
+        public string GoalInvoice { get; set; }
     }
 }
