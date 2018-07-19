@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRequestBidAuthors> _authors;
         private IList<BigRightMoneyUndescrib> _moneyUndescribs;
         private AnketaDictionaties _anketaDictionaties = null;
-        private CabinetTabType _currenCabinetTab = CabinetTabType.Licenses;
+        private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
 
         /// <summary>
         /// Виникиє при необхідності зберегти Customer
