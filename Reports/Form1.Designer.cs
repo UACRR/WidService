@@ -42,6 +42,7 @@
             this.reportViewer1.ReportSource = typeReportSource1;
             this.reportViewer1.Size = new System.Drawing.Size(1081, 450);
             this.reportViewer1.TabIndex = 1;
+            this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
             // Form1
             // 
