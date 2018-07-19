@@ -108,5 +108,20 @@ namespace ipsFormsDesign.Services
             string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";
             return Task.Run(() => _webApi.downloadFile(url)).GetAwaiter().GetResult();
         }
+
+        #region Payments
+        public List<ExternalPay> GetCustomerPays( int custId )
+        {
+            string url = "consumer/PaydPeriod/GetPayments/" + custId.ToString();
+            return _webApi.GetList<ExternalPay>(url); 
+        }
+
+        public bool SaveNewPayments( int custId, List<ExternalPay> pays )
+        {
+            string url = "consumer/PaydPeriod/GetPayments";
+            var ret = _webApi.UpdateItem(url, custId.ToString(), pays);
+            return ret;
+        }
+        #endregion
     }
 }

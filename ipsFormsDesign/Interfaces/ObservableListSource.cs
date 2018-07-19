@@ -20,7 +20,9 @@ namespace ipsFormsDesign.Interfaces
 
         public ObservableListSource(IList<T> list)
         {
-            _bindingList = new BindingList<T>(list);
+            foreach (var item in list)
+                Add(item);
+            _bindingList = ToBindingList();
         }
         public ObservableListSource(ICollection<T> list)
         {

@@ -159,6 +159,18 @@ namespace UnitTestMediaPortal
             form.DataSource = list;
 
             form.ShowDialog();
+        }
+
+        [TestMethod]
+        public void TestReport()
+        {
+            var form = new ReportForm();
+            form.ShowDialog();
+        }
+
+        [TestMethod]
+        public void TestGridPayments()
+        {
 
         }
 

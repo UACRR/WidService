@@ -85,12 +85,9 @@ namespace IpsViewComponentLibrary
         // * * * [Періоди платежів]
         private void gvPeriods_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if(gvPeriods.Rows.Count == 0) return;
-
             List<GridReportsP> source = new List<GridReportsP>();
             var paidPeriods = _data?.Client?.LicenseAgreement?.Where(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value).Select(rec => rec.PaidPeriod).SingleOrDefault();
-            var register = paidPeriods?.Where(rec => rec.PeriodId == (e.CurrentRow.DataBoundItem as GridPeriodsR)?.PeriodId).SingleOrDefault()?.RegisterRatedList.FirstOrDefault()?.Register;
-
+            var register = paidPeriods?.Where(rec => rec.PeriodId == (int)gvPeriods.CurrentRow.Cells["PeriodId"].Value).SingleOrDefault()?.RegisterRatedList.SingleOrDefault()?.Register;
 
             if (register != null)
             {
