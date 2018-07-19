@@ -18,7 +18,7 @@ namespace TestControls
         private ConsumerService _service;
         private EditPay payForm = null;
         private ConsumerMainView _curItem = null;
-
+        private bool isInit = false;
         public MainForm()
         {
             _service = new ConsumerService();
@@ -36,6 +36,8 @@ namespace TestControls
             }
             if( employee.Count == 0 )
                 SetButtonDisable();
+
+            isInit = true;
         }
 
         private void SetButtonDisable()
@@ -88,6 +90,23 @@ namespace TestControls
             {
                 radGridView2.Enabled = false;
             }
+        }
+        
+        private void radCollapsiblePanel1_Expanded(object sender, EventArgs e)
+        {
+            radSplitContainer1.SplitPanels[0].SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
+            radSplitContainer1.SplitPanels[0].SizeInfo.AbsoluteSize = radCollapsiblePanel1.Size;
+        }
+
+        private void radCollapsiblePanel1_Collapsed(object sender, EventArgs e)
+        {
+            radSplitContainer1.SplitPanels[0].SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
+            radSplitContainer1.SplitPanels[0].SizeInfo.AbsoluteSize = radCollapsiblePanel1.CollapsiblePanelElement.HeaderElement.Size;
+        }
+
+        private void splitPanel1_ClientSizeChanged(object sender, EventArgs e)
+        {
+            radCollapsiblePanel1.Size = radSplitContainer1.SplitPanels[0].Size + new Size(-2,-2);
         }
     }
 }
