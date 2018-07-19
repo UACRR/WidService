@@ -38,6 +38,10 @@ namespace ipsFormsDesign.Interfaces
         public IList<WorkType> workType {get; set;}
         public IList<TypeMethodGet> typeMethodGet { get; set; }
         public IList<CommunityInfo> communities { get; set; }
+        public IList<ObjAct> objAct { get; set; }
+        public IList<PerformType> performType { get; set; }
+        public IList<GenreType> genreType { get; set; }
+        public IList<Language> language { get; set; }
     }
 
 

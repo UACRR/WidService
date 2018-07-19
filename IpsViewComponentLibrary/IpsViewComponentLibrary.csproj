@@ -122,6 +122,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCompositionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCompositionForm.Designer.cs">
+      <DependentUpon>AddCompositionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddFileDialogForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -620,6 +626,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddCompositionForm.resx">
+      <DependentUpon>AddCompositionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddFileDialogForm.resx">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -888,6 +897,8 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseBigR.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MusicalDesign.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjAct.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjectRight.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.PerformType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />

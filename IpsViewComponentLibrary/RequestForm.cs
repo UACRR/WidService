@@ -40,8 +40,12 @@ namespace IpsViewComponentLibrary
             bsLicenseBigR.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR;
             bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam.SingleOrDefault()?.License;
             bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
-
             bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
+
+            bsDictObjAct.DataSource = dictionaties.objAct;
+            bsDictPerformType.DataSource = dictionaties.performType;
+            bsDictGenreType.DataSource = dictionaties.genreType;
+            bsDictLanguage.DataSource = dictionaties.language;
 
 
             #endregion
@@ -82,6 +86,7 @@ namespace IpsViewComponentLibrary
                             Status = 0,
                             CategoryCode = 6,
                         },
+                        MusicalDesign = new ObservableListSource<MusicalDesign>()
                     }
                 }
             };
@@ -98,7 +103,7 @@ namespace IpsViewComponentLibrary
         {
             if (_deleteLicense)
             {
-                if (RadMessageBox.Show("Скасувати створення заявки на ліцензію та вийти?", "Підтвердження", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+                if (RadMessageBox.Show("Вийти без збереження?", "Підтвердження", MessageBoxButtons.YesNo, RadMessageIcon.Exclamation) == DialogResult.Yes)
                     _customer.Client.LicenseAgreement.Remove(_licenseAgreement);
                 else
                     e.Cancel = true;
@@ -120,6 +125,42 @@ namespace IpsViewComponentLibrary
         private void ddlPlaceName_SelectedValueChanged(object sender, EventArgs e)
         {
             bsClnPlaceHoll.DataSource = _customer.Client.ClnBusinessPlace.SingleOrDefault(rec => rec?.PlaceId == (int?)ddlPlaceName?.SelectedItem?.Value)?.ClnPlaceHoll;
+        }
+
+        private void ddlActType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            RefreshGridDataSource();
+        }
+
+        private void btnAddAct_Click(object sender, EventArgs e)
+        {
+            MusicalDesign design = new MusicalDesign
+            {
+                ActNumb = (int)ddlActType.SelectedItem.Value,
+                Duration = new TimeSpan(00, 00, 00, 01),
+            };
+
+            var mus = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.MusicalDesign;
+            mus?.Add(design);
+            AddCompositionForm addCompositionForm = new AddCompositionForm(mus?.LastOrDefault());
+            if (addCompositionForm.ShowDialog() != DialogResult.OK)
+                mus?.Remove(design);
+            else
+                RefreshGridDataSource();
+        }
+
+        private void RefreshGridDataSource()
+        {
+            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR
+                .SingleOrDefault()?.MusicalDesign.Where(rec => rec.ActNumb == (int)ddlActType.SelectedValue)?.ToList();
+            gvViewActList.DataSource = source;
+        }
+
+        private void gvViewActList_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            var delItem = e.Row.DataBoundItem as MusicalDesign;
+            _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.MusicalDesign.Remove(delItem);
+            RefreshGridDataSource();
         }
     }
 }
