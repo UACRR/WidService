@@ -58,21 +58,34 @@
             Telerik.WinControls.Data.SortDescriptor sortDescriptor1 = new Telerik.WinControls.Data.SortDescriptor();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.radButton3 = new Telerik.WinControls.UI.RadButton();
+            this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
+            this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
+            this.radCollapsiblePanel1 = new Telerik.WinControls.UI.RadCollapsiblePanel();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
+            this.radPageView1.SuspendLayout();
+            this.radPageViewPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).BeginInit();
+            this.radCollapsiblePanel1.PanelContainer.SuspendLayout();
+            this.radCollapsiblePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,10 +93,13 @@
             // 
             this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.Location = new System.Drawing.Point(12, 277);
+            this.radGridView1.Location = new System.Drawing.Point(3, 2);
             // 
             // 
             // 
+            this.radGridView1.MasterTemplate.AllowAddNewRow = false;
+            this.radGridView1.MasterTemplate.AllowDeleteRow = false;
+            this.radGridView1.MasterTemplate.AllowEditRow = false;
             gridViewDecimalColumn1.DataType = typeof(int);
             gridViewDecimalColumn1.FieldName = "PaidId";
             gridViewDecimalColumn1.HeaderText = "PaidId";
@@ -196,9 +212,13 @@
             this.radGridView1.MasterTemplate.DataSource = this.bindingSource2;
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1076, 221);
+            this.radGridView1.Size = new System.Drawing.Size(1077, 383);
             this.radGridView1.TabIndex = 0;
             this.radGridView1.DoubleClick += new System.EventHandler(this.radGridView1_DoubleClick);
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(ipsFormsDesign.Model.ExternalPay);
             // 
             // radGridView2
             // 
@@ -210,7 +230,7 @@
             this.radGridView2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.radGridView2.ForeColor = System.Drawing.Color.Black;
             this.radGridView2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.radGridView2.Location = new System.Drawing.Point(12, 13);
+            this.radGridView2.Location = new System.Drawing.Point(-11, 38);
             // 
             // 
             // 
@@ -260,31 +280,28 @@
             this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView2.Name = "radGridView2";
             this.radGridView2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radGridView2.Size = new System.Drawing.Size(1076, 242);
+            this.radGridView2.Size = new System.Drawing.Size(702, 33);
             this.radGridView2.TabIndex = 1;
             this.radGridView2.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.radGridView2_CurrentRowChanged);
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
             // 
             // radButton1
             // 
             this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton1.Location = new System.Drawing.Point(124, 504);
+            this.radButton1.Location = new System.Drawing.Point(115, 425);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(110, 24);
             this.radButton1.TabIndex = 2;
             this.radButton1.Text = "Зберігти";
             this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
-            // 
-            // bindingSource2
-            // 
-            this.bindingSource2.DataSource = typeof(ipsFormsDesign.Model.ExternalPay);
-            // 
             // radButton2
             // 
-            this.radButton2.Location = new System.Drawing.Point(8, 504);
+            this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radButton2.Location = new System.Drawing.Point(3, 425);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(110, 24);
             this.radButton2.TabIndex = 3;
@@ -294,22 +311,87 @@
             // radButton3
             // 
             this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton3.Location = new System.Drawing.Point(240, 504);
+            this.radButton3.Location = new System.Drawing.Point(13, 579);
             this.radButton3.Name = "radButton3";
             this.radButton3.Size = new System.Drawing.Size(110, 24);
             this.radButton3.TabIndex = 3;
             this.radButton3.Text = "Закрити";
             // 
+            // radPageView1
+            // 
+            this.radPageView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPageView1.Controls.Add(this.radPageViewPage1);
+            this.radPageView1.Controls.Add(this.radPageViewPage2);
+            this.radPageView1.Controls.Add(this.radPageViewPage3);
+            this.radPageView1.Location = new System.Drawing.Point(-2, 51);
+            this.radPageView1.Name = "radPageView1";
+            this.radPageView1.SelectedPage = this.radPageViewPage1;
+            this.radPageView1.Size = new System.Drawing.Size(1104, 500);
+            this.radPageView1.TabIndex = 5;
+            // 
+            // radPageViewPage1
+            // 
+            this.radPageViewPage1.Controls.Add(this.radGridView1);
+            this.radPageViewPage1.Controls.Add(this.radButton2);
+            this.radPageViewPage1.Controls.Add(this.radButton1);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(58F, 28F);
+            this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage1.Name = "radPageViewPage1";
+            this.radPageViewPage1.Size = new System.Drawing.Size(1083, 452);
+            this.radPageViewPage1.Text = "Платежі";
+            // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(100F, 28F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(1083, 265);
+            this.radPageViewPage2.Text = "Розподіл коштів";
+            // 
+            // radPageViewPage3
+            // 
+            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(42F, 28F);
+            this.radPageViewPage3.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage3.Name = "radPageViewPage3";
+            this.radPageViewPage3.Size = new System.Drawing.Size(1083, 452);
+            this.radPageViewPage3.Text = "Звіти";
+            // 
+            // radTextBox1
+            // 
+            this.radTextBox1.Location = new System.Drawing.Point(4, 9);
+            this.radTextBox1.Name = "radTextBox1";
+            this.radTextBox1.NullText = "Пошук";
+            this.radTextBox1.Size = new System.Drawing.Size(529, 24);
+            this.radTextBox1.TabIndex = 6;
+            // 
+            // radCollapsiblePanel1
+            // 
+            this.radCollapsiblePanel1.ContentSizingMode = Telerik.WinControls.UI.CollapsiblePanelContentSizingMode.FitToContentHeight;
+            this.radCollapsiblePanel1.IsExpanded = false;
+            this.radCollapsiblePanel1.Location = new System.Drawing.Point(8, 12);
+            this.radCollapsiblePanel1.Name = "radCollapsiblePanel1";
+            this.radCollapsiblePanel1.OwnerBoundsCache = new System.Drawing.Rectangle(8, 12, 1081, 220);
+            // 
+            // radCollapsiblePanel1.PanelContainer
+            // 
+            this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.radGridView2);
+            this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.radTextBox1);
+            this.radCollapsiblePanel1.PanelContainer.Size = new System.Drawing.Size(0, 0);
+            this.radCollapsiblePanel1.Size = new System.Drawing.Size(1081, 21);
+            this.radCollapsiblePanel1.TabIndex = 7;
+            ((Telerik.WinControls.UI.RadCollapsiblePanelElement)(this.radCollapsiblePanel1.GetChildAt(0))).IsExpanded = false;
+            ((Telerik.WinControls.UI.RadCollapsiblePanelElement)(this.radCollapsiblePanel1.GetChildAt(0))).ContentSizingMode = Telerik.WinControls.UI.CollapsiblePanelContentSizingMode.FitToContentHeight;
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1101, 547);
+            this.ClientSize = new System.Drawing.Size(1101, 615);
+            this.Controls.Add(this.radCollapsiblePanel1);
+            this.Controls.Add(this.radPageView1);
             this.Controls.Add(this.radButton3);
-            this.Controls.Add(this.radButton2);
-            this.Controls.Add(this.radButton1);
-            this.Controls.Add(this.radGridView2);
-            this.Controls.Add(this.radGridView1);
             this.Name = "MainForm";
             // 
             // 
@@ -319,13 +401,21 @@
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
+            this.radPageView1.ResumeLayout(false);
+            this.radPageViewPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
+            this.radCollapsiblePanel1.PanelContainer.ResumeLayout(false);
+            this.radCollapsiblePanel1.PanelContainer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).EndInit();
+            this.radCollapsiblePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -340,5 +430,11 @@
         private Telerik.WinControls.UI.RadButton radButton1;
         private Telerik.WinControls.UI.RadButton radButton2;
         private Telerik.WinControls.UI.RadButton radButton3;
+        private Telerik.WinControls.UI.RadPageView radPageView1;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
+        private Telerik.WinControls.UI.RadTextBox radTextBox1;
+        private Telerik.WinControls.UI.RadCollapsiblePanel radCollapsiblePanel1;
     }
 }
