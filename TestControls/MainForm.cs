@@ -75,23 +75,41 @@ namespace TestControls
                 return _consumer;
             });
 
-            Task.Run(() => {
+            Task.Run(() =>
+            {
 
-                var listPays = _service.GetCustomerPays(_curItem.CustId);
-                ObservableListSource<ExternalPay> listSource = new ObservableListSource<ExternalPay>(listPays);
-                bindingSource2.DataSource = listSource;
-                if (InvokeRequired)
-                    checkBox1.Invoke( (MethodInvoker )delegate() { checkBox1.Text = _curItem.Name; });
-
+            var listPays = _service.GetCustomerPays(_curItem.CustId);
+            ObservableListSource<ExternalPay> listSource = new ObservableListSource<ExternalPay>(listPays);
+            if (InvokeRequired)
+            {
+                checkBox1.Invoke((MethodInvoker)delegate () { checkBox1.Text = _curItem.Name;
+                    bindingSource2.DataSource = listSource; ;
+                });
+                }
+                else
+                {
+                    checkBox1.Text = _curItem.Name;
+                    bindingSource2.DataSource = listSource;
+                }
             });
 
             var consumer = getCurrentCustomer.GetAwaiter().GetResult();
-            bindPayPeriod1.bindingSource1.DataSource = consumer.Client.MoneyReceived.Where(rec => rec.Amount >= rec.DestribAmount + (rec.DestribPrepay ?? 0));
-            var list = consumer.Client.LicenseAgreement.ToList();
-            if (list != null)
-                bindPayPeriod1.bindingSource2.DataSource = list;
+            var list = consumer.Client.LicenseAgreement.ToList() ?? new List<LicenseAgreement>();
+            if (InvokeRequired)
+            {
+                bindPayPeriod1.Invoke((MethodInvoker)delegate ()
+                {
+                    bindPayPeriod1.bindingSource1.DataSource = consumer.Client.MoneyReceived.Where(rec => rec.Amount >= rec.DestribAmount + (rec.DestribPrepay ?? 0));
+                    bindPayPeriod1.bindingSource2.DataSource = list;
+                });
+            }
             else
-                bindPayPeriod1.bindingSource2.DataSource = new List<LicenseAgreement>();
+            {
+                bindPayPeriod1.bindingSource1.DataSource = consumer.Client.MoneyReceived.Where(rec => rec.Amount >= rec.DestribAmount + (rec.DestribPrepay ?? 0));
+                bindPayPeriod1.bindingSource2.DataSource = list;
+
+            }
+
 
 
 
