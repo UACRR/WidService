@@ -111,13 +111,15 @@ namespace Reports
             // 
             // sqlDataSource1
             // 
-            this.sqlDataSource1.ConnectionString = "Reports.Properties.Settings.MediaService";
+            this.sqlDataSource1.ConnectionString = "Data Source=IPSDATA\\IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Pass" +
+    "word=robot11235813";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.SelectCommand = "select distinct accId, accNls from account\r\n";
             // 
             // sqlDataSource2
             // 
-            this.sqlDataSource2.ConnectionString = "Reports.Properties.Settings.MediaService1";
+            this.sqlDataSource2.ConnectionString = "Data Source=IPSDATA\\IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Pass" +
+    "word=robot11235813";
             this.sqlDataSource2.Name = "sqlDataSource2";
             this.sqlDataSource2.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
             new Telerik.Reporting.SqlDataSourceParameter("@SaldoDay_accId", System.Data.DbType.String, "= Parameters.accid.Value")});
