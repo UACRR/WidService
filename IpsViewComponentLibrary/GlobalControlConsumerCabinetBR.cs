@@ -25,7 +25,9 @@ namespace IpsViewComponentLibrary
         private IList<VbrLicense> _agrData;
         private IList<BigRightMasterGenAgr> _genAgrs;
         private IList<BigRightRequests> _requests;
+        private IList<BigRightRequests> _reference;
         private IList<BigRightRequestBidAuthors> _authors;
+        private IList<BigRightMoneyUndescrib> _moneyUndescribs;
 
         public delegate void BackToMainGrid(int custId);
         /// <summary>
@@ -120,6 +122,13 @@ namespace IpsViewComponentLibrary
             }).ToList();
         }
 
+        public void SetMoneyUndescribsData(IList<object> moneyUndescribs)
+        {
+            _moneyUndescribs = new List<BigRightMoneyUndescrib>();
+            foreach (var temp in moneyUndescribs)
+                _moneyUndescribs.Add(temp as BigRightMoneyUndescrib);
+        }
+
         /// <summary>
         /// Дані для вкладки заявки, грід заявок
         /// </summary>
@@ -131,7 +140,18 @@ namespace IpsViewComponentLibrary
                 _requests.Add(temp as BigRightRequests);
         }
 
-        public void SetDataAgreementView(IList<object> agrData)
+        /// <summary>
+        /// Дані для вкладки довідки, грід заявок
+        /// </summary>
+        /// <param name="requestList"></param>
+        public void SetReferanceData(IList<object> referanceList)
+        {
+            _reference = new List<BigRightRequests>();
+            foreach (var temp in referanceList)
+                _reference.Add(temp as BigRightRequests);
+        }
+
+        public void SetAgreementViewData(IList<object> agrData)
         {
             _agrData = new List<VbrLicense>();
             foreach (var temp in agrData)
@@ -167,7 +187,9 @@ namespace IpsViewComponentLibrary
                                              _agrData,
                                              _genAgrs,
                                              _requests,
-                                             _authors);
+                                             _authors,
+                                             _reference,
+                                             _moneyUndescribs);
             }
         }
 

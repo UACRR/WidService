@@ -558,6 +558,12 @@
     <Compile Include="ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RequestForm.Designer.cs">
+      <DependentUpon>RequestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\RightholderListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -831,6 +837,9 @@
     <EmbeddedResource Include="ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RequestForm.resx">
+      <DependentUpon>RequestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\RightholderListControl.resx">
       <DependentUpon>RightholderListControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -869,10 +878,18 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.FileType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Language.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.License.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseBigR.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjectRight.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.PerformType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />

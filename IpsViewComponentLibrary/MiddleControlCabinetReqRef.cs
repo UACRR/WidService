@@ -16,11 +16,18 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetReqRef : UserControl
     {
         private Customer _customer;
+        private ConsumerBigRightView _bigRightView;
+        private AnketaDictionaties _dictionaties;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
         public MiddleControlCabinetReqRef()
         {
             InitializeComponent();
-            bsDictionary.DataSource = IpsGlobal.AnketaDictionaties.workType;
+        }
+
+        public void SetAnketaDictionary(AnketaDictionaties dictionaties)
+        {
+            _dictionaties = dictionaties;
+            bsDictionary.DataSource = _dictionaties.workType;
         }
 
         /// <summary>
@@ -30,7 +37,8 @@ namespace IpsViewComponentLibrary
         public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightRequests> listRequests, IList<BigRightRequestBidAuthors> author)
         {
             _customer = customer;
-            ctrlAgrInfo.DataSource = bigRightView;
+            _bigRightView = bigRightView;
+            ctrlAgrInfo.DataSource = _bigRightView;
             gvViewRequests.DataSource = listRequests;
             bindingSource1.DataSource = author;
             // gvCreativeRole.DataSource = author;
@@ -76,6 +84,8 @@ namespace IpsViewComponentLibrary
 
         private void gvViewRequests_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            if(gvViewRequests.RowCount == 0) return;
+            
             var item = e.CurrentRow.DataBoundItem as BigRightRequests;
 
         }
@@ -134,6 +144,24 @@ namespace IpsViewComponentLibrary
         private void gvCreativeRole_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             var item = e.Row.DataBoundItem as BigRightRequestBidAuthors;
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            switch (_typeControl)
+            {
+                case ControlRequestOrReferenceType.None:
+                    break;
+                case ControlRequestOrReferenceType.Request:
+                {
+                    RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties);
+                    if(requestForm.ShowDialog() == DialogResult.OK)
+                    ; //TODO save changes
+                }
+                    break;
+                case ControlRequestOrReferenceType.Reference:
+                    break;
+            }
         }
     }
 }
