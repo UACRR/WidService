@@ -471,12 +471,14 @@ namespace ReportsLibrary
             reportParameter1.AllowNull = true;
             reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
+            reportParameter1.Text = "з";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "= Date(2018,1,1)";
             reportParameter1.Visible = true;
             reportParameter2.AllowNull = true;
             reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
+            reportParameter2.Text = "по";
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "= Today()";
             reportParameter2.Visible = true;
