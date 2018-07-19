@@ -29,34 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn9 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn4 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn5 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn10 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn11 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn12 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn13 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn6 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn14 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn27 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn15 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn16 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.Data.SortDescriptor sortDescriptor2 = new Telerik.WinControls.Data.SortDescriptor();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn2 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn3 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn7 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn8 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.Data.SortDescriptor sortDescriptor1 = new Telerik.WinControls.Data.SortDescriptor();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
@@ -69,10 +69,10 @@
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.radCollapsiblePanel1 = new Telerik.WinControls.UI.RadCollapsiblePanel();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
@@ -86,9 +86,6 @@
             this.radPageView1.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).BeginInit();
-            this.radCollapsiblePanel1.PanelContainer.SuspendLayout();
-            this.radCollapsiblePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -100,128 +97,150 @@
             // 
             // radGridView1
             // 
-            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.Location = new System.Drawing.Point(6, 40);
+            this.radGridView1.Location = new System.Drawing.Point(6, 3);
             // 
             // 
             // 
             this.radGridView1.MasterTemplate.AllowAddNewRow = false;
             this.radGridView1.MasterTemplate.AllowDeleteRow = false;
             this.radGridView1.MasterTemplate.AllowEditRow = false;
-            gridViewDecimalColumn9.DataType = typeof(int);
-            gridViewDecimalColumn9.FieldName = "PaidId";
-            gridViewDecimalColumn9.HeaderText = "PaidId";
-            gridViewDecimalColumn9.IsAutoGenerated = true;
-            gridViewDecimalColumn9.Name = "PaidId";
-            gridViewDateTimeColumn4.DataType = typeof(System.Nullable<System.DateTime>);
-            gridViewDateTimeColumn4.FieldName = "InputDate";
-            gridViewDateTimeColumn4.HeaderText = "InputDate";
-            gridViewDateTimeColumn4.IsAutoGenerated = true;
-            gridViewDateTimeColumn4.Name = "InputDate";
-            gridViewTextBoxColumn15.FieldName = "Mfo";
-            gridViewTextBoxColumn15.HeaderText = "Mfo";
-            gridViewTextBoxColumn15.IsAutoGenerated = true;
-            gridViewTextBoxColumn15.Name = "Mfo";
-            gridViewTextBoxColumn16.FieldName = "Okpol";
-            gridViewTextBoxColumn16.HeaderText = "Okpol";
-            gridViewTextBoxColumn16.IsAutoGenerated = true;
-            gridViewTextBoxColumn16.Name = "Okpol";
-            gridViewTextBoxColumn17.FieldName = "Account";
-            gridViewTextBoxColumn17.HeaderText = "Account";
-            gridViewTextBoxColumn17.IsAutoGenerated = true;
-            gridViewTextBoxColumn17.Name = "Account";
-            gridViewTextBoxColumn18.FieldName = "R030";
-            gridViewTextBoxColumn18.HeaderText = "R030";
-            gridViewTextBoxColumn18.IsAutoGenerated = true;
-            gridViewTextBoxColumn18.Name = "R030";
-            gridViewTextBoxColumn19.FieldName = "CodeOper";
-            gridViewTextBoxColumn19.HeaderText = "CodeOper";
-            gridViewTextBoxColumn19.IsAutoGenerated = true;
-            gridViewTextBoxColumn19.Name = "CodeOper";
-            gridViewTextBoxColumn20.FieldName = "MfoCorr";
-            gridViewTextBoxColumn20.HeaderText = "MfoCorr";
-            gridViewTextBoxColumn20.IsAutoGenerated = true;
-            gridViewTextBoxColumn20.Name = "MfoCorr";
-            gridViewTextBoxColumn21.FieldName = "NameMfoCorr";
-            gridViewTextBoxColumn21.HeaderText = "NameMfoCorr";
-            gridViewTextBoxColumn21.IsAutoGenerated = true;
-            gridViewTextBoxColumn21.Name = "NameMfoCorr";
-            gridViewTextBoxColumn22.FieldName = "AccountCorr";
-            gridViewTextBoxColumn22.HeaderText = "AccountCorr";
-            gridViewTextBoxColumn22.IsAutoGenerated = true;
-            gridViewTextBoxColumn22.Name = "AccountCorr";
-            gridViewTextBoxColumn23.FieldName = "OkpoCorr";
-            gridViewTextBoxColumn23.HeaderText = "OkpoCorr";
-            gridViewTextBoxColumn23.IsAutoGenerated = true;
-            gridViewTextBoxColumn23.Name = "OkpoCorr";
-            gridViewTextBoxColumn24.FieldName = "NameCorr";
-            gridViewTextBoxColumn24.HeaderText = "NameCorr";
-            gridViewTextBoxColumn24.IsAutoGenerated = true;
-            gridViewTextBoxColumn24.Name = "NameCorr";
-            gridViewTextBoxColumn25.FieldName = "DocNum";
-            gridViewTextBoxColumn25.HeaderText = "DocNum";
-            gridViewTextBoxColumn25.IsAutoGenerated = true;
-            gridViewTextBoxColumn25.Name = "DocNum";
-            gridViewDateTimeColumn5.DataType = typeof(System.Nullable<System.DateTime>);
-            gridViewDateTimeColumn5.FieldName = "DocDate";
-            gridViewDateTimeColumn5.HeaderText = "DocDate";
-            gridViewDateTimeColumn5.IsAutoGenerated = true;
-            gridViewDateTimeColumn5.Name = "DocDate";
-            gridViewDecimalColumn10.DataType = typeof(System.Nullable<decimal>);
-            gridViewDecimalColumn10.FieldName = "SDebet";
-            gridViewDecimalColumn10.HeaderText = "SDebet";
-            gridViewDecimalColumn10.IsAutoGenerated = true;
-            gridViewDecimalColumn10.Name = "SDebet";
-            gridViewDecimalColumn11.DataType = typeof(System.Nullable<decimal>);
-            gridViewDecimalColumn11.FieldName = "SCredit";
-            gridViewDecimalColumn11.HeaderText = "SCredit";
-            gridViewDecimalColumn11.IsAutoGenerated = true;
-            gridViewDecimalColumn11.Name = "SCredit";
-            gridViewTextBoxColumn26.FieldName = "Nplat";
-            gridViewTextBoxColumn26.HeaderText = "Nplat";
-            gridViewTextBoxColumn26.IsAutoGenerated = true;
-            gridViewTextBoxColumn26.Name = "Nplat";
-            gridViewDecimalColumn12.DataType = typeof(System.Nullable<decimal>);
-            gridViewDecimalColumn12.FieldName = "SNcCur";
-            gridViewDecimalColumn12.HeaderText = "SNcCur";
-            gridViewDecimalColumn12.IsAutoGenerated = true;
-            gridViewDecimalColumn12.Name = "SNcCur";
-            gridViewDecimalColumn13.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn13.FieldName = "Status";
-            gridViewDecimalColumn13.HeaderText = "Status";
-            gridViewDecimalColumn13.IsAutoGenerated = true;
-            gridViewDecimalColumn13.Name = "Status";
-            gridViewDateTimeColumn6.DataType = typeof(System.Nullable<System.DateTime>);
-            gridViewDateTimeColumn6.FieldName = "DateOper";
-            gridViewDateTimeColumn6.HeaderText = "DateOper";
-            gridViewDateTimeColumn6.IsAutoGenerated = true;
-            gridViewDateTimeColumn6.Name = "DateOper";
+            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewDecimalColumn1.DataType = typeof(int);
+            gridViewDecimalColumn1.FieldName = "PaidId";
+            gridViewDecimalColumn1.HeaderText = "PaidId";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.Name = "PaidId";
+            gridViewDecimalColumn1.Width = 53;
+            gridViewDateTimeColumn1.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewDateTimeColumn1.FieldName = "InputDate";
+            gridViewDateTimeColumn1.HeaderText = "InputDate";
+            gridViewDateTimeColumn1.IsAutoGenerated = true;
+            gridViewDateTimeColumn1.Name = "InputDate";
+            gridViewDateTimeColumn1.Width = 53;
+            gridViewTextBoxColumn1.FieldName = "Mfo";
+            gridViewTextBoxColumn1.HeaderText = "Mfo";
+            gridViewTextBoxColumn1.IsAutoGenerated = true;
+            gridViewTextBoxColumn1.Name = "Mfo";
+            gridViewTextBoxColumn1.Width = 53;
+            gridViewTextBoxColumn2.FieldName = "Okpol";
+            gridViewTextBoxColumn2.HeaderText = "Okpol";
+            gridViewTextBoxColumn2.IsAutoGenerated = true;
+            gridViewTextBoxColumn2.Name = "Okpol";
+            gridViewTextBoxColumn2.Width = 53;
+            gridViewTextBoxColumn3.FieldName = "Account";
+            gridViewTextBoxColumn3.HeaderText = "Account";
+            gridViewTextBoxColumn3.IsAutoGenerated = true;
+            gridViewTextBoxColumn3.Name = "Account";
+            gridViewTextBoxColumn3.Width = 53;
+            gridViewTextBoxColumn4.FieldName = "R030";
+            gridViewTextBoxColumn4.HeaderText = "R030";
+            gridViewTextBoxColumn4.IsAutoGenerated = true;
+            gridViewTextBoxColumn4.Name = "R030";
+            gridViewTextBoxColumn4.Width = 53;
+            gridViewTextBoxColumn5.FieldName = "CodeOper";
+            gridViewTextBoxColumn5.HeaderText = "CodeOper";
+            gridViewTextBoxColumn5.IsAutoGenerated = true;
+            gridViewTextBoxColumn5.Name = "CodeOper";
+            gridViewTextBoxColumn5.Width = 53;
+            gridViewTextBoxColumn6.FieldName = "MfoCorr";
+            gridViewTextBoxColumn6.HeaderText = "MfoCorr";
+            gridViewTextBoxColumn6.IsAutoGenerated = true;
+            gridViewTextBoxColumn6.Name = "MfoCorr";
+            gridViewTextBoxColumn6.Width = 53;
+            gridViewTextBoxColumn7.FieldName = "NameMfoCorr";
+            gridViewTextBoxColumn7.HeaderText = "NameMfoCorr";
+            gridViewTextBoxColumn7.IsAutoGenerated = true;
+            gridViewTextBoxColumn7.Name = "NameMfoCorr";
+            gridViewTextBoxColumn7.Width = 53;
+            gridViewTextBoxColumn8.FieldName = "AccountCorr";
+            gridViewTextBoxColumn8.HeaderText = "AccountCorr";
+            gridViewTextBoxColumn8.IsAutoGenerated = true;
+            gridViewTextBoxColumn8.Name = "AccountCorr";
+            gridViewTextBoxColumn8.Width = 53;
+            gridViewTextBoxColumn9.FieldName = "OkpoCorr";
+            gridViewTextBoxColumn9.HeaderText = "OkpoCorr";
+            gridViewTextBoxColumn9.IsAutoGenerated = true;
+            gridViewTextBoxColumn9.Name = "OkpoCorr";
+            gridViewTextBoxColumn9.Width = 53;
+            gridViewTextBoxColumn10.FieldName = "NameCorr";
+            gridViewTextBoxColumn10.HeaderText = "NameCorr";
+            gridViewTextBoxColumn10.IsAutoGenerated = true;
+            gridViewTextBoxColumn10.Name = "NameCorr";
+            gridViewTextBoxColumn10.Width = 53;
+            gridViewTextBoxColumn11.FieldName = "DocNum";
+            gridViewTextBoxColumn11.HeaderText = "DocNum";
+            gridViewTextBoxColumn11.IsAutoGenerated = true;
+            gridViewTextBoxColumn11.Name = "DocNum";
+            gridViewTextBoxColumn11.Width = 53;
+            gridViewDateTimeColumn2.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewDateTimeColumn2.FieldName = "DocDate";
+            gridViewDateTimeColumn2.HeaderText = "DocDate";
+            gridViewDateTimeColumn2.IsAutoGenerated = true;
+            gridViewDateTimeColumn2.Name = "DocDate";
+            gridViewDateTimeColumn2.Width = 53;
+            gridViewDecimalColumn2.DataType = typeof(System.Nullable<decimal>);
+            gridViewDecimalColumn2.FieldName = "SDebet";
+            gridViewDecimalColumn2.HeaderText = "SDebet";
+            gridViewDecimalColumn2.IsAutoGenerated = true;
+            gridViewDecimalColumn2.Name = "SDebet";
+            gridViewDecimalColumn2.Width = 53;
+            gridViewDecimalColumn3.DataType = typeof(System.Nullable<decimal>);
+            gridViewDecimalColumn3.FieldName = "SCredit";
+            gridViewDecimalColumn3.HeaderText = "SCredit";
+            gridViewDecimalColumn3.IsAutoGenerated = true;
+            gridViewDecimalColumn3.Name = "SCredit";
+            gridViewDecimalColumn3.Width = 53;
+            gridViewTextBoxColumn12.FieldName = "Nplat";
+            gridViewTextBoxColumn12.HeaderText = "Nplat";
+            gridViewTextBoxColumn12.IsAutoGenerated = true;
+            gridViewTextBoxColumn12.Name = "Nplat";
+            gridViewTextBoxColumn12.Width = 53;
+            gridViewDecimalColumn4.DataType = typeof(System.Nullable<decimal>);
+            gridViewDecimalColumn4.FieldName = "SNcCur";
+            gridViewDecimalColumn4.HeaderText = "SNcCur";
+            gridViewDecimalColumn4.IsAutoGenerated = true;
+            gridViewDecimalColumn4.Name = "SNcCur";
+            gridViewDecimalColumn4.Width = 53;
+            gridViewDecimalColumn5.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn5.FieldName = "Status";
+            gridViewDecimalColumn5.HeaderText = "Status";
+            gridViewDecimalColumn5.IsAutoGenerated = true;
+            gridViewDecimalColumn5.Name = "Status";
+            gridViewDecimalColumn5.Width = 53;
+            gridViewDateTimeColumn3.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewDateTimeColumn3.FieldName = "DateOper";
+            gridViewDateTimeColumn3.HeaderText = "DateOper";
+            gridViewDateTimeColumn3.IsAutoGenerated = true;
+            gridViewDateTimeColumn3.Name = "DateOper";
+            gridViewDateTimeColumn3.Width = 47;
             this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn9,
-            gridViewDateTimeColumn4,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18,
-            gridViewTextBoxColumn19,
-            gridViewTextBoxColumn20,
-            gridViewTextBoxColumn21,
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewTextBoxColumn24,
-            gridViewTextBoxColumn25,
-            gridViewDateTimeColumn5,
-            gridViewDecimalColumn10,
-            gridViewDecimalColumn11,
-            gridViewTextBoxColumn26,
-            gridViewDecimalColumn12,
-            gridViewDecimalColumn13,
-            gridViewDateTimeColumn6});
+            gridViewDecimalColumn1,
+            gridViewDateTimeColumn1,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewDateTimeColumn2,
+            gridViewDecimalColumn2,
+            gridViewDecimalColumn3,
+            gridViewTextBoxColumn12,
+            gridViewDecimalColumn4,
+            gridViewDecimalColumn5,
+            gridViewDateTimeColumn3});
             this.radGridView1.MasterTemplate.DataSource = this.bindingSource2;
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1040, 168);
+            this.radGridView1.Size = new System.Drawing.Size(1056, 203);
             this.radGridView1.TabIndex = 0;
             this.radGridView1.DoubleClick += new System.EventHandler(this.radGridView1_DoubleClick);
             // 
@@ -236,62 +255,76 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radGridView2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this.radGridView2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.radGridView2.EnableCustomFiltering = true;
             this.radGridView2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.radGridView2.ForeColor = System.Drawing.Color.Black;
             this.radGridView2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.radGridView2.Location = new System.Drawing.Point(6, 45);
+            this.radGridView2.Location = new System.Drawing.Point(5, 51);
             // 
             // 
             // 
-            gridViewDecimalColumn14.DataType = typeof(int);
-            gridViewDecimalColumn14.EnableExpressionEditor = false;
-            gridViewDecimalColumn14.FieldName = "CustId";
-            gridViewDecimalColumn14.HeaderText = "CustId";
-            gridViewDecimalColumn14.IsAutoGenerated = true;
-            gridViewDecimalColumn14.Name = "CustId";
-            gridViewDecimalColumn14.Width = 40;
-            gridViewTextBoxColumn27.EnableExpressionEditor = false;
-            gridViewTextBoxColumn27.FieldName = "Innokpo";
-            gridViewTextBoxColumn27.HeaderText = "Innokpo";
-            gridViewTextBoxColumn27.IsAutoGenerated = true;
-            gridViewTextBoxColumn27.Name = "Innokpo";
-            gridViewTextBoxColumn27.Width = 113;
-            gridViewTextBoxColumn28.EnableExpressionEditor = false;
-            gridViewTextBoxColumn28.FieldName = "Name";
-            gridViewTextBoxColumn28.HeaderText = "Name";
-            gridViewTextBoxColumn28.IsAutoGenerated = true;
-            gridViewTextBoxColumn28.Name = "Name";
-            gridViewTextBoxColumn28.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
-            gridViewTextBoxColumn28.Width = 355;
-            gridViewDecimalColumn15.DataType = typeof(int);
-            gridViewDecimalColumn15.EnableExpressionEditor = false;
-            gridViewDecimalColumn15.FieldName = "CountAgree";
-            gridViewDecimalColumn15.HeaderText = "CountAgree";
-            gridViewDecimalColumn15.IsAutoGenerated = true;
-            gridViewDecimalColumn15.Name = "CountAgree";
-            gridViewDecimalColumn15.Width = 105;
-            gridViewDecimalColumn16.EnableExpressionEditor = false;
-            gridViewDecimalColumn16.FieldName = "Undistribamount";
-            gridViewDecimalColumn16.HeaderText = "Undistribamount";
-            gridViewDecimalColumn16.IsAutoGenerated = true;
-            gridViewDecimalColumn16.Name = "Undistribamount";
-            gridViewDecimalColumn16.Width = 93;
+            this.radGridView2.MasterTemplate.AllowAddNewRow = false;
+            this.radGridView2.MasterTemplate.AllowColumnReorder = false;
+            this.radGridView2.MasterTemplate.AllowDeleteRow = false;
+            this.radGridView2.MasterTemplate.AllowEditRow = false;
+            this.radGridView2.MasterTemplate.AllowRowResize = false;
+            this.radGridView2.MasterTemplate.AutoGenerateColumns = false;
+            this.radGridView2.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewDecimalColumn6.DataType = typeof(int);
+            gridViewDecimalColumn6.EnableExpressionEditor = false;
+            gridViewDecimalColumn6.FieldName = "CustId";
+            gridViewDecimalColumn6.HeaderText = "CustId";
+            gridViewDecimalColumn6.IsAutoGenerated = true;
+            gridViewDecimalColumn6.Name = "CustId";
+            gridViewDecimalColumn6.Width = 137;
+            gridViewTextBoxColumn13.EnableExpressionEditor = false;
+            gridViewTextBoxColumn13.FieldName = "Innokpo";
+            gridViewTextBoxColumn13.HeaderText = "Innokpo";
+            gridViewTextBoxColumn13.IsAutoGenerated = true;
+            gridViewTextBoxColumn13.Name = "Innokpo";
+            gridViewTextBoxColumn13.Width = 172;
+            gridViewTextBoxColumn14.EnableExpressionEditor = false;
+            gridViewTextBoxColumn14.FieldName = "Name";
+            gridViewTextBoxColumn14.HeaderText = "Name";
+            gridViewTextBoxColumn14.IsAutoGenerated = true;
+            gridViewTextBoxColumn14.Name = "Name";
+            gridViewTextBoxColumn14.SortOrder = Telerik.WinControls.UI.RadSortOrder.Ascending;
+            gridViewTextBoxColumn14.Width = 192;
+            gridViewDecimalColumn7.DataType = typeof(int);
+            gridViewDecimalColumn7.EnableExpressionEditor = false;
+            gridViewDecimalColumn7.FieldName = "CountAgree";
+            gridViewDecimalColumn7.HeaderText = "CountAgree";
+            gridViewDecimalColumn7.IsAutoGenerated = true;
+            gridViewDecimalColumn7.Name = "CountAgree";
+            gridViewDecimalColumn7.Width = 233;
+            gridViewDecimalColumn8.EnableExpressionEditor = false;
+            gridViewDecimalColumn8.FieldName = "Undistribamount";
+            gridViewDecimalColumn8.HeaderText = "Undistribamount";
+            gridViewDecimalColumn8.IsAutoGenerated = true;
+            gridViewDecimalColumn8.Name = "Undistribamount";
+            gridViewDecimalColumn8.Width = 320;
             this.radGridView2.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn14,
-            gridViewTextBoxColumn27,
-            gridViewTextBoxColumn28,
-            gridViewDecimalColumn15,
-            gridViewDecimalColumn16});
+            gridViewDecimalColumn6,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewDecimalColumn7,
+            gridViewDecimalColumn8});
             this.radGridView2.MasterTemplate.DataSource = this.bindingSource1;
-            sortDescriptor2.PropertyName = "Name";
+            this.radGridView2.MasterTemplate.EnableCustomFiltering = true;
+            this.radGridView2.MasterTemplate.EnableFiltering = true;
+            this.radGridView2.MasterTemplate.EnableGrouping = false;
+            this.radGridView2.MasterTemplate.ShowFilteringRow = false;
+            sortDescriptor1.PropertyName = "Name";
             this.radGridView2.MasterTemplate.SortDescriptors.AddRange(new Telerik.WinControls.Data.SortDescriptor[] {
-            sortDescriptor2});
-            this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            sortDescriptor1});
+            this.radGridView2.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridView2.Name = "radGridView2";
+            this.radGridView2.ReadOnly = true;
             this.radGridView2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radGridView2.Size = new System.Drawing.Size(1069, 127);
+            this.radGridView2.Size = new System.Drawing.Size(1071, 159);
             this.radGridView2.TabIndex = 1;
             this.radGridView2.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.radGridView2_CurrentRowChanged);
+            this.radGridView2.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.radGridView2_CustomFiltering);
             // 
             // bindingSource1
             // 
@@ -300,7 +333,7 @@
             // radButton1
             // 
             this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton1.Location = new System.Drawing.Point(115, 214);
+            this.radButton1.Location = new System.Drawing.Point(115, 212);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(110, 24);
             this.radButton1.TabIndex = 2;
@@ -310,7 +343,7 @@
             // radButton2
             // 
             this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton2.Location = new System.Drawing.Point(3, 214);
+            this.radButton2.Location = new System.Drawing.Point(3, 212);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(110, 24);
             this.radButton2.TabIndex = 3;
@@ -328,16 +361,14 @@
             // 
             // radPageView1
             // 
-            this.radPageView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.radPageView1.Controls.Add(this.radPageViewPage1);
             this.radPageView1.Controls.Add(this.radPageViewPage2);
             this.radPageView1.Controls.Add(this.radPageViewPage3);
-            this.radPageView1.Location = new System.Drawing.Point(10, 11);
+            this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPageView1.Location = new System.Drawing.Point(0, 0);
             this.radPageView1.Name = "radPageView1";
             this.radPageView1.SelectedPage = this.radPageViewPage1;
-            this.radPageView1.Size = new System.Drawing.Size(1067, 289);
+            this.radPageView1.Size = new System.Drawing.Size(1083, 287);
             this.radPageView1.TabIndex = 5;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).ShowItemPinButton = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -352,7 +383,7 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(58F, 28F);
             this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1046, 241);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1062, 239);
             this.radPageViewPage1.Text = "Платежі";
             // 
             // radPageViewPage2
@@ -373,32 +404,12 @@
             // 
             // radTextBox1
             // 
-            this.radTextBox1.Location = new System.Drawing.Point(4, 9);
+            this.radTextBox1.Location = new System.Drawing.Point(3, 15);
             this.radTextBox1.Name = "radTextBox1";
             this.radTextBox1.NullText = "Пошук";
             this.radTextBox1.Size = new System.Drawing.Size(529, 20);
             this.radTextBox1.TabIndex = 6;
-            // 
-            // radCollapsiblePanel1
-            // 
-            this.radCollapsiblePanel1.ContentSizingMode = Telerik.WinControls.UI.CollapsiblePanelContentSizingMode.FitToContentHeight;
-            this.radCollapsiblePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radCollapsiblePanel1.EnableAnimation = false;
-            this.radCollapsiblePanel1.Location = new System.Drawing.Point(0, 0);
-            this.radCollapsiblePanel1.Name = "radCollapsiblePanel1";
-            this.radCollapsiblePanel1.OwnerBoundsCache = new System.Drawing.Rectangle(0, 0, 1083, 266);
-            // 
-            // radCollapsiblePanel1.PanelContainer
-            // 
-            this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.radGridView2);
-            this.radCollapsiblePanel1.PanelContainer.Controls.Add(this.radTextBox1);
-            this.radCollapsiblePanel1.PanelContainer.Size = new System.Drawing.Size(1077, 186);
-            this.radCollapsiblePanel1.Size = new System.Drawing.Size(1081, 227);
-            this.radCollapsiblePanel1.TabIndex = 7;
-            this.radCollapsiblePanel1.Expanded += new System.EventHandler(this.radCollapsiblePanel1_Expanded);
-            this.radCollapsiblePanel1.Collapsed += new System.EventHandler(this.radCollapsiblePanel1_Collapsed);
-            ((Telerik.WinControls.UI.RadCollapsiblePanelElement)(this.radCollapsiblePanel1.GetChildAt(0))).IsExpanded = true;
-            ((Telerik.WinControls.UI.RadCollapsiblePanelElement)(this.radCollapsiblePanel1.GetChildAt(0))).ContentSizingMode = Telerik.WinControls.UI.CollapsiblePanelContentSizingMode.FitToContentHeight;
+            this.radTextBox1.TextChanged += new System.EventHandler(this.radTextBox1_TextChanged);
             // 
             // radSplitContainer1
             // 
@@ -407,14 +418,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
-            this.radSplitContainer1.Location = new System.Drawing.Point(9, 16);
+            this.radSplitContainer1.Location = new System.Drawing.Point(9, 32);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(1083, 536);
+            this.radSplitContainer1.Size = new System.Drawing.Size(1083, 520);
             this.radSplitContainer1.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
             this.radSplitContainer1.TabIndex = 7;
             this.radSplitContainer1.TabStop = false;
@@ -422,7 +433,8 @@
             // splitPanel1
             // 
             this.splitPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitPanel1.Controls.Add(this.radCollapsiblePanel1);
+            this.splitPanel1.Controls.Add(this.radGridView2);
+            this.splitPanel1.Controls.Add(this.radTextBox1);
             this.splitPanel1.Location = new System.Drawing.Point(0, 0);
             this.splitPanel1.Name = "splitPanel1";
             // 
@@ -437,7 +449,6 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
-            this.splitPanel1.ClientSizeChanged += new System.EventHandler(this.splitPanel1_ClientSizeChanged);
             // 
             // splitPanel2
             // 
@@ -448,7 +459,7 @@
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(1083, 303);
+            this.splitPanel2.Size = new System.Drawing.Size(1083, 287);
             this.splitPanel2.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 303);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.0112782F);
             this.splitPanel2.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
@@ -457,11 +468,25 @@
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(13, 13);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(114, 19);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "Тестовий клієнт";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1101, 615);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.radSplitContainer1);
             this.Controls.Add(this.radButton3);
             this.Name = "MainForm";
@@ -484,18 +509,16 @@
             this.radPageView1.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            this.radCollapsiblePanel1.PanelContainer.ResumeLayout(false);
-            this.radCollapsiblePanel1.PanelContainer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radCollapsiblePanel1)).EndInit();
-            this.radCollapsiblePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
+            this.splitPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -513,9 +536,9 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
         private Telerik.WinControls.UI.RadTextBox radTextBox1;
-        private Telerik.WinControls.UI.RadCollapsiblePanel radCollapsiblePanel1;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

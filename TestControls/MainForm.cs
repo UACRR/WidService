@@ -55,6 +55,7 @@ namespace TestControls
             var listPays = _service.GetCustomerPays(_curItem.CustId);
             ObservableListSource<ExternalPay> listSource = new ObservableListSource<ExternalPay>(listPays);
             bindingSource2.DataSource = listSource;
+            checkBox1.Text = _curItem.Name;
 
         }
 
@@ -92,21 +93,58 @@ namespace TestControls
             }
         }
         
-        private void radCollapsiblePanel1_Expanded(object sender, EventArgs e)
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            radSplitContainer1.SplitPanels[0].SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
-            radSplitContainer1.SplitPanels[0].SizeInfo.AbsoluteSize = radCollapsiblePanel1.Size;
+           radSplitContainer1.SplitPanels[0].Collapsed = !checkBox1.Checked;
         }
 
-        private void radCollapsiblePanel1_Collapsed(object sender, EventArgs e)
+        #region ФІЛЬТРАЦІЯ (пошук)
+
+        private void radTextBox1_TextChanged(object sender, EventArgs e)
         {
-            radSplitContainer1.SplitPanels[0].SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
-            radSplitContainer1.SplitPanels[0].SizeInfo.AbsoluteSize = radCollapsiblePanel1.CollapsiblePanelElement.HeaderElement.Size;
+            radGridView2.MasterTemplate.Refresh();
         }
 
-        private void splitPanel1_ClientSizeChanged(object sender, EventArgs e)
+        private void radGridView2_CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
         {
-            radCollapsiblePanel1.Size = radSplitContainer1.SplitPanels[0].Size + new Size(-2,-2);
+            //пустий фільтер - всі дані
+            if (string.IsNullOrEmpty(radTextBox1.Text))
+            {
+                radGridView2.BeginUpdate();
+                e.Visible = true;
+                for (int i = 0; i < radGridView2.ColumnCount; i++)
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                radGridView2.EndUpdate(false);
+                return;
+            }
+            //фільтр не пустий
+            radGridView2.BeginUpdate();
+            e.Visible = false;
+            for (int i = 0; i < radGridView2.ColumnCount; i++)
+            {
+                //якщо поле пусте
+                if (e.Row.Cells[i].Value == null)
+                    continue;
+
+                string text = e.Row.Cells[i].Value.ToString();
+                if (text.IndexOf(radTextBox1.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                {
+                    e.Visible = true;
+                    e.Row.Cells[i].Style.CustomizeFill = true;
+                    e.Row.Cells[i].Style.DrawFill = true;
+                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
+                }
+                else
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                radGridView2.EndUpdate(false);
+            }
         }
+
+        #endregion
     }
 }
