@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TestControls
@@ -18,6 +19,7 @@ namespace TestControls
         private ConsumerService _service;
         private EditPay payForm = null;
         private ConsumerMainView _curItem = null;
+        private Task<Customer> getCurrentCustomer = null;
         private bool isInit = false;
         public MainForm()
         {
@@ -34,7 +36,7 @@ namespace TestControls
             {
                 radGridView1.Rows[0].IsCurrent = true;
             }
-            if( employee.Count == 0 )
+            if (employee.Count == 0)
                 SetButtonDisable();
 
             isInit = true;
@@ -42,20 +44,56 @@ namespace TestControls
 
         private void SetButtonDisable()
         {
-            radButton1.Enabled=false;
-            radButton2.Enabled=false;
-            radButton3.Enabled=false;
+            radButton1.Enabled = false;
+            radButton2.Enabled = false;
+            radButton3.Enabled = false;
         }
 
+        private void normalizeData(Customer cust)
+        {
+            var dic = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
+            foreach (var item in cust.Client.LicenseAgreement)
+            {
+                item.LicCodeNavigation = dic[item.LicType ?? 1];
+                foreach (var licParam in item.LicenseAgrParam)
+                {
+                    licParam.Lic = item;
+                }
+            }
+        }
         private void radGridView2_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             _curItem = (ConsumerMainView)radGridView2.CurrentRow.DataBoundItem;
             if (_curItem == null)
                 return;
-            var listPays = _service.GetCustomerPays(_curItem.CustId);
-            ObservableListSource<ExternalPay> listSource = new ObservableListSource<ExternalPay>(listPays);
-            bindingSource2.DataSource = listSource;
-            checkBox1.Text = _curItem.Name;
+
+            getCurrentCustomer = Task<Customer>.Run(() =>
+            {
+
+                var _consumer = _service.GetData(_curItem.CustId);
+                normalizeData(_consumer);
+                return _consumer;
+            });
+
+            Task.Run(() => {
+
+                var listPays = _service.GetCustomerPays(_curItem.CustId);
+                ObservableListSource<ExternalPay> listSource = new ObservableListSource<ExternalPay>(listPays);
+                bindingSource2.DataSource = listSource;
+                if (InvokeRequired)
+                    checkBox1.Invoke( (MethodInvoker )delegate() { checkBox1.Text = _curItem.Name; });
+
+            });
+
+            var consumer = getCurrentCustomer.GetAwaiter().GetResult();
+            bindPayPeriod1.bindingSource1.DataSource = consumer.Client.MoneyReceived.Where(rec => rec.Amount >= rec.DestribAmount + (rec.DestribPrepay ?? 0));
+            var list = consumer.Client.LicenseAgreement.ToList();
+            if (list != null)
+                bindPayPeriod1.bindingSource2.DataSource = list;
+            else
+                bindPayPeriod1.bindingSource2.DataSource = new List<LicenseAgreement>();
+
+
 
         }
 
@@ -65,7 +103,7 @@ namespace TestControls
             ExternalPay addRow = new ExternalPay { OkpoCorr = item.Innokpo, NameCorr = item.Name };
             payForm.bindingSource1.DataSource = addRow;
 
-            if( payForm.ShowDialog() == DialogResult.OK )
+            if (payForm.ShowDialog() == DialogResult.OK)
             {
                 ObservableListSource<ExternalPay> listSource = (ObservableListSource<ExternalPay>)bindingSource2.DataSource;
                 ((IListSource)listSource).GetList().Add(addRow);
@@ -92,11 +130,11 @@ namespace TestControls
                 radGridView2.Enabled = false;
             }
         }
-        
+
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-           radSplitContainer1.SplitPanels[0].Collapsed = !checkBox1.Checked;
+            radSplitContainer1.SplitPanels[0].Collapsed = !checkBox1.Checked;
         }
 
         #region ФІЛЬТРАЦІЯ (пошук)
@@ -146,5 +184,12 @@ namespace TestControls
         }
 
         #endregion
+
+        private void radButton4_Click(object sender, EventArgs e)
+        {
+            var row = (ExternalPay)radGridView1.CurrentRow.DataBoundItem;
+            row.SDebet = 123456;
+            bindingSource2.CurrencyManager.Refresh();
+        }
     }
 }

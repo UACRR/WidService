@@ -64,6 +64,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindPayPeriod.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BindPayPeriod.Designer.cs">
+      <DependentUpon>BindPayPeriod.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditPay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BindPayPeriod.resx">
+      <DependentUpon>BindPayPeriod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditPay.resx">
       <DependentUpon>EditPay.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +105,9 @@
     </Compile>
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.PaidPeriod.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
