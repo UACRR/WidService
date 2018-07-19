@@ -28,9 +28,9 @@ namespace ReportsLibrary.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Password=rob" +
             "ot11235813")]
-        public string MediaService {
+        public string IpsData {
             get {
-                return ((string)(this["MediaService"]));
+                return ((string)(this["IpsData"]));
             }
         }
     }

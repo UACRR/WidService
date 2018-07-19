@@ -152,17 +152,21 @@ namespace ReportsLibrary
             // 
             // sqlDataSource2
             // 
-            this.sqlDataSource2.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
+            this.sqlDataSource2.ConnectionString = "Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Password=rob" +
+    "ot11235813";
             this.sqlDataSource2.Name = "sqlDataSource2";
+            this.sqlDataSource2.ProviderName = "System.Data.SqlClient";
             this.sqlDataSource2.SelectCommand = "SELECT distinct\r\n\t[dbo].[vSD].[accnls], \r\n\t[dbo].[vSD].[accId]\r\nFROM [dbo].[vSD]\r" +
     "\norder by accnls";
             // 
             // sqlDataSource1
             // 
-            this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
+            this.sqlDataSource1.ConnectionString = "Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Password=rob" +
+    "ot11235813";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
             new Telerik.Reporting.SqlDataSourceParameter("@accnls", System.Data.DbType.String, "= Parameters.accnls.Value")});
+            this.sqlDataSource1.ProviderName = "System.Data.SqlClient";
             this.sqlDataSource1.SelectCommand = resources.GetString("sqlDataSource1.SelectCommand");
             // 
             // pageHeaderSection1
