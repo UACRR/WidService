@@ -202,7 +202,7 @@
             this.gvViewLicences.Size = new System.Drawing.Size(998, 237);
             this.gvViewLicences.TabIndex = 7;
             this.gvViewLicences.ThemeName = "Office2013Light";
-            this.gvViewLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewConsumers_CurrentRowChanged);
+            this.gvViewLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewLicences_CurrentRowChanged);
             this.gvViewLicences.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewLicences_CommandCellClick);
             this.gvViewLicences.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewConsumers_CustomFiltering);
             // 

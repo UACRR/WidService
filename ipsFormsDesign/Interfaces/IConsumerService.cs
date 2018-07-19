@@ -219,15 +219,34 @@ namespace ipsFormsDesign.Interfaces
 
     public class BigRightRequests
     {
-        public int CustId { get; set; }
-        public int Objid { get; set; }
-        public string ObjName { get; set; }
-        public string LicNum { get; set; }
         public DateTime? LicDate { get; set; }
-        public decimal? Rate { get; set; }
-        public DateTime? DatePremiere { get; set; }
+        public DateTime? LicDateBegin { get; set; }
         public DateTime? LicDateEnd { get; set; }
+        public DateTime? DatePremiere { get; set; }
+        public int? LicType { get; set; }
+        public int? CustId { get; set; }
+        public int AgrId { get; set; }
+        public int LicId { get; set; }
+        public int LicVersion { get; set; }
+        public int? LicStatus { get; set; }
+        public int? Objid { get; set; }
+        public int? ObjStatus { get; set; }
+        public int? GenreType { get; set; }
+        public int? PerformNumb { get; set; }
+        public decimal? TicketPriceNC { get; set; }
+        public decimal? TicketPriceUSD { get; set; }
+        public bool? IsTour { get; set; }
+        public decimal? GenreRate72 { get; set; }
+        public decimal? Rate { get; set; }
+        public decimal? FillingRate { get; set; }
+        public string LicTypeName { get; set; }
+        public string Name { get; set; }
+        public string LicNum { get; set; }
         public string LicStatusName { get; set; }
+        public string ObjName { get; set; }
+        public string GenreName { get; set; }
+        public string WhereTour { get; set; }
+        public string Comment { get; set; }
     }
 
     public class BigRightRequestBidAuthors

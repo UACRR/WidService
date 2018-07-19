@@ -43,8 +43,17 @@ namespace IpsViewComponentLibrary
 
         }
 
-        private void gvViewConsumers_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        private void gvViewLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            if(gvViewLicences.Rows.Count == 0 || e?.CurrentRow?.DataBoundItem == null)
+            {
+                pageView.Enabled = false;
+                return;
+            }
+
+            if (pageView.Enabled == false)
+                pageView.Enabled = true;
+
             ctrlInformation.InfoDataSource = e.CurrentRow.DataBoundItem as VbrLicense;
         }
 
@@ -90,6 +99,7 @@ namespace IpsViewComponentLibrary
 
                 gvViewLicences.EndUpdate(false);
             }
+            
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

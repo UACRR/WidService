@@ -18,6 +18,7 @@ namespace IpsViewComponentLibrary
         private Customer _customer;
         private ConsumerBigRightView _bigRightView;
         private AnketaDictionaties _dictionaties;
+        private IList<BigRightRequestBidAuthors> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
         public MiddleControlCabinetReqRef()
         {
@@ -37,10 +38,12 @@ namespace IpsViewComponentLibrary
         public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightRequests> listRequests, IList<BigRightRequestBidAuthors> author)
         {
             _customer = customer;
+            _authors = author;
             _bigRightView = bigRightView;
+
             ctrlAgrInfo.DataSource = _bigRightView;
             gvViewRequests.DataSource = listRequests;
-            bindingSource1.DataSource = author;
+            
             // gvCreativeRole.DataSource = author;
         }
 
@@ -84,10 +87,14 @@ namespace IpsViewComponentLibrary
 
         private void gvViewRequests_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if(gvViewRequests.RowCount == 0) return;
-            
-            var item = e.CurrentRow.DataBoundItem as BigRightRequests;
+            if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)
+            {
+                bindingSource1.DataSource = typeof(BigRightRequestBidAuthors);
+                return;
+            }
 
+            var item = e.CurrentRow.DataBoundItem as BigRightRequests;
+            bindingSource1.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
         }
 
         #region FILTERING (пошук)
@@ -143,6 +150,7 @@ namespace IpsViewComponentLibrary
 
         private void gvCreativeRole_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
+
             var item = e.Row.DataBoundItem as BigRightRequestBidAuthors;
         }
 
