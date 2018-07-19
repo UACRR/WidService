@@ -117,33 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="sqlDataSource2.QueryDesignerState" xml:space="preserve">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;DM xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Telerik.Reporting.Design.QueryDesigner"&gt;&lt;Es&gt;&lt;E z:Id="i1"&gt;&lt;MBN&gt;vSD&lt;/MBN&gt;&lt;MBP z:Id="i2" i:type="Namespace"&gt;&lt;MBN&gt;dbo&lt;/MBN&gt;&lt;MOC&gt;&lt;MB z:Ref="i1" /&gt;&lt;/MOC&gt;&lt;/MBP&gt;&lt;MOC&gt;&lt;MB z:Id="i3" i:type="P"&gt;&lt;MBN&gt;accnls&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i4" i:type="P"&gt;&lt;MBN&gt;accId&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;/MOC&gt;&lt;ER /&gt;&lt;/E&gt;&lt;/Es&gt;&lt;Fs /&gt;&lt;MR&gt;false&lt;/MR&gt;&lt;Ps&gt;&lt;P z:Ref="i3" /&gt;&lt;P z:Ref="i4" /&gt;&lt;/Ps&gt;&lt;Rs /&gt;&lt;/DM&gt;</value>
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
-  <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
-    <value>{"@accnls":"100001"}</value>
-  </metadata>
-  <metadata name="sqlDataSource1.QueryDesignerState" xml:space="preserve">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;DM xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Telerik.Reporting.Design.QueryDesigner"&gt;&lt;Es&gt;&lt;E z:Id="i1"&gt;&lt;MBN&gt;vSD&lt;/MBN&gt;&lt;MBP z:Id="i2" i:type="Namespace"&gt;&lt;MBN&gt;dbo&lt;/MBN&gt;&lt;MOC&gt;&lt;MB z:Ref="i1" /&gt;&lt;/MOC&gt;&lt;/MBP&gt;&lt;MOC&gt;&lt;MB z:Id="i3" i:type="P"&gt;&lt;MBN&gt;accnls&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i4" i:type="P"&gt;&lt;MBN&gt;accId&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i5" i:type="P"&gt;&lt;MBN&gt;dateBegin&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i6" i:type="P"&gt;&lt;MBN&gt;dateEnd&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i7" i:type="P"&gt;&lt;MBN&gt;r030&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i8" i:type="P"&gt;&lt;MBN&gt;deboborot&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i9" i:type="P"&gt;&lt;MBN&gt;krdOborot&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i10" i:type="P"&gt;&lt;MBN&gt;restBegin&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i11" i:type="P"&gt;&lt;MBN&gt;rest&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i12" i:type="P"&gt;&lt;MBN&gt;deboborotCourt&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i13" i:type="P"&gt;&lt;MBN&gt;krdOborotCourt&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i14" i:type="P"&gt;&lt;MBN&gt;restBeginCourt&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i15" i:type="P"&gt;&lt;MBN&gt;restCourt&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;/MOC&gt;&lt;ER /&gt;&lt;/E&gt;&lt;/Es&gt;&lt;Fs&gt;&lt;F&gt;&lt;Op&gt;Equals&lt;/Op&gt;&lt;Pn&gt;@accnls&lt;/Pn&gt;&lt;Py z:Ref="i3" /&gt;&lt;Ve&gt;100001&lt;/Ve&gt;&lt;/F&gt;&lt;/Fs&gt;&lt;MR&gt;false&lt;/MR&gt;&lt;Ps&gt;&lt;P z:Ref="i3" /&gt;&lt;P z:Ref="i4" /&gt;&lt;P z:Ref="i5" /&gt;&lt;P z:Ref="i6" /&gt;&lt;P z:Ref="i7" /&gt;&lt;P z:Ref="i8" /&gt;&lt;P z:Ref="i9" /&gt;&lt;P z:Ref="i10" /&gt;&lt;P z:Ref="i11" /&gt;&lt;P z:Ref="i12" /&gt;&lt;P z:Ref="i13" /&gt;&lt;P z:Ref="i14" /&gt;&lt;P z:Ref="i15" /&gt;&lt;/Ps&gt;&lt;Rs /&gt;&lt;/DM&gt;</value>
-  </metadata>
-  <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
-    <value>SELECT
-	[dbo].[vSD].[accnls], 
-	[dbo].[vSD].[accId], 
-	[dbo].[vSD].[dateBegin], 
-	[dbo].[vSD].[dateEnd], 
-	[dbo].[vSD].[r030], 
-	[dbo].[vSD].[deboborot], 
-	[dbo].[vSD].[krdOborot], 
-	[dbo].[vSD].[restBegin], 
-	[dbo].[vSD].[rest], 
-	[dbo].[vSD].[deboborotCourt], 
-	[dbo].[vSD].[krdOborotCourt], 
-	[dbo].[vSD].[restBeginCourt], 
-	[dbo].[vSD].[restCourt]
-FROM [dbo].[vSD]
-WHERE [dbo].[vSD].[accnls] = @accnls</value>
-  </data>
   <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=12.1.18.620, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
     <value>0.1cm</value>
   </metadata>

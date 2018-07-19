@@ -8,11 +8,11 @@ namespace ReportsLibrary
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for Report1.
+    /// Summary description for R_5_1_main.
     /// </summary>
-    public partial class Report1 : Telerik.Reporting.Report
+    public partial class R_5_1_main : Telerik.Reporting.Report
     {
-        public Report1()
+        public R_5_1_main()
         {
             //
             // Required for telerik Reporting designer support

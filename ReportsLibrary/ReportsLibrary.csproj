@@ -49,17 +49,26 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Report1.cs">
+    <Compile Include="accmove.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report1.Designer.cs">
-      <DependentUpon>Report1.cs</DependentUpon>
+    <Compile Include="accmove.Designer.cs">
+      <DependentUpon>accmove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_1_main.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_1_main.Designer.cs">
+      <DependentUpon>R_5_1_main.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Report1.resx">
-      <DependentUpon>Report1.cs</DependentUpon>
+    <EmbeddedResource Include="accmove.resx">
+      <DependentUpon>accmove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_1_main.resx">
+      <DependentUpon>R_5_1_main.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

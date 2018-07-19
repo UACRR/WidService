@@ -1,4 +1,4 @@
-namespace RepoersLibrary
+namespace ReportsLibrary
 {
     using System;
     using System.ComponentModel;
@@ -8,11 +8,11 @@ namespace RepoersLibrary
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for Report2.
+    /// Summary description for Report1.
     /// </summary>
-    public partial class Report2 : Telerik.Reporting.Report
+    public partial class accmove : Telerik.Reporting.Report
     {
-        public Report2()
+        public accmove()
         {
             //
             // Required for telerik Reporting designer support
