@@ -81,7 +81,7 @@ namespace TestControls
             {
 
             var listPays = _service.GetCustomerPays(_curItem.CustId);
-            ObservableListSource<ExternalPay> listSource = new ObservableListSource<ExternalPay>(listPays);
+            var listSource = ((IListSource)(new ObservableListSource<ExternalPay>(listPays))).GetList();
             if (InvokeRequired)
             {
                 checkBox1.Invoke((MethodInvoker)delegate () { checkBox1.Text = _curItem.Name;
@@ -209,8 +209,8 @@ namespace TestControls
         private void radButton4_Click(object sender, EventArgs e)
         {
             var row = (ExternalPay)radGridView1.CurrentRow.DataBoundItem;
-            row.SDebet = 123456;
-            bindingSource2.CurrencyManager.Refresh();
+            var list = (IList<ExternalPay>)radGridView1.DataSource;
+            list[radGridView1.CurrentRow.Index].SDebet = 123456;
         }
     }
 }
