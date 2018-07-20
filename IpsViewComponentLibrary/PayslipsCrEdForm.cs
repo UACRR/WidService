@@ -64,7 +64,6 @@ namespace IpsViewComponentLibrary
             //_customer.Client.BrRegister.LastOrDefault().RAmount = frate;
             txtAllAmount.Text = famount.ToString("#,###0.00 грн");
             txtAllRateAmount.Text = frate.ToString("#,###0.00 грн");
-            txtAllRateAmount.Text = frate.ToString("");
 
         }
 
