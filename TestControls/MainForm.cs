@@ -20,7 +20,6 @@ namespace TestControls
         private EditPay payForm = null;
         private ConsumerMainView _curItem = null;
         private Task<Customer> getCurrentCustomer = null;
-        private bool isInit = false;
         public MainForm()
         {
             _service = new ConsumerService();
@@ -38,8 +37,6 @@ namespace TestControls
             }
             if (employee.Count == 0)
                 SetButtonDisable();
-
-            isInit = true;
         }
 
         private void SetButtonDisable()
@@ -51,16 +48,21 @@ namespace TestControls
 
         private void normalizeData(Customer cust)
         {
-            var dic = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
+            var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
+            var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
+            var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
             foreach (var item in cust.Client.LicenseAgreement)
             {
-                item.LicCodeNavigation = dic[item.LicType ?? 1];
+                item.LicCodeNavigation = dicType[item.LicType ?? 1];
                 foreach (var licParam in item.LicenseAgrParam)
                 {
                     licParam.Lic = item;
+                    licParam.LicStatusNavigation = dicStatus[licParam.LicStatus ?? 1];
+                    licParam.PeriodCodeNavigation = dicPeriod[licParam.PeriodCode ?? 1];
                 }
             }
         }
+
         private void radGridView2_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             _curItem = (ConsumerMainView)radGridView2.CurrentRow.DataBoundItem;
@@ -95,17 +97,18 @@ namespace TestControls
 
             var consumer = getCurrentCustomer.GetAwaiter().GetResult();
             var list = consumer.Client.LicenseAgreement.ToList() ?? new List<LicenseAgreement>();
+            var pays = consumer.Client.MoneyReceived.Where(rec => rec.Amount >= rec.DestribAmount + (rec.DestribPrepay ?? 0));
             if (InvokeRequired)
             {
                 bindPayPeriod1.Invoke((MethodInvoker)delegate ()
                 {
-                    bindPayPeriod1.bindingSource1.DataSource = consumer.Client.MoneyReceived.Where(rec => rec.Amount >= rec.DestribAmount + (rec.DestribPrepay ?? 0));
+                    bindPayPeriod1.bindingSource1.DataSource = pays;
                     bindPayPeriod1.bindingSource2.DataSource = list;
                 });
             }
             else
             {
-                bindPayPeriod1.bindingSource1.DataSource = consumer.Client.MoneyReceived.Where(rec => rec.Amount >= rec.DestribAmount + (rec.DestribPrepay ?? 0));
+                bindPayPeriod1.bindingSource1.DataSource = pays;
                 bindPayPeriod1.bindingSource2.DataSource = list;
 
             }
