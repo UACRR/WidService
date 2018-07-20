@@ -614,6 +614,7 @@
     <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\ExtendedBrowseEditor.cs" />
     <Compile Include="Utilities\GridViewHelper.cs" />
     <Compile Include="Utilities\RadTextBoxAuto.cs">
       <SubType>Component</SubType>

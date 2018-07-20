@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
+using IpsViewComponentLibrary.RightholderControls;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -96,8 +91,35 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gvAuthorRightholderList.SetColumnVisibility("PrepaySum", visibility);
             gvAuthorRightholderList.SetColumnVisibility("WorkTypeRh", visibility);
             gvAuthorRightholderList.SetColumnVisibility("WorkTypeCl", visibility);
+        }
 
+        private void gvAuthorRightholderList_EditorRequired(object sender, EditorRequiredEventArgs e)
+        {
+            var columnName = gvAuthorRightholderList.CurrentColumn.Name;
 
+            if (columnName == "AuthorName")
+            {
+                var browseEditor = new ExtendedBrowseEditor(columnName);
+                (browseEditor.EditorElement as ExtendedRadBrowseEditorElement).BrowseButtonClick += AuthorName_BrowseButtonClick;
+
+                e.Editor = browseEditor;
+            }
+        }
+
+        private void AuthorName_BrowseButtonClick(object sender, EventArgs e)
+        {
+            var current = gvAuthorRightholderList.CurrentRow.DataBoundItem as ObjectAuthorRightholderBrViewModel;
+
+            using (var selectionView = new RightholderSelectionView())
+            {
+                selectionView.RightholderSelected += (s, selectedRightholder) =>
+                {
+                    //Rightholder = selectedRightholder;  // TODO
+                    current.Author.AuthorName = selectedRightholder.Name;
+                    objectAuthorRightholderBrViewModelBindingSource.CurrencyManager.Refresh();
+                };
+                selectionView.ShowDialog();
+            }
         }
     }
 }
