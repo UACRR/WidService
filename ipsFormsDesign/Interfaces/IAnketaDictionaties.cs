@@ -27,6 +27,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<Period> period {get; set;}
         public IList<PeriodStatus> periodStatus {get; set;}
         public IList<PositionType> positionType {get; set;}
+        public IList<PrePayType> PrePayType { get; set; }
         public IList<Region> region {get; set;}
         public IList<ResidentType> residentType {get; set;}
         public IList<SexType> sexType {get; set;}

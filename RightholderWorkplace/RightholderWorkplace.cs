@@ -321,7 +321,7 @@ namespace RightholderWorkplace
 
         private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
-            GridViewTooltipHelper.SetTooltipTextForColumnHeader(sender, e);
+            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipTextForColumnHeader(sender, e);
         }
 
 
