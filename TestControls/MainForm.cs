@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using IpsViewComponentLibrary;
 
 namespace TestControls
 {
@@ -146,5 +147,11 @@ namespace TestControls
         }
 
         #endregion
+
+        private void radButton4_Click(object sender, EventArgs e)
+        {
+            //PayslipsCrEdForm form = new PayslipsCrEdForm(FormType.Create);
+            //form.ShowDialog();
+        }
     }
 }

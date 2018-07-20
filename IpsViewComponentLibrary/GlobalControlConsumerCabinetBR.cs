@@ -52,6 +52,7 @@ namespace IpsViewComponentLibrary
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocument;
+        public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
 
         public string FilterString
         {
@@ -65,8 +66,14 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnSaveCustomerNeed += CtrlCabinet_OnSaveCustomerNeed;
             ctrlCabinet.OnAddNewDocument += CtrlCabinet_OnAddNewDocument;
             ctrlCabinet.OnViewDocumentNeed += CtrlCabinet_OnViewDocumentNeed;
+            ctrlCabinet.OnGetSpectacleNeed += CtrlCabinet_OnGetSpectacleNeed;
 
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private IList<BigRightSpectacleView> CtrlCabinet_OnGetSpectacleNeed(int custId)
+        {
+            return OnGetSpectacleNeed?.Invoke(custId);
         }
 
         private void CtrlCabinet_OnViewDocumentNeed(int custId, int typeDocument, string fileName)

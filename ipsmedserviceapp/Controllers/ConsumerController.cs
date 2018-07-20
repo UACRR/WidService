@@ -686,17 +686,19 @@ namespace ipsmedserviceapp.Controllers
         /// <summary>
         /// Список представлень для великих прав
         /// </summary>
-        private Dictionary<string, string> listBrView = new Dictionary<string, string> {
-            { "vTsk_vBRLicense", "vTsk_vBRLicense" },
-            { "vTsk_1_ListConsumer01", "vTsk_1_ListConsumer01" },
-            { "vTsk_1_ListConsumer02", "vTsk_1_ListConsumer02" },
-            { "vTsk_1_BRBid", "vTsk_1_BRBid" },
-            { "vTsk_1_BRBidAuthors", "vTsk_1_BRBidAuthors" },
-            { "vTsk_1_BRNotice", "vTsk_1_BRNotice" },
-            { "vTSK_1_BRMaster", "vTSK_1_BRMaster" },
-            { "vTSK_1_BRRegister", "vTSK_1_BRRegister" },
-            { "vTsk_1_MoneyUndescrib", "vTsk_1_MoneyUndescrib" },
-            { "vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay" }
+        private Dictionary<string, string> listBrView = new Dictionary<string, string>
+        {
+            {"vTsk_vBRLicense", "vTsk_vBRLicense"},
+            {"vTsk_1_ListConsumer01", "vTsk_1_ListConsumer01"},
+            {"vTsk_1_ListConsumer02", "vTsk_1_ListConsumer02"},
+            {"vTsk_1_BRBid", "vTsk_1_BRBid"},
+            {"vTsk_1_BRBidAuthors", "vTsk_1_BRBidAuthors"},
+            {"vTsk_1_BRNotice", "vTsk_1_BRNotice"},
+            {"vTSK_1_BRMaster", "vTSK_1_BRMaster"},
+            {"vTSK_1_BRRegister", "vTSK_1_BRRegister"},
+            {"vTsk_1_MoneyUndescrib", "vTsk_1_MoneyUndescrib"},
+            {"vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay"},
+            {"vTSK_1_BRObjects", "vTSK_1_BRObjects"}
         };
         #region BigRight view
         [HttpGet("BR/view/list")]

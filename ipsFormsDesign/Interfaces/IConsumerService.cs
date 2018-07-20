@@ -288,4 +288,15 @@ namespace ipsFormsDesign.Interfaces
         public string NumberInvoice { get; set; }
         public string GoalInvoice { get; set; }
     }
+
+    public class BigRightSpectacleView
+    {
+        public int? CustId { get; set; }
+        public int LicId { get; set; }
+        public int ObjId { get; set; }
+        public int? ActCode { get; set; }
+        public decimal? Rate { get; set; }
+        public decimal? RateMusic { get; set; }
+        public string Name { get; set; }
+    }
 }

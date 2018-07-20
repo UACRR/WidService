@@ -46,6 +46,7 @@ namespace IpsViewComponentLibrary
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
+        public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
 
         public MiddleControlCabinet()
         {
@@ -56,6 +57,12 @@ namespace IpsViewComponentLibrary
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
+            ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
+        }
+
+        private IList<BigRightSpectacleView> CtrlPayslips_OnSpectacleViewNeed(int custId)
+        {
+            return OnGetSpectacleNeed?.Invoke(custId);
         }
 
         private void CtrlFiles_OnViewDocButtonClick(int custId, int typeDocument, string fileName)
@@ -94,6 +101,8 @@ namespace IpsViewComponentLibrary
             UpdateCurentTab(_currenCabinetTab);
         }
 
+
+
         private void UpdateCurentTab(CabinetTabType tab)
         {
             switch (tab)
@@ -112,6 +121,9 @@ namespace IpsViewComponentLibrary
                 }
                     break;
                 case CabinetTabType.Payslips:
+                {
+                    ctrlPayslips.SetAndUpdateData(_customer,_brView,_genAgrs);
+                }
                     break;
                 case CabinetTabType.Requests:
                 {

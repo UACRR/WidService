@@ -152,6 +152,12 @@
     <Compile Include="AgentFooterBR.Designer.cs">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
+    <Compile Include="PayslipsCrEdForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PayslipsCrEdForm.Designer.cs">
+      <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\AnketaAddNamesView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -641,6 +647,9 @@
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PayslipsCrEdForm.resx">
+      <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
     </EmbeddedResource>
@@ -886,6 +895,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.BrRegister.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />

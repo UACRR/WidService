@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -100,6 +101,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnSaveCustomer += _cabinetBr_OnSaveCustomer;
                 _cabinetBr.OnAddNewDocument += CabinetBr_OnAddNewDocument;
                 _cabinetBr.OnViewDocument += CabinetBr_OnViewDocument;
+                _cabinetBr.OnGetSpectacleNeed += _cabinetBr_OnGetSpectacleNeed;
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -109,6 +111,11 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetSelectCustomer(id);
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
+        }
+
+        private IList<BigRightSpectacleView> _cabinetBr_OnGetSpectacleNeed(int custId)
+        {
+            return _service.getBRView(typeof(BigRightSpectacleView), "vTSK_1_BRObjects", custId).Select(item => item as BigRightSpectacleView).ToList();
         }
 
         private void CabinetBr_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)

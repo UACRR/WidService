@@ -73,6 +73,7 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.radButton4 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
@@ -92,6 +93,7 @@
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -481,11 +483,21 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // radButton4
+            // 
+            this.radButton4.Location = new System.Drawing.Point(975, 579);
+            this.radButton4.Name = "radButton4";
+            this.radButton4.Size = new System.Drawing.Size(110, 24);
+            this.radButton4.TabIndex = 9;
+            this.radButton4.Text = "Бутон";
+            this.radButton4.Click += new System.EventHandler(this.radButton4_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1101, 615);
+            this.Controls.Add(this.radButton4);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.radSplitContainer1);
             this.Controls.Add(this.radButton3);
@@ -516,6 +528,7 @@
             this.splitPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -540,5 +553,6 @@
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private Telerik.WinControls.UI.RadButton radButton4;
     }
 }
