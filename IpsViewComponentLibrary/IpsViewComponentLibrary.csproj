@@ -152,6 +152,13 @@
     <Compile Include="AgentFooterBR.Designer.cs">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderBrListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderBrListControl.Designer.cs">
+      <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderBrListMode.cs" />
     <Compile Include="PayslipsCrEdForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -619,7 +626,8 @@
     <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\GridViewTooltipHelper.cs" />
+    <Compile Include="Utilities\ExtendedBrowseEditor.cs" />
+    <Compile Include="Utilities\GridViewHelper.cs" />
     <Compile Include="Utilities\RadTextBoxAuto.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -646,6 +654,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\AuthorRightholderBrListControl.resx">
+      <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>

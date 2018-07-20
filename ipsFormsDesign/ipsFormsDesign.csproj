@@ -55,6 +55,7 @@
     <Compile Include="Dictionary\DictTr.cs" />
     <Compile Include="Dictionary\EditableObjectBase.cs" />
     <Compile Include="Dictionary\ObjectAuthorRightholder.cs" />
+    <Compile Include="Dictionary\ObjectAuthorRightholderBrViewModel.cs" />
     <Compile Include="Dictionary\ObjectCopyright.cs" />
     <Compile Include="Dictionary\ObjectRightMainView.cs" />
     <Compile Include="Dictionary\RegisterFilter.cs" />
