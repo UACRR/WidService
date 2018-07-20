@@ -45,6 +45,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+
         public AuthorRightholderBrListControl()
         {
             InitializeComponent();
@@ -99,24 +100,28 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             if (columnName == "AuthorName")
             {
-                var browseEditor = new ExtendedBrowseEditor(columnName);
+                // set ExtendedRadBrowseEditorElement instead of RadTextBoxEditorElement
+                var browseEditor = new ExtendedBrowseEditor();
                 (browseEditor.EditorElement as ExtendedRadBrowseEditorElement).BrowseButtonClick += AuthorName_BrowseButtonClick;
-
                 e.Editor = browseEditor;
             }
         }
 
         private void AuthorName_BrowseButtonClick(object sender, EventArgs e)
         {
-            var current = gvAuthorRightholderList.CurrentRow.DataBoundItem as ObjectAuthorRightholderBrViewModel;
-
             using (var selectionView = new RightholderSelectionView())
             {
+                //selectionView.SelectedRightholder = rightholder; // TODO
                 selectionView.RightholderSelected += (s, selectedRightholder) =>
                 {
-                    //Rightholder = selectedRightholder;  // TODO
+                    var current = (ObjectAuthorRightholderBrViewModel)gvAuthorRightholderList.CurrentRow.DataBoundItem;
+                    current.Author.CustId = selectedRightholder.CustId;
                     current.Author.AuthorName = selectedRightholder.Name;
-                    objectAuthorRightholderBrViewModelBindingSource.CurrencyManager.Refresh();
+                    current.InnerCode = selectedRightholder.InnerCode;
+                    current.Country = ""; // TODO
+                    objectAuthorRightholderBrViewModelBindingSource.ResetCurrentItem();
+
+                    ((ExtendedBrowseEditor)gvAuthorRightholderList.ActiveEditor).Value = selectedRightholder.Name;
                 };
                 selectionView.ShowDialog();
             }

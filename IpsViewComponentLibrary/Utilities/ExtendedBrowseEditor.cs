@@ -7,29 +7,23 @@ namespace IpsViewComponentLibrary.Utilities
 {
     public class ExtendedBrowseEditor : GridBrowseEditor
     {
-        private string editorColumnName;
-
-        public ExtendedBrowseEditor(string columnName) : base()
-        {
-            editorColumnName = columnName;
-        }
-
         protected override RadElement CreateEditorElement()
         {
-            return new ExtendedRadBrowseEditorElement(editorColumnName);
+            return new ExtendedRadBrowseEditorElement();
         }
     }
 
     public class ExtendedRadBrowseEditorElement : RadBrowseEditorElement
     {
-        private string editorElementColumnName;
+        protected override Type ThemeEffectiveType
+        {
+            get
+            {
+                return typeof(RadBrowseEditorElement);
+            }
+        }
 
         public event EventHandler BrowseButtonClick;
-
-        public ExtendedRadBrowseEditorElement(string editorColumnName) : base()
-        {
-            editorElementColumnName = editorColumnName;
-        }
 
         protected override void OnBrowseButtonClick(EventArgs e)
         {
