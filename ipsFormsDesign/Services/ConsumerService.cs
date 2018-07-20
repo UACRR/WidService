@@ -122,6 +122,11 @@ namespace ipsFormsDesign.Services
             var ret = _webApi.UpdateItem(url, custId.ToString(), pays);
             return ret;
         }
+
+        public Customer getPaidInfo( int custId )
+        {
+            return _webApi.GetItemById<Customer>("consumer/PaydPeriod/GetCustomerInfo", custId.ToString());
+        }
         #endregion
     }
 }

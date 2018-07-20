@@ -70,6 +70,12 @@
     <Compile Include="BindPayPeriod.Designer.cs">
       <DependentUpon>BindPayPeriod.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreatePeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreatePeriod.Designer.cs">
+      <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditPay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     </Compile>
     <EmbeddedResource Include="BindPayPeriod.resx">
       <DependentUpon>BindPayPeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreatePeriod.resx">
+      <DependentUpon>CreatePeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditPay.resx">
       <DependentUpon>EditPay.cs</DependentUpon>
@@ -106,6 +115,8 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyPeriodLink.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.PaidPeriod.datasource" />
     <None Include="Properties\Settings.settings">

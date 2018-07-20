@@ -1184,9 +1184,6 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             //    return BadRequest(ex.InnerException.Message);
             //}
         }
-
-
-
         #endregion
         #region PaydPariod Services
         /// <summary>
@@ -1255,8 +1252,36 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
                 tran?.Rollback();
                 return BadRequest();
             }
+        }
+
+ 
+
+        [HttpGet("PaydPeriod/GetCustomerInfo/{custId}")]
+        public async Task<IActionResult> GetCustomerInfo(int custId)
+        {
+            var cust = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(rec => rec.Client)
+                .SingleOrDefaultAsync();
+
+            await _dbContext.LicenseAgrParam.FromSql(@"
+            select t1.* from LicenseAgrParam t1
+            join LicenseAgreement t2 on t2.licId = t1.licId and t2.licVersion = t1.licVersion
+            where t2.licStatus between 0 and 3 and  t2.custId = @custId
+            ", new SqlParameter("@custId", custId))
+                .Include(rec => rec.Lic)
+                .LoadAsync();
+
+            await _dbContext.MoneyReceived.FromSql(@"
+select t1.* from MoneyReceived t1
+where t1.custId = @custId
+", new SqlParameter("@custId", custId))
+                .Include(rec => rec.MoneyPeriodLink).ThenInclude( l => l.Period )
+                .LoadAsync();
+
+            
 
 
+            return Json(cust);
         }
 #endif
 #endregion

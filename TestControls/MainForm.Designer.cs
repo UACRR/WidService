@@ -68,7 +68,7 @@
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radButton4 = new Telerik.WinControls.UI.RadButton();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radScrollablePanel1 = new Telerik.WinControls.UI.RadScrollablePanel();
+            this.bindPayPeriod1 = new TestControls.BindPayPeriod();
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
@@ -76,7 +76,6 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.bindPayPeriod1 = new TestControls.BindPayPeriod();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
@@ -91,9 +90,6 @@
             this.radPageViewPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
             this.radPageViewPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).BeginInit();
-            this.radScrollablePanel1.PanelContainer.SuspendLayout();
-            this.radScrollablePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
@@ -249,7 +245,7 @@
             this.radGridView1.MasterTemplate.DataSource = this.bindingSource2;
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(1300, 287);
+            this.radGridView1.Size = new System.Drawing.Size(1300, 288);
             this.radGridView1.TabIndex = 0;
             this.radGridView1.DoubleClick += new System.EventHandler(this.radGridView1_DoubleClick);
             // 
@@ -342,7 +338,7 @@
             // radButton1
             // 
             this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton1.Location = new System.Drawing.Point(118, 296);
+            this.radButton1.Location = new System.Drawing.Point(118, 297);
             this.radButton1.Name = "radButton1";
             this.radButton1.Size = new System.Drawing.Size(110, 28);
             this.radButton1.TabIndex = 2;
@@ -352,7 +348,7 @@
             // radButton2
             // 
             this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton2.Location = new System.Drawing.Point(6, 296);
+            this.radButton2.Location = new System.Drawing.Point(6, 297);
             this.radButton2.Name = "radButton2";
             this.radButton2.Size = new System.Drawing.Size(110, 28);
             this.radButton2.TabIndex = 3;
@@ -370,17 +366,18 @@
             // 
             // radPageView1
             // 
-            this.radPageView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.radPageView1.Controls.Add(this.radPageViewPage1);
             this.radPageView1.Controls.Add(this.radPageViewPage2);
             this.radPageView1.Controls.Add(this.radPageViewPage3);
             this.radPageView1.Controls.Add(this.radPageViewPage4);
+            this.radPageView1.DefaultPage = this.radPageViewPage1;
+            this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(0, 0);
             this.radPageView1.Name = "radPageView1";
             this.radPageView1.SelectedPage = this.radPageViewPage2;
-            this.radPageView1.Size = new System.Drawing.Size(1330, 379);
+            this.radPageView1.Size = new System.Drawing.Size(1330, 376);
             this.radPageView1.TabIndex = 5;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             // 
             // radPageViewPage1
             // 
@@ -391,13 +388,13 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(58F, 28F);
             this.radPageViewPage1.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1309, 331);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1309, 328);
             this.radPageViewPage1.Text = "Платежі";
             // 
             // radButton4
             // 
             this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton4.Location = new System.Drawing.Point(234, 296);
+            this.radButton4.Location = new System.Drawing.Point(234, 297);
             this.radButton4.Name = "radButton4";
             this.radButton4.Size = new System.Drawing.Size(110, 28);
             this.radButton4.TabIndex = 3;
@@ -406,25 +403,23 @@
             // 
             // radPageViewPage2
             // 
-            this.radPageViewPage2.Controls.Add(this.radScrollablePanel1);
+            this.radPageViewPage2.Controls.Add(this.bindPayPeriod1);
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(100F, 28F);
             this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(1309, 331);
+            this.radPageViewPage2.Size = new System.Drawing.Size(1309, 328);
             this.radPageViewPage2.Text = "Розподіл коштів";
             // 
-            // radScrollablePanel1
+            // bindPayPeriod1
             // 
-            this.radScrollablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radScrollablePanel1.Location = new System.Drawing.Point(0, 0);
-            this.radScrollablePanel1.Name = "radScrollablePanel1";
-            // 
-            // radScrollablePanel1.PanelContainer
-            // 
-            this.radScrollablePanel1.PanelContainer.Controls.Add(this.bindPayPeriod1);
-            this.radScrollablePanel1.PanelContainer.Size = new System.Drawing.Size(1290, 329);
-            this.radScrollablePanel1.Size = new System.Drawing.Size(1309, 331);
-            this.radScrollablePanel1.TabIndex = 0;
+            this.bindPayPeriod1.AutoScroll = true;
+            this.bindPayPeriod1.Customer = null;
+            this.bindPayPeriod1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bindPayPeriod1.Location = new System.Drawing.Point(0, 0);
+            this.bindPayPeriod1.Margin = new System.Windows.Forms.Padding(4);
+            this.bindPayPeriod1.Name = "bindPayPeriod1";
+            this.bindPayPeriod1.Size = new System.Drawing.Size(1309, 328);
+            this.bindPayPeriod1.TabIndex = 0;
             // 
             // radPageViewPage3
             // 
@@ -447,7 +442,7 @@
             this.radTextBox1.Location = new System.Drawing.Point(3, 15);
             this.radTextBox1.Name = "radTextBox1";
             this.radTextBox1.NullText = "Пошук";
-            this.radTextBox1.Size = new System.Drawing.Size(529, 24);
+            this.radTextBox1.Size = new System.Drawing.Size(529, 20);
             this.radTextBox1.TabIndex = 6;
             this.radTextBox1.TextChanged += new System.EventHandler(this.radTextBox1_TextChanged);
             // 
@@ -458,14 +453,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSplitContainer1.Controls.Add(this.splitPanel1);
             this.radSplitContainer1.Controls.Add(this.splitPanel2);
-            this.radSplitContainer1.Location = new System.Drawing.Point(9, 32);
+            this.radSplitContainer1.Location = new System.Drawing.Point(9, 35);
             this.radSplitContainer1.Name = "radSplitContainer1";
             this.radSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(1330, 577);
+            this.radSplitContainer1.Size = new System.Drawing.Size(1330, 574);
             this.radSplitContainer1.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
             this.radSplitContainer1.TabIndex = 7;
             this.radSplitContainer1.TabStop = false;
@@ -499,7 +494,7 @@
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(1330, 379);
+            this.splitPanel2.Size = new System.Drawing.Size(1330, 376);
             this.splitPanel2.SizeInfo.AbsoluteSize = new System.Drawing.Size(200, 379);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.0112782F);
             this.splitPanel2.SizeInfo.SizeMode = Telerik.WinControls.UI.Docking.SplitPanelSizeMode.Absolute;
@@ -515,25 +510,15 @@
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(13, 13);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(129, 23);
+            this.checkBox1.Size = new System.Drawing.Size(109, 17);
             this.checkBox1.TabIndex = 8;
             this.checkBox1.Text = "Тестовий клієнт";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // bindPayPeriod2
-            // 
-            this.bindPayPeriod1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bindPayPeriod1.Location = new System.Drawing.Point(0, 0);
-            this.bindPayPeriod1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.bindPayPeriod1.Name = "bindPayPeriod2";
-            this.bindPayPeriod1.Size = new System.Drawing.Size(1290, 895);
-            this.bindPayPeriod1.TabIndex = 0;
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 672);
             this.Controls.Add(this.checkBox1);
@@ -560,9 +545,6 @@
             this.radPageViewPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
             this.radPageViewPage2.ResumeLayout(false);
-            this.radScrollablePanel1.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radScrollablePanel1)).EndInit();
-            this.radScrollablePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
@@ -597,7 +579,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage4;
         private Telerik.WinControls.UI.RadButton radButton4;
-        private Telerik.WinControls.UI.RadScrollablePanel radScrollablePanel1;
+
 
         private BindPayPeriod bindPayPeriod1;
     }

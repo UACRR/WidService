@@ -51,14 +51,23 @@ namespace TestControls
             var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
             var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
             var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
+            var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
             foreach (var item in cust.Client.LicenseAgreement)
             {
                 item.LicCodeNavigation = dicType[item.LicType ?? 1];
+                
                 foreach (var licParam in item.LicenseAgrParam)
                 {
                     licParam.Lic = item;
                     licParam.LicStatusNavigation = dicStatus[licParam.LicStatus ?? 1];
                     licParam.PeriodCodeNavigation = dicPeriod[licParam.PeriodCode ?? 1];
+                }
+                foreach( var period in item.PaidPeriod )
+                {
+                    period.StatusNavigation = dicPeriodStatus[period.Status];
+                    foreach (var link in period.MoneyPeriodLink)
+                        link.Period = period;
+
                 }
             }
         }
@@ -72,7 +81,7 @@ namespace TestControls
             getCurrentCustomer = Task<Customer>.Run(() =>
             {
 
-                var _consumer = _service.GetData(_curItem.CustId);
+                var _consumer = _service.getPaidInfo(_curItem.CustId);
                 normalizeData(_consumer);
                 return _consumer;
             });
@@ -81,7 +90,7 @@ namespace TestControls
             {
 
             var listPays = _service.GetCustomerPays(_curItem.CustId);
-            var listSource = ((IListSource)(new ObservableListSource<ExternalPay>(listPays))).GetList();
+            var listSource = new ObservableListSource<ExternalPay>(listPays);
             if (InvokeRequired)
             {
                 checkBox1.Invoke((MethodInvoker)delegate () { checkBox1.Text = _curItem.Name;
@@ -96,21 +105,16 @@ namespace TestControls
             });
 
             var consumer = getCurrentCustomer.GetAwaiter().GetResult();
-            var list = consumer.Client.LicenseAgreement.ToList() ?? new List<LicenseAgreement>();
-            var pays = consumer.Client.MoneyReceived.Where(rec => rec.Amount >= rec.DestribAmount + (rec.DestribPrepay ?? 0));
             if (InvokeRequired)
             {
                 bindPayPeriod1.Invoke((MethodInvoker)delegate ()
                 {
-                    bindPayPeriod1.bindingSource1.DataSource = pays;
-                    bindPayPeriod1.bindingSource2.DataSource = list;
+                    bindPayPeriod1.Customer = consumer;
                 });
             }
             else
             {
-                bindPayPeriod1.bindingSource1.DataSource = pays;
-                bindPayPeriod1.bindingSource2.DataSource = list;
-
+                bindPayPeriod1.Customer = consumer;
             }
 
 
@@ -209,8 +213,9 @@ namespace TestControls
         private void radButton4_Click(object sender, EventArgs e)
         {
             var row = (ExternalPay)radGridView1.CurrentRow.DataBoundItem;
-            var list = (IList<ExternalPay>)radGridView1.DataSource;
-            list[radGridView1.CurrentRow.Index].SDebet = 123456;
+            var list = (ObservableListSource<ExternalPay>)bindingSource2.DataSource;
+            row.SDebet = 123456;
+            ((BindingList<ExternalPay>)((IListSource)list).GetList()).ResetItem(radGridView1.CurrentRow.Index);
         }
     }
 }
