@@ -22,6 +22,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
         }
 
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
             get { return objectAuthorRightholderBrViewModelBindingSource.DataSource; }
@@ -30,6 +32,20 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 if (objectAuthorRightholderBrViewModelBindingSource.DataSource != value)
                 {
                     objectAuthorRightholderBrViewModelBindingSource.DataSource = value;
+                }
+            }
+        }
+
+        private AuthorRightholderBrListMode _listMode;
+        public AuthorRightholderBrListMode ListMode
+        {
+            get { return _listMode; }
+            set
+            {
+                if (_listMode != value)
+                {
+                    _listMode = value;
+                    SetAdditionalColumnsVisibility();
                 }
             }
         }
@@ -68,6 +84,20 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             {
                 gvAuthorRightholderList.Rows.Remove(gvAuthorRightholderList.CurrentRow);
             }
+        }
+
+        private void SetAdditionalColumnsVisibility()
+        {
+            var visibility = _listMode == AuthorRightholderBrListMode.Full;
+
+            gvAuthorRightholderList.SetColumnVisibility("RoleRate", visibility);
+            gvAuthorRightholderList.SetColumnVisibility("PrepayType", visibility);
+            gvAuthorRightholderList.SetColumnVisibility("Currency", visibility);
+            gvAuthorRightholderList.SetColumnVisibility("PrepaySum", visibility);
+            gvAuthorRightholderList.SetColumnVisibility("WorkTypeRh", visibility);
+            gvAuthorRightholderList.SetColumnVisibility("WorkTypeCl", visibility);
+
+
         }
     }
 }

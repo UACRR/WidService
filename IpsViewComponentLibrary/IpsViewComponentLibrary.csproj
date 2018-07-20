@@ -152,6 +152,7 @@
     <Compile Include="ObjectRightControls\AuthorRightholderBrListControl.Designer.cs">
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderBrListMode.cs" />
     <Compile Include="RightholderControls\AnketaAddNamesView.cs">
       <SubType>Form</SubType>
     </Compile>

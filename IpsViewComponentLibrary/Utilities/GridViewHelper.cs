@@ -16,10 +16,7 @@ namespace IpsViewComponentLibrary.Utilities
 
         public static void SetComboboxColumnDataSource(this RadGridView gridView, string columnName, object dataSource, string valueMember, string displayMember)
         {
-            if (!gridView.Columns.Contains(columnName))
-                throw new Exception($"There is no column with name '{columnName}'.");
-
-            var column = gridView.Columns[columnName] as GridViewComboBoxColumn;
+            var column = GetColumnByName(gridView, columnName) as GridViewComboBoxColumn;
 
             if (column == null)
                 throw new Exception($"Column '{columnName}' should be of type GridViewComboBoxColumn.");
@@ -32,6 +29,21 @@ namespace IpsViewComponentLibrary.Utilities
         public static void SetComboboxColumnDataSource(this RadGridView gridView, string columnName, object dataSource)
         {
             SetComboboxColumnDataSource(gridView, columnName, dataSource, "CodeI", "Name");
+        }
+
+        public static void SetColumnVisibility(this RadGridView gridView, string columnName, bool isVisible)
+        {
+            var column = GetColumnByName(gridView, columnName);
+
+            column.IsVisible = isVisible;
+        }
+
+        private static GridViewDataColumn GetColumnByName(this RadGridView gridView, string columnName)
+        {
+            if (!gridView.Columns.Contains(columnName))
+                throw new Exception($"There is no column with name '{columnName}'.");
+
+            return gridView.Columns[columnName];
         }
     }
 }
