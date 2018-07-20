@@ -3,7 +3,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Utilities
 {
-    public static class GridViewTooltipHelper
+    public static class GridViewHelper
     {
         public static void SetTooltipTextForColumnHeader(object sender, ToolTipTextNeededEventArgs e)
         {

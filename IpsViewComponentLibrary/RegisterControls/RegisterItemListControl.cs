@@ -139,7 +139,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void gvRegisterItemList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
-            GridViewTooltipHelper.SetTooltipTextForColumnHeader(sender, e);
+            Utilities.GridViewHelper.SetTooltipTextForColumnHeader(sender, e);
         }
 
         private void ddlLinkedStatus_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
