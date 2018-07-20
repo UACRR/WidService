@@ -46,11 +46,28 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void SetDictionaries()
         {
-            gvObjectsRightsList.SetComboboxColumnDataSource("RoleCode", IpsGlobal.ObjectRightDictionaries.creativeRoleType);
-            gvObjectsRightsList.SetComboboxColumnDataSource("PrepayType", IpsGlobal.AnketaDictionaties.PrePayType);
-            gvObjectsRightsList.SetComboboxColumnDataSource("Currency", IpsGlobal.AnketaDictionaties.klR030, "r030", "a3");
-            gvObjectsRightsList.SetComboboxColumnDataSource("WorkTypeRh", IpsGlobal.AnketaDictionaties.workType);
-            gvObjectsRightsList.SetComboboxColumnDataSource("WorkTypeCl", IpsGlobal.AnketaDictionaties.workType);
+            gvAuthorRightholderList.SetComboboxColumnDataSource("RoleCode", IpsGlobal.ObjectRightDictionaries.creativeRoleType);
+            gvAuthorRightholderList.SetComboboxColumnDataSource("PrepayType", IpsGlobal.AnketaDictionaties.PrePayType);
+            gvAuthorRightholderList.SetComboboxColumnDataSource("Currency", IpsGlobal.AnketaDictionaties.klR030, "r030", "a3");
+            gvAuthorRightholderList.SetComboboxColumnDataSource("WorkTypeRh", IpsGlobal.AnketaDictionaties.workType);
+            gvAuthorRightholderList.SetComboboxColumnDataSource("WorkTypeCl", IpsGlobal.AnketaDictionaties.workType);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            var newItem = new ObjectAuthorRightholderBrViewModel();
+            objectAuthorRightholderBrViewModelBindingSource.Add(newItem);
+            gvAuthorRightholderList.CurrentRow.Cells[0].BeginEdit();
+        }
+
+        private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "DeleteColumn")
+            {
+                gvAuthorRightholderList.Rows.Remove(gvAuthorRightholderList.CurrentRow);
+            }
         }
     }
 }

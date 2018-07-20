@@ -15,5 +15,13 @@ namespace ipsFormsDesign.Dictionary
         public CopyRight CopyRight { get; set; }
         public WorkRh WorkRh { get; set; }
         public LicAuthorBr LicAuthorBr { get; set; }
+
+        public ObjectAuthorRightholderBrViewModel()
+        {
+            Author = new Authors();
+            CopyRight = new CopyRight();
+            LicAuthorBr = new LicAuthorBr();
+            WorkRh = new WorkRh();
+        }
     }
 }
