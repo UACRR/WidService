@@ -11,6 +11,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -45,30 +46,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void SetDictionaries()
         {
-            var column = gvObjectsRightsList.Columns["RoleCode"] as GridViewComboBoxColumn;
-            column.ValueMember = "CodeI";
-            column.DisplayMember = "Name";
-            column.DataSource = IpsGlobal.ObjectRightDictionaries.creativeRoleType;
-
-            column = gvObjectsRightsList.Columns["PrepayType"] as GridViewComboBoxColumn;
-            column.ValueMember = "CodeI";
-            column.DisplayMember = "Name";
-            column.DataSource = IpsGlobal.AnketaDictionaties.PrePayType;
-
-            column = gvObjectsRightsList.Columns["Currency"] as GridViewComboBoxColumn;
-            column.ValueMember = "r030";
-            column.DisplayMember = "a3";
-            column.DataSource = IpsGlobal.AnketaDictionaties.klR030;
-
-            column = gvObjectsRightsList.Columns["WorkTypeRh"] as GridViewComboBoxColumn;
-            column.ValueMember = "CodeI";
-            column.DisplayMember = "Name";
-            column.DataSource = IpsGlobal.AnketaDictionaties.workType;
-
-            column = gvObjectsRightsList.Columns["WorkTypeCl"] as GridViewComboBoxColumn;
-            column.ValueMember = "CodeI";
-            column.DisplayMember = "Name";
-            column.DataSource = IpsGlobal.AnketaDictionaties.workType;
+            gvObjectsRightsList.SetComboboxColumnDataSource("RoleCode", IpsGlobal.ObjectRightDictionaries.creativeRoleType);
+            gvObjectsRightsList.SetComboboxColumnDataSource("PrepayType", IpsGlobal.AnketaDictionaties.PrePayType);
+            gvObjectsRightsList.SetComboboxColumnDataSource("Currency", IpsGlobal.AnketaDictionaties.klR030, "r030", "a3");
+            gvObjectsRightsList.SetComboboxColumnDataSource("WorkTypeRh", IpsGlobal.AnketaDictionaties.workType);
+            gvObjectsRightsList.SetComboboxColumnDataSource("WorkTypeCl", IpsGlobal.AnketaDictionaties.workType);
         }
     }
 }
