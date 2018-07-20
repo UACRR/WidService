@@ -7,6 +7,7 @@ using Telerik.WinControls.UI;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.RightholderControls;
+using System.Linq;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -45,6 +46,21 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        private ObjectAuthorRightholderBrViewModel _authorRightholder;
+        public ObjectAuthorRightholderBrViewModel SelectedAuthorRightholder
+        {
+            get { return objectAuthorRightholderBrViewModelBindingSource.Current as ObjectAuthorRightholderBrViewModel; }
+            set
+            {
+                _authorRightholder = value;
+
+                var row = gvAuthorRightholderList.Rows.FirstOrDefault(r => (ObjectAuthorRightholderBrViewModel)r.DataBoundItem == _authorRightholder);
+                if (row != null)
+                {
+                    gvAuthorRightholderList.CurrentRow = row;
+                }
+            }
+        }
 
         public AuthorRightholderBrListControl()
         {
