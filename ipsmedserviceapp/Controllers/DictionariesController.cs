@@ -763,7 +763,7 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("objAct", await _dbContext.ObjAct.AsNoTracking().ToListAsync());
             retDictionary.Add("performType", await _dbContext.PerformType.AsNoTracking().ToListAsync());
             retDictionary.Add("genreType", await _dbContext.GenreType.AsNoTracking().ToListAsync());
-            retDictionary.Add("language", await _dbContext.Language.AsNoTracking().ToListAsync());
+            retDictionary.Add("language", await _dbContext.Language.Where(l => l.ShortChoise == 1).AsNoTracking().ToListAsync());
 
 
             retDictionary.Add("Communities",
