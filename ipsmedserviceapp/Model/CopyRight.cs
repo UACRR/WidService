@@ -33,7 +33,6 @@ namespace ipsmedserviceapp.Model
         public CrightStatus StatusNavigation { get; set; }
         [JsonIgnore]
         public CopyRtranslate CopyRtranslate { get; set; }
-        [JsonIgnore]
         public LicAuthorBr LicAuthorBr { get; set; }
         public WorkRh WorkRh { get; set; }
     }

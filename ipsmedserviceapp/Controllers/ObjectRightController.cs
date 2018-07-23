@@ -187,6 +187,33 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        #region Big right
+
+        private async Task<ObjectRight> getObjectRightBrById(int objId)
+        {
+            var objectRight = await _dbContext.ObjectRight
+                .Include(rec => rec.Authors)
+                .Include(rec => rec.CopyRight)
+                    .ThenInclude(cr => cr.LicAuthorBr)
+                .Include(rec => rec.CopyRight)
+                    .ThenInclude(cr => cr.WorkRh)
+                .Include(rec => rec.LicenseBigR)
+                .FirstOrDefaultAsync(rec => rec.ObjId == objId);
+
+            return objectRight;
+        }
+
+        [HttpGet("br/detail/{objid}")]
+        public async Task<IActionResult> GetObjectBrById(int objId)
+        {
+            var or = await getObjectRightBrById(objId);
+            var rhList = await _dbContext.getViewData($"select * from ft_ObjectRightCustomerForm01({objId})", null);
+
+            return Json(new { objectRight = or, rhList });
+        }
+
+        #endregion
+
         #region Views
         /// <summary>
         /// Получити  список об'єктів права для основного єкрану інтерфейсу користувача
