@@ -5,6 +5,11 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Utilities
 {
+    public class ValueSelectionEventArgs : EventArgs
+    {
+        public string Value { get; set; }
+    }
+
     public class ExtendedBrowseEditor : GridBrowseEditor
     {
         protected override RadElement CreateEditorElement()
@@ -23,11 +28,15 @@ namespace IpsViewComponentLibrary.Utilities
             }
         }
 
-        public event EventHandler BrowseButtonClick;
+        public event EventHandler<ValueSelectionEventArgs> ValueSelection;
 
         protected override void OnBrowseButtonClick(EventArgs e)
         {
-            BrowseButtonClick?.Invoke(this, EventArgs.Empty);
+            var eventArgs = new ValueSelectionEventArgs { Value = this.Value };
+
+            ValueSelection?.Invoke(this, eventArgs);
+
+            this.Value = eventArgs.Value;
         }
     }
 }

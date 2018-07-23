@@ -118,26 +118,26 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             {
                 // set ExtendedRadBrowseEditorElement instead of RadTextBoxEditorElement
                 var browseEditor = new ExtendedBrowseEditor();
-                (browseEditor.EditorElement as ExtendedRadBrowseEditorElement).BrowseButtonClick += AuthorName_BrowseButtonClick;
+                (browseEditor.EditorElement as ExtendedRadBrowseEditorElement).ValueSelection += AuthorName_ValueSelection;
                 e.Editor = browseEditor;
             }
         }
 
-        private void AuthorName_BrowseButtonClick(object sender, EventArgs e)
+        private void AuthorName_ValueSelection(object sender, ValueSelectionEventArgs e)
         {
             using (var selectionView = new RightholderSelectionView())
             {
                 //selectionView.SelectedRightholder = rightholder; // TODO
                 selectionView.RightholderSelected += (s, selectedRightholder) =>
                 {
+                    e.Value = selectedRightholder.Name;
+
                     var current = (ObjectAuthorRightholderBrViewModel)gvAuthorRightholderList.CurrentRow.DataBoundItem;
                     current.Author.CustId = selectedRightholder.CustId;
                     current.Author.AuthorName = selectedRightholder.Name;
                     current.InnerCode = selectedRightholder.InnerCode;
                     current.Country = ""; // TODO
                     objectAuthorRightholderBrViewModelBindingSource.ResetCurrentItem();
-
-                    ((ExtendedBrowseEditor)gvAuthorRightholderList.ActiveEditor).Value = selectedRightholder.Name;
                 };
                 selectionView.ShowDialog();
             }
