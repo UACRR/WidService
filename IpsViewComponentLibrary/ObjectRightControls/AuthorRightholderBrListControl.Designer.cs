@@ -64,6 +64,7 @@
             // 
             this.gvAuthorRightholderList.MasterTemplate.AllowAddNewRow = false;
             this.gvAuthorRightholderList.MasterTemplate.AllowDeleteRow = false;
+            this.gvAuthorRightholderList.MasterTemplate.AutoGenerateColumns = false;
             this.gvAuthorRightholderList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewComboBoxColumn1.DataType = typeof(int);
             gridViewComboBoxColumn1.FieldName = "Author.RoleCode";

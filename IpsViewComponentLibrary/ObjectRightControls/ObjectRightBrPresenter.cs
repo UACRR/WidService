@@ -12,7 +12,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private readonly ObjectRightBrView _view;
         private ObjectRightService _objectRightService;
         private ObjectRight _objectRight;
-        public BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
+        private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
 
         public ObjectRightBrPresenter(ObjectRightBrView view)
         {
@@ -38,8 +38,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _view.ObjectRightDataSource = _objectRight;
             _view.LicenseBigRDataSource = _objectRight.LicenseBigR;
 
-            // map Authors, Copyright, :icAuthorBr and WorkRh tables into single table
-            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(_objectRight.Authors.Select(a =>
+            // map Authors, Copyright, LicAuthorBr and WorkRh tables into single table
+            var tmpAuthorRightholderList = _objectRight.Authors.Select(a =>
             {
                 var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
                 var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
@@ -54,7 +54,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                     WorkRh = foundedCopyright.WorkRh,
                 };
             })
-            .ToArray());
+            .ToList();
+
+            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(tmpAuthorRightholderList);
 
             _view.AuthorRightholderListDataSource = _authorRightholderList;
         }

@@ -83,8 +83,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var newItem = new ObjectAuthorRightholderBrViewModel();
-            objectAuthorRightholderBrViewModelBindingSource.Add(newItem);
+            gvAuthorRightholderList.Rows.AddNew();
             gvAuthorRightholderList.CurrentRow.Cells[0].BeginEdit();
         }
 
