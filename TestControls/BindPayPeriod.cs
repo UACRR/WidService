@@ -12,6 +12,7 @@ using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using Telerik.WinControls;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary;
 
 namespace TestControls
 {
@@ -28,37 +29,25 @@ namespace TestControls
 
         private void SetupDragDrop()
         {
-            SubscribeForGridEvents( radGridView1, typeof(ExternalPay));
-            SubscribeForGridEvents( radGridView2, typeof(LicenseAgrParam));
+            SubscribeForGridEvents( radGridView1, radGridView2);
+            SubscribeForGridEvents( radGridView2, radGridView1);
         }
 
 
 
-        private void SubscribeForGridEvents(RadGridView grid, Type GridType)
+        private void SubscribeForGridEvents(RadGridView grid, RadGridView GridTarget)
         {
             RadDragDropService dragDropService = grid.GridViewElement.GetService<RadDragDropService>();
             dragDropService.PreviewDragOver += new EventHandler<RadDragOverEventArgs>(dragDropService_PreviewDragOver);
             dragDropService.PreviewDragDrop += new EventHandler<RadDropEventArgs>(dragDropService_PreviewDragDrop);
-            //dragDropService.PreviewDragHint += new EventHandler<PreviewDragHintEventArgs>(dragDropService_PreviewDragHint);
             dragDropService.PreviewDragStart += new EventHandler<PreviewDragStartEventArgs>(svc_PreviewDragStart);
 
-            // grid.CellFormatting += new CellFormattingEventHandler(grid_CellFormatting);
-            ////            grid.Rows.CollectionChanged += new Telerik.WinControls.Data.NotifyCollectionChangedEventHandler(Rows_CollectionChanged);
-
-            // grid.RowFormatting += Grid_RowFormatting;
-            var behavior = new CustomGridBehavior(GridType);
+            var behavior =  grid.GridBehavior as BaseGridBehavior;
             grid.GridBehavior = behavior;
 
             behavior.UnregisterBehavior(typeof(GridViewDataRowInfo));
-            behavior.RegisterBehavior(typeof(GridViewDataRowInfo), new RowSelectionGridBehavior());
+            behavior.RegisterBehavior(typeof(GridViewDataRowInfo), new RowSelectionGridBehavior(GridTarget));
 
-
-        }
-
-        private void Grid_RowFormatting(object sender, RowFormattingEventArgs e)
-        {
-            e.RowElement.AllowDrag = true;
-            e.RowElement.AllowDrop = true;
         }
 
 
@@ -71,31 +60,34 @@ namespace TestControls
 
         private void dragDropService_PreviewDragDrop(object sender, RadDropEventArgs e)
         {
-            SnapshotDragItem dragInstance = e.DragInstance as SnapshotDragItem;
-
-            if (dragInstance == null)
-            {
-                return;
-            }
-
             RadItem dropTarget = e.HitTarget as RadItem;
+            if (dropTarget == null)
+                return;
             RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
 
-            if (targetGrid == null)
-            {
+            dropTarget = (RadItem)e.DragInstance;
+            if (dropTarget == null)
                 return;
-            }
+            //var sourceGrid = dropTarget.ElementTree.Control as RadGridView;
 
-            RadGridView dragGrid = dragInstance.Item.ElementTree.Control as RadGridView;
+            //var targetRow = targetGrid.CurrentRow.DataBoundItem;
+            //var sourceRow = sourceGrid.CurrentRow.DataBoundItem;
 
-            if (targetGrid != dragGrid)
-            {
-                e.Handled = true;
+            //var pay = targetRow is MoneyReceived @item1 ? @item1 : sourceRow as MoneyReceived;
+            //var lic = targetRow is LicenseAgrParam @item2 ? @item2 : sourceRow as LicenseAgrParam;
 
-//                CustomGridBehavior behavior = (CustomGridBehavior)dragGrid.GridBehavior;
-                GridDataRowElement dropTargetRow = dropTarget as GridDataRowElement;
-//                this.MoveRows(targetGrid, dragGrid, behavior.SelectedRows, index);
-            }
+            //DistributionForm form = new DistributionForm(pay, lic.Lic);
+
+            //if(form.ShowDialog() == DialogResult.OK )
+            //{
+
+            //}
+            Task.Run(()=>radButton2.PerformClick());
+            e.Handled = true;
+
+
+            
+
         }
 
         private void dragDropService_PreviewDragOver(object sender, RadDragOverEventArgs e)
@@ -104,7 +96,18 @@ namespace TestControls
             {
                 RadItem dropTarget = e.HitTarget as RadItem;
                 RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
-                RowSelectionGridBehavior behavior = (RowSelectionGridBehavior)targetGrid.GridBehavior;
+
+                //var behavior = targetGrid.GridBehavior  as BaseGridBehavior;
+                //var rowViewBehavior = behavior.GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+
+                dropTarget = (RadItem)e.DragInstance;
+                var sourceGrid = dropTarget.ElementTree.Control as RadGridView; ;
+                var rowViewSorceBehavior = ((BaseGridBehavior)sourceGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+
+
+
+                if (rowViewSorceBehavior == null || rowViewSorceBehavior.Target != targetGrid )
+                    return;
 
 
                 e.CanDrop = (e.HitTarget is GridDataRowElement ||
@@ -201,7 +204,7 @@ namespace TestControls
             if (radGridView2.CurrentRow != null)
             {
                 var licItem = (LicenseAgrParam)radGridView2.CurrentRow.DataBoundItem;
-                paidPeriodBindingSource.DataSource = licItem.Lic.PaidPeriod;
+                paidPeriodBindingSource.DataSource = licItem.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate ).ToList();
             }
             else
             {
@@ -224,17 +227,7 @@ namespace TestControls
         }
 
 
-        private void MasterTemplate_CellFormatting(object sender, CellFormattingEventArgs e)
-        {
-            if (e.Column.Name == "Debt")
-            {
-                var licAgreement = (LicenseAgrParam)e.Row.DataBoundItem;
 
-                var debt = licAgreement.Lic.PaidPeriod.Sum(rec => rec.Amount - rec.Distribamount - rec.Undistribamount);
-                e.CellElement.Text = Convert.ToDecimal(debt < 0 ? 0 : debt).ToString();
-            }
-
-        }
 
         private void radButton1_Click(object sender, EventArgs e)
         {
@@ -244,8 +237,32 @@ namespace TestControls
             if( dialog.ShowDialog() == DialogResult.OK )
             {
                 _service.SavePeriods((int)currentAgree.Lic.CustId, currentAgree.Lic.PaidPeriod.ToList());
-                paidPeriodBindingSource.CurrencyManager.Refresh();
+
+                SetGrid3DataSource();
             }
+        }
+
+        private void radButton2_Click(object sender, EventArgs e)
+        {
+            MoneyReceived pay = radGridView1.CurrentRow.DataBoundItem as MoneyReceived;
+            var licParam = radGridView2.CurrentRow.DataBoundItem as LicenseAgrParam;
+            if (licParam?.Lic == null || pay == null)
+                return;
+            DistributionForm form = new DistributionForm( pay, licParam.Lic );
+
+            if(form.ShowDialog() == DialogResult.OK )
+            {
+                MessageBox.Show("!!! Ok !!!");
+            }
+        }
+
+        private void radGridView2_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            var ri = e.RowElement.RowInfo;
+            var licAgreement = (LicenseAgrParam)ri.DataBoundItem;
+
+            var debt = licAgreement.Lic.PaidPeriod.Sum(rec => rec.Amount - rec.Distribamount - rec.Undistribamount);
+            ri.Cells["Debt"].Value = Convert.ToDecimal(debt < 0 ? 0 : debt);
         }
     }
 }

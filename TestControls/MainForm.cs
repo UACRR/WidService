@@ -52,6 +52,7 @@ namespace TestControls
             var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
             var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
             var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
+
             foreach (var item in cust.Client.LicenseAgreement)
             {
                 item.LicCodeNavigation = dicType[item.LicType ?? 1];
@@ -67,13 +68,15 @@ namespace TestControls
                     period.StatusNavigation = dicPeriodStatus[period.Status];
                     foreach (var link in period.MoneyPeriodLink)
                         link.Period = period;
-
                 }
             }
         }
 
         private void radGridView2_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            if (radGridView2.CurrentRow == null)
+                return;
+
             _curItem = (ConsumerMainView)radGridView2.CurrentRow.DataBoundItem;
             if (_curItem == null)
                 return;

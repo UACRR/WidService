@@ -40,7 +40,6 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.gvDistributionPayment = new Telerik.WinControls.UI.RadGridView();
-            this.btnCreateNewPeriod = new Telerik.WinControls.UI.RadButton();
             this.btnSaveDistrib = new Telerik.WinControls.UI.RadButton();
             this.btnExit = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -64,7 +63,6 @@ namespace IpsViewComponentLibrary
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCreateNewPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveDistrib)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -148,23 +146,13 @@ namespace IpsViewComponentLibrary
             this.gvDistributionPayment.Size = new System.Drawing.Size(962, 196);
             this.gvDistributionPayment.TabIndex = 10;
             this.gvDistributionPayment.ThemeName = "Office2007Silver";
-            // 
-            // btnCreateNewPeriod
-            // 
-            this.btnCreateNewPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateNewPeriod.Location = new System.Drawing.Point(12, 331);
-            this.btnCreateNewPeriod.Name = "btnCreateNewPeriod";
-            this.btnCreateNewPeriod.Size = new System.Drawing.Size(151, 24);
-            this.btnCreateNewPeriod.TabIndex = 11;
-            this.btnCreateNewPeriod.Text = "Створити новий період";
-            this.btnCreateNewPeriod.ThemeName = "Office2007Silver";
-            this.btnCreateNewPeriod.Click += new System.EventHandler(this.btnCreateNewPeriod_Click);
+            this.gvDistributionPayment.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvDistributionPayment_CellValueChanged);
             // 
             // btnSaveDistrib
             // 
             this.btnSaveDistrib.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSaveDistrib.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSaveDistrib.Location = new System.Drawing.Point(169, 331);
+            this.btnSaveDistrib.Location = new System.Drawing.Point(12, 331);
             this.btnSaveDistrib.Name = "btnSaveDistrib";
             this.btnSaveDistrib.Size = new System.Drawing.Size(110, 24);
             this.btnSaveDistrib.TabIndex = 12;
@@ -373,7 +361,6 @@ namespace IpsViewComponentLibrary
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSaveDistrib);
-            this.Controls.Add(this.btnCreateNewPeriod);
             this.Controls.Add(this.gvDistributionPayment);
             this.MaximumSize = new System.Drawing.Size(994, 407);
             this.MinimumSize = new System.Drawing.Size(994, 407);
@@ -387,7 +374,6 @@ namespace IpsViewComponentLibrary
             this.ThemeName = "Office2007Silver";
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCreateNewPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveDistrib)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -420,7 +406,6 @@ namespace IpsViewComponentLibrary
 
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
         private Telerik.WinControls.UI.RadGridView gvDistributionPayment;
-        private Telerik.WinControls.UI.RadButton btnCreateNewPeriod;
         private Telerik.WinControls.UI.RadButton btnSaveDistrib;
         private RadButton btnExit;
         private RadLabel radLabel1;

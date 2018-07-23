@@ -1319,7 +1319,41 @@ and t2.custId = @custId
             }
 
         }
+
+        [HttpPut("PaydPeriod/GetPayments/linkperiods/{custId}")]
+        public async Task<IActionResult> SaveLink( int custId, [FromBody] List<MoneyPeriodLink> body )
+        {
+
+            var linkList = await _dbContext.MoneyPeriodLink.FromSql(@"
+select t1.* from MoneyPeriodLink t1
+join PaidPeriod t2 on t2.periodId = t1.periodId
+join LicenseAgreement t3 on t3.licId = t2.licId
+where 
+t3.custId = @custId
+and t3.licStatus between 0 and 3
+", new SqlParameter("@custId", custId ))
+                .ToListAsync();
+
+            _dbContext.AppendList(body, linkList, i => { }, (l, r) => l.PaidId == r.PaidId && l.PeriodId == r.PeriodId);
+
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+            }
+            catch (Exception)
+            {
+                tran.Rollback();
+                throw;
+            }
+
+            return Ok();
+        }
+
 #endif
-#endregion
+        #endregion
     } // public class ConsumerController : Controller
 }

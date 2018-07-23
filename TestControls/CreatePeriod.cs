@@ -32,6 +32,7 @@ namespace TestControls
         {
             var lastPeriod = _lic.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate).LastOrDefault();
             var beginDate = lastPeriod?.EndDate.AddDays(1) ?? DateTime.Today;
+            
             computeFirstDate(beginDate);
 
         }

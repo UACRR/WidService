@@ -139,8 +139,8 @@ namespace IpsViewComponentLibrary
                     Status = paidPeriod.Status,
                     Amount = paidPeriod.Amount,
                     AmountBound = paidPeriod.Distribamount + paidPeriod.Undistribamount,
-                    Distribamount = paidPeriod.Distribamount,
-                    Undistribamount = paidPeriod.Undistribamount,
+                    //Distribamount = paidPeriod.Distribamount,
+                    //Undistribamount = paidPeriod.Undistribamount,
                     Arrears = Math.Max( 0,  paidPeriod.Amount - (paidPeriod.Distribamount + paidPeriod.Undistribamount))
                 });
             }
@@ -187,12 +187,12 @@ namespace IpsViewComponentLibrary
 
 
 
-            DistributionForm distr = new DistributionForm(moneyReceived, licenseParam, gvPeriodsPayment.DataSource, _data);
-            distr.StartPosition = FormStartPosition.CenterScreen;
-            if ( distr.ShowDialog() == DialogResult.OK )
-            {
-                PaymentResivedSetSource();
-            }
+            //DistributionForm distr = new DistributionForm(moneyReceived, licenseParam, gvPeriodsPayment.DataSource, _data);
+            //distr.StartPosition = FormStartPosition.CenterScreen;
+            //if ( distr.ShowDialog() == DialogResult.OK )
+            //{
+            //    PaymentResivedSetSource();
+            //}
         }
     }
 
@@ -220,9 +220,10 @@ namespace IpsViewComponentLibrary
         public int Status { get; set; }
         public decimal Amount { get; set; }
         public decimal AmountBound { get; set; }
-        public decimal Undistribamount { get; set; }
-        public decimal Distribamount { get; set; }
+        // public decimal Undistribamount { get; set; }
+        public decimal DistAmount { get; set; }
         public decimal Arrears { get; set; }
+        public bool ManualSet { get; set; }
     }
 
     public class GridPayments
