@@ -19,12 +19,13 @@ namespace IpsViewComponentLibrary
     {
         private IList<BigRightSpectacleView> _spectacleViews;
         private Customer _customer;
+
         public PayslipsCrEdForm()
         {
             InitializeComponent();
         }
 
-        public PayslipsCrEdForm(FormType formType, Customer customer,IList<BigRightSpectacleView> spectacleViews)
+        public PayslipsCrEdForm(FormType formType, Customer customer, IList<BigRightSpectacleView> spectacleViews)
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
@@ -35,20 +36,7 @@ namespace IpsViewComponentLibrary
             bsBrRegister.DataSource = _customer.Client.BrRegister.LastOrDefault();
 
             InitFormType(formType);
-            SetListSpectacles();
-
-        }
-
-        private void SetListSpectacles()
-        {
-            foreach (var spectacleView in _spectacleViews.Where(rec => rec.CustId == _customer.CustId))
-            {
-                checkListSpectacle.Items.Add(new RadCheckedListDataItem
-                {
-                    Value = spectacleView.ObjId,
-                    Text = spectacleView.Name,
-                });
-            }
+            bsSpectacleView.DataSource = spectacleViews.Where(rec => rec.CustId == _customer.CustId);
         }
 
         private void UpdFullSum()
@@ -60,8 +48,14 @@ namespace IpsViewComponentLibrary
                 if (brRegItem.FullAmount != null) famount += (decimal) brRegItem.FullAmount;
                 if (brRegItem.RAmount != null) frate += (decimal)brRegItem.RAmount;
             }
-            //_customer.Client.BrRegister.LastOrDefault().FullAmount = famount;
-            //_customer.Client.BrRegister.LastOrDefault().RAmount = frate;
+
+            var reg = _customer.Client.BrRegister.LastOrDefault();
+            if (reg != null)
+            {
+                reg.FullAmount = famount;
+                reg.RAmount = frate;
+            }
+
             txtAllAmount.Text = famount.ToString("#,###0.00 грн");
             txtAllRateAmount.Text = frate.ToString("#,###0.00 грн");
 
@@ -86,28 +80,12 @@ namespace IpsViewComponentLibrary
 
         private void ddlPeriod_SelectedValueChanged(object sender, EventArgs e)
         {
-
+            _customer.Client.BrRegister.LastOrDefault().PeriodId = (int)ddlPeriod.SelectedItem.Value;
         }
 
         private void btnAddCheckedSpectacle_Click(object sender, EventArgs e)
         {
-
-            foreach (var item in checkListSpectacle.CheckedItems)
-            {   
-                var val = _spectacleViews.SingleOrDefault(rec => rec.ObjId == (int) item.Value);
-                _customer.Client.BrRegister.LastOrDefault()?.BrRegItem.Add(new BrRegItem
-                {
-                    LicId = val?.LicId,
-                    ObjId = (int)item.Value,
-                    ItemName = val?.Name,
-                    CountUse = 0,
-                    FullAmount = 0,
-                    FullRate = val?.Rate,
-                    RAmount = default(int),
-                    MusicAmount = 0,
-                    MusicRate = val?.RateMusic
-                });
-            }
+            _customer.Client.BrRegister.LastOrDefault()?.BrRegItem.Add(new BrRegItem());
 
             gvViewRl.DataSource = _customer.Client.BrRegister.LastOrDefault()?.BrRegItem;
             UpdFullSum();
@@ -121,6 +99,15 @@ namespace IpsViewComponentLibrary
 
         private void gvViewRl_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
+            if (e.Column.Name == "ItemName" && e.Row.DataBoundItem is BrRegItem temp)
+            {
+                var spectv = _spectacleViews.SingleOrDefault(rec => rec.ObjId == temp?.ObjId);
+
+                temp.ItemName = spectv?.Name;
+                temp.MusicRate = spectv?.RateMusic;
+                temp.FullRate = spectv?.Rate;
+            }
+
             if (e.Row.DataBoundItem is BrRegItem item)
             {
                 item.RAmount = item.FullAmount / 100 * item.FullRate;

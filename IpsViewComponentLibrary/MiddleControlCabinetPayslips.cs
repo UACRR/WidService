@@ -42,6 +42,7 @@ namespace IpsViewComponentLibrary
                 RAmount = 0m,
             };
             _customer.Client.BrRegister.Add(brRegister);
+            
             PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Create, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId));
             if (addform.ShowDialog() == DialogResult.OK)
                 ;//TODO save or clear
