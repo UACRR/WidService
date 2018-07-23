@@ -20,6 +20,9 @@ namespace RightholderWorkplace
             var objectrightService = new ObjectRightService();
             IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
+            var rightholderService = new RightholderService();
+            IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+
             RightholderWorkplace form = new RightholderWorkplace();
             RightholderService service = new RightholderService();
             RightholderWorkplacePresenter control = new RightholderWorkplacePresenter(form, service);
