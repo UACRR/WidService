@@ -159,6 +159,12 @@
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectRightControls\AuthorRightholderBrListMode.cs" />
+    <Compile Include="ObjectRightControls\ObjectRightBrInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightBrInfoControl.Designer.cs">
+      <DependentUpon>ObjectRightBrInfoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PayslipsCrEdForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -657,6 +663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderBrListControl.resx">
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightBrInfoControl.resx">
+      <DependentUpon>ObjectRightBrInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
