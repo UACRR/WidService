@@ -598,7 +598,7 @@ namespace RightholderWorkplace
                 using (var view = new ObjectRightBrView())
                 {
                     var presenter = new ObjectRightBrPresenter(view);
-                    presenter.Show();
+                    presenter.Show(objectRight.ObjId);
                 }
             }
 

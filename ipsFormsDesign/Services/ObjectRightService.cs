@@ -43,6 +43,12 @@ namespace ipsFormsDesign.Services
             return item;
         }
 
+        public ContainerForObjectRihgt GetDataBr(int objId)
+        {
+            var item = _webApi.GetItemById<ContainerForObjectRihgt>("objectright/br/detail", objId.ToString());
+            return item;
+        }
+
         public bool Save(ObjectRight item)
         {
             if (item.ObjId == 0) // Новий об'єкт права

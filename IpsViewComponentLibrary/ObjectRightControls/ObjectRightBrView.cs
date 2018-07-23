@@ -24,6 +24,24 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        public object ObjectRightDataSource
+        {
+            get => ctrlObjectRightInfo.ObjectRightDataSource;
+            set => ctrlObjectRightInfo.ObjectRightDataSource = value;
+        }
+
+        public object LicenseBigRDataSource
+        {
+            get => ctrlObjectRightInfo.LicenseBigRDataSource;
+            set => ctrlObjectRightInfo.LicenseBigRDataSource = value;
+        }
+
+        public object AuthorRightholderListDataSource
+        {
+            get => ctrlAuthorRightholderList.DataSource;
+            set => ctrlAuthorRightholderList.DataSource = value;
+        }
+
         public ObjectRightBrView()
         {
             InitializeComponent();

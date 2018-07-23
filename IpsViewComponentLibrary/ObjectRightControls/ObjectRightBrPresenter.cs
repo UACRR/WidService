@@ -1,24 +1,62 @@
-﻿using System;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
     public class ObjectRightBrPresenter
     {
         private readonly ObjectRightBrView _view;
+        private ObjectRightService _objectRightService;
+        private ObjectRight _objectRight;
+        public BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
 
         public ObjectRightBrPresenter(ObjectRightBrView view)
         {
             _view = view;
             _view.Presenter = this;
+
+            _objectRightService = new ObjectRightService();
         }
 
-        public void Show()
+        public void Show(int objId)
         {
+            var objectContainer = _objectRightService.GetDataBr(objId);
+
+            SetObjectRightData(objectContainer.objectRight, objectContainer.rhList);
+
             _view.Run();
+        }
+
+        private void SetObjectRightData(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
+        {
+            _objectRight = objectRight;
+
+            _view.ObjectRightDataSource = _objectRight;
+            _view.LicenseBigRDataSource = _objectRight.LicenseBigR;
+
+            // map Authors, Copyright, :icAuthorBr and WorkRh tables into single table
+            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(_objectRight.Authors.Select(a =>
+            {
+                var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
+                var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
+
+                return new ObjectAuthorRightholderBrViewModel
+                {
+                    //Country = foundedRightholder.Country, // TODO: Country
+                    //InnerCode = foundedRightholder.InnerCode, // TODO: InnerCode
+                    Author = a,
+                    CopyRight = foundedCopyright,
+                    LicAuthorBr = foundedCopyright.LicAuthorBr,
+                    WorkRh = foundedCopyright.WorkRh,
+                };
+            })
+            .ToArray());
+
+            _view.AuthorRightholderListDataSource = _authorRightholderList;
         }
     }
 }
