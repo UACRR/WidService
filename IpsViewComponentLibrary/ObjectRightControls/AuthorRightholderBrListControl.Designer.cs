@@ -88,6 +88,7 @@
             gridViewTextBoxColumn3.Width = 52;
             gridViewDecimalColumn1.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn1.FieldName = "CopyRight.RoleRate";
+            gridViewDecimalColumn1.FormatString = "{0:N2}";
             gridViewDecimalColumn1.HeaderText = "Доля";
             gridViewDecimalColumn1.Name = "RoleRate";
             gridViewDecimalColumn1.Width = 52;
