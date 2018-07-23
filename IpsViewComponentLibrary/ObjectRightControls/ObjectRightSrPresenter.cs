@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public class ObjectRightItemPresenter
+    public class ObjectRightSrPresenter
     {
-        private readonly ObjectRightItemView _view;
+        private readonly ObjectRightSrView _view;
         private readonly ObjectRightService _objectRightService;
         private ObjectRight _objectRight;
         private ObjectRightDictionaries _dictionaries;
 
         public RightholderMainView DefaultRightholder { get; set; }
 
-        public ObjectRightItemPresenter(ObjectRightItemView view)
+        public ObjectRightSrPresenter(ObjectRightSrView view)
         {
             _view = view;
             _view.Presenter = this;

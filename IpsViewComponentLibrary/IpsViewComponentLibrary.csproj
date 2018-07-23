@@ -472,12 +472,12 @@
     <Compile Include="MiddleControlManagers.Designer.cs">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObjectRightControls\ObjectRightItemPresenter.cs" />
-    <Compile Include="ObjectRightControls\ObjectRightItemView.cs">
+    <Compile Include="ObjectRightControls\ObjectRightSrPresenter.cs" />
+    <Compile Include="ObjectRightControls\ObjectRightSrView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ObjectRightControls\ObjectRightItemView.Designer.cs">
-      <DependentUpon>ObjectRightItemView.cs</DependentUpon>
+    <Compile Include="ObjectRightControls\ObjectRightSrView.Designer.cs">
+      <DependentUpon>ObjectRightSrView.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectRightControls\ObjectRightListControl.cs">
       <SubType>UserControl</SubType>
@@ -820,8 +820,8 @@
     <EmbeddedResource Include="MiddleControlManagers.resx">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ObjectRightControls\ObjectRightItemView.resx">
-      <DependentUpon>ObjectRightItemView.cs</DependentUpon>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightSrView.resx">
+      <DependentUpon>ObjectRightSrView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightListControl.resx">
       <DependentUpon>ObjectRightListControl.cs</DependentUpon>

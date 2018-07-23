@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    partial class ObjectRightItemView
+    partial class ObjectRightSrView
     {
         /// <summary>
         /// Required designer variable.

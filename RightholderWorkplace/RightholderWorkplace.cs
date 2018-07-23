@@ -561,9 +561,9 @@ namespace RightholderWorkplace
 
             _previousPage = objectsPageView.SelectedPage; // TODO
 
-            using (var view = new ObjectRightItemView())
+            using (var view = new ObjectRightSrView())
             {
-                var presenter = new ObjectRightItemPresenter(view);
+                var presenter = new ObjectRightSrPresenter(view);
                 presenter.DefaultRightholder = defaultRightholder;
                 presenter.ShowNew(category);
             }
@@ -585,9 +585,9 @@ namespace RightholderWorkplace
         {
             _previousPage = objectsPageView.SelectedPage; // TODO
 
-            using (var view = new ObjectRightItemView())
+            using (var view = new ObjectRightSrView())
             {
-                var presenter = new ObjectRightItemPresenter(view);
+                var presenter = new ObjectRightSrPresenter(view);
                 presenter.Show(objId);
             }
 
