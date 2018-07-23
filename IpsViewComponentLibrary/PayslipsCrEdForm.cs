@@ -33,10 +33,14 @@ namespace IpsViewComponentLibrary
             _customer = customer;
             _spectacleViews = spectacleViews;
 
-            bsBrRegister.DataSource = _customer.Client.BrRegister.LastOrDefault();
-
             InitFormType(formType);
-            bsSpectacleView.DataSource = spectacleViews.Where(rec => rec.CustId == _customer.CustId);
+
+            bsBrRegister.DataSource = _customer.Client.BrRegister.LastOrDefault();
+            bsSpectacleView.DataSource = _spectacleViews.Where(rec => rec.CustId == _customer.CustId);
+            InitFormType(formType);
+            var licAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
+            var paidPeriods = licAgr?.PaidPeriod;
+            bsPeriodList.DataSource = paidPeriods;
         }
 
         private void UpdFullSum()
@@ -78,52 +82,90 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        //при зміні обраного періоду
         private void ddlPeriod_SelectedValueChanged(object sender, EventArgs e)
         {
             _customer.Client.BrRegister.LastOrDefault().PeriodId = (int)ddlPeriod.SelectedItem.Value;
         }
 
+        //додати виставу
         private void btnAddCheckedSpectacle_Click(object sender, EventArgs e)
         {
             _customer.Client.BrRegister.LastOrDefault()?.BrRegItem.Add(new BrRegItem());
-
             gvViewRl.DataSource = _customer.Client.BrRegister.LastOrDefault()?.BrRegItem;
             UpdFullSum();
         }
 
+        //Натискання кнопки видалення на гріду
         private void gvViewRl_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            gvViewRl.DataSource = _customer.Client.BrRegister.LastOrDefault()?.BrRegItem.Remove(e.Row.DataBoundItem as BrRegItem);
+            _customer.Client.BrRegister.LastOrDefault()?.BrRegItem.Remove(e.Row.DataBoundItem as BrRegItem);
+            gvViewRl.DataSource = _customer.Client.BrRegister.LastOrDefault()?.BrRegItem;
             UpdFullSum();
         }
 
+        //зміна значень полів гріда
         private void gvViewRl_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
-            if (e.Column.Name == "ItemName" && e.Row.DataBoundItem is BrRegItem temp)
-            {
-                var spectv = _spectacleViews.SingleOrDefault(rec => rec.ObjId == temp?.ObjId);
+            var item = e.Row.DataBoundItem as BrRegItem;
 
-                temp.ItemName = spectv?.Name;
-                temp.MusicRate = spectv?.RateMusic;
-                temp.FullRate = spectv?.Rate;
+            if (e.Column.Name == "ItemName" &&  item !=null)
+            {
+                var spectv = _spectacleViews.SingleOrDefault(rec => rec.ObjId == item?.ObjId);
+
+                item.ItemName = spectv?.Name;
+                item.MusicRate = spectv?.RateMusic;
+                item.FullRate = spectv?.Rate;
+                item.LicId = spectv?.LicId;
             }
 
-            if (e.Row.DataBoundItem is BrRegItem item)
+            if (item != null)
             {
                 item.RAmount = item.FullAmount / 100 * item.FullRate;
                 item.MusicAmount = item.FullAmount / 100 * item.MusicRate;
             }
 
+            e.Row.Cells["ActCode"].Value = _spectacleViews.SingleOrDefault(rec => rec.ObjId == item?.ObjId)?.ActCode;
+
             UpdFullSum();
         }
 
-        private void gvViewRl_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnAddPeriod_Click(object sender, EventArgs e)
         {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
-            {
-                e.Handled = true;
-            }
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        //при переході на вкладку музичного супроводу
+        private void UpdateMusicDesignData()
+        {
+            if(gvViewRl.Rows.Count == 0) return;
+            
+            var rec = gvViewRl.CurrentRow.DataBoundItem as BrRegItem;
+            cName.TextValue = rec?.ItemName;
+            cActCode.TextValue = _spectacleViews.SingleOrDefault(item => item.ObjId == rec?.ObjId)?.ActCode.ToString();
+            cCountUse.TextValue = rec?.CountUse.ToString();
+            cAmount.TextValue = rec?.FullAmount.ToString();
+            cAuthorAmount.TextValue = rec?.RAmount.ToString();
+            cAuthorRate.TextValue = rec?.FullRate.ToString();
+            cMusAmount.TextValue = rec?.MusicAmount.ToString();
+            cMusRate.TextValue = rec?.MusicRate.ToString();
+
+
+            var mus = _customer.Client.LicenseAgreement.SingleOrDefault(item => item.LicId == rec?.LicId)?.LicenseBigR.SingleOrDefault()?.MusicalDesign;
+
+            gvMusicDesignView.DataSource = mus;
+        }
+
+        private void pageView_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if(pageView.SelectedPage == pvMusicDesign)
+                UpdateMusicDesignData();
         }
     }
 

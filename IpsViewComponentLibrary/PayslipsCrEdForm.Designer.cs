@@ -41,51 +41,75 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.bsSpectacleView = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.panel = new Telerik.WinControls.UI.RadPanel();
-            this.btnAddCheckedSpectacle = new Telerik.WinControls.UI.RadButton();
             this.txtAllRateAmount = new Telerik.WinControls.UI.RadTextBox();
             this.bsBrRegister = new System.Windows.Forms.BindingSource(this.components);
             this.txtAllAmount = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.ddlPeriod = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsPeriodList = new System.Windows.Forms.BindingSource(this.components);
             this.btnAddPeriod = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.btnAddCheckedSpectacle = new Telerik.WinControls.UI.RadButton();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvSpectacle = new Telerik.WinControls.UI.RadPageViewPage();
             this.gvViewRl = new Telerik.WinControls.UI.RadGridView();
             this.pvMusicDesign = new Telerik.WinControls.UI.RadPageViewPage();
+            this.cMusRate = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cMusAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cAuthorRate = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cAuthorAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cCountUse = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cActCode = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
+            this.cName = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.gvMusicDesignView = new Telerik.WinControls.UI.RadGridView();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.bsPeriodList = new System.Windows.Forms.BindingSource(this.components);
-            this.bsSpectacleView = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.bsSpectacleView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddCheckedSpectacle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAllRateAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBrRegister)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAllAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPeriodList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddCheckedSpectacle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvSpectacle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl.MasterTemplate)).BeginInit();
+            this.pvMusicDesign.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPeriodList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSpectacleView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
+            // bsSpectacleView
+            // 
+            this.bsSpectacleView.DataSource = typeof(ipsFormsDesign.Interfaces.BigRightSpectacleView);
+            // 
             // panel
             // 
-            this.panel.Controls.Add(this.btnAddCheckedSpectacle);
             this.panel.Controls.Add(this.txtAllRateAmount);
             this.panel.Controls.Add(this.txtAllAmount);
             this.panel.Controls.Add(this.radLabel3);
@@ -99,16 +123,6 @@
             this.panel.Size = new System.Drawing.Size(1006, 58);
             this.panel.TabIndex = 1;
             this.panel.ThemeName = "Office2013Light";
-            // 
-            // btnAddCheckedSpectacle
-            // 
-            this.btnAddCheckedSpectacle.Location = new System.Drawing.Point(415, 29);
-            this.btnAddCheckedSpectacle.Name = "btnAddCheckedSpectacle";
-            this.btnAddCheckedSpectacle.Size = new System.Drawing.Size(137, 21);
-            this.btnAddCheckedSpectacle.TabIndex = 11;
-            this.btnAddCheckedSpectacle.Text = "Додати обрані";
-            this.btnAddCheckedSpectacle.ThemeName = "Office2013Light";
-            this.btnAddCheckedSpectacle.Click += new System.EventHandler(this.btnAddCheckedSpectacle_Click);
             // 
             // txtAllRateAmount
             // 
@@ -154,12 +168,20 @@
             // 
             // ddlPeriod
             // 
+            this.ddlPeriod.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsBrRegister, "PeriodId", true));
+            this.ddlPeriod.DataSource = this.bsPeriodList;
+            this.ddlPeriod.DisplayMember = "PeriodName";
             this.ddlPeriod.Location = new System.Drawing.Point(188, 3);
             this.ddlPeriod.Name = "ddlPeriod";
             this.ddlPeriod.Size = new System.Drawing.Size(221, 21);
             this.ddlPeriod.TabIndex = 5;
             this.ddlPeriod.ThemeName = "Office2013Light";
+            this.ddlPeriod.ValueMember = "PeriodId";
             this.ddlPeriod.SelectedValueChanged += new System.EventHandler(this.ddlPeriod_SelectedValueChanged);
+            // 
+            // bsPeriodList
+            // 
+            this.bsPeriodList.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
             // 
             // btnAddPeriod
             // 
@@ -169,6 +191,7 @@
             this.btnAddPeriod.TabIndex = 4;
             this.btnAddPeriod.Text = "Додати новий період";
             this.btnAddPeriod.ThemeName = "Office2013Light";
+            this.btnAddPeriod.Click += new System.EventHandler(this.btnAddPeriod_Click);
             // 
             // radLabel1
             // 
@@ -178,6 +201,16 @@
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "Розрахунковий лист за період";
             this.radLabel1.ThemeName = "Office2013Light";
+            // 
+            // btnAddCheckedSpectacle
+            // 
+            this.btnAddCheckedSpectacle.Location = new System.Drawing.Point(0, 339);
+            this.btnAddCheckedSpectacle.Name = "btnAddCheckedSpectacle";
+            this.btnAddCheckedSpectacle.Size = new System.Drawing.Size(142, 19);
+            this.btnAddCheckedSpectacle.TabIndex = 11;
+            this.btnAddCheckedSpectacle.Text = "Додати нову виставу";
+            this.btnAddCheckedSpectacle.ThemeName = "Office2013Light";
+            this.btnAddCheckedSpectacle.Click += new System.EventHandler(this.btnAddCheckedSpectacle_Click);
             // 
             // pageView
             // 
@@ -193,10 +226,12 @@
             this.pageView.Size = new System.Drawing.Size(1006, 394);
             this.pageView.TabIndex = 2;
             this.pageView.ThemeName = "Office2013Light";
+            this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             // 
             // pvSpectacle
             // 
+            this.pvSpectacle.Controls.Add(this.btnAddCheckedSpectacle);
             this.pvSpectacle.Controls.Add(this.gvViewRl);
             this.pvSpectacle.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvSpectacle.Location = new System.Drawing.Point(5, 31);
@@ -206,9 +241,11 @@
             // 
             // gvViewRl
             // 
+            this.gvViewRl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvViewRl.AutoScroll = true;
             this.gvViewRl.AutoSizeRows = true;
-            this.gvViewRl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvViewRl.EnableCustomFiltering = true;
             this.gvViewRl.Location = new System.Drawing.Point(0, 0);
             // 
@@ -243,7 +280,7 @@
             gridViewComboBoxColumn1.MinWidth = 0;
             gridViewComboBoxColumn1.Name = "ItemName";
             gridViewComboBoxColumn1.ValueMember = "ObjId";
-            gridViewComboBoxColumn1.Width = 225;
+            gridViewComboBoxColumn1.Width = 226;
             gridViewDecimalColumn1.DataType = typeof(int);
             gridViewDecimalColumn1.FieldName = "ActCode";
             gridViewDecimalColumn1.HeaderText = "К-сть актів";
@@ -265,7 +302,7 @@
             gridViewDecimalColumn3.HeaderText = "Сума збору";
             gridViewDecimalColumn3.MinWidth = 100;
             gridViewDecimalColumn3.Name = "FullAmount";
-            gridViewDecimalColumn3.Width = 100;
+            gridViewDecimalColumn3.Width = 107;
             gridViewDecimalColumn3.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "FullRate";
             gridViewTextBoxColumn3.FormatString = "{0:0.00 \'%\'}";
@@ -286,7 +323,7 @@
             gridViewTextBoxColumn4.MinWidth = 110;
             gridViewTextBoxColumn4.Name = "RAmount";
             gridViewTextBoxColumn4.ReadOnly = true;
-            gridViewTextBoxColumn4.Width = 110;
+            gridViewTextBoxColumn4.Width = 117;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "MusicRate";
             gridViewTextBoxColumn5.FormatString = "{0:0.00 \'%\'}";
@@ -309,7 +346,7 @@
             gridViewTextBoxColumn6.Name = "MusicAmount";
             gridViewTextBoxColumn6.ReadOnly = true;
             gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn6.Width = 154;
+            gridViewTextBoxColumn6.Width = 139;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
@@ -345,20 +382,249 @@
             this.gvViewRl.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewRl.Name = "gvViewRl";
             this.gvViewRl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewRl.Size = new System.Drawing.Size(996, 358);
+            this.gvViewRl.Size = new System.Drawing.Size(996, 335);
             this.gvViewRl.TabIndex = 8;
             this.gvViewRl.ThemeName = "Office2013Light";
             this.gvViewRl.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewRl_CellValueChanged);
             this.gvViewRl.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRl_CommandCellClick);
-            this.gvViewRl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gvViewRl_KeyPress);
             // 
             // pvMusicDesign
             // 
+            this.pvMusicDesign.Controls.Add(this.cMusRate);
+            this.pvMusicDesign.Controls.Add(this.cMusAmount);
+            this.pvMusicDesign.Controls.Add(this.cAuthorRate);
+            this.pvMusicDesign.Controls.Add(this.cAuthorAmount);
+            this.pvMusicDesign.Controls.Add(this.cAmount);
+            this.pvMusicDesign.Controls.Add(this.cCountUse);
+            this.pvMusicDesign.Controls.Add(this.cActCode);
+            this.pvMusicDesign.Controls.Add(this.radSeparator1);
+            this.pvMusicDesign.Controls.Add(this.cName);
+            this.pvMusicDesign.Controls.Add(this.gvMusicDesignView);
             this.pvMusicDesign.ItemSize = new System.Drawing.SizeF(126F, 27F);
             this.pvMusicDesign.Location = new System.Drawing.Point(5, 31);
             this.pvMusicDesign.Name = "pvMusicDesign";
             this.pvMusicDesign.Size = new System.Drawing.Size(996, 358);
             this.pvMusicDesign.Text = "Музичний супровід";
+            // 
+            // cMusRate
+            // 
+            this.cMusRate.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cMusRate.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cMusRate.Location = new System.Drawing.Point(558, 29);
+            this.cMusRate.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.cMusRate.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cMusRate.Name = "cMusRate";
+            this.cMusRate.Size = new System.Drawing.Size(150, 28);
+            this.cMusRate.SplitterRatio = 110;
+            this.cMusRate.StringFormat = "";
+            this.cMusRate.TabIndex = 19;
+            this.cMusRate.TextTitle = "% Муз. супроводу";
+            this.cMusRate.TextValue = "";
+            this.cMusRate.ValueDataMemger = "";
+            this.cMusRate.ValueDataSource = null;
+            // 
+            // cMusAmount
+            // 
+            this.cMusAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cMusAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cMusAmount.Location = new System.Drawing.Point(714, 29);
+            this.cMusAmount.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.cMusAmount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cMusAmount.Name = "cMusAmount";
+            this.cMusAmount.Size = new System.Drawing.Size(287, 28);
+            this.cMusAmount.SplitterRatio = 167;
+            this.cMusAmount.StringFormat = "";
+            this.cMusAmount.TabIndex = 18;
+            this.cMusAmount.TextTitle = "Сума за муз. супровід";
+            this.cMusAmount.TextValue = "";
+            this.cMusAmount.ValueDataMemger = "";
+            this.cMusAmount.ValueDataSource = null;
+            // 
+            // cAuthorRate
+            // 
+            this.cAuthorRate.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cAuthorRate.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cAuthorRate.Location = new System.Drawing.Point(558, 0);
+            this.cAuthorRate.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.cAuthorRate.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cAuthorRate.Name = "cAuthorRate";
+            this.cAuthorRate.Size = new System.Drawing.Size(150, 28);
+            this.cAuthorRate.SplitterRatio = 110;
+            this.cAuthorRate.StringFormat = "";
+            this.cAuthorRate.TabIndex = 17;
+            this.cAuthorRate.TextTitle = "% Нарахувань";
+            this.cAuthorRate.TextValue = "";
+            this.cAuthorRate.ValueDataMemger = "";
+            this.cAuthorRate.ValueDataSource = null;
+            // 
+            // cAuthorAmount
+            // 
+            this.cAuthorAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cAuthorAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cAuthorAmount.Location = new System.Drawing.Point(714, 0);
+            this.cAuthorAmount.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.cAuthorAmount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cAuthorAmount.Name = "cAuthorAmount";
+            this.cAuthorAmount.Size = new System.Drawing.Size(287, 28);
+            this.cAuthorAmount.SplitterRatio = 167;
+            this.cAuthorAmount.StringFormat = "";
+            this.cAuthorAmount.TabIndex = 16;
+            this.cAuthorAmount.TextTitle = "Сума авторського гонорару";
+            this.cAuthorAmount.TextValue = "";
+            this.cAuthorAmount.ValueDataMemger = "";
+            this.cAuthorAmount.ValueDataSource = null;
+            // 
+            // cAmount
+            // 
+            this.cAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cAmount.Location = new System.Drawing.Point(363, 0);
+            this.cAmount.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.cAmount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cAmount.Name = "cAmount";
+            this.cAmount.Size = new System.Drawing.Size(189, 28);
+            this.cAmount.SplitterRatio = 89;
+            this.cAmount.StringFormat = "";
+            this.cAmount.TabIndex = 15;
+            this.cAmount.TextTitle = "Сума збору";
+            this.cAmount.TextValue = "";
+            this.cAmount.ValueDataMemger = "";
+            this.cAmount.ValueDataSource = null;
+            // 
+            // cCountUse
+            // 
+            this.cCountUse.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cCountUse.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cCountUse.Location = new System.Drawing.Point(156, 29);
+            this.cCountUse.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.cCountUse.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cCountUse.Name = "cCountUse";
+            this.cCountUse.Size = new System.Drawing.Size(201, 28);
+            this.cCountUse.SplitterRatio = 135;
+            this.cCountUse.StringFormat = "";
+            this.cCountUse.TabIndex = 14;
+            this.cCountUse.TextTitle = "К-сть вистав за період";
+            this.cCountUse.TextValue = "";
+            this.cCountUse.ValueDataMemger = "";
+            this.cCountUse.ValueDataSource = null;
+            // 
+            // cActCode
+            // 
+            this.cActCode.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cActCode.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cActCode.Location = new System.Drawing.Point(0, 29);
+            this.cActCode.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.cActCode.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cActCode.Name = "cActCode";
+            this.cActCode.Size = new System.Drawing.Size(150, 28);
+            this.cActCode.SplitterRatio = 71;
+            this.cActCode.StringFormat = "";
+            this.cActCode.TabIndex = 13;
+            this.cActCode.TextTitle = "К-сть актів";
+            this.cActCode.TextValue = "";
+            this.cActCode.ValueDataMemger = "";
+            this.cActCode.ValueDataSource = null;
+            // 
+            // radSeparator1
+            // 
+            this.radSeparator1.Location = new System.Drawing.Point(0, 63);
+            this.radSeparator1.Name = "radSeparator1";
+            this.radSeparator1.Size = new System.Drawing.Size(996, 10);
+            this.radSeparator1.TabIndex = 12;
+            this.radSeparator1.ThemeName = "Office2013Light";
+            // 
+            // cName
+            // 
+            this.cName.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cName.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cName.Location = new System.Drawing.Point(0, 0);
+            this.cName.MaximumSize = new System.Drawing.Size(1000, 28);
+            this.cName.MinimumSize = new System.Drawing.Size(150, 25);
+            this.cName.Name = "cName";
+            this.cName.Size = new System.Drawing.Size(357, 28);
+            this.cName.SplitterRatio = 90;
+            this.cName.StringFormat = "";
+            this.cName.TabIndex = 11;
+            this.cName.TextTitle = "Назва вистави";
+            this.cName.TextValue = "";
+            this.cName.ValueDataMemger = "";
+            this.cName.ValueDataSource = null;
+            // 
+            // gvMusicDesignView
+            // 
+            this.gvMusicDesignView.AutoSizeRows = true;
+            this.gvMusicDesignView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gvMusicDesignView.EnableCustomFiltering = true;
+            this.gvMusicDesignView.Location = new System.Drawing.Point(0, 73);
+            // 
+            // 
+            // 
+            this.gvMusicDesignView.MasterTemplate.AllowAddNewRow = false;
+            this.gvMusicDesignView.MasterTemplate.AllowDeleteRow = false;
+            this.gvMusicDesignView.MasterTemplate.AllowDragToGroup = false;
+            this.gvMusicDesignView.MasterTemplate.AllowEditRow = false;
+            this.gvMusicDesignView.MasterTemplate.AutoGenerateColumns = false;
+            this.gvMusicDesignView.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn7.DataType = typeof(int);
+            gridViewTextBoxColumn7.FieldName = "CustId";
+            gridViewTextBoxColumn7.HeaderText = "ID";
+            gridViewTextBoxColumn7.IsVisible = false;
+            gridViewTextBoxColumn7.Name = "CustId";
+            gridViewTextBoxColumn8.FieldName = "ObjName";
+            gridViewTextBoxColumn8.HeaderText = "Назва твору";
+            gridViewTextBoxColumn8.MinWidth = 0;
+            gridViewTextBoxColumn8.Multiline = true;
+            gridViewTextBoxColumn8.Name = "ObjName";
+            gridViewTextBoxColumn8.Width = 350;
+            gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.FieldName = "NameMusician";
+            gridViewTextBoxColumn9.HeaderText = "ПІБ композитора";
+            gridViewTextBoxColumn9.MaxWidth = 220;
+            gridViewTextBoxColumn9.MinWidth = 100;
+            gridViewTextBoxColumn9.Multiline = true;
+            gridViewTextBoxColumn9.Name = "NameMusician";
+            gridViewTextBoxColumn9.Width = 214;
+            gridViewTextBoxColumn9.WrapText = true;
+            gridViewTextBoxColumn10.FieldName = "NameSinger";
+            gridViewTextBoxColumn10.HeaderText = "ПІБ виконавця";
+            gridViewTextBoxColumn10.MaxWidth = 220;
+            gridViewTextBoxColumn10.MinWidth = 100;
+            gridViewTextBoxColumn10.Multiline = true;
+            gridViewTextBoxColumn10.Name = "NameSinger";
+            gridViewTextBoxColumn10.Width = 210;
+            gridViewTextBoxColumn10.WrapText = true;
+            gridViewTextBoxColumn11.FieldName = "Duration";
+            gridViewTextBoxColumn11.HeaderText = "Тривалість звучання (хв)";
+            gridViewTextBoxColumn11.MaxWidth = 100;
+            gridViewTextBoxColumn11.MinWidth = 100;
+            gridViewTextBoxColumn11.Multiline = true;
+            gridViewTextBoxColumn11.Name = "Duration";
+            gridViewTextBoxColumn11.Width = 100;
+            gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn12.FieldName = "NumbPerfom";
+            gridViewTextBoxColumn12.HeaderText = "Кількість виконань";
+            gridViewTextBoxColumn12.MaxWidth = 100;
+            gridViewTextBoxColumn12.MinWidth = 100;
+            gridViewTextBoxColumn12.Name = "NumbPerfom";
+            gridViewTextBoxColumn12.Width = 100;
+            gridViewTextBoxColumn12.WrapText = true;
+            this.gvMusicDesignView.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12});
+            this.gvMusicDesignView.MasterTemplate.EnableCustomFiltering = true;
+            this.gvMusicDesignView.MasterTemplate.EnableFiltering = true;
+            this.gvMusicDesignView.MasterTemplate.EnableGrouping = false;
+            this.gvMusicDesignView.MasterTemplate.ShowFilteringRow = false;
+            this.gvMusicDesignView.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvMusicDesignView.Name = "gvMusicDesignView";
+            this.gvMusicDesignView.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvMusicDesignView.Size = new System.Drawing.Size(996, 285);
+            this.gvMusicDesignView.TabIndex = 10;
+            this.gvMusicDesignView.ThemeName = "Office2013Light";
             // 
             // btnSave
             // 
@@ -369,6 +635,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -380,10 +647,6 @@
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
-            // 
-            // bsSpectacleView
-            // 
-            this.bsSpectacleView.DataSource = typeof(ipsFormsDesign.Interfaces.BigRightSpectacleView);
             // 
             // PayslipsCrEdForm
             // 
@@ -402,27 +665,31 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Р/Л";
             this.ThemeName = "Office2013Light";
+            ((System.ComponentModel.ISupportInitialize)(this.bsSpectacleView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddCheckedSpectacle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAllRateAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBrRegister)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAllAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPeriodList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddCheckedSpectacle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvSpectacle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl)).EndInit();
+            this.pvMusicDesign.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPeriodList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSpectacleView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -449,5 +716,15 @@
         private System.Windows.Forms.BindingSource bsBrRegister;
         private System.Windows.Forms.BindingSource bsPeriodList;
         private System.Windows.Forms.BindingSource bsSpectacleView;
+        private Telerik.WinControls.UI.RadGridView gvMusicDesignView;
+        private SingleShowInformationControl cMusRate;
+        private SingleShowInformationControl cMusAmount;
+        private SingleShowInformationControl cAuthorRate;
+        private SingleShowInformationControl cAuthorAmount;
+        private SingleShowInformationControl cAmount;
+        private SingleShowInformationControl cCountUse;
+        private SingleShowInformationControl cActCode;
+        private Telerik.WinControls.UI.RadSeparator radSeparator1;
+        private SingleShowInformationControl cName;
     }
 }
