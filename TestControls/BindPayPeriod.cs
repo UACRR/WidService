@@ -29,8 +29,8 @@ namespace TestControls
 
         private void SetupDragDrop()
         {
-            SubscribeForGridEvents( radGridView1, radGridView2);
-            SubscribeForGridEvents( radGridView2, radGridView1);
+            SubscribeForGridEvents(radGridView1, radGridView2);
+            SubscribeForGridEvents(radGridView2, radGridView1);
         }
 
 
@@ -42,7 +42,7 @@ namespace TestControls
             dragDropService.PreviewDragDrop += new EventHandler<RadDropEventArgs>(dragDropService_PreviewDragDrop);
             dragDropService.PreviewDragStart += new EventHandler<PreviewDragStartEventArgs>(svc_PreviewDragStart);
 
-            var behavior =  grid.GridBehavior as BaseGridBehavior;
+            var behavior = grid.GridBehavior as BaseGridBehavior;
             grid.GridBehavior = behavior;
 
             behavior.UnregisterBehavior(typeof(GridViewDataRowInfo));
@@ -82,17 +82,17 @@ namespace TestControls
             //{
 
             //}
-            Task.Run(()=>radButton2.PerformClick());
+            Task.Run(() => radButton2.PerformClick());
             e.Handled = true;
 
 
-            
+
 
         }
 
         private void dragDropService_PreviewDragOver(object sender, RadDragOverEventArgs e)
         {
-            if (e.DragInstance is GridDataRowElement && e.HitTarget is GridDataRowElement )
+            if (e.DragInstance is GridDataRowElement && e.HitTarget is GridDataRowElement)
             {
                 RadItem dropTarget = e.HitTarget as RadItem;
                 RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
@@ -106,7 +106,7 @@ namespace TestControls
 
 
 
-                if (rowViewSorceBehavior == null || rowViewSorceBehavior.Target != targetGrid )
+                if (rowViewSorceBehavior == null || rowViewSorceBehavior.Target != targetGrid)
                     return;
 
 
@@ -204,7 +204,7 @@ namespace TestControls
             if (radGridView2.CurrentRow != null)
             {
                 var licItem = (LicenseAgrParam)radGridView2.CurrentRow.DataBoundItem;
-                paidPeriodBindingSource.DataSource = licItem.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate ).ToList();
+                paidPeriodBindingSource.DataSource = licItem.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
             }
             else
             {
@@ -234,7 +234,7 @@ namespace TestControls
             var currentAgree = radGridView2.CurrentRow.DataBoundItem as LicenseAgrParam;
             CreatePeriod dialog = new CreatePeriod(currentAgree);
 
-            if( dialog.ShowDialog() == DialogResult.OK )
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 _service.SavePeriods((int)currentAgree.Lic.CustId, currentAgree.Lic.PaidPeriod.ToList());
 
@@ -248,11 +248,19 @@ namespace TestControls
             var licParam = radGridView2.CurrentRow.DataBoundItem as LicenseAgrParam;
             if (licParam?.Lic == null || pay == null)
                 return;
-            DistributionForm form = new DistributionForm( pay, licParam.Lic );
+            DistributionForm form = new DistributionForm(pay, licParam.Lic);
 
-            if(form.ShowDialog() == DialogResult.OK )
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("!!! Ok !!!");
+                List<MoneyPeriodLink> ListLink = new List<MoneyPeriodLink>();
+                foreach (var item in licParam.Lic.PaidPeriod)
+                {
+                    var itemList = item.MoneyPeriodLink.ToArray();
+                    ListLink.AddRange( itemList );
+
+                }
+
+                _service.SaveLink((int)licParam.Lic.CustId, ListLink);
             }
         }
 

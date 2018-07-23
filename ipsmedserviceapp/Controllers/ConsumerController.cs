@@ -1334,7 +1334,7 @@ and t3.licStatus between 0 and 3
 ", new SqlParameter("@custId", custId ))
                 .ToListAsync();
 
-            _dbContext.AppendList(body, linkList, i => { }, (l, r) => l.PaidId == r.PaidId && l.PeriodId == r.PeriodId);
+            _dbContext.AppendList(body, linkList, i => _dbContext.MoneyPeriodLink.Add(i), (l, r) => l.PaidId == r.PaidId && l.PeriodId == r.PeriodId);
 
             var tran = await _dbContext.Database.BeginTransactionAsync();
 

@@ -15,9 +15,10 @@ namespace IpsViewComponentLibrary
     //    [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class DistributionForm : Telerik.WinControls.UI.RadForm
     {
-        private Customer _cust;
-        private object _distribMoneyDataSource;
         private Calcularor _calculator;
+        private LicenseAgreement _licenseAgr;
+        private List<GridPeriods> _source;
+        private MoneyReceived _pay;
         public DistributionForm()
         {
             InitializeComponent();
@@ -28,9 +29,13 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
+            _licenseAgr = licenseAgr;
+            _pay = undistrinbMoney;
+
             bindingSource.DataSource = undistrinbMoney;
             bindingSourceAgreement.DataSource = licenseAgr.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == licenseAgr.LicVersion );
-            var source = licenseAgr.PaidPeriod.Where(rec => rec.Status < 2).OrderBy( rec => rec.BeginDate ).Select(rec => new GridPeriods
+
+            _source = licenseAgr.PaidPeriod.Where(rec => rec.Status < 2).OrderBy( rec => rec.BeginDate ).Select(rec => new GridPeriods
             {
                 PeriodId = rec.PeriodId,
                 Amount = rec.Amount,
@@ -41,8 +46,8 @@ namespace IpsViewComponentLibrary
                 Status = rec.Status
             }).ToList(); //periodsList as List<GridPeriods>;
 
-            gvDistributionPayment.DataSource = source;
-            _calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), source);
+            gvDistributionPayment.DataSource = _source;
+            _calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
 
             SetDataSources();
         }
@@ -55,6 +60,29 @@ namespace IpsViewComponentLibrary
 
         private void btnSaveDistrib_Click(object sender, EventArgs e)
         {
+            var paidDic = _licenseAgr.PaidPeriod.ToDictionary(rec => rec.PeriodId);
+            foreach( var item in _source.Where(rec => rec.DistAmount > 0) )
+            {
+                PaidPeriod period = paidDic[item.PeriodId];
+                var link = period.MoneyPeriodLink.SingleOrDefault(rec => rec.PaidId == _pay.PaidId);
+                if( link == null )
+                {
+                    link = new MoneyPeriodLink {
+                        PeriodId = item.PeriodId,
+                        PaidId = _pay.PaidId,
+                        Paid = _pay,
+                        Amount = 0,
+                        LicId = _licenseAgr.LicId,
+                        Status = 1,
+                        Lic = _licenseAgr,
+                        Period = period
+                    };
+
+                    period.MoneyPeriodLink.Add(link);
+                }
+
+                link.Amount += item.DistAmount; 
+            }
             DialogResult = DialogResult.OK;
         }
 

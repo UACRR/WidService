@@ -128,10 +128,16 @@ namespace ipsFormsDesign.Services
             return _webApi.GetItemById<Customer>("consumer/PaydPeriod/GetCustomerInfo", custId.ToString());
         }
 
-        public bool SavePeriods( int custId, List<PaidPeriod> periods)
+        public bool SavePeriods(int custId, List<PaidPeriod> periods)
         {
             return _webApi.UpdateItem("consumer/PaydPeriod/GetPayments/paidperiods", custId.ToString(), periods);
         }
+        public bool SaveLink(int custId, List<MoneyPeriodLink> listLinks)
+        {
+            return _webApi.UpdateItem("consumer/PaydPeriod/GetPayments/linkperiods", custId.ToString(), listLinks);
+        }
+
+
         #endregion
     }
 }
