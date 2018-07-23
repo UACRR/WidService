@@ -1275,13 +1275,49 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
 select t1.* from MoneyReceived t1
 where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
-                .Include(rec => rec.MoneyPeriodLink).ThenInclude( l => l.Period )
+                .Include(rec => rec.MoneyPeriodLink)
                 .LoadAsync();
 
+            await _dbContext.PaidPeriod.FromSql(@"
+select t1.* from PaidPeriod t1
+join LicenseAgreement t2 on t2.licId = t1.licId 
+where t2.licStatus between 0 and 3
+and t2.custId = @custId
+", new SqlParameter("@custId", custId))
+                .LoadAsync();
             
 
 
             return Json(cust);
+        }
+
+        [HttpPut("PaydPeriod/GetPayments/paidperiods/{custId}")]
+        public async Task<IActionResult> SavePeriods( int custId, [FromBody] List<PaidPeriod> body )
+        {
+            var dest = await _dbContext.PaidPeriod.FromSql(@"
+select t1.* from PaidPeriod t1
+join LicenseAgreement t2 on t2.licId = t1.licId 
+where t2.licStatus between 0 and 3
+and t2.custId = @custId
+", new SqlParameter("@custId", custId)).ToListAsync();
+
+            _dbContext.AppendList(body, dest, i => { _dbContext.PaidPeriod.Add(i); }, (l, r) => l.PeriodId == r.PeriodId);
+
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Ok();
+            }
+            catch (Exception)
+            {
+                tran?.Rollback();
+                return BadRequest();
+            }
+
         }
 #endif
 #endregion

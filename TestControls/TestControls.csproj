@@ -76,6 +76,7 @@
     <Compile Include="CreatePeriod.Designer.cs">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomGridBehavior.cs" />
     <Compile Include="EditPay.cs">
       <SubType>Form</SubType>
     </Compile>

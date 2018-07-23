@@ -68,7 +68,7 @@
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radButton4 = new Telerik.WinControls.UI.RadButton();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.bindPayPeriod1 = new TestControls.BindPayPeriod();
+            this.bindPayPeriod1 = new TestControls.BindPayPeriod(_service);
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
