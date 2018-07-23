@@ -165,6 +165,13 @@
     <Compile Include="ObjectRightControls\ObjectRightBrInfoControl.Designer.cs">
       <DependentUpon>ObjectRightBrInfoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightBrPresenter.cs" />
+    <Compile Include="ObjectRightControls\ObjectRightBrView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightBrView.Designer.cs">
+      <DependentUpon>ObjectRightBrView.cs</DependentUpon>
+    </Compile>
     <Compile Include="PayslipsCrEdForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -666,6 +673,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightBrInfoControl.resx">
       <DependentUpon>ObjectRightBrInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightBrView.resx">
+      <DependentUpon>ObjectRightBrView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
