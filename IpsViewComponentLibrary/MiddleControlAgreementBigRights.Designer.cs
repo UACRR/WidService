@@ -158,7 +158,6 @@
             this.ctrlAgreementMain.DateBeginDataMember = "";
             this.ctrlAgreementMain.DateDataMember = "";
             this.ctrlAgreementMain.DateEndDataMember = "";
-            this.ctrlAgreementMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgreementMain.DateEndNullText = "";
             this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 36);
             this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);
