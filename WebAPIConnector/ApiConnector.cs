@@ -227,7 +227,7 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public bool UpdateItemWithReturn<T>(string url, string id, T data, out T retData)
+        public bool UpdateListItemWithReturn<T>(string url, string id, List<T> data, out List<T> retData)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -240,8 +240,8 @@ namespace WebAPIConnector
 
             var retCode = result.IsSuccessStatusCode;
             var retString = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            var jObject = JObject.Parse(retString);
-            retData = jObject.ToObject<T>();
+            var jarray = JArray.Parse(retString);
+            retData = jarray.ToObject<List<T>>();
 
             return retCode;
         }

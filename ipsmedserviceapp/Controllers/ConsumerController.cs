@@ -1307,8 +1307,10 @@ and t2.custId = @custId
             {
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
+                
                 tran = null;
-                return Ok();
+                
+                return Json(dest);
             }
             catch (Exception)
             {
@@ -1321,15 +1323,15 @@ and t2.custId = @custId
         [HttpPut("Period/Payments/linkperiods/{custId}")]
         public async Task<IActionResult> SaveLink( int custId, [FromBody] List<MoneyPeriodLink> body )
         {
-
-            var linkList = await _dbContext.MoneyPeriodLink.FromSql(@"
+            string query = @"
 select t1.* from MoneyPeriodLink t1
 join PaidPeriod t2 on t2.periodId = t1.periodId
 join LicenseAgreement t3 on t3.licId = t2.licId
 where 
 t3.custId = @custId
 and t3.licStatus between 0 and 3
-", new SqlParameter("@custId", custId ))
+";
+            var linkList = await _dbContext.MoneyPeriodLink.FromSql(query, new SqlParameter("@custId", custId ))
                 .ToListAsync();
 
             _dbContext.AppendList(body, linkList, i => _dbContext.MoneyPeriodLink.Add(i), (l, r) => l.PaidId == r.PaidId && l.PeriodId == r.PeriodId);
@@ -1341,6 +1343,10 @@ and t3.licStatus between 0 and 3
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
                 tran = null;
+                linkList = await _dbContext.MoneyPeriodLink.FromSql(query , new SqlParameter("@custId", custId))
+                .Include(rec => rec.Paid)
+                .Include(rec => rec.Period )
+                .ToListAsync();
             }
             catch (Exception)
             {
@@ -1348,7 +1354,7 @@ and t3.licStatus between 0 and 3
                 throw;
             }
 
-            return Ok();
+            return Json(linkList);
         }
 
 #endif

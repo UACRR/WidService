@@ -21,11 +21,11 @@ namespace IpsViewComponentLibrary
         public CreatePeriod(LicenseAgrParam lic)
         {
             _lic = lic;
+            dicStatus = IpsGlobal.AnketaDictionaties.periodStatus.SingleOrDefault(rec => rec.CodeI == 1);
             InitializeComponent();
             // Створити масив періодів
             initControls();
 
-            dicStatus = IpsGlobal.AnketaDictionaties.periodStatus.SingleOrDefault(rec => rec.CodeI == 1);
         }
 
         private void initControls()
