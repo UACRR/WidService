@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Utilities;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -59,6 +60,30 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(tmpAuthorRightholderList);
 
             _view.AuthorRightholderListDataSource = _authorRightholderList;
+        }
+
+        public void Save()
+        {
+            if (_objectRight == null)
+                return;
+
+            // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
+            _objectRight.Authors.Clear();
+            _objectRight.CopyRight.Clear();
+
+            foreach (var ar in _authorRightholderList)
+            {
+                _objectRight.AddObjectBrAuthorRightholder(ar);
+            }
+
+            var result = _objectRightService.SaveObjectBr(_objectRight);
+
+            // TODO: Raise broadcast event object right updated
+
+            if (result)
+                _view.Close();
+            else
+                _view.ShowError("Не вдалося зберегти об'єкт.");
         }
     }
 }

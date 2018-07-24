@@ -51,5 +51,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             ShowDialog();
         }
+
+        public void ShowError(string message)
+        {
+            MessageBox.Show(message, "Помилка");
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            _presenter.Save();
+        }
     }
 }

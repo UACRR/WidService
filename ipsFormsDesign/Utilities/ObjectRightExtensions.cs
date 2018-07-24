@@ -42,6 +42,17 @@ namespace ipsFormsDesign.Utilities
             }
         }
 
+        public static void AddObjectBrAuthorRightholder(this ObjectRight objectRight, ObjectAuthorRightholderBrViewModel objectAuthorRightholder)
+        {
+            objectRight.Authors.Add(objectAuthorRightholder.Author);
+
+            var copyRight = objectAuthorRightholder.CopyRight;
+            copyRight.LicAuthorBr = objectAuthorRightholder.LicAuthorBr;
+            copyRight.WorkRh = objectAuthorRightholder.WorkRh;
+
+            objectRight.CopyRight.Add(objectAuthorRightholder.CopyRight);
+        }
+
         public static decimal GetTotalRate(this IList<CopyRight> copyrightList)
         {
             return copyrightList.Where(cr => cr.Rate != null).Sum(cr => (decimal)cr.Rate);
