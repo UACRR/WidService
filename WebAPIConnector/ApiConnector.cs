@@ -210,9 +210,11 @@ namespace WebAPIConnector
         /// <returns></returns>
         public bool UpdateItem<T>(string url, string id, T data)
         {
-
+            JsonSerializerSettings settings = new JsonSerializerSettings {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
             string idUrl = $"{url}/{id}";
-            StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
             HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
 
             var retCode = result.IsSuccessStatusCode;

@@ -1186,9 +1186,6 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             //    return BadRequest(ex.InnerException.Message);
             //}
         }
-
-
-
         #endregion
         #region PaydPariod Services
         /// <summary>
@@ -1196,7 +1193,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
-        [HttpGet("PaydPeriod/GetPayments/{custId}")]
+        [HttpGet("Period/Payments/{custId}")]
         public async Task<IActionResult> GetConsumerPayments(int custId)
         {
             string query = @"
@@ -1212,7 +1209,7 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
             return Json(list);
         }
 #if DEBUG
-        [HttpPut("PaydPeriod/GetPayments/{custId}")]
+        [HttpPut("Period/Payments/{custId}")]
         public async Task<IActionResult> PutExternalPay(int custId, [FromBody] List<ExternalPay> pays )
         {
             List<ExternalPay> dest = new List<ExternalPay>();
@@ -1257,10 +1254,108 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
                 tran?.Rollback();
                 return BadRequest();
             }
+        }
 
+ 
+
+        [HttpGet("Period/GetCustomerInfo/{custId}")]
+        public async Task<IActionResult> GetCustomerInfo(int custId)
+        {
+            var cust = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(rec => rec.Client)
+                .SingleOrDefaultAsync();
+
+            await _dbContext.LicenseAgrParam.FromSql(@"
+            select t1.* from LicenseAgrParam t1
+            join LicenseAgreement t2 on t2.licId = t1.licId and t2.licVersion = t1.licVersion
+            where t2.licStatus between 0 and 3 and  t2.custId = @custId
+            ", new SqlParameter("@custId", custId))
+                .Include(rec => rec.Lic)
+                .LoadAsync();
+
+            await _dbContext.MoneyReceived.FromSql(@"
+select t1.* from MoneyReceived t1
+where t1.custId = @custId
+", new SqlParameter("@custId", custId))
+                .Include(rec => rec.MoneyPeriodLink)
+                .LoadAsync();
+
+            await _dbContext.PaidPeriod.FromSql(@"
+select t1.* from PaidPeriod t1
+join LicenseAgreement t2 on t2.licId = t1.licId 
+where t2.licStatus between 0 and 3
+and t2.custId = @custId
+", new SqlParameter("@custId", custId))
+                .LoadAsync();
+            
+
+
+            return Json(cust);
+        }
+
+        [HttpPut("Period/Payments/paidperiods/{custId}")]
+        public async Task<IActionResult> SavePeriods( int custId, [FromBody] List<PaidPeriod> body )
+        {
+            var dest = await _dbContext.PaidPeriod.FromSql(@"
+select t1.* from PaidPeriod t1
+join LicenseAgreement t2 on t2.licId = t1.licId 
+where t2.licStatus between 0 and 3
+and t2.custId = @custId
+", new SqlParameter("@custId", custId)).ToListAsync();
+
+            _dbContext.AppendList(body, dest, i => { _dbContext.PaidPeriod.Add(i); }, (l, r) => l.PeriodId == r.PeriodId);
+
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Ok();
+            }
+            catch (Exception)
+            {
+                tran?.Rollback();
+                return BadRequest();
+            }
 
         }
+
+        [HttpPut("Period/Payments/linkperiods/{custId}")]
+        public async Task<IActionResult> SaveLink( int custId, [FromBody] List<MoneyPeriodLink> body )
+        {
+
+            var linkList = await _dbContext.MoneyPeriodLink.FromSql(@"
+select t1.* from MoneyPeriodLink t1
+join PaidPeriod t2 on t2.periodId = t1.periodId
+join LicenseAgreement t3 on t3.licId = t2.licId
+where 
+t3.custId = @custId
+and t3.licStatus between 0 and 3
+", new SqlParameter("@custId", custId ))
+                .ToListAsync();
+
+            _dbContext.AppendList(body, linkList, i => _dbContext.MoneyPeriodLink.Add(i), (l, r) => l.PaidId == r.PaidId && l.PeriodId == r.PeriodId);
+
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+            }
+            catch (Exception)
+            {
+                tran.Rollback();
+                throw;
+            }
+
+            return Ok();
+        }
+
 #endif
-#endregion
+        #endregion
     } // public class ConsumerController : Controller
 }
