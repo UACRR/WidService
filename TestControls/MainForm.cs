@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using IpsViewComponentLibrary;
+using System.Threading.Tasks;
 
 namespace TestControls
 {
@@ -26,6 +27,8 @@ namespace TestControls
             IpsGlobal.SetAnketaDictionaties(_service.GetDictionary());
 
             InitializeComponent();
+            bindPayPeriod1.SavePariodCommandExecuted += BindPayPeriod1_SavePariodCommandExecuted;
+            bindPayPeriod1.SaveLinkCommandExecuted += BindPayPeriod1_SaveLinkCommandExecuted;
 
             payForm = new EditPay();
 
@@ -39,6 +42,16 @@ namespace TestControls
                 SetButtonDisable();
 
             isInit = true;
+        }
+
+        private void BindPayPeriod1_SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)
+        {
+            _service.SaveLink( _curItem.CustId, e );
+        }
+
+        private void BindPayPeriod1_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        {
+            _service.SavePeriods(_curItem.CustId, e);
         }
 
         private void SetButtonDisable()
@@ -57,6 +70,14 @@ namespace TestControls
             ObservableListSource<ExternalPay> listSource = new ObservableListSource<ExternalPay>(listPays);
             bindingSource2.DataSource = listSource;
             checkBox1.Text = _curItem.Name;
+
+            Task.Run(() => {
+            var Customer = _service.GetData(_curItem.CustId);
+            if (InvokeRequired)
+            {
+                bindPayPeriod1.BeginInvoke( (Action) (() => bindPayPeriod1.Customer = Customer ));
+                }
+            });
 
         }
 
@@ -150,8 +171,7 @@ namespace TestControls
 
         private void radButton4_Click(object sender, EventArgs e)
         {
-            //PayslipsCrEdForm form = new PayslipsCrEdForm(FormType.Create);
-            //form.ShowDialog();
+
         }
     }
 }

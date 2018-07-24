@@ -13,12 +13,15 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary
 {
     public partial class BindPayPeriod : UserControl
     {
-        private ConsumerService _service = null;
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+        public event EventHandler<List<MoneyPeriodLink>> SaveLinkCommandExecuted;
+
         public BindPayPeriod()
         {
 
@@ -26,10 +29,7 @@ namespace IpsViewComponentLibrary
             SetupDragDrop();
 
         }
-        public void setService( ConsumerService service )
-        {
-            _service = service;
-        }
+
 
         private void SetupDragDrop()
         {
@@ -81,7 +81,8 @@ namespace IpsViewComponentLibrary
 
             e.Handled = true;
 
-            radButton2.BeginInvoke( (Action)(() => {
+            radButton2.BeginInvoke((Action)(() =>
+            {
                 radButton2.PerformClick();
             }));
             //Task.Run(() => {
@@ -160,6 +161,7 @@ namespace IpsViewComponentLibrary
                     return;
                 }
 
+                normalizeData(_customer);
                 BindAllSum();
                 BindLicAgreements();
 
@@ -167,6 +169,32 @@ namespace IpsViewComponentLibrary
                 SetGrid4DataSource();
             }
 
+        }
+
+        private void normalizeData(Customer cust)
+        {
+            var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
+            var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
+            var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
+            var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
+
+            foreach (var item in cust.Client.LicenseAgreement)
+            {
+                item.LicCodeNavigation = dicType[item.LicType ?? 1];
+
+                foreach (var licParam in item.LicenseAgrParam)
+                {
+                    licParam.Lic = item;
+                    licParam.LicStatusNavigation = dicStatus[licParam.LicStatus ?? 1];
+                    licParam.PeriodCodeNavigation = dicPeriod[licParam.PeriodCode ?? 1];
+                }
+                foreach (var period in item.PaidPeriod)
+                {
+                    period.StatusNavigation = dicPeriodStatus[period.Status];
+                    foreach (var link in period.MoneyPeriodLink)
+                        link.Period = period;
+                }
+            }
         }
 
         private void BindLicAgreements()
@@ -206,7 +234,7 @@ namespace IpsViewComponentLibrary
             if (radGridView2.CurrentRow != null)
             {
                 var licItem = (LicenseAgrParam)radGridView2.CurrentRow.DataBoundItem;
-                paidPeriodBindingSource.DataSource = licItem.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
+                paidPeriodBindingSource.DataSource = licItem.Lic?.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
             }
             else
             {
@@ -238,9 +266,9 @@ namespace IpsViewComponentLibrary
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                _service.SavePeriods((int)currentAgree.Lic.CustId, currentAgree.Lic.PaidPeriod.ToList());
-
-                SetGrid3DataSource();
+                SavePariodCommandExecuted(this, currentAgree.Lic.PaidPeriod.ToList());
+                // SetGrid3DataSource();
+                Refresh();
             }
         }
 
@@ -258,7 +286,7 @@ namespace IpsViewComponentLibrary
 
             MoneyReceived pay = null;
             LicenseAgrParam licParam = null;
-            if(runFromDragDrop)
+            if (runFromDragDrop)
             {
                 var rowBehavior = ((BaseGridBehavior)radGridView1.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
                 var gridDataRowElement = rowBehavior.DragDropRow;
@@ -300,12 +328,21 @@ namespace IpsViewComponentLibrary
                 foreach (var item in licParam.Lic.PaidPeriod)
                 {
                     var itemList = item.MoneyPeriodLink.ToArray();
-                    ListLink.AddRange( itemList );
+                    ListLink.AddRange(itemList);
 
                 }
 
-                _service.SaveLink((int)licParam.Lic.CustId, ListLink);
+                SaveLinkCommandExecuted(this, ListLink);
+                Refresh();
             }
+        }
+
+        private void Refresh()
+        {
+            radGridView1.MasterTemplate.Refresh();
+            radGridView2.MasterTemplate.Refresh();
+            radGridView3.MasterTemplate.Refresh();
+            radGridView4.MasterTemplate.Refresh();
         }
 
         private void radGridView2_RowFormatting(object sender, RowFormattingEventArgs e)
@@ -313,7 +350,7 @@ namespace IpsViewComponentLibrary
             var ri = e.RowElement.RowInfo;
             var licAgreement = (LicenseAgrParam)ri.DataBoundItem;
 
-            var debt = licAgreement.Lic.PaidPeriod.Sum(rec => rec.Amount - rec.Distribamount - rec.Undistribamount);
+            var debt = licAgreement.Lic?.PaidPeriod.Sum(rec => rec.Amount - rec.Distribamount - rec.Undistribamount) ?? 0;
             ri.Cells["Debt"].Value = Convert.ToDecimal(debt < 0 ? 0 : debt);
         }
     }
