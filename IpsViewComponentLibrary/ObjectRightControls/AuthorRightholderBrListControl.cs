@@ -135,7 +135,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                     current.Author.CustId = selectedRightholder.CustId;
                     current.Author.AuthorName = selectedRightholder.Name;
                     current.InnerCode = selectedRightholder.InnerCode;
-                    current.Country = ""; // TODO
+                    current.Country = selectedRightholder.Country;
                     objectAuthorRightholderBrViewModelBindingSource.ResetCurrentItem();
                 };
                 selectionView.ShowDialog();

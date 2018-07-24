@@ -16,6 +16,7 @@ namespace ipsFormsDesign.Interfaces
         public int  CntObj { get; set; }
         public decimal YearProfit { get; set; }
         public string Community_Name { get; set; }
+        public string Country { get; set; }
     }
 
     public interface IRightHolderService : IModel
