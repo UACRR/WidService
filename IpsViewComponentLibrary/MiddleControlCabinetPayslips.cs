@@ -25,11 +25,12 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightMasterGenAgr> genAgrs)
+        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightRegister> registers)
         {
             _customer = customer;
             _bigRightView = bigRightView;
             ctrlHeaderInfo.DataSource = _bigRightView;
+            gvViewRl.DataSource = registers;
 
         }
 
@@ -47,7 +48,7 @@ namespace IpsViewComponentLibrary
             if (addform.ShowDialog() == DialogResult.OK)
             {
                 ; //TODO save
-                gvViewRl.DataSource = _customer.Client.BrRegister;
+                
             }
             else
                 _customer.Client.BrRegister.Remove(brRegister);
@@ -60,6 +61,11 @@ namespace IpsViewComponentLibrary
         }
 
         private void btnDeleteRl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
 
         }

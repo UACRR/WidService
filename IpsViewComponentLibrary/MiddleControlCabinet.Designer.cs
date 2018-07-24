@@ -35,10 +35,13 @@
             this.pvLicence = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlLicense = new IpsViewComponentLibrary.MiddleControlCabinetLicenses();
             this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPayslips = new IpsViewComponentLibrary.MiddleControlCabinetPayslips();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCalculation = new IpsViewComponentLibrary.MiddleControlCabinetCalculation();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
+            this.middleControlCabinetPayments1 = new IpsViewComponentLibrary.MiddleControlCabinetPayments();
             this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
+            this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
             this.pvRequest = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRequest = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
             this.pvReference = new Telerik.WinControls.UI.RadPageViewPage();
@@ -48,13 +51,14 @@
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgent = new IpsViewComponentLibrary.MiddleControlCabinetAgent();
-            this.ctrlPayslips = new IpsViewComponentLibrary.MiddleControlCabinetPayslips();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvGeneralAgreement.SuspendLayout();
             this.pvLicence.SuspendLayout();
             this.pvPayslips.SuspendLayout();
             this.pvCalculation.SuspendLayout();
+            this.pvPays.SuspendLayout();
+            this.pvAvances.SuspendLayout();
             this.pvRequest.SuspendLayout();
             this.pvReference.SuspendLayout();
             this.pvFiles.SuspendLayout();
@@ -133,6 +137,14 @@
             this.pvPayslips.Size = new System.Drawing.Size(1136, 809);
             this.pvPayslips.Text = "Р/Л";
             // 
+            // ctrlPayslips
+            // 
+            this.ctrlPayslips.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPayslips.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPayslips.Name = "ctrlPayslips";
+            this.ctrlPayslips.Size = new System.Drawing.Size(1136, 809);
+            this.ctrlPayslips.TabIndex = 0;
+            // 
             // pvCalculation
             // 
             this.pvCalculation.AutoScroll = true;
@@ -154,19 +166,37 @@
             // 
             // pvPays
             // 
+            this.pvPays.Controls.Add(this.middleControlCabinetPayments1);
             this.pvPays.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvPays.Location = new System.Drawing.Point(5, 31);
             this.pvPays.Name = "pvPays";
             this.pvPays.Size = new System.Drawing.Size(1136, 809);
             this.pvPays.Text = "Платежі";
             // 
+            // middleControlCabinetPayments1
+            // 
+            this.middleControlCabinetPayments1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.middleControlCabinetPayments1.Location = new System.Drawing.Point(0, 0);
+            this.middleControlCabinetPayments1.Name = "middleControlCabinetPayments1";
+            this.middleControlCabinetPayments1.Size = new System.Drawing.Size(1136, 809);
+            this.middleControlCabinetPayments1.TabIndex = 0;
+            // 
             // pvAvances
             // 
+            this.pvAvances.Controls.Add(this.middleControlCabinetAvances1);
             this.pvAvances.ItemSize = new System.Drawing.SizeF(55F, 27F);
             this.pvAvances.Location = new System.Drawing.Point(5, 31);
             this.pvAvances.Name = "pvAvances";
             this.pvAvances.Size = new System.Drawing.Size(1136, 809);
             this.pvAvances.Text = "Аванси";
+            // 
+            // middleControlCabinetAvances1
+            // 
+            this.middleControlCabinetAvances1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.middleControlCabinetAvances1.Location = new System.Drawing.Point(0, 0);
+            this.middleControlCabinetAvances1.Name = "middleControlCabinetAvances1";
+            this.middleControlCabinetAvances1.Size = new System.Drawing.Size(1136, 809);
+            this.middleControlCabinetAvances1.TabIndex = 0;
             // 
             // pvRequest
             // 
@@ -248,14 +278,6 @@
             this.ctrlAgent.Size = new System.Drawing.Size(1136, 809);
             this.ctrlAgent.TabIndex = 0;
             // 
-            // ctrlPayslips
-            // 
-            this.ctrlPayslips.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPayslips.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPayslips.Name = "ctrlPayslips";
-            this.ctrlPayslips.Size = new System.Drawing.Size(1136, 809);
-            this.ctrlPayslips.TabIndex = 0;
-            // 
             // MiddleControlCabinet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +292,8 @@
             this.pvLicence.ResumeLayout(false);
             this.pvPayslips.ResumeLayout(false);
             this.pvCalculation.ResumeLayout(false);
+            this.pvPays.ResumeLayout(false);
+            this.pvAvances.ResumeLayout(false);
             this.pvRequest.ResumeLayout(false);
             this.pvReference.ResumeLayout(false);
             this.pvFiles.ResumeLayout(false);
@@ -301,5 +325,7 @@
         private Telerik.WinControls.UI.RadPageViewPage pvAvances;
         private Telerik.WinControls.UI.RadPageViewPage pvContacts;
         private MiddleControlCabinetPayslips ctrlPayslips;
+        private MiddleControlCabinetAvances middleControlCabinetAvances1;
+        private MiddleControlCabinetPayments middleControlCabinetPayments1;
     }
 }

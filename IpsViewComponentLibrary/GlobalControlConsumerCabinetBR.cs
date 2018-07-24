@@ -28,6 +28,7 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRequests> _reference;
         private IList<BigRightRequestBidAuthors> _authors;
         private IList<BigRightMoneyUndescrib> _moneyUndescribs;
+        private IList<BigRightRegister> _registers;
 
         public delegate void BackToMainGrid(int custId);
         /// <summary>
@@ -129,6 +130,17 @@ namespace IpsViewComponentLibrary
             }).ToList();
         }
 
+        /// <summary>
+        /// Дані для вкладки розрахунковий лист
+        /// </summary>
+        /// <param name="register"></param>
+        public void SetPayslipsDate(IList<object> register)
+        {
+            _registers = new List<BigRightRegister>();
+            foreach (var temp in register)
+                _registers.Add(temp as BigRightRegister);
+        }
+
         public void SetMoneyUndescribsData(IList<object> moneyUndescribs)
         {
             _moneyUndescribs = new List<BigRightMoneyUndescrib>();
@@ -196,7 +208,8 @@ namespace IpsViewComponentLibrary
                                              _requests,
                                              _authors,
                                              _reference,
-                                             _moneyUndescribs);
+                                             _moneyUndescribs,
+                                             _registers);
             }
         }
 

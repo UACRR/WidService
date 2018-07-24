@@ -36,6 +36,7 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRequests> _reference;
         private IList<BigRightRequestBidAuthors> _authors;
         private IList<BigRightMoneyUndescrib> _moneyUndescribs;
+        private IList<BigRightRegister> _registers;
         private AnketaDictionaties _anketaDictionaties = null;
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
 
@@ -87,7 +88,8 @@ namespace IpsViewComponentLibrary
                                      IList<BigRightRequests> requests,
                                      IList<BigRightRequestBidAuthors> authors,
                                      IList<BigRightRequests> reference,
-                                     IList<BigRightMoneyUndescrib> moneyUndescribs)
+                                     IList<BigRightMoneyUndescrib> moneyUndescribs,
+                                     IList<BigRightRegister> registers)
         {
             _customer = customer;
             _brView = brView;
@@ -96,6 +98,7 @@ namespace IpsViewComponentLibrary
             _requests = requests;
             _reference = reference;
             _authors = authors;
+            _registers = registers;
             _moneyUndescribs = moneyUndescribs;
 
             UpdateCurentTab(_currenCabinetTab);
@@ -122,7 +125,7 @@ namespace IpsViewComponentLibrary
                     break;
                 case CabinetTabType.Payslips:
                 {
-                    ctrlPayslips.SetAndUpdateData(_customer,_brView,_genAgrs);
+                    ctrlPayslips.SetAndUpdateData(_customer,_brView, _registers);
                 }
                     break;
                 case CabinetTabType.Requests:

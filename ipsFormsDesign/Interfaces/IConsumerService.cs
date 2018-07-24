@@ -299,4 +299,20 @@ namespace ipsFormsDesign.Interfaces
         public decimal? RateMusic { get; set; }
         public string Name { get; set; }
     }
+
+    public class BigRightRegister
+    {
+        public DateTime? CreateDate { get; set; }
+        public int? CustId { get; set; }
+        public int? PeriodId { get; set; }
+        public int? Status { get; set; }
+        public decimal? FullAmount { get; set; }
+        public decimal? RAmount { get; set; }
+        public decimal? PaidAmount { get; set; }
+        public decimal Distribamount { get; set; }
+        public decimal? Borg { get; set; }
+        public decimal? PrepaySum { get; set; }
+        public string PeriodName { get; set; }
+        public string StatusName { get; set; }
+    }
 }

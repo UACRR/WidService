@@ -152,6 +152,18 @@
     <Compile Include="AgentFooterBR.Designer.cs">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
+    <Compile Include="MiddleControlCabinetAvances.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetAvances.Designer.cs">
+      <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetPayments.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetPayments.Designer.cs">
+      <DependentUpon>MiddleControlCabinetPayments.cs</DependentUpon>
+    </Compile>
     <Compile Include="ObjectRightControls\AuthorRightholderBrListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -660,6 +672,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetAvances.resx">
+      <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetPayments.resx">
+      <DependentUpon>MiddleControlCabinetPayments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderBrListControl.resx">
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
