@@ -561,9 +561,9 @@ namespace RightholderWorkplace
 
             _previousPage = objectsPageView.SelectedPage; // TODO
 
-            using (var view = new ObjectRightItemView())
+            using (var view = new ObjectRightSrView())
             {
-                var presenter = new ObjectRightItemPresenter(view);
+                var presenter = new ObjectRightSrPresenter(view);
                 presenter.DefaultRightholder = defaultRightholder;
                 presenter.ShowNew(category);
             }
@@ -573,25 +573,36 @@ namespace RightholderWorkplace
 
         private void ctrlObjectRightList_EditCommandExecuted(object sender, ObjectRightMainView selectedObject)
         {
-            EditObjectRight(selectedObject.ObjId);
+            EditObjectRight(selectedObject);
         }
 
         private void ctrlObjectRightList_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
-            EditObjectRight(selectedObject.ObjId);
+            EditObjectRight(selectedObject);
         }
 
-        private void EditObjectRight(int objId)
+        private void EditObjectRight(ObjectRightMainView objectRight)
         {
             _previousPage = objectsPageView.SelectedPage; // TODO
 
-            using (var view = new ObjectRightItemView())
+            if (objectRight.Category == "M")
             {
-                var presenter = new ObjectRightItemPresenter(view);
-                presenter.Show(objId);
+                using (var view = new ObjectRightSrView())
+                {
+                    var presenter = new ObjectRightSrPresenter(view);
+                    presenter.Show(objectRight.ObjId);
+                }
+            }
+            else
+            {
+                using (var view = new ObjectRightBrView())
+                {
+                    var presenter = new ObjectRightBrPresenter(view);
+                    presenter.Show(objectRight.ObjId);
+                }
             }
 
-            UpdateLists(objId);
+            UpdateLists(objectRight.ObjId);
         }
 
         private void UpdateLists(int objId)
@@ -618,7 +629,7 @@ namespace RightholderWorkplace
 
         private void ctrlRightholdersObjectsRight_EditObjectCommandExecuted(object sender, ObjectRightForRightholder selectedObject)
         {
-            EditObjectRight(selectedObject.ObjId);
+            EditObjectRight(selectedObject);
         }
 
         private void ctrlRightholdersObjectsRight_ShowAnketaCommandExetuted(object sender, RightholderMainView selectedRightholder)
@@ -937,7 +948,7 @@ namespace RightholderWorkplace
 
         private void ctrlRightholdersObjectsForChange_EditObjectCommandExecuted(object sender, ObjectRightForRightholder selectedObject)
         {
-            EditObjectRight(selectedObject.ObjId);
+            EditObjectRight(selectedObject);
         }
 
         #endregion

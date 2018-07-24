@@ -62,6 +62,7 @@
         <noignore>Cust</noignore>
     </item>
     <item Name="CopyRight">
+        <noignore>LicAuthorBr</noignore>
         <noignore>WorkRh</noignore>
     </item>
     <item Name="WorkRh"></item>
