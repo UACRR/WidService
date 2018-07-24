@@ -78,6 +78,7 @@
     <Compile Include="Interfaces\ObservableListSource.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountBals.cs" />
+    <Compile Include="Model\AccountBalsTr.cs" />
     <Compile Include="Model\AccountStatus.cs" />
     <Compile Include="Model\AccountStatusTr.cs" />
     <Compile Include="Model\ActivityType.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="Model\ObjectType.cs" />
     <Compile Include="Model\ObjectTypeTr.cs" />
     <Compile Include="Model\PaidPeriod.cs" />
+    <Compile Include="Model\ParametersListBox.cs" />
     <Compile Include="Model\Partner.cs" />
     <Compile Include="Model\PartnerClient.cs" />
     <Compile Include="Model\PaymentCase.cs" />
@@ -282,6 +284,8 @@
     <Compile Include="Model\RegisterCount.cs" />
     <Compile Include="Model\RegisterItem.cs" />
     <Compile Include="Model\RegisterItemType.cs" />
+    <Compile Include="Model\RegisterListStatus.cs" />
+    <Compile Include="Model\RegisterListStatusTr.cs" />
     <Compile Include="Model\RegisterRatedList.cs" />
     <Compile Include="Model\RegisterStatus.cs" />
     <Compile Include="Model\RegisterStatusTr.cs" />
