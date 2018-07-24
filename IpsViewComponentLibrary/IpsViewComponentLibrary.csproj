@@ -183,6 +183,19 @@
     <Compile Include="PayslipsCrEdForm.Designer.cs">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\BindPayPeriod.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BindPayPeriod.Designer.cs">
+      <DependentUpon>BindPayPeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\CreatePeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\CreatePeriod.Designer.cs">
+      <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\CustomGridBehavior.cs" />
     <Compile Include="RightholderControls\AnketaAddNamesView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -687,6 +700,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BindPayPeriod.resx">
+      <DependentUpon>BindPayPeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\CreatePeriod.resx">
+      <DependentUpon>CreatePeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>

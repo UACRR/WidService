@@ -191,9 +191,9 @@ namespace IpsViewComponentLibrary
             var lic = _data?.Client?.LicenseAgreement.SingleOrDefault(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value);
             var licenseParam = lic?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == lic.LicVersion);
 
-            DistributionForm distr = new DistributionForm(moneyReceived, licenseParam, gvPeriodsPayment.DataSource, _data);
-            distr.StartPosition = FormStartPosition.CenterScreen;
-            distr.ShowDialog();
+            //DistributionForm distr = new DistributionForm(moneyReceived, licenseParam, gvPeriodsPayment.DataSource, _data);
+            //distr.StartPosition = FormStartPosition.CenterScreen;
+            //distr.ShowDialog();
         }
 
         private void gvUserMoneys_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
