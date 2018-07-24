@@ -276,11 +276,7 @@ namespace ipsmedserviceapp.Controllers
 
                     if (item.LicenseBigR != null)
                     {
-                        //if (license.LicenseBigR == null)
-                        //    license.LicenseBigR = new LicenseBigR();
                         license.LicenseBigR.SetFields(item.LicenseBigR);
-
-                        //_dbContext.UpdateList(item.LicenseBigR.LicAuthorBr, license.LicenseBigR.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
                     }
 
 

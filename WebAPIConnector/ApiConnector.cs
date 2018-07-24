@@ -208,7 +208,7 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public bool UpdateItem<T>(string url, string id, T data)
+        public bool UpdateItem<T>(string url, string id, T data )
         {
             JsonSerializerSettings settings = new JsonSerializerSettings {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore

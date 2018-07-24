@@ -12,6 +12,7 @@ using System.Text;
 using System.Windows.Forms;
 using IpsViewComponentLibrary;
 using System.Threading.Tasks;
+using Telerik.WinControls;
 
 namespace TestControls
 {
@@ -27,6 +28,7 @@ namespace TestControls
             IpsGlobal.SetAnketaDictionaties(_service.GetDictionary());
 
             InitializeComponent();
+            ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             bindPayPeriod1.SavePariodCommandExecuted += BindPayPeriod1_SavePariodCommandExecuted;
             bindPayPeriod1.SaveLinkCommandExecuted += BindPayPeriod1_SaveLinkCommandExecuted;
 
