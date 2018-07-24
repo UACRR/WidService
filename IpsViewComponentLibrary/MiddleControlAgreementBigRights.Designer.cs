@@ -29,40 +29,35 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.bsLicAgrParam = new System.Windows.Forms.BindingSource(this.components);
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
-            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
             this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsDictAgrLicType = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ddlPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsAgreementAddBr = new System.Windows.Forms.BindingSource(this.components);
             this.bsDictPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtDayForPay = new Telerik.WinControls.UI.RadTextBox();
+            this.bsLicAgrParam = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgreementMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictAgrLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bsLicAgrParam
-            // 
-            this.bsLicAgrParam.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // lblTitle
             // 
-            this.lblTitle.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "Name", true));
             this.lblTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblTitle.Location = new System.Drawing.Point(35, 8);
             this.lblTitle.Name = "lblTitle";
@@ -70,10 +65,6 @@
             this.lblTitle.TabIndex = 32;
             this.lblTitle.Text = "Назва Клієнта";
             this.lblTitle.ThemeName = "Office2013Light";
-            // 
-            // bsAnketaCompany
-            // 
-            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // ddlLicType
             // 
@@ -111,7 +102,7 @@
             // 
             // ddlPeriodPayment
             // 
-            this.ddlPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicAgrParam, "PeriodCode", true));
+            this.ddlPeriodPayment.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAgreementAddBr, "PeriodCode", true));
             this.ddlPeriodPayment.DataSource = this.bsDictPaidPeriod;
             this.ddlPeriodPayment.DisplayMember = "Name";
             this.ddlPeriodPayment.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -121,6 +112,10 @@
             this.ddlPeriodPayment.TabIndex = 38;
             this.ddlPeriodPayment.ThemeName = "Office2013Light";
             this.ddlPeriodPayment.ValueMember = "CodeI";
+            // 
+            // bsAgreementAddBr
+            // 
+            this.bsAgreementAddBr.DataSource = typeof(ipsFormsDesign.Model.AgreementAddBr);
             // 
             // bsDictPaidPeriod
             // 
@@ -146,7 +141,7 @@
             // 
             // txtDayForPay
             // 
-            this.txtDayForPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicAgrParam, "DayForPay", true));
+            this.txtDayForPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBr, "DayForPay", true));
             this.txtDayForPay.Location = new System.Drawing.Point(164, 153);
             this.txtDayForPay.Name = "txtDayForPay";
             this.txtDayForPay.Size = new System.Drawing.Size(48, 21);
@@ -158,7 +153,8 @@
             // ctrlAgreementMain
             // 
             this.ctrlAgreementMain.AgreementName = "";
-            this.ctrlAgreementMain.DataSource = this.bsLicAgrParam;
+            this.ctrlAgreementMain.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            this.ctrlAgreementMain.DataSourceBr = this.bsAgreementAddBr;
             this.ctrlAgreementMain.DateBeginDataMember = "";
             this.ctrlAgreementMain.DateDataMember = "";
             this.ctrlAgreementMain.DateEndDataMember = "";
@@ -187,18 +183,18 @@
             this.MinimumSize = new System.Drawing.Size(500, 200);
             this.Name = "MiddleControlAgreementBigRights";
             this.Size = new System.Drawing.Size(596, 200);
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictAgrLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,6 +214,6 @@
         private System.Windows.Forms.BindingSource licenseAgreementBindingSource;
         private System.Windows.Forms.BindingSource bsLicAgrParam;
         private System.Windows.Forms.BindingSource bsDictPaidPeriod;
-        private System.Windows.Forms.BindingSource bsAnketaCompany;
+        private System.Windows.Forms.BindingSource bsAgreementAddBr;
     }
 }

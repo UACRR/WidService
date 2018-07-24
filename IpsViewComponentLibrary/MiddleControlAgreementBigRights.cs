@@ -43,18 +43,18 @@ namespace IpsViewComponentLibrary
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
-        public object LicAgrDataSource
+        public object AgreementAddBrDataSource
         {
-            get => licenseAgreementBindingSource.DataSource;
-            set => licenseAgreementBindingSource.DataSource = value;
+            get => bsAgreementAddBr.DataSource;
+            set => bsAgreementAddBr.DataSource = value;
         }
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
-        public object AnketaCompanyDataSource
+        public object LicAgrDataSource
         {
-            get => bsAnketaCompany.DataSource;
-            set => bsAnketaCompany.DataSource = value;
+            get => licenseAgreementBindingSource.DataSource;
+            set => licenseAgreementBindingSource.DataSource = value;
         }
 
         /// <summary>

@@ -112,16 +112,28 @@ namespace IpsViewComponentLibrary
                         TabIndex = 0
                     };
 
-                    if(_cust.Client.LicenseAgreement.SingleOrDefault()?.LicCode != null)
-                        _cust.Client.LicenseAgreement.SingleOrDefault().LicCode = 28;
+                    if (_cust.Client.LicenseAgreement.SingleOrDefault()?.LicCode != null)
+                    {
+                        var item = _cust.Client.LicenseAgreement.SingleOrDefault();
+                        item.LicCode = 28;
+                        item.LicClass = 1;
+                        
+                    }
+
+                    if(!isEdit && _cust.Client.AgreementAddBr.Count == 0)
+                        _cust.Client.AgreementAddBr.Add(new AgreementAddBr
+                        {
+                            Version = 1,
+                            
+                        });
 
                     pvAgreement.Controls.Add(ctrlAgreementBigRights);
                     ctrlAgreementBigRights.DictionaryAgrLicTypeDataSource = _anketaDictionaries.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
                     ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
-                    ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.AnketaCompany;// typeof(AnketaCompany);
+                    //ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.AnketaCompany;// typeof(AnketaCompany);
                     ctrlAgreementBigRights.LicAgrDataSource = _cust.Client.LicenseAgreement;// typeof(LicenseAgreement);
-                    ctrlAgreementBigRights.LicenseAgrParamDataSource = _cust.Client.LicenseAgreement.SingleOrDefault()?.LicenseAgrParam.SingleOrDefault(); // typeof(LicenseAgrParam);
-                    
+                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust.Client.AgreementAddBr.LastOrDefault();
+
                 }
                     break;
 

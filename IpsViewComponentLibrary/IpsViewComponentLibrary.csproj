@@ -932,6 +932,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BrRegister.datasource" />
