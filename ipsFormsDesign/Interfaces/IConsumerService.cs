@@ -71,7 +71,7 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         ///  Статус Ген. Угоди
         /// </summary>
-        public int AgrStatus { get; set; }
+        public int? AgrStatus { get; set; }
         /// <summary>
         /// Назва статусу 
         /// </summary>
@@ -79,7 +79,7 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Статус Доп угоди
         /// </summary>
-        public int AddStatus { get; set; }
+        public int? AddStatus { get; set; }
         /// <summary>
         /// Назва Статус 
         /// </summary>
@@ -87,55 +87,55 @@ namespace ipsFormsDesign.Interfaces
         /// <summary>
         /// Кількість
         /// </summary>
-        public int CountLic1Active { get; set; }
+        public int? CountLic1Active { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int CountLic1NoActive { get; set; }
+        public int? CountLic1NoActive { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int CountLic1ToProlong { get; set; }
+        public int? CountLic1ToProlong { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int CountLic2Active { get; set; }
+        public int? CountLic2Active { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int CountLic2NoActive { get; set; }
+        public int? CountLic2NoActive { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int CountLic3Active { get; set; }
+        public int? CountLic3Active { get; set; }
         /// <summary>
         /// Кількість
         /// </summary>
-        public int CountLic3NoActive { get; set; }
+        public int? CountLic3NoActive { get; set; }
         /// <summary>
         /// Сума
         /// </summary>
-        public decimal UndistribAmount { get; set; }
+        public decimal? UndistribAmount { get; set; }
         /// <summary>
         /// Сума
         /// </summary>
-        public decimal Borg { get; set; }
+        public decimal? Borg { get; set; }
         /// <summary>
         /// Сума
         /// </summary>
-        public decimal UnattachAmount { get; set; }
+        public decimal? UnattachAmount { get; set; }
         /// <summary>
         /// Сума
         /// </summary>
-        public decimal PrePayRest { get; set; }
+        public decimal? PrePayRest { get; set; }
         /// <summary>
         /// Дата останього платежу
         /// </summary>
-        public DateTime DatePayLast { get; set; }
+        public DateTime? DatePayLast { get; set; }
         /// <summary>
         /// Ід Партнера
         /// </summary>
-        public int ClcustId { get; set; }
+        public int? ClcustId { get; set; }
         /// <summary>
         /// Назва Партнера
         /// </summary>
