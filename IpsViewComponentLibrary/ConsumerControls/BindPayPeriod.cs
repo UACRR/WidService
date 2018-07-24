@@ -162,12 +162,6 @@ namespace IpsViewComponentLibrary
                 }
 
                 normalizeData(_customer);
-                //BindAllSum();
-                //BindLicAgreements();
-
-                //SetGrid3DataSource();
-                //SetGrid4DataSource();
-
                 SetupAllBinding();
             }
 
@@ -211,7 +205,6 @@ namespace IpsViewComponentLibrary
         private void BindAllSum()
         {
             var list = _customer.Client.MoneyReceived.Where(rec => rec.Amount > (rec.DestribAmount + rec.DestribPrepay));
-            // radGridView1.RowCount = list.Count();
             if (list.Count() == 0)
             {
                 AllmoneyReceivedBindingSource.DataSource = typeof(MoneyReceived);
@@ -269,7 +262,6 @@ namespace IpsViewComponentLibrary
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 SavePariodCommandExecuted(this, currentAgree.Lic.PaidPeriod.ToList());
-                // SetGrid3DataSource();
                 SetupAllBinding();
             }
         }
@@ -341,10 +333,6 @@ namespace IpsViewComponentLibrary
 
         private void SetupAllBinding()
         {
-            //radGridView1.MasterTemplate.Refresh();
-            //radGridView2.MasterTemplate.Refresh();
-            //radGridView3.MasterTemplate.Refresh();
-            //radGridView4.MasterTemplate.Refresh();
 
             BindAllSum();
             BindLicAgreements();

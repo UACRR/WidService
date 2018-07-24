@@ -9,15 +9,15 @@ namespace ipsFormsDesign.Model
         public AccountBals()
         {
             Account = new ObservableListSource<Account>();
+            AccountBalsTr = new ObservableListSource<AccountBalsTr>();
         }
 
-        public int BalsCode { get; set; }
+        public int CodeI { get; set; }
         public short? BalsType { get; set; }
-        public string BalsNameUk { get; set; }
-        public string BalsNameRu { get; set; }
-        public string BalsNameEn { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<Account> Account { get; set; }
+        public ObservableListSource<AccountBalsTr> AccountBalsTr { get; set; }
     }
 }
 
