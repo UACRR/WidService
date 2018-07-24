@@ -120,11 +120,11 @@ namespace IpsViewComponentLibrary
                         
                     }
 
-                    if(!isEdit && _cust.Client.AgreementAddBr.Count == 0)
-                        _cust.Client.AgreementAddBr.Add(new AgreementAddBr
+                    if(!isEdit && _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Count == 0)
+                        _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
                         {
                             Version = 1,
-                            
+                            AgrStatus = 2
                         });
 
                     pvAgreement.Controls.Add(ctrlAgreementBigRights);
@@ -132,9 +132,9 @@ namespace IpsViewComponentLibrary
                     ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
                     //ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.AnketaCompany;// typeof(AnketaCompany);
                     ctrlAgreementBigRights.LicAgrDataSource = _cust.Client.LicenseAgreement;// typeof(LicenseAgreement);
-                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust.Client.AgreementAddBr.LastOrDefault();
+                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr;
 
-                }
+                    }
                     break;
 
                 case TypeRights.SmallRights:
