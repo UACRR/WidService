@@ -66,7 +66,9 @@
             this.gvAuthorRightholderList.MasterTemplate.AllowDeleteRow = false;
             this.gvAuthorRightholderList.MasterTemplate.AutoGenerateColumns = false;
             this.gvAuthorRightholderList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewComboBoxColumn1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             gridViewComboBoxColumn1.DataType = typeof(int);
+            gridViewComboBoxColumn1.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDown;
             gridViewComboBoxColumn1.FieldName = "Author.RoleCode";
             gridViewComboBoxColumn1.HeaderText = "Творча роль";
             gridViewComboBoxColumn1.Name = "RoleCode";
@@ -98,6 +100,8 @@
             gridViewComboBoxColumn2.HeaderText = "Тип передплати";
             gridViewComboBoxColumn2.Name = "PrepayType";
             gridViewComboBoxColumn2.Width = 62;
+            gridViewComboBoxColumn3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            gridViewComboBoxColumn3.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDown;
             gridViewComboBoxColumn3.FieldName = "LicAuthorBr.R030";
             gridViewComboBoxColumn3.HeaderText = "Валюта";
             gridViewComboBoxColumn3.Name = "Currency";
