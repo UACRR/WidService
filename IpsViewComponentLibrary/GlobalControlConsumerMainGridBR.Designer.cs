@@ -50,9 +50,7 @@ namespace IpsViewComponentLibrary
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.gvViewConsumers = new Telerik.WinControls.UI.RadGridView();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.btnNewConsumer = new Telerik.WinControls.UI.RadDropDownButton();
-            this.btnJur = new Telerik.WinControls.UI.RadMenuItem();
-            this.btnPhis = new Telerik.WinControls.UI.RadMenuItem();
+            this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
@@ -253,26 +251,13 @@ namespace IpsViewComponentLibrary
             // 
             // btnNewConsumer
             // 
-            this.btnNewConsumer.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.btnJur,
-            this.btnPhis});
             this.btnNewConsumer.Location = new System.Drawing.Point(488, 3);
             this.btnNewConsumer.Name = "btnNewConsumer";
-            this.btnNewConsumer.Size = new System.Drawing.Size(155, 20);
-            this.btnNewConsumer.TabIndex = 9;
+            this.btnNewConsumer.Size = new System.Drawing.Size(137, 20);
+            this.btnNewConsumer.TabIndex = 10;
             this.btnNewConsumer.Text = "Новий споживач";
             this.btnNewConsumer.ThemeName = "Office2013Light";
-            // 
-            // btnJur
-            // 
-            this.btnJur.Name = "btnJur";
-            this.btnJur.Text = "Юридична особа";
-            // 
-            // btnPhis
-            // 
-            this.btnPhis.Enabled = false;
-            this.btnPhis.Name = "btnPhis";
-            this.btnPhis.Text = "Фізична особа";
+            this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 
             // GlobalControlConsumerMainGridBR
             // 
@@ -296,8 +281,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private Telerik.WinControls.UI.RadGridView gvViewConsumers;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private Telerik.WinControls.UI.RadDropDownButton btnNewConsumer;
-        private Telerik.WinControls.UI.RadMenuItem btnJur;
-        private Telerik.WinControls.UI.RadMenuItem btnPhis;
+        private Telerik.WinControls.UI.RadButton btnNewConsumer;
     }
 }

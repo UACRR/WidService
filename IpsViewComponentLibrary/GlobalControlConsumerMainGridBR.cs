@@ -35,7 +35,6 @@ namespace IpsViewComponentLibrary
         public GlobalControlConsumerMainGridBR()
         {
             InitializeComponent();
-            SubscribeToBtnEvents();
         }
 
 
@@ -57,26 +56,6 @@ namespace IpsViewComponentLibrary
         {
             // джерело
             gvViewConsumers.DataSource = source;
-        }
-
-        private void Item_Click(object sender, EventArgs e)
-        {
-            var objTag = sender as RadMenuItem;
-            if (objTag != null)
-                switch (objTag.Name)
-                {
-                    case "btnJur":
-                    {
-                        OnAddNewCustomer?.Invoke(PersonType.JuridicalPerson);
-                    }
-                        break;
-
-                    case "btnPhis":
-                    {
-                        OnAddNewCustomer?.Invoke(PersonType.PhysicalPerson);
-                    }
-                        break;
-                }
         }
 
         private void gvViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -101,15 +80,10 @@ namespace IpsViewComponentLibrary
             _rowId = (int?)e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
         }
 
-        /// <summary>
-        /// Підписка на подію натискання кнопки додати нового споживача
-        /// </summary>
-        private void SubscribeToBtnEvents()
+
+        private void btnNewConsumer_Click(object sender, EventArgs e)
         {
-            foreach (var item in btnNewConsumer.Items)
-            {
-                item.Click += Item_Click;
-            }
+            OnAddNewCustomer?.Invoke(PersonType.JuridicalPerson);
         }
 
         #region ФІЛЬТРАЦІЯ (пошук)

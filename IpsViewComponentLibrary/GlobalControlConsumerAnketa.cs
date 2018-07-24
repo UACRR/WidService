@@ -124,7 +124,8 @@ namespace IpsViewComponentLibrary
                         _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
                         {
                             Version = 1,
-                            AgrStatus = 2
+                            AgrStatus = 2,
+                            AnkVersion = _cust.AnkVersion,
                         });
 
                     pvAgreement.Controls.Add(ctrlAgreementBigRights);
