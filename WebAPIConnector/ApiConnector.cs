@@ -208,9 +208,10 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public bool UpdateItem<T>(string url, string id, T data )
+        public bool UpdateItem<T>(string url, string id, T data)
         {
-            JsonSerializerSettings settings = new JsonSerializerSettings {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
             string idUrl = $"{url}/{id}";
@@ -218,6 +219,29 @@ namespace WebAPIConnector
             HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
 
             var retCode = result.IsSuccessStatusCode;
+            return retCode;
+        }
+        /// <summary>
+        /// змінити об'єкт на сервері додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public bool UpdateItemWithReturn<T>(string url, string id, T data, out T retData)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+            string idUrl = $"{url}/{id}";
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+            HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+
+
+            var retCode = result.IsSuccessStatusCode;
+            var retString = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            var jObject = JObject.Parse(retString);
+            retData = jObject.ToObject<T>();
 
             return retCode;
         }

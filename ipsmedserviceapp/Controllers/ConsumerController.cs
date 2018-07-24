@@ -219,7 +219,7 @@ namespace ipsmedserviceapp.Controllers
 
             // LicenseAgreement
             {
-                Dictionary<int, ClnBusinessPlace> dicPlace = sorsCustomer.Client.ClnBusinessPlace.ToDictionary(rec => rec.PlaceId);
+                Dictionary<int, ClnBusinessPlace> dicPlace = destCustomer.Client.ClnBusinessPlace.ToDictionary(rec => rec.PlaceId);
                 Action<License> addLicense = (lic) =>
                 {
                     if (lic.PlaceId == null)
