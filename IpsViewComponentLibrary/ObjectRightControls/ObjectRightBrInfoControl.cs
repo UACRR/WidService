@@ -57,7 +57,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             ddlGenreType.ValueMember = "CodeI";
             ddlGenreType.DisplayMember = "Name";
-            ddlGenreType.DataSource = IpsGlobal.ObjectRightDictionaries.genreType.Where(g => g.CategoryCode == 6); // ???
+            ddlGenreType.DataSource = IpsGlobal.ObjectRightDictionaries.genreType.Where(g => g.CategoryCode == 6);
 
             ddlLangCode.ValueMember = "CodeS";
             ddlLangCode.DisplayMember = "Name";

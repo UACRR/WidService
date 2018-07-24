@@ -16,10 +16,10 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class ObjectRightItemView : Telerik.WinControls.UI.RadForm, IObjectRightItemView
+    public partial class ObjectRightSrView : Telerik.WinControls.UI.RadForm, IObjectRightItemView
     {
-        private ObjectRightItemPresenter _presenter;
-        public ObjectRightItemPresenter Presenter
+        private ObjectRightSrPresenter _presenter;
+        public ObjectRightSrPresenter Presenter
         {
             get { return _presenter; }
             set
@@ -65,7 +65,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private BindingList<ObjectAuthorRightholder> _objectAuthorRightholderList = new BindingList<ObjectAuthorRightholder>();
         public Collection<ObjectAuthorRightholder> ObjectAuthorRightholderList => _objectAuthorRightholderList;
 
-        public ObjectRightItemView()
+        public ObjectRightSrView()
         {
             InitializeComponent();
 
