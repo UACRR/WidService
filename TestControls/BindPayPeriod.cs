@@ -18,13 +18,17 @@ namespace TestControls
 {
     public partial class BindPayPeriod : UserControl
     {
-        readonly ConsumerService _service = null;
-        public BindPayPeriod(ConsumerService service)
+        private ConsumerService _service = null;
+        public BindPayPeriod()
         {
-            _service = service;
+
             InitializeComponent();
             SetupDragDrop();
 
+        }
+        public void setService( ConsumerService service )
+        {
+            _service = service;
         }
 
         private void SetupDragDrop()
@@ -64,21 +68,24 @@ namespace TestControls
             if (dropTarget == null)
                 return;
             RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
-
+            var dropTargetRow = dropTarget as GridDataRowElement;
 
             dropTarget = (RadItem)e.DragInstance;
             if (dropTarget == null)
                 return;
 
             var rowBehavior = ((BaseGridBehavior)targetGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
-            rowBehavior.GetRowAtDropPoint(e.DropLocation);
+            rowBehavior.SetTargetRow(dropTargetRow);
 
+            runFromDragDrop = true;
 
-            Task.Run(() => {
-                runFromDragDrop = true;
-                radButton2.PerformClick();
-            });
             e.Handled = true;
+
+            radButton2.BeginInvoke( (Action)(() => {
+                radButton2.PerformClick();
+            }));
+            //Task.Run(() => {
+            //});
 
 
 
@@ -273,6 +280,9 @@ namespace TestControls
             }
             else
             {
+                if (radGridView1.CurrentRow == null || radGridView2.CurrentRow == null)
+                    return;
+
                 pay = radGridView1.CurrentRow.DataBoundItem as MoneyReceived;
                 licParam = radGridView2.CurrentRow.DataBoundItem as LicenseAgrParam;
 

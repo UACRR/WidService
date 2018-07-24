@@ -110,31 +110,59 @@ namespace ipsFormsDesign.Services
         }
 
         #region Payments
+#if DEBUG
+        /// <summary>
+        /// Отримати всі зовнішні платежі користувача 
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         public List<ExternalPay> GetCustomerPays( int custId )
         {
-            string url = "consumer/PaydPeriod/GetPayments/" + custId.ToString();
+            string url = "consumer/Period/Payments/" + custId.ToString();
             return _webApi.GetList<ExternalPay>(url); 
         }
 
+        /// <summary>
+        /// Збереження нових зовнішніх платежів (відлагодження)
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="pays"></param>
+        /// <returns></returns>
         public bool SaveNewPayments( int custId, List<ExternalPay> pays )
         {
-            string url = "consumer/PaydPeriod/GetPayments";
+            string url = "consumer/Period/Payments";
             var ret = _webApi.UpdateItem(url, custId.ToString(), pays);
             return ret;
         }
-
+#endif
+        /// <summary>
+        /// Отримати всю інормацію по поточним періодам оплати для інтерфейсу Розрахунки
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         public Customer getPaidInfo( int custId )
         {
-            return _webApi.GetItemById<Customer>("consumer/PaydPeriod/GetCustomerInfo", custId.ToString());
+            return _webApi.GetItemById<Customer>("consumer/Period/GetCustomerInfo", custId.ToString());
         }
-
+        /// <summary>
+        /// Зберігання нових періодів
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="periods">Нові періоди</param>
+        /// <returns></returns>
         public bool SavePeriods(int custId, List<PaidPeriod> periods)
         {
-            return _webApi.UpdateItem("consumer/PaydPeriod/GetPayments/paidperiods", custId.ToString(), periods);
+            return _webApi.UpdateItem("consumer/Period/Payments/paidperiods", custId.ToString(), periods);
         }
+        /// <summary>
+        /// Зберігання прив'язаних сум
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="listLinks">Прив'язані суми</param>
+        /// <returns></returns>
         public bool SaveLink(int custId, List<MoneyPeriodLink> listLinks)
         {
-            return _webApi.UpdateItem("consumer/PaydPeriod/GetPayments/linkperiods", custId.ToString(), listLinks);
+            return _webApi.UpdateItem("consumer/Period/Payments/linkperiods", custId.ToString(), listLinks);
         }
 
 

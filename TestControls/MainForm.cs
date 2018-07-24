@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls;
 
 namespace TestControls
 {
@@ -22,10 +23,12 @@ namespace TestControls
         private Task<Customer> getCurrentCustomer = null;
         public MainForm()
         {
-            _service = new ConsumerService();
-            IpsGlobal.SetAnketaDictionaties(_service.GetDictionary());
 
             InitializeComponent();
+            _service = new ConsumerService();
+            IpsGlobal.SetAnketaDictionaties(_service.GetDictionary());
+            bindPayPeriod1.setService( _service );
+            ThemeResolutionService.ApplicationThemeName = "Office2013Light";
 
             payForm = new EditPay();
 

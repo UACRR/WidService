@@ -1191,7 +1191,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
-        [HttpGet("PaydPeriod/GetPayments/{custId}")]
+        [HttpGet("Period/Payments/{custId}")]
         public async Task<IActionResult> GetConsumerPayments(int custId)
         {
             string query = @"
@@ -1207,7 +1207,7 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
             return Json(list);
         }
 #if DEBUG
-        [HttpPut("PaydPeriod/GetPayments/{custId}")]
+        [HttpPut("Period/Payments/{custId}")]
         public async Task<IActionResult> PutExternalPay(int custId, [FromBody] List<ExternalPay> pays )
         {
             List<ExternalPay> dest = new List<ExternalPay>();
@@ -1256,7 +1256,7 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
 
  
 
-        [HttpGet("PaydPeriod/GetCustomerInfo/{custId}")]
+        [HttpGet("Period/GetCustomerInfo/{custId}")]
         public async Task<IActionResult> GetCustomerInfo(int custId)
         {
             var cust = await _dbContext.Customer.Where(rec => rec.CustId == custId)
@@ -1291,7 +1291,7 @@ and t2.custId = @custId
             return Json(cust);
         }
 
-        [HttpPut("PaydPeriod/GetPayments/paidperiods/{custId}")]
+        [HttpPut("Period/Payments/paidperiods/{custId}")]
         public async Task<IActionResult> SavePeriods( int custId, [FromBody] List<PaidPeriod> body )
         {
             var dest = await _dbContext.PaidPeriod.FromSql(@"
@@ -1320,7 +1320,7 @@ and t2.custId = @custId
 
         }
 
-        [HttpPut("PaydPeriod/GetPayments/linkperiods/{custId}")]
+        [HttpPut("Period/Payments/linkperiods/{custId}")]
         public async Task<IActionResult> SaveLink( int custId, [FromBody] List<MoneyPeriodLink> body )
         {
 

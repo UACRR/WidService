@@ -37,6 +37,7 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.gvDistributionPayment = new Telerik.WinControls.UI.RadGridView();
@@ -93,6 +94,11 @@ namespace IpsViewComponentLibrary
             this.gvDistributionPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvDistributionPayment.AutoScroll = true;
+            this.gvDistributionPayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(241)))), ((int)(((byte)(242)))));
+            this.gvDistributionPayment.Cursor = System.Windows.Forms.Cursors.Default;
+            this.gvDistributionPayment.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.gvDistributionPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.gvDistributionPayment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.gvDistributionPayment.Location = new System.Drawing.Point(12, 129);
             // 
             // 
@@ -102,46 +108,62 @@ namespace IpsViewComponentLibrary
             this.gvDistributionPayment.MasterTemplate.AllowDeleteRow = false;
             this.gvDistributionPayment.MasterTemplate.AllowDragToGroup = false;
             this.gvDistributionPayment.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.EnableExpressionEditor = false;
             gridViewTextBoxColumn1.FieldName = "PeriodName";
             gridViewTextBoxColumn1.HeaderText = "Період";
             gridViewTextBoxColumn1.Name = "PeriodName";
             gridViewTextBoxColumn1.ReadOnly = true;
-            gridViewTextBoxColumn1.Width = 176;
+            gridViewTextBoxColumn1.Width = 163;
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
             gridViewTextBoxColumn2.FieldName = "Status";
             gridViewTextBoxColumn2.HeaderText = "Стан періоду";
             gridViewTextBoxColumn2.Name = "Status";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 147;
+            gridViewTextBoxColumn2.Width = 135;
+            gridViewDecimalColumn1.EnableExpressionEditor = false;
             gridViewDecimalColumn1.FieldName = "Amount";
             gridViewDecimalColumn1.HeaderText = "Вимога";
             gridViewDecimalColumn1.Name = "Amount";
             gridViewDecimalColumn1.ReadOnly = true;
-            gridViewDecimalColumn1.Width = 169;
+            gridViewDecimalColumn1.Width = 156;
+            gridViewDecimalColumn2.EnableExpressionEditor = false;
             gridViewDecimalColumn2.FieldName = "AmountBound";
             gridViewDecimalColumn2.HeaderText = "Прив\'язано";
             gridViewDecimalColumn2.Name = "AmountBound";
             gridViewDecimalColumn2.ReadOnly = true;
-            gridViewDecimalColumn2.Width = 169;
+            gridViewDecimalColumn2.Width = 156;
+            gridViewDecimalColumn3.EnableExpressionEditor = false;
             gridViewDecimalColumn3.FieldName = "Arrears";
             gridViewDecimalColumn3.HeaderText = "Борг";
             gridViewDecimalColumn3.Name = "Arrears";
             gridViewDecimalColumn3.ReadOnly = true;
-            gridViewDecimalColumn3.Width = 146;
+            gridViewDecimalColumn3.Width = 135;
             gridViewTextBoxColumn3.DataType = typeof(decimal);
+            gridViewTextBoxColumn3.EnableExpressionEditor = false;
             gridViewTextBoxColumn3.FieldName = "DistAmount";
             gridViewTextBoxColumn3.HeaderText = "Сума прив\'язки";
             gridViewTextBoxColumn3.Name = "DistAmount";
-            gridViewTextBoxColumn3.Width = 139;
+            gridViewTextBoxColumn3.Width = 127;
+            gridViewCheckBoxColumn1.EnableExpressionEditor = false;
+            gridViewCheckBoxColumn1.FieldName = "ManualSet";
+            gridViewCheckBoxColumn1.HeaderText = "Вручну";
+            gridViewCheckBoxColumn1.MinWidth = 20;
+            gridViewCheckBoxColumn1.Name = "ManualSet";
+            gridViewCheckBoxColumn1.Width = 75;
             this.gvDistributionPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewDecimalColumn1,
             gridViewDecimalColumn2,
             gridViewDecimalColumn3,
-            gridViewTextBoxColumn3});
+            gridViewTextBoxColumn3,
+            gridViewCheckBoxColumn1});
+            this.gvDistributionPayment.MasterTemplate.EnableGrouping = false;
+            this.gvDistributionPayment.MasterTemplate.EnableSorting = false;
             this.gvDistributionPayment.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvDistributionPayment.Name = "gvDistributionPayment";
             this.gvDistributionPayment.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvDistributionPayment.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvDistributionPayment.ShowGroupPanel = false;
             this.gvDistributionPayment.Size = new System.Drawing.Size(962, 196);
             this.gvDistributionPayment.TabIndex = 10;

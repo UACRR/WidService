@@ -38,5 +38,10 @@ namespace TestControls
         {
             DragDropRow = this.GetRowAtPoint(Location) as GridDataRowElement;
         }
+
+        internal void SetTargetRow(GridDataRowElement dropTargetRow)
+        {
+            DragDropRow = dropTargetRow;
+        }
     }
 }

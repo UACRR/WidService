@@ -43,7 +43,8 @@ namespace IpsViewComponentLibrary
                 AmountBound = rec.Undistribamount + rec.Distribamount,
                 Arrears = rec.Amount - rec.Undistribamount + rec.Distribamount,
                 DistAmount = 0,
-                Status = rec.Status
+                Status = rec.Status,
+                ManualSet = false
             }).ToList(); //periodsList as List<GridPeriods>;
 
             gvDistributionPayment.DataSource = _source;
@@ -101,10 +102,10 @@ namespace IpsViewComponentLibrary
             period.ManualSet = true;
             _calculator.Calculate();
 
-            if (Convert.ToDecimal(e.Value) != 0)
-                period.ManualSet = true;
-            else
-                period.ManualSet = false;
+            //if (Convert.ToDecimal(e.Value) != 0)
+            //    period.ManualSet = true;
+            //else
+            //    period.ManualSet = false;
 
             gvDistributionPayment.MasterTemplate.Refresh();
         }
