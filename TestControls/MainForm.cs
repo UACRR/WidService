@@ -53,7 +53,11 @@ namespace TestControls
 
         private void BindPayPeriod1_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
         {
-            _service.SavePeriods(_curItem.CustId, e);
+            List<PaidPeriod> retList = _service.SavePeriods(_curItem.CustId, e);
+            if( retList != null )
+            {
+                var dic = retList.ToDictionary(di => di.PeriodId);
+            }
         }
 
         private void SetButtonDisable()
