@@ -4281,7 +4281,7 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.CRight)
                     .WithOne(p => p.LicAuthorBr)
                     .HasForeignKey<LicAuthorBr>(d => d.CRightId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_COPYRIGH");
 
                 entity.HasOne(d => d.PrepayTypeNavigation)
@@ -8655,7 +8655,7 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.CRight)
                     .WithOne(p => p.WorkRh)
                     .HasForeignKey<WorkRh>(d => d.CRightId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_WORKRH_REFERENCE_COPYRIGH");
 
                 entity.HasOne(d => d.WorkTypeClNavigation)

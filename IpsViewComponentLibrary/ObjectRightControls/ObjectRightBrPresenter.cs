@@ -51,8 +51,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                     InnerCode = foundedRightholder.InnerCode,
                     Author = a,
                     CopyRight = foundedCopyright,
-                    LicAuthorBr = foundedCopyright.LicAuthorBr,
-                    WorkRh = foundedCopyright.WorkRh,
+                    LicAuthorBr = foundedCopyright.LicAuthorBr ?? new LicAuthorBr(),
+                    WorkRh = foundedCopyright.WorkRh ?? new WorkRh(),
                 };
             })
             .ToList();
