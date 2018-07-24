@@ -65,24 +65,19 @@ namespace TestControls
                 return;
             RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
 
+
             dropTarget = (RadItem)e.DragInstance;
             if (dropTarget == null)
                 return;
-            //var sourceGrid = dropTarget.ElementTree.Control as RadGridView;
 
-            //var targetRow = targetGrid.CurrentRow.DataBoundItem;
-            //var sourceRow = sourceGrid.CurrentRow.DataBoundItem;
+            var rowBehavior = ((BaseGridBehavior)targetGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+            rowBehavior.GetRowAtDropPoint(e.DropLocation);
 
-            //var pay = targetRow is MoneyReceived @item1 ? @item1 : sourceRow as MoneyReceived;
-            //var lic = targetRow is LicenseAgrParam @item2 ? @item2 : sourceRow as LicenseAgrParam;
 
-            //DistributionForm form = new DistributionForm(pay, lic.Lic);
-
-            //if(form.ShowDialog() == DialogResult.OK )
-            //{
-
-            //}
-            Task.Run(() => radButton2.PerformClick());
+            Task.Run(() => {
+                runFromDragDrop = true;
+                radButton2.PerformClick();
+            });
             e.Handled = true;
 
 
@@ -242,12 +237,51 @@ namespace TestControls
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        bool runFromDragDrop = false;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radButton2_Click(object sender, EventArgs e)
         {
-            MoneyReceived pay = radGridView1.CurrentRow.DataBoundItem as MoneyReceived;
-            var licParam = radGridView2.CurrentRow.DataBoundItem as LicenseAgrParam;
+
+            MoneyReceived pay = null;
+            LicenseAgrParam licParam = null;
+            if(runFromDragDrop)
+            {
+                var rowBehavior = ((BaseGridBehavior)radGridView1.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+                var gridDataRowElement = rowBehavior.DragDropRow;
+
+                if (gridDataRowElement == null)
+                    return;
+
+                pay = gridDataRowElement.RowInfo.DataBoundItem as MoneyReceived;
+
+                rowBehavior = ((BaseGridBehavior)radGridView2.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+                gridDataRowElement = rowBehavior.DragDropRow;
+
+                if (gridDataRowElement == null)
+                    return;
+
+                licParam = gridDataRowElement.RowInfo.DataBoundItem as LicenseAgrParam;
+
+                runFromDragDrop = false;
+            }
+            else
+            {
+                pay = radGridView1.CurrentRow.DataBoundItem as MoneyReceived;
+                licParam = radGridView2.CurrentRow.DataBoundItem as LicenseAgrParam;
+
+            }
+
             if (licParam?.Lic == null || pay == null)
                 return;
+
+
             DistributionForm form = new DistributionForm(pay, licParam.Lic);
 
             if (form.ShowDialog() == DialogResult.OK)
