@@ -90,7 +90,7 @@ namespace ipsmedserviceapp.Controllers
                 // AggreAddBr 
                 await _dbContext.Entry(licAgreement.Agr).Collection(rec => rec.AgreementAddBr)
                     .Query()
-                    .Where(item => item.Version >= licAgreement.Agr.Version)
+                    .Where(item => item.Version >= licAgreement.Agr.Version)//TODO: TASK всі AgreementAddBr як не закриті
                     .LoadAsync();
                 // LicenseBigR
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseBigR)

@@ -215,6 +215,7 @@ namespace ipsFormsDesign.Interfaces
         public string ClientGroup { get; set; }
         public string ClientBrand { get; set; }
         public string StatusName { get; set; }
+        public int? LicId { get; set; }
     }
 
     public class BigRightRequests

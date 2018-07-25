@@ -38,16 +38,16 @@
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.InformationOfUserControl();
             this.gvGenAgrLicences = new Telerik.WinControls.UI.RadGridView();
             this.btnView = new Telerik.WinControls.UI.RadButton();
-            this.btnCreateNewAgr = new Telerik.WinControls.UI.RadButton();
             this.btnAccept = new Telerik.WinControls.UI.RadButton();
             this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
             this.ctrlFooterInfo = new IpsViewComponentLibrary.InformationFooterGenAgrBigRight();
+            this.btnAgrClose = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCreateNewAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAgrClose)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlHeaderInfo
@@ -146,6 +146,7 @@
             this.gvGenAgrLicences.Size = new System.Drawing.Size(906, 184);
             this.gvGenAgrLicences.TabIndex = 8;
             this.gvGenAgrLicences.ThemeName = "Office2013Light";
+            this.gvGenAgrLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvGenAgrLicences_CurrentRowChanged);
             // 
             // btnView
             // 
@@ -156,36 +157,31 @@
             this.btnView.TabIndex = 9;
             this.btnView.Text = "Перегляд";
             this.btnView.ThemeName = "Office2013Light";
-            // 
-            // btnCreateNewAgr
-            // 
-            this.btnCreateNewAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateNewAgr.Location = new System.Drawing.Point(568, 405);
-            this.btnCreateNewAgr.Name = "btnCreateNewAgr";
-            this.btnCreateNewAgr.Size = new System.Drawing.Size(110, 24);
-            this.btnCreateNewAgr.TabIndex = 10;
-            this.btnCreateNewAgr.Text = "Новий договір";
-            this.btnCreateNewAgr.ThemeName = "Office2013Light";
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // btnAccept
             // 
-            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(800, 405);
+            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAccept.Enabled = false;
+            this.btnAccept.Location = new System.Drawing.Point(236, 405);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(110, 24);
             this.btnAccept.TabIndex = 11;
             this.btnAccept.Text = "Підтвердити";
             this.btnAccept.ThemeName = "Office2013Light";
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // btnEditAgr
             // 
-            this.btnEditAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditAgr.Location = new System.Drawing.Point(684, 405);
+            this.btnEditAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEditAgr.Enabled = false;
+            this.btnEditAgr.Location = new System.Drawing.Point(120, 405);
             this.btnEditAgr.Name = "btnEditAgr";
             this.btnEditAgr.Size = new System.Drawing.Size(110, 24);
             this.btnEditAgr.TabIndex = 12;
             this.btnEditAgr.Text = "Редагувати";
             this.btnEditAgr.ThemeName = "Office2013Light";
+            this.btnEditAgr.Click += new System.EventHandler(this.btnEditAgr_Click);
             // 
             // ctrlFooterInfo
             // 
@@ -198,14 +194,26 @@
             this.ctrlFooterInfo.Size = new System.Drawing.Size(912, 155);
             this.ctrlFooterInfo.TabIndex = 13;
             // 
+            // btnAgrClose
+            // 
+            this.btnAgrClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAgrClose.Enabled = false;
+            this.btnAgrClose.Location = new System.Drawing.Point(786, 405);
+            this.btnAgrClose.Name = "btnAgrClose";
+            this.btnAgrClose.Size = new System.Drawing.Size(124, 24);
+            this.btnAgrClose.TabIndex = 14;
+            this.btnAgrClose.Text = "Закрити договір";
+            this.btnAgrClose.ThemeName = "Office2013Light";
+            this.btnAgrClose.Click += new System.EventHandler(this.btnAgrClose_Click);
+            // 
             // MiddleControlCabinetGenAgreement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnAgrClose);
             this.Controls.Add(this.ctrlFooterInfo);
             this.Controls.Add(this.btnEditAgr);
             this.Controls.Add(this.btnAccept);
-            this.Controls.Add(this.btnCreateNewAgr);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.gvGenAgrLicences);
             this.Controls.Add(this.ctrlHeaderInfo);
@@ -215,9 +223,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCreateNewAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAgrClose)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -227,9 +235,9 @@
         private InformationOfUserControl ctrlHeaderInfo;
         private Telerik.WinControls.UI.RadGridView gvGenAgrLicences;
         private Telerik.WinControls.UI.RadButton btnView;
-        private Telerik.WinControls.UI.RadButton btnCreateNewAgr;
         private Telerik.WinControls.UI.RadButton btnAccept;
         private Telerik.WinControls.UI.RadButton btnEditAgr;
         private InformationFooterGenAgrBigRight ctrlFooterInfo;
+        private Telerik.WinControls.UI.RadButton btnAgrClose;
     }
 }

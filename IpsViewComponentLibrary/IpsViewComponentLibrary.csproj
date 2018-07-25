@@ -134,6 +134,12 @@
     <Compile Include="AddFileDialogForm.Designer.cs">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddGeneralAgreementBrForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddGeneralAgreementBrForm.Designer.cs">
+      <DependentUpon>AddGeneralAgreementBrForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddPremisesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -676,6 +682,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddFileDialogForm.resx">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddGeneralAgreementBrForm.resx">
+      <DependentUpon>AddGeneralAgreementBrForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddPremisesForm.resx">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>

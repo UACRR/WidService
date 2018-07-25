@@ -68,8 +68,8 @@ namespace IpsViewComponentLibrary
             this.rdtPickerAgrDate.Size = new System.Drawing.Size(118, 21);
             this.rdtPickerAgrDate.TabIndex = 1;
             this.rdtPickerAgrDate.TabStop = false;
-            this.rdtPickerAgrDate.Text = "09.07.2018";
             this.rdtPickerAgrDate.ThemeName = "Office2013Light";
+            this.rdtPickerAgrDate.Value = new System.DateTime(((long)(0)));
             // 
             // bsLicenseAgrParam
             // 
@@ -113,8 +113,8 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateBegin.Size = new System.Drawing.Size(107, 21);
             this.rdtPickerDateBegin.TabIndex = 2;
             this.rdtPickerDateBegin.TabStop = false;
-            this.rdtPickerDateBegin.Text = "09.07.2018";
             this.rdtPickerDateBegin.ThemeName = "Office2013Light";
+            this.rdtPickerDateBegin.Value = new System.DateTime(((long)(0)));
             this.rdtPickerDateBegin.ValueChanged += new System.EventHandler(this.rdtPickerDateBegin_ValueChanged);
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.rdtPickerDateBegin.GetChildAt(0))).Text = "";
             // 
@@ -129,8 +129,8 @@ namespace IpsViewComponentLibrary
             this.rdtPickerDateEnd.Size = new System.Drawing.Size(118, 21);
             this.rdtPickerDateEnd.TabIndex = 3;
             this.rdtPickerDateEnd.TabStop = false;
-            this.rdtPickerDateEnd.Text = "09.07.2018";
             this.rdtPickerDateEnd.ThemeName = "Office2013Light";
+            this.rdtPickerDateEnd.Value = new System.DateTime(((long)(0)));
             // 
             // lblContrDoFrom
             // 

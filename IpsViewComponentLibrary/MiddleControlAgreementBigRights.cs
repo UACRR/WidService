@@ -19,6 +19,14 @@ namespace IpsViewComponentLibrary
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
+        public object AnketaCompanyDataSource
+        {
+            get => bsAnketaCompany.DataSource;
+            set => bsAnketaCompany.DataSource = value;
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
         public object DictionaryAgrLicTypeDataSource
         {
             get => bsDictAgrLicType.DataSource;

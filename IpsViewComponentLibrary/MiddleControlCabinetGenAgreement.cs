@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary
 {
@@ -45,6 +47,61 @@ namespace IpsViewComponentLibrary
             ctrlHeaderInfo.PhoneManager = head?.Empl?.PhoneNumber;
             ctrlHeaderInfo.EmailManager = head?.Empl?.Email;
 
+        }
+
+        private void gvGenAgrLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            var status = (e?.CurrentRow?.DataBoundItem as BigRightMasterGenAgr)?.AgrStatus ?? -1;
+
+            if (status != 4)
+                btnEditAgr.Enabled = true;
+            else if (btnEditAgr.Enabled)
+                btnEditAgr.Enabled = false;
+
+            if (status == 0 || status == 1)
+                btnAccept.Enabled = true;
+            else if(btnAccept.Enabled)
+                btnAccept.Enabled = false;
+
+            if (status == 2)
+                btnAgrClose.Enabled = true;
+            else if (btnAgrClose.Enabled)
+                btnAgrClose.Enabled = false;
+        }
+
+        private void btnEditAgr_Click(object sender, EventArgs e)
+        {
+            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.LicId;
+            var version = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.Version;
+
+            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == id);
+            var agreementBr = license?.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == version);
+            var anketaComp = _customer.AnketaCompany.SingleOrDefault(rec => rec.Version == _customer.AnkVersion);
+
+            AddGeneralAgreementBrForm agreementBrForm = new AddGeneralAgreementBrForm(IpsGlobal.AnketaDictionaties, license, agreementBr, anketaComp);
+
+            if (agreementBrForm.ShowDialog() == DialogResult.OK)
+            {
+                ;
+            }
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            //(gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr).
+        }
+
+        private void btnAgrClose_Click(object sender, EventArgs e)
+        {
+            if (RadMessageBox.Show("Закрити генеральний договір?", "Підтвердження", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
+            {
+                //TODO закривання договору
+            }
         }
     }
 }
