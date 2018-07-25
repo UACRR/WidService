@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -81,12 +80,12 @@
             this.notAcceptedObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.newObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.notLinkedObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.objectRightBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.seekObjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mediaTrackBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.objectRightBindingSource = new System.Windows.Forms.BindingSource();
+            this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource();
+            this.seekObjectBindingSource = new System.Windows.Forms.BindingSource();
+            this.mediaTrackBindingSource = new System.Windows.Forms.BindingSource();
+            this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource();
+            this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -105,22 +104,22 @@
             this.miNewRightholderPerson = new Telerik.WinControls.UI.RadMenuItem();
             this.miNewRigthholderCompany = new Telerik.WinControls.UI.RadMenuItem();
             this.gvRightholdersList = new Telerik.WinControls.UI.RadGridView();
-            this.rightHolderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rightHolderMainViewBindingSource = new System.Windows.Forms.BindingSource();
             this.newRightholdersCreatePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.newCreateRightholderPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderFullNameComissionPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            this.agreementAddRhBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.agreementAddRhBindingSource = new System.Windows.Forms.BindingSource();
             this.btnNewRightholderCancel1 = new Telerik.WinControls.UI.RadButton();
             this.btnNextAnketa = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.rightHolderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rightHolderBindingSource = new System.Windows.Forms.BindingSource();
             this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
             this.ctrlAnketaPerson = new DebugFormForControls.AnketaPersonRightHolderControl();
-            this.anketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.anketaPersonBindingSource = new System.Windows.Forms.BindingSource();
             this.ipsServiceComissionControl1 = new IpsViewComponentLibrary.IpsServiceComissionControl();
             this.createRightholderAnketaPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnNextPassport = new Telerik.WinControls.UI.RadButton();
@@ -159,7 +158,7 @@
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.txtPostalIndex = new Telerik.WinControls.UI.RadTextBox();
-            this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bankAccountBindingSource = new System.Windows.Forms.BindingSource();
             this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.btnPrevPassport = new Telerik.WinControls.UI.RadButton();
             this.ddlTypeMethodGet = new Telerik.WinControls.UI.RadDropDownList();
@@ -201,19 +200,21 @@
             this.dtChangeCopyrightDateFrom = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel22 = new Telerik.WinControls.UI.RadLabel();
             this.gvChangeCopyrights = new Telerik.WinControls.UI.RadGridView();
-            this.objectRightForChangeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.objectRightForChangeBindingSource = new System.Windows.Forms.BindingSource();
             this.gvChangeCopyrightsTemplate = new Telerik.WinControls.UI.GridViewTemplate();
-            this.objectCopyrightBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.objectCopyrightBindingSource = new System.Windows.Forms.BindingSource();
+            this.copyrightRequestsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.MainPageView = new Telerik.WinControls.UI.RadPageView();
             this.radMenuButtonItem1 = new Telerik.WinControls.UI.RadDropDownMenu();
-            this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radContextMenu = new Telerik.WinControls.UI.RadContextMenu(this.components);
+            this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource();
+            this.radContextMenu = new Telerik.WinControls.UI.RadContextMenu();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuSeparatorItem1 = new Telerik.WinControls.UI.RadMenuSeparatorItem();
             this.radMenuComboItem1 = new Telerik.WinControls.UI.RadMenuComboItem();
             this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuButtonItem2 = new Telerik.WinControls.UI.RadMenuButtonItem();
             this.radMenuHeaderItem1 = new Telerik.WinControls.UI.RadMenuHeaderItem();
+            this.ctrlCopyrightRequests = new IpsViewComponentLibrary.ObjectRightControls.CopyrightRequestControl();
             this.mainPageViewDistribution.SuspendLayout();
             this.mainPageRightsObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).BeginInit();
@@ -357,6 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForChangeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectCopyrightBindingSource)).BeginInit();
+            this.copyrightRequestsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).BeginInit();
@@ -566,12 +568,13 @@
             // 
             this.rightholdersPageView.Controls.Add(this.rightholdersPage);
             this.rightholdersPageView.Controls.Add(this.rightholdersChangePage);
+            this.rightholdersPageView.Controls.Add(this.copyrightRequestsPage);
             this.rightholdersPageView.DefaultPage = this.rightholdersPage;
             this.rightholdersPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightholdersPageView.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
-            this.rightholdersPageView.SelectedPage = this.rightholdersPage;
+            this.rightholdersPageView.SelectedPage = this.copyrightRequestsPage;
             this.rightholdersPageView.Size = new System.Drawing.Size(1182, 632);
             this.rightholdersPageView.TabIndex = 0;
             this.rightholdersPageView.ThemeName = "Office2013Light";
@@ -766,17 +769,17 @@
             gridViewTextBoxColumn2.HeaderText = "Шифр автора / правовласника";
             gridViewTextBoxColumn2.IsAutoGenerated = true;
             gridViewTextBoxColumn2.Name = "InnerCode";
-            gridViewTextBoxColumn2.Width = 90;
+            gridViewTextBoxColumn2.Width = 91;
             gridViewTextBoxColumn3.FieldName = "InterCode";
             gridViewTextBoxColumn3.HeaderText = "IPI";
             gridViewTextBoxColumn3.IsAutoGenerated = true;
             gridViewTextBoxColumn3.Name = "InterCode";
-            gridViewTextBoxColumn3.Width = 90;
+            gridViewTextBoxColumn3.Width = 91;
             gridViewTextBoxColumn4.FieldName = "Name";
             gridViewTextBoxColumn4.HeaderText = "Правовласник";
             gridViewTextBoxColumn4.IsAutoGenerated = true;
             gridViewTextBoxColumn4.Name = "Name";
-            gridViewTextBoxColumn4.Width = 222;
+            gridViewTextBoxColumn4.Width = 223;
             gridViewDateTimeColumn1.AllowResize = false;
             gridViewDateTimeColumn1.FieldName = "RegistrDate";
             gridViewDateTimeColumn1.FormatString = "{0:dd/MM/yyyy}";
@@ -800,7 +803,7 @@
             gridViewTextBoxColumn5.FieldName = "Community_Name";
             gridViewTextBoxColumn5.HeaderText = "Cпільнота";
             gridViewTextBoxColumn5.Name = "Community_Name";
-            gridViewTextBoxColumn5.Width = 139;
+            gridViewTextBoxColumn5.Width = 138;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Зм. статус";
             gridViewCommandColumn1.HeaderText = "";
@@ -844,7 +847,7 @@
             this.gvRightholdersList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvRightholdersList.ReadOnly = true;
             this.gvRightholdersList.ShowGroupPanel = false;
-            this.gvRightholdersList.Size = new System.Drawing.Size(1010, 513);
+            this.gvRightholdersList.Size = new System.Drawing.Size(1012, 513);
             this.gvRightholdersList.TabIndex = 2;
             this.gvRightholdersList.ThemeName = "Office2013Light";
             this.gvRightholdersList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersList_CommandCellClick);
@@ -921,6 +924,7 @@
             // 
             this.ctrlAgreementNumberDate.AgreementName = "ДОГОВІР";
             this.ctrlAgreementNumberDate.DataSource = this.agreementAddRhBindingSource;
+            this.ctrlAgreementNumberDate.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
             this.ctrlAgreementNumberDate.DateBeginDataMember = "DateBegin";
             this.ctrlAgreementNumberDate.DateDataMember = "AgrDate";
             this.ctrlAgreementNumberDate.DateEndDataMember = "DateEnd";
@@ -2451,6 +2455,15 @@
             // 
             this.objectCopyrightBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectCopyright);
             // 
+            // copyrightRequestsPage
+            // 
+            this.copyrightRequestsPage.Controls.Add(this.ctrlCopyrightRequests);
+            this.copyrightRequestsPage.ItemSize = new System.Drawing.SizeF(136F, 27F);
+            this.copyrightRequestsPage.Location = new System.Drawing.Point(140, 5);
+            this.copyrightRequestsPage.Name = "copyrightRequestsPage";
+            this.copyrightRequestsPage.Size = new System.Drawing.Size(1037, 622);
+            this.copyrightRequestsPage.Text = "Запити";
+            // 
             // MainPageView
             // 
             this.MainPageView.Controls.Add(this.mainPageRightholders);
@@ -2460,7 +2473,7 @@
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageViewDistribution;
+            this.MainPageView.SelectedPage = this.mainPageRightholders;
             this.MainPageView.Size = new System.Drawing.Size(1192, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";
@@ -2571,6 +2584,15 @@
             // 
             this.radMenuHeaderItem1.Name = "radMenuHeaderItem1";
             this.radMenuHeaderItem1.Text = "radMenuHeaderItem1";
+            // 
+            // ctrlCopyrightRequests
+            // 
+            this.ctrlCopyrightRequests.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlCopyrightRequests.Location = new System.Drawing.Point(0, 0);
+            this.ctrlCopyrightRequests.Name = "ctrlCopyrightRequests";
+            this.ctrlCopyrightRequests.Presenter = null;
+            this.ctrlCopyrightRequests.Size = new System.Drawing.Size(1037, 622);
+            this.ctrlCopyrightRequests.TabIndex = 0;
             // 
             // RightholderWorkplace
             // 
@@ -2740,6 +2762,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForChangeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectCopyrightBindingSource)).EndInit();
+            this.copyrightRequestsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
             this.MainPageView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).EndInit();
@@ -2901,5 +2924,7 @@
         private Telerik.WinControls.UI.RadMenuItem miAddMusicalComposition;
         private IpsViewComponentLibrary.ContractConsumerMainControl ctrlAgreementNumberDate;
         private IpsViewComponentLibrary.RegisterControls.RegisterListControl ctrlRegisterList;
+        private Telerik.WinControls.UI.RadPageViewPage copyrightRequestsPage;
+        private IpsViewComponentLibrary.ObjectRightControls.CopyrightRequestControl ctrlCopyrightRequests;
     }
 }
