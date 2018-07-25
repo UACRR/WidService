@@ -82,7 +82,9 @@ namespace IpsViewComponentLibrary
                     period.MoneyPeriodLink.Add(link);
                 }
 
-                link.Amount += item.DistAmount; 
+                link.Amount += item.DistAmount;
+                period.Undistribamount += item.DistAmount;
+                link.Paid.DestribAmount += item.DistAmount;
             }
             DialogResult = DialogResult.OK;
         }

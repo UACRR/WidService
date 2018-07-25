@@ -153,18 +153,31 @@ namespace ipsFormsDesign.Services
         public List<PaidPeriod> SavePeriods(int custId, List<PaidPeriod> periods)
         {
             List<PaidPeriod> retList = null;
-            var retCode = _webApi.UpdateItemWithReturn("consumer/Period/Payments/paidperiods", custId.ToString(), periods, out retList );
+            var retCode = _webApi.UpdateListItemWithReturn("consumer/Period/Payments/paidperiods", custId.ToString(), periods, out retList );
             return retList;
         }
+
+        public bool SetLicAgreementStatus(LicenseAgreement agr, int version, int status)
+        {
+            string url = $"consumer/license/State/{version}";
+            var ret = _webApi.UpdateItem<LicenseAgreement>(url, status.ToString(), agr );
+
+            return ret;
+        }
+
         /// <summary>
         /// Зберігання прив'язаних сум
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="listLinks">Прив'язані суми</param>
         /// <returns></returns>
-        public bool SaveLink(int custId, List<MoneyPeriodLink> listLinks)
+        public List<MoneyPeriodLink> SaveLink(int custId, List<MoneyPeriodLink> listLinks)
         {
-            return _webApi.UpdateItem("consumer/Period/Payments/linkperiods", custId.ToString(), listLinks);
+            List<MoneyPeriodLink> list;
+            var retCode = _webApi.UpdateListItemWithReturn("consumer/Period/Payments/linkperiods", custId.ToString(), listLinks, out list );
+            if (retCode)
+                return list;
+            return null;
         }
 
 

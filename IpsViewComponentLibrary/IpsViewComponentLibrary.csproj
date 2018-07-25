@@ -246,10 +246,10 @@
     <Compile Include="CalculationInfoControlNew.Designer.cs">
       <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="CalculationInfoControl.cs">
+    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CalculationInfoControl.Designer.cs">
+    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.Designer.cs">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerPlacesControl.cs">
@@ -757,7 +757,7 @@
     <EmbeddedResource Include="CalculationInfoControlNew.resx">
       <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CalculationInfoControl.resx">
+    <EmbeddedResource Include="ConsumerControls\SmallRight\CalculationInfoControl.resx">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerPlacesControl.resx">
@@ -996,6 +996,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseBigR.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyPeriodLink.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MusicalDesign.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjAct.datasource" />

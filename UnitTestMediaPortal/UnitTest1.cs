@@ -169,9 +169,24 @@ namespace UnitTestMediaPortal
         }
 
         [TestMethod]
-        public void TestGridPayments()
+        public void TestGenAgreementStatus()
         {
+            var _service = new ConsumerService();
+            var custid = 244;
+            var status = 2;
+            var licId = 75;
 
+            var consumer = _service.GetData(custid);
+
+            // Отримати ген угоди
+            var agr = consumer.Client.LicenseAgreement.FirstOrDefault(rec => rec.LicId == licId);
+            // Змінити статус ген угоди
+            var ret = _service.SetLicAgreementStatus(agr, (int)agr.LicVersion,  status);
+            // Змінити статус на Ліцензійний договір
+            Assert.IsTrue(ret);
+            consumer = _service.GetData(custid);
+            agr = consumer.Client.LicenseAgreement.FirstOrDefault(rec=>rec.LicId == licId );
+            Assert.AreEqual(agr.LicStatus,status);
         }
 
     }
