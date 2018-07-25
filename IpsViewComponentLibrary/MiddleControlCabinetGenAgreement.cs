@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary
 
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == id);
             var agreementBr = license?.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == version);
-            var anketaComp = _customer.AnketaCompany.SingleOrDefault(rec => rec.Version == _customer.AnkVersion);
+            var anketaComp = _customer?.Company?.AnketaCompany.SingleOrDefault(rec => rec.Version == _customer.AnkVersion);
 
             AddGeneralAgreementBrForm agreementBrForm = new AddGeneralAgreementBrForm(IpsGlobal.AnketaDictionaties, license, agreementBr, anketaComp);
 
