@@ -157,7 +157,7 @@ namespace RightholderWorkplace
             //gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
             //cbAroundWorld.DataBindings.Add("Checked", _rightHolder, "AroundWord", true, DataSourceUpdateMode.OnPropertyChanged, false);
 
-            var copyrightRequestPresenter = new CopyrightRequestPresenter(ctrlCopyrightRequests);
+            var copyrightRequestPresenter = new CopyrightRequestPresenter(ctrlCopyrightRequests, _rightholderService);
         }
 
         #region Rightholders page

@@ -1,17 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
+using ipsFormsDesign.Interfaces;
+using IpsViewComponentLibrary.Utilities;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
     public partial class CopyrightRequestControl : UserControl
     {
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+        }
+
         private CopyrightRequestPresenter _presenter;
         public CopyrightRequestPresenter Presenter
         {
@@ -25,14 +29,106 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object RightholderListDataSource
+        {
+            get { return rightolderBindingSource.DataSource; }
+            set
+            {
+                if (rightolderBindingSource.DataSource != value)
+                {
+                    rightolderBindingSource.DataSource = value;
+                }
+            }
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object ObjectRightListDataSource
+        {
+            get { return objectRightBindingSource.DataSource; }
+            set
+            {
+                if (objectRightBindingSource.DataSource != value)
+                {
+                    objectRightBindingSource.DataSource = value;
+                }
+            }
+        }
+
         public CopyrightRequestControl()
         {
             InitializeComponent();
+
+            if (!IsDesignMode)
+            {
+                SetDictionaries();
+            }
         }
 
-        private void CopyrightRequestControl_Click(object sender, EventArgs e)
+        private void SetDictionaries()
         {
-            _presenter.Do();
+            gvObjectsRightsList.SetComboboxColumnDataSource("WorkTypeRh", IpsGlobal.AnketaDictionaties.workType);
         }
+
+        private void CopyrightRequestControl_Load(object sender, EventArgs e)
+        {
+            _presenter.UpdateRightholderList();
+        }
+
+        private void gvRightholdersList_SelectionChanged(object sender, EventArgs e)
+        {
+            var custId = ((RightolderWithNotAcceptedCopyrightViewModel)gvRightholdersList.CurrentRow.DataBoundItem).CustId;
+
+            _presenter.UpdateObjectsList(custId);
+        }
+
+        #region Search rightolder
+
+        private void txtSearchRightholder_TextChanged(object sender, EventArgs e)
+        {
+            gvRightholdersList.MasterTemplate.Refresh();
+        }
+
+        private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSearchRightholder.Text))
+            {
+                gvRightholdersList.BeginUpdate();
+                e.Visible = true;
+                for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                gvRightholdersList.EndUpdate(false);
+                return;
+            }
+
+            gvRightholdersList.BeginUpdate();
+            e.Visible = false;
+            for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
+            {
+                //якщо поле пусте
+                if (e.Row.Cells[i].Value == null)
+                    continue;
+
+                string text = e.Row.Cells[i].Value.ToString();
+                if (text.IndexOf(txtSearchRightholder.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                {
+                    e.Visible = true;
+                    e.Row.Cells[i].Style.CustomizeFill = true;
+                    e.Row.Cells[i].Style.DrawFill = true;
+                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
+                }
+                else
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                gvRightholdersList.EndUpdate(false);
+            }
+        }
+
+        #endregion
     }
 }
