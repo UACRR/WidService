@@ -16,19 +16,22 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private ConsumerBigRightView _bigRightView;
+        private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
 
         public delegate IList<BigRightSpectacleView> GetSpectacleView(int custId);
         public event GetSpectacleView OnSpectacleViewNeed;
+
 
         public MiddleControlCabinetPayslips()
         {
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightRegister> registers)
+        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightRegister> registers, IList<BigRightPayslipsSpectacleView> payslipsSpectacleViews)
         {
             _customer = customer;
             _bigRightView = bigRightView;
+            _payslipsSpectacleViews = payslipsSpectacleViews;
             ctrlHeaderInfo.DataSource = _bigRightView;
             gvViewRl.DataSource = registers;
 
@@ -67,6 +70,13 @@ namespace IpsViewComponentLibrary
 
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
+
+        }
+
+        private void gvViewRl_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            if(gvViewRl.Rows.Count == 0 || gvViewRl?.CurrentRow?.DataBoundItem == null) return;
+
 
         }
     }

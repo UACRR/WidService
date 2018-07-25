@@ -29,6 +29,7 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRequestBidAuthors> _authors;
         private IList<BigRightMoneyUndescrib> _moneyUndescribs;
         private IList<BigRightRegister> _registers;
+        private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
 
         public delegate void BackToMainGrid(int custId);
         /// <summary>
@@ -134,11 +135,15 @@ namespace IpsViewComponentLibrary
         /// Дані для вкладки розрахунковий лист
         /// </summary>
         /// <param name="register"></param>
-        public void SetPayslipsDate(IList<object> register)
+        public void SetPayslipsDate(IList<object> register, IList<object> spectacleView)
         {
             _registers = new List<BigRightRegister>();
             foreach (var temp in register)
                 _registers.Add(temp as BigRightRegister);
+
+            _payslipsSpectacleViews = new List<BigRightPayslipsSpectacleView>();
+            foreach(var temp in spectacleView)
+                _payslipsSpectacleViews.Add(temp as BigRightPayslipsSpectacleView);
         }
 
         public void SetMoneyUndescribsData(IList<object> moneyUndescribs)
@@ -201,15 +206,16 @@ namespace IpsViewComponentLibrary
                 //отримання даних
                 OnCustomerUpdateDataNeed?.Invoke(_rowId);
                 //передача даних
-                ctrlCabinet.SetAndUpdateData(_customer, 
-                                             e?.CurrentRow?.DataBoundItem as ConsumerBigRightView,
-                                             _agrData,
-                                             _genAgrs,
-                                             _requests,
-                                             _authors,
-                                             _reference,
-                                             _moneyUndescribs,
-                                             _registers);
+                ctrlCabinet.SetAndUpdateData(_customer,
+                    e?.CurrentRow?.DataBoundItem as ConsumerBigRightView,
+                    _agrData,
+                    _genAgrs,
+                    _requests,
+                    _authors,
+                    _reference,
+                    _moneyUndescribs,
+                    _registers,
+                    _payslipsSpectacleViews);
             }
         }
 

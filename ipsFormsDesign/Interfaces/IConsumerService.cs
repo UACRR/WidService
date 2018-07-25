@@ -316,4 +316,19 @@ namespace ipsFormsDesign.Interfaces
         public string PeriodName { get; set; }
         public string StatusName { get; set; }
     }
+
+    public class BigRightPayslipsSpectacleView
+    {
+
+    }
+
+    public class ParentTemplate
+    {
+
+    }
+
+    public class ChildTemplate
+    {
+
+    }
 }

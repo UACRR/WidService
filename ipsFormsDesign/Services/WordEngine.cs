@@ -456,10 +456,12 @@ namespace ipsFormsDesign.Services
 
 
             DocDate = $"{licenseAgrParam?.LicDate:dd.MM.yyyy}";
-            LicNum = licenseAgrParam?.LicNum;
+            LicNum = licenseAgrParam?.LicNum ?? licAgr?.Agr?.AgreementAddBr.SingleOrDefault()?.AgrNumber;//TODO номер генерального договору 
             prcntInc = $"{licenseAgrParam?.RateAmount:F}";
             minRltGrn = $"{licenseAgrParam?.MinAmount:F}";
-            int minRltKopInt = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100));
+            int minRltKopInt = default(int);
+            if (licenseAgrParam?.MinAmount != null) //TODO генеральний договір не містить такого поля
+                minRltKopInt = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100));
             minRltKop = minRltKopInt.ToString();
             if (minRltKopInt < 10)
             {

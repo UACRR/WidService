@@ -37,6 +37,8 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRequestBidAuthors> _authors;
         private IList<BigRightMoneyUndescrib> _moneyUndescribs;
         private IList<BigRightRegister> _registers;
+        private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
+
         private AnketaDictionaties _anketaDictionaties = null;
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
 
@@ -81,15 +83,16 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public void SetAndUpdateData(Customer customer, 
-                                     ConsumerBigRightView brView, 
-                                     IList<VbrLicense> brLicenses,
-                                     IList<BigRightMasterGenAgr> genAgrs,
-                                     IList<BigRightRequests> requests,
-                                     IList<BigRightRequestBidAuthors> authors,
-                                     IList<BigRightRequests> reference,
-                                     IList<BigRightMoneyUndescrib> moneyUndescribs,
-                                     IList<BigRightRegister> registers)
+        public void SetAndUpdateData(Customer customer,
+            ConsumerBigRightView brView,
+            IList<VbrLicense> brLicenses,
+            IList<BigRightMasterGenAgr> genAgrs,
+            IList<BigRightRequests> requests,
+            IList<BigRightRequestBidAuthors> authors,
+            IList<BigRightRequests> reference,
+            IList<BigRightMoneyUndescrib> moneyUndescribs,
+            IList<BigRightRegister> registers,
+            IList<BigRightPayslipsSpectacleView> payslipsSpectacleViews)
         {
             _customer = customer;
             _brView = brView;
@@ -100,6 +103,7 @@ namespace IpsViewComponentLibrary
             _authors = authors;
             _registers = registers;
             _moneyUndescribs = moneyUndescribs;
+            _payslipsSpectacleViews = payslipsSpectacleViews;
 
             UpdateCurentTab(_currenCabinetTab);
         }
@@ -125,7 +129,7 @@ namespace IpsViewComponentLibrary
                     break;
                 case CabinetTabType.Payslips:
                 {
-                    ctrlPayslips.SetAndUpdateData(_customer,_brView, _registers);
+                    ctrlPayslips.SetAndUpdateData(_customer,_brView, _registers, _payslipsSpectacleViews);
                 }
                     break;
                 case CabinetTabType.Requests:

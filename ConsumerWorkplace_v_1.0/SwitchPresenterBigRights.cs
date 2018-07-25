@@ -201,7 +201,9 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetBigRightBidAuthors(_service.getBRView(typeof(BigRightRequestBidAuthors), "vTsk_1_BRBidAuthors", id));
             _cabinetBr.SetReferanceData(_service.getBRView(typeof(BigRightRequests), "vTsk_1_BRNotice",id));
             _cabinetBr.SetMoneyUndescribsData(_service.getBRView(typeof(BigRightMoneyUndescrib), "vTsk_1_MoneyUndescrib", id));
-            _cabinetBr.SetPayslipsDate(_service.getBRView(typeof(BigRightRegister), "vTSK_1_BRRegister", id));
+            _cabinetBr.SetPayslipsDate(_service.getBRView(typeof(BigRightRegister), "vTSK_1_BRRegister", id),
+                                       _service.getBRView(typeof(BigRightPayslipsSpectacleView), "vTsk_1_BRAuthorsDistributed", id));
+            
         }
 
         private void CabinetBr_OnBackToGridNeed(int custId)

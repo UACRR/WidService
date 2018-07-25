@@ -41,22 +41,31 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvViewRl = new Telerik.WinControls.UI.RadGridView();
             this.btnAddNewRl = new Telerik.WinControls.UI.RadButton();
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.btnDeleteRl = new Telerik.WinControls.UI.RadButton();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
+            this.gvViewSpectacles = new Telerik.WinControls.UI.RadGridView();
+            this.ParentTemplate = new Telerik.WinControls.UI.GridViewTemplate();
+            this.ChildTemplate = new Telerik.WinControls.UI.GridViewTemplate();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ParentTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChildTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // gvViewRl
             // 
-            this.gvViewRl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.gvViewRl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvViewRl.AutoScroll = true;
             this.gvViewRl.AutoSizeRows = true;
@@ -143,7 +152,7 @@
             gridViewTextBoxColumn10.Multiline = true;
             gridViewTextBoxColumn10.Name = "StatusName";
             gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn10.Width = 102;
+            gridViewTextBoxColumn10.Width = 106;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
@@ -195,15 +204,15 @@
             this.gvViewRl.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewRl.Name = "gvViewRl";
             this.gvViewRl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewRl.Size = new System.Drawing.Size(976, 346);
+            this.gvViewRl.Size = new System.Drawing.Size(980, 189);
             this.gvViewRl.TabIndex = 7;
             this.gvViewRl.ThemeName = "Office2013Light";
+            this.gvViewRl.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRl_CurrentRowChanged);
             this.gvViewRl.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRl_CommandCellClick);
             // 
             // btnAddNewRl
             // 
-            this.btnAddNewRl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddNewRl.Location = new System.Drawing.Point(4, 441);
+            this.btnAddNewRl.Location = new System.Drawing.Point(4, 283);
             this.btnAddNewRl.Name = "btnAddNewRl";
             this.btnAddNewRl.Size = new System.Drawing.Size(130, 24);
             this.btnAddNewRl.TabIndex = 8;
@@ -213,8 +222,7 @@
             // 
             // btnToAccept
             // 
-            this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnToAccept.Location = new System.Drawing.Point(140, 441);
+            this.btnToAccept.Location = new System.Drawing.Point(140, 283);
             this.btnToAccept.Name = "btnToAccept";
             this.btnToAccept.Size = new System.Drawing.Size(130, 24);
             this.btnToAccept.TabIndex = 9;
@@ -224,8 +232,7 @@
             // 
             // btnDeleteRl
             // 
-            this.btnDeleteRl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteRl.Location = new System.Drawing.Point(276, 441);
+            this.btnDeleteRl.Location = new System.Drawing.Point(276, 283);
             this.btnDeleteRl.Name = "btnDeleteRl";
             this.btnDeleteRl.Size = new System.Drawing.Size(130, 24);
             this.btnDeleteRl.TabIndex = 10;
@@ -243,22 +250,67 @@
             this.ctrlHeaderInfo.Size = new System.Drawing.Size(705, 79);
             this.ctrlHeaderInfo.TabIndex = 0;
             // 
+            // gvViewSpectacles
+            // 
+            this.gvViewSpectacles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvViewSpectacles.AutoScroll = true;
+            this.gvViewSpectacles.AutoSizeRows = true;
+            this.gvViewSpectacles.EnableCustomFiltering = true;
+            this.gvViewSpectacles.Location = new System.Drawing.Point(3, 313);
+            // 
+            // 
+            // 
+            this.gvViewSpectacles.MasterTemplate.AllowAddNewRow = false;
+            this.gvViewSpectacles.MasterTemplate.AllowDeleteRow = false;
+            this.gvViewSpectacles.MasterTemplate.AllowDragToGroup = false;
+            this.gvViewSpectacles.MasterTemplate.AllowEditRow = false;
+            this.gvViewSpectacles.MasterTemplate.AutoGenerateColumns = false;
+            this.gvViewSpectacles.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gvViewSpectacles.MasterTemplate.EnableCustomFiltering = true;
+            this.gvViewSpectacles.MasterTemplate.EnableFiltering = true;
+            this.gvViewSpectacles.MasterTemplate.EnableGrouping = false;
+            this.gvViewSpectacles.MasterTemplate.ShowFilteringRow = false;
+            this.gvViewSpectacles.MasterTemplate.Templates.AddRange(new Telerik.WinControls.UI.GridViewTemplate[] {
+            this.ParentTemplate,
+            this.ChildTemplate});
+            this.gvViewSpectacles.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvViewSpectacles.Name = "gvViewSpectacles";
+            this.gvViewSpectacles.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvViewSpectacles.Size = new System.Drawing.Size(980, 272);
+            this.gvViewSpectacles.TabIndex = 11;
+            this.gvViewSpectacles.ThemeName = "Office2013Light";
+            // 
+            // ParentTemplate
+            // 
+            this.ParentTemplate.ViewDefinition = tableViewDefinition2;
+            // 
+            // ChildTemplate
+            // 
+            this.ChildTemplate.ViewDefinition = tableViewDefinition3;
+            // 
             // MiddleControlCabinetPayslips
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gvViewSpectacles);
             this.Controls.Add(this.btnDeleteRl);
             this.Controls.Add(this.btnToAccept);
             this.Controls.Add(this.btnAddNewRl);
             this.Controls.Add(this.gvViewRl);
             this.Controls.Add(this.ctrlHeaderInfo);
             this.Name = "MiddleControlCabinetPayslips";
-            this.Size = new System.Drawing.Size(983, 468);
+            this.Size = new System.Drawing.Size(987, 588);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ParentTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChildTemplate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -270,5 +322,8 @@
         private Telerik.WinControls.UI.RadButton btnAddNewRl;
         private Telerik.WinControls.UI.RadButton btnToAccept;
         private Telerik.WinControls.UI.RadButton btnDeleteRl;
+        private Telerik.WinControls.UI.RadGridView gvViewSpectacles;
+        private Telerik.WinControls.UI.GridViewTemplate ParentTemplate;
+        private Telerik.WinControls.UI.GridViewTemplate ChildTemplate;
     }
 }

@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="Telerik.WinControls.GridView, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.PdfViewer, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.RadChart, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
@@ -70,6 +71,12 @@
     <Compile Include="EditPay.Designer.cs">
       <DependentUpon>EditPay.cs</DependentUpon>
     </Compile>
+    <Compile Include="GridTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GridTestForm.Designer.cs">
+      <DependentUpon>GridTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +85,9 @@
     </Compile>
     <EmbeddedResource Include="EditPay.resx">
       <DependentUpon>EditPay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GridTestForm.resx">
+      <DependentUpon>GridTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
