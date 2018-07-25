@@ -1333,6 +1333,7 @@ and t3.licStatus between 0 and 3
 ";
             var linkList = await _dbContext.MoneyPeriodLink.FromSql(query, new SqlParameter("@custId", custId ))
                 .ToListAsync();
+            _dbContext.MoneyPeriodLink.AttachRange(linkList);
 
             _dbContext.AppendList(body, linkList, i => _dbContext.MoneyPeriodLink.Add(i), (l, r) => l.PaidId == r.PaidId && l.PeriodId == r.PeriodId);
 
