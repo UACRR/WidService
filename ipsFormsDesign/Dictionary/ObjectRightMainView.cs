@@ -37,7 +37,7 @@ namespace ipsFormsDesign.Dictionary
         public string Duration { get; set; }
         public string RoleName { get; set; }
         public string SpecName { get; set; }
-        public int? Rate { get; set; }
+        public decimal? Rate { get; set; }
         public string Performer { get; set; }
         public string WorkCommentRH { get; set; }
         public DateTime? WorkDateRH { get; set; }
