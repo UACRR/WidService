@@ -74,6 +74,23 @@ namespace ipsFormsDesign.Services
             var listOfAuthors = _webApi.GetList<Authors>(url);
             return listOfAuthors;
         }
+
+        #region Copyright requests
+
+        public IList<RightolderWithNotAcceptedCopyrightViewModel> GetRightholdersWithNotAcceptedCopyrights()
+        {
+            var list = _webApi.GetList<RightolderWithNotAcceptedCopyrightViewModel>("rh/withNotAcceptedCopyrights");
+            return list;
+        }
+
+        public IList<ObjectRightNotAccepted> GetNotAcceptedObjectsByRightholder(int custId)
+        {
+            var list = _webApi.GetList<ObjectRightNotAccepted>($"rh/notAcceptedObjects/{custId}");
+            return list;
+        }
+
+        #endregion
+
 #if DEBUG
         public class DebugInheritData
         {
