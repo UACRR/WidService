@@ -177,6 +177,13 @@
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectRightControls\AuthorRightholderBrListMode.cs" />
+    <Compile Include="ObjectRightControls\CopyrightRequestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\CopyrightRequestControl.Designer.cs">
+      <DependentUpon>CopyrightRequestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\CopyrightRequestPresenter.cs" />
     <Compile Include="ObjectRightControls\ObjectRightBrInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -710,6 +717,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderBrListControl.resx">
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\CopyrightRequestControl.resx">
+      <DependentUpon>CopyrightRequestControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightBrInfoControl.resx">
       <DependentUpon>ObjectRightBrInfoControl.cs</DependentUpon>
