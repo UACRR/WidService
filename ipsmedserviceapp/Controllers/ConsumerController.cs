@@ -69,11 +69,9 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.BankAccount)
                         .Include(item => item.FileCustomer)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
-                        .Include(item => item.Client).ThenInclude(cln => cln.LicenseAgreement)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
                         .SingleOrDefaultAsync();
             // Отримати дані по Контрактах
-            if (cust.Client.LicenseAgreement.Count > 0)
                 await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                     .Query()
                     .Where(agree => agree.LicStatus < 4)
@@ -82,8 +80,6 @@ namespace ipsmedserviceapp.Controllers
 
                     .Include(rec => rec.PaidPeriod)
                     .LoadAsync();
-
-
 
             foreach (var licAgreement in cust.Client.LicenseAgreement)
             {
@@ -96,7 +92,7 @@ namespace ipsmedserviceapp.Controllers
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseBigR)
                     .Query()
                     .Where(item => item.LicVersion >= licAgreement.LicVersion)
-                    .Include( item => item.Obj ).ThenInclude(obj=>obj.CopyRight).ThenInclude(cprt=>cprt.WorkRh)
+                    .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.WorkRh)
                     .LoadAsync();
                 // Лцензії для майданчиків
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
@@ -713,7 +709,7 @@ namespace ipsmedserviceapp.Controllers
             else
             {
                 QueryStr = string.Concat(QueryStr, " where custId = @custId");
-                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId ) });
+                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId) });
                 return Json(list);
 
             }
@@ -809,32 +805,94 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         #region Action FOR LICENSEAGREEMENT
 
         /// <summary>
-        /// 
+        /// Зміна статусу 
         /// </summary>
         /// <param name="licid"></param>
         /// <param name="version"></param>
         /// <param name="status"></param>
-        private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, int? oldStatus, int status, bool toChangeVersion)
+        private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, /*int? oldStatus,*/ int status, bool toChangeVersion)
         {
-            var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid && rec.LicStatus != 4).SingleOrDefaultAsync();
+
+            // *******  Отримати дані з бази по договорам
+
+            var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)
+                .Include(rec => rec.Agr)
+                .Include(rec => rec.LicCodeNavigation).ThenInclude(code => code.UsesKindNavigation)
+                .SingleOrDefaultAsync();
+
+            // LicClass тільки для великих прав
+            if (licAgreement.LicClass == 1) // Ген угода Великих Прав 
+            {
+                await _dbContext.Entry(licAgreement.Agr).Collection(rec => rec.AgreementAddBr).Query()
+                    .Where(item => item.Version >= licAgreement.Agr.Version).LoadAsync();
+
+                await _dbContext.Entry(licAgreement.Agr).Collection(rec => rec.LicenseAgreement)
+                    .LoadAsync();
+
+                var cntLicense = licAgreement.Agr.LicenseAgreement.Count(rec => rec.LicStatus != 4 && rec.LicClass == 2);
+                // Перевірка на пусту ген угоду
+                if (status == 4 && cntLicense > 0)
+                    throw new ArgumentException("Закривається Генеральна угода з незакритими ліцензійними угодами");
+            }
+
             await _dbContext.Entry(licAgreement).Collection(item => item.LicenseAgrParam)
                 .Query()
-                .Where(rec => rec.LicVersion == version).LoadAsync();
+                .Where(rec => rec.LicVersion >= version).LoadAsync();
 
-            LicenseAgrParam licParam = null;
 
-            licParam = licAgreement.LicenseAgrParam.Where(rec => rec.LicVersion == version && rec.LicStatus != 4
-                            && (rec.LicStatus == (oldStatus == null ? rec.LicStatus : oldStatus))).SingleOrDefault();
-            if (licParam == null)
-                throw new ArgumentException("Bad Verion or Status License Agreement For Accept");
 
-            if (toChangeVersion)
+            LicenseAgrParam licParam = licAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == licAgreement.LicVersion);
+            AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == licAgreement.Agr.Version);
+
+
+            // Якщо змінюється версія 
+            if (version > licAgreement.LicVersion)
             {
-                licAgreement.LicStatus = status;
+                if (licAgreement.LicClass != 1) // Малі права та ліцензійні договора Великих прав
+                {
+                    licParam.LicStatus = 4; // Close
+                    if (licAgreement.LicCodeNavigation.UsesKindNavigation.UsesType == 2) // малі права
+                        licAgreement.Agr.Version = version;
+                }
+                else
+                {
+                    if (addBr != null)
+                        addBr.AgrStatus = 4; // Close
+                    licAgreement.Agr.Version = version;
+
+                }
                 licAgreement.LicVersion = version;
+
+                licParam = licAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == licAgreement.LicVersion);
+                addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == licAgreement.Agr.Version);
             }
-            licParam.LicStatus = status;
-            licParam.ModifyDate = DateTime.Now;
+
+            // *******   Зміна статусу
+            licAgreement.LicStatus = status;
+
+            if (licAgreement.LicClass != 1) // не Генеральна угода
+            {
+                licParam.LicStatus = status;
+                if (licAgreement.LicCodeNavigation.UsesKindNavigation.UsesType == 2) // Малі права
+                    licAgreement.Agr.AgrStatus = status;
+                licParam.LicStatus = status;
+            }
+            else // Генеральна угода
+            {
+                licAgreement.Agr.AgrStatus = status;
+                if (addBr != null)
+                    addBr.AgrStatus = status;
+            }
+
+            if (status == 4) // Закрити договір
+            {
+                foreach (var item in licAgreement.LicenseAgrParam)
+                    item.LicStatus = status;
+                foreach (var item in licAgreement.Agr.AgreementAddBr)
+                    item.AgrStatus = status;
+
+            }
+
 
             return licAgreement;
 
@@ -845,14 +903,14 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="licid">Id Ліцензійного договору</param>
         /// <param name="version">Версія доп угоди</param>
         /// <returns></returns>
-        [HttpPost("license/accept/{licid}/{version}")]
-        public async Task<IActionResult> LicenseActionAccept(int licid, int version)
+        [HttpPut("license/State/{version}/{status}")]
+        public async Task<IActionResult> LicenseActionAccept(int version, int status, [FromBody] LicenseAgreement lic)
         {
             IDbContextTransaction tran = null;
             try
             {
 
-                await setLicAgrStatus(licid, version, 1, 2, true);
+                await setLicAgrStatus(lic.LicId, version, status, true);
                 tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
@@ -867,36 +925,36 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
         }
 
-        /// <summary>
-        /// Закрити Ліценз. Договір або Доп договір до нього
-        /// </summary>
-        /// <param name="licid">Id Ліцензійного договору</param>
-        /// <param name="version">Версія доп угоди</param>
-        /// <returns></returns>
-        [HttpPost("license/close/{licid}/{version}")]
-        public async Task<IActionResult> LicenseActionClose(int licid, int version)
-        {
-            IDbContextTransaction tran = null;
-            try
-            {
+        ///// <summary>
+        ///// Закрити Ліценз. Договір або Доп договір до нього
+        ///// </summary>
+        ///// <param name="licid">Id Ліцензійного договору</param>
+        ///// <param name="version">Версія доп угоди</param>
+        ///// <returns></returns>
+        //[HttpPost("license/close/{licid}/{version}")]
+        //public async Task<IActionResult> LicenseActionClose(int licid, int version)
+        //{
+        //    IDbContextTransaction tran = null;
+        //    try
+        //    {
 
-                var licAgreement = await setLicAgrStatus(licid, version, null, 4, false);
-                if (licAgreement.LicenseAgrParam.Where(rec => rec.LicStatus != 4).Count() == 0)
-                    licAgreement.LicStatus = 4;
+        //        var licAgreement = await setLicAgrStatus(licid, version, 4, false);
+        //        if (licAgreement.LicenseAgrParam.Where(rec => rec.LicStatus != 4).Count() == 0)
+        //            licAgreement.LicStatus = 4;
 
-                tran = await _dbContext.Database.BeginTransactionAsync();
-                await _dbContext.SaveChangesAsync();
-                tran.Commit();
-                tran = null;
+        //        tran = await _dbContext.Database.BeginTransactionAsync();
+        //        await _dbContext.SaveChangesAsync();
+        //        tran.Commit();
+        //        tran = null;
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                tran?.Rollback();
-                return BadRequest(ex.InnerException.Message);
-            }
-        }
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        tran?.Rollback();
+        //        return BadRequest(ex.InnerException.Message);
+        //    }
+        //}
 
 
         #endregion 
@@ -1059,7 +1117,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="typeDocument"></param>
         /// <returns></returns>
         [HttpPost("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, string comment,  IFormFile file)
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, string comment, IFormFile file)
         {
 
             // Перевірка існування дерикторії
@@ -1127,7 +1185,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
                 // Востанавлюємо збережений файл
                 if (System.IO.File.Exists(consumerSavePath))
-                    System.IO.File.Move(consumerSavePath, consumerPath );
+                    System.IO.File.Move(consumerSavePath, consumerPath);
                 return BadRequest();
             }
 
@@ -1206,10 +1264,10 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
         }
 #if DEBUG
         [HttpPut("Period/Payments/{custId}")]
-        public async Task<IActionResult> PutExternalPay(int custId, [FromBody] List<ExternalPay> pays )
+        public async Task<IActionResult> PutExternalPay(int custId, [FromBody] List<ExternalPay> pays)
         {
             List<ExternalPay> dest = new List<ExternalPay>();
-            foreach( var item in pays.Where( rec => rec.PaidId == 0))
+            foreach (var item in pays.Where(rec => rec.PaidId == 0))
             {
                 var addRec = new ExternalPay();
                 addRec.SetFields(item);
@@ -1221,16 +1279,17 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
             try
             {
                 await _dbContext.SaveChangesAsync();
-                foreach( var item in dest )
+                foreach (var item in dest)
                 {
-                    MoneyReceived addRec = new MoneyReceived {
+                    MoneyReceived addRec = new MoneyReceived
+                    {
                         PaidId = item.PaidId,
                         MoneyType = 1,
                         CustId = custId,
                         DateInvoice = item.DocDate ?? DateTime.Today,
                         NumberInvoice = item.DocNum,
                         GoalInvoice = item.Nplat,
-                        Amount = Convert.ToDecimal( item.SCredit ),
+                        Amount = Convert.ToDecimal(item.SCredit),
                         DestribAmount = 0,
                         DestribPrepay = 0
                     };
@@ -1252,7 +1311,7 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
             }
         }
 
- 
+
 
         [HttpGet("Period/GetCustomerInfo/{custId}")]
         public async Task<IActionResult> GetCustomerInfo(int custId)
@@ -1283,14 +1342,14 @@ where t2.licStatus between 0 and 3
 and t2.custId = @custId
 ", new SqlParameter("@custId", custId))
                 .LoadAsync();
-            
+
 
 
             return Json(cust);
         }
 
         [HttpPut("Period/Payments/paidperiods/{custId}")]
-        public async Task<IActionResult> SavePeriods( int custId, [FromBody] List<PaidPeriod> body )
+        public async Task<IActionResult> SavePeriods(int custId, [FromBody] List<PaidPeriod> body)
         {
             var dest = await _dbContext.PaidPeriod.FromSql(@"
 select t1.* from PaidPeriod t1
@@ -1307,9 +1366,9 @@ and t2.custId = @custId
             {
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
-                
+
                 tran = null;
-                
+
                 return Json(dest);
             }
             catch (Exception)
@@ -1321,7 +1380,7 @@ and t2.custId = @custId
         }
 
         [HttpPut("Period/Payments/linkperiods/{custId}")]
-        public async Task<IActionResult> SaveLink( int custId, [FromBody] List<MoneyPeriodLink> body )
+        public async Task<IActionResult> SaveLink(int custId, [FromBody] List<MoneyPeriodLink> body)
         {
             string query = @"
 select t1.* from MoneyPeriodLink t1
@@ -1331,7 +1390,7 @@ where
 t3.custId = @custId
 and t3.licStatus between 0 and 3
 ";
-            var linkList = await _dbContext.MoneyPeriodLink.FromSql(query, new SqlParameter("@custId", custId ))
+            var linkList = await _dbContext.MoneyPeriodLink.FromSql(query, new SqlParameter("@custId", custId))
                 .ToListAsync();
             _dbContext.MoneyPeriodLink.AttachRange(linkList);
 
@@ -1344,9 +1403,9 @@ and t3.licStatus between 0 and 3
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
                 tran = null;
-                linkList = await _dbContext.MoneyPeriodLink.FromSql(query , new SqlParameter("@custId", custId))
+                linkList = await _dbContext.MoneyPeriodLink.FromSql(query, new SqlParameter("@custId", custId))
                 .Include(rec => rec.Paid)
-                .Include(rec => rec.Period )
+                .Include(rec => rec.Period)
                 .ToListAsync();
             }
             catch (Exception)

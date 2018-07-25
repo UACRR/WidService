@@ -36,13 +36,13 @@ namespace TestControls
 
             payForm = new EditPay();
 
-            var employee = _service.getMainView(ConsumerFilterEnum.Working );
+            var employee = _service.getMainView(ConsumerFilterEnum.Working);
             bindingSource1.DataSource = employee;
             if (radGridView1.RowCount > 0)
             {
                 radGridView1.Rows[0].IsCurrent = true;
             }
-            if( employee.Count == 0 )
+            if (employee.Count == 0)
                 SetButtonDisable();
 
             isInit = true;
@@ -50,41 +50,39 @@ namespace TestControls
 
         private void BindPayPeriod1_SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)
         {
-            List<MoneyPeriodLink>  retList = _service.SaveLink( _curItem.CustId, e );
-            if(retList !=null)
+            List<MoneyPeriodLink> retList = _service.SaveLink(_curItem.CustId, e);
+            if (retList != null)
             {
                 var dic = retList.ToDictionary(rec => new { rec.PeriodId, rec.PaidId });
-                e.ForEach (dest => {
+                e.ForEach(dest =>
+                {
                     var sors = dic[new { dest.PeriodId, dest.PaidId }];
                     dest.SetFields(sors);
                     dest.Paid.SetFields(sors.Paid);
-                    dest.Period.SetFields(sors.Period);
-                }) ;
+                });
             }
         }
 
         private void BindPayPeriod1_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
         {
             List<PaidPeriod> retList = _service.SavePeriods(_curItem.CustId, e);
-            if( retList != null )
+            if (retList != null)
             {
                 var dic = retList.ToDictionary(di => di.PeriodName);
-                foreach( var item in e)
+                foreach (var item in e)
                 {
                     var period = dic[item.PeriodName];
                     if (item.PeriodId != period.PeriodId)
                         item.PeriodId = period.PeriodId;
-
-
                 }
             }
         }
 
         private void SetButtonDisable()
         {
-            radButton1.Enabled=false;
-            radButton2.Enabled=false;
-            radButton3.Enabled=false;
+            radButton1.Enabled = false;
+            radButton2.Enabled = false;
+            radButton3.Enabled = false;
         }
 
         private void radGridView2_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
@@ -97,11 +95,17 @@ namespace TestControls
             bindingSource2.DataSource = listSource;
             checkBox1.Text = _curItem.Name;
 
-            Task.Run(() => {
-            var Customer = _service.GetData(_curItem.CustId);
-            if (InvokeRequired)
+            Task.Run(() =>
             {
-                bindPayPeriod1.BeginInvoke( (Action) (() => bindPayPeriod1.Customer = Customer ));
+                var Customer = _service.GetData(_curItem.CustId);
+                if (InvokeRequired)
+                {
+                    bindPayPeriod1.BeginInvoke((Action)(() => bindPayPeriod1.Customer = Customer));
+
+                }
+                else
+                {
+                    bindPayPeriod1.Customer = Customer;
                 }
             });
 
@@ -113,7 +117,7 @@ namespace TestControls
             ExternalPay addRow = new ExternalPay { OkpoCorr = item.Innokpo, NameCorr = item.Name };
             payForm.bindingSource1.DataSource = addRow;
 
-            if( payForm.ShowDialog() == DialogResult.OK )
+            if (payForm.ShowDialog() == DialogResult.OK)
             {
                 ObservableListSource<ExternalPay> listSource = (ObservableListSource<ExternalPay>)bindingSource2.DataSource;
                 ((IListSource)listSource).GetList().Add(addRow);
@@ -140,11 +144,11 @@ namespace TestControls
                 radGridView2.Enabled = false;
             }
         }
-        
+
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-           radSplitContainer1.SplitPanels[0].Collapsed = !checkBox1.Checked;
+            radSplitContainer1.SplitPanels[0].Collapsed = !checkBox1.Checked;
         }
 
         #region ФІЛЬТРАЦІЯ (пошук)

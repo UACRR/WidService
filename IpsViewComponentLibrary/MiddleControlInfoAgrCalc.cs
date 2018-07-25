@@ -74,7 +74,7 @@ namespace IpsViewComponentLibrary
         public void SetDictionary(AnketaDictionaties dict)
         {
             _dictionaties = dict;
-            calculationCtrl.SetDictionary(dict);
+            // calculationCtrl.SetDictionary(dict);
         }
 
         public void SetCustomerData(Customer cust)
@@ -87,7 +87,7 @@ namespace IpsViewComponentLibrary
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
             reportsControl.SetData(cust);
-            reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
+            // reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
             
         }
 
@@ -219,7 +219,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetCalculationData()
         {
-            calculationCtrl.SetData(_customer);
+            // calculationCtrl.SetData(_customer);
         }
 
         /// <summary>

@@ -1,0 +1,409 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
+using Telerik.WinControls;
+using ipsFormsDesign.Data;
+
+namespace IpsViewComponentLibrary
+{
+    public partial class CalculationInfoControl : UserControl
+    {
+
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+        public event EventHandler<List<MoneyPeriodLink>> SaveLinkCommandExecuted;
+
+        public CalculationInfoControl()
+        {
+            InitializeComponent();
+            SetupDragDrop();
+        }
+
+        private void SetupDragDrop()
+        {
+            SubscribeForGridEvents(gvUserMoneys, gvLicenseAgr);
+            SubscribeForGridEvents(gvLicenseAgr, gvUserMoneys);
+        }
+
+
+
+        private void SubscribeForGridEvents(RadGridView grid, RadGridView GridTarget)
+        {
+            RadDragDropService dragDropService = grid.GridViewElement.GetService<RadDragDropService>();
+            dragDropService.PreviewDragOver += new EventHandler<RadDragOverEventArgs>(dragDropService_PreviewDragOver);
+            dragDropService.PreviewDragDrop += new EventHandler<RadDropEventArgs>(dragDropService_PreviewDragDrop);
+            dragDropService.PreviewDragStart += new EventHandler<PreviewDragStartEventArgs>(svc_PreviewDragStart);
+
+            var behavior = grid.GridBehavior as BaseGridBehavior;
+            grid.GridBehavior = behavior;
+
+            behavior.UnregisterBehavior(typeof(GridViewDataRowInfo));
+            behavior.RegisterBehavior(typeof(GridViewDataRowInfo), new RowSelectionGridBehavior(GridTarget));
+
+        }
+
+
+        #region Drag & drop logic
+
+        private void svc_PreviewDragStart(object sender, PreviewDragStartEventArgs e)
+        {
+            e.CanStart = true;
+        }
+
+        private void dragDropService_PreviewDragDrop(object sender, RadDropEventArgs e)
+        {
+            RadItem dropTarget = e.HitTarget as RadItem;
+            if (dropTarget == null)
+                return;
+            RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
+            var dropTargetRow = dropTarget as GridDataRowElement;
+
+            dropTarget = (RadItem)e.DragInstance;
+            if (dropTarget == null)
+                return;
+
+            var rowBehavior = ((BaseGridBehavior)targetGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+            rowBehavior.SetTargetRow(dropTargetRow);
+
+            runFromDragDrop = true;
+
+            e.Handled = true;
+
+            btnDistribute.BeginInvoke((Action)(() =>
+            {
+                btnDistribute.PerformClick();
+            }));
+
+
+
+
+        }
+
+        private void dragDropService_PreviewDragOver(object sender, RadDragOverEventArgs e)
+        {
+            if (e.DragInstance is GridDataRowElement && e.HitTarget is GridDataRowElement)
+            {
+                RadItem dropTarget = e.HitTarget as RadItem;
+                RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
+
+                var behavior = targetGrid.GridBehavior as BaseGridBehavior;
+                var rowViewBehavior = behavior.GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+
+                dropTarget = (RadItem)e.DragInstance;
+                var sourceGrid = dropTarget.ElementTree.Control as RadGridView; ;
+                var rowViewSorceBehavior = ((BaseGridBehavior)sourceGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+
+
+
+                if (rowViewSorceBehavior == null || rowViewSorceBehavior.Target != targetGrid)
+                    return;
+
+
+                e.CanDrop = (e.HitTarget is GridDataRowElement ||
+                            e.HitTarget is GridTableElement ||
+                            e.HitTarget is GridSummaryRowElement);
+            }
+        }
+
+        private void dragDropService_PreviewDragHint(object sender, PreviewDragHintEventArgs e)
+        {
+            SnapshotDragItem dragInstance = e.DragInstance as SnapshotDragItem;
+
+            if (dragInstance == null)
+            {
+                return;
+            }
+
+            GridViewRowInfo rowInfo = e.DragInstance.GetDataContext() as GridViewRowInfo;
+
+            if (rowInfo != null && rowInfo.ViewTemplate.MasterTemplate.SelectedRows.Count > 1)
+            {
+                e.UseDefaultHint = false;
+            }
+        }
+
+        #endregion
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private Customer _customer;
+        public Customer Customer
+        {
+            get { return _customer; }
+            set
+            {
+                _customer = value;
+                if (_customer == null)
+                {
+                    AllmoneyReceivedBindingSource.DataSource = typeof(MoneyReceived);
+                    LicAgreementBindingSource.DataSource = typeof(LicenseAgrParam);
+                    return;
+                }
+
+                normalizeData(_customer);
+                SetupAllBinding();
+            }
+
+        }
+
+        private void normalizeData(Customer cust)
+        {
+            var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
+            var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
+            var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
+            var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
+
+            foreach (var item in cust.Client.LicenseAgreement)
+            {
+                item.LicCodeNavigation = dicType[item.LicType ?? 1];
+
+                foreach (var licParam in item.LicenseAgrParam)
+                {
+                    licParam.Lic = item;
+                    licParam.LicStatusNavigation = dicStatus[licParam.LicStatus ?? 1];
+                    licParam.PeriodCodeNavigation = dicPeriod[licParam.PeriodCode ?? 1];
+                }
+                foreach (var period in item.PaidPeriod)
+                {
+                    period.StatusNavigation = dicPeriodStatus[period.Status];
+                    foreach (var link in period.MoneyPeriodLink)
+                        link.Period = period;
+                }
+            }
+        }
+
+        private void BindLicAgreements()
+        {
+            var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.SingleOrDefault(item => item.LicVersion == rec.LicVersion && rec.LicStatus == 2)).ToList();
+            if (licAgr.Count() > 0)
+                LicAgreementBindingSource.DataSource = licAgr;
+            else
+                LicAgreementBindingSource.DataSource = typeof(LicenseAgrParam);
+        }
+
+        private void BindAllSum()
+        {
+            var list = _customer.Client.MoneyReceived.Where(rec => rec.Amount > (rec.DestribAmount + rec.DestribPrepay));
+            if (list.Count() == 0)
+            {
+                AllmoneyReceivedBindingSource.DataSource = typeof(MoneyReceived);
+            }
+            else
+                AllmoneyReceivedBindingSource.DataSource = list;
+        }
+
+        private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            SetGrid3DataSource();
+        }
+
+        private void radGridView3_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            SetGrid4DataSource();
+        }
+
+        // Period
+        private void SetGrid3DataSource()
+        {
+            if (gvLicenseAgr.CurrentRow != null)
+            {
+                var licItem = (LicenseAgrParam)gvLicenseAgr.CurrentRow.DataBoundItem;
+                paidPeriodBindingSource.DataSource = licItem.Lic?.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
+            }
+            else
+            {
+                paidPeriodBindingSource.DataSource = typeof(PaidPeriod);
+            }
+        }
+        //PeriodMoney
+        private void SetGrid4DataSource()
+        {
+            if (gvPeriodsPayment.CurrentRow != null)
+            {
+                var paydItem = (PaidPeriod)gvPeriodsPayment.CurrentRow.DataBoundItem;
+
+                PeriodMoneyReceivedBindingSource.DataSource = paydItem.MoneyPeriodLink;
+            }
+            else
+            {
+                PeriodMoneyReceivedBindingSource.DataSource = typeof(MoneyPeriodLink);
+            }
+        }
+
+
+
+
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            var currentAgree = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
+            CreatePeriod dialog = new CreatePeriod(currentAgree);
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                SavePariodCommandExecuted(this, currentAgree.Lic.PaidPeriod.ToList());
+                SetupAllBinding();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        bool runFromDragDrop = false;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void radButton2_Click(object sender, EventArgs e)
+        {
+
+            MoneyReceived pay = null;
+            LicenseAgrParam licParam = null;
+            if (runFromDragDrop)
+            {
+                var rowBehavior = ((BaseGridBehavior)gvUserMoneys.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+                var gridDataRowElement = rowBehavior.DragDropRow;
+
+                if (gridDataRowElement == null)
+                    return;
+
+                pay = gridDataRowElement.RowInfo.DataBoundItem as MoneyReceived;
+
+                rowBehavior = ((BaseGridBehavior)gvLicenseAgr.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+                gridDataRowElement = rowBehavior.DragDropRow;
+
+                if (gridDataRowElement == null)
+                    return;
+
+                licParam = gridDataRowElement.RowInfo.DataBoundItem as LicenseAgrParam;
+
+                runFromDragDrop = false;
+            }
+            else
+            {
+                if (gvUserMoneys.CurrentRow == null || gvLicenseAgr.CurrentRow == null)
+                    return;
+
+                pay = gvUserMoneys.CurrentRow.DataBoundItem as MoneyReceived;
+                licParam = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
+
+            }
+
+            if (licParam?.Lic == null || pay == null)
+                return;
+
+
+            DistributionForm form = new DistributionForm(pay, licParam.Lic);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                List<MoneyPeriodLink> ListLink = new List<MoneyPeriodLink>();
+                foreach (var item in licParam.Lic.PaidPeriod)
+                {
+                    var itemList = item.MoneyPeriodLink;
+                    ListLink.AddRange(itemList);
+
+                }
+
+                SaveLinkCommandExecuted(this, ListLink);
+                foreach(var item in ListLink)
+                {
+                    var payCustomer = _customer.Client.MoneyReceived.SingleOrDefault(rec => rec.PaidId == item.PaidId);
+                    if (payCustomer != null)
+                        payCustomer.DestribAmount = item.Paid.DestribAmount;
+                }
+                //SetupAllBinding();
+                RefreshData();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void RefreshData()
+        {
+            gvPeriodsPayment.MasterTemplate.Refresh();
+            gvPayments.MasterTemplate.Refresh();
+            gvLicenseAgr.MasterTemplate.Refresh();
+            gvUserMoneys.MasterTemplate.Refresh();
+        }
+
+        private void SetupAllBinding()
+        {
+
+            BindAllSum();
+            BindLicAgreements();
+
+            SetGrid3DataSource();
+            SetGrid4DataSource();
+        }
+
+        private void gvLicenseAgr_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            var ri = e.RowElement.RowInfo;
+            var licAgreement = (LicenseAgrParam)ri.DataBoundItem;
+
+            var debt = licAgreement.Lic?.PaidPeriod.Sum(rec => rec.Amount - rec.Distribamount - rec.Undistribamount) ?? 0;
+            ri.Cells["Debt"].Value = Convert.ToDecimal(debt < 0 ? 0 : debt);
+        }
+
+
+
+
+    }
+
+    public class GridLicAgr
+    {
+        public int Id { get; set; }
+        public int LicenseId { get; set; }
+        public string License { get; set; }
+        public string Series { get; set; }
+        public string AgrNumber { get; set; }
+        public string DateBegin { get; set; }
+        public string DateEnd { get; set; }
+        public decimal Amount { get; set; }
+        public string State { get; set; }
+        public string PeriodPayment { get; set; }
+        public decimal Debt { get; set; }
+    }
+    public class GridPeriods
+    {
+        //public int LicId { get; set; }
+
+        public int PeriodId { get; set; }
+
+        public string PeriodName { get; set; }
+        public int Status { get; set; }
+        public decimal Amount { get; set; }
+        public decimal AmountBound { get; set; }
+        // public decimal Undistribamount { get; set; }
+        public decimal DistAmount { get; set; }
+        public decimal Arrears { get; set; }
+        public bool ManualSet { get; set; }
+    }
+
+    public class GridPayments
+    {
+        public int PaidId { get; set; }
+        public string SelectPeriod { get; set; }
+        public string DateInvoice { get; set; }
+        public string NumberInvoice { get; set; }
+        public string GoalInvoice { get; set; }
+        public decimal Amount { get; set; }
+        public decimal DestribAmount { get; set; }
+    }
+}

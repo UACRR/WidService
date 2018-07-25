@@ -156,6 +156,15 @@ namespace ipsFormsDesign.Services
             var retCode = _webApi.UpdateListItemWithReturn("consumer/Period/Payments/paidperiods", custId.ToString(), periods, out retList );
             return retList;
         }
+
+        public bool SetLicAgreementStatus(LicenseAgreement agr, int version, int status)
+        {
+            string url = $"consumer/license/State/{version}";
+            var ret = _webApi.UpdateItem<LicenseAgreement>(url, status.ToString(), agr );
+
+            return ret;
+        }
+
         /// <summary>
         /// Зберігання прив'язаних сум
         /// </summary>
