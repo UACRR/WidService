@@ -703,5 +703,22 @@ t2.custId = @custid
 #endif
         #endregion
 
+        #region Copyright requests
+
+        [HttpGet("withNotAcceptedCopyrights")]
+        public async Task<IActionResult> GetRightholderWithNotAcceptedCopyrights()
+        {
+            var list = await _dbContext.getViewData("select * from vtsk_3_WRH_03", null);
+            return Json(list);
+        }
+
+        [HttpGet("notAcceptedObjects/{custId}")]
+        public async Task<IActionResult> GetNotAcceptedObjectsByRightholder(int custId)
+        {
+            var list = await _dbContext.getViewData("select * from ft_tsk_3_WRH_03( @custId )", new[] { new SqlParameter("@custId", custId) });
+            return Json(list);
+        }
+
+        #endregion
     }
 }
