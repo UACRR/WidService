@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -63,6 +64,9 @@
             this.btnViewReport = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.bindingLicAgreement = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -74,6 +78,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).BeginInit();
             this.SuspendLayout();
             // 
             // gvLicenseAgr
@@ -340,6 +347,18 @@
             this.radLabel4.TabIndex = 20;
             this.radLabel4.Text = "Активні договори";
             // 
+            // bindingLicAgreement
+            // 
+            this.bindingLicAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            // 
+            // bindingPaidPeriod
+            // 
+            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
+            // 
+            // bindingReports
+            // 
+            this.bindingReports.DataSource = typeof(ipsFormsDesign.Model.Register);
+            // 
             // ReportsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,6 +385,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -380,5 +402,8 @@
         private Telerik.WinControls.UI.RadButton btnViewReport;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
         private Telerik.WinControls.UI.RadLabel radLabel4;
+        private System.Windows.Forms.BindingSource bindingLicAgreement;
+        private System.Windows.Forms.BindingSource bindingPaidPeriod;
+        private System.Windows.Forms.BindingSource bindingReports;
     }
 }
