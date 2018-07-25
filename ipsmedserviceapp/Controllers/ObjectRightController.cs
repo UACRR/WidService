@@ -187,6 +187,111 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        #region Big right
+
+        private async Task<ObjectRight> GetObjectRightBrById(int objId)
+        {
+            var objectRight = await _dbContext.ObjectRight
+                .Include(rec => rec.Authors)
+                .Include(rec => rec.CopyRight)
+                    .ThenInclude(cr => cr.LicAuthorBr)
+                .Include(rec => rec.CopyRight)
+                    .ThenInclude(cr => cr.WorkRh)
+                .Include(rec => rec.LicenseBigR)
+                .FirstOrDefaultAsync(rec => rec.ObjId == objId);
+
+            return objectRight;
+        }
+
+        private void UpdateObjectRightBr(ObjectRight source, ObjectRight dest)
+        {
+            dest.SetFields(source);
+
+            _dbContext.UpdateList(source.LicenseBigR, dest.LicenseBigR, i => { }, (l, r) => l.LicId == r.LicId && l.LicVersion == r.LicVersion);
+
+            _dbContext.UpdateList(source.Authors, dest.Authors, newItem =>
+                {
+                    newItem.FolkType = 1;
+                },
+                (l, r) => l.AuthId == r.AuthId
+            );
+            
+            _dbContext.UpdateList(source.CopyRight, dest.CopyRight, newItem =>
+                {
+                    // set default data for new CopyRight item
+                    newItem.BeginDate = new DateTime(1900, 1, 1);
+                    newItem.EndDate = new DateTime(3000, 1, 1);
+                    newItem.LBasis = 1;
+                },
+                (l, r) => l.CRightId == r.CRightId
+            );
+
+            // Update LicAuthorBr, WorkRh
+            var destCopyRightsDict = dest.CopyRight.ToDictionary(cr => cr.CRightId);
+
+            foreach (var sourceCopyRight in source.CopyRight)
+            {
+                var destCopyRight = destCopyRightsDict[sourceCopyRight.CRightId];
+
+                // WorkRH
+                if (destCopyRight.WorkRh == null)
+                    destCopyRight.WorkRh = new WorkRh();
+
+                if (destCopyRight.WorkRh.WorkTypeCl != sourceCopyRight.WorkRh.WorkTypeCl)
+                {
+                    destCopyRight.WorkRh.WorkTypeCl = sourceCopyRight.WorkRh.WorkTypeCl;
+                    destCopyRight.WorkRh.WorkDateCl = DateTime.Now;
+                }
+
+                if (destCopyRight.WorkRh.WorkTypeRh != sourceCopyRight.WorkRh.WorkTypeRh)
+                {
+                    destCopyRight.WorkRh.WorkTypeRh = sourceCopyRight.WorkRh.WorkTypeRh;
+                    destCopyRight.WorkRh.WorkDateRh = DateTime.Now;
+                }
+
+                // LicAuthorBr
+                if (destCopyRight.LicAuthorBr == null)
+                    destCopyRight.LicAuthorBr = new LicAuthorBr();
+
+                destCopyRight.LicAuthorBr.SetFields(sourceCopyRight.LicAuthorBr);
+            }
+        }
+
+        [HttpGet("br/detail/{objId}")]
+        public async Task<IActionResult> GetObjectBrById(int objId)
+        {
+            var or = await GetObjectRightBrById(objId);
+            var rhList = await _dbContext.getViewData($"select * from ft_ObjectRightCustomerForm01({objId})", null);
+
+            return Json(new { objectRight = or, rhList });
+        }
+
+        [HttpPut("br/detail/{objId}")]
+        public async Task<IActionResult> UpdateObjectRightBrById(int objId, [FromBody] ObjectRight objectRight)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var foundedObjectRight = await GetObjectRightBrById(objId);
+
+                UpdateObjectRightBr(objectRight, foundedObjectRight);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+                return Json(foundedObjectRight);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        #endregion
+
         #region Views
         /// <summary>
         /// Получити  список об'єктів права для основного єкрану інтерфейсу користувача

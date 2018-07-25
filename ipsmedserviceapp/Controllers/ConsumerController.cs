@@ -219,7 +219,7 @@ namespace ipsmedserviceapp.Controllers
 
             // LicenseAgreement
             {
-                Dictionary<int, ClnBusinessPlace> dicPlace = sorsCustomer.Client.ClnBusinessPlace.ToDictionary(rec => rec.PlaceId);
+                Dictionary<int, ClnBusinessPlace> dicPlace = destCustomer.Client.ClnBusinessPlace.ToDictionary(rec => rec.PlaceId);
                 Action<License> addLicense = (lic) =>
                 {
                     if (lic.PlaceId == null)
@@ -276,11 +276,7 @@ namespace ipsmedserviceapp.Controllers
 
                     if (item.LicenseBigR != null)
                     {
-                        //if (license.LicenseBigR == null)
-                        //    license.LicenseBigR = new LicenseBigR();
                         license.LicenseBigR.SetFields(item.LicenseBigR);
-
-                        //_dbContext.UpdateList(item.LicenseBigR.LicAuthorBr, license.LicenseBigR.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.LicAuthorId == r.LicAuthorId);
                     }
 
 

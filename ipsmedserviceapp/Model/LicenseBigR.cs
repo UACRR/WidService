@@ -27,6 +27,7 @@ namespace ipsmedserviceapp.Model
         public string LangCode { get; set; }
         public int? PerformType { get; set; }
         public short? LicTerm { get; set; }
+        public decimal? RateMusic { get; set; }
 
         [JsonIgnore]
         public Language LangCodeNavigation { get; set; }

@@ -15,8 +15,12 @@ namespace ipsFormsDesign.Model
         public int RmId { get; set; }
         public decimal? Amount { get; set; }
         public decimal? Royalty { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public string UserId { get; set; }
+        public int? Status { get; set; }
 
         public PaidPeriod Period { get; set; }
+        public RegisterListStatus StatusNavigation { get; set; }
         public ObservableListSource<Register> Register { get; set; }
     }
 }

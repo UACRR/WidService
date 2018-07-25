@@ -40,8 +40,8 @@
             this.ddlLangCode = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.objectRightBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.licenseBigRBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.objectRightBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -52,8 +52,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLangCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseBigRBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -123,14 +123,14 @@
             // 
             this.mtxtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.licenseBigRBindingSource, "Rate", true));
             this.mtxtRate.Location = new System.Drawing.Point(397, 57);
-            this.mtxtRate.Mask = "N0";
+            this.mtxtRate.Mask = "N2";
             this.mtxtRate.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRate.Name = "mtxtRate";
             this.mtxtRate.PromptChar = '0';
             this.mtxtRate.Size = new System.Drawing.Size(69, 21);
             this.mtxtRate.TabIndex = 8;
             this.mtxtRate.TabStop = false;
-            this.mtxtRate.Text = "0";
+            this.mtxtRate.Text = "0,00";
             this.mtxtRate.ThemeName = "Office2013Light";
             // 
             // radLabel4
@@ -161,13 +161,13 @@
             this.radLabel5.Text = "Мова виконання";
             this.radLabel5.ThemeName = "Office2013Light";
             // 
-            // objectRightBindingSource
-            // 
-            this.objectRightBindingSource.DataSource = typeof(ipsFormsDesign.Model.ObjectRight);
-            // 
             // licenseBigRBindingSource
             // 
             this.licenseBigRBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseBigR);
+            // 
+            // objectRightBindingSource
+            // 
+            this.objectRightBindingSource.DataSource = typeof(ipsFormsDesign.Model.ObjectRight);
             // 
             // ObjectRightBrInfoControl
             // 
@@ -195,8 +195,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLangCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseBigRBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

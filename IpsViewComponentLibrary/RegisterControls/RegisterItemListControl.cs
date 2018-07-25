@@ -199,9 +199,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             if (selectedRegisterItem.ObjId != null)
             {
-                using (var view = new ObjectRightItemView())
+                using (var view = new ObjectRightSrView())
                 {
-                    var presenter = new ObjectRightItemPresenter(view);
+                    var presenter = new ObjectRightSrPresenter(view);
                     presenter.Show((int)selectedRegisterItem.ObjId);
                 }
             }

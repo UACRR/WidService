@@ -16,11 +16,15 @@ public interface IAccount
          DateTime? DateModify { get; set; }
 }
 public interface IAccountBals
-    {    int BalsCode { get; set; }
+    {    int CodeI { get; set; }
          short? BalsType { get; set; }
-         string BalsNameUk { get; set; }
-         string BalsNameRu { get; set; }
-         string BalsNameEn { get; set; }
+         string Name { get; set; }
+}
+public interface IAccountBalsTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
 }
 public interface IAccountStatus
     {    int CodeI { get; set; }
@@ -385,7 +389,6 @@ public interface IBrRegItem
          int? ObjId { get; set; }
          int? LicId { get; set; }
          string ItemName { get; set; }
-         int? CategoryCode { get; set; }
          int? CountUse { get; set; }
          int? NumTicket { get; set; }
          decimal? FullAmount { get; set; }
@@ -1059,6 +1062,7 @@ public interface ILicAuthorBr
          int? LicId { get; set; }
          int? LicVersion { get; set; }
          decimal? PrepayRest { get; set; }
+         decimal? PrepayUsed { get; set; }
 }
 public interface ILicense
     {
@@ -1117,6 +1121,7 @@ public interface ILicenseBigR
          string LangCode { get; set; }
          int? PerformType { get; set; }
          short? LicTerm { get; set; }
+         decimal? RateMusic { get; set; }
 }
 public interface ILicenseClass
     {
@@ -1354,6 +1359,14 @@ public interface IPaidPeriod
          bool? FagFirst { get; set; }
          DateTime? DateActPrint { get; set; }
 }
+public interface IParametersListBox
+    {
+         int RepId { get; set; }
+         int PId { get; set; }
+         string ValuePar { get; set; }
+         string ValueType { get; set; }
+         string ValueName { get; set; }
+    }
 public interface IPartner
     {    int CustId { get; set; }
 }
@@ -1595,11 +1608,24 @@ public interface IRegisterItemType
     {    int CodeI { get; set; }
          string Name { get; set; }
 }
+public interface IRegisterListStatus
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IRegisterListStatusTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
 public interface IRegisterRatedList
     {    int PeriodId { get; set; }
          int RmId { get; set; }
          decimal? Amount { get; set; }
          decimal? Royalty { get; set; }
+         DateTime? CreateDate { get; set; }
+         string UserId { get; set; }
+         int? Status { get; set; }
 }
 public interface IRegisterStatus
     {    int CodeI { get; set; }

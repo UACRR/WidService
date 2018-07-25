@@ -25,6 +25,7 @@ namespace ipsFormsDesign.Model
         public int? LicId { get; set; }
         public int? LicVersion { get; set; }
         public decimal? PrepayRest { get; set; }
+        public decimal? PrepayUsed { get; set; }
 
         public CopyRight CRight { get; set; }
         public LicenseBigR Lic { get; set; }

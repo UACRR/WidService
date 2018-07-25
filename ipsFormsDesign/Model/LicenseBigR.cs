@@ -27,6 +27,7 @@ namespace ipsFormsDesign.Model
         public string LangCode { get; set; }
         public int? PerformType { get; set; }
         public short? LicTerm { get; set; }
+        public decimal? RateMusic { get; set; }
 
         public Language LangCodeNavigation { get; set; }
         public LicenseAgreement Lic { get; set; }

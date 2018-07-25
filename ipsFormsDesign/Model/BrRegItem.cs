@@ -16,7 +16,6 @@ namespace ipsFormsDesign.Model
         public int? ObjId { get; set; }
         public int? LicId { get; set; }
         public string ItemName { get; set; }
-        public int? CategoryCode { get; set; }
         public int? CountUse { get; set; }
         public int? NumTicket { get; set; }
         public decimal? FullAmount { get; set; }

@@ -8,14 +8,14 @@ namespace ipsmedserviceapp.Model
         public AccountBals()
         {
             Account = new HashSet<Account>();
+            AccountBalsTr = new HashSet<AccountBalsTr>();
         }
 
-        public int BalsCode { get; set; }
+        public int CodeI { get; set; }
         public short? BalsType { get; set; }
-        public string BalsNameUk { get; set; }
-        public string BalsNameRu { get; set; }
-        public string BalsNameEn { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Account> Account { get; set; }
+        public ICollection<AccountBalsTr> AccountBalsTr { get; set; }
     }
 }

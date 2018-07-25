@@ -25,6 +25,7 @@ namespace ipsmedserviceapp.Model
         public int? LicId { get; set; }
         public int? LicVersion { get; set; }
         public decimal? PrepayRest { get; set; }
+        public decimal? PrepayUsed { get; set; }
 
         [JsonIgnore]
         public CopyRight CRight { get; set; }

@@ -150,9 +150,11 @@ namespace ipsFormsDesign.Services
         /// <param name="custId"></param>
         /// <param name="periods">Нові періоди</param>
         /// <returns></returns>
-        public bool SavePeriods(int custId, List<PaidPeriod> periods)
+        public List<PaidPeriod> SavePeriods(int custId, List<PaidPeriod> periods)
         {
-            return _webApi.UpdateItem("consumer/Period/Payments/paidperiods", custId.ToString(), periods);
+            List<PaidPeriod> retList = null;
+            var retCode = _webApi.UpdateItemWithReturn("consumer/Period/Payments/paidperiods", custId.ToString(), periods, out retList );
+            return retList;
         }
         /// <summary>
         /// Зберігання прив'язаних сум

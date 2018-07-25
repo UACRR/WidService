@@ -102,11 +102,6 @@ namespace IpsViewComponentLibrary
             period.ManualSet = true;
             _calculator.Calculate();
 
-            //if (Convert.ToDecimal(e.Value) != 0)
-            //    period.ManualSet = true;
-            //else
-            //    period.ManualSet = false;
-
             gvDistributionPayment.MasterTemplate.Refresh();
         }
     }

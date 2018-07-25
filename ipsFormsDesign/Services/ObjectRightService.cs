@@ -43,6 +43,12 @@ namespace ipsFormsDesign.Services
             return item;
         }
 
+        public ContainerForObjectRihgt GetDataBr(int objId)
+        {
+            var item = _webApi.GetItemById<ContainerForObjectRihgt>("objectright/br/detail", objId.ToString());
+            return item;
+        }
+
         public bool Save(ObjectRight item)
         {
             if (item.ObjId == 0) // Новий об'єкт права
@@ -57,6 +63,17 @@ namespace ipsFormsDesign.Services
         {
             var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
             return item;
+        }
+
+        public bool SaveObjectBr(ObjectRight objectRight)
+        {
+            if (objectRight.ObjId == 0)
+            {
+                throw new NotImplementedException();
+                //return _webApi.NewItem("objectright/br/newobject", objectRight);
+            }
+
+            return _webApi.UpdateItem("objectright/br/detail", objectRight.ObjId.ToString(), objectRight);
         }
     }
 }
