@@ -22,7 +22,7 @@ namespace TestControls
 
         private void DataSet()
         {
-            radGridView1.AutoGenerateHierarchy = true;
+
         }
     }
 }

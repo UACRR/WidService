@@ -222,7 +222,7 @@
             this.pageView.DefaultPage = this.pvSpectacle;
             this.pageView.Location = new System.Drawing.Point(0, 64);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvSpectacle;
+            this.pageView.SelectedPage = this.pvMusicDesign;
             this.pageView.Size = new System.Drawing.Size(1006, 394);
             this.pageView.TabIndex = 2;
             this.pageView.ThemeName = "Office2013Light";
