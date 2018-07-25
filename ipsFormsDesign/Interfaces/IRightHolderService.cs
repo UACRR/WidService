@@ -19,6 +19,17 @@ namespace ipsFormsDesign.Interfaces
         public string Country { get; set; }
     }
 
+    public class RightolderWithNotAcceptedCopyrightViewModel
+    {
+        public int CustId { get; set; }
+        public string InnerCode { get; set; }
+        public string InterCode { get; set; }
+        public string Name { get; set; }
+        public int CntObj { get; set; }
+        public DateTime? RegistrDate { get; set; }
+        public DateTime? WorkDateRH { get; set; }
+    }
+
     public interface IRightHolderService : IModel
     {
         IList<RightholderMainView> GetMainView();

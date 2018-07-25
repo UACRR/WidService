@@ -27,6 +27,23 @@ namespace ipsFormsDesign.Dictionary
         public double? RateRh { get; set; }
     }
 
+    public class ObjectRightNotAccepted
+    {
+        public int CRightId { get; set; }
+        public int CustId { get; set; }
+        public int ObjId { get; set; }
+        public string ObjName { get; set; }
+        public string GenreName { get; set; }
+        public string Duration { get; set; }
+        public string RoleName { get; set; }
+        public string SpecName { get; set; }
+        public int? Rate { get; set; }
+        public string Performer { get; set; }
+        public string WorkCommentRH { get; set; }
+        public DateTime? WorkDateRH { get; set; }
+        public int? WorkTypeRH { get; set; }
+    }
+
     public class ViewCustomer
     {
         public int custId { get; set; }

@@ -177,6 +177,13 @@
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectRightControls\AuthorRightholderBrListMode.cs" />
+    <Compile Include="ObjectRightControls\CopyrightRequestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\CopyrightRequestControl.Designer.cs">
+      <DependentUpon>CopyrightRequestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\CopyrightRequestPresenter.cs" />
     <Compile Include="ObjectRightControls\ObjectRightBrInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -711,6 +718,9 @@
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderBrListControl.resx">
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\CopyrightRequestControl.resx">
+      <DependentUpon>CopyrightRequestControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightBrInfoControl.resx">
       <DependentUpon>ObjectRightBrInfoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -961,6 +971,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObbjectRightNotAccepted.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterItemViewModel.datasource" />
@@ -969,6 +980,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightRequestBidAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
