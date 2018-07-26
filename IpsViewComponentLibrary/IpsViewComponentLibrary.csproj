@@ -1056,9 +1056,14 @@
   <ItemGroup>
     <None Include="Resources\editIcon.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\link-solid.ico" />
+    <Content Include="Resources\plus-square-solid.ico" />
+    <Content Include="Resources\unlink-solid.ico" />
+    <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
