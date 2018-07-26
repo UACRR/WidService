@@ -66,10 +66,9 @@ namespace ipsFormsDesign.Dictionary
 
         public void SetObjectData(int? objId, string name, string authors, string performers, TimeSpan? duration)
         {
-            ObjId = objId;
-
-            if (objId != null)
+            if (objId.HasValue)
             {
+                ObjId = objId.Value;
                 ObjectName = name;
                 ObjectAuthors = authors;
                 ObjectPerformers = performers;
@@ -77,11 +76,17 @@ namespace ipsFormsDesign.Dictionary
             }
             else
             {
-                ObjectName = null;
-                ObjectAuthors = null;
-                ObjectPerformers = null;
-                ObjectDuration = null;
+                ClearObjectData();
             }
+        }
+
+        public void ClearObjectData()
+        {
+            ObjId = null;
+            ObjectName = null;
+            ObjectAuthors = null;
+            ObjectPerformers = null;
+            ObjectDuration = null;
         }
 
         private void OnPropertyChanged(string propertyName)

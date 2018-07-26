@@ -228,7 +228,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             if (_allowUnlinkCommand)
                 UnlinkCommandExecuted?.Invoke(this, selectedRegisterItem);
 
-            //selectedRegisterItem.SetObjectData();
+            selectedRegisterItem.ClearObjectData();
         }
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
