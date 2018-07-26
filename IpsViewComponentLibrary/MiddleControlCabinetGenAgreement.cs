@@ -27,26 +27,9 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             _bigRightView = bigRightView;
-            SetBigRightHeaderData();
+            ctrlHeaderInfo.SetHeaderInfoBigRight(_customer,_bigRightView);
             ctrlFooterInfo.DataSourceLicense = bigRightView;
             gvGenAgrLicences.DataSource = genAgrs;
-        }
-
-        private void SetBigRightHeaderData()
-        {
-            var head = _customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1);
-            var contactPerson = _customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3);
-          
-
-            ctrlHeaderInfo.NameInfo = _bigRightView.Name;
-            ctrlHeaderInfo.Edrpou = _bigRightView.Innokpo;
-            ctrlHeaderInfo.PibContactPerson = contactPerson?.Empl?.FirstName + " " + contactPerson?.Empl?.LastName + " " + contactPerson?.Empl?.SurName;
-            ctrlHeaderInfo.PhoneContactPerson = contactPerson?.Empl?.PhoneNumber;
-            ctrlHeaderInfo.EmailContactPerson = contactPerson?.Empl?.Email;
-            ctrlHeaderInfo.PibManager = head?.Empl?.FirstName + " " + head?.Empl?.LastName + " " + head?.Empl?.SurName;
-            ctrlHeaderInfo.PhoneManager = head?.Empl?.PhoneNumber;
-            ctrlHeaderInfo.EmailManager = head?.Empl?.Email;
-
         }
 
         private void gvGenAgrLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)

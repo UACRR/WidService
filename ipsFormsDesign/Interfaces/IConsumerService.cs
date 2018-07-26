@@ -357,11 +357,10 @@ namespace ipsFormsDesign.Interfaces
         public decimal? AvanseRest { get; set; }
     }
 
-    public class ChildTemplate : IChildTemplate
+    public class ChildTemplate
     {
         public int? ObjId { get; set; }
         public int CustId { get; set; }
-
         public string RoleName { get; set; }
         public string NameRh { get; set; }
         public decimal? RoleRate { get; set; }

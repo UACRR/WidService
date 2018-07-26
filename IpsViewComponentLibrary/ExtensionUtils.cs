@@ -237,7 +237,19 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Представник
         /// </summary>
-        Agent
+        Agent,
+        /// <summary>
+        /// Платежі
+        /// </summary>
+        Payments,
+        /// <summary>
+        /// Аванси
+        /// </summary>
+        Prepays,
+        /// <summary>
+        /// Контакти
+        /// </summary>
+        Contacts
     }
 
     /// <summary>

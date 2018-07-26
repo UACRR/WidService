@@ -54,22 +54,22 @@
             // ctrlHeaderInfo
             // 
             this.ctrlHeaderInfo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctrlHeaderInfo.Edrpou = "46546545";
-            this.ctrlHeaderInfo.EmailContactPerson = "qwerty@qwer.ty";
-            this.ctrlHeaderInfo.EmailManager = "qwerty@qwer.ty";
+            this.ctrlHeaderInfo.Edrpou = "";
+            this.ctrlHeaderInfo.EmailContactPerson = "";
+            this.ctrlHeaderInfo.EmailManager = "";
             this.ctrlHeaderInfo.GroupOrHolding = "Копірайт";
             this.ctrlHeaderInfo.HoldingVisible = false;
             this.ctrlHeaderInfo.Location = new System.Drawing.Point(0, 0);
             this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(912, 209);
             this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(912, 209);
             this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
-            this.ctrlHeaderInfo.NameInfo = "ррррр";
-            this.ctrlHeaderInfo.OrganisationForm = "ТОВ";
+            this.ctrlHeaderInfo.NameInfo = "";
+            this.ctrlHeaderInfo.OrganisationForm = "";
             this.ctrlHeaderInfo.OrganisationFormVisible = false;
-            this.ctrlHeaderInfo.PhoneContactPerson = "+380999999999";
-            this.ctrlHeaderInfo.PhoneManager = "+380999999999";
-            this.ctrlHeaderInfo.PibContactPerson = "Прізвище Ім\'я Побатькові";
-            this.ctrlHeaderInfo.PibManager = "Прізвище КапецьякевеличезнеІм\'я Побатькові";
+            this.ctrlHeaderInfo.PhoneContactPerson = "";
+            this.ctrlHeaderInfo.PhoneManager = "";
+            this.ctrlHeaderInfo.PibContactPerson = "";
+            this.ctrlHeaderInfo.PibManager = "";
             this.ctrlHeaderInfo.Size = new System.Drawing.Size(912, 209);
             this.ctrlHeaderInfo.TabIndex = 0;
             // 
