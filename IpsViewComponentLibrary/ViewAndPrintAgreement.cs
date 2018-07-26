@@ -44,6 +44,12 @@ namespace IpsViewComponentLibrary
             var task = LoadDocument(dictionaties, customer, licenseAgreement);
         }
 
+        public void ShowDocument(string path)
+        {
+            radPdfViewer.LoadDocument(path);
+            Show();
+        }
+
         private void radWaitingBar1_WaitingStarted(object sender, EventArgs e)
         {
             radWaitingBar1.Visible = true;

@@ -167,5 +167,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         }
 
         #endregion
+
+        private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "PrintColumn")
+            {
+                _presenter.Print();
+            }
+        }
     }
 }

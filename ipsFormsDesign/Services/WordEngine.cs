@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Dictionary;
+
 namespace ipsFormsDesign.Services
 {
     public class WordEngine
@@ -670,6 +672,78 @@ namespace ipsFormsDesign.Services
 
 
         }
+
+        #region Copyright request
+
+        public async System.Threading.Tasks.Task ProcessCopyrightRequest(string pathTemplate, RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            clearFiles();
+
+            var docFile = tempFileName + ".docx";
+
+            File.Copy(pathTemplate, docFile);
+
+            // відкрити шаблон
+            await System.Threading.Tasks.Task.Run(() => InnerProcesCopyrightRequest(rightholder, objectRightList));
+
+        }
+
+        private void InnerProcesCopyrightRequest(RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            app = StartWordApp();
+            innerDoc = app.Documents.Open(Docx);
+
+            var list = innerDoc.ContentControls;
+
+            foreach (ContentControl item in list)
+            {
+                item.LockContentControl = false;
+                item.Temporary = true;
+                string title = item.Title.Trim();
+
+                switch (title)
+                {
+                    case "CstName":
+                        item.Range.Text = rightholder.Name;
+                        break;
+                    case "data":
+                        item.Range.Text = DateTime.Now.ToShortDateString();
+                        break;
+                    case "TableObjForApp":
+                        PopulateTableObjects(item.Range.Tables, objectRightList);
+                        break;
+                }
+            }
+
+            innerDoc.Save();
+            innerDoc.SaveAs2(Pdf, WdSaveFormat.wdFormatPDF);
+            innerDoc.Close();
+        }
+
+        private void PopulateTableObjects(Tables tables, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            if (tables.Count == 0)
+                return;
+
+            Table tableObjects = tables[1];
+
+            foreach (var item in objectRightList)
+            {
+                var newRow = tableObjects.Rows.Add();
+                newRow.Cells[1].Range.Text = (newRow.Index - 1).ToString();
+                newRow.Cells[2].Range.Text = item.ObjName;
+                newRow.Cells[3].Range.Text = item.GenreName;
+                newRow.Cells[4].Range.Text = item.Duration;
+                newRow.Cells[5].Range.Text = item.RoleName;
+                newRow.Cells[6].Range.Text = item.SpecName;
+                newRow.Cells[7].Range.Text = item.Rate.ToString();
+                newRow.Cells[8].Range.Text = item.Performer;
+            }
+        }
+
+        #endregion
 
         class TbAuthorPrc
         {

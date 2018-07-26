@@ -1,8 +1,10 @@
-﻿using ipsFormsDesign.Dictionary;
+﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,6 +71,22 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
             else
                 _view.ShowError("Не вдалося зберегти зміни.");
+        }
+
+        public async void Print()
+        {
+            // process document
+            var wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_Copyright-Request.docx");
+            var objectRightList = (List<ObjectRightNotAccepted>)_view.ObjectRightListDataSource;
+            await wordEngine.ProcessCopyrightRequest(template, _view.SelectedRightholder, objectRightList);
+
+            // open view doc form
+            var printView = new ViewAndPrintAgreement();
+            printView.Text = "Запит на підтвердження прав на об'єкти";
+            printView.ShowDocument(wordEngine.Pdf);
+
+            // update status and date
         }
     }
 }
