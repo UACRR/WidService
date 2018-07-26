@@ -426,7 +426,6 @@
             // 
             // reportsControl1
             // 
-            this.reportsControl1.Customer = null;
             this.reportsControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.reportsControl1.Location = new System.Drawing.Point(0, 0);
             this.reportsControl1.MinimumSize = new System.Drawing.Size(700, 470);

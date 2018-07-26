@@ -23,7 +23,7 @@ namespace TestControls
         private ConsumerService _service;
         private EditPay payForm = null;
         private ConsumerMainView _curItem = null;
-        private bool isInit = false;
+        //private bool isInit = false;
         public MainForm()
         {
             _service = new ConsumerService();
@@ -33,6 +33,7 @@ namespace TestControls
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             bindPayPeriod1.SavePariodCommandExecuted += BindPayPeriod1_SavePariodCommandExecuted;
             bindPayPeriod1.SaveLinkCommandExecuted += BindPayPeriod1_SaveLinkCommandExecuted;
+            reportsControl1.SaveRegisterRatedListExecuted += ReportsControl1_SaveRegisterRatedListExecuted;
 
             payForm = new EditPay();
 
@@ -45,7 +46,25 @@ namespace TestControls
             if (employee.Count == 0)
                 SetButtonDisable();
 
-            isInit = true;
+            //isInit = true;
+        }
+
+        private void ReportsControl1_SaveRegisterRatedListExecuted(object sender, RegisterRatedList e)
+        {
+            RegisterRatedList ratedList = null;
+            if (_service.SaveRegisterRatedList(e, out ratedList ) == true)
+            {
+                var dic = ratedList.Register.ToDictionary(rec => rec.FileName);
+                e.SetFields(ratedList);
+                foreach( var item in e.Register )
+                {
+                    var sors = dic[item.FileName];
+                    item.SetFields(sors);
+                    item.RegisterItem.Clear();
+                    foreach (var sorsItem in sors.RegisterItem)
+                        item.RegisterItem.Add(sorsItem);
+                }
+            }
         }
 
         private void BindPayPeriod1_SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)
@@ -101,11 +120,13 @@ namespace TestControls
                 if (InvokeRequired)
                 {
                     bindPayPeriod1.BeginInvoke((Action)(() => bindPayPeriod1.Customer = Customer));
+                    reportsControl1.BeginInvoke((Action)(() => reportsControl1.Customer = Customer));
 
                 }
                 else
                 {
                     bindPayPeriod1.Customer = Customer;
+                    reportsControl1.Customer = Customer;
                 }
             });
 

@@ -203,12 +203,6 @@
     <Compile Include="PayslipsCrEdForm.Designer.cs">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\BindPayPeriod.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ConsumerControls\BindPayPeriod.Designer.cs">
-      <DependentUpon>BindPayPeriod.cs</DependentUpon>
-    </Compile>
     <Compile Include="ConsumerControls\CreatePeriod.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -622,10 +616,10 @@
     <Compile Include="ReportExcelViewForm.Designer.cs">
       <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportsControl.cs">
+    <Compile Include="ConsumerControls\SmallRight\ReportsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ReportsControl.Designer.cs">
+    <Compile Include="ConsumerControls\SmallRight\ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RequestForm.cs">
@@ -729,9 +723,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\BindPayPeriod.resx">
-      <DependentUpon>BindPayPeriod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\CreatePeriod.resx">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
@@ -938,7 +929,7 @@
     <EmbeddedResource Include="ReportExcelViewForm.resx">
       <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportsControl.resx">
+    <EmbeddedResource Include="ConsumerControls\SmallRight\ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RequestForm.resx">

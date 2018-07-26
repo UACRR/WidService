@@ -10,31 +10,45 @@ using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using System.Windows.Forms;
-
+using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary
 {
     public partial class ReportsControl : UserControl
     {
-        private Customer _data;
-        private string _path;
+        ExcelEngine _excel = new ExcelEngine();
+
+        public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
+
         public ReportsControl()
         {
             InitializeComponent();
         }
 
+        private Customer _customer;
+        public Customer Customer
+        {
+            get { return _customer; }
+            set
+            {
+                _customer = value;
+                SetupBindings();
+            }
+        }
+
         #region METHODS
 
-        public void SetData(Customer data)
+        private void SetupBindings()
         {
-            _data = data;
+            if (_customer == null)
+            {
+                return;
+            }
+
+            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2);
+            bindingLicAgreement.DataSource = listAgreement;
         }
 
-        public void SetDataSourceForLicAgrGrid(object obj)
-        {
-            if (obj == null) return;
-            gvLicenseAgr.DataSource = obj;
-        }
 
         private void CreateAct()
         {
@@ -48,71 +62,38 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
-        /*  -  *   *   *   *   *   *   *  =  *   *   *   *   *   *   *  -  */
-        /*  -  *   *   *   *   *   *   *  =  *   *   *   *   *   *   *  -  */
-        /*  -  *   *   *   *   *   *   *  =  *   *   *   *   *   *   *  -  */
 
         #region EVENTS
 
         // * * * [Активні договори]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            List<GridPeriodsR> source = new List<GridPeriodsR>();
-            Random rnd = new Random();
-            var period = _data.Client.LicenseAgreement.Where(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value).Select(rec => rec.PaidPeriod).SingleOrDefault();
-            if (period == null)
-            {
-                gvPeriods.DataSource = null;
+            if (gvLicenseAgr.CurrentRow == null)
                 return;
-            }
 
-            foreach (var paidPeriod in period)
-            {
-                source.Add(new GridPeriodsR
-                {
-                    PeriodId = paidPeriod.PeriodId,
-                    PeriodName = paidPeriod.PeriodName,
-                    Status = paidPeriod.Status,
-                    Amount = paidPeriod.Amount,
-                    Distribamount = paidPeriod.Distribamount,
-                    IsActFormed = rnd.Next(20) > 10 ? "Так" : "Ні",
-                    ReportCounts = rnd.Next(5),
-                });
-            }
-            gvPeriods.DataSource = source;
+            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgreement;
+            bindingPaidPeriod.DataSource = lic.PaidPeriod;
         }
 
         // * * * [Періоди платежів]
         private void gvPeriods_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            List<GridReportsP> source = new List<GridReportsP>();
-            var paidPeriods = _data?.Client?.LicenseAgreement?.Where(rec => rec.LicId == (int)gvLicenseAgr.CurrentRow.Cells["LicenseId"].Value).Select(rec => rec.PaidPeriod).SingleOrDefault();
-            var register = paidPeriods?.Where(rec => rec.PeriodId == (int)gvPeriods.CurrentRow.Cells["PeriodId"].Value).SingleOrDefault()?.RegisterRatedList.SingleOrDefault()?.Register;
+            if (gvPeriods.CurrentRow == null)
+                return;
 
-            if (register != null)
+            var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
+            var reports = new List<Register>();
+            foreach (var item in period.RegisterRatedList)
             {
-                foreach (var item in register)
-                {
-                    var reports = new GridReportsP
-                    {
-                        ReportsName = Path.GetFileName(item.FileName),
-                        PeriodName = gvPeriods.CurrentRow.Cells["PeriodName"].Value.ToString(),
-                        PathString = item.FileName,
-                        ReportId = item.RegId
-                    };
-                    source.Add(reports);
-                }
+                reports.AddRange(item.Register);
             }
 
-            gvPeriodReports.DataSource = source;
+            bindingReports.DataSource = reports;
         }
 
         // * * * [Звіти періода]
         private void gvPeriodReports_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            _path = string.Empty;
-            if (gvPeriods.RowCount == 0) return;
-            _path = @e?.CurrentRow?.Cells["Path"]?.Value?.ToString();
         }
 
         // * * *  * * *  КНОПКИ:
@@ -133,12 +114,37 @@ namespace IpsViewComponentLibrary
         // * * * [Додати звіт]
         private void btnAddReport_Click(object sender, EventArgs e)
         {
+            if (gvPeriodReports.CurrentRow == null)
+                return;
+            var period = gvPeriodReports.CurrentRow.DataBoundItem as PaidPeriod;
+            if (period == null)
+                return;
+
+            OpenFileDialog dialog = new OpenFileDialog { AddExtension=true, DefaultExt="xlsx", Filter="Excel Files(*.xlsx;*xls)|*.xls;*.xlsx"};
+            if( dialog.ShowDialog() == DialogResult.OK )
+            {
+                var list = _excel.GetReportItems(dialog.FileName);
+                if( period.RegisterRatedList.Count() == 0 )
+                {
+                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Status = 0/*Новий*/});
+                }
+
+                var RatedList = period.RegisterRatedList.First();
+                Register addRegister = new Register { RgStatus=0, FileName = Path.GetFileName(dialog.FileName) };
+                foreach (var item in list)
+                    addRegister.RegisterItem.Add(item);
+
+                RatedList.Register.Add(addRegister);
+
+                SaveRegisterRatedListExecuted(this,RatedList);
+            }
 
         }
 
         // * * * [Переглянути звіт]
         private void btnViewReport_Click(object sender, EventArgs e)
         {
+            string _path = "";
             if (gvPeriodReports.Rows.Count == 0 || _path == string.Empty)
             {
                 MessageBox.Show("Звіти за обраний період не знайдено!", "Звіти відсутні!", MessageBoxButtons.OK,
