@@ -101,11 +101,13 @@ namespace TestControls
                 if (InvokeRequired)
                 {
                     bindPayPeriod1.BeginInvoke((Action)(() => bindPayPeriod1.Customer = Customer));
+                    reportsControl1.BeginInvoke((Action)(()=> reportsControl1.Customer = Customer ));
 
                 }
                 else
                 {
                     bindPayPeriod1.Customer = Customer;
+                    reportsControl1.Customer = Customer;
                 }
             });
 
