@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.Data;
 using ipsFormsDesign.Dictionary;
 using System.Collections.ObjectModel;
 using IpsViewComponentLibrary.ObjectRightControls;
+using ipsFormsDesign.Utilities;
+using System.Drawing;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -86,7 +87,18 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _allowShowObjectCommand = value;
-                SetColumnVisible("ObjectColumn", _allowShowObjectCommand);
+                SetColumnVisible("ShowObjectColumn", _allowShowObjectCommand);
+            }
+        }
+
+        private bool _allowCreateObjectCommand = true;
+        public bool AllowCreateObjectCommand
+        {
+            get { return _allowCreateObjectCommand; }
+            set
+            {
+                _allowCreateObjectCommand = value;
+                SetColumnVisible("CreateObjectColumn", _allowCreateObjectCommand);
             }
         }
 
@@ -108,6 +120,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         }
 
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
+        public event EventHandler<RegisterItemViewModel> CreateObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
         public event EventHandler<RegisterItemViewModel> LinkCommandExecuted;
 
@@ -117,6 +130,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             gvRegisterItemList.DataSource = registerItemViewModelBindingSource;
             ddlLinkedStatus.SelectedIndex = 0;
+
+            var column = (GridViewCommandColumn)gvRegisterItemList.Columns["CreateObjectColumn"];
+            column.ImageAlignment = ContentAlignment.MiddleCenter;
         }
 
         private void gvRegisterItemList_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -131,9 +147,13 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 OnLinkCommandExecuted(SelectedRegisterItem);
             }
-            else if (currentColumnName == "ObjectColumn")
+            else if (currentColumnName == "ShowObjectColumn")
             {
                 OnShowObjectCommandExecuted(SelectedRegisterItem);
+            }
+            else if (currentColumnName == "CreateObjectColumn")
+            {
+                OnCreateObjectCommandExecuted(SelectedRegisterItem);
             }
         }
 
@@ -204,6 +224,22 @@ namespace IpsViewComponentLibrary.RegisterControls
                     var presenter = new ObjectRightSrPresenter(view);
                     presenter.Show((int)selectedRegisterItem.ObjId);
                 }
+            }
+        }
+
+        private void OnCreateObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
+        {
+            if (_allowCreateObjectCommand)
+                CreateObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
+
+            var service = new ipsFormsDesign.Services.ObjectRightService(); // TODO: move to presenter or application controller
+            var newObject = service.NewObjectRight(5);
+            newObject.SetDataFromRegisterItem(selectedRegisterItem);
+
+            using (var view = new ObjectRightSrView())
+            {
+                var presenter = new ObjectRightSrPresenter(view);
+                presenter.Show(newObject);
             }
         }
 
