@@ -117,6 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="gridViewCommandColumn8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQCAYAAAAiYZ4HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADYSURBVDhPrZBNCoMwEIWD4gXMSlyoN9CNSxeKB9UruBYV
+        FHde6TVvRGhNWlqo8OFkXt78RGmtoZSyyLIM8zyjbVus64rrM5p9mdCwLAuSJEGe5ziO4zsD/zwXRYFt
+        2xi7DWmayoWqqqQL4XhGcxu42zAM2PddOhHuZDS3gYRhKJU51oXJn6Lv+4jj+EXkWFEUwfO850JnwBH6
+        vpfW0zQJjJm7Pf0ZBEGAsizRNA3quhYYM0fNMrBK13VSeRxHgTFz/+vw0w6uVyLMUbMMP+BMvuc230e0
+        1ngAwu8hw+1XnwsAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="registerItemViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
