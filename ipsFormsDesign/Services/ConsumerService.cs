@@ -53,6 +53,11 @@ namespace ipsFormsDesign.Services
             return agr;
         }
 
+        public bool SaveRegisterRatedList(RegisterRatedList e, out RegisterRatedList retObject)
+        {
+            throw new NotImplementedException();
+        }
+
         public IList<object> getBRView(Type typeResult, string viewName, int? custId)
         {
             string url = "consumer/BR/view/list";

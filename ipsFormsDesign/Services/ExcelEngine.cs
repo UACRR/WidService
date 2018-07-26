@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace ipsFormsDesign.Services
 {
-    class ExcelEngine
+    public class ExcelEngine
     {
         private Excel.Application excelApp = null;
 
@@ -47,7 +47,7 @@ namespace ipsFormsDesign.Services
             try
             {
 
-                excelAppWorkbook = Task.FromResult(GetApp()).GetAwaiter().GetResult().Result.Workbooks.Open(FileName, 0, true, 5, null, null, false,
+                excelAppWorkbook = Task.Run(()=>GetApp()).GetAwaiter().GetResult().Workbooks.Open(FileName, 0, true, 5, null, null, false,
                 Excel.XlPlatform.xlWindows, null, null, null);
                 var excelAppWorksheets = excelAppWorkbook.Worksheets;
                 var excelSheet = (Excel.Worksheet)excelAppWorksheets.Item[1];

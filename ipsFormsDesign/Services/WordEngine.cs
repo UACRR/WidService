@@ -55,6 +55,7 @@ namespace ipsFormsDesign.Services
         }
 
         public string Pdf { get { return tempFileName + ".pdf"; } }
+        public string Docx { get { return tempFileName + ".docx"; } }
 
         /// <summary>
         /// Формування Генерального договору з Правовласником 
@@ -680,8 +681,8 @@ namespace ipsFormsDesign.Services
         class TbAuthorL
         {
             public string RoleName { get; set; }
-            public string AuthorName { get; set; }           
-            public string CountryName { get; set; }       
+            public string AuthorName { get; set; }
+            public string CountryName { get; set; }
             public decimal? prepaySum { get; set; }
             public string Currency { get; set; }
             public DateTime? prepayDateDo { get; set; }
@@ -690,7 +691,7 @@ namespace ipsFormsDesign.Services
         {
             public string r030 { get; set; }
             public string countryCode { get; set; }
-            public string a3  { get; set;  }
+            public string a3 { get; set; }
         }
 
         public async System.Threading.Tasks.Task processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agrMain, LicenseAgreement licA)
@@ -713,7 +714,7 @@ namespace ipsFormsDesign.Services
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
                 var period = _dic.period.ToDictionary(rec => rec.CodeI);
                 var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
-                var KL030 = (from kl in _dic.klR030 
+                var KL030 = (from kl in _dic.klR030
                              select new currency { r030 = kl.R030, countryCode = kl.CountryCode, a3 = kl.A3 }
                 );
 
@@ -836,21 +837,25 @@ namespace ipsFormsDesign.Services
                 var licauthorbr = licenseBigR?.LicAuthorBr?.Where(rec => rec.LicVersion == licA.LicVersion).ToList();
 
                 var TbAPrc = (from aut in authors
-                                 join crt in creativeRole on aut.RoleCode equals crt.CodeI
-                                 join cpr in copyright on aut.CustId equals cpr.CustId
-                                 select new TbAuthorPrc
-                                 { RoleName = crt.Name, AuthorName = aut.AuthorName, RoleRate = cpr.RoleRate ?? 0 }).ToList();
+                              join crt in creativeRole on aut.RoleCode equals crt.CodeI
+                              join cpr in copyright on aut.CustId equals cpr.CustId
+                              select new TbAuthorPrc
+                              { RoleName = crt.Name, AuthorName = aut.AuthorName, RoleRate = cpr.RoleRate ?? 0 }).ToList();
 
                 var TbAL = (from aut in authors
                             join crt in creativeRole on aut.RoleCode equals crt.CodeI
-                            join cpr in copyright on aut.CustId   equals  cpr.CustId
-                            join lab in licauthorbr on cpr.CRightId equals lab.CRightId  
+                            join cpr in copyright on aut.CustId equals cpr.CustId
+                            join lab in licauthorbr on cpr.CRightId equals lab.CRightId
                             where lab.PrepayType == 1
                             select new TbAuthorL
-                            { RoleName = crt.Name, AuthorName = aut.AuthorName, CountryName= null,
+                            {
+                                RoleName = crt.Name,
+                                AuthorName = aut.AuthorName,
+                                CountryName = null,
                                 prepaySum = lab.PrepaySum ?? 0,
                                 Currency = lab.R030 ?? "980"
-                                ,prepayDateDo = lab.PrepayDateDo
+                                ,
+                                prepayDateDo = lab.PrepayDateDo
                             }).ToList();
 
                 var TbAvAdv = (from aut in authors
@@ -1252,11 +1257,11 @@ namespace ipsFormsDesign.Services
             }
         }
 
-    
 
 
 
-            private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
+
+        private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
         {
             LicAuthorBr authorBr;
             if (tables.Count == 0) return;
@@ -1384,8 +1389,8 @@ namespace ipsFormsDesign.Services
         {
             if (tables.Count == 0) return;
             Table table = tables[1];
-            if (table.Rows.Count > 0)
-                table.Rows.Delete();
+            //if (table.Rows.Count > 0)
+            //    table.Rows.Delete();
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             foreach (var item in rightHolder.TerritoryExclude)

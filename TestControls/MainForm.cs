@@ -33,6 +33,7 @@ namespace TestControls
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             bindPayPeriod1.SavePariodCommandExecuted += BindPayPeriod1_SavePariodCommandExecuted;
             bindPayPeriod1.SaveLinkCommandExecuted += BindPayPeriod1_SaveLinkCommandExecuted;
+            reportsControl1.SaveRegisterRatedListExecuted += ReportsControl1_SaveRegisterRatedListExecuted;
 
             payForm = new EditPay();
 
@@ -46,6 +47,24 @@ namespace TestControls
                 SetButtonDisable();
 
             //isInit = true;
+        }
+
+        private void ReportsControl1_SaveRegisterRatedListExecuted(object sender, RegisterRatedList e)
+        {
+            RegisterRatedList ratedList = null;
+            if (_service.SaveRegisterRatedList(e, out ratedList ) == true)
+            {
+                var dic = ratedList.Register.ToDictionary(rec => rec.FileName);
+                e.SetFields(ratedList);
+                foreach( var item in e.Register )
+                {
+                    var sors = dic[item.FileName];
+                    item.SetFields(sors);
+                    item.RegisterItem.Clear();
+                    foreach (var sorsItem in sors.RegisterItem)
+                        item.RegisterItem.Add(sorsItem);
+                }
+            }
         }
 
         private void BindPayPeriod1_SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)
@@ -101,7 +120,7 @@ namespace TestControls
                 if (InvokeRequired)
                 {
                     bindPayPeriod1.BeginInvoke((Action)(() => bindPayPeriod1.Customer = Customer));
-                    reportsControl1.BeginInvoke((Action)(()=> reportsControl1.Customer = Customer ));
+                    reportsControl1.BeginInvoke((Action)(() => reportsControl1.Customer = Customer));
 
                 }
                 else

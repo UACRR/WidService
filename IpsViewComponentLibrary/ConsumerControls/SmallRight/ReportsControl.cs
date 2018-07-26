@@ -10,12 +10,15 @@ using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using System.Windows.Forms;
-
+using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary
 {
     public partial class ReportsControl : UserControl
     {
+        ExcelEngine _excel = new ExcelEngine();
+
+        public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
 
         public ReportsControl()
         {
@@ -111,6 +114,30 @@ namespace IpsViewComponentLibrary
         // * * * [Додати звіт]
         private void btnAddReport_Click(object sender, EventArgs e)
         {
+            if (gvPeriodReports.CurrentRow == null)
+                return;
+            var period = gvPeriodReports.CurrentRow.DataBoundItem as PaidPeriod;
+            if (period == null)
+                return;
+
+            OpenFileDialog dialog = new OpenFileDialog { AddExtension=true, DefaultExt="xlsx", Filter="Excel Files(*.xlsx;*xls)|*.xls;*.xlsx"};
+            if( dialog.ShowDialog() == DialogResult.OK )
+            {
+                var list = _excel.GetReportItems(dialog.FileName);
+                if( period.RegisterRatedList.Count() == 0 )
+                {
+                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Status = 0/*Новий*/});
+                }
+
+                var RatedList = period.RegisterRatedList.First();
+                Register addRegister = new Register { RgStatus=0, FileName = Path.GetFileName(dialog.FileName) };
+                foreach (var item in list)
+                    addRegister.RegisterItem.Add(item);
+
+                RatedList.Register.Add(addRegister);
+
+                SaveRegisterRatedListExecuted(this,RatedList);
+            }
 
         }
 
