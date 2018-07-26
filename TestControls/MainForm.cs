@@ -23,7 +23,7 @@ namespace TestControls
         private ConsumerService _service;
         private EditPay payForm = null;
         private ConsumerMainView _curItem = null;
-        private bool isInit = false;
+        //private bool isInit = false;
         public MainForm()
         {
             _service = new ConsumerService();
@@ -45,7 +45,7 @@ namespace TestControls
             if (employee.Count == 0)
                 SetButtonDisable();
 
-            isInit = true;
+            //isInit = true;
         }
 
         private void BindPayPeriod1_SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)
@@ -101,11 +101,13 @@ namespace TestControls
                 if (InvokeRequired)
                 {
                     bindPayPeriod1.BeginInvoke((Action)(() => bindPayPeriod1.Customer = Customer));
+                    reportsControl1.BeginInvoke((Action)(()=> reportsControl1.Customer = Customer ));
 
                 }
                 else
                 {
                     bindPayPeriod1.Customer = Customer;
+                    reportsControl1.Customer = Customer;
                 }
             });
 
