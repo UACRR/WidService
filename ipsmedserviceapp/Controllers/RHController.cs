@@ -738,19 +738,17 @@ t2.custId = @custid
                     if (destCopyright.WorkRh == null)
                         destCopyright.WorkRh = new WorkRh();
 
-                    if (destCopyright.WorkRh.WorkTypeRh != sourceCopyright.WorkRh.WorkTypeRh)
+                    if (destCopyright.WorkRh.WorkTypeRh != sourceCopyright.WorkRh.WorkTypeRh || sourceCopyright.WorkRh.WorkTypeRh == 1)
                     {
-                        destCopyright.WorkRh.WorkTypeRh = sourceCopyright.WorkRh.WorkTypeRh;
                         destCopyright.WorkRh.WorkDateRh = DateTime.Now;
-
-                        if (sourceCopyright.WorkRh.WorkTypeRh == 4) // Погоджено
-                        {
-                            destCopyright.Status = 1;
-                        }
                     }
+                    if (sourceCopyright.WorkRh.WorkTypeRh == 4) // Погоджено
+                    {
+                        destCopyright.Status = 1;
+                    }
+                    destCopyright.WorkRh.WorkTypeRh = sourceCopyright.WorkRh.WorkTypeRh;
                     destCopyright.WorkRh.WorkCommentRh = sourceCopyright.WorkRh.WorkCommentRh;
                 }
-
             }
 
             await _dbContext.SaveChangesAsync();
