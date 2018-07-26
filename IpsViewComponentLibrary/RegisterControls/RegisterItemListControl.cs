@@ -5,6 +5,7 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls.Data;
 using ipsFormsDesign.Dictionary;
 using System.Collections.ObjectModel;
+using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using ipsFormsDesign.Utilities;
 using System.Drawing;
@@ -113,6 +114,17 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private bool _allowUnlinkCommand = true;
+        public bool AllowUnlinkCommand
+        {
+            get { return _allowUnlinkCommand; }
+            set
+            {
+                _allowUnlinkCommand = value;
+                SetColumnVisible("LinkColumn", _allowUnlinkCommand);
+            }
+        }
+
         public bool MultiSelect
         {
             get => gvRegisterItemList.MultiSelect;
@@ -123,6 +135,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<RegisterItemViewModel> CreateObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
         public event EventHandler<RegisterItemViewModel> LinkCommandExecuted;
+        public event EventHandler<RegisterItemViewModel> UnlinkCommandExecuted;
 
         public RegisterItemListControl()
         {
@@ -131,8 +144,12 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.DataSource = registerItemViewModelBindingSource;
             ddlLinkedStatus.SelectedIndex = 0;
 
-            var column = (GridViewCommandColumn)gvRegisterItemList.Columns["CreateObjectColumn"];
-            column.ImageAlignment = ContentAlignment.MiddleCenter;
+            gvRegisterItemList.SetCommandColumnImageAlignment("FindColumn", ContentAlignment.MiddleCenter);
+            gvRegisterItemList.SetCommandColumnImageAlignment("LinkColumn", ContentAlignment.MiddleCenter);
+            gvRegisterItemList.SetCommandColumnImageAlignment("UnlinkColumn", ContentAlignment.MiddleCenter);
+            gvRegisterItemList.SetCommandColumnImageAlignment("ShowObjectColumn", ContentAlignment.MiddleCenter);
+            gvRegisterItemList.SetCommandColumnImageAlignment("ShowObjectColumn", ContentAlignment.MiddleCenter);
+            gvRegisterItemList.SetCommandColumnImageAlignment("CreateObjectColumn", ContentAlignment.MiddleCenter);
         }
 
         private void gvRegisterItemList_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -147,6 +164,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 OnLinkCommandExecuted(SelectedRegisterItem);
             }
+            else if (currentColumnName == "UnlinkColumn")
+            {
+                OnUnlinkCommandExecuted(SelectedRegisterItem);
+            }
+
             else if (currentColumnName == "ShowObjectColumn")
             {
                 OnShowObjectCommandExecuted(SelectedRegisterItem);
@@ -199,6 +221,14 @@ namespace IpsViewComponentLibrary.RegisterControls
                 selectionView.ObjectSelected += SelectionView_ObjectSelected;
                 selectionView.ShowDialog();
             }
+        }
+
+        private void OnUnlinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
+        {
+            if (_allowUnlinkCommand)
+                UnlinkCommandExecuted?.Invoke(this, selectedRegisterItem);
+
+            selectedRegisterItem.ClearObjectData();
         }
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)

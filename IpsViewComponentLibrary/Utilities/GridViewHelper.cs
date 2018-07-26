@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -36,6 +37,16 @@ namespace IpsViewComponentLibrary.Utilities
             var column = GetColumnByName(gridView, columnName);
 
             column.IsVisible = isVisible;
+        }
+
+        public static void SetCommandColumnImageAlignment(this RadGridView gridView, string columnName, ContentAlignment alignment)
+        {
+            var column = GetColumnByName(gridView, columnName) as GridViewCommandColumn;
+
+            if (column == null)
+                throw new Exception($"Column '{columnName}' should be of type GridViewCommandColumn.");
+
+            column.ImageAlignment = alignment;
         }
 
         private static GridViewDataColumn GetColumnByName(this RadGridView gridView, string columnName)
