@@ -6,6 +6,7 @@ using Telerik.WinControls.UI;
 using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
+using System.Linq;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -57,6 +58,31 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        private RightolderWithNotAcceptedCopyrightViewModel _selectedRightholder;
+        public RightolderWithNotAcceptedCopyrightViewModel SelectedRightholder
+        {
+            get
+            {
+                if (gvRightholdersList.CurrentRow == null)
+                    return null;
+
+                return gvRightholdersList.CurrentRow.DataBoundItem as RightolderWithNotAcceptedCopyrightViewModel;
+            }
+            set
+            {
+                if (_selectedRightholder != value)
+                {
+                    _selectedRightholder = value;
+
+                    var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _selectedRightholder.CustId);
+                    if (row != null)
+                    {
+                        gvRightholdersList.CurrentRow = row;
+                    }
+                }
+            }
+        }
+
         public CopyrightRequestControl()
         {
             InitializeComponent();
@@ -67,9 +93,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        public void ShowError(string message)
+        {
+            MessageBox.Show(message, "Помилка");
+        }
+
         private void SetDictionaries()
         {
-            gvObjectsRightsList.SetComboboxColumnDataSource("WorkTypeRh", IpsGlobal.AnketaDictionaties.workType);
+            var allowedStatuses = new[] { 1, 4, 5 };
+            gvObjectsRightsList.SetComboboxColumnDataSource("WorkTypeRh", IpsGlobal.AnketaDictionaties.workType.Where(w => allowedStatuses.Contains(w.CodeI)));
         }
 
         private void CopyrightRequestControl_Load(object sender, EventArgs e)
@@ -82,6 +114,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             var custId = ((RightolderWithNotAcceptedCopyrightViewModel)gvRightholdersList.CurrentRow.DataBoundItem).CustId;
 
             _presenter.UpdateObjectsList(custId);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            _presenter.Save();
         }
 
         #region Search rightolder

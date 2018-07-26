@@ -89,6 +89,11 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
+        public bool UpdateCopyrights(List<CopyRight> copyrighList)
+        {
+            return _webApi.UpdateItem("rh/updateCopyrights", null, copyrighList);
+        }
+
         #endregion
 
 #if DEBUG
