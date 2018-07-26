@@ -121,7 +121,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _allowUnlinkCommand = value;
-                SetColumnVisible("LinkColumn", _allowUnlinkCommand);
+                SetColumnVisible("UnlinkColumn", _allowUnlinkCommand);
             }
         }
 

@@ -28,7 +28,7 @@ namespace ipsmedserviceapp.Controllers
         //[HttpGet("view/list_0401")]
         public async Task<IActionResult> GetList()
         {
-            var list = await _dbContext.getViewData("select * from vtsk_3_R_04", null);
+            var list = await _dbContext.getViewData("select * from vtsk_3_R_04 where rgStatus <> 0", null);
             return Json(list);
         }
 
