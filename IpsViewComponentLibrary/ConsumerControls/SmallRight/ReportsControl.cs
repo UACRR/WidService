@@ -44,8 +44,6 @@ namespace IpsViewComponentLibrary
 
             var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2);
             bindingLicAgreement.DataSource = listAgreement;
-
-
         }
 
 
@@ -119,20 +117,21 @@ namespace IpsViewComponentLibrary
         // * * * [Переглянути звіт]
         private void btnViewReport_Click(object sender, EventArgs e)
         {
-            //if (gvPeriodReports.Rows.Count == 0 || _path == string.Empty)
-            //{
-            //    MessageBox.Show("Звіти за обраний період не знайдено!", "Звіти відсутні!", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Information);
-            //    return;
-            //}
+            string _path = "";
+            if (gvPeriodReports.Rows.Count == 0 || _path == string.Empty)
+            {
+                MessageBox.Show("Звіти за обраний період не знайдено!", "Звіти відсутні!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
 
-            //if (!File.Exists(_path))
-            //{
-            //    MessageBox.Show("Неможливо переглянути обраний звіт! Відсутній файл!", "Файл звіту не знайдено!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-            //ReportExcelViewForm viewForm = new ReportExcelViewForm(@_path);
-            //viewForm.ShowDialog();
+            if (!File.Exists(_path))
+            {
+                MessageBox.Show("Неможливо переглянути обраний звіт! Відсутній файл!", "Файл звіту не знайдено!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            ReportExcelViewForm viewForm = new ReportExcelViewForm(@_path);
+            viewForm.ShowDialog();
         }
 
         #endregion
