@@ -126,7 +126,7 @@ namespace IpsViewComponentLibrary
             }
 
             gvViewSpectacles.DataSource = parentList;
-            childTemplateBindingSource.DataSource = childList;
+            bsChildTemplate.DataSource = childList;
             
         }
 
