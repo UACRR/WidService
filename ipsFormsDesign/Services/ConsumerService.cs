@@ -45,6 +45,12 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param);
             return anketaDic;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         public IList<VbrLicense> GetAgreementsBigRight(string custId)
         {
             string url = $"consumer/viewBR/" + custId;
@@ -53,9 +59,16 @@ namespace ipsFormsDesign.Services
             return agr;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="retObject"></param>
+        /// <returns></returns>
         public bool SaveRegisterRatedList(RegisterRatedList e, out RegisterRatedList retObject)
         {
-            throw new NotImplementedException();
+            string rmId = e.RmId.ToString();
+            return _webApi.UpdateItemWithReturn("consumer/period/register/RatedList", rmId, e, out retObject );
         }
 
         public IList<object> getBRView(Type typeResult, string viewName, int? custId)
@@ -184,8 +197,13 @@ namespace ipsFormsDesign.Services
                 return list;
             return null;
         }
+        #endregion
 
-
+        #region register
+        public Customer GetCustomerRegisterRatedList( int custId )
+        {
+            return _webApi.GetItemById<Customer>("consumer/period/register/RatedList", custId.ToString());
+        }
         #endregion
     }
 }

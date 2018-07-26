@@ -40,7 +40,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public ICollection<Distribution> Distribution { get; set; }
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        [JsonIgnore]
         public ICollection<RegisterRatedList> RegisterRatedList { get; set; }
     }
 }

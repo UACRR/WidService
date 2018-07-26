@@ -68,15 +68,17 @@ namespace ipsFormsDesign.Services
                     maxRow = excelRange.Rows.Row;
                 }
                 var dim = excelRange.Value;
+                int regitemid = 1;
                 for (int i = 1; i <= maxRow; i++)
                 {
                     if (dim?[i, 1] == null) continue;
 
                     RegisterItem registerItem = null;
                     registerItem = new RegisterItem();
+                    registerItem.RegIitemId = regitemid++;
                     registerItem.CategoryCode = 0; //parse
                     registerItem.ModifyLogin = null; //parse
-                    registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
+//                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
                     registerItem.ItemName = dim[i, 2]?.ToString();
                     registerItem.Performer = dim[i, 3]?.ToString();
                     registerItem.AuthorMusic = dim[i, 4]?.ToString();
@@ -84,6 +86,8 @@ namespace ipsFormsDesign.Services
                     registerItem.DurationItem = DateTime.FromOADate((double)dim[i, 6]).TimeOfDay;
                     registerItem.CountUse = Convert.ToInt32(dim[i, 7]);
                     registerItem.DurationUse = DateTime.FromOADate((double)dim[i, 8]).TimeOfDay;
+
+                    registerItem.CodeItem = 1; // 1   Звичайний розподіл 
 
                     list.Add(registerItem);
                 }

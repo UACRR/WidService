@@ -41,6 +41,7 @@
         <noignore>MoneyPeriodLink</noignore>
         <noignore>Register</noignore>
         <noignore>BrRegister</noignore>
+        <noignore>RegisterRatedList</noignore>
     </item>
     <item Name="MoneyPeriodLink">
         <noignore>Paid</noignore>
