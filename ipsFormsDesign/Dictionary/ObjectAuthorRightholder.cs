@@ -96,6 +96,7 @@ namespace ipsFormsDesign.Dictionary
                     }
                     else
                     {
+                        AuthorName = "";
                         BeginDate = DateTime.Now;
                         EndDate = new DateTime(3000,1,1);
                     }
