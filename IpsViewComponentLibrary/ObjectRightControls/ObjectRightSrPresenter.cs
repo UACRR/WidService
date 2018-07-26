@@ -52,6 +52,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             Run(objectContainer.objectRight, objectContainer.rhList);
         }
 
+        public void Show(ObjectRight objectRight)
+        {
+            Run(objectRight);
+        }
+
         public List<ObjectRightMainView> GetObjectsForAutocomplite(string filter)
         {
             var objects = _objectRightService.GetObjectsByFilter(filter);
