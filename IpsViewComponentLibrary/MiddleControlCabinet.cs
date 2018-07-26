@@ -26,7 +26,10 @@ namespace IpsViewComponentLibrary
             {"pvReference" , CabinetTabType.References},
             {"pvGeneralAgreement" , CabinetTabType.GeneralAgreement},
             {"pvFiles" , CabinetTabType.Files},
-            {"pvAgent", CabinetTabType.Agent}
+            {"pvAgent", CabinetTabType.Agent},
+            {"pvPays", CabinetTabType.Payments},
+            {"pvAvances", CabinetTabType.Prepays},
+            {"pvContacts", CabinetTabType.Contacts}
         };
         private Customer _customer = null;
         private ConsumerBigRightView _brView;
