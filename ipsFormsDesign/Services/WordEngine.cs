@@ -742,6 +742,11 @@ namespace ipsFormsDesign.Services
                 newRow.Cells[6].Range.Text = item.SpecName;
                 newRow.Cells[7].Range.Text = item.Rate.ToString();
                 newRow.Cells[8].Range.Text = item.Performer;
+
+                for (var i = 1; i <= 8; i++)
+                {
+                    newRow.Cells[i].Range.Font.Bold = 0;
+                }
             }
         }
 
