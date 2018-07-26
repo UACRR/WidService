@@ -85,12 +85,7 @@ namespace IpsViewComponentLibrary
                 ;
             }
         }
-
-        private void btnAccept_Click(object sender, EventArgs e)
-        {
-            //TODO: підтвердження гененерального договору
-        }
-
+        
         //перегляд договору
         private void btnView_Click(object sender, EventArgs e)
         {
@@ -102,6 +97,11 @@ namespace IpsViewComponentLibrary
                 StartPosition = FormStartPosition.CenterScreen
             };
             print.ShowDialog();
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            //TODO: підтвердження гененерального договору
         }
 
         private void btnAgrClose_Click(object sender, EventArgs e)

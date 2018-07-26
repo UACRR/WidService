@@ -65,11 +65,6 @@ namespace IpsViewComponentLibrary
 
         }
 
-        private void btnToAccept_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnDeleteRl_Click(object sender, EventArgs e)
         {
 
