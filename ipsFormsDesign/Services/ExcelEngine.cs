@@ -47,12 +47,13 @@ namespace ipsFormsDesign.Services
             try
             {
 
-                excelAppWorkbook = Task.Run(()=>GetApp()).GetAwaiter().GetResult().Workbooks.Open(FileName, 0, true, 5, null, null, false,
+                excelAppWorkbook = Task.Run(() => GetApp()).GetAwaiter().GetResult().Workbooks.Open(FileName, 0, true, 5, null, null, false,
                 Excel.XlPlatform.xlWindows, null, null, null);
                 var excelAppWorksheets = excelAppWorkbook.Worksheets;
                 var excelSheet = (Excel.Worksheet)excelAppWorksheets.Item[1];
 
                 Excel.Range excelRange = excelSheet.UsedRange;
+                excelRange.EntireColumn.NumberFormat = "@";
 
                 int maxCol;
                 int maxRow;
@@ -67,26 +68,50 @@ namespace ipsFormsDesign.Services
                     maxCol = excelRange.Columns.Column;
                     maxRow = excelRange.Rows.Row;
                 }
+
                 var dim = excelRange.Value;
                 int regitemid = 1;
+                TimeSpan curTime;
+                double curDouble;
                 for (int i = 1; i <= maxRow; i++)
                 {
                     if (dim?[i, 1] == null) continue;
-
                     RegisterItem registerItem = null;
                     registerItem = new RegisterItem();
                     registerItem.RegIitemId = regitemid++;
                     registerItem.CategoryCode = 0; //parse
                     registerItem.ModifyLogin = null; //parse
-//                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
+                                                     //                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
                     registerItem.ItemName = dim[i, 2]?.ToString();
                     registerItem.Performer = dim[i, 3]?.ToString();
                     registerItem.AuthorMusic = dim[i, 4]?.ToString();
                     registerItem.AuthorText = dim[i, 5]?.ToString();
-                    registerItem.DurationItem = DateTime.FromOADate((double)dim[i, 6]).TimeOfDay;
-                    registerItem.CountUse = Convert.ToInt32(dim[i, 7]);
-                    registerItem.DurationUse = DateTime.FromOADate((double)dim[i, 8]).TimeOfDay;
+                    try
+                    {
+                        curDouble = Convert.ToDouble(dim[i, 6]);
+                        curTime = TimeSpan.FromDays(Convert.ToDouble(curDouble));
+                        registerItem.DurationItem = curTime;
+                    }
+                    catch
+                    {
+                        registerItem.DurationItem = new TimeSpan(0,0,0,0);
+                    }
 
+                    registerItem.CountUse = Convert.ToInt32(dim[i, 7]);
+                    try
+                    {
+                        curDouble = Convert.ToDouble(dim[i, 8]);
+                        if (curDouble > 0)
+                        {
+                            curTime = TimeSpan.FromDays(Convert.ToDouble(curDouble));
+                            registerItem.DurationUse = curTime;
+                        }
+
+                    }
+                    catch
+                    {
+                        registerItem.DurationUse = new TimeSpan(0);
+                    }
                     registerItem.CodeItem = 1; // 1   Звичайний розподіл 
 
                     list.Add(registerItem);
@@ -96,6 +121,7 @@ namespace ipsFormsDesign.Services
             catch (Exception excp)
             {
                 MessageBox.Show(excp.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new List<RegisterItem>();
             }
             finally
             {

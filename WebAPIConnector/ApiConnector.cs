@@ -227,6 +227,33 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
+        public bool UpdateItemWithResult<T>(string url, string id, T data, out T retObject)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+            string idUrl = $"{url}/{id}";
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+            HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+
+            var retCode = result.IsSuccessStatusCode;
+            if (retCode)
+            {
+                var jobject = JObject.Parse(result.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                retObject = jobject.ToObject<T>();
+            }
+            else
+                retObject = default(T);
+            return retCode;
+        }
+
+        /// <summary>
+        /// змінити об'єкт на сервері додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public bool UpdateListItemWithReturn<T>(string url, string id, List<T> data, out List<T> retData)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings

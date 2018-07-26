@@ -14,6 +14,7 @@ namespace ipsFormsDesign.Services
     public class ConsumerService : IConsumerService
     {
         private ApiConnector _webApi = new ApiConnector();
+        private readonly string _prefix = "consumer/";
         public Customer GetData(int custId)
         {
             var anketaDic = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString());
@@ -34,7 +35,7 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
         }
-        #region BRViews
+        #region BR
         public IList<ConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listBR";
@@ -44,6 +45,17 @@ namespace ipsFormsDesign.Services
             };
             var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param);
             return anketaDic;
+        }
+
+        /// <summary>
+        /// Отримати дані звіту
+        /// </summary>
+        /// <param name="regId">Ід звіту</param>
+        /// <returns></returns>
+        public List<RegisterItem> GetRegisterItems(int regId)
+        {
+            string url = $"consumer/period/register/RegisterItem/{regId}";
+            return _webApi.GetList<RegisterItem>(url) ;
         }
 
         /// <summary>
@@ -70,7 +82,32 @@ namespace ipsFormsDesign.Services
             string rmId = e.RmId.ToString();
             return _webApi.UpdateItemWithReturn("consumer/period/register/RatedList", rmId, e, out retObject );
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public bool SaveRegister( Register body )
+        {
+            return _webApi.UpdateItem<Register>("consumer/period/register", body.RegId.ToString(), body);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public bool DeleteRegister(Register body)
+        {
+            return _webApi.DeleteItem("consumer/period/register", body.RegId.ToString() );
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="typeResult"></param>
+        /// <param name="viewName"></param>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         public IList<object> getBRView(Type typeResult, string viewName, int? custId)
         {
             string url = "consumer/BR/view/list";
@@ -93,11 +130,21 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<AutoCompleteData>(url);
             return list;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custType"></param>
+        /// <returns></returns>
         public Customer NewCustomer(int custType)
         {
             var anketaDic = _webApi.GetItemById<Customer>("consumer/newconsumer", custType.ToString());
             return anketaDic;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <returns></returns>
         public bool Save(Customer cust)
         {
             if (cust.CustId == 0) // Новий споживач
@@ -121,6 +168,13 @@ namespace ipsFormsDesign.Services
             FileStream document = new FileStream(Document, FileMode.Open);
             Task.Run(() => _webApi.uploadFile(url, fileName, comment, document)).GetAwaiter().GetResult();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="typeDocument"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public Stream downloadDocument(int custId, int typeDocument, string fileName)
         {
             string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";
@@ -138,6 +192,18 @@ namespace ipsFormsDesign.Services
         {
             string url = "consumer/Period/Payments/" + custId.ToString();
             return _webApi.GetList<ExternalPay>(url); 
+        }
+
+        /// <summary>
+        /// Збереження підтвердження Споживача по великим правам
+        /// </summary>
+        /// <param name="licId"></param>
+        /// <param name="worrh"></param>
+        /// <returns></returns>
+        public bool SaveBRWorkRH(int licId, List<WorkRh> worrh)
+        {
+            string url = string.Concat(_prefix, "BR/WorkRH");
+            return _webApi.UpdateItem<List<WorkRh>>(url, licId.ToString(), worrh);
         }
 
         /// <summary>

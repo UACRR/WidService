@@ -31,9 +31,19 @@ namespace TestControls
 
             InitializeComponent();
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
+            initControls();
+            //isInit = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void initControls()
+        {
             bindPayPeriod1.SavePariodCommandExecuted += BindPayPeriod1_SavePariodCommandExecuted;
             bindPayPeriod1.SaveLinkCommandExecuted += BindPayPeriod1_SaveLinkCommandExecuted;
             reportsControl1.SaveRegisterRatedListExecuted += ReportsControl1_SaveRegisterRatedListExecuted;
+            reportsControl1.GetRegisterItems = _service.GetRegisterItems;
 
             payForm = new EditPay();
 
@@ -46,7 +56,6 @@ namespace TestControls
             if (employee.Count == 0)
                 SetButtonDisable();
 
-            //isInit = true;
         }
 
         private void ReportsControl1_SaveRegisterRatedListExecuted(object sender, RegisterRatedList e)

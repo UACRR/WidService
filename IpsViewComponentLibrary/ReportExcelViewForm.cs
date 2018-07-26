@@ -25,9 +25,11 @@ namespace IpsViewComponentLibrary
         }
 
 
-        public ReportExcelViewForm(List<RegisterItem> list)
+        public ReportExcelViewForm(Register register)
         {
             InitializeComponent();
+            bindingRegItems.DataSource = register.RegisterItem.OrderBy(rec => rec.RegIitemId);
+            TitleReport = register.FileName;
 
         }
 
