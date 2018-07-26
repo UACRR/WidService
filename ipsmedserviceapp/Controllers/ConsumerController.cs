@@ -1074,13 +1074,13 @@ where t3.custId = @custId
         {
             dest.SetFields(sors);
             var dicDest = dest.Register.ToDictionary(rec => rec.RegId);
-            foreach( var sorsItem in sors.Register )
+            foreach( var sorsItem in sors.Register.Where( rec => rec.RegisterItem.Count() > 0 ) )
             {
                 Register destItem = null;
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
                 {
                     destItem = new Register { CreateDate = DateTime.Today };
-                    destItem.SetFields(sorsItem, new[] { "RegId" });
+                    destItem.SetFields(sorsItem, new[] { "RegId", "CreateDate" });
                     dest.Register.Add(destItem);
                     _dbContext.Register.Add(destItem);
                 }
