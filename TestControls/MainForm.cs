@@ -44,6 +44,7 @@ namespace TestControls
             bindPayPeriod1.SaveLinkCommandExecuted += BindPayPeriod1_SaveLinkCommandExecuted;
             reportsControl1.SaveRegisterRatedListExecuted += ReportsControl1_SaveRegisterRatedListExecuted;
             reportsControl1.GetRegisterItems = _service.GetRegisterItems;
+            reportsControl1.DeleteRegisterExecuted += ReportsControl1_DeleteRegisterExecuted;
 
             payForm = new EditPay();
 
@@ -56,6 +57,11 @@ namespace TestControls
             if (employee.Count == 0)
                 SetButtonDisable();
 
+        }
+
+        private void ReportsControl1_DeleteRegisterExecuted(object sender, Register e)
+        {
+            _service.DeleteRegister( e );
         }
 
         private void ReportsControl1_SaveRegisterRatedListExecuted(object sender, RegisterRatedList e)

@@ -20,6 +20,7 @@ namespace IpsViewComponentLibrary
         ExcelEngine _excel = new ExcelEngine();
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
+        public event EventHandler<Register> DeleteRegisterExecuted;
         public Func<int, List<RegisterItem>> GetRegisterItems;
 
         public ReportsControl()
@@ -196,6 +197,31 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
+                return;
+            var register = gvPeriodReports.CurrentRow.DataBoundItem as Register;
+            if (register == null)
+                return;
+            if (MessageBox.Show($"Видалити звіт {register.FileName}", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DeleteRegisterExecuted(this, register);
+                var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
+                foreach( var item in period.RegisterRatedList )
+                {
+                    if( item.Register.Contains( register ))
+                    {
+                        item.Register.Remove(register);
+                        break;
+                    }
+
+
+                }
+                bindingReports.Remove(register);
+                gvPeriodReports.MasterTemplate.Refresh();
+            }
+        }
     }
 
     public class GridPeriodsR

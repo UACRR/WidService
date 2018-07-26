@@ -1086,8 +1086,9 @@ where t3.custId = @custId
                 }
                 else
                     destItem = dicDest[sorsItem.RegId];
-
                 _dbContext.UpdateList(sorsItem.RegisterItem, destItem.RegisterItem, i => { } /*_dbContext.RegisterItem.Add(i)*/, (l, r) => l.RegIitemId == r.RegIitemId);
+                destItem.CountRows = destItem.RegisterItem.Count();
+                destItem.DurationItems = TimeSpan.FromTicks(destItem.RegisterItem.Sum(rec => rec.DurationUse?.Ticks ?? 0));
             }
 
 
