@@ -307,6 +307,7 @@ namespace ipsFormsDesign.Interfaces
         public int? CustId { get; set; }
         public int? PeriodId { get; set; }
         public int? Status { get; set; }
+        public int RmId { get; set; }
         public decimal? FullAmount { get; set; }
         public decimal? RAmount { get; set; }
         public decimal? PaidAmount { get; set; }
@@ -316,4 +317,81 @@ namespace ipsFormsDesign.Interfaces
         public string PeriodName { get; set; }
         public string StatusName { get; set; }
     }
+
+    public class BigRightPayslipsSpectacleView : IChildTemplate, IParentTemplate
+    {
+        public int RmId { get; set; }
+        public int RegId { get; set; }
+        public int? ObjId { get; set; }
+        public int? ActCode { get; set; }
+        public int CustId { get; set; }
+        public decimal? RegAmount { get; set; }
+        public decimal? AuthAmount { get; set; }
+        public decimal PrepaySumAuthor { get; set; }
+        public decimal? AvanseRest { get; set; }
+        public decimal AvanseUsed { get; set; }
+        public decimal? AuthRate { get; set; }
+        public decimal? RoleRate { get; set; }
+        public decimal? AmountDistributed { get; set; }
+        public string ItemName { get; set; }
+        public string RoleName { get; set; }
+        public string NameRh { get; set; }
+        public decimal? MusicRate { get; set; }
+        public decimal? MusicAmount { get; set; }
+    }
+
+
+
+    #region класи для створення ієрархії
+
+    public class ParentTemplate : IParentTemplate
+    {
+        public int? ObjId { get; set; }
+        public string ItemName { get; set; }
+        public decimal? RegAmount { get; set; }
+        public int? ActCode { get; set; }
+
+        public decimal? AuthRate { get; set; }
+        public decimal? AuthAmount { get; set; }
+        public decimal PrepaySumAuthor { get; set; }
+        public decimal? AvanseRest { get; set; }
+    }
+
+    public class ChildTemplate : IChildTemplate
+    {
+        public int? ObjId { get; set; }
+        public int CustId { get; set; }
+
+        public string RoleName { get; set; }
+        public string NameRh { get; set; }
+        public decimal? RoleRate { get; set; }
+        public decimal? AmountDistributed { get; set; }
+        public decimal AvanseUsed { get; set; }
+    }
+
+    public interface IChildTemplate
+    {
+        int? ObjId { get; set; }
+        int CustId { get; set; }
+        string RoleName { get; set; }
+        string NameRh { get; set; }
+        decimal? RoleRate { get; set; }
+        decimal? AmountDistributed { get; set; }
+        decimal AvanseUsed { get; set; }
+    }
+
+    public interface IParentTemplate
+    {
+        int? ObjId { get; set; }
+        string ItemName { get; set; }
+        decimal? RegAmount { get; set; }
+        int? ActCode { get; set; }
+        decimal? AuthRate { get; set; }
+        decimal? AuthAmount { get; set; }
+        decimal PrepaySumAuthor { get; set; }
+        decimal? AvanseRest { get; set; }
+    }
+
+    #endregion
+
 }

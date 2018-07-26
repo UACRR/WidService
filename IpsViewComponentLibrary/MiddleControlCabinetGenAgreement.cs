@@ -85,15 +85,23 @@ namespace IpsViewComponentLibrary
                 ;
             }
         }
+        
+        //перегляд договору
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.LicId;
+            var licence = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == id);
+            ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: IpsGlobal.AnketaDictionaties, customer: _customer, licenseAgreement: licence)
+            {
+                WindowState = FormWindowState.Maximized,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            print.ShowDialog();
+        }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnView_Click(object sender, EventArgs e)
-        {
-            //(gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr).
+            //TODO: підтвердження гененерального договору
         }
 
         private void btnAgrClose_Click(object sender, EventArgs e)

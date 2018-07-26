@@ -970,7 +970,9 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterSearchObject.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightRequestBidAuthors.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ChildTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
