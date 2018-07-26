@@ -63,9 +63,9 @@
             this.btnViewReport = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.bindingLicAgreement = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingLicAgreement = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -77,9 +77,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).BeginInit();
             this.SuspendLayout();
             // 
             // gvLicenseAgr
@@ -87,8 +87,7 @@
             this.gvLicenseAgr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvLicenseAgr.AutoScroll = true;
-            this.gvLicenseAgr.Location = new System.Drawing.Point(4, 39);
-            this.gvLicenseAgr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gvLicenseAgr.Location = new System.Drawing.Point(3, 32);
             // 
             // 
             // 
@@ -99,43 +98,46 @@
             this.gvLicenseAgr.MasterTemplate.AllowEditRow = false;
             this.gvLicenseAgr.MasterTemplate.AutoGenerateColumns = false;
             this.gvLicenseAgr.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "License";
+            gridViewTextBoxColumn1.FieldName = "Lic.LicCodeNavigation.Name";
             gridViewTextBoxColumn1.HeaderText = "Ліцензія";
             gridViewTextBoxColumn1.Name = "License";
-            gridViewTextBoxColumn1.Width = 203;
+            gridViewTextBoxColumn1.Width = 151;
             gridViewTextBoxColumn2.FieldName = "Series";
             gridViewTextBoxColumn2.HeaderText = "Серія";
             gridViewTextBoxColumn2.Name = "Series";
-            gridViewTextBoxColumn2.Width = 61;
-            gridViewTextBoxColumn3.FieldName = "AgrNumber";
+            gridViewTextBoxColumn2.Width = 45;
+            gridViewTextBoxColumn3.FieldName = "LicNum";
             gridViewTextBoxColumn3.HeaderText = "Номер договору";
             gridViewTextBoxColumn3.Name = "AgrNumber";
-            gridViewTextBoxColumn3.Width = 141;
+            gridViewTextBoxColumn3.Width = 104;
+            gridViewTextBoxColumn4.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn4.FieldName = "DateBegin";
             gridViewTextBoxColumn4.HeaderText = "Дата початку";
             gridViewTextBoxColumn4.Name = "DateBegin";
-            gridViewTextBoxColumn4.Width = 127;
+            gridViewTextBoxColumn4.Width = 94;
+            gridViewTextBoxColumn5.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn5.FieldName = "DateEnd";
             gridViewTextBoxColumn5.HeaderText = "Дата кінця";
             gridViewTextBoxColumn5.Name = "DateEnd";
-            gridViewTextBoxColumn5.Width = 127;
-            gridViewDecimalColumn1.FieldName = "Amount";
+            gridViewTextBoxColumn5.Width = 94;
+            gridViewDecimalColumn1.DataType = typeof(System.Nullable<decimal>);
+            gridViewDecimalColumn1.FieldName = "MinAmount";
             gridViewDecimalColumn1.HeaderText = "Сума";
             gridViewDecimalColumn1.Name = "Amount";
-            gridViewDecimalColumn1.Width = 127;
-            gridViewTextBoxColumn6.FieldName = "State";
+            gridViewDecimalColumn1.Width = 94;
+            gridViewTextBoxColumn6.FieldName = "LicStatusNavigation.Name";
             gridViewTextBoxColumn6.HeaderText = "Стан";
             gridViewTextBoxColumn6.Name = "State";
-            gridViewTextBoxColumn6.Width = 127;
-            gridViewTextBoxColumn7.FieldName = "PeriodPayment";
+            gridViewTextBoxColumn6.Width = 94;
+            gridViewTextBoxColumn7.FieldName = "PeriodCodeNavigation.Name";
             gridViewTextBoxColumn7.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn7.Name = "PeriodPayment";
-            gridViewTextBoxColumn7.Width = 173;
+            gridViewTextBoxColumn7.Width = 128;
             gridViewDecimalColumn2.FieldName = "Arrears";
             gridViewDecimalColumn2.FormatString = "dd.MM.yyyy";
             gridViewDecimalColumn2.HeaderText = "Борг";
             gridViewDecimalColumn2.Name = "Arrears";
-            gridViewDecimalColumn2.Width = 129;
+            gridViewDecimalColumn2.Width = 99;
             this.gvLicenseAgr.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -152,7 +154,7 @@
             this.gvLicenseAgr.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvLicenseAgr.ReadOnly = true;
             this.gvLicenseAgr.ShowGroupPanel = false;
-            this.gvLicenseAgr.Size = new System.Drawing.Size(1233, 133);
+            this.gvLicenseAgr.Size = new System.Drawing.Size(925, 108);
             this.gvLicenseAgr.TabIndex = 13;
             this.gvLicenseAgr.ThemeName = "Office2007Silver";
             this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
@@ -161,10 +163,9 @@
             // 
             this.radLabel3.AutoSize = false;
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(4, 180);
-            this.radLabel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radLabel3.Location = new System.Drawing.Point(3, 146);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(433, 26);
+            this.radLabel3.Size = new System.Drawing.Size(325, 21);
             this.radLabel3.TabIndex = 15;
             this.radLabel3.Text = "Періоди платежів";
             // 
@@ -173,8 +174,7 @@
             this.gvPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvPeriods.AutoScroll = true;
-            this.gvPeriods.Location = new System.Drawing.Point(4, 213);
-            this.gvPeriods.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gvPeriods.Location = new System.Drawing.Point(3, 173);
             // 
             // 
             // 
@@ -188,54 +188,54 @@
             gridViewTextBoxColumn8.FieldName = "PeriodName";
             gridViewTextBoxColumn8.HeaderText = "Період";
             gridViewTextBoxColumn8.Name = "PeriodName";
-            gridViewTextBoxColumn8.Width = 411;
+            gridViewTextBoxColumn8.Width = 305;
             gridViewTextBoxColumn9.DataType = typeof(int);
             gridViewTextBoxColumn9.FieldName = "Status";
             gridViewTextBoxColumn9.HeaderText = "Стан періоду";
             gridViewTextBoxColumn9.Name = "Status";
-            gridViewTextBoxColumn9.Width = 171;
+            gridViewTextBoxColumn9.Width = 127;
             gridViewDecimalColumn3.FieldName = "Amount";
             gridViewDecimalColumn3.HeaderText = "Вимога";
             gridViewDecimalColumn3.Name = "Amount";
-            gridViewDecimalColumn3.Width = 171;
+            gridViewDecimalColumn3.Width = 127;
             gridViewDecimalColumn4.FieldName = "Distribamount";
             gridViewDecimalColumn4.HeaderText = "Розподілено";
             gridViewDecimalColumn4.Name = "Distribamount";
-            gridViewDecimalColumn4.Width = 171;
+            gridViewDecimalColumn4.Width = 127;
             gridViewTextBoxColumn10.FieldName = "ReportCounts";
             gridViewTextBoxColumn10.HeaderText = "Звітів";
             gridViewTextBoxColumn10.Name = "ReportCounts";
-            gridViewTextBoxColumn10.Width = 109;
+            gridViewTextBoxColumn10.Width = 81;
             gridViewTextBoxColumn11.FieldName = "IsActFormed";
             gridViewTextBoxColumn11.HeaderText = "Сформовано акт";
-            gridViewTextBoxColumn11.MaxWidth = 107;
-            gridViewTextBoxColumn11.MinWidth = 107;
+            gridViewTextBoxColumn11.MaxWidth = 80;
+            gridViewTextBoxColumn11.MinWidth = 80;
             gridViewTextBoxColumn11.Name = "IsActFormed";
-            gridViewTextBoxColumn11.Width = 107;
+            gridViewTextBoxColumn11.Width = 80;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewCommandColumn1.FieldName = "CreateAct";
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.createAct;
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn1.MaxWidth = 37;
-            gridViewCommandColumn1.MinWidth = 37;
+            gridViewCommandColumn1.MaxWidth = 28;
+            gridViewCommandColumn1.MinWidth = 28;
             gridViewCommandColumn1.Name = "CreateAct";
-            gridViewCommandColumn1.Width = 37;
+            gridViewCommandColumn1.Width = 28;
             gridViewCommandColumn2.FieldName = "ViewAct";
             gridViewCommandColumn2.HeaderText = "";
             gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn2.MaxWidth = 37;
-            gridViewCommandColumn2.MinWidth = 37;
+            gridViewCommandColumn2.MaxWidth = 28;
+            gridViewCommandColumn2.MinWidth = 28;
             gridViewCommandColumn2.Name = "ViewAct";
-            gridViewCommandColumn2.Width = 37;
+            gridViewCommandColumn2.Width = 28;
             gridViewTextBoxColumn12.DataType = typeof(int);
             gridViewTextBoxColumn12.FieldName = "PeriodId";
             gridViewTextBoxColumn12.HeaderText = "Id";
             gridViewTextBoxColumn12.IsVisible = false;
             gridViewTextBoxColumn12.Name = "PeriodId";
-            gridViewTextBoxColumn12.Width = 56;
+            gridViewTextBoxColumn12.Width = 42;
             this.gvPeriods.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
@@ -252,7 +252,7 @@
             this.gvPeriods.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPeriods.ReadOnly = true;
             this.gvPeriods.ShowGroupPanel = false;
-            this.gvPeriods.Size = new System.Drawing.Size(1233, 140);
+            this.gvPeriods.Size = new System.Drawing.Size(925, 114);
             this.gvPeriods.TabIndex = 14;
             this.gvPeriods.ThemeName = "Office2007Silver";
             this.gvPeriods.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriods_CurrentRowChanged);
@@ -262,10 +262,9 @@
             // 
             this.radLabel2.AutoSize = false;
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel2.Location = new System.Drawing.Point(4, 361);
-            this.radLabel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radLabel2.Location = new System.Drawing.Point(3, 293);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(433, 26);
+            this.radLabel2.Size = new System.Drawing.Size(325, 21);
             this.radLabel2.TabIndex = 17;
             this.radLabel2.Text = "Звіти періода";
             // 
@@ -275,8 +274,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvPeriodReports.AutoScroll = true;
-            this.gvPeriodReports.Location = new System.Drawing.Point(4, 394);
-            this.gvPeriodReports.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gvPeriodReports.Location = new System.Drawing.Point(3, 320);
             // 
             // 
             // 
@@ -287,24 +285,24 @@
             this.gvPeriodReports.MasterTemplate.AllowEditRow = false;
             this.gvPeriodReports.MasterTemplate.AutoGenerateColumns = false;
             this.gvPeriodReports.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn13.FieldName = "ReportsName";
+            gridViewTextBoxColumn13.FieldName = "FileName";
             gridViewTextBoxColumn13.HeaderText = "Звіти періода";
             gridViewTextBoxColumn13.Name = "ReportsName";
-            gridViewTextBoxColumn13.Width = 925;
-            gridViewTextBoxColumn14.FieldName = "PeriodName";
+            gridViewTextBoxColumn13.Width = 690;
+            gridViewTextBoxColumn14.FieldName = "RegisterRatedList.Period.PeriodName";
             gridViewTextBoxColumn14.HeaderText = "Період";
             gridViewTextBoxColumn14.Name = "PeriodName";
-            gridViewTextBoxColumn14.Width = 284;
+            gridViewTextBoxColumn14.Width = 213;
             gridViewTextBoxColumn15.FieldName = "ReportId";
             gridViewTextBoxColumn15.HeaderText = "ID";
             gridViewTextBoxColumn15.IsVisible = false;
             gridViewTextBoxColumn15.Name = "ReportId";
-            gridViewTextBoxColumn15.Width = 64;
-            gridViewTextBoxColumn16.FieldName = "PathString";
+            gridViewTextBoxColumn15.Width = 48;
+            gridViewTextBoxColumn16.FieldName = "FileName";
             gridViewTextBoxColumn16.HeaderText = "Path";
             gridViewTextBoxColumn16.IsVisible = false;
             gridViewTextBoxColumn16.Name = "PathString";
-            gridViewTextBoxColumn16.Width = 64;
+            gridViewTextBoxColumn16.Width = 48;
             this.gvPeriodReports.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn13,
             gridViewTextBoxColumn14,
@@ -316,7 +314,7 @@
             this.gvPeriodReports.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPeriodReports.ReadOnly = true;
             this.gvPeriodReports.ShowGroupPanel = false;
-            this.gvPeriodReports.Size = new System.Drawing.Size(1233, 144);
+            this.gvPeriodReports.Size = new System.Drawing.Size(925, 117);
             this.gvPeriodReports.TabIndex = 16;
             this.gvPeriodReports.ThemeName = "Office2007Silver";
             this.gvPeriodReports.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodReports_CurrentRowChanged);
@@ -324,10 +322,9 @@
             // btnAddReport
             // 
             this.btnAddReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddReport.Location = new System.Drawing.Point(4, 545);
-            this.btnAddReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddReport.Location = new System.Drawing.Point(3, 443);
             this.btnAddReport.Name = "btnAddReport";
-            this.btnAddReport.Size = new System.Drawing.Size(147, 30);
+            this.btnAddReport.Size = new System.Drawing.Size(110, 24);
             this.btnAddReport.TabIndex = 18;
             this.btnAddReport.Text = "Додати звіт";
             this.btnAddReport.ThemeName = "Office2007Silver";
@@ -336,10 +333,9 @@
             // btnViewReport
             // 
             this.btnViewReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnViewReport.Location = new System.Drawing.Point(159, 545);
-            this.btnViewReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnViewReport.Location = new System.Drawing.Point(119, 443);
             this.btnViewReport.Name = "btnViewReport";
-            this.btnViewReport.Size = new System.Drawing.Size(147, 30);
+            this.btnViewReport.Size = new System.Drawing.Size(110, 24);
             this.btnViewReport.TabIndex = 19;
             this.btnViewReport.Text = "Переглянути звіт";
             this.btnViewReport.ThemeName = "Office2007Silver";
@@ -349,28 +345,27 @@
             // 
             this.radLabel4.AutoSize = false;
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel4.Location = new System.Drawing.Point(4, 6);
-            this.radLabel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radLabel4.Location = new System.Drawing.Point(3, 5);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(433, 26);
+            this.radLabel4.Size = new System.Drawing.Size(325, 21);
             this.radLabel4.TabIndex = 20;
             this.radLabel4.Text = "Активні договори";
-            // 
-            // bindingLicAgreement
-            // 
-            this.bindingLicAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
-            // 
-            // bindingPaidPeriod
-            // 
-            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
             // 
             // bindingReports
             // 
             this.bindingReports.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
+            // bindingPaidPeriod
+            // 
+            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
+            // 
+            // bindingLicAgreement
+            // 
+            this.bindingLicAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            // 
             // ReportsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.btnViewReport);
@@ -380,10 +375,9 @@
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.gvPeriods);
             this.Controls.Add(this.gvLicenseAgr);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinimumSize = new System.Drawing.Size(933, 578);
+            this.MinimumSize = new System.Drawing.Size(700, 470);
             this.Name = "ReportsControl";
-            this.Size = new System.Drawing.Size(1241, 578);
+            this.Size = new System.Drawing.Size(931, 470);
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
@@ -395,9 +389,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).EndInit();
             this.ResumeLayout(false);
 
         }

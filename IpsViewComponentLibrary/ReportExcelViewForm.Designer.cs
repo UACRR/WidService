@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -42,10 +43,12 @@
             this.btn = new Telerik.WinControls.UI.RadButton();
             this.gvReportContentView = new Telerik.WinControls.UI.RadGridView();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.bindingRegItems = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingRegItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +73,7 @@
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(110, 24);
             this.btn.TabIndex = 1;
-            this.btn.Text = "Кнопка";
+            this.btn.Text = "Закрити";
             this.btn.ThemeName = "Office2007Silver";
             this.btn.Click += new System.EventHandler(this.btn_Click);
             // 
@@ -118,6 +121,7 @@
             gridViewTextBoxColumn5.Name = "AuthorText";
             gridViewTextBoxColumn5.Width = 89;
             gridViewTextBoxColumn5.WrapText = true;
+            gridViewDateTimeColumn1.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewDateTimeColumn1.FieldName = "DurationItem";
             gridViewDateTimeColumn1.HeaderText = "Тривалість звучання твору";
             gridViewDateTimeColumn1.MaxWidth = 95;
@@ -125,6 +129,7 @@
             gridViewDateTimeColumn1.Name = "DurationItem";
             gridViewDateTimeColumn1.Width = 95;
             gridViewDateTimeColumn1.WrapText = true;
+            gridViewTextBoxColumn6.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn6.FieldName = "CountUse";
             gridViewTextBoxColumn6.HeaderText = "Кількість публічних сповіщень твору";
             gridViewTextBoxColumn6.MaxWidth = 120;
@@ -133,6 +138,7 @@
             gridViewTextBoxColumn6.Name = "CountUse";
             gridViewTextBoxColumn6.Width = 120;
             gridViewTextBoxColumn6.WrapText = true;
+            gridViewDateTimeColumn2.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewDateTimeColumn2.FieldName = "DurationUse";
             gridViewDateTimeColumn2.HeaderText = "Загальна тривалість звучання твору";
             gridViewDateTimeColumn2.MaxWidth = 120;
@@ -149,6 +155,7 @@
             gridViewDateTimeColumn1,
             gridViewTextBoxColumn6,
             gridViewDateTimeColumn2});
+            this.gvReportContentView.MasterTemplate.DataSource = this.bindingRegItems;
             this.gvReportContentView.MasterTemplate.EnableGrouping = false;
             this.gvReportContentView.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvReportContentView.Name = "gvReportContentView";
@@ -156,6 +163,10 @@
             this.gvReportContentView.Size = new System.Drawing.Size(868, 332);
             this.gvReportContentView.TabIndex = 2;
             this.gvReportContentView.ThemeName = "Office2013Light";
+            // 
+            // bindingRegItems
+            // 
+            this.bindingRegItems.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
             // 
             // ReportExcelViewForm
             // 
@@ -178,6 +189,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReportContentView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingRegItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -189,5 +201,6 @@
         private Telerik.WinControls.UI.RadButton btn;
         private Telerik.WinControls.UI.RadGridView gvReportContentView;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private System.Windows.Forms.BindingSource bindingRegItems;
     }
 }

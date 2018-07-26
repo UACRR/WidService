@@ -29,7 +29,7 @@ namespace UnitTestMediaPortal
             set { calculationInfoNewControl1.DataSource = value; }
         }
 
-        public RadGridView usersMoney { get { return calculationInfoNewControl1.gvUserMoney;  } } 
+        //public RadGridView usersMoney { get { return calculationInfoNewControl1.gvUserMoney;  } } 
 
     }
 }

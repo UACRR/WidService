@@ -11,6 +11,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using System.Windows.Forms;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary
 {
@@ -19,6 +20,7 @@ namespace IpsViewComponentLibrary
         ExcelEngine _excel = new ExcelEngine();
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
+        public Func<int, List<RegisterItem>> GetRegisterItems;
 
         public ReportsControl()
         {
@@ -38,14 +40,46 @@ namespace IpsViewComponentLibrary
 
         #region METHODS
 
+        private void normalizeData(Customer cust)
+        {
+            var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
+            var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
+            var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
+            var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
+
+            foreach (var item in cust.Client.LicenseAgreement)
+            {
+                item.LicCodeNavigation = dicType[item.LicType ?? 1];
+
+                foreach (var licParam in item.LicenseAgrParam)
+                {
+                    licParam.Lic = item;
+                    licParam.LicStatusNavigation = dicStatus[licParam.LicStatus ?? 1];
+                    licParam.PeriodCodeNavigation = dicPeriod[licParam.PeriodCode ?? 1];
+                }
+                foreach (var period in item.PaidPeriod)
+                {
+                    period.StatusNavigation = dicPeriodStatus[period.Status];
+                    foreach (var link in period.MoneyPeriodLink)
+                        link.Period = period;
+                    foreach (var regList in period.RegisterRatedList)
+                    {
+                        regList.Period = period;
+                        foreach (var reg in regList.Register)
+                            reg.RegisterRatedList = regList;
+                    }
+                }
+            }
+        }
+
         private void SetupBindings()
         {
             if (_customer == null)
             {
                 return;
             }
-
-            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2);
+            normalizeData(_customer);
+            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.Single(item => item.LicVersion == rec.LicVersion));
             bindingLicAgreement.DataSource = listAgreement;
         }
 
@@ -71,8 +105,8 @@ namespace IpsViewComponentLibrary
             if (gvLicenseAgr.CurrentRow == null)
                 return;
 
-            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgreement;
-            bindingPaidPeriod.DataSource = lic.PaidPeriod;
+            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
+            bindingPaidPeriod.DataSource = lic.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate);
         }
 
         // * * * [Періоди платежів]
@@ -83,10 +117,11 @@ namespace IpsViewComponentLibrary
 
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
             var reports = new List<Register>();
-            foreach (var item in period.RegisterRatedList)
-            {
-                reports.AddRange(item.Register);
-            }
+            if (period?.RegisterRatedList.Count() > 0)
+                foreach (var item in period.RegisterRatedList.OrderBy(rec => rec.RmId))
+                {
+                    reports.AddRange(item.Register);
+                }
 
             bindingReports.DataSource = reports;
         }
@@ -114,29 +149,29 @@ namespace IpsViewComponentLibrary
         // * * * [Додати звіт]
         private void btnAddReport_Click(object sender, EventArgs e)
         {
-            if (gvPeriodReports.CurrentRow == null)
+            if (gvPeriods.CurrentRow == null)
                 return;
-            var period = gvPeriodReports.CurrentRow.DataBoundItem as PaidPeriod;
+            var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
             if (period == null)
                 return;
 
-            OpenFileDialog dialog = new OpenFileDialog { AddExtension=true, DefaultExt="xlsx", Filter="Excel Files(*.xlsx;*xls)|*.xls;*.xlsx"};
-            if( dialog.ShowDialog() == DialogResult.OK )
+            OpenFileDialog dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var list = _excel.GetReportItems(dialog.FileName);
-                if( period.RegisterRatedList.Count() == 0 )
+                if (period.RegisterRatedList.Count() == 0)
                 {
                     period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Status = 0/*Новий*/});
                 }
 
                 var RatedList = period.RegisterRatedList.First();
-                Register addRegister = new Register { RgStatus=0, FileName = Path.GetFileName(dialog.FileName) };
+                Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName) };
                 foreach (var item in list)
                     addRegister.RegisterItem.Add(item);
 
                 RatedList.Register.Add(addRegister);
 
-                SaveRegisterRatedListExecuted(this,RatedList);
+                SaveRegisterRatedListExecuted(this, RatedList);
             }
 
         }
@@ -144,20 +179,18 @@ namespace IpsViewComponentLibrary
         // * * * [Переглянути звіт]
         private void btnViewReport_Click(object sender, EventArgs e)
         {
-            string _path = "";
-            if (gvPeriodReports.Rows.Count == 0 || _path == string.Empty)
-            {
-                MessageBox.Show("Звіти за обраний період не знайдено!", "Звіти відсутні!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+            if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
-            }
+            var register = gvPeriodReports.CurrentRow.DataBoundItem as Register;
+            if (register == null)
+                return;
 
-            if (!File.Exists(_path))
-            {
-                MessageBox.Show("Неможливо переглянути обраний звіт! Відсутній файл!", "Файл звіту не знайдено!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            ReportExcelViewForm viewForm = new ReportExcelViewForm(@_path);
+            var list = GetRegisterItems(register.RegId);
+
+            register.RegisterItem.Clear();
+            list.ForEach(item => register.RegisterItem.Add(item));
+
+            ReportExcelViewForm viewForm = new ReportExcelViewForm(register);
             viewForm.ShowDialog();
         }
 
