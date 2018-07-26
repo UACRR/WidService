@@ -1,13 +1,8 @@
-﻿using ipsFormsDesign.Data;
-using ipsFormsDesign.Dictionary;
+﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -73,20 +68,26 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 _view.ShowError("Не вдалося зберегти зміни.");
         }
 
-        public async void Print()
+        public void Print()
         {
-            // process document
-            var wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
-            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_Copyright-Request.docx");
-            var objectRightList = (List<ObjectRightNotAccepted>)_view.ObjectRightListDataSource;
-            await wordEngine.ProcessCopyrightRequest(template, _view.SelectedRightholder, objectRightList);
+            var objectRightList = (ICollection<ObjectRightNotAccepted>)_view.ObjectRightListDataSource;
 
-            // open view doc form
             var printView = new ViewAndPrintAgreement();
-            printView.Text = "Запит на підтвердження прав на об'єкти";
-            printView.ShowDocument(wordEngine.Pdf);
+            printView.Text = "Запит - " + _view.SelectedRightholder.Name;
+            printView.ShowCopyrightRequest(_view.SelectedRightholder, objectRightList);
 
-            // update status and date
+            UpdateStatusAndDate(objectRightList);
+        }
+
+        private void UpdateStatusAndDate(ICollection<ObjectRightNotAccepted> objectRightList)
+        {
+            foreach (var obj in objectRightList)
+            {
+                obj.WorkDateRH = DateTime.Now;
+                obj.WorkTypeRH = 1;
+            }
+
+            Save();
         }
     }
 }
