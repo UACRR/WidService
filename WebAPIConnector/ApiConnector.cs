@@ -214,7 +214,7 @@ namespace WebAPIConnector
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
-            string idUrl = $"{url}/{id}";
+            string idUrl = string.IsNullOrEmpty(id) ? url : $"{url}/{id}";
             StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
             HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
 
