@@ -3,7 +3,6 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -45,12 +44,24 @@ namespace ipsFormsDesign.Services
 
         public bool Save(ObjectRight item)
         {
+            ObjectRight result;
+
             if (item.ObjId == 0) // Новий об'єкт права
             {
-                return _webApi.NewItem("objectright/newobject", item);
+                result = _webApi.NewItemWithResult("objectright/newobject", item);
+            }
+            else
+            {
+                result = _webApi.UpdateItemWithResult("objectright/detail", item.ObjId.ToString(), item);
             }
 
-            return _webApi.UpdateItem("objectright/detail", item.ObjId.ToString(), item);
+            if (result != null)
+            {
+                item.SetFields(result);
+                return true;
+            }
+            else
+                return false;
         }
 
         public ObjectRight NewObjectRight(int category)
