@@ -31,14 +31,14 @@ namespace IpsViewComponentLibrary
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAuthors = new Telerik.WinControls.UI.RadPageViewPage();
@@ -521,76 +521,76 @@ namespace IpsViewComponentLibrary
             this.gvViewActList.MasterTemplate.AllowEditRow = false;
             this.gvViewActList.MasterTemplate.AutoGenerateColumns = false;
             this.gvViewActList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.DataType = typeof(int);
-            gridViewTextBoxColumn1.FieldName = "CustId";
-            gridViewTextBoxColumn1.HeaderText = "ID";
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "CustId";
-            gridViewTextBoxColumn2.FieldName = "ObjName";
-            gridViewTextBoxColumn2.HeaderText = "Назва твору";
-            gridViewTextBoxColumn2.MinWidth = 0;
-            gridViewTextBoxColumn2.Multiline = true;
-            gridViewTextBoxColumn2.Name = "ObjName";
-            gridViewTextBoxColumn2.Width = 360;
-            gridViewTextBoxColumn2.WrapText = true;
-            gridViewTextBoxColumn3.FieldName = "NameMusician";
-            gridViewTextBoxColumn3.HeaderText = "ПІБ композитора";
-            gridViewTextBoxColumn3.MaxWidth = 220;
-            gridViewTextBoxColumn3.MinWidth = 100;
-            gridViewTextBoxColumn3.Multiline = true;
-            gridViewTextBoxColumn3.Name = "NameMusician";
-            gridViewTextBoxColumn3.Width = 220;
-            gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.FieldName = "NameSinger";
-            gridViewTextBoxColumn4.HeaderText = "ПІБ виконавця";
-            gridViewTextBoxColumn4.MaxWidth = 220;
-            gridViewTextBoxColumn4.MinWidth = 100;
-            gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "NameSinger";
-            gridViewTextBoxColumn4.Width = 220;
-            gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.FieldName = "Duration";
-            gridViewTextBoxColumn5.HeaderText = "Тривалість звучання (хв)";
-            gridViewTextBoxColumn5.MaxWidth = 100;
-            gridViewTextBoxColumn5.MinWidth = 100;
-            gridViewTextBoxColumn5.Multiline = true;
-            gridViewTextBoxColumn5.Name = "Duration";
-            gridViewTextBoxColumn5.Width = 100;
-            gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.FieldName = "NumbPerfom";
-            gridViewTextBoxColumn6.HeaderText = "Кількість виконань";
-            gridViewTextBoxColumn6.MaxWidth = 100;
-            gridViewTextBoxColumn6.MinWidth = 100;
-            gridViewTextBoxColumn6.Name = "NumbPerfom";
-            gridViewTextBoxColumn6.Width = 100;
-            gridViewTextBoxColumn6.WrapText = true;
-            gridViewCommandColumn1.AllowResize = false;
-            gridViewCommandColumn1.AllowSort = false;
-            gridViewCommandColumn1.DefaultText = "Файли";
-            gridViewCommandColumn1.FieldName = "btnsDelete";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn1.MaxWidth = 35;
-            gridViewCommandColumn1.MinWidth = 35;
-            gridViewCommandColumn1.Name = "btnsDelete";
-            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewCommandColumn1.Width = 35;
+            gridViewTextBoxColumn7.DataType = typeof(int);
+            gridViewTextBoxColumn7.FieldName = "CustId";
+            gridViewTextBoxColumn7.HeaderText = "ID";
+            gridViewTextBoxColumn7.IsVisible = false;
+            gridViewTextBoxColumn7.Name = "CustId";
+            gridViewTextBoxColumn8.FieldName = "ObjName";
+            gridViewTextBoxColumn8.HeaderText = "Назва твору";
+            gridViewTextBoxColumn8.MinWidth = 0;
+            gridViewTextBoxColumn8.Multiline = true;
+            gridViewTextBoxColumn8.Name = "ObjName";
+            gridViewTextBoxColumn8.Width = 360;
+            gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.FieldName = "NameMusician";
+            gridViewTextBoxColumn9.HeaderText = "ПІБ композитора";
+            gridViewTextBoxColumn9.MaxWidth = 220;
+            gridViewTextBoxColumn9.MinWidth = 100;
+            gridViewTextBoxColumn9.Multiline = true;
+            gridViewTextBoxColumn9.Name = "NameMusician";
+            gridViewTextBoxColumn9.Width = 220;
+            gridViewTextBoxColumn9.WrapText = true;
+            gridViewTextBoxColumn10.FieldName = "NameSinger";
+            gridViewTextBoxColumn10.HeaderText = "ПІБ виконавця";
+            gridViewTextBoxColumn10.MaxWidth = 220;
+            gridViewTextBoxColumn10.MinWidth = 100;
+            gridViewTextBoxColumn10.Multiline = true;
+            gridViewTextBoxColumn10.Name = "NameSinger";
+            gridViewTextBoxColumn10.Width = 220;
+            gridViewTextBoxColumn10.WrapText = true;
+            gridViewTextBoxColumn11.FieldName = "Duration";
+            gridViewTextBoxColumn11.HeaderText = "Тривалість звучання (хв)";
+            gridViewTextBoxColumn11.MaxWidth = 100;
+            gridViewTextBoxColumn11.MinWidth = 100;
+            gridViewTextBoxColumn11.Multiline = true;
+            gridViewTextBoxColumn11.Name = "Duration";
+            gridViewTextBoxColumn11.Width = 100;
+            gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn12.FieldName = "NumbPerfom";
+            gridViewTextBoxColumn12.HeaderText = "Кількість виконань";
+            gridViewTextBoxColumn12.MaxWidth = 100;
+            gridViewTextBoxColumn12.MinWidth = 100;
+            gridViewTextBoxColumn12.Name = "NumbPerfom";
+            gridViewTextBoxColumn12.Width = 100;
+            gridViewTextBoxColumn12.WrapText = true;
+            gridViewCommandColumn2.AllowResize = false;
+            gridViewCommandColumn2.AllowSort = false;
+            gridViewCommandColumn2.DefaultText = "Файли";
+            gridViewCommandColumn2.FieldName = "btnsDelete";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn2.MaxWidth = 35;
+            gridViewCommandColumn2.MinWidth = 35;
+            gridViewCommandColumn2.Name = "btnsDelete";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewCommandColumn2.Width = 35;
             this.gvViewActList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewCommandColumn1});
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewCommandColumn2});
             this.gvViewActList.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewActList.MasterTemplate.EnableFiltering = true;
             this.gvViewActList.MasterTemplate.EnableGrouping = false;
             this.gvViewActList.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewActList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvViewActList.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvViewActList.Name = "gvViewActList";
             this.gvViewActList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvViewActList.Size = new System.Drawing.Size(1056, 317);
@@ -870,6 +870,7 @@ namespace IpsViewComponentLibrary
             this.txtVinagoroda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "Rate", true));
             this.txtVinagoroda.Location = new System.Drawing.Point(360, 73);
             this.txtVinagoroda.Name = "txtVinagoroda";
+            this.txtVinagoroda.ReadOnly = true;
             this.txtVinagoroda.Size = new System.Drawing.Size(49, 21);
             this.txtVinagoroda.TabIndex = 25;
             this.txtVinagoroda.ThemeName = "Office2013Light";
@@ -887,10 +888,12 @@ namespace IpsViewComponentLibrary
             // 
             this.txtActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "ActCode", true));
             this.txtActCode.Location = new System.Drawing.Point(100, 73);
+            this.txtActCode.MaxLength = 1;
             this.txtActCode.Name = "txtActCode";
             this.txtActCode.Size = new System.Drawing.Size(49, 21);
             this.txtActCode.TabIndex = 23;
             this.txtActCode.ThemeName = "Office2013Light";
+            this.txtActCode.TextChanged += new System.EventHandler(this.txtActCode_TextChanged);
             // 
             // bsObjectRight
             // 
@@ -934,6 +937,7 @@ namespace IpsViewComponentLibrary
             this.ddlGenreType.TabIndex = 19;
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
+            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.ddlGenreType_SelectedValueChanged);
             // 
             // bsDictGenreType
             // 
@@ -1040,6 +1044,7 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main";
             this.ThemeName = "Office2013Light";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RequestForm_FormClosing);

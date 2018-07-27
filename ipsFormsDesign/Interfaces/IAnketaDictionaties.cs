@@ -43,6 +43,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<PerformType> performType { get; set; }
         public IList<GenreType> genreType { get; set; }
         public IList<Language> language { get; set; }
+        public IList<RelGenrePercent> relGenrePercent { get; set; }
     }
 
 
