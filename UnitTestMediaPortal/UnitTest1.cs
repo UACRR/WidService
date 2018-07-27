@@ -226,7 +226,7 @@ namespace UnitTestMediaPortal
             service.SetLicenseType(lic, ConsumerService.LicType.Reference );
 
             cust = service.GetData(142);
-            service.SetLicenseType(lic, (ConsumerService.LicType)2);
+            service.SetLicenseType(lic, ConsumerService.LicType.Request );
 
             var licCheck = cust.Client.LicenseAgreement.First(rec => rec.LicId == lic.LicId );
 

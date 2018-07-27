@@ -271,6 +271,16 @@ namespace IpsViewComponentLibrary.RegisterControls
                 var presenter = new ObjectRightSrPresenter(view);
                 presenter.Show(newObject);
             }
+
+            // if object heve been saved
+            if (newObject.ObjId != 0)
+            {
+                selectedRegisterItem.ObjId = newObject.ObjId;
+                selectedRegisterItem.ObjectName = newObject.Name;
+                selectedRegisterItem.ObjectDuration = newObject.MediaTrack.Duration;
+                selectedRegisterItem.ObjectAuthors = newObject.Author;
+                selectedRegisterItem.ObjectPerformers = newObject.Performer;
+            }
         }
 
         private void SetColumnVisible(string columnName, bool isVisible)
