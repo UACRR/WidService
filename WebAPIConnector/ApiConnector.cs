@@ -227,6 +227,8 @@ namespace WebAPIConnector
                 result = client.PutAsync(idUrl, null).GetAwaiter().GetResult();
             }
 
+            var msg = result.RequestMessage;
+
             var retCode = result.IsSuccessStatusCode;
             return retCode;
         }

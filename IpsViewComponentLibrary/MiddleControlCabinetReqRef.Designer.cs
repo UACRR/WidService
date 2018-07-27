@@ -62,9 +62,10 @@
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.gvCreativeRole = new Telerik.WinControls.UI.RadGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).BeginInit();
@@ -204,10 +205,11 @@
             this.gvViewRequests.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewRequests.Name = "gvViewRequests";
             this.gvViewRequests.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewRequests.Size = new System.Drawing.Size(1054, 199);
+            this.gvViewRequests.Size = new System.Drawing.Size(1054, 183);
             this.gvViewRequests.TabIndex = 8;
             this.gvViewRequests.ThemeName = "Office2013Light";
             this.gvViewRequests.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRequests_CurrentRowChanged);
+            this.gvViewRequests.CurrentRowChanging += new Telerik.WinControls.UI.CurrentRowChangingEventHandler(this.gvViewRequests_CurrentRowChanging);
             this.gvViewRequests.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRequests_CommandCellClick);
             this.gvViewRequests.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewRequests_CustomFiltering);
             // 
@@ -265,6 +267,7 @@
             this.btnToReference.TabIndex = 16;
             this.btnToReference.Text = "В стан Довідка";
             this.btnToReference.ThemeName = "Office2013Light";
+            this.btnToReference.Click += new System.EventHandler(this.btnToReference_Click);
             // 
             // btnCreate
             // 
@@ -420,21 +423,12 @@
             this.gvCreativeRole.Size = new System.Drawing.Size(1054, 235);
             this.gvCreativeRole.TabIndex = 19;
             this.gvCreativeRole.ThemeName = "Office2013Light";
+            this.gvCreativeRole.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvCreativeRole_CellBeginEdit);
             this.gvCreativeRole.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCreativeRole_CellValueChanged);
             // 
             // bindingSource1
             // 
             this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.BigRightRequestBidAuthors);
-            // 
-            // ctrlAgrInfo
-            // 
-            this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            this.ctrlAgrInfo.Location = new System.Drawing.Point(3, 3);
-            this.ctrlAgrInfo.MaximumSize = new System.Drawing.Size(705, 79);
-            this.ctrlAgrInfo.MinimumSize = new System.Drawing.Size(705, 79);
-            this.ctrlAgrInfo.Name = "ctrlAgrInfo";
-            this.ctrlAgrInfo.Size = new System.Drawing.Size(705, 79);
-            this.ctrlAgrInfo.TabIndex = 0;
             // 
             // btnSave
             // 
@@ -445,6 +439,7 @@
             this.btnSave.TabIndex = 21;
             this.btnSave.Text = "Зберегти зміни";
             this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -455,6 +450,17 @@
             this.btnCancel.TabIndex = 20;
             this.btnCancel.Text = "Скасувати зміни";
             this.btnCancel.ThemeName = "Office2013Light";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // ctrlAgrInfo
+            // 
+            this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            this.ctrlAgrInfo.Location = new System.Drawing.Point(3, 3);
+            this.ctrlAgrInfo.MaximumSize = new System.Drawing.Size(705, 79);
+            this.ctrlAgrInfo.MinimumSize = new System.Drawing.Size(705, 79);
+            this.ctrlAgrInfo.Name = "ctrlAgrInfo";
+            this.ctrlAgrInfo.Size = new System.Drawing.Size(705, 79);
+            this.ctrlAgrInfo.TabIndex = 0;
             // 
             // MiddleControlCabinetReqRef
             // 
@@ -473,6 +479,7 @@
             this.Controls.Add(this.ctrlAgrInfo);
             this.Name = "MiddleControlCabinetReqRef";
             this.Size = new System.Drawing.Size(1060, 587);
+            this.Leave += new System.EventHandler(this.MiddleControlCabinetReqRef_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).EndInit();
@@ -506,5 +513,6 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

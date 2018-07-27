@@ -906,7 +906,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 var cntLicense = licAgreement.Agr.LicenseAgreement.Count(rec => rec.LicStatus != 4 && rec.LicClass == 2);
                 // Перевірка на пусту ген угоду
                 if (status == 4 && cntLicense > 0)
-                    throw new ArgumentException("Закривається Генеральна угода з незакритими ліцензійними угодами");
+                    throw new CloseAgreementWithActiveLicense("Закривається Генеральна угода з незакритими ліцензійними угодами");
             }
 
             await _dbContext.Entry(licAgreement).Collection(item => item.LicenseAgrParam)
@@ -915,7 +915,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
 
-            LicenseAgrParam licParam = licAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == licAgreement.LicVersion);
+            LicenseAgrParam licParam = licAgreement?.LicenseAgrParam?.SingleOrDefault(rec => rec.LicVersion == licAgreement.LicVersion);
             AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == licAgreement.Agr.Version);
 
 
@@ -924,7 +924,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             {
                 if (licAgreement.LicClass != 1) // Малі права та ліцензійні договора Великих прав
                 {
-                    licParam.LicStatus = 4; // Close
+                    if(licParam != null)
+                        licParam.LicStatus = 4; // Close
                     if (licAgreement.LicCodeNavigation.UsesKindNavigation.UsesType == 2) // малі права
                         licAgreement.Agr.Version = version;
                 }
@@ -937,7 +938,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 }
                 licAgreement.LicVersion = version;
 
-                licParam = licAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == licAgreement.LicVersion);
+                if (licParam != null)
+                    licParam = licAgreement.LicenseAgrParam.Single(rec => rec.LicVersion == licAgreement.LicVersion);
                 addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == licAgreement.Agr.Version);
             }
 
@@ -946,10 +948,10 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
             if (licAgreement.LicClass != 1) // не Генеральна угода
             {
-                licParam.LicStatus = status;
+                if (licParam != null)
+                    licParam.LicStatus = status;
                 if (licAgreement.LicCodeNavigation.UsesKindNavigation.UsesType == 2) // Малі права
                     licAgreement.Agr.AgrStatus = status;
-                licParam.LicStatus = status;
             }
             else // Генеральна угода
             {
@@ -991,6 +993,11 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 tran = null;
 
                 return Ok();
+            }
+            catch (CloseAgreementWithActiveLicense ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.InnerException.Message);
             }
             catch (Exception ex)
             {
@@ -1388,6 +1395,7 @@ where t3.custId = @custId
             //}
         }
         #endregion
+
         #region PaydPariod Services
         /// <summary>
         /// Отримати Нерозподілені Платежі Споживача
@@ -1567,4 +1575,11 @@ and t3.licStatus between 0 and 3
 #endif
         #endregion
     } // public class ConsumerController : Controller
+
+    public class CloseAgreementWithActiveLicense : Exception
+    {
+        public CloseAgreementWithActiveLicense(string message) : base(message)
+        {
+        }
+    }
 }

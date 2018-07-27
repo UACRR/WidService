@@ -26,7 +26,10 @@ namespace IpsViewComponentLibrary
             {"pvReference" , CabinetTabType.References},
             {"pvGeneralAgreement" , CabinetTabType.GeneralAgreement},
             {"pvFiles" , CabinetTabType.Files},
-            {"pvAgent", CabinetTabType.Agent}
+            {"pvAgent", CabinetTabType.Agent},
+            {"pvPays", CabinetTabType.Payments},
+            {"pvAvances", CabinetTabType.Prepays},
+            {"pvContacts", CabinetTabType.Contacts}
         };
         private Customer _customer = null;
         private ConsumerBigRightView _brView;
@@ -47,9 +50,12 @@ namespace IpsViewComponentLibrary
         /// </summary>
         public event EventHandler OnSaveCustomerNeed;
 
+        public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
+
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
+        public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
 
         public MiddleControlCabinet()
         {
@@ -61,6 +67,18 @@ namespace IpsViewComponentLibrary
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
+            ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
+            ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+        }
+
+        private bool CtrlRequest_OnWorkRhSave(int licenseId, List<WorkRh> workRhList)
+        {
+            return OnRequestWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
+        }
+
+        private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status)
+        {
+            return OnLicenseStatusChanging?.Invoke(agr, version, status) ?? false;
         }
 
         private IList<BigRightSpectacleView> CtrlPayslips_OnSpectacleViewNeed(int custId)

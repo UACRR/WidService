@@ -6,8 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.ObjectRightControls;
 using Telerik.WinControls;
 using License = ipsFormsDesign.Model.License;
 
@@ -15,6 +18,8 @@ namespace IpsViewComponentLibrary
 {
     public partial class RequestForm : Telerik.WinControls.UI.RadForm
     {
+        private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
+        private ObjectAuthorRightholderBrViewModel _brViewModel;
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
         private bool _deleteLicense = true;
@@ -29,7 +34,7 @@ namespace IpsViewComponentLibrary
             DialogResult = DialogResult.None;
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
-
+            ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
             dtDate.SetUserCalendarSettingsm();
             dtDate.MinDate = DateTime.Today;
 
@@ -41,7 +46,9 @@ namespace IpsViewComponentLibrary
             bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam.SingleOrDefault()?.License;
             bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
             bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-
+            SetObjectRightData(_customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj);
+            var authors = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj.Authors;
+            
             bsDictObjAct.DataSource = dictionaties.objAct;
             bsDictPerformType.DataSource = dictionaties.performType;
             bsDictGenreType.DataSource = dictionaties.genreType;
@@ -51,7 +58,47 @@ namespace IpsViewComponentLibrary
             #endregion
         }
 
+        public void ParseAuthors()
+        {
+            var objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
+            if (objectRight == null)
+                return;
 
+            // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
+            objectRight.Authors.Clear();
+            objectRight.CopyRight.Clear();
+
+            foreach (var ar in _authorRightholderList)
+            {
+                objectRight.AddObjectBrAuthorRightholder(ar);
+            }
+        }
+
+        private void SetObjectRightData(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
+        {
+            // map Authors, Copyright, LicAuthorBr and WorkRh tables into single table
+            var tmpAuthorRightholderList = objectRight.Authors.Select(a =>
+                {
+                    var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
+                    var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
+
+                    return new ObjectAuthorRightholderBrViewModel
+                    {
+                        Country = foundedRightholder.Country,
+                        InnerCode = foundedRightholder.InnerCode,
+                        Author = a,
+                        CopyRight = foundedCopyright,
+                        LicAuthorBr = foundedCopyright.LicAuthorBr ?? new LicAuthorBr(),
+                        WorkRh = foundedCopyright.WorkRh ?? new WorkRh(),
+                    };
+                })
+                .ToList();
+
+            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(tmpAuthorRightholderList);
+
+            ctrlAuthorRightholderList.DataSource = _authorRightholderList;
+        }
+        //створення ліцензійного договору
         private void CreateNewRequest()
         {
             _licenseAgreement = new LicenseAgreement
@@ -103,7 +150,7 @@ namespace IpsViewComponentLibrary
         {
             if (_deleteLicense)
             {
-                if (RadMessageBox.Show("Вийти без збереження?", "Підтвердження", MessageBoxButtons.YesNo, RadMessageIcon.Exclamation) == DialogResult.Yes)
+                if (MessageBox.Show("Вийти без збереження?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                     _customer.Client.LicenseAgreement.Remove(_licenseAgreement);
                 else
                     e.Cancel = true;
@@ -118,6 +165,7 @@ namespace IpsViewComponentLibrary
         private void btnSave_Click(object sender, EventArgs e)
         {
             _deleteLicense = false;
+            ParseAuthors();
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -161,6 +209,12 @@ namespace IpsViewComponentLibrary
             var delItem = e.Row.DataBoundItem as MusicalDesign;
             _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.MusicalDesign.Remove(delItem);
             RefreshGridDataSource();
+        }
+
+        private void pageView_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (pageView.SelectedPage == pvMusicalArrangement)
+                btnSave.Enabled = true;
         }
     }
 }
