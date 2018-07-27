@@ -52,6 +52,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.bsDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewRequests = new Telerik.WinControls.UI.RadGridView();
             this.btnDelete = new Telerik.WinControls.UI.RadButton();
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
@@ -60,12 +61,12 @@
             this.btnCreate = new Telerik.WinControls.UI.RadButton();
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.gvCreativeRole = new Telerik.WinControls.UI.RadGridView();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.bsDictionary = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
@@ -76,11 +77,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // bsDictionary
+            // 
+            this.bsDictionary.DataSource = typeof(ipsFormsDesign.Model.WorkType);
             // 
             // gvViewRequests
             // 
@@ -117,7 +121,7 @@
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 397;
+            gridViewTextBoxColumn3.Width = 401;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ заявки";
@@ -205,6 +209,7 @@
             this.gvViewRequests.TabIndex = 8;
             this.gvViewRequests.ThemeName = "Office2013Light";
             this.gvViewRequests.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRequests_CurrentRowChanged);
+            this.gvViewRequests.CurrentRowChanging += new Telerik.WinControls.UI.CurrentRowChangingEventHandler(this.gvViewRequests_CurrentRowChanging);
             this.gvViewRequests.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRequests_CommandCellClick);
             this.gvViewRequests.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewRequests_CustomFiltering);
             // 
@@ -313,7 +318,7 @@
             gridViewTextBoxColumn11.Multiline = true;
             gridViewTextBoxColumn11.Name = "RoleName";
             gridViewTextBoxColumn11.ReadOnly = true;
-            gridViewTextBoxColumn11.Width = 216;
+            gridViewTextBoxColumn11.Width = 217;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.FieldName = "AuthorName";
             gridViewTextBoxColumn12.HeaderText = "ПІБ (ориг)";
@@ -321,7 +326,7 @@
             gridViewTextBoxColumn12.Multiline = true;
             gridViewTextBoxColumn12.Name = "AuthorName";
             gridViewTextBoxColumn12.ReadOnly = true;
-            gridViewTextBoxColumn12.Width = 241;
+            gridViewTextBoxColumn12.Width = 242;
             gridViewTextBoxColumn12.WrapText = true;
             gridViewTextBoxColumn13.FieldName = "InnerCode";
             gridViewTextBoxColumn13.HeaderText = "Код автора";
@@ -375,7 +380,7 @@
             gridViewTextBoxColumn18.MinWidth = 50;
             gridViewTextBoxColumn18.Name = "PrepayTypeName";
             gridViewTextBoxColumn18.ReadOnly = true;
-            gridViewTextBoxColumn18.Width = 52;
+            gridViewTextBoxColumn18.Width = 55;
             gridViewTextBoxColumn19.FieldName = "WorkTypeRHName";
             gridViewTextBoxColumn19.HeaderText = "Статус роботи з Автором";
             gridViewTextBoxColumn19.MaxWidth = 100;
@@ -421,6 +426,10 @@
             this.gvCreativeRole.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvCreativeRole_CellBeginEdit);
             this.gvCreativeRole.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCreativeRole_CellValueChanged);
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.BigRightRequestBidAuthors);
+            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -442,14 +451,6 @@
             this.btnCancel.Text = "Скасувати зміни";
             this.btnCancel.ThemeName = "Office2013Light";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // bsDictionary
-            // 
-            this.bsDictionary.DataSource = typeof(ipsFormsDesign.Model.WorkType);
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.BigRightRequestBidAuthors);
             // 
             // ctrlAgrInfo
             // 
@@ -479,6 +480,7 @@
             this.Name = "MiddleControlCabinetReqRef";
             this.Size = new System.Drawing.Size(1060, 587);
             this.Leave += new System.EventHandler(this.MiddleControlCabinetReqRef_Leave);
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
@@ -489,10 +491,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }

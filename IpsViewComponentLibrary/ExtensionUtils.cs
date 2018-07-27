@@ -14,6 +14,7 @@ using Telerik.WinControls.UI;
 namespace IpsViewComponentLibrary
 {
     public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status);
+    public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
 
     public static class ExtensionUtils
     {

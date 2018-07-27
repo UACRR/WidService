@@ -56,6 +56,7 @@ namespace IpsViewComponentLibrary
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocument;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
         public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
+        public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
 
         public string FilterString
         {
@@ -71,8 +72,14 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnViewDocumentNeed += CtrlCabinet_OnViewDocumentNeed;
             ctrlCabinet.OnGetSpectacleNeed += CtrlCabinet_OnGetSpectacleNeed;
             ctrlCabinet.OnLicenseStatusChanging += CtrlCabinet_OnLicenseStatusChanging;
+            ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
 
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private bool CtrlCabinet_OnRequestWorkRhSaveNeed(int licenseId, List<WorkRh> workRhList)
+        {
+            return OnWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
         }
 
         private bool CtrlCabinet_OnLicenseStatusChanging(LicenseAgreement agr, int version, int status)

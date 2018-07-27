@@ -55,6 +55,7 @@ namespace IpsViewComponentLibrary
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
+        public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
 
         public MiddleControlCabinet()
         {
@@ -67,6 +68,12 @@ namespace IpsViewComponentLibrary
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
+            ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+        }
+
+        private bool CtrlRequest_OnWorkRhSave(int licenseId, List<WorkRh> workRhList)
+        {
+            return OnRequestWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
         }
 
         private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status)
