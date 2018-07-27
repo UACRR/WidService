@@ -138,7 +138,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 // TODO: Raise broadcast event object right updated
 
-                if (!result)
+                if (result != null)
+                {
+                    //_objectRight = result;
+                }
+                else
                     _view.ShowError("Не вдалося зберегти об'єкт.");
             }
 

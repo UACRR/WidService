@@ -706,7 +706,7 @@ namespace RightholderWorkplace
 
                 var result = _objectRightService.Save(objectRight);
 
-                if (result)
+                if (result != null)
                 {
                     ctrlRightholdersObjectsRight.UpdateList(new ObjectRightForRightholder { ObjId = objectRight.ObjId });
                     ctrlObjectRightList.UpdateList();
