@@ -4,13 +4,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
+    public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status);
+
     public static class ExtensionUtils
     {
         /// <summary>
@@ -270,5 +274,6 @@ namespace IpsViewComponentLibrary
         /// </summary>
         Reference
     }
+
 
 }
