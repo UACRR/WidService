@@ -13,6 +13,7 @@ using ipsFormsDesign.Model;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using ipsFormsDesign;
+using ipsFormsDesign.Services;
 using Microsoft.Office.Interop.Excel;
 using Telerik.WinControls;
 
@@ -21,7 +22,8 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetReqRef : UserControl
     {
         public event WorkRhSaveEventHandler OnWorkRhSave;
-
+        public event ChangeLicenseTypeEventHandler OnLicenseTypeChange;
+        public event SaveCustomerEventHandler OnNewRequestSaveNeed;
         private Customer _customer;
         private ConsumerBigRightView _bigRightView;
         private AnketaDictionaties _dictionaties;
@@ -237,11 +239,24 @@ namespace IpsViewComponentLibrary
                 {
                     RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties);
                     if(requestForm.ShowDialog() == DialogResult.OK)
-                    ; //TODO save changes
-                }
-                    break;
+                    {
+                        if (OnNewRequestSaveNeed?.Invoke(_customer) ?? false)
+                            MessageBox.Show("Нову завявку додано!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            MessageBox.Show("Не можливо зберегти нову заявку!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }break;
+
                 case ControlRequestOrReferenceType.Reference:
-                    break;
+                {
+                    if (gvViewRequests.CurrentRow.DataBoundItem is BigRightRequests item)
+                    {
+                        if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.License) ?? false)
+                            ExtensionUtils.ShowInfoMessage("Довідка переведена в Ліцензію", "Успішно", MessageBoxIcon.Information);
+                        else
+                            ExtensionUtils.ShowInfoMessage("Не можливо створити ліцензію з довідки", "Помилка", MessageBoxIcon.Error);
+                    }
+                }break;
             }
         }
 
@@ -347,7 +362,10 @@ namespace IpsViewComponentLibrary
         {
             if (gvViewRequests.CurrentRow.DataBoundItem is BigRightRequests item)
             {
-
+                if(OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec=>rec.LicId == item.LicId), ConsumerService.LicType.Reference) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Заявка переведена в довідку", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Не можливо створити довідку з заявки", "Помилка",MessageBoxIcon.Error);
             }
         }
 

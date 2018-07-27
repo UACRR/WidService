@@ -48,15 +48,15 @@ namespace IpsViewComponentLibrary
         public delegate void EditCustomer(int id);
         public event EditCustomer OnEditCustomer;
 
-
-        public delegate bool SaveCustomer(Customer customer);
-        public event SaveCustomer OnSaveCustomer;//TODO invoke
+        public event SaveCustomerEventHandler OnSaveCustomer;
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocument;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
         public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
         public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
+        public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
+
 
         public string FilterString
         {
@@ -73,8 +73,14 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnGetSpectacleNeed += CtrlCabinet_OnGetSpectacleNeed;
             ctrlCabinet.OnLicenseStatusChanging += CtrlCabinet_OnLicenseStatusChanging;
             ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
+            ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
 
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private bool CtrlCabinet_OnChangeLicenseType(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
+        {
+            return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
         }
 
         private bool CtrlCabinet_OnRequestWorkRhSaveNeed(int licenseId, List<WorkRh> workRhList)
@@ -102,9 +108,9 @@ namespace IpsViewComponentLibrary
             OnAddNewDocument?.Invoke(custId,typeDocument,fileName,comment);
         }
 
-        private void CtrlCabinet_OnSaveCustomerNeed(object sender, EventArgs e)
+        private bool CtrlCabinet_OnSaveCustomerNeed(Customer customer)
         {
-            OnSaveCustomer?.Invoke(_customer);
+            return OnSaveCustomer?.Invoke(_customer) ?? false;
         }
 
         /// <summary>

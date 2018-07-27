@@ -84,7 +84,7 @@
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvGeneralAgreement;
+            this.pageView.SelectedPage = this.pvRequest;
             this.pageView.Size = new System.Drawing.Size(1146, 845);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";

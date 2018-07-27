@@ -48,7 +48,7 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Виникиє при необхідності зберегти Customer
         /// </summary>
-        public event EventHandler OnSaveCustomerNeed;
+        public event SaveCustomerEventHandler OnSaveCustomerNeed;
 
         public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
 
@@ -56,6 +56,7 @@ namespace IpsViewComponentLibrary
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
         public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
+        public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
 
         public MiddleControlCabinet()
         {
@@ -69,6 +70,19 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
             ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+            ctrlRequest.OnNewRequestSaveNeed += CtrlRequest_OnNewRequestSaveNeed;
+            ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
+            ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
+        }
+
+        private bool CtrlRequest_OnLicenseTypeChange(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
+        {
+            return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
+        }
+
+        private bool CtrlRequest_OnNewRequestSaveNeed(Customer customer)
+        {
+            return OnSaveCustomerNeed?.Invoke(customer) ?? false;
         }
 
         private bool CtrlRequest_OnWorkRhSave(int licenseId, List<WorkRh> workRhList)

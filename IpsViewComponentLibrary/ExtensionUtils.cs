@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-
+using ipsFormsDesign.Services;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -15,6 +15,8 @@ namespace IpsViewComponentLibrary
 {
     public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
+    public delegate bool SaveCustomerEventHandler(Customer customer);
+    public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
 
     public static class ExtensionUtils
     {
@@ -51,6 +53,11 @@ namespace IpsViewComponentLibrary
             var dtPicker = ((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl as RadDateTimePicker;
             if (dtPicker != null)
                 dtPicker.Value = DateTime.Now;
+        }
+
+        public static void ShowInfoMessage(string msg, string title, MessageBoxIcon icon)
+        {
+            MessageBox.Show(msg, title, MessageBoxButtons.OK, icon);
         }
     }
 

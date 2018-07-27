@@ -105,6 +105,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnGetSpectacleNeed += _cabinetBr_OnGetSpectacleNeed;
                 _cabinetBr.OnLicenseStatusChanging += _cabinetBr_OnLicenseStatusChanging;
                 _cabinetBr.OnWorkRhSaveNeed += SaveWorkRh;
+                _cabinetBr.OnChangeLicenseType += ChangeLicenseType;
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -114,6 +115,11 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetSelectCustomer(id);
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
+        }
+
+        private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
+        {
+            return _service.SetLicenseType(agreement, licType);
         }
 
         private bool SaveWorkRh(int licId, List<WorkRh> workRhList)
