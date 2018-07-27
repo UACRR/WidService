@@ -218,6 +218,8 @@ namespace WebAPIConnector
             StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
             HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
 
+            var msg = result.RequestMessage;
+
             var retCode = result.IsSuccessStatusCode;
             return retCode;
         }
