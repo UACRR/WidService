@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -22,36 +23,49 @@ namespace IpsViewComponentLibrary
         private ObjectAuthorRightholderBrViewModel _brViewModel;
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
+        private FormType _formType;
         private bool _deleteLicense = true;
         public RequestForm()
         {
             InitializeComponent();
         }
-        public RequestForm(Customer customer, ConsumerBigRightView bigRightView, AnketaDictionaties dictionaties)
+
+        private IList<RelGenrePercent> _percent;
+        public RequestForm(Customer customer, ConsumerBigRightView bigRightView, AnketaDictionaties dictionaties, FormType formType = FormType.Create)
         {
             InitializeComponent();
             _customer = customer;
             DialogResult = DialogResult.None;
+            _formType = formType;
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
             ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
             dtDate.SetUserCalendarSettingsm();
             dtDate.MinDate = DateTime.Today;
+            if(_formType == FormType.Create)
+            {
+                CreateNewRequest();
+                Text = "Створення нової заявки на ліцензію";
 
-            CreateNewRequest();
+            } else if (_formType == FormType.Edit)
+            {
+                Text = "Редагування заявки на ліцезнію";
+                btnSave.Text = "Зберегти редаговану заявку";
+                btnSave.Enabled = true;
+            }
             #region BINDING
             bsConsumerBigRightView.DataSource = bigRightView;
             bsLicAgrParam.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam;
             bsLicenseBigR.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR;
             bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam.SingleOrDefault()?.License;
+            _percent = dictionaties.relGenrePercent;
             bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
             bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
             SetObjectRightData(_customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj);
-            var authors = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj.Authors;
-            
+
             bsDictObjAct.DataSource = dictionaties.objAct;
             bsDictPerformType.DataSource = dictionaties.performType;
-            bsDictGenreType.DataSource = dictionaties.genreType;
+            bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
             bsDictLanguage.DataSource = dictionaties.language;
 
 
@@ -103,10 +117,12 @@ namespace IpsViewComponentLibrary
         {
             _licenseAgreement = new LicenseAgreement
             {
+                LicClass = 2,
                 CustId = _customer.CustId,
                 LicVersion = 1,
                 LicType = 2,
                 LicStatus = 0,
+                LicCode = 10,
                 LicenseAgrParam = new ObservableListSource<LicenseAgrParam>
                 {
                     new LicenseAgrParam
@@ -132,6 +148,9 @@ namespace IpsViewComponentLibrary
                         {
                             Status = 0,
                             CategoryCode = 6,
+                            ActCode = 1,
+                            SpecType = 1,
+                            GenreType = 60001
                         },
                         MusicalDesign = new ObservableListSource<MusicalDesign>()
                     }
@@ -215,6 +234,29 @@ namespace IpsViewComponentLibrary
         {
             if (pageView.SelectedPage == pvMusicalArrangement)
                 btnSave.Enabled = true;
+        }
+
+        private void txtActCode_TextChanged(object sender, EventArgs e)
+        {
+            if(Int32.TryParse(txtActCode.Text, out int val))
+                if (val > 3)
+                    txtActCode.Text = "3";
+            UpdateGenrePersent();
+        }
+
+        private void ddlGenreType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UpdateGenrePersent();
+        }
+
+        private void UpdateGenrePersent()
+        {
+            Int32.TryParse(txtActCode.Text, out int actCode);
+            var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
+
+            var rate = _percent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
+
+            txtVinagoroda.Text = rate.ToString();
         }
     }
 }
