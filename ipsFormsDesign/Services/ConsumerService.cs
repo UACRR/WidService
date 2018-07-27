@@ -218,6 +218,25 @@ namespace ipsFormsDesign.Services
             var ret = _webApi.UpdateItem(url, custId.ToString(), pays);
             return ret;
         }
+
+        public enum LicType : int
+        {
+            License = 1,
+            Request = 2,
+            Reference = 3
+        }
+        /// <summary>
+        /// Перевод типу ліц. договору з Заявки в Довідку та ліц договір.
+        /// </summary>
+        /// <param name="lic"></param>
+        /// <param name="typeId">Тип ліцензії</param>
+        /// <returns></returns>
+        public bool SetLicenseType(LicenseAgreement lic, LicType typeId)
+        {
+            string url = _prefix + $"license/type/{lic.LicId}/{(int)typeId}";
+            return _webApi.UpdateItem<LicenseAgreement>(url, null, null);
+
+        }
 #endif
         /// <summary>
         /// Отримати всю інормацію по поточним періодам оплати для інтерфейсу Розрахунки

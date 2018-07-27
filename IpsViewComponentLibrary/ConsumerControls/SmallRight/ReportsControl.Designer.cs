@@ -39,49 +39,53 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.bindingLicAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPeriods = new Telerik.WinControls.UI.RadGridView();
-            this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.gvPeriodReports = new Telerik.WinControls.UI.RadGridView();
             this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnAddReport = new Telerik.WinControls.UI.RadButton();
             this.btnViewReport = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.btnDeleteReport = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            this.gvPeriods.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteReport)).BeginInit();
             this.SuspendLayout();
             // 
             // gvLicenseAgr
@@ -180,6 +184,7 @@
             this.gvPeriods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvPeriods.AutoScroll = true;
+            this.gvPeriods.Controls.Add(this.radWaitingBar1);
             this.gvPeriods.Location = new System.Drawing.Point(3, 173);
             // 
             // 
@@ -191,15 +196,15 @@
             this.gvPeriods.MasterTemplate.AllowEditRow = false;
             this.gvPeriods.MasterTemplate.AutoGenerateColumns = false;
             this.gvPeriods.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn8.FieldName = "PeriodName";
-            gridViewTextBoxColumn8.HeaderText = "Період";
-            gridViewTextBoxColumn8.Name = "PeriodName";
-            gridViewTextBoxColumn8.Width = 308;
-            gridViewTextBoxColumn9.DataType = typeof(int);
-            gridViewTextBoxColumn9.FieldName = "Status";
-            gridViewTextBoxColumn9.HeaderText = "Стан періоду";
-            gridViewTextBoxColumn9.Name = "Status";
-            gridViewTextBoxColumn9.Width = 128;
+            gridViewTextBoxColumn12.FieldName = "PeriodName";
+            gridViewTextBoxColumn12.HeaderText = "Період";
+            gridViewTextBoxColumn12.Name = "PeriodName";
+            gridViewTextBoxColumn12.Width = 308;
+            gridViewTextBoxColumn13.DataType = typeof(int);
+            gridViewTextBoxColumn13.FieldName = "Status";
+            gridViewTextBoxColumn13.HeaderText = "Стан періоду";
+            gridViewTextBoxColumn13.Name = "Status";
+            gridViewTextBoxColumn13.Width = 128;
             gridViewDecimalColumn3.FieldName = "Amount";
             gridViewDecimalColumn3.HeaderText = "Вимога";
             gridViewDecimalColumn3.Name = "Amount";
@@ -208,17 +213,17 @@
             gridViewDecimalColumn4.HeaderText = "Розподілено";
             gridViewDecimalColumn4.Name = "Distribamount";
             gridViewDecimalColumn4.Width = 128;
-            gridViewTextBoxColumn10.FieldName = "ReportCounts";
-            gridViewTextBoxColumn10.HeaderText = "Звітів";
-            gridViewTextBoxColumn10.Name = "ReportCounts";
-            gridViewTextBoxColumn10.Width = 83;
-            gridViewTextBoxColumn11.FieldName = "IsActFormed";
-            gridViewTextBoxColumn11.HeaderText = "Сформовано акт";
-            gridViewTextBoxColumn11.MaxWidth = 80;
-            gridViewTextBoxColumn11.MinWidth = 80;
-            gridViewTextBoxColumn11.Name = "IsActFormed";
-            gridViewTextBoxColumn11.Width = 80;
-            gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn14.FieldName = "ReportCounts";
+            gridViewTextBoxColumn14.HeaderText = "Звітів";
+            gridViewTextBoxColumn14.Name = "ReportCounts";
+            gridViewTextBoxColumn14.Width = 83;
+            gridViewTextBoxColumn15.FieldName = "IsActFormed";
+            gridViewTextBoxColumn15.HeaderText = "Сформовано акт";
+            gridViewTextBoxColumn15.MaxWidth = 80;
+            gridViewTextBoxColumn15.MinWidth = 80;
+            gridViewTextBoxColumn15.Name = "IsActFormed";
+            gridViewTextBoxColumn15.Width = 80;
+            gridViewTextBoxColumn15.WrapText = true;
             gridViewCommandColumn1.FieldName = "CreateAct";
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.createAct;
@@ -236,24 +241,24 @@
             gridViewCommandColumn2.MinWidth = 28;
             gridViewCommandColumn2.Name = "ViewAct";
             gridViewCommandColumn2.Width = 28;
-            gridViewTextBoxColumn12.DataType = typeof(int);
-            gridViewTextBoxColumn12.FieldName = "PeriodId";
-            gridViewTextBoxColumn12.HeaderText = "Id";
-            gridViewTextBoxColumn12.IsVisible = false;
-            gridViewTextBoxColumn12.Name = "PeriodId";
-            gridViewTextBoxColumn12.Width = 42;
+            gridViewTextBoxColumn16.DataType = typeof(int);
+            gridViewTextBoxColumn16.FieldName = "PeriodId";
+            gridViewTextBoxColumn16.HeaderText = "Id";
+            gridViewTextBoxColumn16.IsVisible = false;
+            gridViewTextBoxColumn16.Name = "PeriodId";
+            gridViewTextBoxColumn16.Width = 42;
             this.gvPeriods.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
             gridViewDecimalColumn3,
             gridViewDecimalColumn4,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
             gridViewCommandColumn1,
             gridViewCommandColumn2,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn16});
             this.gvPeriods.MasterTemplate.DataSource = this.bindingPaidPeriod;
-            this.gvPeriods.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvPeriods.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvPeriods.Name = "gvPeriods";
             this.gvPeriods.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPeriods.ReadOnly = true;
@@ -264,19 +269,17 @@
             this.gvPeriods.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriods_CurrentRowChanged);
             this.gvPeriods.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvPeriods_CommandCellClick);
             // 
-            // bindingPaidPeriod
+            // radWaitingBar1
             // 
-            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.AutoSize = false;
-            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel2.Location = new System.Drawing.Point(3, 293);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(325, 21);
-            this.radLabel2.TabIndex = 17;
-            this.radLabel2.Text = "Звіти періода";
+            this.radWaitingBar1.AssociatedControl = this.gvPeriodReports;
+            this.radWaitingBar1.Location = new System.Drawing.Point(423, 74);
+            this.radWaitingBar1.Name = "radWaitingBar1";
+            this.radWaitingBar1.Size = new System.Drawing.Size(70, 70);
+            this.radWaitingBar1.TabIndex = 1;
+            this.radWaitingBar1.Text = "Завантаження";
+            this.radWaitingBar1.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.radWaitingBar1.WaitingSpeed = 50;
+            this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             // 
             // gvPeriodReports
             // 
@@ -295,31 +298,31 @@
             this.gvPeriodReports.MasterTemplate.AllowEditRow = false;
             this.gvPeriodReports.MasterTemplate.AutoGenerateColumns = false;
             this.gvPeriodReports.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn13.FieldName = "FileName";
-            gridViewTextBoxColumn13.HeaderText = "Звіти періода";
-            gridViewTextBoxColumn13.Name = "ReportsName";
-            gridViewTextBoxColumn13.Width = 692;
-            gridViewTextBoxColumn14.FieldName = "RegisterRatedList.Period.PeriodName";
-            gridViewTextBoxColumn14.HeaderText = "Період";
-            gridViewTextBoxColumn14.Name = "PeriodName";
-            gridViewTextBoxColumn14.Width = 213;
-            gridViewTextBoxColumn15.FieldName = "ReportId";
-            gridViewTextBoxColumn15.HeaderText = "ID";
-            gridViewTextBoxColumn15.IsVisible = false;
-            gridViewTextBoxColumn15.Name = "ReportId";
-            gridViewTextBoxColumn15.Width = 48;
-            gridViewTextBoxColumn16.FieldName = "FileName";
-            gridViewTextBoxColumn16.HeaderText = "Path";
-            gridViewTextBoxColumn16.IsVisible = false;
-            gridViewTextBoxColumn16.Name = "PathString";
-            gridViewTextBoxColumn16.Width = 48;
+            gridViewTextBoxColumn8.FieldName = "FileName";
+            gridViewTextBoxColumn8.HeaderText = "Звіти періода";
+            gridViewTextBoxColumn8.Name = "ReportsName";
+            gridViewTextBoxColumn8.Width = 692;
+            gridViewTextBoxColumn9.FieldName = "RegisterRatedList.Period.PeriodName";
+            gridViewTextBoxColumn9.HeaderText = "Період";
+            gridViewTextBoxColumn9.Name = "PeriodName";
+            gridViewTextBoxColumn9.Width = 213;
+            gridViewTextBoxColumn10.FieldName = "ReportId";
+            gridViewTextBoxColumn10.HeaderText = "ID";
+            gridViewTextBoxColumn10.IsVisible = false;
+            gridViewTextBoxColumn10.Name = "ReportId";
+            gridViewTextBoxColumn10.Width = 48;
+            gridViewTextBoxColumn11.FieldName = "FileName";
+            gridViewTextBoxColumn11.HeaderText = "Path";
+            gridViewTextBoxColumn11.IsVisible = false;
+            gridViewTextBoxColumn11.Name = "PathString";
+            gridViewTextBoxColumn11.Width = 48;
             this.gvPeriodReports.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16});
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11});
             this.gvPeriodReports.MasterTemplate.DataSource = this.bindingReports;
-            this.gvPeriodReports.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvPeriodReports.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvPeriodReports.Name = "gvPeriodReports";
             this.gvPeriodReports.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPeriodReports.ReadOnly = true;
@@ -332,6 +335,24 @@
             // bindingReports
             // 
             this.bindingReports.DataSource = typeof(ipsFormsDesign.Model.Register);
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            // 
+            // bindingPaidPeriod
+            // 
+            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.AutoSize = false;
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel2.Location = new System.Drawing.Point(3, 293);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(325, 21);
+            this.radLabel2.TabIndex = 17;
+            this.radLabel2.Text = "Звіти періода";
             // 
             // btnAddReport
             // 
@@ -365,22 +386,22 @@
             this.radLabel4.TabIndex = 20;
             this.radLabel4.Text = "Активні договори";
             // 
-            // radButton1
+            // btnDeleteReport
             // 
-            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton1.Location = new System.Drawing.Point(235, 443);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 24);
-            this.radButton1.TabIndex = 20;
-            this.radButton1.Text = "Видалити звіт";
-            this.radButton1.ThemeName = "Office2007Silver";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            this.btnDeleteReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteReport.Location = new System.Drawing.Point(235, 443);
+            this.btnDeleteReport.Name = "btnDeleteReport";
+            this.btnDeleteReport.Size = new System.Drawing.Size(110, 24);
+            this.btnDeleteReport.TabIndex = 20;
+            this.btnDeleteReport.Text = "Видалити звіт";
+            this.btnDeleteReport.ThemeName = "Office2007Silver";
+            this.btnDeleteReport.Click += new System.EventHandler(this.radButton1_Click);
             // 
             // ReportsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radButton1);
+            this.Controls.Add(this.btnDeleteReport);
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.btnViewReport);
             this.Controls.Add(this.btnAddReport);
@@ -398,15 +419,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            this.gvPeriods.ResumeLayout(false);
+            this.gvPeriods.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteReport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -424,6 +448,8 @@
         private System.Windows.Forms.BindingSource bindingLicAgreement;
         private System.Windows.Forms.BindingSource bindingPaidPeriod;
         private System.Windows.Forms.BindingSource bindingReports;
-        private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadButton btnDeleteReport;
+        private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

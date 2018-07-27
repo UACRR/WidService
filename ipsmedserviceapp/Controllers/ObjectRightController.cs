@@ -266,6 +266,33 @@ namespace ipsmedserviceapp.Controllers
             return Json(new { objectRight = or, rhList });
         }
 
+        
+
+        [HttpPost("br/detail")]
+        public async Task<IActionResult> CreateObjectRightBrById([FromBody] ObjectRight objectRight)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var createdObjectRight = new ObjectRight();
+                _dbContext.ObjectRight.Add(createdObjectRight);
+
+                UpdateObjectRightBr(objectRight, createdObjectRight);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+                return Json(createdObjectRight);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("br/detail/{objId}")]
         public async Task<IActionResult> UpdateObjectRightBrById(int objId, [FromBody] ObjectRight objectRight)
         {

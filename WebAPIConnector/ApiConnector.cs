@@ -215,8 +215,17 @@ namespace WebAPIConnector
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
             string idUrl = string.IsNullOrEmpty(id) ? url : $"{url}/{id}";
-            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
-            HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+
+            HttpResponseMessage result = null;
+            if( data != null )
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+                result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+            }
+            else
+            {
+                result = client.PutAsync(idUrl, null).GetAwaiter().GetResult();
+            }
 
             var retCode = result.IsSuccessStatusCode;
             return retCode;

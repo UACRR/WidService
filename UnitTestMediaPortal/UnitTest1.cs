@@ -162,9 +162,14 @@ namespace UnitTestMediaPortal
         }
 
         [TestMethod]
-        public void TestReport()
+        public void TestReportControl()
         {
-            var form = new ReportForm();
+            var service = new ConsumerService();
+            var cust = service.GetCustomerRegisterRatedList(135);
+
+            var form = new TestCalculation(service);
+            form.Customer = cust;
+            
             form.ShowDialog();
         }
 
@@ -209,6 +214,23 @@ namespace UnitTestMediaPortal
             var checkrh = worrh.Where(rec => rec.CRightId == testWorkRh.CRightId).Single();
 
             Assert.AreEqual(checkrh.WorkDateCl, testWorkRh.WorkDateCl);
+        }
+
+        [TestMethod]
+        public void TestChangeLicType()
+        {
+            var service = new ConsumerService();
+            var cust = service.GetData(142);
+
+            var lic = cust.Client.LicenseAgreement.First(rec => rec.LicStatus != 4 && rec.LicType == 3);
+            service.setLicenseType(lic, ConsumerService.LicType.Reference );
+
+            cust = service.GetData(142);
+            service.setLicenseType(lic, 2);
+
+            var licCheck = cust.Client.LicenseAgreement.First(rec => rec.LicId == lic.LicId );
+
+            Assert.AreEqual(licCheck.LicType, 2);
         }
 
     }

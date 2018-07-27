@@ -694,7 +694,16 @@ namespace ipsmedserviceapp.Controllers
             {"vTSK_1_BRObjects", "vTSK_1_BRObjects"},
             {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"}
         };
-        #region BigRight view
+        #region BigRight 
+
+
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         [HttpGet("BR/view/list")]
         public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
         {
@@ -856,7 +865,19 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         } // GetPeriodDetail(int licid)
 
         #region Action FOR LICENSEAGREEMENT
+        [HttpPut("license/type/{licId}/{typeId}")]
+        public async Task<IActionResult> SetLicenseAgreementType( int licId, int typeId)
+        {
+            var lic = await _dbContext.LicenseAgreement.SingleOrDefaultAsync(rec => rec.LicId == licId && rec.LicStatus != 4);
+            if (lic == null)
+                return BadRequest();
 
+            lic.LicType = typeId;
+
+            await _dbContext.SaveChangesAsync();
+
+            return Json(lic);
+        }
         /// <summary>
         /// Зміна статусу 
         /// </summary>
@@ -1087,9 +1108,14 @@ where t3.custId = @custId
                 }
                 else
                     destItem = dicDest[sorsItem.RegId];
+
+                _dbContext.ChangeTracker.AutoDetectChangesEnabled = false;
                 _dbContext.UpdateList(sorsItem.RegisterItem, destItem.RegisterItem, i => { } /*_dbContext.RegisterItem.Add(i)*/, (l, r) => l.RegIitemId == r.RegIitemId);
+                _dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
+
                 destItem.CountRows = destItem.RegisterItem.Count();
-                destItem.DurationItems = TimeSpan.FromTicks(destItem.RegisterItem.Sum(rec => rec.DurationUse?.Ticks ?? 0));
+                var sumTicks = destItem.RegisterItem.Sum(rec => (long)rec.Ticks );
+                destItem.Durationticks = (int)sumTicks;
             }
 
 

@@ -147,6 +147,12 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        private void EnableButtons( bool enabled )
+        {
+            btnAddReport.Enabled = enabled;
+            btnViewReport.Enabled = enabled;
+            btnDeleteReport.Enabled = enabled;
+        }
         // * * * [Додати звіт]
         private void btnAddReport_Click(object sender, EventArgs e)
         {
@@ -159,20 +165,32 @@ namespace IpsViewComponentLibrary
             OpenFileDialog dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                var list = _excel.GetReportItems(dialog.FileName);
-                if (period.RegisterRatedList.Count() == 0)
+                radWaitingBar1.StartWaiting();
+                EnableButtons(false);
+
+                var tsk = Task.Run(() =>
                 {
-                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Status = 0/*Новий*/});
-                }
+                    var list = _excel.GetReportItems(dialog.FileName);
+                    if (period.RegisterRatedList.Count() == 0)
+                    {
+                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Status = 0/*Новий*/});
+                    }
 
-                var RatedList = period.RegisterRatedList.First();
-                Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName) };
-                foreach (var item in list)
-                    addRegister.RegisterItem.Add(item);
+                    var RatedList = period.RegisterRatedList.First();
+                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName) };
+                    foreach (var item in list)
+                        addRegister.RegisterItem.Add(item);
 
-                RatedList.Register.Add(addRegister);
+                    RatedList.Register.Add(addRegister);
 
-                SaveRegisterRatedListExecuted(this, RatedList);
+                    SaveRegisterRatedListExecuted(this, RatedList);
+                    BeginInvoke((Action)(() => {
+                        radWaitingBar1.StopWaiting();
+                        EnableButtons(true);
+                    }));
+                });
+
+
             }
 
         }

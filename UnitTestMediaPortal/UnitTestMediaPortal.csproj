@@ -131,6 +131,12 @@
     <Compile Include="ReportForm.Designer.cs">
       <DependentUpon>ReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestCalculation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestCalculation.Designer.cs">
+      <DependentUpon>TestCalculation.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestGlobalcs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportForm.resx">
       <DependentUpon>ReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestCalculation.resx">
+      <DependentUpon>TestCalculation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestGlobalcs.resx">
       <DependentUpon>TestGlobalcs.cs</DependentUpon>

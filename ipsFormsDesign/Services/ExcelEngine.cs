@@ -40,6 +40,14 @@ namespace ipsFormsDesign.Services
             });
         }
 
+        private string GetFirst( object sors, int length )
+        {
+            if (sors == null)
+                return string.Empty;
+
+            var sorsStr = sors.ToString();
+            return sorsStr.Substring(0, Math.Min(sorsStr.Length, length));
+        }
         public List<RegisterItem> GetReportItems(string FileName)
         {
             Excel.Workbook excelAppWorkbook = null;
@@ -52,8 +60,9 @@ namespace ipsFormsDesign.Services
                 var excelAppWorksheets = excelAppWorkbook.Worksheets;
                 var excelSheet = (Excel.Worksheet)excelAppWorksheets.Item[1];
 
+
                 Excel.Range excelRange = excelSheet.UsedRange;
-                excelRange.EntireColumn.NumberFormat = "@";
+                // excelRange.EntireColumn.NumberFormat = "@";
 
                 int maxCol;
                 int maxRow;
@@ -70,49 +79,46 @@ namespace ipsFormsDesign.Services
                 }
 
                 var dim = excelRange.Value;
-                int regitemid = 1;
+                int regitemid = 0;
                 TimeSpan curTime;
+
+                // RegisterItem[] newItems = new RegisterItem[maxRow];
                 double curDouble;
+
                 for (int i = 1; i <= maxRow; i++)
                 {
                     if (dim?[i, 1] == null) continue;
-                    RegisterItem registerItem = null;
-                    registerItem = new RegisterItem();
-                    registerItem.RegIitemId = regitemid++;
-                    registerItem.CategoryCode = 0; //parse
-                    registerItem.ModifyLogin = null; //parse
-                                                     //                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
-                    registerItem.ItemName = dim[i, 2]?.ToString();
-                    registerItem.Performer = dim[i, 3]?.ToString();
-                    registerItem.AuthorMusic = dim[i, 4]?.ToString();
-                    registerItem.AuthorText = dim[i, 5]?.ToString();
+                    if (!(dim?[i, 1] is double)) continue;
+
+                    // RegisterItem registerItem = newItems[regitemid];
+                    RegisterItem registerItem = new RegisterItem
+                    {
+                        RegIitemId = 1 + regitemid++,
+                        CategoryCode = 0, //parse
+                        ModifyLogin = null, //parse
+                                            //                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
+                        ItemName = GetFirst(dim[i, 2], 100 ),
+                        Performer = GetFirst(dim[i, 3], 100),
+                        AuthorMusic = GetFirst(dim[i, 4], 100),
+                        AuthorText = GetFirst(dim[i, 5], 100),
+                        CountUse = Convert.ToInt32(dim[i, 7]),
+                        CodeItem = 1 // 1   Звичайний розподіл 
+                };
                     try
                     {
-                        curDouble = Convert.ToDouble(dim[i, 6]);
-                        curTime = TimeSpan.FromDays(Convert.ToDouble(curDouble));
+                        curTime = TimeSpan.FromDays(Convert.ToDouble(dim[i, 6]));
                         registerItem.DurationItem = curTime;
+                        curTime = TimeSpan.FromDays(Convert.ToDouble(dim[i, 8]));
+                        registerItem.DurationUse = curTime;
+                        registerItem.Ticks = (int)(curTime.Ticks / 10000);
                     }
                     catch
                     {
-                        registerItem.DurationItem = new TimeSpan(0,0,0,0);
-                    }
-
-                    registerItem.CountUse = Convert.ToInt32(dim[i, 7]);
-                    try
-                    {
-                        curDouble = Convert.ToDouble(dim[i, 8]);
-                        if (curDouble > 0)
-                        {
-                            curTime = TimeSpan.FromDays(Convert.ToDouble(curDouble));
-                            registerItem.DurationUse = curTime;
-                        }
-
-                    }
-                    catch
-                    {
+                        registerItem.DurationItem = new TimeSpan(0);
                         registerItem.DurationUse = new TimeSpan(0);
+                        registerItem.Ticks = 0;
                     }
-                    registerItem.CodeItem = 1; // 1   Звичайний розподіл 
+
 
                     list.Add(registerItem);
                 }
