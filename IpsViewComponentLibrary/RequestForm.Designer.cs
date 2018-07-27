@@ -927,6 +927,7 @@ namespace IpsViewComponentLibrary
             this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectRight, "GenreType", true));
             this.ddlGenreType.DataSource = this.bsDictGenreType;
             this.ddlGenreType.DisplayMember = "Name";
+            this.ddlGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlGenreType.Location = new System.Drawing.Point(75, 46);
             this.ddlGenreType.Name = "ddlGenreType";
             this.ddlGenreType.Size = new System.Drawing.Size(354, 21);
