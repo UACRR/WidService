@@ -42,14 +42,26 @@ namespace ipsFormsDesign.Services
             return item;
         }
 
-        public ObjectRight Save(ObjectRight item)
+        public bool Save(ObjectRight item)
         {
+            ObjectRight result;
+
             if (item.ObjId == 0) // Новий об'єкт права
             {
-                return _webApi.NewItemWithResult("objectright/newobject", item);
+                result = _webApi.NewItemWithResult("objectright/newobject", item);
+            }
+            else
+            {
+                result = _webApi.UpdateItemWithResult("objectright/detail", item.ObjId.ToString(), item);
             }
 
-            return _webApi.UpdateItemWithResult("objectright/detail", item.ObjId.ToString(), item);
+            if (result != null)
+            {
+                item.SetFields(result);
+                return true;
+            }
+            else
+                return false;
         }
 
         public ObjectRight NewObjectRight(int category)

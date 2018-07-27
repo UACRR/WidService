@@ -1,4 +1,5 @@
 ﻿
+using ipsFormsDesign;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -138,11 +139,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 // TODO: Raise broadcast event object right updated
 
-                if (result != null)
-                {
-                    //_objectRight = result;
-                }
-                else
+                if (!result)
                     _view.ShowError("Не вдалося зберегти об'єкт.");
             }
 
