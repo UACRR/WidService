@@ -10,7 +10,6 @@ namespace ipsFormsDesign.Model
         {
             BrRegItem = new ObservableListSource<BrRegItem>();
             Distribution = new ObservableListSource<Distribution>();
-            PayTurn = new ObservableListSource<PayTurn>();
             RegisterItem = new ObservableListSource<RegisterItem>();
         }
 
@@ -20,7 +19,7 @@ namespace ipsFormsDesign.Model
         public int CountRows { get; set; }
         public int? CustId { get; set; }
         public DateTime? CreateDate { get; set; }
-        public TimeSpan? DurationItems { get; set; }
+        public int? Durationticks { get; set; }
         public int? RgStatus { get; set; }
         public string FileName { get; set; }
         public string UserId { get; set; }
@@ -39,7 +38,6 @@ namespace ipsFormsDesign.Model
         public AspNetUsers User { get; set; }
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
-        public ObservableListSource<PayTurn> PayTurn { get; set; }
         public ObservableListSource<RegisterItem> RegisterItem { get; set; }
     }
 }

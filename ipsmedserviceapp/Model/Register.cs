@@ -10,7 +10,6 @@ namespace ipsmedserviceapp.Model
         {
             BrRegItem = new HashSet<BrRegItem>();
             Distribution = new HashSet<Distribution>();
-            PayTurn = new HashSet<PayTurn>();
             RegisterItem = new HashSet<RegisterItem>();
         }
 
@@ -20,7 +19,7 @@ namespace ipsmedserviceapp.Model
         public int CountRows { get; set; }
         public int? CustId { get; set; }
         public DateTime? CreateDate { get; set; }
-        public TimeSpan? DurationItems { get; set; }
+        public int? Durationticks { get; set; }
         public int? RgStatus { get; set; }
         public string FileName { get; set; }
         public string UserId { get; set; }
@@ -44,8 +43,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public ICollection<BrRegItem> BrRegItem { get; set; }
         public ICollection<Distribution> Distribution { get; set; }
-        [JsonIgnore]
-        public ICollection<PayTurn> PayTurn { get; set; }
         public ICollection<RegisterItem> RegisterItem { get; set; }
     }
 }

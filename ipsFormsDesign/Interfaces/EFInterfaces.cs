@@ -400,6 +400,7 @@ public interface IBrRegItem
          int? RegIdSr { get; set; }
          decimal? MusicRate { get; set; }
          decimal? MusicAmount { get; set; }
+         int? CategoryCode { get; set; }
 }
 public interface ICategory
     {    int CodeI { get; set; }
@@ -748,6 +749,7 @@ public interface IDocPreparePay
          int? PayStatus { get; set; }
          int? Paidid { get; set; }
          byte? FlCourt { get; set; }
+         int? CustIdRh { get; set; }
 }
 public interface IDocReq
     {
@@ -1436,6 +1438,7 @@ public interface IPayTurn
          int? PayStatus { get; set; }
          int? RegId { get; set; }
          int? DistId { get; set; }
+         int? CustIdRh { get; set; }
 }
 public interface IPerformer
     {    int PerId { get; set; }
@@ -1550,7 +1553,7 @@ public interface IRegister
          int CountRows { get; set; }
          int? CustId { get; set; }
          DateTime? CreateDate { get; set; }
-         TimeSpan? DurationItems { get; set; }
+         int? Durationticks { get; set; }
          int? RgStatus { get; set; }
          string FileName { get; set; }
          string UserId { get; set; }
@@ -1603,6 +1606,8 @@ public interface IRegisterItem
          TimeSpan? DurationItem { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
+         int? Durationticks { get; set; }
+         int? Ticks { get; set; }
 }
 public interface IRegisterItemType
     {    int CodeI { get; set; }
