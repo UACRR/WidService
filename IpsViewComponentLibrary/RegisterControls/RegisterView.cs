@@ -116,6 +116,8 @@ namespace IpsViewComponentLibrary.RegisterControls
                 gboxStatus.Enabled = false;
                 gboxSearch.Enabled = false;
             }
+
+            btnSetCanceledStatus.Enabled = !((int)status >= 2);
         }
 
         private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItemViewModel selectedRegisterItem)
