@@ -36,6 +36,36 @@ namespace ipsmedserviceapp.Model
         }
 
         /// <summary>
+        ///  Сінхронізація двух списків з визовом createNew для кожного нового елемента
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sors">SorsList</param>
+        /// <param name="dest">DestList</param>
+        /// <param name="createNew">визовом createNew для кожного нового елемента(sorsItem, DestItem)</param>
+        /// <param name="compId"></param>
+        /// <param name="excludeField"></param>
+        public void UpdateListExtra<T>(ICollection<T> sors, ICollection<T> dest, Action<T,T> createNew, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
+        {
+            // Видалення
+            List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => { Entry(item).State = EntityState.Deleted; dest.Remove(item); });
+            // Змінюємо спільні записи
+            tempList = sors.Where(row => dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => dest.First(row => compId(item, row)).SetFields(item));
+            // Додаємо нові
+            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item => {
+                T addItem = new T();
+                addItem.SetFields(item, excludeField);
+                dest.Add(addItem);
+                createNew( item,  addItem);
+            });
+
+        }
+
+
+
+        /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
