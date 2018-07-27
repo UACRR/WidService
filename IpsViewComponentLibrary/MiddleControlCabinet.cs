@@ -37,6 +37,8 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRequestBidAuthors> _authors;
         private IList<BigRightMoneyUndescrib> _moneyUndescribs;
         private IList<BigRightRegister> _registers;
+        private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
+
         private AnketaDictionaties _anketaDictionaties = null;
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
 
@@ -81,15 +83,16 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public void SetAndUpdateData(Customer customer, 
-                                     ConsumerBigRightView brView, 
-                                     IList<VbrLicense> brLicenses,
-                                     IList<BigRightMasterGenAgr> genAgrs,
-                                     IList<BigRightRequests> requests,
-                                     IList<BigRightRequestBidAuthors> authors,
-                                     IList<BigRightRequests> reference,
-                                     IList<BigRightMoneyUndescrib> moneyUndescribs,
-                                     IList<BigRightRegister> registers)
+        public void SetAndUpdateData(Customer customer,
+            ConsumerBigRightView brView,
+            IList<VbrLicense> brLicenses,
+            IList<BigRightMasterGenAgr> genAgrs,
+            IList<BigRightRequests> requests,
+            IList<BigRightRequestBidAuthors> authors,
+            IList<BigRightRequests> reference,
+            IList<BigRightMoneyUndescrib> moneyUndescribs,
+            IList<BigRightRegister> registers,
+            IList<BigRightPayslipsSpectacleView> payslipsSpectacleViews)
         {
             _customer = customer;
             _brView = brView;
@@ -100,6 +103,7 @@ namespace IpsViewComponentLibrary
             _authors = authors;
             _registers = registers;
             _moneyUndescribs = moneyUndescribs;
+            _payslipsSpectacleViews = payslipsSpectacleViews;
 
             UpdateCurentTab(_currenCabinetTab);
         }
@@ -112,53 +116,68 @@ namespace IpsViewComponentLibrary
             {
                 case CabinetTabType.None:
                     break;
+
+                case CabinetTabType.GeneralAgreement:
+                {
+                    ctrlGeneralAgreement.SetAndUpdateData(_customer, _brView, _genAgrs);
+                }break;
+
                 case CabinetTabType.Licenses:
                 {
                     ctrlLicense.SetDataSources(_brView);
                     ctrlLicense.SetData(_customer,_brLicenses);
-                }
-                    break;
+                }break;
+
+                case CabinetTabType.Payslips:
+                {
+                    ctrlPayslips.SetAndUpdateData(_customer, _brView, _registers, _payslipsSpectacleViews);
+                }break;
+
                 case CabinetTabType.Calculations:
                 {
                     ctrlCalculation.SetAndUpdateData(_customer, _brView, _genAgrs, _moneyUndescribs);
-                }
-                    break;
-                case CabinetTabType.Payslips:
+                }break;
+
+                case CabinetTabType.Payments:
                 {
-                    ctrlPayslips.SetAndUpdateData(_customer,_brView, _registers);
-                }
-                    break;
+
+                }break;
+
+                case CabinetTabType.Prepays:
+                {
+
+                }break;
+
                 case CabinetTabType.Requests:
                 {
                     ctrlRequest.SetAndUpdateData(_customer,_brView,_requests,_authors);
-                }
-                    break;
+                }break;
+
                 case CabinetTabType.References:
                 {
                     ctrlReference.SetAndUpdateData(_customer, _brView, _reference, _authors);
-                }
-                    break;
-                case CabinetTabType.GeneralAgreement:
+                }break;
+
+                case CabinetTabType.Contacts:
                 {
-                    ctrlGeneralAgreement.SetAndUpdateData(_customer,_brView, _genAgrs);
-                }
-                    break;
+                    ctrlContactHeader.SetHeaderInfoBigRight(_customer,_brView);
+                }break;
+
                 case CabinetTabType.Files:
                 {
                     ctrlFiles.SetAndUpdateData(_customer,_brView);
-                }
-                    break;
+                }break;
+
                 case CabinetTabType.Agent:
                 {
                     ctrlAgent.SetAndUpdateData(_customer,_brView,_genAgrs);
-                }
-                    break;
+                }break;
             }
         }
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement).Page.Name;
+            string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
             _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
             UpdateCurentTab(_currenCabinetTab);
         }

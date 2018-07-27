@@ -47,6 +47,7 @@
             this.pvReference = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlReference = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlContactHeader = new IpsViewComponentLibrary.InformationOfUserControl();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
@@ -61,6 +62,7 @@
             this.pvAvances.SuspendLayout();
             this.pvRequest.SuspendLayout();
             this.pvReference.SuspendLayout();
+            this.pvContacts.SuspendLayout();
             this.pvFiles.SuspendLayout();
             this.pvAgent.SuspendLayout();
             this.SuspendLayout();
@@ -236,11 +238,34 @@
             // 
             // pvContacts
             // 
+            this.pvContacts.Controls.Add(this.ctrlContactHeader);
             this.pvContacts.ItemSize = new System.Drawing.SizeF(66F, 27F);
             this.pvContacts.Location = new System.Drawing.Point(5, 31);
             this.pvContacts.Name = "pvContacts";
             this.pvContacts.Size = new System.Drawing.Size(1136, 809);
             this.pvContacts.Text = "Контакти";
+            // 
+            // ctrlContactHeader
+            // 
+            this.ctrlContactHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctrlContactHeader.Edrpou = "";
+            this.ctrlContactHeader.EmailContactPerson = "";
+            this.ctrlContactHeader.EmailManager = "";
+            this.ctrlContactHeader.GroupOrHolding = "Копірайт";
+            this.ctrlContactHeader.HoldingVisible = false;
+            this.ctrlContactHeader.Location = new System.Drawing.Point(0, 0);
+            this.ctrlContactHeader.MaximumSize = new System.Drawing.Size(912, 209);
+            this.ctrlContactHeader.MinimumSize = new System.Drawing.Size(912, 209);
+            this.ctrlContactHeader.Name = "ctrlContactHeader";
+            this.ctrlContactHeader.NameInfo = "";
+            this.ctrlContactHeader.OrganisationForm = "";
+            this.ctrlContactHeader.OrganisationFormVisible = false;
+            this.ctrlContactHeader.PhoneContactPerson = "";
+            this.ctrlContactHeader.PhoneManager = "";
+            this.ctrlContactHeader.PibContactPerson = "";
+            this.ctrlContactHeader.PibManager = "";
+            this.ctrlContactHeader.Size = new System.Drawing.Size(912, 209);
+            this.ctrlContactHeader.TabIndex = 1;
             // 
             // pvFiles
             // 
@@ -296,6 +321,7 @@
             this.pvAvances.ResumeLayout(false);
             this.pvRequest.ResumeLayout(false);
             this.pvReference.ResumeLayout(false);
+            this.pvContacts.ResumeLayout(false);
             this.pvFiles.ResumeLayout(false);
             this.pvAgent.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -327,5 +353,6 @@
         private MiddleControlCabinetPayslips ctrlPayslips;
         private MiddleControlCabinetAvances middleControlCabinetAvances1;
         private MiddleControlCabinetPayments middleControlCabinetPayments1;
+        private InformationOfUserControl ctrlContactHeader;
     }
 }

@@ -20,6 +20,8 @@ namespace ipsFormsDesign.Model
         public TimeSpan? DurationItem { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
+        public int? Durationticks { get; set; }
+        public int? Ticks { get; set; }
 
         public RegisterItemType CodeItemNavigation { get; set; }
         public ObjectRight Obj { get; set; }

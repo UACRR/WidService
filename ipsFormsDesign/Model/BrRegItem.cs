@@ -27,6 +27,7 @@ namespace ipsFormsDesign.Model
         public int? RegIdSr { get; set; }
         public decimal? MusicRate { get; set; }
         public decimal? MusicAmount { get; set; }
+        public int? CategoryCode { get; set; }
 
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }

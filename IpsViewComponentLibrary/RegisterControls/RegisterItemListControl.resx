@@ -117,10 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="gridViewCommandColumn1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEqSURBVDhPpVNNzkVAEBwJVqwsxMohnki4hpC4gMM4gY01
+        t3AWPwnWrFj0l+qEMLzFl9dJSWeqqs309AiSYhgGKoqCkiQh3/cZcRzzGjg5zgLbtlFd1/T5fEjTNBJC
+        3IA1cNBAewQX2Ped8jwnwzAeRhnQQAvPWQBVTdO8CVVVpTAMGcivHLTwcIG+78nzvJsAgHGeZwZymYcH
+        XoHm6Lr+EARBQOM40jRNnMs8PPAKdFsmAdu2KU1TiqLo9QcAe3FNMoEzl2XJW2yahhzHeWgA9r4VUBSF
+        siyjdV2pbVtyXfehAdj77QgwdV3H+FaAvW9NPHawLAsDOdaumrOJb9d49ACjCyCXZ+G8RgxDVVWPQbIs
+        i7cOIL9y0MLDg4TPz6OM+OkxXeN/z5noDyWC+4UUUmbIAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="gridViewCommandColumn2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGRSURBVDhPhZM9qsJQEIVvsBAL/7CxsVW34QYsFAQLcQO2
+        4jrUUmwFSxvBQBaQBbgBUWx0AVbn5Zvn9T3i34EbuJmZk5lzJk5fsN/v1el0lM/nlclkVK/XNZvNdLvd
+        LP6RYLfbqVwuyzn3dHq9npG8JaC4WCxacjabVb/f12QyUbPZfJDM5/PXBFEUPYpzuZxWq9U9Il2vVzUa
+        DYsxzhPB5XJRrVZ7WewxHo8tjiZPBMvl0oJBEGixWGiz2ajdbut8Pt8zZPOTUygU/gjiONbhcNBoNLJg
+        tVrV8XhUpVKxe6vVMtHW67Vpwrtut/tLEIahzTydTh/tlUolnU4nDYdDu9PRdrvVYDCwO+5gsePhrSJI
+        EsncKYbECwo5H+HOR4FjSQjSFu3RJu3yjvYZg3G4Mx5jMq6HMyGSIMJ4IBjCISBC+o4QOA1nViRB2ksD
+        C7GSONZicRrOliFJYDlYEo//xczMcr2Cs3VMkjisKevK2nqrKGat38Ehml+M9MGdT8XA9gASflHGQRN+
+        XdzB4s+QfgAclq+X89twpQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="gridViewCommandColumn3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFVSURBVDhPhZNNjoJAEEYrcUFMEOMliOfBhMBF8B647a1u
+        TMCtJByDY+DeVckrpx1CepwvaRZV1Y+uP3HO6Xa71aZpNKRhGDTLMt1sNrparTRNU63rWp/Pp/mFyyKi
+        cRzr7XYzo9f9ftfdbmf+5cnz3CDStq1dxjiH9H1vL8MeRZGWZanH41H3+/0HcjqdVAjm0hJCSuv12s7l
+        cjEoejweHwjpGACFINfr1c5SVVVZHDX5AFAIElJRFBaTJMkvgJx59n8Q0qEm+A+HwxvQdZ0VjHx58l8Q
+        fMRgpzu0WPj4VnkACkE8gJ/xUyQMCUE863w+m9ErBCFN0vUSK8QUQGFCCkHmEmvF5KQ1S/HkbzVBYsMw
+        ORiOcRx/zO9qky/nW3fExnEyegjjytj6VlEwn/MSwhoIC8FieMj80B0Waq45xHYFIxBWlHSoCatLd2hx
+        SKTEZeecvgCccHZMJ04XVwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="gridViewCommandColumn4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFaSURBVDhPrVNBjoJQDP2yRAxsDYR4AD2FnIKNHEAuIFwA
+        L8GStQTugUeQLXGrGCEdXud/MqNmMmbmJZ/SvvJaShEkcblcKMsyWq/XZJomTSYTtvARB/8KLHA+nykM
+        QzIMg4QQTwdx8Mh7hLher0yiIpJd16UgCCiOY7bwEQe/3W6pbVv56CcE2pvNZpyEdo/HI/V9zyQsfMTB
+        T6dTOhwOzCkIz/PGylVVyfB3IK468X2fuq6TzCBgWRYTm81mrPwIxMEjb7VaUdM0khkENE1jIooiGXoN
+        8MhbLBZU17WM/kcHf57BO18B+1AUBXMKv94DHNu2KU1Tut1u8vFBABdsGJZE1/Ux+etBh47j8D1ykiQZ
+        RcZ/AZ3kec7vuFwuedqw8Muy5MpYJCWy3+9ZZBRQuN/vPOXT6cQWPoBkVFZdYh673e5Z4CdABJVVJ5jJ
+        WwIARFB5Pp8Pr5XSB3d11Cpip1mDAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="gridViewCommandColumn5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEqSURBVDhPpZO9ioNAFIWH2FloEAQ7wZAyBKx8FUutkzYW
+        KfIYeRMhNhIbSx/BwtZCBUs54d4dAxtnYd0d+OBw5pxbzI9o2xZ5niNN01VQh7oiDENst1vour4K0zRB
+        XaFpGoQQf0J21ZvH4xG3240hrcpIlCZOpxOmaWJIqzISpYnz+Yx5kVZlJF9is9nAMAw+UOJyucg6kCTJ
+        26cMZRcDPM/D4/FAWZZMXdeyDtazn2UZdrvdcoDv+xiGQVZ+XpSh7GLAfr/H8/lEVVVM0zSyAtazXxQF
+        ZxcD6E5t24bjOMz1epV1sJ59yny8nbf4xupb+OTfA6IoQtd1TBzHyoxEafKHcV2XIa3KMJZlqTd+AXfv
+        9zuCIMDhcFgFdagr6JDGcUTf96ugDgC8ACBOFgFHcL49AAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="registerItemViewModelBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="office2013LightTheme1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="office2013LightTheme.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>274, 17</value>
   </metadata>
 </root>

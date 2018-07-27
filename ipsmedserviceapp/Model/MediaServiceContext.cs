@@ -296,8 +296,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -1929,6 +1929,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
+                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
+
                 entity.Property(e => e.CountUse).HasColumnName("countUse");
 
                 entity.Property(e => e.FullAmount)
@@ -3317,6 +3319,8 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.AmountCur)
                     .HasColumnName("amountCur")
                     .HasColumnType("numeric(20, 2)");
+
+                entity.Property(e => e.CustIdRh).HasColumnName("custIdRh");
 
                 entity.Property(e => e.DateOper)
                     .HasColumnName("dateOper")
@@ -5709,6 +5713,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("amountCur")
                     .HasColumnType("numeric(20, 2)");
 
+                entity.Property(e => e.CustIdRh).HasColumnName("custIdRh");
+
                 entity.Property(e => e.DateOper)
                     .HasColumnName("dateOper")
                     .HasColumnType("date");
@@ -5746,11 +5752,6 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.PayTurn)
                     .HasForeignKey(d => d.PayStatus)
                     .HasConstraintName("FK_PAYTURN_REFERENCE_PAYMENTS");
-
-                entity.HasOne(d => d.Reg)
-                    .WithMany(p => p.PayTurn)
-                    .HasForeignKey(d => d.RegId)
-                    .HasConstraintName("FK_PAYTURN_REFERENCE_REGISTER");
             });
 
             modelBuilder.Entity<Performer>(entity =>
@@ -6150,7 +6151,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
-                entity.Property(e => e.DurationItems).HasColumnName("durationItems");
+                entity.Property(e => e.Durationticks).HasColumnName("durationticks");
 
                 entity.Property(e => e.FileName)
                     .HasColumnName("fileName")
@@ -6325,6 +6326,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.DurationUse).HasColumnName("durationUse");
 
+                entity.Property(e => e.Durationticks).HasColumnName("durationticks");
+
                 entity.Property(e => e.ItemName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -6344,6 +6347,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("performer")
                     .HasMaxLength(100)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Ticks).HasColumnName("ticks");
 
                 entity.HasOne(d => d.CodeItemNavigation)
                     .WithMany(p => p.RegisterItem)

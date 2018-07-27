@@ -1,15 +1,23 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Utilities
 {
     public static class ObjectRightExtensions
     {
+        public static void SetDataFromRegisterItem(this ObjectRight objectRight, RegisterItemViewModel registerItem)
+        {
+            objectRight.Name = registerItem.ItemName;
+            objectRight.MediaTrack.Duration = registerItem.DurationItem;
+
+            objectRight.Authors.Add(new Authors { AuthorName = registerItem.AuthorMusic, FolkType = 1, RoleCode = 2 });
+            objectRight.Authors.Add(new Authors { AuthorName = registerItem.AuthorText, FolkType = 1, RoleCode = 1 });
+
+            objectRight.SeekObject.Add(new SeekObject { CodeI = 2, Name = registerItem.Performer });
+        }
+
         public static void AddObjectAuthorRightholder(this ObjectRight objectRight, ObjectAuthorRightholder objectAuthorRightholder)
         {
             var author = new Authors

@@ -20,6 +20,8 @@ namespace ipsmedserviceapp.Model
         public TimeSpan? DurationItem { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
+        public int? Durationticks { get; set; }
+        public int? Ticks { get; set; }
 
         [JsonIgnore]
         public RegisterItemType CodeItemNavigation { get; set; }

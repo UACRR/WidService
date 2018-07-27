@@ -77,45 +77,41 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void SetAllowedStatus(RegisterStatusType status)
         {
-            if (status == RegisterStatusType.New)
-            {
-                btnSetStatus.Text = "На погодження";
-                btnSetStatus.Tag = RegisterStatusType.OnAcception;
-            }
-            else
+            if (status == RegisterStatusType.OnAcception)
             {
                 btnSetStatus.Text = "Погодити";
                 btnSetStatus.Tag = RegisterStatusType.Accepted;
+            }
+            else
+            {
+                btnSetStatus.Text = "До розподілу";
+                btnSetStatus.Tag = RegisterStatusType.OnDistribution;
             }
         }
 
         private void SetAllowedCommand(RegisterStatusType status)
         {
-            if (status == RegisterStatusType.OnAcception)
-            {
-                ctrlRegisterItemList.AllowFindCommand = true;
-                ctrlRegisterItemList.AllowLinkCommand = true;
-            }
-            else
-            {
-                ctrlRegisterItemList.AllowFindCommand = false;
-                ctrlRegisterItemList.AllowLinkCommand = false;
-            }
+            var canWork = status == RegisterStatusType.Accepted;
+
+            ctrlRegisterItemList.AllowFindCommand = canWork;
+            ctrlRegisterItemList.AllowLinkCommand = canWork;
+            ctrlRegisterItemList.AllowUnlinkCommand = canWork;
+            ctrlRegisterItemList.AllowCreateObjectCommand = canWork;
         }
 
         private void SetControlEnabled(RegisterStatusType status)
         {
-            if (status == RegisterStatusType.New)
+            if (status == RegisterStatusType.OnAcception)
             {
                 gboxStatus.Enabled = true;
                 gboxSearch.Enabled = false;
             }
-            else if (status == RegisterStatusType.OnAcception)
+            else if (status == RegisterStatusType.Accepted)
             {
                 gboxStatus.Enabled = true;
                 gboxSearch.Enabled = true;
             }
-            else if (status == RegisterStatusType.Accepted || status == RegisterStatusType.Completed || status == RegisterStatusType.Canceled)
+            else if (status == RegisterStatusType.OnDistribution || status == RegisterStatusType.Completed || status == RegisterStatusType.Canceled)
             {
                 gboxStatus.Enabled = false;
                 gboxSearch.Enabled = false;

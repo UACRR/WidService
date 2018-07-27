@@ -70,7 +70,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void SetDictionaries()
         {
-            var statuses = IpsGlobal.ObjectRightDictionaries.RegisterStatuses;
+            var statuses = IpsGlobal.ObjectRightDictionaries.RegisterStatuses.Where(s => s.CodeI != 0).ToList();
             statuses.Insert(0, new RegisterStatus { CodeI = -1, Name = "Всі" });
 
             ddlStatus.ValueMember = "CodeI";
