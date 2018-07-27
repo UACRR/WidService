@@ -406,7 +406,7 @@ namespace ipsmedserviceapp.Controllers
                         if (sorsItem.Obj.ObjId == 0)
                         {
                             ObjectRight newObj = new ObjectRight();
-                            newObj.SetFields(sorsItem);
+                            newObj.SetFields(sorsItem.Obj );
                             _dbContext.ObjectRight.Add(newObj);
                             destItem.Obj = newObj;
                         }
