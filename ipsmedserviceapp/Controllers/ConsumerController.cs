@@ -307,6 +307,7 @@ namespace ipsmedserviceapp.Controllers
                     {
                         updateLicenseBigR(item, license);
                     }
+
                     destCustomer.Client.LicenseAgreement.Add(license);
                     destAgreeItem.LicenseAgreement.Add(license);
 
