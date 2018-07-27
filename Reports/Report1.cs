@@ -19,22 +19,9 @@ namespace Reports
             //
             InitializeComponent();
 
-
-        }
-
-        private void Report1_NeedDataSource(object sender, EventArgs e)
-        {
-            //Take the Telerik.Reporting.Processing.Report instance
-            Telerik.Reporting.Processing.Report report = (Telerik.Reporting.Processing.Report)sender;
-
-            // Transfer the value of the processing instance of ReportParameter
-            // to the parameter value of the sqlDataSource component
-            this.sqlDataSource2.Parameters[0].Value = report.Parameters["accId"].Value;
-
-            // Set the SqlDataSource component as it's DataSource
-            report.DataSource = this.sqlDataSource2;
-            
-
+            //
+            // TODO: Add any constructor code after InitializeComponent call
+            //
         }
     }
 }

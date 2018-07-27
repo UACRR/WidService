@@ -1283,6 +1283,7 @@ namespace ipsFormsDesign.Services
                 tbAuthorL = item;
                 curRow = table.Rows.Add();
                 index++;
+                curRow.Cells[1].Range.Font.Bold = 0; 
                 curRow.Cells[1].Range.Text = tbAuthorL.RoleName.ToString();
                 curRow.Cells[2].Range.Text = tbAuthorL.AuthorName.ToString();
                 curRow.Cells[3].Range.Text = "Україна";
