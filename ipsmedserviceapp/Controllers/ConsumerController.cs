@@ -303,7 +303,7 @@ namespace ipsmedserviceapp.Controllers
                     }, (l, r) => l.LicVersion == r.LicVersion);
 
 
-                    if (item.LicenseBigR.Count() > 0 )
+                    if (item.LicenseBigR.Count() > 0)
                     {
                         updateLicenseBigR(item, license);
                     }
@@ -406,21 +406,21 @@ namespace ipsmedserviceapp.Controllers
                         if (sorsItem.Obj.ObjId == 0)
                         {
                             ObjectRight newObj = new ObjectRight();
-                            newObj.SetFields(sorsItem.Obj );
+                            newObj.SetFields(sorsItem.Obj);
                             _dbContext.ObjectRight.Add(newObj);
                             destItem.Obj = newObj;
                         }
                         // Obj.CopyRight
                         _dbContext.UpdateListExtra(sorsItem.Obj.CopyRight, destItem.Obj.CopyRight,
-                (sorsCp, destCp) =>
-                {
-                    if (sorsCp.WorkRh != null)
-                    {
-                        destCp.WorkRh = new WorkRh();
-                        destCp.WorkRh.SetFields(sorsCp.WorkRh);
-                        _dbContext.WorkRh.Add(destCp.WorkRh);
-                    }
-                }, (l, r) => l.CRightId == r.CRightId);
+                            (sorsCp, destCp) =>
+                            {
+                                if (sorsCp.WorkRh != null)
+                                {
+                                    destCp.WorkRh = new WorkRh();
+                                    destCp.WorkRh.SetFields(sorsCp.WorkRh);
+                                    _dbContext.WorkRh.Add(destCp.WorkRh);
+                                }
+                            }, (l, r) => l.CRightId == r.CRightId);
                         // Obj.Auth
                         _dbContext.UpdateList(sorsItem.Obj.Authors, destItem.Obj.Authors, i => { }, (l, r) => l.CustId == r.CustId);
                     }
