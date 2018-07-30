@@ -95,6 +95,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private void ctrlRegisterItemList_SelectedRegisterItemChanged(object sender, EventArgs e)
+        {
+            _foundedObjectList.Clear();
+        }
+
         private void btnOk_Click(object sender, EventArgs e)
         {
             _presenter.Apply();
