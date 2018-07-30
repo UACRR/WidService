@@ -27,6 +27,20 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.Run();
         }
 
+        public void SearchObjectsAuto()
+        {
+            var result =_registerService.AutoSearch(_register.RegId);
+
+            if (!result)
+            {
+                _view.ShowError("Не вдалося виконати автоматичну прив'язку об'єктів права.");
+                return;
+            }
+
+            _register = _registerService.GetById(_register.RegId);
+            UpdateDataBindings();
+        }
+
         public void SearchObjects(RegisterItemViewModel selectedRegisterItem)
         {
             using (var view = new SearchObjectView())

@@ -125,6 +125,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             _presenter.SearchObjects(selectedRegisterItem);
         }
 
+        private void btnSearchAuto_Click(object sender, EventArgs e)
+        {
+            _presenter.SearchObjectsAuto();
+        }
+
         private void btnSearchAll_Click(object sender, EventArgs e)
         {
             _presenter.SearchObjectsForAll();
