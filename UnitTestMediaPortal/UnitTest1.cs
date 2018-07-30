@@ -46,7 +46,7 @@ namespace UnitTestMediaPortal
             Customer cust = api.GetItemById<Customer>("consumer/detail", "134");
             FormIBindingList form = new FormIBindingList();
             form.Show(null);
-            form.DataSource = cust.Client;
+            //form.DataSource = cust.Client;
             //Assert.AreEqual(form.usersMoney.RowCount, cust.Client.MoneyReceived.Count);
             form.Close();
             form.Dispose();
@@ -231,6 +231,14 @@ namespace UnitTestMediaPortal
             var licCheck = cust.Client.LicenseAgreement.First(rec => rec.LicId == lic.LicId );
 
             Assert.AreEqual(licCheck.LicType, 2);
+        }
+
+        [TestMethod]
+        public void testLoadBigXls()
+        {
+            ExcelEngine engine = new ExcelEngine();
+            var list = engine.GetReportItems(@"G:\MediaService\Звіти\Отчет для УААСП_СТБ_1 кв 2018.xls");
+            Console.Write($"Count rows = {list.Count() }");
         }
 
     }
