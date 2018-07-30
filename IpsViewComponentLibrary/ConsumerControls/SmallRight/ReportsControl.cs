@@ -73,10 +73,16 @@ namespace IpsViewComponentLibrary
             }
         }
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetupBindings()
         {
             if (_customer == null)
             {
+                ClearBindings();
                 return;
             }
             normalizeData(_customer);
@@ -84,7 +90,12 @@ namespace IpsViewComponentLibrary
             bindingLicAgreement.DataSource = listAgreement;
         }
 
-
+        private void ClearBindings()
+        {
+            bindingLicAgreement.DataSource = typeof(LicenseAgrParam);
+            bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+            bindingReports.DataSource = typeof(Register);
+        }
         private void CreateAct()
         {
             MessageBox.Show("Створення акту");
