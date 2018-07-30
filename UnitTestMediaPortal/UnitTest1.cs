@@ -13,7 +13,6 @@ using ipsFormsDesign.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.Diagnostics;
 
 namespace UnitTestMediaPortal
 {
@@ -227,23 +226,12 @@ namespace UnitTestMediaPortal
             service.SetLicenseType(lic, ConsumerService.LicType.Reference );
 
             cust = service.GetData(142);
-            service.SetLicenseType(lic, ConsumerService.LicType.Request);
+            service.SetLicenseType(lic, ConsumerService.LicType.Request );
 
             var licCheck = cust.Client.LicenseAgreement.First(rec => rec.LicId == lic.LicId );
 
             Assert.AreEqual(licCheck.LicType, 2);
         }
-
-        [TestMethod]
-        public void TestCreate40000Objects()
-        {
-            ExcelEngine excel = new ExcelEngine();
-            var list = excel.GetReportItems(@"D:\temp\Отчет для УААСП_СТБ_1 кв 2018.xls");
-            Console.WriteLine($"Count rows is {list.Count()}");
-
-1
-        }
-
 
     }
 }

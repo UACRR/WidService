@@ -45,7 +45,7 @@ namespace ipsFormsDesign.Services
             if (sors == null)
                 return string.Empty;
 
-            var sorsStr = sors.ToString();
+            var sorsStr = sors.ToString().Trim();
             return sorsStr.Substring(0, Math.Min(sorsStr.Length, length));
         }
         public List<RegisterItem> GetReportItems(string FileName)

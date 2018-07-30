@@ -134,9 +134,9 @@ namespace ipsmedserviceapp.Controllers
             List<int> allowedStatuses = new List<int>();
 
             if (register.RgStatus == 0)
-                allowedStatuses.AddRange(new[] { 1, 4 });
+                allowedStatuses.AddRange(new[] { 1, 5 });
             else if (register.RgStatus == 1)
-                allowedStatuses.AddRange(new[] { 2, 4 });
+                allowedStatuses.AddRange(new[] { 2, 5 });
             else if (register.RgStatus == 2)
                 allowedStatuses.AddRange(new[] { 3 });
             else

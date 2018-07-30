@@ -202,6 +202,32 @@ namespace WebAPIConnector
             return result.IsSuccessStatusCode;
         }
 
+        public T NewItemWithResult<T>(string url, T data) where T: class
+        {
+            var result = client.PostAsJson(url, data);
+
+            if (result.IsSuccessStatusCode)
+            {
+                return result.Content.ReadAs<T>();
+            }
+            else
+                return null;
+        }
+
+        public T UpdateItemWithResult<T>(string url, string id, T data) where T: class
+        {
+            string idUrl = $"{url}/{id}";
+
+            var result = client.PutAsJson(idUrl, data);
+
+            if (result.IsSuccessStatusCode)
+            {
+                return result.Content.ReadAs<T>();
+            }
+            else
+                return null;
+        }
+
         /// <summary>
         /// змінити об'єкт на сервері додатків
         /// </summary>
@@ -226,6 +252,8 @@ namespace WebAPIConnector
             {
                 result = client.PutAsync(idUrl, null).GetAwaiter().GetResult();
             }
+
+            var msg = result.RequestMessage;
 
             var retCode = result.IsSuccessStatusCode;
             return retCode;

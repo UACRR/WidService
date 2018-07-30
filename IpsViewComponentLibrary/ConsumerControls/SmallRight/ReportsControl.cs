@@ -177,7 +177,8 @@ namespace IpsViewComponentLibrary
                     }
 
                     var RatedList = period.RegisterRatedList.First();
-                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName) };
+                    // Створення Звіту
+                    Register addRegister = new Register { RgStatus = 1, FileName = Path.GetFileName(dialog.FileName) };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 

@@ -31,17 +31,18 @@ namespace IpsViewComponentLibrary
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAuthors = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlAuthorRightholderList = new IpsViewComponentLibrary.ObjectRightControls.AuthorRightholderBrListControl();
             this.pvConditions = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
@@ -82,7 +83,13 @@ namespace IpsViewComponentLibrary
             this.label1 = new System.Windows.Forms.Label();
             this.lblClientTitle = new Telerik.WinControls.UI.RadLabel();
             this.panelClient = new Telerik.WinControls.UI.RadPanel();
+            this.cStatusName = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.bsConsumerBigRightView = new System.Windows.Forms.BindingSource(this.components);
+            this.cAgrDate = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cAgrNumber = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cAdress = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cInnokpo = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.cClientName = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.panelInfo = new Telerik.WinControls.UI.RadPanel();
             this.label8 = new System.Windows.Forms.Label();
@@ -105,14 +112,9 @@ namespace IpsViewComponentLibrary
             this.mainPanel = new Telerik.WinControls.UI.RadPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.cStatusName = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cAgrDate = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cAgrNumber = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cAdress = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cInnokpo = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cClientName = new IpsViewComponentLibrary.SingleShowInformationControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
+            this.pvAuthors.SuspendLayout();
             this.pvConditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
@@ -179,23 +181,38 @@ namespace IpsViewComponentLibrary
             this.pageView.Size = new System.Drawing.Size(1217, 677);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
+            this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
             // 
             // pvAuthors
             // 
-            this.pvAuthors.ItemSize = new System.Drawing.SizeF(139F, 25F);
-            this.pvAuthors.Location = new System.Drawing.Point(143, 5);
+            this.pvAuthors.Controls.Add(this.ctrlAuthorRightholderList);
+            this.pvAuthors.ItemSize = new System.Drawing.SizeF(141F, 27F);
+            this.pvAuthors.Location = new System.Drawing.Point(145, 5);
             this.pvAuthors.Name = "pvAuthors";
-            this.pvAuthors.Size = new System.Drawing.Size(1069, 667);
+            this.pvAuthors.Size = new System.Drawing.Size(1067, 667);
             this.pvAuthors.Text = "Автори";
+            // 
+            // ctrlAuthorRightholderList
+            // 
+            this.ctrlAuthorRightholderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlAuthorRightholderList.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholderBrViewModel);
+            this.ctrlAuthorRightholderList.ListMode = IpsViewComponentLibrary.ObjectRightControls.AuthorRightholderBrListMode.Full;
+            this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(5, 279);
+            this.ctrlAuthorRightholderList.Name = "ctrlAuthorRightholderList";
+            this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
+            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1059, 297);
+            this.ctrlAuthorRightholderList.TabIndex = 2;
             // 
             // pvConditions
             // 
             this.pvConditions.Controls.Add(this.radLabel2);
             this.pvConditions.Controls.Add(this.radPanel1);
-            this.pvConditions.ItemSize = new System.Drawing.SizeF(139F, 25F);
+            this.pvConditions.ItemSize = new System.Drawing.SizeF(141F, 27F);
             this.pvConditions.Location = new System.Drawing.Point(145, 5);
             this.pvConditions.Name = "pvConditions";
             this.pvConditions.Size = new System.Drawing.Size(1067, 667);
@@ -450,10 +467,10 @@ namespace IpsViewComponentLibrary
             this.pvMusicalArrangement.Controls.Add(this.ddlActType);
             this.pvMusicalArrangement.Controls.Add(this.gvViewActList);
             this.pvMusicalArrangement.Controls.Add(this.btnAddAct);
-            this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(139F, 25F);
-            this.pvMusicalArrangement.Location = new System.Drawing.Point(143, 5);
+            this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(141F, 27F);
+            this.pvMusicalArrangement.Location = new System.Drawing.Point(145, 5);
             this.pvMusicalArrangement.Name = "pvMusicalArrangement";
-            this.pvMusicalArrangement.Size = new System.Drawing.Size(1069, 667);
+            this.pvMusicalArrangement.Size = new System.Drawing.Size(1067, 667);
             this.pvMusicalArrangement.Text = "Музичне оформлення";
             // 
             // label13
@@ -504,79 +521,79 @@ namespace IpsViewComponentLibrary
             this.gvViewActList.MasterTemplate.AllowEditRow = false;
             this.gvViewActList.MasterTemplate.AutoGenerateColumns = false;
             this.gvViewActList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.DataType = typeof(int);
-            gridViewTextBoxColumn1.FieldName = "CustId";
-            gridViewTextBoxColumn1.HeaderText = "ID";
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "CustId";
-            gridViewTextBoxColumn2.FieldName = "ObjName";
-            gridViewTextBoxColumn2.HeaderText = "Назва твору";
-            gridViewTextBoxColumn2.MinWidth = 0;
-            gridViewTextBoxColumn2.Multiline = true;
-            gridViewTextBoxColumn2.Name = "ObjName";
-            gridViewTextBoxColumn2.Width = 361;
-            gridViewTextBoxColumn2.WrapText = true;
-            gridViewTextBoxColumn3.FieldName = "NameMusician";
-            gridViewTextBoxColumn3.HeaderText = "ПІБ композитора";
-            gridViewTextBoxColumn3.MaxWidth = 220;
-            gridViewTextBoxColumn3.MinWidth = 100;
-            gridViewTextBoxColumn3.Multiline = true;
-            gridViewTextBoxColumn3.Name = "NameMusician";
-            gridViewTextBoxColumn3.Width = 220;
-            gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.FieldName = "NameSinger";
-            gridViewTextBoxColumn4.HeaderText = "ПІБ виконавця";
-            gridViewTextBoxColumn4.MaxWidth = 220;
-            gridViewTextBoxColumn4.MinWidth = 100;
-            gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "NameSinger";
-            gridViewTextBoxColumn4.Width = 220;
-            gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.FieldName = "Duration";
-            gridViewTextBoxColumn5.HeaderText = "Тривалість звучання (хв)";
-            gridViewTextBoxColumn5.MaxWidth = 100;
-            gridViewTextBoxColumn5.MinWidth = 100;
-            gridViewTextBoxColumn5.Multiline = true;
-            gridViewTextBoxColumn5.Name = "Duration";
-            gridViewTextBoxColumn5.Width = 100;
-            gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.FieldName = "NumbPerfom";
-            gridViewTextBoxColumn6.HeaderText = "Кількість виконань";
-            gridViewTextBoxColumn6.MaxWidth = 100;
-            gridViewTextBoxColumn6.MinWidth = 100;
-            gridViewTextBoxColumn6.Name = "NumbPerfom";
-            gridViewTextBoxColumn6.Width = 100;
-            gridViewTextBoxColumn6.WrapText = true;
-            gridViewCommandColumn1.AllowResize = false;
-            gridViewCommandColumn1.AllowSort = false;
-            gridViewCommandColumn1.DefaultText = "Файли";
-            gridViewCommandColumn1.FieldName = "btnsDelete";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn1.MaxWidth = 35;
-            gridViewCommandColumn1.MinWidth = 35;
-            gridViewCommandColumn1.Name = "btnsDelete";
-            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewCommandColumn1.Width = 35;
+            gridViewTextBoxColumn7.DataType = typeof(int);
+            gridViewTextBoxColumn7.FieldName = "CustId";
+            gridViewTextBoxColumn7.HeaderText = "ID";
+            gridViewTextBoxColumn7.IsVisible = false;
+            gridViewTextBoxColumn7.Name = "CustId";
+            gridViewTextBoxColumn8.FieldName = "ObjName";
+            gridViewTextBoxColumn8.HeaderText = "Назва твору";
+            gridViewTextBoxColumn8.MinWidth = 0;
+            gridViewTextBoxColumn8.Multiline = true;
+            gridViewTextBoxColumn8.Name = "ObjName";
+            gridViewTextBoxColumn8.Width = 360;
+            gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.FieldName = "NameMusician";
+            gridViewTextBoxColumn9.HeaderText = "ПІБ композитора";
+            gridViewTextBoxColumn9.MaxWidth = 220;
+            gridViewTextBoxColumn9.MinWidth = 100;
+            gridViewTextBoxColumn9.Multiline = true;
+            gridViewTextBoxColumn9.Name = "NameMusician";
+            gridViewTextBoxColumn9.Width = 220;
+            gridViewTextBoxColumn9.WrapText = true;
+            gridViewTextBoxColumn10.FieldName = "NameSinger";
+            gridViewTextBoxColumn10.HeaderText = "ПІБ виконавця";
+            gridViewTextBoxColumn10.MaxWidth = 220;
+            gridViewTextBoxColumn10.MinWidth = 100;
+            gridViewTextBoxColumn10.Multiline = true;
+            gridViewTextBoxColumn10.Name = "NameSinger";
+            gridViewTextBoxColumn10.Width = 220;
+            gridViewTextBoxColumn10.WrapText = true;
+            gridViewTextBoxColumn11.FieldName = "Duration";
+            gridViewTextBoxColumn11.HeaderText = "Тривалість звучання (хв)";
+            gridViewTextBoxColumn11.MaxWidth = 100;
+            gridViewTextBoxColumn11.MinWidth = 100;
+            gridViewTextBoxColumn11.Multiline = true;
+            gridViewTextBoxColumn11.Name = "Duration";
+            gridViewTextBoxColumn11.Width = 100;
+            gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn12.FieldName = "NumbPerfom";
+            gridViewTextBoxColumn12.HeaderText = "Кількість виконань";
+            gridViewTextBoxColumn12.MaxWidth = 100;
+            gridViewTextBoxColumn12.MinWidth = 100;
+            gridViewTextBoxColumn12.Name = "NumbPerfom";
+            gridViewTextBoxColumn12.Width = 100;
+            gridViewTextBoxColumn12.WrapText = true;
+            gridViewCommandColumn2.AllowResize = false;
+            gridViewCommandColumn2.AllowSort = false;
+            gridViewCommandColumn2.DefaultText = "Файли";
+            gridViewCommandColumn2.FieldName = "btnsDelete";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn2.MaxWidth = 35;
+            gridViewCommandColumn2.MinWidth = 35;
+            gridViewCommandColumn2.Name = "btnsDelete";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewCommandColumn2.Width = 35;
             this.gvViewActList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewCommandColumn1});
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewCommandColumn2});
             this.gvViewActList.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewActList.MasterTemplate.EnableFiltering = true;
             this.gvViewActList.MasterTemplate.EnableGrouping = false;
             this.gvViewActList.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewActList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvViewActList.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvViewActList.Name = "gvViewActList";
             this.gvViewActList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewActList.Size = new System.Drawing.Size(1058, 317);
+            this.gvViewActList.Size = new System.Drawing.Size(1056, 317);
             this.gvViewActList.TabIndex = 9;
             this.gvViewActList.ThemeName = "Office2013Light";
             this.gvViewActList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewActList_CommandCellClick);
@@ -664,241 +681,6 @@ namespace IpsViewComponentLibrary
             this.panelClient.TabIndex = 11;
             this.panelClient.ThemeName = "Office2013Light";
             // 
-            // bsConsumerBigRightView
-            // 
-            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(15, 151);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(115, 18);
-            this.radLabel1.TabIndex = 18;
-            this.radLabel1.Text = "Загальна інформація";
-            // 
-            // panelInfo
-            // 
-            this.panelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelInfo.Controls.Add(this.label8);
-            this.panelInfo.Controls.Add(this.txtLang);
-            this.panelInfo.Controls.Add(this.label7);
-            this.panelInfo.Controls.Add(this.txtVinagoroda);
-            this.panelInfo.Controls.Add(this.label6);
-            this.panelInfo.Controls.Add(this.txtActCode);
-            this.panelInfo.Controls.Add(this.ddlPerformType);
-            this.panelInfo.Controls.Add(this.label5);
-            this.panelInfo.Controls.Add(this.ddlGenreType);
-            this.panelInfo.Controls.Add(this.dtPremiereDate);
-            this.panelInfo.Controls.Add(this.label4);
-            this.panelInfo.Controls.Add(this.label3);
-            this.panelInfo.Controls.Add(this.txtName);
-            this.panelInfo.Location = new System.Drawing.Point(3, 160);
-            this.panelInfo.Name = "panelInfo";
-            // 
-            // 
-            // 
-            this.panelInfo.RootElement.MaxSize = new System.Drawing.Size(0, 0);
-            this.panelInfo.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.panelInfo.Size = new System.Drawing.Size(662, 105);
-            this.panelInfo.TabIndex = 17;
-            this.panelInfo.ThemeName = "Office2013Light";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(415, 75);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 15);
-            this.label8.TabIndex = 27;
-            this.label8.Text = "Мова виконання";
-            // 
-            // txtLang
-            // 
-            this.txtLang.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "LangCode", true));
-            this.txtLang.DataSource = this.bsDictLanguage;
-            this.txtLang.DisplayMember = "Name";
-            this.txtLang.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.txtLang.Location = new System.Drawing.Point(520, 74);
-            this.txtLang.Name = "txtLang";
-            this.txtLang.Size = new System.Drawing.Size(138, 21);
-            this.txtLang.TabIndex = 26;
-            this.txtLang.ThemeName = "Office2013Light";
-            this.txtLang.ValueMember = "CodeS";
-            // 
-            // bsDictLanguage
-            // 
-            this.bsDictLanguage.DataSource = typeof(ipsFormsDesign.Model.Language);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(155, 75);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(199, 15);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "Мінімальна ставка винагороди (%)";
-            // 
-            // txtVinagoroda
-            // 
-            this.txtVinagoroda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "Rate", true));
-            this.txtVinagoroda.Location = new System.Drawing.Point(360, 73);
-            this.txtVinagoroda.Name = "txtVinagoroda";
-            this.txtVinagoroda.Size = new System.Drawing.Size(49, 21);
-            this.txtVinagoroda.TabIndex = 25;
-            this.txtVinagoroda.ThemeName = "Office2013Light";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 75);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 15);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Кількість актів";
-            // 
-            // txtActCode
-            // 
-            this.txtActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "ActCode", true));
-            this.txtActCode.Location = new System.Drawing.Point(100, 73);
-            this.txtActCode.Name = "txtActCode";
-            this.txtActCode.Size = new System.Drawing.Size(49, 21);
-            this.txtActCode.TabIndex = 23;
-            this.txtActCode.ThemeName = "Office2013Light";
-            // 
-            // bsObjectRight
-            // 
-            this.bsObjectRight.DataSource = typeof(ipsFormsDesign.Model.ObjectRight);
-            // 
-            // ddlPerformType
-            // 
-            this.ddlPerformType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "PerformType", true));
-            this.ddlPerformType.DataSource = this.bsDictPerformType;
-            this.ddlPerformType.DisplayMember = "Name";
-            this.ddlPerformType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlPerformType.Location = new System.Drawing.Point(435, 46);
-            this.ddlPerformType.Name = "ddlPerformType";
-            this.ddlPerformType.Size = new System.Drawing.Size(136, 21);
-            this.ddlPerformType.TabIndex = 21;
-            this.ddlPerformType.ThemeName = "Office2013Light";
-            this.ddlPerformType.ValueMember = "CodeI";
-            // 
-            // bsDictPerformType
-            // 
-            this.bsDictPerformType.DataSource = typeof(ipsFormsDesign.Model.PerformType);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 47);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 15);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Вид твору";
-            // 
-            // ddlGenreType
-            // 
-            this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectRight, "GenreType", true));
-            this.ddlGenreType.DataSource = this.bsDictGenreType;
-            this.ddlGenreType.DisplayMember = "Name";
-            this.ddlGenreType.Location = new System.Drawing.Point(75, 46);
-            this.ddlGenreType.Name = "ddlGenreType";
-            this.ddlGenreType.Size = new System.Drawing.Size(354, 21);
-            this.ddlGenreType.TabIndex = 19;
-            this.ddlGenreType.ThemeName = "Office2013Light";
-            this.ddlGenreType.ValueMember = "CodeI";
-            // 
-            // bsDictGenreType
-            // 
-            this.bsDictGenreType.DataSource = typeof(ipsFormsDesign.Model.GenreType);
-            // 
-            // dtPremiereDate
-            // 
-            this.dtPremiereDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicenseBigR, "DatePremiere", true));
-            this.dtPremiereDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtPremiereDate.Location = new System.Drawing.Point(540, 15);
-            this.dtPremiereDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
-            this.dtPremiereDate.Name = "dtPremiereDate";
-            this.dtPremiereDate.NullText = "Оберіть дату";
-            this.dtPremiereDate.Size = new System.Drawing.Size(118, 21);
-            this.dtPremiereDate.TabIndex = 18;
-            this.dtPremiereDate.TabStop = false;
-            this.dtPremiereDate.ThemeName = "Office2013Light";
-            this.dtPremiereDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(447, 17);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 15);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Дата прем\'єри";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 15);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Назва вистави";
-            // 
-            // txtName
-            // 
-            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "Name", true));
-            this.txtName.Location = new System.Drawing.Point(100, 15);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(344, 21);
-            this.txtName.TabIndex = 16;
-            this.txtName.ThemeName = "Office2013Light";
-            // 
-            // mainPanel
-            // 
-            this.mainPanel.Controls.Add(this.lblClientTitle);
-            this.mainPanel.Controls.Add(this.radLabel1);
-            this.mainPanel.Controls.Add(this.panelClient);
-            this.mainPanel.Controls.Add(this.panelInfo);
-            this.mainPanel.Controls.Add(this.label1);
-            this.mainPanel.Controls.Add(this.dtDate);
-            this.mainPanel.Controls.Add(this.txtLicNum);
-            this.mainPanel.Controls.Add(this.label2);
-            this.mainPanel.Location = new System.Drawing.Point(150, 10);
-            this.mainPanel.MaximumSize = new System.Drawing.Size(668, 268);
-            this.mainPanel.MinimumSize = new System.Drawing.Size(668, 268);
-            this.mainPanel.Name = "mainPanel";
-            // 
-            // 
-            // 
-            this.mainPanel.RootElement.MaxSize = new System.Drawing.Size(668, 268);
-            this.mainPanel.RootElement.MinSize = new System.Drawing.Size(668, 268);
-            this.mainPanel.Size = new System.Drawing.Size(668, 268);
-            this.mainPanel.TabIndex = 19;
-            this.mainPanel.ThemeName = "Office2013Light";
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(1096, 641);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Скасувати";
-            this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(150, 641);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(197, 24);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "Підтвердити створення заявки";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // cStatusName
             // 
             this.cStatusName.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
@@ -916,6 +698,10 @@ namespace IpsViewComponentLibrary
             this.cStatusName.TextValue = "";
             this.cStatusName.ValueDataMemger = "";
             this.cStatusName.ValueDataSource = null;
+            // 
+            // bsConsumerBigRightView
+            // 
+            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             // 
             // cAgrDate
             // 
@@ -1007,6 +793,243 @@ namespace IpsViewComponentLibrary
             this.cClientName.ValueDataMemger = "";
             this.cClientName.ValueDataSource = null;
             // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(15, 151);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(115, 18);
+            this.radLabel1.TabIndex = 18;
+            this.radLabel1.Text = "Загальна інформація";
+            // 
+            // panelInfo
+            // 
+            this.panelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelInfo.Controls.Add(this.label8);
+            this.panelInfo.Controls.Add(this.txtLang);
+            this.panelInfo.Controls.Add(this.label7);
+            this.panelInfo.Controls.Add(this.txtVinagoroda);
+            this.panelInfo.Controls.Add(this.label6);
+            this.panelInfo.Controls.Add(this.txtActCode);
+            this.panelInfo.Controls.Add(this.ddlPerformType);
+            this.panelInfo.Controls.Add(this.label5);
+            this.panelInfo.Controls.Add(this.ddlGenreType);
+            this.panelInfo.Controls.Add(this.dtPremiereDate);
+            this.panelInfo.Controls.Add(this.label4);
+            this.panelInfo.Controls.Add(this.label3);
+            this.panelInfo.Controls.Add(this.txtName);
+            this.panelInfo.Location = new System.Drawing.Point(3, 160);
+            this.panelInfo.Name = "panelInfo";
+            // 
+            // 
+            // 
+            this.panelInfo.RootElement.MaxSize = new System.Drawing.Size(0, 0);
+            this.panelInfo.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.panelInfo.Size = new System.Drawing.Size(662, 105);
+            this.panelInfo.TabIndex = 17;
+            this.panelInfo.ThemeName = "Office2013Light";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(415, 75);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(99, 15);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Мова виконання";
+            // 
+            // txtLang
+            // 
+            this.txtLang.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "LangCode", true));
+            this.txtLang.DataSource = this.bsDictLanguage;
+            this.txtLang.DisplayMember = "Name";
+            this.txtLang.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.txtLang.Location = new System.Drawing.Point(520, 74);
+            this.txtLang.Name = "txtLang";
+            this.txtLang.Size = new System.Drawing.Size(138, 21);
+            this.txtLang.TabIndex = 26;
+            this.txtLang.ThemeName = "Office2013Light";
+            this.txtLang.ValueMember = "CodeS";
+            // 
+            // bsDictLanguage
+            // 
+            this.bsDictLanguage.DataSource = typeof(ipsFormsDesign.Model.Language);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(155, 75);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(199, 15);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Мінімальна ставка винагороди (%)";
+            // 
+            // txtVinagoroda
+            // 
+            this.txtVinagoroda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "Rate", true));
+            this.txtVinagoroda.Location = new System.Drawing.Point(360, 73);
+            this.txtVinagoroda.Name = "txtVinagoroda";
+            this.txtVinagoroda.ReadOnly = true;
+            this.txtVinagoroda.Size = new System.Drawing.Size(49, 21);
+            this.txtVinagoroda.TabIndex = 25;
+            this.txtVinagoroda.ThemeName = "Office2013Light";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 75);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 15);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Кількість актів";
+            // 
+            // txtActCode
+            // 
+            this.txtActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "ActCode", true));
+            this.txtActCode.Location = new System.Drawing.Point(100, 73);
+            this.txtActCode.MaxLength = 1;
+            this.txtActCode.Name = "txtActCode";
+            this.txtActCode.Size = new System.Drawing.Size(49, 21);
+            this.txtActCode.TabIndex = 23;
+            this.txtActCode.ThemeName = "Office2013Light";
+            this.txtActCode.TextChanged += new System.EventHandler(this.txtActCode_TextChanged);
+            // 
+            // bsObjectRight
+            // 
+            this.bsObjectRight.DataSource = typeof(ipsFormsDesign.Model.ObjectRight);
+            // 
+            // ddlPerformType
+            // 
+            this.ddlPerformType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "PerformType", true));
+            this.ddlPerformType.DataSource = this.bsDictPerformType;
+            this.ddlPerformType.DisplayMember = "Name";
+            this.ddlPerformType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlPerformType.Location = new System.Drawing.Point(435, 46);
+            this.ddlPerformType.Name = "ddlPerformType";
+            this.ddlPerformType.Size = new System.Drawing.Size(136, 21);
+            this.ddlPerformType.TabIndex = 21;
+            this.ddlPerformType.ThemeName = "Office2013Light";
+            this.ddlPerformType.ValueMember = "CodeI";
+            // 
+            // bsDictPerformType
+            // 
+            this.bsDictPerformType.DataSource = typeof(ipsFormsDesign.Model.PerformType);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 47);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 15);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Вид твору";
+            // 
+            // ddlGenreType
+            // 
+            this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectRight, "GenreType", true));
+            this.ddlGenreType.DataSource = this.bsDictGenreType;
+            this.ddlGenreType.DisplayMember = "Name";
+            this.ddlGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlGenreType.Location = new System.Drawing.Point(75, 46);
+            this.ddlGenreType.Name = "ddlGenreType";
+            this.ddlGenreType.Size = new System.Drawing.Size(354, 21);
+            this.ddlGenreType.TabIndex = 19;
+            this.ddlGenreType.ThemeName = "Office2013Light";
+            this.ddlGenreType.ValueMember = "CodeI";
+            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.ddlGenreType_SelectedValueChanged);
+            // 
+            // bsDictGenreType
+            // 
+            this.bsDictGenreType.DataSource = typeof(ipsFormsDesign.Model.GenreType);
+            // 
+            // dtPremiereDate
+            // 
+            this.dtPremiereDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicenseBigR, "DatePremiere", true));
+            this.dtPremiereDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtPremiereDate.Location = new System.Drawing.Point(540, 15);
+            this.dtPremiereDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
+            this.dtPremiereDate.Name = "dtPremiereDate";
+            this.dtPremiereDate.NullText = "Оберіть дату";
+            this.dtPremiereDate.Size = new System.Drawing.Size(118, 21);
+            this.dtPremiereDate.TabIndex = 18;
+            this.dtPremiereDate.TabStop = false;
+            this.dtPremiereDate.ThemeName = "Office2013Light";
+            this.dtPremiereDate.Value = new System.DateTime(((long)(0)));
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(447, 17);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 15);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Дата прем\'єри";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 15);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Назва вистави";
+            // 
+            // txtName
+            // 
+            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "Name", true));
+            this.txtName.Location = new System.Drawing.Point(100, 15);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(344, 21);
+            this.txtName.TabIndex = 16;
+            this.txtName.ThemeName = "Office2013Light";
+            // 
+            // mainPanel
+            // 
+            this.mainPanel.Controls.Add(this.lblClientTitle);
+            this.mainPanel.Controls.Add(this.radLabel1);
+            this.mainPanel.Controls.Add(this.panelClient);
+            this.mainPanel.Controls.Add(this.panelInfo);
+            this.mainPanel.Controls.Add(this.label1);
+            this.mainPanel.Controls.Add(this.dtDate);
+            this.mainPanel.Controls.Add(this.txtLicNum);
+            this.mainPanel.Controls.Add(this.label2);
+            this.mainPanel.Location = new System.Drawing.Point(150, 10);
+            this.mainPanel.MaximumSize = new System.Drawing.Size(668, 268);
+            this.mainPanel.MinimumSize = new System.Drawing.Size(668, 268);
+            this.mainPanel.Name = "mainPanel";
+            // 
+            // 
+            // 
+            this.mainPanel.RootElement.MaxSize = new System.Drawing.Size(668, 268);
+            this.mainPanel.RootElement.MinSize = new System.Drawing.Size(668, 268);
+            this.mainPanel.Size = new System.Drawing.Size(668, 268);
+            this.mainPanel.TabIndex = 19;
+            this.mainPanel.ThemeName = "Office2013Light";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(1096, 641);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 24);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSave.Enabled = false;
+            this.btnSave.Location = new System.Drawing.Point(150, 641);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(197, 24);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "Підтвердити створення заявки";
+            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // RequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1021,11 +1044,13 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main";
             this.ThemeName = "Office2013Light";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RequestForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
+            this.pvAuthors.ResumeLayout(false);
             this.pvConditions.ResumeLayout(false);
             this.pvConditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -1160,5 +1185,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadDropDownList ddlActType;
         private System.Windows.Forms.BindingSource bsDictObjAct;
         private System.Windows.Forms.BindingSource bsMusicDesign;
+        private ObjectRightControls.AuthorRightholderBrListControl ctrlAuthorRightholderList;
     }
 }

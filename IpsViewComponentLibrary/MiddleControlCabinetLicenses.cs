@@ -54,6 +54,7 @@ namespace IpsViewComponentLibrary
             if (pageView.Enabled == false)
                 pageView.Enabled = true;
 
+            btnToAccept.Enabled = (e.CurrentRow.DataBoundItem as VbrLicense)?.AgrStatus == 0;
             ctrlInformation.InfoDataSource = e.CurrentRow.DataBoundItem as VbrLicense;
         }
 
@@ -108,13 +109,6 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
-
-        private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            //TODO видалення ліцензії
-            
-            //_customer.Client.LicenseAgreement.SingleOrDefault()?.LicenseBigR.Remove();
-        }
 
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {

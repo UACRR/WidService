@@ -48,13 +48,15 @@ namespace IpsViewComponentLibrary
         public delegate void EditCustomer(int id);
         public event EditCustomer OnEditCustomer;
 
-
-        public delegate bool SaveCustomer(Customer customer);
-        public event SaveCustomer OnSaveCustomer;//TODO invoke
+        public event SaveCustomerEventHandler OnSaveCustomer;
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocument;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
+        public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
+        public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
+        public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
+
 
         public string FilterString
         {
@@ -69,8 +71,26 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnAddNewDocument += CtrlCabinet_OnAddNewDocument;
             ctrlCabinet.OnViewDocumentNeed += CtrlCabinet_OnViewDocumentNeed;
             ctrlCabinet.OnGetSpectacleNeed += CtrlCabinet_OnGetSpectacleNeed;
+            ctrlCabinet.OnLicenseStatusChanging += CtrlCabinet_OnLicenseStatusChanging;
+            ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
+            ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
 
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private bool CtrlCabinet_OnChangeLicenseType(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
+        {
+            return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
+        }
+
+        private bool CtrlCabinet_OnRequestWorkRhSaveNeed(int licenseId, List<WorkRh> workRhList)
+        {
+            return OnWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
+        }
+
+        private bool CtrlCabinet_OnLicenseStatusChanging(LicenseAgreement agr, int version, int status)
+        {
+            return OnLicenseStatusChanging?.Invoke(agr, version, status) ?? false;
         }
 
         private IList<BigRightSpectacleView> CtrlCabinet_OnGetSpectacleNeed(int custId)
@@ -88,9 +108,9 @@ namespace IpsViewComponentLibrary
             OnAddNewDocument?.Invoke(custId,typeDocument,fileName,comment);
         }
 
-        private void CtrlCabinet_OnSaveCustomerNeed(object sender, EventArgs e)
+        private bool CtrlCabinet_OnSaveCustomerNeed(Customer customer)
         {
-            OnSaveCustomer?.Invoke(_customer);
+            return OnSaveCustomer?.Invoke(_customer) ?? false;
         }
 
         /// <summary>

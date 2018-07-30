@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using Telerik.WinControls;
@@ -102,6 +103,9 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnAddNewDocument += CabinetBr_OnAddNewDocument;
                 _cabinetBr.OnViewDocument += CabinetBr_OnViewDocument;
                 _cabinetBr.OnGetSpectacleNeed += _cabinetBr_OnGetSpectacleNeed;
+                _cabinetBr.OnLicenseStatusChanging += _cabinetBr_OnLicenseStatusChanging;
+                _cabinetBr.OnWorkRhSaveNeed += SaveWorkRh;
+                _cabinetBr.OnChangeLicenseType += ChangeLicenseType;
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -111,6 +115,28 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetSelectCustomer(id);
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
+        }
+
+        private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
+        {
+            return _service.SetLicenseType(agreement, licType);
+        }
+
+        private bool SaveWorkRh(int licId, List<WorkRh> workRhList)
+        {
+            if (workRhList == null)
+                return false;
+            return _service.SaveBRWorkRH(licId, workRhList);
+        }
+
+        private bool _cabinetBr_OnLicenseStatusChanging(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status)
+        {
+            if (_service.SetLicAgreementStatus(agr, version, status))
+            {
+                UpdateData((int)agr.CustId);
+                return true;
+            }
+            return false;
         }
 
         private IList<BigRightSpectacleView> _cabinetBr_OnGetSpectacleNeed(int custId)
@@ -231,7 +257,6 @@ namespace ConsumerWorkplace_v_1._0
                     break;
             }
         }
-
 
         /// <summary>
         /// Редагування існуючого споживача юридичної особи
