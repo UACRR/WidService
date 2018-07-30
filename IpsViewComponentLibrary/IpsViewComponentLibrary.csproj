@@ -158,6 +158,12 @@
     <Compile Include="AgentFooterBR.Designer.cs">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerDialogForms\ProlongationBigRight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\ProlongationBigRight.Designer.cs">
+      <DependentUpon>ProlongationBigRight.cs</DependentUpon>
+    </Compile>
     <Compile Include="MiddleControlCabinetAvances.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -702,6 +708,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
+      <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetAvances.resx">
       <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>

@@ -107,7 +107,7 @@ namespace IpsViewComponentLibrary
                 return;
 
             var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
-            bindingPaidPeriod.DataSource = lic.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate);
+            bindingPaidPeriod.DataSource = lic?.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
         }
 
         // * * * [Періоди платежів]
