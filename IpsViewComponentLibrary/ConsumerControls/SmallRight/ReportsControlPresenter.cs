@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+namespace IpsViewComponentLibrary
 {
     public class ReportsControlPresenter
     {
