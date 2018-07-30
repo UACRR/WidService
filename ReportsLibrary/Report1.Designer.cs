@@ -27,8 +27,7 @@ namespace ReportsLibrary
             Telerik.Reporting.TableGroup tableGroup16 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup17 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.NavigateToReportAction navigateToReportAction1 = new Telerik.Reporting.NavigateToReportAction();
-            Telerik.Reporting.UriReportSource uriReportSource1 = new Telerik.Reporting.UriReportSource();
-            Telerik.Reporting.ToggleVisibilityAction toggleVisibilityAction1 = new Telerik.Reporting.ToggleVisibilityAction();
+            Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter2 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
@@ -222,11 +221,12 @@ namespace ReportsLibrary
             // 
             // textBox9
             // 
-            uriReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateBegin", "= Parameters.dateBegin.Value"));
-            uriReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateEnd", "= Parameters.dateEnd.Value"));
-            uriReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("account", "= Fields.account"));
-            uriReportSource1.Uri = "R_5_17_2_BalanceGroup.trdp";
-            navigateToReportAction1.ReportSource = uriReportSource1;
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateBegin", "= Parameters.dateBegin.Value"));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateEnd", "= Parameters.dateEnd.Value"));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("account", "= Fields.account"));
+            typeReportSource1.TypeName = "ReportsLibrary.Report2, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
+    "eyToken=null";
+            navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox9.Action = navigateToReportAction1;
             this.textBox9.Bindings.Add(new Telerik.Reporting.Binding("Action", "= Fields.account"));
             this.textBox9.Format = "{0:N0}";
@@ -621,7 +621,7 @@ namespace ReportsLibrary
             // 
             // Report1
             // 
-            this.Action = toggleVisibilityAction1;
+            this.Action = null;
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.pageHeaderSection1,
             this.detailSection1,
