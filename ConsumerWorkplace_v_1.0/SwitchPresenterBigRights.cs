@@ -95,6 +95,7 @@ namespace ConsumerWorkplace_v_1._0
             if (_cabinetBr == null)
             {
                 _cabinetBr = new GlobalControlConsumerCabinetBR();
+                var a = new CalculationInfoControlPresenter(_cabinetBr.ctrlCabinet.ctrlCalculation, _service);
                 _cabinetBr.OnBackToGridNeed += CabinetBr_OnBackToGridNeed;
                 _cabinetBr.OnCustomerUpdateDataNeed += CabinetBr_OnCustomerUpdateDataNeed;
                 _cabinetBr.OnAddNewCustomer += _cabinetBr_OnAddNewCustomer;

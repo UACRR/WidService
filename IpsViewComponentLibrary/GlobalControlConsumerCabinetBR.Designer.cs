@@ -199,6 +199,7 @@
             this.ctrlCabinet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlCabinet.AutoScroll = true;
             this.ctrlCabinet.Location = new System.Drawing.Point(315, 30);
             this.ctrlCabinet.Name = "ctrlCabinet";
             this.ctrlCabinet.Size = new System.Drawing.Size(1019, 556);
@@ -234,6 +235,6 @@
         private Telerik.WinControls.UI.RadButton btnBack;
         private Telerik.WinControls.UI.RadGridView gvConsumerList;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private MiddleControlCabinet ctrlCabinet;
+        public MiddleControlCabinet ctrlCabinet;
     }
 }
