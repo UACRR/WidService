@@ -106,6 +106,7 @@
             this.ddlStatus.Size = new System.Drawing.Size(158, 21);
             this.ddlStatus.TabIndex = 3;
             this.ddlStatus.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadDropDownListArrowButtonElement)(this.ddlStatus.GetChildAt(0).GetChildAt(2).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // registerBindingSource
             // 
@@ -125,6 +126,7 @@
             this.dtCreateDate.Text = "13.07.2018";
             this.dtCreateDate.ThemeName = "Office2013Light";
             this.dtCreateDate.Value = new System.DateTime(2018, 7, 13, 11, 0, 20, 75);
+            ((Telerik.WinControls.UI.RadDateTimePickerArrowButtonElement)(this.dtCreateDate.GetChildAt(0).GetChildAt(2).GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // txtNumber
             // 
