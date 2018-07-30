@@ -44,6 +44,7 @@ namespace IpsViewComponentLibrary
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
             this.lblContrDo = new Telerik.WinControls.UI.RadLabel();
             this.bsAgreementAddBr = new System.Windows.Forms.BindingSource(this.components);
+            this.bsLicenseAgrParamBr = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgrParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
@@ -55,6 +56,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgrParamBr)).BeginInit();
             this.SuspendLayout();
             // 
             // rdtPickerAgrDate
@@ -163,6 +165,10 @@ namespace IpsViewComponentLibrary
             // 
             this.bsAgreementAddBr.DataSource = typeof(ipsFormsDesign.Model.AgreementAddBr);
             // 
+            // bsLicenseAgrParamBr
+            // 
+            this.bsLicenseAgrParamBr.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            // 
             // ContractConsumerMainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,6 +196,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgrParamBr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +215,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadLabel lblContrDo;
         private BindingSource bsLicenseAgrParam;
         private BindingSource bsAgreementAddBr;
+        private BindingSource bsLicenseAgrParamBr;
     }
 }

@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlCabinet : UserControl
     {
-        private readonly Dictionary<string,CabinetTabType> _cabinetTab = new Dictionary<string, CabinetTabType>
+        private readonly Dictionary<string, CabinetTabType> _cabinetTab = new Dictionary<string, CabinetTabType>
         {
             {string.Empty, CabinetTabType.None},
             {"pvLicence" , CabinetTabType.Licenses},
@@ -70,19 +70,24 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
             ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
-            ctrlRequest.OnNewRequestSaveNeed += CtrlRequest_OnNewRequestSaveNeed;
+            ctrlRequest.OnNewRequestSaveNeed += Ctrls_OnSaveCustomer;
             ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
             ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
+            ctrlRequest.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlReference.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
+        }
+
+        //збереження customer
+        private bool Ctrls_OnSaveCustomer(Customer customer)
+        {
+            return OnSaveCustomerNeed?.Invoke(customer) ?? false;
         }
 
         private bool CtrlRequest_OnLicenseTypeChange(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
         {
             return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
-        }
-
-        private bool CtrlRequest_OnNewRequestSaveNeed(Customer customer)
-        {
-            return OnSaveCustomerNeed?.Invoke(customer) ?? false;
         }
 
         private bool CtrlRequest_OnWorkRhSave(int licenseId, List<WorkRh> workRhList)

@@ -119,7 +119,12 @@ namespace ConsumerWorkplace_v_1._0
 
         private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
         {
-            return _service.SetLicenseType(agreement, licType);
+            if(_service.SetLicenseType(agreement, licType))
+            {
+                UpdateData(agreement?.CustId ?? default(int));
+                return true;
+            }
+            return false;
         }
 
         private bool SaveWorkRh(int licId, List<WorkRh> workRhList)

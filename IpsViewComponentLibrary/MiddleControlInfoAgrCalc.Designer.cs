@@ -101,7 +101,7 @@
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Location = new System.Drawing.Point(3, 218);
             this.pvMain.Name = "pvMain";
-            this.pvMain.SelectedPage = this.pvActiveAgr;
+            this.pvMain.SelectedPage = this.pvReports;
             this.pvMain.Size = new System.Drawing.Size(1082, 679);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2007Silver";
@@ -301,6 +301,7 @@
             this.agreementInfoCtrl.Agent = "";
             this.agreementInfoCtrl.Amount = "94500";
             this.agreementInfoCtrl.Bank = "960";
+            this.agreementInfoCtrl.CommentDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.agreementInfoCtrl.DateAgr = "12.12.2020";
             this.agreementInfoCtrl.DateBegin = "10.10.1010";
             this.agreementInfoCtrl.DateEnd = "10.10.1010";
@@ -345,6 +346,7 @@
             this.calculationCtrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calculationCtrl.AutoScroll = true;
+            this.calculationCtrl.Customer = null;
             this.calculationCtrl.Location = new System.Drawing.Point(0, 0);
             this.calculationCtrl.MaximumSize = new System.Drawing.Size(3000, 1000);
             this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
@@ -366,6 +368,7 @@
             // 
             this.reportsControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportsControl.Customer = null;
             this.reportsControl.Location = new System.Drawing.Point(4, 4);
             this.reportsControl.MinimumSize = new System.Drawing.Size(700, 470);
             this.reportsControl.Name = "reportsControl";
@@ -453,12 +456,14 @@
             this.userInfoCtrl.EmailContactPerson = "qwerty@qwer.ty";
             this.userInfoCtrl.EmailManager = "qwerty@qwer.ty";
             this.userInfoCtrl.GroupOrHolding = "Копірайт";
+            this.userInfoCtrl.HoldingVisible = false;
             this.userInfoCtrl.Location = new System.Drawing.Point(3, 3);
             this.userInfoCtrl.MaximumSize = new System.Drawing.Size(912, 242);
             this.userInfoCtrl.MinimumSize = new System.Drawing.Size(912, 209);
             this.userInfoCtrl.Name = "userInfoCtrl";
             this.userInfoCtrl.NameInfo = "ррррр";
             this.userInfoCtrl.OrganisationForm = "ТОВ";
+            this.userInfoCtrl.OrganisationFormVisible = false;
             this.userInfoCtrl.PhoneContactPerson = "+380999999999";
             this.userInfoCtrl.PhoneManager = "+380999999999";
             this.userInfoCtrl.PibContactPerson = "Прізвище Ім\'я Побатькові";
@@ -508,10 +513,8 @@
         private InformationAboutTheContractTitleControl agreementInfoCtrl;
         private Telerik.WinControls.UI.RadPageViewPage pvHistory;
         private Telerik.WinControls.UI.RadPageViewPage pvCalculation;
-        private CalculationInfoControl calculationCtrl;
         private InformationOfUserControl userInfoCtrl;
         private Telerik.WinControls.UI.RadPageViewPage pvReports;
-        private ReportsControl reportsControl;
         private Telerik.WinControls.UI.RadButton btnProlongation;
         private Telerik.WinControls.UI.RadButton radButton1;
         private Telerik.WinControls.UI.RadButton btnEditAgreement;
@@ -520,5 +523,7 @@
         private Telerik.WinControls.UI.RadButton btnAddAgreement;
         private Telerik.WinControls.UI.RadButton btnPrint;
         private Telerik.WinControls.UI.RadButton btnDeleteAgr;
+        public CalculationInfoControl calculationCtrl;
+        public ReportsControl reportsControl;
     }
 }

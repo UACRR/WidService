@@ -181,6 +181,8 @@ namespace WebAPIConnector
         {
             string idUrl = $"{url}/{id}";
             string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
+            if (string.IsNullOrEmpty(retApiString))
+                return default(T);
             JObject retObj = JObject.Parse(retApiString);
 
             return retObj.ToObject<T>();

@@ -27,6 +27,20 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.Run();
         }
 
+        public void SearchObjectsAuto()
+        {
+            var result =_registerService.AutoSearch(_register.RegId);
+
+            if (!result)
+            {
+                _view.ShowError("Не вдалося виконати автоматичну прив'язку об'єктів права.");
+                return;
+            }
+
+            _register = _registerService.GetById(_register.RegId);
+            UpdateDataBindings();
+        }
+
         public void SearchObjects(RegisterItemViewModel selectedRegisterItem)
         {
             using (var view = new SearchObjectView())
@@ -96,6 +110,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     foundedRegisterItem.RegId = rvm.RegId;
                     foundedRegisterItem.RegIitemId = rvm.RegIitemId;
                     foundedRegisterItem.ObjId = rvm.ObjId;
+                    foundedRegisterItem.IsAuto = rvm.IsAuto;
                 };
             }
 
@@ -121,10 +136,11 @@ namespace IpsViewComponentLibrary.RegisterControls
                     Performer = r.Performer,
                     RegId = r.RegId,
                     RegIitemId = r.RegIitemId,
+                    IsAuto = r.IsAuto,
                 };
 
                 if (r.Obj != null)
-                    rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack.Duration);
+                    rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack.Duration, resetIsAuto: false);
 
                 _view.RegisterItemList.Add(rvm);
             }
