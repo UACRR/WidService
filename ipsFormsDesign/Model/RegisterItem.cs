@@ -22,6 +22,7 @@ namespace ipsFormsDesign.Model
         public string ModifyLogin { get; set; }
         public int? Durationticks { get; set; }
         public int? Ticks { get; set; }
+        public bool IsAuto { get; set; }
 
         public RegisterItemType CodeItemNavigation { get; set; }
         public ObjectRight Obj { get; set; }

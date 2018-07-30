@@ -12,10 +12,10 @@ public partial class UserDefinedFunctions
     /// </summary>
     /// <param name="sors">Строка пошуку</param>
     /// <param name="dest">Строка в якій шукають</param>
-    /// <param name="errorLevel">відсоток співпадання</param>
+    /// <param name="accuracy">відсоток співпадання</param>
     /// <returns></returns>
     [Microsoft.SqlServer.Server.SqlFunction]
-    public static SqlBoolean Ft_tsk_3_Compare(string sors, string dest, double errorLevel)
+    public static SqlBoolean Ft_tsk_3_Compare(string sors, string dest, double accuracy)
     {
         // Введите здесь код
         if (sors.CompareTo(dest) == 0)
@@ -44,7 +44,7 @@ public partial class UserDefinedFunctions
 
         }
 
-        if ((float)cntHit / lengSors >= errorLevel)
+        if ((float)cntHit / lengSors >= accuracy)
             return true;
 
         i = lengSors - 1;
@@ -65,13 +65,86 @@ public partial class UserDefinedFunctions
             }
         }
 
-        if ((float)cntHit / lengSors >= errorLevel)
+        if ((float)cntHit / lengSors >= accuracy)
             return true;
 
         return false;
 
     }
 
+    /// <summary>
+    /// Порівняння сток для пошуку 
+    /// </summary>
+    /// <param name="sors">Строка пошуку</param>
+    /// <param name="dest">Строка в якій шукають</param>
+    /// <param name="accuracy">відсоток співпадання</param>
+    /// <returns></returns>
+    [Microsoft.SqlServer.Server.SqlFunction]
+    public static SqlDouble Ft_tsk_3_Accurace(string sors, string dest, double accuracy)
+    {
+        if(string.IsNullOrWhiteSpace(sors) == true || string.IsNullOrWhiteSpace(dest) )
+        return 0F;
+        // Введите здесь код
+        float result = 1F;
+        if (sors.CompareTo(dest) == 0)
+            return result;
+        // перевіряемо на повне співпадання
+        int cntHit = 0;
+        // перевіряемо з права на ліво кількість символів співпадуть 
+        char[] sorsChars = sors.ToUpper().ToCharArray();
+        char[] destChars = dest.ToUpper().ToCharArray();
+
+        // перевіряємо з ліва на право кількість символів співпадуть
+        int i = 0, lengSors = sorsChars.Length, j = 0, lengDest = destChars.Length;
+        float delta = 0F;
+        // по кожному символу
+        for (; i < lengSors && j < lengDest; i++)
+        {
+            // виконуємо пошук в цілйовому масиві
+            for (; j < lengDest; j++)
+            {
+                if (sorsChars[i] == destChars[j])
+                {
+                    cntHit++;
+                    j++;
+                    break;
+                }
+                // символ не на тому місці
+                delta += 0.01F;
+            }
+        }
+
+        result = (float)cntHit / lengSors - delta;
+        if (result >= accuracy)
+            return result;
+
+        i = lengSors - 1;
+        j = dest.Length - 1;
+        cntHit = 0;
+        delta = 0F;
+        // по кожному символу
+        for (; i >= 0 && j >= 0; i--)
+        {
+            // виконуємо пошук в цілйовому масиві
+            for (; j >= 0; j--)
+            {
+                if (sorsChars[i] == destChars[j])
+                {
+                    cntHit++;
+                    j--;
+                    break;
+                }
+                delta += 0.01F;
+            }
+        }
+
+        var lastResult = Math.Max( (float)cntHit / lengSors - delta, 0 );
+        if (lastResult >= accuracy)
+            return lastResult;
+
+        return Math.Max(lastResult, result);
+
+    }
 
 
 }

@@ -1608,6 +1608,7 @@ public interface IRegisterItem
          string ModifyLogin { get; set; }
          int? Durationticks { get; set; }
          int? Ticks { get; set; }
+         bool IsAuto { get; set; }
 }
 public interface IRegisterItemType
     {    int CodeI { get; set; }

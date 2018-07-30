@@ -22,6 +22,7 @@ namespace ipsmedserviceapp.Model
         public string ModifyLogin { get; set; }
         public int? Durationticks { get; set; }
         public int? Ticks { get; set; }
+        public bool IsAuto { get; set; }
 
         [JsonIgnore]
         public RegisterItemType CodeItemNavigation { get; set; }
