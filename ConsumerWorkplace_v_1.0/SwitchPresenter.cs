@@ -28,7 +28,6 @@ namespace ConsumerWorkplace_v_1._0
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _service = service;
             SwitchToGrid();
-
         }
 
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
@@ -84,6 +83,8 @@ namespace ConsumerWorkplace_v_1._0
             if (cabinet == null)
             {
                 cabinet = new GlobalControlConsumerCabinet(TypeRights.SmallRights);
+                var a = new CalculationInfoControlPresenter(cabinet.mсInfoAgrCalc.calculationCtrl, _service);
+                var b = new ReportsControlPresenter(cabinet.mсInfoAgrCalc.reportsControl, _service);
                 cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;

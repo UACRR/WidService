@@ -217,12 +217,11 @@
         }
 
         #endregion
-
-        private MiddleControlInfoAgrCalc mсInfoAgrCalc;
         private Telerik.WinControls.UI.RadGridView gvConsumerList;
         private Telerik.WinControls.UI.RadButton btnBack;
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private Telerik.WinControls.UI.RadButton btnNewConsumer;
         private Telerik.WinControls.UI.RadButton btnEditAgr;
+        public MiddleControlInfoAgrCalc mсInfoAgrCalc;
     }
 }
