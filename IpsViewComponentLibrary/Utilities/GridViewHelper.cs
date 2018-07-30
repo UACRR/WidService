@@ -7,11 +7,17 @@ namespace IpsViewComponentLibrary.Utilities
 {
     public static class GridViewHelper
     {
-        public static void SetTooltipTextForColumnHeader(object sender, ToolTipTextNeededEventArgs e)
+        public static void SetTooltipText(object sender, ToolTipTextNeededEventArgs e)
         {
+            // tooltip for column header
             if (sender is GridHeaderCellElement headerCell)
             {
                 e.ToolTipText = headerCell.Text;
+            }
+            // tooltip for button in command cell
+            else if (sender is RadButtonElement buttonElement && buttonElement.Parent is GridCommandCellElement commandCell)
+            {
+                e.ToolTipText = ((GridViewCommandColumn)commandCell.ColumnInfo).DefaultText;
             }
         }
 

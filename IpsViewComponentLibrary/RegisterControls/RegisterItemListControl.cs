@@ -183,7 +183,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void gvRegisterItemList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
-            Utilities.GridViewHelper.SetTooltipTextForColumnHeader(sender, e);
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         private void gvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
