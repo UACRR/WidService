@@ -151,7 +151,7 @@ namespace IpsViewComponentLibrary
             ProlongationBigRight prolongation = new ProlongationBigRight(_customer, license, item.Name);
             if (prolongation.ShowDialog() == DialogResult.OK)
             {
-                license.LicVersion++;
+                //license.LicVersion++;
                 var result = OnSaveCustomer?.Invoke(_customer);
                 //TODO msg
             }

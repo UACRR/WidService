@@ -38,20 +38,21 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void CreateAgreement()
         {
-            _newAgreementAddBr = new AgreementAddBr();
-            _newAgreementAddBr.SetFields(_licenseAgreement.Agr.AgreementAddBr.LastOrDefault());
-            _newAgreementAddBr.Version++;
-            _newAgreementAddBr.DateBegin = DateTime.Today;
-            _newAgreementAddBr.DateEnd = DateTime.Today.AddYears(1);
+            //_newAgreementAddBr = new AgreementAddBr();
+            //_newAgreementAddBr.SetFields(_licenseAgreement.Agr.AgreementAddBr.LastOrDefault());
+            //_newAgreementAddBr.Version++;
+            //_newAgreementAddBr.DateBegin = DateTime.Today;
+            //_newAgreementAddBr.DateEnd = DateTime.Today.AddYears(1);
             _licenseAgrParam = new LicenseAgrParam();
-            _licenseAgrParam.SetFields(_licenseAgreement.LicenseAgrParam);//TODO реконстр
+            _licenseAgrParam.SetFields(_licenseAgreement.LicenseAgrParam.LastOrDefault());
             _licenseAgrParam.LicVersion++;
-            
-            _licenseAgreement.Agr.AgreementAddBr.Add(_newAgreementAddBr);
+            _licenseAgrParam.DateBegin = DateTime.Today;
+            _licenseAgrParam.DateEnd = DateTime.Today.AddYears(1);
+
+            //_licenseAgreement.Agr.AgreementAddBr.Add(_newAgreementAddBr);
             _licenseAgreement.LicenseAgrParam.Add(_licenseAgrParam);
 
-            ctrlAgrMain.DataSourceBr = _licenseAgreement.Agr.AgreementAddBr.LastOrDefault();
-            ctrlAgrMain.DataSourceBrLicNumber = _licenseAgreement.LicenseAgrParam.LastOrDefault();
+            ctrlAgrMain.DataSource = _licenseAgreement.LicenseAgrParam.LastOrDefault();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
