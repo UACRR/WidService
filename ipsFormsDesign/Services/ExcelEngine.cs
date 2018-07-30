@@ -48,10 +48,21 @@ namespace ipsFormsDesign.Services
             var sorsStr = sors.ToString().Trim();
             return sorsStr.Substring(0, Math.Min(sorsStr.Length, length));
         }
+
+        private TimeSpan GetDuration( object source)
+        {
+            if (source is string)
+                return TimeSpan.Parse((string)source);
+            if (source is double)
+                return TimeSpan.FromDays((double)source);
+
+            return TimeSpan.Zero;
+        }
         public List<RegisterItem> GetReportItems(string FileName)
         {
             Excel.Workbook excelAppWorkbook = null;
             List<RegisterItem> list = new List<RegisterItem>();
+            int index = 0;
             try
             {
 
@@ -67,28 +78,30 @@ namespace ipsFormsDesign.Services
                 int maxCol;
                 int maxRow;
 
-                try
-                {
-                    maxCol = excelRange.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Column;
-                    maxRow = excelRange.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
-                }
-                catch (Exception)
-                {
-                    maxCol = excelRange.Columns.Column;
-                    maxRow = excelRange.Rows.Row;
-                }
+                maxCol = excelRange.Columns.Count;
+                maxRow = excelRange.Rows.Count;
+                //try
+                //{
+                //    maxCol = excelRange.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Column;
+                //    maxRow = excelRange.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
+                //}
+                //catch (Exception)
+                //{
+                //    maxCol = excelRange.Columns.Count;
+                //    maxRow = excelRange.Rows.Count;
+                //}
 
                 var dim = excelRange.Value;
                 int regitemid = 0;
                 TimeSpan curTime;
 
                 // RegisterItem[] newItems = new RegisterItem[maxRow];
-                double curDouble;
 
-                for (int i = 1; i <= maxRow; i++)
+
+                for (index = 1; index <= maxRow; index++)
                 {
-                    if (dim?[i, 1] == null) continue;
-                    if (!(dim?[i, 1] is double)) continue;
+                    if (dim?[index, 1] == null) continue;
+                    if (!(dim?[index, 1] is double)) continue;
 
                     // RegisterItem registerItem = newItems[regitemid];
                     RegisterItem registerItem = new RegisterItem
@@ -97,25 +110,26 @@ namespace ipsFormsDesign.Services
                         CategoryCode = 0, //parse
                         ModifyLogin = null, //parse
                                             //                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
-                        ItemName = GetFirst(dim[i, 2], 100 ),
-                        Performer = GetFirst(dim[i, 3], 100),
-                        AuthorMusic = GetFirst(dim[i, 4], 100),
-                        AuthorText = GetFirst(dim[i, 5], 100),
-                        CountUse = Convert.ToInt32(dim[i, 7]),
+                        ItemName = GetFirst(dim[index, 2], 100 ),
+                        Performer = GetFirst(dim[index, 3], 100),
+                        AuthorMusic = GetFirst(dim[index, 4], 100),
+                        AuthorText = GetFirst(dim[index, 5], 100),
+                        CountUse = Convert.ToInt32(dim[index, 7]),
                         CodeItem = 1 // 1   Звичайний розподіл 
                 };
                     try
                     {
-                        curTime = TimeSpan.FromDays(Convert.ToDouble(dim[i, 6]));
+                        //curTime = TimeSpan.FromDays(Convert.ToDouble(dim[index, 6]));
+                        curTime = GetDuration(dim[index, 6]);
                         registerItem.DurationItem = curTime;
-                        curTime = TimeSpan.FromDays(Convert.ToDouble(dim[i, 8]));
-                        registerItem.DurationUse = curTime;
+                        // curTime = TimeSpan.FromDays(Convert.ToDouble(dim[index, 8]));
+                        registerItem.DurationUse = TimeSpan.FromTicks( curTime.Ticks  * registerItem.CountUse ?? 1 );
                         registerItem.Ticks = (int)(curTime.Ticks / 10000);
                     }
                     catch
                     {
-                        registerItem.DurationItem = new TimeSpan(0);
-                        registerItem.DurationUse = new TimeSpan(0);
+                        registerItem.DurationItem = TimeSpan.Zero;
+                        registerItem.DurationUse = TimeSpan.Zero;
                         registerItem.Ticks = 0;
                     }
 
@@ -127,7 +141,7 @@ namespace ipsFormsDesign.Services
             catch (Exception excp)
             {
                 MessageBox.Show(excp.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new List<RegisterItem>();
+                throw new ApplicationException( $"{excp.Message} on row = {index}");    
             }
             finally
             {
