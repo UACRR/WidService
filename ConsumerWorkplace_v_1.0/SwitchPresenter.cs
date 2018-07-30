@@ -10,6 +10,7 @@ using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
 
+
 namespace ConsumerWorkplace_v_1._0
 {
     public class SwitchPresenter
@@ -22,7 +23,7 @@ namespace ConsumerWorkplace_v_1._0
         private ConsumerService _service = null;
 
 
-        public SwitchPresenter(MainViewSwitcher switcher, ConsumerService service,RadTreeView treeView )
+        public SwitchPresenter(MainViewSwitcher switcher, ConsumerService service, RadTreeView treeView)
         {
             _switcher = switcher;
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
@@ -34,7 +35,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (_currentControl == null)
                 return;
-            _currentNodeValue =  (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
+            _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
             mainGrid?.SetGridDataSource(getMainView());
             cabinet?.SetGridDataSource(getMainView());
@@ -130,9 +131,13 @@ namespace ConsumerWorkplace_v_1._0
         private void EditConsumer(int custId)
         {
 
+            //Task.Run(() => {
+            //    var Customer = _service.GetCustomerRegisterRatedList(custId);
+            //    cabinet.mсInfoAgrCalc.reportsControl.BeginInvoke((Action)(() => cabinet.mсInfoAgrCalc.reportsControl.Customer = Customer));
+            //});
             var _cust = _service.GetData(custId);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData,false) { StartPosition = FormStartPosition.CenterParent };
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData, false) { StartPosition = FormStartPosition.CenterParent };
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
             form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
@@ -153,12 +158,12 @@ namespace ConsumerWorkplace_v_1._0
             int custType = 3; // Юридична особа
             var _cust = _service.NewCustomer(custType);
             var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData ) {StartPosition = FormStartPosition.CenterParent};
-            
+            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData) { StartPosition = FormStartPosition.CenterParent };
+
             form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
             form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
-            if(!form.Disposing)
+            if (!form.Disposing)
             {
                 form.Dispose();
                 form = null;
@@ -169,7 +174,7 @@ namespace ConsumerWorkplace_v_1._0
 
         private void UpdateData(int id)
         {
-            if(_currentControl == cabinet)
+            if (_currentControl == cabinet)
             {
                 cabinet?.SetGridDataSource(getMainView());
                 cabinet?.SetSelectCustomer(id);
@@ -190,6 +195,12 @@ namespace ConsumerWorkplace_v_1._0
 
         private ipsFormsDesign.Model.Customer Cabinet_OnGridRowSelectedChaged(int id)
         {
+            //if (_currentControl == cabinet)
+                //Task.Run(() => {
+            //var Customer = _service.GetCustomerRegisterRatedList(id);
+            cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetCustomerRegisterRatedList(id);
+            //cabinet.mсInfoAgrCalc.reportsControl.BeginInvoke((Action)(() => ));
+        //});
             return _service.GetData(id);
         }
 
