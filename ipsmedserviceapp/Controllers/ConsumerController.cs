@@ -1444,7 +1444,7 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
             var list = await _dbContext.ExternalPay.FromSql(query, new SqlParameter("@custId", custId)).AsNoTracking().ToArrayAsync();
             return Json(list);
         }
-#if DEBUG
+
         [HttpPut("Period/Payments/{custId}")]
         public async Task<IActionResult> PutExternalPay(int custId, [FromBody] List<ExternalPay> pays)
         {
@@ -1599,7 +1599,7 @@ and t3.licStatus between 0 and 3
             return Json(linkList);
         }
 
-#endif
+
         #endregion
     } // public class ConsumerController : Controller
 
