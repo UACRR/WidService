@@ -297,7 +297,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             if (registerItem != null)
             {
-                if (registerItem.IsAuto)
+                if (registerItem.IsAuto && !e.RowElement.IsCurrent && !e.RowElement.IsSelected)
                 {
                     e.RowElement.DrawFill = true;
                     e.RowElement.GradientStyle = GradientStyles.Solid;
