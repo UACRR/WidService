@@ -139,11 +139,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 // TODO: Raise broadcast event object right updated
 
-                if (!result)
-                    _view.ShowError("Не вдалося зберегти об'єкт.");
+                if (result)
+                    _view.Close();
+                else
+                   _view.ShowError("Не вдалося зберегти об'єкт.");
             }
-
-            _view.Close();
         }
 
         private void SetObjectRigth(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)

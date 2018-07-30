@@ -68,14 +68,14 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.UpdateList(sors.SeekObject, dest.SeekObject, i => { }, (l, r) => l.Id == r.Id);
 
             // Update WorkRh
-            {
-                var dicCopyRight = sors.CopyRight.ToDictionary(rec => rec.CRightId);
-                foreach ( var item in dest.CopyRight )
-                {
-                    var sorsItem = dicCopyRight[item.CRightId];
-                    item.WorkRh.SetFields(sorsItem.WorkRh);
-                }
-            }
+            //{
+            //    var dicCopyRight = sors.CopyRight.ToDictionary(rec => rec.CRightId);
+            //    foreach ( var item in dest.CopyRight )
+            //    {
+            //        var sorsItem = dicCopyRight[item.CRightId];
+            //        item.WorkRh.SetFields(sorsItem.WorkRh);
+            //    }
+            //}
 
             if (dest.CategoryCode == 5)
             {
