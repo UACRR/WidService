@@ -87,7 +87,7 @@ namespace ipsmedserviceapp.Controllers
             destRegister.SetFields(sourceRegister, excludeFields);
 
             var excludeFieldRegisterItem = new string[] { "Obj" };
-            _dbContext.UpdateList(sourceRegister.RegisterItem, destRegister.RegisterItem, r => { }, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId, excludeFieldRegisterItem );
+            _dbContext.UpdateList(sourceRegister.RegisterItem, destRegister.RegisterItem, r => { }, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId, excludeFieldRegisterItem);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> SearchObjectRights([FromQuery] string name, [FromQuery] string authtors, [FromQuery] string performers)
         {
 
-            var list = await _dbContext.getViewData("select * from [dbo].[ft_tsk_3_SearchObj](@name, @authtors, @performers )", 
+            var list = await _dbContext.getViewData("select * from [dbo].[ft_tsk_3_SearchObj](@name, @authtors, @performers )",
                 new[] { new SqlParameter("@name", !string.IsNullOrEmpty(name) ? (object)name : DBNull.Value ),
                         new SqlParameter("@authtors", !string.IsNullOrEmpty(name) ? (object)authtors : DBNull.Value ),
                         new SqlParameter("@performers", !string.IsNullOrEmpty(name) ? (object)performers : DBNull.Value ) }
@@ -151,6 +151,14 @@ namespace ipsmedserviceapp.Controllers
             {
                 return StatusCode(StatusCodes.Status406NotAcceptable);
             }
+
+            return Ok();
+        }
+
+        [HttpPut("autosearch/{regId}")]
+        public async Task<IActionResult> AutoSearch(int regId)
+        {
+            var rowsAffected = await _dbContext.Database.ExecuteSqlCommandAsync($"exec pTsk_3_AutoLink {@regId}");
 
             return Ok();
         }
