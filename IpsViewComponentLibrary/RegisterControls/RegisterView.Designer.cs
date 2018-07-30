@@ -250,9 +250,11 @@
             // 
             // ctrlRegisterItemList
             // 
+            this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
             this.ctrlRegisterItemList.AllowFindCommand = true;
             this.ctrlRegisterItemList.AllowLinkCommand = true;
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
+            this.ctrlRegisterItemList.AllowUnlinkCommand = true;
             this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -289,7 +291,7 @@
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Відомість";
+            this.Text = "Звіт (малі права)";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
