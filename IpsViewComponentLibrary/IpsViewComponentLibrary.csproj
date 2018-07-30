@@ -164,6 +164,8 @@
     <Compile Include="ConsumerDialogForms\ProlongationBigRight.Designer.cs">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
+    <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
     <Compile Include="MiddleControlCabinetAvances.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,12 +241,6 @@
     </Compile>
     <Compile Include="ObjectRightControls\AuthorRightholderItemView.Designer.cs">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CalculationInfoControlNew.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CalculationInfoControlNew.Designer.cs">
-      <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.cs">
       <SubType>UserControl</SubType>
@@ -753,9 +749,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderItemView.resx">
       <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CalculationInfoControlNew.resx">
-      <DependentUpon>CalculationInfoControlNew.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\CalculationInfoControl.resx">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
