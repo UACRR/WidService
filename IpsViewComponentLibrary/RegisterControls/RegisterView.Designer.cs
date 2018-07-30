@@ -204,18 +204,18 @@
             this.gboxSearch.HeaderText = "Пошук";
             this.gboxSearch.Location = new System.Drawing.Point(273, 472);
             this.gboxSearch.Name = "gboxSearch";
-            this.gboxSearch.Size = new System.Drawing.Size(579, 57);
+            this.gboxSearch.Size = new System.Drawing.Size(649, 57);
             this.gboxSearch.TabIndex = 19;
             this.gboxSearch.Text = "Пошук";
             this.gboxSearch.ThemeName = "Office2013Light";
             // 
             // btnSearchSelected
             // 
-            this.btnSearchSelected.Location = new System.Drawing.Point(441, 21);
+            this.btnSearchSelected.Location = new System.Drawing.Point(489, 21);
             this.btnSearchSelected.Name = "btnSearchSelected";
-            this.btnSearchSelected.Size = new System.Drawing.Size(131, 24);
+            this.btnSearchSelected.Size = new System.Drawing.Size(155, 24);
             this.btnSearchSelected.TabIndex = 3;
-            this.btnSearchSelected.Text = "Шукати вибрані";
+            this.btnSearchSelected.Text = "Шукати для вибраних";
             this.btnSearchSelected.ThemeName = "Office2013Light";
             this.btnSearchSelected.Click += new System.EventHandler(this.btnSearchSelected_Click);
             // 
@@ -223,19 +223,19 @@
             // 
             this.btnSearchAll.Location = new System.Drawing.Point(167, 21);
             this.btnSearchAll.Name = "btnSearchAll";
-            this.btnSearchAll.Size = new System.Drawing.Size(131, 24);
+            this.btnSearchAll.Size = new System.Drawing.Size(155, 24);
             this.btnSearchAll.TabIndex = 1;
-            this.btnSearchAll.Text = "Шукати всі";
+            this.btnSearchAll.Text = "Шукати для всіх";
             this.btnSearchAll.ThemeName = "Office2013Light";
             this.btnSearchAll.Click += new System.EventHandler(this.btnSearchAll_Click);
             // 
             // btnSearchNotLinked
             // 
-            this.btnSearchNotLinked.Location = new System.Drawing.Point(304, 21);
+            this.btnSearchNotLinked.Location = new System.Drawing.Point(328, 21);
             this.btnSearchNotLinked.Name = "btnSearchNotLinked";
-            this.btnSearchNotLinked.Size = new System.Drawing.Size(131, 24);
+            this.btnSearchNotLinked.Size = new System.Drawing.Size(155, 24);
             this.btnSearchNotLinked.TabIndex = 2;
-            this.btnSearchNotLinked.Text = "Шукати не знайдені";
+            this.btnSearchNotLinked.Text = "Шукати для не знайдених";
             this.btnSearchNotLinked.ThemeName = "Office2013Light";
             this.btnSearchNotLinked.Click += new System.EventHandler(this.btnSearchNotLinked_Click);
             // 
