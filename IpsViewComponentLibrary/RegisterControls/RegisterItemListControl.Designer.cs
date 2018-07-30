@@ -65,8 +65,8 @@
             this.ddlLinkedStatus = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvRegisterItemList = new Telerik.WinControls.UI.RadGridView();
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.registerItemViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLinkedStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList)).BeginInit();
@@ -343,6 +343,7 @@
             this.gvRegisterItemList.TabIndex = 36;
             this.gvRegisterItemList.ThemeName = "Office2013Light";
             this.gvRegisterItemList.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvRegisterItemList_RowFormatting);
+            this.gvRegisterItemList.SelectionChanged += new System.EventHandler(this.gvRegisterItemList_SelectionChanged);
             this.gvRegisterItemList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRegisterItemList_CommandCellClick);
             this.gvRegisterItemList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRegisterItemList_ToolTipTextNeeded);
             // 

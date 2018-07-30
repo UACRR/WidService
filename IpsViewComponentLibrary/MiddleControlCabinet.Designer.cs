@@ -37,7 +37,7 @@
             this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPayslips = new IpsViewComponentLibrary.MiddleControlCabinetPayslips();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlCalculation = new IpsViewComponentLibrary.MiddleControlCabinetCalculation();
+            this.ctrlCalculation = new IpsViewComponentLibrary.CalculationInfoControl();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
             this.middleControlCabinetPayments1 = new IpsViewComponentLibrary.MiddleControlCabinetPayments();
             this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
@@ -159,9 +159,11 @@
             // 
             // ctrlCalculation
             // 
+            this.ctrlCalculation.Customer = null;
             this.ctrlCalculation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlCalculation.Location = new System.Drawing.Point(0, 0);
-            this.ctrlCalculation.MinimumSize = new System.Drawing.Size(915, 773);
+            this.ctrlCalculation.MaximumSize = new System.Drawing.Size(3000, 1000);
+            this.ctrlCalculation.MinimumSize = new System.Drawing.Size(400, 562);
             this.ctrlCalculation.Name = "ctrlCalculation";
             this.ctrlCalculation.Size = new System.Drawing.Size(1136, 809);
             this.ctrlCalculation.TabIndex = 0;
@@ -346,7 +348,6 @@
         private MiddleControlCabinetFiles ctrlFiles;
         private MiddleControlCabinetReqRef ctrlRequest;
         private MiddleControlCabinetReqRef ctrlReference;
-        private MiddleControlCabinetCalculation ctrlCalculation;
         private Telerik.WinControls.UI.RadPageViewPage pvPays;
         private Telerik.WinControls.UI.RadPageViewPage pvAvances;
         private Telerik.WinControls.UI.RadPageViewPage pvContacts;
@@ -354,5 +355,6 @@
         private MiddleControlCabinetAvances middleControlCabinetAvances1;
         private MiddleControlCabinetPayments middleControlCabinetPayments1;
         private InformationOfUserControl ctrlContactHeader;
+        public CalculationInfoControl ctrlCalculation;
     }
 }

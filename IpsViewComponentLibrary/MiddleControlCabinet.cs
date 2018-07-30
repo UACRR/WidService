@@ -42,7 +42,7 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRegister> _registers;
         private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
 
-        private AnketaDictionaties _anketaDictionaties = null;
+        private AnketaDictionaties _anketaDictionaties = IpsGlobal.AnketaDictionaties;
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace IpsViewComponentLibrary
         public MiddleControlCabinet()
         {
             InitializeComponent();
-            ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
-            ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
+            ctrlReference.SetAnketaDictionary(_anketaDictionaties);
+            ctrlRequest.SetAnketaDictionary(_anketaDictionaties);
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
@@ -172,7 +172,7 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.Calculations:
                 {
-                    ctrlCalculation.SetAndUpdateData(_customer, _brView, _genAgrs, _moneyUndescribs);
+                    ctrlCalculation.Customer = _customer;
                 }break;
 
                 case CabinetTabType.Payments:

@@ -47,9 +47,16 @@ namespace IpsViewComponentLibrary.RegisterControls
                 registerItem.Performer
             );
 
-            foreach (var obj in foundedObject)
+            if (foundedObject.Count != 0)
             {
-                _view.FoundedObjectList.Add(obj);
+                foreach (var obj in foundedObject)
+                {
+                    _view.FoundedObjectList.Add(obj);
+                }
+            }
+            else
+            {
+                _view.ShowMessage("Співпадінь не знайдено.");
             }
         }
 

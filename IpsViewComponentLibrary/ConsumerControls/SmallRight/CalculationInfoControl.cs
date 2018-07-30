@@ -354,10 +354,11 @@ namespace IpsViewComponentLibrary
 
         private void gvLicenseAgr_RowFormatting(object sender, RowFormattingEventArgs e)
         {
-            var ri = e.RowElement.RowInfo;
-            var licAgreement = (LicenseAgrParam)ri.DataBoundItem;
 
-            var debt = licAgreement.Lic?.PaidPeriod.Sum(rec => rec.Amount - rec.Distribamount - rec.Undistribamount) ?? 0;
+            var ri = e.RowElement?.RowInfo;
+            var licAgreement = (LicenseAgrParam)ri?.DataBoundItem;
+
+            var debt = licAgreement?.Lic?.PaidPeriod?.Sum(rec => rec?.Amount - rec?.Distribamount - rec?.Undistribamount) ?? 0;
             ri.Cells["Debt"].Value = Convert.ToDecimal(debt < 0 ? 0 : debt);
         }
 
