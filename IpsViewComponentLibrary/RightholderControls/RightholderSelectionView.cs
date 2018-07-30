@@ -12,6 +12,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => ctrlRightholderList.SelectedRightholder = value;
         }
 
+        public string SearchText
+        {
+            get => ctrlRightholderList.SearchText;
+            set => ctrlRightholderList.SearchText = value;
+        }
+
         public event EventHandler<RightholderMainView> RightholderSelected;
 
         public RightholderSelectionView()

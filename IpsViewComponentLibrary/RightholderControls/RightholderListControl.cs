@@ -62,6 +62,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        public string SearchText
+        {
+            get => txtSearchRightholder.Text;
+            set => txtSearchRightholder.Text = value;
+        }
+
         public event EventHandler<RightholderMainView> RightholderSelected;
         public event EventHandler<RightholderMainView> EditCommandExecuted;
         public event EventHandler<RightholderMainView> ShowRightholdersObjectsCommandExecuted;
