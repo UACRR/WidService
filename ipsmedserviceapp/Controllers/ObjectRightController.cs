@@ -149,6 +149,8 @@ namespace ipsmedserviceapp.Controllers
                 case 5:
                     {
                         addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0, 0, 0) };
+                        addObject.GenreType = 96;
+                        addObject.SpecType = 1;
                     }
                     break;
             }
