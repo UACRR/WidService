@@ -9,6 +9,7 @@ using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using ipsFormsDesign.Utilities;
 using System.Drawing;
+using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -275,17 +276,40 @@ namespace IpsViewComponentLibrary.RegisterControls
             // if object heve been saved
             if (newObject.ObjId != 0)
             {
-                selectedRegisterItem.ObjId = newObject.ObjId;
-                selectedRegisterItem.ObjectName = newObject.Name;
-                selectedRegisterItem.ObjectDuration = newObject.MediaTrack.Duration;
-                selectedRegisterItem.ObjectAuthors = newObject.Author;
-                selectedRegisterItem.ObjectPerformers = newObject.Performer;
+                selectedRegisterItem.SetObjectData(
+                    newObject.ObjId,
+                    newObject.Name,
+                    newObject.Author,
+                    newObject.Performer,
+                    newObject.MediaTrack.Duration
+                );
             }
         }
 
         private void SetColumnVisible(string columnName, bool isVisible)
         {
             gvRegisterItemList.Columns[columnName].IsVisible = isVisible;
+        }
+
+        private void gvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            var registerItem = e.RowElement.RowInfo.DataBoundItem as RegisterItemViewModel;
+
+            if (registerItem != null)
+            {
+                if (registerItem.IsAuto)
+                {
+                    e.RowElement.DrawFill = true;
+                    e.RowElement.GradientStyle = GradientStyles.Solid;
+                    e.RowElement.BackColor = Color.LemonChiffon;
+                }
+                else
+                {
+                    e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                    e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                    e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                }
+            }
         }
     }
 }
