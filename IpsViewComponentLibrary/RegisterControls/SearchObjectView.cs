@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -80,6 +81,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             ShowDialog();
         }
 
+        public void ShowMessage(string v)
+        {
+            MessageBox.Show("Співпадінь не знайдено.", "Пошук");
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             _presenter.Search(ctrlRegisterItemList.SelectedRegisterItem);
@@ -93,6 +99,14 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 _presenter.LinkObjectToRegisterItem(ctrlRegisterItemList.SelectedRegisterItem, SelectedRegisterSearchObject);
             }
+        }
+
+        private void gvFoundedObjectList_RowsChanged(object sender, Telerik.WinControls.UI.GridViewCollectionChangedEventArgs e)
+        {
+            if (gvFoundedObjectList.RowCount == 0)
+                gvFoundedObjectList.TableElement.Text = "Для пошуку співпадінь натисніть \"Шукати\"";
+            else
+                gvFoundedObjectList.TableElement.Text = "";
         }
 
         private void ctrlRegisterItemList_SelectedRegisterItemChanged(object sender, EventArgs e)
