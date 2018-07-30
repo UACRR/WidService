@@ -163,12 +163,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
                 {
+                    IsRightholder = a.CustId != null,
                     AuthId = a.AuthId,
                     ObjId = a.ObjId,
                     RoleCode = a.RoleCode,
                     FolkType = a.FolkType,
                     AuthorName = a.AuthorName,
-                    IsRightholder = a.CustId != null,
                     CustId = a.CustId,
                     CRightId = foundedCopyright?.CRightId,
                     CopyrightStatus = foundedCopyright?.Status,
