@@ -85,17 +85,22 @@ public partial class UserDefinedFunctions
         if(string.IsNullOrWhiteSpace(sors) == true || string.IsNullOrWhiteSpace(dest) )
         return 0F;
         // Введите здесь код
+
+        string sorsStr = sors.Trim();
+        string destStr = dest.Trim();
+
         float result = 1F;
-        if (sors.CompareTo(dest) == 0)
+        if (sorsStr.CompareTo(destStr) == 0)
             return result;
         // перевіряемо на повне співпадання
         int cntHit = 0;
         // перевіряемо з права на ліво кількість символів співпадуть 
-        char[] sorsChars = sors.ToUpper().ToCharArray();
-        char[] destChars = dest.ToUpper().ToCharArray();
+        char[] sorsChars = sorsStr.Trim().ToUpper().ToCharArray();
+        char[] destChars = destStr.Trim().ToUpper().ToCharArray();
 
         // перевіряємо з ліва на право кількість символів співпадуть
         int i = 0, lengSors = sorsChars.Length, j = 0, lengDest = destChars.Length;
+        int diffLeng = Math.Abs( lengSors - lengDest );
         float delta = 0F;
         // по кожному символу
         for (; i < lengSors && j < lengDest; i++)
@@ -110,16 +115,16 @@ public partial class UserDefinedFunctions
                     break;
                 }
                 // символ не на тому місці
-                delta += 0.01F;
+                delta += 0.001F;
             }
         }
 
-        result = (float)cntHit / lengSors - delta;
+        result = (float)cntHit / lengSors - delta - (0.001F* diffLeng);
         if (result >= accuracy)
             return result;
 
         i = lengSors - 1;
-        j = dest.Length - 1;
+        j = destStr.Length - 1;
         cntHit = 0;
         delta = 0F;
         // по кожному символу
@@ -134,11 +139,11 @@ public partial class UserDefinedFunctions
                     j--;
                     break;
                 }
-                delta += 0.01F;
+                delta += 0.001F;
             }
         }
 
-        var lastResult = Math.Max( (float)cntHit / lengSors - delta, 0 );
+        var lastResult = Math.Max( (float)cntHit / lengSors - delta - (0.001F * diffLeng), 0 );
         if (lastResult >= accuracy)
             return lastResult;
 
