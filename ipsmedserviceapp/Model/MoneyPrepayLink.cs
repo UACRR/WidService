@@ -9,7 +9,6 @@ namespace ipsmedserviceapp.Model
         public int CRightId { get; set; }
         public decimal? Amount { get; set; }
 
-        public LicAuthorBr CRight { get; set; }
         public MoneyReceived Paid { get; set; }
     }
 }

@@ -399,11 +399,11 @@ namespace ipsmedserviceapp.Controllers
                 (sorsItem, destItem) =>
                 {
                     // LicAuthorBr
-                    _dbContext.UpdateList(sorsItem.LicAuthorBr, destItem.LicAuthorBr, i => { }, (l, r) => l.CRight == r.CRight && l.LicVersion == r.LicVersion);
+                    _dbContext.UpdateList(sorsItem.LicAuthorBr, destItem.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.CRight == r.CRight && l.LicVersion == r.LicVersion);
                     // Obj
                     if (sorsItem.Obj != null)
                     {
-                        if (sorsItem.Obj.ObjId == 0)
+                        if (sorsItem.Obj.ObjId == 0 )
                         {
                             ObjectRight newObj = new ObjectRight();
                             newObj.SetFields(sorsItem.Obj);

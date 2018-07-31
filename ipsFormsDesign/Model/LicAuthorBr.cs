@@ -6,11 +6,6 @@ namespace ipsFormsDesign.Model
 {
     public partial class LicAuthorBr : ILicAuthorBr
     {
-        public LicAuthorBr()
-        {
-            MoneyPrepayLink = new ObservableListSource<MoneyPrepayLink>();
-        }
-
         public int CRightId { get; set; }
         public int? PrepayType { get; set; }
         public DateTime? DateCreate { get; set; }
@@ -22,15 +17,14 @@ namespace ipsFormsDesign.Model
         public decimal? PrepaySumAuthor { get; set; }
         public string R030 { get; set; }
         public DateTime? PrepayDateDo { get; set; }
-        public int? LicId { get; set; }
-        public int? LicVersion { get; set; }
+        public int LicId { get; set; }
+        public int LicVersion { get; set; }
         public decimal? PrepayRest { get; set; }
         public decimal? PrepayUsed { get; set; }
 
         public CopyRight CRight { get; set; }
         public LicenseBigR Lic { get; set; }
         public PrePayType PrepayTypeNavigation { get; set; }
-        public ObservableListSource<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
 
