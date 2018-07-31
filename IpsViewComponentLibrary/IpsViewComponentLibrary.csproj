@@ -1001,6 +1001,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

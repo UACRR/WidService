@@ -26,13 +26,15 @@ namespace IpsViewComponentLibrary
         private LicenseAgreement _licenseAgreement;
         private FormType _formType;
         private bool _deleteLicense = true;
+        private IList<RelGenrePercent> _percent;
         private int? _licId = null;
+
+
         public RequestForm()
         {
             InitializeComponent();
         }
 
-        private IList<RelGenrePercent> _percent;
         public RequestForm(Customer customer, ConsumerBigRightView bigRightView, AnketaDictionaties dictionaties, FormType formType = FormType.Create, int? licId = null)
         {
             InitializeComponent();
@@ -42,16 +44,19 @@ namespace IpsViewComponentLibrary
             _formType = formType;
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
-            ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+
             dtDate.SetUserCalendarSettingsm();
             dtDate.MinDate = DateTime.Today;
             if(_formType == FormType.Create)
             {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                 CreateNewRequest();
                 Text = "Створення нової заявки на ліцензію";
 
             } else if (_formType == FormType.Edit)
             {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
+                ctrlAuthorRightholderList.OnGetWorkRh += CtrlAuthorRightholderList_OnGetWorkRh;
                 Text = "Редагування заявки на ліцезнію";
                 btnSave.Text = "Зберегти редаговану заявку";
                 btnSave.Enabled = true;
@@ -99,6 +104,20 @@ namespace IpsViewComponentLibrary
             }
 
             #endregion
+        }
+
+        private void SetVisible()
+        {
+            lblComCl.Visible = _formType == FormType.Edit;
+            lblComRh.Visible = _formType == FormType.Edit;
+            txtCommentCl.Visible = _formType == FormType.Edit;
+            txtCommentRh.Visible = _formType == FormType.Edit;
+        }
+
+        private void CtrlAuthorRightholderList_OnGetWorkRh(WorkRh workRh)
+        {
+            if (workRh != null)
+                bsWorkRh.DataSource = workRh;
         }
 
         public void ParseAuthors()

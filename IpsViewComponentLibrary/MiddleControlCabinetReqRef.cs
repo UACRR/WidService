@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary
 
         private Customer _customer;
         private ConsumerBigRightView _bigRightView;
-        private static AnketaDictionaties _dictionaties;
+        private AnketaDictionaties _dictionaties;
         private IList<BigRightRequestBidAuthors> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
         private SaveNeedStatus _saveNeedStatus = SaveNeedStatus.No;

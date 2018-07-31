@@ -52,7 +52,7 @@
             // 
             // btnEditAgr
             // 
-            this.btnEditAgr.Location = new System.Drawing.Point(531, 3);
+            this.btnEditAgr.Location = new System.Drawing.Point(315, 3);
             this.btnEditAgr.Name = "btnEditAgr";
             this.btnEditAgr.Size = new System.Drawing.Size(210, 20);
             this.btnEditAgr.TabIndex = 13;
@@ -63,13 +63,14 @@
             // 
             // btnNewConsumer
             // 
-            this.btnNewConsumer.Location = new System.Drawing.Point(315, 3);
+            this.btnNewConsumer.Location = new System.Drawing.Point(531, 3);
             this.btnNewConsumer.Name = "btnNewConsumer";
             this.btnNewConsumer.Size = new System.Drawing.Size(210, 20);
             this.btnNewConsumer.TabIndex = 12;
             this.btnNewConsumer.Text = "Новий споживач";
             this.btnNewConsumer.TextWrap = true;
             this.btnNewConsumer.ThemeName = "Office2013Light";
+            this.btnNewConsumer.Visible = false;
             this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 
             // txtSearch

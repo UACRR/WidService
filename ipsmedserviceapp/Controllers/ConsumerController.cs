@@ -414,7 +414,7 @@ namespace ipsmedserviceapp.Controllers
                         _dbContext.UpdateListExtra(sorsItem.Obj.CopyRight, destItem.Obj.CopyRight,
                             (sorsCp, destCp) =>
                             {
-                                if (sorsCp.WorkRh != null)
+                                if (sorsCp.WorkRh != null && destCp.WorkRh == null )
                                 {
                                     destCp.WorkRh = new WorkRh();
                                     destCp.WorkRh.SetFields(sorsCp.WorkRh);
