@@ -10,6 +10,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using Telerik.WinControls;
@@ -25,15 +26,17 @@ namespace IpsViewComponentLibrary
         private LicenseAgreement _licenseAgreement;
         private FormType _formType;
         private bool _deleteLicense = true;
+        private int? _licId = null;
         public RequestForm()
         {
             InitializeComponent();
         }
 
         private IList<RelGenrePercent> _percent;
-        public RequestForm(Customer customer, ConsumerBigRightView bigRightView, AnketaDictionaties dictionaties, FormType formType = FormType.Create)
+        public RequestForm(Customer customer, ConsumerBigRightView bigRightView, AnketaDictionaties dictionaties, FormType formType = FormType.Create, int? licId = null)
         {
             InitializeComponent();
+            _licId = licId;
             _customer = customer;
             DialogResult = DialogResult.None;
             _formType = formType;
@@ -54,29 +57,65 @@ namespace IpsViewComponentLibrary
                 btnSave.Enabled = true;
             }
             #region BINDING
-            bsConsumerBigRightView.DataSource = bigRightView;
-            bsLicAgrParam.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam;
-            bsLicenseBigR.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR;
-            bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam.SingleOrDefault()?.License;
-            _percent = dictionaties.relGenrePercent;
-            bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
-            bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-            SetObjectRightData(_customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj);
 
-            bsDictObjAct.DataSource = dictionaties.objAct;
-            bsDictPerformType.DataSource = dictionaties.performType;
-            bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
-            bsDictLanguage.DataSource = dictionaties.language;
+            if (licId == null)
+            {
+                bsConsumerBigRightView.DataSource = bigRightView;
+                bsLicAgrParam.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam;
+                bsLicenseBigR.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR;
+                bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam
+                    .SingleOrDefault()?.License;
+                _percent = dictionaties.relGenrePercent;
+                bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR
+                    .SingleOrDefault()?.Obj;
+                bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
+                SetObjectRightData(
+                    _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj);
 
+                bsDictObjAct.DataSource = dictionaties.objAct;
+                bsDictPerformType.DataSource = dictionaties.performType;
+                bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
+                bsDictLanguage.DataSource = dictionaties.language;
+            }
+            else
+            {
+                bsConsumerBigRightView.DataSource = bigRightView;
+                var licenseAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
+
+                bsLicAgrParam.DataSource = licenseAgr?.LicenseAgrParam;
+                bsLicenseBigR.DataSource = licenseAgr?.LicenseBigR;
+                bsLicense.DataSource = licenseAgr?.LicenseAgrParam.SingleOrDefault()?.License;
+                _percent = dictionaties.relGenrePercent;
+                bsObjectRight.DataSource = licenseAgr?.LicenseBigR.SingleOrDefault()?.Obj;
+                bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
+                //ObjectRightService _service = new ObjectRightService();
+                var obj = licenseAgr?.LicenseBigR.SingleOrDefault()?.Obj;
+                SetObjectRightData(obj);
+
+                bsDictObjAct.DataSource = dictionaties.objAct;
+                bsDictPerformType.DataSource = dictionaties.performType;
+                bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
+                bsDictLanguage.DataSource = dictionaties.language;
+            }
 
             #endregion
         }
 
         public void ParseAuthors()
         {
-            var objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
-            if (objectRight == null)
-                return;
+            ObjectRight objectRight = null;
+            if (_licId == null)
+            {
+                objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
+                if (objectRight == null)
+                    return;
+            }
+            else
+            {
+                objectRight = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId)?.LicenseBigR.SingleOrDefault()?.Obj;
+                if (objectRight == null)
+                    return;
+            }
 
             // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
             objectRight.Authors.Clear();

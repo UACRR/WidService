@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary
 
         private Customer _customer;
         private ConsumerBigRightView _bigRightView;
-        private AnketaDictionaties _dictionaties;
+        private static AnketaDictionaties _dictionaties;
         private IList<BigRightRequestBidAuthors> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
         private SaveNeedStatus _saveNeedStatus = SaveNeedStatus.No;
@@ -103,13 +103,18 @@ namespace IpsViewComponentLibrary
         //клік на гріду по кнопкі редагувати
         private void gvViewRequests_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit);
-            if (requestForm.ShowDialog() == DialogResult.OK)
+            if (e.Row.DataBoundItem is BigRightRequests item)
             {
-                if (OnNewRequestSaveNeed?.Invoke(_customer) ?? false)
-                    MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                    MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit, item.LicId);
+                if (requestForm.ShowDialog() == DialogResult.OK)
+                {
+                    if (OnNewRequestSaveNeed?.Invoke(_customer) ?? false)
+                        MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -225,7 +230,7 @@ namespace IpsViewComponentLibrary
         private void gvCreativeRole_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             
-            if (e?.Row?.DataBoundItem is BigRightRequestBidAuthors item && _typeControl == ControlRequestOrReferenceType.Request)
+            if (e?.Row?.DataBoundItem is BigRightRequestBidAuthors item/* && _typeControl == ControlRequestOrReferenceType.Request*/)
             {
                 _saveNeedStatus = SaveNeedStatus.Yes;
                 var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR.SingleOrDefault()?.Obj;
@@ -251,7 +256,7 @@ namespace IpsViewComponentLibrary
 
         private void gvCreativeRole_CellBeginEdit(object sender, Telerik.WinControls.UI.GridViewCellCancelEventArgs e)
         {
-            if (_workRhs == null && _typeControl == ControlRequestOrReferenceType.Request && e?.Row?.DataBoundItem is BigRightRequestBidAuthors item)
+            if (_workRhs == null /*&& _typeControl == ControlRequestOrReferenceType.Request*/ && e?.Row?.DataBoundItem is BigRightRequestBidAuthors item)
             {
                 var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR.SingleOrDefault()?.Obj;
                 var copyRight = obj?.CopyRight?.SingleOrDefault(rec => rec.CRightId == item.CRightId);
@@ -315,6 +320,9 @@ namespace IpsViewComponentLibrary
             else if (_typeControl == ControlRequestOrReferenceType.Reference)
             {
                 //some code
+                if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+                    CallSaveRequest(item.LicId, true);
+                //copypast ^ ^ ^
             }
         }
 

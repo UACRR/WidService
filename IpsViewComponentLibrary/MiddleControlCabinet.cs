@@ -42,7 +42,7 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRegister> _registers;
         private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
 
-        private AnketaDictionaties _anketaDictionaties = IpsGlobal.AnketaDictionaties;
+        private AnketaDictionaties _anketaDictionaties;
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
 
         /// <summary>
@@ -60,6 +60,7 @@ namespace IpsViewComponentLibrary
 
         public MiddleControlCabinet()
         {
+            _anketaDictionaties = IpsGlobal.AnketaDictionaties;
             InitializeComponent();
             ctrlReference.SetAnketaDictionary(_anketaDictionaties);
             ctrlRequest.SetAnketaDictionary(_anketaDictionaties);
@@ -70,6 +71,7 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
             ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+            ctrlReference.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
             ctrlRequest.OnNewRequestSaveNeed += Ctrls_OnSaveCustomer;
             ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
             ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
