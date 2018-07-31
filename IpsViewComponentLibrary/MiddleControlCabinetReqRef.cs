@@ -118,6 +118,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        //зміна рядка на грід
         private void gvViewRequests_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)

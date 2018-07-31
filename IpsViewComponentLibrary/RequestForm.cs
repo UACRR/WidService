@@ -72,11 +72,10 @@ namespace IpsViewComponentLibrary
                 bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam
                     .SingleOrDefault()?.License;
                 _percent = dictionaties.relGenrePercent;
-                bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR
-                    .SingleOrDefault()?.Obj;
+                bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj;
                 bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
                 SetObjectRightData(
-                    _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj);
+                    _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj);
 
                 bsDictObjAct.DataSource = dictionaties.objAct;
                 bsDictPerformType.DataSource = dictionaties.performType;
@@ -92,10 +91,10 @@ namespace IpsViewComponentLibrary
                 bsLicenseBigR.DataSource = licenseAgr?.LicenseBigR;
                 bsLicense.DataSource = licenseAgr?.LicenseAgrParam.SingleOrDefault()?.License;
                 _percent = dictionaties.relGenrePercent;
-                bsObjectRight.DataSource = licenseAgr?.LicenseBigR.SingleOrDefault()?.Obj;
+                bsObjectRight.DataSource = licenseAgr?.LicenseBigR?.Obj;
                 bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
                 //ObjectRightService _service = new ObjectRightService();
-                var obj = licenseAgr?.LicenseBigR.SingleOrDefault()?.Obj;
+                var obj = licenseAgr?.LicenseBigR?.Obj;
                 SetObjectRightData(obj);
 
                 bsDictObjAct.DataSource = dictionaties.objAct;
@@ -126,13 +125,13 @@ namespace IpsViewComponentLibrary
             ObjectRight objectRight = null;
             if (_licId == null)
             {
-                objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
+                objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj;
                 if (objectRight == null)
                     return;
             }
             else
             {
-                objectRight = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId)?.LicenseBigR.SingleOrDefault()?.Obj;
+                objectRight = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId)?.LicenseBigR?.Obj;
                 if (objectRight == null)
                     return;
             }
