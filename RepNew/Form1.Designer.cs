@@ -41,7 +41,7 @@
             typeReportSource1.TypeName = "ReportsLibrary.ReportS, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
     "eyToken=null";
             this.reportViewer1.ReportSource = typeReportSource1;
-            this.reportViewer1.Size = new System.Drawing.Size(1188, 669);
+            this.reportViewer1.Size = new System.Drawing.Size(1543, 669);
             this.reportViewer1.TabIndex = 0;
             this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
@@ -49,7 +49,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 669);
+            this.ClientSize = new System.Drawing.Size(1543, 669);
             this.Controls.Add(this.reportViewer1);
             this.Name = "Form1";
             this.Text = "Form1";

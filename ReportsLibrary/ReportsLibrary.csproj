@@ -110,6 +110,12 @@
     <Compile Include="R_5_4_RatingRh.Designer.cs">
       <DependentUpon>R_5_4_RatingRh.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_5_RatingObj.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_5_RatingObj.Designer.cs">
+      <DependentUpon>R_5_5_RatingObj.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_4_RatingRh.resx">
       <DependentUpon>R_5_4_RatingRh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_5_RatingObj.resx">
+      <DependentUpon>R_5_5_RatingObj.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

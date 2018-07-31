@@ -164,7 +164,7 @@ namespace ReportsLibrary
             // 
             // textBox7
             // 
-            typeReportSource7.TypeName = "ReportsLibrary.R_5_3_Community, ReportsLibrary, Version=1.0.0.0, Culture=neutral," +
+            typeReportSource7.TypeName = "ReportsLibrary.R_5_5_RatingObj, ReportsLibrary, Version=1.0.0.0, Culture=neutral," +
     " PublicKeyToken=null";
             navigateToReportAction7.ReportSource = typeReportSource7;
             this.textBox7.Action = navigateToReportAction7;
