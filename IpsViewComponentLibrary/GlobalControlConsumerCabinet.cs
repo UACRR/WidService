@@ -60,9 +60,9 @@ namespace IpsViewComponentLibrary
             mсInfoAgrCalc.OnChangeLicenseStatus += MсInfoAgrCalc_OnChangeLicenseStatus;
         }
 
-        private bool MсInfoAgrCalc_OnChangeLicenseStatus(LicenseAgreement agr, int version, int status)
+        private bool MсInfoAgrCalc_OnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            return OnChangeLicenseStatus?.Invoke(agr, version, status) ?? false;
+            return OnChangeLicenseStatus?.Invoke(agr, version, status, changeVer) ?? false;
         }
 
         private void MсInfoAgrCalc_OnCustomerSave(Customer customer)

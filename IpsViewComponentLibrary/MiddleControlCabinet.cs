@@ -95,9 +95,9 @@ namespace IpsViewComponentLibrary
             return OnRequestWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
         }
 
-        private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status)
+        private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            return OnLicenseStatusChanging?.Invoke(agr, version, status) ?? false;
+            return OnLicenseStatusChanging?.Invoke(agr, version, status, false) ?? false;
         }
 
         private IList<BigRightSpectacleView> CtrlPayslips_OnSpectacleViewNeed(int custId)

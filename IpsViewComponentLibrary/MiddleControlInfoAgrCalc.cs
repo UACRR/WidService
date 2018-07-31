@@ -441,7 +441,6 @@ namespace IpsViewComponentLibrary
             if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
             btnDeleteAgr.Enabled = curRow.State == "Не підтверджений";
             SetAgrInfoDataMore(curRow.LicId);
-            _licType = btnAccept.ButtonNameChange(curRow.Status);
         }
 
         private void btnAddAgrNewVersion_Click(object sender, EventArgs e)
@@ -456,19 +455,13 @@ namespace IpsViewComponentLibrary
                 bool actResult = false;
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
 
-                switch (_licType)
-                {
-                    case ButtonFunctionAcceptLicType.Agree: actResult = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, 3) ?? false;
-                        break;
-                    case ButtonFunctionAcceptLicType.Accept: actResult = OnChangeLicenseStatus?.Invoke(license, (int)license.LicVersion, 0) ?? false;
-                        break;
-                }
+                actResult = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, 2, true) ?? false;
 
                 if(actResult)
-                    ExtensionUtils.ShowInfoMessage("Статус ліцензії змінено!", "Успішно",
+                    ExtensionUtils.ShowInfoMessage("Ліцензійний договір переведено в статус \"Активний\"!", "Успішно",
                         MessageBoxIcon.Information);
                 else
-                    ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензії!", "Помилка",
+                    ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензійного договору!", "Помилка",
                         MessageBoxIcon.Error);
             }
         }
