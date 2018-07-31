@@ -3221,6 +3221,7 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Distribution)
                     .HasForeignKey(d => d.CustId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_CLIENT");
 
                 entity.HasOne(d => d.Partner)
@@ -4242,13 +4243,15 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<LicAuthorBr>(entity =>
             {
-                entity.HasKey(e => e.CRightId);
+                entity.HasKey(e => new { e.CRightId, e.LicId, e.LicVersion });
 
                 entity.ToTable("LicAuthorBR");
 
-                entity.Property(e => e.CRightId)
-                    .HasColumnName("cRightId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.CRightId).HasColumnName("cRightId");
+
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
+                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
 
                 entity.Property(e => e.DateAccept)
                     .HasColumnName("dateAccept")
@@ -4265,10 +4268,6 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.DateModify)
                     .HasColumnName("dateModify")
                     .HasColumnType("date");
-
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
 
                 entity.Property(e => e.PrepayDateDo)
                     .HasColumnName("prepayDateDo")
@@ -4301,8 +4300,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("numeric(10, 5)");
 
                 entity.HasOne(d => d.CRight)
-                    .WithOne(p => p.LicAuthorBr)
-                    .HasForeignKey<LicAuthorBr>(d => d.CRightId)
+                    .WithMany(p => p.LicAuthorBr)
+                    .HasForeignKey(d => d.CRightId)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_COPYRIGH");
 
                 entity.HasOne(d => d.PrepayTypeNavigation)
@@ -4313,6 +4312,7 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.Lic)
                     .WithMany(p => p.LicAuthorBr)
                     .HasForeignKey(d => new { d.LicId, d.LicVersion })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_LICENSEB");
             });
 
@@ -4995,12 +4995,6 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Amount)
                     .HasColumnName("amount")
                     .HasColumnType("money");
-
-                entity.HasOne(d => d.CRight)
-                    .WithMany(p => p.MoneyPrepayLink)
-                    .HasForeignKey(d => d.CRightId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MONEYPRE_REFERENCE_LICAUTHO");
 
                 entity.HasOne(d => d.Paid)
                     .WithMany(p => p.MoneyPrepayLink)
@@ -6196,6 +6190,7 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Register)
                     .HasForeignKey(d => d.CustId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REG_REF_CLIENT");
 
                 entity.HasOne(d => d.RgStatusNavigation)

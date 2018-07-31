@@ -6,11 +6,6 @@ namespace ipsmedserviceapp.Model
 {
     public partial class LicAuthorBr
     {
-        public LicAuthorBr()
-        {
-            MoneyPrepayLink = new HashSet<MoneyPrepayLink>();
-        }
-
         public int CRightId { get; set; }
         public int? PrepayType { get; set; }
         public DateTime? DateCreate { get; set; }
@@ -22,8 +17,8 @@ namespace ipsmedserviceapp.Model
         public decimal? PrepaySumAuthor { get; set; }
         public string R030 { get; set; }
         public DateTime? PrepayDateDo { get; set; }
-        public int? LicId { get; set; }
-        public int? LicVersion { get; set; }
+        public int LicId { get; set; }
+        public int LicVersion { get; set; }
         public decimal? PrepayRest { get; set; }
         public decimal? PrepayUsed { get; set; }
 
@@ -33,8 +28,6 @@ namespace ipsmedserviceapp.Model
         public LicenseBigR Lic { get; set; }
         [JsonIgnore]
         public PrePayType PrepayTypeNavigation { get; set; }
-        [JsonIgnore]
-        public ICollection<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
 
