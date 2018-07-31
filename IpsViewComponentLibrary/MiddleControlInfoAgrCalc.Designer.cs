@@ -589,7 +589,7 @@
             this.calculationCtrl.MaximumSize = new System.Drawing.Size(3000, 1000);
             this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
             this.calculationCtrl.Name = "calculationCtrl";
-            this.calculationCtrl.Size = new System.Drawing.Size(1046, 595);
+            this.calculationCtrl.Size = new System.Drawing.Size(1029, 595);
             this.calculationCtrl.TabIndex = 0;
             // 
             // pvPayments
