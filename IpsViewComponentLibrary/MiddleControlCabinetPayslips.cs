@@ -58,7 +58,6 @@ namespace IpsViewComponentLibrary
             if (addform.ShowDialog() == DialogResult.OK)
             {
                 ; //TODO save
-
             }
             else
                 _customer.Client.BrRegister.Remove(brRegister);

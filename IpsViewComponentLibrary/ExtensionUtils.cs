@@ -59,6 +59,25 @@ namespace IpsViewComponentLibrary
         {
             MessageBox.Show(msg, title, MessageBoxButtons.OK, icon);
         }
+
+        public static ButtonFunctionAcceptLicType ButtonNameChange(this RadButton btn, int? status)
+        {
+            switch (status)
+            {
+                case 1:
+                {
+                    btn.Text = "Акцептувати договір";
+                    return ButtonFunctionAcceptLicType.Accept;
+                }
+                case 0:
+                {
+                    btn.Text = "Відправити на погодження";
+                    return ButtonFunctionAcceptLicType.Agree;
+                }
+            }
+
+            return ButtonFunctionAcceptLicType.None;
+        }
     }
 
     public interface IMiddleCtrlAnketaConsumer
@@ -281,6 +300,19 @@ namespace IpsViewComponentLibrary
         /// Довідка
         /// </summary>
         Reference
+    }
+
+    public enum ButtonFunctionAcceptLicType
+    {
+        None,
+        /// <summary>
+        /// Акцептувати
+        /// </summary>
+        Accept,
+        /// <summary>
+        /// На погодження
+        /// </summary>
+        Agree
     }
 
 
