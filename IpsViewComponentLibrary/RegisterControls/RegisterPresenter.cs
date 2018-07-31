@@ -140,7 +140,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 };
 
                 if (r.Obj != null)
-                    rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack.Duration, resetIsAuto: false);
+                    rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
 
                 _view.RegisterItemList.Add(rvm);
             }

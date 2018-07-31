@@ -418,6 +418,7 @@
             // 
             this.actualObjectsPage.Controls.Add(this.ctrlObjectRightList);
             this.actualObjectsPage.Controls.Add(this.ddbAddObjectRight);
+            this.actualObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.actualObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.actualObjectsPage.Name = "actualObjectsPage";
             this.actualObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -461,6 +462,7 @@
             this.rightholdersObjectsPage.Controls.Add(this.ctrlRightholdersObjectsRight);
             this.rightholdersObjectsPage.Controls.Add(this.btnAddExistingObjectRightForRightholder);
             this.rightholdersObjectsPage.Controls.Add(this.ddbAddObjectRightForRightholder);
+            this.rightholdersObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.rightholdersObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.rightholdersObjectsPage.Name = "rightholdersObjectsPage";
             this.rightholdersObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -513,6 +515,7 @@
             // 
             // notAcceptedObjectsPage
             // 
+            this.notAcceptedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.notAcceptedObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.notAcceptedObjectsPage.Name = "notAcceptedObjectsPage";
             this.notAcceptedObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -520,6 +523,7 @@
             // 
             // newObjectsPage
             // 
+            this.newObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.newObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.newObjectsPage.Name = "newObjectsPage";
             this.newObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -527,6 +531,7 @@
             // 
             // notLinkedObjectsPage
             // 
+            this.notLinkedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.notLinkedObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.notLinkedObjectsPage.Name = "notLinkedObjectsPage";
             this.notLinkedObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -551,7 +556,7 @@
             this.rightholdersPageView.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
-            this.rightholdersPageView.SelectedPage = this.rightholdersPage;
+            this.rightholdersPageView.SelectedPage = this.rightholdersChangePage;
             this.rightholdersPageView.Size = new System.Drawing.Size(1182, 632);
             this.rightholdersPageView.TabIndex = 0;
             this.rightholdersPageView.ThemeName = "Office2013Light";
@@ -902,6 +907,7 @@
             this.ctrlAgreementNumberDate.AgreementName = "ДОГОВІР";
             this.ctrlAgreementNumberDate.DataSource = this.agreementAddRhBindingSource;
             this.ctrlAgreementNumberDate.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
+            this.ctrlAgreementNumberDate.DataSourceBrLicNumber = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgreementNumberDate.DateBeginDataMember = "DateBegin";
             this.ctrlAgreementNumberDate.DateDataMember = "AgrDate";
             this.ctrlAgreementNumberDate.DateEndDataMember = "DateEnd";
@@ -2071,6 +2077,7 @@
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
+            this.splitPanel5.ThemeName = "Office2013Light";
             // 
             // ctrlRightholdersObjectsForChange
             // 
@@ -2109,6 +2116,7 @@
             this.splitPanel6.TabIndex = 1;
             this.splitPanel6.TabStop = false;
             this.splitPanel6.Text = "splitPanel6";
+            this.splitPanel6.ThemeName = "Office2013Light";
             // 
             // btnCancelNewCopyright
             // 
@@ -2462,7 +2470,7 @@
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageViewReportsSR;
+            this.MainPageView.SelectedPage = this.mainPageRightsObjects;
             this.MainPageView.Size = new System.Drawing.Size(1192, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";

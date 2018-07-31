@@ -20,9 +20,11 @@ namespace IpsViewComponentLibrary
         private Customer _customer;
         private AnketaDictionaties _dictionaties;
         private int _idItem;
+        private ButtonFunctionAcceptLicType _licType = ButtonFunctionAcceptLicType.None;
 
         public delegate void CustomerSave(Customer customer);
         public event CustomerSave OnCustomerSave;
+        public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
 
         public TypeRights Rights { get; set; }
 
@@ -30,7 +32,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             SetDefaultPages();
-            agreementInfoCtrl.OnSaveCommentNeed += AgreementInfoCtrl_OnSaveCommentNeed;
+            ctrlAgrInfoMain.OnSaveCommentNeed += AgreementInfoCtrl_OnSaveCommentNeed;
         }
 
         private void AgreementInfoCtrl_OnSaveCommentNeed(object sender, EventArgs e)
@@ -45,7 +47,7 @@ namespace IpsViewComponentLibrary
         {
             SetDefaultPages();
             userInfoCtrl.SetEmptyFields();
-            agreementInfoCtrl.SetEmpty();
+            ctrlAgrInfoMain.SetEmpty();
             gvLicenseAgr.DataSource = new object();
         }
 
@@ -87,7 +89,6 @@ namespace IpsViewComponentLibrary
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
             calculationCtrl.Customer = _customer;
-            //reportsControl.Customer = _customer;
             
             //reportsControl.SetData(cust);
             // reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
@@ -101,7 +102,7 @@ namespace IpsViewComponentLibrary
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
-                foreach (var item in _customer.Client.LicenseAgreement)
+                foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2))
                 {
                     //якщо з малими правами, пропустити
                     if(Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
@@ -133,7 +134,7 @@ namespace IpsViewComponentLibrary
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
-                foreach (var item in _customer.Client.LicenseAgreement)
+                foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus != 2))
                 {
                     if (Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
                     source.AddRange(item.LicenseAgrParam.Where(rec => rec.LicVersion > item.LicVersion)
@@ -147,13 +148,14 @@ namespace IpsViewComponentLibrary
                             DateBegin = licAgr?.DateBegin?.ToShortDateString() ?? string.Empty,
                             DateEnd = licAgr?.DateEnd?.ToShortDateString() ?? string.Empty,
                             State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licAgr?.LicStatus)?.Name ?? string.Empty,
+                            Status = licAgr.LicStatus,
                             PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licAgr?.PeriodCode)?.Name ?? string.Empty
                         }));
                 }
 
-            gvMoreAgr.DataSource = source;
-            gvMoreAgr.MasterTemplate.Refresh();
-            gvMoreAgr.Update();
+            gvMoreLicenseAgr.DataSource = source;
+            gvMoreLicenseAgr.MasterTemplate.Refresh();
+            gvMoreLicenseAgr.Update();
         }
 
         /// <summary>
@@ -191,30 +193,62 @@ namespace IpsViewComponentLibrary
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
 
-            agreementInfoCtrl.NumberAgr = licenseParam?.LicNum;
-            agreementInfoCtrl.Agent = "";
-            agreementInfoCtrl.DateAgr = licenseParam?.LicDate?.ToString("dd.MM.yyyy");
+            ctrlAgrInfoMain.NumberAgr = licenseParam?.LicNum;
+            ctrlAgrInfoMain.Agent = "";
+            ctrlAgrInfoMain.DateAgr = licenseParam?.LicDate?.ToString("dd.MM.yyyy");
 
 
-            agreementInfoCtrl.DateBegin = licenseParam?.DateBegin?.ToShortDateString();
-            agreementInfoCtrl.DateEnd = licenseParam?.DateEnd?.ToShortDateString();
-            agreementInfoCtrl.IsProlongation = licenseParam?.IsAutoprolog ?? false;
-            agreementInfoCtrl.PeriodReportind = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name;
+            ctrlAgrInfoMain.DateBegin = licenseParam?.DateBegin?.ToShortDateString();
+            ctrlAgrInfoMain.DateEnd = licenseParam?.DateEnd?.ToShortDateString();
+            ctrlAgrInfoMain.IsProlongation = licenseParam?.IsAutoprolog ?? false;
+            ctrlAgrInfoMain.PeriodReportind = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name;
             var pr = (_dictionaties?.periodStatus)?.SingleOrDefault(item => item.CodeI == licenseParam?.PeriodCode)?.Name;
-            agreementInfoCtrl.Percent = licenseParam?.RateAmount?.ToString();
-            agreementInfoCtrl.MinPayment = licenseParam?.MinAmount.ToString();
+            ctrlAgrInfoMain.Percent = licenseParam?.RateAmount?.ToString();
+            ctrlAgrInfoMain.MinPayment = licenseParam?.MinAmount.ToString();
 
-            agreementInfoCtrl.CommentDataSource = licenseParam;
+            ctrlAgrInfoMain.CommentDataSource = licenseParam;
 
-            agreementInfoCtrl.State = _dictionaties?.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name;
+            ctrlAgrInfoMain.State = _dictionaties?.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name;
 
             //TODO: заповнити відсутні дані
-            agreementInfoCtrl.Implementation = "";//буде
-            agreementInfoCtrl.IsPaid = true;//буде
-            agreementInfoCtrl.Bank = "";//буде
-            agreementInfoCtrl.Amount = "";//буде
-            agreementInfoCtrl.DistributedAmount = "";//буде
-            agreementInfoCtrl.IsAttach = new Random().Next(-10, 10) > 0; // буде
+            ctrlAgrInfoMain.Implementation = "";//буде
+            ctrlAgrInfoMain.IsPaid = true;//буде
+            ctrlAgrInfoMain.Bank = "";//буде
+            ctrlAgrInfoMain.Amount = "";//буде
+            ctrlAgrInfoMain.DistributedAmount = "";//буде
+            //ctrlAgrInfoMain.IsAttach = new Random().Next(-10, 10) > 0; // буде
+        }
+
+        private void SetAgrInfoDataMore(int idItem = 0)
+        {
+            _idItem = idItem;
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+
+            ctrlAgrInfoMore.NumberAgr = licenseParam?.LicNum;
+            ctrlAgrInfoMore.Agent = "";
+            ctrlAgrInfoMore.DateAgr = licenseParam?.LicDate?.ToString("dd.MM.yyyy");
+                       
+                       
+            ctrlAgrInfoMore.DateBegin = licenseParam?.DateBegin?.ToShortDateString();
+            ctrlAgrInfoMore.DateEnd = licenseParam?.DateEnd?.ToShortDateString();
+            ctrlAgrInfoMore.IsProlongation = licenseParam?.IsAutoprolog ?? false;
+            ctrlAgrInfoMore.PeriodReportind = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name;
+            var pr = (_dictionaties?.periodStatus)?.SingleOrDefault(item => item.CodeI == licenseParam?.PeriodCode)?.Name;
+            ctrlAgrInfoMore.Percent = licenseParam?.RateAmount?.ToString();
+            ctrlAgrInfoMore.MinPayment = licenseParam?.MinAmount.ToString();
+
+            ctrlAgrInfoMore.CommentDataSource = licenseParam;
+
+            ctrlAgrInfoMore.State = _dictionaties?.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name;
+
+            //TODO: заповнити відсутні дані
+            ctrlAgrInfoMore.Implementation = "";//буде
+            ctrlAgrInfoMore.IsPaid = true;//буде
+            ctrlAgrInfoMore.Bank = "";//буде
+            ctrlAgrInfoMore.Amount = "";//буде
+            ctrlAgrInfoMore.DistributedAmount = "";//буде
+            //ctrlAgrInfoMain.IsAttach = new Random().Next(-10, 10) > 0; // буде
         }
 
         /// <summary>
@@ -240,8 +274,6 @@ namespace IpsViewComponentLibrary
             //if (!isInt) return;
             //SetAgrInfoData(result);
             if (!(e.CurrentRow.DataBoundItem is GridLicenseAgrView curRow)) return;
-
-            btnDeleteAgr.Enabled = curRow.State == "Не підтверджений";
             SetAgrInfoData(curRow.LicId);
         }
         
@@ -405,6 +437,43 @@ namespace IpsViewComponentLibrary
         {
 
         }
+
+        private void gvMoreLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        {
+            if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            btnDeleteAgr.Enabled = curRow.State == "Не підтверджений";
+            SetAgrInfoDataMore(curRow.LicId);
+            _licType = btnAccept.ButtonNameChange(curRow.Status);
+        }
+
+        private void btnAddAgrNewVersion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            if(gvMoreLicenseAgr.CurrentRow.DataBoundItem is GridLicenseAgrView item)
+            {
+                bool actResult = false;
+                var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
+
+                switch (_licType)
+                {
+                    case ButtonFunctionAcceptLicType.Agree: actResult = OnChangeLicenseStatus?.Invoke(license, (int) license.LicVersion, 3) ?? false;
+                        break;
+                    case ButtonFunctionAcceptLicType.Accept: actResult = OnChangeLicenseStatus?.Invoke(license, (int)license.LicVersion, 0) ?? false;
+                        break;
+                }
+
+                if(actResult)
+                    ExtensionUtils.ShowInfoMessage("Статус ліцензії змінено!", "Успішно",
+                        MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензії!", "Помилка",
+                        MessageBoxIcon.Error);
+            }
+        }
     }
 
     /// <summary>
@@ -422,6 +491,8 @@ namespace IpsViewComponentLibrary
         NotEmpty
     }
 
+
+
     public class GridLicenseAgrView
     {
         public int Id { get; set; }
@@ -432,6 +503,7 @@ namespace IpsViewComponentLibrary
         public string DateEnd { get; set; }
         public decimal Amount { get; set; }
         public string State { get; set; }
+        public int? Status { get; set; }
         public string PeriodPayment { get; set; }
         public string DateLastPayment { get; set; }
         public int LicId { get; set;  }
