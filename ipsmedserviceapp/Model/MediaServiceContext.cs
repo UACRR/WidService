@@ -4243,15 +4243,13 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<LicAuthorBr>(entity =>
             {
-                entity.HasKey(e => new { e.CRightId, e.LicId, e.LicVersion });
+                entity.HasKey(e => e.CRightId);
 
                 entity.ToTable("LicAuthorBR");
 
-                entity.Property(e => e.CRightId).HasColumnName("cRightId");
-
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
+                entity.Property(e => e.CRightId)
+                    .HasColumnName("cRightId")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.DateAccept)
                     .HasColumnName("dateAccept")
@@ -4300,20 +4298,14 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("numeric(10, 5)");
 
                 entity.HasOne(d => d.CRight)
-                    .WithMany(p => p.LicAuthorBr)
-                    .HasForeignKey(d => d.CRightId)
+                    .WithOne(p => p.LicAuthorBr)
+                    .HasForeignKey<LicAuthorBr>(d => d.CRightId)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_COPYRIGH");
 
                 entity.HasOne(d => d.PrepayTypeNavigation)
                     .WithMany(p => p.LicAuthorBr)
                     .HasForeignKey(d => d.PrepayType)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_PREPAYTY");
-
-                entity.HasOne(d => d.Lic)
-                    .WithMany(p => p.LicAuthorBr)
-                    .HasForeignKey(d => new { d.LicId, d.LicVersion })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_LICAUTHO_REFERENCE_LICENSEB");
             });
 
             modelBuilder.Entity<License>(entity =>
@@ -4484,11 +4476,11 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<LicenseBigR>(entity =>
             {
-                entity.HasKey(e => new { e.LicId, e.LicVersion });
+                entity.HasKey(e => e.LicId);
 
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
+                entity.Property(e => e.LicId)
+                    .HasColumnName("licId")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.DatePremiere)
                     .HasColumnName("datePremiere")
@@ -4543,8 +4535,8 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_LICENSEB_REFERENCE_LANGUAGE");
 
                 entity.HasOne(d => d.Lic)
-                    .WithMany(p => p.LicenseBigR)
-                    .HasForeignKey(d => d.LicId)
+                    .WithOne(p => p.LicenseBigR)
+                    .HasForeignKey<LicenseBigR>(d => d.LicId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICENSEB_REFERENCE_LICENSEA");
 
@@ -5127,15 +5119,16 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Objid).HasColumnName("objid");
 
+                entity.HasOne(d => d.Lic)
+                    .WithMany(p => p.MusicalDesign)
+                    .HasForeignKey(d => d.LicId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MUSICALD_REFERENCE_LICENSEB");
+
                 entity.HasOne(d => d.Obj)
                     .WithMany(p => p.MusicalDesign)
                     .HasForeignKey(d => d.Objid)
                     .HasConstraintName("FK_MUSICALD_REFERENCE_OBJECTRI");
-
-                entity.HasOne(d => d.Lic)
-                    .WithMany(p => p.MusicalDesign)
-                    .HasForeignKey(d => new { d.LicId, d.LicVersion })
-                    .HasConstraintName("FK_MUSICALD_REFERENCE_LICENSEB");
             });
 
             modelBuilder.Entity<MyAnketa>(entity =>

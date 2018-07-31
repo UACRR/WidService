@@ -157,7 +157,7 @@ namespace IpsViewComponentLibrary
             cMusRate.TextValue = rec?.MusicRate.ToString();
 
 
-            var mus = _customer.Client.LicenseAgreement.SingleOrDefault(item => item.LicId == rec?.LicId)?.LicenseBigR.SingleOrDefault()?.MusicalDesign;
+            var mus = _customer.Client.LicenseAgreement.SingleOrDefault(item => item.LicId == rec?.LicId)?.LicenseBigR?.MusicalDesign;
 
             gvMusicDesignView.DataSource = mus;
         }

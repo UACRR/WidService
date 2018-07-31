@@ -42,12 +42,13 @@ namespace IpsViewComponentLibrary
             ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
             dtDate.SetUserCalendarSettingsm();
             dtDate.MinDate = DateTime.Today;
-            if(_formType == FormType.Create)
+            if (_formType == FormType.Create)
             {
                 CreateNewRequest();
                 Text = "Створення нової заявки на ліцензію";
 
-            } else if (_formType == FormType.Edit)
+            }
+            else if (_formType == FormType.Edit)
             {
                 Text = "Редагування заявки на ліцезнію";
                 btnSave.Text = "Зберегти редаговану заявку";
@@ -59,9 +60,9 @@ namespace IpsViewComponentLibrary
             bsLicenseBigR.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR;
             bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam.SingleOrDefault()?.License;
             _percent = dictionaties.relGenrePercent;
-            bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
+            bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj;
             bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-            SetObjectRightData(_customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj);
+            SetObjectRightData(_customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj);
 
             bsDictObjAct.DataSource = dictionaties.objAct;
             bsDictPerformType.DataSource = dictionaties.performType;
@@ -74,7 +75,7 @@ namespace IpsViewComponentLibrary
 
         public void ParseAuthors()
         {
-            var objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
+            var objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj;
             if (objectRight == null)
                 return;
 
@@ -140,11 +141,9 @@ namespace IpsViewComponentLibrary
                         }
                     }
                 },
-                LicenseBigR = new ObservableListSource<LicenseBigR>
-                {
+                LicenseBigR =
                     new LicenseBigR
                     {
-                        LicVersion = 1,
                         Obj = new ObjectRight
                         {
                             Status = 0,
@@ -155,7 +154,6 @@ namespace IpsViewComponentLibrary
                         },
                         MusicalDesign = new ObservableListSource<MusicalDesign>()
                     }
-                }
             };
             _customer.Client.LicenseAgreement.Add(_licenseAgreement);
         }
@@ -208,7 +206,7 @@ namespace IpsViewComponentLibrary
                 Duration = new TimeSpan(00, 00, 00, 01),
             };
 
-            var mus = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.MusicalDesign;
+            var mus = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.MusicalDesign;
             mus?.Add(design);
             AddCompositionForm addCompositionForm = new AddCompositionForm(mus?.LastOrDefault());
             if (addCompositionForm.ShowDialog() != DialogResult.OK)
@@ -219,15 +217,14 @@ namespace IpsViewComponentLibrary
 
         private void RefreshGridDataSource()
         {
-            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR
-                .SingleOrDefault()?.MusicalDesign.Where(rec => rec.ActNumb == (int)ddlActType.SelectedValue)?.ToList();
+            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR?.MusicalDesign.Where(rec => rec.ActNumb == (int)ddlActType.SelectedValue)?.ToList();
             gvViewActList.DataSource = source;
         }
 
         private void gvViewActList_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             var delItem = e.Row.DataBoundItem as MusicalDesign;
-            _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.MusicalDesign.Remove(delItem);
+            _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.MusicalDesign.Remove(delItem);
             RefreshGridDataSource();
         }
 
@@ -239,7 +236,7 @@ namespace IpsViewComponentLibrary
 
         private void txtActCode_TextChanged(object sender, EventArgs e)
         {
-            if(Int32.TryParse(txtActCode.Text, out int val))
+            if (Int32.TryParse(txtActCode.Text, out int val))
                 if (val > 3)
                     txtActCode.Text = "3";
             UpdateGenrePersent();

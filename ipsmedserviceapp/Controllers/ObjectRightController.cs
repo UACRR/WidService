@@ -209,7 +209,7 @@ namespace ipsmedserviceapp.Controllers
         {
             dest.SetFields(source);
 
-            _dbContext.UpdateList(source.LicenseBigR, dest.LicenseBigR, i => { }, (l, r) => l.LicId == r.LicId && l.LicVersion == r.LicVersion);
+            _dbContext.UpdateList(source.LicenseBigR, dest.LicenseBigR, i => { }, (l, r) => l.LicId == r.LicId );
 
             _dbContext.UpdateList(source.Authors, dest.Authors, newItem =>
                 {
@@ -251,9 +251,6 @@ namespace ipsmedserviceapp.Controllers
                     destCopyRight.WorkRh.WorkDateRh = DateTime.Now;
                 }
 
-                // LicAuthorBr
-                if (destCopyRight.LicAuthorBr == null)
-                    destCopyRight.LicAuthorBr = new LicAuthorBr();
 
                 destCopyRight.LicAuthorBr.SetFields(sourceCopyRight.LicAuthorBr);
             }

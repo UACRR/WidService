@@ -17,13 +17,10 @@ namespace ipsFormsDesign.Model
         public decimal? PrepaySumAuthor { get; set; }
         public string R030 { get; set; }
         public DateTime? PrepayDateDo { get; set; }
-        public int LicId { get; set; }
-        public int LicVersion { get; set; }
         public decimal? PrepayRest { get; set; }
         public decimal? PrepayUsed { get; set; }
 
         public CopyRight CRight { get; set; }
-        public LicenseBigR Lic { get; set; }
         public PrePayType PrepayTypeNavigation { get; set; }
     }
 }
