@@ -13,6 +13,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 {
     public partial class AuthorRightholderBrListControl : UserControl
     {
+        public delegate void GetWorkRhEventHandler(WorkRh workRh);
+        public event GetWorkRhEventHandler OnGetWorkRh;
+
         protected bool IsDesignMode
         {
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
@@ -140,6 +143,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 };
                 selectionView.ShowDialog();
             }
+        }
+
+        private void gvAuthorRightholderList_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            OnGetWorkRh?.Invoke((e.CurrentRow.DataBoundItem as ObjectAuthorRightholderBrViewModel)?.WorkRh);
         }
     }
 }

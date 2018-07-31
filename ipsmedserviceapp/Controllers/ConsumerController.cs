@@ -243,7 +243,6 @@ namespace ipsmedserviceapp.Controllers
                     destCustomer.Client.LicenseAgreement.Remove(item);
 
                     _dbContext.LicenseAgreement.Remove(item);
-
                 }
                 );
 
