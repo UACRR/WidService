@@ -48,6 +48,7 @@
             this.btnSearchAuto = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
+            this.btnCreateSelected = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -67,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchNotLinked)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchAuto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreateSelected)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,16 +201,17 @@
             // 
             this.gboxSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.gboxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gboxSearch.Controls.Add(this.btnCreateSelected);
             this.gboxSearch.Controls.Add(this.btnSearchSelected);
             this.gboxSearch.Controls.Add(this.btnSearchAll);
             this.gboxSearch.Controls.Add(this.btnSearchNotLinked);
             this.gboxSearch.Controls.Add(this.btnSearchAuto);
-            this.gboxSearch.HeaderText = "Пошук";
+            this.gboxSearch.HeaderText = "Дії з об\'єктами звіту";
             this.gboxSearch.Location = new System.Drawing.Point(273, 472);
             this.gboxSearch.Name = "gboxSearch";
-            this.gboxSearch.Size = new System.Drawing.Size(649, 57);
+            this.gboxSearch.Size = new System.Drawing.Size(811, 57);
             this.gboxSearch.TabIndex = 19;
-            this.gboxSearch.Text = "Пошук";
+            this.gboxSearch.Text = "Дії з об\'єктами звіту";
             this.gboxSearch.ThemeName = "Office2013Light";
             // 
             // btnSearchSelected
@@ -217,7 +220,7 @@
             this.btnSearchSelected.Name = "btnSearchSelected";
             this.btnSearchSelected.Size = new System.Drawing.Size(155, 24);
             this.btnSearchSelected.TabIndex = 3;
-            this.btnSearchSelected.Text = "Шукати для вибраних";
+            this.btnSearchSelected.Text = "Шукати для обраних";
             this.btnSearchSelected.ThemeName = "Office2013Light";
             this.btnSearchSelected.Click += new System.EventHandler(this.btnSearchSelected_Click);
             // 
@@ -270,6 +273,16 @@
             this.ctrlRegisterItemList.TabIndex = 6;
             this.ctrlRegisterItemList.FindCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.RegisterItemViewModel>(this.ctrlRegisterItemList_FindCommandExecuted);
             // 
+            // btnCreateSelected
+            // 
+            this.btnCreateSelected.Location = new System.Drawing.Point(650, 21);
+            this.btnCreateSelected.Name = "btnCreateSelected";
+            this.btnCreateSelected.Size = new System.Drawing.Size(155, 24);
+            this.btnCreateSelected.TabIndex = 4;
+            this.btnCreateSelected.Text = "Створити для обраних";
+            this.btnCreateSelected.ThemeName = "Office2013Light";
+            this.btnCreateSelected.Click += new System.EventHandler(this.btnCreateSelected_Click);
+            // 
             // RegisterView
             // 
             this.AcceptButton = this.btnSave;
@@ -315,6 +328,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchNotLinked)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchAuto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreateSelected)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -342,5 +356,6 @@
         private Telerik.WinControls.UI.RadButton btnSearchNotLinked;
         private Telerik.WinControls.UI.RadButton btnSearchAuto;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadButton btnCreateSelected;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Utilities;
 using System;
 using System.Linq;
 
@@ -75,6 +76,40 @@ namespace IpsViewComponentLibrary.RegisterControls
                 var presenter = new SearchObjectPresenter(view, _registerService);
                 presenter.Show(_view.SelectedRegisterItems);
             }
+        }
+
+        public void CreateObjectsForSelected()
+        {
+            var objectRightService = new ObjectRightService();
+
+            var createdObjectCount = 0;
+
+            foreach (var registerItem in _view.SelectedRegisterItems)
+            {
+                var newObject = objectRightService.NewObjectRight(5);
+                newObject.SetDataFromRegisterItem(registerItem);
+
+                var result = objectRightService.Save(newObject);
+
+                if (result)
+                {
+                    registerItem.SetObjectData(
+                        newObject.ObjId,
+                        newObject.Name,
+                        newObject.Author,
+                        newObject.Performer,
+                        newObject.MediaTrack.Duration
+                    );
+
+                    createdObjectCount++;
+                }
+                else
+                {
+                    _view.ShowError("Не вдалося створити об'єкт з назвою " + registerItem.ItemName);
+                }
+            }
+
+            _view.ShowMessage($"Створено {createdObjectCount} об'єктів.");
         }
 
         public void SetStatus(RegisterStatusType status)
