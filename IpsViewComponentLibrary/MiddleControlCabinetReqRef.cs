@@ -100,15 +100,16 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        //клік на гріду по кнопкі редагувати
         private void gvViewRequests_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            if (_typeControl == ControlRequestOrReferenceType.Request)
+            RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit);
+            if (requestForm.ShowDialog() == DialogResult.OK)
             {
-
-            }
-            else if(_typeControl == ControlRequestOrReferenceType.Reference)
-            {
-                
+                if (OnNewRequestSaveNeed?.Invoke(_customer) ?? false)
+                    MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

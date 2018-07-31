@@ -98,12 +98,12 @@ namespace IpsViewComponentLibrary
 
                     return new ObjectAuthorRightholderBrViewModel
                     {
-                        Country = foundedRightholder.Country,
-                        InnerCode = foundedRightholder.InnerCode,
+                        Country = foundedRightholder?.Country,
+                        InnerCode = foundedRightholder?.InnerCode,
                         Author = a,
                         CopyRight = foundedCopyright,
-                        LicAuthorBr = foundedCopyright.LicAuthorBr ?? new LicAuthorBr(),
-                        WorkRh = foundedCopyright.WorkRh ?? new WorkRh(),
+                        LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new LicAuthorBr(),
+                        WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
                     };
                 })
                 .ToList();
@@ -129,6 +129,7 @@ namespace IpsViewComponentLibrary
                     {
                         LicVersion = 1,
                         LicStatus = 0,
+                        LicDate = DateTime.Today,
                         License = new ObservableListSource<License>
                         {
                             new License

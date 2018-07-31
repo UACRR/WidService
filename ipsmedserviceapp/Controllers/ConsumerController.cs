@@ -1012,7 +1012,6 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             IDbContextTransaction tran = null;
             try
             {
-
                 await setLicAgrStatus(lic.LicId, version, status, true);
                 tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();

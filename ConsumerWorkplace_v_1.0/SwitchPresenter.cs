@@ -91,6 +91,7 @@ namespace ConsumerWorkplace_v_1._0
                 cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
                 cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
                 cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
+                cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
                 cabinet.SetDictionary(_service.GetDictionary());
                 cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;
@@ -101,6 +102,13 @@ namespace ConsumerWorkplace_v_1._0
             cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;
             _switcher.SwitchView(cabinet);
+        }
+
+        private bool Cabinet_OnChangeLicenseStatus(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status)
+        {
+            var relust = _service.SetLicAgreementStatus(agr, version, status);
+            UpdateData(agr.CustId ?? default(int));
+            return relust;
         }
 
         private bool Cabinet_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
