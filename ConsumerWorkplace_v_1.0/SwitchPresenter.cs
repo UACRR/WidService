@@ -112,9 +112,9 @@ namespace ConsumerWorkplace_v_1._0
 
         }
 
-        private bool Cabinet_OnChangeLicenseStatus(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status)
+        private bool Cabinet_OnChangeLicenseStatus(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            var relust = _service.SetLicAgreementStatus(agr, version, status);
+            var relust = _service.SetLicAgreementStatus(agr, version, status, changeVer);
             UpdateData(agr.CustId ?? default(int));
             return relust;
         }

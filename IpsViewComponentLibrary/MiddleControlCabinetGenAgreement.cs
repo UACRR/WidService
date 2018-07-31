@@ -89,7 +89,7 @@ namespace IpsViewComponentLibrary
             if (gvGenAgrLicences.CurrentRow.DataBoundItem is BigRightMasterGenAgr licrow)
             {
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
-                OnLicStatusChange?.Invoke(license, licrow.Version, 2);
+                OnLicStatusChange?.Invoke(license, licrow.Version, 2, false);
             }
         }
 
@@ -100,7 +100,7 @@ namespace IpsViewComponentLibrary
                 if(gvGenAgrLicences.CurrentRow.DataBoundItem is BigRightMasterGenAgr licrow)
                 {
                     var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
-                    OnLicStatusChange?.Invoke(license, licrow.Version, 4);
+                    OnLicStatusChange?.Invoke(license, licrow.Version, 4, false);
                 }
             }
         }

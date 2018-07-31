@@ -135,9 +135,9 @@ namespace ConsumerWorkplace_v_1._0
             return _service.SaveBRWorkRH(licId, workRhList);
         }
 
-        private bool _cabinetBr_OnLicenseStatusChanging(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status)
+        private bool _cabinetBr_OnLicenseStatusChanging(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            if (_service.SetLicAgreementStatus(agr, version, status))
+            if (_service.SetLicAgreementStatus(agr, version, status, changeVer))
             {
                 UpdateData((int)agr.CustId);
                 return true;

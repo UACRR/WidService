@@ -134,24 +134,22 @@ namespace IpsViewComponentLibrary
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
-                foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus != 2))
-                {
-                    if (Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
-                    source.AddRange(item.LicenseAgrParam.Where(rec => rec.LicVersion > item.LicVersion)
-                        .Select(licAgr => new GridLicenseAgrView
-                        {
-                            Id = item.AgrId,
-                            LicId = item.LicId,
-                            License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
-                            Series = string.Empty,
-                            AgrNumber = licAgr?.LicNum ?? string.Empty,
-                            DateBegin = licAgr?.DateBegin?.ToShortDateString() ?? string.Empty,
-                            DateEnd = licAgr?.DateEnd?.ToShortDateString() ?? string.Empty,
-                            State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licAgr?.LicStatus)?.Name ?? string.Empty,
-                            Status = licAgr.LicStatus,
-                            PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licAgr?.PeriodCode)?.Name ?? string.Empty
-                        }));
-                }
+                source.AddRange(from item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus != 2)
+                    where Rights != TypeRights.BigRights || _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind == 1
+                    let licAgr = item.LicenseAgrParam.LastOrDefault()
+                    select new GridLicenseAgrView
+                    {
+                        Id = item.AgrId,
+                        LicId = item.LicId,
+                        License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
+                        Series = string.Empty,
+                        AgrNumber = licAgr?.LicNum ?? string.Empty,
+                        DateBegin = licAgr?.DateBegin?.ToShortDateString() ?? string.Empty,
+                        DateEnd = licAgr?.DateEnd?.ToShortDateString() ?? string.Empty,
+                        State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licAgr?.LicStatus)?.Name ?? string.Empty,
+                        Status = licAgr.LicStatus,
+                        PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licAgr?.PeriodCode)?.Name ?? string.Empty
+                    });
 
             gvMoreLicenseAgr.DataSource = source;
             gvMoreLicenseAgr.MasterTemplate.Refresh();
@@ -443,7 +441,6 @@ namespace IpsViewComponentLibrary
             if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
             btnDeleteAgr.Enabled = curRow.State == "Не підтверджений";
             SetAgrInfoDataMore(curRow.LicId);
-            _licType = btnAccept.ButtonNameChange(curRow.Status);
         }
 
         private void btnAddAgrNewVersion_Click(object sender, EventArgs e)
@@ -458,19 +455,13 @@ namespace IpsViewComponentLibrary
                 bool actResult = false;
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
 
-                switch (_licType)
-                {
-                    case ButtonFunctionAcceptLicType.Agree: actResult = OnChangeLicenseStatus?.Invoke(license, (int) license.LicVersion, 3) ?? false;
-                        break;
-                    case ButtonFunctionAcceptLicType.Accept: actResult = OnChangeLicenseStatus?.Invoke(license, (int)license.LicVersion, 0) ?? false;
-                        break;
-                }
+                actResult = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, 2, true) ?? false;
 
                 if(actResult)
-                    ExtensionUtils.ShowInfoMessage("Статус ліцензії змінено!", "Успішно",
+                    ExtensionUtils.ShowInfoMessage("Ліцензійний договір переведено в статус \"Активний\"!", "Успішно",
                         MessageBoxIcon.Information);
                 else
-                    ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензії!", "Помилка",
+                    ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензійного договору!", "Помилка",
                         MessageBoxIcon.Error);
             }
         }

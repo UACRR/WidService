@@ -13,7 +13,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status);
+    public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
     public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);

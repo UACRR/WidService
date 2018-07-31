@@ -444,7 +444,7 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(111, 38);
             this.btnAccept.TabIndex = 14;
-            this.btnAccept.Text = "Акцептувати договір";
+            this.btnAccept.Text = "Активувати договір";
             this.btnAccept.TextWrap = true;
             this.btnAccept.ThemeName = "Office2013Light";
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
@@ -589,7 +589,7 @@
             this.calculationCtrl.MaximumSize = new System.Drawing.Size(3000, 1000);
             this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
             this.calculationCtrl.Name = "calculationCtrl";
-            this.calculationCtrl.Size = new System.Drawing.Size(1046, 595);
+            this.calculationCtrl.Size = new System.Drawing.Size(995, 595);
             this.calculationCtrl.TabIndex = 0;
             // 
             // pvPayments
