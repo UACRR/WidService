@@ -86,6 +86,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        private void btnUpdateList_Click(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
         protected virtual void OnObjectSelected(ObjectRightMainView selectedObject)
         {
             ObjectSelected(this, selectedObject);
