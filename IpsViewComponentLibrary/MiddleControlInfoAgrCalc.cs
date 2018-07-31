@@ -89,7 +89,6 @@ namespace IpsViewComponentLibrary
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
             calculationCtrl.Customer = _customer;
-            //reportsControl.Customer = _customer;
             
             //reportsControl.SetData(cust);
             // reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);

@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
         public event EventHandler<List<MoneyPeriodLink>> SaveLinkCommandExecuted;
+        public delegate void UpdateCustomerDataEventHandler(int id);
+        public event UpdateCustomerDataEventHandler UpdateData;
 
         public CalculationInfoControl()
         {
@@ -255,6 +257,7 @@ namespace IpsViewComponentLibrary
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 SavePariodCommandExecuted(this, currentAgree.Lic.PaidPeriod.ToList());
+                UpdateData?.Invoke(_customer.CustId);
                 SetupAllBinding();
             }
         }

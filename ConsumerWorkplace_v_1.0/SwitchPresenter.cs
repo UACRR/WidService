@@ -92,6 +92,7 @@ namespace ConsumerWorkplace_v_1._0
                 cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
                 cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
                 cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
+                cabinet.mсInfoAgrCalc.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
                 cabinet.SetDictionary(_service.GetDictionary());
                 cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;
@@ -102,6 +103,13 @@ namespace ConsumerWorkplace_v_1._0
             cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;
             _switcher.SwitchView(cabinet);
+        }
+
+        private void CalculationCtrl_UpdateData(int id)
+        {
+            cabinet.mсInfoAgrCalc.SetCustomerData(_service.GetData(id));
+            cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetCustomerRegisterRatedList(id);
+
         }
 
         private bool Cabinet_OnChangeLicenseStatus(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status)
@@ -207,6 +215,7 @@ namespace ConsumerWorkplace_v_1._0
                 //Task.Run(() => {
             //var Customer = _service.GetCustomerRegisterRatedList(id);
             cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetCustomerRegisterRatedList(id);
+            
             //cabinet.mсInfoAgrCalc.reportsControl.BeginInvoke((Action)(() => ));
         //});
             return _service.GetData(id);
