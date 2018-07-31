@@ -403,7 +403,7 @@ namespace ipsmedserviceapp.Controllers
 
             license.LicenseBigR.SetFields(item.LicenseBigR);
 
-            if (item.LicenseBigR.Obj.ObjId != null)
+            if (item.LicenseBigR.Obj != null)
             {
 
                 if (item.LicenseBigR.Obj.ObjId == 0)
