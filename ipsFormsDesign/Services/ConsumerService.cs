@@ -260,10 +260,10 @@ namespace ipsFormsDesign.Services
             return retList;
         }
 
-        public bool SetLicAgreementStatus(LicenseAgreement agr, int version, int status)
+        public bool SetLicAgreementStatus(LicenseAgreement agr, int version, int status, bool toChangeVersion = false)
         {
-            string url = $"consumer/license/State/{version}";
-            var ret = _webApi.UpdateItem<LicenseAgreement>(url, status.ToString(), agr );
+            string url = $"consumer/license/State/{version}/{status}/{(toChangeVersion ? 1 : 0)}";
+            var ret = _webApi.UpdateItem<LicenseAgreement>(url, null, agr );
 
             return ret;
         }

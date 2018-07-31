@@ -913,9 +913,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="status"></param>
         private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, /*int? oldStatus,*/ int status, bool toChangeVersion)
         {
-
             // *******  Отримати дані з бази по договорам
-
             var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)
                 .Include(rec => rec.Agr)
                 .Include(rec => rec.LicCodeNavigation).ThenInclude(code => code.UsesKindNavigation)
@@ -942,12 +940,14 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
 
-            LicenseAgrParam licParam = licAgreement?.LicenseAgrParam?.SingleOrDefault(rec => rec.LicVersion == licAgreement.LicVersion);
-            AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == licAgreement.Agr.Version);
+            //LicenseAgrParam licParam = licAgreement?.LicenseAgrParam?.SingleOrDefault(rec => rec.LicVersion == licAgreement.LicVersion);
+            //AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == licAgreement.Agr.Version);
+            LicenseAgrParam licParam = licAgreement?.LicenseAgrParam?.SingleOrDefault(rec => rec.LicVersion == version);
+            AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == version);
 
 
             // Якщо змінюється версія 
-            if (version > licAgreement.LicVersion)
+            if (version > licAgreement.LicVersion && toChangeVersion)
             {
                 if (licAgreement.LicClass != 1) // Малі права та ліцензійні договора Великих прав
                 {
@@ -971,7 +971,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
 
             // *******   Зміна статусу
-            licAgreement.LicStatus = status;
+            if (licAgreement.LicVersion == version)
+                licAgreement.LicStatus = status;
 
             if (licAgreement.LicClass != 1) // не Генеральна угода
             {
@@ -1006,14 +1007,14 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="licid">Id Ліцензійного договору</param>
         /// <param name="version">Версія доп угоди</param>
         /// <returns></returns>
-        [HttpPut("license/State/{version}/{status}")]
-        public async Task<IActionResult> LicenseActionAccept(int version, int status, [FromBody] LicenseAgreement lic)
+        [HttpPut("license/State/{version}/{status}/{toChangeVersion}")]
+        public async Task<IActionResult> LicenseActionAccept(int version, int status, int toChangeVersion, [FromBody] LicenseAgreement lic)
         {
             IDbContextTransaction tran = null;
             try
             {
 
-                await setLicAgrStatus(lic.LicId, version, status, true);
+                await setLicAgrStatus(lic.LicId, version, status, toChangeVersion == 0 ? false : true);
                 tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
@@ -1493,8 +1494,6 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
             }
         }
 
-
-
         [HttpGet("Period/GetCustomerInfo/{custId}")]
         public async Task<IActionResult> GetCustomerInfo(int custId)
         {
@@ -1598,7 +1597,6 @@ and t3.licStatus between 0 and 3
 
             return Json(linkList);
         }
-
 
         #endregion
     } // public class ConsumerController : Controller

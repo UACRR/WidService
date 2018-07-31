@@ -186,7 +186,7 @@ namespace UnitTestMediaPortal
             // Отримати ген угоди
             var agr = consumer.Client.LicenseAgreement.FirstOrDefault(rec => rec.LicId == licId);
             // Змінити статус ген угоди
-            var ret = _service.SetLicAgreementStatus(agr, (int)agr.LicVersion,  status);
+            var ret = _service.SetLicAgreementStatus(agr, (int)agr.LicVersion,  status, false);
             // Змінити статус на Ліцензійний договір
             Assert.IsTrue(ret);
             consumer = _service.GetData(custid);
