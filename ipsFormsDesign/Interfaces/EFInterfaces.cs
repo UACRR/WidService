@@ -495,7 +495,8 @@ public interface IContinentTr
          string Name { get; set; }
 }
 public interface ICopyRight
-    {    int CRightId { get; set; }
+    {
+         int CRightId { get; set; }
          int CustId { get; set; }
          int? ObjId { get; set; }
          int? LBasis { get; set; }
@@ -1061,8 +1062,6 @@ public interface ILicAuthorBr
          decimal? PrepaySumAuthor { get; set; }
          string R030 { get; set; }
          DateTime? PrepayDateDo { get; set; }
-         int LicId { get; set; }
-         int LicVersion { get; set; }
          decimal? PrepayRest { get; set; }
          decimal? PrepayUsed { get; set; }
 }
@@ -1118,7 +1117,6 @@ public interface ILicenseBigR
          bool? IsTour { get; set; }
          string WhereTour { get; set; }
          decimal? Rate { get; set; }
-         int LicVersion { get; set; }
          decimal? PrepayRest { get; set; }
          string LangCode { get; set; }
          int? PerformType { get; set; }

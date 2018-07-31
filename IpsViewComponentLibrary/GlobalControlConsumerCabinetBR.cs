@@ -135,7 +135,7 @@ namespace IpsViewComponentLibrary
 
         public void SetBigRightBidAuthors(IList<object> authors)
         {
-            var licDic = _customer.Client.LicenseAgreement.Where(rec=>rec.LicenseBigR.Count > 0).Select(row=>row.LicenseBigR.First(item=>item.LicVersion==row.LicVersion)).ToDictionary(rec => rec.LicId);
+            var licDic = _customer.Client.LicenseAgreement.Where(rec=>rec.LicenseBigR!=null).Select(row=>row.LicenseBigR).ToDictionary(rec => rec.LicId);
             _authors = authors.Select( row =>
             {
                 BigRightRequestBidAuthors item = (BigRightRequestBidAuthors) row;

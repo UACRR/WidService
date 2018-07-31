@@ -233,7 +233,7 @@ namespace IpsViewComponentLibrary
             if (e?.Row?.DataBoundItem is BigRightRequestBidAuthors item/* && _typeControl == ControlRequestOrReferenceType.Request*/)
             {
                 _saveNeedStatus = SaveNeedStatus.Yes;
-                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR.SingleOrDefault()?.Obj;
+                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.Obj;
                 var copyRight = obj?.CopyRight?.SingleOrDefault(rec => rec.CRightId == item.CRightId);
                 var workRh = copyRight?.WorkRh;
                 if(workRh != null)
@@ -258,7 +258,7 @@ namespace IpsViewComponentLibrary
         {
             if (_workRhs == null /*&& _typeControl == ControlRequestOrReferenceType.Request*/ && e?.Row?.DataBoundItem is BigRightRequestBidAuthors item)
             {
-                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR.SingleOrDefault()?.Obj;
+                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.Obj;
                 var copyRight = obj?.CopyRight?.SingleOrDefault(rec => rec.CRightId == item.CRightId);
 
                 if (obj != null)

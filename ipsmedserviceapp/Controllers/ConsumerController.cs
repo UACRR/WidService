@@ -39,16 +39,16 @@ namespace ipsmedserviceapp.Controllers
         /// <returns></returns>
         private async Task GetConsumerBR(Customer bigRConsumer)
         {
-            foreach (var item in bigRConsumer.Client.LicenseAgreement.Where(rec => rec.LicenseBigR.Count() > 0))
+            foreach (var item in bigRConsumer.Client.LicenseAgreement.Where(rec => rec.LicenseBigR != null ))
             {
-                await _dbContext.Entry(item).Collection(rec => rec.LicenseBigR).Query()
+                await _dbContext.Entry(item).Reference(rec => rec.LicenseBigR).Query()
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors)
-                    .Include(rec => rec.LicAuthorBr)
+                    .Include(rec => rec.Obj).ThenInclude( obj=> obj.CopyRight)
                     .LoadAsync();
 
-                foreach (var lic in item.LicenseBigR)
+                foreach (var royalty in item.LicenseBigR.Obj.CopyRight )
                 {
-                    await _dbContext.Entry(lic.Obj).Collection(obj => obj.CopyRight).LoadAsync();
+                    await _dbContext.Entry(royalty).Reference(r => r.LicAuthorBr ).LoadAsync();
                 }
 
             }
@@ -89,10 +89,10 @@ namespace ipsmedserviceapp.Controllers
                     .Where(item => item.Version >= licAgreement.Agr.Version)
                     .LoadAsync();
                 // LicenseBigR
-                await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseBigR)
+                await _dbContext.Entry(licAgreement).Reference(rec => rec.LicenseBigR)
                     .Query()
-                    .Where(item => item.LicVersion >= licAgreement.LicVersion)
                     .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.WorkRh)
+                    .Include(item => item.Obj).ThenInclude(obj => obj.CopyRight).ThenInclude(cprt => cprt.LicAuthorBr)
                     .LoadAsync();
                 // Лцензії для майданчиків
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
@@ -261,7 +261,7 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.UpdateList(item.LicenseAgrParam, license.LicenseAgrParam, i => { }, (l, r) => l.LicVersion == r.LicVersion);
 
                     // Заявка
-                    if (item.LicenseBigR.Count() > 0)
+                    if (item.LicenseBigR != null)
                     {
                         // Nested update
                         updateLicenseBigR(item, license);
@@ -302,7 +302,7 @@ namespace ipsmedserviceapp.Controllers
                     }, (l, r) => l.LicVersion == r.LicVersion);
 
 
-                    if (item.LicenseBigR.Count() > 0)
+                    if (item.LicenseBigR!= null)
                     {
                         updateLicenseBigR(item, license);
                     }
@@ -395,37 +395,38 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="license"></param>
         private void updateLicenseBigR(LicenseAgreement item, LicenseAgreement license)
         {
-            _dbContext.UpdateListExtra(item.LicenseBigR, license.LicenseBigR,
-                (sorsItem, destItem) =>
+            if (item.LicenseBigR == null)
+                return;
+            if (license.LicenseBigR == null)
+                license.LicenseBigR = new LicenseBigR();
+
+            license.LicenseBigR.SetFields(item.LicenseBigR);
+
+            if (item.LicenseBigR.Obj.ObjId != null)
+            {
+
+                if (item.LicenseBigR.Obj.ObjId == 0)
                 {
-                    // LicAuthorBr
-                    _dbContext.UpdateList(sorsItem.LicAuthorBr, destItem.LicAuthorBr, i => { }, (l, r) => l.LicId == r.LicId && l.CRight == r.CRight && l.LicVersion == r.LicVersion);
-                    // Obj
-                    if (sorsItem.Obj != null)
-                    {
-                        if (sorsItem.Obj.ObjId == 0 )
-                        {
-                            ObjectRight newObj = new ObjectRight();
-                            newObj.SetFields(sorsItem.Obj);
-                            _dbContext.ObjectRight.Add(newObj);
-                            destItem.Obj = newObj;
-                        }
-                        // Obj.CopyRight
-                        _dbContext.UpdateListExtra(sorsItem.Obj.CopyRight, destItem.Obj.CopyRight,
-                            (sorsCp, destCp) =>
-                            {
-                                if (sorsCp.WorkRh != null && destCp.WorkRh == null )
-                                {
-                                    destCp.WorkRh = new WorkRh();
-                                    destCp.WorkRh.SetFields(sorsCp.WorkRh);
-                                    _dbContext.WorkRh.Add(destCp.WorkRh);
-                                }
-                            }, (l, r) => l.CRightId == r.CRightId);
-                        // Obj.Auth
-                        _dbContext.UpdateList(sorsItem.Obj.Authors, destItem.Obj.Authors, i => { }, (l, r) => l.CustId == r.CustId);
-                    }
+                    ObjectRight newObj = new ObjectRight();
+                    newObj.SetFields(item.LicenseBigR.Obj);
+                    _dbContext.ObjectRight.Add(newObj);
+                    license.LicenseBigR.Obj = newObj;
                 }
-            , (l, r) => l.LicVersion == r.LicVersion);
+
+                _dbContext.UpdateListExtra(item.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Obj.CopyRight,
+                    (sorsCp, destCp) =>
+                    {
+                        if (sorsCp.WorkRh != null && destCp.WorkRh == null)
+                        {
+                            destCp.WorkRh = new WorkRh();
+                            destCp.WorkRh.SetFields(sorsCp.WorkRh);
+                            _dbContext.WorkRh.Add(destCp.WorkRh);
+                        }
+                    }, (l, r) => l.CRightId == r.CRightId);
+
+                _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.CustId == r.CustId);
+
+            }
         }
 
 
@@ -786,12 +787,12 @@ namespace ipsmedserviceapp.Controllers
         {
             var lic = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licId).SingleAsync();
 
-            await _dbContext.Entry(lic).Collection(rec => rec.LicenseBigR).Query()
-                    .Where(rec => rec.LicVersion == lic.LicVersion)
+            await _dbContext.Entry(lic).Reference(rec => rec.LicenseBigR)
+                    .Query()
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.CopyRight)
                     .LoadAsync();
 
-            var licBr = lic.LicenseBigR.First();
+            var licBr = lic.LicenseBigR;
 
             foreach (var item in licBr.Obj.CopyRight)
                 await _dbContext.Entry(item).Reference(rec => rec.WorkRh)

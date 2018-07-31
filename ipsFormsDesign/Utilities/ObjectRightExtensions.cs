@@ -62,7 +62,7 @@ namespace ipsFormsDesign.Utilities
             copyRight.CustId = (int)objectAuthorRightholder.Author.CustId;
             copyRight.RoleCode = objectAuthorRightholder.Author.RoleCode;
 
-            copyRight.LicAuthorBr = objectAuthorRightholder.LicAuthorBr;
+            copyRight.LicAuthorBr= objectAuthorRightholder.LicAuthorBr;
             copyRight.WorkRh = objectAuthorRightholder.WorkRh;
 
             objectRight.CopyRight.Add(objectAuthorRightholder.CopyRight);
