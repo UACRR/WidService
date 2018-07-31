@@ -74,6 +74,18 @@
     <Compile Include="Report3.Designer.cs">
       <DependentUpon>Report3.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportS.Designer.cs">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_17_Balance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_17_Balance.Designer.cs">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_3_Community.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -92,6 +104,12 @@
     <Compile Include="R_5_2_CrKind.Designer.cs">
       <DependentUpon>R_5_2_CrKind.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_4_RatingRh.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_4_RatingRh.Designer.cs">
+      <DependentUpon>R_5_4_RatingRh.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -107,6 +125,12 @@
     <EmbeddedResource Include="Report3.resx">
       <DependentUpon>Report3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_3_Community.resx">
       <DependentUpon>R_5_3_Community.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_2_CrKind.resx">
       <DependentUpon>R_5_2_CrKind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_4_RatingRh.resx">
+      <DependentUpon>R_5_4_RatingRh.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

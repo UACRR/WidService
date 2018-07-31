@@ -38,7 +38,7 @@
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            typeReportSource1.TypeName = "ReportsLibrary.Report1, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
+            typeReportSource1.TypeName = "ReportsLibrary.ReportS, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
     "eyToken=null";
             this.reportViewer1.ReportSource = typeReportSource1;
             this.reportViewer1.Size = new System.Drawing.Size(1188, 669);
