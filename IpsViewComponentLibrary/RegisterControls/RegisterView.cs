@@ -59,6 +59,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             MessageBox.Show(message, "Помилка");
         }
 
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message, "Інформація");
+        }
+
         public void SetStatus(RegisterStatusType status)
         {
             ddlStatus.SelectedValue = (int)status;
@@ -143,6 +148,11 @@ namespace IpsViewComponentLibrary.RegisterControls
         private void btnSearchSelected_Click(object sender, EventArgs e)
         {
             _presenter.SearchObjectsForSelected();
+        }
+
+        private void btnCreateSelected_Click(object sender, EventArgs e)
+        {
+            _presenter.CreateObjectsForSelected();
         }
 
         private void btnSetStatus_Click(object sender, EventArgs e)
