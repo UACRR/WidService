@@ -3,6 +3,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.RightholderControls;
+using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private readonly ObjectRightDictionaries _dictionaries;
         private readonly int _category;
         private readonly RightholderService _rightholderService;
+        private readonly DialogService _dialogService;
 
         public AuthorRightholderItemView(ObjectAuthorRightholder authorRightholder, ObjectRightDictionaries dictionaries, int category)
         {
@@ -30,6 +32,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             StartPosition = FormStartPosition.CenterParent;
 
             _rightholderService = new RightholderService();
+            _dialogService = new DialogService();
 
             _authorRightholder = authorRightholder;
             _authorRightholder.BeginEdit();
@@ -56,7 +59,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             if (!ValidateChildren())
             {
-                MessageBox.Show("Не вірно введені дані. Об'єкт не записаний.");
+                _dialogService.ShowError(this, "Не вірно введені дані. Об'єкт не записаний.");
                 DialogResult = DialogResult.None;
                 return;
             }

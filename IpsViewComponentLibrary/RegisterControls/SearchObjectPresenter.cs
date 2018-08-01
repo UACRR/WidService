@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,6 +11,7 @@ namespace IpsViewComponentLibrary.RegisterControls
     {
         private readonly SearchObjectView _view;
         private readonly RegisterService _registerService;
+        private readonly DialogService _dialogService;
         private readonly List<RegisterItemViewModel> _sourceRegisterItemList;
 
         public SearchObjectPresenter(SearchObjectView view, RegisterService registerService)
@@ -18,6 +20,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.Presenter = this;
 
             _registerService = registerService;
+            _dialogService = new DialogService();
 
             _sourceRegisterItemList = new List<RegisterItemViewModel>();
         }
@@ -56,7 +59,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
             else
             {
-                _view.ShowMessage("Співпадінь не знайдено.");
+                _dialogService.ShowMessage(_view, "Співпадінь не знайдено.");
             }
         }
 

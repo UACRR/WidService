@@ -5,6 +5,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
     {
         private readonly ObjectRightSrView _view;
         private readonly ObjectRightService _objectRightService;
+        private readonly DialogService _dialogService;
         private ObjectRight _objectRight;
         private ObjectRightDictionaries _dictionaries;
 
@@ -26,6 +28,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _view.Presenter = this;
 
             _objectRightService = new ObjectRightService();
+            _dialogService = new DialogService();
             _dictionaries = _objectRightService.GetDictionary();
         }
 
@@ -131,7 +134,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 if (_objectRight.CopyRight.GetTotalRate() > 100)
                 {
-                    _view.ShowError("Загальний відсоток володіння не може бути більше 100.");
+                    _dialogService.ShowError(_view, "Загальний відсоток володіння не може бути більше 100.");
                     return;
                 }
 
@@ -142,7 +145,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 if (result)
                     _view.Close();
                 else
-                   _view.ShowError("Не вдалося зберегти об'єкт.");
+                    _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
             }
         }
 

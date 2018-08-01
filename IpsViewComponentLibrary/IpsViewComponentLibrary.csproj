@@ -185,6 +185,7 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="Utilities\DialogService.cs" />
     <Compile Include="MiddleControlCabinetAvances.cs">
       <SubType>UserControl</SubType>
     </Compile>

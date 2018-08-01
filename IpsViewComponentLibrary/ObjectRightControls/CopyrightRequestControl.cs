@@ -93,11 +93,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
-        public void ShowError(string message)
-        {
-            MessageBox.Show(message, "Помилка");
-        }
-
         private void SetDictionaries()
         {
             var allowedStatuses = new[] { 1, 4, 5 };

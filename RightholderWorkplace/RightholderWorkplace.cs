@@ -137,6 +137,7 @@ namespace RightholderWorkplace
 
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
+            RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
 
             sbSaveRightholder.DefaultItem = miSaveRightholder;
             sbSaveRightholder.Text = miSaveRightholder.Text;
