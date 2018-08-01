@@ -10,6 +10,8 @@ using IpsViewComponentLibrary.ObjectRightControls;
 using ipsFormsDesign.Utilities;
 using System.Drawing;
 using Telerik.WinControls;
+using IpsViewComponentLibrary.AppController;
+using ipsFormsDesign.Events;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -311,6 +313,8 @@ namespace IpsViewComponentLibrary.RegisterControls
                     newObject.MediaTrack.Duration
                 );
             }
+
+            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightAddedEvent());
         }
 
         private void OnSelectedRegisterItemChanged()
