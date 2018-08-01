@@ -87,7 +87,7 @@ namespace IpsViewComponentLibrary
             }
             normalizeData(_customer);
             var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.Single(item => item.LicVersion == rec.LicVersion));
-            bindingLicAgreement.DataSource = listAgreement;
+            bindingLicAgreement.DataSource = listAgreement.Where(rec => rec.LicStatus == 2);
         }
 
         private void ClearBindings()
@@ -158,7 +158,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void EnableButtons( bool enabled )
+        private void EnableButtons(bool enabled)
         {
             btnAddReport.Enabled = enabled;
             btnViewReport.Enabled = enabled;
@@ -196,7 +196,8 @@ namespace IpsViewComponentLibrary
                     RatedList.Register.Add(addRegister);
 
                     SaveRegisterRatedListExecuted(this, RatedList);
-                    BeginInvoke((Action)(() => {
+                    BeginInvoke((Action)(() =>
+                    {
                         radWaitingBar1.StopWaiting();
                         EnableButtons(true);
                     }));
@@ -238,9 +239,9 @@ namespace IpsViewComponentLibrary
             {
                 DeleteRegisterExecuted(this, register);
                 var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
-                foreach( var item in period.RegisterRatedList )
+                foreach (var item in period.RegisterRatedList)
                 {
-                    if( item.Register.Contains( register ))
+                    if (item.Register.Contains(register))
                     {
                         item.Register.Remove(register);
                         break;
@@ -251,6 +252,14 @@ namespace IpsViewComponentLibrary
                 bindingReports.Remove(register);
                 gvPeriodReports.MasterTemplate.Refresh();
             }
+        }
+
+        private void gvLicenseAgr_RowFormatting(object sender, Telerik.WinControls.UI.RowFormattingEventArgs e)
+        {
+            var row = e.RowElement.RowInfo;
+            var licAgr = row.DataBoundItem as LicenseAgrParam;
+            var debt = licAgr.Lic.PaidPeriod.Where(rec=>rec.EndDate < DateTime.Today ).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount);
+            row.Cells["Arrears"].Value = debt;
         }
     }
 

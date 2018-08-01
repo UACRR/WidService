@@ -192,7 +192,7 @@ namespace IpsViewComponentLibrary
         {
             var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.SingleOrDefault(item => item.LicVersion == rec.LicVersion && rec.LicStatus == 2)).ToList();
             if (licAgr.Count() > 0)
-                LicAgreementBindingSource.DataSource = licAgr;
+                LicAgreementBindingSource.DataSource = licAgr.Where( rec => rec.LicStatus == 2);
             else
                 LicAgreementBindingSource.DataSource = typeof(LicenseAgrParam);
         }

@@ -237,7 +237,7 @@
             this.gvPayments.ReadOnly = true;
             this.gvPayments.ShowGroupPanel = false;
             this.gvPayments.ShowGroupPanelScrollbars = false;
-            this.gvPayments.Size = new System.Drawing.Size(1026, 153);
+            this.gvPayments.Size = new System.Drawing.Size(1026, 168);
             this.gvPayments.TabIndex = 1;
             this.gvPayments.ThemeName = "Office2007Silver";
             // 
@@ -469,10 +469,9 @@
             this.Controls.Add(this.btnDistribute);
             this.Controls.Add(this.gvPayments);
             this.Controls.Add(this.gvPeriodsPayment);
-            this.MaximumSize = new System.Drawing.Size(3000, 1000);
             this.MinimumSize = new System.Drawing.Size(400, 562);
             this.Name = "CalculationInfoControl";
-            this.Size = new System.Drawing.Size(1032, 649);
+            this.Size = new System.Drawing.Size(1032, 664);
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paidPeriodBindingSource)).EndInit();
