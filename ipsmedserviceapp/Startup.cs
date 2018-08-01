@@ -80,16 +80,7 @@ namespace ipsmedserviceapp
                   };
 
               });
-            //services.AddAuthorization(auth =>
-            //{
-            //    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-            //        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
-            //        .RequireAuthenticatedUser()
-            //        .Build());
 
-            //    auth.DefaultPolicy = new AuthorizationPolicyBuilder("Identity.Application").RequireAuthenticatedUser().Build();
-
-            //});
 #if DEBUG
             services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
 #else
