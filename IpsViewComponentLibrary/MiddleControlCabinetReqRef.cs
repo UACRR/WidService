@@ -23,7 +23,7 @@ namespace IpsViewComponentLibrary
     {
         public event WorkRhSaveEventHandler OnWorkRhSave;
         public event ChangeLicenseTypeEventHandler OnLicenseTypeChange;
-        public event SaveCustomerEventHandler OnNewRequestSaveNeed;
+        public event SaveCustomerEventHandler OnLicenseSaveNeed;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
 
         private Customer _customer;
@@ -108,7 +108,7 @@ namespace IpsViewComponentLibrary
                 RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit, item.LicId);
                 if (requestForm.ShowDialog() == DialogResult.OK)
                 {
-                    if (OnNewRequestSaveNeed?.Invoke(_customer) ?? false)
+                    if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
                         MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
                     else
@@ -291,7 +291,7 @@ namespace IpsViewComponentLibrary
                     RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties);
                     if(requestForm.ShowDialog() == DialogResult.OK)
                     {
-                        if (OnNewRequestSaveNeed?.Invoke(_customer) ?? false)
+                        if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
                             MessageBox.Show("Нову завявку додано!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
                             MessageBox.Show("Не можливо зберегти нову заявку!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);

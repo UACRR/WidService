@@ -134,22 +134,51 @@ namespace IpsViewComponentLibrary
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
-                source.AddRange(from item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus != 2)
-                    where Rights != TypeRights.BigRights || _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind == 1
-                    let licAgr = item.LicenseAgrParam.LastOrDefault()
-                    select new GridLicenseAgrView
+            {
+                foreach (var license in _customer.Client.LicenseAgreement)
+                {
+                    if(license.LicenseAgrParam.Count == 1 && license.LicStatus == 2)
+                        continue;
+
+                    if(license.LicenseAgrParam.Count == 1 && license.LicStatus != 2)
                     {
-                        Id = item.AgrId,
-                        LicId = item.LicId,
-                        License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
-                        Series = string.Empty,
-                        AgrNumber = licAgr?.LicNum ?? string.Empty,
-                        DateBegin = licAgr?.DateBegin?.ToShortDateString() ?? string.Empty,
-                        DateEnd = licAgr?.DateEnd?.ToShortDateString() ?? string.Empty,
-                        State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licAgr?.LicStatus)?.Name ?? string.Empty,
-                        Status = licAgr.LicStatus,
-                        PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licAgr?.PeriodCode)?.Name ?? string.Empty
-                    });
+                        source.Add(new GridLicenseAgrView
+                        {
+                            Id = license.AgrId,
+                            LicId = license.LicId,
+                            License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
+                            Series = string.Empty,
+                            AgrNumber = license.LicenseAgrParam?.SingleOrDefault()?.LicNum ?? string.Empty,
+                            AgrMasterNumber = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion)?.LicNum,
+                            DateBegin = license.LicenseAgrParam.SingleOrDefault()?.DateBegin?.ToShortDateString() ?? string.Empty,
+                            DateEnd = license.LicenseAgrParam?.SingleOrDefault()?.DateEnd?.ToShortDateString() ?? string.Empty,
+                            State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == license.LicenseAgrParam?.SingleOrDefault()?.LicStatus)?.Name ?? string.Empty,
+                            Status = license.LicenseAgrParam?.SingleOrDefault()?.LicStatus,
+                            PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == license.LicenseAgrParam?.SingleOrDefault()?.PeriodCode)?.Name ?? string.Empty
+                        });
+                        continue;
+                    }
+
+                    foreach (var agrParam in license.LicenseAgrParam)
+                    {
+                        if (agrParam.LicVersion > license.LicVersion)
+                            source.Add(new GridLicenseAgrView
+                            {
+                                Id = license.AgrId,
+                                LicId = license.LicId,
+                                License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
+                                Series = string.Empty,
+                                AgrNumber = agrParam?.LicNum ?? string.Empty,
+                                AgrMasterNumber = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion)?.LicNum,
+                                DateBegin = agrParam?.DateBegin?.ToShortDateString() ?? string.Empty,
+                                DateEnd = agrParam?.DateEnd?.ToShortDateString() ?? string.Empty,
+                                State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == agrParam?.LicStatus)?.Name ?? string.Empty,
+                                Status = agrParam.LicStatus,
+                                PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == agrParam?.PeriodCode)?.Name ?? string.Empty
+                            });
+                    }
+                }
+            }
 
             gvMoreLicenseAgr.DataSource = source;
             gvMoreLicenseAgr.MasterTemplate.Refresh();
@@ -337,8 +366,8 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void btnProlongation_Click(object sender, EventArgs e)
         {
-
-            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            var licId = (gvLicenseAgr.CurrentRow.DataBoundItem as GridLicenseAgrView)?.LicId;
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == licId).SingleOrDefault();
             if (license == null)
                 return;
 
@@ -354,6 +383,7 @@ namespace IpsViewComponentLibrary
                 // -- Сінхронізувати з поточною, окрім версії
                 newLicense.SetFields(licParam, new[] { "LicVersion" });
                 newLicense.License = licParam?.License;
+                //newLicense.LicVersion = 
             }
             // Інакше == 0
             else {
@@ -368,6 +398,7 @@ namespace IpsViewComponentLibrary
                 newLicense.LicVersion = (licVersion ?? 0) + 1;
                 newLicense.License = licParam?.License;
             }
+
             //newLicense.LicId = 0;
             license?.LicenseAgrParam?.Add(newLicense);
 
@@ -490,6 +521,7 @@ namespace IpsViewComponentLibrary
         public string License { get; set; }
         public string Series { get; set; }
         public string AgrNumber { get; set; }
+        public string AgrMasterNumber { get; set; }
         public string DateBegin { get; set; }
         public string DateEnd { get; set; }
         public decimal Amount { get; set; }
