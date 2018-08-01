@@ -181,6 +181,10 @@ namespace WebAPIConnector
         {
             string idUrl = $"{url}/{id}";
             string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
+
+            if (string.IsNullOrEmpty(retApiString))
+                return default(T);
+
             JObject retObj = JObject.Parse(retApiString);
 
             return retObj.ToObject<T>();
@@ -270,9 +274,18 @@ namespace WebAPIConnector
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
-            string idUrl = $"{url}/{id}";
             StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
-            HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+            HttpResponseMessage result;
+
+            if( string.IsNullOrEmpty(id) || id == "0" )
+            {
+                result = client.PostAsync(url, content).GetAwaiter().GetResult();
+            }
+            else
+            {
+                string idUrl = $"{url}/{id}";
+                result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+            }
 
             var retCode = result.IsSuccessStatusCode;
             if (retCode)
@@ -293,15 +306,24 @@ namespace WebAPIConnector
         /// <returns></returns>
         public bool UpdateListItemWithReturn<T>(string url, string id, List<T> data, out List<T> retData)
         {
+
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
-            string idUrl = $"{url}/{id}";
+
             StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
-            HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+            HttpResponseMessage result;
 
-
+            if (string.IsNullOrEmpty(id) || id == "0" ) // create
+            {
+                result = client.PostAsync(url, content).GetAwaiter().GetResult();
+            }
+            else // Update
+            {
+                string idUrl = $"{url}/{id}";
+                result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+            }
             var retCode = result.IsSuccessStatusCode;
             var retString = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var jarray = JArray.Parse(retString);
@@ -324,12 +346,19 @@ namespace WebAPIConnector
             };
             string idUrl = url;
 
-            if (!string.IsNullOrEmpty(id))
-                idUrl = string.Concat(idUrl, "/", id);
-
             StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
-            HttpResponseMessage result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+            HttpResponseMessage result;
+            // Редагування
+            if (!string.IsNullOrEmpty(id) || id == "0" )
+            {
+                idUrl = string.Concat(idUrl, "/", id);
+                result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
+            }
+            else // Create
+            {
+                result = client.PostAsync(idUrl, content).GetAwaiter().GetResult();
 
+            }
 
             var retCode = result.IsSuccessStatusCode;
             if (retCode)

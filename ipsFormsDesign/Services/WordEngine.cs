@@ -911,11 +911,12 @@ namespace ipsFormsDesign.Services
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
-                LicenseBigR licenseBigR = licA?.LicenseBigR?.Where(rec => rec.LicVersion == licA.LicVersion).Single();
+
+                LicenseBigR licenseBigR = licA?.LicenseBigR;
                 var creativeRole = _dic.creativeRoleType;
                 var authors = licenseBigR?.Obj.Authors?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
                 var copyright = licenseBigR?.Obj.CopyRight?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
-                var licauthorbr = licenseBigR?.LicAuthorBr?.Where(rec => rec.LicVersion == licA.LicVersion).ToList();
+                var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
 
                 var TbAPrc = (from aut in authors
                               join crt in creativeRole on aut.RoleCode equals crt.CodeI

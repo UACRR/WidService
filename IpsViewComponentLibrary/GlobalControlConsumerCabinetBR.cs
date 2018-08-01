@@ -88,9 +88,9 @@ namespace IpsViewComponentLibrary
             return OnWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
         }
 
-        private bool CtrlCabinet_OnLicenseStatusChanging(LicenseAgreement agr, int version, int status)
+        private bool CtrlCabinet_OnLicenseStatusChanging(LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            return OnLicenseStatusChanging?.Invoke(agr, version, status) ?? false;
+            return OnLicenseStatusChanging?.Invoke(agr, version, status, changeVer) ?? false;
         }
 
         private IList<BigRightSpectacleView> CtrlCabinet_OnGetSpectacleNeed(int custId)
@@ -135,7 +135,7 @@ namespace IpsViewComponentLibrary
 
         public void SetBigRightBidAuthors(IList<object> authors)
         {
-            var licDic = _customer.Client.LicenseAgreement.Where(rec=>rec.LicenseBigR.Count > 0).Select(row=>row.LicenseBigR.First(item=>item.LicVersion==row.LicVersion)).ToDictionary(rec => rec.LicId);
+            var licDic = _customer.Client.LicenseAgreement.Where(rec=>rec.LicenseBigR!=null).Select(row=>row.LicenseBigR).ToDictionary(rec => rec.LicId);
             _authors = authors.Select( row =>
             {
                 BigRightRequestBidAuthors item = (BigRightRequestBidAuthors) row;

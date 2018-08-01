@@ -178,7 +178,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void gvObjectAuthorsRightholders_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
-            Utilities.GridViewHelper.SetTooltipTextForColumnHeader(sender, e);
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         private void gvObjectAuthorsRightholders_CellFormatting(object sender, CellFormattingEventArgs e)

@@ -251,11 +251,11 @@
             // 
             this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToAccept.Enabled = false;
-            this.btnToAccept.Location = new System.Drawing.Point(711, 103);
+            this.btnToAccept.Location = new System.Drawing.Point(701, 103);
             this.btnToAccept.Name = "btnToAccept";
-            this.btnToAccept.Size = new System.Drawing.Size(93, 24);
+            this.btnToAccept.Size = new System.Drawing.Size(103, 24);
             this.btnToAccept.TabIndex = 12;
-            this.btnToAccept.Text = "На акцепт";
+            this.btnToAccept.Text = "На погодження";
             this.btnToAccept.ThemeName = "Office2013Light";
             this.btnToAccept.Click += new System.EventHandler(this.btnToAccept_Click);
             // 

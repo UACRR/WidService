@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
         public event EventHandler<List<MoneyPeriodLink>> SaveLinkCommandExecuted;
+        public delegate void UpdateCustomerDataEventHandler(int id);
+        public event UpdateCustomerDataEventHandler UpdateData;
 
         public CalculationInfoControl()
         {
@@ -255,6 +257,7 @@ namespace IpsViewComponentLibrary
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 SavePariodCommandExecuted(this, currentAgree.Lic.PaidPeriod.ToList());
+                UpdateData?.Invoke(_customer.CustId);
                 SetupAllBinding();
             }
         }
@@ -354,10 +357,11 @@ namespace IpsViewComponentLibrary
 
         private void gvLicenseAgr_RowFormatting(object sender, RowFormattingEventArgs e)
         {
-            var ri = e.RowElement.RowInfo;
-            var licAgreement = (LicenseAgrParam)ri.DataBoundItem;
 
-            var debt = licAgreement.Lic?.PaidPeriod.Sum(rec => rec.Amount - rec.Distribamount - rec.Undistribamount) ?? 0;
+            var ri = e.RowElement?.RowInfo;
+            var licAgreement = (LicenseAgrParam)ri?.DataBoundItem;
+
+            var debt = licAgreement?.Lic?.PaidPeriod?.Sum(rec => rec?.Amount - rec?.Distribamount - rec?.Undistribamount) ?? 0;
             ri.Cells["Debt"].Value = Convert.ToDecimal(debt < 0 ? 0 : debt);
         }
 

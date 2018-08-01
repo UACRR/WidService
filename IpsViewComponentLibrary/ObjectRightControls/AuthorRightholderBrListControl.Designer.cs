@@ -173,6 +173,7 @@
             this.gvAuthorRightholderList.TabIndex = 23;
             this.gvAuthorRightholderList.ThemeName = "Office2013Light";
             this.gvAuthorRightholderList.EditorRequired += new Telerik.WinControls.UI.EditorRequiredEventHandler(this.gvAuthorRightholderList_EditorRequired);
+            this.gvAuthorRightholderList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvAuthorRightholderList_CurrentRowChanged);
             this.gvAuthorRightholderList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectsRightsList_CommandCellClick);
             // 
             // objectAuthorRightholderBrViewModelBindingSource

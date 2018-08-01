@@ -30,6 +30,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug IIS|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug IIS\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug HttpSys|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug HttpSys\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.2.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\packages\Portable.BouncyCastle.1.8.2\lib\net40\BouncyCastle.Crypto.dll</HintPath>
@@ -157,6 +175,12 @@
     </Compile>
     <Compile Include="AgentFooterBR.Designer.cs">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\ProlongationBigRight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\ProlongationBigRight.Designer.cs">
+      <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
@@ -699,6 +723,9 @@
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
+      <DependentUpon>ProlongationBigRight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetAvances.resx">
       <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
     </EmbeddedResource>
@@ -992,6 +1019,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

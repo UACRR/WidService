@@ -24,12 +24,21 @@ namespace IpsViewComponentLibrary
         public event WorkRhSaveEventHandler OnWorkRhSave;
         public event ChangeLicenseTypeEventHandler OnLicenseTypeChange;
         public event SaveCustomerEventHandler OnNewRequestSaveNeed;
+        public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
+
         private Customer _customer;
         private ConsumerBigRightView _bigRightView;
         private AnketaDictionaties _dictionaties;
         private IList<BigRightRequestBidAuthors> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
         private SaveNeedStatus _saveNeedStatus = SaveNeedStatus.No;
+        private Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
+            {ButtonFunctionType.Accept, "Акцептувати"},
+            {ButtonFunctionType.Agree, "На погодження"},
+            {ButtonFunctionType.None, string.Empty}
+        };
+
+        private ButtonFunctionType _functionType = ButtonFunctionType.None;
 
         public MiddleControlCabinetReqRef()
         {
@@ -91,18 +100,25 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        //клік на гріду по кнопкі редагувати
         private void gvViewRequests_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            if (_typeControl == ControlRequestOrReferenceType.Request)
+            if (e.Row.DataBoundItem is BigRightRequests item)
             {
-
-            }
-            else if(_typeControl == ControlRequestOrReferenceType.Reference)
-            {
-                
+                RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit, item.LicId);
+                if (requestForm.ShowDialog() == DialogResult.OK)
+                {
+                    if (OnNewRequestSaveNeed?.Invoke(_customer) ?? false)
+                        MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                }
             }
         }
 
+        //зміна рядка на грід
         private void gvViewRequests_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)
@@ -110,13 +126,48 @@ namespace IpsViewComponentLibrary
                 bindingSource1.DataSource = typeof(BigRightRequestBidAuthors);
                 btnSave.Enabled = false;
                 btnCancel.Enabled = false;
-                return;
+                btnToReference.Enabled = false;
+            }
+            else
+            {
+                btnToReference.Enabled = true;
+                btnSave.Enabled = true;
+                btnCancel.Enabled = true;
             }
 
-            btnSave.Enabled = true;
-            btnCancel.Enabled = true;
-            var item = e.CurrentRow.DataBoundItem as BigRightRequests;
+            var item = e?.CurrentRow?.DataBoundItem as BigRightRequests;
+            if (item?.LicStatus == 0 || item?.LicStatus == 1)
+            {
+                btnToAccept.Enabled = true;
+                switch (item?.LicStatus)
+                {
+                    case 0:
+                        SetBtnFunc(ButtonFunctionType.Agree);
+                        break;
+
+                    case 1:
+                        SetBtnFunc(ButtonFunctionType.Accept);
+                        break;
+
+                    default:
+                        SetBtnFunc(ButtonFunctionType.None);
+                        break;
+                }
+            }
+            else
+                btnToAccept.Enabled = false;
+
+            btnDelete.Enabled = item?.LicStatus == 0;
+
             bindingSource1.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
+
+        }
+
+        private void SetBtnFunc(ButtonFunctionType type)
+        {
+            _functionType = type;
+            if(type != ButtonFunctionType.None)
+                btnToAccept.Text = _btnDictionary[type];
         }
 
         private void MiddleControlCabinetReqRef_Leave(object sender, EventArgs e)
@@ -180,10 +231,10 @@ namespace IpsViewComponentLibrary
         private void gvCreativeRole_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             
-            if (e?.Row?.DataBoundItem is BigRightRequestBidAuthors item && _typeControl == ControlRequestOrReferenceType.Request)
+            if (e?.Row?.DataBoundItem is BigRightRequestBidAuthors item/* && _typeControl == ControlRequestOrReferenceType.Request*/)
             {
                 _saveNeedStatus = SaveNeedStatus.Yes;
-                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR.SingleOrDefault()?.Obj;
+                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.Obj;
                 var copyRight = obj?.CopyRight?.SingleOrDefault(rec => rec.CRightId == item.CRightId);
                 var workRh = copyRight?.WorkRh;
                 if(workRh != null)
@@ -206,9 +257,9 @@ namespace IpsViewComponentLibrary
 
         private void gvCreativeRole_CellBeginEdit(object sender, Telerik.WinControls.UI.GridViewCellCancelEventArgs e)
         {
-            if (_workRhs == null && _typeControl == ControlRequestOrReferenceType.Request && e?.Row?.DataBoundItem is BigRightRequestBidAuthors item)
+            if (_workRhs == null /*&& _typeControl == ControlRequestOrReferenceType.Request*/ && e?.Row?.DataBoundItem is BigRightRequestBidAuthors item)
             {
-                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR.SingleOrDefault()?.Obj;
+                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.Obj;
                 var copyRight = obj?.CopyRight?.SingleOrDefault(rec => rec.CRightId == item.CRightId);
 
                 if (obj != null)
@@ -270,6 +321,9 @@ namespace IpsViewComponentLibrary
             else if (_typeControl == ControlRequestOrReferenceType.Reference)
             {
                 //some code
+                if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+                    CallSaveRequest(item.LicId, true);
+                //copypast ^ ^ ^
             }
         }
 
@@ -376,11 +430,70 @@ namespace IpsViewComponentLibrary
             if (_saveNeedStatus == SaveNeedStatus.Yes && e?.CurrentRow?.DataBoundItem is BigRightRequests item)
                 CallSaveRequest(item.LicId);
         }
+
+        private void btnToAccept_Click(object sender, EventArgs e)
+        {
+            if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+                switch (_functionType)
+                {
+                    case ButtonFunctionType.None:
+                        break;
+                    case ButtonFunctionType.Accept:
+                    {
+                        if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false) ?? false)
+                            ExtensionUtils.ShowInfoMessage("Акцептовано!", "Успішно", MessageBoxIcon.Information);
+                        else
+                            ExtensionUtils.ShowInfoMessage("Не можливо акцептувати", "Помилка!", MessageBoxIcon.Error);
+                    }
+                        break;
+                    case ButtonFunctionType.Agree:
+                    {
+                        if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 3, false) ?? false)
+                            ExtensionUtils.ShowInfoMessage("Відправлено на погодження!", "Успішно", MessageBoxIcon.Information);
+                        else
+                            ExtensionUtils.ShowInfoMessage("Не можливо відправити на погодження", "Помилка!", MessageBoxIcon.Error);
+                    }
+                        break;
+                }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+            {
+                string reqref = _typeControl == ControlRequestOrReferenceType.Request ? "Заявк" :
+                                _typeControl == ControlRequestOrReferenceType.Reference ? "Довідк" : string.Empty;
+
+                string reqrefl = _typeControl == ControlRequestOrReferenceType.Request ? "заявку!" :
+                    _typeControl == ControlRequestOrReferenceType.Reference ? "довідку!" : string.Empty;
+
+                if (MessageBox.Show(reqref + "а буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec=> rec.LicId == item.LicId),item.LicVersion,4, false) ?? false)
+                        ExtensionUtils.ShowInfoMessage(reqref + "у закрито!", "Успішно", MessageBoxIcon.Information);
+                    else
+                        ExtensionUtils.ShowInfoMessage("Не можливо закрити " + reqrefl, "Помилка", MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 
     public enum SaveNeedStatus
     {
         Yes,
         No
+    }
+
+    public enum ButtonFunctionType
+    {
+        None,
+        /// <summary>
+        /// Акцептувати
+        /// </summary>
+        Accept,
+        /// <summary>
+        /// На погодження
+        /// </summary>
+        Agree
     }
 }

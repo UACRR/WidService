@@ -73,10 +73,16 @@ namespace IpsViewComponentLibrary
             }
         }
 
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetupBindings()
         {
             if (_customer == null)
             {
+                ClearBindings();
                 return;
             }
             normalizeData(_customer);
@@ -84,7 +90,12 @@ namespace IpsViewComponentLibrary
             bindingLicAgreement.DataSource = listAgreement;
         }
 
-
+        private void ClearBindings()
+        {
+            bindingLicAgreement.DataSource = typeof(LicenseAgrParam);
+            bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+            bindingReports.DataSource = typeof(Register);
+        }
         private void CreateAct()
         {
             MessageBox.Show("Створення акту");
@@ -107,7 +118,7 @@ namespace IpsViewComponentLibrary
                 return;
 
             var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
-            bindingPaidPeriod.DataSource = lic.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate);
+            bindingPaidPeriod.DataSource = lic?.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
         }
 
         // * * * [Періоди платежів]
@@ -178,7 +189,7 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register { RgStatus = 1, FileName = Path.GetFileName(dialog.FileName) };
+                    Register addRegister = new Register { RgStatus = 1, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 

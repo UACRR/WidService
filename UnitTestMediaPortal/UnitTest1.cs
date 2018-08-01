@@ -186,7 +186,7 @@ namespace UnitTestMediaPortal
             // Отримати ген угоди
             var agr = consumer.Client.LicenseAgreement.FirstOrDefault(rec => rec.LicId == licId);
             // Змінити статус ген угоди
-            var ret = _service.SetLicAgreementStatus(agr, (int)agr.LicVersion,  status);
+            var ret = _service.SetLicAgreementStatus(agr, (int)agr.LicVersion,  status, false);
             // Змінити статус на Ліцензійний договір
             Assert.IsTrue(ret);
             consumer = _service.GetData(custid);
@@ -201,7 +201,7 @@ namespace UnitTestMediaPortal
             int custId = 142;
             var items = _service.GetData(custId);
 
-            var licenseBr = items.Client.LicenseAgreement.Where(rec => rec.LicClass == 2 && rec.LicStatus == 2).First().LicenseBigR.First();
+            var licenseBr = items.Client.LicenseAgreement.Where(rec => rec.LicClass == 2 && rec.LicStatus == 2).First().LicenseBigR;
             var worrh = licenseBr.Obj.CopyRight.Select(rec=> rec.WorkRh ).ToList();
             var testWorkRh = worrh[0];
             testWorkRh.WorkDateCl = DateTime.Today;
@@ -209,7 +209,7 @@ namespace UnitTestMediaPortal
             var ret = _service.SaveBRWorkRH(licenseBr.LicId, worrh);
             Assert.IsTrue(ret);
             items = _service.GetData(custId);
-            licenseBr = items.Client.LicenseAgreement.Where(rec => rec.LicId == licenseBr.LicId ).First().LicenseBigR.First();
+            licenseBr = items.Client.LicenseAgreement.Where(rec => rec.LicId == licenseBr.LicId ).First().LicenseBigR;
             worrh = licenseBr.Obj.CopyRight.Where(rec => rec.WorkRh != null ).Select(rec => rec.WorkRh).ToList();
             var checkrh = worrh.Where(rec => rec.CRightId == testWorkRh.CRightId).Single();
 

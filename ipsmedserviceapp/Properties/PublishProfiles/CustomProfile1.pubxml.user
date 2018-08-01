@@ -6,6 +6,5 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>\\IPSDATA\c$\inetpub\wwwroot\mediaApi</_PublishTargetUrl>
   </PropertyGroup>
 </Project>

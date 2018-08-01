@@ -52,6 +52,7 @@
     <item Name="LicenseBigR">
         <noignore>ObjectRight</noignore>
         <noignore>LicAuthorBr</noignore>
+        <noignore>MusicalDesign</noignore>
     </item>
     <item Name="LicAuthorBr"></item>
     <item Name="RightHolder">

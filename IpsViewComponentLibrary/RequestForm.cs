@@ -10,6 +10,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using Telerik.WinControls;
@@ -25,58 +26,115 @@ namespace IpsViewComponentLibrary
         private LicenseAgreement _licenseAgreement;
         private FormType _formType;
         private bool _deleteLicense = true;
+        private IList<RelGenrePercent> _percent;
+        private int? _licId = null;
+
+
         public RequestForm()
         {
             InitializeComponent();
         }
 
-        private IList<RelGenrePercent> _percent;
-        public RequestForm(Customer customer, ConsumerBigRightView bigRightView, AnketaDictionaties dictionaties, FormType formType = FormType.Create)
+        public RequestForm(Customer customer, ConsumerBigRightView bigRightView, AnketaDictionaties dictionaties, FormType formType = FormType.Create, int? licId = null)
         {
             InitializeComponent();
+            _licId = licId;
             _customer = customer;
             DialogResult = DialogResult.None;
             _formType = formType;
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
-            ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+
             dtDate.SetUserCalendarSettingsm();
             dtDate.MinDate = DateTime.Today;
-            if(_formType == FormType.Create)
+            if (_formType == FormType.Create)
             {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                 CreateNewRequest();
                 Text = "Створення нової заявки на ліцензію";
 
-            } else if (_formType == FormType.Edit)
+            }
+            else if (_formType == FormType.Edit)
             {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
+                ctrlAuthorRightholderList.OnGetWorkRh += CtrlAuthorRightholderList_OnGetWorkRh;
                 Text = "Редагування заявки на ліцезнію";
                 btnSave.Text = "Зберегти редаговану заявку";
                 btnSave.Enabled = true;
             }
             #region BINDING
-            bsConsumerBigRightView.DataSource = bigRightView;
-            bsLicAgrParam.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam;
-            bsLicenseBigR.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR;
-            bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam.SingleOrDefault()?.License;
-            _percent = dictionaties.relGenrePercent;
-            bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
-            bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-            SetObjectRightData(_customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj);
 
-            bsDictObjAct.DataSource = dictionaties.objAct;
-            bsDictPerformType.DataSource = dictionaties.performType;
-            bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
-            bsDictLanguage.DataSource = dictionaties.language;
+            if (licId == null)
+            {
+                bsConsumerBigRightView.DataSource = bigRightView;
+                bsLicAgrParam.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam;
+                bsLicenseBigR.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR;
+                bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam
+                    .SingleOrDefault()?.License;
+                _percent = dictionaties.relGenrePercent;
+                bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj;
+                bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
+                SetObjectRightData(
+                    _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj);
 
+                bsDictObjAct.DataSource = dictionaties.objAct;
+                bsDictPerformType.DataSource = dictionaties.performType;
+                bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
+                bsDictLanguage.DataSource = dictionaties.language;
+            }
+            else
+            {
+                bsConsumerBigRightView.DataSource = bigRightView;
+                var licenseAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
+
+                bsLicAgrParam.DataSource = licenseAgr?.LicenseAgrParam;
+                bsLicenseBigR.DataSource = licenseAgr?.LicenseBigR;
+                bsLicense.DataSource = licenseAgr?.LicenseAgrParam.SingleOrDefault()?.License;
+                _percent = dictionaties.relGenrePercent;
+                bsObjectRight.DataSource = licenseAgr?.LicenseBigR?.Obj;
+                bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
+                //ObjectRightService _service = new ObjectRightService();
+                var obj = licenseAgr?.LicenseBigR?.Obj;
+                SetObjectRightData(obj);
+
+                bsDictObjAct.DataSource = dictionaties.objAct;
+                bsDictPerformType.DataSource = dictionaties.performType;
+                bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
+                bsDictLanguage.DataSource = dictionaties.language;
+            }
 
             #endregion
         }
 
+        private void SetVisible()
+        {
+            lblComCl.Visible = _formType == FormType.Edit;
+            lblComRh.Visible = _formType == FormType.Edit;
+            txtCommentCl.Visible = _formType == FormType.Edit;
+            txtCommentRh.Visible = _formType == FormType.Edit;
+        }
+
+        private void CtrlAuthorRightholderList_OnGetWorkRh(WorkRh workRh)
+        {
+            if (workRh != null)
+                bsWorkRh.DataSource = workRh;
+        }
+
         public void ParseAuthors()
         {
-            var objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.Obj;
-            if (objectRight == null)
-                return;
+            ObjectRight objectRight = null;
+            if (_licId == null)
+            {
+                objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj;
+                if (objectRight == null)
+                    return;
+            }
+            else
+            {
+                objectRight = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId)?.LicenseBigR?.Obj;
+                if (objectRight == null)
+                    return;
+            }
 
             // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
             objectRight.Authors.Clear();
@@ -98,12 +156,12 @@ namespace IpsViewComponentLibrary
 
                     return new ObjectAuthorRightholderBrViewModel
                     {
-                        Country = foundedRightholder.Country,
-                        InnerCode = foundedRightholder.InnerCode,
+                        Country = foundedRightholder?.Country,
+                        InnerCode = foundedRightholder?.InnerCode,
                         Author = a,
                         CopyRight = foundedCopyright,
-                        LicAuthorBr = foundedCopyright.LicAuthorBr ?? new LicAuthorBr(),
-                        WorkRh = foundedCopyright.WorkRh ?? new WorkRh(),
+                        LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new LicAuthorBr(),
+                        WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
                     };
                 })
                 .ToList();
@@ -129,6 +187,7 @@ namespace IpsViewComponentLibrary
                     {
                         LicVersion = 1,
                         LicStatus = 0,
+                        LicDate = DateTime.Today,
                         License = new ObservableListSource<License>
                         {
                             new License
@@ -139,11 +198,9 @@ namespace IpsViewComponentLibrary
                         }
                     }
                 },
-                LicenseBigR = new ObservableListSource<LicenseBigR>
-                {
+                LicenseBigR =
                     new LicenseBigR
                     {
-                        LicVersion = 1,
                         Obj = new ObjectRight
                         {
                             Status = 0,
@@ -154,7 +211,6 @@ namespace IpsViewComponentLibrary
                         },
                         MusicalDesign = new ObservableListSource<MusicalDesign>()
                     }
-                }
             };
             _customer.Client.LicenseAgreement.Add(_licenseAgreement);
         }
@@ -207,7 +263,7 @@ namespace IpsViewComponentLibrary
                 Duration = new TimeSpan(00, 00, 00, 01),
             };
 
-            var mus = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.MusicalDesign;
+            var mus = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.MusicalDesign;
             mus?.Add(design);
             AddCompositionForm addCompositionForm = new AddCompositionForm(mus?.LastOrDefault());
             if (addCompositionForm.ShowDialog() != DialogResult.OK)
@@ -218,15 +274,14 @@ namespace IpsViewComponentLibrary
 
         private void RefreshGridDataSource()
         {
-            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR
-                .SingleOrDefault()?.MusicalDesign.Where(rec => rec.ActNumb == (int)ddlActType.SelectedValue)?.ToList();
+            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR?.MusicalDesign.Where(rec => rec.ActNumb == (int)ddlActType.SelectedValue)?.ToList();
             gvViewActList.DataSource = source;
         }
 
         private void gvViewActList_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             var delItem = e.Row.DataBoundItem as MusicalDesign;
-            _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR.SingleOrDefault()?.MusicalDesign.Remove(delItem);
+            _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.MusicalDesign.Remove(delItem);
             RefreshGridDataSource();
         }
 
@@ -238,7 +293,7 @@ namespace IpsViewComponentLibrary
 
         private void txtActCode_TextChanged(object sender, EventArgs e)
         {
-            if(Int32.TryParse(txtActCode.Text, out int val))
+            if (Int32.TryParse(txtActCode.Text, out int val))
                 if (val > 3)
                     txtActCode.Text = "3";
             UpdateGenrePersent();

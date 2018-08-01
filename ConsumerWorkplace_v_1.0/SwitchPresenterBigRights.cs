@@ -95,6 +95,7 @@ namespace ConsumerWorkplace_v_1._0
             if (_cabinetBr == null)
             {
                 _cabinetBr = new GlobalControlConsumerCabinetBR();
+                var a = new CalculationInfoControlPresenter(_cabinetBr.ctrlCabinet.ctrlCalculation, _service);
                 _cabinetBr.OnBackToGridNeed += CabinetBr_OnBackToGridNeed;
                 _cabinetBr.OnCustomerUpdateDataNeed += CabinetBr_OnCustomerUpdateDataNeed;
                 _cabinetBr.OnAddNewCustomer += _cabinetBr_OnAddNewCustomer;
@@ -119,7 +120,12 @@ namespace ConsumerWorkplace_v_1._0
 
         private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
         {
-            return _service.SetLicenseType(agreement, licType);
+            if(_service.SetLicenseType(agreement, licType))
+            {
+                UpdateData(agreement?.CustId ?? default(int));
+                return true;
+            }
+            return false;
         }
 
         private bool SaveWorkRh(int licId, List<WorkRh> workRhList)
@@ -129,9 +135,9 @@ namespace ConsumerWorkplace_v_1._0
             return _service.SaveBRWorkRH(licId, workRhList);
         }
 
-        private bool _cabinetBr_OnLicenseStatusChanging(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status)
+        private bool _cabinetBr_OnLicenseStatusChanging(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            if (_service.SetLicAgreementStatus(agr, version, status))
+            if (_service.SetLicAgreementStatus(agr, version, status, changeVer))
             {
                 UpdateData((int)agr.CustId);
                 return true;

@@ -40,11 +40,8 @@ namespace TestControls
         /// </summary>
         private void initControls()
         {
-            bindPayPeriod1.SavePariodCommandExecuted += BindPayPeriod1_SavePariodCommandExecuted;
-            bindPayPeriod1.SaveLinkCommandExecuted += BindPayPeriod1_SaveLinkCommandExecuted;
-            reportsControl1.SaveRegisterRatedListExecuted += ReportsControl1_SaveRegisterRatedListExecuted;
-            reportsControl1.GetRegisterItems = _service.GetRegisterItems;
-            reportsControl1.DeleteRegisterExecuted += ReportsControl1_DeleteRegisterExecuted;
+            var pres01 = new CalculationInfoControlPresenter(bindPayPeriod1, _service);
+            var pres02 = new ReportsControlPresenter(reportsControl1, _service);
 
             payForm = new EditPay();
 
@@ -57,59 +54,6 @@ namespace TestControls
             if (employee.Count == 0)
                 SetButtonDisable();
 
-        }
-
-        private void ReportsControl1_DeleteRegisterExecuted(object sender, Register e)
-        {
-            _service.DeleteRegister( e );
-        }
-
-        private void ReportsControl1_SaveRegisterRatedListExecuted(object sender, RegisterRatedList e)
-        {
-            RegisterRatedList ratedList = null;
-            if (_service.SaveRegisterRatedList(e, out ratedList ) == true)
-            {
-                var dic = ratedList.Register.ToDictionary(rec => rec.FileName);
-                e.SetFields(ratedList);
-                foreach( var item in e.Register )
-                {
-                    var sors = dic[item.FileName];
-                    item.SetFields(sors);
-                    item.RegisterItem.Clear();
-                    foreach (var sorsItem in sors.RegisterItem)
-                        item.RegisterItem.Add(sorsItem);
-                }
-            }
-        }
-
-        private void BindPayPeriod1_SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)
-        {
-            List<MoneyPeriodLink> retList = _service.SaveLink(_curItem.CustId, e);
-            if (retList != null)
-            {
-                var dic = retList.ToDictionary(rec => new { rec.PeriodId, rec.PaidId });
-                e.ForEach(dest =>
-                {
-                    var sors = dic[new { dest.PeriodId, dest.PaidId }];
-                    dest.SetFields(sors);
-                    dest.Paid.SetFields(sors.Paid);
-                });
-            }
-        }
-
-        private void BindPayPeriod1_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
-        {
-            List<PaidPeriod> retList = _service.SavePeriods(_curItem.CustId, e);
-            if (retList != null)
-            {
-                var dic = retList.ToDictionary(di => di.PeriodName);
-                foreach (var item in e)
-                {
-                    var period = dic[item.PeriodName];
-                    if (item.PeriodId != period.PeriodId)
-                        item.PeriodId = period.PeriodId;
-                }
-            }
         }
 
         private void SetButtonDisable()
@@ -143,7 +87,8 @@ namespace TestControls
                 }
             });
 
-            Task.Run(()=> {
+            Task.Run(() =>
+            {
                 var Customer = _service.GetCustomerRegisterRatedList(_curItem.CustId);
                 if (InvokeRequired)
                 {

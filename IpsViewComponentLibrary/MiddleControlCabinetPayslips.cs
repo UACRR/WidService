@@ -58,7 +58,6 @@ namespace IpsViewComponentLibrary
             if (addform.ShowDialog() == DialogResult.OK)
             {
                 ; //TODO save
-
             }
             else
                 _customer.Client.BrRegister.Remove(brRegister);
@@ -152,7 +151,7 @@ namespace IpsViewComponentLibrary
             cMusRate.TextValue = musicd?.MusicRate.ToString();
 
 
-            var mus = _customer.Client.LicenseAgreement.SingleOrDefault(item => item.LicClass == 1)?.LicenseBigR.SingleOrDefault()?.MusicalDesign;
+            var mus = _customer.Client.LicenseAgreement.SingleOrDefault(item => item.LicClass == 1)?.LicenseBigR?.MusicalDesign;
 
             gvMusicDesignView.DataSource = mus;
         }

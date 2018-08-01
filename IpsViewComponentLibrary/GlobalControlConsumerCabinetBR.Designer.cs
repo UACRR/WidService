@@ -52,7 +52,7 @@
             // 
             // btnEditAgr
             // 
-            this.btnEditAgr.Location = new System.Drawing.Point(531, 3);
+            this.btnEditAgr.Location = new System.Drawing.Point(315, 3);
             this.btnEditAgr.Name = "btnEditAgr";
             this.btnEditAgr.Size = new System.Drawing.Size(210, 20);
             this.btnEditAgr.TabIndex = 13;
@@ -63,13 +63,14 @@
             // 
             // btnNewConsumer
             // 
-            this.btnNewConsumer.Location = new System.Drawing.Point(315, 3);
+            this.btnNewConsumer.Location = new System.Drawing.Point(531, 3);
             this.btnNewConsumer.Name = "btnNewConsumer";
             this.btnNewConsumer.Size = new System.Drawing.Size(210, 20);
             this.btnNewConsumer.TabIndex = 12;
             this.btnNewConsumer.Text = "Новий споживач";
             this.btnNewConsumer.TextWrap = true;
             this.btnNewConsumer.ThemeName = "Office2013Light";
+            this.btnNewConsumer.Visible = false;
             this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 
             // txtSearch
@@ -199,6 +200,7 @@
             this.ctrlCabinet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlCabinet.AutoScroll = true;
             this.ctrlCabinet.Location = new System.Drawing.Point(315, 30);
             this.ctrlCabinet.Name = "ctrlCabinet";
             this.ctrlCabinet.Size = new System.Drawing.Size(1019, 556);
@@ -234,6 +236,6 @@
         private Telerik.WinControls.UI.RadButton btnBack;
         private Telerik.WinControls.UI.RadGridView gvConsumerList;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private MiddleControlCabinet ctrlCabinet;
+        public MiddleControlCabinet ctrlCabinet;
     }
 }
