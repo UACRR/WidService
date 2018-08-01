@@ -1085,6 +1085,7 @@ public interface ILicenseAgreement
          int AgrId { get; set; }
          int? LicSize { get; set; }
          int? LicVersion { get; set; }
+         int? ProlongVersion { get; set; }
 }
 public interface ILicenseAgrParam
     {    int LicId { get; set; }

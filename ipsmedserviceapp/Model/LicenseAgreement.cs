@@ -24,6 +24,7 @@ namespace ipsmedserviceapp.Model
         public int AgrId { get; set; }
         public int? LicSize { get; set; }
         public int? LicVersion { get; set; }
+        public int? ProlongVersion { get; set; }
 
         public AgreementMaster Agr { get; set; }
         [JsonIgnore]

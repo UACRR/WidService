@@ -35,7 +35,7 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
         }
-        #region BR
+        #region BigRight
         public IList<ConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listBR";
@@ -45,17 +45,6 @@ namespace ipsFormsDesign.Services
             };
             var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param);
             return anketaDic;
-        }
-
-        /// <summary>
-        /// Отримати дані звіту
-        /// </summary>
-        /// <param name="regId">Ід звіту</param>
-        /// <returns></returns>
-        public List<RegisterItem> GetRegisterItems(int regId)
-        {
-            string url = $"consumer/period/register/RegisterItem/{regId}";
-            return _webApi.GetList<RegisterItem>(url) ;
         }
 
         /// <summary>
@@ -71,35 +60,6 @@ namespace ipsFormsDesign.Services
             return agr;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        /// <param name="retObject"></param>
-        /// <returns></returns>
-        public bool SaveRegisterRatedList(RegisterRatedList e, out RegisterRatedList retObject)
-        {
-            string rmId = e.RmId.ToString();
-            return _webApi.UpdateItemWithReturn("consumer/period/register/RatedList", rmId, e, out retObject );
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="body"></param>
-        /// <returns></returns>
-        public bool SaveRegister( Register body )
-        {
-            return _webApi.UpdateItem<Register>("consumer/period/register", body.RegId.ToString(), body);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="body"></param>
-        /// <returns></returns>
-        public bool DeleteRegister(Register body)
-        {
-            return _webApi.DeleteItem("consumer/period/register", body.RegId.ToString() );
-        }
 
         /// <summary>
         /// 
@@ -116,6 +76,53 @@ namespace ipsFormsDesign.Services
                 param.Add(new KeyValuePair<string, string>("custId", custId.ToString()));
             var list = _webApi.GetTypedList(typeResult, url, param.ToArray());
             return list;
+        }
+
+        #endregion
+        #region Register Методи обробки 
+
+        /// <summary>
+        /// Отримати дані звіту
+        /// </summary>
+        /// <param name="regId">Ід звіту</param>
+        /// <returns></returns>
+        public List<RegisterItem> GetRegisterItems(int regId)
+        {
+            string url = $"consumer/period/register/RegisterItem/{regId}";
+            return _webApi.GetList<RegisterItem>(url);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="regRatedList"></param>
+        /// <param name="retObject"></param>
+        /// <returns></returns>
+        public bool SaveRegisterRatedList(RegisterRatedList regRatedList, out RegisterRatedList retObject)
+        {
+            string rmId = regRatedList.RmId == 0 ? string.Empty : regRatedList.RmId.ToString();
+            return _webApi.UpdateItemWithReturn("consumer/period/register/RatedList", rmId, regRatedList, out retObject);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public bool SaveRegister(Register body)
+        {
+            string id = body.RegId == 0 ? string.Empty : body.RegId.ToString();
+            return _webApi.UpdateItem<Register>("consumer/period/register", id, body);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public bool DeleteRegister(Register body)
+        {
+            return _webApi.DeleteItem("consumer/period/register", body.RegId.ToString());
         }
         #endregion
 

@@ -4364,6 +4364,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.LicVersion).HasColumnName("licVersion");
 
+                entity.Property(e => e.ProlongVersion).HasColumnName("prolongVersion");
+
                 entity.HasOne(d => d.Agr)
                     .WithMany(p => p.LicenseAgreement)
                     .HasForeignKey(d => d.AgrId)

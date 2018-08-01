@@ -34,7 +34,6 @@ namespace ipsmedserviceapp.Model
         public ObjectRight Obj { get; set; }
         [JsonIgnore]
         public PerformType PerformTypeNavigation { get; set; }
-        [JsonIgnore]
         public ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }
