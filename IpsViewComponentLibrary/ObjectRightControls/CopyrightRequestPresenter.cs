@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 
@@ -10,6 +11,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
     {
         private readonly CopyrightRequestControl _view;
         private readonly RightholderService _rightholderService;
+        private readonly DialogService _dialogService;
 
         public CopyrightRequestPresenter(CopyrightRequestControl view, RightholderService rightholderService)
         {
@@ -17,6 +19,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _view.Presenter = this;
 
             _rightholderService = rightholderService;
+            _dialogService = new DialogService();
         }
 
         public void UpdateRightholderList()
@@ -65,7 +68,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 UpdateObjectsList(_view.SelectedRightholder.CustId);
             }
             else
-                _view.ShowError("Не вдалося зберегти зміни.");
+                _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
         }
 
         public void Print()

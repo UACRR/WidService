@@ -170,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Localisation\RadGridViewUkraineLocalizationProvider.cs" />
+    <Compile Include="Localisation\RadMessageBoxUkraineLocalizationProvider.cs" />
     <Compile Include="RightholderWorkplace.cs">
       <SubType>Form</SubType>
     </Compile>

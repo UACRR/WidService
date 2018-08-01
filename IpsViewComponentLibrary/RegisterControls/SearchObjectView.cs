@@ -81,11 +81,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             ShowDialog();
         }
 
-        public void ShowMessage(string v)
-        {
-            MessageBox.Show("Співпадінь не знайдено.", "Пошук");
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             _presenter.Search(ctrlRegisterItemList.SelectedRegisterItem);
