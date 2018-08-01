@@ -1042,52 +1042,31 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         [HttpGet("period/register/RatedList/{custId}")]
         public async Task<IActionResult> GetRegisterInfoForCustomer(int custId)
         {
-            var listRegister = await _dbContext.RegisterRatedList.FromSql(@"
-select t1.* 
-from RegisterRatedList t1
-join PaidPeriod t2 on t2.periodId = t1.periodId
-join LicenseAgreement t3 on t3.licId = t2.licId
-where t3.custId = @custId
+            var licenseAgreement = await _dbContext.LicenseAgrParam.FromSql(@"
+select t2.* 
+from LicenseAgreement t1 
+join LicenseAgrParam t2 on t2.licId = t1.licId and t2.licVersion = t1.licVersion and t2.licStatus = 2
+where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
-                .Include(rec => rec.Register)
-                .Include(rec => rec.Period)
-                    .ThenInclude(period => period.Lic)
-                    .ThenInclude(lic => lic.Cust)
-                    .ThenInclude(cln => cln.Cust)
-
+            .Include( rec => rec.Lic )
+                .ThenInclude(lic => lic.Cust)
+                .ThenInclude(cln => cln.Cust)
                 .ToListAsync();
 
-            // Немає розрахункового листа
-            if (listRegister.Count() == 0)
-            {
-                var licenseAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.CustId == custId && rec.LicStatus == 2)
-                    .Include(rec => rec.Cust).ThenInclude(cln => cln.Cust)
-                    .Include(rec => rec.PaidPeriod)
-                    .ToListAsync();
-
-                // Немає Ліцензійних договорів
                 if (licenseAgreement.Count() == 0)
                     return Ok();
 
                 foreach (var item in licenseAgreement)
                 {
-                    await _dbContext.Entry(item).Collection(rec => rec.LicenseAgrParam).Query()
-                        .Where(rec => rec.LicVersion == item.LicVersion)
+                    await _dbContext.Entry(item.Lic).Collection(rec => rec.PaidPeriod)
+                        .Query()
+                        // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
+                        .Include( rec => rec.RegisterRatedList).ThenInclude( reg => reg.Register )
                         .LoadAsync();
                 }
 
-                return Json(licenseAgreement.First().Cust.Cust);
+                return Json(licenseAgreement.First().Lic.Cust.Cust);
 
-            }
-
-            foreach (var item in listRegister)
-            {
-                await _dbContext.Entry(item.Period.Lic).Collection(rec => rec.LicenseAgrParam).Query()
-                    .Where(rec => rec.LicVersion == item.Period.Lic.LicVersion).LoadAsync();
-            }
-
-            /// Вертаємо споживача
-            return Json(listRegister.First().Period.Lic.Cust.Cust);
         }
 
         /// <summary>
