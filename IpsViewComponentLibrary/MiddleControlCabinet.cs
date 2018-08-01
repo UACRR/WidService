@@ -72,13 +72,14 @@ namespace IpsViewComponentLibrary
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
             ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
             ctrlReference.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
-            ctrlRequest.OnNewRequestSaveNeed += Ctrls_OnSaveCustomer;
+            ctrlRequest.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
             ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
             ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
             ctrlRequest.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlReference.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
+            ctrlReference.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
         }
 
         //збереження customer
