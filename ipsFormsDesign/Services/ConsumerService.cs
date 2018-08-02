@@ -124,6 +124,39 @@ namespace ipsFormsDesign.Services
         {
             return _webApi.DeleteItem("consumer/period/register", body.RegId.ToString());
         }
+
+        public enum RegisterState : int
+        {
+            // Новий
+            newItem = 0,
+            // На погоджені
+            OnAccept = 1,
+            // Погоджений
+            Accepted = 2,
+            // До розподілу
+            OnRate = 3,
+            // Виконано
+            Worked = 4,
+            // Відхилено
+            Rejected = 5
+        }
+        /// <summary>
+        /// Зміна стану звітів
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public List<Register> SetRegisterState(RegisterState state, List<Register> list )
+        {
+            string url = _prefix + "period/register/state";
+            List<Register> retList = null;
+
+            var ret = _webApi.UpdateListItemWithReturn(url, ((int)state).ToString(), list, out retList);
+            if (ret == true)
+                return retList;
+
+            return null;
+        }
         #endregion
 
         /// <summary>

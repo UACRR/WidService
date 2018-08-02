@@ -1332,6 +1332,34 @@ where t1.custId = @custId
             }
 
         } // DeleteRegisterDetail
+
+        [HttpPut("period/register/state/{stateId}")]
+        public async Task<IActionResult> SetRegisterState( int stateId, [FromBody] List<Register> list)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                _dbContext.Register.AttachRange(list);
+                foreach (var item in list)
+                    item.RgStatus = stateId;
+
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                return Json(list);
+
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback(  );
+                return BadRequest(ex.InnerException.Message);
+                throw;
+            }
+
+
+
+        }
+
         #endregion
 
         #region Download Upload file ******************************************************
