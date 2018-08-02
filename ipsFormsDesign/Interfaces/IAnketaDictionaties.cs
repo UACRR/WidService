@@ -29,6 +29,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<PositionType> positionType {get; set;}
         public IList<PrePayType> PrePayType { get; set; }
         public IList<Region> region {get; set;}
+        public IList<RegisterStatus> registerStatus { get; set;}
         public IList<ResidentType> residentType {get; set;}
         public IList<SexType> sexType {get; set;}
         public IList<TypePlace> typePlace {get; set;}

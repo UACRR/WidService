@@ -21,8 +21,22 @@ namespace IpsViewComponentLibrary
             _control.SaveRegisterRatedListExecuted += SaveRegisterRatedListExecuted;
             _control.GetRegisterItems = _service.GetRegisterItems;
             _control.DeleteRegisterExecuted += DeleteRegisterExecuted;
+            _control.SetRegisterStateExecuted += _control_SetRegisterStateExecuted;
 
 
+        }
+
+        private void _control_SetRegisterStateExecuted(object sender, List<Register> e)
+        {
+            Register first = e.First();
+            int state = first.RgStatus ?? 0;
+            var retList = _service.SetRegisterState((ConsumerService.RegisterState)state, e);
+            if (state == 3)
+            {
+                first.RegisterRatedList.Status = 1;
+                first.RegisterRatedList.Period.Status = 2;
+                _control.RefreshData();
+            }
         }
 
         private void DeleteRegisterExecuted(object sender, Register e)
