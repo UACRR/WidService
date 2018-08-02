@@ -18,24 +18,39 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("userinfo")]
         public async Task<IActionResult> GetGroups()
         {
-            var wi = (WindowsIdentity)User.Identity;
-            if (wi == null)
-                return BadRequest();
-
-            var groups = new List<string>();
-            await Task.Run(() =>
+            try
             {
+                var wi = (WindowsIdentity)User.Identity;
+                if (wi == null)
+                    return BadRequest();
 
-                foreach (var item in wi.Groups)
+                var groups = new List<string>();
+                await Task.Run(() =>
                 {
-                    groups.Add(item.Translate(typeof(NTAccount)).ToString());
-                }
 
-                groups.Add(wi.Name);
-            });
+                    foreach (var item in wi.Groups)
+                    {
+                        groups.Add(item.Translate(typeof(NTAccount)).ToString());
+                    }
 
-            return Json(groups.ToArray());
+                    groups.Add(wi.Name);
+                });
+
+                return Json(groups.ToArray());
+            }
+            catch( Exception ex )
+            {
+                return BadRequest(ex.InnerException.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("toch")]
+        public IActionResult Toch()
+        {
+            return Json("Toch");
         }
 
     }
+
 }
