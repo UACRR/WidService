@@ -185,6 +185,13 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="RightholderControls\RightholderPresenter.cs" />
+    <Compile Include="RightholderControls\RightholderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderView.Designer.cs">
+      <DependentUpon>RightholderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\DialogService.cs" />
     <Compile Include="MiddleControlCabinetAvances.cs">
       <SubType>UserControl</SubType>
@@ -971,6 +978,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterControls\SearchObjectView.resx">
       <DependentUpon>SearchObjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\RightholderView.resx">
+      <DependentUpon>RightholderView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingleShowInformationControl.resx">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>

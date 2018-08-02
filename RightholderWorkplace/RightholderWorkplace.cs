@@ -445,20 +445,26 @@ namespace RightholderWorkplace
             if (rightholder == null)
                 rightholder = SelectedRightholder;
 
-            _customer = GetCustomer(rightholder.CustId);
-
-            UpdateDataSources();
-
-            for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
+            using (var rightholderView = new RightholderView())
             {
-                newCreateRightholderPageView.Pages[i].Enabled = true;
+                var rightholderPresenter = new RightholderPresenter(rightholderView);
+                rightholderPresenter.Show();
             }
 
-            MainPageView.SelectedPage = mainPageRightholders;
-            rightholdersPageView.SelectedPage = rightholdersPage;
-            newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
-            newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
-            pdfvRightholderAgreement.UnloadDocument();
+            //_customer = GetCustomer(rightholder.CustId);
+
+            //UpdateDataSources();
+
+            //for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
+            //{
+            //    newCreateRightholderPageView.Pages[i].Enabled = true;
+            //}
+
+            //MainPageView.SelectedPage = mainPageRightholders;
+            //rightholdersPageView.SelectedPage = rightholdersPage;
+            //newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
+            //newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
+            //pdfvRightholderAgreement.UnloadDocument();
         }
 
         private void SaveRightholder(bool accept)
