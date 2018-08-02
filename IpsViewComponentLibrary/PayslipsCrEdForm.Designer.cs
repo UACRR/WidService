@@ -53,9 +53,11 @@
             this.bsSpectacleView = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.panel = new Telerik.WinControls.UI.RadPanel();
-            this.txtAllRateAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.lblAmount = new Telerik.WinControls.UI.RadLabel();
+            this.lblRoyalty = new Telerik.WinControls.UI.RadLabel();
+            this.txtAmount = new Telerik.WinControls.UI.RadTextBox();
             this.bsRegisterRatedList = new System.Windows.Forms.BindingSource(this.components);
-            this.txtAllAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.txtRoyalty = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.ddlPeriod = new Telerik.WinControls.UI.RadDropDownList();
@@ -80,14 +82,14 @@
             this.cName = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.lblRoyalty = new Telerik.WinControls.UI.RadLabel();
-            this.lblAmount = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.bsSpectacleView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAllRateAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRoyalty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterRatedList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAllAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRoyalty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriod)).BeginInit();
@@ -107,8 +109,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblRoyalty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,8 +120,8 @@
             // 
             this.panel.Controls.Add(this.lblAmount);
             this.panel.Controls.Add(this.lblRoyalty);
-            this.panel.Controls.Add(this.txtAllRateAmount);
-            this.panel.Controls.Add(this.txtAllAmount);
+            this.panel.Controls.Add(this.txtAmount);
+            this.panel.Controls.Add(this.txtRoyalty);
             this.panel.Controls.Add(this.radLabel3);
             this.panel.Controls.Add(this.radLabel2);
             this.panel.Controls.Add(this.ddlPeriod);
@@ -134,27 +134,47 @@
             this.panel.TabIndex = 1;
             this.panel.ThemeName = "Office2013Light";
             // 
-            // txtAllRateAmount
+            // lblAmount
             // 
-            this.txtAllRateAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterRatedList, "Amount", true));
-            this.txtAllRateAmount.Location = new System.Drawing.Point(713, 29);
-            this.txtAllRateAmount.Name = "txtAllRateAmount";
-            this.txtAllRateAmount.Size = new System.Drawing.Size(144, 21);
-            this.txtAllRateAmount.TabIndex = 9;
-            this.txtAllRateAmount.ThemeName = "Office2013Light";
+            this.lblAmount.Location = new System.Drawing.Point(863, 30);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(32, 19);
+            this.lblAmount.TabIndex = 11;
+            this.lblAmount.Text = "UAH";
+            this.lblAmount.ThemeName = "Office2013Light";
+            // 
+            // lblRoyalty
+            // 
+            this.lblRoyalty.Location = new System.Drawing.Point(863, 4);
+            this.lblRoyalty.Name = "lblRoyalty";
+            this.lblRoyalty.Size = new System.Drawing.Size(32, 19);
+            this.lblRoyalty.TabIndex = 10;
+            this.lblRoyalty.Text = "UAH";
+            this.lblRoyalty.ThemeName = "Office2013Light";
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterRatedList, "Amount", true));
+            this.txtAmount.Location = new System.Drawing.Point(713, 29);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(144, 21);
+            this.txtAmount.TabIndex = 9;
+            this.txtAmount.ThemeName = "Office2013Light";
+            this.txtAmount.Leave += new System.EventHandler(this.txtRoyalty_Leave);
             // 
             // bsRegisterRatedList
             // 
             this.bsRegisterRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
             // 
-            // txtAllAmount
+            // txtRoyalty
             // 
-            this.txtAllAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterRatedList, "Royalty", true));
-            this.txtAllAmount.Location = new System.Drawing.Point(713, 3);
-            this.txtAllAmount.Name = "txtAllAmount";
-            this.txtAllAmount.Size = new System.Drawing.Size(144, 21);
-            this.txtAllAmount.TabIndex = 8;
-            this.txtAllAmount.ThemeName = "Office2013Light";
+            this.txtRoyalty.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterRatedList, "Royalty", true));
+            this.txtRoyalty.Location = new System.Drawing.Point(713, 3);
+            this.txtRoyalty.Name = "txtRoyalty";
+            this.txtRoyalty.Size = new System.Drawing.Size(144, 21);
+            this.txtRoyalty.TabIndex = 8;
+            this.txtRoyalty.ThemeName = "Office2013Light";
+            this.txtRoyalty.Leave += new System.EventHandler(this.txtRoyalty_Leave);
             // 
             // radLabel3
             // 
@@ -672,24 +692,6 @@
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             // 
-            // lblRoyalty
-            // 
-            this.lblRoyalty.Location = new System.Drawing.Point(863, 4);
-            this.lblRoyalty.Name = "lblRoyalty";
-            this.lblRoyalty.Size = new System.Drawing.Size(32, 19);
-            this.lblRoyalty.TabIndex = 10;
-            this.lblRoyalty.Text = "UAH";
-            this.lblRoyalty.ThemeName = "Office2013Light";
-            // 
-            // lblAmount
-            // 
-            this.lblAmount.Location = new System.Drawing.Point(863, 30);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(32, 19);
-            this.lblAmount.TabIndex = 11;
-            this.lblAmount.Text = "UAH";
-            this.lblAmount.ThemeName = "Office2013Light";
-            // 
             // PayslipsCrEdForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -711,9 +713,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAllRateAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRoyalty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterRatedList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAllAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRoyalty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriod)).EndInit();
@@ -733,8 +737,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblRoyalty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -750,8 +752,8 @@
         private Telerik.WinControls.UI.RadGridView gvViewPayslipsItems;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
-        private Telerik.WinControls.UI.RadTextBox txtAllRateAmount;
-        private Telerik.WinControls.UI.RadTextBox txtAllAmount;
+        private Telerik.WinControls.UI.RadTextBox txtAmount;
+        private Telerik.WinControls.UI.RadTextBox txtRoyalty;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadDropDownList ddlPeriod;

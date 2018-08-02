@@ -70,7 +70,8 @@ namespace IpsViewComponentLibrary
                     CountUse = register.RegisterItem.SingleOrDefault()?.CountUse,
                     Royalty = register.RegRoyalty,
                     TempRegId = register.RegId,
-                    ActCode = _spectacleViews.SingleOrDefault(rec=>rec.ObjId == register.RegisterItem.SingleOrDefault()?.ObjId)?.ActCode
+                    ActCode = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.SingleOrDefault()?.ObjId)?.ActCode,
+                    LicId = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.SingleOrDefault()?.ObjId)?.LicId,
                 });
             }
 
@@ -91,8 +92,13 @@ namespace IpsViewComponentLibrary
                 amount+=(decimal)((item?.MusicAmount + item?.AuthAmount) ?? 0);
             }
             
-            lblRoyalty.Text = royalty.ToString();
-            lblAmount.Text = amount.ToString();
+            lblRoyalty.Text = royalty.ToString("#,###0.00 грн");
+            lblAmount.Text = amount.ToString("#,###0.00 грн");
+
+            decimal.TryParse(txtRoyalty.Text, out decimal rlt);
+            decimal.TryParse(txtAmount.Text, out decimal amnt);
+            lblRoyalty.ForeColor = Math.Abs(rlt - royalty) < 0.01m ? DefaultForeColor : Color.Red;
+            lblAmount.ForeColor = Math.Abs(amnt - amount) < 0.01m ? DefaultForeColor : Color.Red;
 
         }
 
@@ -139,7 +145,7 @@ namespace IpsViewComponentLibrary
         private void gvViewPayslipsItems_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var item = e.Row.DataBoundItem as PayslipsGridDataSource;
-            var delitem = _registerRatedList.Register.SingleOrDefault(rec =>rec.RegId == _tempRegId);
+            var delitem = _registerRatedList.Register.SingleOrDefault(rec =>rec.RegId == item?.TempRegId);
            _registerRatedList.Register.Remove(delitem);
             UpdateRegisterGridDataSource();
             UpdFullSum();
@@ -182,7 +188,7 @@ namespace IpsViewComponentLibrary
 
         private void btnAddPeriod_Click(object sender, EventArgs e)
         {
-
+            UpdFullSum();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -209,7 +215,7 @@ namespace IpsViewComponentLibrary
             cAuthorRate.TextValue = rec?.AuthRate.ToString();
             cMusAmount.TextValue = rec?.MusicAmount.ToString();
             cMusRate.TextValue = rec?.MusicRate.ToString();
-
+            
 
             var mus = _customer.Client.LicenseAgreement.SingleOrDefault(item => item.LicId == rec?.LicId)?.LicenseBigR?.MusicalDesign;
 
@@ -220,6 +226,11 @@ namespace IpsViewComponentLibrary
         {
             if(pageView.SelectedPage == pvMusicDesign)
                 UpdateMusicDesignData();
+        }
+
+        private void txtRoyalty_Leave(object sender, EventArgs e)
+        {
+            UpdFullSum();
         }
     }
 
