@@ -20,10 +20,20 @@ namespace IpsViewComponentLibrary.Common
             {
                 if (_relatedPageView != value)
                 {
+                    if (_relatedPageView != null)
+                    {
+                        _relatedPageView.SelectedPageChanged -= RelatedPageView_SelectedPageChanged;
+                    }
                     _relatedPageView = value;
+                    _relatedPageView.SelectedPageChanged += RelatedPageView_SelectedPageChanged;
                     UpdateButtonsState();
                 }
             }
+        }
+
+        private void RelatedPageView_SelectedPageChanged(object sender, EventArgs e)
+        {
+            UpdateButtonsState();
         }
 
         protected int SelectedPageIndex
