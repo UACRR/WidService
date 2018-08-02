@@ -86,6 +86,18 @@
     <Compile Include="R_5_17_Balance.Designer.cs">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_17_BalanceAccount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_17_BalanceAccount.Designer.cs">
+      <DependentUpon>R_5_17_BalanceAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_18_TurnAccoun.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_18_TurnAccoun.Designer.cs">
+      <DependentUpon>R_5_18_TurnAccoun.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_3_Community.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -116,6 +128,24 @@
     <Compile Include="R_5_5_RatingObj.Designer.cs">
       <DependentUpon>R_5_5_RatingObj.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_6_Customers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_6_Customers.Designer.cs">
+      <DependentUpon>R_5_6_Customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_8_Consolidated.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_8_Consolidated.Designer.cs">
+      <DependentUpon>R_5_8_Consolidated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_8_DistribMain.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_8_DistribMain.Designer.cs">
+      <DependentUpon>R_5_8_DistribMain.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -137,6 +167,12 @@
     <EmbeddedResource Include="R_5_17_Balance.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
+      <DependentUpon>R_5_17_BalanceAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_18_TurnAccoun.resx">
+      <DependentUpon>R_5_18_TurnAccoun.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_3_Community.resx">
       <DependentUpon>R_5_3_Community.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +187,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_5_RatingObj.resx">
       <DependentUpon>R_5_5_RatingObj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_6_Customers.resx">
+      <DependentUpon>R_5_6_Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_8_Consolidated.resx">
+      <DependentUpon>R_5_8_Consolidated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_8_DistribMain.resx">
+      <DependentUpon>R_5_8_DistribMain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
