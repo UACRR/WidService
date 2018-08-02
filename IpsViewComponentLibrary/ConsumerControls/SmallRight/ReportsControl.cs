@@ -22,6 +22,7 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
+        public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public Func<int, List<RegisterItem>> GetRegisterItems;
 
         public ReportsControl()
@@ -43,6 +44,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        internal void RefreshData()
+        {
+            normalizeData(_customer);
+            gvPeriodReports.MasterTemplate.Refresh();
+            gvPeriods.MasterTemplate.Refresh();
+            gvLicenseAgr.MasterTemplate.Refresh();
+        }
+
         #region METHODS
 
         private void normalizeData(Customer cust)
@@ -51,6 +60,7 @@ namespace IpsViewComponentLibrary
             var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
             var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
             var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
+            var dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
 
             foreach (var item in cust.Client.LicenseAgreement)
             {
@@ -71,7 +81,10 @@ namespace IpsViewComponentLibrary
                     {
                         regList.Period = period;
                         foreach (var reg in regList.Register)
+                        {
+                            reg.RgStatusNavigation = dicRegStatus[reg.RgStatus ?? 0];
                             reg.RegisterRatedList = regList;
+                        }
                     }
                 }
             }
@@ -133,13 +146,42 @@ namespace IpsViewComponentLibrary
 
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
             var reports = new List<Register>();
+            int maxRgStatus = -1;
             if (period?.RegisterRatedList.Count() > 0)
                 foreach (var item in period.RegisterRatedList.OrderBy(rec => rec.RmId))
                 {
+                    maxRgStatus = Math.Max(maxRgStatus, item.Register.Max(rec => rec.RgStatus??0));
                     reports.AddRange(item.Register);
                 }
 
             bindingReports.DataSource = reports;
+            switch (maxRgStatus)
+            {
+                case 0:
+                    btnToAcception.Enabled = true;
+                    btnAccept.Enabled = false;
+                    btnAddReport.Enabled = true;
+                    break;
+                case 2:
+                    btnToAcception.Enabled = false;
+                    btnAccept.Enabled = true;
+                    btnAddReport.Enabled = true;
+                    break;
+                case -1:
+                case 1:
+                case 3:
+                    btnToAcception.Enabled = false;
+                    btnAccept.Enabled = false;
+                    btnAddReport.Enabled = true;
+                    break;
+                default:
+                    btnToAcception.Enabled = false;
+                    btnAccept.Enabled = false;
+                    btnAddReport.Enabled = false;
+                    break;
+            }
+
+
         }
 
         // * * * [Звіти періода]
@@ -193,13 +235,15 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register { RgStatus = 1, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId };
+                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
                     RatedList.Register.Add(addRegister);
 
                     SaveRegisterRatedListExecuted(this, RatedList);
+                    gvPeriodReports.MasterTemplate.Refresh();
+
                     BeginInvoke((Action)(() =>
                     {
                         radWaitingBar1.StopWaiting();
@@ -277,6 +321,55 @@ namespace IpsViewComponentLibrary
             else if (columnName == "DeleteColumn")
             {
                 DeleteRegister();
+            }
+        }
+
+        private void gvPeriodReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
+        {
+            string Name = e.Column.Name;
+            if ( Name == "DeleteColumn" || Name == "EditColumn")
+            {
+                var register = e.Row.DataBoundItem as Register;
+                if( register == null )
+                {
+                    e.CellElement.Enabled = false;
+                }
+
+                else if( register.RgStatus > 0 && Name == "DeleteColumn" )
+                    e.CellElement.Enabled = false;
+                else
+                    e.CellElement.Enabled = true;
+
+
+            }
+        }
+
+        private void btnToAcception_Click(object sender, EventArgs e)
+        {
+            var list = bindingReports.DataSource as List<Register>;
+            if( list != null )
+            {
+                var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
+                foreach (var item in paramList)
+                    item.RgStatus = 1;
+                SetRegisterStateExecuted(this, paramList );
+                gvPeriodReports.MasterTemplate.Refresh();
+                btnToAcception.Enabled = false;
+            }
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            var list = bindingReports.DataSource as List<Register>;
+            if (list != null)
+            {
+                var paramList = list.Where(rec => rec.RgStatus == 2).ToList();
+                foreach (var item in paramList)
+                    item.RgStatus = 3;
+                SetRegisterStateExecuted(this, paramList);
+                gvPeriodReports.MasterTemplate.Refresh();
+
+                btnAccept.Enabled = false;
             }
         }
     }

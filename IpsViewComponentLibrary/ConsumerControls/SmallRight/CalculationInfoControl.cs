@@ -33,6 +33,7 @@ namespace IpsViewComponentLibrary
         {
             SubscribeForGridEvents(gvUserMoneys, gvLicenseAgr);
             SubscribeForGridEvents(gvLicenseAgr, gvUserMoneys);
+            SubscribeForGridEvents(gvPeriodsPayment, gvUserMoneys);
         }
 
 
@@ -58,6 +59,13 @@ namespace IpsViewComponentLibrary
         private void svc_PreviewDragStart(object sender, PreviewDragStartEventArgs e)
         {
             e.CanStart = true;
+            RadItem target = e.DragInstance as RadItem;
+            var row = target as GridDataRowElement;
+
+            if (row != null && row.RowInfo.DataBoundItem is MoneyReceived)
+                boolDragPeriod = true;
+
+
         }
 
         private void dragDropService_PreviewDragDrop(object sender, RadDropEventArgs e)
@@ -65,6 +73,7 @@ namespace IpsViewComponentLibrary
             RadItem dropTarget = e.HitTarget as RadItem;
             if (dropTarget == null)
                 return;
+
             RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
             var dropTargetRow = dropTarget as GridDataRowElement;
 
@@ -75,8 +84,10 @@ namespace IpsViewComponentLibrary
             var rowBehavior = ((BaseGridBehavior)targetGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
             rowBehavior.SetTargetRow(dropTargetRow);
 
-            runFromDragDrop = true;
+            if (dropTargetRow.RowInfo.DataBoundItem is MoneyReceived)
+                boolDragPeriod = true;
 
+            boolRunFromDragDrop = true;
             e.Handled = true;
 
             btnDistribute.BeginInvoke((Action)(() =>
@@ -95,18 +106,31 @@ namespace IpsViewComponentLibrary
             {
                 RadItem dropTarget = e.HitTarget as RadItem;
                 RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
+                GridDataRowElement targetRow = dropTarget as GridDataRowElement;
+
 
                 var behavior = targetGrid.GridBehavior as BaseGridBehavior;
                 var rowViewBehavior = behavior.GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
 
                 dropTarget = (RadItem)e.DragInstance;
-                var sourceGrid = dropTarget.ElementTree.Control as RadGridView; ;
+                var sourceRow = dropTarget as GridDataRowElement;
+
+                if (targetRow == null || sourceRow == null)
+                    return;
+                if (targetRow.RowInfo.DataBoundItem is PaidPeriod && !(sourceRow.RowInfo.DataBoundItem is MoneyReceived))
+                    return;
+                if (targetRow.RowInfo.DataBoundItem is LicenseAgrParam && !(sourceRow.RowInfo.DataBoundItem is MoneyReceived))
+                {
+                    return;
+                }
+
+                var sourceGrid = dropTarget.ElementTree.Control as RadGridView;
                 var rowViewSorceBehavior = ((BaseGridBehavior)sourceGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
 
 
 
-                if (rowViewSorceBehavior == null || rowViewSorceBehavior.Target != targetGrid)
-                    return;
+                //if (rowViewSorceBehavior == null || rowViewSorceBehavior.Target != targetGrid)
+                //    return;
 
 
                 e.CanDrop = (e.HitTarget is GridDataRowElement ||
@@ -182,6 +206,7 @@ namespace IpsViewComponentLibrary
                 foreach (var period in item.PaidPeriod)
                 {
                     period.StatusNavigation = dicPeriodStatus[period.Status];
+                    period.Lic = item;
                     foreach (var link in period.MoneyPeriodLink)
                         link.Period = period;
                 }
@@ -262,22 +287,25 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        bool boolDragPeriod = false;
         /// <summary>
         /// 
         /// </summary>
-        bool runFromDragDrop = false;
+        bool boolRunFromDragDrop = false;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void radButton2_Click(object sender, EventArgs e)
+        private void dtnDistribute_Click(object sender, EventArgs e)
         {
 
             MoneyReceived pay = null;
             LicenseAgrParam licParam = null;
-            if (runFromDragDrop)
+            PaidPeriod period = null;
+            if (boolRunFromDragDrop)
             {
+                
                 var rowBehavior = ((BaseGridBehavior)gvUserMoneys.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
                 var gridDataRowElement = rowBehavior.DragDropRow;
 
@@ -286,15 +314,34 @@ namespace IpsViewComponentLibrary
 
                 pay = gridDataRowElement.RowInfo.DataBoundItem as MoneyReceived;
 
-                rowBehavior = ((BaseGridBehavior)gvLicenseAgr.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
-                gridDataRowElement = rowBehavior.DragDropRow;
+                if (boolDragPeriod == false)
+                {
+                    rowBehavior = ((BaseGridBehavior)gvLicenseAgr.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+                    gridDataRowElement = rowBehavior.DragDropRow;
 
-                if (gridDataRowElement == null)
-                    return;
+                    if (gridDataRowElement == null)
+                        return;
 
-                licParam = gridDataRowElement.RowInfo.DataBoundItem as LicenseAgrParam;
+                    licParam = gridDataRowElement.RowInfo.DataBoundItem as LicenseAgrParam;
+                    period = null;
 
-                runFromDragDrop = false;
+                }
+                else
+                {
+                    rowBehavior = ((BaseGridBehavior)gvPeriodsPayment.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+                    gridDataRowElement = rowBehavior.DragDropRow;
+
+                    if (gridDataRowElement == null)
+                        return;
+                    period = gridDataRowElement.RowInfo.DataBoundItem as PaidPeriod;
+
+                    licParam = period.Lic.LicenseAgrParam.Single(rec => rec.LicVersion == period.Lic.LicVersion);
+
+                }
+
+
+                boolRunFromDragDrop = false;
+                boolDragPeriod = false;
             }
             else
             {
@@ -303,6 +350,7 @@ namespace IpsViewComponentLibrary
 
                 pay = gvUserMoneys.CurrentRow.DataBoundItem as MoneyReceived;
                 licParam = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
+                period = gvPeriodsPayment.CurrentRow.DataBoundItem as PaidPeriod;
 
             }
 
@@ -310,7 +358,7 @@ namespace IpsViewComponentLibrary
                 return;
 
 
-            DistributionForm form = new DistributionForm(pay, licParam.Lic);
+            DistributionForm form = new DistributionForm(pay, licParam.Lic, period);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -361,8 +409,10 @@ namespace IpsViewComponentLibrary
             var ri = e.RowElement?.RowInfo;
             var licAgreement = (LicenseAgrParam)ri?.DataBoundItem;
 
-            var debt = licAgreement?.Lic?.PaidPeriod?.Sum(rec => rec?.Amount - rec?.Distribamount - rec?.Undistribamount) ?? 0;
-            ri.Cells["Debt"].Value = Convert.ToDecimal(debt < 0 ? 0 : debt);
+            var debt = licAgreement.Lic.PaidPeriod.Where(rec => rec.EndDate <= DateTime.Today ).Sum(rec => {
+                return Math.Max( 0, rec.Amount - (rec.Distribamount + rec.Undistribamount));
+                ; });
+            ri.Cells["Debt"].Value = Convert.ToDecimal(debt);
         }
 
 
@@ -397,7 +447,7 @@ namespace IpsViewComponentLibrary
         // public decimal Undistribamount { get; set; }
         public decimal DistAmount { get; set; }
         public decimal Arrears { get; set; }
-        public bool ManualSet { get; set; }
+        public bool AutoSet { get; set; }
     }
 
     public class GridPayments
