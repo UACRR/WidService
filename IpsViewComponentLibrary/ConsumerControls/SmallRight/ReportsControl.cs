@@ -12,6 +12,7 @@ using ipsFormsDesign.Model;
 using System.Windows.Forms;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary
 {
@@ -26,6 +27,9 @@ namespace IpsViewComponentLibrary
         public ReportsControl()
         {
             InitializeComponent();
+
+            gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
         }
 
         private Customer _customer;
@@ -161,8 +165,8 @@ namespace IpsViewComponentLibrary
         private void EnableButtons(bool enabled)
         {
             btnAddReport.Enabled = enabled;
-            btnViewReport.Enabled = enabled;
-            btnDeleteReport.Enabled = enabled;
+            //btnViewReport.Enabled = enabled;
+            //btnDeleteReport.Enabled = enabled;
         }
         // * * * [Додати звіт]
         private void btnAddReport_Click(object sender, EventArgs e)
@@ -209,7 +213,7 @@ namespace IpsViewComponentLibrary
         }
 
         // * * * [Переглянути звіт]
-        private void btnViewReport_Click(object sender, EventArgs e)
+        private void RegisterReport()
         {
             if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
@@ -228,7 +232,7 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
-        private void radButton1_Click(object sender, EventArgs e)
+        private void DeleteRegister()
         {
             if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
@@ -260,6 +264,20 @@ namespace IpsViewComponentLibrary
             var licAgr = row.DataBoundItem as LicenseAgrParam;
             var debt = licAgr.Lic.PaidPeriod.Where(rec=>rec.EndDate < DateTime.Today ).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount);
             row.Cells["Arrears"].Value = debt;
+        }
+
+        private void gvPeriodReports_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            var columnName = e.Column.Name;
+
+            if (columnName == "EditColumn")
+            {
+                RegisterReport();
+            }
+            else if (columnName == "DeleteColumn")
+            {
+                DeleteRegister();
+            }
         }
     }
 
