@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary
 {
-    partial class IpsExclusionsLimitationsControl
+    partial class RightLimitationsControl
     {
         /// <summary> 
         /// Required designer variable.

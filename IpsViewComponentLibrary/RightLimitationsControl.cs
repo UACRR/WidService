@@ -13,9 +13,9 @@ using Telerik.WinControls.Data;
 namespace IpsViewComponentLibrary
 {
     [ComplexBindingProperties("DataSource", "DataMember")]
-    public partial class IpsExclusionsLimitationsControl : UserControl
+    public partial class RightLimitationsControl : UserControl
     {
-        public IpsExclusionsLimitationsControl()
+        public RightLimitationsControl()
         {
             InitializeComponent();
         }

@@ -432,11 +432,11 @@
     <Compile Include="IpsBossNameContactsControl.Designer.cs">
       <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsExclusionsLimitationsControl.cs">
+    <Compile Include="RightLimitationsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsExclusionsLimitationsControl.Designer.cs">
-      <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
+    <Compile Include="RightLimitationsControl.Designer.cs">
+      <DependentUpon>RightLimitationsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainViewSwitcher.cs">
       <SubType>UserControl</SubType>
@@ -858,8 +858,8 @@
     <EmbeddedResource Include="IpsBossNameContactsControl.resx">
       <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsExclusionsLimitationsControl.resx">
-      <DependentUpon>IpsExclusionsLimitationsControl.cs</DependentUpon>
+    <EmbeddedResource Include="RightLimitationsControl.resx">
+      <DependentUpon>RightLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainViewSwitcher.resx">
       <DependentUpon>MainViewSwitcher.cs</DependentUpon>
