@@ -384,10 +384,10 @@
     <Compile Include="AnketaPersonControl.Designer.cs">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="AnketaPersonRightHolderControl.cs">
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AnketaPersonRightHolderControl.Designer.cs">
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.Designer.cs">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ContactsPersonControl.cs">
@@ -596,10 +596,10 @@
       <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceComissionControl.cs">
+    <Compile Include="RightholderControls\Anketa\ServiceComissionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ServiceComissionControl.Designer.cs">
+    <Compile Include="RightholderControls\Anketa\ServiceComissionControl.Designer.cs">
       <DependentUpon>ServiceComissionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -780,7 +780,7 @@
     <EmbeddedResource Include="AnketaPersonControl.resx">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnketaPersonRightHolderControl.resx">
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.resx">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderItemView.resx">
@@ -939,7 +939,7 @@
     <EmbeddedResource Include="ProlongationWithoutPlaces.resx">
       <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ServiceComissionControl.resx">
+    <EmbeddedResource Include="RightholderControls\Anketa\ServiceComissionControl.resx">
       <DependentUpon>ServiceComissionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

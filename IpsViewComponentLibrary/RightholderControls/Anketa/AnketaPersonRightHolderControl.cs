@@ -13,7 +13,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.RightholderControls;
 
-namespace DebugFormForControls
+namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class AnketaPersonRightHolderControl : UserControl
     {

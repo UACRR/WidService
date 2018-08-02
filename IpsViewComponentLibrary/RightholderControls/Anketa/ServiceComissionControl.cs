@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class ServiceComissionControl : UserControl
     {

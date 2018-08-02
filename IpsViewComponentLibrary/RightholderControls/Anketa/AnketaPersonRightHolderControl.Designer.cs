@@ -1,4 +1,4 @@
-﻿namespace DebugFormForControls
+﻿namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     partial class AnketaPersonRightHolderControl
     {
