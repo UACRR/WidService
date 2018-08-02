@@ -61,10 +61,20 @@ namespace ipsFormsDesign.Dictionary
                 OnPropertyChanged(nameof(ObjectDuration));
             }
         }
+        private bool _isAuto;
+        public bool IsAuto
+        {
+            get { return _isAuto; }
+            set
+            {
+                _isAuto = value;
+                OnPropertyChanged(nameof(IsAuto));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void SetObjectData(int? objId, string name, string authors, string performers, TimeSpan? duration)
+        public void SetObjectData(int? objId, string name, string authors, string performers, TimeSpan? duration, bool resetIsAuto = true)
         {
             if (objId.HasValue)
             {
@@ -73,6 +83,9 @@ namespace ipsFormsDesign.Dictionary
                 ObjectAuthors = authors;
                 ObjectPerformers = performers;
                 ObjectDuration = duration;
+
+                if (resetIsAuto)
+                    IsAuto = false;
             }
             else
             {
@@ -87,6 +100,7 @@ namespace ipsFormsDesign.Dictionary
             ObjectAuthors = null;
             ObjectPerformers = null;
             ObjectDuration = null;
+            IsAuto = false;
         }
 
         private void OnPropertyChanged(string propertyName)

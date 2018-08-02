@@ -12,10 +12,14 @@ namespace ipsFormsDesign.Utilities
             objectRight.Name = registerItem.ItemName;
             objectRight.MediaTrack.Duration = registerItem.DurationItem;
 
-            objectRight.Authors.Add(new Authors { AuthorName = registerItem.AuthorMusic, FolkType = 1, RoleCode = 2 });
-            objectRight.Authors.Add(new Authors { AuthorName = registerItem.AuthorText, FolkType = 1, RoleCode = 1 });
+            if (!string.IsNullOrWhiteSpace(registerItem.AuthorMusic))
+                objectRight.Authors.Add(new Authors { AuthorName = registerItem.AuthorMusic, FolkType = 1, RoleCode = 2 });
 
-            objectRight.SeekObject.Add(new SeekObject { CodeI = 2, Name = registerItem.Performer });
+            if (!string.IsNullOrWhiteSpace(registerItem.AuthorText))
+                objectRight.Authors.Add(new Authors { AuthorName = registerItem.AuthorText, FolkType = 1, RoleCode = 1 });
+
+            if (!string.IsNullOrEmpty(registerItem.Performer))
+                objectRight.SeekObject.Add(new SeekObject { CodeI = 2, Name = registerItem.Performer });
         }
 
         public static void AddObjectAuthorRightholder(this ObjectRight objectRight, ObjectAuthorRightholder objectAuthorRightholder)
@@ -58,7 +62,7 @@ namespace ipsFormsDesign.Utilities
             copyRight.CustId = (int)objectAuthorRightholder.Author.CustId;
             copyRight.RoleCode = objectAuthorRightholder.Author.RoleCode;
 
-            copyRight.LicAuthorBr = objectAuthorRightholder.LicAuthorBr;
+            copyRight.LicAuthorBr= objectAuthorRightholder.LicAuthorBr;
             copyRight.WorkRh = objectAuthorRightholder.WorkRh;
 
             objectRight.CopyRight.Add(objectAuthorRightholder.CopyRight);

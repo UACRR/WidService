@@ -42,6 +42,10 @@ namespace IpsViewComponentLibrary
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAuthors = new Telerik.WinControls.UI.RadPageViewPage();
+            this.txtCommentCl = new Telerik.WinControls.UI.RadTextBox();
+            this.txtCommentRh = new Telerik.WinControls.UI.RadTextBox();
+            this.lblComCl = new Telerik.WinControls.UI.RadLabel();
+            this.lblComRh = new Telerik.WinControls.UI.RadLabel();
             this.pvConditions = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
@@ -105,14 +109,21 @@ namespace IpsViewComponentLibrary
             this.mainPanel = new Telerik.WinControls.UI.RadPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.bsWorkRh = new System.Windows.Forms.BindingSource(this.components);
             this.cStatusName = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cAgrDate = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cAgrNumber = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cAdress = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cInnokpo = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cClientName = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.ctrlAuthorRightholderList = new IpsViewComponentLibrary.ObjectRightControls.AuthorRightholderBrListControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
+            this.pvAuthors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCommentCl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCommentRh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblComCl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblComRh)).BeginInit();
             this.pvConditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
@@ -163,6 +174,7 @@ namespace IpsViewComponentLibrary
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWorkRh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,17 +191,67 @@ namespace IpsViewComponentLibrary
             this.pageView.Size = new System.Drawing.Size(1217, 677);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
+            this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
             // 
             // pvAuthors
             // 
+            this.pvAuthors.Controls.Add(this.txtCommentCl);
+            this.pvAuthors.Controls.Add(this.txtCommentRh);
+            this.pvAuthors.Controls.Add(this.lblComCl);
+            this.pvAuthors.Controls.Add(this.lblComRh);
+            this.pvAuthors.Controls.Add(this.ctrlAuthorRightholderList);
             this.pvAuthors.ItemSize = new System.Drawing.SizeF(139F, 25F);
             this.pvAuthors.Location = new System.Drawing.Point(143, 5);
             this.pvAuthors.Name = "pvAuthors";
             this.pvAuthors.Size = new System.Drawing.Size(1069, 667);
             this.pvAuthors.Text = "Автори";
+            // 
+            // txtCommentCl
+            // 
+            this.txtCommentCl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCommentCl.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWorkRh, "WorkCoommentCl", true));
+            this.txtCommentCl.Location = new System.Drawing.Point(189, 530);
+            this.txtCommentCl.Name = "txtCommentCl";
+            this.txtCommentCl.Size = new System.Drawing.Size(872, 21);
+            this.txtCommentCl.TabIndex = 6;
+            this.txtCommentCl.ThemeName = "Office2013Light";
+            this.txtCommentCl.Visible = false;
+            // 
+            // txtCommentRh
+            // 
+            this.txtCommentRh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCommentRh.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWorkRh, "WorkCommentRh", true));
+            this.txtCommentRh.Location = new System.Drawing.Point(189, 503);
+            this.txtCommentRh.Name = "txtCommentRh";
+            this.txtCommentRh.Size = new System.Drawing.Size(872, 21);
+            this.txtCommentRh.TabIndex = 5;
+            this.txtCommentRh.ThemeName = "Office2013Light";
+            this.txtCommentRh.Visible = false;
+            // 
+            // lblComCl
+            // 
+            this.lblComCl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblComCl.Location = new System.Drawing.Point(8, 532);
+            this.lblComCl.Name = "lblComCl";
+            this.lblComCl.Size = new System.Drawing.Size(171, 18);
+            this.lblComCl.TabIndex = 4;
+            this.lblComCl.Text = "Коментар до роботи з Клієнтом";
+            this.lblComCl.Visible = false;
+            // 
+            // lblComRh
+            // 
+            this.lblComRh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblComRh.Location = new System.Drawing.Point(8, 505);
+            this.lblComRh.Name = "lblComRh";
+            this.lblComRh.Size = new System.Drawing.Size(171, 18);
+            this.lblComRh.TabIndex = 3;
+            this.lblComRh.Text = "Коментар до роботи з Автором";
+            this.lblComRh.Visible = false;
             // 
             // pvConditions
             // 
@@ -451,9 +513,9 @@ namespace IpsViewComponentLibrary
             this.pvMusicalArrangement.Controls.Add(this.gvViewActList);
             this.pvMusicalArrangement.Controls.Add(this.btnAddAct);
             this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(139F, 25F);
-            this.pvMusicalArrangement.Location = new System.Drawing.Point(143, 5);
+            this.pvMusicalArrangement.Location = new System.Drawing.Point(145, 5);
             this.pvMusicalArrangement.Name = "pvMusicalArrangement";
-            this.pvMusicalArrangement.Size = new System.Drawing.Size(1069, 667);
+            this.pvMusicalArrangement.Size = new System.Drawing.Size(1067, 667);
             this.pvMusicalArrangement.Text = "Музичне оформлення";
             // 
             // label13
@@ -514,7 +576,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn2.MinWidth = 0;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "ObjName";
-            gridViewTextBoxColumn2.Width = 361;
+            gridViewTextBoxColumn2.Width = 359;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "NameMusician";
             gridViewTextBoxColumn3.HeaderText = "ПІБ композитора";
@@ -576,7 +638,7 @@ namespace IpsViewComponentLibrary
             this.gvViewActList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewActList.Name = "gvViewActList";
             this.gvViewActList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewActList.Size = new System.Drawing.Size(1058, 317);
+            this.gvViewActList.Size = new System.Drawing.Size(1056, 317);
             this.gvViewActList.TabIndex = 9;
             this.gvViewActList.ThemeName = "Office2013Light";
             this.gvViewActList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewActList_CommandCellClick);
@@ -745,6 +807,7 @@ namespace IpsViewComponentLibrary
             this.txtVinagoroda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "Rate", true));
             this.txtVinagoroda.Location = new System.Drawing.Point(360, 73);
             this.txtVinagoroda.Name = "txtVinagoroda";
+            this.txtVinagoroda.ReadOnly = true;
             this.txtVinagoroda.Size = new System.Drawing.Size(49, 21);
             this.txtVinagoroda.TabIndex = 25;
             this.txtVinagoroda.ThemeName = "Office2013Light";
@@ -762,10 +825,12 @@ namespace IpsViewComponentLibrary
             // 
             this.txtActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "ActCode", true));
             this.txtActCode.Location = new System.Drawing.Point(100, 73);
+            this.txtActCode.MaxLength = 1;
             this.txtActCode.Name = "txtActCode";
             this.txtActCode.Size = new System.Drawing.Size(49, 21);
             this.txtActCode.TabIndex = 23;
             this.txtActCode.ThemeName = "Office2013Light";
+            this.txtActCode.TextChanged += new System.EventHandler(this.txtActCode_TextChanged);
             // 
             // bsObjectRight
             // 
@@ -802,12 +867,14 @@ namespace IpsViewComponentLibrary
             this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectRight, "GenreType", true));
             this.ddlGenreType.DataSource = this.bsDictGenreType;
             this.ddlGenreType.DisplayMember = "Name";
+            this.ddlGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlGenreType.Location = new System.Drawing.Point(75, 46);
             this.ddlGenreType.Name = "ddlGenreType";
             this.ddlGenreType.Size = new System.Drawing.Size(354, 21);
             this.ddlGenreType.TabIndex = 19;
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
+            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.ddlGenreType_SelectedValueChanged);
             // 
             // bsDictGenreType
             // 
@@ -891,6 +958,7 @@ namespace IpsViewComponentLibrary
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(150, 641);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(197, 24);
@@ -898,6 +966,10 @@ namespace IpsViewComponentLibrary
             this.btnSave.Text = "Підтвердити створення заявки";
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // bsWorkRh
+            // 
+            this.bsWorkRh.DataSource = typeof(ipsFormsDesign.Model.WorkRh);
             // 
             // cStatusName
             // 
@@ -1007,6 +1079,19 @@ namespace IpsViewComponentLibrary
             this.cClientName.ValueDataMemger = "";
             this.cClientName.ValueDataSource = null;
             // 
+            // ctrlAuthorRightholderList
+            // 
+            this.ctrlAuthorRightholderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlAuthorRightholderList.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectAuthorRightholderBrViewModel);
+            this.ctrlAuthorRightholderList.ListMode = IpsViewComponentLibrary.ObjectRightControls.AuthorRightholderBrListMode.Full;
+            this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(5, 279);
+            this.ctrlAuthorRightholderList.Name = "ctrlAuthorRightholderList";
+            this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
+            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1061, 219);
+            this.ctrlAuthorRightholderList.TabIndex = 2;
+            // 
             // RequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1021,11 +1106,18 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main";
             this.ThemeName = "Office2013Light";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RequestForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
+            this.pvAuthors.ResumeLayout(false);
+            this.pvAuthors.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCommentCl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCommentRh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblComCl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblComRh)).EndInit();
             this.pvConditions.ResumeLayout(false);
             this.pvConditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -1081,6 +1173,7 @@ namespace IpsViewComponentLibrary
             this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWorkRh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1160,5 +1253,11 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadDropDownList ddlActType;
         private System.Windows.Forms.BindingSource bsDictObjAct;
         private System.Windows.Forms.BindingSource bsMusicDesign;
+        private ObjectRightControls.AuthorRightholderBrListControl ctrlAuthorRightholderList;
+        private Telerik.WinControls.UI.RadTextBox txtCommentCl;
+        private Telerik.WinControls.UI.RadTextBox txtCommentRh;
+        private Telerik.WinControls.UI.RadLabel lblComCl;
+        private Telerik.WinControls.UI.RadLabel lblComRh;
+        private BindingSource bsWorkRh;
     }
 }

@@ -17,7 +17,7 @@ namespace ipsmedserviceapp.Model
         public int RmId { get; set; }
         public string Number { get; set; }
         public int CountRows { get; set; }
-        public int? CustId { get; set; }
+        public int CustId { get; set; }
         public DateTime? CreateDate { get; set; }
         public int? Durationticks { get; set; }
         public int? RgStatus { get; set; }

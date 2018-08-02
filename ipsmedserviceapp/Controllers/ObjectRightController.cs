@@ -68,14 +68,14 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.UpdateList(sors.SeekObject, dest.SeekObject, i => { }, (l, r) => l.Id == r.Id);
 
             // Update WorkRh
-            {
-                var dicCopyRight = sors.CopyRight.ToDictionary(rec => rec.CRightId);
-                foreach ( var item in dest.CopyRight )
-                {
-                    var sorsItem = dicCopyRight[item.CRightId];
-                    item.WorkRh.SetFields(sorsItem.WorkRh);
-                }
-            }
+            //{
+            //    var dicCopyRight = sors.CopyRight.ToDictionary(rec => rec.CRightId);
+            //    foreach ( var item in dest.CopyRight )
+            //    {
+            //        var sorsItem = dicCopyRight[item.CRightId];
+            //        item.WorkRh.SetFields(sorsItem.WorkRh);
+            //    }
+            //}
 
             if (dest.CategoryCode == 5)
             {
@@ -149,6 +149,8 @@ namespace ipsmedserviceapp.Controllers
                 case 5:
                     {
                         addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0, 0, 0) };
+                        addObject.GenreType = 96;
+                        addObject.SpecType = 1;
                     }
                     break;
             }
@@ -207,7 +209,7 @@ namespace ipsmedserviceapp.Controllers
         {
             dest.SetFields(source);
 
-            _dbContext.UpdateList(source.LicenseBigR, dest.LicenseBigR, i => { }, (l, r) => l.LicId == r.LicId && l.LicVersion == r.LicVersion);
+            _dbContext.UpdateList(source.LicenseBigR, dest.LicenseBigR, i => { }, (l, r) => l.LicId == r.LicId );
 
             _dbContext.UpdateList(source.Authors, dest.Authors, newItem =>
                 {
@@ -249,9 +251,6 @@ namespace ipsmedserviceapp.Controllers
                     destCopyRight.WorkRh.WorkDateRh = DateTime.Now;
                 }
 
-                // LicAuthorBr
-                if (destCopyRight.LicAuthorBr == null)
-                    destCopyRight.LicAuthorBr = new LicAuthorBr();
 
                 destCopyRight.LicAuthorBr.SetFields(sourceCopyRight.LicAuthorBr);
             }

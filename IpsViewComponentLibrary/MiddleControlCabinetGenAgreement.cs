@@ -18,6 +18,8 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private ConsumerBigRightView _bigRightView;
+        public event LisenseStatusChangeEventHandler OnLicStatusChange;
+
         public MiddleControlCabinetGenAgreement()
         {
             InitializeComponent();
@@ -84,14 +86,22 @@ namespace IpsViewComponentLibrary
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            //TODO: підтвердження гененерального договору
+            if (gvGenAgrLicences.CurrentRow.DataBoundItem is BigRightMasterGenAgr licrow)
+            {
+                var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
+                OnLicStatusChange?.Invoke(license, licrow.Version, 2, false);
+            }
         }
 
         private void btnAgrClose_Click(object sender, EventArgs e)
         {
             if (RadMessageBox.Show("Закрити генеральний договір?", "Підтвердження", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
             {
-                //TODO закривання договору
+                if(gvGenAgrLicences.CurrentRow.DataBoundItem is BigRightMasterGenAgr licrow)
+                {
+                    var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
+                    OnLicStatusChange?.Invoke(license, licrow.Version, 4, false);
+                }
             }
         }
     }

@@ -43,9 +43,8 @@ namespace TestWord_1
             Filename = "F_Лицензионный договор на спектакль (БП).docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
-
-
-            ProcessWord(template, Filename);
+            
+            Task.Run(()=>ProcessWord(template, Filename)).GetAwaiter().GetResult();
 
         }
 

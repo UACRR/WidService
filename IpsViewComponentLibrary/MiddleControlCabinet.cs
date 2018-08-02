@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlCabinet : UserControl
     {
-        private readonly Dictionary<string,CabinetTabType> _cabinetTab = new Dictionary<string, CabinetTabType>
+        private readonly Dictionary<string, CabinetTabType> _cabinetTab = new Dictionary<string, CabinetTabType>
         {
             {string.Empty, CabinetTabType.None},
             {"pvLicence" , CabinetTabType.Licenses},
@@ -26,7 +26,10 @@ namespace IpsViewComponentLibrary
             {"pvReference" , CabinetTabType.References},
             {"pvGeneralAgreement" , CabinetTabType.GeneralAgreement},
             {"pvFiles" , CabinetTabType.Files},
-            {"pvAgent", CabinetTabType.Agent}
+            {"pvAgent", CabinetTabType.Agent},
+            {"pvPays", CabinetTabType.Payments},
+            {"pvAvances", CabinetTabType.Prepays},
+            {"pvContacts", CabinetTabType.Contacts}
         };
         private Customer _customer = null;
         private ConsumerBigRightView _brView;
@@ -39,28 +42,64 @@ namespace IpsViewComponentLibrary
         private IList<BigRightRegister> _registers;
         private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
 
-        private AnketaDictionaties _anketaDictionaties = null;
+        private AnketaDictionaties _anketaDictionaties;
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
 
         /// <summary>
         /// Виникиє при необхідності зберегти Customer
         /// </summary>
-        public event EventHandler OnSaveCustomerNeed;
+        public event SaveCustomerEventHandler OnSaveCustomerNeed;
+
+        public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
+        public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
+        public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
 
         public MiddleControlCabinet()
         {
+            _anketaDictionaties = IpsGlobal.AnketaDictionaties;
             InitializeComponent();
-            ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
-            ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
+            ctrlReference.SetAnketaDictionary(_anketaDictionaties);
+            ctrlRequest.SetAnketaDictionary(_anketaDictionaties);
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
+            ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
+            ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+            ctrlReference.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+            ctrlRequest.OnNewRequestSaveNeed += Ctrls_OnSaveCustomer;
+            ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
+            ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
+            ctrlRequest.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlReference.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
+        }
+
+        //збереження customer
+        private bool Ctrls_OnSaveCustomer(Customer customer)
+        {
+            return OnSaveCustomerNeed?.Invoke(customer) ?? false;
+        }
+
+        private bool CtrlRequest_OnLicenseTypeChange(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
+        {
+            return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
+        }
+
+        private bool CtrlRequest_OnWorkRhSave(int licenseId, List<WorkRh> workRhList)
+        {
+            return OnRequestWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
+        }
+
+        private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status, bool changeVer)
+        {
+            return OnLicenseStatusChanging?.Invoke(agr, version, status, false) ?? false;
         }
 
         private IList<BigRightSpectacleView> CtrlPayslips_OnSpectacleViewNeed(int custId)
@@ -135,7 +174,7 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.Calculations:
                 {
-                    ctrlCalculation.SetAndUpdateData(_customer, _brView, _genAgrs, _moneyUndescribs);
+                    ctrlCalculation.Customer = _customer;
                 }break;
 
                 case CabinetTabType.Payments:

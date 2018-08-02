@@ -39,7 +39,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvViewLicences = new Telerik.WinControls.UI.RadGridView();
             this.separator = new Telerik.WinControls.UI.RadSeparator();
@@ -49,9 +48,9 @@
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvInformation = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlInformation = new IpsViewComponentLibrary.InformationAgrBR();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlInformation = new IpsViewComponentLibrary.InformationAgrBR();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).BeginInit();
@@ -100,7 +99,7 @@
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 222;
+            gridViewTextBoxColumn3.Width = 256;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ ліцензійного договору";
@@ -108,7 +107,7 @@
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "LicNum";
-            gridViewTextBoxColumn4.Width = 94;
+            gridViewTextBoxColumn4.Width = 100;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "LicDate";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
@@ -165,20 +164,6 @@
             gridViewTextBoxColumn11.MinWidth = 90;
             gridViewTextBoxColumn11.Name = "LicStatusName";
             gridViewTextBoxColumn11.Width = 90;
-            gridViewCommandColumn1.AllowResize = false;
-            gridViewCommandColumn1.AllowSort = false;
-            gridViewCommandColumn1.DefaultText = "Файли";
-            gridViewCommandColumn1.FieldName = "btnsDelete";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn1.MaxWidth = 35;
-            gridViewCommandColumn1.MinWidth = 35;
-            gridViewCommandColumn1.Name = "btnsDelete";
-            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewCommandColumn1.Width = 35;
             this.gvViewLicences.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -190,8 +175,7 @@
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewCommandColumn1});
+            gridViewTextBoxColumn11});
             this.gvViewLicences.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewLicences.MasterTemplate.EnableFiltering = true;
             this.gvViewLicences.MasterTemplate.EnableGrouping = false;
@@ -203,7 +187,6 @@
             this.gvViewLicences.TabIndex = 7;
             this.gvViewLicences.ThemeName = "Office2013Light";
             this.gvViewLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewLicences_CurrentRowChanged);
-            this.gvViewLicences.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewLicences_CommandCellClick);
             this.gvViewLicences.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewConsumers_CustomFiltering);
             // 
             // separator
@@ -268,11 +251,11 @@
             // 
             this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToAccept.Enabled = false;
-            this.btnToAccept.Location = new System.Drawing.Point(711, 103);
+            this.btnToAccept.Location = new System.Drawing.Point(701, 103);
             this.btnToAccept.Name = "btnToAccept";
-            this.btnToAccept.Size = new System.Drawing.Size(93, 24);
+            this.btnToAccept.Size = new System.Drawing.Size(103, 24);
             this.btnToAccept.TabIndex = 12;
-            this.btnToAccept.Text = "На акцепт";
+            this.btnToAccept.Text = "На погодження";
             this.btnToAccept.ThemeName = "Office2013Light";
             this.btnToAccept.Click += new System.EventHandler(this.btnToAccept_Click);
             // 
@@ -296,27 +279,11 @@
             // pvInformation
             // 
             this.pvInformation.Controls.Add(this.ctrlInformation);
-            this.pvInformation.ItemSize = new System.Drawing.SizeF(77F, 25F);
-            this.pvInformation.Location = new System.Drawing.Point(81, 5);
+            this.pvInformation.ItemSize = new System.Drawing.SizeF(79F, 27F);
+            this.pvInformation.Location = new System.Drawing.Point(83, 5);
             this.pvInformation.Name = "pvInformation";
-            this.pvInformation.Size = new System.Drawing.Size(912, 209);
+            this.pvInformation.Size = new System.Drawing.Size(910, 209);
             this.pvInformation.Text = "Інформація";
-            // 
-            // pvAgreement
-            // 
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(77F, 25F);
-            this.pvAgreement.Location = new System.Drawing.Point(83, 5);
-            this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(860, 237);
-            this.pvAgreement.Text = "Договір";
-            // 
-            // pvHistory
-            // 
-            this.pvHistory.ItemSize = new System.Drawing.SizeF(77F, 25F);
-            this.pvHistory.Location = new System.Drawing.Point(83, 5);
-            this.pvHistory.Name = "pvHistory";
-            this.pvHistory.Size = new System.Drawing.Size(864, 237);
-            this.pvHistory.Text = "Історія";
             // 
             // ctrlInformation
             // 
@@ -330,6 +297,22 @@
             this.ctrlInformation.Name = "ctrlInformation";
             this.ctrlInformation.Size = new System.Drawing.Size(854, 209);
             this.ctrlInformation.TabIndex = 0;
+            // 
+            // pvAgreement
+            // 
+            this.pvAgreement.ItemSize = new System.Drawing.SizeF(79F, 27F);
+            this.pvAgreement.Location = new System.Drawing.Point(83, 5);
+            this.pvAgreement.Name = "pvAgreement";
+            this.pvAgreement.Size = new System.Drawing.Size(860, 237);
+            this.pvAgreement.Text = "Договір";
+            // 
+            // pvHistory
+            // 
+            this.pvHistory.ItemSize = new System.Drawing.SizeF(79F, 27F);
+            this.pvHistory.Location = new System.Drawing.Point(83, 5);
+            this.pvHistory.Name = "pvHistory";
+            this.pvHistory.Size = new System.Drawing.Size(864, 237);
+            this.pvHistory.Text = "Історія";
             // 
             // ctrlAgrInfo
             // 

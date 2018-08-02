@@ -4,13 +4,20 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
+    public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
+    public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
+    public delegate bool SaveCustomerEventHandler(Customer customer);
+    public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
+
     public static class ExtensionUtils
     {
         /// <summary>
@@ -46,6 +53,30 @@ namespace IpsViewComponentLibrary
             var dtPicker = ((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl as RadDateTimePicker;
             if (dtPicker != null)
                 dtPicker.Value = DateTime.Now;
+        }
+
+        public static void ShowInfoMessage(string msg, string title, MessageBoxIcon icon)
+        {
+            MessageBox.Show(msg, title, MessageBoxButtons.OK, icon);
+        }
+
+        public static ButtonFunctionAcceptLicType ButtonNameChange(this RadButton btn, int? status)
+        {
+            switch (status)
+            {
+                case 1:
+                {
+                    btn.Text = "Акцептувати договір";
+                    return ButtonFunctionAcceptLicType.Accept;
+                }
+                case 0:
+                {
+                    btn.Text = "Відправити на погодження";
+                    return ButtonFunctionAcceptLicType.Agree;
+                }
+            }
+
+            return ButtonFunctionAcceptLicType.None;
         }
     }
 
@@ -270,5 +301,19 @@ namespace IpsViewComponentLibrary
         /// </summary>
         Reference
     }
+
+    public enum ButtonFunctionAcceptLicType
+    {
+        None,
+        /// <summary>
+        /// Акцептувати
+        /// </summary>
+        Accept,
+        /// <summary>
+        /// На погодження
+        /// </summary>
+        Agree
+    }
+
 
 }

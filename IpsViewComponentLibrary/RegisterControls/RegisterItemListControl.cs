@@ -9,6 +9,7 @@ using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using ipsFormsDesign.Utilities;
 using System.Drawing;
+using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -136,6 +137,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
         public event EventHandler<RegisterItemViewModel> LinkCommandExecuted;
         public event EventHandler<RegisterItemViewModel> UnlinkCommandExecuted;
+        public event EventHandler SelectedRegisterItemChanged;
 
         public RegisterItemListControl()
         {
@@ -181,7 +183,33 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void gvRegisterItemList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
-            Utilities.GridViewHelper.SetTooltipTextForColumnHeader(sender, e);
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
+
+        private void gvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            var registerItem = e.RowElement.RowInfo.DataBoundItem as RegisterItemViewModel;
+
+            if (registerItem != null)
+            {
+                if (registerItem.IsAuto && !e.RowElement.IsCurrent && !e.RowElement.IsSelected)
+                {
+                    e.RowElement.DrawFill = true;
+                    e.RowElement.GradientStyle = GradientStyles.Solid;
+                    e.RowElement.BackColor = Color.LemonChiffon;
+                }
+                else
+                {
+                    e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                    e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                    e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                }
+            }
+        }
+
+        private void gvRegisterItemList_SelectionChanged(object sender, EventArgs e)
+        {
+            OnSelectedRegisterItemChanged();
         }
 
         private void ddlLinkedStatus_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
@@ -271,6 +299,23 @@ namespace IpsViewComponentLibrary.RegisterControls
                 var presenter = new ObjectRightSrPresenter(view);
                 presenter.Show(newObject);
             }
+
+            // if object heve been saved
+            if (newObject.ObjId != 0)
+            {
+                selectedRegisterItem.SetObjectData(
+                    newObject.ObjId,
+                    newObject.Name,
+                    newObject.Author,
+                    newObject.Performer,
+                    newObject.MediaTrack.Duration
+                );
+            }
+        }
+
+        private void OnSelectedRegisterItemChanged()
+        {
+            SelectedRegisterItemChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void SetColumnVisible(string columnName, bool isVisible)

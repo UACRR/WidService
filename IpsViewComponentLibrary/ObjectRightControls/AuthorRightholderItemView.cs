@@ -80,7 +80,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             using (var selectionView = new RightholderSelectionView())
             {
-                selectionView.SelectedRightholder = new RightholderMainView { CustId = _authorRightholder.CustId ?? 0 };
+                if (_authorRightholder.CustId.HasValue)
+                    selectionView.SelectedRightholder = new RightholderMainView { CustId = _authorRightholder.CustId.Value };
+                else if (!string.IsNullOrEmpty(_authorRightholder.OldAuthorName))
+                    selectionView.SearchText = _authorRightholder.OldAuthorName;
+
                 selectionView.RightholderSelected += SelectionView_RightholderSelected;
                 selectionView.ShowDialog();
             }

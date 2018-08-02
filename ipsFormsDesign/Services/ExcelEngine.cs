@@ -45,8 +45,18 @@ namespace ipsFormsDesign.Services
             if (sors == null)
                 return string.Empty;
 
-            var sorsStr = sors.ToString();
+            var sorsStr = sors.ToString().Trim();
             return sorsStr.Substring(0, Math.Min(sorsStr.Length, length));
+        }
+
+        private TimeSpan GetDuration( object source)
+        {
+            if (source is string)
+                return TimeSpan.Parse((string)source);
+            if (source is double)
+                return TimeSpan.FromDays((double)source);
+
+            return TimeSpan.Zero;
         }
         public List<RegisterItem> GetReportItems(string FileName)
         {
@@ -109,7 +119,8 @@ namespace ipsFormsDesign.Services
                 };
                     try
                     {
-                        curTime = TimeSpan.FromDays(Convert.ToDouble(dim[index, 6]));
+                        //curTime = TimeSpan.FromDays(Convert.ToDouble(dim[index, 6]));
+                        curTime = GetDuration(dim[index, 6]);
                         registerItem.DurationItem = curTime;
                         // curTime = TimeSpan.FromDays(Convert.ToDouble(dim[index, 8]));
                         registerItem.DurationUse = TimeSpan.FromTicks( curTime.Ticks  * registerItem.CountUse ?? 1 );
@@ -117,8 +128,8 @@ namespace ipsFormsDesign.Services
                     }
                     catch
                     {
-                        registerItem.DurationItem = new TimeSpan(0);
-                        registerItem.DurationUse = new TimeSpan(0);
+                        registerItem.DurationItem = TimeSpan.Zero;
+                        registerItem.DurationUse = TimeSpan.Zero;
                         registerItem.Ticks = 0;
                     }
 

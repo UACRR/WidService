@@ -715,7 +715,7 @@ public interface IDistribution
          bool? IsCourt { get; set; }
          int? RegIdBr { get; set; }
          int? DistType { get; set; }
-         int? CustId { get; set; }
+         int CustId { get; set; }
 }
 public interface IDistributionItem
     {
@@ -1050,7 +1050,8 @@ public interface ILicAuthor
          decimal? R030PrePay { get; set; }
 }
 public interface ILicAuthorBr
-    {    int CRightId { get; set; }
+    {
+         int CRightId { get; set; }
          int? PrepayType { get; set; }
          DateTime? DateCreate { get; set; }
          DateTime? DateClose { get; set; }
@@ -1061,8 +1062,6 @@ public interface ILicAuthorBr
          decimal? PrepaySumAuthor { get; set; }
          string R030 { get; set; }
          DateTime? PrepayDateDo { get; set; }
-         int? LicId { get; set; }
-         int? LicVersion { get; set; }
          decimal? PrepayRest { get; set; }
          decimal? PrepayUsed { get; set; }
 }
@@ -1086,6 +1085,7 @@ public interface ILicenseAgreement
          int AgrId { get; set; }
          int? LicSize { get; set; }
          int? LicVersion { get; set; }
+         int? ProlongVersion { get; set; }
 }
 public interface ILicenseAgrParam
     {    int LicId { get; set; }
@@ -1118,7 +1118,6 @@ public interface ILicenseBigR
          bool? IsTour { get; set; }
          string WhereTour { get; set; }
          decimal? Rate { get; set; }
-         int LicVersion { get; set; }
          decimal? PrepayRest { get; set; }
          string LangCode { get; set; }
          int? PerformType { get; set; }
@@ -1551,7 +1550,7 @@ public interface IRegister
          int RmId { get; set; }
          string Number { get; set; }
          int CountRows { get; set; }
-         int? CustId { get; set; }
+         int CustId { get; set; }
          DateTime? CreateDate { get; set; }
          int? Durationticks { get; set; }
          int? RgStatus { get; set; }
@@ -1608,6 +1607,7 @@ public interface IRegisterItem
          string ModifyLogin { get; set; }
          int? Durationticks { get; set; }
          int? Ticks { get; set; }
+         bool IsAuto { get; set; }
 }
 public interface IRegisterItemType
     {    int CodeI { get; set; }

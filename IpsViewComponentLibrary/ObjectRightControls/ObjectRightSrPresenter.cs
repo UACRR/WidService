@@ -1,4 +1,5 @@
 ﻿
+using ipsFormsDesign;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -138,11 +139,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 // TODO: Raise broadcast event object right updated
 
-                if (!result)
-                    _view.ShowError("Не вдалося зберегти об'єкт.");
+                if (result)
+                    _view.Close();
+                else
+                   _view.ShowError("Не вдалося зберегти об'єкт.");
             }
-
-            _view.Close();
         }
 
         private void SetObjectRigth(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
@@ -162,12 +163,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
                 {
+                    IsRightholder = a.CustId != null,
                     AuthId = a.AuthId,
                     ObjId = a.ObjId,
                     RoleCode = a.RoleCode,
                     FolkType = a.FolkType,
                     AuthorName = a.AuthorName,
-                    IsRightholder = a.CustId != null,
                     CustId = a.CustId,
                     CRightId = foundedCopyright?.CRightId,
                     CopyrightStatus = foundedCopyright?.Status,
