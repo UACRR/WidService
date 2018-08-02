@@ -43,32 +43,33 @@ namespace IpsViewComponentLibrary
 
         }
 
+        //додавання нового р/р
         private void btnAddNewRl_Click(object sender, EventArgs e)
         {
-            BrRegister brRegister = new BrRegister
+            RegisterRatedList ratedList = new RegisterRatedList
             {
-                CustId = _customer.CustId,
-                FullAmount = 0m,
-                RAmount = 0m,
+                CreateDate = DateTime.Today
             };
-            _customer.Client.BrRegister.Add(brRegister);
-
+            
             PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Create, _customer,
-                OnSpectacleViewNeed?.Invoke(_customer.CustId));
+                OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);
             if (addform.ShowDialog() == DialogResult.OK)
             {
+                //_customer.Client.BrRegister.
                 ; //TODO save
             }
             else
-                _customer.Client.BrRegister.Remove(brRegister);
+                ;
 
         }
 
+        //видалення р/р
         private void btnDeleteRl_Click(object sender, EventArgs e)
         {
 
         }
 
+        //редагування р/р
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
 

@@ -107,6 +107,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnLicenseStatusChanging += _cabinetBr_OnLicenseStatusChanging;
                 _cabinetBr.OnWorkRhSaveNeed += SaveWorkRh;
                 _cabinetBr.OnChangeLicenseType += ChangeLicenseType;
+                //TODO: підписка
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -117,6 +118,20 @@ namespace ConsumerWorkplace_v_1._0
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
         }
+
+        private bool SavePayslips()
+        {
+            bool result = false;
+            //result = _service.SaveRegisterRatedList(new RegisterRatedList(), )
+            //UpdateData();
+            return result;
+        }
+
+        private bool DeletePayslips()
+        {
+            return false;
+        }
+
 
         private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
         {
