@@ -62,7 +62,7 @@ namespace IpsViewComponentLibrary
             RadItem target = e.DragInstance as RadItem;
             var row = target as GridDataRowElement;
 
-            if (row != null && row.RowInfo.DataBoundItem is MoneyReceived)
+            if (row != null && row.RowInfo.DataBoundItem is PaidPeriod)
                 boolDragPeriod = true;
 
 
@@ -82,9 +82,11 @@ namespace IpsViewComponentLibrary
                 return;
 
             var rowBehavior = ((BaseGridBehavior)targetGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
+            if (rowBehavior == null)
+                return;
             rowBehavior.SetTargetRow(dropTargetRow);
 
-            if (dropTargetRow.RowInfo.DataBoundItem is MoneyReceived)
+            if (dropTargetRow.RowInfo.DataBoundItem is PaidPeriod)
                 boolDragPeriod = true;
 
             boolRunFromDragDrop = true;
@@ -106,8 +108,12 @@ namespace IpsViewComponentLibrary
             {
                 RadItem dropTarget = e.HitTarget as RadItem;
                 RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
-                GridDataRowElement targetRow = dropTarget as GridDataRowElement;
 
+
+                if (!(targetGrid.Equals(gvPeriodsPayment) || targetGrid.Equals(gvLicenseAgr) || targetGrid.Equals(gvUserMoneys)))
+                    return;
+
+                GridDataRowElement targetRow = dropTarget as GridDataRowElement;
 
                 var behavior = targetGrid.GridBehavior as BaseGridBehavior;
                 var rowViewBehavior = behavior.GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
@@ -115,16 +121,10 @@ namespace IpsViewComponentLibrary
                 dropTarget = (RadItem)e.DragInstance;
                 var sourceRow = dropTarget as GridDataRowElement;
 
-                if (targetRow == null || sourceRow == null)
-                    return;
-                if (targetRow.RowInfo.DataBoundItem is PaidPeriod && !(sourceRow.RowInfo.DataBoundItem is MoneyReceived))
-                    return;
-                if (targetRow.RowInfo.DataBoundItem is LicenseAgrParam && !(sourceRow.RowInfo.DataBoundItem is MoneyReceived))
-                {
-                    return;
-                }
-
                 var sourceGrid = dropTarget.ElementTree.Control as RadGridView;
+                if (sourceGrid.Equals(targetGrid))
+                    return;
+
                 var rowViewSorceBehavior = ((BaseGridBehavior)sourceGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
 
 
@@ -133,9 +133,7 @@ namespace IpsViewComponentLibrary
                 //    return;
 
 
-                e.CanDrop = (e.HitTarget is GridDataRowElement ||
-                            e.HitTarget is GridTableElement ||
-                            e.HitTarget is GridSummaryRowElement);
+                e.CanDrop = (e.HitTarget is GridDataRowElement);
             }
         }
 
@@ -217,7 +215,7 @@ namespace IpsViewComponentLibrary
         {
             var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.SingleOrDefault(item => item.LicVersion == rec.LicVersion && rec.LicStatus == 2)).ToList();
             if (licAgr.Count() > 0)
-                LicAgreementBindingSource.DataSource = licAgr.Where( rec => rec.LicStatus == 2);
+                LicAgreementBindingSource.DataSource = licAgr.Where(rec => rec.LicStatus == 2);
             else
                 LicAgreementBindingSource.DataSource = typeof(LicenseAgrParam);
         }
@@ -305,7 +303,7 @@ namespace IpsViewComponentLibrary
             PaidPeriod period = null;
             if (boolRunFromDragDrop)
             {
-                
+
                 var rowBehavior = ((BaseGridBehavior)gvUserMoneys.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
                 var gridDataRowElement = rowBehavior.DragDropRow;
 
@@ -371,7 +369,7 @@ namespace IpsViewComponentLibrary
                 }
 
                 SaveLinkCommandExecuted(this, ListLink);
-                foreach(var item in ListLink)
+                foreach (var item in ListLink)
                 {
                     var payCustomer = _customer.Client.MoneyReceived.SingleOrDefault(rec => rec.PaidId == item.PaidId);
                     if (payCustomer != null)
@@ -409,9 +407,11 @@ namespace IpsViewComponentLibrary
             var ri = e.RowElement?.RowInfo;
             var licAgreement = (LicenseAgrParam)ri?.DataBoundItem;
 
-            var debt = licAgreement.Lic.PaidPeriod.Where(rec => rec.EndDate <= DateTime.Today ).Sum(rec => {
-                return Math.Max( 0, rec.Amount - (rec.Distribamount + rec.Undistribamount));
-                ; });
+            var debt = licAgreement.Lic.PaidPeriod.Where(rec => rec.EndDate <= DateTime.Today).Sum(rec =>
+            {
+                return Math.Max(0, rec.Amount - (rec.Distribamount + rec.Undistribamount));
+                ;
+            });
             ri.Cells["Debt"].Value = Convert.ToDecimal(debt);
         }
 
