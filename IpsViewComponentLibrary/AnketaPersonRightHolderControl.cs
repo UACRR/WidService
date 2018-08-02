@@ -24,12 +24,12 @@ namespace DebugFormForControls
         [AttributeProvider(typeof(IListSource))]
         public object DataSourceAnketa
         {
-            get => anketaPersonBindingSource.DataSource;
+            get => bsAnketaPerson.DataSource;
             set
             {
-                if (anketaPersonBindingSource.DataSource != value)
+                if (bsAnketaPerson.DataSource != value)
                 {
-                    anketaPersonBindingSource.DataSource = value;
+                    bsAnketaPerson.DataSource = value;
                 }
             }
         }
@@ -38,12 +38,12 @@ namespace DebugFormForControls
         [AttributeProvider(typeof(IListSource))]
         public object DataSourceCustomer
         {
-            get => customerBindingSource.DataSource;
+            get => bsCustomer.DataSource;
             set
             {
-                if (customerBindingSource.DataSource != value)
+                if (bsCustomer.DataSource != value)
                 {
-                    customerBindingSource.DataSource = value;
+                    bsCustomer.DataSource = value;
                 }
             }
         }
@@ -182,7 +182,7 @@ namespace DebugFormForControls
 
         private void btnMorePseudonym_Click(object sender, EventArgs e)
         {
-            var customer = customerBindingSource.Current as Customer;
+            var customer = bsCustomer.Current as Customer;
 
             using (var moreNicks = new AnketaAddNickView(customer.RightHolder.AnketaAddNick))
             {
@@ -198,7 +198,7 @@ namespace DebugFormForControls
 
         private void ShowEditAddNamesView()
         {
-            var customer = customerBindingSource.Current as Customer;
+            var customer = bsCustomer.Current as Customer;
 
             using (var moreNames = new AnketaAddNamesView(customer.AnketaAddName))
             {
@@ -208,7 +208,7 @@ namespace DebugFormForControls
 
         private void AddNicksUpdated(object sender, ICollection<AnketaAddNick> anketaAddNicks)
         {
-            var customer = customerBindingSource.Current as Customer;
+            var customer = bsCustomer.Current as Customer;
 
             customer.RightHolder.AnketaAddNick = new ObservableListSource<AnketaAddNick>(anketaAddNicks.ToList());
         }
