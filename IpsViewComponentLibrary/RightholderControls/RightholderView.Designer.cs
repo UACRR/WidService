@@ -149,8 +149,8 @@
             this.mainPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.mainPageView.Location = new System.Drawing.Point(1, 1);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.createRightholderAgreementPage;
-            this.mainPageView.Size = new System.Drawing.Size(995, 575);
+            this.mainPageView.SelectedPage = this.createRightholderFullNameComissionPage;
+            this.mainPageView.Size = new System.Drawing.Size(995, 437);
             this.mainPageView.TabIndex = 2;
             this.mainPageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -169,7 +169,7 @@
             this.createRightholderFullNameComissionPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderFullNameComissionPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderFullNameComissionPage.Name = "createRightholderFullNameComissionPage";
-            this.createRightholderFullNameComissionPage.Size = new System.Drawing.Size(849, 565);
+            this.createRightholderFullNameComissionPage.Size = new System.Drawing.Size(849, 427);
             this.createRightholderFullNameComissionPage.Text = "ПІБ, Комісії";
             // 
             // ctrlAgreementNumberDate
@@ -264,7 +264,7 @@
             this.createRightholderAnketaPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderAnketaPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderAnketaPage.Name = "createRightholderAnketaPage";
-            this.createRightholderAnketaPage.Size = new System.Drawing.Size(849, 565);
+            this.createRightholderAnketaPage.Size = new System.Drawing.Size(849, 427);
             this.createRightholderAnketaPage.Text = "Анкета";
             // 
             // radGroupBox1
@@ -407,7 +407,7 @@
             this.createRightholderPassportPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderPassportPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderPassportPage.Name = "createRightholderPassportPage";
-            this.createRightholderPassportPage.Size = new System.Drawing.Size(849, 565);
+            this.createRightholderPassportPage.Size = new System.Drawing.Size(849, 427);
             this.createRightholderPassportPage.Text = "Паспортні дані";
             // 
             // createRightholderPassportPageView
@@ -489,7 +489,7 @@
             this.createRightholderRoyaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderRoyaltyPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRoyaltyPage.Name = "createRightholderRoyaltyPage";
-            this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(849, 565);
+            this.createRightholderRoyaltyPage.Size = new System.Drawing.Size(849, 427);
             this.createRightholderRoyaltyPage.Text = "Як отримувати роялті";
             // 
             // radLabel8
@@ -617,7 +617,7 @@
             this.createRightholderRigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderRigthLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderRigthLimitationsPage.Name = "createRightholderRigthLimitationsPage";
-            this.createRightholderRigthLimitationsPage.Size = new System.Drawing.Size(849, 565);
+            this.createRightholderRigthLimitationsPage.Size = new System.Drawing.Size(849, 427);
             this.createRightholderRigthLimitationsPage.Text = "Обмеження прав";
             // 
             // ctrlExclusionsLimitations
@@ -631,7 +631,7 @@
             this.ctrlExclusionsLimitations.DataSource = typeof(ipsFormsDesign.Dictionary.TermsOfServiceWrapper);
             this.ctrlExclusionsLimitations.Location = new System.Drawing.Point(3, 3);
             this.ctrlExclusionsLimitations.Name = "ctrlExclusionsLimitations";
-            this.ctrlExclusionsLimitations.Size = new System.Drawing.Size(843, 559);
+            this.ctrlExclusionsLimitations.Size = new System.Drawing.Size(843, 421);
             this.ctrlExclusionsLimitations.TabIndex = 14;
             // 
             // createRightholderTerritoryLimitationsPage
@@ -640,7 +640,7 @@
             this.createRightholderTerritoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderTerritoryLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderTerritoryLimitationsPage.Name = "createRightholderTerritoryLimitationsPage";
-            this.createRightholderTerritoryLimitationsPage.Size = new System.Drawing.Size(849, 565);
+            this.createRightholderTerritoryLimitationsPage.Size = new System.Drawing.Size(849, 427);
             this.createRightholderTerritoryLimitationsPage.Text = "Обмеження територїі";
             // 
             // ctrlTerritoryIncludeExclude
@@ -651,7 +651,7 @@
             this.ctrlTerritoryIncludeExclude.DataSource = typeof(ipsFormsDesign.Interfaces.IRightHolder);
             this.ctrlTerritoryIncludeExclude.Location = new System.Drawing.Point(3, 3);
             this.ctrlTerritoryIncludeExclude.Name = "ctrlTerritoryIncludeExclude";
-            this.ctrlTerritoryIncludeExclude.Size = new System.Drawing.Size(356, 437);
+            this.ctrlTerritoryIncludeExclude.Size = new System.Drawing.Size(356, 383);
             this.ctrlTerritoryIncludeExclude.TabIndex = 50;
             // 
             // createRightholderAgreementPage
@@ -661,7 +661,7 @@
             this.createRightholderAgreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.createRightholderAgreementPage.Location = new System.Drawing.Point(141, 5);
             this.createRightholderAgreementPage.Name = "createRightholderAgreementPage";
-            this.createRightholderAgreementPage.Size = new System.Drawing.Size(849, 565);
+            this.createRightholderAgreementPage.Size = new System.Drawing.Size(849, 427);
             this.createRightholderAgreementPage.Text = "Договір";
             // 
             // btnGenerateRightholderAgreement
@@ -681,7 +681,7 @@
             this.pdfvRightholderAgreement.Controls.Add(this.waitbarAgreement);
             this.pdfvRightholderAgreement.Location = new System.Drawing.Point(3, 34);
             this.pdfvRightholderAgreement.Name = "pdfvRightholderAgreement";
-            this.pdfvRightholderAgreement.Size = new System.Drawing.Size(843, 528);
+            this.pdfvRightholderAgreement.Size = new System.Drawing.Size(843, 390);
             this.pdfvRightholderAgreement.TabIndex = 0;
             this.pdfvRightholderAgreement.ThemeName = "Office2013Light";
             this.pdfvRightholderAgreement.ThumbnailsScaleFactor = 0.15F;
@@ -717,7 +717,7 @@
             this.radPanel1.Controls.Add(this.btnCancel);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radPanel1.Location = new System.Drawing.Point(0, 583);
+            this.radPanel1.Location = new System.Drawing.Point(0, 443);
             this.radPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(998, 31);
@@ -776,7 +776,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(998, 614);
+            this.ClientSize = new System.Drawing.Size(998, 474);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.mainPageView);
             this.Name = "RightholderView";
