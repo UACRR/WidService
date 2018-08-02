@@ -187,7 +187,6 @@ namespace IpsViewComponentLibrary
 
         #region Edit controls
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadDropDownList DdlCountry
         {
             get
@@ -196,7 +195,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadDropDownList DdlRegion
         {
             get
@@ -205,7 +203,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtCity
         {
             get
@@ -214,7 +211,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtAddress
         {
             get

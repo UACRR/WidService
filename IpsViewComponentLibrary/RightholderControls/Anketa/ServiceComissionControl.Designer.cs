@@ -36,6 +36,7 @@
             this.mtxtRateCourt = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtxtRateCommission)).BeginInit();
@@ -149,5 +150,6 @@
         private System.Windows.Forms.BindingSource agreementAddRhBindingSource;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
