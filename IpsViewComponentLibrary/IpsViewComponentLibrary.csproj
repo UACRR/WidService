@@ -1021,6 +1021,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaPerson.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.BankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BrRegister.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />

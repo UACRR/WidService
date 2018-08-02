@@ -35,18 +35,19 @@
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtAccountNumber = new Telerik.WinControls.UI.RadTextBox();
-            this.BankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.txtTransitNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfoOkpo = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfo = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfoName = new Telerik.WinControls.UI.RadTextBox();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BankAccountBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTransitNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfo)).BeginInit();
@@ -57,99 +58,109 @@
             // 
             this.radLabel1.Location = new System.Drawing.Point(4, 4);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(70, 18);
+            this.radLabel1.Size = new System.Drawing.Size(76, 19);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Назва банку";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
             this.radLabel2.Location = new System.Drawing.Point(4, 29);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(33, 18);
+            this.radLabel2.Size = new System.Drawing.Size(36, 19);
             this.radLabel2.TabIndex = 1;
             this.radLabel2.Text = "МФО";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
             this.radLabel3.Location = new System.Drawing.Point(4, 54);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(50, 18);
+            this.radLabel3.Size = new System.Drawing.Size(55, 19);
             this.radLabel3.TabIndex = 2;
             this.radLabel3.Text = "ЄДРПОУ";
+            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
             this.radLabel4.Location = new System.Drawing.Point(4, 79);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(81, 18);
+            this.radLabel4.Size = new System.Drawing.Size(88, 19);
             this.radLabel4.TabIndex = 3;
             this.radLabel4.Text = "Рахунок банку";
+            this.radLabel4.ThemeName = "Office2013Light";
             // 
             // radLabel5
             // 
             this.radLabel5.Location = new System.Drawing.Point(4, 104);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(108, 18);
+            this.radLabel5.Size = new System.Drawing.Size(117, 19);
             this.radLabel5.TabIndex = 4;
             this.radLabel5.Text = "Особистий рахунок";
+            this.radLabel5.ThemeName = "Office2013Light";
             // 
             // txtAccountNumber
             // 
             this.txtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "AccountNumber", true));
+            this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "AccountNumber", true));
             this.txtAccountNumber.Location = new System.Drawing.Point(118, 103);
             this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(286, 20);
+            this.txtAccountNumber.Size = new System.Drawing.Size(286, 21);
             this.txtAccountNumber.TabIndex = 4;
+            this.txtAccountNumber.ThemeName = "Office2013Light";
             // 
-            // BankAccountBindingSource
+            // bsBankAccount
             // 
-            this.BankAccountBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
+            this.bsBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
             // 
             // txtTransitNumber
             // 
             this.txtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTransitNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "TransitNumber", true));
+            this.txtTransitNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "TransitNumber", true));
             this.txtTransitNumber.Location = new System.Drawing.Point(118, 78);
             this.txtTransitNumber.Name = "txtTransitNumber";
-            this.txtTransitNumber.Size = new System.Drawing.Size(286, 20);
+            this.txtTransitNumber.Size = new System.Drawing.Size(286, 21);
             this.txtTransitNumber.TabIndex = 3;
+            this.txtTransitNumber.ThemeName = "Office2013Light";
             // 
             // txtMfoOkpo
             // 
             this.txtMfoOkpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMfoOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "MfoOkpo", true));
+            this.txtMfoOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "MfoOkpo", true));
             this.txtMfoOkpo.Location = new System.Drawing.Point(118, 53);
             this.txtMfoOkpo.MaxLength = 10;
             this.txtMfoOkpo.Name = "txtMfoOkpo";
-            this.txtMfoOkpo.Size = new System.Drawing.Size(286, 20);
+            this.txtMfoOkpo.Size = new System.Drawing.Size(286, 21);
             this.txtMfoOkpo.TabIndex = 2;
+            this.txtMfoOkpo.ThemeName = "Office2013Light";
             this.txtMfoOkpo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMfoOkpo_KeyPress);
             // 
             // txtMfo
             // 
             this.txtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "Mfo", true));
+            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "Mfo", true));
             this.txtMfo.Location = new System.Drawing.Point(118, 28);
             this.txtMfo.MaxLength = 6;
             this.txtMfo.Name = "txtMfo";
-            this.txtMfo.Size = new System.Drawing.Size(286, 20);
+            this.txtMfo.Size = new System.Drawing.Size(286, 21);
             this.txtMfo.TabIndex = 1;
+            this.txtMfo.ThemeName = "Office2013Light";
             this.txtMfo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMfo_KeyPress);
             // 
             // txtMfoName
             // 
             this.txtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMfoName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BankAccountBindingSource, "MfoName", true));
+            this.txtMfoName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "MfoName", true));
             this.txtMfoName.Location = new System.Drawing.Point(118, 3);
             this.txtMfoName.Name = "txtMfoName";
-            this.txtMfoName.Size = new System.Drawing.Size(286, 20);
+            this.txtMfoName.Size = new System.Drawing.Size(286, 21);
             this.txtMfoName.TabIndex = 0;
+            this.txtMfoName.ThemeName = "Office2013Light";
             // 
             // IpsBankAccountControl
             // 
@@ -173,7 +184,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAccountNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BankAccountBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTransitNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfoOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMfo)).EndInit();
@@ -195,6 +206,7 @@
         private Telerik.WinControls.UI.RadTextBox txtTransitNumber;
         private Telerik.WinControls.UI.RadTextBox txtMfo;
         private Telerik.WinControls.UI.RadTextBox txtMfoName;
-        private System.Windows.Forms.BindingSource BankAccountBindingSource;
+        private System.Windows.Forms.BindingSource bsBankAccount;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
