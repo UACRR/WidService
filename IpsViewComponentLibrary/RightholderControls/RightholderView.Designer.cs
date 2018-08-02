@@ -63,14 +63,16 @@
             this.createRightholderRoyaltyPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderRoyaltyBankPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.createRightholderRoyaltyCashPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderRoyaltyPostalTransfer = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.txtPostalIndex = new Telerik.WinControls.UI.RadTextBox();
             this.ddlTypeMethodGet = new Telerik.WinControls.UI.RadDropDownList();
             this.createRightholderRigthLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlExclusionsLimitations = new IpsViewComponentLibrary.IpsExclusionsLimitationsControl();
+            this.ctrlExclusionsLimitations = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
             this.createRightholderTerritoryLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlTerritoryIncludeExclude = new IpsViewComponentLibrary.TerritoryIncludeExcludeControl();
             this.createRightholderAgreementPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -84,8 +86,6 @@
             this.miAcceptAndSave = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlPageSelector = new IpsViewComponentLibrary.Common.PageSelectorControl();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
-            this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).BeginInit();
             this.mainPageView.SuspendLayout();
             this.createRightholderFullNameComissionPage.SuspendLayout();
@@ -114,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderRoyaltyPageView)).BeginInit();
             this.createRightholderRoyaltyPageView.SuspendLayout();
             this.createRightholderRoyaltyBankPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             this.createRightholderRoyaltyPostalTransfer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
@@ -130,7 +131,6 @@
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sbSaveRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,7 +149,7 @@
             this.mainPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.mainPageView.Location = new System.Drawing.Point(1, 1);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.createRightholderRigthLimitationsPage;
+            this.mainPageView.SelectedPage = this.createRightholderAgreementPage;
             this.mainPageView.Size = new System.Drawing.Size(995, 575);
             this.mainPageView.TabIndex = 2;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -518,7 +518,6 @@
             // createRightholderRoyaltyBankPage
             // 
             this.createRightholderRoyaltyBankPage.Controls.Add(this.ctrlBankAccount);
-            this.createRightholderRoyaltyBankPage.ItemSize = new System.Drawing.SizeF(27F, 206F);
             this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyBankPage.Name = "createRightholderRoyaltyBankPage";
             this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(784, 450);
@@ -533,9 +532,12 @@
             this.ctrlBankAccount.Size = new System.Drawing.Size(598, 127);
             this.ctrlBankAccount.TabIndex = 0;
             // 
+            // bsBankAccount
+            // 
+            this.bsBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
+            // 
             // createRightholderRoyaltyCashPage
             // 
-            this.createRightholderRoyaltyCashPage.ItemSize = new System.Drawing.SizeF(27F, 178F);
             this.createRightholderRoyaltyCashPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyCashPage.Name = "createRightholderRoyaltyCashPage";
             this.createRightholderRoyaltyCashPage.Size = new System.Drawing.Size(784, 450);
@@ -547,11 +549,33 @@
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel9);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel10);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.txtPostalIndex);
-            this.createRightholderRoyaltyPostalTransfer.ItemSize = new System.Drawing.SizeF(27F, 229F);
             this.createRightholderRoyaltyPostalTransfer.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyPostalTransfer.Name = "createRightholderRoyaltyPostalTransfer";
             this.createRightholderRoyaltyPostalTransfer.Size = new System.Drawing.Size(784, 450);
             this.createRightholderRoyaltyPostalTransfer.Text = "createRightholderRoyaltyPostalTransfer";
+            // 
+            // ctrlBaAddress
+            // 
+            this.ctrlBaAddress.AddressDataMember = "PAddress";
+            this.ctrlBaAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlBaAddress.CityDataMember = "PCity";
+            this.ctrlBaAddress.CountriesDataMember = "";
+            this.ctrlBaAddress.CountriesDataSource = null;
+            this.ctrlBaAddress.CountriesDisplayMember = "";
+            this.ctrlBaAddress.CountriesValueMember = "";
+            this.ctrlBaAddress.CountryDataMember = "PCountry";
+            this.ctrlBaAddress.DataMember = "";
+            this.ctrlBaAddress.DataSource = this.bsBankAccount;
+            this.ctrlBaAddress.Location = new System.Drawing.Point(121, 46);
+            this.ctrlBaAddress.Name = "ctrlBaAddress";
+            this.ctrlBaAddress.RegionDataMember = "PRegion";
+            this.ctrlBaAddress.RegionsDataMember = "";
+            this.ctrlBaAddress.RegionsDataSource = null;
+            this.ctrlBaAddress.RegionsDisplayMember = "";
+            this.ctrlBaAddress.RegionsValueMember = "";
+            this.ctrlBaAddress.Size = new System.Drawing.Size(660, 48);
+            this.ctrlBaAddress.TabIndex = 20;
             // 
             // radLabel9
             // 
@@ -746,33 +770,6 @@
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             // 
-            // ctrlBaAddress
-            // 
-            this.ctrlBaAddress.AddressDataMember = "PAddress";
-            this.ctrlBaAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBaAddress.CityDataMember = "PCity";
-            this.ctrlBaAddress.CountriesDataMember = "";
-            this.ctrlBaAddress.CountriesDataSource = null;
-            this.ctrlBaAddress.CountriesDisplayMember = "";
-            this.ctrlBaAddress.CountriesValueMember = "";
-            this.ctrlBaAddress.CountryDataMember = "PCountry";
-            this.ctrlBaAddress.DataMember = "";
-            this.ctrlBaAddress.DataSource = this.bsBankAccount;
-            this.ctrlBaAddress.Location = new System.Drawing.Point(121, 46);
-            this.ctrlBaAddress.Name = "ctrlBaAddress";
-            this.ctrlBaAddress.RegionDataMember = "PRegion";
-            this.ctrlBaAddress.RegionsDataMember = "";
-            this.ctrlBaAddress.RegionsDataSource = null;
-            this.ctrlBaAddress.RegionsDisplayMember = "";
-            this.ctrlBaAddress.RegionsValueMember = "";
-            this.ctrlBaAddress.Size = new System.Drawing.Size(660, 48);
-            this.ctrlBaAddress.TabIndex = 20;
-            // 
-            // bsBankAccount
-            // 
-            this.bsBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
-            // 
             // RightholderView
             // 
             this.AcceptButton = this.miSave;
@@ -821,6 +818,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderRoyaltyPageView)).EndInit();
             this.createRightholderRoyaltyPageView.ResumeLayout(false);
             this.createRightholderRoyaltyBankPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             this.createRightholderRoyaltyPostalTransfer.ResumeLayout(false);
             this.createRightholderRoyaltyPostalTransfer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
@@ -838,7 +836,6 @@
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sbSaveRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -878,7 +875,7 @@
         private Telerik.WinControls.UI.RadTextBox txtPostalIndex;
         private Telerik.WinControls.UI.RadDropDownList ddlTypeMethodGet;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderRigthLimitationsPage;
-        private IpsExclusionsLimitationsControl ctrlExclusionsLimitations;
+        private IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl ctrlExclusionsLimitations;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderTerritoryLimitationsPage;
         private TerritoryIncludeExcludeControl ctrlTerritoryIncludeExclude;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderAgreementPage;
