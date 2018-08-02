@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.Data;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class RightLimitationsControl : UserControl
@@ -24,11 +24,11 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return termsOfServiceWrapperBindingSource.DataSource; }
+            get { return bsTermsOfServiceWrapper.DataSource; }
             set
             {
-                if (termsOfServiceWrapperBindingSource.DataSource != value)
-                    termsOfServiceWrapperBindingSource.DataSource = value;
+                if (bsTermsOfServiceWrapper.DataSource != value)
+                    bsTermsOfServiceWrapper.DataSource = value;
             }
         }
 
@@ -36,8 +36,8 @@ namespace IpsViewComponentLibrary
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string DataMember
         {
-            get { return termsOfServiceWrapperBindingSource.DataMember; }
-            set { termsOfServiceWrapperBindingSource.DataMember = value; }
+            get { return bsTermsOfServiceWrapper.DataMember; }
+            set { bsTermsOfServiceWrapper.DataMember = value; }
         }
 
         #region Community dictionary
@@ -46,19 +46,19 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object CommunitiesDataSource
         {
-            get { return communityInfoBindingSource.DataSource; }
+            get { return bsCommunityInfo.DataSource; }
             set
             {
-                if (communityInfoBindingSource.DataSource != value)
-                    communityInfoBindingSource.DataSource = value;
+                if (bsCommunityInfo.DataSource != value)
+                    bsCommunityInfo.DataSource = value;
             }
         }
 
         [Category("Dictionaries")]
         public string CommunitiesDataMember
         {
-            get { return communityInfoBindingSource.DataMember; }
-            set { communityInfoBindingSource.DataMember = value; }
+            get { return bsCommunityInfo.DataMember; }
+            set { bsCommunityInfo.DataMember = value; }
         }
 
         #endregion

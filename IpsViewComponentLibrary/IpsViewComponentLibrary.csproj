@@ -432,10 +432,10 @@
     <Compile Include="IpsBossNameContactsControl.Designer.cs">
       <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightLimitationsControl.cs">
+    <Compile Include="RightholderControls\Anketa\RightLimitationsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RightLimitationsControl.Designer.cs">
+    <Compile Include="RightholderControls\Anketa\RightLimitationsControl.Designer.cs">
       <DependentUpon>RightLimitationsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainViewSwitcher.cs">
@@ -858,7 +858,7 @@
     <EmbeddedResource Include="IpsBossNameContactsControl.resx">
       <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightLimitationsControl.resx">
+    <EmbeddedResource Include="RightholderControls\Anketa\RightLimitationsControl.resx">
       <DependentUpon>RightLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainViewSwitcher.resx">
