@@ -19,16 +19,16 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get => iAnketaPersonBindingSource.DataSource;
+            get => bsAnketaPerson.DataSource;
             set
             {
-                iAnketaPersonBindingSource.DataSource = value;
+                bsAnketaPerson.DataSource = value;
 
                 rDropListCitizenship.DataBindings.Clear();
-                rDropListCitizenship.DataBindings.Add("SelectedValue", iAnketaPersonBindingSource, "Citizenship", true);
+                rDropListCitizenship.DataBindings.Add("SelectedValue", bsAnketaPerson, "Citizenship", true);
 
                 rDropDownListResidency.DataBindings.Clear();
-                rDropDownListResidency.DataBindings.Add("SelectedValue", iAnketaPersonBindingSource, "Residency", true);
+                rDropDownListResidency.DataBindings.Add("SelectedValue", bsAnketaPerson, "Residency", true);
             }
         }
 
