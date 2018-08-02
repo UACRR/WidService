@@ -177,6 +177,12 @@
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\PageSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\PageSelectorControl.Designer.cs">
+      <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerDialogForms\ProlongationBigRight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -731,6 +737,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\PageSelectorControl.resx">
+      <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
