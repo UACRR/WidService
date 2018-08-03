@@ -102,24 +102,36 @@ namespace IpsViewComponentLibrary
 
         }
 
+        List<KeyValuePair<Type, Type>> validDrop = new List<KeyValuePair<Type, Type>> {
+            new KeyValuePair<Type, Type>(typeof(MoneyReceived), typeof(LicenseAgrParam )),
+            new KeyValuePair<Type, Type>(typeof(MoneyReceived), typeof(PaidPeriod )),
+            new KeyValuePair<Type, Type>(typeof(PaidPeriod), typeof(MoneyReceived )),
+            new KeyValuePair<Type, Type>(typeof(LicenseAgrParam), typeof(MoneyReceived ))
+        };
         private void dragDropService_PreviewDragOver(object sender, RadDragOverEventArgs e)
         {
             if (e.DragInstance is GridDataRowElement && e.HitTarget is GridDataRowElement)
             {
+                // Ціль
                 RadItem dropTarget = e.HitTarget as RadItem;
                 RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
-
 
                 if (!(targetGrid.Equals(gvPeriodsPayment) || targetGrid.Equals(gvLicenseAgr) || targetGrid.Equals(gvUserMoneys)))
                     return;
 
                 GridDataRowElement targetRow = dropTarget as GridDataRowElement;
+                Type typeTarget = targetRow.RowInfo.DataBoundItem.GetType();
 
                 var behavior = targetGrid.GridBehavior as BaseGridBehavior;
                 var rowViewBehavior = behavior.GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
 
+                // Джерело
                 dropTarget = (RadItem)e.DragInstance;
                 var sourceRow = dropTarget as GridDataRowElement;
+                Type typeSource = sourceRow.RowInfo.DataBoundItem.GetType();
+
+                if (!validDrop.Contains(new KeyValuePair<Type, Type>(typeSource, typeTarget)))
+                    return;
 
                 var sourceGrid = dropTarget.ElementTree.Control as RadGridView;
                 if (sourceGrid.Equals(targetGrid))
