@@ -69,60 +69,9 @@ namespace RightholderWorkplace
         {
             _dictionaries = dictionaries;
 
-            ctrlAnketaPerson.SexTypeDataSource = dictionaries.sexType;
-            ctrlAnketaPerson.SexTypeValueMember = "CodeI";
-            ctrlAnketaPerson.SexTypeDisplayMember = "Name";
-
-            ctrlFaAddress.CountriesDataSource = dictionaries.country;
-            ctrlFaAddress.CountriesValueMember = "CountryCode";
-            ctrlFaAddress.CountriesDisplayMember = "CountryName";
-
-            ctrlFaAddress.RegionsDataSource = dictionaries.region;
-            ctrlFaAddress.RegionsValueMember = "CodeI";
-            ctrlFaAddress.RegionsDisplayMember = "Name";
-
-            ctrlReAddress.CountriesDataSource = dictionaries.country;
-            ctrlReAddress.CountriesValueMember = "CountryCode";
-            ctrlReAddress.CountriesDisplayMember = "CountryName";
-
-            ctrlReAddress.RegionsDataSource = dictionaries.region;
-            ctrlReAddress.RegionsValueMember = "CodeI";
-            ctrlReAddress.RegionsDisplayMember = "Name";
-
-            ctrlLeAddress.CountriesDataSource = dictionaries.country;
-            ctrlLeAddress.CountriesValueMember = "CountryCode";
-            ctrlLeAddress.CountriesDisplayMember = "CountryName";
-
-            ctrlLeAddress.RegionsDataSource = dictionaries.region;
-            ctrlLeAddress.RegionsValueMember = "CodeI";
-            ctrlLeAddress.RegionsDisplayMember = "Name";
-
-            ctrlRegistrations.CountriesDataSource = dictionaries.country;
-            ctrlRegistrations.CountriesValueMember = "CountryCode";
-            ctrlRegistrations.CountriesDisplayMember = "CountryName";
-
-            ctrlRegistrations.ResidentTypesDataSource = dictionaries.residentType;
-            ctrlRegistrations.ResidentTypesValueMember = "CodeI";
-            ctrlRegistrations.ResidentTypesDisplayMember = "Name";
-
             ddlTypeMethodGet.DataSource = dictionaries.typeMethodGet;
             ddlTypeMethodGet.ValueMember = "CodeI";
             ddlTypeMethodGet.DisplayMember = "Name";
-
-            ctrlBaAddress.RegionsDataSource = dictionaries.region;
-            ctrlBaAddress.RegionsValueMember = "CodeI";
-            ctrlBaAddress.RegionsDisplayMember = "Name";
-
-            ctrlBaAddress.CountriesDataSource = dictionaries.country;
-            ctrlBaAddress.CountriesValueMember = "CountryCode";
-            ctrlBaAddress.CountriesDisplayMember = "CountryName";
-
-            ctrlBaAddress.RegionsDataSource = dictionaries.region;
-            ctrlBaAddress.RegionsValueMember = "CodeI";
-            ctrlBaAddress.RegionsDisplayMember = "Name";
-
-            ctrlExclusionsLimitations.CommunitiesDataSource = dictionaries.communities;
-            ctrlTerritoryIncludeExclude.CountriesDataSource = dictionaries.country;
         }
 
         #endregion
@@ -448,7 +397,7 @@ namespace RightholderWorkplace
             using (var rightholderView = new RightholderView())
             {
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
-                rightholderPresenter.Show();
+                rightholderPresenter.Show(rightholder.CustId);
             }
 
             //_customer = GetCustomer(rightholder.CustId);
