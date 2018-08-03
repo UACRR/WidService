@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.RightholderControls
@@ -24,9 +20,51 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        #region Data sources
+
+        public object AgreementAddRhDataSource
+        {
+            get => bsAgreementAddRh.DataSource;
+            set => bsAgreementAddRh.DataSource = value;
+        }
+
+        public object AnketaPersonDataSource
+        {
+            get => bsAnketaPerson.DataSource;
+            set => bsAnketaPerson.DataSource = value;
+        }
+
+        public object BankAccountDataSource
+        {
+            get => bsBankAccount.DataSource;
+            set => bsBankAccount.DataSource = value;
+        }
+
+        public object CustomerDataSource
+        {
+            get => bsCustomer.DataSource;
+            set => bsCustomer.DataSource = value;
+        }
+
+        public object TermsOfServiceDataSource
+        {
+            get => ctrlRightLimitations.DataSource;
+            set => ctrlRightLimitations.DataSource = value;
+        }
+
+        public object RightholderDataSource
+        {
+            get => bsRightHolder.DataSource;
+            set => bsRightHolder.DataSource = value;
+        }
+
+        #endregion
+
         public RightholderView()
         {
             InitializeComponent();
+
+            ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
         }
 
         public void Run()
@@ -117,6 +155,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ddlTypeMethodGet_SelectedValueChanged_1(object sender, EventArgs e)
+        {
+            var val = ddlTypeMethodGet.SelectedValue;
         }
     }
 }
