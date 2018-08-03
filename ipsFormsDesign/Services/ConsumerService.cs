@@ -157,7 +157,58 @@ namespace ipsFormsDesign.Services
 
             return null;
         }
+
+        /*
+         
+             codeI	name
+1	Прийом звітів
+2	Прийом коштів
+3	Борг
+4	Судова робота
+6	Кошти отримані
+7	Закритий
+             */
+        public enum PeriodState : int
+        {
+            /// <summary>
+            /// Прийом звітів
+            /// </summary>
+            getReport = 1,
+            /// <summary>
+            /// Прийом коштів
+            /// </summary>
+            getPay = 2,
+            /// <summary>
+            /// Борг
+            /// </summary>
+            Debt = 3,
+            /// <summary>
+            /// Судова робота
+            /// </summary>
+            Court = 4,
+            /// <summary>
+            /// Кошти отримані
+            /// </summary>
+            Paid = 6,
+            /// <summary>
+            /// Закритий
+            /// </summary>
+            Close = 7
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="period"></param>
+        public bool SetPeriodState(PeriodState state, PaidPeriod period)
+        {
+            string url = _prefix + $"period/state/{period.PeriodId}/{(int)state}";
+            return _webApi.UpdateItem(url, string.Empty, period);
+        }
+
         #endregion
+
+
 
         /// <summary>
         /// Получити дані для авто заповнення
@@ -277,6 +328,8 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem<LicenseAgreement>(url, null, null);
 
         }
+
+ 
 #endif
         /// <summary>
         /// Отримати всю інормацію по поточним періодам оплати для інтерфейсу Розрахунки

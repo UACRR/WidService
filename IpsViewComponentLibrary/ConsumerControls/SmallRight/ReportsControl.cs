@@ -25,6 +25,7 @@ namespace IpsViewComponentLibrary
         public event EventHandler<Register> DeleteRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public Func<int, List<RegisterItem>> GetRegisterItems;
+        private ButtonEnableControl buttonController;
 
         public ReportsControl()
         {
@@ -32,6 +33,9 @@ namespace IpsViewComponentLibrary
 
             gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+
+            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept);
+
         }
 
         private Customer _customer;
@@ -156,33 +160,7 @@ namespace IpsViewComponentLibrary
                 }
 
             bindingReports.DataSource = reports;
-            switch (maxRgStatus)
-            {
-                case 0:
-                    btnToAcception.Enabled = true;
-                    btnAccept.Enabled = false;
-                    btnAddReport.Enabled = true;
-                    break;
-                case 2:
-                    btnToAcception.Enabled = false;
-                    btnAccept.Enabled = true;
-                    btnAddReport.Enabled = true;
-                    break;
-                case -1:
-                case 1:
-                case 3:
-                    btnToAcception.Enabled = false;
-                    btnAccept.Enabled = false;
-                    btnAddReport.Enabled = true;
-                    break;
-                default:
-                    btnToAcception.Enabled = false;
-                    btnAccept.Enabled = false;
-                    btnAddReport.Enabled = false;
-                    break;
-            }
-
-
+            buttonController.SetPeriodState(period.Status, reports);
         }
 
         // * * * [Звіти періода]
@@ -406,7 +384,7 @@ namespace IpsViewComponentLibrary
                 case 4: // Судова робота
                     _addReport.Enabled = true;
                     _toAcception.Enabled = regStates[0] > 0 ? true : false; // Нових > 0
-                    _accepted.Enabled = regStates[2] == countInList ? true : false; // Всі погоджені
+                    _accepted.Enabled = countInList > 0 && regStates[2] == countInList ? true : false; // Всі погоджені
                     break;
                 case 2: // Прийом поштів
                 case 5: // 

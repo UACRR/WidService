@@ -22,6 +22,8 @@ namespace IpsViewComponentLibrary
         public event EventHandler<List<MoneyPeriodLink>> SaveLinkCommandExecuted;
         public delegate void UpdateCustomerDataEventHandler(int id);
         public event UpdateCustomerDataEventHandler UpdateData;
+        private GridDataRowElement dragRow;
+        private GridDataRowElement dropRow;
 
         public CalculationInfoControl()
         {
@@ -54,20 +56,36 @@ namespace IpsViewComponentLibrary
         }
 
 
-        #region Drag & drop logic
+        #region Drag & drop logic *****************************************************************************
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void svc_PreviewDragStart(object sender, PreviewDragStartEventArgs e)
         {
             e.CanStart = true;
             RadItem target = e.DragInstance as RadItem;
             var row = target as GridDataRowElement;
 
-            if (row != null && row.RowInfo.DataBoundItem is PaidPeriod)
-                boolDragPeriod = true;
-
+            dragRow = row;
+            dropRow = null;
 
         }
 
+        List<KeyValuePair<Type, Type>> validDragDrop = new List<KeyValuePair<Type, Type>>
+        {
+            new KeyValuePair<Type, Type>( typeof( MoneyReceived), typeof(LicenseAgrParam )),
+            new KeyValuePair<Type, Type>( typeof( MoneyReceived), typeof(PaidPeriod )),
+            new KeyValuePair<Type, Type>( typeof(PaidPeriod ), typeof( MoneyReceived)),
+            new KeyValuePair<Type, Type>( typeof(LicenseAgrParam ), typeof( MoneyReceived)),
+        };
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dragDropService_PreviewDragDrop(object sender, RadDropEventArgs e)
         {
             RadItem dropTarget = e.HitTarget as RadItem;
@@ -76,18 +94,11 @@ namespace IpsViewComponentLibrary
 
             RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
             var dropTargetRow = dropTarget as GridDataRowElement;
+            dropRow = dropTargetRow;
 
-            dropTarget = (RadItem)e.DragInstance;
-            if (dropTarget == null)
+            KeyValuePair<Type, Type> search = new KeyValuePair<Type, Type>(dragRow.RowInfo.DataBoundItem.GetType(), dropRow.RowInfo.DataBoundItem.GetType());
+            if (!validDragDrop.Contains(search))
                 return;
-
-            var rowBehavior = ((BaseGridBehavior)targetGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
-            if (rowBehavior == null)
-                return;
-            rowBehavior.SetTargetRow(dropTargetRow);
-
-            if (dropTargetRow.RowInfo.DataBoundItem is PaidPeriod)
-                boolDragPeriod = true;
 
             boolRunFromDragDrop = true;
             e.Handled = true;
@@ -96,63 +107,34 @@ namespace IpsViewComponentLibrary
             {
                 btnDistribute.PerformClick();
             }));
-
-
-
-
         }
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dragDropService_PreviewDragOver(object sender, RadDragOverEventArgs e)
         {
             if (e.DragInstance is GridDataRowElement && e.HitTarget is GridDataRowElement)
             {
                 RadItem dropTarget = e.HitTarget as RadItem;
                 RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
+                GridDataRowElement hitRow = dropTarget as GridDataRowElement;
 
-
-                if (!(targetGrid.Equals(gvPeriodsPayment) || targetGrid.Equals(gvLicenseAgr) || targetGrid.Equals(gvUserMoneys)))
+                if (hitRow.RowInfo.DataBoundItem.GetType() == dragRow.RowInfo.DataBoundItem.GetType())
                     return;
 
-                GridDataRowElement targetRow = dropTarget as GridDataRowElement;
+                KeyValuePair<Type, Type> search = new KeyValuePair<Type, Type>(dragRow.RowInfo.DataBoundItem.GetType(), hitRow.RowInfo.DataBoundItem.GetType());
+                e.CanDrop = validDragDrop.Contains(search);
 
-                var behavior = targetGrid.GridBehavior as BaseGridBehavior;
-                var rowViewBehavior = behavior.GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
-
-                dropTarget = (RadItem)e.DragInstance;
-                var sourceRow = dropTarget as GridDataRowElement;
-
-                var sourceGrid = dropTarget.ElementTree.Control as RadGridView;
-                if (sourceGrid.Equals(targetGrid))
-                    return;
-
-                var rowViewSorceBehavior = ((BaseGridBehavior)sourceGrid.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
-
-
-
-                //if (rowViewSorceBehavior == null || rowViewSorceBehavior.Target != targetGrid)
-                //    return;
-
-
-                e.CanDrop = (e.HitTarget is GridDataRowElement);
             }
         }
 
-        private void dragDropService_PreviewDragHint(object sender, PreviewDragHintEventArgs e)
-        {
-            SnapshotDragItem dragInstance = e.DragInstance as SnapshotDragItem;
 
-            if (dragInstance == null)
-            {
-                return;
-            }
-
-            GridViewRowInfo rowInfo = e.DragInstance.GetDataContext() as GridViewRowInfo;
-
-            if (rowInfo != null && rowInfo.ViewTemplate.MasterTemplate.SelectedRows.Count > 1)
-            {
-                e.UseDefaultHint = false;
-            }
-        }
 
         #endregion
 
@@ -236,10 +218,6 @@ namespace IpsViewComponentLibrary
             SetGrid3DataSource();
         }
 
-        private void radGridView3_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-            SetGrid4DataSource();
-        }
 
         // Period
         private void SetGrid3DataSource()
@@ -252,20 +230,6 @@ namespace IpsViewComponentLibrary
             else
             {
                 paidPeriodBindingSource.DataSource = typeof(PaidPeriod);
-            }
-        }
-        //PeriodMoney
-        private void SetGrid4DataSource()
-        {
-            if (gvPeriodsPayment.CurrentRow != null)
-            {
-                var paydItem = (PaidPeriod)gvPeriodsPayment.CurrentRow.DataBoundItem;
-
-                PeriodMoneyReceivedBindingSource.DataSource = paydItem.MoneyPeriodLink;
-            }
-            else
-            {
-                PeriodMoneyReceivedBindingSource.DataSource = typeof(MoneyPeriodLink);
             }
         }
 
@@ -285,7 +249,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        bool boolDragPeriod = false;
         /// <summary>
         /// 
         /// </summary>
@@ -304,42 +267,36 @@ namespace IpsViewComponentLibrary
             if (boolRunFromDragDrop)
             {
 
-                var rowBehavior = ((BaseGridBehavior)gvUserMoneys.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
-                var gridDataRowElement = rowBehavior.DragDropRow;
+                GridDataRowElement payRow = null,
+                                   destRow = null;
 
-                if (gridDataRowElement == null)
-                    return;
-
-                pay = gridDataRowElement.RowInfo.DataBoundItem as MoneyReceived;
-
-                if (boolDragPeriod == false)
+                if( dragRow.RowInfo.DataBoundItem is MoneyReceived )
                 {
-                    rowBehavior = ((BaseGridBehavior)gvLicenseAgr.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
-                    gridDataRowElement = rowBehavior.DragDropRow;
-
-                    if (gridDataRowElement == null)
-                        return;
-
-                    licParam = gridDataRowElement.RowInfo.DataBoundItem as LicenseAgrParam;
-                    period = null;
-
+                    payRow = dragRow;
+                    destRow = dropRow;
                 }
                 else
                 {
-                    rowBehavior = ((BaseGridBehavior)gvPeriodsPayment.GridBehavior).GetBehavior(typeof(GridViewDataRowInfo)) as RowSelectionGridBehavior;
-                    gridDataRowElement = rowBehavior.DragDropRow;
+                    payRow = dropRow;
+                    destRow = dragRow;
+                }
 
-                    if (gridDataRowElement == null)
-                        return;
-                    period = gridDataRowElement.RowInfo.DataBoundItem as PaidPeriod;
+                pay = payRow.RowInfo.DataBoundItem as MoneyReceived;
+                if( destRow.RowInfo.DataBoundItem is PaidPeriod ) // Drop to PaidPeriod
+                {
+                    period = destRow.RowInfo.DataBoundItem as PaidPeriod;
 
                     licParam = period.Lic.LicenseAgrParam.Single(rec => rec.LicVersion == period.Lic.LicVersion);
 
                 }
+                else // Drop to LicenceAgreement
+                {
+                    licParam = destRow.RowInfo.DataBoundItem as LicenseAgrParam;
+                    period = null;
 
+                }
 
                 boolRunFromDragDrop = false;
-                boolDragPeriod = false;
             }
             else
             {
@@ -386,7 +343,6 @@ namespace IpsViewComponentLibrary
         private void RefreshData()
         {
             gvPeriodsPayment.MasterTemplate.Refresh();
-            gvPayments.MasterTemplate.Refresh();
             gvLicenseAgr.MasterTemplate.Refresh();
             gvUserMoneys.MasterTemplate.Refresh();
         }
@@ -398,7 +354,6 @@ namespace IpsViewComponentLibrary
             BindLicAgreements();
 
             SetGrid3DataSource();
-            SetGrid4DataSource();
         }
 
         private void gvLicenseAgr_RowFormatting(object sender, RowFormattingEventArgs e)
@@ -415,9 +370,10 @@ namespace IpsViewComponentLibrary
             ri.Cells["Debt"].Value = Convert.ToDecimal(debt);
         }
 
-
-
-
+        /// Закрити період
+        private void btnClosePeriod_Click(object sender, EventArgs e)
+        {
+        }
     }
 
     public class GridLicAgr

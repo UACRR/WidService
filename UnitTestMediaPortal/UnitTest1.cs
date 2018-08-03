@@ -255,5 +255,17 @@ namespace UnitTestMediaPortal
             Assert.AreEqual(list.Count(), related.Register.Count());
         }
 
+        [TestMethod]
+        public void TestClosingPeriod()
+        {
+            var service = new ConsumerService();
+            var cust = service.GetCustomerRegisterRatedList(135);
+
+            var period = cust.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.PaidPeriod.Count(p => p.Status == 2) > 0).First()
+                .PaidPeriod.First(rec => rec.Status == 2);
+
+            service.SetPeriodState(ConsumerService.PeriodState.Close, period);
+        }
+
     }
 }

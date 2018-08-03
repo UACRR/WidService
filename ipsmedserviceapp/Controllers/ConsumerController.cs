@@ -838,55 +838,6 @@ namespace ipsmedserviceapp.Controllers
             return Json(retList);
         }
 
-        /// <summary>
-        /// Отримати детальну інформацію по періодам оплати договору
-        /// </summary>
-        /// <param name="licid"></param>
-        /// <returns></returns>
-        [HttpGet("period/detail/{licid}")]
-        public async Task<IActionResult> GetPeriodDetail(int licid)
-        {
-            try
-            {
-                var licenseAgrement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)
-                                        .Include(rec => rec.PaidPeriod)
-                                        .Include(rec => rec.Cust).ThenInclude(cust => cust.Cust)
-                                        .SingleOrDefaultAsync();
-
-                await _dbContext.MoneyPeriodLink.FromSql($"select * from MoneyPeriodLink where licid = {licid}")
-                                .Include(rec => rec.Paid)
-                                .LoadAsync();
-
-                await _dbContext.Register.FromSql("select t2.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId where t1.licid = @licid", new SqlParameter("@licid", licid))
-                    .Include(rec => rec.RegisterItem)
-                    .Include(rec => rec.Distribution)
-                    .LoadAsync();
-
-
-                await _dbContext.DistributionItem.FromSql(@"
-select t3.* from PaidPeriod t1 join Distribution t2 on t2.periodId = t1.periodId 
-join DistributionItem t3 on t3.distId = t2.distId
-where t1.licid = @licid", new SqlParameter("@licid", licid))
-                    .LoadAsync();
-
-                await _dbContext.RegisterCount.FromSql(@"
-select t4.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId 
-join RegisterItem t3 on t3.regId = t2.regId
-join RegisterCount t4 on t4.regId = t3.regId and t4.regIItemId = t3.regIItemId
-where t1.licid = @licid", new SqlParameter("@licid", licid))
-    .LoadAsync();
-
-
-
-                return Json(licenseAgrement.Cust.Cust);
-
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
-        } // GetPeriodDetail(int licid)
 
         #region Action FOR LICENSEAGREEMENT ******************************************************
         [HttpPut("license/type/{licId}/{typeId}")]
@@ -1032,121 +983,92 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         }
         #endregion
 
-        #region RatedList POST PUT DELETE ******************************************************
-        /// <summary>
-        /// Отримати розрахункові листи для споживача
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <returns></returns>
-        [HttpGet("period/register/RatedList/{custId}")]
-        public async Task<IActionResult> GetRegisterInfoForCustomer(int custId)
-        {
-            var licenseAgreement = await _dbContext.LicenseAgrParam.FromSql(@"
-select t2.* 
-from LicenseAgreement t1 
-join LicenseAgrParam t2 on t2.licId = t1.licId and t2.licVersion = t1.licVersion and t2.licStatus = 2
-where t1.custId = @custId
-", new SqlParameter("@custId", custId))
-            .Include( rec => rec.Lic )
-                .ThenInclude(lic => lic.Cust)
-                .ThenInclude(cln => cln.Cust)
-                .ToListAsync();
-
-                if (licenseAgreement.Count() == 0)
-                    return Ok();
-
-                foreach (var item in licenseAgreement)
-                {
-                    await _dbContext.Entry(item.Lic).Collection(rec => rec.PaidPeriod)
-                        .Query()
-                        // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
-                        .Include( rec => rec.RegisterRatedList).ThenInclude( reg => reg.Register )
-                        .LoadAsync();
-                }
-
-                return Json(licenseAgreement.First().Lic.Cust.Cust);
-
-        }
+        #region period POST PUT DELETE ******************************************************
 
         /// <summary>
-        /// Отримати записи зі звіту
+        /// Отримати детальну інформацію по періодам оплати договору
         /// </summary>
-        /// <param name="regId"></param>
+        /// <param name="licid"></param>
         /// <returns></returns>
-        [HttpGet("period/register/RegisterItem/{regId}")]
-        public async Task<IActionResult> GetRegisterItems(int regId)
+        [HttpGet("period/detail/{licid}")]
+        public async Task<IActionResult> GetPeriodDetail(int licid)
         {
-            var list = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId).AsNoTracking().ToListAsync();
-            return Json(list);
-        }
-        /// <summary>
-        /// Створити звіту періоду
-        /// </summary>
-        /// <param name="regid">Ід звіта</param>
-        /// <returns></returns>
-        [HttpPost("period/register/RatedList")]
-        public async Task<IActionResult> PostRegisterDetail([FromBody] RegisterRatedList body)
-        {
-
-            IDbContextTransaction tran = null;
             try
             {
-                RegisterRatedList dest = null;
+                var licenseAgrement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)
+                                        .Include(rec => rec.PaidPeriod)
+                                        .Include(rec => rec.Cust).ThenInclude(cust => cust.Cust)
+                                        .SingleOrDefaultAsync();
 
-                dest = new RegisterRatedList { CreateDate = DateTime.Today };
-                _dbContext.RegisterRatedList.Add(dest);
+                await _dbContext.MoneyPeriodLink.FromSql($"select * from MoneyPeriodLink where licid = {licid}")
+                                .Include(rec => rec.Paid)
+                                .LoadAsync();
+
+                await _dbContext.Register.FromSql("select t2.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId where t1.licid = @licid", new SqlParameter("@licid", licid))
+                    .Include(rec => rec.RegisterItem)
+                    .Include(rec => rec.Distribution)
+                    .LoadAsync();
 
 
-                modifyRatedList(body, dest);
+                await _dbContext.DistributionItem.FromSql(@"
+select t3.* from PaidPeriod t1 join Distribution t2 on t2.periodId = t1.periodId 
+join DistributionItem t3 on t3.distId = t2.distId
+where t1.licid = @licid", new SqlParameter("@licid", licid))
+                    .LoadAsync();
 
-                tran = _dbContext.Database.BeginTransaction();
-                await _dbContext.SaveChangesAsync();
-                tran.Commit();
-                tran = null;
-                return Json(dest);
+                await _dbContext.RegisterCount.FromSql(@"
+select t4.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId 
+join RegisterItem t3 on t3.regId = t2.regId
+join RegisterCount t4 on t4.regId = t3.regId and t4.regIItemId = t3.regIItemId
+where t1.licid = @licid", new SqlParameter("@licid", licid))
+    .LoadAsync();
+
+
+
+                return Json(licenseAgrement.Cust.Cust);
+
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (tran != null)
-                    tran.Rollback();
-                return BadRequest(e.Message);
+
+                return BadRequest(ex.Message);
             }
+        } // GetPeriodDetail(int licid)
 
-        } // PostRegisterDetail
-
-        [HttpPut("period/register/RatedList/{RmId}")]
-        public async Task<IActionResult> PutRegisterDetail(int RmId, [FromBody] RegisterRatedList body)
+        /// <summary>
+        /// Збереження стану Періода платежів
+        /// </summary>
+        /// <param name="periodid"></param>
+        /// <param name="stateid"></param>
+        /// <returns></returns>
+        [HttpPut("period/state/{periodid}/{stateid}")]
+        public async Task<IActionResult> SetPeriodState(int periodid, int stateid )
         {
-
             IDbContextTransaction tran = null;
+
             try
             {
-                RegisterRatedList dest = null;
-                dest = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
-                    .Include(rec => rec.Register).ThenInclude(reg => reg.RegisterItem)
-                    .Single();
+                var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == periodid).SingleOrDefaultAsync();
+                if (period == null)
+                    return BadRequest();
 
-                modifyRatedList(body, dest);
+                period.Status = stateid;
 
-                tran = _dbContext.Database.BeginTransaction();
+                tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
+
                 tran.Commit();
                 tran = null;
-                return Json(dest);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                if (tran != null)
-                    tran.Rollback();
-                return BadRequest(e.Message);
+                tran?.Rollback();
+                throw;
             }
 
-        } // PostRegisterDetail
-        #endregion
-
-        #region Register POST PUT DELETE ******************************************************
-
-
+            return Ok();
+        }
+        
         /// <summary>
         /// Отримати детальну інформацію по звіту періоду
         /// </summary>
@@ -1380,138 +1302,6 @@ where t1.custId = @custId
         }
 
         #endregion
-
-        #region Download Upload file ******************************************************
-        /// <summary>
-        /// Завантаження файлу(ів) на сервер
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="typeDocument"></param>
-        /// <returns></returns>
-        [HttpPost("Document/{custId}/{typeDocument}")]
-        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, string comment, IFormFile file)
-        {
-
-            // Перевірка існування дерикторії
-            string documentsFolder = _config.GetValue<string>("DocumentsFolder");
-            string consumerPath = Path.Combine(documentsFolder, custId.ToString());
-            if (!Directory.Exists(consumerPath))
-                Directory.CreateDirectory(consumerPath);
-
-            consumerPath = Path.Combine(consumerPath, "Consumer");
-            if (!Directory.Exists(consumerPath))
-                Directory.CreateDirectory(consumerPath);
-
-            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
-            if (!Directory.Exists(consumerPath))
-                Directory.CreateDirectory(consumerPath);
-
-            // Запис бази даних по файлу
-            var fileRec = await _dbContext.FileCustomer.Where(rec => rec.CustId == custId && rec.DocFile == file.FileName).SingleOrDefaultAsync();
-            if (fileRec == null)
-            {
-                fileRec = new FileCustomer { CustId = custId, DocFile = file.FileName, CreateDate = DateTime.Now, DocType = typeDocument };
-                _dbContext.FileCustomer.Add(fileRec);
-            }
-
-            // var file = files.First();
-            // Зберігаємо файл
-            consumerPath = Path.Combine(consumerPath, file.FileName);
-            var consumerSavePath = string.Concat(consumerPath, ".old");
-            if (System.IO.File.Exists(consumerPath))
-            {
-                if (System.IO.File.Exists(consumerSavePath))
-                    System.IO.File.Delete(consumerSavePath);
-                System.IO.File.Move(consumerPath, consumerSavePath);
-
-
-            }
-
-
-            fileRec.ModifyDate = DateTime.Now;
-            fileRec.DocComment = comment;
-            // Зберігаємо файл на сервері
-
-            var tran = await _dbContext.Database.BeginTransactionAsync();
-            try
-            {
-                using (var stream = new FileStream(consumerPath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
-                await _dbContext.SaveChangesAsync();
-                tran.Commit();
-                // Видаляемо збережений файл
-                if (System.IO.File.Exists(consumerSavePath))
-                    System.IO.File.Delete(consumerSavePath);
-
-                tran = null;
-            }
-            catch (Exception)
-            {
-                if (tran != null)
-                    tran.Rollback();
-                if (System.IO.File.Exists(consumerPath))
-                    System.IO.File.Delete(consumerPath);
-
-                // Востанавлюємо збережений файл
-                if (System.IO.File.Exists(consumerSavePath))
-                    System.IO.File.Move(consumerSavePath, consumerPath);
-                return BadRequest();
-            }
-
-            return Ok();
-        }
-        /// <summary>
-        /// Завантаження файлу(ів) на сервер
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="typeDocument"></param>
-        /// <returns></returns>
-        [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
-        public IActionResult DownloadDocument(int custId, int typeDocument, string fileName, CancellationToken token)
-        {
-
-            string documentsFolder = _config.GetValue<string>("DocumentsFolder");
-            string consumerPath = Path.Combine(documentsFolder, custId.ToString());
-            if (!Directory.Exists(consumerPath))
-                return BadRequest();
-
-            consumerPath = Path.Combine(consumerPath, "Consumer", typeDocument.ToString());
-            if (!Directory.Exists(consumerPath))
-                return BadRequest();
-
-            consumerPath = Path.Combine(consumerPath, fileName);
-
-            if (!System.IO.File.Exists(consumerPath))
-                return null;
-
-            var file = System.IO.File.OpenRead(consumerPath);
-            var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
-
-            return retStream;
-
-            //try
-            //{
-            //    //var memoryStream = new MemoryStream();
-            //    using (var stream = new FileStream(consumerPath, FileMode.Open))
-            //    //var stream = new FileStream(consumerPath, FileMode.Open);
-            //    {
-            //        await stream.CopyToAsync(memoryStream);
-
-            //        memoryStream.Position = 0;
-            //        var retStream = File(memoryStream, "application/vnd.ms-word", Path.GetFileName(consumerPath));
-            //        return retStream;
-            //    }
-            //}
-            //catch(Exception ex)
-            //{
-            //    return BadRequest(ex.InnerException.Message);
-            //}
-        }
-        #endregion
-
         #region PaydPariod Services******************************************************
         /// <summary>
         /// Отримати Нерозподілені Платежі Споживача
@@ -1687,6 +1477,248 @@ and t3.licStatus between 0 and 3
         }
 
         #endregion
+
+        #region Download Upload file ******************************************************
+        /// <summary>
+        /// Завантаження файлу(ів) на сервер
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="typeDocument"></param>
+        /// <returns></returns>
+        [HttpPost("Document/{custId}/{typeDocument}")]
+        public async Task<ActionResult> UploadDocument(int custId, int typeDocument, string comment, IFormFile file)
+        {
+
+            // Перевірка існування дерикторії
+            string documentsFolder = _config.GetValue<string>("DocumentsFolder");
+            string consumerPath = Path.Combine(documentsFolder, custId.ToString());
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+
+            consumerPath = Path.Combine(consumerPath, "Consumer");
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+
+            consumerPath = Path.Combine(consumerPath, typeDocument.ToString());
+            if (!Directory.Exists(consumerPath))
+                Directory.CreateDirectory(consumerPath);
+
+            // Запис бази даних по файлу
+            var fileRec = await _dbContext.FileCustomer.Where(rec => rec.CustId == custId && rec.DocFile == file.FileName).SingleOrDefaultAsync();
+            if (fileRec == null)
+            {
+                fileRec = new FileCustomer { CustId = custId, DocFile = file.FileName, CreateDate = DateTime.Now, DocType = typeDocument };
+                _dbContext.FileCustomer.Add(fileRec);
+            }
+
+            // var file = files.First();
+            // Зберігаємо файл
+            consumerPath = Path.Combine(consumerPath, file.FileName);
+            var consumerSavePath = string.Concat(consumerPath, ".old");
+            if (System.IO.File.Exists(consumerPath))
+            {
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Delete(consumerSavePath);
+                System.IO.File.Move(consumerPath, consumerSavePath);
+
+
+            }
+
+
+            fileRec.ModifyDate = DateTime.Now;
+            fileRec.DocComment = comment;
+            // Зберігаємо файл на сервері
+
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                using (var stream = new FileStream(consumerPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                // Видаляемо збережений файл
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Delete(consumerSavePath);
+
+                tran = null;
+            }
+            catch (Exception)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                if (System.IO.File.Exists(consumerPath))
+                    System.IO.File.Delete(consumerPath);
+
+                // Востанавлюємо збережений файл
+                if (System.IO.File.Exists(consumerSavePath))
+                    System.IO.File.Move(consumerSavePath, consumerPath);
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+        /// <summary>
+        /// Завантаження файлу(ів) на сервер
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="typeDocument"></param>
+        /// <returns></returns>
+        [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
+        public IActionResult DownloadDocument(int custId, int typeDocument, string fileName, CancellationToken token)
+        {
+
+            string documentsFolder = _config.GetValue<string>("DocumentsFolder");
+            string consumerPath = Path.Combine(documentsFolder, custId.ToString());
+            if (!Directory.Exists(consumerPath))
+                return BadRequest();
+
+            consumerPath = Path.Combine(consumerPath, "Consumer", typeDocument.ToString());
+            if (!Directory.Exists(consumerPath))
+                return BadRequest();
+
+            consumerPath = Path.Combine(consumerPath, fileName);
+
+            if (!System.IO.File.Exists(consumerPath))
+                return null;
+
+            var file = System.IO.File.OpenRead(consumerPath);
+            var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
+
+            return retStream;
+
+            //try
+            //{
+            //    //var memoryStream = new MemoryStream();
+            //    using (var stream = new FileStream(consumerPath, FileMode.Open))
+            //    //var stream = new FileStream(consumerPath, FileMode.Open);
+            //    {
+            //        await stream.CopyToAsync(memoryStream);
+
+            //        memoryStream.Position = 0;
+            //        var retStream = File(memoryStream, "application/vnd.ms-word", Path.GetFileName(consumerPath));
+            //        return retStream;
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    return BadRequest(ex.InnerException.Message);
+            //}
+        }
+
+        /// <summary>
+        /// Отримати розрахункові листи для споживача
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("period/register/RatedList/{custId}")]
+        public async Task<IActionResult> GetRegisterInfoForCustomer(int custId)
+        {
+            var licenseAgreement = await _dbContext.LicenseAgrParam.FromSql(@"
+select t2.* 
+from LicenseAgreement t1 
+join LicenseAgrParam t2 on t2.licId = t1.licId and t2.licVersion = t1.licVersion and t2.licStatus = 2
+where t1.custId = @custId
+", new SqlParameter("@custId", custId))
+            .Include(rec => rec.Lic)
+                .ThenInclude(lic => lic.Cust)
+                .ThenInclude(cln => cln.Cust)
+                .ToListAsync();
+
+            if (licenseAgreement.Count() == 0)
+                return Ok();
+
+            foreach (var item in licenseAgreement)
+            {
+                await _dbContext.Entry(item.Lic).Collection(rec => rec.PaidPeriod)
+                    .Query()
+                    // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
+                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register)
+                    .LoadAsync();
+            }
+
+            return Json(licenseAgreement.First().Lic.Cust.Cust);
+
+        }
+
+        /// <summary>
+        /// Отримати записи зі звіту
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpGet("period/register/RegisterItem/{regId}")]
+        public async Task<IActionResult> GetRegisterItems(int regId)
+        {
+            var list = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId).AsNoTracking().ToListAsync();
+            return Json(list);
+        }
+        /// <summary>
+        /// Створити звіту періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpPost("period/register/RatedList")]
+        public async Task<IActionResult> PostRegisterDetail([FromBody] RegisterRatedList body)
+        {
+
+            IDbContextTransaction tran = null;
+            try
+            {
+                RegisterRatedList dest = null;
+
+                dest = new RegisterRatedList { CreateDate = DateTime.Today };
+                _dbContext.RegisterRatedList.Add(dest);
+
+
+                modifyRatedList(body, dest);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(dest);
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        } // PostRegisterDetail
+
+        [HttpPut("period/register/RatedList/{RmId}")]
+        public async Task<IActionResult> PutRegisterDetail(int RmId, [FromBody] RegisterRatedList body)
+        {
+
+            IDbContextTransaction tran = null;
+            try
+            {
+                RegisterRatedList dest = null;
+                dest = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
+                    .Include(rec => rec.Register).ThenInclude(reg => reg.RegisterItem)
+                    .Single();
+
+                modifyRatedList(body, dest);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(dest);
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        } // PostRegisterDetail
+        #endregion
+
     } // public class ConsumerController : Controller
 
     public class CloseAgreementWithActiveLicense : Exception
