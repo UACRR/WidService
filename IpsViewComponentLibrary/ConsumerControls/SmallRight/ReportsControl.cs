@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -24,6 +25,7 @@ namespace IpsViewComponentLibrary
         public event EventHandler<Register> DeleteRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public Func<int, List<RegisterItem>> GetRegisterItems;
+        private ButtonEnableControl buttonController;
 
         public ReportsControl()
         {
@@ -31,6 +33,9 @@ namespace IpsViewComponentLibrary
 
             gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+
+            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept);
+
         }
 
         private Customer _customer;
@@ -150,38 +155,13 @@ namespace IpsViewComponentLibrary
             if (period?.RegisterRatedList.Count() > 0)
                 foreach (var item in period.RegisterRatedList.OrderBy(rec => rec.RmId))
                 {
-                    maxRgStatus = Math.Max(maxRgStatus, item.Register.Max(rec => rec.RgStatus??0));
+                    maxRgStatus = Math.Max(maxRgStatus, item.Register.Max(rec => rec.RgStatus ?? 0));
                     reports.AddRange(item.Register);
                 }
 
             bindingReports.DataSource = reports;
-            switch (maxRgStatus)
-            {
-                case 0:
-                    btnToAcception.Enabled = true;
-                    btnAccept.Enabled = false;
-                    btnAddReport.Enabled = true;
-                    break;
-                case 2:
-                    btnToAcception.Enabled = false;
-                    btnAccept.Enabled = true;
-                    btnAddReport.Enabled = true;
-                    break;
-                case -1:
-                case 1:
-                case 3:
-                    btnToAcception.Enabled = false;
-                    btnAccept.Enabled = false;
-                    btnAddReport.Enabled = true;
-                    break;
-                default:
-                    btnToAcception.Enabled = false;
-                    btnAccept.Enabled = false;
-                    btnAddReport.Enabled = false;
-                    break;
-            }
 
-
+            buttonController.SetPeriodState(period?.Status, reports);
         }
 
         // * * * [Звіти періода]
@@ -306,7 +286,7 @@ namespace IpsViewComponentLibrary
         {
             var row = e.RowElement.RowInfo;
             var licAgr = row.DataBoundItem as LicenseAgrParam;
-            var debt = licAgr.Lic.PaidPeriod.Where(rec=>rec.EndDate < DateTime.Today ).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount);
+            var debt = licAgr.Lic.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount);
             row.Cells["Arrears"].Value = debt;
         }
 
@@ -327,15 +307,15 @@ namespace IpsViewComponentLibrary
         private void gvPeriodReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             string Name = e.Column.Name;
-            if ( Name == "DeleteColumn" || Name == "EditColumn")
+            if (Name == "DeleteColumn" || Name == "EditColumn")
             {
                 var register = e.Row.DataBoundItem as Register;
-                if( register == null )
+                if (register == null)
                 {
                     e.CellElement.Enabled = false;
                 }
 
-                else if( register.RgStatus > 0 && Name == "DeleteColumn" )
+                else if (register.RgStatus > 0 && Name == "DeleteColumn")
                     e.CellElement.Enabled = false;
                 else
                     e.CellElement.Enabled = true;
@@ -347,12 +327,12 @@ namespace IpsViewComponentLibrary
         private void btnToAcception_Click(object sender, EventArgs e)
         {
             var list = bindingReports.DataSource as List<Register>;
-            if( list != null )
+            if (list != null)
             {
                 var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
                 foreach (var item in paramList)
                     item.RgStatus = 1;
-                SetRegisterStateExecuted(this, paramList );
+                SetRegisterStateExecuted(this, paramList);
                 gvPeriodReports.MasterTemplate.Refresh();
                 btnToAcception.Enabled = false;
             }
@@ -374,6 +354,62 @@ namespace IpsViewComponentLibrary
         }
     }
 
+    /// <summary>
+    /// Керування станом кнопок 
+    /// </summary>
+    class ButtonEnableControl
+    {
+        private RadButton _addReport,
+                          _toAcception,
+                          _accepted;
+
+        public ButtonEnableControl(RadButton addReport, RadButton toAcception, RadButton Accepted)
+        {
+            _addReport = addReport;
+            _toAcception = toAcception;
+            _accepted = Accepted;
+        }
+        public void SetPeriodState(int? state, List<Register> list)
+        {
+            if (state == 2)
+            {
+                _addReport.Enabled = false;
+                _toAcception.Enabled = false;
+                _accepted.Enabled = false;
+                return;
+            }
+            int[] regStates = new[] { 0, 0, 0, 0, 0, 0 };
+            int countInList = list.Count();
+            // Накоплюємо кіль
+            foreach (var item in list)
+                regStates[item.RgStatus ?? 0]++;
+
+            switch (state)
+            {
+                case 0: // Новий
+                case 1: // Прийом звітів
+                case 3: // Борг
+                case 4: // Судова робота
+                    _addReport.Enabled = true;
+                    _toAcception.Enabled = regStates[0] > 0 ? true : false; // Нових > 0
+                    _accepted.Enabled = countInList > 0 && regStates[2] == countInList ? true : false; // Всі погоджені
+                    break;
+                case 2: // Прийом поштів
+                case 5: // 
+                case 6: // Кошти отримані
+                    _addReport.Enabled = false;
+                    _toAcception.Enabled = false;
+                    _accepted.Enabled = false;
+                    break;
+                default: // Зактритий
+                    _addReport.Enabled = false;
+                    _toAcception.Enabled = false;
+                    _accepted.Enabled = false;
+                    break;
+            }
+        }
+
+    }
     public class GridPeriodsR
     {
         public int PeriodId { get; set; }

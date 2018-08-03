@@ -19,6 +19,12 @@ namespace IpsViewComponentLibrary
             _control = control;
             _control.SaveLinkCommandExecuted += SaveLinkCommandExecuted;
             _control.SavePariodCommandExecuted += SavePariodCommandExecuted;
+            _control.SetPeriodStateExecuted += _control_SetPeriodStateExecuted;
+        }
+
+        private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)
+        {
+            _service.SetPeriodState( (ConsumerService.PeriodState)e.Status, e ) ;
         }
 
         private void SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)
