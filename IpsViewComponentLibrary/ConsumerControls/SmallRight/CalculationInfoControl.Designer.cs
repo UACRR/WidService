@@ -171,6 +171,7 @@
             this.gvPeriodsPayment.Size = new System.Drawing.Size(1017, 216);
             this.gvPeriodsPayment.TabIndex = 0;
             this.gvPeriodsPayment.ThemeName = "Office2007Silver";
+            this.gvPeriodsPayment.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodsPayment_CurrentRowChanged);
             // 
             // paidPeriodBindingSource
             // 

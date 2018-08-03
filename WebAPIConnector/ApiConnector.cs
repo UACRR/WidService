@@ -181,6 +181,9 @@ namespace WebAPIConnector
         {
             string idUrl = $"{url}/{id}";
             string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
+            if (retApiString == "null")
+                retApiString = string.Empty;
+
 
             if (string.IsNullOrEmpty(retApiString))
                 return default(T);
