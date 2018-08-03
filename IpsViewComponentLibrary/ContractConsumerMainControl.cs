@@ -19,6 +19,7 @@ namespace IpsViewComponentLibrary
         private string _agreemnentName = "";
         private DateTime _dateEndNullDate = new DateTime(1,1,1);
         private string _dateEndNullText = "";
+        private ConsumerAgreementInitType _type = ConsumerAgreementInitType.None;
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -183,6 +184,34 @@ namespace IpsViewComponentLibrary
                 {
                     _dateEndNullText = value;
                     rdtPickerDateEnd.NullText = value;
+                }
+            }
+        }
+
+        public ConsumerAgreementInitType DateTimeType
+        {
+            get => _type;
+            set
+            {
+                _type = value;
+                switch (_type)
+                {
+                    case ConsumerAgreementInitType.AddNewAgreement:
+                        break;
+                    case ConsumerAgreementInitType.ChangeAgreement:
+                    {
+                        rdtPickerDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
+                        rdtPickerDateEnd.ReadOnly = true;
+                    }
+                        break;
+                    case ConsumerAgreementInitType.Prolongation:
+                    {
+                        rdtPickerDateBegin.ReadOnly = true;
+                        rdtPickerDateEnd.ReadOnly = true;
+                        rdtPickerDateBegin.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
+                        rdtPickerDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
+                    }
+                        break;
                 }
             }
         }

@@ -130,7 +130,6 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="id">ідентифікатор CustId бази даних</param>
         /// <returns></returns>
-        [Authorize]
         [HttpGet("detail/{id}")]
         public async Task<IActionResult> GetConsumerById(int id)
         {
@@ -1333,6 +1332,53 @@ where t1.custId = @custId
             }
 
         } // DeleteRegisterDetail
+
+        [HttpPut("period/register/state/{stateId}")]
+        public async Task<IActionResult> SetRegisterState( int stateId, [FromBody] List<Register> list)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                _dbContext.Register.AttachRange(list);
+
+                foreach (var item in list)
+                {
+
+                    var prop = _dbContext.Entry(item).Property(e => e.RgStatus);
+                    item.RgStatus = stateId;
+                    prop.IsModified = true;
+                    if(stateId == 3)
+                    {
+                        await _dbContext.Entry(item).Reference(rec => rec.RegisterRatedList).Query()
+                            .Include( rec => rec.Period )
+                            .LoadAsync();
+                        item.RegisterRatedList.Status = 1;
+                        item.RegisterRatedList.Period.Status = 2;
+                    }
+
+                }
+                if ( stateId == 3)
+                {
+
+                }
+
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                return Json(list);
+
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback(  );
+                return BadRequest(ex.InnerException.Message);
+                throw;
+            }
+
+
+
+        }
+
         #endregion
 
         #region Download Upload file ******************************************************

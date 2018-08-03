@@ -6,10 +6,13 @@ using System.Windows.Forms;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
+using ipsFormsDesign.EventAggregator;
+using ipsFormsDesign.Events;
+using IpsViewComponentLibrary.AppController;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class ObjectRightListControl : UserControl
+    public partial class ObjectRightListControl : UserControl, ISubscriber<ObjectRightAddedEvent>
     {
         protected bool IsDesignMode
         {
@@ -50,6 +53,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             if (!IsDesignMode)
             {
+                ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
                 UpdateList();
             }
         }
@@ -99,6 +103,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         protected virtual void OnEditCommandExecuted(ObjectRightMainView selectedObject)
         {
             EditCommandExecuted(this, selectedObject);
+        }
+
+        public void HandleEvent(ObjectRightAddedEvent e)
+        {
+            UpdateList();
         }
 
         #region Search

@@ -1,7 +1,9 @@
 ﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.AppController;
 using System;
 using System.Linq;
 
@@ -108,6 +110,8 @@ namespace IpsViewComponentLibrary.RegisterControls
                     _view.ShowError("Не вдалося створити об'єкт з назвою " + registerItem.ItemName);
                 }
             }
+
+            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightAddedEvent());
 
             _view.ShowMessage($"Створено {createdObjectCount} об'єктів.");
         }

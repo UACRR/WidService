@@ -56,8 +56,8 @@ namespace IpsViewComponentLibrary
             }
             else if (_formType == FormType.Edit)
             {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
-                ctrlAuthorRightholderList.OnGetWorkRh += CtrlAuthorRightholderList_OnGetWorkRh;
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+                //ctrlAuthorRightholderList.OnGetWorkRh += CtrlAuthorRightholderList_OnGetWorkRh;
                 Text = "Редагування заявки на ліцезнію";
                 btnSave.Text = "Зберегти редаговану заявку";
                 btnSave.Enabled = true;

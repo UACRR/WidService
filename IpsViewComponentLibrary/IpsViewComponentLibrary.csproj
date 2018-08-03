@@ -176,6 +176,7 @@
     <Compile Include="AgentFooterBR.Designer.cs">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppController\ApplicationController.cs" />
     <Compile Include="ConsumerDialogForms\ProlongationBigRight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +185,7 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="Utilities\DialogService.cs" />
     <Compile Include="MiddleControlCabinetAvances.cs">
       <SubType>UserControl</SubType>
     </Compile>
