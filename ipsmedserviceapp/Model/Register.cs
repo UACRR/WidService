@@ -31,6 +31,8 @@ namespace ipsmedserviceapp.Model
         public decimal? MusicRate { get; set; }
         public decimal? AuthAmount { get; set; }
         public decimal? AuthRate { get; set; }
+        public decimal? PaidAmount { get; set; }
+        public int? LicId { get; set; }
 
         [JsonIgnore]
         public Client Cust { get; set; }

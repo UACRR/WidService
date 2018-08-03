@@ -1564,6 +1564,8 @@ public interface IRegister
          decimal? MusicRate { get; set; }
          decimal? AuthAmount { get; set; }
          decimal? AuthRate { get; set; }
+         decimal? PaidAmount { get; set; }
+         int? LicId { get; set; }
 }
 public interface IRegisterAuthors
     {

@@ -5674,6 +5674,9 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.TurnId, e.DateWork });
 
+                entity.HasIndex(e => e.DateOper)
+                    .HasName("date_idx");
+
                 entity.Property(e => e.TurnId).HasColumnName("turnId");
 
                 entity.Property(e => e.DateWork)
@@ -6147,6 +6150,8 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
                 entity.Property(e => e.MusicAmount)
                     .HasColumnName("musicAmount")
                     .HasColumnType("money");
@@ -6159,6 +6164,10 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("number")
                     .HasMaxLength(10)
                     .IsUnicode(false);
+
+                entity.Property(e => e.PaidAmount)
+                    .HasColumnName("paidAmount")
+                    .HasColumnType("money");
 
                 entity.Property(e => e.PeriodId).HasColumnName("periodId");
 
