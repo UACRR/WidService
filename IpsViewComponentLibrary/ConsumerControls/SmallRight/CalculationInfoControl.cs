@@ -399,7 +399,7 @@ namespace IpsViewComponentLibrary
 
         private void gvPeriodsPayment_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            buttonController.changePeriod(e.CurrentRow.DataBoundItem as PaidPeriod);
+            buttonController.changePeriod(e.CurrentRow?.DataBoundItem as PaidPeriod);
         }
     }
 

@@ -22,8 +22,15 @@ namespace IpsViewComponentLibrary
             _control.GetRegisterItems = _service.GetRegisterItems;
             _control.DeleteRegisterExecuted += DeleteRegisterExecuted;
             _control.SetRegisterStateExecuted += _control_SetRegisterStateExecuted;
+            _control.SetPeriodStateExecuted += _control_SetPeriodStateExecuted;
 
 
+        }
+
+        private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)
+        {
+            if( e == null ) return;
+            _service.SetPeriodState((ConsumerService.PeriodState)e.Status, e);
         }
 
         private void _control_SetRegisterStateExecuted(object sender, List<Register> e)
