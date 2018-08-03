@@ -426,7 +426,7 @@
             this.gvViewPayslipsItems.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewPayslipsItems.Name = "gvViewPayslipsItems";
             this.gvViewPayslipsItems.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewPayslipsItems.Size = new System.Drawing.Size(996, 339);
+            this.gvViewPayslipsItems.Size = new System.Drawing.Size(996, 333);
             this.gvViewPayslipsItems.TabIndex = 8;
             this.gvViewPayslipsItems.ThemeName = "Office2013Light";
             this.gvViewPayslipsItems.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewPayslipsItems_CellValueChanged);

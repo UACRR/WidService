@@ -57,6 +57,8 @@ namespace IpsViewComponentLibrary
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
         public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
+        public event SavePayslipsEventHandler OnSavePayslip;
+
 
         public MiddleControlCabinet()
         {
@@ -80,6 +82,12 @@ namespace IpsViewComponentLibrary
             ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
             ctrlReference.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
+            ctrlPayslips.OnSavePayslip += CtrlPayslips_OnSavePayslip;
+        }
+
+        private bool CtrlPayslips_OnSavePayslip(RegisterRatedList list)
+        {
+            return OnSavePayslip?.Invoke(list) ?? false;
         }
 
         //збереження customer

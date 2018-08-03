@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary
         public delegate IList<BigRightSpectacleView> GetSpectacleView(int custId);
 
         public event GetSpectacleView OnSpectacleViewNeed;
+        public event SavePayslipsEventHandler OnSavePayslip;
 
 
         public MiddleControlCabinetPayslips()
@@ -48,18 +49,18 @@ namespace IpsViewComponentLibrary
         {
             RegisterRatedList ratedList = new RegisterRatedList
             {
-                CreateDate = DateTime.Today
+                CreateDate = DateTime.Today,
+                Status = 0,
             };
             
-            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Create, _customer,
-                OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);
+            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Create, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);
             if (addform.ShowDialog() == DialogResult.OK)
             {
-                //_customer.Client.BrRegister.
-                ; //TODO save
+                if(OnSavePayslip?.Invoke(ratedList) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Додано новий розрахунковий лист!","Успішно", MessageBoxIcon.Information);
             }
             else
-                ;
+                ratedList = null;
 
         }
 
@@ -72,7 +73,15 @@ namespace IpsViewComponentLibrary
         //редагування р/р
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-
+            var row = e.Row.DataBoundItem as BigRightRegister;
+            var ratedList = _customer.Client.PaidPeriod.Where(rec => rec.PeriodId == row?.PeriodId).Select(rec=>rec.RegisterRatedList.SingleOrDefault(item => item.RmId == row?.RmId)).SingleOrDefault();
+            //TODO перевірити
+            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);
+            if (addform.ShowDialog() == DialogResult.OK)
+            {
+                if (OnSavePayslip?.Invoke(ratedList) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно", MessageBoxIcon.Information);
+            }
         }
 
         private void gvViewRl_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)

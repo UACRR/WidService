@@ -49,7 +49,7 @@ namespace IpsViewComponentLibrary
             bsSpectacleView.DataSource = _spectacleViews.Where(rec => rec.CustId == _customer.CustId);
 
             ddlPeriod.SelectedValueChanged += ddlPeriod_SelectedValueChanged;
-            if(ddlPeriod.Items.Any())
+            if(ddlPeriod.Items.Any() && formType == FormType.Create)
                 ddlPeriod.SelectedIndex = ddlPeriod.Items.First.Index;
         }
 
@@ -133,7 +133,8 @@ namespace IpsViewComponentLibrary
                 CustId = _customer.CustId,
                 RegisterItem = new ObservableListSource<RegisterItem> { new RegisterItem
                     {
-
+                        Ticks = 1,
+                        CodeItem = 3
                     }
                 },
                 RegId = _tempRegId++
@@ -169,6 +170,8 @@ namespace IpsViewComponentLibrary
                         reg.AuthRate = sw?.Rate;
                         reg.MusicRate = sw?.RateMusic;
                         item.LicId = sw?.LicId;
+                        var mus = _customer?.Client?.LicenseAgreement?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
+
                     }
                     else if (e.Column.FieldName == "Royalty")
                     {
@@ -193,10 +196,13 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if(!_registerRatedList.Register.Any())
+                ExtensionUtils.ShowInfoMessage("Не додано жодної вистави!", "Не можливо зберегти", MessageBoxIcon.Stop);
             foreach (var item in _registerRatedList.Register)
             {
                 item.RegId = 0;
             }
+            //_registerRatedList.Period = _;
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -224,6 +230,8 @@ namespace IpsViewComponentLibrary
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
+            if(gvViewPayslipsItems?.CurrentRow == null) return;
+            
             if(pageView.SelectedPage == pvMusicDesign)
                 UpdateMusicDesignData();
         }
