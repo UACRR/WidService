@@ -133,11 +133,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             objectAuthorRightholderBindingSource.DataSource = _objectAuthorRightholderList;
         }
 
-        public void ShowError(string message)
-        {
-            MessageBox.Show(message, "Помилка");
-        }
-
         private void UpdateAutocompliteItems(string filter)
         {
             var objects = _presenter.GetObjectsForAutocomplite(filter);

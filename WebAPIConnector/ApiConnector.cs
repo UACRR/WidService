@@ -325,10 +325,16 @@ namespace WebAPIConnector
                 result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
             }
             var retCode = result.IsSuccessStatusCode;
-            var retString = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            var jarray = JArray.Parse(retString);
-            retData = jarray.ToObject<List<T>>();
+            if (retCode == true)
+            {
+                var retString = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var jarray = JArray.Parse(retString);
+                retData = jarray.ToObject<List<T>>();
 
+                return retCode;
+            }
+
+            retData = null;
             return retCode;
         }
 

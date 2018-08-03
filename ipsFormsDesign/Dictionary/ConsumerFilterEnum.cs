@@ -57,17 +57,22 @@ namespace ipsFormsDesign.Dictionary
     public enum DialogGoal
     {
         /// <summary>
-        /// Створення нового контракту
+        /// Створення нового договору
         /// </summary>
         forNew,
         /// <summary>
-        /// Редагування поточного договору
+        /// Редагування не підтвердженого договору
         /// </summary>
         forEdit,
         /// <summary>
-        /// Створення або редагування доп угоди на пролонгацію 
+        /// Пролонгація договору
         /// </summary>
-        forProlongation
+        forProlongation,
+        /// <summary>
+        /// Внесення змін до договору
+        /// </summary>
+        forChange
+
     }
 
     /// <summary>

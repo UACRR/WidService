@@ -12,6 +12,8 @@ using ipsFormsDesign.Model;
 using System.Windows.Forms;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -21,11 +23,15 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
+        public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public Func<int, List<RegisterItem>> GetRegisterItems;
 
         public ReportsControl()
         {
             InitializeComponent();
+
+            gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
         }
 
         private Customer _customer;
@@ -39,6 +45,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        internal void RefreshData()
+        {
+            normalizeData(_customer);
+            gvPeriodReports.MasterTemplate.Refresh();
+            gvPeriods.MasterTemplate.Refresh();
+            gvLicenseAgr.MasterTemplate.Refresh();
+        }
+
         #region METHODS
 
         private void normalizeData(Customer cust)
@@ -47,6 +61,7 @@ namespace IpsViewComponentLibrary
             var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
             var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
             var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
+            var dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
 
             foreach (var item in cust.Client.LicenseAgreement)
             {
@@ -67,7 +82,10 @@ namespace IpsViewComponentLibrary
                     {
                         regList.Period = period;
                         foreach (var reg in regList.Register)
+                        {
+                            reg.RgStatusNavigation = dicRegStatus[reg.RgStatus ?? 0];
                             reg.RegisterRatedList = regList;
+                        }
                     }
                 }
             }
@@ -129,13 +147,42 @@ namespace IpsViewComponentLibrary
 
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
             var reports = new List<Register>();
+            int maxRgStatus = -1;
             if (period?.RegisterRatedList.Count() > 0)
                 foreach (var item in period.RegisterRatedList.OrderBy(rec => rec.RmId))
                 {
+                    maxRgStatus = Math.Max(maxRgStatus, item.Register.Max(rec => rec.RgStatus ?? 0));
                     reports.AddRange(item.Register);
                 }
 
             bindingReports.DataSource = reports;
+            switch (maxRgStatus)
+            {
+                case 0:
+                    btnToAcception.Enabled = true;
+                    btnAccept.Enabled = false;
+                    btnAddReport.Enabled = true;
+                    break;
+                case 2:
+                    btnToAcception.Enabled = false;
+                    btnAccept.Enabled = true;
+                    btnAddReport.Enabled = true;
+                    break;
+                case -1:
+                case 1:
+                case 3:
+                    btnToAcception.Enabled = false;
+                    btnAccept.Enabled = false;
+                    btnAddReport.Enabled = true;
+                    break;
+                default:
+                    btnToAcception.Enabled = false;
+                    btnAccept.Enabled = false;
+                    btnAddReport.Enabled = false;
+                    break;
+            }
+
+
         }
 
         // * * * [Звіти періода]
@@ -161,8 +208,8 @@ namespace IpsViewComponentLibrary
         private void EnableButtons(bool enabled)
         {
             btnAddReport.Enabled = enabled;
-            btnViewReport.Enabled = enabled;
-            btnDeleteReport.Enabled = enabled;
+            //btnViewReport.Enabled = enabled;
+            //btnDeleteReport.Enabled = enabled;
         }
         // * * * [Додати звіт]
         private void btnAddReport_Click(object sender, EventArgs e)
@@ -189,13 +236,15 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register { RgStatus = 1, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId };
+                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
                     RatedList.Register.Add(addRegister);
 
                     SaveRegisterRatedListExecuted(this, RatedList);
+                    gvPeriodReports.MasterTemplate.Refresh();
+
                     BeginInvoke((Action)(() =>
                     {
                         radWaitingBar1.StopWaiting();
@@ -209,7 +258,7 @@ namespace IpsViewComponentLibrary
         }
 
         // * * * [Переглянути звіт]
-        private void btnViewReport_Click(object sender, EventArgs e)
+        private void RegisterReport()
         {
             if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
@@ -228,7 +277,7 @@ namespace IpsViewComponentLibrary
 
         #endregion
 
-        private void radButton1_Click(object sender, EventArgs e)
+        private void DeleteRegister()
         {
             if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
@@ -258,11 +307,123 @@ namespace IpsViewComponentLibrary
         {
             var row = e.RowElement.RowInfo;
             var licAgr = row.DataBoundItem as LicenseAgrParam;
-            var debt = licAgr.Lic.PaidPeriod.Where(rec=>rec.EndDate < DateTime.Today ).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount);
+            var debt = licAgr.Lic.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount);
             row.Cells["Arrears"].Value = debt;
+        }
+
+        private void gvPeriodReports_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            var columnName = e.Column.Name;
+
+            if (columnName == "EditColumn")
+            {
+                RegisterReport();
+            }
+            else if (columnName == "DeleteColumn")
+            {
+                DeleteRegister();
+            }
+        }
+
+        private void gvPeriodReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
+        {
+            string Name = e.Column.Name;
+            if (Name == "DeleteColumn" || Name == "EditColumn")
+            {
+                var register = e.Row.DataBoundItem as Register;
+                if (register == null)
+                {
+                    e.CellElement.Enabled = false;
+                }
+
+                else if (register.RgStatus > 0 && Name == "DeleteColumn")
+                    e.CellElement.Enabled = false;
+                else
+                    e.CellElement.Enabled = true;
+
+
+            }
+        }
+
+        private void btnToAcception_Click(object sender, EventArgs e)
+        {
+            var list = bindingReports.DataSource as List<Register>;
+            if (list != null)
+            {
+                var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
+                foreach (var item in paramList)
+                    item.RgStatus = 1;
+                SetRegisterStateExecuted(this, paramList);
+                gvPeriodReports.MasterTemplate.Refresh();
+                btnToAcception.Enabled = false;
+            }
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            var list = bindingReports.DataSource as List<Register>;
+            if (list != null)
+            {
+                var paramList = list.Where(rec => rec.RgStatus == 2).ToList();
+                foreach (var item in paramList)
+                    item.RgStatus = 3;
+                SetRegisterStateExecuted(this, paramList);
+                gvPeriodReports.MasterTemplate.Refresh();
+
+                btnAccept.Enabled = false;
+            }
         }
     }
 
+    /// <summary>
+    /// Керування станом кнопок 
+    /// </summary>
+    class ButtonEnableControl
+    {
+        private RadButton _addReport,
+                          _toAcception,
+                          _accepted;
+
+        public ButtonEnableControl( RadButton addReport, RadButton toAcception, RadButton Accepted )
+        {
+            _addReport = addReport;
+            _toAcception = toAcception;
+            _accepted = Accepted;
+        }
+        public void SetPeriodState(int state, List<Register> list)
+        {
+            int[] regStates = new [] { 0,0,0,0,0,0 };
+            int countInList = list.Count();
+            // Накоплюємо кіль
+            foreach (var item in list)
+                regStates[item.RgStatus ?? 0]++;
+
+            switch (state)
+            {
+                case 0: // Новий
+                case 1: // Прийом звітів
+                case 3: // Борг
+                case 4: // Судова робота
+                    _addReport.Enabled = true;
+                    _toAcception.Enabled = regStates[0] > 0 ? true : false; // Нових > 0
+                    _accepted.Enabled = regStates[2] == countInList ? true : false; // Всі погоджені
+                    break;
+                case 2: // Прийом поштів
+                case 5: // 
+                case 6: // Кошти отримані
+                    _addReport.Enabled = false;
+                    _toAcception.Enabled = false;
+                    _accepted.Enabled = false;
+                    break;
+                default: // Зактритий
+                    _addReport.Enabled = false;
+                    _toAcception.Enabled = false;
+                    _accepted.Enabled = false;
+                    break;
+            }
+        }
+
+    }
     public class GridPeriodsR
     {
         public int PeriodId { get; set; }

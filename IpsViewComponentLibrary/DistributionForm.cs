@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary
         }
 
 
-        public DistributionForm(MoneyReceived undistrinbMoney, LicenseAgreement licenseAgr)
+        public DistributionForm(MoneyReceived undistrinbMoney, LicenseAgreement licenseAgr, PaidPeriod period)
         {
             InitializeComponent();
 
@@ -34,19 +34,18 @@ namespace IpsViewComponentLibrary
 
             bindingSource.DataSource = undistrinbMoney;
             bindingSourceAgreement.DataSource = licenseAgr.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == licenseAgr.LicVersion );
-
-            _source = licenseAgr.PaidPeriod.Where(rec => rec.Status < 2).OrderBy( rec => rec.BeginDate ).Select(rec => new GridPeriods
-            {
-                PeriodId = rec.PeriodId,
-                Amount = rec.Amount,
-                PeriodName = rec.PeriodName,
-                AmountBound = rec.Undistribamount + rec.Distribamount,
-                Arrears = rec.Amount - rec.Undistribamount + rec.Distribamount,
-                DistAmount = 0,
-                Status = rec.Status,
-                ManualSet = false
-            }).ToList(); //periodsList as List<GridPeriods>;
-
+            _source = licenseAgr.PaidPeriod.Where(rec => rec.Status < 3 && (period == null || period.PeriodId == rec.PeriodId)).OrderBy(rec => rec.BeginDate)
+                .Select(rec => new GridPeriods
+                {
+                    PeriodId = rec.PeriodId,
+                    Amount = rec.Amount,
+                    PeriodName = rec.PeriodName,
+                    AmountBound = rec.Undistribamount + rec.Distribamount,
+                    Arrears = Math.Max(0, rec.Amount - (rec.Undistribamount + rec.Distribamount)),
+                    DistAmount = 0,
+                    Status = rec.Status,
+                    AutoSet = period != null && period.PeriodId == rec.PeriodId ? true : false
+                }).ToList(); //periodsList as List<GridPeriods>;
             gvDistributionPayment.DataSource = _source;
             _calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
 
@@ -101,7 +100,7 @@ namespace IpsViewComponentLibrary
 
             var period = e.Row.DataBoundItem as GridPeriods;
 
-            period.ManualSet = true;
+            period.AutoSet = false;
             _calculator.Calculate();
 
             gvDistributionPayment.MasterTemplate.Refresh();
@@ -126,13 +125,13 @@ namespace IpsViewComponentLibrary
 
         public void Calculate()
         {
-            decimal manualRest = List.Where(rec => rec.ManualSet == true).Sum(rec => rec.DistAmount);
+            decimal manualRest = List.Where(rec => rec.AutoSet == false).Sum(rec => rec.DistAmount);
             decimal freeRest = Rest - manualRest;
 
             if (freeRest == 0)
                 return;
 
-            foreach (var item in List.Where(rec => rec.ManualSet == false))
+            foreach (var item in List.Where(rec => rec.AutoSet == true))
             {
                 decimal curRest = Math.Min(freeRest, item.Arrears);
                 item.DistAmount = curRest;

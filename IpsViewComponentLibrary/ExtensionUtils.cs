@@ -204,7 +204,11 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Пролонгація договору
         /// </summary>
-        Prolongation
+        Prolongation,
+        /// <summary>
+        /// Зміна договору
+        /// </summary>
+        ChangeAgreement
     }
 
     /// <summary>

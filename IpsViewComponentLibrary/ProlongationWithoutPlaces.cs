@@ -63,6 +63,7 @@ namespace IpsViewComponentLibrary
         private void CtrlProlongation_OnSaveChangesClick()
         {
             _changesSaved = true;
+            _lic.LicVersion = _licAgr.LicVersion;
             OnSaveProlongation?.Invoke(this,EventArgs.Empty);
             Close();
         }

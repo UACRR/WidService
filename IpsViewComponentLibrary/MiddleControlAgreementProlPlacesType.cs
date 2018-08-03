@@ -51,7 +51,7 @@ namespace IpsViewComponentLibrary
 
             //TODO: джерело даних з розрахованою сумою
             SetChoosePlaces();
-
+            ctrlAgrMain.DateTimeType = agreementInitType;
             bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
             {
                 switch (Rights)
@@ -64,6 +64,8 @@ namespace IpsViewComponentLibrary
                 return true;
             });
         }
+
+
 
         public bool CanChangeLicense
         {
@@ -187,7 +189,8 @@ namespace IpsViewComponentLibrary
             gvPlaces.DataSource = dataSource;
 
             if (_agreementInitType == ConsumerAgreementInitType.EditAgreement ||
-                _agreementInitType == ConsumerAgreementInitType.Prolongation)
+                _agreementInitType == ConsumerAgreementInitType.Prolongation ||
+                _agreementInitType == ConsumerAgreementInitType.ChangeAgreement)
             {
                 gvPlaces.CellValueChanged -= gvPlaces_CellValueChanged;
                 foreach (var item in _licenseAgr.License)

@@ -185,7 +185,7 @@
             gridViewDecimalColumn1.Name = "Amount";
             gridViewDecimalColumn1.Width = 91;
             gridViewTextBoxColumn7.FieldName = "State";
-            gridViewTextBoxColumn7.HeaderText = "Стан";
+            gridViewTextBoxColumn7.HeaderText = "Статус";
             gridViewTextBoxColumn7.Name = "State";
             gridViewTextBoxColumn7.Width = 91;
             gridViewTextBoxColumn8.FieldName = "PeriodPayment";
@@ -228,7 +228,7 @@
             // 
             this.gvLicenseAgr.RootElement.MinSize = new System.Drawing.Size(300, 100);
             this.gvLicenseAgr.ShowGroupPanel = false;
-            this.gvLicenseAgr.Size = new System.Drawing.Size(1077, 105);
+            this.gvLicenseAgr.Size = new System.Drawing.Size(1077, 107);
             this.gvLicenseAgr.TabIndex = 11;
             this.gvLicenseAgr.ThemeName = "Office2013Light";
             this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
@@ -266,21 +266,21 @@
             // btnAddAgrNewVersion
             // 
             this.btnAddAgrNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddAgrNewVersion.Location = new System.Drawing.Point(898, 91);
+            this.btnAddAgrNewVersion.Location = new System.Drawing.Point(918, 91);
             this.btnAddAgrNewVersion.Name = "btnAddAgrNewVersion";
-            this.btnAddAgrNewVersion.Size = new System.Drawing.Size(111, 38);
+            this.btnAddAgrNewVersion.Size = new System.Drawing.Size(93, 38);
             this.btnAddAgrNewVersion.TabIndex = 6;
-            this.btnAddAgrNewVersion.Text = "Додати нову версію договору";
+            this.btnAddAgrNewVersion.Text = "Змінити договір";
             this.btnAddAgrNewVersion.TextWrap = true;
             this.btnAddAgrNewVersion.ThemeName = "Office2013Light";
-            this.btnAddAgrNewVersion.Click += new System.EventHandler(this.btnAddAgrNewVersion_Click);
+            this.btnAddAgrNewVersion.Click += new System.EventHandler(this.btnChangeAgreement_Click);
             // 
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(898, 135);
+            this.btnPrint.Location = new System.Drawing.Point(918, 135);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(111, 38);
+            this.btnPrint.Size = new System.Drawing.Size(93, 38);
             this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "Друкувати договір";
             this.btnPrint.TextWrap = true;
@@ -290,9 +290,9 @@
             // btnAddAgreement
             // 
             this.btnAddAgreement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddAgreement.Location = new System.Drawing.Point(898, 3);
+            this.btnAddAgreement.Location = new System.Drawing.Point(918, 3);
             this.btnAddAgreement.Name = "btnAddAgreement";
-            this.btnAddAgreement.Size = new System.Drawing.Size(111, 38);
+            this.btnAddAgreement.Size = new System.Drawing.Size(93, 38);
             this.btnAddAgreement.TabIndex = 4;
             this.btnAddAgreement.Text = "Додати новий договір";
             this.btnAddAgreement.TextWrap = true;
@@ -302,9 +302,9 @@
             // btnProlongation
             // 
             this.btnProlongation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProlongation.Location = new System.Drawing.Point(898, 47);
+            this.btnProlongation.Location = new System.Drawing.Point(918, 47);
             this.btnProlongation.Name = "btnProlongation";
-            this.btnProlongation.Size = new System.Drawing.Size(111, 38);
+            this.btnProlongation.Size = new System.Drawing.Size(93, 38);
             this.btnProlongation.TabIndex = 1;
             this.btnProlongation.Text = "Пролонгувати договір";
             this.btnProlongation.TextWrap = true;
@@ -350,11 +350,11 @@
             // 
             this.pvMoreAgreements.Controls.Add(this.radPageView1);
             this.pvMoreAgreements.Controls.Add(this.gvMoreLicenseAgr);
-            this.pvMoreAgreements.ItemSize = new System.Drawing.SizeF(107F, 27F);
+            this.pvMoreAgreements.ItemSize = new System.Drawing.SizeF(166F, 27F);
             this.pvMoreAgreements.Location = new System.Drawing.Point(5, 31);
             this.pvMoreAgreements.Name = "pvMoreAgreements";
             this.pvMoreAgreements.Size = new System.Drawing.Size(1080, 408);
-            this.pvMoreAgreements.Text = "Версії договорів";
+            this.pvMoreAgreements.Text = "Не підтверджені договори";
             // 
             // radPageView1
             // 
@@ -415,9 +415,9 @@
             // btnAddNewAgrMore
             // 
             this.btnAddNewAgrMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNewAgrMore.Location = new System.Drawing.Point(898, 3);
+            this.btnAddNewAgrMore.Location = new System.Drawing.Point(916, 3);
             this.btnAddNewAgrMore.Name = "btnAddNewAgrMore";
-            this.btnAddNewAgrMore.Size = new System.Drawing.Size(111, 38);
+            this.btnAddNewAgrMore.Size = new System.Drawing.Size(93, 38);
             this.btnAddNewAgrMore.TabIndex = 16;
             this.btnAddNewAgrMore.Text = "Додати новий договір";
             this.btnAddNewAgrMore.TextWrap = true;
@@ -427,9 +427,9 @@
             // btnDeleteAgr
             // 
             this.btnDeleteAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteAgr.Location = new System.Drawing.Point(898, 135);
+            this.btnDeleteAgr.Location = new System.Drawing.Point(916, 135);
             this.btnDeleteAgr.Name = "btnDeleteAgr";
-            this.btnDeleteAgr.Size = new System.Drawing.Size(111, 38);
+            this.btnDeleteAgr.Size = new System.Drawing.Size(93, 38);
             this.btnDeleteAgr.TabIndex = 15;
             this.btnDeleteAgr.Text = "Видалити договір";
             this.btnDeleteAgr.TextWrap = true;
@@ -439,11 +439,11 @@
             // btnAccept
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(898, 91);
+            this.btnAccept.Location = new System.Drawing.Point(916, 91);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(111, 38);
+            this.btnAccept.Size = new System.Drawing.Size(93, 38);
             this.btnAccept.TabIndex = 14;
-            this.btnAccept.Text = "Активувати договір";
+            this.btnAccept.Text = "Підтвердити договір";
             this.btnAccept.TextWrap = true;
             this.btnAccept.ThemeName = "Office2013Light";
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
@@ -451,9 +451,9 @@
             // btnEditAgreement
             // 
             this.btnEditAgreement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditAgreement.Location = new System.Drawing.Point(898, 47);
+            this.btnEditAgreement.Location = new System.Drawing.Point(916, 47);
             this.btnEditAgreement.Name = "btnEditAgreement";
-            this.btnEditAgreement.Size = new System.Drawing.Size(111, 38);
+            this.btnEditAgreement.Size = new System.Drawing.Size(93, 38);
             this.btnEditAgreement.TabIndex = 13;
             this.btnEditAgreement.Text = "Редагувати договір";
             this.btnEditAgreement.TextWrap = true;
@@ -493,9 +493,10 @@
             gridViewTextBoxColumn12.Name = "Series";
             gridViewTextBoxColumn12.Width = 65;
             gridViewTextBoxColumn12.WrapText = true;
+            gridViewTextBoxColumn13.FieldName = "AgrMasterNumber";
             gridViewTextBoxColumn13.HeaderText = "Номер майстер договору";
             gridViewTextBoxColumn13.MinWidth = 105;
-            gridViewTextBoxColumn13.Name = "column1";
+            gridViewTextBoxColumn13.Name = "AgrMasterNumber";
             gridViewTextBoxColumn13.Width = 105;
             gridViewTextBoxColumn13.WrapText = true;
             gridViewTextBoxColumn14.FieldName = "AgrNumber";
@@ -535,7 +536,7 @@
             gridViewTextBoxColumn19.Width = 148;
             gridViewTextBoxColumn19.WrapText = true;
             gridViewTextBoxColumn20.FieldName = "State";
-            gridViewTextBoxColumn20.HeaderText = "Стан";
+            gridViewTextBoxColumn20.HeaderText = "Статус";
             gridViewTextBoxColumn20.Name = "State";
             gridViewTextBoxColumn20.Width = 103;
             gridViewTextBoxColumn20.WrapText = true;
@@ -592,7 +593,7 @@
             this.calculationCtrl.MaximumSize = new System.Drawing.Size(3000, 1000);
             this.calculationCtrl.MinimumSize = new System.Drawing.Size(400, 562);
             this.calculationCtrl.Name = "calculationCtrl";
-            this.calculationCtrl.Size = new System.Drawing.Size(944, 595);
+            this.calculationCtrl.Size = new System.Drawing.Size(825, 595);
             this.calculationCtrl.TabIndex = 0;
             // 
             // pvPayments

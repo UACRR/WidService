@@ -36,6 +36,7 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -78,6 +79,7 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.btnNewPeriod = new Telerik.WinControls.UI.RadButton();
+            this.btnClosePeriod = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paidPeriodBindingSource)).BeginInit();
@@ -96,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClosePeriod)).BeginInit();
             this.SuspendLayout();
             // 
             // gvPeriodsPayment
@@ -103,7 +106,7 @@
             this.gvPeriodsPayment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvPeriodsPayment.AutoScroll = true;
-            this.gvPeriodsPayment.Location = new System.Drawing.Point(3, 340);
+            this.gvPeriodsPayment.Location = new System.Drawing.Point(3, 313);
             // 
             // 
             // 
@@ -116,7 +119,7 @@
             gridViewTextBoxColumn1.FieldName = "PeriodName";
             gridViewTextBoxColumn1.HeaderText = "Період";
             gridViewTextBoxColumn1.Name = "PeriodName";
-            gridViewTextBoxColumn1.Width = 269;
+            gridViewTextBoxColumn1.Width = 270;
             gridViewTextBoxColumn2.DataType = typeof(int);
             gridViewTextBoxColumn2.FieldName = "StatusNavigation.Name";
             gridViewTextBoxColumn2.HeaderText = "Стан періоду";
@@ -132,11 +135,12 @@
             gridViewDecimalColumn2.Name = "AmountBound";
             gridViewDecimalColumn2.Width = 192;
             gridViewDecimalColumn3.EnableExpressionEditor = true;
-            gridViewDecimalColumn3.Expression = "Amount - Undistribamount-Distribamount";
+            gridViewDecimalColumn3.Expression = "iif(EndDate <= TODAY() AND Amount - Undistribamount-Distribamount > 0, Amount - U" +
+    "ndistribamount-Distribamount, 0 )";
             gridViewDecimalColumn3.FieldName = "Arrears";
             gridViewDecimalColumn3.HeaderText = "Борг";
             gridViewDecimalColumn3.Name = "Arrears";
-            gridViewDecimalColumn3.Width = 164;
+            gridViewDecimalColumn3.Width = 163;
             gridViewDecimalColumn4.FieldName = "Distribamount";
             gridViewDecimalColumn4.HeaderText = "Distribamount";
             gridViewDecimalColumn4.IsVisible = false;
@@ -147,6 +151,11 @@
             gridViewDecimalColumn5.IsVisible = false;
             gridViewDecimalColumn5.Name = "Undistribamount";
             gridViewDecimalColumn5.Width = 48;
+            gridViewDateTimeColumn1.FieldName = "EndDate";
+            gridViewDateTimeColumn1.HeaderText = "EndDate";
+            gridViewDateTimeColumn1.IsVisible = false;
+            gridViewDateTimeColumn1.Name = "EndDate";
+            gridViewDateTimeColumn1.Width = 48;
             this.gvPeriodsPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -154,7 +163,8 @@
             gridViewDecimalColumn2,
             gridViewDecimalColumn3,
             gridViewDecimalColumn4,
-            gridViewDecimalColumn5});
+            gridViewDecimalColumn5,
+            gridViewDateTimeColumn1});
             this.gvPeriodsPayment.MasterTemplate.DataSource = this.paidPeriodBindingSource;
             this.gvPeriodsPayment.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvPeriodsPayment.Name = "gvPeriodsPayment";
@@ -247,13 +257,13 @@
             // 
             // btnDistribute
             // 
-            this.btnDistribute.Location = new System.Drawing.Point(3, 287);
+            this.btnDistribute.Location = new System.Drawing.Point(119, 433);
             this.btnDistribute.Name = "btnDistribute";
             this.btnDistribute.Size = new System.Drawing.Size(110, 24);
             this.btnDistribute.TabIndex = 3;
             this.btnDistribute.Text = "Прив\'язати суму";
             this.btnDistribute.ThemeName = "Office2007Silver";
-            this.btnDistribute.Click += new System.EventHandler(this.radButton2_Click);
+            this.btnDistribute.Click += new System.EventHandler(this.dtnDistribute_Click);
             // 
             // lblTitlePeriod
             // 
@@ -439,7 +449,7 @@
             // 
             this.radLabel3.AutoSize = false;
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(3, 313);
+            this.radLabel3.Location = new System.Drawing.Point(3, 286);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(325, 21);
             this.radLabel3.TabIndex = 12;
@@ -447,7 +457,7 @@
             // 
             // btnNewPeriod
             // 
-            this.btnNewPeriod.Location = new System.Drawing.Point(3, 460);
+            this.btnNewPeriod.Location = new System.Drawing.Point(3, 433);
             this.btnNewPeriod.Name = "btnNewPeriod";
             this.btnNewPeriod.Size = new System.Drawing.Size(110, 24);
             this.btnNewPeriod.TabIndex = 4;
@@ -455,10 +465,21 @@
             this.btnNewPeriod.ThemeName = "Office2007Silver";
             this.btnNewPeriod.Click += new System.EventHandler(this.radButton1_Click);
             // 
+            // btnClosePeriod
+            // 
+            this.btnClosePeriod.Location = new System.Drawing.Point(235, 433);
+            this.btnClosePeriod.Name = "btnClosePeriod";
+            this.btnClosePeriod.Size = new System.Drawing.Size(110, 24);
+            this.btnClosePeriod.TabIndex = 4;
+            this.btnClosePeriod.Text = "Закрити період";
+            this.btnClosePeriod.ThemeName = "Office2007Silver";
+            // 
             // CalculationInfoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnClosePeriod);
+            this.Controls.Add(this.btnDistribute);
             this.Controls.Add(this.btnNewPeriod);
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.radLabel2);
@@ -466,7 +487,6 @@
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.gvUserMoneys);
             this.Controls.Add(this.lblTitlePeriod);
-            this.Controls.Add(this.btnDistribute);
             this.Controls.Add(this.gvPayments);
             this.Controls.Add(this.gvPeriodsPayment);
             this.MinimumSize = new System.Drawing.Size(400, 562);
@@ -490,6 +510,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClosePeriod)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -511,5 +532,6 @@
         private System.Windows.Forms.BindingSource paidPeriodBindingSource;
         private System.Windows.Forms.BindingSource PeriodMoneyReceivedBindingSource;
         private System.Windows.Forms.BindingSource AllmoneyReceivedBindingSource;
+        private Telerik.WinControls.UI.RadButton btnClosePeriod;
     }
 }

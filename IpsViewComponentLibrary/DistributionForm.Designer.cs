@@ -145,10 +145,10 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn3.Name = "DistAmount";
             gridViewTextBoxColumn3.Width = 127;
             gridViewCheckBoxColumn1.EnableExpressionEditor = false;
-            gridViewCheckBoxColumn1.FieldName = "ManualSet";
-            gridViewCheckBoxColumn1.HeaderText = "Вручну";
+            gridViewCheckBoxColumn1.FieldName = "AutoSet";
+            gridViewCheckBoxColumn1.HeaderText = "Автоматично";
             gridViewCheckBoxColumn1.MinWidth = 20;
-            gridViewCheckBoxColumn1.Name = "ManualSet";
+            gridViewCheckBoxColumn1.Name = "AutoSet";
             gridViewCheckBoxColumn1.Width = 75;
             this.gvDistributionPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,

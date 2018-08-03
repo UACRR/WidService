@@ -241,5 +241,19 @@ namespace UnitTestMediaPortal
             Console.Write($"Count rows = {list.Count() }");
         }
 
+        [TestMethod]
+        public void testSetStateToRegister()
+        {
+            var service = new ConsumerService();
+            var cust = service.GetCustomerRegisterRatedList(135);
+
+            var related = cust.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.PaidPeriod?.Sum(p => p.RegisterRatedList.Count()) > 0).ToList()
+                .First().PaidPeriod.First().RegisterRatedList.First();
+
+            var list = service.SetRegisterState(ConsumerService.RegisterState.OnAccept, related.Register.ToList());
+            Assert.IsNotNull(list);
+            Assert.AreEqual(list.Count(), related.Register.Count());
+        }
+
     }
 }

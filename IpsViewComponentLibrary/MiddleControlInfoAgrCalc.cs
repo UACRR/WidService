@@ -134,22 +134,51 @@ namespace IpsViewComponentLibrary
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
-                source.AddRange(from item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus != 2)
-                    where Rights != TypeRights.BigRights || _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind == 1
-                    let licAgr = item.LicenseAgrParam.LastOrDefault()
-                    select new GridLicenseAgrView
+            {
+                foreach (var license in _customer.Client.LicenseAgreement)
+                {
+                    if(license.LicenseAgrParam.Count == 1 && license.LicStatus == 2)
+                        continue;
+
+                    if(license.LicenseAgrParam.Count == 1 && license.LicStatus != 2)
                     {
-                        Id = item.AgrId,
-                        LicId = item.LicId,
-                        License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
-                        Series = string.Empty,
-                        AgrNumber = licAgr?.LicNum ?? string.Empty,
-                        DateBegin = licAgr?.DateBegin?.ToShortDateString() ?? string.Empty,
-                        DateEnd = licAgr?.DateEnd?.ToShortDateString() ?? string.Empty,
-                        State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licAgr?.LicStatus)?.Name ?? string.Empty,
-                        Status = licAgr.LicStatus,
-                        PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licAgr?.PeriodCode)?.Name ?? string.Empty
-                    });
+                        source.Add(new GridLicenseAgrView
+                        {
+                            Id = license.AgrId,
+                            LicId = license.LicId,
+                            License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
+                            Series = string.Empty,
+                            AgrNumber = license.LicenseAgrParam?.SingleOrDefault()?.LicNum ?? string.Empty,
+                            AgrMasterNumber = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion)?.LicNum,
+                            DateBegin = license.LicenseAgrParam.SingleOrDefault()?.DateBegin?.ToShortDateString() ?? string.Empty,
+                            DateEnd = license.LicenseAgrParam?.SingleOrDefault()?.DateEnd?.ToShortDateString() ?? string.Empty,
+                            State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == license.LicenseAgrParam?.SingleOrDefault()?.LicStatus)?.Name ?? string.Empty,
+                            Status = license.LicenseAgrParam?.SingleOrDefault()?.LicStatus,
+                            PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == license.LicenseAgrParam?.SingleOrDefault()?.PeriodCode)?.Name ?? string.Empty
+                        });
+                        continue;
+                    }
+
+                    foreach (var agrParam in license.LicenseAgrParam)
+                    {
+                        if (agrParam.LicVersion > license.LicVersion)
+                            source.Add(new GridLicenseAgrView
+                            {
+                                Id = license.AgrId,
+                                LicId = license.LicId,
+                                License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
+                                Series = string.Empty,
+                                AgrNumber = agrParam?.LicNum ?? string.Empty,
+                                AgrMasterNumber = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion)?.LicNum,
+                                DateBegin = agrParam?.DateBegin?.ToShortDateString() ?? string.Empty,
+                                DateEnd = agrParam?.DateEnd?.ToShortDateString() ?? string.Empty,
+                                State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == agrParam?.LicStatus)?.Name ?? string.Empty,
+                                Status = agrParam.LicStatus,
+                                PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == agrParam?.PeriodCode)?.Name ?? string.Empty
+                            });
+                    }
+                }
+            }
 
             gvMoreLicenseAgr.DataSource = source;
             gvMoreLicenseAgr.MasterTemplate.Refresh();
@@ -293,7 +322,7 @@ namespace IpsViewComponentLibrary
                 ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license, 
                                                             _customer?.Client?.ClnBusinessPlace, _customer, goal, typeRights:Rights)
                 {
-                    Text = goal == DialogGoal.forEdit ? "Редагування договору" 
+                    Text = goal == DialogGoal.forEdit || goal == DialogGoal.forChange ? "Редагування договору" 
                          : goal == DialogGoal.forProlongation ? "Пролонгація договору" 
                          : goal == DialogGoal.forNew ? "Додавання нового договору" 
                          : string.Empty,
@@ -321,13 +350,35 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
 
-            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            //поточна ліцензія
+            var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
             if (license == null)
                 return;
 
-            var licenseParam = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion) ?? license.LicenseAgrParam.SingleOrDefault();
-            RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forEdit);
+            //редагування нового
+            if(license.LicenseAgrParam.Count == 1)
+            {
+                RunDialogForLicenseAgrParam(license, license.LicenseAgrParam.SingleOrDefault(), DialogGoal.forEdit);
+                return;
+            }
+
+            var listDopAgr = license.LicenseAgrParam.Where(rec => rec.LicStatus < 4 && rec.LicVersion > license.LicVersion).ToList();
+            //редагування зміненого
+            if (listDopAgr.Any(rec => rec.LicVersion > license.LicVersion && rec.LicVersion != license.ProlongVersion))
+            {
+                var licAgrParam = license.LicenseAgrParam.Where(rec => rec.LicVersion > license.LicVersion).SingleOrDefault(rec => rec.LicVersion != license.ProlongVersion);
+                RunDialogForLicenseAgrParam(license, licAgrParam, DialogGoal.forChange);
+                return;
+            }
+            //редагування пролонгованого
+            if (listDopAgr.Any(rec => rec.LicVersion > license.LicVersion && rec.LicVersion == license.ProlongVersion))
+            {
+                var licAgrParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.ProlongVersion);
+                RunDialogForLicenseAgrParam(license, licAgrParam, DialogGoal.forProlongation);
+
+            }
         }
 
         /// <summary>
@@ -337,23 +388,22 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void btnProlongation_Click(object sender, EventArgs e)
         {
-
-            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == _idItem).FirstOrDefault(rec => rec.LicStatus < 4);
+            LicenseAgrParam parametr;
+            var licId = (gvLicenseAgr.CurrentRow.DataBoundItem as GridLicenseAgrView)?.LicId;
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == licId).SingleOrDefault();
             if (license == null)
                 return;
 
+            
             var licParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+
             var licVersion = license?.LicenseAgrParam.Max(rec => rec.LicVersion);
             LicenseAgrParam newLicense = null;
-            var listDopAgr = license.LicenseAgrParam.Where(rec => rec.LicStatus < 4 && rec.LicVersion > license.LicVersion);
-            // Кількість доп угод з версією більшою за поточну > 0
-            if (listDopAgr.Count() > 0)
+            var listDopAgr = license.LicenseAgrParam.Where(rec => rec.LicStatus < 4 && rec.LicVersion > license.LicVersion).ToList();
+            // Кількість доп угод з версією більшою за поточну > 0 //якщо є хоча б одна угода для пролонгації
+            if (listDopAgr.Any() && listDopAgr.Any(rec => rec.LicVersion == license.ProlongVersion))
             {
-                // -- Взяти наступну версію
-                newLicense = listDopAgr.OrderBy(rec => rec.LicVersion).Last();
-                // -- Сінхронізувати з поточною, окрім версії
-                newLicense.SetFields(licParam, new[] { "LicVersion" });
-                newLicense.License = licParam?.License;
+                parametr = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.ProlongVersion);
             }
             // Інакше == 0
             else {
@@ -362,17 +412,24 @@ namespace IpsViewComponentLibrary
                 newLicense = new LicenseAgrParam();
 
                 newLicense.SetFields(licParam);
-                newLicense.LicDate = DateTime.Now;
-                newLicense.DateBegin = DateTime.Now;
-                newLicense.DateEnd = DateTime.Now.AddYears(1);
+
+                if (licParam?.DateEnd != null)
+                {
+                    newLicense.LicDate = licParam?.DateEnd.Value.AddDays(1);
+                    newLicense.DateBegin = licParam?.DateEnd.Value.AddDays(1);
+                    newLicense.DateEnd = licParam.DateEnd.Value.AddYears(1).AddDays(1);
+                }
+
                 newLicense.LicVersion = (licVersion ?? 0) + 1;
                 newLicense.License = licParam?.License;
+                license.ProlongVersion = newLicense.LicVersion;
+                license?.LicenseAgrParam?.Add(newLicense);
+                parametr = license?.LicenseAgrParam.LastOrDefault();
             }
-            //newLicense.LicId = 0;
-            license?.LicenseAgrParam?.Add(newLicense);
 
-            var licenseParam = license?.LicenseAgrParam.LastOrDefault();
-            RunDialogForLicenseAgrParam(license, licenseParam, DialogGoal.forProlongation);
+            //newLicense.LicId = 0;
+
+            RunDialogForLicenseAgrParam(license, parametr, DialogGoal.forProlongation);
         }
 
         private void Prolongation_OnSaveProlongationWithoutPlaces(object sender, EventArgs e)
@@ -439,13 +496,58 @@ namespace IpsViewComponentLibrary
         private void gvMoreLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
-            btnDeleteAgr.Enabled = curRow.State == "Не підтверджений";
+            btnAccept.Enabled = (curRow.Status == 0 || curRow.Status == 1);
+            btnDeleteAgr.Enabled = curRow.Status == 0;
             SetAgrInfoDataMore(curRow.LicId);
         }
 
-        private void btnAddAgrNewVersion_Click(object sender, EventArgs e)
+        private void btnChangeAgreement_Click(object sender, EventArgs e)
         {
+            LicenseAgrParam parametr;
+            var licId = (gvLicenseAgr.CurrentRow.DataBoundItem as GridLicenseAgrView)?.LicId;
+            var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == licId).SingleOrDefault();
+            if (license == null)
+                return;
+            
 
+            LicenseAgrParam changeLicense = null;
+            var listDopAgr = license.LicenseAgrParam.Where(rec => rec.LicStatus < 4 && rec.LicVersion > license.LicVersion).ToList();
+            // Кількість доп угод з версією більшою за поточну > 0 //якщо є хоча б одна угода для пролонгації
+            if (listDopAgr.Any(rec => rec.LicVersion != license.ProlongVersion))
+            {
+                parametr = listDopAgr.SingleOrDefault(rec => rec.LicVersion != license.ProlongVersion);
+            }
+            // Інакше == 0
+            else
+            {
+                // -- Створити нову
+                changeLicense = new LicenseAgrParam();
+
+                //поточна версія
+                var licParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
+                //номер версії
+
+                changeLicense.SetFields(licParam);
+
+                if (licParam?.DateEnd != null)
+                {
+                    changeLicense.LicDate = DateTime.Today;
+                    changeLicense.DateBegin = DateTime.Today;
+                    changeLicense.DateEnd = licParam.DateEnd;
+                    changeLicense.LicStatus = 0;
+                }
+
+                // -- Збільшити версію на 1
+                var licVersion = license?.LicenseAgrParam.Max(rec => rec.LicVersion);
+                changeLicense.LicVersion = (licVersion ?? 0) + 1;
+                changeLicense.License = licParam?.License;
+                license?.LicenseAgrParam?.Add(changeLicense);
+                parametr = license?.LicenseAgrParam.LastOrDefault();
+            }
+
+            //newLicense.LicId = 0;
+
+            RunDialogForLicenseAgrParam(license, parametr, DialogGoal.forChange);
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -490,6 +592,7 @@ namespace IpsViewComponentLibrary
         public string License { get; set; }
         public string Series { get; set; }
         public string AgrNumber { get; set; }
+        public string AgrMasterNumber { get; set; }
         public string DateBegin { get; set; }
         public string DateEnd { get; set; }
         public decimal Amount { get; set; }
