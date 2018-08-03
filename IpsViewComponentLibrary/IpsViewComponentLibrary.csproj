@@ -706,6 +706,7 @@
     <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\DropDownListHelper.cs" />
     <Compile Include="Utilities\ExtendedBrowseEditor.cs" />
     <Compile Include="Utilities\GridViewHelper.cs" />
     <Compile Include="Utilities\RadTextBoxAuto.cs">
@@ -1026,6 +1027,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.FileType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Language.datasource" />
@@ -1043,6 +1045,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\Settings.settings">
