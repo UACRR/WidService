@@ -33,16 +33,16 @@
             this.rtxtBoxIPN = new Telerik.WinControls.UI.RadTextBox();
             this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             this.lblCitizenship = new Telerik.WinControls.UI.RadLabel();
-            this.rDropListCitizenship = new Telerik.WinControls.UI.RadDropDownList();
-            this.rDropDownListResidency = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlCitizenship = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlResidency = new Telerik.WinControls.UI.RadDropDownList();
             this.lblResidency = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCitizenship)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rDropListCitizenship)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rDropDownListResidency)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCitizenship)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlResidency)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblResidency)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,24 +79,24 @@
             this.lblCitizenship.Text = "Громадянство:";
             this.lblCitizenship.ThemeName = "Office2013Light";
             // 
-            // rDropListCitizenship
+            // ddlCitizenship
             // 
-            this.rDropListCitizenship.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaPerson, "Citizenship", true));
-            this.rDropListCitizenship.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.rDropListCitizenship.Location = new System.Drawing.Point(91, 28);
-            this.rDropListCitizenship.Name = "rDropListCitizenship";
-            this.rDropListCitizenship.Size = new System.Drawing.Size(105, 21);
-            this.rDropListCitizenship.TabIndex = 2;
-            this.rDropListCitizenship.ThemeName = "Office2013Light";
+            this.ddlCitizenship.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaPerson, "Citizenship", true));
+            this.ddlCitizenship.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCitizenship.Location = new System.Drawing.Point(91, 28);
+            this.ddlCitizenship.Name = "ddlCitizenship";
+            this.ddlCitizenship.Size = new System.Drawing.Size(105, 21);
+            this.ddlCitizenship.TabIndex = 2;
+            this.ddlCitizenship.ThemeName = "Office2013Light";
             // 
-            // rDropDownListResidency
+            // ddlResidency
             // 
-            this.rDropDownListResidency.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.rDropDownListResidency.Location = new System.Drawing.Point(289, 28);
-            this.rDropDownListResidency.Name = "rDropDownListResidency";
-            this.rDropDownListResidency.Size = new System.Drawing.Size(105, 21);
-            this.rDropDownListResidency.TabIndex = 3;
-            this.rDropDownListResidency.ThemeName = "Office2013Light";
+            this.ddlResidency.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlResidency.Location = new System.Drawing.Point(289, 28);
+            this.ddlResidency.Name = "ddlResidency";
+            this.ddlResidency.Size = new System.Drawing.Size(105, 21);
+            this.ddlResidency.TabIndex = 3;
+            this.ddlResidency.ThemeName = "Office2013Light";
             // 
             // lblResidency
             // 
@@ -111,9 +111,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.rDropDownListResidency);
+            this.Controls.Add(this.ddlResidency);
             this.Controls.Add(this.lblResidency);
-            this.Controls.Add(this.rDropListCitizenship);
+            this.Controls.Add(this.ddlCitizenship);
             this.Controls.Add(this.lblCitizenship);
             this.Controls.Add(this.rtxtBoxIPN);
             this.Controls.Add(this.lblipn);
@@ -123,8 +123,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCitizenship)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rDropListCitizenship)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rDropDownListResidency)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCitizenship)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlResidency)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblResidency)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -136,8 +136,8 @@
         private Telerik.WinControls.UI.RadLabel lblipn;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxIPN;
         private Telerik.WinControls.UI.RadLabel lblCitizenship;
-        private Telerik.WinControls.UI.RadDropDownList rDropListCitizenship;
-        private Telerik.WinControls.UI.RadDropDownList rDropDownListResidency;
+        private Telerik.WinControls.UI.RadDropDownList ddlCitizenship;
+        private Telerik.WinControls.UI.RadDropDownList ddlResidency;
         private Telerik.WinControls.UI.RadLabel lblResidency;
         private System.Windows.Forms.BindingSource bsAnketaPerson;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IpsViewComponentLibrary.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -9,15 +10,32 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.Data;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class RightLimitationsControl : UserControl
     {
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+        }
+
         public RightLimitationsControl()
         {
             InitializeComponent();
+
+            if (!IsDesignMode)
+            {
+                var groupDescriptor = new GroupDescriptor();
+                groupDescriptor.GroupNames.Add("GroupCode", ListSortDirection.Ascending);
+                groupDescriptor.GroupNames.Add("GroupName", ListSortDirection.Ascending);
+                groupDescriptor.Format = "{1}";
+                gvRightLimitations.GroupDescriptors.Add(groupDescriptor);
+
+                gvRightLimitations.SetComboboxColumnDataSource("CommunityCustId", IpsGlobal.AnketaDictionaties.communities, "CustId", "Name");
+            }
         }
 
         [Category("Data")]
@@ -40,47 +58,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             set { bsTermsOfServiceWrapper.DataMember = value; }
         }
 
-        #region Community dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object CommunitiesDataSource
-        {
-            get { return bsCommunityInfo.DataSource; }
-            set
-            {
-                if (bsCommunityInfo.DataSource != value)
-                    bsCommunityInfo.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string CommunitiesDataMember
-        {
-            get { return bsCommunityInfo.DataMember; }
-            set { bsCommunityInfo.DataMember = value; }
-        }
-
-        #endregion
-
-        public RadGridView GridExclusionsLimitations
-        {
-            get
-            {
-                return gvExlusionsLimitations;
-            }
-        }
-
-        private void IpsExclusionsLimitationsControl_Load(object sender, EventArgs e)
-        {
-            var groupDescriptor = new GroupDescriptor();
-            groupDescriptor.GroupNames.Add("GroupCode", ListSortDirection.Ascending);
-            groupDescriptor.GroupNames.Add("GroupName", ListSortDirection.Ascending);
-            groupDescriptor.Format = "{1}";
-            gvExlusionsLimitations.GroupDescriptors.Add(groupDescriptor);
-        }
-
-        private void gvExlusionsLimitations_CellFormatting(object sender, CellFormattingEventArgs e)
+        private void gvRightLimitations_CellFormatting(object sender, CellFormattingEventArgs e)
         {
             if (e.Column.FieldName == "DateEnd")
             {
@@ -92,7 +70,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             }
         }
 
-        private void gvExlusionsLimitations_CellValueChanged(object sender, GridViewCellEventArgs e)
+        private void gvRightLimitations_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
             if (e.Column.FieldName == "OurService")
             {
@@ -100,9 +78,9 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             }
         }
 
-        private void gvExlusionsLimitations_DataBindingComplete(object sender, GridViewBindingCompleteEventArgs e)
+        private void gvRightLimitations_DataBindingComplete(object sender, GridViewBindingCompleteEventArgs e)
         {
-            foreach (var row in gvExlusionsLimitations.Rows)
+            foreach (var row in gvRightLimitations.Rows)
             {
                 SetRowParams(row);
             }

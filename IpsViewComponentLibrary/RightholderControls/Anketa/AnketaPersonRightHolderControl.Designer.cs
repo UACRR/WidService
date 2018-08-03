@@ -43,9 +43,9 @@
             this.lblPseudonym = new Telerik.WinControls.UI.RadLabel();
             this.btnMoreSurName = new Telerik.WinControls.UI.RadButton();
             this.btnMorePseudonym = new Telerik.WinControls.UI.RadButton();
-            this.radDropDownListSex = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
+            this.ddlSexType = new Telerik.WinControls.UI.RadDropDownList();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMidleName)).BeginInit();
@@ -60,7 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblPseudonym)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMoreSurName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMorePseudonym)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListSex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlSexType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -205,14 +205,14 @@
             this.btnMorePseudonym.ThemeName = "Office2013Light";
             this.btnMorePseudonym.Click += new System.EventHandler(this.btnMorePseudonym_Click);
             // 
-            // radDropDownListSex
+            // ddlSexType
             // 
-            this.radDropDownListSex.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaPerson, "Sex", true));
-            this.radDropDownListSex.Location = new System.Drawing.Point(313, 105);
-            this.radDropDownListSex.Name = "radDropDownListSex";
-            this.radDropDownListSex.Size = new System.Drawing.Size(125, 21);
-            this.radDropDownListSex.TabIndex = 9;
-            this.radDropDownListSex.ThemeName = "Office2013Light";
+            this.ddlSexType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaPerson, "Sex", true));
+            this.ddlSexType.Location = new System.Drawing.Point(313, 105);
+            this.ddlSexType.Name = "ddlSexType";
+            this.ddlSexType.Size = new System.Drawing.Size(125, 21);
+            this.ddlSexType.TabIndex = 9;
+            this.ddlSexType.ThemeName = "Office2013Light";
             // 
             // bsCustomer
             // 
@@ -222,7 +222,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radDropDownListSex);
+            this.Controls.Add(this.ddlSexType);
             this.Controls.Add(this.btnMorePseudonym);
             this.Controls.Add(this.btnMoreSurName);
             this.Controls.Add(this.rtxtBoxPseudonym);
@@ -253,7 +253,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblPseudonym)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMoreSurName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMorePseudonym)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownListSex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlSexType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCustomer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -275,7 +275,7 @@
         private Telerik.WinControls.UI.RadButton btnMoreSurName;
         private Telerik.WinControls.UI.RadButton btnMorePseudonym;
         private System.Windows.Forms.BindingSource bsAnketaPerson;
-        private Telerik.WinControls.UI.RadDropDownList radDropDownListSex;
+        private Telerik.WinControls.UI.RadDropDownList ddlSexType;
         private System.Windows.Forms.BindingSource bsCustomer;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }

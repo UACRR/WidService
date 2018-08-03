@@ -12,13 +12,19 @@ using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.RightholderControls;
+using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class AnketaPersonRightHolderControl : UserControl
     {
         private bool _birthDateSelected = false;
-        //_sexSelected = false;
+
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+        }
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -48,60 +54,16 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             }
         }
 
-        #region Sex type dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object SexTypeDataSource
-        {
-            get { return radDropDownListSex.DataSource; }
-            set
-            {
-                if (radDropDownListSex.DataSource != value)
-                    radDropDownListSex.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string SexTypeDataMember
-        {
-            get { return radDropDownListSex.DataMember; }
-            set { radDropDownListSex.DataMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string SexTypeDisplayMember
-        {
-            get { return radDropDownListSex.DisplayMember; }
-            set { radDropDownListSex.DisplayMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string SexTypeValueMember
-        {
-            get { return radDropDownListSex.ValueMember; }
-            set { radDropDownListSex.ValueMember = value; }
-        }
-
-        #endregion
-
         public AnketaPersonRightHolderControl()
         {
             InitializeComponent();
-            rdtPickerBirth.SetUserCalendarSettingsm();
-        }
 
-        #region Edit controls
-
-        public RadDateTimePicker dtBirthDate
-        {
-            get
+            if (!IsDesignMode)
             {
-                return rdtPickerBirth;
+                rdtPickerBirth.SetUserCalendarSettingsm();
+                ddlSexType.SetDataSource(IpsGlobal.AnketaDictionaties.sexType);
             }
         }
-
-        #endregion
 
         /// <summary>
         /// Перевірка на правильність введених даних
