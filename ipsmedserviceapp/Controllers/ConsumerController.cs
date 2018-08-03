@@ -1042,7 +1042,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="stateid"></param>
         /// <returns></returns>
         [HttpPut("period/state/{periodid}/{stateid}")]
-        public async Task<IActionResult> SetPeriodState(int periodid, int stateid )
+        public async Task<IActionResult> SetPeriodState(int periodid, int stateid, [FromBody] PaidPeriod body )
         {
             IDbContextTransaction tran = null;
 
@@ -1059,6 +1059,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
                 tran.Commit();
                 tran = null;
+                body = period;
             }
             catch (Exception)
             {
@@ -1066,7 +1067,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 throw;
             }
 
-            return Ok();
+            return Json(body);
         }
         
         /// <summary>
@@ -1616,15 +1617,13 @@ and t3.licStatus between 0 and 3
         [HttpGet("period/register/RatedList/{custId}")]
         public async Task<IActionResult> GetRegisterInfoForCustomer(int custId)
         {
-            var licenseAgreement = await _dbContext.LicenseAgrParam.FromSql(@"
-select t2.* 
+            var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
+select t1.* 
 from LicenseAgreement t1 
-join LicenseAgrParam t2 on t2.licId = t1.licId and t2.licVersion = t1.licVersion and t2.licStatus = 2
-where t1.custId = @custId
+where t1.custId = @custId and t1.licStatus = 2
 ", new SqlParameter("@custId", custId))
-            .Include(rec => rec.Lic)
-                .ThenInclude(lic => lic.Cust)
-                .ThenInclude(cln => cln.Cust)
+                .Include(lic => lic.Cust)
+                .Include(cln => cln.Cust)
                 .ToListAsync();
 
             if (licenseAgreement.Count() == 0)
@@ -1632,14 +1631,17 @@ where t1.custId = @custId
 
             foreach (var item in licenseAgreement)
             {
-                await _dbContext.Entry(item.Lic).Collection(rec => rec.PaidPeriod)
+                await _dbContext.Entry(item).Collection(rec => rec.PaidPeriod)
                     .Query()
                     // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
                     .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register)
                     .LoadAsync();
+
+                await _dbContext.Entry(item).Collection(rec => rec.LicenseAgrParam).Query()
+                    .Where(rec => rec.LicVersion == item.LicVersion).LoadAsync();
             }
 
-            return Json(licenseAgreement.First().Lic.Cust.Cust);
+            return Json(licenseAgreement.First().Cust.Cust);
 
         }
 

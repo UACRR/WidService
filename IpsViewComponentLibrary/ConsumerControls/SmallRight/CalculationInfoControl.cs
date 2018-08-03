@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
         public event EventHandler<List<MoneyPeriodLink>> SaveLinkCommandExecuted;
+        public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
+
         public delegate void UpdateCustomerDataEventHandler(int id);
         public event UpdateCustomerDataEventHandler UpdateData;
         private GridDataRowElement dragRow;
@@ -356,6 +358,11 @@ namespace IpsViewComponentLibrary
             SetGrid3DataSource();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gvLicenseAgr_RowFormatting(object sender, RowFormattingEventArgs e)
         {
 
@@ -373,6 +380,15 @@ namespace IpsViewComponentLibrary
         /// Закрити період
         private void btnClosePeriod_Click(object sender, EventArgs e)
         {
+            var period = gvPeriodsPayment.CurrentRow?.DataBoundItem as PaidPeriod;
+            if (period == null)
+                return;
+
+            if( MessageBox.Show( $"Закрити період {period.PeriodName} ?", "Закриття періоду", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes )
+            {
+                period.Status = 7;
+                SetPeriodStateExecuted?.Invoke(this, period);
+            }
         }
     }
 

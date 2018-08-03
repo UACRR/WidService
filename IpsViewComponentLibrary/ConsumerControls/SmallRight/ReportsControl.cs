@@ -160,7 +160,8 @@ namespace IpsViewComponentLibrary
                 }
 
             bindingReports.DataSource = reports;
-            buttonController.SetPeriodState(period.Status, reports);
+
+            buttonController.SetPeriodState(period?.Status, reports);
         }
 
         // * * * [Звіти періода]
@@ -362,15 +363,22 @@ namespace IpsViewComponentLibrary
                           _toAcception,
                           _accepted;
 
-        public ButtonEnableControl( RadButton addReport, RadButton toAcception, RadButton Accepted )
+        public ButtonEnableControl(RadButton addReport, RadButton toAcception, RadButton Accepted)
         {
             _addReport = addReport;
             _toAcception = toAcception;
             _accepted = Accepted;
         }
-        public void SetPeriodState(int state, List<Register> list)
+        public void SetPeriodState(int? state, List<Register> list)
         {
-            int[] regStates = new [] { 0,0,0,0,0,0 };
+            if (state == 2)
+            {
+                _addReport.Enabled = false;
+                _toAcception.Enabled = false;
+                _accepted.Enabled = false;
+                return;
+            }
+            int[] regStates = new[] { 0, 0, 0, 0, 0, 0 };
             int countInList = list.Count();
             // Накоплюємо кіль
             foreach (var item in list)
