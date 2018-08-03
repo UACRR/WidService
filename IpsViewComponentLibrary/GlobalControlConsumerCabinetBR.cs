@@ -57,6 +57,7 @@ namespace IpsViewComponentLibrary
         public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
         public event SavePayslipsEventHandler OnSavePayslip;
+        public event GetRegisterRatedList OnGetRegisterRatedList;
 
 
 
@@ -77,8 +78,14 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
             ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
             ctrlCabinet.OnSavePayslip += CtrlCabinet_OnSavePayslip;
+            ctrlCabinet.OnGetRegisterRatedList += CtrlCabinet_OnGetRegisterRatedList;
 
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private Customer CtrlCabinet_OnGetRegisterRatedList(int custId)
+        {
+            return OnGetRegisterRatedList?.Invoke(custId);
         }
 
         private bool CtrlCabinet_OnSavePayslip(RegisterRatedList list)

@@ -130,11 +130,12 @@ namespace IpsViewComponentLibrary
         {
             _registerRatedList.Register.Add(new Register
             {
+                RgStatus = 0,
                 CustId = _customer.CustId,
                 RegisterItem = new ObservableListSource<RegisterItem> { new RegisterItem
                     {
                         Ticks = 1,
-                        CodeItem = 3
+                        CodeItem = 3,
                     }
                 },
                 RegId = _tempRegId++
@@ -170,7 +171,8 @@ namespace IpsViewComponentLibrary
                         reg.AuthRate = sw?.Rate;
                         reg.MusicRate = sw?.RateMusic;
                         item.LicId = sw?.LicId;
-                        var mus = _customer?.Client?.LicenseAgreement?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
+                        reg.LicId = sw?.LicId;
+                        //var mus = _customer?.Client?.LicenseAgreement?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
 
                     }
                     else if (e.Column.FieldName == "Royalty")

@@ -108,6 +108,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnWorkRhSaveNeed += SaveWorkRh;
                 _cabinetBr.OnChangeLicenseType += ChangeLicenseType;
                 _cabinetBr.OnSavePayslip += SavePayslips;
+                _cabinetBr.OnGetRegisterRatedList += _cabinetBr_OnGetRegisterRatedList;
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -117,6 +118,11 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetSelectCustomer(id);
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
+        }
+
+        private Customer _cabinetBr_OnGetRegisterRatedList(int custId)
+        {
+            return _service.GetCustomerRegisterRatedList(custId);
         }
 
         private bool SavePayslips(RegisterRatedList list)
