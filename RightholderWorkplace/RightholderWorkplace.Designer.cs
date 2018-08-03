@@ -165,7 +165,7 @@
             this.ctrlExclusionsLimitations = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
             this.createRightholderTerritoryLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnNextAgreement = new Telerik.WinControls.UI.RadButton();
-            this.ctrlTerritoryIncludeExclude = new IpsViewComponentLibrary.TerritoryIncludeExcludeControl();
+            this.ctrlTerritoryIncludeExclude = new IpsViewComponentLibrary.RightholderControls.Anketa.TerritoryIncludeExcludeControl();
             this.radButton5 = new Telerik.WinControls.UI.RadButton();
             this.btnPrevRightLimitation = new Telerik.WinControls.UI.RadButton();
             this.createRightholderAgreementPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -2466,7 +2466,7 @@
         private IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl ctrlExclusionsLimitations;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderTerritoryLimitationsPage;
         private Telerik.WinControls.UI.RadButton btnNextAgreement;
-        private IpsViewComponentLibrary.TerritoryIncludeExcludeControl ctrlTerritoryIncludeExclude;
+        private IpsViewComponentLibrary.RightholderControls.Anketa.TerritoryIncludeExcludeControl ctrlTerritoryIncludeExclude;
         private Telerik.WinControls.UI.RadButton radButton5;
         private Telerik.WinControls.UI.RadButton btnPrevRightLimitation;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderAgreementPage;

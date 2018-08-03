@@ -700,10 +700,10 @@
     <Compile Include="SingleShowInformationControl.Designer.cs">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="TerritoryIncludeExcludeControl.cs">
+    <Compile Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TerritoryIncludeExcludeControl.Designer.cs">
+    <Compile Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.Designer.cs">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\DropDownListHelper.cs" />
@@ -995,7 +995,7 @@
     <EmbeddedResource Include="SingleShowInformationControl.resx">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TerritoryIncludeExcludeControl.resx">
+    <EmbeddedResource Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.resx">
       <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewAndPrintAgreement.resx">

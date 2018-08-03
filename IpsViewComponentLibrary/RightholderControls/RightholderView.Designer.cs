@@ -76,7 +76,7 @@
             this.createRightholderRigthLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRightLimitations = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
             this.createRightholderTerritoryLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlTerritoryIncludeExclude = new IpsViewComponentLibrary.TerritoryIncludeExcludeControl();
+            this.ctrlTerritoryIncludeExclude = new IpsViewComponentLibrary.RightholderControls.Anketa.TerritoryIncludeExcludeControl();
             this.createRightholderAgreementPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnGenerateRightholderAgreement = new Telerik.WinControls.UI.RadButton();
             this.pdfvRightholderAgreement = new Telerik.WinControls.UI.RadPdfViewer();
@@ -852,7 +852,7 @@
         private Telerik.WinControls.UI.RadPageViewPage createRightholderRigthLimitationsPage;
         private IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl ctrlRightLimitations;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderTerritoryLimitationsPage;
-        private TerritoryIncludeExcludeControl ctrlTerritoryIncludeExclude;
+        private IpsViewComponentLibrary.RightholderControls.Anketa.TerritoryIncludeExcludeControl ctrlTerritoryIncludeExclude;
         private Telerik.WinControls.UI.RadPageViewPage createRightholderAgreementPage;
         private Telerik.WinControls.UI.RadButton btnGenerateRightholderAgreement;
         private Telerik.WinControls.UI.RadPdfViewer pdfvRightholderAgreement;
