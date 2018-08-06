@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.mainPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderFullNameComissionPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            this.bsAgreementAddRh = new System.Windows.Forms.BindingSource();
+            this.bsAgreementAddRh = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtInnerCode = new Telerik.WinControls.UI.RadTextBox();
-            this.bsRightHolder = new System.Windows.Forms.BindingSource();
+            this.bsRightHolder = new System.Windows.Forms.BindingSource(this.components);
             this.txtInterCode = new Telerik.WinControls.UI.RadTextBox();
             this.ctrlAnketaPerson = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaPersonRightHolderControl();
-            this.bsAnketaPerson = new System.Windows.Forms.BindingSource();
-            this.bsCustomer = new System.Windows.Forms.BindingSource();
+            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
+            this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.createRightholderAnketaPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
@@ -64,7 +65,7 @@
             this.createRightholderRoyaltyPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderRoyaltyBankPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
-            this.bsBankAccount = new System.Windows.Forms.BindingSource();
+            this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.createRightholderRoyaltyCashPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderRoyaltyPostalTransfer = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
@@ -82,7 +83,7 @@
             this.waitbarAgreement = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.sbSaveRightholder = new Telerik.WinControls.UI.RadSplitButton();
+            this.sbSave = new Telerik.WinControls.UI.RadSplitButton();
             this.miSave = new Telerik.WinControls.UI.RadMenuItem();
             this.miAcceptAndSave = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlPageSelector = new IpsViewComponentLibrary.Common.PageSelectorControl();
@@ -132,7 +133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.waitbarAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sbSaveRightholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -152,7 +153,7 @@
             this.mainPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.mainPageView.Location = new System.Drawing.Point(1, 1);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.createRightholderAgreementPage;
+            this.mainPageView.SelectedPage = this.createRightholderFullNameComissionPage;
             this.mainPageView.Size = new System.Drawing.Size(995, 437);
             this.mainPageView.TabIndex = 2;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -686,7 +687,7 @@
             // radPanel1
             // 
             this.radPanel1.BackColor = System.Drawing.Color.Silver;
-            this.radPanel1.Controls.Add(this.sbSaveRightholder);
+            this.radPanel1.Controls.Add(this.sbSave);
             this.radPanel1.Controls.Add(this.ctrlPageSelector);
             this.radPanel1.Controls.Add(this.btnCancel);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -698,30 +699,32 @@
             this.radPanel1.TabIndex = 19;
             this.radPanel1.ThemeName = "Office2013Light";
             // 
-            // sbSaveRightholder
+            // sbSave
             // 
-            this.sbSaveRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.sbSaveRightholder.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.sbSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.sbSave.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.miSave,
             this.miAcceptAndSave});
-            this.sbSaveRightholder.Location = new System.Drawing.Point(820, 4);
-            this.sbSaveRightholder.Name = "sbSaveRightholder";
-            this.sbSaveRightholder.Size = new System.Drawing.Size(175, 24);
-            this.sbSaveRightholder.TabIndex = 53;
-            this.sbSaveRightholder.Text = "Зберегти";
-            this.sbSaveRightholder.ThemeName = "Office2013Light";
+            this.sbSave.Location = new System.Drawing.Point(820, 4);
+            this.sbSave.Name = "sbSave";
+            this.sbSave.Size = new System.Drawing.Size(175, 24);
+            this.sbSave.TabIndex = 53;
+            this.sbSave.Text = "Зберегти";
+            this.sbSave.ThemeName = "Office2013Light";
             // 
             // miSave
             // 
             this.miSave.Name = "miSave";
             this.miSave.Text = "Зберегти";
             this.miSave.UseCompatibleTextRendering = false;
+            this.miSave.Click += new System.EventHandler(this.miSave_Click);
             // 
             // miAcceptAndSave
             // 
             this.miAcceptAndSave.Name = "miAcceptAndSave";
             this.miAcceptAndSave.Text = "Підтвердити та зберегти";
             this.miAcceptAndSave.UseCompatibleTextRendering = false;
+            this.miAcceptAndSave.Click += new System.EventHandler(this.miAcceptAndSave_Click);
             // 
             // ctrlPageSelector
             // 
@@ -810,7 +813,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.waitbarAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sbSaveRightholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sbSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -862,7 +865,7 @@
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Common.PageSelectorControl ctrlPageSelector;
-        private Telerik.WinControls.UI.RadSplitButton sbSaveRightholder;
+        private Telerik.WinControls.UI.RadSplitButton sbSave;
         private Telerik.WinControls.UI.RadMenuItem miSave;
         private Telerik.WinControls.UI.RadMenuItem miAcceptAndSave;
         private ContractConsumerMainControl ctrlAgreementNumberDate;

@@ -851,7 +851,7 @@
             this.newCreateRightholderPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.newCreateRightholderPageView.Location = new System.Drawing.Point(3, 34);
             this.newCreateRightholderPageView.Name = "newCreateRightholderPageView";
-            this.newCreateRightholderPageView.SelectedPage = this.createRightholderTerritoryLimitationsPage;
+            this.newCreateRightholderPageView.SelectedPage = this.createRightholderAgreementPage;
             this.newCreateRightholderPageView.Size = new System.Drawing.Size(995, 575);
             this.newCreateRightholderPageView.TabIndex = 1;
             this.newCreateRightholderPageView.ThemeName = "Office2013Light";

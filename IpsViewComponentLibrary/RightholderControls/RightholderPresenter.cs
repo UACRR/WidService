@@ -1,7 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -9,6 +13,7 @@ namespace IpsViewComponentLibrary.RightholderControls
     {
         private readonly RightholderView _view;
         private readonly RightholderService _rightholderService;
+        private readonly DialogService _dialogService;
         private Customer _customer;
 
         public RightholderPresenter(RightholderView view)
@@ -16,6 +21,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             _view = view;
             _view.Presenter = this;
             _rightholderService = new RightholderService();
+            _dialogService = new DialogService();
+        }
+
+        public void ShowNew(int customerType)
+        {
+            _customer = _rightholderService.NewCustomer(customerType);
+            SetViewData();
+            _view.Run();
         }
 
         public void Show(int custId)
@@ -33,6 +46,25 @@ namespace IpsViewComponentLibrary.RightholderControls
             _view.RightholderDataSource = _customer.RightHolder;
             _view.BankAccountDataSource = _customer.BankAccount;
             _view.TermsOfServiceDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
+        }
+
+        internal void Save(bool accept)
+        {
+            if (_customer == null)
+                return;
+
+            if (accept)
+                _customer.Status = 2; // Активний
+
+            var result = _rightholderService.Save(_customer);
+
+            if (result)
+            {
+                ApplicationController.Instance.EventAggregator.PublishEvent(new RightolderUpdatedEvent());
+                _view.Close();
+            }
+            else
+                _dialogService.ShowError(_view, "Не вдалося зберегти правовласника.");
         }
     }
 }

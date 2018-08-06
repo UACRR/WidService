@@ -1,8 +1,11 @@
 ﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.EventAggregator;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.RightholderControls;
 using IpsViewComponentLibrary.Utilities;
@@ -22,7 +25,8 @@ using Telerik.WinControls.UI.Localization;
 
 namespace RightholderWorkplace
 {
-    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm
+    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm,
+        ISubscriber<RightolderUpdatedEvent>
     {
         Customer _customer;
         RightholderStatusType _rightholderStatusType;
@@ -79,6 +83,8 @@ namespace RightholderWorkplace
         public RightholderWorkplace()
         {
             InitializeComponent();
+
+            ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
@@ -299,17 +305,11 @@ namespace RightholderWorkplace
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
-            _customer = NewCustomer(1);//3 - юр. 
-
-            UpdateDataSources();
-
-            for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
+            using (var rightholderView = new RightholderView())
             {
-                newCreateRightholderPageView.Pages[i].Enabled = false;
+                var rightholderPresenter = new RightholderPresenter(rightholderView);
+                rightholderPresenter.ShowNew(1);
             }
-
-            newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
-            newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
         }
 
         private void btnNewRightholderCancel1_Click(object sender, EventArgs e)
@@ -374,12 +374,12 @@ namespace RightholderWorkplace
             EditRightholder();
         }
 
-        private void miSaveRightholder_Click(object sender, EventArgs e)
+        private void miSaveRightholder_Click(object sender, EventArgs e) // to move
         {
             SaveRightholder(accept: false);
         }
-
-        private void miAcceptAndSaveRightholder_Click(object sender, EventArgs e)
+ 
+        private void miAcceptAndSaveRightholder_Click(object sender, EventArgs e) // to move
         {
             SaveRightholder(accept: true);
         }
@@ -398,24 +398,9 @@ namespace RightholderWorkplace
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
                 rightholderPresenter.Show(rightholder.CustId);
             }
-
-            //_customer = GetCustomer(rightholder.CustId);
-
-            //UpdateDataSources();
-
-            //for (int i = 1; i < newCreateRightholderPageView.Pages.Count; i++)
-            //{
-            //    newCreateRightholderPageView.Pages[i].Enabled = true;
-            //}
-
-            //MainPageView.SelectedPage = mainPageRightholders;
-            //rightholdersPageView.SelectedPage = rightholdersPage;
-            //newRightholdersPageView.SelectedPage = newRightholdersCreatePage;
-            //newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
-            //pdfvRightholderAgreement.UnloadDocument();
         }
 
-        private void SaveRightholder(bool accept)
+        private void SaveRightholder(bool accept) // to move
         {
             if (_customer == null)
             {
@@ -909,6 +894,11 @@ namespace RightholderWorkplace
         }
 
         #endregion
+
+        public void HandleEvent(RightolderUpdatedEvent e)
+        {
+            UpdateRightholdersList();
+        }
 
         #region Search rightholder
 

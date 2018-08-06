@@ -71,6 +71,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
+            sbSave.DefaultItem = miSave;
+            sbSave.Text = miSave.Text;
+
             ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
         }
 
@@ -134,11 +137,23 @@ namespace IpsViewComponentLibrary.RightholderControls
             btnGenerateRightholderAgreement.Enabled = true;
         }
 
+        private void miSave_Click(object sender, EventArgs e)
+        {
+            _presenter.Save(accept: false);
+        }
+
+        private void miAcceptAndSave_Click(object sender, EventArgs e)
+        {
+            _presenter.Save(accept: true);
+        }
+
         // TODO Global:
-        // * disable pages for new rightholder
+        // + use new rightholder view to show rightholder
+        // + use new rightholder view to create rightholder
+        // + implement save and accept and save buttons
         // * validation before page changing
-        // * use new rightholder view to show rightholder
-        // * use new rightholder view to create rightholder
-        // * implement save and accept and save buttons
+        // * disable pages for new rightholder
+        // * use new rightholder view to show rightholder from controls RightholderSelector, RightholdersObjectsRight
+        // * remove old controls and code
     }
 }
