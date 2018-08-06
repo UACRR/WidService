@@ -28,14 +28,10 @@ namespace RightholderWorkplace
     public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm,
         ISubscriber<RightolderUpdatedEvent>
     {
-        Customer _customer;
         RightholderStatusType _rightholderStatusType;
 
         AnketaPerson _anketa;
         BankAccount _bankAccount;
-        AnketaDictionaties _dictionaries;
-        List<TermsOfServiceWrapper> _termsOfServices;
-        RightHolder _rightHolder;
 
         RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
@@ -71,11 +67,7 @@ namespace RightholderWorkplace
 
         public void SetDictionary(AnketaDictionaties dictionaries)
         {
-            _dictionaries = dictionaries;
 
-            ddlTypeMethodGet.DataSource = dictionaries.typeMethodGet;
-            ddlTypeMethodGet.ValueMember = "CodeI";
-            ddlTypeMethodGet.DisplayMember = "Name";
         }
 
         #endregion
@@ -87,31 +79,10 @@ namespace RightholderWorkplace
             ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
             newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
-            createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
-            createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
-
-            sbSaveRightholder.DefaultItem = miSaveRightholder;
-            sbSaveRightholder.Text = miSaveRightholder.Text;
-
-            // data
-            //anketaPersonBindingSource.DataSource = _anketa;
-            //bankAccountBindingSource.DataSource = _bankAccount;
-
-            ctrlAnketaPerson.DataSourceAnketa = anketaPersonBindingSource;
-            ctrlFaAddress.DataSource = anketaPersonBindingSource;
-            ctrlContacts.DataSource = anketaPersonBindingSource;
-            ctrlRegistrations.DataSource = anketaPersonBindingSource;
-            ctrlInternalPassport.DataSource = anketaPersonBindingSource;
-            ctrlInternationalPassport.DataSource = anketaPersonBindingSource;
-            ctrlTerritoryIncludeExclude.DataSource = rightHolderBindingSource;
-            //ctrlBankAccount.DataSource = _bankAccount;
-            //ctrlExclusionsLimitations.DataSource = _termsOfServices;
-            //gvTerritoryExclusions.DataSource = _rightHolder.TerritoryExclude;
-            //cbAroundWorld.DataBindings.Add("Checked", _rightHolder, "AroundWord", true, DataSourceUpdateMode.OnPropertyChanged, false);
 
             var copyrightRequestPresenter = new CopyrightRequestPresenter(ctrlCopyrightRequests, _rightholderService);
         }
@@ -132,115 +103,6 @@ namespace RightholderWorkplace
                     gvRightholdersList.CurrentRow = row;
                     gvRightholdersList.TableElement.ScrollToRow(row);
                 }
-            }
-        }
-
-        #region Next / Prev buttons
-
-        private void btnNextAnketa_Click(object sender, EventArgs e)
-        {
-            if (ctrlAnketaPerson.Validator())
-            {
-                createRightholderAnketaPage.Enabled = true;
-                newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
-            }
-        }
-
-        private void btnPrevFullNameComission_Click(object sender, EventArgs e)
-        {
-            newCreateRightholderPageView.SelectedPage = createRightholderFullNameComissionPage;
-        }
-
-        private void btnNextPassport_Click(object sender, EventArgs e)
-        {
-            // TODO: implement validation
-            //ctrlJaAddress.Validator()
-            //ctrlFaAddress.Validator()
-            //ctrlLeAddress.Validator()
-
-            if (ctrlContacts.Validator()
-                & ctrlRegistrations.Validator())
-            {
-                createRightholderPassportPage.Enabled = true;
-                newCreateRightholderPageView.SelectedPage = createRightholderPassportPage;
-            }
-
-        }
-
-        private void btnPrevAnketa_Click(object sender, EventArgs e)
-        {
-            newCreateRightholderPageView.SelectedPage = createRightholderAnketaPage;
-        }
-
-        private void btnNextRoyalty_Click(object sender, EventArgs e)
-        {
-            createRightholderRoyaltyPage.Enabled = true;
-            newCreateRightholderPageView.SelectedPage = createRightholderRoyaltyPage;
-        }
-
-        private void btnPrevPassport_Click(object sender, EventArgs e)
-        {
-            newCreateRightholderPageView.SelectedPage = createRightholderPassportPage;
-        }
-
-        private void btnNextExclusionLimitation_Click(object sender, EventArgs e)
-        {
-            createRightholderRigthLimitationsPage.Enabled = true;
-            newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
-        }
-
-        private void btnPrevRoyalty_Click(object sender, EventArgs e)
-        {
-            newCreateRightholderPageView.SelectedPage = createRightholderRoyaltyPage;
-        }
-
-        private void btnNextTerritoryLimitation_Click(object sender, EventArgs e)
-        {
-            createRightholderTerritoryLimitationsPage.Enabled = true;
-            newCreateRightholderPageView.SelectedPage = createRightholderTerritoryLimitationsPage;
-        }
-
-        private void btnPrevRightLimitation_Click(object sender, EventArgs e)
-        {
-            newCreateRightholderPageView.SelectedPage = createRightholderRigthLimitationsPage;
-        }
-
-        private void btnNextAgreement_Click(object sender, EventArgs e)
-        {
-            createRightholderAgreementPage.Enabled = true;
-            newCreateRightholderPageView.SelectedPage = createRightholderAgreementPage;
-        }
-
-        private void btnPrevTerritoryLimitation_Click(object sender, EventArgs e)
-        {
-            newCreateRightholderPageView.SelectedPage = createRightholderTerritoryLimitationsPage;
-        }
-
-        #endregion
-
-        private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e) // to move
-        {
-            if (newCreateRightholderPageView.SelectedPage == createRightholderPassportPage)
-            {
-                if (_anketa.Citizenship == "804")
-                    createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
-                else
-                    createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
-            }
-        }
-
-        private void ddlTypeMethodGet_SelectedValueChanged(object sender, EventArgs e) // to move
-        {
-            if (ddlTypeMethodGet.SelectedValue is int)
-            {
-                var value = (int)ddlTypeMethodGet.SelectedValue;
-
-                if (value == 1)
-                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyCashPage;
-                else if (value == 2)
-                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyBankPage;
-                else if (value == 3 || value == 4)
-                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
             }
         }
 
@@ -280,25 +142,6 @@ namespace RightholderWorkplace
         private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
-        }
-
-        private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e) // to move
-        {
-            if (_customer == null)
-                return;
-
-            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx");
-
-            btnGenerateRightholderAgreement.Enabled = false;
-            waitbarAgreement.StartWaiting();
-
-            var wordEngine = new WordEngine(_dictionaries);
-            await wordEngine.processRightHolder(template, _customer, _customer.AgreementMaster.First());
-
-            pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
-            waitbarAgreement.StopWaiting();
-
-            btnGenerateRightholderAgreement.Enabled = true;
         }
 
         #region Rightolder commands
@@ -374,19 +217,7 @@ namespace RightholderWorkplace
             EditRightholder();
         }
 
-        private void miSaveRightholder_Click(object sender, EventArgs e) // to move
-        {
-            SaveRightholder(accept: false);
-        }
- 
-        private void miAcceptAndSaveRightholder_Click(object sender, EventArgs e) // to move
-        {
-            SaveRightholder(accept: true);
-        }
-
         #endregion
-
-        #region Rightholder page Helpers
 
         private void EditRightholder(RightholderMainView rightholder = null)
         {
@@ -400,67 +231,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void SaveRightholder(bool accept) // to move
-        {
-            if (_customer == null)
-            {
-                return;
-            }
-
-            if (accept)
-                _customer.Status = 2; // Активний
-
-            // TODO: additional validation
-
-            SaveCustomer?.Invoke(_customer);
-
-            UpdateRightholdersList();
-
-            newRightholdersPageView.SelectedPage = newRightholdersListPage;
-        }
-
         #endregion
-
-        #endregion
-
-        private void UpdateDataSources()
-        {
-            ctrlAnketaPerson.DataSourceCustomer = _customer;
-            _anketa = _customer.Person.AnketaPerson.Where( row => row.Version == _customer.AnkVersion ).SingleOrDefault();
-            if (_customer.BankAccount.Any())
-                _bankAccount = _customer.BankAccount.FirstOrDefault();
-            else
-            {
-                _bankAccount = new BankAccount();
-                _customer.BankAccount.Add(_bankAccount);
-            }
-
-            anketaPersonBindingSource.DataSource = _anketa;
-            bankAccountBindingSource.DataSource = _bankAccount;
-            ctrlExclusionsLimitations.DataSource = _customer.RightHolder.TermsOfService.Select( rec => new TermsOfServiceWrapper(rec));
-
-            var agreement = _customer.AgreementMaster.FirstOrDefault();
-
-            if (agreement != null)
-            {
-                agreementAddRhBindingSource.DataSource = agreement.AgreementAddRh;
-            }
-            else
-            {
-                agreement = new AgreementMaster();
-                _customer.AgreementMaster.Add(agreement);
-                var agreementAddRh = new AgreementAddRh();
-                agreement.AgreementAddRh.Add(agreementAddRh);
-
-                agreementAddRhBindingSource.DataSource = agreementAddRh;
-            }
-
-            // if type of collection is HashSet, then adding new row is not allowed
-            _customer.RightHolder.TerritoryExclude = _customer.RightHolder.TerritoryExclude;
-            _customer.RightHolder.TerritoryInclude = _customer.RightHolder.TerritoryInclude;
-
-            rightHolderBindingSource.DataSource = _customer.RightHolder;
-        }
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {

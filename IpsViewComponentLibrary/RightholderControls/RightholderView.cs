@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using ipsFormsDesign.Data;
@@ -192,16 +191,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _presenter.Save(accept: true);
         }
-
-        // TODO Global:
-        // + use new rightholder view to show rightholder
-        // + use new rightholder view to create rightholder
-        // + implement save and accept and save buttons
-        // + validation before page changing
-        // + disable pages for new rightholder
-        // + disable save button for new rightholder
-        // * use new rightholder view to show rightholder from controls RightholderSelector, RightholdersObjectsRight
-        // * remove old controls and code
 
         private void DisablePagesAndSaveButton()
         {
