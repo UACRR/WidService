@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using ipsFormsDesign.Data;
@@ -20,6 +21,22 @@ namespace IpsViewComponentLibrary.RightholderControls
                 if (_presenter == null)
                 {
                     _presenter = value;
+                }
+            }
+        }
+
+        private bool _isNew = false;
+        public bool IsNew
+        {
+            get { return _isNew; }
+            set
+            {
+                if (_isNew != value)
+                {
+                    _isNew = value;
+
+                    if (_isNew)
+                        DisablePagesAndSaveButton();
                 }
             }
         }
@@ -80,6 +97,35 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void Run()
         {
             ShowDialog();
+        }
+
+        private void mainPageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
+        {
+            // TODO: move to presenter
+            var selectedPage = mainPageView.SelectedPage;
+            var isValid = true;
+
+            if (selectedPage == createRightholderFullNameComissionPage)
+            {
+                isValid = ctrlAnketaPerson.Validator();
+            }
+            else if (selectedPage == createRightholderAnketaPage)
+            {
+                isValid = ctrlContacts.Validator() & ctrlRegistrations.Validator();
+            }
+
+            if (isValid)
+            {
+                e.Page.Enabled = true;
+                if (e.Page == mainPageView.Pages.Last())
+                {
+                    sbSave.Enabled = true;
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
@@ -151,9 +197,19 @@ namespace IpsViewComponentLibrary.RightholderControls
         // + use new rightholder view to show rightholder
         // + use new rightholder view to create rightholder
         // + implement save and accept and save buttons
-        // * validation before page changing
-        // * disable pages for new rightholder
+        // + validation before page changing
+        // + disable pages for new rightholder
+        // + disable save button for new rightholder
         // * use new rightholder view to show rightholder from controls RightholderSelector, RightholdersObjectsRight
         // * remove old controls and code
+
+        private void DisablePagesAndSaveButton()
+        {
+            sbSave.Enabled = false;
+            for (int i = 1; i < mainPageView.Pages.Count; i++)
+            {
+                mainPageView.Pages[i].Enabled = false;
+            }
+        }
     }
 }
