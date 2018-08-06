@@ -34,13 +34,14 @@
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
             this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
-            this.anketaDictionatiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.bsAnketaDictionaties = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaDictionatiesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaDictionaties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCity
@@ -52,6 +53,7 @@
             this.txtCity.NullText = "Місто";
             this.txtCity.Size = new System.Drawing.Size(188, 20);
             this.txtCity.TabIndex = 2;
+            this.txtCity.ThemeName = "Office2013Light";
             // 
             // ddlRegion
             // 
@@ -65,6 +67,7 @@
             this.ddlRegion.Name = "ddlRegion";
             this.ddlRegion.Size = new System.Drawing.Size(186, 20);
             this.ddlRegion.TabIndex = 1;
+            this.ddlRegion.ThemeName = "Office2013Light";
             // 
             // tableLayoutPanel
             // 
@@ -87,21 +90,21 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(600, 45);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(600, 48);
             this.tableLayoutPanel.TabIndex = 6;
             // 
             // txtAddress
             // 
-            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel.SetColumnSpan(this.txtAddress, 5);
             this.txtAddress.Location = new System.Drawing.Point(0, 25);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(0);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.NullText = "Адреса";
-            this.txtAddress.Size = new System.Drawing.Size(600, 20);
+            this.txtAddress.Size = new System.Drawing.Size(600, 21);
             this.txtAddress.TabIndex = 3;
+            this.txtAddress.ThemeName = "Office2013Light";
             // 
             // ddlCountry
             // 
@@ -115,10 +118,11 @@
             this.ddlCountry.Name = "ddlCountry";
             this.ddlCountry.Size = new System.Drawing.Size(186, 20);
             this.ddlCountry.TabIndex = 0;
+            this.ddlCountry.ThemeName = "Office2013Light";
             // 
-            // anketaDictionatiesBindingSource
+            // bsAnketaDictionaties
             // 
-            this.anketaDictionatiesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.AnketaDictionaties);
+            this.bsAnketaDictionaties.DataSource = typeof(ipsFormsDesign.Interfaces.AnketaDictionaties);
             // 
             // IpsAddressControl
             // 
@@ -126,14 +130,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel);
             this.Name = "IpsAddressControl";
-            this.Size = new System.Drawing.Size(600, 45);
+            this.Size = new System.Drawing.Size(600, 48);
             ((System.ComponentModel.ISupportInitialize)(this.txtCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).EndInit();
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaDictionatiesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaDictionaties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -145,6 +149,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private Telerik.WinControls.UI.RadTextBox txtAddress;
         private Telerik.WinControls.UI.RadDropDownList ddlCountry;
-        private System.Windows.Forms.BindingSource anketaDictionatiesBindingSource;
+        private System.Windows.Forms.BindingSource bsAnketaDictionaties;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

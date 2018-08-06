@@ -71,9 +71,17 @@ namespace ipsFormsDesign.Dictionary
         /// <summary>
         /// Внесення змін до договору
         /// </summary>
-        forChange
+        forChange,
+        /// <summary>
+        /// Пролонгація існуючого договору
+        /// </summary>
+        forExistProlongation,
+        /// <summary>
+        /// Внесення змін до існуючої версії договору
+        /// </summary>
+        forExistChange
 
-    }
+    } //Exist
 
     /// <summary>
     /// Типи прав

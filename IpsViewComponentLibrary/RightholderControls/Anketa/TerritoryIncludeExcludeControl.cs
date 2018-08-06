@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using IpsViewComponentLibrary.Utilities;
+using System;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using ipsFormsDesign.Data;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class TerritoryIncludeExcludeControl : UserControl
     {
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+        }
+
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
@@ -27,25 +28,14 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        #region Country dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object CountriesDataSource
-        {
-            get { return countryBindingSource.DataSource; }
-            set
-            {
-                if (countryBindingSource.DataSource != value)
-                    countryBindingSource.DataSource = value;
-            }
-        }
-
-        #endregion
-
         public TerritoryIncludeExcludeControl()
         {
             InitializeComponent();
+
+            if (!IsDesignMode)
+            {
+                gvCountries.SetComboboxColumnDataSource("CountryCode", IpsGlobal.AnketaDictionaties.country, "CountryCode", "CountryName");
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

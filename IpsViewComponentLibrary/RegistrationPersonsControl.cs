@@ -7,108 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpsViewComponentLibrary.Utilities;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary
 {
     public partial class RegistrationPersonsControl : UserControl
     {
-        //private bool _residencySelected = false,
-        //             _citizenshipSelected = false;
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+        }
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get => iAnketaPersonBindingSource.DataSource;
+            get => bsAnketaPerson.DataSource;
             set
             {
-                iAnketaPersonBindingSource.DataSource = value;
+                bsAnketaPerson.DataSource = value;
 
-                rDropListCitizenship.DataBindings.Clear();
-                rDropListCitizenship.DataBindings.Add("SelectedValue", iAnketaPersonBindingSource, "Citizenship", true);
+                ddlCitizenship.DataBindings.Clear();
+                ddlCitizenship.DataBindings.Add("SelectedValue", bsAnketaPerson, "Citizenship", true);
 
-                rDropDownListResidency.DataBindings.Clear();
-                rDropDownListResidency.DataBindings.Add("SelectedValue", iAnketaPersonBindingSource, "Residency", true);
+                ddlResidency.DataBindings.Clear();
+                ddlResidency.DataBindings.Add("SelectedValue", bsAnketaPerson, "Residency", true);
             }
         }
-
-        #region Resident type dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object ResidentTypesDataSource
-        {
-            get { return rDropDownListResidency.DataSource; }
-            set
-            {
-                if (rDropDownListResidency.DataSource != value)
-                    rDropDownListResidency.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string ResidentTypesDataMember
-        {
-            get { return rDropDownListResidency.DataMember; }
-            set { rDropDownListResidency.DataMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string ResidentTypesDisplayMember
-        {
-            get { return rDropDownListResidency.DisplayMember; }
-            set { rDropDownListResidency.DisplayMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string ResidentTypesValueMember
-        {
-            get { return rDropDownListResidency.ValueMember; }
-            set { rDropDownListResidency.ValueMember = value; }
-        }
-
-        #endregion
-
-        #region Country dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object CountriesDataSource
-        {
-            get { return rDropListCitizenship.DataSource; }
-            set
-            {
-                if (rDropListCitizenship.DataSource != value)
-                    rDropListCitizenship.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesDataMember
-        {
-            get { return rDropListCitizenship.DataMember; }
-            set { rDropListCitizenship.DataMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesDisplayMember
-        {
-            get { return rDropListCitizenship.DisplayMember; }
-            set { rDropListCitizenship.DisplayMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesValueMember
-        {
-            get { return rDropListCitizenship.ValueMember; }
-            set { rDropListCitizenship.ValueMember = value; }
-        }
-
-        #endregion
 
         public RegistrationPersonsControl()
         {
             InitializeComponent();
+
+            if (!IsDesignMode)
+            {
+                ddlCitizenship.SetDataSource(IpsGlobal.AnketaDictionaties.country, "CountryCode", "CountryName");
+                ddlResidency.SetDataSource(IpsGlobal.AnketaDictionaties.residentType);
+            }
         }
 
         private void rtxtBoxIPN_KeyPress(object sender, KeyPressEventArgs e)

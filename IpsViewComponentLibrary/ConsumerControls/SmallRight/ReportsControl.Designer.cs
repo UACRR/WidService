@@ -483,7 +483,7 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(156, 24);
             this.btnAccept.TabIndex = 3;
-            this.btnAccept.Text = "Погодити перелік звітів";
+            this.btnAccept.Text = "Зафіксувати перелік звітів";
             this.btnAccept.ThemeName = "Office2007Silver";
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
@@ -508,7 +508,6 @@
             // 
             this.splitPanel1.Controls.Add(this.radLabel4);
             this.splitPanel1.Controls.Add(this.gvLicenseAgr);
-            this.splitPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitPanel1.Location = new System.Drawing.Point(0, 0);
             this.splitPanel1.Name = "splitPanel1";
             // 
@@ -524,9 +523,6 @@
             // 
             // splitPanel2
             // 
-            this.splitPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitPanel2.Controls.Add(this.radLabel3);
             this.splitPanel2.Controls.Add(this.gvPeriods);
             this.splitPanel2.Location = new System.Drawing.Point(0, 202);
@@ -549,7 +545,6 @@
             this.splitPanel3.Controls.Add(this.btnToAcception);
             this.splitPanel3.Controls.Add(this.btnAddReport);
             this.splitPanel3.Controls.Add(this.gvPeriodReports);
-            this.splitPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitPanel3.Location = new System.Drawing.Point(0, 400);
             this.splitPanel3.Name = "splitPanel3";
             // 

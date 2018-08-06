@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
-    public partial class IpsServiceComissionControl : UserControl
+    public partial class ServiceComissionControl : UserControl
     {
-        public IpsServiceComissionControl()
+        public ServiceComissionControl()
         {
             InitializeComponent();
         }

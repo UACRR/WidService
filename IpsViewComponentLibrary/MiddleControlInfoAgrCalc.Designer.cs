@@ -118,7 +118,7 @@
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Location = new System.Drawing.Point(3, 218);
             this.pvMain.Name = "pvMain";
-            this.pvMain.SelectedPage = this.pvReports;
+            this.pvMain.SelectedPage = this.pvActiveAgr;
             this.pvMain.Size = new System.Drawing.Size(1090, 444);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";
