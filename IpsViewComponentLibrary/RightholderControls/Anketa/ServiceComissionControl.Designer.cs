@@ -70,14 +70,14 @@
             // 
             this.mtxtRateCommission.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.agreementAddRhBindingSource, "RateCommiss", true));
             this.mtxtRateCommission.Location = new System.Drawing.Point(329, 11);
-            this.mtxtRateCommission.Mask = "N";
+            this.mtxtRateCommission.Mask = "N0";
             this.mtxtRateCommission.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRateCommission.Name = "mtxtRateCommission";
             this.mtxtRateCommission.PromptChar = '0';
             this.mtxtRateCommission.Size = new System.Drawing.Size(69, 21);
             this.mtxtRateCommission.TabIndex = 5;
             this.mtxtRateCommission.TabStop = false;
-            this.mtxtRateCommission.Text = "0,00";
+            this.mtxtRateCommission.Text = "0";
             this.mtxtRateCommission.ThemeName = "Office2013Light";
             // 
             // agreementAddRhBindingSource
@@ -88,14 +88,14 @@
             // 
             this.mtxtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.agreementAddRhBindingSource, "RateCourt", true));
             this.mtxtRateCourt.Location = new System.Drawing.Point(329, 53);
-            this.mtxtRateCourt.Mask = "N";
+            this.mtxtRateCourt.Mask = "N0";
             this.mtxtRateCourt.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRateCourt.Name = "mtxtRateCourt";
             this.mtxtRateCourt.PromptChar = '0';
             this.mtxtRateCourt.Size = new System.Drawing.Size(69, 21);
             this.mtxtRateCourt.TabIndex = 6;
             this.mtxtRateCourt.TabStop = false;
-            this.mtxtRateCourt.Text = "0,00";
+            this.mtxtRateCourt.Text = "0";
             this.mtxtRateCourt.ThemeName = "Office2013Light";
             // 
             // radLabel3
