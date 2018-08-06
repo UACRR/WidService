@@ -1,5 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 
@@ -64,6 +68,9 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             InitializeComponent();
 
+            createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+            createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+
             ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
         }
 
@@ -72,94 +79,66 @@ namespace IpsViewComponentLibrary.RightholderControls
             ShowDialog();
         }
 
-        private void btnNewRightholderCancel1_Click(object sender, EventArgs e)
+        private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
         {
+            // TODO: move to presenter
+            var anketa = bsAnketaPerson.Current as AnketaPerson;
 
+            if (anketa == null)
+                return;
+
+            if (mainPageView.SelectedPage == createRightholderPassportPage)
+            {
+                if (anketa.Citizenship == "804")
+                    createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
+                else
+                    createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
+            }
         }
 
-        private void btnNextAnketa_Click(object sender, EventArgs e)
+        private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
+            // TODO: move to presenter
+            if (ddlTypeMethodGet.SelectedValue is int)
+            {
+                var value = (int)ddlTypeMethodGet.SelectedValue;
 
+                if (value == 1)
+                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyCashPage;
+                else if (value == 2)
+                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyBankPage;
+                else if (value == 3 || value == 4)
+                    createRightholderRoyaltyPageView.SelectedPage = createRightholderRoyaltyPostalTransfer;
+            }
         }
 
-        private void btnNextPassport_Click(object sender, EventArgs e)
+        private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
         {
+            // TODO: move to presenter and show in the separate dialog
+            var customer = bsCustomer.Current as Customer;
 
+            if (customer == null)
+                return;
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx");
+
+            btnGenerateRightholderAgreement.Enabled = false;
+            waitbarAgreement.StartWaiting();
+
+            var wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
+            await wordEngine.processRightHolder(template, customer, customer.AgreementMaster.First());
+
+            pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
+            waitbarAgreement.StopWaiting();
+
+            btnGenerateRightholderAgreement.Enabled = true;
         }
 
-        private void btnPrevFullNameComission_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPrevAnketa_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnNextRoyalty_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPrevPassport_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ddlTypeMethodGet_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnNextExclusionLimitation_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPrevRoyalty_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnNextTerritoryLimitation_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnNextAgreement_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPrevRightLimitation_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void miSaveRightholder_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void miAcceptAndSaveRightholder_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPrevTerritoryLimitation_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ddlTypeMethodGet_SelectedValueChanged_1(object sender, EventArgs e)
-        {
-            var val = ddlTypeMethodGet.SelectedValue;
-        }
+        // TODO Global:
+        // * disable pages for new rightholder
+        // * validation before page changing
+        // * use new rightholder view to show rightholder
+        // * use new rightholder view to create rightholder
+        // * implement save and accept and save buttons
     }
 }

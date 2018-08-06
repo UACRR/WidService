@@ -212,7 +212,7 @@ namespace RightholderWorkplace
 
         #endregion
 
-        private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e)
+        private void newCreateRightholderPageView_SelectedPageChanged(object sender, EventArgs e) // to move
         {
             if (newCreateRightholderPageView.SelectedPage == createRightholderPassportPage)
             {
@@ -223,7 +223,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void ddlTypeMethodGet_SelectedValueChanged(object sender, EventArgs e)
+        private void ddlTypeMethodGet_SelectedValueChanged(object sender, EventArgs e) // to move
         {
             if (ddlTypeMethodGet.SelectedValue is int)
             {
@@ -276,8 +276,7 @@ namespace RightholderWorkplace
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
-
-        private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
+        private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e) // to move
         {
             if (_customer == null)
                 return;

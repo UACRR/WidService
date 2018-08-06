@@ -28,20 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.mainPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderFullNameComissionPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            this.bsAgreementAddRh = new System.Windows.Forms.BindingSource(this.components);
+            this.bsAgreementAddRh = new System.Windows.Forms.BindingSource();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtInnerCode = new Telerik.WinControls.UI.RadTextBox();
-            this.bsRightHolder = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRightHolder = new System.Windows.Forms.BindingSource();
             this.txtInterCode = new Telerik.WinControls.UI.RadTextBox();
             this.ctrlAnketaPerson = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaPersonRightHolderControl();
-            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
-            this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
+            this.bsAnketaPerson = new System.Windows.Forms.BindingSource();
+            this.bsCustomer = new System.Windows.Forms.BindingSource();
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.createRightholderAnketaPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
@@ -65,7 +64,7 @@
             this.createRightholderRoyaltyPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderRoyaltyBankPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
-            this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
+            this.bsBankAccount = new System.Windows.Forms.BindingSource();
             this.createRightholderRoyaltyCashPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderRoyaltyPostalTransfer = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
@@ -153,10 +152,11 @@
             this.mainPageView.DefaultPage = this.createRightholderFullNameComissionPage;
             this.mainPageView.Location = new System.Drawing.Point(1, 1);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.createRightholderTerritoryLimitationsPage;
+            this.mainPageView.SelectedPage = this.createRightholderAgreementPage;
             this.mainPageView.Size = new System.Drawing.Size(995, 437);
             this.mainPageView.TabIndex = 2;
             this.mainPageView.ThemeName = "Office2013Light";
+            this.mainPageView.SelectedPageChanged += new System.EventHandler(this.mainPageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
@@ -586,7 +586,7 @@
             this.ddlTypeMethodGet.Size = new System.Drawing.Size(218, 21);
             this.ddlTypeMethodGet.TabIndex = 14;
             this.ddlTypeMethodGet.ThemeName = "Office2013Light";
-            this.ddlTypeMethodGet.SelectedValueChanged += new System.EventHandler(this.ddlTypeMethodGet_SelectedValueChanged_1);
+            this.ddlTypeMethodGet.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlTypeMethodGet_SelectedIndexChanged);
             // 
             // createRightholderRigthLimitationsPage
             // 
@@ -644,6 +644,7 @@
             this.btnGenerateRightholderAgreement.TabIndex = 1;
             this.btnGenerateRightholderAgreement.Text = "Cформувати";
             this.btnGenerateRightholderAgreement.ThemeName = "Office2013Light";
+            this.btnGenerateRightholderAgreement.Click += new System.EventHandler(this.btnGenerateRightholderAgreement_Click);
             // 
             // pdfvRightholderAgreement
             // 
