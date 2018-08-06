@@ -22,6 +22,7 @@ namespace IpsViewComponentLibrary
         private Customer _customer;
         private RegisterRatedList _registerRatedList;
         private ObservableListSource<PayslipsGridDataSource> _source = null;
+        private FormType _type;
 
         public PayslipsCrEdForm()
         {
@@ -31,6 +32,7 @@ namespace IpsViewComponentLibrary
         public PayslipsCrEdForm(FormType formType, Customer customer, IList<BigRightSpectacleView> spectacleViews, RegisterRatedList registerRatedList)
         {
             InitializeComponent();
+            _type = formType;
             InitFormType(formType);
             ddlPeriod.SelectedValueChanged -= ddlPeriod_SelectedValueChanged;
             DialogResult = DialogResult.None;
@@ -68,13 +70,13 @@ namespace IpsViewComponentLibrary
                     MusicRate = register.MusicRate,
                     AuthAmount = register.AuthAmount,
                     MusicAmount = register.MusicAmount,
-                    ObjId = register.RegisterItem.SingleOrDefault()?.ObjId,
-                    ObjName = register.RegisterItem.SingleOrDefault()?.ItemName,
-                    CountUse = register.RegisterItem.SingleOrDefault()?.CountUse,
+                    ObjId = register.RegisterItem.FirstOrDefault()?.ObjId,
+                    ObjName = register.RegisterItem.FirstOrDefault()?.ItemName,
+                    CountUse = register.RegisterItem.FirstOrDefault()?.CountUse,
                     Royalty = register.RegRoyalty,
                     TempRegId = register.RegId,
-                    ActCode = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.SingleOrDefault()?.ObjId)?.ActCode,
-                    LicId = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.SingleOrDefault()?.ObjId)?.LicId,
+                    ActCode = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.FirstOrDefault()?.ObjId)?.ActCode,
+                    LicId = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.FirstOrDefault()?.ObjId)?.LicId,
                 });
             }
 
@@ -203,10 +205,11 @@ namespace IpsViewComponentLibrary
         {
             if(!_registerRatedList.Register.Any())
                 ExtensionUtils.ShowInfoMessage("Не додано жодної вистави!", "Не можливо зберегти", MessageBoxIcon.Stop);
-            foreach (var item in _registerRatedList.Register)
-            {
-                item.RegId = 0;
-            }
+            if(_type == FormType.Create)
+                foreach (var item in _registerRatedList.Register)
+                {
+                    item.RegId = 0;
+                }
             //_registerRatedList.Period = _;
             DialogResult = DialogResult.OK;
             Close();
