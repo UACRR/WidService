@@ -58,6 +58,7 @@ namespace IpsViewComponentLibrary
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
+        public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
 
 
 
@@ -79,8 +80,14 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
             ctrlCabinet.OnSavePayslip += CtrlCabinet_OnSavePayslip;
             ctrlCabinet.OnGetRegisterRatedList += CtrlCabinet_OnGetRegisterRatedList;
+            ctrlCabinet.OnRegisterItemListNeed += CtrlCabinet_OnRegisterItemListNeed;
 
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private List<RegisterItem> CtrlCabinet_OnRegisterItemListNeed(int regId)
+        {
+            return OnRegisterItemListNeed?.Invoke(regId);
         }
 
         private Customer CtrlCabinet_OnGetRegisterRatedList(int custId)

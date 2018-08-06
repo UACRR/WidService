@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
@@ -23,6 +24,7 @@ namespace IpsViewComponentLibrary
         public event GetSpectacleView OnSpectacleViewNeed;
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
+        public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
 
 
         public MiddleControlCabinetPayslips()
@@ -80,7 +82,16 @@ namespace IpsViewComponentLibrary
             var paidPeriod = license?.PaidPeriod?.SingleOrDefault(rec => rec?.PeriodId == row?.PeriodId);
             var payslip = paidPeriod?.RegisterRatedList?.SingleOrDefault(rec => rec?.RmId == row?.RmId);
 
-            //TODO перевірити
+            if(payslip != null)
+                foreach (var register in payslip.Register)
+                {
+                    if (register?.RegId is int item)
+                    {
+                        var registerItem = OnRegisterItemListNeed?.Invoke(item); //TODO: виклик списку по rmID (оптимізація)
+                        if(registerItem != null)
+                            register.RegisterItem.Add(registerItem.FirstOrDefault());
+                    }
+                }
             PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip);
             if (addform.ShowDialog() == DialogResult.OK)
             {

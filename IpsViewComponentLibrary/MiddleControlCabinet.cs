@@ -59,6 +59,8 @@ namespace IpsViewComponentLibrary
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
+        public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
+
 
 
 
@@ -86,6 +88,12 @@ namespace IpsViewComponentLibrary
             ctrlReference.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
             ctrlPayslips.OnSavePayslip += CtrlPayslips_OnSavePayslip;
             ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
+            ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
+        }
+
+        private List<RegisterItem> CtrlPayslips_OnRegisterItemListNeed(int regId)
+        {
+            return OnRegisterItemListNeed?.Invoke(regId);
         }
 
         private Customer CtrlPayslips_OnGetRegisterRatedList(int custId)

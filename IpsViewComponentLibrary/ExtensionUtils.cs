@@ -19,6 +19,8 @@ namespace IpsViewComponentLibrary
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
     public delegate bool SavePayslipsEventHandler(RegisterRatedList list);
     public delegate Customer GetRegisterRatedList(int custId);
+    public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
+
 
     public static class ExtensionUtils
     {
