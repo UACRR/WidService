@@ -203,14 +203,14 @@ namespace IpsViewComponentLibrary
         {
             var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.SingleOrDefault(item => item.LicVersion == rec.LicVersion && rec.LicStatus == 2)).ToList();
             if (licAgr.Count() > 0)
-                LicAgreementBindingSource.DataSource = licAgr?.Where( rec => rec?.LicStatus == 2);
+                LicAgreementBindingSource.DataSource = licAgr?.Where( rec => rec?.LicStatus == 2).ToList();
             else
                 LicAgreementBindingSource.DataSource = typeof(LicenseAgrParam);
         }
 
         private void BindAllSum()
         {
-            var list = _customer.Client.MoneyReceived.Where(rec => rec.Amount > (rec.DestribAmount + rec.DestribPrepay));
+            var list = _customer.Client.MoneyReceived.Where(rec => rec.Amount > (rec.DestribAmount + rec.DestribPrepay)).ToList();
             if (list.Count() == 0)
             {
                 AllmoneyReceivedBindingSource.DataSource = typeof(MoneyReceived);
@@ -231,7 +231,8 @@ namespace IpsViewComponentLibrary
             if (gvLicenseAgr.CurrentRow != null)
             {
                 var licItem = (LicenseAgrParam)gvLicenseAgr.CurrentRow.DataBoundItem;
-                paidPeriodBindingSource.DataSource = licItem.Lic?.PaidPeriod.Where(rec => rec.Status < 7).OrderBy(rec => rec.BeginDate).ToList();
+                var list = licItem.Lic?.PaidPeriod.Where(rec => rec.Status < 7).OrderBy(rec => rec.BeginDate).ToList();
+                paidPeriodBindingSource.DataSource = list;
             }
             else
             {
