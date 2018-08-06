@@ -51,6 +51,9 @@ namespace IpsViewComponentLibrary
             ddlPeriod.SelectedValueChanged += ddlPeriod_SelectedValueChanged;
             if(ddlPeriod.Items.Any() && formType == FormType.Create)
                 ddlPeriod.SelectedIndex = ddlPeriod.Items.First.Index;
+
+            if(_registerRatedList.Register != null)
+                UpdateRegisterGridDataSource();
         }
 
         private void UpdateRegisterGridDataSource()

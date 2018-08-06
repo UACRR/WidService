@@ -1634,7 +1634,7 @@ where t1.custId = @custId
                 await _dbContext.Entry(item).Collection(rec => rec.PaidPeriod)
                     .Query()
                     // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
-                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register)
+                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register).ThenInclude(regItem => regItem.RegisterItem)
                     .LoadAsync();
 
                 await _dbContext.Entry(item).Collection(rec => rec.LicenseAgrParam).Query()

@@ -74,13 +74,14 @@ namespace IpsViewComponentLibrary
         //редагування р/р
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            var row = e.Row.DataBoundItem as BigRightRegister;
+            var row = e?.Row?.DataBoundItem as BigRightRegister;
             var customer = OnGetRegisterRatedList?.Invoke(_customer.CustId);
-            var paidPeriod = _customer.Client.LicenseAgreement.SingleOrDefault();
-            //var ratedList = paidPeriod?.Where(period => period.PeriodId == row?.PeriodId).Select(rec =>
-             //       rec.RegisterRatedList.SingleOrDefault(item => item.RmId == row?.RmId)).SingleOrDefault();
+            var license = customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec?.LicClass == 1 && rec?.LicStatus == 2);
+            var paidPeriod = license?.PaidPeriod?.SingleOrDefault(rec => rec?.PeriodId == row?.PeriodId);
+            var payslip = paidPeriod?.RegisterRatedList?.SingleOrDefault(rec => rec?.RmId == row?.RmId);
+
             //TODO перевірити
-            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), null);
+            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip);
             if (addform.ShowDialog() == DialogResult.OK)
             {
                 if (OnSavePayslip?.Invoke(null) ?? false)
