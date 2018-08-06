@@ -42,14 +42,6 @@
             this.addressLetter = new IpsViewComponentLibrary.AddressLetter();
             this.btnCopyFromFaToLe = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressFactual.DdlCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressFactual.DdlRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressFactual.TxtAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressFactual.TxtCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressLegal.DdlCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressLegal.DdlRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressLegal.TxtAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressLegal.TxtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToLe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
@@ -82,159 +74,24 @@
             this.addressFactual.CountryDataMember = null;
             this.addressFactual.DataMember = "";
             this.addressFactual.DataSource = null;
-            // 
-            // 
-            // 
-            this.addressFactual.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressFactual.DdlCountry.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.addressFactual.DdlCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.addressFactual.DdlCountry.Location = new System.Drawing.Point(0, 0);
-            this.addressFactual.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.addressFactual.DdlCountry.Name = "ddlCountry";
-            // 
-            // 
-            // 
-            this.addressFactual.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 351, 20);
-            this.addressFactual.DdlCountry.RootElement.StretchVertically = true;
-            this.addressFactual.DdlCountry.Size = new System.Drawing.Size(220, 20);
-            this.addressFactual.DdlCountry.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.addressFactual.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressFactual.DdlRegion.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.addressFactual.DdlRegion.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.addressFactual.DdlRegion.Location = new System.Drawing.Point(240, 0);
-            this.addressFactual.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
-            this.addressFactual.DdlRegion.Name = "ddlRegion";
-            // 
-            // 
-            // 
-            this.addressFactual.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(358, 0, 338, 20);
-            this.addressFactual.DdlRegion.RootElement.StretchVertically = true;
-            this.addressFactual.DdlRegion.Size = new System.Drawing.Size(220, 20);
-            this.addressFactual.DdlRegion.TabIndex = 1;
             this.addressFactual.Location = new System.Drawing.Point(20, 161);
             this.addressFactual.Name = "addressFactual";
             this.addressFactual.RegionDataMember = null;
-            this.addressFactual.Size = new System.Drawing.Size(700, 45);
+            this.addressFactual.Size = new System.Drawing.Size(700, 53);
             this.addressFactual.TabIndex = 32;
-            // 
-            // 
-            // 
-            this.addressFactual.TxtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressFactual.TxtAddress.Location = new System.Drawing.Point(0, 25);
-            this.addressFactual.TxtAddress.Margin = new System.Windows.Forms.Padding(0);
-            this.addressFactual.TxtAddress.Name = "txtAddress";
-            this.addressFactual.TxtAddress.NullText = "Адреса";
-            // 
-            // 
-            // 
-            this.addressFactual.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 700, 20);
-            this.addressFactual.TxtAddress.RootElement.StretchVertically = true;
-            this.addressFactual.TxtAddress.Size = new System.Drawing.Size(700, 20);
-            this.addressFactual.TxtAddress.TabIndex = 3;
-            // 
-            // 
-            // 
-            this.addressFactual.TxtCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressFactual.TxtCity.Location = new System.Drawing.Point(480, 0);
-            this.addressFactual.TxtCity.Margin = new System.Windows.Forms.Padding(0);
-            this.addressFactual.TxtCity.Name = "txtCity";
-            this.addressFactual.TxtCity.NullText = "Місто";
-            // 
-            // 
-            // 
-            this.addressFactual.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(480, 0, 220, 20);
-            this.addressFactual.TxtCity.RootElement.StretchVertically = true;
-            this.addressFactual.TxtCity.Size = new System.Drawing.Size(220, 20);
-            this.addressFactual.TxtCity.TabIndex = 2;
             // 
             // addressLegal
             // 
             this.addressLegal.AddressDataMember = null;
             this.addressLegal.CityDataMember = null;
+            this.addressLegal.CountryDataMember = null;
             this.addressLegal.DataMember = "";
             this.addressLegal.DataSource = null;
-            // 
-            // 
-            // 
-            this.addressLegal.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressLegal.DdlCountry.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.addressLegal.DdlCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.addressLegal.DdlCountry.Location = new System.Drawing.Point(0, 0);
-            this.addressLegal.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.addressLegal.DdlCountry.Name = "ddlCountry";
-            // 
-            // 
-            // 
-            this.addressLegal.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 351, 20);
-            this.addressLegal.DdlCountry.RootElement.StretchVertically = true;
-            this.addressLegal.DdlCountry.Size = new System.Drawing.Size(220, 20);
-            this.addressLegal.DdlCountry.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.addressLegal.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressLegal.DdlRegion.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.addressLegal.DdlRegion.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.addressLegal.DdlRegion.Location = new System.Drawing.Point(240, 0);
-            this.addressLegal.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
-            this.addressLegal.DdlRegion.Name = "ddlRegion";
-            // 
-            // 
-            // 
-            this.addressLegal.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(358, 0, 338, 20);
-            this.addressLegal.DdlRegion.RootElement.StretchVertically = true;
-            this.addressLegal.DdlRegion.Size = new System.Drawing.Size(220, 20);
-            this.addressLegal.DdlRegion.TabIndex = 1;
             this.addressLegal.Location = new System.Drawing.Point(20, 58);
             this.addressLegal.Name = "addressLegal";
             this.addressLegal.RegionDataMember = null;
-            this.addressLegal.Size = new System.Drawing.Size(700, 45);
+            this.addressLegal.Size = new System.Drawing.Size(700, 52);
             this.addressLegal.TabIndex = 31;
-            // 
-            // 
-            // 
-            this.addressLegal.TxtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addressLegal.TxtAddress.Location = new System.Drawing.Point(0, 25);
-            this.addressLegal.TxtAddress.Margin = new System.Windows.Forms.Padding(0);
-            this.addressLegal.TxtAddress.Name = "txtAddress";
-            this.addressLegal.TxtAddress.NullText = "Адреса";
-            // 
-            // 
-            // 
-            this.addressLegal.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 700, 20);
-            this.addressLegal.TxtAddress.RootElement.StretchVertically = true;
-            this.addressLegal.TxtAddress.Size = new System.Drawing.Size(700, 20);
-            this.addressLegal.TxtAddress.TabIndex = 3;
-            // 
-            // 
-            // 
-            this.addressLegal.TxtCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressLegal.TxtCity.Location = new System.Drawing.Point(480, 0);
-            this.addressLegal.TxtCity.Margin = new System.Windows.Forms.Padding(0);
-            this.addressLegal.TxtCity.Name = "txtCity";
-            this.addressLegal.TxtCity.NullText = "Місто";
-            // 
-            // 
-            // 
-            this.addressLegal.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(480, 0, 220, 20);
-            this.addressLegal.TxtCity.RootElement.StretchVertically = true;
-            this.addressLegal.TxtCity.Size = new System.Drawing.Size(220, 20);
-            this.addressLegal.TxtCity.TabIndex = 2;
             // 
             // btnCopyFromJaToLe
             // 
@@ -243,6 +100,7 @@
             this.btnCopyFromJaToLe.Size = new System.Drawing.Size(153, 19);
             this.btnCopyFromJaToLe.TabIndex = 30;
             this.btnCopyFromJaToLe.Text = "Вставити з юридичної";
+            this.btnCopyFromJaToLe.ThemeName = "Office2013Light";
             this.btnCopyFromJaToLe.Click += new System.EventHandler(this.btnCopyFromJaToLe_Click);
             // 
             // radSeparator6
@@ -253,6 +111,7 @@
             this.radSeparator6.Name = "radSeparator6";
             this.radSeparator6.Size = new System.Drawing.Size(613, 21);
             this.radSeparator6.TabIndex = 29;
+            this.radSeparator6.ThemeName = "Office2013Light";
             // 
             // radLabel9
             // 
@@ -270,6 +129,7 @@
             this.btnCopyFromJaToFa.Size = new System.Drawing.Size(153, 19);
             this.btnCopyFromJaToFa.TabIndex = 27;
             this.btnCopyFromJaToFa.Text = "Вставити з юридичної";
+            this.btnCopyFromJaToFa.ThemeName = "Office2013Light";
             this.btnCopyFromJaToFa.Click += new System.EventHandler(this.btnCopyFromJaToFa_Click);
             // 
             // radSeparator2
@@ -280,6 +140,7 @@
             this.radSeparator2.Name = "radSeparator2";
             this.radSeparator2.Size = new System.Drawing.Size(613, 21);
             this.radSeparator2.TabIndex = 26;
+            this.radSeparator2.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
@@ -298,6 +159,7 @@
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(613, 21);
             this.radSeparator1.TabIndex = 24;
+            this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
@@ -307,6 +169,7 @@
             this.radLabel2.Size = new System.Drawing.Size(119, 21);
             this.radLabel2.TabIndex = 23;
             this.radLabel2.Text = "Юридична адреса";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // addressLetter
             // 
@@ -418,11 +281,12 @@
             // 
             // btnCopyFromFaToLe
             // 
-            this.btnCopyFromFaToLe.Location = new System.Drawing.Point(179, 240);
+            this.btnCopyFromFaToLe.Location = new System.Drawing.Point(179, 239);
             this.btnCopyFromFaToLe.Name = "btnCopyFromFaToLe";
             this.btnCopyFromFaToLe.Size = new System.Drawing.Size(153, 19);
             this.btnCopyFromFaToLe.TabIndex = 34;
             this.btnCopyFromFaToLe.Text = "Вставити з фактичної";
+            this.btnCopyFromFaToLe.ThemeName = "Office2013Light";
             this.btnCopyFromFaToLe.Click += new System.EventHandler(this.btnCopyFromFaToLe_Click);
             // 
             // MiddleControlAddress
@@ -447,14 +311,6 @@
             this.Name = "MiddleControlAddress";
             this.Size = new System.Drawing.Size(744, 313);
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressFactual.DdlCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressFactual.DdlRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressFactual.TxtAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressFactual.TxtCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressLegal.DdlCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressLegal.DdlRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressLegal.TxtAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.addressLegal.TxtCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToLe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();

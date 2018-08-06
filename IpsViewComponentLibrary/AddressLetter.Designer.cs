@@ -57,8 +57,9 @@ namespace IpsViewComponentLibrary
             this.ddlRegion.Location = new System.Drawing.Point(240, 0);
             this.ddlRegion.Margin = new System.Windows.Forms.Padding(0);
             this.ddlRegion.Name = "ddlRegion";
-            this.ddlRegion.Size = new System.Drawing.Size(220, 20);
+            this.ddlRegion.Size = new System.Drawing.Size(220, 21);
             this.ddlRegion.TabIndex = 1;
+            this.ddlRegion.ThemeName = "Office2013Light";
             // 
             // txtCity
             // 
@@ -67,8 +68,9 @@ namespace IpsViewComponentLibrary
             this.txtCity.Margin = new System.Windows.Forms.Padding(0);
             this.txtCity.Name = "txtCity";
             this.txtCity.NullText = "Місто";
-            this.txtCity.Size = new System.Drawing.Size(220, 20);
+            this.txtCity.Size = new System.Drawing.Size(220, 21);
             this.txtCity.TabIndex = 2;
+            this.txtCity.ThemeName = "Office2013Light";
             // 
             // tableLayoutPanel
             // 
@@ -107,8 +109,9 @@ namespace IpsViewComponentLibrary
             this.ddlCountry.Location = new System.Drawing.Point(0, 0);
             this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
             this.ddlCountry.Name = "ddlCountry";
-            this.ddlCountry.Size = new System.Drawing.Size(220, 20);
+            this.ddlCountry.Size = new System.Drawing.Size(220, 21);
             this.ddlCountry.TabIndex = 0;
+            this.ddlCountry.ThemeName = "Office2013Light";
             // 
             // txtPostIndex
             // 
@@ -119,8 +122,9 @@ namespace IpsViewComponentLibrary
             this.txtPostIndex.Margin = new System.Windows.Forms.Padding(0);
             this.txtPostIndex.Name = "txtPostIndex";
             this.txtPostIndex.NullText = "Поштовий індекс";
-            this.txtPostIndex.Size = new System.Drawing.Size(220, 20);
+            this.txtPostIndex.Size = new System.Drawing.Size(220, 21);
             this.txtPostIndex.TabIndex = 4;
+            this.txtPostIndex.ThemeName = "Office2013Light";
             // 
             // txtAddress
             // 
@@ -129,8 +133,9 @@ namespace IpsViewComponentLibrary
             this.txtAddress.Margin = new System.Windows.Forms.Padding(0);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.NullText = "Адреса";
-            this.txtAddress.Size = new System.Drawing.Size(460, 20);
+            this.txtAddress.Size = new System.Drawing.Size(460, 21);
             this.txtAddress.TabIndex = 5;
+            this.txtAddress.ThemeName = "Office2013Light";
             // 
             // anketaDictionatiesBindingSource
             // 
