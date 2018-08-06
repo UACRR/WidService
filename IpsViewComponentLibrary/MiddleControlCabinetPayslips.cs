@@ -84,8 +84,10 @@ namespace IpsViewComponentLibrary
             PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip);
             if (addform.ShowDialog() == DialogResult.OK)
             {
-                if (OnSavePayslip?.Invoke(null) ?? false)
+                if (OnSavePayslip?.Invoke(payslip) ?? false)
                     ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
             }
         }
 
@@ -93,7 +95,7 @@ namespace IpsViewComponentLibrary
         {
             if (gvViewRl.Rows.Count == 0 || gvViewRl?.CurrentRow?.DataBoundItem == null) return;
 
-            if (collapsiblePanel.IsExpanded && (e.CurrentRow.DataBoundItem as BigRightRegister)?.RmId != null)
+            if (collapsiblePanel.IsExpanded && (e?.CurrentRow?.DataBoundItem as BigRightRegister)?.RmId != null)
                 SetSpectacleViewGridDataSource(((BigRightRegister) e.CurrentRow.DataBoundItem).RmId);
         }
 
@@ -103,6 +105,8 @@ namespace IpsViewComponentLibrary
 
             List<ParentTemplate> parentList = new List<ParentTemplate>();
             List<ChildTemplate> childList = new List<ChildTemplate>();
+
+            var test = _payslipsSpectacleViews.Where(rec => rec.RmId == rmId).ToList();
 
             foreach (var item in _payslipsSpectacleViews.Where(rec => rec.RmId == rmId))
             {
