@@ -27,6 +27,8 @@ namespace IpsViewComponentLibrary
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public Func<int, List<RegisterItem>> GetRegisterItems;
         private ButtonEnableControl buttonController;
+        private Dictionary<int, PeriodStatus> dicPeriodStatus;
+        private Dictionary<int, RegisterStatus> dicRegStatus;
 
         public ReportsControl()
         {
@@ -36,6 +38,9 @@ namespace IpsViewComponentLibrary
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept);
+
+            dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
+            dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
 
         }
 
@@ -65,8 +70,6 @@ namespace IpsViewComponentLibrary
             var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
             var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
             var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
-            var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
-            var dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
 
             foreach (var item in cust.Client.LicenseAgreement)
             {
@@ -211,19 +214,21 @@ namespace IpsViewComponentLibrary
                     var list = _excel.GetReportItems(dialog.FileName);
                     if (period.RegisterRatedList.Count() == 0)
                     {
-                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Status = 0/*Новий*/});
+                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0});
                     }
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId };
+                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId, RgStatusNavigation = dicRegStatus[0] };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
                     RatedList.Register.Add(addRegister);
 
                     SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
-                    gvPeriodReports.MasterTemplate.Refresh();
+                    if (!bindingReports.Contains(addRegister))
+                        bindingReports.Add(addRegister);
+                    // gvPeriodReports.MasterTemplate.Refresh();
 
                     BeginInvoke((Action)(() =>
                     {
@@ -231,8 +236,6 @@ namespace IpsViewComponentLibrary
                         EnableButtons(true);
                     }));
                 });
-
-
             }
 
         }
@@ -374,7 +377,7 @@ namespace IpsViewComponentLibrary
         }
         public void SetPeriodState(int? state, List<Register> list)
         {
-            if (state == null )
+            if (state == null)
             {
                 _addReport.Enabled = false;
                 _toAcception.Enabled = false;
