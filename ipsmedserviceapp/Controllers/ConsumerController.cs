@@ -1621,10 +1621,9 @@ and t3.licStatus between 0 and 3
             var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
 select t1.* 
 from LicenseAgreement t1 
-where t1.custId = @custId and t1.licStatus = 2
+where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
-                .Include(lic => lic.Cust)
-                .Include(cln => cln.Cust)
+                .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
                 .ToListAsync();
 
             if (licenseAgreement.Count() == 0)
