@@ -457,7 +457,6 @@
             this.ctrlRightholdersObjectsRight.Size = new System.Drawing.Size(991, 595);
             this.ctrlRightholdersObjectsRight.TabIndex = 7;
             this.ctrlRightholdersObjectsRight.EditObjectCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.ObjectRightForRightholder>(this.ctrlRightholdersObjectsRight_EditObjectCommandExecuted);
-            this.ctrlRightholdersObjectsRight.ShowAnketaCommandExetuted += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholdersObjectsRight_ShowAnketaCommandExetuted);
             // 
             // btnAddExistingObjectRightForRightholder
             // 

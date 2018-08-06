@@ -574,11 +574,6 @@ namespace RightholderWorkplace
             EditObjectRight(selectedObject);
         }
 
-        private void ctrlRightholdersObjectsRight_ShowAnketaCommandExetuted(object sender, RightholderMainView selectedRightholder)
-        {
-            EditRightholder(selectedRightholder);
-        }
-
         private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
         {
             if (!IsRightholderSelected())

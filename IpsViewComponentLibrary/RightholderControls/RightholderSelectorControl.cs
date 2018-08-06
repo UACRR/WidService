@@ -79,6 +79,12 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         protected void OnShowAnketaCommandExecuted(RightholderMainView selectedRightholder)
         {
+            using (var rightholderView = new RightholderView())
+            {
+                var rightholderPresenter = new RightholderPresenter(rightholderView);
+                rightholderPresenter.Show(selectedRightholder.CustId);
+            }
+
             if (selectedRightholder != null)
                 ShowAnketaCommandExecuted?.Invoke(this, selectedRightholder);
         }
