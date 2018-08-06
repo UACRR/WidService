@@ -145,6 +145,7 @@ namespace IpsViewComponentLibrary
                         source.Add(new GridLicenseAgrView
                         {
                             Id = license.AgrId,
+                            LicVersion = license?.LicenseAgrParam?.SingleOrDefault()?.LicVersion,
                             LicId = license.LicId,
                             License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
                             Series = string.Empty,
@@ -166,6 +167,7 @@ namespace IpsViewComponentLibrary
                             {
                                 Id = license.AgrId,
                                 LicId = license.LicId,
+                                LicVersion = agrParam?.LicVersion,
                                 License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
                                 Series = string.Empty,
                                 AgrNumber = agrParam?.LicNum ?? string.Empty,
@@ -366,18 +368,17 @@ namespace IpsViewComponentLibrary
 
             var listDopAgr = license.LicenseAgrParam.Where(rec => rec.LicStatus < 4 && rec.LicVersion > license.LicVersion).ToList();
             //редагування зміненого
-            if (listDopAgr.Any(rec => rec.LicVersion > license.LicVersion && rec.LicVersion != license.ProlongVersion))
+            if (listDopAgr.Any(rec => rec.LicVersion == curRow.LicVersion && rec.LicVersion != license.ProlongVersion))
             {
                 var licAgrParam = license.LicenseAgrParam.Where(rec => rec.LicVersion > license.LicVersion).SingleOrDefault(rec => rec.LicVersion != license.ProlongVersion);
                 RunDialogForLicenseAgrParam(license, licAgrParam, DialogGoal.forChange);
                 return;
             }
             //редагування пролонгованого
-            if (listDopAgr.Any(rec => rec.LicVersion > license.LicVersion && rec.LicVersion == license.ProlongVersion))
+            if (listDopAgr.Any(rec => rec.LicVersion == curRow.LicVersion && rec.LicVersion == license.ProlongVersion))
             {
                 var licAgrParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.ProlongVersion);
                 RunDialogForLicenseAgrParam(license, licAgrParam, DialogGoal.forProlongation);
-
             }
         }
 
@@ -404,6 +405,7 @@ namespace IpsViewComponentLibrary
             if (listDopAgr.Any() && listDopAgr.Any(rec => rec.LicVersion == license.ProlongVersion))
             {
                 parametr = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.ProlongVersion);
+                RunDialogForLicenseAgrParam(license, parametr, DialogGoal.forExistProlongation);
             }
             // Інакше == 0
             else {
@@ -425,11 +427,8 @@ namespace IpsViewComponentLibrary
                 license.ProlongVersion = newLicense.LicVersion;
                 license?.LicenseAgrParam?.Add(newLicense);
                 parametr = license?.LicenseAgrParam.LastOrDefault();
+                RunDialogForLicenseAgrParam(license, parametr, DialogGoal.forProlongation);
             }
-
-            //newLicense.LicId = 0;
-
-            RunDialogForLicenseAgrParam(license, parametr, DialogGoal.forProlongation);
         }
 
         private void Prolongation_OnSaveProlongationWithoutPlaces(object sender, EventArgs e)
@@ -589,6 +588,7 @@ namespace IpsViewComponentLibrary
     public class GridLicenseAgrView
     {
         public int Id { get; set; }
+        public int? LicVersion { get; set; }
         public string License { get; set; }
         public string Series { get; set; }
         public string AgrNumber { get; set; }

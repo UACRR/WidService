@@ -106,8 +106,6 @@ namespace IpsViewComponentLibrary
             List<ParentTemplate> parentList = new List<ParentTemplate>();
             List<ChildTemplate> childList = new List<ChildTemplate>();
 
-            var test = _payslipsSpectacleViews.Where(rec => rec.RmId == rmId).ToList();
-
             foreach (var item in _payslipsSpectacleViews.Where(rec => rec.RmId == rmId))
             {
                 ParentTemplate parent = null;
