@@ -219,18 +219,18 @@ namespace UnitTestMediaPortal
         [TestMethod]
         public void TestChangeLicType()
         {
+            Console.WriteLine(DateTime.Now.ToString("hh:mm:ss.ffff"));
             var service = new ConsumerService();
-            var cust = service.GetData(142);
+            var cust = service.GetData(135);
+            Console.WriteLine(DateTime.Now.ToString("hh:mm:ss.ffff"));
 
-            var lic = cust.Client.LicenseAgreement.First(rec => rec.LicStatus != 4 && rec.LicType == 3);
-            service.SetLicenseType(lic, ConsumerService.LicType.Reference );
+            var lic = cust.Client.LicenseAgreement.First(rec => rec.LicStatus != 4 );
+            var param = lic.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == lic.LicVersion);
+            param.Comment = DateTime.Now.ToLongDateString();
 
-            cust = service.GetData(142);
-            service.SetLicenseType(lic, ConsumerService.LicType.Request );
+            service.Save(cust);
+            Console.WriteLine(DateTime.Now.ToString("hh:mm:ss.ffff"));
 
-            var licCheck = cust.Client.LicenseAgreement.First(rec => rec.LicId == lic.LicId );
-
-            Assert.AreEqual(licCheck.LicType, 2);
         }
 
         [TestMethod]
@@ -258,13 +258,14 @@ namespace UnitTestMediaPortal
         [TestMethod]
         public void TestClosingPeriod()
         {
+            Console.WriteLine(DateTime.Now.ToString("hh:mm:ss.ffff"));
             var service = new ConsumerService();
-            var cust = service.GetCustomerRegisterRatedList(135);
 
-            var period = cust.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.PaidPeriod.Count(p => p.Status == 2) > 0).First()
-                .PaidPeriod.First(rec => rec.Status == 2);
+            var list = service.getMainView(ipsFormsDesign.Dictionary.ConsumerFilterEnum.All);
+            Console.WriteLine(DateTime.Now.ToString("hh:mm:ss.ffff"));
 
-            service.SetPeriodState(ConsumerService.PeriodState.Close, period);
+
+            //service.SetPeriodState(ConsumerService.PeriodState.Close, period);
         }
 
     }
