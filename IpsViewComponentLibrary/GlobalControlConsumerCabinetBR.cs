@@ -56,6 +56,9 @@ namespace IpsViewComponentLibrary
         public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
         public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
+        public event SavePayslipsEventHandler OnSavePayslip;
+        public event GetRegisterRatedList OnGetRegisterRatedList;
+
 
 
         public string FilterString
@@ -74,8 +77,20 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnLicenseStatusChanging += CtrlCabinet_OnLicenseStatusChanging;
             ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
             ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
+            ctrlCabinet.OnSavePayslip += CtrlCabinet_OnSavePayslip;
+            ctrlCabinet.OnGetRegisterRatedList += CtrlCabinet_OnGetRegisterRatedList;
 
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private Customer CtrlCabinet_OnGetRegisterRatedList(int custId)
+        {
+            return OnGetRegisterRatedList?.Invoke(custId);
+        }
+
+        private bool CtrlCabinet_OnSavePayslip(RegisterRatedList list)
+        {
+            return OnSavePayslip?.Invoke(list) ?? false;
         }
 
         private bool CtrlCabinet_OnChangeLicenseType(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
