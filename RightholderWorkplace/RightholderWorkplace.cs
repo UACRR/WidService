@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
@@ -25,52 +24,13 @@ using Telerik.WinControls.UI.Localization;
 
 namespace RightholderWorkplace
 {
-    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm, IRightholderForm,
+    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm,
         ISubscriber<RightolderUpdatedEvent>
     {
         RightholderStatusType _rightholderStatusType;
 
-        AnketaPerson _anketa;
-        BankAccount _bankAccount;
-
         RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
-
-        #region IRightholderForm immplementation
-
-        public Func<IList<RightholderMainView>> GetMainViewData { get; set; }
-        public Func<RightholderStatusType, IList<RightholderMainView>> GetMainViewDataByStatus { get; set; }
-        public Func<int, Customer> NewCustomer { get; set; }
-        public Func<int, Customer> GetCustomer { get; set; }
-        public Func<Customer, bool> SaveCustomer { get; set; }
-
-        public event Func<bool> Save;
-
-        public void EndPresenterLink()
-        {
-            if (GetMainViewData != null)
-            {
-                tbtnActive.IsChecked = true;
-                RightholdersListFilterChanged(RightholderStatusType.Active);
-            }
-        }
-
-        public void SetData(ICustomer data)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetData(ICustomer data)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetDictionary(AnketaDictionaties dictionaries)
-        {
-
-        }
-
-        #endregion
 
         public RightholderWorkplace()
         {
@@ -130,7 +90,7 @@ namespace RightholderWorkplace
 
         private void UpdateRightholdersList(RightholderMainView selectedRightholder = null)
         {
-            var list = GetMainViewDataByStatus(_rightholderStatusType);
+            var list = _rightholderService.GetMainViewByStatus(_rightholderStatusType);
             rightHolderMainViewBindingSource.DataSource = list;
 
             if (selectedRightholder != null)
@@ -246,6 +206,9 @@ namespace RightholderWorkplace
             dtChangeCopyrightDateTill.Value = DateTime.Now;
 
             ctrlChangeRightholderOperation.SelectedValue = 3;
+
+            tbtnActive.IsChecked = true;
+            RightholdersListFilterChanged(RightholderStatusType.Active);
         }
 
         #region Objectrights page
