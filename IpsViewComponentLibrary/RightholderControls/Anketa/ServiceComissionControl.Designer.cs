@@ -37,6 +37,7 @@
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtxtRateCommission)).BeginInit();
@@ -44,6 +45,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mtxtRateCourt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -69,7 +71,7 @@
             // mtxtRateCommission
             // 
             this.mtxtRateCommission.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.agreementAddRhBindingSource, "RateCommiss", true));
-            this.mtxtRateCommission.Location = new System.Drawing.Point(329, 11);
+            this.mtxtRateCommission.Location = new System.Drawing.Point(316, 11);
             this.mtxtRateCommission.Mask = "N0";
             this.mtxtRateCommission.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRateCommission.Name = "mtxtRateCommission";
@@ -79,6 +81,7 @@
             this.mtxtRateCommission.TabStop = false;
             this.mtxtRateCommission.Text = "0";
             this.mtxtRateCommission.ThemeName = "Office2013Light";
+            this.mtxtRateCommission.Validating += new System.ComponentModel.CancelEventHandler(this.mtxtRateCommission_Validating);
             // 
             // agreementAddRhBindingSource
             // 
@@ -87,7 +90,7 @@
             // mtxtRateCourt
             // 
             this.mtxtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.agreementAddRhBindingSource, "RateCourt", true));
-            this.mtxtRateCourt.Location = new System.Drawing.Point(329, 53);
+            this.mtxtRateCourt.Location = new System.Drawing.Point(316, 53);
             this.mtxtRateCourt.Mask = "N0";
             this.mtxtRateCourt.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRateCourt.Name = "mtxtRateCourt";
@@ -97,6 +100,7 @@
             this.mtxtRateCourt.TabStop = false;
             this.mtxtRateCourt.Text = "0";
             this.mtxtRateCourt.ThemeName = "Office2013Light";
+            this.mtxtRateCourt.Validating += new System.ComponentModel.CancelEventHandler(this.mtxtRateCourt_Validating);
             // 
             // radLabel3
             // 
@@ -118,10 +122,16 @@
             this.radLabel4.Text = "від суми авторської винагороди, зібраної за таке використання";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            // 
             // ServiceComissionControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.mtxtRateCourt);
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.radLabel3);
@@ -137,6 +147,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mtxtRateCourt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,5 +162,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

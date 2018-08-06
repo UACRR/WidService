@@ -106,7 +106,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (selectedPage == createRightholderFullNameComissionPage)
             {
-                isValid = ctrlAnketaPerson.Validator();
+                isValid = ctrlAnketaPerson.Validator() && ctrlServiceComissionControl.ValidateChildren();
             }
             else if (selectedPage == createRightholderAnketaPage)
             {
