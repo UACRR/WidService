@@ -79,10 +79,6 @@
             // 
             this.addressFactual.AddressDataMember = null;
             this.addressFactual.CityDataMember = null;
-            this.addressFactual.CountriesDataMember = "";
-            this.addressFactual.CountriesDataSource = null;
-            this.addressFactual.CountriesDisplayMember = "";
-            this.addressFactual.CountriesValueMember = "";
             this.addressFactual.CountryDataMember = null;
             this.addressFactual.DataMember = "";
             this.addressFactual.DataSource = null;
@@ -125,10 +121,6 @@
             this.addressFactual.Location = new System.Drawing.Point(20, 161);
             this.addressFactual.Name = "addressFactual";
             this.addressFactual.RegionDataMember = null;
-            this.addressFactual.RegionsDataMember = "";
-            this.addressFactual.RegionsDataSource = null;
-            this.addressFactual.RegionsDisplayMember = "";
-            this.addressFactual.RegionsValueMember = "";
             this.addressFactual.Size = new System.Drawing.Size(700, 45);
             this.addressFactual.TabIndex = 32;
             // 
@@ -168,11 +160,6 @@
             // 
             this.addressLegal.AddressDataMember = null;
             this.addressLegal.CityDataMember = null;
-            this.addressLegal.CountriesDataMember = "";
-            this.addressLegal.CountriesDataSource = null;
-            this.addressLegal.CountriesDisplayMember = "";
-            this.addressLegal.CountriesValueMember = "";
-            this.addressLegal.CountryDataMember = null;
             this.addressLegal.DataMember = "";
             this.addressLegal.DataSource = null;
             // 
@@ -214,10 +201,6 @@
             this.addressLegal.Location = new System.Drawing.Point(20, 58);
             this.addressLegal.Name = "addressLegal";
             this.addressLegal.RegionDataMember = null;
-            this.addressLegal.RegionsDataMember = "";
-            this.addressLegal.RegionsDataSource = null;
-            this.addressLegal.RegionsDisplayMember = "";
-            this.addressLegal.RegionsValueMember = "";
             this.addressLegal.Size = new System.Drawing.Size(700, 45);
             this.addressLegal.TabIndex = 31;
             // 
