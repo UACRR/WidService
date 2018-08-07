@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Events
 {
-    public class RightolderUpdatedEvent
+    public class RightholderUpdatedEvent
     {
     }
 }

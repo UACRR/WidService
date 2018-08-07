@@ -407,11 +407,6 @@ namespace ipsFormsDesign.Services
         }
         #endregion
 
-        #region register
-        public Customer GetCustomerRegisterRatedList( int custId )
-        {
-            return _webApi.GetItemById<Customer>("consumer/period/register/RatedList", custId.ToString());
-        }
-        #endregion
+
     }
 }

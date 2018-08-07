@@ -8,7 +8,6 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.RightholderControls;
-using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
@@ -18,14 +17,13 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls;
-using Telerik.WinControls.Enumerations;
 using Telerik.WinControls.UI;
 using Telerik.WinControls.UI.Localization;
 
 namespace RightholderWorkplace
 {
     public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm,
-        ISubscriber<RightolderUpdatedEvent>
+        ISubscriber<RightholderUpdatedEvent>
     {
         RightholderStatusType _rightholderStatusType;
 
@@ -38,8 +36,6 @@ namespace RightholderWorkplace
 
             ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
-            newRightholdersPageView.ViewElement.Visibility = ElementVisibility.Hidden;
-
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
@@ -49,65 +45,9 @@ namespace RightholderWorkplace
 
         #region Rightholders page
 
-        public RightholderMainView SelectedRightholder
-        {
-            get
-            {
-                return (gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView);
-            }
-            set
-            {
-                var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == value.CustId);
-                if (row != null)
-                {
-                    gvRightholdersList.CurrentRow = row;
-                    gvRightholdersList.TableElement.ScrollToRow(row);
-                }
-            }
-        }
-
-        private void tbtn_Click(object sender, EventArgs e)
-        {
-            var rightholderFilterType = (RightholderStatusType)Convert.ToInt32((sender as RadToggleButton).Tag);
-            RightholdersListFilterChanged(rightholderFilterType);
-            
-            // deselect all buttons, excluding sender
-            foreach (var control in panelFilterButtons.Controls)
-            {
-                if (control != sender && control is RadToggleButton toggleButton)
-                {
-                    toggleButton.ToggleState = ToggleState.Off;
-                }
-            }
-        }
-
-        private void RightholdersListFilterChanged(RightholderStatusType rightholderStatusType)
-        {
-            _rightholderStatusType = rightholderStatusType;
-
-            UpdateRightholdersList();
-        }
-
-        private void UpdateRightholdersList(RightholderMainView selectedRightholder = null)
-        {
-            var list = _rightholderService.GetMainViewByStatus(_rightholderStatusType);
-            rightHolderMainViewBindingSource.DataSource = list;
-
-            if (selectedRightholder != null)
-            {
-                SelectedRightholder = selectedRightholder;
-            }
-        }
-
-        private void gvRightholdersList_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
-        {
-            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
-        }
-
-        #region Rightolder commands
-
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
+            // TODO: move to rightholder list control + add AllowAdd property
             using (var rightholderView = new RightholderView())
             {
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
@@ -115,80 +55,20 @@ namespace RightholderWorkplace
             }
         }
 
-        private void btnNewRightholderCancel1_Click(object sender, EventArgs e)
+        private void ctrlRightholderList_RightholderSelected(object sender, RightholderMainView selectedRightholder)
         {
-            newRightholdersPageView.SelectedPage = newRightholdersListPage;
-        }
-
-        private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
-        {
-            var currentColumnName = e.Column.Name;
-
-            if (currentColumnName == "EditColumn")
-            {
-                EditRightholder();
-            }
-            else if (currentColumnName == "ObjectListColumn")
-            {
-                ShowObjectsRightsForRightholder(SelectedRightholder);
-            }
-            else if (currentColumnName == "SetStatusColumn")
-            {
-                ShowChangeRightholderStatusMenu();
-            }
-            else if (currentColumnName == "AcceptColumn")
-            {
-                _rightholderService.SetStatus(SelectedRightholder.CustId, RightholderStatusType.Active);
-                UpdateRightholdersList();
-            }
-        }
-
-        private void ShowChangeRightholderStatusMenu()
-        {
-            var rightholder = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
-
-            if (rightholder != null)
-            {
-                Point absolutePosition = gvRightholdersList.CurrentCell.PointToScreen(gvRightholdersList.CurrentCell.Location);
-                absolutePosition.Y += gvRightholdersList.CurrentCell.Size.Height;
-
-                var menu = RightholderStatusMenuFactory.Create((RightholderStatusType)rightholder.Status, RightholderStatusMenu_Click);
-                menu.Show(absolutePosition);
-            }
-        }
-
-        private void RightholderStatusMenu_Click(object sender, EventArgs e)
-        {
-            if (sender is RadMenuItem menuItem)
-            {
-                var newStatus = (RightholderStatusType)menuItem.Tag;
-
-                var result = _rightholderService.SetStatus(SelectedRightholder.CustId, newStatus);
-
-                if (result)
-                    UpdateRightholdersList();
-                else
-                    MessageBox.Show("Не вдалося змінити статус.", "Помилка");
-            }
-        }
-
-        private void gvRightholdersList_DoubleClick(object sender, EventArgs e)
-        {
-            EditRightholder();
-        }
-
-        #endregion
-
-        private void EditRightholder(RightholderMainView rightholder = null)
-        {
-            if (rightholder == null)
-                rightholder = SelectedRightholder;
-
+            // TODO: move to rightholder list control + handle double click in two way: 1. For edit by default, 2. For selection using e.Cancel (in rightholder selection control)
             using (var rightholderView = new RightholderView())
             {
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
-                rightholderPresenter.Show(rightholder.CustId);
+                rightholderPresenter.Show(selectedRightholder.CustId);
             }
+        }
+
+        private void ctrlRightholderList_ShowRightholdersObjectsCommandExecuted(object sender, RightholderMainView selectedRightholder)
+        {
+            // TODO: move to rightholder list control
+            ShowObjectsRightsForRightholder(selectedRightholder);
         }
 
         #endregion
@@ -206,9 +86,6 @@ namespace RightholderWorkplace
             dtChangeCopyrightDateTill.Value = DateTime.Now;
 
             ctrlChangeRightholderOperation.SelectedValue = 3;
-
-            tbtnActive.IsChecked = true;
-            RightholdersListFilterChanged(RightholderStatusType.Active);
         }
 
         #region Objectrights page
@@ -295,7 +172,7 @@ namespace RightholderWorkplace
                 ctrlObjectRightList.UpdateList();
             }
 
-            UpdateRightholdersList(SelectedRightholder);
+            ctrlRightholderList.UpdateList();
             // } TODO
         }
 
@@ -447,6 +324,12 @@ namespace RightholderWorkplace
 
             using (var selectionView = new RightholderSelectionView())
             {
+                selectionView.SetAllowedStatuses(new[] {
+                    RightholderStatusType.Active,
+                    RightholderStatusType.Inheritance,
+                    RightholderStatusType.New,
+                    RightholderStatusType.NotAccepted,
+                });
                 selectionView.RightholderSelected += SelectionView_RightholderSelected;
                 selectionView.ShowDialog();
             }
@@ -609,7 +492,7 @@ namespace RightholderWorkplace
             MessageBox.Show("Зміна правовласників виконана успішно.");
 
             ctrlRightholdersObjectsForChange.SelectedRightholder = _objectsCopyrightList.FirstOrDefault()?.Rightholder;
-            UpdateRightholdersList(SelectedRightholder);
+            ctrlRightholderList.UpdateList();
         }
 
         private void btnCancelNewCopyright_Click(object sender, EventArgs e)
@@ -624,56 +507,9 @@ namespace RightholderWorkplace
 
         #endregion
 
-        public void HandleEvent(RightolderUpdatedEvent e)
+        public void HandleEvent(RightholderUpdatedEvent e)
         {
-            UpdateRightholdersList();
+            ctrlRightholderList.UpdateList();
         }
-
-        #region Search rightholder
-
-        private void txtSearchRightholder_TextChanged(object sender, EventArgs e)
-        {
-            gvRightholdersList.MasterTemplate.Refresh();
-        }
-
-        private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearchRightholder.Text))
-            {
-                gvRightholdersList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRightholdersList.EndUpdate(false);
-                return;
-            }
-
-            gvRightholdersList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearchRightholder.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRightholdersList.EndUpdate(false);
-            }
-        }
-
-        #endregion
     }
 }
