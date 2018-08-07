@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Interfaces;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using System;
 using System.Windows.Forms;
 
@@ -25,6 +26,16 @@ namespace IpsViewComponentLibrary.RightholderControls
             InitializeComponent();
 
             StartPosition = FormStartPosition.CenterParent;
+        }
+
+        public void SetAllowedStatuses(RightholderStatusType[] statuses)
+        {
+            ctrlRightholderList.SetAllowedStatuses(statuses);
+        }
+
+        public void ClearAllowedStatuses()
+        {
+            ctrlRightholderList.ClearAllowedStatuses();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

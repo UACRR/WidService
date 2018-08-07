@@ -61,7 +61,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (result)
             {
-                ApplicationController.Instance.EventAggregator.PublishEvent(new RightolderUpdatedEvent());
+                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
                 _view.Close();
             }
             else

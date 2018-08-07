@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -143,6 +144,23 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
             var List = await _dbContext.getViewData(queryText, null);
             return Json(List);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRightholders([FromQuery] RightholderListQueryResource query)
+        {
+            var queryText = "select * from vTsk_1_ListRightHolder01";
+
+            if (query != null)
+            {
+                if (query.Status != null)
+                {
+                    queryText = queryText + $" where status = {query.Status}";
+                }
+            }
+
+            var List = await _dbContext.getViewData(queryText, null);
+            return Ok(List);
         }
 
         [HttpGet("newrightholder/{custType}")]
