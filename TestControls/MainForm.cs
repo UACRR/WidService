@@ -89,7 +89,7 @@ namespace TestControls
 
             Task.Run(() =>
             {
-                var Customer = _service.GetCustomerRegisterRatedList(_curItem.CustId);
+                var Customer = _service.GetRatedListForCust(_curItem.CustId);
                 if (InvokeRequired)
                 {
                     reportsControl1.BeginInvoke((Action)(() => reportsControl1.Customer = Customer));
