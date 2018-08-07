@@ -166,6 +166,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             OnRightholderSelected(SelectedRightholder);
         }
 
+        private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
+
         private void ShowChangeRightholderStatusMenu()
         {
             var rightholder = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
@@ -202,6 +207,12 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void OnEditCommandExecuted(RightholderMainView selectedRightholder)
         {
+            using (var rightholderView = new RightholderView())
+            {
+                var rightholderPresenter = new RightholderPresenter(rightholderView);
+                rightholderPresenter.Show(selectedRightholder.CustId);
+            }
+
             EditCommandExecuted?.Invoke(this, selectedRightholder);
         }
 
