@@ -18,9 +18,9 @@ namespace IpsViewComponentLibrary
     {
         private LicenseAgrParam _lic;
         private PeriodStatus dicStatus;
-        public CreatePeriod(LicenseAgrParam lic)
+        public CreatePeriod(LicenseAgreement lic)
         {
-            _lic = lic;
+            _lic = lic.LicenseAgrParam.Single( rec => rec.LicVersion == lic.LicVersion );
             dicStatus = IpsGlobal.AnketaDictionaties.periodStatus.SingleOrDefault(rec => rec.CodeI == 1);
             InitializeComponent();
             // Створити масив періодів
