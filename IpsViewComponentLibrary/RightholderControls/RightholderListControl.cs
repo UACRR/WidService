@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Dictionary;
+﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
@@ -35,11 +36,14 @@ namespace IpsViewComponentLibrary.RightholderControls
                 {
                     _rightholder = value;
 
-                    var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _rightholder.CustId);
-                    if (row != null)
+                    if (_rightholder != null)
                     {
-                        gvRightholdersList.CurrentRow = row;
-                        gvRightholdersList.TableElement.ScrollToRow(row);
+                        var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _rightholder.CustId);
+                        if (row != null)
+                        {
+                            gvRightholdersList.CurrentRow = row;
+                            gvRightholdersList.TableElement.ScrollToRow(row);
+                        }
                     }
                 }
             }
@@ -79,8 +83,15 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (!IsDesignMode)
             {
                 _rightholderService = new RightholderService();
-                UpdateList();
             }
+        }
+
+        private void RightholderListControl_Load(object sender, EventArgs e)
+        {
+            ddlStatus.SetDataSource(IpsGlobal.AnketaDictionaties.customerStatus);
+            ddlStatus.SelectedValue = (int)RightholderStatusType.Active;
+
+            UpdateList();
         }
 
         public void UpdateList()
@@ -90,10 +101,22 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void UpdateList(RightholderMainView currentRightholder)
         {
-            var list = _rightholderService.GetMainView();
+            var query = new RightholderListQuery { Status = (RightholderStatusType)ddlStatus.SelectedValue };
+
+            var list = _rightholderService.GetRightholders(query);
             rightholderMainViewBindingSource.DataSource = list;
 
             SelectedRightholder = currentRightholder;
+        }
+
+        private void ddlStatus_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateList();
         }
 
         private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
