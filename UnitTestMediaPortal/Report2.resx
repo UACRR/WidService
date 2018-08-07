@@ -117,9 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="IPSDATA.QueryDesignerState" xml:space="preserve">
+  <data name="IPSDATA.QueryDesignerState" xml:space="preserve">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;DM xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Telerik.Reporting.Design.QueryDesigner"&gt;&lt;Es&gt;&lt;E z:Id="i1"&gt;&lt;MBN&gt;vCustomer&lt;/MBN&gt;&lt;MBP z:Id="i2" i:type="Namespace"&gt;&lt;MBN&gt;&lt;/MBN&gt;&lt;MOC&gt;&lt;MB z:Ref="i1" /&gt;&lt;/MOC&gt;&lt;/MBP&gt;&lt;MOC&gt;&lt;MB z:Id="i3" i:type="P"&gt;&lt;MBN&gt;name&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i4" i:type="P"&gt;&lt;MBN&gt;isRHolder&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i5" i:type="P"&gt;&lt;MBN&gt;isClient&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i6" i:type="P"&gt;&lt;MBN&gt;isPartner&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i7" i:type="P"&gt;&lt;MBN&gt;status&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i8" i:type="P"&gt;&lt;MBN&gt;INNOKPO&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;MB z:Id="i9" i:type="P"&gt;&lt;MBN&gt;jaAddress&lt;/MBN&gt;&lt;MBP z:Ref="i1" /&gt;&lt;PO&gt;true&lt;/PO&gt;&lt;/MB&gt;&lt;/MOC&gt;&lt;ER /&gt;&lt;/E&gt;&lt;/Es&gt;&lt;Fs /&gt;&lt;MR&gt;false&lt;/MR&gt;&lt;Ps&gt;&lt;P z:Ref="i3" /&gt;&lt;P z:Ref="i4" /&gt;&lt;P z:Ref="i5" /&gt;&lt;P z:Ref="i6" /&gt;&lt;P z:Ref="i7" /&gt;&lt;P z:Ref="i8" /&gt;&lt;P z:Ref="i9" /&gt;&lt;/Ps&gt;&lt;Rs /&gt;&lt;/DM&gt;</value>
-  </metadata>
+  </data>
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=12.1.18.620, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
+    <value>0.1cm</value>
+  </data>
   <data name="IPSDATA.SelectCommand" xml:space="preserve">
     <value>SELECT
 	[vCustomer].[name], 
@@ -131,7 +135,4 @@
 	[vCustomer].[jaAddress]
 FROM [vCustomer]</value>
   </data>
-  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=12.1.18.620, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
-    <value>0.1cm</value>
-  </metadata>
 </root>
