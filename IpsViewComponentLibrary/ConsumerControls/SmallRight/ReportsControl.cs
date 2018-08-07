@@ -27,8 +27,8 @@ namespace IpsViewComponentLibrary
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public Func<int, List<RegisterItem>> GetRegisterItems;
         private ButtonEnableControl buttonController;
-        private static Dictionary<int, PeriodStatus> dicPeriodStatus;
-        private static Dictionary<int, RegisterStatus> dicRegStatus;
+        private Dictionary<int, PeriodStatus> dicPeriodStatus;
+        private Dictionary<int, RegisterStatus> dicRegStatus;
 
         public ReportsControl()
         {

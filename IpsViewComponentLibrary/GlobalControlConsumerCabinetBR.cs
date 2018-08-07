@@ -59,7 +59,7 @@ namespace IpsViewComponentLibrary
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
-
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
 
 
         public string FilterString
@@ -81,8 +81,13 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnSavePayslip += CtrlCabinet_OnSavePayslip;
             ctrlCabinet.OnGetRegisterRatedList += CtrlCabinet_OnGetRegisterRatedList;
             ctrlCabinet.OnRegisterItemListNeed += CtrlCabinet_OnRegisterItemListNeed;
-
+            ctrlCabinet.SavePariodCommandExecuted += CtrlCabinet_SavePariodCommandExecuted;
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private void CtrlCabinet_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        {
+            SavePariodCommandExecuted?.Invoke(sender, e);
         }
 
         private List<RegisterItem> CtrlCabinet_OnRegisterItemListNeed(int regId)

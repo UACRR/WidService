@@ -128,7 +128,7 @@
             gridViewTextBoxColumn1.FieldName = "Lic.LicCodeNavigation.Name";
             gridViewTextBoxColumn1.HeaderText = "Ліцензія";
             gridViewTextBoxColumn1.Name = "License";
-            gridViewTextBoxColumn1.Width = 172;
+            gridViewTextBoxColumn1.Width = 171;
             gridViewTextBoxColumn2.FieldName = "Series";
             gridViewTextBoxColumn2.HeaderText = "Серія";
             gridViewTextBoxColumn2.Name = "Series";
@@ -136,34 +136,34 @@
             gridViewTextBoxColumn3.FieldName = "LicNum";
             gridViewTextBoxColumn3.HeaderText = "Номер договору";
             gridViewTextBoxColumn3.Name = "AgrNumber";
-            gridViewTextBoxColumn3.Width = 118;
+            gridViewTextBoxColumn3.Width = 117;
             gridViewTextBoxColumn4.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn4.FieldName = "DateBegin";
             gridViewTextBoxColumn4.HeaderText = "Дата початку";
             gridViewTextBoxColumn4.Name = "DateBegin";
-            gridViewTextBoxColumn4.Width = 107;
+            gridViewTextBoxColumn4.Width = 106;
             gridViewTextBoxColumn5.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn5.FieldName = "DateEnd";
             gridViewTextBoxColumn5.HeaderText = "Дата кінця";
             gridViewTextBoxColumn5.Name = "DateEnd";
-            gridViewTextBoxColumn5.Width = 107;
+            gridViewTextBoxColumn5.Width = 106;
             gridViewDecimalColumn1.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn1.FieldName = "MinAmount";
             gridViewDecimalColumn1.HeaderText = "Сума";
             gridViewDecimalColumn1.Name = "Amount";
-            gridViewDecimalColumn1.Width = 107;
+            gridViewDecimalColumn1.Width = 106;
             gridViewTextBoxColumn6.FieldName = "LicStatusNavigation.Name";
             gridViewTextBoxColumn6.HeaderText = "Стан";
             gridViewTextBoxColumn6.Name = "State";
-            gridViewTextBoxColumn6.Width = 107;
+            gridViewTextBoxColumn6.Width = 106;
             gridViewTextBoxColumn7.FieldName = "PeriodCodeNavigation.Name";
             gridViewTextBoxColumn7.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn7.Name = "PeriodPayment";
-            gridViewTextBoxColumn7.Width = 145;
+            gridViewTextBoxColumn7.Width = 144;
             gridViewDecimalColumn2.FieldName = "Arrears";
             gridViewDecimalColumn2.HeaderText = "Борг";
             gridViewDecimalColumn2.Name = "Arrears";
-            gridViewDecimalColumn2.Width = 111;
+            gridViewDecimalColumn2.Width = 113;
             this.gvLicenseAgr.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -182,7 +182,7 @@
             this.gvLicenseAgr.ShowGroupPanel = false;
             this.gvLicenseAgr.Size = new System.Drawing.Size(1038, 161);
             this.gvLicenseAgr.TabIndex = 0;
-            this.gvLicenseAgr.ThemeName = "Office2007Silver";
+            this.gvLicenseAgr.ThemeName = "Office2013Light";
             this.gvLicenseAgr.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvLicenseAgr_RowFormatting);
             this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
             // 
@@ -221,20 +221,20 @@
             gridViewTextBoxColumn13.FieldName = "PeriodName";
             gridViewTextBoxColumn13.HeaderText = "Період";
             gridViewTextBoxColumn13.Name = "PeriodName";
-            gridViewTextBoxColumn13.Width = 343;
+            gridViewTextBoxColumn13.Width = 341;
             gridViewTextBoxColumn14.FieldName = "StatusNavigation.Name";
             gridViewTextBoxColumn14.HeaderText = "Стан періоду";
             gridViewTextBoxColumn14.Name = "Status";
-            gridViewTextBoxColumn14.Width = 143;
+            gridViewTextBoxColumn14.Width = 142;
             gridViewDecimalColumn5.FieldName = "Amount";
             gridViewDecimalColumn5.HeaderText = "Вимога";
             gridViewDecimalColumn5.Name = "Amount";
-            gridViewDecimalColumn5.Width = 143;
+            gridViewDecimalColumn5.Width = 142;
             gridViewDecimalColumn6.EnableExpressionEditor = true;
             gridViewDecimalColumn6.Expression = "Undistribamount+Distribamount";
             gridViewDecimalColumn6.HeaderText = "Розподілено";
             gridViewDecimalColumn6.Name = "Distrib";
-            gridViewDecimalColumn6.Width = 143;
+            gridViewDecimalColumn6.Width = 142;
             gridViewTextBoxColumn15.HeaderText = "Звітів";
             gridViewTextBoxColumn15.Name = "ReportCounts";
             gridViewTextBoxColumn15.Width = 116;
@@ -298,7 +298,7 @@
             this.gvPeriods.ShowGroupPanel = false;
             this.gvPeriods.Size = new System.Drawing.Size(1038, 156);
             this.gvPeriods.TabIndex = 0;
-            this.gvPeriods.ThemeName = "Office2007Silver";
+            this.gvPeriods.ThemeName = "Office2013Light";
             this.gvPeriods.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriods_CurrentRowChanged);
             this.gvPeriods.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvPeriods_CommandCellClick);
             // 
@@ -343,47 +343,55 @@
             gridViewTextBoxColumn8.FieldName = "RegisterRatedList.Period.PeriodName";
             gridViewTextBoxColumn8.HeaderText = "Період";
             gridViewTextBoxColumn8.Name = "PeriodName";
-            gridViewTextBoxColumn8.Width = 152;
+            gridViewTextBoxColumn8.Width = 151;
+            gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.EnableExpressionEditor = false;
             gridViewTextBoxColumn9.HeaderText = "Р/Л";
             gridViewTextBoxColumn9.Name = "RL";
             gridViewTextBoxColumn9.Width = 36;
+            gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.EnableExpressionEditor = false;
             gridViewTextBoxColumn10.FieldName = "FileName";
             gridViewTextBoxColumn10.HeaderText = "Назва звіту";
             gridViewTextBoxColumn10.Name = "ReportsName";
-            gridViewTextBoxColumn10.Width = 413;
+            gridViewTextBoxColumn10.Width = 411;
+            gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.EnableExpressionEditor = false;
             gridViewTextBoxColumn11.FieldName = "ReportId";
             gridViewTextBoxColumn11.HeaderText = "ID";
             gridViewTextBoxColumn11.IsVisible = false;
             gridViewTextBoxColumn11.Name = "ReportId";
             gridViewTextBoxColumn11.Width = 48;
+            gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.EnableExpressionEditor = false;
             gridViewTextBoxColumn12.FieldName = "FileName";
             gridViewTextBoxColumn12.HeaderText = "Path";
             gridViewTextBoxColumn12.IsVisible = false;
             gridViewTextBoxColumn12.Name = "PathString";
             gridViewTextBoxColumn12.Width = 48;
+            gridViewTextBoxColumn12.WrapText = true;
             gridViewDecimalColumn3.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn3.EnableExpressionEditor = false;
             gridViewDecimalColumn3.FieldName = "AuthAmount";
             gridViewDecimalColumn3.HeaderText = "% авторської винагороди звіту";
             gridViewDecimalColumn3.Name = "Rate";
-            gridViewDecimalColumn3.Width = 105;
+            gridViewDecimalColumn3.Width = 104;
+            gridViewDecimalColumn3.WrapText = true;
             gridViewDecimalColumn4.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn4.EnableExpressionEditor = false;
             gridViewDecimalColumn4.FieldName = "RegAmount";
             gridViewDecimalColumn4.HeaderText = "Сума звіту";
             gridViewDecimalColumn4.Name = "Amount";
             gridViewDecimalColumn4.Width = 90;
+            gridViewDecimalColumn4.WrapText = true;
             gridViewComboBoxColumn1.DataType = typeof(System.Nullable<int>);
             gridViewComboBoxColumn1.EnableExpressionEditor = false;
             gridViewComboBoxColumn1.Expression = "";
             gridViewComboBoxColumn1.FieldName = "RgStatusNavigation.Name";
             gridViewComboBoxColumn1.HeaderText = "Стан";
             gridViewComboBoxColumn1.Name = "RgStatus";
-            gridViewComboBoxColumn1.Width = 168;
+            gridViewComboBoxColumn1.Width = 167;
+            gridViewComboBoxColumn1.WrapText = true;
             gridViewCommandColumn1.EnableExpressionEditor = false;
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.MaxWidth = 30;
@@ -417,7 +425,7 @@
             this.gvPeriodReports.ShowGroupPanel = false;
             this.gvPeriodReports.Size = new System.Drawing.Size(1038, 179);
             this.gvPeriodReports.TabIndex = 0;
-            this.gvPeriodReports.ThemeName = "Office2007Silver";
+            this.gvPeriodReports.ThemeName = "Office2013Light";
             this.gvPeriodReports.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvPeriodReports_CellFormatting);
             this.gvPeriodReports.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodReports_CurrentRowChanged);
             this.gvPeriodReports.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvPeriodReports_CommandCellClick);
@@ -452,7 +460,7 @@
             this.btnAddReport.Size = new System.Drawing.Size(110, 24);
             this.btnAddReport.TabIndex = 1;
             this.btnAddReport.Text = "Додати звіт";
-            this.btnAddReport.ThemeName = "Office2007Silver";
+            this.btnAddReport.ThemeName = "Office2013Light";
             this.btnAddReport.Click += new System.EventHandler(this.btnAddReport_Click);
             // 
             // radLabel4
@@ -473,7 +481,7 @@
             this.btnToAcception.Size = new System.Drawing.Size(215, 24);
             this.btnToAcception.TabIndex = 2;
             this.btnToAcception.Text = "Відправити на погодження";
-            this.btnToAcception.ThemeName = "Office2007Silver";
+            this.btnToAcception.ThemeName = "Office2013Light";
             this.btnToAcception.Click += new System.EventHandler(this.btnToAcception_Click);
             // 
             // btnAccept
@@ -484,7 +492,7 @@
             this.btnAccept.Size = new System.Drawing.Size(156, 24);
             this.btnAccept.TabIndex = 3;
             this.btnAccept.Text = "Зафіксувати перелік звітів";
-            this.btnAccept.ThemeName = "Office2007Silver";
+            this.btnAccept.ThemeName = "Office2013Light";
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // radSplitContainer1

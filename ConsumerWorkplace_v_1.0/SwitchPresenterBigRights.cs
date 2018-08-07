@@ -110,6 +110,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnSavePayslip += SavePayslips;
                 _cabinetBr.OnGetRegisterRatedList += _cabinetBr_OnGetRegisterRatedList;
                 _cabinetBr.OnRegisterItemListNeed += GetRegisterItems;
+                _cabinetBr.SavePariodCommandExecuted += SavePariodCommandExecuted;
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -119,6 +120,13 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetSelectCustomer(id);
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
+        }
+
+        private void SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        {
+            var id = e?.FirstOrDefault()?.CustId;
+            if(id != null)
+                _service.SavePeriods((int)id, e);
         }
 
         private List<RegisterItem> GetRegisterItems(int regId)

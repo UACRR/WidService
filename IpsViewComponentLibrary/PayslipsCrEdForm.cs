@@ -23,6 +23,8 @@ namespace IpsViewComponentLibrary
         private RegisterRatedList _registerRatedList;
         private ObservableListSource<PayslipsGridDataSource> _source = null;
         private FormType _type;
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+
 
         public PayslipsCrEdForm()
         {
@@ -198,6 +200,19 @@ namespace IpsViewComponentLibrary
 
         private void btnAddPeriod_Click(object sender, EventArgs e)
         {
+            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
+            var currentAgree = license.LicenseAgrParam.SingleOrDefault(rec =>rec.LicVersion == license.LicVersion);
+            CreatePeriod dialog = new CreatePeriod(currentAgree)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                SavePariodCommandExecuted?.Invoke(this, currentAgree?.Lic?.PaidPeriod?.ToList());
+                
+                //UpdateData?.Invoke(_customer.CustId);
+            }
             UpdFullSum();
         }
 

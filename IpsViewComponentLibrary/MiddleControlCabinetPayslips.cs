@@ -25,6 +25,8 @@ namespace IpsViewComponentLibrary
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+
 
 
         public MiddleControlCabinetPayslips()
@@ -93,6 +95,7 @@ namespace IpsViewComponentLibrary
                     }
                 }
             PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip);
+            addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
             if (addform.ShowDialog() == DialogResult.OK)
             {
                 if (OnSavePayslip?.Invoke(payslip) ?? false)
@@ -100,6 +103,11 @@ namespace IpsViewComponentLibrary
                 else
                     ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
             }
+        }
+
+        private void Addform_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        {
+            SavePariodCommandExecuted?.Invoke(sender, e);
         }
 
         private void gvViewRl_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
