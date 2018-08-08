@@ -38,6 +38,7 @@
             this.pvMusicalDesign = new Telerik.WinControls.UI.RadPageViewPage();
             this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.licenseAgrParamBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btn = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.collapsiblePanel)).BeginInit();
             this.collapsiblePanel.PanelContainer.SuspendLayout();
             this.collapsiblePanel.SuspendLayout();
@@ -48,6 +49,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,10 +87,10 @@
             // pvSpectacle
             // 
             this.pvSpectacle.Controls.Add(this.gvViewSpectacles);
-            this.pvSpectacle.ItemSize = new System.Drawing.SizeF(58F, 25F);
-            this.pvSpectacle.Location = new System.Drawing.Point(5, 29);
+            this.pvSpectacle.ItemSize = new System.Drawing.SizeF(60F, 27F);
+            this.pvSpectacle.Location = new System.Drawing.Point(5, 31);
             this.pvSpectacle.Name = "pvSpectacle";
-            this.pvSpectacle.Size = new System.Drawing.Size(930, 233);
+            this.pvSpectacle.Size = new System.Drawing.Size(930, 231);
             this.pvSpectacle.Text = "Вистави";
             // 
             // gvViewSpectacles
@@ -114,13 +116,13 @@
             this.gvViewSpectacles.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewSpectacles.Name = "gvViewSpectacles";
             this.gvViewSpectacles.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewSpectacles.Size = new System.Drawing.Size(930, 233);
+            this.gvViewSpectacles.Size = new System.Drawing.Size(930, 231);
             this.gvViewSpectacles.TabIndex = 11;
             this.gvViewSpectacles.ThemeName = "Office2013Light";
             // 
             // pvMusicalDesign
             // 
-            this.pvMusicalDesign.ItemSize = new System.Drawing.SizeF(139F, 25F);
+            this.pvMusicalDesign.ItemSize = new System.Drawing.SizeF(141F, 27F);
             this.pvMusicalDesign.Location = new System.Drawing.Point(5, 31);
             this.pvMusicalDesign.Name = "pvMusicalDesign";
             this.pvMusicalDesign.Size = new System.Drawing.Size(975, 136);
@@ -134,11 +136,21 @@
             // 
             this.licenseAgrParamBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
+            // btn
+            // 
+            this.btn.Location = new System.Drawing.Point(13, 13);
+            this.btn.Name = "btn";
+            this.btn.Size = new System.Drawing.Size(110, 24);
+            this.btn.TabIndex = 14;
+            this.btn.Text = "Button";
+            this.btn.Click += new System.EventHandler(this.btn_Click);
+            // 
             // GridTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 496);
+            this.Controls.Add(this.btn);
             this.Controls.Add(this.collapsiblePanel);
             this.Name = "GridTestForm";
             // 
@@ -156,6 +168,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -170,5 +183,6 @@
         private Telerik.WinControls.UI.RadPageViewPage pvSpectacle;
         private Telerik.WinControls.UI.RadGridView gvViewSpectacles;
         private Telerik.WinControls.UI.RadPageViewPage pvMusicalDesign;
+        private Telerik.WinControls.UI.RadButton btn;
     }
 }

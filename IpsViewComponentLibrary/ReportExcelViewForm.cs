@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -16,26 +17,81 @@ namespace IpsViewComponentLibrary
     public partial class ReportExcelViewForm : Telerik.WinControls.UI.RadForm
     {
         private readonly string _filePath;
-        private List<RegisterItem> datasource = new List<RegisterItem>();
+        private ObservableListSource<RegisterItem> _datasource = new ObservableListSource<RegisterItem>();
+        public bool IsManual { get; private set; }
 
-        public string TitleReport
+        public object ReportNameBindingSource
         {
-            get => lblTitle.Text.Remove(0,5);
-            set => lblTitle.Text = "Звіт " + value;
+            get => bsRegisterName.DataSource;
+            set => bsRegisterName.DataSource = value;
+        }
+
+        public bool CanEditRow
+        {
+            get => gvReportContentView.ReadOnly;
+            set
+            {
+                gvReportContentView.ReadOnly = !value;
+                if (!value)
+                    gvReportContentView.Columns["DurationUse"].ReadOnly = true;
+            }
         }
 
 
-        public ReportExcelViewForm(Register register)
+        public ReportExcelViewForm(Register register, bool isManual = false)
         {
             InitializeComponent();
-            bindingRegItems.DataSource = register.RegisterItem.OrderBy(rec => rec.RegIitemId);
-            TitleReport = register.FileName;
-
+            IsManual = isManual;
+            DialogResult = DialogResult.None;
+            if (isManual)
+            {
+                ReportNameBindingSource = register;
+                btn.Text = "Зберегти";
+                CanEditRow = true;
+                gvReportContentView.Columns["Delete"].IsVisible = true;
+                btnAddRow.Visible = true;
+                _datasource = register.RegisterItem;
+                bindingRegItems.DataSource = _datasource;
+            }
+            else
+            {
+                if(register?.RegisterItem?.Any() ?? false)
+                    bindingRegItems.DataSource = register.RegisterItem.OrderBy(rec => rec.RegIitemId);
+                ReportNameBindingSource = register;
+                btn.Text = "Закрити";
+                txtReportPeriod.TextBoxElement.DrawBorder = false;
+                CanEditRow = false;
+            }
         }
 
         private void btn_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+        }
+
+        private void btnAddRow_Click(object sender, EventArgs e)
+        {
+            _datasource.Add(new RegisterItem
+            {
+                DurationItem = TimeSpan.FromSeconds(1),
+                CountUse = 1,
+                DurationUse = TimeSpan.FromSeconds(1),
+                CodeItem = 1,
+                
+            });
+            gvReportContentView.DataSource = bindingRegItems.DataSource;
+            //gvReportContentView.MasterTemplate.Refresh();
+            //gvReportContentView.Update();
+        }
+
+        private void gvReportContentView_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if(e.Column.FieldName == "DurationItem" || e.Column.FieldName == "CountUse")
+                if(e?.Row?.DataBoundItem is RegisterItem item && item.DurationItem != null)
+                {
+                    item.DurationUse = TimeSpan.FromSeconds(item.DurationItem.Value.TotalSeconds * item.CountUse ?? default(double));
+                    item.Ticks = (int) (item.DurationUse.Value.Ticks / 10000);
+                }
         }
     }
 }

@@ -73,7 +73,6 @@
             this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnAddReport = new Telerik.WinControls.UI.RadButton();
-            this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.btnToAcception = new Telerik.WinControls.UI.RadButton();
             this.btnAccept = new Telerik.WinControls.UI.RadButton();
@@ -81,6 +80,8 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).BeginInit();
@@ -106,6 +107,7 @@
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel3)).BeginInit();
             this.splitPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).BeginInit();
             this.SuspendLayout();
             // 
             // gvLicenseAgr
@@ -457,9 +459,9 @@
             this.btnAddReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddReport.Location = new System.Drawing.Point(11, 210);
             this.btnAddReport.Name = "btnAddReport";
-            this.btnAddReport.Size = new System.Drawing.Size(110, 24);
+            this.btnAddReport.Size = new System.Drawing.Size(176, 24);
             this.btnAddReport.TabIndex = 1;
-            this.btnAddReport.Text = "Додати звіт";
+            this.btnAddReport.Text = "Додати звіт (обрати файл)";
             this.btnAddReport.ThemeName = "Office2013Light";
             this.btnAddReport.Click += new System.EventHandler(this.btnAddReport_Click);
             // 
@@ -476,9 +478,9 @@
             // btnToAcception
             // 
             this.btnToAcception.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnToAcception.Location = new System.Drawing.Point(127, 210);
+            this.btnToAcception.Location = new System.Drawing.Point(691, 210);
             this.btnToAcception.Name = "btnToAcception";
-            this.btnToAcception.Size = new System.Drawing.Size(215, 24);
+            this.btnToAcception.Size = new System.Drawing.Size(176, 24);
             this.btnToAcception.TabIndex = 2;
             this.btnToAcception.Text = "Відправити на погодження";
             this.btnToAcception.ThemeName = "Office2013Light";
@@ -487,9 +489,9 @@
             // btnAccept
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAccept.Location = new System.Drawing.Point(348, 210);
+            this.btnAccept.Location = new System.Drawing.Point(873, 210);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(156, 24);
+            this.btnAccept.Size = new System.Drawing.Size(176, 24);
             this.btnAccept.TabIndex = 3;
             this.btnAccept.Text = "Зафіксувати перелік звітів";
             this.btnAccept.ThemeName = "Office2013Light";
@@ -548,6 +550,7 @@
             // 
             // splitPanel3
             // 
+            this.splitPanel3.Controls.Add(this.btnCreateReport);
             this.splitPanel3.Controls.Add(this.btnAccept);
             this.splitPanel3.Controls.Add(this.radLabel2);
             this.splitPanel3.Controls.Add(this.btnToAcception);
@@ -565,6 +568,17 @@
             this.splitPanel3.TabIndex = 2;
             this.splitPanel3.TabStop = false;
             this.splitPanel3.Text = "splitPanel3";
+            // 
+            // btnCreateReport
+            // 
+            this.btnCreateReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateReport.Location = new System.Drawing.Point(193, 210);
+            this.btnCreateReport.Name = "btnCreateReport";
+            this.btnCreateReport.Size = new System.Drawing.Size(176, 24);
+            this.btnCreateReport.TabIndex = 18;
+            this.btnCreateReport.Text = "Додати звіт (ручне введення)";
+            this.btnCreateReport.ThemeName = "Office2013Light";
+            this.btnCreateReport.Click += new System.EventHandler(this.btnCreateReport_Click);
             // 
             // ReportsControl
             // 
@@ -600,6 +614,7 @@
             this.splitPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel3)).EndInit();
             this.splitPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -611,7 +626,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadGridView gvPeriodReports;
         private Telerik.WinControls.UI.RadButton btnAddReport;
-        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private System.Windows.Forms.BindingSource bindingLicAgreement;
         private System.Windows.Forms.BindingSource bindingPaidPeriod;
@@ -624,5 +638,7 @@
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
         private Telerik.WinControls.UI.SplitPanel splitPanel3;
+        private Telerik.WinControls.UI.RadButton btnCreateReport;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

@@ -136,7 +136,7 @@ namespace ConsumerWorkplace_v_1._0
 
         private Customer _cabinetBr_OnGetRegisterRatedList(int custId)
         {
-            return _service.GetCustomerRegisterRatedList(custId);
+            return _service.GetRatedListForCust(custId);
         }
 
         private bool SavePayslips(RegisterRatedList list)
