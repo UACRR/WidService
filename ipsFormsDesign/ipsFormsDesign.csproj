@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dictionary\AgreementStatuses.cs" />
     <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />
     <Compile Include="Dictionary\ConsumerFilterEnum.cs" />
@@ -72,6 +73,8 @@
     <Compile Include="Dictionary\DictionaryBaseControl.cs" />
     <Compile Include="Dictionary\DictTr.cs" />
     <Compile Include="Dictionary\EditableObjectBase.cs" />
+    <Compile Include="Dictionary\LicenseAgreementQuery.cs" />
+    <Compile Include="Dictionary\LicenseTypes.cs" />
     <Compile Include="Dictionary\ObjectAuthorRightholder.cs" />
     <Compile Include="Dictionary\ObjectAuthorRightholderBrViewModel.cs" />
     <Compile Include="Dictionary\ObjectCopyright.cs" />
@@ -405,6 +408,7 @@
     <Compile Include="Services\ConsumerService.cs" />
     <Compile Include="Data\Global.cs" />
     <Compile Include="Services\ExcelEngine.cs" />
+    <Compile Include="Services\LicenseDataService.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
     <Compile Include="Services\RegisterService.cs" />
     <Compile Include="Services\RightHolderService.cs" />
