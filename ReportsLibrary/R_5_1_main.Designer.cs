@@ -452,7 +452,7 @@ namespace ReportsLibrary
             // 
             // pageFooterSection1
             // 
-            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2D);
+            this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(12.599900245666504D);
             this.pageFooterSection1.Name = "pageFooterSection1";
             this.pageFooterSection1.Style.BackgroundColor = System.Drawing.Color.Silver;
             // 
@@ -467,14 +467,12 @@ namespace ReportsLibrary
             this.PageSettings.Landscape = false;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            reportParameter1.AllowNull = true;
             reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "з";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "= Date(2018,1,1)";
             reportParameter1.Visible = true;
-            reportParameter2.AllowNull = true;
             reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
             reportParameter2.Text = "по";
@@ -530,7 +528,7 @@ namespace ReportsLibrary
             styleRule3,
             styleRule4,
             styleRule5});
-            this.Width = Telerik.Reporting.Drawing.Unit.Cm(34.736873626708984D);
+            this.Width = Telerik.Reporting.Drawing.Unit.Cm(40.200000762939453D);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
