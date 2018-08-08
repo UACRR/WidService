@@ -89,15 +89,11 @@
             this.gvRatedList = new Telerik.WinControls.UI.RadGridView();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanelReports = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
-            this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
             this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
             this.bindingLicAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.bindingRatedList = new System.Windows.Forms.BindingSource(this.components);
             this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
