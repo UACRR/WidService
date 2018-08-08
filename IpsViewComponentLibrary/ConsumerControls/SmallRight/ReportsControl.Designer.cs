@@ -723,7 +723,7 @@
             // btnCreateReport
             // 
             this.btnCreateReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateReport.Location = new System.Drawing.Point(1, 1);
+            this.btnCreateReport.Location = new System.Drawing.Point(193, 161);
             this.btnCreateReport.Name = "btnCreateReport";
             this.btnCreateReport.Size = new System.Drawing.Size(176, 24);
             this.btnCreateReport.TabIndex = 18;
