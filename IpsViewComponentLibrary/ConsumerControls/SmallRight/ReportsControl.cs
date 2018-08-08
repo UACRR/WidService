@@ -269,6 +269,12 @@ namespace IpsViewComponentLibrary
             }
 
         }
+
+        /// <summary>
+        /// Створити звіт для заповнення вручну
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreateReport_Click(object sender, EventArgs e)
         {
             if (gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period)
