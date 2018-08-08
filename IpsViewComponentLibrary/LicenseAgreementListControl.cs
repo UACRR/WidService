@@ -162,6 +162,7 @@ namespace IpsViewComponentLibrary
             var statuses = IpsGlobal.AnketaDictionaties.agreementStatus.Where(s => _allowedStatuses.Contains((AgreementStatuses)s.CodeI)).ToList();
             statuses.Insert(0, new AgreementStatus { CodeI = -1, Name = "Всі" });
             ddlStatus.SetDataSource(statuses);
+            ddlStatus.SelectedValue = (int)AgreementStatuses.OnNegotiation;
             ddlStatus.SelectedValueChanged += ddlStatus_SelectedValueChanged;
         }
 
