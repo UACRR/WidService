@@ -66,6 +66,21 @@ namespace IpsViewComponentLibrary
 
         private void btn_Click(object sender, EventArgs e)
         {
+            if(IsManual)
+            {
+                if (txtReportPeriod.Text == string.Empty)
+                {
+                    MessageBox.Show("Введіть назву періоду!", "Не всі поля заповнені",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                if (!_datasource.Any())
+                {
+                    MessageBox.Show("Не додано жодного твору!", "Відсутні твори в звіті", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                DialogResult = DialogResult.OK;
+            }
             DialogResult = DialogResult.OK;
         }
 
@@ -80,8 +95,6 @@ namespace IpsViewComponentLibrary
                 
             });
             gvReportContentView.DataSource = bindingRegItems.DataSource;
-            //gvReportContentView.MasterTemplate.Refresh();
-            //gvReportContentView.Update();
         }
 
         private void gvReportContentView_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -92,6 +105,15 @@ namespace IpsViewComponentLibrary
                     item.DurationUse = TimeSpan.FromSeconds(item.DurationItem.Value.TotalSeconds * item.CountUse ?? default(double));
                     item.Ticks = (int) (item.DurationUse.Value.Ticks / 10000);
                 }
+        }
+
+        private void gvReportContentView_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (e?.Row?.DataBoundItem is RegisterItem item)
+            {
+                _datasource.Remove(item);
+                gvReportContentView.DataSource = bindingRegItems.DataSource;
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary
 
                     if (_licenseAgreement != null)
                     {
-                        var row = gvLicenseAgreementList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _licenseAgreement.CustId);
+                        var row = gvLicenseAgreementList.Rows.FirstOrDefault(r => (int)r.Cells["LicId"].Value == _licenseAgreement.LicId);
                         if (row != null)
                         {
                             gvLicenseAgreementList.CurrentRow = row;
