@@ -263,7 +263,6 @@ namespace UnitTestMediaPortal
 
             var period = cust.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.PaidPeriod.Count(p => p.Status == 2) > 0).First()
                 .PaidPeriod.First(rec => rec.Status == 2);
-
             service.SetPeriodState(ConsumerService.PeriodState.Close, period);
         }
 
