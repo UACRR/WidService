@@ -658,11 +658,6 @@
     <Compile Include="ReportExcelViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReportExcelViewForm.cs.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReportExcelViewForm.cs.resx</DependentUpon>
-    </Compile>
     <Compile Include="ReportExcelViewForm.Designer.cs">
       <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
     </Compile>
@@ -978,10 +973,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportExcelViewForm.cs.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ReportExcelViewForm.cs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportExcelViewForm.resx">
       <DependentUpon>ReportExcelViewForm.cs</DependentUpon>

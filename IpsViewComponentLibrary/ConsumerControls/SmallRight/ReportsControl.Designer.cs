@@ -80,8 +80,8 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanel3 = new Telerik.WinControls.UI.SplitPanel();
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).BeginInit();
@@ -477,7 +477,7 @@
             // 
             // btnToAcception
             // 
-            this.btnToAcception.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnToAcception.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToAcception.Location = new System.Drawing.Point(691, 210);
             this.btnToAcception.Name = "btnToAcception";
             this.btnToAcception.Size = new System.Drawing.Size(176, 24);
@@ -488,7 +488,7 @@
             // 
             // btnAccept
             // 
-            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAccept.Location = new System.Drawing.Point(873, 210);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(176, 24);

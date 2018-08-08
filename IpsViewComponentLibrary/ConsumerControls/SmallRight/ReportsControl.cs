@@ -265,7 +265,17 @@ namespace IpsViewComponentLibrary
                     };
                     period.RegisterRatedList.Add(ratedList);
                 }
-                var register = period?.RegisterRatedList?.SingleOrDefault()?.Register.FirstOrDefault();
+                else
+                {
+                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(new Register
+                    {
+                        RgStatus = 0,
+                        FileName = string.Empty,
+                        CustId = _customer.CustId,
+                        RgStatusNavigation = dicRegStatus[0],
+                    });
+                }
+                var register = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
                 if (register != null)
                 {
                     ReportExcelViewForm viewForm = new ReportExcelViewForm(register, true) {
@@ -274,7 +284,7 @@ namespace IpsViewComponentLibrary
 
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
-                        SaveRegisterRatedListExecuted?.Invoke(sender, ratedList);
+                        SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
                     }
                     else
                         period.RegisterRatedList.Remove(ratedList);

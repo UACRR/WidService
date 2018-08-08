@@ -175,6 +175,7 @@ namespace IpsViewComponentLibrary
             this.gvReportContentView.TabIndex = 2;
             this.gvReportContentView.ThemeName = "Office2013Light";
             this.gvReportContentView.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvReportContentView_CellValueChanged);
+            this.gvReportContentView.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvReportContentView_CommandCellClick);
             // 
             // bindingRegItems
             // 
