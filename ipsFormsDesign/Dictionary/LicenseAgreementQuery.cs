@@ -9,15 +9,20 @@ namespace ipsFormsDesign.Dictionary
 {
     public class LicenseAgreementQuery
     {
-        public LicenseTypes? State { get; set; }
+        public List<LicenseTypes> States { get; set; } = new List<LicenseTypes>();
         public AgreementStatuses? Status { get; set; }
 
         public KeyValuePair<string, string>[] ToKeyValuePair()
         {
             var parameters = new Collection<KeyValuePair<string, string>>();
 
-            if (State.HasValue)
-                parameters.Add(new KeyValuePair<string, string>(nameof(State), ((int)State.Value).ToString()));
+            if (States.Any())
+            {
+                foreach (var s in States)
+                {
+                    parameters.Add(new KeyValuePair<string, string>(nameof(States), ((int)s).ToString()));
+                }
+            }
 
             if (Status.HasValue)
                 parameters.Add(new KeyValuePair<string, string>(nameof(Status), ((int)Status.Value).ToString()));

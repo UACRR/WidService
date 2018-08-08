@@ -27,9 +27,9 @@ namespace ipsmedserviceapp.Controllers
             var conditions = new Collection<string>();
             if (query != null)
             {
-                if (query.State.HasValue)
+                if (query.States.Any())
                 {
-                    conditions.Add($"licType = {query.State.Value}");
+                    conditions.Add($"licType in ({string.Join(", ", query.States)})");
                 }
                 if (query.Status.HasValue)
                 {

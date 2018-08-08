@@ -7,7 +7,7 @@ namespace ipsmedserviceapp.Controllers.Resources
 {
     public class LicenseAgreementListResource
     {
-        public int? State { get; set; }
+        public List<int> States { get; set; } = new List<int>();
         public int? Status { get; set; }
     }
 }
