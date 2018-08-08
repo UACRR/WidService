@@ -30,6 +30,7 @@ namespace IpsViewComponentLibrary
         private ButtonEnableControl buttonController;
         private Dictionary<int, PeriodStatus> dicPeriodStatus;
         private Dictionary<int, RegisterStatus> dicRegStatus;
+        private Dictionary<int, RegisterListStatus> dicRatedListStatus;
 
         public ReportsControl()
         {
@@ -38,10 +39,12 @@ namespace IpsViewComponentLibrary
             gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
+            gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
             buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept, btnCreateReport);
 
             dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
             dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
+            dicRatedListStatus = IpsGlobal.AnketaDictionaties.registerListStatus.ToDictionary(rec => rec.CodeI);
 
         }
 
@@ -90,6 +93,7 @@ namespace IpsViewComponentLibrary
                     foreach (var regList in period.RegisterRatedList)
                     {
                         regList.Period = period;
+                        regList.StatusNavigation = dicRatedListStatus[regList.Status ?? 0];
                         foreach (var reg in regList.Register)
                         {
                             reg.RgStatusNavigation = dicRegStatus[reg.RgStatus ?? 0];
@@ -255,7 +259,6 @@ namespace IpsViewComponentLibrary
                     SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
                     if (!bindingReports.Contains(addRegister))
                         bindingReports.Add(addRegister);
-                    // gvPeriodReports.MasterTemplate.Refresh();
 
                     BeginInvoke((Action)(() =>
                     {
@@ -440,16 +443,46 @@ namespace IpsViewComponentLibrary
 
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
 
-            RegisterRatedList addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period };
+            RegisterRatedList addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0, StatusNavigation = dicRatedListStatus[0] };
             CreateRatedList form = new CreateRatedList();
             form.RatedList = addRatedList;
 
             if (form.ShowDialog() == DialogResult.OK)
             {
                 period.RegisterRatedList.Add(addRatedList);
+                SaveRegisterRatedListExecuted(this, addRatedList);
                 bindingRatedList.Add(addRatedList);
-                // SaveRegisterRatedListExecuted(this, addRatedList);
                 btnAddRatedList.Enabled = false;
+            }
+        }
+
+        private void gvRatedList_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            var row = e.RowElement.RowInfo;
+            if (row == null || row.DataBoundItem == null || !(row.DataBoundItem is RegisterRatedList ))
+                return;
+
+            var ratedList = row.DataBoundItem as RegisterRatedList;
+            int cnt = ratedList.Register.Count();
+            row.Cells["RegisterCount"].Value = cnt;
+
+        }
+
+        private void gvRatedList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            if(e.Column.Name == "ViewColumn")
+            {
+                var row = e.Row;
+                var modifyRatedList = row.DataBoundItem as RegisterRatedList;
+                CreateRatedList form = new CreateRatedList();
+                form.RatedList = modifyRatedList;
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    SaveRegisterRatedListExecuted(this, modifyRatedList);
+                    bindingRatedList.CurrencyManager.Refresh();
+                    btnAddRatedList.Enabled = false;
+                }
             }
         }
     }

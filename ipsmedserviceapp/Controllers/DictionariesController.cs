@@ -751,6 +751,7 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("prePayType", await _dbContext.PrePayType.AsNoTracking().ToListAsync());
             retDictionary.Add("region", await _dbContext.Region.AsNoTracking().ToListAsync());
             retDictionary.Add("registerStatus", await _dbContext.RegisterStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("registerListStatus", await _dbContext.RegisterListStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("residentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
             retDictionary.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
             retDictionary.Add("typeMethodGet", await _dbContext.TypeMethodGet.AsNoTracking().ToListAsync());

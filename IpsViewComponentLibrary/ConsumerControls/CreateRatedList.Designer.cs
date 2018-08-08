@@ -123,7 +123,7 @@
             // 
             // radTextCntReport
             // 
-            this.radTextCntReport.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRatedList, "Status", true));
+            this.radTextCntReport.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRatedList, "CntReport", true));
             this.radTextCntReport.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radTextCntReport.Location = new System.Drawing.Point(186, 138);
             this.radTextCntReport.Name = "radTextCntReport";
@@ -158,8 +158,11 @@
             // 
             // CreateRatedList
             // 
+            this.AcceptButton = this.radButton1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelButton = this.radButton2;
             this.ClientSize = new System.Drawing.Size(387, 219);
             this.ControlBox = false;
             this.Controls.Add(this.radButton2);
@@ -172,6 +175,7 @@
             this.Controls.Add(this.radTextAmount);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radTextPeriod);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CreateRatedList";

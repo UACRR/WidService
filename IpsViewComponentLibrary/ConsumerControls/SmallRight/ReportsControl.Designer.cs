@@ -68,13 +68,14 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn12 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPeriods = new Telerik.WinControls.UI.RadGridView();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
-            this.gvPeriodReports = new Telerik.WinControls.UI.RadGridView();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.gvPeriodReports = new Telerik.WinControls.UI.RadGridView();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnAddReport = new Telerik.WinControls.UI.RadButton();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
@@ -88,11 +89,11 @@
             this.gvRatedList = new Telerik.WinControls.UI.RadGridView();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanelReports = new Telerik.WinControls.UI.SplitPanel();
+            this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
             this.bindingLicAgreement = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
             this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.bindingRatedList = new System.Windows.Forms.BindingSource(this.components);
-            this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
+            this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -121,10 +122,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelReports)).BeginInit();
             this.splitPanelReports.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingRatedList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).BeginInit();
             this.SuspendLayout();
             // 
             // gvLicenseAgr
@@ -332,6 +334,10 @@
             ((Telerik.WinControls.UI.WaitingBarContentElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            // 
             // gvPeriodReports
             // 
             this.gvPeriodReports.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -445,10 +451,6 @@
             this.gvPeriodReports.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodReports_CurrentRowChanged);
             this.gvPeriodReports.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvPeriodReports_CommandCellClick);
             // 
-            // lineRingWaitingBarIndicatorElement1
-            // 
-            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
-            // 
             // radLabel2
             // 
             this.radLabel2.AutoSize = false;
@@ -483,7 +485,7 @@
             // btnToAcception
             // 
             this.btnToAcception.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnToAcception.Location = new System.Drawing.Point(127, 161);
+            this.btnToAcception.Location = new System.Drawing.Point(188, 161);
             this.btnToAcception.Name = "btnToAcception";
             this.btnToAcception.Size = new System.Drawing.Size(176, 24);
             this.btnToAcception.TabIndex = 2;
@@ -494,7 +496,7 @@
             // btnAccept
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAccept.Location = new System.Drawing.Point(348, 161);
+            this.btnAccept.Location = new System.Drawing.Point(365, 161);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(176, 24);
             this.btnAccept.TabIndex = 3;
@@ -522,8 +524,6 @@
             // 
             // splitPanelLicense
             // 
-            this.splitPanelLicense.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitPanelLicense.Controls.Add(this.radLabel4);
             this.splitPanelLicense.Controls.Add(this.gvLicenseAgr);
             this.splitPanelLicense.Location = new System.Drawing.Point(0, 0);
@@ -541,9 +541,6 @@
             // 
             // splitPanelPeriod
             // 
-            this.splitPanelPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitPanelPeriod.Controls.Add(this.radLabel3);
             this.splitPanelPeriod.Controls.Add(this.gvPeriods);
             this.splitPanelPeriod.Location = new System.Drawing.Point(0, 140);
@@ -561,8 +558,6 @@
             // 
             // splitPanelRatedList
             // 
-            this.splitPanelRatedList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitPanelRatedList.Controls.Add(this.btnAddRatedList);
             this.splitPanelRatedList.Controls.Add(this.gvRatedList);
             this.splitPanelRatedList.Controls.Add(this.radLabel1);
@@ -613,45 +608,57 @@
             gridViewDecimalColumn9.FieldName = "RmId";
             gridViewDecimalColumn9.HeaderText = "Номер Р/Л";
             gridViewDecimalColumn9.Name = "RmId";
-            gridViewDecimalColumn9.Width = 146;
+            gridViewDecimalColumn9.Width = 140;
             gridViewDecimalColumn10.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn10.EnableExpressionEditor = false;
             gridViewDecimalColumn10.FieldName = "Amount";
+            gridViewDecimalColumn10.FormatString = "{0:# ##0.00}";
             gridViewDecimalColumn10.HeaderText = "Сума валового збору";
             gridViewDecimalColumn10.IsAutoGenerated = true;
             gridViewDecimalColumn10.Name = "Amount";
-            gridViewDecimalColumn10.Width = 224;
+            gridViewDecimalColumn10.Width = 216;
             gridViewDecimalColumn11.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn11.EnableExpressionEditor = false;
             gridViewDecimalColumn11.FieldName = "Royalty";
+            gridViewDecimalColumn11.FormatString = "{0:# ##0.00}";
             gridViewDecimalColumn11.HeaderText = "Cума авторської винагороди";
             gridViewDecimalColumn11.IsAutoGenerated = true;
             gridViewDecimalColumn11.Name = "Royalty";
-            gridViewDecimalColumn11.Width = 209;
+            gridViewDecimalColumn11.Width = 200;
+            gridViewDecimalColumn12.DataType = typeof(System.Nullable<int>);
             gridViewDecimalColumn12.EnableExpressionEditor = false;
             gridViewDecimalColumn12.FieldName = "CntReport";
             gridViewDecimalColumn12.HeaderText = "Кількість звітів";
             gridViewDecimalColumn12.Name = "cntReport";
-            gridViewDecimalColumn12.Width = 116;
-            gridViewTextBoxColumn18.DataType = typeof(ipsFormsDesign.Interfaces.ObservableListSource<ipsFormsDesign.Model.Register>);
+            gridViewDecimalColumn12.Width = 111;
+            gridViewTextBoxColumn18.DataType = typeof(int);
             gridViewTextBoxColumn18.EnableExpressionEditor = false;
             gridViewTextBoxColumn18.HeaderText = "Сформовано звітів";
             gridViewTextBoxColumn18.IsAutoGenerated = true;
             gridViewTextBoxColumn18.Name = "RegisterCount";
-            gridViewTextBoxColumn18.Width = 153;
+            gridViewTextBoxColumn18.Width = 147;
             gridViewTextBoxColumn19.EnableExpressionEditor = false;
             gridViewTextBoxColumn19.FieldName = "StatusNavigation.Name";
             gridViewTextBoxColumn19.HeaderText = "Стан";
             gridViewTextBoxColumn19.IsAutoGenerated = true;
             gridViewTextBoxColumn19.Name = "StatusNavigation";
-            gridViewTextBoxColumn19.Width = 185;
+            gridViewTextBoxColumn19.Width = 196;
+            gridViewCommandColumn5.EnableExpressionEditor = false;
+            gridViewCommandColumn5.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewCommandColumn5.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            gridViewCommandColumn5.MaxWidth = 30;
+            gridViewCommandColumn5.MinWidth = 30;
+            gridViewCommandColumn5.Name = "ViewColumn";
+            gridViewCommandColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn5.Width = 30;
             this.gvRatedList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn9,
             gridViewDecimalColumn10,
             gridViewDecimalColumn11,
             gridViewDecimalColumn12,
             gridViewTextBoxColumn18,
-            gridViewTextBoxColumn19});
+            gridViewTextBoxColumn19,
+            gridViewCommandColumn5});
             this.gvRatedList.MasterTemplate.DataSource = this.bindingRatedList;
             this.gvRatedList.MasterTemplate.EnableGrouping = false;
             this.gvRatedList.MasterTemplate.ViewDefinition = tableViewDefinition4;
@@ -661,6 +668,8 @@
             this.gvRatedList.ShowGroupPanel = false;
             this.gvRatedList.Size = new System.Drawing.Size(1055, 68);
             this.gvRatedList.TabIndex = 0;
+            this.gvRatedList.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvRatedList_RowFormatting);
+            this.gvRatedList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRatedList_CommandCellClick);
             // 
             // radLabel1
             // 
@@ -674,13 +683,11 @@
             // 
             // splitPanelReports
             // 
-            this.splitPanelReports.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitPanelReports.Controls.Add(this.btnToAcception);
             this.splitPanelReports.Controls.Add(this.btnAccept);
             this.splitPanelReports.Controls.Add(this.radLabel2);
-            this.splitPanelReports.Controls.Add(this.gvPeriodReports);
-            this.splitPanelReports.Controls.Add(this.btnToAcception);
             this.splitPanelReports.Controls.Add(this.btnAddReport);
+            this.splitPanelReports.Controls.Add(this.gvPeriodReports);
             this.splitPanelReports.Location = new System.Drawing.Point(0, 454);
             this.splitPanelReports.Name = "splitPanelReports";
             // 
@@ -694,28 +701,6 @@
             this.splitPanelReports.TabStop = false;
             this.splitPanelReports.Text = "splitPanel4";
             // 
-            // bindingLicAgreement
-            // 
-            this.bindingLicAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
-            // 
-            // bindingReports
-            // 
-            this.bindingReports.DataSource = typeof(ipsFormsDesign.Model.Register);
-            // 
-            this.splitPanel3.Controls.Add(this.btnAccept);
-            this.splitPanel3.Controls.Add(this.radLabel2);
-            this.splitPanel3.Controls.Add(this.btnToAcception);
-            this.splitPanel3.Controls.Add(this.btnAddReport);
-            this.splitPanel3.Controls.Add(this.gvPeriodReports);
-            this.splitPanel3.Location = new System.Drawing.Point(0, 400);
-            this.splitPanel3.Name = "splitPanel3";
-            // 
-            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
-            // 
-            // bindingRatedList
-            // 
-            this.bindingRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
-            // 
             // btnCreateReport
             // 
             this.btnCreateReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -726,6 +711,22 @@
             this.btnCreateReport.Text = "Додати звіт (ручне введення)";
             this.btnCreateReport.ThemeName = "Office2013Light";
             this.btnCreateReport.Click += new System.EventHandler(this.btnCreateReport_Click);
+            // 
+            // bindingLicAgreement
+            // 
+            this.bindingLicAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            // 
+            // bindingPaidPeriod
+            // 
+            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
+            // 
+            // bindingRatedList
+            // 
+            this.bindingRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
+            // 
+            // bindingReports
+            // 
+            this.bindingReports.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
             // ReportsControl
             // 
@@ -764,10 +765,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelReports)).EndInit();
             this.splitPanelReports.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingLicAgreement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingRatedList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).EndInit();
             this.ResumeLayout(false);
 
         }
