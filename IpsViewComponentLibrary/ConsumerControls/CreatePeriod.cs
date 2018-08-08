@@ -16,11 +16,11 @@ namespace IpsViewComponentLibrary
 {
     public partial class CreatePeriod : Form
     {
-        private LicenseAgrParam _lic;
+        private LicenseAgreement _lic;
         private PeriodStatus dicStatus;
         public CreatePeriod(LicenseAgreement lic)
         {
-            _lic = lic.LicenseAgrParam.Single( rec => rec.LicVersion == lic.LicVersion );
+            _lic = lic;
             dicStatus = IpsGlobal.AnketaDictionaties.periodStatus.SingleOrDefault(rec => rec.CodeI == 1);
             InitializeComponent();
             // Створити масив періодів
@@ -30,7 +30,7 @@ namespace IpsViewComponentLibrary
 
         private void initControls()
         {
-            var lastPeriod = _lic.Lic.PaidPeriod.OrderBy(rec => rec.BeginDate).LastOrDefault();
+            var lastPeriod = _lic.PaidPeriod.OrderBy(rec => rec.BeginDate).LastOrDefault();
             var beginDate = lastPeriod?.EndDate.AddDays(1) ?? DateTime.Today;
             
             computeFirstDate(beginDate);
@@ -75,8 +75,24 @@ namespace IpsViewComponentLibrary
                 (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0:yyyy} рок", d )); }, // Рік
             };
             Func<DateTime, string> namePariod = namePeriods[0];
+            int PeriodCode = 0;
+            decimal? MinAmount = 0;
 
-            switch (_lic.PeriodCode)
+            if ( _lic.LicClass == 1 )
+            {
+                var agree = _lic.Agr.AgreementAddBr.Single(rec => rec.Version == _lic.Agr.Version);
+                PeriodCode = agree.PeriodCode ?? 1;
+                MinAmount = 0;
+            }
+            else
+            {
+                var agree = _lic.LicenseAgrParam.Single(rec => rec.LicVersion == _lic.LicVersion);
+                PeriodCode = agree.PeriodCode ?? 1;
+                MinAmount = agree.MinAmount;
+
+            }
+
+            switch (PeriodCode)
             {
                 // Поквартально
                 case 2:
@@ -102,17 +118,17 @@ namespace IpsViewComponentLibrary
             {
                 var newPeriod = new PaidPeriod
                 {
-                    Lic = _lic.Lic,
-                    LicId = _lic.Lic.LicId,
+                    Lic = _lic,
+                    LicId = _lic.LicId,
                     BeginDate = beginDateNewPeriod,
                     EndDate = beginDateNewPeriod.AddMonths(cntMonth).AddDays(-1),
                     PeriodName = namePariod(beginDateNewPeriod),
-                    PeriodType = (int)_lic.PeriodCode,
-                    Amount = _lic.MinAmount ?? 0,
+                    PeriodType = (int)PeriodCode,
+                    Amount = MinAmount ?? 0,
                     Distribamount = 0,
                     Undistribamount = 0,
                     Status = 1,
-                    CustId = (int)_lic.Lic.CustId,
+                    CustId = (int)_lic.CustId,
                     StatusNavigation = dicStatus
                 };
 
@@ -141,13 +157,13 @@ namespace IpsViewComponentLibrary
 
         private void radButton1_Click(object sender, EventArgs e)
         {
-            var check = _lic.Lic.PaidPeriod.FirstOrDefault(rec => rec.BeginDate == radDateTimePicker1.Value);
+            var check = _lic.PaidPeriod.FirstOrDefault(rec => rec.BeginDate == radDateTimePicker1.Value);
             if (check == null)
             {
                 var addPeriod = (PaidPeriod)radDropDownList1.SelectedItem.Tag;
-                if (_lic.Lic.PaidPeriod.Count == 0) // firstPeriod
+                if (_lic.PaidPeriod.Count == 0) // firstPeriod
                     addPeriod.FagFirst = true;
-                _lic.Lic.PaidPeriod.Add(addPeriod);
+                _lic.PaidPeriod.Add(addPeriod);
             }
 
             DialogResult = DialogResult.OK;
