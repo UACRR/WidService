@@ -44,7 +44,18 @@
     <Reference Include="Telerik.ReportViewer.WinForms, Version=12.1.18.620, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LIcAgr.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LIcAgr.Designer.cs">
+      <DependentUpon>LIcAgr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -92,11 +103,11 @@
     <Compile Include="R_5_17_BalanceAccount.Designer.cs">
       <DependentUpon>R_5_17_BalanceAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="R_5_18_TurnAccoun.cs">
+    <Compile Include="R_5_18_TurnAccounN.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="R_5_18_TurnAccoun.Designer.cs">
-      <DependentUpon>R_5_18_TurnAccoun.cs</DependentUpon>
+    <Compile Include="R_5_18_TurnAccounN.Designer.cs">
+      <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_3_Community.cs">
       <SubType>Component</SubType>
@@ -148,9 +159,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LIcAgr.resx">
+      <DependentUpon>LIcAgr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="accmove.resx">
       <DependentUpon>accmove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report1.resx">
       <DependentUpon>Report1.cs</DependentUpon>
@@ -170,8 +188,8 @@
     <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
       <DependentUpon>R_5_17_BalanceAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="R_5_18_TurnAccoun.resx">
-      <DependentUpon>R_5_18_TurnAccoun.cs</DependentUpon>
+    <EmbeddedResource Include="R_5_18_TurnAccounN.resx">
+      <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_3_Community.resx">
       <DependentUpon>R_5_3_Community.cs</DependentUpon>
