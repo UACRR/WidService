@@ -201,6 +201,7 @@ namespace IpsViewComponentLibrary
         private void btnAddPeriod_Click(object sender, EventArgs e)
         {
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
+            var currentAgree = license.LicenseAgrParam.SingleOrDefault(rec =>rec.LicVersion == license.LicVersion);
             CreatePeriod dialog = new CreatePeriod(license)
             {
                 StartPosition = FormStartPosition.CenterParent

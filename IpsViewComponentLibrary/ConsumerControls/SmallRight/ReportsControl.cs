@@ -14,6 +14,7 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
+using IpsViewComponentLibrary.ConsumerControls;
 
 namespace IpsViewComponentLibrary
 {
@@ -29,6 +30,7 @@ namespace IpsViewComponentLibrary
         private ButtonEnableControl buttonController;
         private Dictionary<int, PeriodStatus> dicPeriodStatus;
         private Dictionary<int, RegisterStatus> dicRegStatus;
+        private Dictionary<int, RegisterListStatus> dicRatedListStatus;
 
         public ReportsControl()
         {
@@ -37,10 +39,12 @@ namespace IpsViewComponentLibrary
             gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
+            gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
             buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept, btnCreateReport);
 
             dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
             dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
+            dicRatedListStatus = IpsGlobal.AnketaDictionaties.registerListStatus.ToDictionary(rec => rec.CodeI);
 
         }
 
@@ -89,6 +93,7 @@ namespace IpsViewComponentLibrary
                     foreach (var regList in period.RegisterRatedList)
                     {
                         regList.Period = period;
+                        regList.StatusNavigation = dicRatedListStatus[regList.Status ?? 0];
                         foreach (var reg in regList.Register)
                         {
                             reg.RgStatusNavigation = dicRegStatus[reg.RgStatus ?? 0];
@@ -140,11 +145,27 @@ namespace IpsViewComponentLibrary
         // * * * [Активні договори]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            var lic = gvLicenseAgr?.CurrentRow?.DataBoundItem as LicenseAgrParam;
-            if(lic?.Lic?.PaidPeriod.Count > 0)
+            if (gvLicenseAgr.CurrentRow == null)
+                return;
+
+            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
+
+            if (lic?.Lic?.PaidPeriod.Count > 0)
                 bindingPaidPeriod.DataSource = lic?.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
             else
                 bindingPaidPeriod.DataSource = new List<PaidPeriod>();
+
+            var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
+            /// Цирк,Філармонія,Концертна діяльність
+            if ((new int[] { 1, 2, 3, 4 }).Contains((int)agrType.UsesKind))
+            {
+                splitPanelRatedList.Collapsed = true;
+            }
+            else
+            {
+                splitPanelRatedList.Collapsed = false;
+
+            }
         }
 
         // * * * [Періоди платежів]
@@ -157,14 +178,23 @@ namespace IpsViewComponentLibrary
             var reports = new List<Register>();
             int maxRgStatus = -1;
             if (period?.RegisterRatedList.Count() > 0)
+            {
                 foreach (var item in period.RegisterRatedList.OrderBy(rec => rec.RmId))
                 {
-                    maxRgStatus = Math.Max(maxRgStatus, item.Register.Max(rec => rec.RgStatus ?? 0));
+                    if (item.Register.Count() > 0)
+                        maxRgStatus = Math.Max(maxRgStatus, item.Register.Max(rec => rec.RgStatus ?? 0));
                     reports.AddRange(item.Register);
                 }
+                btnAddRatedList.Enabled = false;
+                bindingRatedList.DataSource = period?.RegisterRatedList.First();
+            }
+            else
+            {
+                btnAddRatedList.Enabled = true;
+                bindingRatedList.DataSource = typeof(RegisterRatedList);
+            }
 
             bindingReports.DataSource = reports;
-
             buttonController.SetPeriodState(period?.Status, reports);
         }
 
@@ -215,7 +245,7 @@ namespace IpsViewComponentLibrary
                     var list = _excel.GetReportItems(dialog.FileName);
                     if (!period.RegisterRatedList.Any())
                     {
-                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0});
+                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
                     }
 
                     var RatedList = period.RegisterRatedList.First();
@@ -229,7 +259,6 @@ namespace IpsViewComponentLibrary
                     SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
                     if (!bindingReports.Contains(addRegister))
                         bindingReports.Add(addRegister);
-                    // gvPeriodReports.MasterTemplate.Refresh();
 
                     BeginInvoke((Action)(() =>
                     {
@@ -412,7 +441,60 @@ namespace IpsViewComponentLibrary
             RefreshData();
         }
 
+        /// <summary>
+        /// Створити новий Р/Л
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddRatedList_Click(object sender, EventArgs e)
+        {
+            if (bindingRatedList.Count != 0)
+                return;
 
+            var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
+
+            RegisterRatedList addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0, StatusNavigation = dicRatedListStatus[0] };
+            CreateRatedList form = new CreateRatedList();
+            form.RatedList = addRatedList;
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                period.RegisterRatedList.Add(addRatedList);
+                SaveRegisterRatedListExecuted(this, addRatedList);
+                bindingRatedList.Add(addRatedList);
+                btnAddRatedList.Enabled = false;
+            }
+        }
+
+        private void gvRatedList_RowFormatting(object sender, RowFormattingEventArgs e)
+        {
+            var row = e.RowElement.RowInfo;
+            if (row == null || row.DataBoundItem == null || !(row.DataBoundItem is RegisterRatedList ))
+                return;
+
+            var ratedList = row.DataBoundItem as RegisterRatedList;
+            int cnt = ratedList.Register.Count();
+            row.Cells["RegisterCount"].Value = cnt;
+
+        }
+
+        private void gvRatedList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            if(e.Column.Name == "ViewColumn")
+            {
+                var row = e.Row;
+                var modifyRatedList = row.DataBoundItem as RegisterRatedList;
+                CreateRatedList form = new CreateRatedList();
+                form.RatedList = modifyRatedList;
+
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    SaveRegisterRatedListExecuted(this, modifyRatedList);
+                    bindingRatedList.CurrencyManager.Refresh();
+                    btnAddRatedList.Enabled = false;
+                }
+            }
+        }
     }
 
     /// <summary>

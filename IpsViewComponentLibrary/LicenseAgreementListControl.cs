@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary
 
                     if (_licenseAgreement != null)
                     {
-                        var row = gvLicenseAgreementList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _licenseAgreement.CustId);
+                        var row = gvLicenseAgreementList.Rows.FirstOrDefault(r => (int)r.Cells["LicId"].Value == _licenseAgreement.LicId);
                         if (row != null)
                         {
                             gvLicenseAgreementList.CurrentRow = row;
@@ -79,7 +79,7 @@ namespace IpsViewComponentLibrary
         {
             var States = chddlState.CheckedItems.Select(item => (LicenseTypes)item.Value);
 
-            var query = new LicenseAgreementQuery();
+            var query = new LicenseAgreementQuery(); 
 
             if (chddlState.CheckedItems.Any())
                 query.States = chddlState.CheckedItems.Select(item => (LicenseTypes)item.Value).ToList();
@@ -180,7 +180,16 @@ namespace IpsViewComponentLibrary
 
         private void EditLicenseAgreement(BigRightRequests selectedLicenseAgreement)
         {
-            throw new NotImplementedException();
+            if (!selectedLicenseAgreement.CustId.HasValue)
+                return;
+
+            var consumerService = new ConsumerService();
+
+            var consumer = consumerService.GetData(selectedLicenseAgreement.CustId.Value);
+            var bigRightView = consumerService.getMainViewBR().FirstOrDefault(rec => rec.CustId == selectedLicenseAgreement.CustId.Value);
+
+            var view = new RequestForm(consumer, bigRightView, IpsGlobal.AnketaDictionaties, FormType.Edit, selectedLicenseAgreement.LicId);
+            view.ShowDialog();
         }
 
         #region Search rightolder
