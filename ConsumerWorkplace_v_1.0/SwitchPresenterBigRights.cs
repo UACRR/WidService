@@ -107,6 +107,10 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.OnLicenseStatusChanging += _cabinetBr_OnLicenseStatusChanging;
                 _cabinetBr.OnWorkRhSaveNeed += SaveWorkRh;
                 _cabinetBr.OnChangeLicenseType += ChangeLicenseType;
+                _cabinetBr.OnSavePayslip += SavePayslips;
+                _cabinetBr.OnGetRegisterRatedList += _cabinetBr_OnGetRegisterRatedList;
+                _cabinetBr.OnRegisterItemListNeed += GetRegisterItems;
+                _cabinetBr.SavePariodCommandExecuted += SavePariodCommandExecuted;
                 _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
@@ -117,6 +121,38 @@ namespace ConsumerWorkplace_v_1._0
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
         }
+
+        private void SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        {
+            var id = e?.FirstOrDefault()?.CustId;
+            if(id != null)
+                _service.SavePeriods((int)id, e);
+        }
+
+        private List<RegisterItem> GetRegisterItems(int regId)
+        {
+            return _service.GetRegisterItems(regId);
+        }
+
+        private Customer _cabinetBr_OnGetRegisterRatedList(int custId)
+        {
+            return _service.GetCustomerRegisterRatedList(custId);
+        }
+
+        private bool SavePayslips(RegisterRatedList list)
+        {
+            var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
+            if(outlist?.Period?.CustId != null)
+                UpdateData(outlist.Period.CustId);
+            return result;
+        }
+
+        private bool DeletePayslips()
+        {
+            //var relust = _service.
+            return false;
+        }
+
 
         private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
         {

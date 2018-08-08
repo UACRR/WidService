@@ -58,6 +58,11 @@ namespace IpsViewComponentLibrary
             _calculator.Calculate();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSaveDistrib_Click(object sender, EventArgs e)
         {
             var paidDic = _licenseAgr.PaidPeriod.ToDictionary(rec => rec.PeriodId);

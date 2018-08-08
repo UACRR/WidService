@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Dictionary;
+﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
@@ -14,6 +15,8 @@ namespace IpsViewComponentLibrary.RightholderControls
     public partial class RightholderListControl : UserControl
     {
         private RightholderService _rightholderService;
+        private RightholderStatusType[] _allowedStatuses;
+
         protected bool IsDesignMode
         {
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
@@ -35,11 +38,14 @@ namespace IpsViewComponentLibrary.RightholderControls
                 {
                     _rightholder = value;
 
-                    var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _rightholder.CustId);
-                    if (row != null)
+                    if (_rightholder != null)
                     {
-                        gvRightholdersList.CurrentRow = row;
-                        gvRightholdersList.TableElement.ScrollToRow(row);
+                        var row = gvRightholdersList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _rightholder.CustId);
+                        if (row != null)
+                        {
+                            gvRightholdersList.CurrentRow = row;
+                            gvRightholdersList.TableElement.ScrollToRow(row);
+                        }
                     }
                 }
             }
@@ -79,8 +85,21 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (!IsDesignMode)
             {
                 _rightholderService = new RightholderService();
-                UpdateList();
             }
+        }
+
+        public void SetAllowedStatuses(RightholderStatusType[] statuses)
+        {
+            _allowedStatuses = statuses;
+
+            PopulateStatusesDropDownList();
+        }
+
+        public void ClearAllowedStatuses()
+        {
+            _allowedStatuses = null;
+
+            PopulateStatusesDropDownList();
         }
 
         public void UpdateList()
@@ -90,10 +109,35 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void UpdateList(RightholderMainView currentRightholder)
         {
-            var list = _rightholderService.GetMainView();
+            var query = new RightholderListQuery
+            {
+                Status = (RightholderStatusType)ddlStatus.SelectedValue,
+            };
+
+            var list = _rightholderService.GetRightholders(query);
             rightholderMainViewBindingSource.DataSource = list;
 
             SelectedRightholder = currentRightholder;
+        }
+
+        private void RightholderListControl_Load(object sender, EventArgs e)
+        {
+            if (!IsDesignMode)
+            {
+                PopulateStatusesDropDownList();
+
+                ddlStatus.SelectedValue = (int)RightholderStatusType.Active;
+            }
+        }
+
+        private void ddlStatus_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateList();
         }
 
         private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -120,6 +164,11 @@ namespace IpsViewComponentLibrary.RightholderControls
                 return;
 
             OnRightholderSelected(SelectedRightholder);
+        }
+
+        private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         private void ShowChangeRightholderStatusMenu()
@@ -158,12 +207,32 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void OnEditCommandExecuted(RightholderMainView selectedRightholder)
         {
+            using (var rightholderView = new RightholderView())
+            {
+                var rightholderPresenter = new RightholderPresenter(rightholderView);
+                rightholderPresenter.Show(selectedRightholder.CustId);
+            }
+
             EditCommandExecuted?.Invoke(this, selectedRightholder);
         }
 
         private void OnShowRightholdersObjectsCommandExecuted(RightholderMainView selectedRightholder)
         {
             ShowRightholdersObjectsCommandExecuted?.Invoke(this, selectedRightholder);
+        }
+
+        private void PopulateStatusesDropDownList()
+        {
+            var statuses = IpsGlobal.AnketaDictionaties.customerStatus;
+
+            if (_allowedStatuses != null)
+            {
+                statuses = statuses.Where(s => _allowedStatuses.Contains((RightholderStatusType)s.CodeI)).ToList();
+            }
+
+            ddlStatus.SelectedValueChanged -= ddlStatus_SelectedValueChanged;
+            ddlStatus.SetDataSource(statuses);
+            ddlStatus.SelectedValueChanged += ddlStatus_SelectedValueChanged;
         }
 
         #region Search rightolder

@@ -26,11 +26,15 @@ namespace IpsViewComponentLibrary
         public event UpdateCustomerDataEventHandler UpdateData;
         private GridDataRowElement dragRow;
         private GridDataRowElement dropRow;
+        private ButtonController buttonController;
 
         public CalculationInfoControl()
         {
             InitializeComponent();
             SetupDragDrop();
+
+            buttonController = new ButtonController(btnNewPeriod, btnDistribute, btnClosePeriod);
+
         }
 
         private void SetupDragDrop()
@@ -199,14 +203,14 @@ namespace IpsViewComponentLibrary
         {
             var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.SingleOrDefault(item => item.LicVersion == rec.LicVersion && rec.LicStatus == 2)).ToList();
             if (licAgr.Count() > 0)
-                LicAgreementBindingSource.DataSource = licAgr.Where(rec => rec.LicStatus == 2);
+                LicAgreementBindingSource.DataSource = licAgr?.Where( rec => rec?.LicStatus == 2).ToList();
             else
                 LicAgreementBindingSource.DataSource = typeof(LicenseAgrParam);
         }
 
         private void BindAllSum()
         {
-            var list = _customer.Client.MoneyReceived.Where(rec => rec.Amount > (rec.DestribAmount + rec.DestribPrepay));
+            var list = _customer.Client.MoneyReceived.Where(rec => rec.Amount > (rec.DestribAmount + rec.DestribPrepay)).ToList();
             if (list.Count() == 0)
             {
                 AllmoneyReceivedBindingSource.DataSource = typeof(MoneyReceived);
@@ -227,7 +231,8 @@ namespace IpsViewComponentLibrary
             if (gvLicenseAgr.CurrentRow != null)
             {
                 var licItem = (LicenseAgrParam)gvLicenseAgr.CurrentRow.DataBoundItem;
-                paidPeriodBindingSource.DataSource = licItem.Lic?.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
+                var list = licItem.Lic?.PaidPeriod.Where(rec => rec.Status < 7).OrderBy(rec => rec.BeginDate).ToList();
+                paidPeriodBindingSource.DataSource = list;
             }
             else
             {
@@ -241,7 +246,7 @@ namespace IpsViewComponentLibrary
         private void radButton1_Click(object sender, EventArgs e)
         {
             var currentAgree = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
-            CreatePeriod dialog = new CreatePeriod(currentAgree);
+            CreatePeriod dialog = new CreatePeriod(currentAgree.Lic);
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
@@ -272,7 +277,7 @@ namespace IpsViewComponentLibrary
                 GridDataRowElement payRow = null,
                                    destRow = null;
 
-                if( dragRow.RowInfo.DataBoundItem is MoneyReceived )
+                if (dragRow.RowInfo.DataBoundItem is MoneyReceived)
                 {
                     payRow = dragRow;
                     destRow = dropRow;
@@ -284,7 +289,7 @@ namespace IpsViewComponentLibrary
                 }
 
                 pay = payRow.RowInfo.DataBoundItem as MoneyReceived;
-                if( destRow.RowInfo.DataBoundItem is PaidPeriod ) // Drop to PaidPeriod
+                if (destRow.RowInfo.DataBoundItem is PaidPeriod) // Drop to PaidPeriod
                 {
                     period = destRow.RowInfo.DataBoundItem as PaidPeriod;
 
@@ -384,11 +389,40 @@ namespace IpsViewComponentLibrary
             if (period == null)
                 return;
 
-            if( MessageBox.Show( $"Закрити період {period.PeriodName} ?", "Закриття періоду", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes )
+            if (MessageBox.Show($"Закрити період {period.PeriodName} ?", "Закриття періоду", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 period.Status = 7;
                 SetPeriodStateExecuted?.Invoke(this, period);
+                paidPeriodBindingSource.RemoveCurrent();
+                RefreshData();
             }
+        }
+
+        private void gvPeriodsPayment_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            buttonController.changePeriod(e.CurrentRow?.DataBoundItem as PaidPeriod);
+        }
+    }
+
+    class ButtonController
+    {
+        private RadButton _btnNewPeriod,
+                            _btnDistribute,
+                            _btnClosePeriod;
+        public ButtonController(RadButton btnNewPeriod, RadButton btnDistribute, RadButton btnClosePeriod)
+        {
+            _btnNewPeriod = btnNewPeriod;
+            _btnDistribute = btnDistribute;
+            _btnClosePeriod = btnClosePeriod;
+        }
+
+        public void changePeriod(PaidPeriod period)
+        {
+            if (period == null
+                || period.Amount > period.Distribamount + period.Undistribamount)
+                _btnClosePeriod.Enabled = false;
+            else
+                _btnClosePeriod.Enabled = true;
         }
     }
 

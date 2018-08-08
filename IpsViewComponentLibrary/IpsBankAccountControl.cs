@@ -24,11 +24,11 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return BankAccountBindingSource.DataSource; }
+            get { return bsBankAccount.DataSource; }
             set
             {
-                if (BankAccountBindingSource.DataSource != value)
-                    BankAccountBindingSource.DataSource = value;
+                if (bsBankAccount.DataSource != value)
+                    bsBankAccount.DataSource = value;
             }
         }
 
@@ -36,13 +36,12 @@ namespace IpsViewComponentLibrary
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string DataMember
         {
-            get { return BankAccountBindingSource.DataMember; }
-            set { BankAccountBindingSource.DataMember = value; }
+            get { return bsBankAccount.DataMember; }
+            set { bsBankAccount.DataMember = value; }
         }
 
         #region Edit controls
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtMfo
         {
             get
@@ -51,7 +50,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtMfoName
         {
             get
@@ -60,7 +58,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtMfoOkpo
         {
             get
@@ -69,7 +66,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtTransitNumber
         {
             get
@@ -78,7 +74,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtAccountNumber
         {
             get

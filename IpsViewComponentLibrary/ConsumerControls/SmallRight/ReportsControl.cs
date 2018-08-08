@@ -24,8 +24,11 @@ namespace IpsViewComponentLibrary
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
+        public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public Func<int, List<RegisterItem>> GetRegisterItems;
         private ButtonEnableControl buttonController;
+        private Dictionary<int, PeriodStatus> dicPeriodStatus;
+        private Dictionary<int, RegisterStatus> dicRegStatus;
 
         public ReportsControl()
         {
@@ -35,6 +38,9 @@ namespace IpsViewComponentLibrary
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept);
+
+            dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
+            dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
 
         }
 
@@ -64,8 +70,6 @@ namespace IpsViewComponentLibrary
             var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
             var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
             var dicPeriod = IpsGlobal.AnketaDictionaties.period.ToDictionary(rec => rec.CodeI);
-            var dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
-            var dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
 
             foreach (var item in cust.Client.LicenseAgreement)
             {
@@ -210,19 +214,21 @@ namespace IpsViewComponentLibrary
                     var list = _excel.GetReportItems(dialog.FileName);
                     if (period.RegisterRatedList.Count() == 0)
                     {
-                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Status = 0/*Новий*/});
+                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0});
                     }
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId };
+                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId, RgStatusNavigation = dicRegStatus[0] };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
                     RatedList.Register.Add(addRegister);
 
-                    SaveRegisterRatedListExecuted(this, RatedList);
-                    gvPeriodReports.MasterTemplate.Refresh();
+                    SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
+                    if (!bindingReports.Contains(addRegister))
+                        bindingReports.Add(addRegister);
+                    // gvPeriodReports.MasterTemplate.Refresh();
 
                     BeginInvoke((Action)(() =>
                     {
@@ -230,8 +236,6 @@ namespace IpsViewComponentLibrary
                         EnableButtons(true);
                     }));
                 });
-
-
             }
 
         }
@@ -286,7 +290,7 @@ namespace IpsViewComponentLibrary
         {
             var row = e.RowElement.RowInfo;
             var licAgr = row.DataBoundItem as LicenseAgrParam;
-            var debt = licAgr.Lic.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount);
+            var debt = licAgr?.Lic.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount) ?? 0;
             row.Cells["Arrears"].Value = debt;
         }
 
@@ -332,25 +336,27 @@ namespace IpsViewComponentLibrary
                 var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
                 foreach (var item in paramList)
                     item.RgStatus = 1;
-                SetRegisterStateExecuted(this, paramList);
+                SetRegisterStateExecuted?.Invoke(this, paramList);
                 gvPeriodReports.MasterTemplate.Refresh();
                 btnToAcception.Enabled = false;
             }
         }
 
+        /// <summary>
+        /// Погодити перелік звітів
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            var list = bindingReports.DataSource as List<Register>;
-            if (list != null)
-            {
-                var paramList = list.Where(rec => rec.RgStatus == 2).ToList();
-                foreach (var item in paramList)
-                    item.RgStatus = 3;
-                SetRegisterStateExecuted(this, paramList);
-                gvPeriodReports.MasterTemplate.Refresh();
+            var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
+            if (period.RegisterRatedList.Sum(rec => rec.Register.Count(item => item.RgStatus < 2)) > 0)
+                return;
 
-                btnAccept.Enabled = false;
-            }
+            period.Status = 2;
+            SetPeriodStateExecuted?.Invoke(this, period);
+
+            RefreshData();
         }
     }
 
@@ -371,7 +377,7 @@ namespace IpsViewComponentLibrary
         }
         public void SetPeriodState(int? state, List<Register> list)
         {
-            if (state == 2)
+            if (state == null)
             {
                 _addReport.Enabled = false;
                 _toAcception.Enabled = false;
@@ -392,7 +398,7 @@ namespace IpsViewComponentLibrary
                 case 4: // Судова робота
                     _addReport.Enabled = true;
                     _toAcception.Enabled = regStates[0] > 0 ? true : false; // Нових > 0
-                    _accepted.Enabled = countInList > 0 && regStates[2] == countInList ? true : false; // Всі погоджені
+                    _accepted.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList ? true : false; // Всі погоджені
                     break;
                 case 2: // Прийом поштів
                 case 5: // 

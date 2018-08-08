@@ -70,6 +70,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.FileCustomer)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
+                        // .Include(item => item.Client.LicenseAgreement).ThenInclude(agr => agr.LicenseBigR.MusicalDesign)
                         .SingleOrDefaultAsync();
             // Отримати дані по Контрактах
             await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
@@ -77,7 +78,7 @@ namespace ipsmedserviceapp.Controllers
                 .Where(agree => agree.LicStatus < 4)
                 .Include(item => item.Agr)
                 .Include(item => item.LicCodeNavigation)
-
+                .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign)
                 .Include(rec => rec.PaidPeriod)
                 .LoadAsync();
 
@@ -1042,17 +1043,32 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="stateid"></param>
         /// <returns></returns>
         [HttpPut("period/state/{periodid}/{stateid}")]
-        public async Task<IActionResult> SetPeriodState(int periodid, int stateid, [FromBody] PaidPeriod body )
+        public async Task<IActionResult> SetPeriodState(int periodid, int stateid, [FromBody] PaidPeriod body)
         {
             IDbContextTransaction tran = null;
 
             try
             {
-                var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == periodid).SingleOrDefaultAsync();
+                var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == periodid)
+                    .SingleOrDefaultAsync();
                 if (period == null)
                     return BadRequest();
 
                 period.Status = stateid;
+                // Закрити
+                if (stateid == 7)
+                {
+                    await _dbContext.Entry(period).Collection(rec => rec.RegisterRatedList).Query()
+                        .Include(rec => rec.Register)
+                        .LoadAsync();
+
+                    foreach (var item in period.RegisterRatedList)
+                    {
+                        item.Status = 1;
+                        foreach (var reg in item.Register)
+                            reg.RgStatus = 4; // Виконано
+                    }
+                }
 
                 tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
@@ -1069,7 +1085,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
             return Json(body);
         }
-        
+
         /// <summary>
         /// Отримати детальну інформацію по звіту періоду
         /// </summary>
@@ -1097,7 +1113,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         {
             dest.SetFields(sors);
             var dicDest = dest.Register.ToDictionary(rec => rec.RegId);
-            foreach (var sorsItem in sors.Register.Where(rec => rec.RegisterItem.Count() > 0))
+            foreach (var sorsItem in sors.Register )
             {
                 Register destItem = null;
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
@@ -1257,7 +1273,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         } // DeleteRegisterDetail
 
         [HttpPut("period/register/state/{stateId}")]
-        public async Task<IActionResult> SetRegisterState( int stateId, [FromBody] List<Register> list)
+        public async Task<IActionResult> SetRegisterState(int stateId, [FromBody] List<Register> list)
         {
             IDbContextTransaction tran = null;
             try
@@ -1270,17 +1286,17 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     var prop = _dbContext.Entry(item).Property(e => e.RgStatus);
                     item.RgStatus = stateId;
                     prop.IsModified = true;
-                    if(stateId == 3)
+                    if (stateId == 3)
                     {
                         await _dbContext.Entry(item).Reference(rec => rec.RegisterRatedList).Query()
-                            .Include( rec => rec.Period )
+                            .Include(rec => rec.Period)
                             .LoadAsync();
                         item.RegisterRatedList.Status = 1;
                         item.RegisterRatedList.Period.Status = 2;
                     }
 
                 }
-                if ( stateId == 3)
+                if (stateId == 3)
                 {
 
                 }
@@ -1293,7 +1309,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
             catch (Exception ex)
             {
-                tran?.Rollback(  );
+                tran?.Rollback();
                 return BadRequest(ex.InnerException.Message);
                 throw;
             }
@@ -1614,16 +1630,15 @@ and t3.licStatus between 0 and 3
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
-        [HttpGet("period/register/RatedList/{custId}")]
-        public async Task<IActionResult> GetRegisterInfoForCustomer(int custId)
+        [HttpGet("period/register/RatedList")]
+        public async Task<IActionResult> GetRegisterInfoForCustomer([FromQuery] int custId)
         {
             var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
 select t1.* 
 from LicenseAgreement t1 
-where t1.custId = @custId and t1.licStatus = 2
+where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
-                .Include(lic => lic.Cust)
-                .Include(cln => cln.Cust)
+                .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
                 .ToListAsync();
 
             if (licenseAgreement.Count() == 0)
@@ -1634,7 +1649,7 @@ where t1.custId = @custId and t1.licStatus = 2
                 await _dbContext.Entry(item).Collection(rec => rec.PaidPeriod)
                     .Query()
                     // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
-                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register)
+                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register) // .ThenInclude(regItem => regItem.RegisterItem)
                     .LoadAsync();
 
                 await _dbContext.Entry(item).Collection(rec => rec.LicenseAgrParam).Query()
@@ -1646,7 +1661,23 @@ where t1.custId = @custId and t1.licStatus = 2
         }
 
         /// <summary>
-        /// Отримати записи зі звіту
+        /// Отримати Р/Л по ідентифікатору
+        /// </summary>
+        /// <param name="rmId"></param>
+        /// <returns></returns>
+        [HttpGet("period/register/RatedList/{rmId}")]
+        public async Task<IActionResult> GetRatedListById(int rmId)
+        {
+            var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == rmId)
+                        .Include(rec => rec.Period)
+                        .Include(rec => rec.Register)
+                        .SingleOrDefaultAsync();
+
+            return Json(item);
+        }
+
+        /// <summary>
+        /// Створити новий Р/Л
         /// </summary>
         /// <param name="regId"></param>
         /// <returns></returns>
@@ -1690,7 +1721,12 @@ where t1.custId = @custId and t1.licStatus = 2
             }
 
         } // PostRegisterDetail
-
+        /// <summary>
+        /// Змінити Р/Л
+        /// </summary>
+        /// <param name="RmId"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
         [HttpPut("period/register/RatedList/{RmId}")]
         public async Task<IActionResult> PutRegisterDetail(int RmId, [FromBody] RegisterRatedList body)
         {
@@ -1719,7 +1755,42 @@ where t1.custId = @custId and t1.licStatus = 2
             }
 
         } // PostRegisterDetail
+        
+        [HttpDelete("period/register/RatedList/{RmId}")]
+        public async Task<IActionResult> DeleteRatedList( int RmId )
+        {
+            var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == RmId)
+                .Include(rec => rec.Register )
+                .SingleOrDefaultAsync();
+            if (item == null)
+                return BadRequest();
+
+            _dbContext.Register.RemoveRange(item.Register);
+            _dbContext.RegisterRatedList.Remove(item);
+
+            IDbContextTransaction tran = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+            }
+            catch (Exception)
+            {
+                tran?.Rollback();
+                throw;
+            }
+
+            return Ok();
+        }
         #endregion
+
+        /// <summary>
+        /// Отримати записи зі звіту
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
 
     } // public class ConsumerController : Controller
 

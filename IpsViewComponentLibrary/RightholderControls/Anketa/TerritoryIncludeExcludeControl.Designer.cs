@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     partial class TerritoryIncludeExcludeControl
     {

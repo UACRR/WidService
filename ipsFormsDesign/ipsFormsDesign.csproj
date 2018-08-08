@@ -81,12 +81,14 @@
     <Compile Include="Dictionary\RegisterListViewModel.cs" />
     <Compile Include="Dictionary\RegisterSearchObject.cs" />
     <Compile Include="Dictionary\RegisterStatusType.cs" />
+    <Compile Include="Dictionary\RightholderListQuery.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />
     <Compile Include="Dictionary\TermsOfServiceWrapper.cs" />
     <Compile Include="EventAggregator\EventAggregator.cs" />
     <Compile Include="EventAggregator\IEventAggregator.cs" />
     <Compile Include="EventAggregator\ISubscriber.cs" />
     <Compile Include="Events\ObjectRightEvents.cs" />
+    <Compile Include="Events\RightholderEvents.cs" />
     <Compile Include="Interfaces\EFInterfaces.cs" />
     <Compile Include="Interfaces\IAnketaDictionaties.cs" />
     <Compile Include="Interfaces\IConsumer.cs" />

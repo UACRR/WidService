@@ -36,6 +36,14 @@ namespace ipsFormsDesign.Services
             return GetRightholdersList(resourceUrl);
         }
 
+        // use this method for fetch rightholder list
+        public IList<RightholderMainView> GetRightholders(RightholderListQuery query)
+        {
+            var list = _webApi.GetList<RightholderMainView>("rh", query.ToKeyValuePair());
+
+            return list;
+        }
+
         public Customer NewCustomer(int custType)
         {
             var anketaDic = _webApi.GetItemById<Customer>("rh/newrightholder", custType.ToString());

@@ -57,6 +57,13 @@ namespace IpsViewComponentLibrary
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
         public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
+        public event SavePayslipsEventHandler OnSavePayslip;
+        public event GetRegisterRatedList OnGetRegisterRatedList;
+        public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+
+
+
 
         public MiddleControlCabinet()
         {
@@ -80,6 +87,30 @@ namespace IpsViewComponentLibrary
             ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
             ctrlReference.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
+            ctrlPayslips.OnSavePayslip += CtrlPayslips_OnSavePayslip;
+            ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
+            ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
+            ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
+        }
+
+        private void CtrlPayslips_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        {
+            SavePariodCommandExecuted?.Invoke(sender, e);
+        }
+
+        private List<RegisterItem> CtrlPayslips_OnRegisterItemListNeed(int regId)
+        {
+            return OnRegisterItemListNeed?.Invoke(regId);
+        }
+
+        private Customer CtrlPayslips_OnGetRegisterRatedList(int custId)
+        {
+            return OnGetRegisterRatedList?.Invoke(custId);
+        }
+
+        private bool CtrlPayslips_OnSavePayslip(RegisterRatedList list)
+        {
+            return OnSavePayslip?.Invoke(list) ?? false;
         }
 
         //збереження customer

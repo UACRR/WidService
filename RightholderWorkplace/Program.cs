@@ -50,6 +50,8 @@ namespace RightholderWorkplace
 
             var dialogService = new DialogService();
             dialogService.ShowError(message, e.ToString());
+
+            Application.Exit();
         }
     }
 }

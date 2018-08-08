@@ -38,14 +38,14 @@ namespace IpsViewComponentLibrary
             this.dtIssuedDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.dtValidityDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.anketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBoxPasportNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtIssuedDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtValidityDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -68,7 +68,7 @@ namespace IpsViewComponentLibrary
             // 
             // txtBoxPasportNumber
             // 
-            this.txtBoxPasportNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaPersonBindingSource, "PFnumber", true));
+            this.txtBoxPasportNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "PFnumber", true));
             this.txtBoxPasportNumber.Location = new System.Drawing.Point(98, 2);
             this.txtBoxPasportNumber.MaxLength = 0;
             this.txtBoxPasportNumber.Name = "txtBoxPasportNumber";
@@ -87,7 +87,7 @@ namespace IpsViewComponentLibrary
             // 
             // dtIssuedDate
             // 
-            this.dtIssuedDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.anketaPersonBindingSource, "PFissuedDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
+            this.dtIssuedDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAnketaPerson, "PFissuedDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.dtIssuedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtIssuedDate.Location = new System.Drawing.Point(98, 28);
             this.dtIssuedDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -103,7 +103,7 @@ namespace IpsViewComponentLibrary
             // 
             // dtValidityDate
             // 
-            this.dtValidityDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.anketaPersonBindingSource, "PFvalidity", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
+            this.dtValidityDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAnketaPerson, "PFvalidity", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.dtValidityDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtValidityDate.Location = new System.Drawing.Point(98, 54);
             this.dtValidityDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -117,9 +117,9 @@ namespace IpsViewComponentLibrary
             this.dtValidityDate.ThemeName = "Office2013Light";
             this.dtValidityDate.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // anketaPersonBindingSource
+            // bsAnketaPerson
             // 
-            this.anketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            this.bsAnketaPerson.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
             // 
             // PassportInternationalControl
             // 
@@ -139,7 +139,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtIssuedDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtValidityDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,7 +153,7 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadDateTimePicker dtIssuedDate;
         private Telerik.WinControls.UI.RadDateTimePicker dtValidityDate;
-        private System.Windows.Forms.BindingSource anketaPersonBindingSource;
+        private System.Windows.Forms.BindingSource bsAnketaPerson;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

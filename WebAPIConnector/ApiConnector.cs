@@ -181,6 +181,9 @@ namespace WebAPIConnector
         {
             string idUrl = $"{url}/{id}";
             string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
+            if (retApiString == "null")
+                retApiString = string.Empty;
+
 
             if (string.IsNullOrEmpty(retApiString))
                 return default(T);
@@ -189,6 +192,33 @@ namespace WebAPIConnector
 
             return retObj.ToObject<T>();
         }
+
+
+        /// <summary>
+        /// Получити об'єкт з серверу додатків по ID
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public T GetItemByIdWithParam<T>(string url, string id, params KeyValuePair<string,string>[] listParam )
+        {
+            string idUrl = string.IsNullOrEmpty(id) ? url : $"{url}/{id}";
+            if (listParam.Length > 0)
+                idUrl = string.Concat(idUrl, AsQueryString(listParam));
+
+            string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
+            if (retApiString == "null")
+                retApiString = string.Empty;
+
+
+            if (string.IsNullOrEmpty(retApiString))
+                return default(T);
+
+            JObject retObj = JObject.Parse(retApiString);
+
+            return retObj.ToObject<T>();
+        }
+
 
 
         /// <summary>

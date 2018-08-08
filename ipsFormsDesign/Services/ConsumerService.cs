@@ -93,6 +93,36 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Отримати список Р/Л для споживача з параметром
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public Customer GetRatedListForCust( int custId )
+        {
+            string url = _prefix + "period/register/RatedList";
+            KeyValuePair<string, string> customer = new KeyValuePair<string, string>("custId", custId.ToString());
+            return _webApi.GetItemByIdWithParam<Customer>(url, string.Empty, customer);
+        }
+
+        /// <summary>
+        /// Отримати Р/Л по Ідентифікатору
+        /// </summary>
+        /// <param name="rmId"></param>
+        /// <returns></returns>
+        public RegisterRatedList GetRatedList( int rmId )
+        {
+            string url = _prefix + "period/register/RatedList";
+            return _webApi.GetItemById<RegisterRatedList>(url, rmId.ToString());
+        }
+
+        public bool DeleteRatedList(int rmId)
+        {
+            string url = _prefix + "period/register/RatedList";
+            return _webApi.DeleteItem(url, rmId.ToString());
+
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="regRatedList"></param>
@@ -377,11 +407,6 @@ namespace ipsFormsDesign.Services
         }
         #endregion
 
-        #region register
-        public Customer GetCustomerRegisterRatedList( int custId )
-        {
-            return _webApi.GetItemById<Customer>("consumer/period/register/RatedList", custId.ToString());
-        }
-        #endregion
+
     }
 }

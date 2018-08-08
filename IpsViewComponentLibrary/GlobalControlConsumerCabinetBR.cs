@@ -56,6 +56,10 @@ namespace IpsViewComponentLibrary
         public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
         public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
+        public event SavePayslipsEventHandler OnSavePayslip;
+        public event GetRegisterRatedList OnGetRegisterRatedList;
+        public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
 
 
         public string FilterString
@@ -74,8 +78,31 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnLicenseStatusChanging += CtrlCabinet_OnLicenseStatusChanging;
             ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
             ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
-
+            ctrlCabinet.OnSavePayslip += CtrlCabinet_OnSavePayslip;
+            ctrlCabinet.OnGetRegisterRatedList += CtrlCabinet_OnGetRegisterRatedList;
+            ctrlCabinet.OnRegisterItemListNeed += CtrlCabinet_OnRegisterItemListNeed;
+            ctrlCabinet.SavePariodCommandExecuted += CtrlCabinet_SavePariodCommandExecuted;
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+        }
+
+        private void CtrlCabinet_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        {
+            SavePariodCommandExecuted?.Invoke(sender, e);
+        }
+
+        private List<RegisterItem> CtrlCabinet_OnRegisterItemListNeed(int regId)
+        {
+            return OnRegisterItemListNeed?.Invoke(regId);
+        }
+
+        private Customer CtrlCabinet_OnGetRegisterRatedList(int custId)
+        {
+            return OnGetRegisterRatedList?.Invoke(custId);
+        }
+
+        private bool CtrlCabinet_OnSavePayslip(RegisterRatedList list)
+        {
+            return OnSavePayslip?.Invoke(list) ?? false;
         }
 
         private bool CtrlCabinet_OnChangeLicenseType(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)

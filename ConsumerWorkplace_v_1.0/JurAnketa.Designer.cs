@@ -719,10 +719,6 @@
             // 
             this.anketaCtrlAddressFactual.AddressDataMember = "FaAddress";
             this.anketaCtrlAddressFactual.CityDataMember = "FaCity";
-            this.anketaCtrlAddressFactual.CountriesDataMember = "";
-            this.anketaCtrlAddressFactual.CountriesDataSource = null;
-            this.anketaCtrlAddressFactual.CountriesDisplayMember = "";
-            this.anketaCtrlAddressFactual.CountriesValueMember = "";
             this.anketaCtrlAddressFactual.CountryDataMember = "FaCountry";
             this.anketaCtrlAddressFactual.DataMember = "";
             this.anketaCtrlAddressFactual.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
@@ -764,10 +760,6 @@
             this.anketaCtrlAddressFactual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.anketaCtrlAddressFactual.Name = "anketaCtrlAddressFactual";
             this.anketaCtrlAddressFactual.RegionDataMember = "FaRegion";
-            this.anketaCtrlAddressFactual.RegionsDataMember = "";
-            this.anketaCtrlAddressFactual.RegionsDataSource = null;
-            this.anketaCtrlAddressFactual.RegionsDisplayMember = "";
-            this.anketaCtrlAddressFactual.RegionsValueMember = "";
             this.anketaCtrlAddressFactual.Size = new System.Drawing.Size(886, 62);
             this.anketaCtrlAddressFactual.TabIndex = 14;
             // 
@@ -807,10 +799,6 @@
             // 
             this.anketaCtrlAddressLegal.AddressDataMember = "JaAddress";
             this.anketaCtrlAddressLegal.CityDataMember = "JaCity";
-            this.anketaCtrlAddressLegal.CountriesDataMember = "";
-            this.anketaCtrlAddressLegal.CountriesDataSource = null;
-            this.anketaCtrlAddressLegal.CountriesDisplayMember = "";
-            this.anketaCtrlAddressLegal.CountriesValueMember = "";
             this.anketaCtrlAddressLegal.CountryDataMember = "JaCountry";
             this.anketaCtrlAddressLegal.DataMember = "";
             this.anketaCtrlAddressLegal.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
@@ -852,10 +840,6 @@
             this.anketaCtrlAddressLegal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.anketaCtrlAddressLegal.Name = "anketaCtrlAddressLegal";
             this.anketaCtrlAddressLegal.RegionDataMember = "JaRegion";
-            this.anketaCtrlAddressLegal.RegionsDataMember = "";
-            this.anketaCtrlAddressLegal.RegionsDataSource = null;
-            this.anketaCtrlAddressLegal.RegionsDisplayMember = "";
-            this.anketaCtrlAddressLegal.RegionsValueMember = "";
             this.anketaCtrlAddressLegal.Size = new System.Drawing.Size(886, 61);
             this.anketaCtrlAddressLegal.TabIndex = 13;
             // 
