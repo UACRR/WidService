@@ -192,6 +192,12 @@
     <Compile Include="Common\PageSelectorControl.Designer.cs">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\CreateRatedList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
+      <DependentUpon>CreateRatedList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerDialogForms\ProlongationBigRight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -750,6 +756,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\PageSelectorControl.resx">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
+      <DependentUpon>CreateRatedList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
