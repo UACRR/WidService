@@ -145,8 +145,12 @@ namespace IpsViewComponentLibrary
         // * * * [Активні договори]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvLicenseAgr.CurrentRow == null)
+            if (gvLicenseAgr.CurrentRow == null || !(gvLicenseAgr.CurrentRow.DataBoundItem is LicenseAgrParam ))
+            {
+                bindingPaidPeriod.DataSource = typeof(PaidPeriod);
                 return;
+
+            }
 
             var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
 
@@ -171,8 +175,12 @@ namespace IpsViewComponentLibrary
         // * * * [Періоди платежів]
         private void gvPeriods_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvPeriods.CurrentRow == null)
+            if (gvPeriods.CurrentRow == null || !(gvPeriods.CurrentRow.DataBoundItem is PaidPeriod))
+            {
+                bindingRatedList.DataSource = typeof(RegisterRatedList);
+                bindingReports.DataSource = typeof( Register );
                 return;
+            }
 
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
             var reports = new List<Register>();
