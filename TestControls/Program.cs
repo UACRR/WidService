@@ -14,8 +14,8 @@ namespace TestControls
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-            //Application.Run(new GridTestForm());
+            //Application.Run(new MainForm());
+            Application.Run(new GridTestForm());
         }
     }
 }

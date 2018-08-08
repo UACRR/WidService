@@ -108,7 +108,7 @@ namespace ConsumerWorkplace_v_1._0
         private void CalculationCtrl_UpdateData(int id)
         {
             cabinet.mсInfoAgrCalc.SetCustomerData(_service.GetData(id));
-            cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetCustomerRegisterRatedList(id);
+            cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetRatedListForCust(id);
 
         }
 
@@ -214,7 +214,7 @@ namespace ConsumerWorkplace_v_1._0
             //if (_currentControl == cabinet)
                 //Task.Run(() => {
             //var Customer = _service.GetCustomerRegisterRatedList(id);
-            cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetCustomerRegisterRatedList(id);
+            cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetRatedListForCust(id);
             
             //cabinet.mсInfoAgrCalc.reportsControl.BeginInvoke((Action)(() => ));
         //});

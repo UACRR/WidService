@@ -6210,6 +6210,7 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.RegisterRatedList)
                     .WithMany(p => p.Register)
                     .HasForeignKey(d => new { d.PeriodId, d.RmId })
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_REG_REF_REGRATELIST");
             });
 
@@ -6433,6 +6434,8 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Amount)
                     .HasColumnName("amount")
                     .HasColumnType("money");
+
+                entity.Property(e => e.CntReport).HasColumnName("cntReport");
 
                 entity.Property(e => e.CreateDate)
                     .HasColumnName("createDate")

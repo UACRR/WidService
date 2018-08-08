@@ -1633,6 +1633,7 @@ public interface IRegisterRatedList
          DateTime? CreateDate { get; set; }
          string UserId { get; set; }
          int? Status { get; set; }
+         int? CntReport { get; set; }
 }
 public interface IRegisterStatus
     {    int CodeI { get; set; }

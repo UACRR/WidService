@@ -209,7 +209,7 @@ namespace IpsViewComponentLibrary
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                SavePariodCommandExecuted?.Invoke(this, currentAgree?.Lic?.PaidPeriod?.ToList());
+                SavePariodCommandExecuted?.Invoke(this, license?.PaidPeriod?.ToList());
                 
                 //UpdateData?.Invoke(_customer.CustId);
             }
