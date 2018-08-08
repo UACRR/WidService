@@ -77,7 +77,6 @@
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnAddReport = new Telerik.WinControls.UI.RadButton();
-            this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.btnToAcception = new Telerik.WinControls.UI.RadButton();
             this.btnAccept = new Telerik.WinControls.UI.RadButton();
@@ -93,6 +92,7 @@
             this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
             this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.bindingRatedList = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -464,9 +464,9 @@
             this.btnAddReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddReport.Location = new System.Drawing.Point(11, 161);
             this.btnAddReport.Name = "btnAddReport";
-            this.btnAddReport.Size = new System.Drawing.Size(110, 24);
+            this.btnAddReport.Size = new System.Drawing.Size(176, 24);
             this.btnAddReport.TabIndex = 1;
-            this.btnAddReport.Text = "Додати звіт";
+            this.btnAddReport.Text = "Додати звіт (обрати файл)";
             this.btnAddReport.ThemeName = "Office2013Light";
             this.btnAddReport.Click += new System.EventHandler(this.btnAddReport_Click);
             // 
@@ -485,7 +485,7 @@
             this.btnToAcception.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnToAcception.Location = new System.Drawing.Point(127, 161);
             this.btnToAcception.Name = "btnToAcception";
-            this.btnToAcception.Size = new System.Drawing.Size(215, 24);
+            this.btnToAcception.Size = new System.Drawing.Size(176, 24);
             this.btnToAcception.TabIndex = 2;
             this.btnToAcception.Text = "Відправити на погодження";
             this.btnToAcception.ThemeName = "Office2013Light";
@@ -496,7 +496,7 @@
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAccept.Location = new System.Drawing.Point(348, 161);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(156, 24);
+            this.btnAccept.Size = new System.Drawing.Size(176, 24);
             this.btnAccept.TabIndex = 3;
             this.btnAccept.Text = "Зафіксувати перелік звітів";
             this.btnAccept.ThemeName = "Office2013Light";
@@ -702,13 +702,30 @@
             // 
             this.bindingReports.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
-            // bindingPaidPeriod
+            this.splitPanel3.Controls.Add(this.btnAccept);
+            this.splitPanel3.Controls.Add(this.radLabel2);
+            this.splitPanel3.Controls.Add(this.btnToAcception);
+            this.splitPanel3.Controls.Add(this.btnAddReport);
+            this.splitPanel3.Controls.Add(this.gvPeriodReports);
+            this.splitPanel3.Location = new System.Drawing.Point(0, 400);
+            this.splitPanel3.Name = "splitPanel3";
             // 
             this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
             // 
             // bindingRatedList
             // 
             this.bindingRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
+            // 
+            // btnCreateReport
+            // 
+            this.btnCreateReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreateReport.Location = new System.Drawing.Point(193, 210);
+            this.btnCreateReport.Name = "btnCreateReport";
+            this.btnCreateReport.Size = new System.Drawing.Size(176, 24);
+            this.btnCreateReport.TabIndex = 18;
+            this.btnCreateReport.Text = "Додати звіт (ручне введення)";
+            this.btnCreateReport.ThemeName = "Office2013Light";
+            this.btnCreateReport.Click += new System.EventHandler(this.btnCreateReport_Click);
             // 
             // ReportsControl
             // 
@@ -762,7 +779,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadGridView gvPeriodReports;
         private Telerik.WinControls.UI.RadButton btnAddReport;
-        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private System.Windows.Forms.BindingSource bindingLicAgreement;
         private System.Windows.Forms.BindingSource bindingPaidPeriod;
@@ -780,5 +796,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.SplitPanel splitPanelReports;
         private System.Windows.Forms.BindingSource bindingRatedList;
+        private Telerik.WinControls.UI.RadButton btnCreateReport;
     }
 }
