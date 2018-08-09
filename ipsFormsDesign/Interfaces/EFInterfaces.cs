@@ -1591,9 +1591,16 @@ public interface IRegisterCount
          int? RegItemIdBr { get; set; }
          decimal? PrepaySum { get; set; }
 }
-public interface IRegisterItem
+public interface IRegisterExtra
     {
+         int RegExtraId { get; set; }
          int RegId { get; set; }
+         int RegIitemId { get; set; }
+         int RoleCode { get; set; }
+         string Name { get; set; }
+}
+public interface IRegisterItem
+    {    int RegId { get; set; }
          int RegIitemId { get; set; }
          int? ObjId { get; set; }
          int CodeItem { get; set; }

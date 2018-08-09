@@ -41,10 +41,14 @@ namespace ipsmedserviceapp.Model
         /// <typeparam name="T"></typeparam>
         /// <param name="sors">SorsList</param>
         /// <param name="dest">DestList</param>
-        /// <param name="syncItem">визовом createNew для кожного нового елемента(sorsItem, DestItem)</param>
+        /// <param name="syncItem">визовом createNew для кожного нового елемента(bool, sorsItem, DestItem)
+        /// bool - true - Додається новий елемент
+        /// bool - false - Модифікується існуючий елемент
+        /// 
+        /// </param>
         /// <param name="compId"></param>
         /// <param name="excludeField"></param>
-        public void UpdateListExtra<T>(ICollection<T> sors, ICollection<T> dest, Action<T,T> syncItem, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
+        public void UpdateListExtra<T>(ICollection<T> sors, ICollection<T> dest, Action<bool, T,T> syncItem, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {
             // Видалення
             List<T> tempList = dest.Where(row => !sors.Any(item => compId(row, item))).ToList();
@@ -54,7 +58,7 @@ namespace ipsmedserviceapp.Model
             tempList.ForEach(item => {
                 var destItem = dest.First(row => compId(item, row));
                 destItem.SetFields( item );
-                syncItem(item, destItem);
+                syncItem(false, item, destItem);
             });
             // Додаємо нові
             tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
@@ -62,7 +66,7 @@ namespace ipsmedserviceapp.Model
                 T addItem = new T();
                 addItem.SetFields(item, excludeField);
                 dest.Add(addItem);
-                syncItem( item,  addItem);
+                syncItem( true, item,  addItem);
             });
 
         }
@@ -81,7 +85,7 @@ namespace ipsmedserviceapp.Model
         {
             // Змінюємо спільні записи
             List<T> tempList = sors.Where(row => dest.Any(item => compId(row, item))).ToList();
-            tempList.ForEach(item => dest.First(row => compId(item, row)).SetFields(item, excludeField));            
+            tempList.ForEach(item => dest.First(row => compId(item, row)).SetFields(item, excludeField));
             // Додаємо нові
             tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
             tempList.ForEach(item =>
@@ -90,6 +94,38 @@ namespace ipsmedserviceapp.Model
                 addItem.SetFields(item, excludeField);
                 dest.Add(addItem);
                 maxId(addItem);
+            });
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sors"></param>
+        /// <param name="dest"></param>
+        /// <param name="syncItem">Action Виконується для кожного елементу
+        /// bool true - додавання нового елементу
+        ///      false - модифікація поточного елементу
+        /// другий параметр - SorsItem     
+        /// третій параметр - DestItem     
+        /// </param>
+        /// <param name="compId"></param>
+        public void AppendListExtra<T>(ICollection<T> sors, ICollection<T> dest, Action<bool,T,T> syncItem, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
+        {
+            // Змінюємо спільні записи
+            List<T> tempList = sors.Where(row => dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(sorsItem => {
+                var destItem = dest.First(row => compId(sorsItem, row));
+                destItem.SetFields(sorsItem, excludeField);
+                syncItem(false, sorsItem, destItem);
+            });
+            // Додаємо нові
+            tempList = sors.Where(row => !dest.Any(item => compId(row, item))).ToList();
+            tempList.ForEach(item =>
+            {
+                T addItem = new T();
+                addItem.SetFields(item, excludeField);
+                dest.Add(addItem);
+                syncItem(true, item, addItem);
             });
         }
 

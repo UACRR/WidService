@@ -6,6 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class RegisterItem : IRegisterItem
     {
+        public RegisterItem()
+        {
+            RegisterExtra = new ObservableListSource<RegisterExtra>();
+        }
+
         public int RegId { get; set; }
         public int RegIitemId { get; set; }
         public int? ObjId { get; set; }
@@ -27,6 +32,7 @@ namespace ipsFormsDesign.Model
         public RegisterItemType CodeItemNavigation { get; set; }
         public ObjectRight Obj { get; set; }
         public Register Reg { get; set; }
+        public ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
     }
 }
 

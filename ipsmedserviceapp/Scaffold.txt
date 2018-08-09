@@ -191,6 +191,7 @@
 "Register",
 "RegisterAuthors",
 "RegisterCount",
+"RegisterExtra",
 "RegisterItem",
 "RegisterItemType",
 "RegisterListStatus",

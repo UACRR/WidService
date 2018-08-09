@@ -198,6 +198,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<Register> Register { get; set; }
         public virtual DbSet<RegisterAuthors> RegisterAuthors { get; set; }
         public virtual DbSet<RegisterCount> RegisterCount { get; set; }
+        public virtual DbSet<RegisterExtra> RegisterExtra { get; set; }
         public virtual DbSet<RegisterItem> RegisterItem { get; set; }
         public virtual DbSet<RegisterItemType> RegisterItemType { get; set; }
         public virtual DbSet<RegisterListStatus> RegisterListStatus { get; set; }
@@ -6296,6 +6297,36 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.RegisterCount)
                     .HasForeignKey(d => new { d.RegItemIdBr, d.RegIdBr })
                     .HasConstraintName("FK_REGISTER_REFERENCE_BRREGITE");
+            });
+
+            modelBuilder.Entity<RegisterExtra>(entity =>
+            {
+                entity.HasKey(e => e.RegExtraId);
+
+                entity.Property(e => e.RegExtraId).HasColumnName("regExtraId");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.RegId).HasColumnName("regId");
+
+                entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
+
+                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
+
+                entity.HasOne(d => d.RoleCodeNavigation)
+                    .WithMany(p => p.RegisterExtra)
+                    .HasForeignKey(d => d.RoleCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_REGEX_REF_CREATIVEROLE");
+
+                entity.HasOne(d => d.RegI)
+                    .WithMany(p => p.RegisterExtra)
+                    .HasForeignKey(d => new { d.RegId, d.RegIitemId })
+                    .HasConstraintName("FK_REGEX_REF_REGITEM");
             });
 
             modelBuilder.Entity<RegisterItem>(entity =>
