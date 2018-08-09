@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Interfaces;
@@ -21,6 +18,7 @@ namespace IpsViewComponentLibrary
     public partial class LicenseAgreementListControl : UserControl
     {
         private readonly LicenseDataService _licenseDataService;
+        private readonly DialogService _dialogService;
         private AgreementStatuses[] _allowedStatuses = new[] { AgreementStatuses.Active, AgreementStatuses.OnNegotiation, AgreementStatuses.Closed, AgreementStatuses.Canceled };
 
         protected bool IsDesignMode
@@ -67,6 +65,7 @@ namespace IpsViewComponentLibrary
             if (!IsDesignMode)
             {
                 _licenseDataService = new LicenseDataService();
+                _dialogService = new DialogService();
             }
         }
 
@@ -188,8 +187,21 @@ namespace IpsViewComponentLibrary
             var consumer = consumerService.GetData(selectedLicenseAgreement.CustId.Value);
             var bigRightView = consumerService.getMainViewBR().FirstOrDefault(rec => rec.CustId == selectedLicenseAgreement.CustId.Value);
 
-            var view = new RequestForm(consumer, bigRightView, IpsGlobal.AnketaDictionaties, FormType.Edit, selectedLicenseAgreement.LicId);
-            view.ShowDialog();
+            var view = new RequestForm(consumer, bigRightView, IpsGlobal.AnketaDictionaties, FormType.Edit, selectedLicenseAgreement.LicId, RequestForm.FormMode.ForSmallRightAdmin);
+
+            if (view.ShowDialog() == DialogResult.OK)
+            {
+                var result = consumerService.Save(consumer);
+
+                if (result)
+                {
+                    UpdateList();
+                }
+                else
+                {
+                    _dialogService.ShowError("Не вдалося зберегти зміни.");
+                }
+            }
         }
 
         #region Search rightolder
