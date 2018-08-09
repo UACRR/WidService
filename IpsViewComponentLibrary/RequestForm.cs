@@ -277,41 +277,6 @@ namespace IpsViewComponentLibrary
             bsClnPlaceHoll.DataSource = _customer.Client.ClnBusinessPlace.SingleOrDefault(rec => rec?.PlaceId == (int?)ddlPlaceName?.SelectedItem?.Value)?.ClnPlaceHoll;
         }
 
-        private void ddlActType_SelectedValueChanged(object sender, EventArgs e)
-        {
-            RefreshGridDataSource();
-        }
-
-        private void btnAddAct_Click(object sender, EventArgs e)
-        {
-            MusicalDesign design = new MusicalDesign
-            {
-                ActNumb = (int)ddlActType.SelectedItem.Value,
-                Duration = new TimeSpan(00, 00, 00, 01),
-            };
-
-            var mus = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.MusicalDesign;
-            mus?.Add(design);
-            AddCompositionForm addCompositionForm = new AddCompositionForm(mus?.LastOrDefault());
-            if (addCompositionForm.ShowDialog() != DialogResult.OK)
-                mus?.Remove(design);
-            else
-                RefreshGridDataSource();
-        }
-
-        private void RefreshGridDataSource()
-        {
-            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR?.MusicalDesign?.ToList();
-            gvViewActList.DataSource = source;
-        }
-
-        private void gvViewActList_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            var delItem = e.Row.DataBoundItem as MusicalDesign;
-            _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.MusicalDesign.Remove(delItem);
-            RefreshGridDataSource();
-        }
-
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
             if (pageView.SelectedPage == pvMusicalArrangement)
