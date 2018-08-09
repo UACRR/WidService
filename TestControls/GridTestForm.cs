@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 using Telerik.Charting;
 using Telerik.Charting.Styles;
 using Telerik.WinControls;
@@ -31,8 +32,8 @@ namespace TestControls
         {
             Random random = new Random();
             
-            ReportExcelViewForm form = new ReportExcelViewForm(new Register(), random.Next(0, 10) >= 5);
-            form.ShowDialog();
+            CreateProgReportBigRight reportBigRight =new CreateProgReportBigRight();
+            reportBigRight.ShowDialog();
         }
     }
 }
