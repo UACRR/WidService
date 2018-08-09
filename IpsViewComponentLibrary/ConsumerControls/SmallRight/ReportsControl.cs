@@ -42,6 +42,17 @@ namespace IpsViewComponentLibrary
             gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
             buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept, btnCreateReport);
 
+            if (IpsGlobal.AnketaDictionaties != null)
+            {
+                subscribeDictionary(null, null);
+            }
+            else
+                IpsGlobal.AnketaDictionatiesChanged += subscribeDictionary;
+
+        }
+
+        private void subscribeDictionary(object sender, EventArgs args)
+        {
             dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
             dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
             dicRatedListStatus = IpsGlobal.AnketaDictionaties.registerListStatus.ToDictionary(rec => rec.CodeI);

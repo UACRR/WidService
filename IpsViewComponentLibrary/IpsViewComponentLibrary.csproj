@@ -198,11 +198,11 @@
     <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\PayyInfo.cs">
+    <Compile Include="ConsumerControls\PaysInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\PayyInfo.Designer.cs">
-      <DependentUpon>PayyInfo.cs</DependentUpon>
+    <Compile Include="ConsumerControls\PaysInfo.Designer.cs">
+      <DependentUpon>PaysInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerDialogForms\ProlongationBigRight.cs">
       <SubType>Form</SubType>
@@ -767,8 +767,8 @@
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\PayyInfo.resx">
-      <DependentUpon>PayyInfo.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\PaysInfo.resx">
+      <DependentUpon>PaysInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>

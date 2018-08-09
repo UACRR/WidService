@@ -1639,6 +1639,7 @@ from LicenseAgreement t1
 where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
                 .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
+                .Include(lic => lic.Cust).ThenInclude(cln => cln.MoneyReceived )
                 .ToListAsync();
 
             if (licenseAgreement.Count() == 0)
