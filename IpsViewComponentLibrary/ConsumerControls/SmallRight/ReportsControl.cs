@@ -15,6 +15,7 @@ using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 
 namespace IpsViewComponentLibrary
 {
@@ -330,7 +331,21 @@ namespace IpsViewComponentLibrary
                     });
                 }
                 var register = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
-                if (register != null)
+                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.KindCode;
+                if (register != null && (licKind == 2 || licKind == 3)) // рапортичка
+                {
+                    CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register)
+                    {
+                        StartPosition = FormStartPosition.CenterParent
+                    };
+                    if (progReportBigRight.ShowDialog() == DialogResult.OK)
+                    {
+                        SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+                    }
+                    else
+                        period.RegisterRatedList.Remove(ratedList);
+                }
+                else if (register != null) // не рапотричка
                 {
                     ReportExcelViewForm viewForm = new ReportExcelViewForm(register, true)
                     {
