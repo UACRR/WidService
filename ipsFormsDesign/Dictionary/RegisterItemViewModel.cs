@@ -11,6 +11,10 @@ namespace ipsFormsDesign.Dictionary
     {
         public int RegId { get; set; }
         public int RegIitemId { get; set; }
+
+        public int MdId { get; set; }
+        public int LicId { get; set; }
+
         public int? ObjId { get; set; }
         public string ItemName { get; set; }
         public int? CategoryCode { get; set; }
