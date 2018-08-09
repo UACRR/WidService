@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Model;
 using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
@@ -12,6 +13,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     public partial class AddAuthRoleForMusDesingBr : Telerik.WinControls.UI.RadForm
     {
         public AddAuthRoleForMusDesingBr()
+        {
+            InitializeComponent();
+        }
+        public AddAuthRoleForMusDesingBr(RegisterItem registerItem)
         {
             InitializeComponent();
         }

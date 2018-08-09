@@ -30,13 +30,14 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn7 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn8 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.lblName = new Telerik.WinControls.UI.RadLabel();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
@@ -72,6 +73,9 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanelMusicalDesign = new Telerik.WinControls.UI.SplitPanel();
             this.cpMusicalDesign = new Telerik.WinControls.UI.RadCollapsiblePanel();
+            this.bsRegister = new System.Windows.Forms.BindingSource(this.components);
+            this.bsCreativeRole = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRegisterItem = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
@@ -116,6 +120,9 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             ((System.ComponentModel.ISupportInitialize)(this.cpMusicalDesign)).BeginInit();
             this.cpMusicalDesign.PanelContainer.SuspendLayout();
             this.cpMusicalDesign.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegister)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,6 +137,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // txtName
             // 
+            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "FileName", true));
             this.txtName.Location = new System.Drawing.Point(3, 27);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(438, 21);
@@ -149,6 +157,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // txtAmount
             // 
+            this.txtAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "RegAmount", true));
             this.txtAmount.Location = new System.Drawing.Point(3, 78);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(175, 21);
@@ -166,6 +175,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // txtAuthRate
             // 
+            this.txtAuthRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "RegRate", true));
             this.txtAuthRate.Location = new System.Drawing.Point(184, 78);
             this.txtAuthRate.Name = "txtAuthRate";
             this.txtAuthRate.Size = new System.Drawing.Size(175, 21);
@@ -183,6 +193,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // txtAuthAmount
             // 
+            this.txtAuthAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "RegRoyalty", true));
             this.txtAuthAmount.Location = new System.Drawing.Point(365, 78);
             this.txtAuthAmount.Name = "txtAuthAmount";
             this.txtAuthAmount.Size = new System.Drawing.Size(175, 21);
@@ -200,6 +211,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // txtMusicalDesignAmount
             // 
+            this.txtMusicalDesignAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "MusicAmount", true));
             this.txtMusicalDesignAmount.Location = new System.Drawing.Point(183, 28);
             this.txtMusicalDesignAmount.Name = "txtMusicalDesignAmount";
             this.txtMusicalDesignAmount.Size = new System.Drawing.Size(175, 21);
@@ -217,6 +229,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // txtMusicalDesignRate
             // 
+            this.txtMusicalDesignRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "MusicRate", true));
             this.txtMusicalDesignRate.Location = new System.Drawing.Point(2, 28);
             this.txtMusicalDesignRate.Name = "txtMusicalDesignRate";
             this.txtMusicalDesignRate.Size = new System.Drawing.Size(175, 21);
@@ -257,26 +270,26 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.gvMusicalDesing.MasterTemplate.AllowDragToGroup = false;
             this.gvMusicalDesing.MasterTemplate.AutoGenerateColumns = false;
             this.gvMusicalDesing.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn10.HeaderText = "Назва твору";
-            gridViewTextBoxColumn10.Name = "column1";
-            gridViewTextBoxColumn10.Width = 882;
-            gridViewCommandColumn7.FieldName = "btnsDelete";
-            gridViewCommandColumn7.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn7.HeaderText = "";
-            gridViewCommandColumn7.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn7.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn7.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn7.MaxWidth = 30;
-            gridViewCommandColumn7.MinWidth = 30;
-            gridViewCommandColumn7.Name = "btnsDelete";
-            gridViewCommandColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            gridViewCommandColumn7.Width = 30;
+            gridViewTextBoxColumn1.HeaderText = "Назва твору";
+            gridViewTextBoxColumn1.Name = "column1";
+            gridViewTextBoxColumn1.Width = 882;
+            gridViewCommandColumn1.FieldName = "btnsDelete";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "btnsDelete";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            gridViewCommandColumn1.Width = 30;
             this.gvMusicalDesing.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn10,
-            gridViewCommandColumn7});
+            gridViewTextBoxColumn1,
+            gridViewCommandColumn1});
             this.gvMusicalDesing.MasterTemplate.EnableGrouping = false;
-            this.gvMusicalDesing.MasterTemplate.ViewDefinition = tableViewDefinition7;
+            this.gvMusicalDesing.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvMusicalDesing.Name = "gvMusicalDesing";
             this.gvMusicalDesing.ReadOnly = true;
             this.gvMusicalDesing.ShowGroupPanel = false;
@@ -387,6 +400,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             this.txtStagingName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStagingName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItem, "ItemName", true));
             this.txtStagingName.Location = new System.Drawing.Point(2, 29);
             this.txtStagingName.Name = "txtStagingName";
             this.txtStagingName.Size = new System.Drawing.Size(580, 21);
@@ -396,6 +410,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // txtStagingRate
             // 
             this.txtStagingRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStagingRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "AuthRate", true));
             this.txtStagingRate.Location = new System.Drawing.Point(588, 29);
             this.txtStagingRate.Name = "txtStagingRate";
             this.txtStagingRate.Size = new System.Drawing.Size(175, 21);
@@ -405,6 +420,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // txtStagingAmount
             // 
             this.txtStagingAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStagingAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "AuthAmount", true));
             this.txtStagingAmount.Location = new System.Drawing.Point(769, 29);
             this.txtStagingAmount.Name = "txtStagingAmount";
             this.txtStagingAmount.Size = new System.Drawing.Size(170, 21);
@@ -453,29 +469,29 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.gvStaging.MasterTemplate.AllowDragToGroup = false;
             this.gvStaging.MasterTemplate.AllowEditRow = false;
             this.gvStaging.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn11.HeaderText = "Творча роль";
-            gridViewTextBoxColumn11.Name = "column1";
-            gridViewTextBoxColumn11.Width = 351;
-            gridViewTextBoxColumn12.HeaderText = "ПІБ автора";
-            gridViewTextBoxColumn12.Name = "column2";
-            gridViewTextBoxColumn12.Width = 532;
-            gridViewCommandColumn8.FieldName = "btnsDelete";
-            gridViewCommandColumn8.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn8.HeaderText = "";
-            gridViewCommandColumn8.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn8.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn8.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn8.MaxWidth = 30;
-            gridViewCommandColumn8.MinWidth = 30;
-            gridViewCommandColumn8.Name = "btnsDelete";
-            gridViewCommandColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn8.Width = 30;
+            gridViewTextBoxColumn2.HeaderText = "Творча роль";
+            gridViewTextBoxColumn2.Name = "column1";
+            gridViewTextBoxColumn2.Width = 351;
+            gridViewTextBoxColumn3.HeaderText = "ПІБ автора";
+            gridViewTextBoxColumn3.Name = "column2";
+            gridViewTextBoxColumn3.Width = 532;
+            gridViewCommandColumn2.FieldName = "btnsDelete";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "btnsDelete";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.Width = 30;
             this.gvStaging.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12,
-            gridViewCommandColumn8});
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewCommandColumn2});
             this.gvStaging.MasterTemplate.EnableGrouping = false;
-            this.gvStaging.MasterTemplate.ViewDefinition = tableViewDefinition8;
+            this.gvStaging.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvStaging.Name = "gvStaging";
             this.gvStaging.ShowGroupPanel = false;
             this.gvStaging.Size = new System.Drawing.Size(937, 123);
@@ -576,6 +592,18 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.cpMusicalDesign.TabIndex = 19;
             this.cpMusicalDesign.ThemeName = "Office2013Light";
             // 
+            // bsRegister
+            // 
+            this.bsRegister.DataSource = typeof(ipsFormsDesign.Model.Register);
+            // 
+            // bsCreativeRole
+            // 
+            this.bsCreativeRole.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
+            // 
+            // bsRegisterItem
+            // 
+            this.bsRegisterItem.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
+            // 
             // CreateProgReportBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -640,6 +668,9 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.cpMusicalDesign.PanelContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cpMusicalDesign)).EndInit();
             this.cpMusicalDesign.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegister)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -682,5 +713,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private Telerik.WinControls.UI.RadTextBox txtAuthName;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadCollapsiblePanel cpMusicalDesign;
+        private System.Windows.Forms.BindingSource bsRegister;
+        private System.Windows.Forms.BindingSource bsCreativeRole;
+        private System.Windows.Forms.BindingSource bsRegisterItem;
     }
 }

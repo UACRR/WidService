@@ -1064,6 +1064,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.FileType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
