@@ -48,6 +48,7 @@ namespace IpsViewComponentLibrary
             SetDefaultPages();
             userInfoCtrl.SetEmptyFields();
             ctrlAgrInfoMain.SetEmpty();
+            ctrlPaysInfo1.Customer = null;
             gvLicenseAgr.DataSource = new object();
         }
 
@@ -89,6 +90,7 @@ namespace IpsViewComponentLibrary
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
             calculationCtrl.Customer = _customer;
+            ctrlPaysInfo1.Customer = _customer;
             
             //reportsControl.SetData(cust);
             // reportsControl.SetDataSourceForLicAgrGrid(calculationCtrl.DataSourceReturn);
