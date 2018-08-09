@@ -1676,11 +1676,15 @@ from LicenseAgreement t1
 where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
                 .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
-                .Include(lic => lic.Cust).ThenInclude(cln => cln.MoneyReceived )
+                .Include(lic => lic.Cust)
                 .ToListAsync();
 
+            
             if (licenseAgreement.Count() == 0)
                 return Ok();
+
+            await _dbContext.MoneyReceived.Where(rec => rec.CustId == custId).LoadAsync();
+
 
             foreach (var item in licenseAgreement)
             {
@@ -1694,7 +1698,8 @@ where t1.custId = @custId
                     .Where(rec => rec.LicVersion == item.LicVersion).LoadAsync();
             }
 
-            return Json(licenseAgreement.First().Cust.Cust);
+            var customer = licenseAgreement.First().Cust.Cust;
+            return Json(customer);
 
         }
 

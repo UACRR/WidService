@@ -34,7 +34,7 @@ namespace IpsViewComponentLibrary
 
             bindingSource.DataSource = undistrinbMoney;
             bindingSourceAgreement.DataSource = licenseAgr.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == licenseAgr.LicVersion );
-            _source = licenseAgr.PaidPeriod.Where(rec => rec.Status < 3 && (period == null || period.PeriodId == rec.PeriodId)).OrderBy(rec => rec.BeginDate)
+            _source = licenseAgr.PaidPeriod.Where(rec => rec.Status < 7 && (period == null || period.PeriodId == rec.PeriodId)).OrderBy(rec => rec.BeginDate)
                 .Select(rec => new GridPeriods
                 {
                     PeriodId = rec.PeriodId,
