@@ -50,7 +50,6 @@ namespace IpsViewComponentLibrary
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.checkIsTour = new Telerik.WinControls.UI.RadCheckBox();
-            this.bsLicenseBigR = new System.Windows.Forms.BindingSource(this.components);
             this.lblTour = new System.Windows.Forms.Label();
             this.txtWhereTour = new Telerik.WinControls.UI.RadTextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -65,43 +64,32 @@ namespace IpsViewComponentLibrary
             this.txtFillingRate = new Telerik.WinControls.UI.RadTextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtValuePlace = new Telerik.WinControls.UI.RadTextBox();
-            this.bsClnPlaceHoll = new System.Windows.Forms.BindingSource(this.components);
             this.label12 = new System.Windows.Forms.Label();
             this.ddlPlaceName = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsLicense = new System.Windows.Forms.BindingSource(this.components);
-            this.bsClnBusinessPlace = new System.Windows.Forms.BindingSource(this.components);
             this.label14 = new System.Windows.Forms.Label();
             this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
             this.pvMusicalArrangement = new Telerik.WinControls.UI.RadPageViewPage();
             this.label13 = new System.Windows.Forms.Label();
             this.ddlActType = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsMusicDesign = new System.Windows.Forms.BindingSource(this.components);
-            this.bsDictObjAct = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewActList = new Telerik.WinControls.UI.RadGridView();
             this.btnAddAct = new Telerik.WinControls.UI.RadButton();
             this.dtDate = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.bsLicAgrParam = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.txtLicNum = new Telerik.WinControls.UI.RadTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblClientTitle = new Telerik.WinControls.UI.RadLabel();
             this.panelClient = new Telerik.WinControls.UI.RadPanel();
-            this.bsConsumerBigRightView = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.panelInfo = new Telerik.WinControls.UI.RadPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.txtLang = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsDictLanguage = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.txtVinagoroda = new Telerik.WinControls.UI.RadTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtActCode = new Telerik.WinControls.UI.RadTextBox();
-            this.bsObjectRight = new System.Windows.Forms.BindingSource(this.components);
             this.ddlPerformType = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsDictPerformType = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.ddlGenreType = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsDictGenreType = new System.Windows.Forms.BindingSource(this.components);
             this.dtPremiereDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -109,7 +97,19 @@ namespace IpsViewComponentLibrary
             this.mainPanel = new Telerik.WinControls.UI.RadPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.bsConsumerBigRightView = new System.Windows.Forms.BindingSource(this.components);
+            this.bsLicenseBigR = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictLanguage = new System.Windows.Forms.BindingSource(this.components);
+            this.bsObjectRight = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictPerformType = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictGenreType = new System.Windows.Forms.BindingSource(this.components);
+            this.bsLicAgrParam = new System.Windows.Forms.BindingSource(this.components);
             this.bsWorkRh = new System.Windows.Forms.BindingSource(this.components);
+            this.bsClnPlaceHoll = new System.Windows.Forms.BindingSource(this.components);
+            this.bsLicense = new System.Windows.Forms.BindingSource(this.components);
+            this.bsClnBusinessPlace = new System.Windows.Forms.BindingSource(this.components);
+            this.bsMusicDesign = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictObjAct = new System.Windows.Forms.BindingSource(this.components);
             this.cStatusName = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cAgrDate = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cAgrNumber = new IpsViewComponentLibrary.SingleShowInformationControl();
@@ -117,6 +117,7 @@ namespace IpsViewComponentLibrary
             this.cInnokpo = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cClientName = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.ctrlAuthorRightholderList = new IpsViewComponentLibrary.ObjectRightControls.AuthorRightholderBrListControl();
+            this.ctrlMusicalDesignList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAuthors.SuspendLayout();
@@ -129,7 +130,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkIsTour)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicenseBigR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWhereTour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicTerm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTicketPriceUsd)).BeginInit();
@@ -137,44 +137,45 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.txtPerformNumb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFillingRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtValuePlace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPlaceName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicense)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).BeginInit();
             this.pvMusicalArrangement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlActType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsMusicDesign)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictObjAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewActList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewActList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblClientTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelClient)).BeginInit();
             this.panelClient.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelInfo)).BeginInit();
             this.panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtLang)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictLanguage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVinagoroda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsObjectRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPerformType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictPerformType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPremiereDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).BeginInit();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicenseBigR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictLanguage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictPerformType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsWorkRh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicense)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMusicDesign)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictObjAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,7 +188,7 @@ namespace IpsViewComponentLibrary
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvAuthors;
+            this.pageView.SelectedPage = this.pvMusicalArrangement;
             this.pageView.Size = new System.Drawing.Size(1217, 677);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
@@ -216,7 +217,7 @@ namespace IpsViewComponentLibrary
             this.txtCommentCl.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWorkRh, "WorkCoommentCl", true));
             this.txtCommentCl.Location = new System.Drawing.Point(189, 530);
             this.txtCommentCl.Name = "txtCommentCl";
-            this.txtCommentCl.Size = new System.Drawing.Size(872, 21);
+            this.txtCommentCl.Size = new System.Drawing.Size(874, 21);
             this.txtCommentCl.TabIndex = 6;
             this.txtCommentCl.ThemeName = "Office2013Light";
             this.txtCommentCl.Visible = false;
@@ -228,7 +229,7 @@ namespace IpsViewComponentLibrary
             this.txtCommentRh.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWorkRh, "WorkCommentRh", true));
             this.txtCommentRh.Location = new System.Drawing.Point(189, 503);
             this.txtCommentRh.Name = "txtCommentRh";
-            this.txtCommentRh.Size = new System.Drawing.Size(872, 21);
+            this.txtCommentRh.Size = new System.Drawing.Size(874, 21);
             this.txtCommentRh.TabIndex = 5;
             this.txtCommentRh.ThemeName = "Office2013Light";
             this.txtCommentRh.Visible = false;
@@ -321,10 +322,6 @@ namespace IpsViewComponentLibrary
             this.checkIsTour.Text = "Чи плануються гастролі";
             this.checkIsTour.ThemeName = "Office2013Light";
             this.checkIsTour.CheckStateChanged += new System.EventHandler(this.checkIsTour_CheckStateChanged);
-            // 
-            // bsLicenseBigR
-            // 
-            this.bsLicenseBigR.DataSource = typeof(ipsFormsDesign.Model.LicenseBigR);
             // 
             // lblTour
             // 
@@ -453,10 +450,6 @@ namespace IpsViewComponentLibrary
             this.txtValuePlace.TabIndex = 23;
             this.txtValuePlace.ThemeName = "Office2013Light";
             // 
-            // bsClnPlaceHoll
-            // 
-            this.bsClnPlaceHoll.DataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -480,14 +473,6 @@ namespace IpsViewComponentLibrary
             this.ddlPlaceName.ValueMember = "PlaceId";
             this.ddlPlaceName.SelectedValueChanged += new System.EventHandler(this.ddlPlaceName_SelectedValueChanged);
             // 
-            // bsLicense
-            // 
-            this.bsLicense.DataSource = typeof(ipsFormsDesign.Model.License);
-            // 
-            // bsClnBusinessPlace
-            // 
-            this.bsClnBusinessPlace.DataSource = typeof(ipsFormsDesign.Model.ClnBusinessPlace);
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -508,14 +493,15 @@ namespace IpsViewComponentLibrary
             // 
             // pvMusicalArrangement
             // 
+            this.pvMusicalArrangement.Controls.Add(this.ctrlMusicalDesignList);
             this.pvMusicalArrangement.Controls.Add(this.label13);
             this.pvMusicalArrangement.Controls.Add(this.ddlActType);
             this.pvMusicalArrangement.Controls.Add(this.gvViewActList);
             this.pvMusicalArrangement.Controls.Add(this.btnAddAct);
             this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(139F, 25F);
-            this.pvMusicalArrangement.Location = new System.Drawing.Point(145, 5);
+            this.pvMusicalArrangement.Location = new System.Drawing.Point(143, 5);
             this.pvMusicalArrangement.Name = "pvMusicalArrangement";
-            this.pvMusicalArrangement.Size = new System.Drawing.Size(1067, 667);
+            this.pvMusicalArrangement.Size = new System.Drawing.Size(1069, 667);
             this.pvMusicalArrangement.Text = "Музичне оформлення";
             // 
             // label13
@@ -540,14 +526,6 @@ namespace IpsViewComponentLibrary
             this.ddlActType.ThemeName = "Office2013Light";
             this.ddlActType.ValueMember = "CodeI";
             this.ddlActType.SelectedValueChanged += new System.EventHandler(this.ddlActType_SelectedValueChanged);
-            // 
-            // bsMusicDesign
-            // 
-            this.bsMusicDesign.DataSource = typeof(ipsFormsDesign.Model.MusicalDesign);
-            // 
-            // bsDictObjAct
-            // 
-            this.bsDictObjAct.DataSource = typeof(ipsFormsDesign.Model.ObjAct);
             // 
             // gvViewActList
             // 
@@ -576,7 +554,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn2.MinWidth = 0;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "ObjName";
-            gridViewTextBoxColumn2.Width = 359;
+            gridViewTextBoxColumn2.Width = 361;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "NameMusician";
             gridViewTextBoxColumn3.HeaderText = "ПІБ композитора";
@@ -638,7 +616,7 @@ namespace IpsViewComponentLibrary
             this.gvViewActList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewActList.Name = "gvViewActList";
             this.gvViewActList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewActList.Size = new System.Drawing.Size(1056, 317);
+            this.gvViewActList.Size = new System.Drawing.Size(1058, 77);
             this.gvViewActList.TabIndex = 9;
             this.gvViewActList.ThemeName = "Office2013Light";
             this.gvViewActList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewActList_CommandCellClick);
@@ -666,10 +644,6 @@ namespace IpsViewComponentLibrary
             this.dtDate.TabStop = false;
             this.dtDate.ThemeName = "Office2013Light";
             this.dtDate.Value = new System.DateTime(((long)(0)));
-            // 
-            // bsLicAgrParam
-            // 
-            this.bsLicAgrParam.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // label2
             // 
@@ -725,10 +699,6 @@ namespace IpsViewComponentLibrary
             this.panelClient.Size = new System.Drawing.Size(662, 105);
             this.panelClient.TabIndex = 11;
             this.panelClient.ThemeName = "Office2013Light";
-            // 
-            // bsConsumerBigRightView
-            // 
-            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             // 
             // radLabel1
             // 
@@ -789,10 +759,6 @@ namespace IpsViewComponentLibrary
             this.txtLang.ThemeName = "Office2013Light";
             this.txtLang.ValueMember = "CodeS";
             // 
-            // bsDictLanguage
-            // 
-            this.bsDictLanguage.DataSource = typeof(ipsFormsDesign.Model.Language);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -832,10 +798,6 @@ namespace IpsViewComponentLibrary
             this.txtActCode.ThemeName = "Office2013Light";
             this.txtActCode.TextChanged += new System.EventHandler(this.txtActCode_TextChanged);
             // 
-            // bsObjectRight
-            // 
-            this.bsObjectRight.DataSource = typeof(ipsFormsDesign.Model.ObjectRight);
-            // 
             // ddlPerformType
             // 
             this.ddlPerformType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "PerformType", true));
@@ -848,10 +810,6 @@ namespace IpsViewComponentLibrary
             this.ddlPerformType.TabIndex = 21;
             this.ddlPerformType.ThemeName = "Office2013Light";
             this.ddlPerformType.ValueMember = "CodeI";
-            // 
-            // bsDictPerformType
-            // 
-            this.bsDictPerformType.DataSource = typeof(ipsFormsDesign.Model.PerformType);
             // 
             // label5
             // 
@@ -875,10 +833,6 @@ namespace IpsViewComponentLibrary
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
             this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.ddlGenreType_SelectedValueChanged);
-            // 
-            // bsDictGenreType
-            // 
-            this.bsDictGenreType.DataSource = typeof(ipsFormsDesign.Model.GenreType);
             // 
             // dtPremiereDate
             // 
@@ -967,9 +921,57 @@ namespace IpsViewComponentLibrary
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // bsConsumerBigRightView
+            // 
+            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            // 
+            // bsLicenseBigR
+            // 
+            this.bsLicenseBigR.DataSource = typeof(ipsFormsDesign.Model.LicenseBigR);
+            // 
+            // bsDictLanguage
+            // 
+            this.bsDictLanguage.DataSource = typeof(ipsFormsDesign.Model.Language);
+            // 
+            // bsObjectRight
+            // 
+            this.bsObjectRight.DataSource = typeof(ipsFormsDesign.Model.ObjectRight);
+            // 
+            // bsDictPerformType
+            // 
+            this.bsDictPerformType.DataSource = typeof(ipsFormsDesign.Model.PerformType);
+            // 
+            // bsDictGenreType
+            // 
+            this.bsDictGenreType.DataSource = typeof(ipsFormsDesign.Model.GenreType);
+            // 
+            // bsLicAgrParam
+            // 
+            this.bsLicAgrParam.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            // 
             // bsWorkRh
             // 
             this.bsWorkRh.DataSource = typeof(ipsFormsDesign.Model.WorkRh);
+            // 
+            // bsClnPlaceHoll
+            // 
+            this.bsClnPlaceHoll.DataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
+            // 
+            // bsLicense
+            // 
+            this.bsLicense.DataSource = typeof(ipsFormsDesign.Model.License);
+            // 
+            // bsClnBusinessPlace
+            // 
+            this.bsClnBusinessPlace.DataSource = typeof(ipsFormsDesign.Model.ClnBusinessPlace);
+            // 
+            // bsMusicDesign
+            // 
+            this.bsMusicDesign.DataSource = typeof(ipsFormsDesign.Model.MusicalDesign);
+            // 
+            // bsDictObjAct
+            // 
+            this.bsDictObjAct.DataSource = typeof(ipsFormsDesign.Model.ObjAct);
             // 
             // cStatusName
             // 
@@ -1089,8 +1091,23 @@ namespace IpsViewComponentLibrary
             this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(5, 279);
             this.ctrlAuthorRightholderList.Name = "ctrlAuthorRightholderList";
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
-            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1061, 219);
+            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1063, 219);
             this.ctrlAuthorRightholderList.TabIndex = 2;
+            // 
+            // ctrlMusicalDesignList
+            // 
+            this.ctrlMusicalDesignList.AllowCreateObjectCommand = true;
+            this.ctrlMusicalDesignList.AllowFindCommand = true;
+            this.ctrlMusicalDesignList.AllowLinkCommand = true;
+            this.ctrlMusicalDesignList.AllowShowObjectCommand = true;
+            this.ctrlMusicalDesignList.AllowUnlinkCommand = true;
+            this.ctrlMusicalDesignList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlMusicalDesignList.Location = new System.Drawing.Point(2, 423);
+            this.ctrlMusicalDesignList.MultiSelect = false;
+            this.ctrlMusicalDesignList.Name = "ctrlMusicalDesignList";
+            this.ctrlMusicalDesignList.SelectedRegisterItem = null;
+            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1064, 185);
+            this.ctrlMusicalDesignList.TabIndex = 30;
             // 
             // RequestForm
             // 
@@ -1125,7 +1142,6 @@ namespace IpsViewComponentLibrary
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkIsTour)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicenseBigR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWhereTour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicTerm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTicketPriceUsd)).EndInit();
@@ -1133,39 +1149,28 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.txtPerformNumb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFillingRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtValuePlace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPlaceName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicense)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).EndInit();
             this.pvMusicalArrangement.ResumeLayout(false);
             this.pvMusicalArrangement.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlActType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsMusicDesign)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictObjAct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewActList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewActList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblClientTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelClient)).EndInit();
             this.panelClient.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelInfo)).EndInit();
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtLang)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictLanguage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVinagoroda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtActCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsObjectRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPerformType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictPerformType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPremiereDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).EndInit();
@@ -1173,7 +1178,19 @@ namespace IpsViewComponentLibrary
             this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicenseBigR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictLanguage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictPerformType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicAgrParam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsWorkRh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicense)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsMusicDesign)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictObjAct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1259,5 +1276,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadLabel lblComCl;
         private Telerik.WinControls.UI.RadLabel lblComRh;
         private BindingSource bsWorkRh;
+        private RegisterControls.RegisterItemListControl ctrlMusicalDesignList;
     }
 }

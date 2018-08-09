@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary
     public partial class RequestForm : Telerik.WinControls.UI.RadForm
     {
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
+        private BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
         private ObjectAuthorRightholderBrViewModel _brViewModel;
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
@@ -115,9 +116,21 @@ namespace IpsViewComponentLibrary
                 bsDictPerformType.DataSource = dictionaties.performType;
                 bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
                 bsDictLanguage.DataSource = dictionaties.language;
+
+                ctrlMusicalDesignList.DataSource = _musicalDesignList;
+                SetMusicalDesignData(licenseAgr);
             }
 
+
             #endregion
+        }
+
+        private void SetMusicalDesignData(LicenseAgreement licenseAgreement)
+        {
+            foreach (var m in licenseAgreement.LicenseBigR.MusicalDesign)
+            {
+                _musicalDesignList.Add(new RegisterItemViewModel(m));
+            }
         }
 
         private void SetVisible()
@@ -288,7 +301,7 @@ namespace IpsViewComponentLibrary
 
         private void RefreshGridDataSource()
         {
-            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR?.MusicalDesign.Where(rec => rec.ActNumb == (int)ddlActType.SelectedValue)?.ToList();
+            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR?.MusicalDesign?.ToList();
             gvViewActList.DataSource = source;
         }
 
