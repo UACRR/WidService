@@ -9,10 +9,22 @@ namespace IpsViewComponentLibrary.Utilities
     {
         public static void SetTooltipText(object sender, ToolTipTextNeededEventArgs e)
         {
-            // tooltip for column header
-            if (sender is GridHeaderCellElement headerCell)
+            // tooltip for text which is too big for the cell - works for header cell and data cell
+            if (sender is GridDataCellElement || sender is GridHeaderCellElement)
             {
-                e.ToolTipText = headerCell.Text;
+                var cell = sender as GridCellElement;
+
+                TextPart textPart = new TextPart(cell);
+                SizeF size = textPart.Measure(new SizeF(float.PositiveInfinity, float.PositiveInfinity));
+                SizeF sizeInCell = textPart.Measure(new SizeF(cell.ColumnInfo.Width, float.PositiveInfinity));
+
+                float cellWidth = cell.ColumnInfo.Width - cell.BorderWidth * 2;
+                float cellHeight = cell.Size.Height - cell.BorderWidth * 2;
+
+                if (size.Width > cellWidth || cellHeight < sizeInCell.Height)
+                {
+                    e.ToolTipText = cell.Text;
+                }
             }
             // tooltip for button in command cell
             else if (sender is RadButtonElement buttonElement && buttonElement.Parent is GridCommandCellElement commandCell)
