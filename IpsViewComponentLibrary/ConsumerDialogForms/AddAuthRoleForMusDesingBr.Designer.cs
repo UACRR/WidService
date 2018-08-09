@@ -1,0 +1,250 @@
+﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
+{
+    partial class AddAuthRoleForMusDesingBr
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.txtCrName = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlCreativeRole = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.txtAuthName = new Telerik.WinControls.UI.RadTextBox();
+            this.btnAdd = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.gvAuthRole = new Telerik.WinControls.UI.RadGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAuthName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // txtCrName
+            // 
+            this.txtCrName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCrName.Location = new System.Drawing.Point(93, 11);
+            this.txtCrName.Name = "txtCrName";
+            this.txtCrName.Size = new System.Drawing.Size(559, 21);
+            this.txtCrName.TabIndex = 25;
+            this.txtCrName.ThemeName = "Office2013Light";
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Location = new System.Drawing.Point(12, 12);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(75, 19);
+            this.radLabel7.TabIndex = 24;
+            this.radLabel7.Text = "Назва твору";
+            this.radLabel7.ThemeName = "Office2013Light";
+            // 
+            // ddlCreativeRole
+            // 
+            this.ddlCreativeRole.Location = new System.Drawing.Point(12, 62);
+            this.ddlCreativeRole.Name = "ddlCreativeRole";
+            this.ddlCreativeRole.Size = new System.Drawing.Size(209, 21);
+            this.ddlCreativeRole.TabIndex = 22;
+            this.ddlCreativeRole.ThemeName = "Office2013Light";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(12, 37);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(120, 19);
+            this.radLabel2.TabIndex = 23;
+            this.radLabel2.Text = "Творча роль автора";
+            this.radLabel2.ThemeName = "Office2013Light";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(227, 38);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(68, 19);
+            this.radLabel3.TabIndex = 26;
+            this.radLabel3.Text = "ПІБ автора";
+            this.radLabel3.ThemeName = "Office2013Light";
+            // 
+            // txtAuthName
+            // 
+            this.txtAuthName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAuthName.Location = new System.Drawing.Point(227, 62);
+            this.txtAuthName.Name = "txtAuthName";
+            this.txtAuthName.Size = new System.Drawing.Size(320, 21);
+            this.txtAuthName.TabIndex = 27;
+            this.txtAuthName.ThemeName = "Office2013Light";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Location = new System.Drawing.Point(553, 62);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(99, 21);
+            this.btnAdd.TabIndex = 28;
+            this.btnAdd.Text = "Додати";
+            this.btnAdd.ThemeName = "Office2013Light";
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(542, 336);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 24);
+            this.btnCancel.TabIndex = 30;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSave.Location = new System.Drawing.Point(12, 336);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(110, 24);
+            this.btnSave.TabIndex = 29;
+            this.btnSave.Text = "Зберегти";
+            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // gvAuthRole
+            // 
+            this.gvAuthRole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvAuthRole.AutoSizeRows = true;
+            this.gvAuthRole.Location = new System.Drawing.Point(12, 89);
+            // 
+            // 
+            // 
+            this.gvAuthRole.MasterTemplate.AllowAddNewRow = false;
+            this.gvAuthRole.MasterTemplate.AllowDeleteRow = false;
+            this.gvAuthRole.MasterTemplate.AllowDragToGroup = false;
+            this.gvAuthRole.MasterTemplate.AutoGenerateColumns = false;
+            this.gvAuthRole.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn3.HeaderText = "Творча роль";
+            gridViewTextBoxColumn3.MinWidth = 50;
+            gridViewTextBoxColumn3.Name = "column2";
+            gridViewTextBoxColumn3.Width = 317;
+            gridViewTextBoxColumn4.HeaderText = "ПІБ автора";
+            gridViewTextBoxColumn4.Name = "column1";
+            gridViewTextBoxColumn4.Width = 269;
+            gridViewCommandColumn2.FieldName = "btnsDelete";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "btnsDelete";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            gridViewCommandColumn2.Width = 30;
+            this.gvAuthRole.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewCommandColumn2});
+            this.gvAuthRole.MasterTemplate.EnableGrouping = false;
+            this.gvAuthRole.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvAuthRole.Name = "gvAuthRole";
+            this.gvAuthRole.ReadOnly = true;
+            this.gvAuthRole.ShowGroupPanel = false;
+            this.gvAuthRole.Size = new System.Drawing.Size(640, 241);
+            this.gvAuthRole.TabIndex = 31;
+            this.gvAuthRole.ThemeName = "Office2013Light";
+            this.gvAuthRole.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvAuthRole_CommandCellClick);
+            // 
+            // AddAuthRoleForMusDesingBr
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(664, 372);
+            this.Controls.Add(this.gvAuthRole);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.radLabel3);
+            this.Controls.Add(this.txtAuthName);
+            this.Controls.Add(this.txtCrName);
+            this.Controls.Add(this.radLabel7);
+            this.Controls.Add(this.ddlCreativeRole);
+            this.Controls.Add(this.radLabel2);
+            this.Name = "AddAuthRoleForMusDesingBr";
+            // 
+            // 
+            // 
+            this.RootElement.ApplyShapeToControl = true;
+            this.Text = "Додавання твору";
+            this.ThemeName = "Office2013Light";
+            ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAuthName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadTextBox txtCrName;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
+        private Telerik.WinControls.UI.RadDropDownList ddlCreativeRole;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadTextBox txtAuthName;
+        private Telerik.WinControls.UI.RadButton btnAdd;
+        private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.UI.RadButton btnSave;
+        private Telerik.WinControls.UI.RadGridView gvAuthRole;
+    }
+}
