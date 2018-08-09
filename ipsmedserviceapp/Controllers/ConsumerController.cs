@@ -411,6 +411,8 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.ObjectRight.Add(newObj);
                     license.LicenseBigR.Obj = newObj;
                 }
+                else
+                    license.LicenseBigR.Obj.SetFields(item.LicenseBigR.Obj);
 
                 license.LicenseBigR.Obj.SetFields(item.LicenseBigR.Obj);
 
@@ -423,13 +425,14 @@ namespace ipsmedserviceapp.Controllers
                             {
                                 destCp.WorkRh = new WorkRh();
                                 _dbContext.WorkRh.Add(destCp.WorkRh);
+
                             }
                             destCp.WorkRh.SetFields(sorsCp.WorkRh);
                         }
 
-                        if (sorsCp.LicAuthorBr != null)
+                        if(sorsCp.LicAuthorBr != null)
                         {
-                            if (destCp.LicAuthorBr == null)
+                            if(destCp.LicAuthorBr == null)
                             {
                                 destCp.LicAuthorBr = new LicAuthorBr();
                                 _dbContext.LicAuthorBr.Add(destCp.LicAuthorBr);
@@ -1119,7 +1122,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         {
             dest.SetFields(sors);
             var dicDest = dest.Register.ToDictionary(rec => rec.RegId);
-            foreach (var sorsItem in sors.Register )
+            foreach (var sorsItem in sors.Register)
             {
                 Register destItem = null;
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
@@ -1799,12 +1802,12 @@ where t1.custId = @custId
             }
 
         } // PostRegisterDetail
-        
+
         [HttpDelete("period/register/RatedList/{RmId}")]
-        public async Task<IActionResult> DeleteRatedList( int RmId )
+        public async Task<IActionResult> DeleteRatedList(int RmId)
         {
             var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == RmId)
-                .Include(rec => rec.Register )
+                .Include(rec => rec.Register)
                 .SingleOrDefaultAsync();
             if (item == null)
                 return BadRequest();

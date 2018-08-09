@@ -149,5 +149,10 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             OnGetWorkRh?.Invoke((e.CurrentRow.DataBoundItem as ObjectAuthorRightholderBrViewModel)?.WorkRh);
         }
+
+        private void gvAuthorRightholderList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
     }
 }

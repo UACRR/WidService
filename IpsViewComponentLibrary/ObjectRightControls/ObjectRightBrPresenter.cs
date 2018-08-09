@@ -47,8 +47,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 return new ObjectAuthorRightholderBrViewModel
                 {
-                    Country = foundedRightholder.Country,
-                    InnerCode = foundedRightholder.InnerCode,
+                    Country = foundedRightholder?.Country,
+                    InnerCode = foundedRightholder?.InnerCode,
                     Author = a,
                     CopyRight = foundedCopyright,
                     LicAuthorBr = foundedCopyright.LicAuthorBr ?? new LicAuthorBr(),
