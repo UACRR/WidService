@@ -153,6 +153,19 @@ namespace IpsViewComponentLibrary.RegisterControls
             set => gvRegisterItemList.MultiSelect = value;
         }
 
+        private bool _showObjectInfo = true;
+        public bool ShowObjectInfo
+        {
+            get { return _showObjectInfo; }
+            set
+            {
+                _showObjectInfo = value;
+
+                var commandGroup = ((ColumnGroupsViewDefinition)gvRegisterItemList.ViewDefinition).ColumnGroups["objectGroup"];
+                commandGroup.IsVisible = _showObjectInfo;
+            }
+        }
+
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> CreateObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
