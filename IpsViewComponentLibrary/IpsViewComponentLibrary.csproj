@@ -198,6 +198,12 @@
     <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\PayyInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\PayyInfo.Designer.cs">
+      <DependentUpon>PayyInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerDialogForms\ProlongationBigRight.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -761,6 +767,9 @@
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\PayyInfo.resx">
+      <DependentUpon>PayyInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </EmbeddedResource>
@@ -1068,6 +1077,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
