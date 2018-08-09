@@ -277,6 +277,11 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void btnCreateReport_Click(object sender, EventArgs e)
         {
+            var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.KindCode;
+            if (licKind == 2 || licKind == 3)
+            {
+
+            }
             if (gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period)
             {
                 RegisterRatedList ratedList = null;
