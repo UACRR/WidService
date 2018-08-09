@@ -412,15 +412,31 @@ namespace ipsmedserviceapp.Controllers
                     _dbContext.ObjectRight.Add(newObj);
                     license.LicenseBigR.Obj = newObj;
                 }
+                else
+                    license.LicenseBigR.Obj.SetFields(item.LicenseBigR.Obj);
 
                 _dbContext.UpdateListExtra(item.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Obj.CopyRight,
                     (sorsCp, destCp) =>
                     {
-                        if (sorsCp.WorkRh != null && destCp.WorkRh == null)
+                        if (sorsCp.WorkRh != null)
                         {
-                            destCp.WorkRh = new WorkRh();
+                            if (destCp.WorkRh == null)
+                            {
+                                destCp.WorkRh = new WorkRh();
+                                _dbContext.WorkRh.Add(destCp.WorkRh);
+
+                            }
                             destCp.WorkRh.SetFields(sorsCp.WorkRh);
-                            _dbContext.WorkRh.Add(destCp.WorkRh);
+                        }
+
+                        if(sorsCp.LicAuthorBr != null)
+                        {
+                            if(destCp.LicAuthorBr == null)
+                            {
+                                destCp.LicAuthorBr = new LicAuthorBr();
+                                _dbContext.LicAuthorBr.Add(destCp.LicAuthorBr);
+                            }
+                            destCp.LicAuthorBr.SetFields(sorsCp.LicAuthorBr);
                         }
                     }, (l, r) => l.CRightId == r.CRightId);
 
@@ -1113,7 +1129,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         {
             dest.SetFields(sors);
             var dicDest = dest.Register.ToDictionary(rec => rec.RegId);
-            foreach (var sorsItem in sors.Register )
+            foreach (var sorsItem in sors.Register)
             {
                 Register destItem = null;
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
@@ -1755,12 +1771,12 @@ where t1.custId = @custId
             }
 
         } // PostRegisterDetail
-        
+
         [HttpDelete("period/register/RatedList/{RmId}")]
-        public async Task<IActionResult> DeleteRatedList( int RmId )
+        public async Task<IActionResult> DeleteRatedList(int RmId)
         {
             var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == RmId)
-                .Include(rec => rec.Register )
+                .Include(rec => rec.Register)
                 .SingleOrDefaultAsync();
             if (item == null)
                 return BadRequest();
