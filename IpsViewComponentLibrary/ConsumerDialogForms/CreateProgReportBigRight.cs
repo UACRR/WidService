@@ -67,7 +67,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void gvMusicalDesing_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            e.Row.DataBoundItem
+            //e.Row.DataBoundItem
         }
 
         private void gvStaging_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
