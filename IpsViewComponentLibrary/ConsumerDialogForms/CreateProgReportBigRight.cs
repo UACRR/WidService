@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
 
@@ -13,7 +14,19 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     public partial class CreateProgReportBigRight : Telerik.WinControls.UI.RadForm
     {
         private Register _register = null;
+        private ObservableListSource<RegisterExtraGridSource> _gridSource = new ObservableListSource<RegisterExtraGridSource>();
         private RegisterItem _registerItemCreation = null, _registerItemMusDesign = null;
+        public object RegisterDataSource
+        {
+            get => bsRegister.DataSource;
+            set => bsRegister.DataSource = value;
+        }
+
+        public object CreativeRoleDataSource
+        {
+            get => bsDictCreativeRole.DataSource;
+            set => bsDictCreativeRole.DataSource = value;
+        }
         public CreateProgReportBigRight()
         {
             InitializeComponent();
@@ -30,11 +43,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             _register.RegisterItem.Add(_registerItemCreation);
         }
 
-        public object RegisterDataSource
-        {
-            get => bsRegister.DataSource;
-            set => bsRegister.DataSource = value;
-        }
 
         private void btnAddCreativeRole_Click(object sender, EventArgs e)
         {
@@ -57,9 +65,28 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                 _register.RegisterItem.Remove(_registerItemMusDesign);
         }
 
+        private void gvMusicalDesing_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            e.Row.DataBoundItem
+        }
+
+        private void gvStaging_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
 
         }
+    }
+
+    internal class RegisterExtraGridSource
+    {
+        public int? RegId { get; set; }
+        public int? RegItemId { get; set; }
+        public int? RoleCode { get; set; }
+        public string RoleName { get; set; }
+        public string ItemName { get; set; }
     }
 }
