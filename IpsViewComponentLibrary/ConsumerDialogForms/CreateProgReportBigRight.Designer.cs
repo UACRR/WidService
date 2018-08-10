@@ -75,13 +75,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.childrTemplate = new Telerik.WinControls.UI.GridViewTemplate();
-            this.registerExtraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gvMusicalDesing = new Telerik.WinControls.UI.RadGridView();
-            this.registerItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.lblName = new Telerik.WinControls.UI.RadLabel();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
-            this.bsRegister = new System.Windows.Forms.BindingSource(this.components);
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.txtAmount = new Telerik.WinControls.UI.RadTextBox();
             this.lblAmount = new Telerik.WinControls.UI.RadLabel();
@@ -100,12 +97,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.splitPanelStaging = new Telerik.WinControls.UI.SplitPanel();
             this.cpStaging = new Telerik.WinControls.UI.RadCollapsiblePanel();
             this.txtStagingName = new Telerik.WinControls.UI.RadTextBox();
-            this.bsRegisterItem = new System.Windows.Forms.BindingSource(this.components);
             this.txtStagingRate = new Telerik.WinControls.UI.RadTextBox();
             this.txtStagingAmount = new Telerik.WinControls.UI.RadTextBox();
             this.lblStagingName = new Telerik.WinControls.UI.RadLabel();
             this.ddlCreativeRole = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsDictCreativeRole = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.gvStaging = new Telerik.WinControls.UI.RadGridView();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -115,14 +110,16 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanelMusicalDesign = new Telerik.WinControls.UI.SplitPanel();
             this.cpMusicalDesign = new Telerik.WinControls.UI.RadCollapsiblePanel();
+            this.bsRegisterItem = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRegister = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictCreativeRole = new System.Windows.Forms.BindingSource(this.components);
+            this.registerItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.registerExtraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.childrTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicalDesing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicalDesing.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registerItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegister)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).BeginInit();
@@ -146,12 +143,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.cpStaging.PanelContainer.SuspendLayout();
             this.cpStaging.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStagingName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStagingRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStagingAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStagingName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStaging)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStaging.MasterTemplate)).BeginInit();
@@ -165,6 +160,11 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             ((System.ComponentModel.ISupportInitialize)(this.cpMusicalDesign)).BeginInit();
             this.cpMusicalDesign.PanelContainer.SuspendLayout();
             this.cpMusicalDesign.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegister)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -234,10 +234,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.childrTemplate.ShowFilteringRow = false;
             this.childrTemplate.ViewDefinition = tableViewDefinition1;
             // 
-            // registerExtraBindingSource
-            // 
-            this.registerExtraBindingSource.DataSource = typeof(ipsFormsDesign.Model.RegisterExtra);
-            // 
             // gvMusicalDesing
             // 
             this.gvMusicalDesing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -259,7 +255,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             gridViewTextBoxColumn5.HeaderText = "Назва твору";
             gridViewTextBoxColumn5.IsAutoGenerated = true;
             gridViewTextBoxColumn5.Name = "ItemName";
-            gridViewTextBoxColumn5.Width = 858;
+            gridViewTextBoxColumn5.Width = 865;
             gridViewCommandColumn1.FieldName = "btnsDelete";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.HeaderText = "";
@@ -442,10 +438,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.gvMusicalDesing.ThemeName = "Office2013Light";
             this.gvMusicalDesing.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvMusicalDesing_CommandCellClick);
             // 
-            // registerItemBindingSource
-            // 
-            this.registerItemBindingSource.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
-            // 
             // lblName
             // 
             this.lblName.Location = new System.Drawing.Point(3, 3);
@@ -463,10 +455,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.txtName.Size = new System.Drawing.Size(438, 21);
             this.txtName.TabIndex = 1;
             this.txtName.ThemeName = "Office2013Light";
-            // 
-            // bsRegister
-            // 
-            this.bsRegister.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
             // btnSave
             // 
@@ -694,10 +682,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.txtStagingName.TabIndex = 13;
             this.txtStagingName.ThemeName = "Office2013Light";
             // 
-            // bsRegisterItem
-            // 
-            this.bsRegisterItem.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
-            // 
             // txtStagingRate
             // 
             this.txtStagingRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -739,10 +723,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.ddlCreativeRole.ThemeName = "Office2013Light";
             this.ddlCreativeRole.ValueMember = "CodeI";
             // 
-            // bsDictCreativeRole
-            // 
-            this.bsDictCreativeRole.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
-            // 
             // radLabel5
             // 
             this.radLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -772,12 +752,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             gridViewTextBoxColumn15.FieldName = "RoleName";
             gridViewTextBoxColumn15.HeaderText = "Творча роль";
             gridViewTextBoxColumn15.Name = "RoleName";
-            gridViewTextBoxColumn15.Width = 470;
+            gridViewTextBoxColumn15.Width = 471;
             gridViewTextBoxColumn16.FieldName = "Name";
             gridViewTextBoxColumn16.HeaderText = "ПІБ автора";
             gridViewTextBoxColumn16.IsAutoGenerated = true;
             gridViewTextBoxColumn16.Name = "Name";
-            gridViewTextBoxColumn16.Width = 413;
+            gridViewTextBoxColumn16.Width = 414;
             gridViewCommandColumn2.FieldName = "btnsDelete";
             gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn2.HeaderText = "";
@@ -950,6 +930,26 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.cpMusicalDesign.TabIndex = 19;
             this.cpMusicalDesign.ThemeName = "Office2013Light";
             // 
+            // bsRegisterItem
+            // 
+            this.bsRegisterItem.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
+            // 
+            // bsRegister
+            // 
+            this.bsRegister.DataSource = typeof(ipsFormsDesign.Model.Register);
+            // 
+            // bsDictCreativeRole
+            // 
+            this.bsDictCreativeRole.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
+            // 
+            // registerItemBindingSource
+            // 
+            this.registerItemBindingSource.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
+            // 
+            // registerExtraBindingSource
+            // 
+            this.registerExtraBindingSource.DataSource = typeof(ipsFormsDesign.Model.RegisterExtra);
+            // 
             // CreateProgReportBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -968,13 +968,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.Text = "Звіт (програма-рапортичка)";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.childrTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicalDesing.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicalDesing)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registerItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegister)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).EndInit();
@@ -1000,12 +997,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             ((System.ComponentModel.ISupportInitialize)(this.cpStaging)).EndInit();
             this.cpStaging.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtStagingName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStagingRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStagingAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStagingName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStaging.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStaging)).EndInit();
@@ -1020,6 +1015,11 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.cpMusicalDesign.PanelContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cpMusicalDesign)).EndInit();
             this.cpMusicalDesign.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegister)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
