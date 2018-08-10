@@ -120,7 +120,7 @@
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Location = new System.Drawing.Point(3, 218);
             this.pvMain.Name = "pvMain";
-            this.pvMain.SelectedPage = this.pvActiveAgr;
+            this.pvMain.SelectedPage = this.pvMoreAgreements;
             this.pvMain.Size = new System.Drawing.Size(1090, 444);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";
@@ -182,11 +182,13 @@
             gridViewTextBoxColumn6.FieldName = "MinRate";
             gridViewTextBoxColumn6.HeaderText = "Умова %";
             gridViewTextBoxColumn6.Name = "MinRate";
+            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn6.Width = 77;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewDecimalColumn1.FieldName = "MinAmount";
             gridViewDecimalColumn1.HeaderText = "Умова мін. сума";
             gridViewDecimalColumn1.Name = "MinAmount";
+            gridViewDecimalColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewDecimalColumn1.Width = 100;
             gridViewDecimalColumn1.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "State";
@@ -531,12 +533,14 @@
             gridViewTextBoxColumn17.MaxWidth = 45;
             gridViewTextBoxColumn17.MinWidth = 45;
             gridViewTextBoxColumn17.Name = "MinRate";
+            gridViewTextBoxColumn17.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn17.Width = 45;
             gridViewTextBoxColumn17.WrapText = true;
             gridViewTextBoxColumn18.FieldName = "MinAmount";
             gridViewTextBoxColumn18.HeaderText = "Умова мін. сума";
             gridViewTextBoxColumn18.MaxWidth = 100;
             gridViewTextBoxColumn18.Name = "MinAmount";
+            gridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn18.Width = 100;
             gridViewTextBoxColumn18.WrapText = true;
             gridViewTextBoxColumn19.FieldName = "PeriodPayment";
