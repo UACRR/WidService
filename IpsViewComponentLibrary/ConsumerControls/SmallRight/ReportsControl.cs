@@ -262,7 +262,12 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId, RgStatusNavigation = dicRegStatus[0] };
+                    Register addRegister = new Register { RgStatus = 0
+                                , FileName = Path.GetFileName(dialog.FileName)
+                                , CustId = _customer.CustId
+                                , RgStatusNavigation = dicRegStatus[0]
+                                , PeriodId = period.PeriodId
+                                , RegisterRatedList = RatedList  };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
@@ -276,6 +281,7 @@ namespace IpsViewComponentLibrary
                             bindingReports.Add(addRegister);
                         radWaitingBar1.StopWaiting();
                         EnableButtons(true);
+                        btnToAcception.Enabled = true;
                     }));
                 });
             }
