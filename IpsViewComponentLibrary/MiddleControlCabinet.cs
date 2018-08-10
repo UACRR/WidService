@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -31,6 +32,8 @@ namespace IpsViewComponentLibrary
             {"pvAvances", CabinetTabType.Prepays},
             {"pvContacts", CabinetTabType.Contacts}
         };
+
+
         private Customer _customer = null;
         private ConsumerBigRightView _brView;
         private IList<VbrLicense> _brLicenses;
@@ -62,8 +65,7 @@ namespace IpsViewComponentLibrary
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
 
-
-
+        private Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
         public MiddleControlCabinet()
         {
@@ -91,6 +93,22 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
             ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
+
+            _tab = new Dictionary<CabinetTabType, RadPageViewPage>
+            {
+                {CabinetTabType.None, null},
+                {CabinetTabType.Licenses, pvLicence},
+                { CabinetTabType.Calculations, pvCalculation},
+                {CabinetTabType.Payslips, pvPayslips},
+                {CabinetTabType.Requests, pvRequest},
+                {CabinetTabType.References, pvReference},
+                {CabinetTabType.GeneralAgreement, pvGeneralAgreement},
+                {CabinetTabType.Files, pvFiles},
+                {CabinetTabType.Agent, pvAgent},
+                {CabinetTabType.Payments, pvPays},
+                {CabinetTabType.Prepays, pvAvances},
+                {CabinetTabType.Contacts, pvContacts}
+            };
         }
 
         private void CtrlPayslips_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
@@ -180,8 +198,17 @@ namespace IpsViewComponentLibrary
         }
 
 
+        public CabinetTabType CurentTab
+        {
+            get => _currenCabinetTab;
+            set
+            {
+                _currenCabinetTab = value;
+                pageView.SelectedPage = _tab[value];
+            }
+        }
 
-        private void UpdateCurentTab(CabinetTabType tab)
+        public void UpdateCurentTab(CabinetTabType tab)
         {
             switch (tab)
             {

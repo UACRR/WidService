@@ -152,8 +152,11 @@ namespace IpsViewComponentLibrary
             if (prolongation.ShowDialog() == DialogResult.OK)
             {
                 //license.LicVersion++;
-                var result = OnSaveCustomer?.Invoke(_customer);
-                //TODO msg
+                var result = OnSaveCustomer?.Invoke(_customer);// TODO: add return message
+                if (result ?? false)
+                    ;
+                else
+                    ;
             }
         }
 

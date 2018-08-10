@@ -772,7 +772,6 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        //TODO test method
         [HttpGet("listBR/agrmaster/{custId}")]
         public async Task<IActionResult> GetAgrForCustId(int custId)
         {

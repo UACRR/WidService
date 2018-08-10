@@ -90,7 +90,7 @@ namespace ConsumerWorkplace_v_1._0
         /// Перейти з гріда до кабінету
         /// </summary>
         /// <param name="id">ID запису який було обрано до переходу</param>
-        public void SwitchToCabinet(int id)
+        public void SwitchToCabinet(int id, CabinetTabType tabType = CabinetTabType.None)
         {
             if (_cabinetBr == null)
             {
@@ -118,6 +118,8 @@ namespace ConsumerWorkplace_v_1._0
 
             _cabinetBr.FilterString = _mainGridBr?.FilterString ?? string.Empty;
             _cabinetBr.SetSelectCustomer(id);
+            if(tabType != CabinetTabType.None)
+                _cabinetBr.SetTab(tabType);
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
         }
@@ -279,9 +281,9 @@ namespace ConsumerWorkplace_v_1._0
             SwitchToGrid(custId);
         }
 
-        private void MainGridBr_OnGridButtonViewClick(int id)
+        private void MainGridBr_OnGridButtonViewClick(int id, CabinetTabType tabType)
         {
-            SwitchToCabinet(id);
+            SwitchToCabinet(id, tabType);
         }
 
         //додавання нового користувача (випадаючі кнопки)

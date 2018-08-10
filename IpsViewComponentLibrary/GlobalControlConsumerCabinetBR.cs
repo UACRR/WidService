@@ -242,6 +242,12 @@ namespace IpsViewComponentLibrary
                 gvConsumerList.CurrentRow = gvConsumerList.Rows.SingleOrDefault(rec => (int)rec.Cells["CustId"].Value == custId);
         }
 
+        public void SetTab(CabinetTabType tabType)
+        {
+            ctrlCabinet.CurentTab = tabType;
+            ctrlCabinet.UpdateCurentTab(tabType);
+        }
+
         private void gvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if(gvConsumerList.Rows.Count == 0) return;

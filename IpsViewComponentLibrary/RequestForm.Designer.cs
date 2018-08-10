@@ -68,6 +68,10 @@ namespace IpsViewComponentLibrary
             this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
             this.pvMusicalArrangement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlMusicalDesignList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
+            this.panelStatusees = new System.Windows.Forms.Panel();
+            this.btnSetCenceledStatus = new Telerik.WinControls.UI.RadButton();
+            this.btnSetActiveStatus = new Telerik.WinControls.UI.RadButton();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.bsMusicDesign = new System.Windows.Forms.BindingSource(this.components);
             this.bsDictObjAct = new System.Windows.Forms.BindingSource(this.components);
             this.dtDate = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -105,7 +109,6 @@ namespace IpsViewComponentLibrary
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
             this.mainPanel = new Telerik.WinControls.UI.RadPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAuthors.SuspendLayout();
@@ -133,6 +136,10 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).BeginInit();
             this.pvMusicalArrangement.SuspendLayout();
+            this.panelStatusees.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSetCenceledStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSetActiveStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMusicDesign)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictObjAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate)).BeginInit();
@@ -159,7 +166,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.mainPanel)).BeginInit();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,7 +178,7 @@ namespace IpsViewComponentLibrary
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvMusicalArrangement;
+            this.pageView.SelectedPage = this.pvAuthors;
             this.pageView.Size = new System.Drawing.Size(1217, 677);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
@@ -201,7 +207,7 @@ namespace IpsViewComponentLibrary
             this.txtCommentCl.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWorkRh, "WorkCoommentCl", true));
             this.txtCommentCl.Location = new System.Drawing.Point(189, 530);
             this.txtCommentCl.Name = "txtCommentCl";
-            this.txtCommentCl.Size = new System.Drawing.Size(876, 21);
+            this.txtCommentCl.Size = new System.Drawing.Size(882, 21);
             this.txtCommentCl.TabIndex = 6;
             this.txtCommentCl.ThemeName = "Office2013Light";
             this.txtCommentCl.Visible = false;
@@ -217,7 +223,7 @@ namespace IpsViewComponentLibrary
             this.txtCommentRh.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWorkRh, "WorkCommentRh", true));
             this.txtCommentRh.Location = new System.Drawing.Point(189, 503);
             this.txtCommentRh.Name = "txtCommentRh";
-            this.txtCommentRh.Size = new System.Drawing.Size(876, 21);
+            this.txtCommentRh.Size = new System.Drawing.Size(882, 21);
             this.txtCommentRh.TabIndex = 5;
             this.txtCommentRh.ThemeName = "Office2013Light";
             this.txtCommentRh.Visible = false;
@@ -252,7 +258,7 @@ namespace IpsViewComponentLibrary
             this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(5, 279);
             this.ctrlAuthorRightholderList.Name = "ctrlAuthorRightholderList";
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
-            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1065, 219);
+            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1071, 219);
             this.ctrlAuthorRightholderList.TabIndex = 2;
             // 
             // pvConditions
@@ -512,9 +518,9 @@ namespace IpsViewComponentLibrary
             // 
             this.pvMusicalArrangement.Controls.Add(this.ctrlMusicalDesignList);
             this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(141F, 27F);
-            this.pvMusicalArrangement.Location = new System.Drawing.Point(145, 5);
+            this.pvMusicalArrangement.Location = new System.Drawing.Point(143, 5);
             this.pvMusicalArrangement.Name = "pvMusicalArrangement";
-            this.pvMusicalArrangement.Size = new System.Drawing.Size(1067, 667);
+            this.pvMusicalArrangement.Size = new System.Drawing.Size(1069, 667);
             this.pvMusicalArrangement.Text = "Музичне оформлення";
             // 
             // ctrlMusicalDesignList
@@ -534,8 +540,49 @@ namespace IpsViewComponentLibrary
             this.ctrlMusicalDesignList.Name = "ctrlMusicalDesignList";
             this.ctrlMusicalDesignList.SelectedRegisterItem = null;
             this.ctrlMusicalDesignList.ShowObjectInfo = true;
-            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1064, 345);
+            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1066, 345);
             this.ctrlMusicalDesignList.TabIndex = 30;
+            // 
+            // panelStatusees
+            // 
+            this.panelStatusees.Controls.Add(this.btnSetCenceledStatus);
+            this.panelStatusees.Controls.Add(this.btnSetActiveStatus);
+            this.panelStatusees.Location = new System.Drawing.Point(145, 636);
+            this.panelStatusees.Name = "panelStatusees";
+            this.panelStatusees.Size = new System.Drawing.Size(289, 36);
+            this.panelStatusees.TabIndex = 35;
+            // 
+            // btnSetCenceledStatus
+            // 
+            this.btnSetCenceledStatus.Location = new System.Drawing.Point(171, 5);
+            this.btnSetCenceledStatus.Name = "btnSetCenceledStatus";
+            this.btnSetCenceledStatus.Size = new System.Drawing.Size(110, 24);
+            this.btnSetCenceledStatus.TabIndex = 1;
+            this.btnSetCenceledStatus.Text = "Відхилити";
+            this.btnSetCenceledStatus.ThemeName = "Office2013Light";
+            this.btnSetCenceledStatus.Click += new System.EventHandler(this.btnSetCanceledStatus_Click);
+            // 
+            // btnSetActiveStatus
+            // 
+            this.btnSetActiveStatus.Location = new System.Drawing.Point(4, 5);
+            this.btnSetActiveStatus.Name = "btnSetActiveStatus";
+            this.btnSetActiveStatus.Size = new System.Drawing.Size(161, 24);
+            this.btnSetActiveStatus.TabIndex = 0;
+            this.btnSetActiveStatus.Text = "Дозвіл на видачу ліцензії";
+            this.btnSetActiveStatus.ThemeName = "Office2013Light";
+            this.btnSetActiveStatus.Click += new System.EventHandler(this.btnSetActiveStatus_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSave.Enabled = false;
+            this.btnSave.Location = new System.Drawing.Point(893, 641);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(197, 24);
+            this.btnSave.TabIndex = 34;
+            this.btnSave.Text = "Підтвердити створення заявки";
+            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // bsMusicDesign
             // 
@@ -955,25 +1002,14 @@ namespace IpsViewComponentLibrary
             this.btnCancel.ThemeName = "Office2013Light";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(150, 641);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(197, 24);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "Підтвердити створення заявки";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // RequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1217, 677);
-            this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.panelStatusees);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.pageView);
             this.Name = "RequestForm";
@@ -1015,6 +1051,10 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).EndInit();
             this.pvMusicalArrangement.ResumeLayout(false);
+            this.panelStatusees.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSetCenceledStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSetActiveStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMusicDesign)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictObjAct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate)).EndInit();
@@ -1043,7 +1083,6 @@ namespace IpsViewComponentLibrary
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1115,7 +1154,6 @@ namespace IpsViewComponentLibrary
         private System.Windows.Forms.BindingSource bsClnPlaceHoll;
         private System.Windows.Forms.BindingSource bsLicense;
         private Telerik.WinControls.UI.RadCheckBox checkIsTour;
-        private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private System.Windows.Forms.BindingSource bsDictObjAct;
         private System.Windows.Forms.BindingSource bsMusicDesign;
@@ -1126,5 +1164,9 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadLabel lblComRh;
         private BindingSource bsWorkRh;
         private RegisterControls.RegisterItemListControl ctrlMusicalDesignList;
+        private Panel panelStatusees;
+        private Telerik.WinControls.UI.RadButton btnSetCenceledStatus;
+        private Telerik.WinControls.UI.RadButton btnSetActiveStatus;
+        private Telerik.WinControls.UI.RadButton btnSave;
     }
 }
