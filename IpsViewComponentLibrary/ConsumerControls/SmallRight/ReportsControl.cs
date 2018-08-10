@@ -173,15 +173,7 @@ namespace IpsViewComponentLibrary
 
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             /// Цирк,Філармонія,Концертна діяльність
-            if ((new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI)) // codeI
-            {
-                splitPanelRatedList.Collapsed = true;
-            }
-            else
-            {
-                splitPanelRatedList.Collapsed = false;
-
-            }
+            splitPanelRatedList.Collapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
         }
 
         // * * * [Періоди платежів]
