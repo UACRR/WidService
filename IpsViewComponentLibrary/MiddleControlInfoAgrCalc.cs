@@ -26,6 +26,7 @@ namespace IpsViewComponentLibrary
         public event CustomerSave OnCustomerSave;
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
 
+
         public TypeRights Rights { get; set; }
 
         public MiddleControlInfoAgrCalc()
@@ -496,7 +497,17 @@ namespace IpsViewComponentLibrary
 
         private void btnDeleteAgr_Click(object sender, EventArgs e)
         {
+            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
+            if (license == null) return;
 
+            if (MessageBox.Show("Ліцензія буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                if (OnChangeLicenseStatus?.Invoke(license, curRow?.LicVersion ?? default(int), 4, false) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
+            }
         }
 
         private void gvMoreLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
