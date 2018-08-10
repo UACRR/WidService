@@ -181,7 +181,7 @@ namespace IpsViewComponentLibrary
 
             foreach (var item in cust.Client.LicenseAgreement)
             {
-                item.LicCodeNavigation = dicType[item.LicType ?? 1];
+                item.LicCodeNavigation = dicType[item.LicCode];
 
                 foreach (var licParam in item.LicenseAgrParam)
                 {
