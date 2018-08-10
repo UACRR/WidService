@@ -6,6 +6,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class RegisterItem
     {
+        public RegisterItem()
+        {
+            RegisterExtra = new HashSet<RegisterExtra>();
+        }
+
         public int RegId { get; set; }
         public int RegIitemId { get; set; }
         public int? ObjId { get; set; }
@@ -29,6 +34,8 @@ namespace ipsmedserviceapp.Model
         public ObjectRight Obj { get; set; }
         [JsonIgnore]
         public Register Reg { get; set; }
+        [JsonIgnore]
+        public ICollection<RegisterExtra> RegisterExtra { get; set; }
     }
 }
 

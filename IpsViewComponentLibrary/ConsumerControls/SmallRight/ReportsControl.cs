@@ -15,6 +15,7 @@ using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 
 namespace IpsViewComponentLibrary
 {
@@ -156,7 +157,7 @@ namespace IpsViewComponentLibrary
         // * * * [Активні договори]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvLicenseAgr.CurrentRow == null || !(gvLicenseAgr.CurrentRow.DataBoundItem is LicenseAgrParam ))
+            if (gvLicenseAgr.CurrentRow == null || !(gvLicenseAgr.CurrentRow.DataBoundItem is LicenseAgrParam))
             {
                 bindingPaidPeriod.DataSource = typeof(PaidPeriod);
                 return;
@@ -189,7 +190,7 @@ namespace IpsViewComponentLibrary
             if (gvPeriods.CurrentRow == null || !(gvPeriods.CurrentRow.DataBoundItem is PaidPeriod))
             {
                 bindingRatedList.DataSource = typeof(RegisterRatedList);
-                bindingReports.DataSource = typeof( Register );
+                bindingReports.DataSource = typeof(Register);
                 return;
             }
 
@@ -276,11 +277,11 @@ namespace IpsViewComponentLibrary
                     RatedList.Register.Add(addRegister);
 
                     SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
-                    if (!bindingReports.Contains(addRegister))
-                        bindingReports.Add(addRegister);
 
                     BeginInvoke((Action)(() =>
                     {
+                        if (!bindingReports.Contains(addRegister))
+                            bindingReports.Add(addRegister);
                         radWaitingBar1.StopWaiting();
                         EnableButtons(true);
                     }));
@@ -330,9 +331,24 @@ namespace IpsViewComponentLibrary
                     });
                 }
                 var register = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
-                if (register != null)
+                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.KindCode;
+                if (register != null && (licKind == 2 || licKind == 3)) // рапортичка
                 {
-                    ReportExcelViewForm viewForm = new ReportExcelViewForm(register, true) {
+                    CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register)
+                    {
+                        StartPosition = FormStartPosition.CenterParent
+                    };
+                    if (progReportBigRight.ShowDialog() == DialogResult.OK)
+                    {
+                        SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+                    }
+                    else
+                        period.RegisterRatedList.Remove(ratedList);
+                }
+                else if (register != null) // не рапотричка
+                {
+                    ReportExcelViewForm viewForm = new ReportExcelViewForm(register, true)
+                    {
                         StartPosition = FormStartPosition.CenterParent
                     };
 
@@ -441,9 +457,17 @@ namespace IpsViewComponentLibrary
             if (list != null)
             {
                 var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
+                var regStatus = dicRegStatus[1];
                 foreach (var item in paramList)
+                {
                     item.RgStatus = 1;
+                    item.RgStatusNavigation = regStatus;
+
+                }
                 SetRegisterStateExecuted?.Invoke(this, paramList);
+
+
+
                 gvPeriodReports.MasterTemplate.Refresh();
                 btnToAcception.Enabled = false;
             }
@@ -461,8 +485,9 @@ namespace IpsViewComponentLibrary
                 return;
 
             period.Status = 2;
+            period.StatusNavigation = dicPeriodStatus[2];
             SetPeriodStateExecuted?.Invoke(this, period);
-
+            btnAccept.Enabled = false;
             RefreshData();
         }
 
@@ -494,7 +519,7 @@ namespace IpsViewComponentLibrary
         private void gvRatedList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
             var row = e.RowElement.RowInfo;
-            if (row == null || row.DataBoundItem == null || !(row.DataBoundItem is RegisterRatedList ))
+            if (row == null || row.DataBoundItem == null || !(row.DataBoundItem is RegisterRatedList))
                 return;
 
             var ratedList = row.DataBoundItem as RegisterRatedList;
@@ -505,7 +530,7 @@ namespace IpsViewComponentLibrary
 
         private void gvRatedList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            if(e.Column.Name == "ViewColumn")
+            if (e.Column.Name == "ViewColumn")
             {
                 var row = e.Row;
                 var modifyRatedList = row.DataBoundItem as RegisterRatedList;
@@ -570,8 +595,8 @@ namespace IpsViewComponentLibrary
                 case 5: // 
                 case 6: // Кошти отримані
                     _addReport.Enabled = false;
-                    _toAcception.Enabled = false;
-                    _accepted.Enabled = false;
+                    _toAcception.Enabled = regStates[2] > 0; // Нових > 0
+                    _accepted.Enabled = false; 
                     _create.Enabled = false;
                     break;
                 default: // Зактритий

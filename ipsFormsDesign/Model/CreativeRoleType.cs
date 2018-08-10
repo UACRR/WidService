@@ -12,6 +12,7 @@ namespace ipsFormsDesign.Model
             CopyRight = new ObservableListSource<CopyRight>();
             CreativeRoleTypeTr = new ObservableListSource<CreativeRoleTypeTr>();
             RegisterAuthors = new ObservableListSource<RegisterAuthors>();
+            RegisterExtra = new ObservableListSource<RegisterExtra>();
             RelEtRole = new ObservableListSource<RelEtRole>();
             RelGenreRole = new ObservableListSource<RelGenreRole>();
         }
@@ -28,6 +29,7 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<CopyRight> CopyRight { get; set; }
         public ObservableListSource<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
         public ObservableListSource<RegisterAuthors> RegisterAuthors { get; set; }
+        public ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
         public ObservableListSource<RelEtRole> RelEtRole { get; set; }
         public ObservableListSource<RelGenreRole> RelGenreRole { get; set; }
     }

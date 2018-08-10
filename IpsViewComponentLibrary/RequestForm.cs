@@ -25,6 +25,7 @@ namespace IpsViewComponentLibrary
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
         private FormType _formType;
+        private FormMode _formMode;
         private bool _deleteLicense = true;
         private IList<RelGenrePercent> _percent;
         private int? _licId = null;
@@ -35,13 +36,20 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public RequestForm(Customer customer, ConsumerBigRightView bigRightView, AnketaDictionaties dictionaties, FormType formType = FormType.Create, int? licId = null)
+        public RequestForm(
+            Customer customer,
+            ConsumerBigRightView bigRightView,
+            AnketaDictionaties dictionaties,
+            FormType formType = FormType.Create,
+            int? licId = null,
+            FormMode formMode = FormMode.ForBigRightAdmin)
         {
             InitializeComponent();
             _licId = licId;
             _customer = customer;
             DialogResult = DialogResult.None;
             _formType = formType;
+            _formMode = formMode;
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
 
@@ -62,6 +70,12 @@ namespace IpsViewComponentLibrary
                 btnSave.Text = "Зберегти редаговану заявку";
                 btnSave.Enabled = true;
             }
+
+            if (_formMode == FormMode.ForSmallRightAdmin)
+            {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
+            }
+
             #region BINDING
 
             if (licId == null)
@@ -312,6 +326,12 @@ namespace IpsViewComponentLibrary
             var rate = _percent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
 
             txtVinagoroda.Text = rate.ToString();
+        }
+
+        public enum FormMode
+        {
+            ForBigRightAdmin,
+            ForSmallRightAdmin,
         }
     }
 }

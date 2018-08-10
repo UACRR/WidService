@@ -11,6 +11,7 @@ namespace ipsmedserviceapp.Model
             CopyRight = new HashSet<CopyRight>();
             CreativeRoleTypeTr = new HashSet<CreativeRoleTypeTr>();
             RegisterAuthors = new HashSet<RegisterAuthors>();
+            RegisterExtra = new HashSet<RegisterExtra>();
             RelEtRole = new HashSet<RelEtRole>();
             RelGenreRole = new HashSet<RelGenreRole>();
         }
@@ -27,6 +28,7 @@ namespace ipsmedserviceapp.Model
         public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
         public ICollection<RegisterAuthors> RegisterAuthors { get; set; }
+        public ICollection<RegisterExtra> RegisterExtra { get; set; }
         public ICollection<RelEtRole> RelEtRole { get; set; }
         public ICollection<RelGenreRole> RelGenreRole { get; set; }
     }

@@ -408,20 +408,38 @@ namespace ipsmedserviceapp.Controllers
                 if (item.LicenseBigR.Obj.ObjId == 0)
                 {
                     ObjectRight newObj = new ObjectRight();
-                    newObj.SetFields(item.LicenseBigR.Obj);
                     _dbContext.ObjectRight.Add(newObj);
                     license.LicenseBigR.Obj = newObj;
                 }
+                else
+                    license.LicenseBigR.Obj.SetFields(item.LicenseBigR.Obj);
+
+                license.LicenseBigR.Obj.SetFields(item.LicenseBigR.Obj);
 
                 _dbContext.UpdateListExtra(item.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Obj.CopyRight,
-                    (sorsCp, destCp) =>
+                    (isnew,sorsCp, destCp) =>
                     {
-                        if (sorsCp.WorkRh != null && destCp.WorkRh == null)
+                        if (sorsCp.WorkRh != null)
                         {
-                            destCp.WorkRh = new WorkRh();
+                            if (destCp.WorkRh == null)
+                            {
+                                destCp.WorkRh = new WorkRh();
+                                _dbContext.WorkRh.Add(destCp.WorkRh);
+
+                            }
                             destCp.WorkRh.SetFields(sorsCp.WorkRh);
-                            _dbContext.WorkRh.Add(destCp.WorkRh);
                         }
+
+                        if(sorsCp.LicAuthorBr != null)
+                        {
+                            if(destCp.LicAuthorBr == null)
+                            {
+                                destCp.LicAuthorBr = new LicAuthorBr();
+                                _dbContext.LicAuthorBr.Add(destCp.LicAuthorBr);
+                            }
+                            destCp.LicAuthorBr.SetFields(sorsCp.LicAuthorBr);
+                        }
+
                     }, (l, r) => l.CRightId == r.CRightId);
 
                 _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.CustId == r.CustId);
@@ -1006,8 +1024,6 @@ namespace ipsmedserviceapp.Controllers
                                 .LoadAsync();
 
                 await _dbContext.Register.FromSql("select t2.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId where t1.licid = @licid", new SqlParameter("@licid", licid))
-                    .Include(rec => rec.RegisterItem)
-                    .Include(rec => rec.Distribution)
                     .LoadAsync();
 
 
@@ -1016,15 +1032,6 @@ select t3.* from PaidPeriod t1 join Distribution t2 on t2.periodId = t1.periodId
 join DistributionItem t3 on t3.distId = t2.distId
 where t1.licid = @licid", new SqlParameter("@licid", licid))
                     .LoadAsync();
-
-                await _dbContext.RegisterCount.FromSql(@"
-select t4.* from PaidPeriod t1 join Register t2 on t2.periodId = t1.periodId 
-join RegisterItem t3 on t3.regId = t2.regId
-join RegisterCount t4 on t4.regId = t3.regId and t4.regIItemId = t3.regIItemId
-where t1.licid = @licid", new SqlParameter("@licid", licid))
-    .LoadAsync();
-
-
 
                 return Json(licenseAgrement.Cust.Cust);
 
@@ -1100,6 +1107,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 .Include(rec => rec.RegisterRatedList)
                 .SingleOrDefaultAsync();
 
+            await _dbContext.RegisterExtra.Where(rec => rec.RegId == regid).LoadAsync();
+
             return Json(register);
 
         }
@@ -1113,7 +1122,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         {
             dest.SetFields(sors);
             var dicDest = dest.Register.ToDictionary(rec => rec.RegId);
-            foreach (var sorsItem in sors.Register )
+            foreach (var sorsItem in sors.Register)
             {
                 Register destItem = null;
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
@@ -1126,8 +1135,23 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 else
                     destItem = dicDest[sorsItem.RegId];
 
+                int regItemId = 1;
+
+                if (destItem.RegisterItem.Count() > 0)
+                    regItemId = regItemId + destItem.RegisterItem.Max(rec => rec.RegIitemId);
+
+
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = false;
-                _dbContext.UpdateList(sorsItem.RegisterItem, destItem.RegisterItem, i => { } /*_dbContext.RegisterItem.Add(i)*/, (l, r) => l.RegIitemId == r.RegIitemId);
+
+                _dbContext.UpdateListExtra(sorsItem.RegisterItem, destItem.RegisterItem, 
+                    (isNew, sorsRec, destRec ) => {
+                        destRec.SetFields(sorsRec);
+                        if (isNew)
+                            destRec.RegIitemId = regItemId++;
+                        _dbContext.UpdateList(sorsRec.RegisterExtra, destRec.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
+                    }
+                    , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
 
                 destItem.CountRows = destItem.RegisterItem.Count();
@@ -1197,11 +1221,16 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
                 modifyItem = await _dbContext.Register.Where(rec => rec.RegId == regId)
-                                        .Include(rec => rec.RegisterItem)
                                         .SingleOrDefaultAsync();
 
                 if (modifyItem == null)
                     throw new ApplicationException("Dont find Register item");
+
+                if (body.RegisterItem.Count() > 0)
+                    await _dbContext.RegisterItem.Where(rec => rec.RegId == regId)
+                        .Include(rec => rec.RegisterExtra)
+                        .LoadAsync();
+
 
                 modifyRegister(body, modifyItem);
 
@@ -1227,7 +1256,15 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             int index = modifyItem.RegisterItem.Max(rec => rec.RegIitemId);
             index++;
 
-            _dbContext.UpdateList(body.RegisterItem, modifyItem.RegisterItem, item => item.RegIitemId = index++, (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+            _dbContext.UpdateListExtra(body.RegisterItem, modifyItem.RegisterItem, (isNew, sorsItem, destItem) => {
+
+                if ( isNew )
+                destItem.RegIitemId = index++;
+
+                _dbContext.UpdateList(sorsItem.RegisterExtra, destItem.RegisterExtra, i => { }, (l, r) =>  l.RegExtraId == r.RegExtraId );
+            }
+            
+            , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
         }
 
         /// <summary>
@@ -1639,11 +1676,15 @@ from LicenseAgreement t1
 where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
                 .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
-                .Include(lic => lic.Cust).ThenInclude(cln => cln.MoneyReceived )
+                .Include(lic => lic.Cust)
                 .ToListAsync();
 
+            
             if (licenseAgreement.Count() == 0)
                 return Ok();
+
+            await _dbContext.MoneyReceived.Where(rec => rec.CustId == custId).LoadAsync();
+
 
             foreach (var item in licenseAgreement)
             {
@@ -1657,7 +1698,8 @@ where t1.custId = @custId
                     .Where(rec => rec.LicVersion == item.LicVersion).LoadAsync();
             }
 
-            return Json(licenseAgreement.First().Cust.Cust);
+            var customer = licenseAgreement.First().Cust.Cust;
+            return Json(customer);
 
         }
 
@@ -1685,7 +1727,9 @@ where t1.custId = @custId
         [HttpGet("period/register/RegisterItem/{regId}")]
         public async Task<IActionResult> GetRegisterItems(int regId)
         {
-            var list = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId).AsNoTracking().ToListAsync();
+            var list = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId)
+                .Include(rec => rec.RegisterExtra )
+                .AsNoTracking().ToListAsync();
             return Json(list);
         }
         /// <summary>
@@ -1737,8 +1781,15 @@ where t1.custId = @custId
             {
                 RegisterRatedList dest = null;
                 dest = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
-                    .Include(rec => rec.Register).ThenInclude(reg => reg.RegisterItem)
+                    .Include(rec => rec.Register)
                     .Single();
+
+                foreach( var item in body.Register.Where( rec => rec.RegId > 0 && rec.RegisterItem.Count() > 0) )
+                {
+                    await _dbContext.RegisterItem.Where(rec => rec.RegId == item.RegId)
+                            .Include(rec => rec.RegisterExtra)
+                            .LoadAsync();
+                }
 
                 modifyRatedList(body, dest);
 
@@ -1756,12 +1807,12 @@ where t1.custId = @custId
             }
 
         } // PostRegisterDetail
-        
+
         [HttpDelete("period/register/RatedList/{RmId}")]
-        public async Task<IActionResult> DeleteRatedList( int RmId )
+        public async Task<IActionResult> DeleteRatedList(int RmId)
         {
             var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == RmId)
-                .Include(rec => rec.Register )
+                .Include(rec => rec.Register)
                 .SingleOrDefaultAsync();
             if (item == null)
                 return BadRequest();

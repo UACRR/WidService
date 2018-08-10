@@ -8,11 +8,11 @@ namespace ReportsLibrary
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for R_5_18_TurnAccoun.
+    /// Summary description for LIcAgr.
     /// </summary>
-    public partial class R_5_18_TurnAccoun : Telerik.Reporting.Report
+    public partial class LIcAgr : Telerik.Reporting.Report
     {
-        public R_5_18_TurnAccoun()
+        public LIcAgr()
         {
             //
             // Required for telerik Reporting designer support
