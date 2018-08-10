@@ -78,7 +78,7 @@ namespace ipsmedserviceapp.Controllers
                 .Where(agree => agree.LicStatus < 4)
                 .Include(item => item.Agr)
                 .Include(item => item.LicCodeNavigation)
-                .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign)
+                .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign).ThenInclude(md => md.Obj)
                 .Include(rec => rec.PaidPeriod)
                 .LoadAsync();
 
@@ -401,6 +401,8 @@ namespace ipsmedserviceapp.Controllers
                 license.LicenseBigR = new LicenseBigR();
 
             license.LicenseBigR.SetFields(item.LicenseBigR);
+
+            _dbContext.UpdateList(item.LicenseBigR.MusicalDesign, license.LicenseBigR.MusicalDesign, i => { }, (l, r) => l.MdId == r.MdId );
 
             if (item.LicenseBigR.Obj != null)
             {

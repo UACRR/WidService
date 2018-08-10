@@ -57,6 +57,13 @@ namespace IpsViewComponentLibrary.Utilities
             column.IsVisible = isVisible;
         }
 
+        public static void SetColumnReadOnly(this RadGridView gridView, string columnName, bool isReadOnly)
+        {
+            var column = GetColumnByName(gridView, columnName);
+
+            column.ReadOnly = isReadOnly;
+        }
+
         public static void SetCommandColumnImageAlignment(this RadGridView gridView, string columnName, ContentAlignment alignment)
         {
             var column = GetColumnByName(gridView, columnName) as GridViewCommandColumn;
