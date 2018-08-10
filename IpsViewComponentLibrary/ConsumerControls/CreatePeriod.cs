@@ -30,7 +30,7 @@ namespace IpsViewComponentLibrary
 
         private void initControls()
         {
-            var lastPeriod = _lic.PaidPeriod.OrderBy(rec => rec.BeginDate).LastOrDefault();
+            var lastPeriod = _lic.PaidPeriod.Count() > 0 ? _lic.PaidPeriod.OrderBy(rec => rec.BeginDate).LastOrDefault() : null;
             var beginDate = lastPeriod?.EndDate.AddDays(1) ?? DateTime.Today;
             
             computeFirstDate(beginDate);

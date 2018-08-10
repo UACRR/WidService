@@ -210,7 +210,7 @@ namespace IpsViewComponentLibrary
 
         private void BindAllSum()
         {
-            var list = _customer.Client.MoneyReceived.Where(rec => rec.Amount > (rec.DestribAmount + rec.DestribPrepay)).ToList();
+            var list = _customer.Client.MoneyReceived.Where(rec => rec.Amount > (rec.DestribAmount + (rec.DestribPrepay??0))).ToList();
             if (list.Count() == 0)
             {
                 AllmoneyReceivedBindingSource.DataSource = typeof(MoneyReceived);
@@ -231,7 +231,7 @@ namespace IpsViewComponentLibrary
             if (gvLicenseAgr.CurrentRow != null)
             {
                 var licItem = (LicenseAgrParam)gvLicenseAgr.CurrentRow.DataBoundItem;
-                var list = licItem.Lic?.PaidPeriod.Where(rec => rec.Status < 7).OrderBy(rec => rec.BeginDate).ToList();
+                var list = licItem.Lic?.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
                 paidPeriodBindingSource.DataSource = list;
             }
             else
