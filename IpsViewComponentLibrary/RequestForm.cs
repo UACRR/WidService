@@ -121,9 +121,16 @@ namespace IpsViewComponentLibrary
                     _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj);
 
                 bsDictObjAct.DataSource = dictionaties.objAct;
-                bsDictPerformType.DataSource = dictionaties.performType;
                 bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
+
                 bsDictLanguage.DataSource = dictionaties.language;
+                bsDictPerformType.DataSource = dictionaties.performType;
+
+                ddlPerformType.SelectedIndex = ddlPerformType.Items.Last.Index;
+                ddlPerformType.SelectedIndex = ddlPerformType.Items.First.Index;
+
+                ddlLang.SelectedIndex = ddlLang.Items.Last.Index;
+                ddlLang.SelectedIndex = ddlLang.Items.First.Index;
             }
             else
             {
@@ -311,7 +318,8 @@ namespace IpsViewComponentLibrary
                             SpecType = 1,
                             GenreType = 60001
                         },
-                        MusicalDesign = new ObservableListSource<MusicalDesign>()
+                        MusicalDesign = new ObservableListSource<MusicalDesign>(),
+                        Rate = default(decimal)
                     }
             };
             _customer.Client.LicenseAgreement.Add(_licenseAgreement);
@@ -380,6 +388,7 @@ namespace IpsViewComponentLibrary
             var rate = _percent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
 
             txtVinagoroda.Text = rate.ToString();
+            _licenseAgreement.LicenseBigR.Rate = rate;
         }
 
         public enum FormMode
@@ -440,6 +449,16 @@ namespace IpsViewComponentLibrary
             }
             else
                 _dialogService.ShowError(this, "Не вдалося змінити статус.");
+        }
+
+        private void ddlPerformType_Leave(object sender, EventArgs e)
+        {
+            UpdateGenrePersent();
+        }
+
+        private void ddlLang_Leave(object sender, EventArgs e)
+        {
+            UpdateGenrePersent();
         }
     }
 }
