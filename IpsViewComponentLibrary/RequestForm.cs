@@ -13,6 +13,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using License = ipsFormsDesign.Model.License;
 
@@ -20,6 +21,9 @@ namespace IpsViewComponentLibrary
 {
     public partial class RequestForm : Telerik.WinControls.UI.RadForm
     {
+        private readonly ConsumerService _consumerService = new ConsumerService();
+        private readonly DialogService _dialogService = new DialogService();
+
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
         private BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
         private ObjectAuthorRightholderBrViewModel _brViewModel;
@@ -83,6 +87,8 @@ namespace IpsViewComponentLibrary
                 ctrlMusicalDesignList.AllowShowObjectCommand = true;
                 ctrlMusicalDesignList.AllowUnlinkCommand = true;
                 ctrlMusicalDesignList.AllowCreateObjectCommand = true;
+
+                panelStatusees.Visible = true;
             }
             else if (_formMode == FormMode.ForBigRightAdmin)
             {
@@ -95,6 +101,8 @@ namespace IpsViewComponentLibrary
                 ctrlMusicalDesignList.AllowShowObjectCommand = false;
                 ctrlMusicalDesignList.AllowUnlinkCommand = false;
                 ctrlMusicalDesignList.AllowCreateObjectCommand = false;
+
+                panelStatusees.Visible = false;
             }
 
             #region BINDING
@@ -139,6 +147,10 @@ namespace IpsViewComponentLibrary
 
                 ctrlMusicalDesignList.DataSource = _musicalDesignList;
                 SetMusicalDesignData(licenseAgr);
+                if (licenseAgr.LicStatus != 3)
+                {
+                    panelStatusees.Enabled = false;
+                }
             }
 
 
@@ -374,6 +386,60 @@ namespace IpsViewComponentLibrary
         {
             ForBigRightAdmin,
             ForSmallRightAdmin,
+        }
+
+        private void btnSetActiveStatus_Click(object sender, EventArgs e)
+        {
+            LicenseAgreement licenseAgreement = null;
+            if (_licId == null)
+            {
+                licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
+                if (licenseAgreement == null)
+                    return;
+            }
+            else
+            {
+                licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId);
+                if (licenseAgreement == null)
+                    return;
+            }
+
+            var result = _consumerService.SetLicAgreementStatus(licenseAgreement, licenseAgreement.LicVersion.Value, 2);
+
+            if (result)
+            {
+                _dialogService.ShowMessage(this, "Переведено до статусу: Активний.");
+                panelStatusees.Enabled = false;
+            }
+            else
+                _dialogService.ShowError(this, "Не вдалося змінити статус.");
+        }
+
+        private void btnSetCanceledStatus_Click(object sender, EventArgs e)
+        {
+            LicenseAgreement licenseAgreement = null;
+            if (_licId == null)
+            {
+                licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
+                if (licenseAgreement == null)
+                    return;
+            }
+            else
+            {
+                licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId);
+                if (licenseAgreement == null)
+                    return;
+            }
+
+            var result = _consumerService.SetLicAgreementStatus(licenseAgreement, licenseAgreement.LicVersion.Value, 5);
+
+            if (result)
+            {
+                _dialogService.ShowMessage(this, "Переведено до статусу: Відхилений.");
+                panelStatusees.Enabled = false;
+            }
+            else
+                _dialogService.ShowError(this, "Не вдалося змінити статус.");
         }
     }
 }
