@@ -127,7 +127,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItemViewModel selectedRegisterItem)
         {
-            _presenter.SearchObjects(selectedRegisterItem);
+            //_presenter.SearchObjects(selectedRegisterItem);
         }
 
         private void btnSearchAuto_Click(object sender, EventArgs e)

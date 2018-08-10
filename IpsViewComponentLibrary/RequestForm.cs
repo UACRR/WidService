@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary
     public partial class RequestForm : Telerik.WinControls.UI.RadForm
     {
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
+        private BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
         private ObjectAuthorRightholderBrViewModel _brViewModel;
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
@@ -71,10 +72,30 @@ namespace IpsViewComponentLibrary
                 btnSave.Enabled = true;
             }
 
-            if (_formMode == FormMode.ForSmallRightAdmin)
-            {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
-            }
+            //if (_formMode == FormMode.ForSmallRightAdmin)
+            //{
+            //    ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
+
+            //    ctrlMusicalDesignList.AllowEditList = false;
+            //    ctrlMusicalDesignList.ShowObjectInfo = true;
+            //    ctrlMusicalDesignList.AllowFindCommand = true;
+            //    ctrlMusicalDesignList.AllowLinkCommand = true;
+            //    ctrlMusicalDesignList.AllowShowObjectCommand = true;
+            //    ctrlMusicalDesignList.AllowUnlinkCommand = true;
+            //    ctrlMusicalDesignList.AllowCreateObjectCommand = true;
+            //}
+            //else if (_formMode == FormMode.ForBigRightAdmin)
+            //{
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+
+                ctrlMusicalDesignList.AllowEditList = true;
+                ctrlMusicalDesignList.ShowObjectInfo = false;
+                ctrlMusicalDesignList.AllowFindCommand = false;
+                ctrlMusicalDesignList.AllowLinkCommand = false;
+                ctrlMusicalDesignList.AllowShowObjectCommand = false;
+                ctrlMusicalDesignList.AllowUnlinkCommand = false;
+                ctrlMusicalDesignList.AllowCreateObjectCommand = false;
+            //}
 
             #region BINDING
 
@@ -115,9 +136,21 @@ namespace IpsViewComponentLibrary
                 bsDictPerformType.DataSource = dictionaties.performType;
                 bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
                 bsDictLanguage.DataSource = dictionaties.language;
+
+                ctrlMusicalDesignList.DataSource = _musicalDesignList;
+                SetMusicalDesignData(licenseAgr);
             }
 
+
             #endregion
+        }
+
+        private void SetMusicalDesignData(LicenseAgreement licenseAgreement)
+        {
+            foreach (var m in licenseAgreement.LicenseBigR.MusicalDesign)
+            {
+                _musicalDesignList.Add(new RegisterItemViewModel(m));
+            }
         }
 
         private void SetVisible()
@@ -157,6 +190,49 @@ namespace IpsViewComponentLibrary
             foreach (var ar in _authorRightholderList)
             {
                 objectRight.AddObjectBrAuthorRightholder(ar);
+            }
+        }
+
+        private void ParseMusicalDisign()
+        {
+            LicenseAgreement licenseAgreement = null;
+            if (_licId == null)
+            {
+                licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
+                if (licenseAgreement == null)
+                    return;
+            }
+            else
+            {
+                licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId);
+                if (licenseAgreement == null)
+                    return;
+            }
+
+            licenseAgreement.LicenseBigR.MusicalDesign.Clear();
+
+            foreach (var rvm in _musicalDesignList)
+            {
+                var musicalDesign = new MusicalDesign
+                {
+                    MdId = rvm.MdId,
+                    LicId = rvm.LicId,
+                    Objid = rvm.ObjId,
+                    ObjName = rvm.ItemName,
+                    NameSinger = rvm.Performer,
+                    NameMusician = rvm.AuthorMusic,
+                    Duration = rvm.DurationItem,
+                    NumbPerfom = rvm.CountUse,
+                    LicVersion = rvm.LicVersion,
+                };
+
+                if (_licId.HasValue)
+                {
+                    musicalDesign.LicId = licenseAgreement.LicId;
+                    musicalDesign.LicVersion = licenseAgreement.LicVersion;
+                }
+
+                licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
             }
         }
 
@@ -255,6 +331,7 @@ namespace IpsViewComponentLibrary
         {
             _deleteLicense = false;
             ParseAuthors();
+            ParseMusicalDisign();
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -262,41 +339,6 @@ namespace IpsViewComponentLibrary
         private void ddlPlaceName_SelectedValueChanged(object sender, EventArgs e)
         {
             bsClnPlaceHoll.DataSource = _customer.Client.ClnBusinessPlace.SingleOrDefault(rec => rec?.PlaceId == (int?)ddlPlaceName?.SelectedItem?.Value)?.ClnPlaceHoll;
-        }
-
-        private void ddlActType_SelectedValueChanged(object sender, EventArgs e)
-        {
-            RefreshGridDataSource();
-        }
-
-        private void btnAddAct_Click(object sender, EventArgs e)
-        {
-            MusicalDesign design = new MusicalDesign
-            {
-                ActNumb = (int)ddlActType.SelectedItem.Value,
-                Duration = new TimeSpan(00, 00, 00, 01),
-            };
-
-            var mus = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.MusicalDesign;
-            mus?.Add(design);
-            AddCompositionForm addCompositionForm = new AddCompositionForm(mus?.LastOrDefault());
-            if (addCompositionForm.ShowDialog() != DialogResult.OK)
-                mus?.Remove(design);
-            else
-                RefreshGridDataSource();
-        }
-
-        private void RefreshGridDataSource()
-        {
-            var source = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.LicenseBigR?.MusicalDesign.Where(rec => rec.ActNumb == (int)ddlActType.SelectedValue)?.ToList();
-            gvViewActList.DataSource = source;
-        }
-
-        private void gvViewActList_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            var delItem = e.Row.DataBoundItem as MusicalDesign;
-            _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.MusicalDesign.Remove(delItem);
-            RefreshGridDataSource();
         }
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
