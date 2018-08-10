@@ -15,6 +15,7 @@ namespace ipsFormsDesign.Dictionary
 
         public int MdId { get; set; }
         public int LicId { get; set; }
+        public int? LicVersion { get; set; }
 
         public int? ObjId { get; set; }
         public string ItemName { get; set; }
@@ -89,6 +90,7 @@ namespace ipsFormsDesign.Dictionary
             Performer = musicalDesign.NameSinger;
             MdId = musicalDesign.MdId;
             LicId = musicalDesign.LicId;
+            LicVersion = musicalDesign.LicVersion;
 
             if (musicalDesign.Obj != null)
             {

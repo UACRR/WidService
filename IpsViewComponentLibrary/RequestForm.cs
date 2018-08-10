@@ -72,10 +72,30 @@ namespace IpsViewComponentLibrary
                 btnSave.Enabled = true;
             }
 
-            if (_formMode == FormMode.ForSmallRightAdmin)
-            {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
-            }
+            //if (_formMode == FormMode.ForSmallRightAdmin)
+            //{
+            //    ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
+
+            //    ctrlMusicalDesignList.AllowEditList = false;
+            //    ctrlMusicalDesignList.ShowObjectInfo = true;
+            //    ctrlMusicalDesignList.AllowFindCommand = true;
+            //    ctrlMusicalDesignList.AllowLinkCommand = true;
+            //    ctrlMusicalDesignList.AllowShowObjectCommand = true;
+            //    ctrlMusicalDesignList.AllowUnlinkCommand = true;
+            //    ctrlMusicalDesignList.AllowCreateObjectCommand = true;
+            //}
+            //else if (_formMode == FormMode.ForBigRightAdmin)
+            //{
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+
+                ctrlMusicalDesignList.AllowEditList = true;
+                ctrlMusicalDesignList.ShowObjectInfo = false;
+                ctrlMusicalDesignList.AllowFindCommand = false;
+                ctrlMusicalDesignList.AllowLinkCommand = false;
+                ctrlMusicalDesignList.AllowShowObjectCommand = false;
+                ctrlMusicalDesignList.AllowUnlinkCommand = false;
+                ctrlMusicalDesignList.AllowCreateObjectCommand = false;
+            //}
 
             #region BINDING
 
@@ -170,6 +190,49 @@ namespace IpsViewComponentLibrary
             foreach (var ar in _authorRightholderList)
             {
                 objectRight.AddObjectBrAuthorRightholder(ar);
+            }
+        }
+
+        private void ParseMusicalDisign()
+        {
+            LicenseAgreement licenseAgreement = null;
+            if (_licId == null)
+            {
+                licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
+                if (licenseAgreement == null)
+                    return;
+            }
+            else
+            {
+                licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId);
+                if (licenseAgreement == null)
+                    return;
+            }
+
+            licenseAgreement.LicenseBigR.MusicalDesign.Clear();
+
+            foreach (var rvm in _musicalDesignList)
+            {
+                var musicalDesign = new MusicalDesign
+                {
+                    MdId = rvm.MdId,
+                    LicId = rvm.LicId,
+                    Objid = rvm.ObjId,
+                    ObjName = rvm.ItemName,
+                    NameSinger = rvm.Performer,
+                    NameMusician = rvm.AuthorMusic,
+                    Duration = rvm.DurationItem,
+                    NumbPerfom = rvm.CountUse,
+                    LicVersion = rvm.LicVersion,
+                };
+
+                if (_licId.HasValue)
+                {
+                    musicalDesign.LicId = licenseAgreement.LicId;
+                    musicalDesign.LicVersion = licenseAgreement.LicVersion;
+                }
+
+                licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
             }
         }
 
@@ -268,6 +331,7 @@ namespace IpsViewComponentLibrary
         {
             _deleteLicense = false;
             ParseAuthors();
+            ParseMusicalDisign();
             DialogResult = DialogResult.OK;
             Close();
         }

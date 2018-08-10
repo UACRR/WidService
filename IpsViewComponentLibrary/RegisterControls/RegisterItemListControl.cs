@@ -161,8 +161,14 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 _showObjectInfo = value;
 
-                var commandGroup = ((ColumnGroupsViewDefinition)gvRegisterItemList.ViewDefinition).ColumnGroups["objectGroup"];
-                commandGroup.IsVisible = _showObjectInfo;
+                var objectGroup = ((ColumnGroupsViewDefinition)gvRegisterItemList.ViewDefinition).ColumnGroups["objectGroup"];
+                objectGroup.IsVisible = _showObjectInfo;
+
+                var commandGroup = ((ColumnGroupsViewDefinition)gvRegisterItemList.ViewDefinition).ColumnGroups["commandGroup"];
+                commandGroup.ShowHeader = _showObjectInfo;
+
+                var registerGroup = ((ColumnGroupsViewDefinition)gvRegisterItemList.ViewDefinition).ColumnGroups["registerGroup"];
+                registerGroup.ShowHeader = _showObjectInfo;
             }
         }
 
