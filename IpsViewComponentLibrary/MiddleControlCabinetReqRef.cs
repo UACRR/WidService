@@ -105,7 +105,7 @@ namespace IpsViewComponentLibrary
         {
             if (e.Row.DataBoundItem is BigRightRequests item)
             {
-                if(item.LicStatus >= 2) return;
+                //if(item.LicStatus >= 2) return; // TODO: відкривати форму в режимі ReadOnly
 
                 RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit, item.LicId);
                 if (requestForm.ShowDialog() == DialogResult.OK)
