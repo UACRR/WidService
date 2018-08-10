@@ -157,7 +157,7 @@ namespace IpsViewComponentLibrary
         // * * * [Активні договори]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvLicenseAgr.CurrentRow == null || !(gvLicenseAgr.CurrentRow.DataBoundItem is LicenseAgrParam))
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is LicenseAgrParam))
             {
                 bindingPaidPeriod.DataSource = typeof(PaidPeriod);
                 return;
@@ -173,7 +173,7 @@ namespace IpsViewComponentLibrary
 
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             /// Цирк,Філармонія,Концертна діяльність
-            if ((new int[] { 1, 2, 3, 4 }).Contains((int)agrType.UsesKind))
+            if ((new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI)) // codeI
             {
                 splitPanelRatedList.Collapsed = true;
             }
