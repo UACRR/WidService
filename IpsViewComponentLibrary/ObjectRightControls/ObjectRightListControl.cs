@@ -12,7 +12,8 @@ using IpsViewComponentLibrary.AppController;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class ObjectRightListControl : UserControl, ISubscriber<ObjectRightAddedEvent>
+    public partial class ObjectRightListControl : UserControl,
+        ISubscriber<ObjectRightUpdatedEvent>
     {
         protected bool IsDesignMode
         {
@@ -69,7 +70,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             var list = service.GetMainView();
             objectRightMainViewBindingSource.DataSource = list;
 
-            //SelectedObject = currentObject;
+            //SelectedObject = currentObject; // TODO: is it realy need?
         }
 
         private void gvObjectsRightsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
@@ -105,7 +106,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             EditCommandExecuted(this, selectedObject);
         }
 
-        public void HandleEvent(ObjectRightAddedEvent e)
+        public void HandleEvent(ObjectRightUpdatedEvent e)
         {
             UpdateList();
         }

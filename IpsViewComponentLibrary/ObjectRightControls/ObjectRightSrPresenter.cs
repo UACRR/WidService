@@ -1,10 +1,12 @@
 ﻿
 using ipsFormsDesign;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.Linq;
@@ -140,7 +142,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 var result = _objectRightService.Save(_objectRight);
 
-                // TODO: Raise broadcast event object right updated
+                ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
 
                 if (result)
                     _view.Close();
