@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,6 +12,11 @@ namespace ipsFormsDesign.Dictionary
     {
         public int RegId { get; set; }
         public int RegIitemId { get; set; }
+
+        public int MdId { get; set; }
+        public int LicId { get; set; }
+        public int? LicVersion { get; set; }
+
         public int? ObjId { get; set; }
         public string ItemName { get; set; }
         public int? CategoryCode { get; set; }
@@ -69,6 +75,33 @@ namespace ipsFormsDesign.Dictionary
             {
                 _isAuto = value;
                 OnPropertyChanged(nameof(IsAuto));
+            }
+        }
+
+        public RegisterItemViewModel() { }
+
+        public RegisterItemViewModel(MusicalDesign musicalDesign)
+        {
+
+            ItemName = musicalDesign.ObjName;
+            AuthorMusic = musicalDesign.NameMusician;
+            CountUse = musicalDesign.NumbPerfom;
+            DurationItem = musicalDesign.Duration;
+            Performer = musicalDesign.NameSinger;
+            MdId = musicalDesign.MdId;
+            LicId = musicalDesign.LicId;
+            LicVersion = musicalDesign.LicVersion;
+
+            if (musicalDesign.Obj != null)
+            {
+                SetObjectData(
+                    musicalDesign.Objid,
+                    musicalDesign.Obj.Name,
+                    musicalDesign.Obj.Author,
+                    musicalDesign.Obj.Performer,
+                    musicalDesign.Obj.MediaTrack?.Duration,
+                    resetIsAuto: false
+                );
             }
         }
 

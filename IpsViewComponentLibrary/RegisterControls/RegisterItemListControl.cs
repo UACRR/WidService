@@ -73,6 +73,25 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private bool _allowEditList = false;
+        public bool AllowEditList
+        {
+            get { return _allowEditList; }
+            set
+            {
+                _allowEditList = value;
+
+                btnAdd.Visible = _allowEditList;
+                gvRegisterItemList.SetColumnVisibility("DeleteColumn", _allowEditList);
+                gvRegisterItemList.SetColumnReadOnly("ItemName", !_allowEditList);
+                gvRegisterItemList.SetColumnReadOnly("Performer", !_allowEditList);
+                gvRegisterItemList.SetColumnReadOnly("AuthorMusic", !_allowEditList);
+                gvRegisterItemList.SetColumnReadOnly("AuthorText", !_allowEditList);
+                gvRegisterItemList.SetColumnReadOnly("DurationItem", !_allowEditList);
+                gvRegisterItemList.SetColumnReadOnly("CountUse", !_allowEditList);
+            }
+        }
+
         private bool _allowFindCommand = true;
         public bool AllowFindCommand
         {
@@ -134,6 +153,25 @@ namespace IpsViewComponentLibrary.RegisterControls
             set => gvRegisterItemList.MultiSelect = value;
         }
 
+        private bool _showObjectInfo = true;
+        public bool ShowObjectInfo
+        {
+            get { return _showObjectInfo; }
+            set
+            {
+                _showObjectInfo = value;
+
+                var objectGroup = ((ColumnGroupsViewDefinition)gvRegisterItemList.ViewDefinition).ColumnGroups["objectGroup"];
+                objectGroup.IsVisible = _showObjectInfo;
+
+                var commandGroup = ((ColumnGroupsViewDefinition)gvRegisterItemList.ViewDefinition).ColumnGroups["commandGroup"];
+                commandGroup.ShowHeader = _showObjectInfo;
+
+                var registerGroup = ((ColumnGroupsViewDefinition)gvRegisterItemList.ViewDefinition).ColumnGroups["registerGroup"];
+                registerGroup.ShowHeader = _showObjectInfo;
+            }
+        }
+
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> CreateObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
@@ -154,6 +192,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.SetCommandColumnImageAlignment("ShowObjectColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("ShowObjectColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("CreateObjectColumn", ContentAlignment.MiddleCenter);
+            gvRegisterItemList.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
         }
 
         private void gvRegisterItemList_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -172,7 +211,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 OnUnlinkCommandExecuted(SelectedRegisterItem);
             }
-
             else if (currentColumnName == "ShowObjectColumn")
             {
                 OnShowObjectCommandExecuted(SelectedRegisterItem);
@@ -180,6 +218,13 @@ namespace IpsViewComponentLibrary.RegisterControls
             else if (currentColumnName == "CreateObjectColumn")
             {
                 OnCreateObjectCommandExecuted(SelectedRegisterItem);
+            }
+            else if (currentColumnName == "DeleteColumn")
+            {
+                if (!_allowEditList)
+                    return;
+
+                gvRegisterItemList.Rows.Remove(gvRegisterItemList.CurrentRow);
             }
         }
 
@@ -214,6 +259,15 @@ namespace IpsViewComponentLibrary.RegisterControls
             OnSelectedRegisterItemChanged();
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (!_allowEditList)
+                return;
+
+            gvRegisterItemList.Rows.AddNew();
+            gvRegisterItemList.CurrentRow.Cells[1].BeginEdit();
+        }
+
         private void ddlLinkedStatus_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             SetFilter(ddlLinkedStatus.SelectedIndex);
@@ -236,6 +290,12 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void OnFindCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, new ipsFormsDesign.Services.RegisterService());
+                presenter.Show(selectedRegisterItem);
+            }
+
             if (_allowFindCommand)
                 FindCommandExecuted?.Invoke(this, selectedRegisterItem);
         }

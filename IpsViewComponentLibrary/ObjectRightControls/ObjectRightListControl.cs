@@ -69,7 +69,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             var list = service.GetMainView();
             objectRightMainViewBindingSource.DataSource = list;
 
-            SelectedObject = currentObject;
+            //SelectedObject = currentObject;
         }
 
         private void gvObjectsRightsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
