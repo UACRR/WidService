@@ -76,10 +76,10 @@
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
             this.calculationCtrl = new IpsViewComponentLibrary.CalculationInfoControl();
             this.pvPayments = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPaysInfo1 = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
             this.reportsControl = new IpsViewComponentLibrary.ReportsControl();
             this.userInfoCtrl = new IpsViewComponentLibrary.InformationOfUserControl();
-            this.ctrlPaysInfo1 = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
             this.pvActiveAgr.SuspendLayout();
@@ -120,7 +120,7 @@
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Location = new System.Drawing.Point(3, 218);
             this.pvMain.Name = "pvMain";
-            this.pvMain.SelectedPage = this.pvPayments;
+            this.pvMain.SelectedPage = this.pvActiveAgr;
             this.pvMain.Size = new System.Drawing.Size(1090, 444);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";
@@ -156,15 +156,15 @@
             gridViewTextBoxColumn1.FieldName = "License";
             gridViewTextBoxColumn1.HeaderText = "Ліцензія";
             gridViewTextBoxColumn1.Name = "License";
-            gridViewTextBoxColumn1.Width = 183;
+            gridViewTextBoxColumn1.Width = 200;
             gridViewTextBoxColumn2.FieldName = "Series";
             gridViewTextBoxColumn2.HeaderText = "Серія";
             gridViewTextBoxColumn2.Name = "Series";
-            gridViewTextBoxColumn2.Width = 51;
+            gridViewTextBoxColumn2.Width = 56;
             gridViewTextBoxColumn3.FieldName = "AgrNumber";
             gridViewTextBoxColumn3.HeaderText = "Номер договору";
             gridViewTextBoxColumn3.Name = "AgrNumber";
-            gridViewTextBoxColumn3.Width = 125;
+            gridViewTextBoxColumn3.Width = 137;
             gridViewTextBoxColumn4.FieldName = "DateBegin";
             gridViewTextBoxColumn4.HeaderText = "Дата початку";
             gridViewTextBoxColumn4.MaxWidth = 80;
@@ -179,21 +179,24 @@
             gridViewTextBoxColumn5.Name = "DateEnd";
             gridViewTextBoxColumn5.Width = 80;
             gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.HeaderText = "Тип";
-            gridViewTextBoxColumn6.Name = "column1";
-            gridViewTextBoxColumn6.Width = 141;
-            gridViewDecimalColumn1.FieldName = "Amount";
-            gridViewDecimalColumn1.HeaderText = "Сума";
-            gridViewDecimalColumn1.Name = "Amount";
-            gridViewDecimalColumn1.Width = 91;
+            gridViewTextBoxColumn6.FieldName = "MinRate";
+            gridViewTextBoxColumn6.HeaderText = "Умова %";
+            gridViewTextBoxColumn6.Name = "MinRate";
+            gridViewTextBoxColumn6.Width = 77;
+            gridViewTextBoxColumn6.WrapText = true;
+            gridViewDecimalColumn1.FieldName = "MinAmount";
+            gridViewDecimalColumn1.HeaderText = "Умова мін. сума";
+            gridViewDecimalColumn1.Name = "MinAmount";
+            gridViewDecimalColumn1.Width = 100;
+            gridViewDecimalColumn1.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "State";
             gridViewTextBoxColumn7.HeaderText = "Статус";
             gridViewTextBoxColumn7.Name = "State";
-            gridViewTextBoxColumn7.Width = 91;
+            gridViewTextBoxColumn7.Width = 100;
             gridViewTextBoxColumn8.FieldName = "PeriodPayment";
             gridViewTextBoxColumn8.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn8.Name = "PeriodPayment";
-            gridViewTextBoxColumn8.Width = 128;
+            gridViewTextBoxColumn8.Width = 140;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "DateLastPayment";
             gridViewTextBoxColumn9.HeaderText = "Дата останньої оплати";
@@ -382,6 +385,7 @@
             this.radPageViewPage1.Controls.Add(this.btnDeleteAgr);
             this.radPageViewPage1.Controls.Add(this.btnAccept);
             this.radPageViewPage1.Controls.Add(this.btnEditAgreement);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(63, 5);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(1012, 284);
@@ -464,6 +468,7 @@
             // 
             // radPageViewPage2
             // 
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(66, 10);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(982, 482);
@@ -521,15 +526,17 @@
             gridViewTextBoxColumn16.Name = "DateEnd";
             gridViewTextBoxColumn16.Width = 80;
             gridViewTextBoxColumn16.WrapText = true;
+            gridViewTextBoxColumn17.FieldName = "MinRate";
             gridViewTextBoxColumn17.HeaderText = "Умова %";
             gridViewTextBoxColumn17.MaxWidth = 45;
             gridViewTextBoxColumn17.MinWidth = 45;
-            gridViewTextBoxColumn17.Name = "column2";
+            gridViewTextBoxColumn17.Name = "MinRate";
             gridViewTextBoxColumn17.Width = 45;
             gridViewTextBoxColumn17.WrapText = true;
+            gridViewTextBoxColumn18.FieldName = "MinAmount";
             gridViewTextBoxColumn18.HeaderText = "Умова мін. сума";
             gridViewTextBoxColumn18.MaxWidth = 100;
-            gridViewTextBoxColumn18.Name = "column3";
+            gridViewTextBoxColumn18.Name = "MinAmount";
             gridViewTextBoxColumn18.Width = 100;
             gridViewTextBoxColumn18.WrapText = true;
             gridViewTextBoxColumn19.FieldName = "PeriodPayment";
@@ -605,6 +612,16 @@
             this.pvPayments.Size = new System.Drawing.Size(1080, 408);
             this.pvPayments.Text = "Платежі";
             // 
+            // ctrlPaysInfo1
+            // 
+            this.ctrlPaysInfo1.Customer = null;
+            this.ctrlPaysInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPaysInfo1.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPaysInfo1.Margin = new System.Windows.Forms.Padding(2);
+            this.ctrlPaysInfo1.Name = "ctrlPaysInfo1";
+            this.ctrlPaysInfo1.Size = new System.Drawing.Size(1080, 408);
+            this.ctrlPaysInfo1.TabIndex = 0;
+            // 
             // pvReports
             // 
             this.pvReports.Controls.Add(this.reportsControl);
@@ -644,16 +661,6 @@
             this.userInfoCtrl.PibManager = "Прізвище КапецьякевеличезнеІм\'я Побатькові";
             this.userInfoCtrl.Size = new System.Drawing.Size(912, 209);
             this.userInfoCtrl.TabIndex = 3;
-            // 
-            // ctrlPaysInfo1
-            // 
-            this.ctrlPaysInfo1.Customer = null;
-            this.ctrlPaysInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPaysInfo1.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPaysInfo1.Margin = new System.Windows.Forms.Padding(2);
-            this.ctrlPaysInfo1.Name = "ctrlPaysInfo1";
-            this.ctrlPaysInfo1.Size = new System.Drawing.Size(1080, 408);
-            this.ctrlPaysInfo1.TabIndex = 0;
             // 
             // MiddleControlInfoAgrCalc
             // 

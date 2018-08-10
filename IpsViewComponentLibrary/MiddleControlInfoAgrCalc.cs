@@ -104,7 +104,7 @@ namespace IpsViewComponentLibrary
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
-                foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2))
+                foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass != 1))
                 {
                     //якщо з малими правами, пропустити
                     if(Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
@@ -120,7 +120,8 @@ namespace IpsViewComponentLibrary
                         AgrNumber = licenseParam?.LicNum ?? string.Empty,
                         DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
                         DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
-                        Amount = licenseParam?.MinAmount ?? default(decimal),
+                        MinAmount = licenseParam?.MinAmount ?? default(decimal),
+                        MinRate = licenseParam?.RateAmount ?? default(decimal),
                         State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
                         PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
                         DateLastPayment = ""
@@ -151,6 +152,8 @@ namespace IpsViewComponentLibrary
                             LicId = license.LicId,
                             License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
                             Series = string.Empty,
+                            MinAmount = license.LicenseAgrParam?.SingleOrDefault()?.MinAmount ?? default(decimal),
+                            MinRate = license.LicenseAgrParam?.SingleOrDefault()?.RateAmount ?? default(decimal),
                             AgrNumber = license.LicenseAgrParam?.SingleOrDefault()?.LicNum ?? string.Empty,
                             AgrMasterNumber = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion)?.LicNum,
                             DateBegin = license.LicenseAgrParam.SingleOrDefault()?.DateBegin?.ToShortDateString() ?? string.Empty,
@@ -172,6 +175,8 @@ namespace IpsViewComponentLibrary
                                 LicVersion = agrParam?.LicVersion,
                                 License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
                                 Series = string.Empty,
+                                MinAmount = agrParam?.MinAmount ?? default(decimal),
+                                MinRate = agrParam?.RateAmount ?? default(decimal),
                                 AgrNumber = agrParam?.LicNum ?? string.Empty,
                                 AgrMasterNumber = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion)?.LicNum,
                                 DateBegin = agrParam?.DateBegin?.ToShortDateString() ?? string.Empty,
@@ -597,7 +602,8 @@ namespace IpsViewComponentLibrary
         public string AgrMasterNumber { get; set; }
         public string DateBegin { get; set; }
         public string DateEnd { get; set; }
-        public decimal Amount { get; set; }
+        public decimal MinAmount { get; set; }
+        public decimal MinRate { get; set; }
         public string State { get; set; }
         public int? Status { get; set; }
         public string PeriodPayment { get; set; }
