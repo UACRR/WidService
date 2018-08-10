@@ -111,7 +111,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 }
             }
 
-            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightAddedEvent());
+            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
 
             _view.ShowMessage($"Створено {createdObjectCount} об'єктів.");
         }

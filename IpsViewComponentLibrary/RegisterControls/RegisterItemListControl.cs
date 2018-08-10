@@ -374,7 +374,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 );
             }
 
-            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightAddedEvent());
+            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
         }
 
         private void OnSelectedRegisterItemChanged()
