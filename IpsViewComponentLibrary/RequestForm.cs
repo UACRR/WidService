@@ -72,20 +72,20 @@ namespace IpsViewComponentLibrary
                 btnSave.Enabled = true;
             }
 
-            //if (_formMode == FormMode.ForSmallRightAdmin)
-            //{
-            //    ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
+            if (_formMode == FormMode.ForSmallRightAdmin)
+            {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
 
-            //    ctrlMusicalDesignList.AllowEditList = false;
-            //    ctrlMusicalDesignList.ShowObjectInfo = true;
-            //    ctrlMusicalDesignList.AllowFindCommand = true;
-            //    ctrlMusicalDesignList.AllowLinkCommand = true;
-            //    ctrlMusicalDesignList.AllowShowObjectCommand = true;
-            //    ctrlMusicalDesignList.AllowUnlinkCommand = true;
-            //    ctrlMusicalDesignList.AllowCreateObjectCommand = true;
-            //}
-            //else if (_formMode == FormMode.ForBigRightAdmin)
-            //{
+                ctrlMusicalDesignList.AllowEditList = false;
+                ctrlMusicalDesignList.ShowObjectInfo = true;
+                ctrlMusicalDesignList.AllowFindCommand = true;
+                ctrlMusicalDesignList.AllowLinkCommand = true;
+                ctrlMusicalDesignList.AllowShowObjectCommand = true;
+                ctrlMusicalDesignList.AllowUnlinkCommand = true;
+                ctrlMusicalDesignList.AllowCreateObjectCommand = true;
+            }
+            else if (_formMode == FormMode.ForBigRightAdmin)
+            {
                 ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
 
                 ctrlMusicalDesignList.AllowEditList = true;
@@ -95,7 +95,7 @@ namespace IpsViewComponentLibrary
                 ctrlMusicalDesignList.AllowShowObjectCommand = false;
                 ctrlMusicalDesignList.AllowUnlinkCommand = false;
                 ctrlMusicalDesignList.AllowCreateObjectCommand = false;
-            //}
+            }
 
             #region BINDING
 
