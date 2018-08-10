@@ -325,15 +325,17 @@ namespace IpsViewComponentLibrary
                     period.RegisterRatedList.SingleOrDefault()?.Register.Add(new Register
                     {
                         RgStatus = 0,
+                        RmId = period.RegisterRatedList.SingleOrDefault()?.RmId ?? 0,
                         FileName = string.Empty,
                         CustId = _customer.CustId,
                         RgStatusNavigation = dicRegStatus[0],
                     });
                 }
                 var register = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
-                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.KindCode;
+                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.UsesKind;
                 if (register != null && (licKind == 2 || licKind == 3)) // рапортичка
                 {
+                    
                     CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register)
                     {
                         StartPosition = FormStartPosition.CenterParent
@@ -361,21 +363,35 @@ namespace IpsViewComponentLibrary
                 }
             }
         }
-        // *
 
         // * * * [Переглянути звіт]
         private void RegisterReport()
         {
             if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
+
             var register = gvPeriodReports.CurrentRow.DataBoundItem as Register;
             if (register == null)
                 return;
+
+            var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
+            var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
+            var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.UsesKind;
 
             var list = GetRegisterItems(register.RegId);
 
             register.RegisterItem.Clear();
             list.ForEach(item => register.RegisterItem.Add(item));
+
+            if (reg != null && (licKind == 2 || licKind == 3)) // рапортичка
+            {
+                CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register, false)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+                progReportBigRight.ShowDialog();
+                return;
+            }
 
             ReportExcelViewForm viewForm = new ReportExcelViewForm(register);
             viewForm.ShowDialog();

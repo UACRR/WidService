@@ -784,6 +784,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\CreateProgReportBigRight.resx">
       <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\PaysInfo.resx">
       <DependentUpon>PaysInfo.cs</DependentUpon>
@@ -1091,12 +1092,14 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.PerformType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
