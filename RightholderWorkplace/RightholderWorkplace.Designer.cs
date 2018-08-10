@@ -105,6 +105,7 @@
             this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.MainPageView = new Telerik.WinControls.UI.RadPageView();
             this.mainPageLicenseAgreementBR = new Telerik.WinControls.UI.RadPageViewPage();
+            this.licenseAgreementListControl1 = new IpsViewComponentLibrary.LicenseAgreementListControl();
             this.radMenuButtonItem1 = new Telerik.WinControls.UI.RadDropDownMenu();
             this.radContextMenu = new Telerik.WinControls.UI.RadContextMenu(this.components);
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
@@ -120,7 +121,6 @@
             this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.licenseAgreementListControl1 = new IpsViewComponentLibrary.LicenseAgreementListControl();
             this.mainPageViewReportsSR.SuspendLayout();
             this.mainPageRightsObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).BeginInit();
@@ -229,6 +229,7 @@
             // 
             this.actualObjectsPage.Controls.Add(this.ctrlObjectRightList);
             this.actualObjectsPage.Controls.Add(this.ddbAddObjectRight);
+            this.actualObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.actualObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.actualObjectsPage.Name = "actualObjectsPage";
             this.actualObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -272,6 +273,7 @@
             this.rightholdersObjectsPage.Controls.Add(this.ctrlRightholdersObjectsRight);
             this.rightholdersObjectsPage.Controls.Add(this.btnAddExistingObjectRightForRightholder);
             this.rightholdersObjectsPage.Controls.Add(this.ddbAddObjectRightForRightholder);
+            this.rightholdersObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.rightholdersObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.rightholdersObjectsPage.Name = "rightholdersObjectsPage";
             this.rightholdersObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -323,6 +325,7 @@
             // 
             // notAcceptedObjectsPage
             // 
+            this.notAcceptedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.notAcceptedObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.notAcceptedObjectsPage.Name = "notAcceptedObjectsPage";
             this.notAcceptedObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -330,6 +333,7 @@
             // 
             // newObjectsPage
             // 
+            this.newObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.newObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.newObjectsPage.Name = "newObjectsPage";
             this.newObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -337,6 +341,7 @@
             // 
             // notLinkedObjectsPage
             // 
+            this.notLinkedObjectsPage.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.notLinkedObjectsPage.Location = new System.Drawing.Point(188, 5);
             this.notLinkedObjectsPage.Name = "notLinkedObjectsPage";
             this.notLinkedObjectsPage.Size = new System.Drawing.Size(989, 622);
@@ -878,7 +883,7 @@
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageLicenseAgreementBR;
+            this.MainPageView.SelectedPage = this.mainPageRightsObjects;
             this.MainPageView.Size = new System.Drawing.Size(1192, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";
@@ -894,6 +899,17 @@
             this.mainPageLicenseAgreementBR.Name = "mainPageLicenseAgreementBR";
             this.mainPageLicenseAgreementBR.Size = new System.Drawing.Size(1182, 632);
             this.mainPageLicenseAgreementBR.Text = "Заявки / Довідки ВП";
+            // 
+            // licenseAgreementListControl1
+            // 
+            this.licenseAgreementListControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.licenseAgreementListControl1.Location = new System.Drawing.Point(0, 0);
+            this.licenseAgreementListControl1.Name = "licenseAgreementListControl1";
+            this.licenseAgreementListControl1.SelectedLicenseAgreement = null;
+            this.licenseAgreementListControl1.Size = new System.Drawing.Size(1182, 632);
+            this.licenseAgreementListControl1.TabIndex = 0;
             // 
             // radMenuButtonItem1
             // 
@@ -1022,17 +1038,6 @@
             // objectRightDictionariesBindingSource
             // 
             this.objectRightDictionariesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ObjectRightDictionaries);
-            // 
-            // licenseAgreementListControl1
-            // 
-            this.licenseAgreementListControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.licenseAgreementListControl1.Location = new System.Drawing.Point(0, 0);
-            this.licenseAgreementListControl1.Name = "licenseAgreementListControl1";
-            this.licenseAgreementListControl1.SelectedLicenseAgreement = null;
-            this.licenseAgreementListControl1.Size = new System.Drawing.Size(1182, 632);
-            this.licenseAgreementListControl1.TabIndex = 0;
             // 
             // RightholderWorkplace
             // 
