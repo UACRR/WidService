@@ -402,6 +402,8 @@ namespace ipsmedserviceapp.Controllers
 
             license.LicenseBigR.SetFields(item.LicenseBigR);
 
+            _dbContext.UpdateList(item.LicenseBigR.MusicalDesign, license.LicenseBigR.MusicalDesign, i => { }, (l, r) => l.MdId == r.MdId );
+
             if (item.LicenseBigR.Obj != null)
             {
 
