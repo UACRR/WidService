@@ -17,6 +17,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             ctrlAgreementMain.AgreementLabelType = TypeRights.BigRights;
+            
         }
 
         [Category("Data")]
@@ -81,7 +82,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         internal void SetBigRightsLicenseAgrType()
         {
-            ddlLicType.ReadOnly = true;
+            ddlLicType.Enabled = false;
         }
 
         private void txtDayForPay_KeyPress(object sender, KeyPressEventArgs e)

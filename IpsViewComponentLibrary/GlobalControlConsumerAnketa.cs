@@ -117,6 +117,7 @@ namespace IpsViewComponentLibrary
                         var item = _cust.Client.LicenseAgreement.SingleOrDefault();
                         item.LicCode = 28;
                         item.LicClass = 1;
+                        item.LicType = 1;
                     }
 
                     if(!isEdit && _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Count == 0)
