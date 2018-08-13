@@ -196,5 +196,18 @@ namespace IpsViewComponentLibrary
         {
             OnEditCustomer?.Invoke(_rowId);
         }
+
+
+
+        private void mсInfoAgrCalc_ClientSizeChanged(object sender, EventArgs e)
+        {
+            foreach (Control item in Controls)
+                item.SuspendLayout();
+
+            base.OnClientSizeChanged(e);
+
+            foreach (Control item in Controls)
+                item.ResumeLayout();
+        }
     }
 }

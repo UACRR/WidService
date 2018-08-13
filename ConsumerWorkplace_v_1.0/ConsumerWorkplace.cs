@@ -248,6 +248,13 @@ namespace ConsumerWorkplace_v_1._0
         public Func<Customer, bool> SaveCustomer { get; set; }
         public Func<string, IList<AutoCompleteData>> GetAutoCompList { get; set; }
 
+        private void ConsumerWorkplace_Resize(object sender, EventArgs e)
+        {
+            SuspendLayout();
+            base.OnResize(e);
+            ResumeLayout();
+        }
+
         public void EndPresenterLink()
         {
             if (getMainViewData != null)

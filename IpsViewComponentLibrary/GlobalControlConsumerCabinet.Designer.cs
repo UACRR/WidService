@@ -184,6 +184,7 @@
             this.mсInfoAgrCalc.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             this.mсInfoAgrCalc.Size = new System.Drawing.Size(1069, 665);
             this.mсInfoAgrCalc.TabIndex = 0;
+            this.mсInfoAgrCalc.ClientSizeChanged += new System.EventHandler(this.mсInfoAgrCalc_ClientSizeChanged);
             // 
             // btnEditAgr
             // 

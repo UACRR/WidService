@@ -568,6 +568,32 @@ namespace IpsViewComponentLibrary
                         MessageBoxIcon.Error);
             }
         }
+
+  
+
+        private void MiddleControlInfoAgrCalc_Resize(object sender, EventArgs e)
+        {
+            var size = pvReports.Size;
+            var reportSize = reportsControl.MinimumSize;
+            if (size.Height >= reportSize.Height)
+            {
+                if (reportsControl.Dock != DockStyle.Fill)
+                {
+                    reportsControl.Dock = DockStyle.Fill;
+                    pvReports.Refresh();
+                }
+            }
+            else
+            {
+                if (reportsControl.Dock != DockStyle.None)
+                {
+                    reportsControl.Dock = DockStyle.None;
+                    reportsControl.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+                    pvReports.Refresh();
+                }
+
+            }
+        }
     }
 
     /// <summary>

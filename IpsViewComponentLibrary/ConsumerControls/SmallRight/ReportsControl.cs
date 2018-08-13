@@ -52,6 +52,11 @@ namespace IpsViewComponentLibrary
 
         }
 
+        protected override Rectangle GetScaledBounds(Rectangle bounds, SizeF factor,   BoundsSpecified specified)
+        {
+            return base.GetScaledBounds(bounds, factor, specified);
+        }
+
         private void subscribeDictionary(object sender, EventArgs args)
         {
             dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
@@ -545,6 +550,7 @@ namespace IpsViewComponentLibrary
                 }
             }
         }
+
     }
 
     /// <summary>

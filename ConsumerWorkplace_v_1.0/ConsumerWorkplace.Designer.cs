@@ -42,7 +42,6 @@ namespace ConsumerWorkplace_v_1._0
             this.mainViewSwitcherSR = new IpsViewComponentLibrary.MainViewSwitcher();
             this.treeViewSR = new Telerik.WinControls.UI.RadTreeView();
             this.radPageViewPage7 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.consumerWorkplaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.aquaTheme = new Telerik.WinControls.Themes.AquaTheme();
@@ -69,13 +68,13 @@ namespace ConsumerWorkplace_v_1._0
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.consumerWorkplaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pageBigRights.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewBR)).BeginInit();
             this.pageSmallRights.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewSR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.consumerWorkplaceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).BeginInit();
             this.pageViewOwner.SuspendLayout();
@@ -95,6 +94,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iTypeVatBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consumerWorkplaceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,7 +140,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.mainViewSwitcherBR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainViewSwitcherBR.Location = new System.Drawing.Point(199, 0);
-            this.mainViewSwitcherBR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainViewSwitcherBR.Margin = new System.Windows.Forms.Padding(4);
             this.mainViewSwitcherBR.Name = "mainViewSwitcherBR";
             this.mainViewSwitcherBR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.mainViewSwitcherBR.Size = new System.Drawing.Size(1058, 652);
@@ -169,7 +169,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.mainViewSwitcherSR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainViewSwitcherSR.Location = new System.Drawing.Point(199, 0);
-            this.mainViewSwitcherSR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainViewSwitcherSR.Margin = new System.Windows.Forms.Padding(4);
             this.mainViewSwitcherSR.Name = "mainViewSwitcherSR";
             this.mainViewSwitcherSR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.mainViewSwitcherSR.Size = new System.Drawing.Size(1058, 656);
@@ -192,10 +192,6 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage7.Name = "radPageViewPage7";
             this.radPageViewPage7.Size = new System.Drawing.Size(1257, 652);
             this.radPageViewPage7.Text = "Фіксація правопорушень";
-            // 
-            // consumerWorkplaceBindingSource
-            // 
-            this.consumerWorkplaceBindingSource.DataSource = typeof(ConsumerWorkplace_v_1._0.ConsumerWorkplace);
             // 
             // pageViewOwner
             // 
@@ -331,9 +327,13 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
             // 
+            // consumerWorkplaceBindingSource
+            // 
+            this.consumerWorkplaceBindingSource.DataSource = typeof(ConsumerWorkplace_v_1._0.ConsumerWorkplace);
+            // 
             // ConsumerWorkplace
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 735);
             this.Controls.Add(this.pageViewOwner);
@@ -351,7 +351,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.treeViewBR)).EndInit();
             this.pageSmallRights.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeViewSR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.consumerWorkplaceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).EndInit();
             this.pageViewOwner.ResumeLayout(false);
@@ -371,6 +370,7 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.iActivityTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgreementMasterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iTypeVatBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.consumerWorkplaceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

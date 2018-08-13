@@ -196,5 +196,32 @@ namespace TestControls
         {
 
         }
+
+        private void radPageViewPage3_Resize(object sender, EventArgs e)
+        {
+            var size = radPageViewPage3.Size;
+            if (size.Height > reportsControl1.MinimumSize.Height)
+            {
+                if (reportsControl1.Dock != DockStyle.Fill)
+                {
+                    reportsControl1.Dock = DockStyle.Fill;
+                    radPageViewPage3.Invalidate();
+
+                }
+
+            }
+            else
+            {
+                if( reportsControl1.Dock != DockStyle.Top )
+                {
+                    reportsControl1.Dock = DockStyle.Top;
+                    reportsControl1.Size = new Size(reportsControl1.Size.Width, reportsControl1.MinimumSize.Height);
+                    radPageViewPage3.Invalidate();
+                }
+
+
+            }
+
+        }
     }
 }
