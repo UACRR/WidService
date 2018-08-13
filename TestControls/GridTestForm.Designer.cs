@@ -28,147 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.collapsiblePanel = new Telerik.WinControls.UI.RadCollapsiblePanel();
-            this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
-            this.pvSpectacle = new Telerik.WinControls.UI.RadPageViewPage();
-            this.gvViewSpectacles = new Telerik.WinControls.UI.RadGridView();
-            this.pvMusicalDesign = new Telerik.WinControls.UI.RadPageViewPage();
-            this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.licenseAgrParamBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btn = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.collapsiblePanel)).BeginInit();
-            this.collapsiblePanel.PanelContainer.SuspendLayout();
-            this.collapsiblePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
-            this.radPageView1.SuspendLayout();
-            this.pvSpectacle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn)).BeginInit();
+            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.radButton3 = new Telerik.WinControls.UI.RadButton();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // collapsiblePanel
+            // radGridView1
             // 
-            this.collapsiblePanel.AnimationType = Telerik.WinControls.UI.CollapsiblePanelAnimationType.Slide;
-            this.collapsiblePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.collapsiblePanel.HeaderText = "Інформація по розрахунковому листу";
-            this.collapsiblePanel.HorizontalHeaderAlignment = Telerik.WinControls.UI.RadHorizontalAlignment.Right;
-            this.collapsiblePanel.Location = new System.Drawing.Point(0, 201);
-            this.collapsiblePanel.Name = "collapsiblePanel";
-            this.collapsiblePanel.OwnerBoundsCache = new System.Drawing.Rectangle(0, 214, 1197, 295);
-            // 
-            // collapsiblePanel.PanelContainer
-            // 
-            this.collapsiblePanel.PanelContainer.Controls.Add(this.radPageView1);
-            this.collapsiblePanel.PanelContainer.Size = new System.Drawing.Size(940, 267);
-            this.collapsiblePanel.Size = new System.Drawing.Size(942, 295);
-            this.collapsiblePanel.TabIndex = 13;
-            this.collapsiblePanel.ThemeName = "Office2013Light";
-            // 
-            // radPageView1
-            // 
-            this.radPageView1.Controls.Add(this.pvSpectacle);
-            this.radPageView1.Controls.Add(this.pvMusicalDesign);
-            this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPageView1.Location = new System.Drawing.Point(0, 0);
-            this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.pvSpectacle;
-            this.radPageView1.Size = new System.Drawing.Size(940, 267);
-            this.radPageView1.TabIndex = 0;
-            this.radPageView1.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            // 
-            // pvSpectacle
-            // 
-            this.pvSpectacle.Controls.Add(this.gvViewSpectacles);
-            this.pvSpectacle.ItemSize = new System.Drawing.SizeF(60F, 27F);
-            this.pvSpectacle.Location = new System.Drawing.Point(5, 31);
-            this.pvSpectacle.Name = "pvSpectacle";
-            this.pvSpectacle.Size = new System.Drawing.Size(930, 231);
-            this.pvSpectacle.Text = "Вистави";
-            // 
-            // gvViewSpectacles
-            // 
-            this.gvViewSpectacles.AutoScroll = true;
-            this.gvViewSpectacles.AutoSizeRows = true;
-            this.gvViewSpectacles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gvViewSpectacles.EnableCustomFiltering = true;
-            this.gvViewSpectacles.Location = new System.Drawing.Point(0, 0);
+            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radGridView1.Location = new System.Drawing.Point(13, 13);
             // 
             // 
             // 
-            this.gvViewSpectacles.MasterTemplate.AllowAddNewRow = false;
-            this.gvViewSpectacles.MasterTemplate.AllowDeleteRow = false;
-            this.gvViewSpectacles.MasterTemplate.AllowDragToGroup = false;
-            this.gvViewSpectacles.MasterTemplate.AllowEditRow = false;
-            this.gvViewSpectacles.MasterTemplate.AutoGenerateColumns = false;
-            this.gvViewSpectacles.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.gvViewSpectacles.MasterTemplate.EnableCustomFiltering = true;
-            this.gvViewSpectacles.MasterTemplate.EnableFiltering = true;
-            this.gvViewSpectacles.MasterTemplate.EnableGrouping = false;
-            this.gvViewSpectacles.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewSpectacles.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.gvViewSpectacles.Name = "gvViewSpectacles";
-            this.gvViewSpectacles.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewSpectacles.Size = new System.Drawing.Size(930, 231);
-            this.gvViewSpectacles.TabIndex = 11;
-            this.gvViewSpectacles.ThemeName = "Office2013Light";
+            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.FieldName = "Col1";
+            gridViewTextBoxColumn1.HeaderText = "DEC";
+            gridViewTextBoxColumn1.Name = "column1";
+            gridViewTextBoxColumn1.Width = 299;
+            gridViewTextBoxColumn2.FieldName = "Col2";
+            gridViewTextBoxColumn2.HeaderText = "OCT";
+            gridViewTextBoxColumn2.Name = "column2";
+            gridViewTextBoxColumn2.Width = 299;
+            gridViewTextBoxColumn3.FieldName = "Col3";
+            gridViewTextBoxColumn3.HeaderText = "HEX";
+            gridViewTextBoxColumn3.Name = "column3";
+            gridViewTextBoxColumn3.Width = 300;
+            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3});
+            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridView1.Name = "radGridView1";
+            this.radGridView1.Size = new System.Drawing.Size(917, 417);
+            this.radGridView1.TabIndex = 0;
+            this.radGridView1.PageChanging += new System.EventHandler<Telerik.WinControls.PageChangingEventArgs>(this.radGridView1_PageChanging);
+            ((Telerik.WinControls.UI.PagingPanelElement)(this.radGridView1.GetChildAt(0).GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            // pvMusicalDesign
+            // radButton1
             // 
-            this.pvMusicalDesign.ItemSize = new System.Drawing.SizeF(141F, 27F);
-            this.pvMusicalDesign.Location = new System.Drawing.Point(5, 31);
-            this.pvMusicalDesign.Name = "pvMusicalDesign";
-            this.pvMusicalDesign.Size = new System.Drawing.Size(975, 136);
-            this.pvMusicalDesign.Text = "Музичне оформлення";
+            this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radButton1.Location = new System.Drawing.Point(13, 460);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(110, 24);
+            this.radButton1.TabIndex = 1;
+            this.radButton1.Text = "radButton1";
+            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
             // 
-            // licenseAgreementBindingSource
+            // radButton2
             // 
-            this.licenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            this.radButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radButton2.Location = new System.Drawing.Point(129, 460);
+            this.radButton2.Name = "radButton2";
+            this.radButton2.Size = new System.Drawing.Size(110, 24);
+            this.radButton2.TabIndex = 2;
+            this.radButton2.Text = "radButton2";
+            this.radButton2.Click += new System.EventHandler(this.radButton2_Click);
             // 
-            // licenseAgrParamBindingSource
+            // radButton3
             // 
-            this.licenseAgrParamBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
-            // 
-            // btn
-            // 
-            this.btn.Location = new System.Drawing.Point(13, 13);
-            this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(110, 24);
-            this.btn.TabIndex = 14;
-            this.btn.Text = "Button";
-            this.btn.Click += new System.EventHandler(this.btn_Click);
+            this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radButton3.Location = new System.Drawing.Point(245, 460);
+            this.radButton3.Name = "radButton3";
+            this.radButton3.Size = new System.Drawing.Size(110, 24);
+            this.radButton3.TabIndex = 3;
+            this.radButton3.Text = "radButton3";
+            this.radButton3.Click += new System.EventHandler(this.radButton3_Click);
             // 
             // GridTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 496);
-            this.Controls.Add(this.btn);
-            this.Controls.Add(this.collapsiblePanel);
+            this.Controls.Add(this.radButton3);
+            this.Controls.Add(this.radButton2);
+            this.Controls.Add(this.radButton1);
+            this.Controls.Add(this.radGridView1);
             this.Name = "GridTestForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.ThemeName = "Office2013Light";
-            this.collapsiblePanel.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.collapsiblePanel)).EndInit();
-            this.collapsiblePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
-            this.radPageView1.ResumeLayout(false);
-            this.pvSpectacle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgrParamBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -176,13 +135,9 @@
 
         #endregion
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private System.Windows.Forms.BindingSource licenseAgreementBindingSource;
-        private System.Windows.Forms.BindingSource licenseAgrParamBindingSource;
-        private Telerik.WinControls.UI.RadCollapsiblePanel collapsiblePanel;
-        private Telerik.WinControls.UI.RadPageView radPageView1;
-        private Telerik.WinControls.UI.RadPageViewPage pvSpectacle;
-        private Telerik.WinControls.UI.RadGridView gvViewSpectacles;
-        private Telerik.WinControls.UI.RadPageViewPage pvMusicalDesign;
-        private Telerik.WinControls.UI.RadButton btn;
+        private Telerik.WinControls.UI.RadGridView radGridView1;
+        private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton radButton3;
     }
 }
