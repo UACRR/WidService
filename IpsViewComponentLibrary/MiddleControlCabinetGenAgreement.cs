@@ -29,7 +29,7 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             _bigRightView = bigRightView;
-            ctrlHeaderInfo.SetHeaderInfoBigRight(_customer,_bigRightView);
+            //ctrlHeaderInfo.SetHeaderInfoBigRight(_customer,_bigRightView);
             ctrlFooterInfo.DataSourceLicense = bigRightView;
             gvGenAgrLicences.DataSource = genAgrs;
         }

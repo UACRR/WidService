@@ -114,9 +114,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pvMain.Controls.Add(this.pvActiveAgr);
             this.pvMain.Controls.Add(this.pvMoreAgreements);
+            this.pvMain.Controls.Add(this.pvReports);
             this.pvMain.Controls.Add(this.pvCalculation);
             this.pvMain.Controls.Add(this.pvPayments);
-            this.pvMain.Controls.Add(this.pvReports);
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Location = new System.Drawing.Point(3, 218);
             this.pvMain.Name = "pvMain";
@@ -387,7 +387,6 @@
             this.radPageViewPage1.Controls.Add(this.btnDeleteAgr);
             this.radPageViewPage1.Controls.Add(this.btnAccept);
             this.radPageViewPage1.Controls.Add(this.btnEditAgreement);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(63, 5);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(1012, 284);
@@ -470,7 +469,6 @@
             // 
             // radPageViewPage2
             // 
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(66, 10);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(982, 482);
