@@ -124,7 +124,7 @@ namespace IpsViewComponentLibrary
                 {
                     _typeVatDataMember = value;
                     ddlTypeVat.DataBindings.Clear();
-                    ddlTypeVat.DataBindings.Add("SelectedValue", iAnketaCompanyBindingSource, "TypeVat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+                    ddlTypeVat.DataBindings.Add("SelectedValue", iAnketaCompanyBindingSource, "TypeVat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ddlTypeVat.Items.First);
                 }
             }
         }
@@ -140,7 +140,7 @@ namespace IpsViewComponentLibrary
                 {
                     _numberVatDataMember = value;
                     txtNumberVat.DataBindings.Clear();
-                    txtNumberVat.DataBindings.Add("Text", iAnketaCompanyBindingSource, _numberVatDataMember,true,DataSourceUpdateMode.OnPropertyChanged,string.Empty);
+                    txtNumberVat.DataBindings.Add("Text", iAnketaCompanyBindingSource, _numberVatDataMember,true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
                 }
             }
         }

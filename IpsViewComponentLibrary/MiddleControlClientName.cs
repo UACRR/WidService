@@ -35,6 +35,7 @@ namespace IpsViewComponentLibrary
             _cust = cust;
             _dictionaties = dictionaties;
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == cust.AnkVersion);
+            anketa.TypeVat = 1;
             ctrlAnketaCompany.DataSource = anketa;
 
             ctrlRegistrationsCompany.DataSource = anketa;
@@ -51,7 +52,7 @@ namespace IpsViewComponentLibrary
             ctrlRegistrationsCompany.RegisterDateDataMember = "RegistrDate";
             ctrlRegistrationsCompany.RegisterNumberDataMember = "RegistrNumber";
             ctrlRegistrationsCompany.RegisterWhoDataMember = "RegistrWho";
-
+            ctrlRegistrationsCompany.SetDefaultState();
             checkClientName.Checked = cust != null && cust?.Client?.ClnBusinessPlace?.Count != 0;
         }
 
