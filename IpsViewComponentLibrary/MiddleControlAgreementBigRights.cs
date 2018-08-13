@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -15,6 +16,7 @@ namespace IpsViewComponentLibrary
         public MiddleControlAgreementBigRights()
         {
             InitializeComponent();
+            ctrlAgreementMain.AgreementLabelType = TypeRights.BigRights;
         }
 
         [Category("Data")]

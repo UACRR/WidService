@@ -112,12 +112,11 @@ namespace IpsViewComponentLibrary
                         TabIndex = 0
                     };
 
-                    if (_cust.Client.LicenseAgreement.SingleOrDefault()?.LicCode != null)
+                    if (_cust?.Client?.LicenseAgreement?.SingleOrDefault()?.LicCode != null)
                     {
                         var item = _cust.Client.LicenseAgreement.SingleOrDefault();
                         item.LicCode = 28;
                         item.LicClass = 1;
-                        
                     }
 
                     if(!isEdit && _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Count == 0)

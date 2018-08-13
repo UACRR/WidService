@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -20,6 +21,7 @@ namespace IpsViewComponentLibrary
         private DateTime _dateEndNullDate = new DateTime(1,1,1);
         private string _dateEndNullText = "";
         private ConsumerAgreementInitType _type = ConsumerAgreementInitType.None;
+        private TypeRights _rights = TypeRights.SmallRights;
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -49,12 +51,14 @@ namespace IpsViewComponentLibrary
             get => bsAgreementAddBr.DataSource;
             set
             {
+                rtxtBoxContrNumber.DataBindings.Clear();
                 rdtPickerAgrDate.DataBindings.Clear();
                 rdtPickerDateBegin.DataBindings.Clear();
                 rdtPickerDateEnd.DataBindings.Clear();
 
                 bsAgreementAddBr.DataSource = value;
 
+                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsAgreementAddBr, "AgrNumber", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
                 rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "AgrDate", true, DataSourceUpdateMode.OnPropertyChanged));
                 rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged));
                 rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged));
@@ -260,6 +264,22 @@ namespace IpsViewComponentLibrary
             catch (Exception exception)
             {
                 ;
+            }
+        }
+
+        /// <summary>
+        /// Тип ліцензії
+        /// </summary>
+        public TypeRights AgreementLabelType
+        {
+            get => _rights;
+            set
+            {
+                _rights = value;
+                if(_rights == TypeRights.SmallRights)
+                    lblContrNumb.Text = "ЛІЦЕНЗІЙНИЙ ДОГОВІР №";
+                else if (_rights == TypeRights.BigRights)
+                    lblContrNumb.Text = "ГЕНЕРАЛЬНИЙ ДОГОВІР №";
             }
         }
     }
