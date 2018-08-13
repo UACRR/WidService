@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary
         private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
         private ButtonType _btnType = ButtonType.None;
         private byte _nextPageNumber;
-        private readonly Point _LocationPoint = new Point(4,4);
+        private readonly Point _LocationPoint = new Point(4, 35);
 
         private Customer _cust;
         private AnketaDictionaties _anketaDictionaries;
@@ -77,20 +77,19 @@ namespace IpsViewComponentLibrary
             ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
             ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
             ctrlManagers.SetDataSources(_cust, _anketaDictionaries);   // - - - - - - - -  Керівники
-            ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
-            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
-                ? _cust?.Client?.ClnBusinessPlace // - - - - - - - - - - - - - - - - - - 
-                : null, _anketaDictionaries );                          // - - - - - - - - - - - - - - - - - -
-            ctrlPlacesTitle.Text =              // - - - - - - - - - - - - - - - - - - -
-                _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
-                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
+            ctrlPlaces.SetData(_cust);        //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
+            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0 // -  Майданчики (grid)
+                ? _cust?.Client?.ClnBusinessPlace  // - - - - - - - - - - - - - - - - - - 
+                : null, _anketaDictionaries);  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+            anketaCompanyBindingSource.DataSource = _cust?.Company?.AnketaCompany?.// - - - - - - - - - - - -
+                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion); // - - - - - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
 
             if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
                 InitAgreementType(typeRights);
 
            
-            ctrlClientName.SetDefaultState();
+            //ctrlClientName.SetDefaultState();
 
         }
 
@@ -127,11 +126,11 @@ namespace IpsViewComponentLibrary
                             AgrStatus = 2,
                             AnkVersion = _cust.AnkVersion,
                         });
-
+                    //_cust.Company.AnketaCompany.SingleOrDefault().Name = string.Empty;
                     pvAgreement.Controls.Add(ctrlAgreementBigRights);
                     ctrlAgreementBigRights.DictionaryAgrLicTypeDataSource = _anketaDictionaries.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
                     ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
-                    ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.AnketaCompany;// typeof(AnketaCompany);
+                    ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// typeof(AnketaCompany);
                     ctrlAgreementBigRights.LicAgrDataSource = _cust.Client.LicenseAgreement;// typeof(LicenseAgreement);
                     ctrlAgreementBigRights.AgreementAddBrDataSource = _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr;
 
