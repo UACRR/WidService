@@ -76,7 +76,6 @@
             this.ctrlAgreementMain.AgreementName = "";
             this.ctrlAgreementMain.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgreementMain.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
-            this.ctrlAgreementMain.DataSourceBrLicNumber = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgreementMain.DateBeginDataMember = "";
             this.ctrlAgreementMain.DateDataMember = "";
             this.ctrlAgreementMain.DateEndDataMember = "";

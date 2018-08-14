@@ -123,17 +123,21 @@ namespace IpsViewComponentLibrary
         //зміна рядка на грід
         private void gvViewRequests_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            //нема в наявності записів заявоч чи довідок (залежно від типу ctrl)
             if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)
             {
                 bindingSource1.DataSource = typeof(BigRightRequestBidAuthors);
                 btnSave.Enabled = false;
                 btnCancel.Enabled = false;
                 btnToReference.Enabled = false;
+                //якщо це ctrl довідок, кнопка не працюватиме
+                btnCreate.Enabled = _typeControl != ControlRequestOrReferenceType.Reference;
             }
             else
             {
                 btnSave.Enabled = true;
                 btnCancel.Enabled = true;
+                btnCreate.Enabled = true;
             }
 
             var item = e?.CurrentRow?.DataBoundItem as BigRightRequests;
@@ -142,18 +146,16 @@ namespace IpsViewComponentLibrary
                 if (item?.LicStatus is 0)
                     SetBtnFunc(ButtonFunctionType.Agree);
                 else if (item?.LicStatus is 1)
-                {
                     SetBtnFunc(ButtonFunctionType.Accept);
-                }
                 else
-                {
                     SetBtnFunc(ButtonFunctionType.None);
-                }
             }
-
+            
             btnToAccept.Enabled = item?.LicStatus == 0 || item?.LicStatus == 1;
             btnDelete.Enabled = item?.LicStatus == 0;
+            // (видима в заявках) в стан довідки при статусі активна або на погодження
             btnToReference.Enabled = item?.LicStatus == 2 || item?.LicStatus == 3;
+            
 
             bindingSource1.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
 
