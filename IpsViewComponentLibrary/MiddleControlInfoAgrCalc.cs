@@ -11,6 +11,7 @@ using ipsFormsDesign;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using System.Diagnostics;
 
 namespace IpsViewComponentLibrary
 {
@@ -30,6 +31,8 @@ namespace IpsViewComponentLibrary
 
         public MiddleControlInfoAgrCalc()
         {
+            // Debug.WriteLine("MiddleControlInfoAgrCalc start");
+
             InitializeComponent();
             SetDefaultPages();
             ctrlAgrInfoMain.OnSaveCommentNeed += AgreementInfoCtrl_OnSaveCommentNeed;
@@ -37,6 +40,7 @@ namespace IpsViewComponentLibrary
 
         private void AgreementInfoCtrl_OnSaveCommentNeed(object sender, EventArgs e)
         {
+            // Debug.WriteLine("AgreementInfoCtrl_OnSaveCommentNeed start");
             OnCustomerSave?.Invoke(_customer);
         }
 
@@ -45,6 +49,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void ClearData()
         {
+            // Debug.WriteLine("ClearData start");
             SetDefaultPages();
             userInfoCtrl.SetEmptyFields();
             ctrlAgrInfoMain.SetEmpty();
@@ -58,6 +63,7 @@ namespace IpsViewComponentLibrary
         /// <param name="anketaCount">Параметр наявності анкет</param>
         public void SetStateWhenChangeAnketaCount(AnketaCount anketaCount)
         {
+            // Debug.WriteLine("SetStateWhenChangeAnketaCount start");
             switch (anketaCount)
             {
                 case AnketaCount.Empty:
@@ -76,12 +82,14 @@ namespace IpsViewComponentLibrary
 
         public void SetDictionary(AnketaDictionaties dict)
         {
+            // Debug.WriteLine("SetDictionary start");
             _dictionaties = dict;
             // calculationCtrl.SetDictionary(dict);
         }
 
         public void SetCustomerData(Customer cust)
         {
+            // Debug.WriteLine("SetCustomerData start");
             _customer = cust;
             SetUserInfoData();
             gvLicenseAgr.DataSource = new object();
@@ -102,6 +110,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetLicenseAgrGridDataSource()
         {
+            // Debug.WriteLine("SetLicenseAgrGridDataSource start");
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
                 foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2))
@@ -134,6 +143,7 @@ namespace IpsViewComponentLibrary
 
         private void SetLicenseAgrMoreGridDataSource()
         {
+            // Debug.WriteLine("SetLicenseAgrMoreGridDataSource start");
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
             {
@@ -194,6 +204,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetUserInfoData()
         {
+            // Debug.WriteLine("SetUserInfoData start");
             var userInfo = _customer?.Company?.AnketaCompany?.SingleOrDefault();
             var contactPerson = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
             var manager = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
@@ -220,6 +231,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetAgrInfoData(int idItem = 0)
         {
+            // Debug.WriteLine("SetAgrInfoData start");
             _idItem = idItem;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
@@ -252,6 +264,7 @@ namespace IpsViewComponentLibrary
 
         private void SetAgrInfoDataMore(int idItem = 0)
         {
+            // Debug.WriteLine("SetAgrInfoDataMore start");
             _idItem = idItem;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
@@ -295,12 +308,14 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void SetDefaultPages()
         {
+            // Debug.WriteLine("SetDefaultPages start");
             pvSecond.SelectedPage = pvSecond.DefaultPage;
             pvMain.SelectedPage = pvMain.DefaultPage;
         }
 
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            // Debug.WriteLine("gvLicenseAgr_CurrentRowChanged start");
             //bool isInt = Int32.TryParse(e.CurrentRow.Cells["Id"].Value.ToString(), out int result);
             //if (!isInt) return;
             //SetAgrInfoData(result);
@@ -317,6 +332,7 @@ namespace IpsViewComponentLibrary
         /// <param name="licenseParam"></param>
         private void RunDialogForLicenseAgrParam(LicenseAgreement license, LicenseAgrParam licenseParam, DialogGoal goal )
         {
+            // Debug.WriteLine("RunDialogForLicenseAgrParam start");
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var licenseName = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name;
 
@@ -354,6 +370,7 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            // Debug.WriteLine("btnEdit_Click start");
             if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
 
             //поточна ліцензія
@@ -391,6 +408,7 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void btnProlongation_Click(object sender, EventArgs e)
         {
+            // Debug.WriteLine("btnProlongation_Click start");
             LicenseAgrParam parametr;
             var licId = (gvLicenseAgr.CurrentRow.DataBoundItem as GridLicenseAgrView)?.LicId;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == licId).SingleOrDefault();
@@ -435,17 +453,20 @@ namespace IpsViewComponentLibrary
 
         private void Prolongation_OnSaveProlongationWithoutPlaces(object sender, EventArgs e)
         {
+            // Debug.WriteLine("Prolongation_OnSaveProlongationWithoutPlaces start");
             OnCustomerSave?.Invoke(_customer);
         }
 
         private void Prolongation_OnSaveProlongationWithPlaces(object sender, EventArgs e)
         {
+            // Debug.WriteLine("Prolongation_OnSaveProlongationWithPlaces start");
             OnCustomerSave?.Invoke(_customer);
         }
 
         // true - з майданчиками, false - без майданчиків
         private bool GetTypeAgrForm()
         {
+            // Debug.WriteLine("GetTypeAgrForm start");
             if (_customer.Client.ClnBusinessPlace.Count > 0)
                 return true;
             return false;
@@ -454,6 +475,7 @@ namespace IpsViewComponentLibrary
         //кнопка додати договір
         private void btnAddAgreement_Click(object sender, EventArgs e)
         {
+            // Debug.WriteLine("btnAddAgreement_Click start");
             _customer.Client.LicenseAgreement.Add(new LicenseAgreement
             {
                 CustId = _customer.CustId,
@@ -480,6 +502,7 @@ namespace IpsViewComponentLibrary
         //кнопка друк
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            // Debug.WriteLine("btnPrint_Click start");
             var _lic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _idItem);
             ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dictionaties, customer: _customer, licenseAgreement: _lic)
             {
@@ -496,6 +519,7 @@ namespace IpsViewComponentLibrary
 
         private void gvMoreLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            // Debug.WriteLine("gvMoreLicenseAgr_CurrentRowChanged start");
             if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
             btnAccept.Enabled = (curRow.Status == 0 || curRow.Status == 1);
             btnDeleteAgr.Enabled = curRow.Status == 0;
@@ -504,6 +528,7 @@ namespace IpsViewComponentLibrary
 
         private void btnChangeAgreement_Click(object sender, EventArgs e)
         {
+            // Debug.WriteLine("btnChangeAgreement_Click start");
             LicenseAgrParam parametr;
             var licId = (gvLicenseAgr.CurrentRow.DataBoundItem as GridLicenseAgrView)?.LicId;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == licId).SingleOrDefault();
@@ -553,7 +578,8 @@ namespace IpsViewComponentLibrary
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            if(gvMoreLicenseAgr.CurrentRow.DataBoundItem is GridLicenseAgrView item)
+            // Debug.WriteLine("btnAccept_Click start");
+            if (gvMoreLicenseAgr.CurrentRow.DataBoundItem is GridLicenseAgrView item)
             {
                 bool actResult = false;
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
@@ -573,6 +599,7 @@ namespace IpsViewComponentLibrary
 
         private void MiddleControlInfoAgrCalc_Resize(object sender, EventArgs e)
         {
+            // Debug.WriteLine("MiddleControlInfoAgrCalc_Resize start");
             var size = pvReports.Size;
             var reportSize = reportsControl.MinimumSize;
             if (size.Height >= reportSize.Height)

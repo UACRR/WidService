@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using System.Diagnostics;
 
 namespace IpsViewComponentLibrary
 {
@@ -46,12 +47,14 @@ namespace IpsViewComponentLibrary
 
         public GlobalControlConsumerCabinet()
         {
+            // Debug.WriteLine("GlobalControlConsumerCabinet 1 start");
             InitializeComponent();
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
             mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
         }
         public GlobalControlConsumerCabinet(TypeRights typeRights)
         {
+            // Debug.WriteLine("GlobalControlConsumerCabinet 2 start");
             InitializeComponent();
             Rights = typeRights;
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
@@ -62,11 +65,13 @@ namespace IpsViewComponentLibrary
 
         private bool MсInfoAgrCalc_OnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
+            // Debug.WriteLine("MсInfoAgrCalc_OnChangeLicenseStatus start");
             return OnChangeLicenseStatus?.Invoke(agr, version, status, changeVer) ?? false;
         }
 
         private void MсInfoAgrCalc_OnCustomerSave(Customer customer)
         {
+            // Debug.WriteLine("MсInfoAgrCalc_OnCustomerSave start");
             var result = OnSaveCustomer?.Invoke(customer) ?? false;
             if (result)
             {
@@ -80,12 +85,15 @@ namespace IpsViewComponentLibrary
 
         private void GvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            // Debug.WriteLine("GvConsumerList_CurrentRowChanged start");
             var id = (int?)e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
             _rowId = id;
         }
 
         public void SetSelectCustomer(int custId)
         {
+            // Debug.WriteLine("SetDictionary start");
+
             if (gvConsumerList.Rows.Count != 0)
                 gvConsumerList.CurrentRow = gvConsumerList.Rows.SingleOrDefault(rec => (int)rec.Cells["CustId"].Value == custId);
         }
@@ -96,6 +104,7 @@ namespace IpsViewComponentLibrary
         /// <param name="dict"></param>
         public void SetDictionary(AnketaDictionaties dict)
         {
+            // Debug.WriteLine("SetDictionary start");
             mсInfoAgrCalc.SetDictionary(dict);
         }
 
@@ -105,6 +114,7 @@ namespace IpsViewComponentLibrary
         /// <param name="o"></param>
         public void SetGridDataSource(object o)
         {
+            // Debug.WriteLine("SetGridDataSource start");
             gvConsumerList.DataSource = o;
         }
 
@@ -115,6 +125,7 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void gvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            // Debug.WriteLine("gvConsumerList_CurrentRowChanged start");
             int custId = (int?) e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
             if (custId != -1)
             {
@@ -131,27 +142,33 @@ namespace IpsViewComponentLibrary
 
         public void SetFilter( object _choice )
         {
+            // Debug.WriteLine("SetFilter start");
             // Обробка події зміни фільтра
             ConsumerFilterEnum choice = _choice is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            // Debug.WriteLine("btnBack_Click start");
+
             OnButtonBackClick?.Invoke(_rowId);
         }
         //новий споживач
         private void btnNewConsumer_Click(object sender, EventArgs e)
         {
+            // Debug.WriteLine("btnNewConsumer_Click start");
             OnAddNewCustomer?.Invoke(this,EventArgs.Empty);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
+            // Debug.WriteLine("txtSearch_TextChanged start");
             gvConsumerList.MasterTemplate.Refresh();
         }
 
         private void gvConsumerList_CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
         {
+            // Debug.WriteLine("gvConsumerList_CustomFiltering start");
             //пустий фільтер - всі дані
             if (string.IsNullOrEmpty(txtSearch.Text))
             {
@@ -194,6 +211,7 @@ namespace IpsViewComponentLibrary
 
         private void btnEditAgr_Click(object sender, EventArgs e)
         {
+            // Debug.WriteLine("btnEditAgr_Click");
             OnEditCustomer?.Invoke(_rowId);
         }
 
@@ -201,6 +219,7 @@ namespace IpsViewComponentLibrary
 
         private void mсInfoAgrCalc_ClientSizeChanged(object sender, EventArgs e)
         {
+            // Debug.WriteLine("mсInfoAgrCalc_ClientSizeChanged");
             foreach (Control item in Controls)
                 item.SuspendLayout();
 
