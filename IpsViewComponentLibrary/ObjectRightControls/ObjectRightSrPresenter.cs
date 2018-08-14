@@ -143,6 +143,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 var result = _objectRightService.Save(_objectRight);
 
                 ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
                 if (result)
                     _view.Close();
