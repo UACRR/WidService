@@ -35,6 +35,7 @@ namespace TestControls
             vgvMain.RowCount = 1024;
             vgvMain.CellValueNeeded += VgvMain_CellValueNeeded;
             vgvMain.PageChanging += VgvMain_PageChanging;
+            vgvMain.TableElement.ColumnsViewState.SetItemSize(0,200);
             Method(0);
             vgvMain.Refresh();
         }
@@ -122,7 +123,7 @@ namespace TestControls
             //radGridView1.GridViewElement.PagingPanelElement.PageNumberTextBox.Text = "13";
         }
 
-        private void Met<T>(T item) where T : class
+        private void Met(string item, bool bb)
         {
 
         } 
@@ -130,6 +131,8 @@ namespace TestControls
 
     public class Test
     {
+        public static string name = "Test";
+        public string type = "Class";
         public string Col1 { get; set; }
         public string Col2 { get; set; }
         public string Col3 { get; set; }
