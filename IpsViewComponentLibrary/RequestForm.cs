@@ -110,15 +110,15 @@ namespace IpsViewComponentLibrary
             if (licId == null)
             {
                 bsConsumerBigRightView.DataSource = bigRightView;
-                bsLicAgrParam.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam;
-                bsLicenseBigR.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR;
-                bsLicense.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseAgrParam
+                _licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
+                bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
+                bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
+                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam
                     .SingleOrDefault()?.License;
                 _percent = dictionaties.relGenrePercent;
-                bsObjectRight.DataSource = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj;
+                bsObjectRight.DataSource = _licenseAgreement?.LicenseBigR?.Obj;
                 bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-                SetObjectRightData(
-                    _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj);
+                SetObjectRightData(_licenseAgreement?.LicenseBigR?.Obj);
 
                 bsDictObjAct.DataSource = dictionaties.objAct;
                 bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
@@ -135,16 +135,16 @@ namespace IpsViewComponentLibrary
             else
             {
                 bsConsumerBigRightView.DataSource = bigRightView;
-                var licenseAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
+                _licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
 
-                bsLicAgrParam.DataSource = licenseAgr?.LicenseAgrParam;
-                bsLicenseBigR.DataSource = licenseAgr?.LicenseBigR;
-                bsLicense.DataSource = licenseAgr?.LicenseAgrParam.SingleOrDefault()?.License;
+                bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
+                bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
+                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault()?.License;
                 _percent = dictionaties.relGenrePercent;
-                bsObjectRight.DataSource = licenseAgr?.LicenseBigR?.Obj;
+                bsObjectRight.DataSource = _licenseAgreement?.LicenseBigR?.Obj;
                 bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
                 //ObjectRightService _service = new ObjectRightService();
-                var obj = licenseAgr?.LicenseBigR?.Obj;
+                var obj = _licenseAgreement?.LicenseBigR?.Obj;
                 SetObjectRightData(obj);
 
                 bsDictObjAct.DataSource = dictionaties.objAct;
@@ -153,8 +153,8 @@ namespace IpsViewComponentLibrary
                 bsDictLanguage.DataSource = dictionaties.language;
 
                 ctrlMusicalDesignList.DataSource = _musicalDesignList;
-                SetMusicalDesignData(licenseAgr);
-                if (licenseAgr.LicStatus != 3)
+                SetMusicalDesignData(_licenseAgreement);
+                if (_licenseAgreement.LicStatus != 3)
                 {
                     panelStatusees.Enabled = false;
                 }
@@ -382,13 +382,15 @@ namespace IpsViewComponentLibrary
 
         private void UpdateGenrePersent()
         {
-            Int32.TryParse(txtActCode.Text, out int actCode);
-            var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
+            if (Int32.TryParse(txtActCode.Text, out int actCode))
+            {
+                var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
 
-            var rate = _percent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
+                var rate = _percent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
 
-            txtVinagoroda.Text = rate.ToString();
-            _licenseAgreement.LicenseBigR.Rate = rate;
+                txtVinagoroda.Text = rate.ToString();
+                _licenseAgreement.LicenseBigR.Rate = rate;
+            }
         }
 
         public enum FormMode
@@ -399,21 +401,7 @@ namespace IpsViewComponentLibrary
 
         private void btnSetActiveStatus_Click(object sender, EventArgs e)
         {
-            LicenseAgreement licenseAgreement = null;
-            if (_licId == null)
-            {
-                licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
-                if (licenseAgreement == null)
-                    return;
-            }
-            else
-            {
-                licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId);
-                if (licenseAgreement == null)
-                    return;
-            }
-
-            var result = _consumerService.SetLicAgreementStatus(licenseAgreement, licenseAgreement.LicVersion.Value, 2);
+            var result = _consumerService.SetLicAgreementStatus(_licenseAgreement, _licenseAgreement.LicVersion.Value, 2);
 
             if (result)
             {
@@ -426,21 +414,7 @@ namespace IpsViewComponentLibrary
 
         private void btnSetCanceledStatus_Click(object sender, EventArgs e)
         {
-            LicenseAgreement licenseAgreement = null;
-            if (_licId == null)
-            {
-                licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
-                if (licenseAgreement == null)
-                    return;
-            }
-            else
-            {
-                licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId);
-                if (licenseAgreement == null)
-                    return;
-            }
-
-            var result = _consumerService.SetLicAgreementStatus(licenseAgreement, licenseAgreement.LicVersion.Value, 5);
+            var result = _consumerService.SetLicAgreementStatus(_licenseAgreement, _licenseAgreement.LicVersion.Value, 5);
 
             if (result)
             {
