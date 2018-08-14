@@ -7,10 +7,14 @@ using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.EventAggregator;
+using ipsFormsDesign.Events;
+using IpsViewComponentLibrary.AppController;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholdersObjectsRightsControl : UserControl
+    public partial class RightholdersObjectsRightsControl : UserControl,
+        ISubscriber<ObjectRightUpdatedEvent>
     {
         public ObjectRightForRightholder _objectRight;
         public ObjectRightForRightholder SelectedObject
@@ -59,6 +63,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholdersObjectsRightsControl()
         {
             InitializeComponent();
+
+            ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
         }
 
         public void UpdateList()
@@ -136,5 +142,10 @@ namespace IpsViewComponentLibrary.RightholderControls
         }
 
         #endregion
+
+        public void HandleEvent(ObjectRightUpdatedEvent e)
+        {
+            UpdateList();
+        }
     }
 }

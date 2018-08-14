@@ -91,6 +91,7 @@
     <Compile Include="EventAggregator\IEventAggregator.cs" />
     <Compile Include="EventAggregator\ISubscriber.cs" />
     <Compile Include="Events\ObjectRightEvents.cs" />
+    <Compile Include="Events\RegisterEvents.cs" />
     <Compile Include="Events\RightholderEvents.cs" />
     <Compile Include="Interfaces\EFInterfaces.cs" />
     <Compile Include="Interfaces\IAnketaDictionaties.cs" />

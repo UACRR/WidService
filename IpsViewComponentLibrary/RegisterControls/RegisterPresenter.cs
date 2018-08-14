@@ -4,6 +4,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Linq;
 
@@ -13,6 +14,7 @@ namespace IpsViewComponentLibrary.RegisterControls
     {
         private readonly RegisterView _view;
         private readonly RegisterService _registerService;
+        private readonly DialogService _dialogService;
         private Register _register;
 
         public RegisterPresenter(RegisterView view, RegisterService registerService)
@@ -21,6 +23,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.Presenter = this;
 
             _registerService = registerService;
+            _dialogService = new DialogService();
         }
 
         public void Show(int regId)
@@ -111,7 +114,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 }
             }
 
-            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightAddedEvent());
+            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
 
             _view.ShowMessage($"Створено {createdObjectCount} об'єктів.");
         }
@@ -154,6 +157,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
 
             var result = _registerService.Save(_register);
+
+            ApplicationController.Instance.EventAggregator.PublishEvent(new RegisterUpdatedEvent());
+
+            if (!result)
+                _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
         }
 
         private void UpdateDataBindings()

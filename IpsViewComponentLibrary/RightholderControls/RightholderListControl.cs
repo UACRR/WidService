@@ -1,7 +1,10 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.EventAggregator;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.ComponentModel;
@@ -12,7 +15,8 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholderListControl : UserControl
+    public partial class RightholderListControl : UserControl,
+        ISubscriber<RightholderUpdatedEvent>
     {
         private RightholderService _rightholderService;
         private RightholderStatusType[] _allowedStatuses;
@@ -84,8 +88,25 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (!IsDesignMode)
             {
+                ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
                 _rightholderService = new RightholderService();
             }
+        }
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+
+            ApplicationController.Instance.EventAggregator.UnsubscribeEvent(this);
+
+            base.Dispose(disposing);
         }
 
         public void SetAllowedStatuses(RightholderStatusType[] statuses)
@@ -117,7 +138,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             var list = _rightholderService.GetRightholders(query);
             rightholderMainViewBindingSource.DataSource = list;
 
-            SelectedRightholder = currentRightholder;
+            //SelectedRightholder = currentRightholder; // TODO: is it needed?
         }
 
         private void RightholderListControl_Load(object sender, EventArgs e)
@@ -233,6 +254,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             ddlStatus.SelectedValueChanged -= ddlStatus_SelectedValueChanged;
             ddlStatus.SetDataSource(statuses);
             ddlStatus.SelectedValueChanged += ddlStatus_SelectedValueChanged;
+        }
+
+        public void HandleEvent(RightholderUpdatedEvent e)
+        {
+            UpdateList();
         }
 
         #region Search rightolder

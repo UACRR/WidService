@@ -83,7 +83,23 @@ namespace ipsFormsDesign.EventAggregator
             }//End-lock (lockSubscriberDictionary)
         }
 
+        public void UnsubscribeEvent(object subscriber)
+        {
+            lock (lockSubscriberDictionary)
+            {
+                var subsriberTypes = subscriber.GetType().GetInterfaces()
+                                        .Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(ISubscriber<>));
 
+                foreach (var subsriberType in subsriberTypes)
+                {
+                    List<WeakReference> subscribers = GetSubscriberList(subsriberType);
+
+                    subscribers.RemoveAll(w => w.Target == subscriber);
+
+                }//End-for-each (var subsriberType in subsriberTypes)
+
+            }//End-lock (lockSubscriberDictionary)
+        }
 
         #endregion
 
