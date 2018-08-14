@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using System.Diagnostics;
 
 namespace IpsViewComponentLibrary
 {
@@ -46,12 +47,14 @@ namespace IpsViewComponentLibrary
 
         public GlobalControlConsumerCabinet()
         {
+            Debug.WriteLine("GlobalControlConsumerCabinet");
             InitializeComponent();
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
             mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
         }
         public GlobalControlConsumerCabinet(TypeRights typeRights)
         {
+            Debug.WriteLine("GlobalControlConsumerCabinet");
             InitializeComponent();
             Rights = typeRights;
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
