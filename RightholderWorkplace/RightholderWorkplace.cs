@@ -202,14 +202,15 @@ namespace RightholderWorkplace
 
             var objectAuthorRightholder = new ObjectAuthorRightholder(selectedRightholder);
 
+            DialogResult dialogResult;
             using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _objectRightService.GetDictionary(), objectRight.CategoryCode))
             {
-                authorRightholderItemView.ShowDialog();
+                dialogResult = authorRightholderItemView.ShowDialog();
+            }
 
-                if (authorRightholderItemView.DialogResult == DialogResult.OK)
-                {
-                    objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
-                }
+            if (dialogResult == DialogResult.OK)
+            {
+                objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
 
                 if (objectRight.CopyRight.GetTotalRate() > 100)
                 {
@@ -219,9 +220,13 @@ namespace RightholderWorkplace
 
                 var result = _objectRightService.Save(objectRight);
 
+                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+                ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+
                 if (!result)
                     MessageBox.Show("Не вдалося зберегти зміни. Об'єкт не доданий.", "Помилка");
             }
+
         }
 
         private bool IsRightholderSelected()
