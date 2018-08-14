@@ -54,16 +54,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             ShowDialog();
         }
 
-        public void ShowError(string message)
-        {
-            MessageBox.Show(message, "Помилка");
-        }
-
-        public void ShowMessage(string message)
-        {
-            MessageBox.Show(message, "Інформація");
-        }
-
         public void SetStatus(RegisterStatusType status)
         {
             ddlStatus.SelectedValue = (int)status;

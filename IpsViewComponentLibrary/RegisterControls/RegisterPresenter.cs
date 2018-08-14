@@ -39,7 +39,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             if (!result)
             {
-                _view.ShowError("Не вдалося виконати автоматичну прив'язку об'єктів права.");
+                _dialogService.ShowError(_view, "Не вдалося виконати автоматичну прив'язку об'єктів права.");
                 return;
             }
 
@@ -110,17 +110,23 @@ namespace IpsViewComponentLibrary.RegisterControls
                 }
                 else
                 {
-                    _view.ShowError("Не вдалося створити об'єкт з назвою " + registerItem.ItemName);
+                    _dialogService.ShowError(_view, "Не вдалося створити об'єкт з назвою " + registerItem.ItemName);
                 }
             }
 
             ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
 
-            _view.ShowMessage($"Створено {createdObjectCount} об'єктів.");
+            _dialogService.ShowMessage(_view, $"Створено {createdObjectCount} об'єктів.");
         }
 
         public void SetStatus(RegisterStatusType status)
         {
+            if (status == RegisterStatusType.OnDistribution && _view.RegisterItemList.Any(item => item.ObjId == null))
+            {
+                _dialogService.ShowError(_view, "Не визначені всі об'єкти. Закінчіть роботу зі звітом.");
+                return;
+            }
+
             var result = _registerService.SetStatus(_register.RegId, status);
 
             if (result)
@@ -130,7 +136,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                 _view.SetStatus(status);
             }
             else
-                _view.ShowError("Не вдалося змінити статус.");
+                _dialogService.ShowError(_view, "Не вдалося змінити статус.");
         }
 
         public void Save()
