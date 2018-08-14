@@ -218,7 +218,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(945, 319);
+            this.btnDelete.Location = new System.Drawing.Point(935, 319);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(112, 20);
             this.btnDelete.TabIndex = 13;
@@ -265,7 +265,7 @@
             // btnToReference
             // 
             this.btnToReference.Enabled = false;
-            this.btnToReference.Location = new System.Drawing.Point(121, 319);
+            this.btnToReference.Location = new System.Drawing.Point(130, 319);
             this.btnToReference.Name = "btnToReference";
             this.btnToReference.Size = new System.Drawing.Size(112, 20);
             this.btnToReference.TabIndex = 16;
@@ -275,7 +275,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(3, 319);
+            this.btnCreate.Location = new System.Drawing.Point(12, 319);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(112, 20);
             this.btnCreate.TabIndex = 17;
@@ -287,7 +287,7 @@
             // 
             this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToAccept.Enabled = false;
-            this.btnToAccept.Location = new System.Drawing.Point(827, 319);
+            this.btnToAccept.Location = new System.Drawing.Point(817, 319);
             this.btnToAccept.Name = "btnToAccept";
             this.btnToAccept.Size = new System.Drawing.Size(112, 20);
             this.btnToAccept.TabIndex = 18;
@@ -438,7 +438,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(3, 560);
+            this.btnSave.Location = new System.Drawing.Point(12, 560);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(112, 24);
             this.btnSave.TabIndex = 21;
@@ -449,7 +449,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(146, 560);
+            this.btnCancel.Location = new System.Drawing.Point(130, 560);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 24);
             this.btnCancel.TabIndex = 20;
