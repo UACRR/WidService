@@ -496,6 +496,7 @@ namespace IpsViewComponentLibrary
             print.ShowDialog();
         }
 
+        //закрити та видалити неактивний договір
         private void btnDeleteAgr_Click(object sender, EventArgs e)
         {
             if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
@@ -505,6 +506,22 @@ namespace IpsViewComponentLibrary
             if (MessageBox.Show("Ліцензія буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 if (OnChangeLicenseStatus?.Invoke(license, curRow?.LicVersion ?? default(int), 4, false) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
+            }
+        }
+
+        //закривання активного договору
+        private void btnCloseAgr_Click(object sender, EventArgs e)
+        {
+            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
+            if (license == null) return;
+
+            if (MessageBox.Show("Ліцензійний договір буде закритий та автоматично видалений. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                if (OnChangeLicenseStatus?.Invoke(license, license.LicVersion ?? default(int), 4, false) ?? false)
                     ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
                 else
                     ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
