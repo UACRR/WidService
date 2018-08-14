@@ -5,14 +5,18 @@ using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.EventAggregator;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
-    public partial class RegisterListControl : UserControl
+    public partial class RegisterListControl : UserControl,
+        ISubscriber<RegisterUpdatedEvent>
     {
         private readonly RegisterService _registerService;
 
@@ -65,6 +69,8 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 SetDictionaries();
                 UpdateList();
+
+                ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
             }
         }
 
@@ -155,9 +161,6 @@ namespace IpsViewComponentLibrary.RegisterControls
                 var presenter = new RegisterPresenter(view, _registerService);
                 presenter.Show(selectedRegister.RegId);
             }
-
-            // TODO: broadcast event if item update
-            UpdateList();
         }
 
         private void gvRegisterList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
@@ -173,6 +176,11 @@ namespace IpsViewComponentLibrary.RegisterControls
         protected virtual void OnEditCommandExecuted(RegisterListViewModel selectedRegister)
         {
             EditCommandExecuted(this, selectedRegister);
+        }
+
+        public void HandleEvent(RegisterUpdatedEvent e)
+        {
+            UpdateList();
         }
 
         #region Search
