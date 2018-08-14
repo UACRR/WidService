@@ -7,5 +7,7 @@ namespace ipsFormsDesign.EventAggregator
         void PublishEvent<TEventType>(TEventType eventToPublish);
 
         void SubsribeEvent(Object subscriber);
+
+        void UnsubscribeEvent(object subscriber);
     }
 }
