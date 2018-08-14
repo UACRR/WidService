@@ -427,7 +427,8 @@ namespace IpsViewComponentLibrary
                 {
                     newLicense.LicDate = licParam?.DateEnd.Value.AddDays(1);
                     newLicense.DateBegin = licParam?.DateEnd.Value.AddDays(1);
-                    newLicense.DateEnd = licParam.DateEnd.Value.AddYears(1).AddDays(1);
+                    newLicense.DateEnd = new DateTime(licParam.DateEnd.Value.Year, 12, 31);
+                    
                 }
 
                 newLicense.LicVersion = (licVersion ?? 0) + 1;
