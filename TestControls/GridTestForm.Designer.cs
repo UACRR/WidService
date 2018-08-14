@@ -28,55 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.radButton3 = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            this.vgvMain = new Telerik.WinControls.UI.RadVirtualGrid();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vgvMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // radGridView1
-            // 
-            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.Location = new System.Drawing.Point(13, 13);
-            // 
-            // 
-            // 
-            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Col1";
-            gridViewTextBoxColumn1.HeaderText = "DEC";
-            gridViewTextBoxColumn1.Name = "column1";
-            gridViewTextBoxColumn1.Width = 299;
-            gridViewTextBoxColumn2.FieldName = "Col2";
-            gridViewTextBoxColumn2.HeaderText = "OCT";
-            gridViewTextBoxColumn2.Name = "column2";
-            gridViewTextBoxColumn2.Width = 299;
-            gridViewTextBoxColumn3.FieldName = "Col3";
-            gridViewTextBoxColumn3.HeaderText = "HEX";
-            gridViewTextBoxColumn3.Name = "column3";
-            gridViewTextBoxColumn3.Width = 300;
-            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3});
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.Size = new System.Drawing.Size(917, 417);
-            this.radGridView1.TabIndex = 0;
-            this.radGridView1.PageChanging += new System.EventHandler<Telerik.WinControls.PageChangingEventArgs>(this.radGridView1_PageChanging);
-            ((Telerik.WinControls.UI.PagingPanelElement)(this.radGridView1.GetChildAt(0).GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // radButton1
             // 
@@ -108,26 +70,50 @@
             this.radButton3.Text = "radButton3";
             this.radButton3.Click += new System.EventHandler(this.radButton3_Click);
             // 
+            // vgvMain
+            // 
+            this.vgvMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.vgvMain.AutoScroll = true;
+            this.vgvMain.Location = new System.Drawing.Point(12, 12);
+            this.vgvMain.MasterViewInfo.AllowColumnSort = false;
+            this.vgvMain.MasterViewInfo.AllowCut = false;
+            this.vgvMain.MasterViewInfo.AllowDelete = false;
+            this.vgvMain.MasterViewInfo.AllowEdit = false;
+            this.vgvMain.MasterViewInfo.AllowPaste = false;
+            this.vgvMain.MasterViewInfo.AutoSizeColumnsMode = Telerik.WinControls.UI.VirtualGridAutoSizeColumnsMode.Fill;
+            this.vgvMain.MasterViewInfo.ColumnCount = 3;
+            this.vgvMain.MasterViewInfo.ShowFilterRow = false;
+            this.vgvMain.MasterViewInfo.ShowNewRow = false;
+            this.vgvMain.Name = "vgvMain";
+            this.vgvMain.SelectionMode = Telerik.WinControls.UI.VirtualGridSelectionMode.FullRowSelect;
+            this.vgvMain.Size = new System.Drawing.Size(918, 442);
+            this.vgvMain.TabIndex = 4;
+            this.vgvMain.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadVirtualGridElement)(this.vgvMain.GetChildAt(0))).TextWrap = true;
+            ((Telerik.WinControls.UI.VirtualGridTableElement)(this.vgvMain.GetChildAt(0).GetChildAt(0))).Text = "<html>Hello world!</html>";
+            ((Telerik.WinControls.UI.VirtualRowsContainerElement)(this.vgvMain.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            // 
             // GridTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 496);
+            this.Controls.Add(this.vgvMain);
             this.Controls.Add(this.radButton3);
             this.Controls.Add(this.radButton2);
             this.Controls.Add(this.radButton1);
-            this.Controls.Add(this.radGridView1);
             this.Name = "GridTestForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.ThemeName = "Office2013Light";
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vgvMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -135,9 +121,9 @@
 
         #endregion
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private Telerik.WinControls.UI.RadGridView radGridView1;
         private Telerik.WinControls.UI.RadButton radButton1;
         private Telerik.WinControls.UI.RadButton radButton2;
         private Telerik.WinControls.UI.RadButton radButton3;
+        private Telerik.WinControls.UI.RadVirtualGrid vgvMain;
     }
 }

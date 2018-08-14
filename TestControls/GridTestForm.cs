@@ -21,56 +21,49 @@ namespace TestControls
 {
     public partial class GridTestForm : RadForm
     {
+        private ObservableListSource<Test> source = null;
+        private string[] _columnNames = {"DEC", "OCT", "HEX"};
         public GridTestForm()
         {
             InitializeComponent();
-            radGridView1.GridViewElement.PagingPanelElement.ShowNumericalButtons = false;
-            radGridView1.GridViewElement.PagingPanelElement.ShowFastForwardButton = false;
-            radGridView1.GridViewElement.PagingPanelElement.ShowFastBackButton = false;
-            radGridView1.EnablePaging = true;
-            radGridView1.PageSize = 30;
-            //radGridView1.MasterTemplate.TotalPages = 2000;
 
-            radGridView1.GridViewElement.PagingPanelElement.NextButton.Click += NextButton_Click;
-            radGridView1.GridViewElement.PagingPanelElement.PreviousButton.Click += PreviousButton_Click;
-            radGridView1.SetTotalPages(128);
+            vgvMain.PageSize = 30;
+            vgvMain.EnablePaging = true;
+            vgvMain.TableElement.PagingPanelElement.ShowNumericalButtons = false;
+            vgvMain.TableElement.PagingPanelElement.ShowFastBackButton = false;
+            vgvMain.TableElement.PagingPanelElement.ShowFastForwardButton = false;
+            vgvMain.RowCount = 1024;
+            vgvMain.CellValueNeeded += VgvMain_CellValueNeeded;
+            vgvMain.PageChanging += VgvMain_PageChanging;
+            Method(0);
+            vgvMain.Refresh();
         }
 
-        private void PreviousButton_Click(object sender, EventArgs e)
+        private void VgvMain_PageChanging(object sender, VirtualGridPageChangingEventArgs e)
         {
-            var number = Int32.Parse(radGridView1.GridViewElement.PagingPanelElement.PageNumberTextBox.Text) - 1;
-            Method(null, number);
-
-            //radGridView1.GridViewElement.PagingPanelElement.PageNumberTextBox.Text = number.ToString();
+            Method(e.NewIndex);
+            vgvMain.Refresh();
         }
 
-        private void NextButton_Click(object sender, EventArgs e)
+        private void VgvMain_CellValueNeeded(object sender, VirtualGridCellValueNeededEventArgs e)
         {
-            var number = Int32.Parse(radGridView1.GridViewElement.PagingPanelElement.PageNumberTextBox.Text) + 1;
-            Method(null, number);
+            if (e.ColumnIndex < 0 || source == null)
+                return;
 
-            //radGridView1.GridViewElement.PagingPanelElement.PageNumberTextBox.Text = number.ToString();
-        }
-
-        private void Method(uint? countRow, int? page = null)
-        {   
-            ObservableListSource<Test> source = new ObservableListSource<Test>();
-
-            if (countRow != null)
+            if (e.RowIndex == RadVirtualGrid.HeaderRowIndex)
             {
-                while (countRow != 0)
-                {
-                    source.Add(new Test
-                    {
-                        Col1 = countRow.ToString(),
-                        Col2 = Convert.ToString((int)countRow, 8).ToUpper(),
-                        Col3 = Convert.ToString((int)countRow, 16).ToUpper()
-                    });
-
-                    countRow--;
-                }
+                e.Value = _columnNames[e.ColumnIndex];
             }
-            else if (page != null)
+            if (e.RowIndex >= 0 && e.RowIndex < source.Count + e.ViewInfo.PageIndex * 30)
+            {
+                e.Value = source[e.RowIndex - e.ViewInfo.PageIndex * 30][e.ColumnIndex];
+            }
+        }
+
+        private void Method(int? inxPage = null)
+        {
+            source = new ObservableListSource<Test>();
+            if (inxPage != null)
             {
                 byte i = 0;
 
@@ -78,31 +71,20 @@ namespace TestControls
                 {
                     source.Add(new Test
                     {
-                        Col1 = "Page:" + page + "DEC: " +(int)i + 8*page,
-                        Col2 = Convert.ToString(i + 8*(int)page, 8).ToUpper(),
-                        Col3 = Convert.ToString(i + 8*(int)page, 16).ToUpper()
+                        Col1 = "Page: " + inxPage + 1 + ", DEC: " + (int) i + 8 * inxPage,
+                        Col2 = Convert.ToString(i + 8 * (int)inxPage, 8).ToUpper(),
+                        Col3 = Convert.ToString(i + 8 * (int)inxPage, 16).ToUpper()
                     });
 
                     if (++i == 30) break;
                 }
             }
-            else
-            {
-                int row = 0;
-                while (row <= 512)
-                {
-                    source.Add(new Test());
-                    row++;
-                }
-            }
-
-            radGridView1.DataSource = source;
         }
 
         private void radGridView1_PageChanging(object sender, PageChangingEventArgs e)
         {
             var indx = e.NewPageIndex;
-            var item = radGridView1.GridViewElement.PagingPanelElement;
+            //var item = radGridView1.GridViewElement.PagingPanelElement;
         }
 
         private void radButton1_Click(object sender, EventArgs e)
@@ -113,7 +95,6 @@ namespace TestControls
         private void radButton2_Click(object sender, EventArgs e)
         {
             Method(null);
-            radGridView1.GridViewElement.PagingPanelElement.NumberOfPagesLabel.Text = "200";
 
         }
 
@@ -135,11 +116,16 @@ namespace TestControls
             }
 
 
-            radGridView1.DataSource = source;
+            // = source;
 //            radGridView1.GridViewElement.
-            radGridView1.GridViewElement.PagingPanelElement.NumberOfPagesLabel.Text = "200";
-            radGridView1.GridViewElement.PagingPanelElement.PageNumberTextBox.Text = "13";
+            //radGridView1.GridViewElement.PagingPanelElement.NumberOfPagesLabel.Text = "200";
+            //radGridView1.GridViewElement.PagingPanelElement.PageNumberTextBox.Text = "13";
         }
+
+        private void Met<T>(T item) where T : class
+        {
+
+        } 
     }
 
     public class Test
@@ -147,6 +133,24 @@ namespace TestControls
         public string Col1 { get; set; }
         public string Col2 { get; set; }
         public string Col3 { get; set; }
+
+        public string this[int i]
+        {
+            get
+            {
+                switch (i)
+                {
+                    case 0:
+                        return Col1;
+                    case 1:
+                        return Col2;
+                    case 2:
+                        return Col3;
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
     }
 
     public static class CustomGridView
