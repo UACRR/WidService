@@ -168,7 +168,7 @@
             this.gvPeriodsPayment.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPeriodsPayment.ReadOnly = true;
             this.gvPeriodsPayment.ShowGroupPanel = false;
-            this.gvPeriodsPayment.Size = new System.Drawing.Size(1017, 216);
+            this.gvPeriodsPayment.Size = new System.Drawing.Size(1017, 196);
             this.gvPeriodsPayment.TabIndex = 0;
             this.gvPeriodsPayment.ThemeName = "Office2007Silver";
             this.gvPeriodsPayment.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodsPayment_CurrentRowChanged);
@@ -180,7 +180,7 @@
             // btnDistribute
             // 
             this.btnDistribute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDistribute.Location = new System.Drawing.Point(121, 255);
+            this.btnDistribute.Location = new System.Drawing.Point(121, 235);
             this.btnDistribute.Name = "btnDistribute";
             this.btnDistribute.Size = new System.Drawing.Size(110, 24);
             this.btnDistribute.TabIndex = 3;
@@ -246,7 +246,7 @@
             this.gvUserMoneys.ReadOnly = true;
             this.gvUserMoneys.ShowGroupPanel = false;
             this.gvUserMoneys.ShowGroupPanelScrollbars = false;
-            this.gvUserMoneys.Size = new System.Drawing.Size(1017, 133);
+            this.gvUserMoneys.Size = new System.Drawing.Size(1017, 108);
             this.gvUserMoneys.TabIndex = 8;
             this.gvUserMoneys.ThemeName = "Office2007Silver";
             // 
@@ -337,7 +337,7 @@
             this.gvLicenseAgr.Name = "gvLicenseAgr";
             this.gvLicenseAgr.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvLicenseAgr.ShowGroupPanel = false;
-            this.gvLicenseAgr.Size = new System.Drawing.Size(1017, 181);
+            this.gvLicenseAgr.Size = new System.Drawing.Size(1017, 129);
             this.gvLicenseAgr.TabIndex = 10;
             this.gvLicenseAgr.ThemeName = "Office2007Silver";
             this.gvLicenseAgr.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvLicenseAgr_RowFormatting);
@@ -370,7 +370,7 @@
             // btnNewPeriod
             // 
             this.btnNewPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNewPeriod.Location = new System.Drawing.Point(5, 255);
+            this.btnNewPeriod.Location = new System.Drawing.Point(5, 235);
             this.btnNewPeriod.Name = "btnNewPeriod";
             this.btnNewPeriod.Size = new System.Drawing.Size(110, 24);
             this.btnNewPeriod.TabIndex = 4;
@@ -381,7 +381,7 @@
             // btnClosePeriod
             // 
             this.btnClosePeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClosePeriod.Location = new System.Drawing.Point(237, 255);
+            this.btnClosePeriod.Location = new System.Drawing.Point(237, 235);
             this.btnClosePeriod.Name = "btnClosePeriod";
             this.btnClosePeriod.Size = new System.Drawing.Size(110, 24);
             this.btnClosePeriod.TabIndex = 4;
@@ -402,7 +402,7 @@
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(1028, 676);
+            this.radSplitContainer1.Size = new System.Drawing.Size(1028, 579);
             this.radSplitContainer1.TabIndex = 0;
             this.radSplitContainer1.TabStop = false;
             // 
@@ -416,8 +416,8 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(1028, 169);
-            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.07993968F);
+            this.splitPanel1.Size = new System.Drawing.Size(1028, 144);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.08033933F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -53);
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
@@ -427,15 +427,15 @@
             // 
             this.splitPanel2.Controls.Add(this.gvLicenseAgr);
             this.splitPanel2.Controls.Add(this.radLabel2);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 173);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 148);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(1028, 214);
-            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.01357467F);
-            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -9);
+            this.splitPanel2.Size = new System.Drawing.Size(1028, 162);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.05039921F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -34);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
@@ -447,15 +447,15 @@
             this.splitPanel3.Controls.Add(this.btnClosePeriod);
             this.splitPanel3.Controls.Add(this.btnNewPeriod);
             this.splitPanel3.Controls.Add(this.btnDistribute);
-            this.splitPanel3.Location = new System.Drawing.Point(0, 391);
+            this.splitPanel3.Location = new System.Drawing.Point(0, 314);
             this.splitPanel3.Name = "splitPanel3";
             // 
             // 
             // 
             this.splitPanel3.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel3.Size = new System.Drawing.Size(1028, 285);
-            this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.09351432F);
-            this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 62);
+            this.splitPanel3.Size = new System.Drawing.Size(1028, 265);
+            this.splitPanel3.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1307385F);
+            this.splitPanel3.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 87);
             this.splitPanel3.TabIndex = 2;
             this.splitPanel3.TabStop = false;
             this.splitPanel3.Text = "splitPanel3";
@@ -465,9 +465,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radSplitContainer1);
-            this.MinimumSize = new System.Drawing.Size(400, 562);
             this.Name = "CalculationInfoControl";
-            this.Size = new System.Drawing.Size(1028, 676);
+            this.Size = new System.Drawing.Size(1028, 579);
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paidPeriodBindingSource)).EndInit();

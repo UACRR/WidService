@@ -36,6 +36,22 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
             SetDefaultPages();
             ctrlAgrInfoMain.OnSaveCommentNeed += AgreementInfoCtrl_OnSaveCommentNeed;
+            foreach (Control item in Controls)
+            {
+                item.Paint += Control_Paint;
+                foreach( Control subItem in item.Controls )
+                    subItem.Paint += Control_Paint;
+
+            }
+        }
+
+
+        private void Control_Paint(object sender, PaintEventArgs e)
+        {
+            Control control = sender as Control;
+            if (control == null)
+                return;
+            Debug.WriteLine($"Control {control.Name} Start paint {DateTime.Now:hh:mm:ss.ffff}");
         }
 
         private void AgreementInfoCtrl_OnSaveCommentNeed(object sender, EventArgs e)
@@ -602,24 +618,25 @@ namespace IpsViewComponentLibrary
             // Debug.WriteLine("MiddleControlInfoAgrCalc_Resize start");
             var size = pvReports.Size;
             var reportSize = reportsControl.MinimumSize;
-            if (size.Height >= reportSize.Height)
-            {
-                if (reportsControl.Dock != DockStyle.Fill)
-                {
-                    reportsControl.Dock = DockStyle.Fill;
-                    pvReports.Refresh();
-                }
-            }
-            else
-            {
-                if (reportsControl.Dock != DockStyle.None)
-                {
-                    reportsControl.Dock = DockStyle.None;
-                    reportsControl.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
-                    pvReports.Refresh();
-                }
+            Debug.WriteLine($"Start resize {DateTime.Now:hh:mm:ss.ffff}");
+            //if (size.Height >= reportSize.Height)
+            //{
+            //    if (reportsControl.Dock != DockStyle.Fill)
+            //    {
+            //        reportsControl.Dock = DockStyle.Fill;
+            //        // pvReports.Refresh();
+            //    }
+            //}
+            //else
+            //{
+            //    if (reportsControl.Dock != DockStyle.None)
+            //    {
+            //        reportsControl.Dock = DockStyle.None;
+            //        reportsControl.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+            //        // pvReports.Refresh();
+            //    }
 
-            }
+            //}
         }
     }
 
