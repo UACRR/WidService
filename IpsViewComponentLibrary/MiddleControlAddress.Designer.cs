@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
             this.addressFactual = new IpsViewComponentLibrary.IpsAddressControl();
             this.addressLegal = new IpsViewComponentLibrary.IpsAddressControl();
@@ -41,6 +42,7 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.addressLetter = new IpsViewComponentLibrary.AddressLetter();
             this.btnCopyFromFaToLe = new Telerik.WinControls.UI.RadButton();
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToLe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator6)).BeginInit();
@@ -56,10 +58,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtPostIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromFaToLe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
+            this.lblTitle.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true));
             this.lblTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblTitle.Location = new System.Drawing.Point(35, 3);
             this.lblTitle.Name = "lblTitle";
@@ -289,6 +293,10 @@
             this.btnCopyFromFaToLe.ThemeName = "Office2013Light";
             this.btnCopyFromFaToLe.Click += new System.EventHandler(this.btnCopyFromFaToLe_Click);
             // 
+            // anketaCompanyBindingSource
+            // 
+            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
+            // 
             // MiddleControlAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,6 +333,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtPostIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromFaToLe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +354,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private AddressLetter addressLetter;
         private Telerik.WinControls.UI.RadButton btnCopyFromFaToLe;
+        private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
     }
 }

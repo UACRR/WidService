@@ -52,7 +52,7 @@ namespace IpsViewComponentLibrary
             ctrlContactPerson.DataSource = relEmplContPers.Empl; // - - - Контакта особа
 
 
-            lblTitle.Text = anketa?.Name;
+            anketaCompanyBindingSource.DataSource = anketa;
         }
 
         public bool Validator()

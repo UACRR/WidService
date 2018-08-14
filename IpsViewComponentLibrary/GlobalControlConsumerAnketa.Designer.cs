@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GlobalControlConsumerAnketa));
             this.pageAnketaConsumer = new Telerik.WinControls.UI.RadPageView();
             this.pvClientName = new Telerik.WinControls.UI.RadPageViewPage();
@@ -39,6 +40,7 @@
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new ipsAnketaClient.ConsumerPlacesControl();
             this.ctrlPlacesTitle = new Telerik.WinControls.UI.RadLabel();
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankRequisites = new IpsViewComponentLibrary.MiddleControlBankRequisites();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
@@ -58,6 +60,7 @@
             this.pvManagers.SuspendLayout();
             this.pvPlaces.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlPlacesTitle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             this.pvBankRequisites.SuspendLayout();
             this.pvPrint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
@@ -195,13 +198,18 @@
             this.ctrlPlacesTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlPlacesTitle.AutoSize = false;
+            this.ctrlPlacesTitle.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true));
             this.ctrlPlacesTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlPlacesTitle.Location = new System.Drawing.Point(3, 35);
+            this.ctrlPlacesTitle.Location = new System.Drawing.Point(4, 35);
             this.ctrlPlacesTitle.Name = "ctrlPlacesTitle";
             this.ctrlPlacesTitle.Size = new System.Drawing.Size(999, 22);
             this.ctrlPlacesTitle.TabIndex = 10;
             this.ctrlPlacesTitle.Text = "Назва «Клієнта»";
             this.ctrlPlacesTitle.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // anketaCompanyBindingSource
+            // 
+            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // pvBankRequisites
             // 
@@ -215,7 +223,7 @@
             // 
             // ctrlBankRequisites
             // 
-            this.ctrlBankRequisites.Location = new System.Drawing.Point(3, 35);
+            this.ctrlBankRequisites.Location = new System.Drawing.Point(4, 35);
             this.ctrlBankRequisites.MaximumSize = new System.Drawing.Size(1300, 160);
             this.ctrlBankRequisites.MinimumSize = new System.Drawing.Size(300, 160);
             this.ctrlBankRequisites.Name = "ctrlBankRequisites";
@@ -356,6 +364,7 @@
             this.pvPlaces.ResumeLayout(false);
             this.pvPlaces.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlPlacesTitle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             this.pvBankRequisites.ResumeLayout(false);
             this.pvPrint.ResumeLayout(false);
             this.pvPrint.PerformLayout();
@@ -394,6 +403,6 @@
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        
+        private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
     }
 }

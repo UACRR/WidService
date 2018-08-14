@@ -50,7 +50,7 @@ namespace IpsViewComponentLibrary
             addressLetter.RegionsDisplayMember = "name";
             addressLetter.PostIndexDataMember = "LePostIndex";
 
-            lblTitle.Text = anketa?.Name;
+            anketaCompanyBindingSource.DataSource = anketa;
         }
 
         public bool Validator()
