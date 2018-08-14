@@ -105,7 +105,7 @@ namespace IpsViewComponentLibrary
         {
             if (e.Row.DataBoundItem is BigRightRequests item)
             {
-                //if(item.LicStatus >= 2) return; // TODO: відкривати форму в режимі ReadOnly
+                if(item.LicStatus >= 2) return; // TODO: відкривати форму в режимі ReadOnly
 
                 RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit, item.LicId);
                 if (requestForm.ShowDialog() == DialogResult.OK)
@@ -132,7 +132,6 @@ namespace IpsViewComponentLibrary
             }
             else
             {
-                btnToReference.Enabled = true;
                 btnSave.Enabled = true;
                 btnCancel.Enabled = true;
             }
@@ -140,26 +139,21 @@ namespace IpsViewComponentLibrary
             var item = e?.CurrentRow?.DataBoundItem as BigRightRequests;
             if (item?.LicStatus == 0 || item?.LicStatus == 1)
             {
-                btnToAccept.Enabled = true;
-                switch (item?.LicStatus)
+                if (item?.LicStatus is 0)
+                    SetBtnFunc(ButtonFunctionType.Agree);
+                else if (item?.LicStatus is 1)
                 {
-                    case 0:
-                        SetBtnFunc(ButtonFunctionType.Agree);
-                        break;
-
-                    case 1:
-                        SetBtnFunc(ButtonFunctionType.Accept);
-                        break;
-
-                    default:
-                        SetBtnFunc(ButtonFunctionType.None);
-                        break;
+                    SetBtnFunc(ButtonFunctionType.Accept);
+                }
+                else
+                {
+                    SetBtnFunc(ButtonFunctionType.None);
                 }
             }
-            else
-                btnToAccept.Enabled = false;
 
+            btnToAccept.Enabled = item?.LicStatus == 0 || item?.LicStatus == 1;
             btnDelete.Enabled = item?.LicStatus == 0;
+            btnToReference.Enabled = item?.LicStatus == 2 || item?.LicStatus == 3;
 
             bindingSource1.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
 
