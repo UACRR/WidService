@@ -16,6 +16,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
     public partial class ObjectRightListControl : UserControl,
         ISubscriber<ObjectRightUpdatedEvent>
     {
+        private int _currentPage = 1;
+
         protected bool IsDesignMode
         {
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
@@ -57,6 +59,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             {
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
+                navigatorPositionItem.Text = _currentPage.ToString();
+
                 SetDictionaries();
 
                 UpdateList();
@@ -87,6 +91,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public void UpdateList(ObjectRightMainView currentObject)
         {
             var query = new ObjectRightQuery();
+
+            query.Page = _currentPage;
+            query.PageSize = 20;
 
             if (ddlState.SelectedValue != null && (int)ddlState.SelectedValue != -1)
                 query.State = (ObjectRightStates)ddlState.SelectedValue;
@@ -124,6 +131,26 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private void ddlState_SelectedValueChanged(object sender, EventArgs e)
         {
             UpdateList();
+        }
+
+        private void navigatorMovePreviousItem_Click(object sender, EventArgs e)
+        {
+            if (_currentPage > 1)
+            {
+                _currentPage -= 1;
+                navigatorPositionItem.Text = _currentPage.ToString();
+                UpdateList();
+            }
+        }
+
+        private void navigatorMoveNextItem_Click(object sender, EventArgs e)
+        {
+            //if (_currentPage < _totalPages) TODO: 
+            //{
+                _currentPage += 1;
+                navigatorPositionItem.Text = _currentPage.ToString();
+                UpdateList();
+            //}
         }
 
         protected virtual void OnObjectSelected(ObjectRightMainView selectedObject)
