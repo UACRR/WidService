@@ -15,7 +15,6 @@ namespace ipsmedserviceapp.Model
         public int? ObjId { get; set; }
         public int? LicId { get; set; }
         public string ItemName { get; set; }
-        public int? CategoryCode { get; set; }
         public int? CountUse { get; set; }
         public int? NumTicket { get; set; }
         public decimal? FullAmount { get; set; }
@@ -24,10 +23,15 @@ namespace ipsmedserviceapp.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
         public int? Status { get; set; }
+        public int? RegIdSr { get; set; }
+        public decimal? MusicRate { get; set; }
+        public decimal? MusicAmount { get; set; }
+        public int? CategoryCode { get; set; }
 
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
         public BrRegister Reg { get; set; }
+        public Register RegIdSrNavigation { get; set; }
         public ItemStatus StatusNavigation { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
     }

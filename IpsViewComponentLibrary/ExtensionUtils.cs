@@ -4,17 +4,28 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
+    public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
+    public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
+    public delegate bool SaveCustomerEventHandler(Customer customer);
+    public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
+    public delegate bool SavePayslipsEventHandler(RegisterRatedList list);
+    public delegate Customer GetRegisterRatedList(int custId);
+    public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
+    public delegate void UpdateCustomerDataEventHandler(int id);
+
+
+
     public static class ExtensionUtils
     {
-        // private static RadDateTimePicker _dtPicker;
-
         /// <summary>
         /// Незмінний розмір, кнопка "Сьогодні" посередині, навігація по місяцях/роках зумом
         /// </summary>
@@ -48,6 +59,30 @@ namespace IpsViewComponentLibrary
             var dtPicker = ((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl as RadDateTimePicker;
             if (dtPicker != null)
                 dtPicker.Value = DateTime.Now;
+        }
+
+        public static void ShowInfoMessage(string msg, string title, MessageBoxIcon icon)
+        {
+            MessageBox.Show(msg, title, MessageBoxButtons.OK, icon);
+        }
+
+        public static ButtonFunctionAcceptLicType ButtonNameChange(this RadButton btn, int? status)
+        {
+            switch (status)
+            {
+                case 1:
+                {
+                    btn.Text = "Акцептувати договір";
+                    return ButtonFunctionAcceptLicType.Accept;
+                }
+                case 0:
+                {
+                    btn.Text = "Відправити на погодження";
+                    return ButtonFunctionAcceptLicType.Agree;
+                }
+            }
+
+            return ButtonFunctionAcceptLicType.None;
         }
     }
 
@@ -175,7 +210,11 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Пролонгація договору
         /// </summary>
-        Prolongation
+        Prolongation,
+        /// <summary>
+        /// Зміна договору
+        /// </summary>
+        ChangeAgreement
     }
 
     /// <summary>
@@ -198,6 +237,93 @@ namespace IpsViewComponentLibrary
     }
 
     #endregion
+
+    /// <summary>
+    /// Тип вкладки кабінету великих прав
+    /// </summary>
+    public enum CabinetTabType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Ліцензії
+        /// </summary>
+        Licenses,
+        /// <summary>
+        /// Розрахунки
+        /// </summary>
+        Calculations,
+        /// <summary>
+        /// Розрахункові листи
+        /// </summary>
+        Payslips,
+        /// <summary>
+        /// Заявки
+        /// </summary>
+        Requests,
+        /// <summary>
+        /// Довідки
+        /// </summary>
+        References,
+        /// <summary>
+        /// Генеральна угода
+        /// </summary>
+        GeneralAgreement,
+        /// <summary>
+        /// Файли
+        /// </summary>
+        Files,
+        /// <summary>
+        /// Представник
+        /// </summary>
+        Agent,
+        /// <summary>
+        /// Платежі
+        /// </summary>
+        Payments,
+        /// <summary>
+        /// Аванси
+        /// </summary>
+        Prepays,
+        /// <summary>
+        /// Контакти
+        /// </summary>
+        Contacts
+    }
+
+    /// <summary>
+    /// Тип контролу
+    /// </summary>
+    public enum ControlRequestOrReferenceType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Заявка
+        /// </summary>
+        Request,
+        /// <summary>
+        /// Довідка
+        /// </summary>
+        Reference
+    }
+
+    public enum ButtonFunctionAcceptLicType
+    {
+        None,
+        /// <summary>
+        /// Акцептувати
+        /// </summary>
+        Accept,
+        /// <summary>
+        /// На погодження
+        /// </summary>
+        Agree
+    }
 
 
 }

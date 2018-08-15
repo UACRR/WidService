@@ -8,7 +8,9 @@ namespace ipsmedserviceapp.Model
         public int CustId { get; set; }
         public string Name { get; set; }
         public string InterCode { get; set; }
+        public string CountryCode { get; set; }
 
+        public Country CountryCodeNavigation { get; set; }
         public Customer Cust { get; set; }
     }
 }

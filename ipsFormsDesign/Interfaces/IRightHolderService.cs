@@ -16,6 +16,18 @@ namespace ipsFormsDesign.Interfaces
         public int  CntObj { get; set; }
         public decimal YearProfit { get; set; }
         public string Community_Name { get; set; }
+        public string Country { get; set; }
+    }
+
+    public class RightolderWithNotAcceptedCopyrightViewModel
+    {
+        public int CustId { get; set; }
+        public string InnerCode { get; set; }
+        public string InterCode { get; set; }
+        public string Name { get; set; }
+        public int CntObj { get; set; }
+        public DateTime? RegistrDate { get; set; }
+        public DateTime? WorkDateRH { get; set; }
     }
 
     public interface IRightHolderService : IModel

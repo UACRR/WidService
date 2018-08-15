@@ -31,9 +31,13 @@ namespace IpsViewComponentLibrary
             {12, new []{ "< Керівники", "Договір >" } }
         };
 
+        private MiddleControlAgreementAnketaType ctrlAgreementSmallRights;
+        private MiddleControlAgreementBigRights ctrlAgreementBigRights;
+
         private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
         private ButtonType _btnType = ButtonType.None;
         private byte _nextPageNumber;
+        private readonly Point _LocationPoint = new Point(4, 35);
 
         private Customer _cust;
         private AnketaDictionaties _anketaDictionaries;
@@ -73,22 +77,84 @@ namespace IpsViewComponentLibrary
             ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
             ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
             ctrlManagers.SetDataSources(_cust, _anketaDictionaries);   // - - - - - - - -  Керівники
-            ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
-            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
-                ? _cust?.Client?.ClnBusinessPlace // - - - - - - - - - - - - - - - - - - 
-                : null, _anketaDictionaries );                          // - - - - - - - - - - - - - - - - - -
-            ctrlPlacesTitle.Text =              // - - - - - - - - - - - - - - - - - - -
-                _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
-                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
+            ctrlPlaces.SetData(_cust);        //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
+            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0 // -  Майданчики (grid)
+                ? _cust?.Client?.ClnBusinessPlace  // - - - - - - - - - - - - - - - - - - 
+                : null, _anketaDictionaries);  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+            anketaCompanyBindingSource.DataSource = _cust?.Company?.AnketaCompany?.// - - - - - - - - - - - -
+                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion); // - - - - - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
 
+            if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
+                InitAgreementType(typeRights);
 
+           
+            //ctrlClientName.SetDefaultState();
 
-            ctrlAgreement.typeRights = typeRights;                    // - - - - - - - -  Договір
-            ctrlAgreement.SetDataSources(_cust, _anketaDictionaries, _anketeType);  // - - - - - - - -  Договір
+        }
 
-            ctrlClientName.SetDefaultState();
+        //ініціалізація контрола договору за типом прав
+        private void InitAgreementType(TypeRights rights)
+        {
+            switch (rights)
+            {
+                case TypeRights.BigRights:
+                {
+                    //ініціалізація форми договору великих прав
+                    ctrlAgreementBigRights = new MiddleControlAgreementBigRights
+                    {
+                        Location = _LocationPoint,
+                        MaximumSize = new Size(900, 200),
+                        MinimumSize = new Size(500, 200),
+                        Name = "ctrlAgreementBigRights",
+                        Size = new Size(596, 200),
+                        TabIndex = 0
+                    };
 
+                    if (_cust?.Client?.LicenseAgreement?.SingleOrDefault()?.LicCode != null)
+                    {
+                        var item = _cust.Client.LicenseAgreement.SingleOrDefault();
+                        item.LicCode = 28;
+                        item.LicClass = 1;
+                        item.LicType = 1;
+                    }
+
+                    if(!isEdit && _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Count == 0)
+                        _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
+                        {
+                            Version = 1,
+                            AgrStatus = 2,
+                            AnkVersion = _cust.AnkVersion,
+                        });
+                    //_cust.Company.AnketaCompany.SingleOrDefault().Name = string.Empty;
+                    pvAgreement.Controls.Add(ctrlAgreementBigRights);
+                    ctrlAgreementBigRights.DictionaryAgrLicTypeDataSource = _anketaDictionaries.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
+                    ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
+                    ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// typeof(AnketaCompany);
+                    ctrlAgreementBigRights.LicAgrDataSource = _cust.Client.LicenseAgreement;// typeof(LicenseAgreement);
+                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr;
+
+                    }
+                    break;
+
+                case TypeRights.SmallRights:
+                {
+                    //Ініціалізація форми договору малих прав
+                    ctrlAgreementSmallRights = new MiddleControlAgreementAnketaType
+                    {
+                        Location = _LocationPoint,
+                        MinimumSize = new Size(490, 218),
+                        Name = "ctrlAgreementSmallRights",
+                        Size = new Size(690, 469),
+                        TabIndex = 0
+                    };
+                    pvAgreement.Controls.Add(ctrlAgreementSmallRights);
+
+                    ctrlAgreementSmallRights.typeRights = typeRights; // - - - - - - - - - - - - - - - - - - - - - - - -  Договір
+                    ctrlAgreementSmallRights.SetDataSources(_cust, _anketaDictionaries, _anketeType); // - - - - - - - -  Договір
+                }
+                    break;
+            }
         }
 
         /// <summary>
@@ -180,7 +246,10 @@ namespace IpsViewComponentLibrary
 
                 case 6: // - Договір
                     {
-                        isValid = ctrlAgreement.Validator();
+                        if(typeRights == TypeRights.SmallRights)
+                            isValid = ctrlAgreementSmallRights.Validator();
+                        if (typeRights == TypeRights.BigRights)
+                            isValid = ctrlAgreementBigRights.Validator();
                     }
                     break;
                 case 7: // - Друк (не потребує)
@@ -231,7 +300,11 @@ namespace IpsViewComponentLibrary
                             return;
                         }
                         pageAnketaConsumer.SelectedPage = pvAgreement;
-                        ctrlAgreement.SetDefaultListItem();
+
+                        if(typeRights == TypeRights.SmallRights)
+                            ctrlAgreementSmallRights.SetDefaultListItem();
+                        if(typeRights == TypeRights.BigRights)
+                            ctrlAgreementBigRights.SetBigRightsLicenseAgrType();
                     }
                     break;
                 case 6:

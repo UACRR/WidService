@@ -56,7 +56,9 @@ namespace ipsFormsDesign
                 if (!(ti.IsPrimitive == true
                   || checkType == typeof(string)
                   || checkType == typeof(Decimal)
-                  || checkType == typeof(DateTime)))
+                  || checkType == typeof(DateTime)
+                  || checkType == typeof(TimeSpan)
+                  ))
                     continue;
 
                 var objValue = property.GetValue(dest);

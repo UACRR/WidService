@@ -3,7 +3,6 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -45,18 +44,46 @@ namespace ipsFormsDesign.Services
 
         public bool Save(ObjectRight item)
         {
+            ObjectRight result;
+
             if (item.ObjId == 0) // Новий об'єкт права
             {
-                return _webApi.NewItem("objectright/newobject", item);
+                result = _webApi.NewItemWithResult("objectright/newobject", item);
+            }
+            else
+            {
+                result = _webApi.UpdateItemWithResult("objectright/detail", item.ObjId.ToString(), item);
             }
 
-            return _webApi.UpdateItem("objectright/detail", item.ObjId.ToString(), item);
+            if (result != null)
+            {
+                item.SetFields(result);
+                return true;
+            }
+            else
+                return false;
         }
 
         public ObjectRight NewObjectRight(int category)
         {
             var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
             return item;
+        }
+
+        public ContainerForObjectRihgt GetDataBr(int objId)
+        {
+            var item = _webApi.GetItemById<ContainerForObjectRihgt>("objectright/br/detail", objId.ToString());
+            return item;
+        }
+        public bool SaveObjectBr(ObjectRight objectRight)
+        {
+            if (objectRight.ObjId == 0)
+            {
+                throw new NotImplementedException();
+                //return _webApi.NewItem("objectright/br/newobject", objectRight);
+            }
+
+            return _webApi.UpdateItem("objectright/br/detail", objectRight.ObjId.ToString(), objectRight);
         }
     }
 }

@@ -27,17 +27,19 @@ namespace IpsViewComponentLibrary
         public AnketaConsumerForm()
         {
             InitializeComponent();
-
         }
 
         Customer newCustomerCopy = null;
+
         /// <summary>
-        /// 
+        /// Main constructor
         /// </summary>
-        /// <param name="customer"></param>
-        /// <param name="dictionaties"></param>
+        /// <param name="customer">Споживач</param>
+        /// <param name="dictionaties">Словник</param>
+        /// <param name="_getAutoCompList"></param>
+        /// <param name="_getCustomerAnketa"></param>
         /// <param name="isNew"></param>
-        /// <param name="isBigRights"></param>
+        /// <param name="typeRights"></param>
         public AnketaConsumerForm(Customer customer,
             AnketaDictionaties dictionaties,
             Func<string, IList<AutoCompleteData>> _getAutoCompList,

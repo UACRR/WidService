@@ -16,11 +16,15 @@ public interface IAccount
          DateTime? DateModify { get; set; }
 }
 public interface IAccountBals
-    {    int BalsCode { get; set; }
+    {    int CodeI { get; set; }
          short? BalsType { get; set; }
-         string BalsNameUk { get; set; }
-         string BalsNameRu { get; set; }
-         string BalsNameEn { get; set; }
+         string Name { get; set; }
+}
+public interface IAccountBalsTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
 }
 public interface IAccountStatus
     {    int CodeI { get; set; }
@@ -216,6 +220,7 @@ public interface IAnketaExternal
          int CustId { get; set; }
          string Name { get; set; }
          string InterCode { get; set; }
+         string CountryCode { get; set; }
 }
 public interface IAnketaPerson
     {
@@ -371,7 +376,6 @@ public interface IBrRegister
     {    int RegId { get; set; }
          int? PeriodId { get; set; }
          int? CustId { get; set; }
-         int? ReqIdSr { get; set; }
          DateTime? CreateDate { get; set; }
          decimal? FullAmount { get; set; }
          decimal? RAmount { get; set; }
@@ -385,7 +389,6 @@ public interface IBrRegItem
          int? ObjId { get; set; }
          int? LicId { get; set; }
          string ItemName { get; set; }
-         int? CategoryCode { get; set; }
          int? CountUse { get; set; }
          int? NumTicket { get; set; }
          decimal? FullAmount { get; set; }
@@ -394,6 +397,10 @@ public interface IBrRegItem
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
          int? Status { get; set; }
+         int? RegIdSr { get; set; }
+         decimal? MusicRate { get; set; }
+         decimal? MusicAmount { get; set; }
+         int? CategoryCode { get; set; }
 }
 public interface ICategory
     {    int CodeI { get; set; }
@@ -708,7 +715,7 @@ public interface IDistribution
          bool? IsCourt { get; set; }
          int? RegIdBr { get; set; }
          int? DistType { get; set; }
-         int? CustId { get; set; }
+         int CustId { get; set; }
 }
 public interface IDistributionItem
     {
@@ -742,6 +749,7 @@ public interface IDocPreparePay
          int? PayStatus { get; set; }
          int? Paidid { get; set; }
          byte? FlCourt { get; set; }
+         int? CustIdRh { get; set; }
 }
 public interface IDocReq
     {
@@ -1054,8 +1062,8 @@ public interface ILicAuthorBr
          decimal? PrepaySumAuthor { get; set; }
          string R030 { get; set; }
          DateTime? PrepayDateDo { get; set; }
-         int? LicId { get; set; }
-         int? LicVersion { get; set; }
+         decimal? PrepayRest { get; set; }
+         decimal? PrepayUsed { get; set; }
 }
 public interface ILicense
     {
@@ -1077,6 +1085,7 @@ public interface ILicenseAgreement
          int AgrId { get; set; }
          int? LicSize { get; set; }
          int? LicVersion { get; set; }
+         int? ProlongVersion { get; set; }
 }
 public interface ILicenseAgrParam
     {    int LicId { get; set; }
@@ -1109,10 +1118,11 @@ public interface ILicenseBigR
          bool? IsTour { get; set; }
          string WhereTour { get; set; }
          decimal? Rate { get; set; }
-         int LicVersion { get; set; }
          decimal? PrepayRest { get; set; }
          string LangCode { get; set; }
          int? PerformType { get; set; }
+         short? LicTerm { get; set; }
+         decimal? RateMusic { get; set; }
 }
 public interface ILicenseClass
     {
@@ -1228,6 +1238,12 @@ public interface IMoneyPeriodLink
          decimal Amount { get; set; }
          int? Status { get; set; }
 }
+public interface IMoneyPrepayLink
+    {
+         int PaidId { get; set; }
+         int CRightId { get; set; }
+         decimal? Amount { get; set; }
+}
 public interface IMoneyReceived
     {    int PaidId { get; set; }
          int CustId { get; set; }
@@ -1237,6 +1253,7 @@ public interface IMoneyReceived
          string GoalInvoice { get; set; }
          decimal Amount { get; set; }
          decimal DestribAmount { get; set; }
+         decimal? DestribPrepay { get; set; }
 }
 public interface IMoneyType
     {    int CodeI { get; set; }
@@ -1343,6 +1360,14 @@ public interface IPaidPeriod
          bool? FagFirst { get; set; }
          DateTime? DateActPrint { get; set; }
 }
+public interface IParametersListBox
+    {
+         int RepId { get; set; }
+         int PId { get; set; }
+         string ValuePar { get; set; }
+         string ValueType { get; set; }
+         string ValueName { get; set; }
+    }
 public interface IPartner
     {    int CustId { get; set; }
 }
@@ -1412,6 +1437,7 @@ public interface IPayTurn
          int? PayStatus { get; set; }
          int? RegId { get; set; }
          int? DistId { get; set; }
+         int? CustIdRh { get; set; }
 }
 public interface IPerformer
     {    int PerId { get; set; }
@@ -1419,6 +1445,12 @@ public interface IPerformer
 }
 public interface IPerformType
     {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IPerformTypeTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
          string Name { get; set; }
 }
 public interface IPerformTypetTr
@@ -1515,16 +1547,33 @@ public interface IRegionTr
 }
 public interface IRegister
     {    int RegId { get; set; }
-         int? CustId { get; set; }
-         int? CountRows { get; set; }
-         string Login { get; set; }
-         int? RgStatus { get; set; }
+         int RmId { get; set; }
+         string Number { get; set; }
+         int CountRows { get; set; }
+         int CustId { get; set; }
          DateTime? CreateDate { get; set; }
-         int? PeriodId { get; set; }
-         string UserId { get; set; }
+         int? Durationticks { get; set; }
+         int? RgStatus { get; set; }
          string FileName { get; set; }
+         string UserId { get; set; }
+         int? PeriodId { get; set; }
+         decimal? RegAmount { get; set; }
+         decimal? RegRate { get; set; }
+         decimal? RegRoyalty { get; set; }
+         decimal? MusicAmount { get; set; }
+         decimal? MusicRate { get; set; }
+         decimal? AuthAmount { get; set; }
+         decimal? AuthRate { get; set; }
+         decimal? PaidAmount { get; set; }
          int? LicId { get; set; }
-         TimeSpan? DurationItems { get; set; }
+}
+public interface IRegisterAuthors
+    {
+         int RegId { get; set; }
+         int RegIitemId { get; set; }
+         int AuthId { get; set; }
+         int CodeRole { get; set; }
+         string Name { get; set; }
 }
 public interface IRegisterCount
     {
@@ -1540,21 +1589,58 @@ public interface IRegisterCount
          int? CmCustId { get; set; }
          int? RegIdBr { get; set; }
          int? RegItemIdBr { get; set; }
+         decimal? PrepaySum { get; set; }
+}
+public interface IRegisterExtra
+    {
+         int RegExtraId { get; set; }
+         int RegId { get; set; }
+         int RegIitemId { get; set; }
+         int RoleCode { get; set; }
+         string Name { get; set; }
 }
 public interface IRegisterItem
     {    int RegId { get; set; }
          int RegIitemId { get; set; }
          int? ObjId { get; set; }
+         int CodeItem { get; set; }
          string ItemName { get; set; }
          int? CategoryCode { get; set; }
          string Performer { get; set; }
          string AuthorMusic { get; set; }
          string AuthorText { get; set; }
+         TimeSpan? DurationUse { get; set; }
          int? CountUse { get; set; }
+         TimeSpan? DurationItem { get; set; }
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
-         TimeSpan? DurationUse { get; set; }
-         TimeSpan? DurationItem { get; set; }
+         int? Durationticks { get; set; }
+         int? Ticks { get; set; }
+         bool IsAuto { get; set; }
+}
+public interface IRegisterItemType
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IRegisterListStatus
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IRegisterListStatusTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
+public interface IRegisterRatedList
+    {    int PeriodId { get; set; }
+         int RmId { get; set; }
+         decimal? Amount { get; set; }
+         decimal? Royalty { get; set; }
+         DateTime? CreateDate { get; set; }
+         string UserId { get; set; }
+         int? Status { get; set; }
+         int? CntReport { get; set; }
 }
 public interface IRegisterStatus
     {    int CodeI { get; set; }

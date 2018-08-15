@@ -61,7 +61,6 @@ namespace ConsumerWorkplace_v_1._0
             if (getMainViewData != null)
             {
                 var list = getMainViewData();
-                //gvConsumerList.DataSource = list;
                 gcConsumerCabinet.SetGridDataSource(list); // передати в грід джерело даних
 
             }

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Dictionary;
+
 namespace ipsFormsDesign.Services
 {
     public class WordEngine
@@ -55,6 +57,7 @@ namespace ipsFormsDesign.Services
         }
 
         public string Pdf { get { return tempFileName + ".pdf"; } }
+        public string Docx { get { return tempFileName + ".docx"; } }
 
         /// <summary>
         /// Формування Генерального договору з Правовласником 
@@ -456,10 +459,12 @@ namespace ipsFormsDesign.Services
 
 
             DocDate = $"{licenseAgrParam?.LicDate:dd.MM.yyyy}";
-            LicNum = licenseAgrParam?.LicNum;
+            LicNum = licenseAgrParam?.LicNum ?? licAgr?.Agr?.AgreementAddBr.SingleOrDefault()?.AgrNumber;//TODO номер генерального договору 
             prcntInc = $"{licenseAgrParam?.RateAmount:F}";
             minRltGrn = $"{licenseAgrParam?.MinAmount:F}";
-            int minRltKopInt = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100));
+            int minRltKopInt = default(int);
+            if (licenseAgrParam?.MinAmount != null) //TODO генеральний договір не містить такого поля
+                minRltKopInt = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100));
             minRltKop = minRltKopInt.ToString();
             if (minRltKopInt < 10)
             {
@@ -670,6 +675,83 @@ namespace ipsFormsDesign.Services
 
         }
 
+        #region Copyright request
+
+        public async System.Threading.Tasks.Task ProcessCopyrightRequest(string pathTemplate, RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            clearFiles();
+
+            var docFile = tempFileName + ".docx";
+
+            File.Copy(pathTemplate, docFile);
+
+            // відкрити шаблон
+            await System.Threading.Tasks.Task.Run(() => InnerProcesCopyrightRequest(rightholder, objectRightList));
+
+        }
+
+        private void InnerProcesCopyrightRequest(RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            app = StartWordApp();
+            innerDoc = app.Documents.Open(Docx);
+
+            var list = innerDoc.ContentControls;
+
+            foreach (ContentControl item in list)
+            {
+                item.LockContentControl = false;
+                item.Temporary = true;
+                string title = item.Title.Trim();
+
+                switch (title)
+                {
+                    case "CstName":
+                        item.Range.Text = rightholder.Name;
+                        break;
+                    case "data":
+                        item.Range.Text = DateTime.Now.ToShortDateString();
+                        break;
+                    case "TableObjForApp":
+                        PopulateTableObjects(item.Range.Tables, objectRightList);
+                        break;
+                }
+            }
+
+            innerDoc.Save();
+            innerDoc.SaveAs2(Pdf, WdSaveFormat.wdFormatPDF);
+            innerDoc.Close();
+        }
+
+        private void PopulateTableObjects(Tables tables, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            if (tables.Count == 0)
+                return;
+
+            Table tableObjects = tables[1];
+
+            foreach (var item in objectRightList)
+            {
+                var newRow = tableObjects.Rows.Add();
+                newRow.Cells[1].Range.Text = (newRow.Index - 1).ToString();
+                newRow.Cells[2].Range.Text = item.ObjName;
+                newRow.Cells[3].Range.Text = item.GenreName;
+                newRow.Cells[4].Range.Text = item.Duration;
+                newRow.Cells[5].Range.Text = item.RoleName;
+                newRow.Cells[6].Range.Text = item.SpecName;
+                newRow.Cells[7].Range.Text = item.Rate.ToString();
+                newRow.Cells[8].Range.Text = item.Performer;
+
+                for (var i = 1; i <= 8; i++)
+                {
+                    newRow.Cells[i].Range.Font.Bold = 0;
+                }
+            }
+        }
+
+        #endregion
+
         class TbAuthorPrc
         {
             public string RoleName { get; set; }
@@ -680,8 +762,8 @@ namespace ipsFormsDesign.Services
         class TbAuthorL
         {
             public string RoleName { get; set; }
-            public string AuthorName { get; set; }           
-            public string CountryName { get; set; }       
+            public string AuthorName { get; set; }
+            public string CountryName { get; set; }
             public decimal? prepaySum { get; set; }
             public string Currency { get; set; }
             public DateTime? prepayDateDo { get; set; }
@@ -690,7 +772,7 @@ namespace ipsFormsDesign.Services
         {
             public string r030 { get; set; }
             public string countryCode { get; set; }
-            public string a3  { get; set;  }
+            public string a3 { get; set; }
         }
 
         public async System.Threading.Tasks.Task processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agrMain, LicenseAgreement licA)
@@ -713,7 +795,7 @@ namespace ipsFormsDesign.Services
                 var regions = _dic.region.ToDictionary(rec => rec.CodeI);
                 var period = _dic.period.ToDictionary(rec => rec.CodeI);
                 var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
-                var KL030 = (from kl in _dic.klR030 
+                var KL030 = (from kl in _dic.klR030
                              select new currency { r030 = kl.R030, countryCode = kl.CountryCode, a3 = kl.A3 }
                 );
 
@@ -829,57 +911,24 @@ namespace ipsFormsDesign.Services
                 registerNumber = anketaCompany?.RegistrNumber?.ToString();
                 numberVAT = anketaCompany?.NumberVat.ToString();
                 typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
-                LicenseBigR licenseBigR = licA?.LicenseBigR?.Where(rec => rec.LicVersion == licA.LicVersion).Single();
+
+                LicenseBigR licenseBigR = licA?.LicenseBigR;
                 var creativeRole = _dic.creativeRoleType;
                 var authors = licenseBigR?.Obj.Authors?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
                 var copyright = licenseBigR?.Obj.CopyRight?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
-                var licauthorbr = licenseBigR?.LicAuthorBr?.Where(rec => rec.LicVersion == licA.LicVersion).ToList();
+                var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
 
- /*              var TbAPrc = (from aut in authors
-                                 join crt in creativeRole on aut.RoleCode equals crt.CodeI
-                                 join cpr in copyright on aut.CustId equals cpr.CustId
-                                 select new TbAuthorPrc
-                                 { RoleName = crt.Name, AuthorName = aut.AuthorName, RoleRate = cpr.RoleRate ?? 0 }).ToList();
-*/
+                var TbAPrc = (from aut in authors
+                              join crt in creativeRole on aut.RoleCode equals crt.CodeI
+                              join cpr in copyright on aut.CustId equals cpr.CustId
+                              select new TbAuthorPrc
+                              { RoleName = crt.Name, AuthorName = aut.AuthorName, RoleRate = cpr.RoleRate ?? 0 }).ToList();
 
-       var TbAPrc = (from aut in authors
-                       from crt in creativeRole
-                       .Where (crt => crt.CodeI == aut.RoleCode )
-                             .DefaultIfEmpty()
-                        from cpr in copyright
-                        .Where ( cpr => cpr.CustId == aut.CustId)
-                            .DefaultIfEmpty()
-                  select new TbAuthorPrc
-                  { RoleName = crt.Name, AuthorName = aut.AuthorName, RoleRate = cpr.RoleRate ?? 0 }).ToList();
-
-
-                         
-                                    var TbAL = (from aut in authors
-                                                        join crt in creativeRole on aut.RoleCode equals crt.CodeI 
-                                                        join cpr in copyright on aut.CustId   equals  cpr.CustId
-                                                        join lab in licauthorbr on 
-                                                        cpr.CRightId equals lab.CRightId into labempty
-                                                        from labb in labempty.DefaultIfEmpty()
-                                                        where labb.PrepayType == 1  
-                                                        select new TbAuthorL
-                                                        { RoleName = crt.Name, AuthorName = aut.AuthorName, CountryName= null,
-                                                            prepaySum = labb.PrepaySum ?? 0,
-                                                            Currency = labb.R030 ?? "980"
-                                                            ,prepayDateDo = labb.PrepayDateDo
-                                                        }).ToList();
-
- /*              
-                var TbALl = (from aut in authors
-                            from cpr in copyright
-                            .Where( cpr => aut.CustId == cpr.CustId)
-                                .DefaultIfEmpty()
-                            from lab in licauthorbr
-                            .Where(lab => (cpr.CRightId == lab.CRightId)) 
-                                .DefaultIfEmpty()
-                             where (lab.PrepayType == 1)
-                             from crt in creativeRole
-                            .Where(crt => aut.RoleCode == crt.CodeI)
-                                .DefaultIfEmpty()
+                var TbAL = (from aut in authors
+                            join crt in creativeRole on aut.RoleCode equals crt.CodeI
+                            join cpr in copyright on aut.CustId equals cpr.CustId
+                            join lab in licauthorbr on cpr.CRightId equals lab.CRightId
+                            where lab.PrepayType == 1
                             select new TbAuthorL
                             {
                                 RoleName = crt.Name,
@@ -890,25 +939,23 @@ namespace ipsFormsDesign.Services
                                 ,
                                 prepayDateDo = lab.PrepayDateDo
                             }).ToList();
-*/
 
                 var TbAvAdv = (from aut in authors
                                join crt in creativeRole on aut.RoleCode equals crt.CodeI
                                join cpr in copyright on aut.CustId equals cpr.CustId
-                               join lab in licauthorbr on
-                               cpr.CRightId equals lab.CRightId into labempty
-                               from labb in labempty.DefaultIfEmpty()
-                               where labb.PrepayType == 2
+                               join lab in licauthorbr on cpr.CRightId equals lab.CRightId
+                               where lab.PrepayType == 2
                                select new TbAuthorL
                                {
                                    RoleName = crt.Name,
                                    AuthorName = aut.AuthorName,
                                    CountryName = null,
-                                   prepaySum = labb.PrepaySum ?? 0,
-                                   Currency = labb.R030 ?? "980"
+                                   prepaySum = lab.PrepaySum ?? 0,
+                                   Currency = lab.R030 ?? "980"
                                    ,
-                                   prepayDateDo = labb.PrepayDateDo
+                                   prepayDateDo = lab.PrepayDateDo
                                }).ToList();
+
 
 
                 ShowName = licenseBigR?.Obj?.Name?.ToString();
@@ -1283,7 +1330,6 @@ namespace ipsFormsDesign.Services
                 tbAuthorL = item;
                 curRow = table.Rows.Add();
                 index++;
-                curRow.Cells[1].Range.Font.Bold = 0; 
                 curRow.Cells[1].Range.Text = tbAuthorL.RoleName.ToString();
                 curRow.Cells[2].Range.Text = tbAuthorL.AuthorName.ToString();
                 curRow.Cells[3].Range.Text = "Україна";
@@ -1293,11 +1339,11 @@ namespace ipsFormsDesign.Services
             }
         }
 
-    
 
 
 
-            private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
+
+        private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
         {
             LicAuthorBr authorBr;
             if (tables.Count == 0) return;
@@ -1425,8 +1471,8 @@ namespace ipsFormsDesign.Services
         {
             if (tables.Count == 0) return;
             Table table = tables[1];
-            if (table.Rows.Count > 0)
-                table.Rows.Delete();
+            //if (table.Rows.Count > 0)
+            //    table.Rows.Delete();
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             foreach (var item in rightHolder.TerritoryExclude)

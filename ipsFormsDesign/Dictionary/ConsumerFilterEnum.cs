@@ -57,18 +57,31 @@ namespace ipsFormsDesign.Dictionary
     public enum DialogGoal
     {
         /// <summary>
-        /// Створення нового контракту
+        /// Створення нового договору
         /// </summary>
         forNew,
         /// <summary>
-        /// Редагування поточного договору
+        /// Редагування не підтвердженого договору
         /// </summary>
         forEdit,
         /// <summary>
-        /// Створення або редагування доп угоди на пролонгацію 
+        /// Пролонгація договору
         /// </summary>
-        forProlongation
-    }
+        forProlongation,
+        /// <summary>
+        /// Внесення змін до договору
+        /// </summary>
+        forChange,
+        /// <summary>
+        /// Пролонгація існуючого договору
+        /// </summary>
+        forExistProlongation,
+        /// <summary>
+        /// Внесення змін до існуючої версії договору
+        /// </summary>
+        forExistChange
+
+    } //Exist
 
     /// <summary>
     /// Типи прав
@@ -94,17 +107,45 @@ namespace ipsFormsDesign.Dictionary
     /// </summary>
     public enum TypeBRDocument
     {
+        /// <summary>
+        /// Empty
+        /// </summary>
         None = 0,
-        // General agreement
+        /// <summary>
+        /// Генеральна угода
+        /// </summary>
         GenAgreement = 2,
-        // License agreement
+        /// <summary>
+        /// Ліцензійна угода
+        /// </summary>
         LicAgreement = 3,
-        // Request
+        /// <summary>
+        /// Заявки
+        /// </summary>
         Request = 4,
-        // Certificate
-        certificate = 5,
-        // All documents
-        All 
+        /// <summary>
+        /// Довідки
+        /// </summary>
+        Reference = 5,
+        /// <summary>
+        ///  All documents
+        /// </summary>
+        All
 
+    }
+
+    /// <summary>
+    /// Тип особи користувача
+    /// </summary>
+    public enum PersonType
+    {
+        /// <summary>
+        /// Фізична особа
+        /// </summary>
+        PhysicalPerson,
+        /// <summary>
+        /// Юридична особа
+        /// </summary>
+        JuridicalPerson
     }
 }

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -42,6 +45,23 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             var task = LoadDocument(dictionaties, customer, licenseAgreement);
+        }
+
+        public async void ShowCopyrightRequest(RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
+        {
+            Show();
+
+            radWaitingBar1.StartWaiting();
+
+            var wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_Copyright-Request.docx");
+
+            await wordEngine.ProcessCopyrightRequest(template, rightholder, objectRightList);
+
+            radPdfViewer.LoadDocument(wordEngine.Pdf);
+
+            radWaitingBar1.StopWaiting();
         }
 
         private void radWaitingBar1_WaitingStarted(object sender, EventArgs e)

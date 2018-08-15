@@ -29,6 +29,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug IIS|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug IIS\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug HttpSys|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug HttpSys\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNetCore.Mvc.Core">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.0.4\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
@@ -47,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dictionary\AgreementStatuses.cs" />
     <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />
     <Compile Include="Dictionary\ConsumerFilterEnum.cs" />
@@ -54,11 +73,26 @@
     <Compile Include="Dictionary\DictionaryBaseControl.cs" />
     <Compile Include="Dictionary\DictTr.cs" />
     <Compile Include="Dictionary\EditableObjectBase.cs" />
+    <Compile Include="Dictionary\LicenseAgreementQuery.cs" />
+    <Compile Include="Dictionary\LicenseTypes.cs" />
     <Compile Include="Dictionary\ObjectAuthorRightholder.cs" />
+    <Compile Include="Dictionary\ObjectAuthorRightholderBrViewModel.cs" />
     <Compile Include="Dictionary\ObjectCopyright.cs" />
     <Compile Include="Dictionary\ObjectRightMainView.cs" />
+    <Compile Include="Dictionary\RegisterFilter.cs" />
+    <Compile Include="Dictionary\RegisterItemViewModel.cs" />
+    <Compile Include="Dictionary\RegisterListViewModel.cs" />
+    <Compile Include="Dictionary\RegisterSearchObject.cs" />
+    <Compile Include="Dictionary\RegisterStatusType.cs" />
+    <Compile Include="Dictionary\RightholderListQuery.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />
     <Compile Include="Dictionary\TermsOfServiceWrapper.cs" />
+    <Compile Include="EventAggregator\EventAggregator.cs" />
+    <Compile Include="EventAggregator\IEventAggregator.cs" />
+    <Compile Include="EventAggregator\ISubscriber.cs" />
+    <Compile Include="Events\ObjectRightEvents.cs" />
+    <Compile Include="Events\RegisterEvents.cs" />
+    <Compile Include="Events\RightholderEvents.cs" />
     <Compile Include="Interfaces\EFInterfaces.cs" />
     <Compile Include="Interfaces\IAnketaDictionaties.cs" />
     <Compile Include="Interfaces\IConsumer.cs" />
@@ -72,6 +106,7 @@
     <Compile Include="Interfaces\ObservableListSource.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountBals.cs" />
+    <Compile Include="Model\AccountBalsTr.cs" />
     <Compile Include="Model\AccountStatus.cs" />
     <Compile Include="Model\AccountStatusTr.cs" />
     <Compile Include="Model\ActivityType.cs" />
@@ -224,6 +259,7 @@
     <Compile Include="Model\MoneyLinkStatus.cs" />
     <Compile Include="Model\MoneyLinkStatusTr.cs" />
     <Compile Include="Model\MoneyPeriodLink.cs" />
+    <Compile Include="Model\MoneyPrepayLink.cs" />
     <Compile Include="Model\MoneyReceived.cs" />
     <Compile Include="Model\MoneyType.cs" />
     <Compile Include="Model\MoneyTypeTr.cs" />
@@ -239,6 +275,7 @@
     <Compile Include="Model\ObjectType.cs" />
     <Compile Include="Model\ObjectTypeTr.cs" />
     <Compile Include="Model\PaidPeriod.cs" />
+    <Compile Include="Model\ParametersListBox.cs" />
     <Compile Include="Model\Partner.cs" />
     <Compile Include="Model\PartnerClient.cs" />
     <Compile Include="Model\PaymentCase.cs" />
@@ -251,6 +288,7 @@
     <Compile Include="Model\PayTurn.cs" />
     <Compile Include="Model\Performer.cs" />
     <Compile Include="Model\PerformType.cs" />
+    <Compile Include="Model\PerformTypeTr.cs" />
     <Compile Include="Model\PerformTypetTr.cs" />
     <Compile Include="Model\Period.cs" />
     <Compile Include="Model\PeriodStatus.cs" />
@@ -270,8 +308,14 @@
     <Compile Include="Model\Region.cs" />
     <Compile Include="Model\RegionTr.cs" />
     <Compile Include="Model\Register.cs" />
+    <Compile Include="Model\RegisterAuthors.cs" />
     <Compile Include="Model\RegisterCount.cs" />
+    <Compile Include="Model\RegisterExtra.cs" />
     <Compile Include="Model\RegisterItem.cs" />
+    <Compile Include="Model\RegisterItemType.cs" />
+    <Compile Include="Model\RegisterListStatus.cs" />
+    <Compile Include="Model\RegisterListStatusTr.cs" />
+    <Compile Include="Model\RegisterRatedList.cs" />
     <Compile Include="Model\RegisterStatus.cs" />
     <Compile Include="Model\RegisterStatusTr.cs" />
     <Compile Include="Model\RelAdaptUseArea.cs" />
@@ -316,6 +360,8 @@
     <Compile Include="Model\RequestTypeTr.cs" />
     <Compile Include="Model\ResidentType.cs" />
     <Compile Include="Model\ResidentTypeTr.cs" />
+    <Compile Include="Model\RholderType.cs" />
+    <Compile Include="Model\RholderTypeTr.cs" />
     <Compile Include="Model\RightHolder.cs" />
     <Compile Include="Model\SaldoDay.cs" />
     <Compile Include="Model\SeekObject.cs" />
@@ -363,7 +409,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ConsumerService.cs" />
     <Compile Include="Data\Global.cs" />
+    <Compile Include="Services\ExcelEngine.cs" />
+    <Compile Include="Services\LicenseDataService.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
+    <Compile Include="Services\RegisterService.cs" />
     <Compile Include="Services\RightHolderService.cs" />
     <Compile Include="Services\Utils.cs" />
     <Compile Include="Services\WordEngine.cs" />
@@ -380,6 +429,15 @@
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
       <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
@@ -406,6 +464,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

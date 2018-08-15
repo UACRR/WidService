@@ -8,28 +8,34 @@ namespace ipsmedserviceapp.Model
     {
         public RegisterItem()
         {
-            RegisterCount = new HashSet<RegisterCount>();
+            RegisterExtra = new HashSet<RegisterExtra>();
         }
 
         public int RegId { get; set; }
         public int RegIitemId { get; set; }
         public int? ObjId { get; set; }
+        public int CodeItem { get; set; }
         public string ItemName { get; set; }
         public int? CategoryCode { get; set; }
         public string Performer { get; set; }
         public string AuthorMusic { get; set; }
         public string AuthorText { get; set; }
+        public TimeSpan? DurationUse { get; set; }
         public int? CountUse { get; set; }
+        public TimeSpan? DurationItem { get; set; }
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
-        public TimeSpan? DurationUse { get; set; }
-        public TimeSpan? DurationItem { get; set; }
+        public int? Durationticks { get; set; }
+        public int? Ticks { get; set; }
+        public bool IsAuto { get; set; }
 
         [JsonIgnore]
+        public RegisterItemType CodeItemNavigation { get; set; }
         public ObjectRight Obj { get; set; }
         [JsonIgnore]
         public Register Reg { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
+        [JsonIgnore]
+        public ICollection<RegisterExtra> RegisterExtra { get; set; }
     }
 }
 

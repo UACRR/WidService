@@ -18,12 +18,12 @@ namespace ipsFormsDesign.Model
         public int? CmCustId { get; set; }
         public int? RegIdBr { get; set; }
         public int? RegItemIdBr { get; set; }
+        public decimal? PrepaySum { get; set; }
 
         public CopyrightKind CRkindCodeNavigation { get; set; }
         public Community CmCust { get; set; }
         public RightHolder Cust { get; set; }
-        public RegisterItem RegI { get; set; }
-        public BrRegItem RegINavigation { get; set; }
+        public BrRegItem RegI { get; set; }
     }
 }
 

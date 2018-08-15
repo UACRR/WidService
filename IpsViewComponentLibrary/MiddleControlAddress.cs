@@ -27,26 +27,14 @@ namespace IpsViewComponentLibrary
             addressLegal.AddressDataMember = "JaAddress";
             addressLegal.CityDataMember = "JaCity";
             addressLegal.CountryDataMember = "JaCountry";
-            addressLegal.CountriesDataSource = dictionaties.country;
-            addressLegal.CountriesValueMember = "countryCode";
-            addressLegal.CountriesDisplayMember = "countryName";
             addressLegal.RegionDataMember = "JaRegion";
-            addressLegal.RegionsDataSource = dictionaties.region;
-            addressLegal.RegionsValueMember = "codeI";
-            addressLegal.RegionsDisplayMember = "name";
 
             //фактична
             addressFactual.DataSource = anketa;
             addressFactual.AddressDataMember = "FaAddress";
             addressFactual.CityDataMember = "FaCity";
             addressFactual.CountryDataMember = "FaCountry";
-            addressFactual.CountriesDataSource = dictionaties.country;
-            addressFactual.CountriesValueMember = "countryCode";
-            addressFactual.CountriesDisplayMember = "countryName";
             addressFactual.RegionDataMember = "FaRegion";
-            addressFactual.RegionsDataSource = dictionaties.region;
-            addressFactual.RegionsValueMember = "codeI";
-            addressFactual.RegionsDisplayMember = "name";
 
             //поштова
             addressLetter.DataSource = anketa;
@@ -62,7 +50,7 @@ namespace IpsViewComponentLibrary
             addressLetter.RegionsDisplayMember = "name";
             addressLetter.PostIndexDataMember = "LePostIndex";
 
-            lblTitle.Text = anketa?.Name;
+            anketaCompanyBindingSource.DataSource = anketa;
         }
 
         public bool Validator()

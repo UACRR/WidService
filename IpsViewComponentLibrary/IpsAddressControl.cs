@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using IpsViewComponentLibrary.Utilities;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary
 {
@@ -20,11 +22,22 @@ namespace IpsViewComponentLibrary
         string _cityDataMember;
         string _addressDataMember;
 
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+        }
+
         public IpsAddressControl()
         {
             InitializeComponent();
 
             _bindingSource = new BindingSource();
+
+            if (!IsDesignMode)
+            {
+                ddlCountry.SetDataSource(IpsGlobal.AnketaDictionaties.country, "CountryCode", "CountryName");
+                ddlRegion.SetDataSource(IpsGlobal.AnketaDictionaties.region);
+            }
         }
 
         [Category("Data")]
@@ -111,83 +124,10 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        #region Country dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object CountriesDataSource
-        {
-            get { return ddlCountry.DataSource; }
-            set
-            {
-                if (ddlCountry.DataSource != value)
-                    ddlCountry.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesDataMember
-        {
-            get { return ddlCountry.DataMember; }
-            set { ddlCountry.DataMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesDisplayMember
-        {
-            get { return ddlCountry.DisplayMember; }
-            set { ddlCountry.DisplayMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string CountriesValueMember
-        {
-            get { return ddlCountry.ValueMember; }
-            set { ddlCountry.ValueMember = value; }
-        }
-
-        #endregion
-
-        #region Region dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object RegionsDataSource
-        {
-            get { return ddlRegion.DataSource; }
-            set
-            {
-                if (ddlRegion.DataSource != value)
-                    ddlRegion.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsDataMember
-        {
-            get { return ddlRegion.DataMember; }
-            set { ddlRegion.DataMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsDisplayMember
-        {
-            get { return ddlRegion.DisplayMember; }
-            set { ddlRegion.DisplayMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string RegionsValueMember
-        {
-            get { return ddlRegion.ValueMember; }
-            set { ddlRegion.ValueMember = value; }
-        }
-
-        #endregion
-
         #region Edit controls
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+#if DEBUG
+
         public RadDropDownList DdlCountry
         {
             get
@@ -196,7 +136,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadDropDownList DdlRegion
         {
             get
@@ -205,7 +144,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtCity
         {
             get
@@ -214,7 +152,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtAddress
         {
             get
@@ -222,6 +159,8 @@ namespace IpsViewComponentLibrary
                 return txtAddress;
             }
         }
+
+#endif
 
         #endregion
 
