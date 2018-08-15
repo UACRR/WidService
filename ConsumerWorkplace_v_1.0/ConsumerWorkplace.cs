@@ -23,8 +23,8 @@ namespace ConsumerWorkplace_v_1._0
 {
     public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
     {
-        private bool nextPage = false;
-        private sbyte validTabs = 0;
+        //private bool nextPage = false;
+        //private sbyte validTabs = 0;
         private SwitchPresenter _presenterSmallRights;
         private SwitchPresenterBigRights _presenterBigRights;
         private ConsumerService _serviceSmallRights, _serviceBigRights;
@@ -61,7 +61,7 @@ namespace ConsumerWorkplace_v_1._0
             if (control == null)
                 return;
 
-            Debug.WriteLine($"Control {control.Name} begin paint event {DateTime.Now:hh:mm:ss.ffff}");
+            Debug.WriteLine($"{DateTime.Now:hh:mm:ss.ffff};{control.Name}");
         }
 
         public ConsumerWorkplace(TypeRights rights)

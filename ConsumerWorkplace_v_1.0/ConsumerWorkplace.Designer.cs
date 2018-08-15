@@ -346,7 +346,6 @@ namespace ConsumerWorkplace_v_1._0
             this.Text = "Головне вікно";
             this.ThemeName = "Office2013Light";
             this.Load += new System.EventHandler(this.ConsumerWorkplace_Load);
-            this.Resize += new System.EventHandler(this.ConsumerWorkplace_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).EndInit();
             this.pageParentConsumers.ResumeLayout(false);
             this.pageBigRights.ResumeLayout(false);

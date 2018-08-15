@@ -68,6 +68,7 @@ namespace IpsViewComponentLibrary
             int cntObj = 0;
             setPaintEvent(Controls, ref cntObj);
             Debug.WriteLine($"Setup {cntObj} paint event ******** ");
+            Paint += Item_Paint;
         }
 
         private void setPaintEvent(Control.ControlCollection controls, ref int cntObj)

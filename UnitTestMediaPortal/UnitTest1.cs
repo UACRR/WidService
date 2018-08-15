@@ -28,7 +28,7 @@ namespace UnitTestMediaPortal
             api = new ApiConnector();
         }
 
-        [TestMethod]
+        [TestMethod,Timeout(500)]
         public void TestRegisterRatedList()
         {
             var service = new ConsumerService();
