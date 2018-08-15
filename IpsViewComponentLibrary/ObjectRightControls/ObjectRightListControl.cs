@@ -16,14 +16,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
     public partial class ObjectRightListControl : UserControl,
         ISubscriber<ObjectRightUpdatedEvent>
     {
-        private int _currentPage = 1;
-
         protected bool IsDesignMode
         {
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
         }
 
         private ObjectRightMainView _objectRight;
+        private int _currentPage = 1;
+        private int _totalPages;
+
         public ObjectRightMainView SelectedObject
         {
             get
@@ -60,6 +61,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
                 navigatorPositionItem.Text = _currentPage.ToString();
+                //radBindingNavigator1FirstStrip.DesiredLocation = new PointF(navigatorCommandBar.Size.Width -
+                //    radBindingNavigator1FirstStrip.Size.Width, radBindingNavigator1FirstStrip.Location.Y);
 
                 SetDictionaries();
 
@@ -97,10 +100,15 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             if (ddlState.SelectedValue != null && (int)ddlState.SelectedValue != -1)
                 query.State = (ObjectRightStates)ddlState.SelectedValue;
+            if (!string.IsNullOrWhiteSpace(txtSearchObject.Text))
+                query.SearchText = txtSearchObject.Text;
 
             var service = new ObjectRightService();
-            var list = service.GetObjectRights(query);
-            objectRightMainViewBindingSource.DataSource = list;
+            var result = service.GetObjectRights(query);
+            objectRightMainViewBindingSource.DataSource = result.List;
+
+            _totalPages = (int) Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
+            navigatorCountItem.Text = string.Format(" з {0}", _totalPages);
 
             //SelectedObject = currentObject; // TODO: is it realy need?
         }
@@ -130,6 +138,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void ddlState_SelectedValueChanged(object sender, EventArgs e)
         {
+            _currentPage = 1;
+            navigatorPositionItem.Text = _currentPage.ToString();
             UpdateList();
         }
 
@@ -145,12 +155,26 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void navigatorMoveNextItem_Click(object sender, EventArgs e)
         {
-            //if (_currentPage < _totalPages) TODO: 
-            //{
+            if (_currentPage < _totalPages)
+            {
                 _currentPage += 1;
                 navigatorPositionItem.Text = _currentPage.ToString();
                 UpdateList();
-            //}
+            }
+        }
+
+        private void navigatorMoveFirstItem_Click(object sender, EventArgs e)
+        {
+            _currentPage = 1;
+            navigatorPositionItem.Text = _currentPage.ToString();
+            UpdateList();
+        }
+
+        private void navigatorMoveLastItem_Click(object sender, EventArgs e)
+        {
+            _currentPage = _totalPages;
+            navigatorPositionItem.Text = _currentPage.ToString();
+            UpdateList();
         }
 
         protected virtual void OnObjectSelected(ObjectRightMainView selectedObject)
@@ -168,49 +192,58 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             UpdateList();
         }
 
+        private void timerSearch_Tick(object sender, EventArgs e)
+        {
+            timerSearch.Stop();
+            UpdateList();
+        }
+
         #region Search
 
         private void txtSearchObject_TextChanged(object sender, EventArgs e)
         {
-            gvObjectsRightsList.MasterTemplate.Refresh();
+            //gvObjectsRightsList.MasterTemplate.Refresh();
+
+            timerSearch.Stop();
+            timerSearch.Start();
         }
 
         private void gvObjectsRightsList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchObject.Text))
-            {
-                gvObjectsRightsList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvObjectsRightsList.EndUpdate(false);
-                return;
-            }
+            //if (string.IsNullOrEmpty(txtSearchObject.Text))
+            //{
+            //    gvObjectsRightsList.BeginUpdate();
+            //    e.Visible = true;
+            //    for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
+            //    {
+            //        e.Row.Cells[i].Style.Reset();
+            //    }
+            //    gvObjectsRightsList.EndUpdate(false);
+            //    return;
+            //}
 
-            gvObjectsRightsList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
+            //gvObjectsRightsList.BeginUpdate();
+            //e.Visible = false;
+            //for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
+            //{
+            //    //якщо поле пусте
+            //    if (e.Row.Cells[i].Value == null)
+            //        continue;
 
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearchObject.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvObjectsRightsList.EndUpdate(false);
-            }
+            //    string text = e.Row.Cells[i].Value.ToString();
+            //    if (text.IndexOf(txtSearchObject.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+            //    {
+            //        e.Visible = true;
+            //        e.Row.Cells[i].Style.CustomizeFill = true;
+            //        e.Row.Cells[i].Style.DrawFill = true;
+            //        e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
+            //    }
+            //    else
+            //    {
+            //        e.Row.Cells[i].Style.Reset();
+            //    }
+            //    gvObjectsRightsList.EndUpdate(false);
+            //}
         }
 
         #endregion
