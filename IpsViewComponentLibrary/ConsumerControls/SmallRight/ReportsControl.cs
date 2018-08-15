@@ -129,13 +129,14 @@ namespace IpsViewComponentLibrary
                 return;
             }
             normalizeData(_customer);
-            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.Single(item => item.LicVersion == rec.LicVersion));
-            bindingLicAgreement.DataSource = listAgreement.Where(rec => rec.LicStatus == 2);
+            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && (rec.LicClass == 0 || rec.LicClass == 1) )
+                            .Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
+            bindingAgreement.DataSource = listAgreement;
         }
 
         private void ClearBindings()
         {
-            bindingLicAgreement.DataSource = typeof(LicenseAgrParam);
+            bindingAgreement.DataSource = typeof(LicenseAgrParam);
             bindingPaidPeriod.DataSource = typeof(PaidPeriod);
             bindingReports.DataSource = typeof(Register);
         }
@@ -424,13 +425,13 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void gvLicenseAgr_RowFormatting(object sender, Telerik.WinControls.UI.RowFormattingEventArgs e)
-        {
-            var row = e.RowElement.RowInfo;
-            var licAgr = row.DataBoundItem as LicenseAgrParam;
-            var debt = licAgr?.Lic.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount) ?? 0;
-            row.Cells["Arrears"].Value = debt;
-        }
+        //private void gvLicenseAgr_RowFormatting(object sender, Telerik.WinControls.UI.RowFormattingEventArgs e)
+        //{
+        //    var row = e.RowElement.RowInfo;
+        //    var licAgr = row.DataBoundItem as LicenseAgrParam;
+        //    var debt = licAgr?.Lic.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount) ?? 0;
+        //    row.Cells["Arrears"].Value = debt;
+        //}
 
         private void gvPeriodReports_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
@@ -624,6 +625,8 @@ namespace IpsViewComponentLibrary
         }
 
     }
+
+
     public class GridPeriodsR
     {
         public int PeriodId { get; set; }

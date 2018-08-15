@@ -72,6 +72,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
                         // .Include(item => item.Client.LicenseAgreement).ThenInclude(agr => agr.LicenseBigR.MusicalDesign)
                         .SingleOrDefaultAsync();
+            
             // Отримати дані по Контрактах
             await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                 .Query()
@@ -111,15 +112,15 @@ namespace ipsmedserviceapp.Controllers
             // Отримати Майданчики
             foreach (var place in cust.Client.ClnBusinessPlace)
             {
-                _dbContext.Entry(place).Collection(item => item.ClnPlaceHoll).Load();
-                _dbContext.Entry(place).Reference(item => item.PlCodeNavigation).Load();
+                await _dbContext.Entry(place).Collection(item => item.ClnPlaceHoll).LoadAsync();
+                await _dbContext.Entry(place).Reference(item => item.PlCodeNavigation).LoadAsync();
 
             }
 
             // Отримати співробітників
             foreach (var relEmp in cust.Company.RelEmployee)
             {
-                _dbContext.Entry(relEmp).Reference(item => item.Empl).Load();
+                await _dbContext.Entry(relEmp).Reference(item => item.Empl).LoadAsync();
             }
 
             return cust;
@@ -908,8 +909,6 @@ namespace ipsmedserviceapp.Controllers
 
 
 
-            //LicenseAgrParam licParam = licAgreement?.LicenseAgrParam?.SingleOrDefault(rec => rec.LicVersion == licAgreement.LicVersion);
-            //AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == licAgreement.Agr.Version);
             LicenseAgrParam licParam = licAgreement?.LicenseAgrParam?.SingleOrDefault(rec => rec.LicVersion == version);
             AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == version);
 
@@ -962,9 +961,7 @@ namespace ipsmedserviceapp.Controllers
                     item.LicStatus = status;
                 foreach (var item in licAgreement.Agr.AgreementAddBr)
                     item.AgrStatus = status;
-
             }
-
 
             return licAgreement;
 
@@ -1678,6 +1675,7 @@ where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
                 .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
                 .Include(lic => lic.Cust)
+                .Include( lic => lic.Agr )
                 .ToListAsync();
 
             
@@ -1697,6 +1695,9 @@ where t1.custId = @custId
 
                 await _dbContext.Entry(item).Collection(rec => rec.LicenseAgrParam).Query()
                     .Where(rec => rec.LicVersion == item.LicVersion).LoadAsync();
+
+                await _dbContext.Entry(item.Agr).Collection(rec => rec.AgreementAddBr).Query()
+                    .Where(rec => rec.Version == item.Agr.Version).LoadAsync();
             }
 
             var customer = licenseAgreement.First().Cust.Cust;
