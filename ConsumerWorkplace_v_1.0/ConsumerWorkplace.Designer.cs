@@ -113,7 +113,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageParentConsumers.Margin = new System.Windows.Forms.Padding(0);
             this.pageParentConsumers.Name = "pageParentConsumers";
             this.pageParentConsumers.SelectedPage = this.pageSmallRights;
-            this.pageParentConsumers.Size = new System.Drawing.Size(1284, 699);
+            this.pageParentConsumers.Size = new System.Drawing.Size(1069, 533);
             this.pageParentConsumers.TabIndex = 0;
             this.pageParentConsumers.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageParentConsumers.GetChildAt(0))).StripScrollingAnimation = Telerik.WinControls.RadEasingType.Linear;
@@ -129,27 +129,31 @@ namespace ConsumerWorkplace_v_1._0
             this.pageBigRights.Controls.Add(this.mainViewSwitcherBR);
             this.pageBigRights.Controls.Add(this.treeViewBR);
             this.pageBigRights.ItemSize = new System.Drawing.SizeF(88F, 27F);
-            this.pageBigRights.Location = new System.Drawing.Point(10, 32);
+            this.pageBigRights.Location = new System.Drawing.Point(10, 30);
             this.pageBigRights.Name = "pageBigRights";
-            this.pageBigRights.Size = new System.Drawing.Size(1268, 661);
+            this.pageBigRights.Size = new System.Drawing.Size(1254, 630);
             this.pageBigRights.Text = "Великі права";
             // 
             // mainViewSwitcherBR
             // 
+            this.mainViewSwitcherBR.AutoScroll = true;
+            this.mainViewSwitcherBR.AutoScrollMinSize = new System.Drawing.Size(1000, 600);
             this.mainViewSwitcherBR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainViewSwitcherBR.Location = new System.Drawing.Point(199, 0);
             this.mainViewSwitcherBR.Margin = new System.Windows.Forms.Padding(4);
             this.mainViewSwitcherBR.Name = "mainViewSwitcherBR";
             this.mainViewSwitcherBR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.mainViewSwitcherBR.Size = new System.Drawing.Size(1069, 661);
+            this.mainViewSwitcherBR.Size = new System.Drawing.Size(1055, 630);
             this.mainViewSwitcherBR.TabIndex = 3;
             // 
             // treeViewBR
             // 
             this.treeViewBR.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeViewBR.HotTracking = false;
+            this.treeViewBR.LineStyle = Telerik.WinControls.UI.TreeLineStyle.Dash;
             this.treeViewBR.Location = new System.Drawing.Point(0, 0);
             this.treeViewBR.Name = "treeViewBR";
-            this.treeViewBR.Size = new System.Drawing.Size(199, 661);
+            this.treeViewBR.Size = new System.Drawing.Size(199, 630);
             this.treeViewBR.SpacingBetweenNodes = -1;
             this.treeViewBR.TabIndex = 2;
             // 
@@ -160,25 +164,31 @@ namespace ConsumerWorkplace_v_1._0
             this.pageSmallRights.ItemSize = new System.Drawing.SizeF(78F, 27F);
             this.pageSmallRights.Location = new System.Drawing.Point(10, 32);
             this.pageSmallRights.Name = "pageSmallRights";
-            this.pageSmallRights.Size = new System.Drawing.Size(1268, 661);
+            this.pageSmallRights.Size = new System.Drawing.Size(1053, 495);
             this.pageSmallRights.Text = "Малі права";
             // 
             // mainViewSwitcherSR
             // 
+            this.mainViewSwitcherSR.AutoScroll = true;
+            this.mainViewSwitcherSR.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.mainViewSwitcherSR.BackColor = System.Drawing.Color.Transparent;
+            this.mainViewSwitcherSR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.mainViewSwitcherSR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainViewSwitcherSR.Location = new System.Drawing.Point(199, 0);
             this.mainViewSwitcherSR.Margin = new System.Windows.Forms.Padding(4);
             this.mainViewSwitcherSR.Name = "mainViewSwitcherSR";
             this.mainViewSwitcherSR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.mainViewSwitcherSR.Size = new System.Drawing.Size(1069, 661);
+            this.mainViewSwitcherSR.Size = new System.Drawing.Size(854, 495);
             this.mainViewSwitcherSR.TabIndex = 1;
             // 
             // treeViewSR
             // 
             this.treeViewSR.Dock = System.Windows.Forms.DockStyle.Left;
+            this.treeViewSR.ExpandAnimation = Telerik.WinControls.UI.ExpandAnimation.None;
+            this.treeViewSR.HotTracking = false;
             this.treeViewSR.Location = new System.Drawing.Point(0, 0);
             this.treeViewSR.Name = "treeViewSR";
-            this.treeViewSR.Size = new System.Drawing.Size(199, 661);
+            this.treeViewSR.Size = new System.Drawing.Size(199, 495);
             this.treeViewSR.SpacingBetweenNodes = -1;
             this.treeViewSR.TabIndex = 0;
             // 
@@ -204,7 +214,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.Location = new System.Drawing.Point(0, 0);
             this.pageViewOwner.Name = "pageViewOwner";
             this.pageViewOwner.SelectedPage = this.radPageViewPage1;
-            this.pageViewOwner.Size = new System.Drawing.Size(1294, 735);
+            this.pageViewOwner.Size = new System.Drawing.Size(1079, 569);
             this.pageViewOwner.TabIndex = 1;
             this.pageViewOwner.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewOwner.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -217,7 +227,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(76F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1284, 699);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1069, 533);
             this.radPageViewPage1.Text = "Споживачі";
             // 
             // radPageViewPage2
@@ -331,10 +341,11 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // ConsumerWorkplace
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1294, 735);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1079, 569);
             this.Controls.Add(this.pageViewOwner);
-            this.MinimumSize = new System.Drawing.Size(1280, 700);
+            this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "ConsumerWorkplace";
             // 
             // 

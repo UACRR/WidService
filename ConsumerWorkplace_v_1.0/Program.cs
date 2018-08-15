@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Services;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
@@ -32,6 +33,7 @@ namespace ConsumerWorkplace_v_1._0
             ConsumerService model = new ConsumerService();
             FormPresenter control = new FormPresenter(form, model);
             form.WindowState = FormWindowState.Maximized;
+            form.AutoScaleMode = AutoScaleMode.Font;
             Application.Run(form);
 
             //LoadCabinet(form.ReturnCustomer());

@@ -34,19 +34,24 @@
             // 
             // radPanel1
             // 
+            this.radPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.radPanel1.CausesValidation = false;
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel1.Location = new System.Drawing.Point(0, 0);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(885, 391);
+            this.radPanel1.Size = new System.Drawing.Size(1300, 900);
             this.radPanel1.TabIndex = 0;
             // 
             // MainViewSwitcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(300, 300);
+            this.AutoScrollMinSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.radPanel1);
             this.Name = "MainViewSwitcher";
-            this.Size = new System.Drawing.Size(885, 391);
+            this.Size = new System.Drawing.Size(899, 387);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.ResumeLayout(false);
 

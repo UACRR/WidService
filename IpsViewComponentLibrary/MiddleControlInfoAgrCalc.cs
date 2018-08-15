@@ -47,7 +47,6 @@ namespace IpsViewComponentLibrary
         private void ClearData()
         {
             SetDefaultPages();
-            userInfoCtrl.SetEmptyFields();
             ctrlAgrInfoMain.SetEmpty();
             ctrlPaysInfo1.Customer = null;
             gvLicenseAgr.DataSource = new object();
@@ -84,7 +83,7 @@ namespace IpsViewComponentLibrary
         public void SetCustomerData(Customer cust)
         {
             _customer = cust;
-            SetUserInfoData();
+            //SetUserInfoData();
             gvLicenseAgr.DataSource = new object();
             //SetAgrInfoData();
             SetCalculationData();
@@ -193,32 +192,6 @@ namespace IpsViewComponentLibrary
             gvMoreLicenseAgr.DataSource = source;
             gvMoreLicenseAgr.MasterTemplate.Refresh();
             gvMoreLicenseAgr.Update();
-        }
-
-        /// <summary>
-        /// Інформація користувача
-        /// </summary>
-        private void SetUserInfoData()
-        {
-            var userInfo = _customer?.Company?.AnketaCompany?.SingleOrDefault();
-            var contactPerson = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
-            var manager = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
-
-
-            userInfoCtrl.Edrpou = userInfo?.Okpo;
-            userInfoCtrl.NameInfo = userInfo?.Name;
-            userInfoCtrl.PibManager = manager?.Empl?.FirstName + " " +
-                                      manager?.Empl?.LastName + " " +
-                                      manager?.Empl?.SurName;
-            userInfoCtrl.EmailManager = manager?.Empl?.Email;
-
-            userInfoCtrl.PhoneManager = manager?.Empl?.PhoneNumber;
-            userInfoCtrl.PibContactPerson = contactPerson?.Empl?.FirstName + " " +
-                                            contactPerson?.Empl?.LastName + " " +
-                                            contactPerson?.Empl?.SurName;
-            userInfoCtrl.PhoneContactPerson = contactPerson?.Empl?.PhoneNumber;
-            userInfoCtrl.EmailContactPerson = contactPerson?.Empl?.Email;
-            userInfoCtrl.OrganisationForm = "";
         }
 
         /// <summary>

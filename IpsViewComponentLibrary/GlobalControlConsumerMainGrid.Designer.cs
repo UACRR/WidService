@@ -64,26 +64,26 @@
             gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
             gridViewTextBoxColumn1.Name = "Innokpo";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 137;
+            gridViewTextBoxColumn1.Width = 94;
             gridViewTextBoxColumn2.FieldName = "name";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "Name";
-            gridViewTextBoxColumn2.Width = 563;
+            gridViewTextBoxColumn2.Width = 385;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.DataType = typeof(int);
             gridViewTextBoxColumn3.FieldName = "countAgree";
             gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
             gridViewTextBoxColumn3.Name = "CountAgree";
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn3.Width = 137;
+            gridViewTextBoxColumn3.Width = 94;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(double);
             gridViewTextBoxColumn4.FieldName = "undistribamount";
             gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn4.Name = "Undistribamount";
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 155;
+            gridViewTextBoxColumn4.Width = 105;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "custId";
@@ -117,9 +117,9 @@
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
             this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewConsumers.Size = new System.Drawing.Size(1034, 547);
+            this.gvViewConsumers.Size = new System.Drawing.Size(725, 335);
             this.gvViewConsumers.TabIndex = 3;
-            this.gvViewConsumers.ThemeName = "Office2007Silver";
+            this.gvViewConsumers.ThemeName = "Office2013Light";
             this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
             this.gvViewConsumers.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewConsumers_CustomFiltering);
             // 
@@ -130,7 +130,7 @@
             this.btnNewConsumer.Size = new System.Drawing.Size(159, 24);
             this.btnNewConsumer.TabIndex = 4;
             this.btnNewConsumer.Text = "Новий споживач";
-            this.btnNewConsumer.ThemeName = "Office2007Silver";
+            this.btnNewConsumer.ThemeName = "Office2013Light";
             this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 
             // txtSearch
@@ -140,6 +140,7 @@
             this.txtSearch.NullText = "Пошук";
             this.txtSearch.Size = new System.Drawing.Size(479, 20);
             this.txtSearch.TabIndex = 5;
+            this.txtSearch.ThemeName = "Office2013Light";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImage = null;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
@@ -166,7 +167,7 @@
             this.Controls.Add(this.btnNewConsumer);
             this.Controls.Add(this.gvViewConsumers);
             this.Name = "GlobalControlConsumerMainGrid";
-            this.Size = new System.Drawing.Size(1040, 584);
+            this.Size = new System.Drawing.Size(731, 372);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
