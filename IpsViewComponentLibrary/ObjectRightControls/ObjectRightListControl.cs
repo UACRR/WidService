@@ -9,6 +9,7 @@ using Telerik.WinControls.UI;
 using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -55,6 +56,16 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (!IsDesignMode)
             {
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
+
+                var states = new[] {
+                    new { CodeI = -1, Name = "Всі" },
+                    new { CodeI = 0, Name = "Не підтверджені" },
+                    new { CodeI = 1, Name = "Не прив'язані" },
+                    new { CodeI = 2, Name = "Не розподілені" },
+                };
+
+                ddlState.SetDataSource(states);
+
                 UpdateList();
             }
         }
@@ -66,8 +77,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void UpdateList(ObjectRightMainView currentObject)
         {
+            var query = new ObjectRightQuery();
+
+            if (ddlState.SelectedValue != null && (int)ddlState.SelectedValue != -1)
+                query.State = (ObjectRightStates)ddlState.SelectedValue;
+
             var service = new ObjectRightService();
-            var list = service.GetMainView();
+            var list = service.GetObjectRights(query);
             objectRightMainViewBindingSource.DataSource = list;
 
             //SelectedObject = currentObject; // TODO: is it realy need?
@@ -92,6 +108,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         }
 
         private void btnUpdateList_Click(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void ddlState_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             UpdateList();
         }
