@@ -23,6 +23,14 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
+        // use this method to fetch objects list
+        public IList<ObjectRightMainView> GetObjectRights(ObjectRightQuery query)
+        {
+            var list = _webApi.GetList<ObjectRightMainView>("objectright", query.ToKeyValuePair());
+
+            return list;
+        }
+
         public List<ObjectRightMainView> GetObjectsByFilter( string filter )
         {
             string url = string.Concat("objectright/filteredObjectRights/", filter);
