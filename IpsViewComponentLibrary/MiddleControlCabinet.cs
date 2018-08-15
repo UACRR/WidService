@@ -70,7 +70,7 @@ namespace IpsViewComponentLibrary
         public MiddleControlCabinet()
         {
             _anketaDictionaties = new AnketaDictionaties();
-            _anketaDictionaties = IpsGlobal.AnketaDictionaties;
+            //_anketaDictionaties = IpsGlobal.AnketaDictionaties;
             InitializeComponent();
             ctrlReference.SetAnketaDictionary(_anketaDictionaties);
             ctrlRequest.SetAnketaDictionary(_anketaDictionaties);

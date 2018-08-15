@@ -269,7 +269,7 @@ namespace IpsViewComponentLibrary
                     _moneyUndescribs,
                     _registers,
                     _payslipsSpectacleViews);
-                ctrlHeaderInfo.SetHeaderInfoBigRight(_customer, e?.CurrentRow?.DataBoundItem as ConsumerBigRightView);
+                ctrlHeaderInfo.SetControlTextInfoBigRight(_customer, e?.CurrentRow?.DataBoundItem as ConsumerBigRightView);
             }
         }
 
