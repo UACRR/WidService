@@ -63,6 +63,41 @@ namespace IpsViewComponentLibrary
             mсInfoAgrCalc.OnChangeLicenseStatus += MсInfoAgrCalc_OnChangeLicenseStatus;
         }
 
+        private void GlobalControlConsumerCabinet_Load(object sender, EventArgs e)
+        {
+            int cntObj = 0;
+            setPaintEvent(Controls, ref cntObj);
+            Debug.WriteLine($"Setup {cntObj} paint event ******** ");
+        }
+
+        private void setPaintEvent(Control.ControlCollection controls, ref int cntObj)
+        {
+            foreach (Control item in controls)
+            {
+                setPaintEvent(item.Controls, ref cntObj);
+                item.Paint += Item_Paint;
+                cntObj++;
+            }
+        }
+
+        private void  NestedName( Control control, StringBuilder sb )
+        {
+            if (sb.Length > 0)
+                sb.Insert(0, ";");
+            sb.Insert(0, control.Name);
+            if (control.Parent != null && control.Parent is Control)
+                NestedName(control.Parent, sb);
+        }
+        private void Item_Paint(object sender, PaintEventArgs e)
+        {
+            Control control = sender as Control;
+            if (control == null)
+                return;
+            StringBuilder sb = new StringBuilder();
+            NestedName(control, sb);
+            Debug.WriteLine($"Control {sb.ToString()} begin paint event {DateTime.Now:hh:mm:ss.ffff}");
+        }
+
         private bool MсInfoAgrCalc_OnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
             // Debug.WriteLine("MсInfoAgrCalc_OnChangeLicenseStatus start");
@@ -228,5 +263,7 @@ namespace IpsViewComponentLibrary
             foreach (Control item in Controls)
                 item.ResumeLayout();
         }
+
+
     }
 }

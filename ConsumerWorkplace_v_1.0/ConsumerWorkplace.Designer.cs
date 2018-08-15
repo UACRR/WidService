@@ -36,10 +36,8 @@ namespace ConsumerWorkplace_v_1._0
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainViewSwitcherBR = new IpsViewComponentLibrary.MainViewSwitcher();
             this.treeViewBR = new Telerik.WinControls.UI.RadTreeView();
             this.pageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainViewSwitcherSR = new IpsViewComponentLibrary.MainViewSwitcher();
             this.treeViewSR = new Telerik.WinControls.UI.RadTreeView();
             this.radPageViewPage7 = new Telerik.WinControls.UI.RadPageViewPage();
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -68,6 +66,8 @@ namespace ConsumerWorkplace_v_1._0
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainViewSwitcherBR = new IpsViewComponentLibrary.MainViewSwitcher();
+            this.mainViewSwitcherSR = new IpsViewComponentLibrary.MainViewSwitcher();
             this.consumerWorkplaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
@@ -131,27 +131,17 @@ namespace ConsumerWorkplace_v_1._0
             this.pageBigRights.Controls.Add(this.mainViewSwitcherBR);
             this.pageBigRights.Controls.Add(this.treeViewBR);
             this.pageBigRights.ItemSize = new System.Drawing.SizeF(79F, 24F);
-            this.pageBigRights.Location = new System.Drawing.Point(10, 31);
+            this.pageBigRights.Location = new System.Drawing.Point(10, 29);
             this.pageBigRights.Name = "pageBigRights";
-            this.pageBigRights.Size = new System.Drawing.Size(1257, 652);
+            this.pageBigRights.Size = new System.Drawing.Size(1257, 656);
             this.pageBigRights.Text = "Великі права";
-            // 
-            // mainViewSwitcherBR
-            // 
-            this.mainViewSwitcherBR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainViewSwitcherBR.Location = new System.Drawing.Point(199, 0);
-            this.mainViewSwitcherBR.Margin = new System.Windows.Forms.Padding(4);
-            this.mainViewSwitcherBR.Name = "mainViewSwitcherBR";
-            this.mainViewSwitcherBR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.mainViewSwitcherBR.Size = new System.Drawing.Size(1058, 652);
-            this.mainViewSwitcherBR.TabIndex = 3;
             // 
             // treeViewBR
             // 
             this.treeViewBR.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeViewBR.Location = new System.Drawing.Point(0, 0);
             this.treeViewBR.Name = "treeViewBR";
-            this.treeViewBR.Size = new System.Drawing.Size(199, 652);
+            this.treeViewBR.Size = new System.Drawing.Size(199, 656);
             this.treeViewBR.SpacingBetweenNodes = -1;
             this.treeViewBR.TabIndex = 2;
             // 
@@ -164,16 +154,6 @@ namespace ConsumerWorkplace_v_1._0
             this.pageSmallRights.Name = "pageSmallRights";
             this.pageSmallRights.Size = new System.Drawing.Size(1257, 656);
             this.pageSmallRights.Text = "Малі права";
-            // 
-            // mainViewSwitcherSR
-            // 
-            this.mainViewSwitcherSR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainViewSwitcherSR.Location = new System.Drawing.Point(199, 0);
-            this.mainViewSwitcherSR.Margin = new System.Windows.Forms.Padding(4);
-            this.mainViewSwitcherSR.Name = "mainViewSwitcherSR";
-            this.mainViewSwitcherSR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.mainViewSwitcherSR.Size = new System.Drawing.Size(1058, 656);
-            this.mainViewSwitcherSR.TabIndex = 1;
             // 
             // treeViewSR
             // 
@@ -327,6 +307,26 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
             // 
+            // mainViewSwitcherBR
+            // 
+            this.mainViewSwitcherBR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainViewSwitcherBR.Location = new System.Drawing.Point(199, 0);
+            this.mainViewSwitcherBR.Margin = new System.Windows.Forms.Padding(4);
+            this.mainViewSwitcherBR.Name = "mainViewSwitcherBR";
+            this.mainViewSwitcherBR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.mainViewSwitcherBR.Size = new System.Drawing.Size(1058, 656);
+            this.mainViewSwitcherBR.TabIndex = 3;
+            // 
+            // mainViewSwitcherSR
+            // 
+            this.mainViewSwitcherSR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainViewSwitcherSR.Location = new System.Drawing.Point(199, 0);
+            this.mainViewSwitcherSR.Margin = new System.Windows.Forms.Padding(4);
+            this.mainViewSwitcherSR.Name = "mainViewSwitcherSR";
+            this.mainViewSwitcherSR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.mainViewSwitcherSR.Size = new System.Drawing.Size(1058, 656);
+            this.mainViewSwitcherSR.TabIndex = 1;
+            // 
             // consumerWorkplaceBindingSource
             // 
             this.consumerWorkplaceBindingSource.DataSource = typeof(ConsumerWorkplace_v_1._0.ConsumerWorkplace);
@@ -345,6 +345,8 @@ namespace ConsumerWorkplace_v_1._0
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Головне вікно";
             this.ThemeName = "Office2013Light";
+            this.Load += new System.EventHandler(this.ConsumerWorkplace_Load);
+            this.Resize += new System.EventHandler(this.ConsumerWorkplace_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).EndInit();
             this.pageParentConsumers.ResumeLayout(false);
             this.pageBigRights.ResumeLayout(false);

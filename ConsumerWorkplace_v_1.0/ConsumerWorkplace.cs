@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -33,6 +34,34 @@ namespace ConsumerWorkplace_v_1._0
         public ConsumerWorkplace()
         {
             InitializeComponent();
+        }
+
+        private void ConsumerWorkplace_Load(object sender, EventArgs e)
+        {
+            int cntObj = 0;
+            setPaintEvent(Controls, ref cntObj );
+
+            Debug.WriteLine($"set event to {cntObj} objects");
+
+        }
+
+        private void setPaintEvent( Control.ControlCollection controls, ref int cntObj )
+        {
+            foreach( Control item in controls )
+            {
+                setPaintEvent(item.Controls, ref cntObj );
+                item.Paint += Item_Paint;
+                cntObj++;
+            }
+        }
+
+        private void Item_Paint(object sender, PaintEventArgs e)
+        {
+            Control control = sender as Control;
+            if (control == null)
+                return;
+
+            Debug.WriteLine($"Control {control.Name} begin paint event {DateTime.Now:hh:mm:ss.ffff}");
         }
 
         public ConsumerWorkplace(TypeRights rights)
@@ -250,10 +279,10 @@ namespace ConsumerWorkplace_v_1._0
 
         private void ConsumerWorkplace_Resize(object sender, EventArgs e)
         {
-            SuspendLayout();
-            base.OnResize(e);
-            ResumeLayout();
+            Debug.WriteLine($"Start resizing {DateTime.Now:hh:mm:ss.ffff} ************");
         }
+
+
 
         public void EndPresenterLink()
         {
