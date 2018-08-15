@@ -42,8 +42,10 @@
             // 
             // lbltxtName
             // 
+            this.lbltxtName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbltxtName.CausesValidation = false;
-            this.lbltxtName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbltxtName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lbltxtName.Font = new System.Drawing.Font("Segoe UI", 8.75F);
             this.lbltxtName.Location = new System.Drawing.Point(0, 0);
@@ -55,9 +57,11 @@
             // 
             // txtShow
             // 
+            this.txtShow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtShow.AutoSize = false;
             this.txtShow.CausesValidation = false;
-            this.txtShow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtShow.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtShow.Location = new System.Drawing.Point(0, 0);
             this.txtShow.Name = "txtShow";

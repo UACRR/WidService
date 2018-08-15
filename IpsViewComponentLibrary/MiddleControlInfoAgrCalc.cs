@@ -83,7 +83,7 @@ namespace IpsViewComponentLibrary
         public void SetCustomerData(Customer cust)
         {
             _customer = cust;
-            //SetUserInfoData();
+            ctrlHeaderInfo.SetControlTextInfoSmallRight(_customer);
             gvLicenseAgr.DataSource = new object();
             //SetAgrInfoData();
             SetCalculationData();
