@@ -80,6 +80,7 @@
     <Compile Include="Dictionary\ObjectCopyright.cs" />
     <Compile Include="Dictionary\ObjectRightMainView.cs" />
     <Compile Include="Dictionary\ObjectRightQuery.cs" />
+    <Compile Include="Dictionary\ObjectRightListResponse.cs" />
     <Compile Include="Dictionary\ObjectRightStates.cs" />
     <Compile Include="Dictionary\RegisterFilter.cs" />
     <Compile Include="Dictionary\RegisterItemViewModel.cs" />

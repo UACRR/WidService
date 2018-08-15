@@ -198,10 +198,13 @@ namespace ipsmedserviceapp.Controllers
 
             queryText = ApplyFiltering(queryText, query);
 
+            var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
+
             queryText = ApplyPaging(queryText, query);
 
             var list = await _dbContext.getViewData(queryText, null);
-            return Json(list);
+
+            return Ok(new { List = list, TotalItems = totalItems });
         }
 
         private string ApplyFiltering(string queryText, ObjectRightQueryResource query)
