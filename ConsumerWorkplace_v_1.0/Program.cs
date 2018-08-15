@@ -6,6 +6,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.Utilities;
 
 namespace ConsumerWorkplace_v_1._0
 {
@@ -17,6 +18,10 @@ namespace ConsumerWorkplace_v_1._0
         [STAThread]
         static void Main()
         {
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += Application_ThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var objectrightService = new ObjectRightService();
@@ -34,20 +39,24 @@ namespace ConsumerWorkplace_v_1._0
             //LoadTest();
         }
 
-        private static void LoadCabinet(Customer oo)
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs exceptionEventArg)
         {
-            ConsumerCabinet f = new ConsumerCabinet();
-            f.WindowState = FormWindowState.Maximized;
-            ConsumerService m = new ConsumerService();
-            FormPresenter control = new FormPresenter(f, m);
-            f.SetData(oo);
-            Application.Run(f);
+            HandleException((Exception)exceptionEventArg.ExceptionObject);
         }
 
-        private static void LoadTest()
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs exceptionEventArg)
         {
-            TestForm test = new TestForm();
-            Application.Run(test);
+            HandleException(exceptionEventArg.Exception);
+        }
+
+        private static void HandleException(Exception e)
+        {
+            var message = String.Format("Вибачте, сталася помилка. \r\n{0}\r\nЗверніться в службу підтримки.", e.Message);
+
+            var dialogService = new DialogService();
+            dialogService.ShowError(message, e.ToString());
+
+            Application.Exit();
         }
     }
 }
