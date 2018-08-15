@@ -57,17 +57,26 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             {
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
-                var states = new[] {
+                SetDictionaries();
+
+                UpdateList();
+            }
+        }
+
+        private void SetDictionaries()
+        {
+            ddlState.SelectedValueChanged -= ddlState_SelectedValueChanged;
+
+            var states = new[] {
                     new { CodeI = -1, Name = "Всі" },
                     new { CodeI = 0, Name = "Не підтверджені" },
                     new { CodeI = 1, Name = "Не прив'язані" },
                     new { CodeI = 2, Name = "Не розподілені" },
                 };
 
-                ddlState.SetDataSource(states);
+            ddlState.SetDataSource(states);
 
-                UpdateList();
-            }
+            ddlState.SelectedValueChanged += ddlState_SelectedValueChanged;
         }
 
         public void UpdateList()
@@ -112,7 +121,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             UpdateList();
         }
 
-        private void ddlState_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        private void ddlState_SelectedValueChanged(object sender, EventArgs e)
         {
             UpdateList();
         }
