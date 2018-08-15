@@ -95,7 +95,7 @@ namespace IpsViewComponentLibrary
                 return;
             StringBuilder sb = new StringBuilder();
             NestedName(control, sb);
-            Debug.WriteLine($"Control {sb.ToString()} begin paint event {DateTime.Now:hh:mm:ss.ffff}");
+            Debug.WriteLine($"{DateTime.Now:hh:mm:ss.ffff};{sb.ToString()}");
         }
 
         private bool MсInfoAgrCalc_OnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
