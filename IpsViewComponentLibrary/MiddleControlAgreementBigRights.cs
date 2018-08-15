@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -15,6 +16,16 @@ namespace IpsViewComponentLibrary
         public MiddleControlAgreementBigRights()
         {
             InitializeComponent();
+            ctrlAgreementMain.AgreementLabelType = TypeRights.BigRights;
+            
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object AnketaCompanyDataSource
+        {
+            get => bsAnketaCompany.DataSource;
+            set => bsAnketaCompany.DataSource = value;
         }
 
         [Category("Data")]
@@ -43,18 +54,35 @@ namespace IpsViewComponentLibrary
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
+        public object AgreementAddBrDataSource
+        {
+            get => bsAgreementAddBr.DataSource;
+            set => bsAgreementAddBr.DataSource = value;
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
         public object LicAgrDataSource
         {
             get => licenseAgreementBindingSource.DataSource;
             set => licenseAgreementBindingSource.DataSource = value;
         }
 
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
-        public object AnketaCompanyDataSource
+        /// <summary>
+        /// Перевірка на правильність введених полів
+        /// </summary>
+        /// <returns></returns>
+        public bool Validator()
         {
-            get => bsAnketaCompany.DataSource;
-            set => bsAnketaCompany.DataSource = value;
+            return ctrlAgreementMain.Validator();
+        }
+
+        /// <summary>
+        /// Для великих прав в режимі додавання нової анкети доступні тільки генеральні договора
+        /// </summary>
+        internal void SetBigRightsLicenseAgrType()
+        {
+            ddlLicType.Enabled = false;
         }
 
         private void txtDayForPay_KeyPress(object sender, KeyPressEventArgs e)
@@ -64,8 +92,11 @@ namespace IpsViewComponentLibrary
             {
                 e.Handled = true;
             }
+        }
 
-            if (Convert.ToInt32(txtDayForPay.Text) > 31)
+        private void txtDayForPay_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(txtDayForPay.Text, out int val) && val > 31)
                 txtDayForPay.Text = "31";
         }
     }

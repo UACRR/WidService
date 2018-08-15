@@ -68,14 +68,14 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.UpdateList(sors.SeekObject, dest.SeekObject, i => { }, (l, r) => l.Id == r.Id);
 
             // Update WorkRh
-            {
-                var dicCopyRight = sors.CopyRight.ToDictionary(rec => rec.CRightId);
-                foreach ( var item in dest.CopyRight )
-                {
-                    var sorsItem = dicCopyRight[item.CRightId];
-                    item.WorkRh.SetFields(sorsItem.WorkRh);
-                }
-            }
+            //{
+            //    var dicCopyRight = sors.CopyRight.ToDictionary(rec => rec.CRightId);
+            //    foreach ( var item in dest.CopyRight )
+            //    {
+            //        var sorsItem = dicCopyRight[item.CRightId];
+            //        item.WorkRh.SetFields(sorsItem.WorkRh);
+            //    }
+            //}
 
             if (dest.CategoryCode == 5)
             {
@@ -149,6 +149,8 @@ namespace ipsmedserviceapp.Controllers
                 case 5:
                     {
                         addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0, 0, 0) };
+                        addObject.GenreType = 96;
+                        addObject.SpecType = 1;
                     }
                     break;
             }
@@ -186,6 +188,135 @@ namespace ipsmedserviceapp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        #region Big right
+
+        private async Task<ObjectRight> GetObjectRightBrById(int objId)
+        {
+            var objectRight = await _dbContext.ObjectRight
+                .Include(rec => rec.Authors)
+                .Include(rec => rec.CopyRight)
+                    .ThenInclude(cr => cr.LicAuthorBr)
+                .Include(rec => rec.CopyRight)
+                    .ThenInclude(cr => cr.WorkRh)
+                .Include(rec => rec.LicenseBigR)
+                .FirstOrDefaultAsync(rec => rec.ObjId == objId);
+
+            return objectRight;
+        }
+
+        private void UpdateObjectRightBr(ObjectRight source, ObjectRight dest)
+        {
+            dest.SetFields(source);
+
+            _dbContext.UpdateList(source.LicenseBigR, dest.LicenseBigR, i => { }, (l, r) => l.LicId == r.LicId );
+
+            _dbContext.UpdateList(source.Authors, dest.Authors, newItem =>
+                {
+                    newItem.FolkType = 1;
+                },
+                (l, r) => l.AuthId == r.AuthId
+            );
+            
+            _dbContext.UpdateList(source.CopyRight, dest.CopyRight, newItem =>
+                {
+                    // set default data for new CopyRight item
+                    newItem.BeginDate = new DateTime(1900, 1, 1);
+                    newItem.EndDate = new DateTime(3000, 1, 1);
+                    newItem.LBasis = 1;
+                },
+                (l, r) => l.CRightId == r.CRightId
+            );
+
+            // Update LicAuthorBr, WorkRh
+            var destCopyRightsDict = dest.CopyRight.ToDictionary(cr => cr.CRightId);
+
+            foreach (var sourceCopyRight in source.CopyRight)
+            {
+                var destCopyRight = destCopyRightsDict[sourceCopyRight.CRightId];
+
+                // WorkRH
+                if (destCopyRight.WorkRh == null)
+                    destCopyRight.WorkRh = new WorkRh();
+
+                if (destCopyRight.WorkRh.WorkTypeCl != sourceCopyRight.WorkRh.WorkTypeCl)
+                {
+                    destCopyRight.WorkRh.WorkTypeCl = sourceCopyRight.WorkRh.WorkTypeCl;
+                    destCopyRight.WorkRh.WorkDateCl = DateTime.Now;
+                }
+
+                if (destCopyRight.WorkRh.WorkTypeRh != sourceCopyRight.WorkRh.WorkTypeRh)
+                {
+                    destCopyRight.WorkRh.WorkTypeRh = sourceCopyRight.WorkRh.WorkTypeRh;
+                    destCopyRight.WorkRh.WorkDateRh = DateTime.Now;
+                }
+
+
+                destCopyRight.LicAuthorBr.SetFields(sourceCopyRight.LicAuthorBr);
+            }
+        }
+
+        [HttpGet("br/detail/{objId}")]
+        public async Task<IActionResult> GetObjectBrById(int objId)
+        {
+            var or = await GetObjectRightBrById(objId);
+            var rhList = await _dbContext.getViewData($"select * from ft_ObjectRightCustomerForm01({objId})", null);
+
+            return Json(new { objectRight = or, rhList });
+        }
+
+        
+
+        [HttpPost("br/detail")]
+        public async Task<IActionResult> CreateObjectRightBrById([FromBody] ObjectRight objectRight)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var createdObjectRight = new ObjectRight();
+                _dbContext.ObjectRight.Add(createdObjectRight);
+
+                UpdateObjectRightBr(objectRight, createdObjectRight);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+                return Json(createdObjectRight);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("br/detail/{objId}")]
+        public async Task<IActionResult> UpdateObjectRightBrById(int objId, [FromBody] ObjectRight objectRight)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var foundedObjectRight = await GetObjectRightBrById(objId);
+
+                UpdateObjectRightBr(objectRight, foundedObjectRight);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+                return Json(foundedObjectRight);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        #endregion
 
         #region Views
         /// <summary>
@@ -268,39 +399,6 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> vtsk_3_OR_03_V3()
         {
             var list = await _dbContext.getViewData("select * from vtsk_3_OR_03_V3", null);
-            return Json(list);
-        }
-
-        /// <summary>
-        /// ведомость
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("view/list_0401")]
-        public async Task<IActionResult> vtsk_3_R_04()
-        {
-            var list = await _dbContext.getViewData("select * from vtsk_3_R_04", null);
-            return Json(list);
-        }
-
-        /// <summary>
-        /// ведомость акц
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("view/list_0402")]
-        public async Task<IActionResult> vtsk_3_R_05()
-        {
-            var list = await _dbContext.getViewData("select * from vtsk_3_R_05", null);
-            return Json(list);
-        }
-
-        /// <summary>
-        /// Ведомость история
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("view/list_0403")]
-        public async Task<IActionResult> vtsk_3_R_06()
-        {
-            var list = await _dbContext.getViewData("select * from vtsk_3_R_06", null);
             return Json(list);
         }
 

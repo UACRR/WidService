@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Model
             BrRegister = new ObservableListSource<BrRegister>();
             Distribution = new ObservableListSource<Distribution>();
             MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
-            Register = new ObservableListSource<Register>();
+            RegisterRatedList = new ObservableListSource<RegisterRatedList>();
         }
 
         public int PeriodId { get; set; }
@@ -35,7 +35,7 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<BrRegister> BrRegister { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
         public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ObservableListSource<Register> Register { get; set; }
+        public ObservableListSource<RegisterRatedList> RegisterRatedList { get; set; }
     }
 }
 

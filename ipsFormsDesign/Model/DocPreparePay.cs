@@ -24,6 +24,7 @@ namespace ipsFormsDesign.Model
         public int? PayStatus { get; set; }
         public int? Paidid { get; set; }
         public byte? FlCourt { get; set; }
+        public int? CustIdRh { get; set; }
 
         public PaymentStatus PayStatusNavigation { get; set; }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -143,6 +144,23 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
             var List = await _dbContext.getViewData(queryText, null);
             return Json(List);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRightholders([FromQuery] RightholderListQueryResource query)
+        {
+            var queryText = "select * from vTsk_1_ListRightHolder01";
+
+            if (query != null)
+            {
+                if (query.Status != null)
+                {
+                    queryText = queryText + $" where status = {query.Status}";
+                }
+            }
+
+            var List = await _dbContext.getViewData(queryText, null);
+            return Ok(List);
         }
 
         [HttpGet("newrightholder/{custType}")]
@@ -703,5 +721,67 @@ t2.custId = @custid
 #endif
         #endregion
 
+        #region Copyright requests
+
+        [HttpGet("withNotAcceptedCopyrights")]
+        public async Task<IActionResult> GetRightholderWithNotAcceptedCopyrights()
+        {
+            var list = await _dbContext.getViewData("select * from vtsk_3_WRH_03", null);
+            return Json(list);
+        }
+
+        [HttpGet("notAcceptedObjects/{custId}")]
+        public async Task<IActionResult> GetNotAcceptedObjectsByRightholder(int custId)
+        {
+            var list = await _dbContext.getViewData("select * from ft_tsk_3_WRH_03( @custId )", new[] { new SqlParameter("@custId", custId) });
+            return Json(list);
+        }
+
+        [HttpPut("updateCopyrights")]
+        public async Task<IActionResult> UpdateCopyrights([FromBody] List<CopyRight> copyrightList)
+        {
+            var foundedCopyrights = await GetCopyrightListById(copyrightList.Select(cr => cr.CRightId).ToList());
+
+            foreach (var sourceCopyright in copyrightList)
+            {
+                var destCopyright = foundedCopyrights.FirstOrDefault(cr => cr.CRightId == sourceCopyright.CRightId);
+
+                if (destCopyright == null)
+                    throw new Exception("Copyright not founded."); // TODO: accumulate and return list of NotFounded errors
+
+                destCopyright.Rate = sourceCopyright.Rate;
+
+                if (sourceCopyright.WorkRh != null)
+                {
+                    if (destCopyright.WorkRh == null)
+                        destCopyright.WorkRh = new WorkRh();
+
+                    if (destCopyright.WorkRh.WorkTypeRh != sourceCopyright.WorkRh.WorkTypeRh || sourceCopyright.WorkRh.WorkTypeRh == 1)
+                    {
+                        destCopyright.WorkRh.WorkDateRh = DateTime.Now;
+                    }
+                    if (sourceCopyright.WorkRh.WorkTypeRh == 4) // Погоджено
+                    {
+                        destCopyright.Status = 1;
+                    }
+                    destCopyright.WorkRh.WorkTypeRh = sourceCopyright.WorkRh.WorkTypeRh;
+                    destCopyright.WorkRh.WorkCommentRh = sourceCopyright.WorkRh.WorkCommentRh;
+                }
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        private async Task<List<CopyRight>> GetCopyrightListById(List<int> copyrightIdList)
+        {
+            return await _dbContext.CopyRight
+                .Include(cr => cr.WorkRh)
+                .Where(cr => copyrightIdList.Contains(cr.CRightId))
+                .ToListAsync();
+        }
+
+        #endregion
     }
 }

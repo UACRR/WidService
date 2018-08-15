@@ -16,6 +16,7 @@ namespace ipsmedserviceapp.Model
             MoneyReceived = new HashSet<MoneyReceived>();
             PaidPeriod = new HashSet<PaidPeriod>();
             PartnerClient = new HashSet<PartnerClient>();
+            Register = new HashSet<Register>();
         }
 
         public int CustId { get; set; }
@@ -37,6 +38,8 @@ namespace ipsmedserviceapp.Model
         public ICollection<PaidPeriod> PaidPeriod { get; set; }
         [JsonIgnore]
         public ICollection<PartnerClient> PartnerClient { get; set; }
+        [JsonIgnore]
+        public ICollection<Register> Register { get; set; }
     }
 }
 

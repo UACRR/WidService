@@ -20,13 +20,17 @@ namespace ipsFormsDesign.Interfaces
         public IList<CrkindGroup> crkindGroup {get; set;}
         public IList<CustomerStatus> customerStatus {get; set;}
         public IList<CustomerType> customerType {get; set;}
+        public IList<FileType> fileType { get; set;}
         public IList<KlR030> klR030 {get; set;}
         public IList<LicenseClass> licenseClass {get; set;}
         public IList<LicenseType> licenseType {get; set;}
         public IList<Period> period {get; set;}
         public IList<PeriodStatus> periodStatus {get; set;}
         public IList<PositionType> positionType {get; set;}
+        public IList<PrePayType> PrePayType { get; set; }
         public IList<Region> region {get; set;}
+        public IList<RegisterStatus> registerStatus { get; set;}
+        public IList<RegisterListStatus> registerListStatus { get; set;}
         public IList<ResidentType> residentType {get; set;}
         public IList<SexType> sexType {get; set;}
         public IList<TypePlace> typePlace {get; set;}
@@ -34,8 +38,14 @@ namespace ipsFormsDesign.Interfaces
         public IList<UserRoleType> userRoleType {get; set;}
         public IList<UsesKind> usesKind {get; set;}
         public IList<UsesType> usesType {get; set;}
+        public IList<WorkType> workType {get; set;}
         public IList<TypeMethodGet> typeMethodGet { get; set; }
         public IList<CommunityInfo> communities { get; set; }
+        public IList<ObjAct> objAct { get; set; }
+        public IList<PerformType> performType { get; set; }
+        public IList<GenreType> genreType { get; set; }
+        public IList<Language> language { get; set; }
+        public IList<RelGenrePercent> relGenrePercent { get; set; }
     }
 
 
@@ -54,5 +64,6 @@ namespace ipsFormsDesign.Interfaces
         public IList<SeekType> seekType {get; set; }
         public IList<SpecType> specType {get; set; }
         public IList<SpecType> folkType { get; set; }
+        public IList<RegisterStatus> RegisterStatuses { get; set; }
     }
 }

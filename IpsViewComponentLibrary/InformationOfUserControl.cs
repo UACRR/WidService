@@ -7,11 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
     public partial class InformationOfUserControl : UserControl
     {
+        public bool HoldingVisible
+        {
+            get => groupholdingCtrl.Visible;
+            set => groupholdingCtrl.Visible = value;
+        }
+
+        public bool OrganisationFormVisible
+        {
+            get => organisationFormCtrl.Visible;
+            set => organisationFormCtrl.Visible = value;
+        }
+
         /// <summary>
         /// Назва
         /// </summary>
@@ -60,22 +74,8 @@ namespace IpsViewComponentLibrary
             get => contactPersPhoneCtrl.TextValue;
             set => contactPersPhoneCtrl.TextValue = value;
         }
-        ///// <summary>
-        ///// Мобільний телефон контактної особи
-        ///// </summary>
-        //public string MobilePnoneContactPerson
-        //{
-        //    get => contactPersMobilePhoneCtrl.TextValue;
-        //    set => contactPersMobilePhoneCtrl.TextValue = value;
-        //}
-        ///// <summary>
-        ///// Факс контактної особи
-        ///// </summary>
-        //public string FaksContactPerson
-        //{
-        //    get => contactPersFaksCtrl.TextValue;
-        //    set => contactPersFaksCtrl.TextValue = value;
-        //}
+
+
         /// <summary>
         /// EMail контактної особи
         /// </summary>
@@ -129,6 +129,25 @@ namespace IpsViewComponentLibrary
 
             //MobilePnoneContactPerson = string.Empty;
             //FaksContactPerson = string.Empty;
+        }
+
+        /// <summary>
+        /// Виведення інформації про користувача (для великих прав)
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="rightView"></param>
+        public void SetHeaderInfoBigRight(Customer customer, ConsumerBigRightView rightView)
+        {
+            var head = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1);
+            var contactPerson = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3);
+            NameInfo = rightView.Name;
+            Edrpou = rightView.Innokpo;
+            PibContactPerson = contactPerson?.Empl?.FirstName + " " + contactPerson?.Empl?.LastName + " " + contactPerson?.Empl?.SurName;
+            PhoneContactPerson = contactPerson?.Empl?.PhoneNumber;
+            EmailContactPerson = contactPerson?.Empl?.Email;
+            PibManager = head?.Empl?.FirstName + " " + head?.Empl?.LastName + " " + head?.Empl?.SurName;
+            PhoneManager = head?.Empl?.PhoneNumber;
+            EmailManager = head?.Empl?.Email;
         }
     }
 }

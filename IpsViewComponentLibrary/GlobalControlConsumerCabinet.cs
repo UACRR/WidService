@@ -35,6 +35,7 @@ namespace IpsViewComponentLibrary
         public delegate bool SaveCustomer(Customer customer);
         public event SaveCustomer OnSaveCustomer;
 
+        public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
         public string FilterString
         {
             get => txtSearch.Text;
@@ -56,6 +57,12 @@ namespace IpsViewComponentLibrary
             gvConsumerList.CurrentRowChanged += GvConsumerList_CurrentRowChanged;
             mсInfoAgrCalc.OnCustomerSave += MсInfoAgrCalc_OnCustomerSave;
             mсInfoAgrCalc.Rights = Rights;
+            mсInfoAgrCalc.OnChangeLicenseStatus += MсInfoAgrCalc_OnChangeLicenseStatus;
+        }
+
+        private bool MсInfoAgrCalc_OnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
+        {
+            return OnChangeLicenseStatus?.Invoke(agr, version, status, changeVer) ?? false;
         }
 
         private void MсInfoAgrCalc_OnCustomerSave(Customer customer)

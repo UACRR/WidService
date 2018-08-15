@@ -17,8 +17,8 @@ namespace DebugFormForControls
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get => iAnketaPersonBindingSource.DataSource;
-            set => iAnketaPersonBindingSource.DataSource = value;
+            get => bsAnketaPerson.DataSource;
+            set => bsAnketaPerson.DataSource = value;
         }
 
         public ContactsPersonControl()

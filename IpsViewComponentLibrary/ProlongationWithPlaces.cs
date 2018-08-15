@@ -57,8 +57,10 @@ namespace IpsViewComponentLibrary
                 caType = ConsumerAgreementInitType.AddNewAgreement;
             else if (goal == DialogGoal.forEdit)
                 caType = ConsumerAgreementInitType.EditAgreement;
-            else if (goal == DialogGoal.forProlongation)
+            else if (goal == DialogGoal.forProlongation || goal == DialogGoal.forExistProlongation)
                 caType = ConsumerAgreementInitType.Prolongation;
+            else if (goal == DialogGoal.forChange || goal == DialogGoal.forExistChange)
+                caType = ConsumerAgreementInitType.ChangeAgreement;
 
             ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr, caType);
 

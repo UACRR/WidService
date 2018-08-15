@@ -8,6 +8,7 @@
         <noignore>Community</noignore>
         <noignore>AnketaAddName</noignore>
         <noignore>AgreementMaster</noignore>
+        <noignore>FileCustomer</noignore>
     </item>
     <item name="Client">
         <noignore>ClnBusinessPlace</noignore>
@@ -40,6 +41,7 @@
         <noignore>MoneyPeriodLink</noignore>
         <noignore>Register</noignore>
         <noignore>BrRegister</noignore>
+        <noignore>RegisterRatedList</noignore>
     </item>
     <item Name="MoneyPeriodLink">
         <noignore>Paid</noignore>
@@ -50,6 +52,7 @@
     <item Name="LicenseBigR">
         <noignore>ObjectRight</noignore>
         <noignore>LicAuthorBr</noignore>
+        <noignore>MusicalDesign</noignore>
     </item>
     <item Name="LicAuthorBr"></item>
     <item Name="RightHolder">
@@ -60,7 +63,11 @@
         <noignore>CopyRight</noignore>
         <noignore>Cust</noignore>
     </item>
-    <item Name="CopyRight"></item>
+    <item Name="CopyRight">
+        <noignore>LicAuthorBr</noignore>
+        <noignore>WorkRh</noignore>
+    </item>
+    <item Name="WorkRh"></item>
     <item Name="AgreementAddRh"></item>
     <item Name="AgreementAddBr"></item>
     <item Name="AgreementMaster">
@@ -72,7 +79,7 @@
         <noignore>RegisterItem</noignore>
     </item>
     <item Name="RegisterItem">
-        <noignore>RegisterCount</noignore>
+        <noignore>Obj</noignore>
     </item>
     <item Name="Distribution">
         <noignore>DistributionItem</noignore>

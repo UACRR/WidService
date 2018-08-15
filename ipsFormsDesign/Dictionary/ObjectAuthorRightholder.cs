@@ -96,12 +96,16 @@ namespace ipsFormsDesign.Dictionary
                     }
                     else
                     {
+                        OldAuthorName = AuthorName;
+                        AuthorName = "";
                         BeginDate = DateTime.Now;
                         EndDate = new DateTime(3000,1,1);
                     }
                 }
             }
         }
+
+        public string OldAuthorName { get; private set; }
 
         public ObjectAuthorRightholder()
         {

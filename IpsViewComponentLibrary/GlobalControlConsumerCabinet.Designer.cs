@@ -52,6 +52,7 @@
             // 
             this.gvConsumerList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.gvConsumerList.AutoSizeRows = true;
             this.gvConsumerList.EnableCustomFiltering = true;
             this.gvConsumerList.Location = new System.Drawing.Point(3, 29);
             // 
@@ -161,13 +162,14 @@
             // 
             // btnNewConsumer
             // 
-            this.btnNewConsumer.Location = new System.Drawing.Point(315, 3);
+            this.btnNewConsumer.Location = new System.Drawing.Point(531, 3);
             this.btnNewConsumer.Name = "btnNewConsumer";
             this.btnNewConsumer.Size = new System.Drawing.Size(210, 20);
             this.btnNewConsumer.TabIndex = 7;
             this.btnNewConsumer.Text = "Новий споживач";
             this.btnNewConsumer.TextWrap = true;
             this.btnNewConsumer.ThemeName = "Office2007Silver";
+            this.btnNewConsumer.Visible = false;
             this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 
             // mсInfoAgrCalc
@@ -177,14 +179,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mсInfoAgrCalc.AutoScroll = true;
             this.mсInfoAgrCalc.Location = new System.Drawing.Point(315, 29);
+            this.mсInfoAgrCalc.MinimumSize = new System.Drawing.Size(500, 665);
             this.mсInfoAgrCalc.Name = "mсInfoAgrCalc";
             this.mсInfoAgrCalc.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
-            this.mсInfoAgrCalc.Size = new System.Drawing.Size(1069, 664);
+            this.mсInfoAgrCalc.Size = new System.Drawing.Size(1069, 665);
             this.mсInfoAgrCalc.TabIndex = 0;
             // 
             // btnEditAgr
             // 
-            this.btnEditAgr.Location = new System.Drawing.Point(531, 3);
+            this.btnEditAgr.Location = new System.Drawing.Point(315, 3);
             this.btnEditAgr.Name = "btnEditAgr";
             this.btnEditAgr.Size = new System.Drawing.Size(210, 20);
             this.btnEditAgr.TabIndex = 8;
@@ -216,12 +219,11 @@
         }
 
         #endregion
-
-        private MiddleControlInfoAgrCalc mсInfoAgrCalc;
         private Telerik.WinControls.UI.RadGridView gvConsumerList;
         private Telerik.WinControls.UI.RadButton btnBack;
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private Telerik.WinControls.UI.RadButton btnNewConsumer;
         private Telerik.WinControls.UI.RadButton btnEditAgr;
+        public MiddleControlInfoAgrCalc mсInfoAgrCalc;
     }
 }

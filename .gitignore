@@ -59,3 +59,5 @@ package-lock.json
 Thumbs.db
 *.ai
 *.dbmdl
+MediaServiceDb/MediaServiceDb.jfm
+MediaServiceDb/MediaServiceDb.dbmdl

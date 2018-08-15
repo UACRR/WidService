@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -19,12 +20,14 @@ namespace IpsViewComponentLibrary
         private string _agreemnentName = "";
         private DateTime _dateEndNullDate = new DateTime(1,1,1);
         private string _dateEndNullText = "";
+        private ConsumerAgreementInitType _type = ConsumerAgreementInitType.None;
+        private TypeRights _rights = TypeRights.SmallRights;
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get => bindingSource.DataSource;
+            get => bsLicenseAgrParam.DataSource;
             set
             {
                 rtxtBoxContrNumber.DataBindings.Clear();
@@ -32,12 +35,46 @@ namespace IpsViewComponentLibrary
                 rdtPickerDateBegin.DataBindings.Clear();
                 rdtPickerDateEnd.DataBindings.Clear();
 
-                bindingSource.DataSource = value;
+                bsLicenseAgrParam.DataSource = value;
 
-                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bindingSource, "LicNum", true, DataSourceUpdateMode.OnPropertyChanged));
-                rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bindingSource, "LicDate", true, DataSourceUpdateMode.OnPropertyChanged));
-                rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bindingSource, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged));
-                rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bindingSource, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged));
+                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsLicenseAgrParam, "LicNum", true, DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "LicDate", true, DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged));
+            }
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSourceBr
+        {
+            get => bsAgreementAddBr.DataSource;
+            set
+            {
+                rtxtBoxContrNumber.DataBindings.Clear();
+                rdtPickerAgrDate.DataBindings.Clear();
+                rdtPickerDateBegin.DataBindings.Clear();
+                rdtPickerDateEnd.DataBindings.Clear();
+
+                bsAgreementAddBr.DataSource = value;
+
+                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsAgreementAddBr, "AgrNumber", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+                rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "AgrDate", true, DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged));
+            }
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object DataSourceBrLicNumber
+        {
+            get => bsLicenseAgrParamBr.DataSource;
+            set
+            {
+                rtxtBoxContrNumber.DataBindings.Clear();
+                bsLicenseAgrParamBr.DataSource = value;
+                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsLicenseAgrParamBr, "LicNum", true, DataSourceUpdateMode.OnPropertyChanged));
             }
         }
 
@@ -54,7 +91,7 @@ namespace IpsViewComponentLibrary
                 {
                     _numberDataMember = value;
                     rtxtBoxContrNumber.DataBindings.Clear();
-                    rtxtBoxContrNumber.DataBindings.Add("Text", bindingSource, _numberDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
+                    rtxtBoxContrNumber.DataBindings.Add("Text", bsLicenseAgrParam, _numberDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
                 }
             }
         }
@@ -70,7 +107,7 @@ namespace IpsViewComponentLibrary
                 {
                     _dateDataMember = value;
                     rdtPickerAgrDate.DataBindings.Clear();
-                    rdtPickerAgrDate.DataBindings.Add("Value", bindingSource, _dateDataMember, true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(1, 1, 1));
+                    rdtPickerAgrDate.DataBindings.Add("Value", bsLicenseAgrParam, _dateDataMember, true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(1, 1, 1));
                 }
             }
         }
@@ -86,7 +123,7 @@ namespace IpsViewComponentLibrary
                 {
                     _dateBeginDataMember = value;
                     rdtPickerDateBegin.DataBindings.Clear();
-                    rdtPickerDateBegin.DataBindings.Add("Value", bindingSource, _dateBeginDataMember, true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(1, 1, 1));
+                    rdtPickerDateBegin.DataBindings.Add("Value", bsLicenseAgrParam, _dateBeginDataMember, true, DataSourceUpdateMode.OnPropertyChanged, new DateTime(1, 1, 1));
                 }
             }
         }
@@ -102,7 +139,7 @@ namespace IpsViewComponentLibrary
                 {
                     _dateEndDataMember = value;
                     rdtPickerDateEnd.DataBindings.Clear();
-                    rdtPickerDateEnd.DataBindings.Add("Value", bindingSource, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged, _dateEndNullDate);
+                    rdtPickerDateEnd.DataBindings.Add("Value", bsLicenseAgrParam, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged, _dateEndNullDate);
                 }
             }
         }
@@ -136,7 +173,7 @@ namespace IpsViewComponentLibrary
 
                     // update binding
                     rdtPickerDateEnd.DataBindings.Clear();
-                    rdtPickerDateEnd.DataBindings.Add("Value", bindingSource, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged, _dateEndNullDate);
+                    rdtPickerDateEnd.DataBindings.Add("Value", bsLicenseAgrParam, _dateEndDataMember, true, DataSourceUpdateMode.OnPropertyChanged, _dateEndNullDate);
                 }
             }
         }
@@ -151,6 +188,34 @@ namespace IpsViewComponentLibrary
                 {
                     _dateEndNullText = value;
                     rdtPickerDateEnd.NullText = value;
+                }
+            }
+        }
+
+        public ConsumerAgreementInitType DateTimeType
+        {
+            get => _type;
+            set
+            {
+                _type = value;
+                switch (_type)
+                {
+                    case ConsumerAgreementInitType.AddNewAgreement:
+                        break;
+                    case ConsumerAgreementInitType.ChangeAgreement:
+                    {
+                        rdtPickerDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
+                        rdtPickerDateEnd.ReadOnly = true;
+                    }
+                        break;
+                    case ConsumerAgreementInitType.Prolongation:
+                    {
+                        rdtPickerDateBegin.ReadOnly = true;
+                        rdtPickerDateEnd.ReadOnly = true;
+                        rdtPickerDateBegin.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
+                        rdtPickerDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
+                    }
+                        break;
                 }
             }
         }
@@ -199,6 +264,22 @@ namespace IpsViewComponentLibrary
             catch (Exception exception)
             {
                 ;
+            }
+        }
+
+        /// <summary>
+        /// Тип ліцензії
+        /// </summary>
+        public TypeRights AgreementLabelType
+        {
+            get => _rights;
+            set
+            {
+                _rights = value;
+                if(_rights == TypeRights.SmallRights)
+                    lblContrNumb.Text = "ЛІЦЕНЗІЙНИЙ ДОГОВІР №";
+                else if (_rights == TypeRights.BigRights)
+                    lblContrNumb.Text = "ГЕНЕРАЛЬНИЙ ДОГОВІР №";
             }
         }
     }

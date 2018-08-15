@@ -20,6 +20,7 @@ namespace ipsFormsDesign.Data
         private static Dictionary<Type, IList<object>> AnketaDictionatiesProperties = new Dictionary<Type, IList<object>>();
         private static Dictionary<Type, BindingField[]> AnketaDictionatiesField = new Dictionary<Type, BindingField[]>();
         public static AnketaDictionaties AnketaDictionaties { get; private set; }
+        public static ObjectRightDictionaries ObjectRightDictionaries { get; private set; }
 
 
         static IpsGlobal()
@@ -69,7 +70,14 @@ namespace ipsFormsDesign.Data
         {
             AnketaDictionaties = _dic;
             setAnketaDictProperties();
-            AnketaDictionatiesChanged(null, EventArgs.Empty);
+            AnketaDictionatiesChanged?.Invoke(null, EventArgs.Empty);
+        }
+
+        public static void SetObjectRightDictionaries(ObjectRightDictionaries dictionaries)
+        {
+            ObjectRightDictionaries = dictionaries;
+            //setAnketaDictProperties();
+            //AnketaDictionatiesChanged(null, EventArgs.Empty);
         }
 
 

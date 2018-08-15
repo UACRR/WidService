@@ -89,7 +89,7 @@ namespace IpsViewComponentLibrary
                 ctrlAgreementSecond.SelectedItem = 0;
             else
                 ctrlAgreementSecond.AutoprolongationPercent = null;
-            lblTitle.Text = anketa?.Name;
+            anketaCompanyBindingSource.DataSource = anketa;
 
             //TODO: джерело даних з розрахованою сумою
             gvPlaces.DataSource = SetChoosePlaces();

@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         public MoneyReceived()
         {
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
+            MoneyPrepayLink = new HashSet<MoneyPrepayLink>();
         }
 
         public int PaidId { get; set; }
@@ -19,6 +20,7 @@ namespace ipsmedserviceapp.Model
         public string GoalInvoice { get; set; }
         public decimal Amount { get; set; }
         public decimal DestribAmount { get; set; }
+        public decimal? DestribPrepay { get; set; }
 
         [JsonIgnore]
         public Client Cust { get; set; }
@@ -26,6 +28,8 @@ namespace ipsmedserviceapp.Model
         public MoneyType MoneyTypeNavigation { get; set; }
         [JsonIgnore]
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        [JsonIgnore]
+        public ICollection<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
 

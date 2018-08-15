@@ -23,13 +23,13 @@ namespace UnitTestMediaPortal
             InitializeComponent();
         }
 
-        public object DataSource
-        {
-            get { return calculationInfoNewControl1.DataSource; }
-            set { calculationInfoNewControl1.DataSource = value; }
-        }
+        //public object DataSource
+        //{
+        //    //get { return calculationInfoNewControl1.DataSource; }
+        //    //set { calculationInfoNewControl1.DataSource = value; }
+        //}
 
-        public RadGridView usersMoney { get { return calculationInfoNewControl1.gvUserMoney;  } } 
+        //public RadGridView usersMoney { get { return calculationInfoNewControl1.gvUserMoney;  } } 
 
     }
 }

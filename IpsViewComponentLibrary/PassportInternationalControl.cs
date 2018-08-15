@@ -17,11 +17,11 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return anketaPersonBindingSource.DataSource; }
+            get { return bsAnketaPerson.DataSource; }
             set
             {
-                if (anketaPersonBindingSource.DataSource != value)
-                    anketaPersonBindingSource.DataSource = value;
+                if (bsAnketaPerson.DataSource != value)
+                    bsAnketaPerson.DataSource = value;
             }
         }
 
@@ -29,8 +29,8 @@ namespace IpsViewComponentLibrary
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string DataMember
         {
-            get { return anketaPersonBindingSource.DataMember; }
-            set { anketaPersonBindingSource.DataMember = value; }
+            get { return bsAnketaPerson.DataMember; }
+            set { bsAnketaPerson.DataMember = value; }
         }
 
         public PassportInternationalControl()

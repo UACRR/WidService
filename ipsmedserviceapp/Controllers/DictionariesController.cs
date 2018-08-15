@@ -741,13 +741,17 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("crkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
             retDictionary.Add("customerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("customerType", await _dbContext.CustomerType.AsNoTracking().ToListAsync());
-            retDictionary.Add("klR030", await _dbContext.KlR030.AsNoTracking().ToListAsync());
+            retDictionary.Add("fileType", await _dbContext.FileType.AsNoTracking().ToListAsync());
+            retDictionary.Add("klR030", await _dbContext.KlR030.Where(c => c.PrWork != 0).OrderBy(c => c.PrWork).AsNoTracking().ToListAsync());
             retDictionary.Add("licenseClass", await _dbContext.LicenseClass.AsNoTracking().ToListAsync());
             retDictionary.Add("licenseType", await _dbContext.LicenseType.AsNoTracking().ToListAsync());
             retDictionary.Add("period", await _dbContext.Period.AsNoTracking().ToListAsync());
             retDictionary.Add("periodStatus", await _dbContext.PeriodStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("positionType", await _dbContext.PositionType.AsNoTracking().ToListAsync());
+            retDictionary.Add("prePayType", await _dbContext.PrePayType.AsNoTracking().ToListAsync());
             retDictionary.Add("region", await _dbContext.Region.AsNoTracking().ToListAsync());
+            retDictionary.Add("registerStatus", await _dbContext.RegisterStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("registerListStatus", await _dbContext.RegisterListStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("residentType", await _dbContext.ResidentType.AsNoTracking().ToListAsync());
             retDictionary.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
             retDictionary.Add("typeMethodGet", await _dbContext.TypeMethodGet.AsNoTracking().ToListAsync());
@@ -756,6 +760,17 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
             retDictionary.Add("usesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());
             retDictionary.Add("usesType", await _dbContext.UsesType.AsNoTracking().ToListAsync());
+            retDictionary.Add("workType", await _dbContext.WorkType.AsNoTracking().ToListAsync());
+            retDictionary.Add("relGenrePercent", await _dbContext.RelGenrePercent.AsNoTracking().ToListAsync());
+
+
+            retDictionary.Add("objAct", await _dbContext.ObjAct.AsNoTracking().ToListAsync());
+            retDictionary.Add("performType", await _dbContext.PerformType.AsNoTracking().ToListAsync());
+            retDictionary.Add("genreType", await _dbContext.GenreType.AsNoTracking().ToListAsync());
+            retDictionary.Add("language", await _dbContext.Language.Where(l => l.ShortChoise == 1).AsNoTracking().ToListAsync());
+
+
+
             retDictionary.Add("Communities",
                 await _dbContext.getViewData("select t2.name, t2.custId from community t1 join vCustomer t2 on t2.custId = t1.custId", new SqlParameter[0]));
 
@@ -784,9 +799,9 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("seekType", await _dbContext.SeekType.AsNoTracking().ToListAsync());
             retDictionary.Add("specType", await _dbContext.SpecType.AsNoTracking().ToListAsync());
             retDictionary.Add("folkType", await _dbContext.FolkType.AsNoTracking().ToListAsync());
+            retDictionary.Add("registerStatuses", await _dbContext.RegisterStatus.AsNoTracking().ToListAsync());
 
             return Json(retDictionary);
         }
-
-        }
     }
+}

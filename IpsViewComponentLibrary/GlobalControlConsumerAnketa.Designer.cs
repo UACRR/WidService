@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GlobalControlConsumerAnketa));
             this.pageAnketaConsumer = new Telerik.WinControls.UI.RadPageView();
             this.pvClientName = new Telerik.WinControls.UI.RadPageViewPage();
@@ -39,10 +40,10 @@
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new ipsAnketaClient.ConsumerPlacesControl();
             this.ctrlPlacesTitle = new Telerik.WinControls.UI.RadLabel();
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankRequisites = new IpsViewComponentLibrary.MiddleControlBankRequisites();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgreement = new IpsViewComponentLibrary.MiddleControlAgreementAnketaType();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
@@ -59,8 +60,8 @@
             this.pvManagers.SuspendLayout();
             this.pvPlaces.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlPlacesTitle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             this.pvBankRequisites.SuspendLayout();
-            this.pvAgreement.SuspendLayout();
             this.pvPrint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).BeginInit();
@@ -197,13 +198,18 @@
             this.ctrlPlacesTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlPlacesTitle.AutoSize = false;
+            this.ctrlPlacesTitle.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true));
             this.ctrlPlacesTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlPlacesTitle.Location = new System.Drawing.Point(3, 35);
+            this.ctrlPlacesTitle.Location = new System.Drawing.Point(4, 35);
             this.ctrlPlacesTitle.Name = "ctrlPlacesTitle";
             this.ctrlPlacesTitle.Size = new System.Drawing.Size(999, 22);
             this.ctrlPlacesTitle.TabIndex = 10;
             this.ctrlPlacesTitle.Text = "Назва «Клієнта»";
             this.ctrlPlacesTitle.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // anketaCompanyBindingSource
+            // 
+            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // pvBankRequisites
             // 
@@ -217,7 +223,7 @@
             // 
             // ctrlBankRequisites
             // 
-            this.ctrlBankRequisites.Location = new System.Drawing.Point(3, 35);
+            this.ctrlBankRequisites.Location = new System.Drawing.Point(4, 35);
             this.ctrlBankRequisites.MaximumSize = new System.Drawing.Size(1300, 160);
             this.ctrlBankRequisites.MinimumSize = new System.Drawing.Size(300, 160);
             this.ctrlBankRequisites.Name = "ctrlBankRequisites";
@@ -226,21 +232,11 @@
             // 
             // pvAgreement
             // 
-            this.pvAgreement.Controls.Add(this.ctrlAgreement);
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(124F, 26F);
             this.pvAgreement.Location = new System.Drawing.Point(133, 10);
             this.pvAgreement.Name = "pvAgreement";
             this.pvAgreement.Size = new System.Drawing.Size(1005, 643);
             this.pvAgreement.Text = "Договір";
-            // 
-            // ctrlAgreement
-            // 
-            this.ctrlAgreement.Location = new System.Drawing.Point(4, 4);
-            this.ctrlAgreement.MinimumSize = new System.Drawing.Size(490, 218);
-            this.ctrlAgreement.Name = "ctrlAgreement";
-            this.ctrlAgreement.Size = new System.Drawing.Size(690, 469);
-            this.ctrlAgreement.TabIndex = 0;
-            this.ctrlAgreement.typeRights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             // 
             // pvPrint
             // 
@@ -321,6 +317,9 @@
             this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             this.radWaitingBar1.WaitingStarted += new System.EventHandler(this.radWaitingBar1_WaitingStarted);
             this.radWaitingBar1.WaitingStopped += new System.EventHandler(this.radWaitingBar1_WaitingStopped);
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.radWaitingBar1.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
             // lineRingWaitingBarIndicatorElement1
             // 
@@ -365,8 +364,8 @@
             this.pvPlaces.ResumeLayout(false);
             this.pvPlaces.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlPlacesTitle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             this.pvBankRequisites.ResumeLayout(false);
-            this.pvAgreement.ResumeLayout(false);
             this.pvPrint.ResumeLayout(false);
             this.pvPrint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).EndInit();
@@ -404,6 +403,6 @@
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private MiddleControlAgreementAnketaType ctrlAgreement;
+        private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
     }
 }

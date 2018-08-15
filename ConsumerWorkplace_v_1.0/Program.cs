@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary;
@@ -18,6 +19,10 @@ namespace ConsumerWorkplace_v_1._0
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            var objectrightService = new ObjectRightService();
+            IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
+            var rightholderService = new RightholderService();
+            IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
             ConsumerWorkplace form = new ConsumerWorkplace(TypeRights.All);
             ConsumerService model = new ConsumerService();
             FormPresenter control = new FormPresenter(form, model);

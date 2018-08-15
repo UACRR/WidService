@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -16,104 +17,103 @@ namespace IpsViewComponentLibrary
     public partial class ReportExcelViewForm : Telerik.WinControls.UI.RadForm
     {
         private readonly string _filePath;
-        private List<RegisterItem> datasource = new List<RegisterItem>();
+        private ObservableListSource<RegisterItem> _datasource = new ObservableListSource<RegisterItem>();
+        public bool IsManual { get; private set; }
 
-        public string TitleReport
+        public object ReportNameBindingSource
         {
-            get => lblTitle.Text.Remove(0,5);
-            set => lblTitle.Text = "Звіт " + value;
+            get => bsRegisterName.DataSource;
+            set => bsRegisterName.DataSource = value;
         }
 
-        public ReportExcelViewForm()
+        public bool CanEditRow
+        {
+            get => gvReportContentView.ReadOnly;
+            set
+            {
+                gvReportContentView.ReadOnly = !value;
+                if (!value)
+                    gvReportContentView.Columns["DurationUse"].ReadOnly = true;
+            }
+        }
+
+
+        public ReportExcelViewForm(Register register, bool isManual = false)
         {
             InitializeComponent();
-        }
-
-        public ReportExcelViewForm(string pathString)
-        {
-            InitializeComponent();
-            _filePath = pathString;
-            ExcelOpen();
-        }
-
-        private void ExcelOpen()
-        {
-            Excel.Application excelApp = null;
-            Excel.Workbook excelAppWorkbook = null;
-            try
+            IsManual = isManual;
+            DialogResult = DialogResult.None;
+            if (isManual)
             {
-                excelApp = new Excel.Application();
-                excelApp.Visible = false;
-                excelAppWorkbook = excelApp.Workbooks.Open(_filePath, 0, true, 5, null, null, false,
-                    Excel.XlPlatform.xlWindows,null,null,null);
-                var excelAppWorksheets = excelAppWorkbook.Worksheets;
-                var excelSheet = (Excel.Worksheet) excelAppWorksheets.Item[1];
-                
-                Excel.Range excelRange = excelSheet.UsedRange;
-
-                int maxCol;
-                int maxRow;
-
-                try
-                {
-                    maxCol = excelRange.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Column;
-                    maxRow = excelRange.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
-                }
-                catch (Exception e)
-                {
-                    maxCol = excelRange.Columns.Column;
-                    maxRow = excelRange.Rows.Row;
-                }
-
-                var dim = excelRange.Value;
-                //excelRange.Offset[0, 0].Value
-                for (int i = 1; i <= maxRow; i++)
-                {
-                    if (dim?[i, 1] == null) continue;
-
-                    RegisterItem registerItem = null;
-                    registerItem = new RegisterItem();
-                    registerItem.CategoryCode = 0; //parse
-                    registerItem.ModifyLogin = null; //parse
-                    registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
-                    registerItem.ItemName = dim[i, 2]?.ToString();
-                    registerItem.Performer = dim[i, 3]?.ToString();
-                    registerItem.AuthorMusic = dim[i, 4]?.ToString();
-                    registerItem.AuthorText = dim[i, 5]?.ToString();
-                    registerItem.DurationItem = DateTime.FromOADate((double)dim[i, 6]).TimeOfDay;
-                    registerItem.CountUse = Convert.ToInt32(dim[i, 7]);
-                    registerItem.DurationUse =  DateTime.FromOADate((double)dim[i, 8]).TimeOfDay;
-                    
-
-                    datasource.Add(registerItem);
-                }
+                ReportNameBindingSource = register;
+                btn.Text = "Зберегти";
+                CanEditRow = true;
+                gvReportContentView.Columns["Delete"].IsVisible = true;
+                btnAddRow.Visible = true;
+                _datasource = register.RegisterItem;
+                bindingRegItems.DataSource = _datasource;
             }
-            catch (Exception excp)
+            else
             {
-                MessageBox.Show(excp.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if(register?.RegisterItem?.Any() ?? false)
+                    bindingRegItems.DataSource = register.RegisterItem.OrderBy(rec => rec.RegIitemId);
+                ReportNameBindingSource = register;
+                btn.Text = "Закрити";
+                txtReportPeriod.TextBoxElement.DrawBorder = false;
+                CanEditRow = false;
             }
-            finally
-            {
-                if (excelAppWorkbook != null)
-                {
-                    excelAppWorkbook.Close(false);
-                    Marshal.ReleaseComObject(excelAppWorkbook);
-                }
-
-                excelApp?.Quit();
-            }
-
-            SetGridDataSource();
-        }
-
-        private void SetGridDataSource()
-        {
-            gvReportContentView.DataSource = datasource;
         }
 
         private void btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(TitleReport);
+            if(IsManual)
+            {
+                if (txtReportPeriod.Text == string.Empty)
+                {
+                    MessageBox.Show("Введіть назву періоду!", "Не всі поля заповнені",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                if (!_datasource.Any())
+                {
+                    MessageBox.Show("Не додано жодного твору!", "Відсутні твори в звіті", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                DialogResult = DialogResult.OK;
+            }
+            DialogResult = DialogResult.OK;
+        }
+
+        private void btnAddRow_Click(object sender, EventArgs e)
+        {
+            _datasource.Add(new RegisterItem
+            {
+                DurationItem = TimeSpan.FromSeconds(1),
+                CountUse = 1,
+                DurationUse = TimeSpan.FromSeconds(1),
+                CodeItem = 1,
+                
+            });
+            gvReportContentView.DataSource = bindingRegItems.DataSource;
+        }
+
+        private void gvReportContentView_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if(e.Column.FieldName == "DurationItem" || e.Column.FieldName == "CountUse")
+                if(e?.Row?.DataBoundItem is RegisterItem item && item.DurationItem != null)
+                {
+                    item.DurationUse = TimeSpan.FromSeconds(item.DurationItem.Value.TotalSeconds * item.CountUse ?? default(double));
+                    item.Ticks = (int) (item.DurationUse.Value.Ticks / 10000);
+                }
+        }
+
+        private void gvReportContentView_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (e?.Row?.DataBoundItem is RegisterItem item)
+            {
+                _datasource.Remove(item);
+                gvReportContentView.DataSource = bindingRegItems.DataSource;
+            }
         }
     }
 }
