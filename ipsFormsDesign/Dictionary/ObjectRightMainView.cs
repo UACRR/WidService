@@ -17,6 +17,7 @@ namespace ipsFormsDesign.Dictionary
         public string Author { get; set; }
         public string Performer { get; set; }
         public double Profit { get; set; }
+        public int CategoryCode { get; set; }
     }
 
     public class ObjectRightForRightholder : ObjectRightMainView

@@ -64,6 +64,7 @@
             // 
             // panelCommand
             // 
+            this.panelCommand.BackColor = System.Drawing.Color.Silver;
             this.panelCommand.Controls.Add(this.btnCancel);
             this.panelCommand.Controls.Add(this.btnOk);
             this.panelCommand.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -77,7 +78,7 @@
             this.ctrlObjectRightList.Location = new System.Drawing.Point(0, -2);
             this.ctrlObjectRightList.Name = "ctrlObjectRightList";
             this.ctrlObjectRightList.SelectedObject = null;
-            this.ctrlObjectRightList.Size = new System.Drawing.Size(803, 358);
+            this.ctrlObjectRightList.Size = new System.Drawing.Size(803, 369);
             this.ctrlObjectRightList.TabIndex = 2;
             this.ctrlObjectRightList.ObjectSelected += new System.EventHandler<ipsFormsDesign.Dictionary.ObjectRightMainView>(this.ctrlObjectRightList_ObjectSelected);
             // 
@@ -88,8 +89,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(803, 393);
-            this.Controls.Add(this.ctrlObjectRightList);
             this.Controls.Add(this.panelCommand);
+            this.Controls.Add(this.ctrlObjectRightList);
             this.Name = "ObjectRightSelectionView";
             // 
             // 
