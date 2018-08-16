@@ -70,7 +70,6 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.FileCustomer)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
-                        // .Include(item => item.Client.LicenseAgreement).ThenInclude(agr => agr.LicenseBigR.MusicalDesign)
                         .SingleOrDefaultAsync();
             
             // Отримати дані по Контрактах
@@ -445,7 +444,7 @@ namespace ipsmedserviceapp.Controllers
 
                     }, (l, r) => l.CRightId == r.CRightId);
 
-                _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.CustId == r.CustId);
+                _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
 
             }
         }

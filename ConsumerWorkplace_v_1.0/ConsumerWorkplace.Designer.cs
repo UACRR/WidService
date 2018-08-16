@@ -36,10 +36,8 @@ namespace ConsumerWorkplace_v_1._0
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainViewSwitcherBR = new IpsViewComponentLibrary.MainViewSwitcher();
             this.treeViewBR = new Telerik.WinControls.UI.RadTreeView();
             this.pageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainViewSwitcherSR = new IpsViewComponentLibrary.MainViewSwitcher();
             this.treeViewSR = new Telerik.WinControls.UI.RadTreeView();
             this.radPageViewPage7 = new Telerik.WinControls.UI.RadPageViewPage();
             this.consumerWorkplaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -69,6 +67,8 @@ namespace ConsumerWorkplace_v_1._0
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mainViewSwitcherBR = new IpsViewComponentLibrary.MainViewSwitcher();
+            this.mainViewSwitcherSR = new IpsViewComponentLibrary.MainViewSwitcher();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pageBigRights.SuspendLayout();
@@ -136,16 +136,6 @@ namespace ConsumerWorkplace_v_1._0
             this.pageBigRights.Size = new System.Drawing.Size(1257, 652);
             this.pageBigRights.Text = "Великі права";
             // 
-            // mainViewSwitcherBR
-            // 
-            this.mainViewSwitcherBR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainViewSwitcherBR.Location = new System.Drawing.Point(199, 0);
-            this.mainViewSwitcherBR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.mainViewSwitcherBR.Name = "mainViewSwitcherBR";
-            this.mainViewSwitcherBR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.mainViewSwitcherBR.Size = new System.Drawing.Size(1058, 652);
-            this.mainViewSwitcherBR.TabIndex = 3;
-            // 
             // treeViewBR
             // 
             this.treeViewBR.Dock = System.Windows.Forms.DockStyle.Left;
@@ -164,16 +154,6 @@ namespace ConsumerWorkplace_v_1._0
             this.pageSmallRights.Name = "pageSmallRights";
             this.pageSmallRights.Size = new System.Drawing.Size(1257, 656);
             this.pageSmallRights.Text = "Малі права";
-            // 
-            // mainViewSwitcherSR
-            // 
-            this.mainViewSwitcherSR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainViewSwitcherSR.Location = new System.Drawing.Point(199, 0);
-            this.mainViewSwitcherSR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.mainViewSwitcherSR.Name = "mainViewSwitcherSR";
-            this.mainViewSwitcherSR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.mainViewSwitcherSR.Size = new System.Drawing.Size(1058, 656);
-            this.mainViewSwitcherSR.TabIndex = 1;
             // 
             // treeViewSR
             // 
@@ -331,9 +311,29 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
             // 
+            // mainViewSwitcherBR
+            // 
+            this.mainViewSwitcherBR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainViewSwitcherBR.Location = new System.Drawing.Point(199, 0);
+            this.mainViewSwitcherBR.Margin = new System.Windows.Forms.Padding(4);
+            this.mainViewSwitcherBR.Name = "mainViewSwitcherBR";
+            this.mainViewSwitcherBR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.mainViewSwitcherBR.Size = new System.Drawing.Size(1058, 652);
+            this.mainViewSwitcherBR.TabIndex = 3;
+            // 
+            // mainViewSwitcherSR
+            // 
+            this.mainViewSwitcherSR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainViewSwitcherSR.Location = new System.Drawing.Point(199, 0);
+            this.mainViewSwitcherSR.Margin = new System.Windows.Forms.Padding(4);
+            this.mainViewSwitcherSR.Name = "mainViewSwitcherSR";
+            this.mainViewSwitcherSR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.mainViewSwitcherSR.Size = new System.Drawing.Size(1058, 656);
+            this.mainViewSwitcherSR.TabIndex = 1;
+            // 
             // ConsumerWorkplace
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 735);
             this.Controls.Add(this.pageViewOwner);

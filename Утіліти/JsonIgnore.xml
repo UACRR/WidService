@@ -54,6 +54,9 @@
         <noignore>LicAuthorBr</noignore>
         <noignore>MusicalDesign</noignore>
     </item>
+    <item Name="MusicalDesign">
+        <noignore>Obj</noignore>
+    </item>
     <item Name="LicAuthorBr"></item>
     <item Name="RightHolder">
         <noignore>TermsOfService</noignore>

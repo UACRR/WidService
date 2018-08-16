@@ -16,6 +16,7 @@ using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerDialogForms;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -33,6 +34,20 @@ namespace IpsViewComponentLibrary
         private Dictionary<int, RegisterStatus> dicRegStatus;
         private Dictionary<int, RegisterListStatus> dicRatedListStatus;
 
+        private TypeRights _typeRights = TypeRights.All;
+        [EditorBrowsable]
+        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } } 
+        private List<int> validClass;
+
+        private void reinitValidClass()
+        {
+            validClass = new List<int>();
+            if (TypeRights == TypeRights.SmallRights || TypeRights == TypeRights.All)
+                validClass.Add(0);
+            if (TypeRights == TypeRights.BigRights || TypeRights == TypeRights.All)
+                validClass.Add(1);
+
+        }
         public ReportsControl()
         {
             InitializeComponent();
@@ -129,14 +144,17 @@ namespace IpsViewComponentLibrary
                 return;
             }
             normalizeData(_customer);
-            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && (rec.LicClass == 0 || rec.LicClass == 1) )
+            if (validClass == null)
+                reinitValidClass();
+
+            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && validClass.Contains( rec.LicClass ) )
                             .Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
             bindingAgreement.DataSource = listAgreement;
         }
 
         private void ClearBindings()
         {
-            bindingAgreement.DataSource = typeof(LicenseAgrParam);
+            bindingAgreement.DataSource = typeof(IAgreementData);
             bindingPaidPeriod.DataSource = typeof(PaidPeriod);
             bindingReports.DataSource = typeof(Register);
         }

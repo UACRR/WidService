@@ -12,6 +12,7 @@ using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using Telerik.WinControls;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -28,6 +29,10 @@ namespace IpsViewComponentLibrary
         private GridDataRowElement dropRow;
         private ButtonController buttonController;
 
+        private TypeRights _typeRights = TypeRights.All;
+        [EditorBrowsable]
+        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } } 
+        private List<int> validClass;
         public CalculationInfoControl()
         {
             InitializeComponent();
@@ -35,8 +40,18 @@ namespace IpsViewComponentLibrary
 
             buttonController = new ButtonController(btnNewPeriod, btnDistribute, btnClosePeriod);
 
+
         }
 
+        private void reinitValidClass()
+        {
+            validClass = new List<int>();
+            if (TypeRights == TypeRights.SmallRights || TypeRights == TypeRights.All)
+                validClass.Add(0);
+            if (TypeRights == TypeRights.BigRights || TypeRights == TypeRights.All)
+                validClass.Add(1);
+
+        }
         private void SetupDragDrop()
         {
             SubscribeForGridEvents(gvUserMoneys, gvLicenseAgr);
@@ -201,7 +216,10 @@ namespace IpsViewComponentLibrary
 
         private void BindLicAgreements()
         {
-            var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && (rec.LicClass == 1 || rec.LicClass == 0)).Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
+            if (validClass == null)
+                reinitValidClass();
+
+            var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && validClass.Contains(rec.LicClass)).Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
             if (licAgr.Count() > 0)
                 LicAgreementBindingSource.DataSource = licAgr;
             else
