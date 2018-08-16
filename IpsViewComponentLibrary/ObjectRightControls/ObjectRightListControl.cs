@@ -22,8 +22,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         }
 
         private ObjectRightMainView _objectRight;
-        private int _currentPage = 1;
-        private int _totalPages;
 
         public ObjectRightMainView SelectedObject
         {
@@ -55,14 +53,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public ObjectRightListControl()
         {
             InitializeComponent();
+        }
 
+        private void ObjectRightListControl_Load(object sender, EventArgs e)
+        {
             if (!IsDesignMode)
             {
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
-
-                navigatorPositionItem.Text = _currentPage.ToString();
-                //radBindingNavigator1FirstStrip.DesiredLocation = new PointF(navigatorCommandBar.Size.Width -
-                //    radBindingNavigator1FirstStrip.Size.Width, radBindingNavigator1FirstStrip.Location.Y);
 
                 SetDictionaries();
 
@@ -95,8 +92,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             var query = new ObjectRightQuery();
 
-            query.Page = _currentPage;
-            query.PageSize = 20;
+            query.Page = navigatorPanel.CurrentPage;
+            query.PageSize = navigatorPanel.PageSize;
 
             if (ddlState.SelectedValue != null && (int)ddlState.SelectedValue != -1)
                 query.State = (ObjectRightStates)ddlState.SelectedValue;
@@ -107,8 +104,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             var result = service.GetObjectRights(query);
             objectRightMainViewBindingSource.DataSource = result.List;
 
-            _totalPages = (int) Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
-            navigatorCountItem.Text = string.Format(" з {0}", _totalPages);
+            navigatorPanel.TotalPages = (int) Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
 
             //SelectedObject = currentObject; // TODO: is it realy need?
         }
@@ -138,42 +134,16 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void ddlState_SelectedValueChanged(object sender, EventArgs e)
         {
-            _currentPage = 1;
-            navigatorPositionItem.Text = _currentPage.ToString();
+            navigatorPanel.CurrentPage = 1;
+        }
+
+        private void navigatorPanel_CurrentPageChanged(object sender, EventArgs e)
+        {
             UpdateList();
         }
 
-        private void navigatorMovePreviousItem_Click(object sender, EventArgs e)
+        private void navigatorPanel_PageSizeChanged(object sender, EventArgs e)
         {
-            if (_currentPage > 1)
-            {
-                _currentPage -= 1;
-                navigatorPositionItem.Text = _currentPage.ToString();
-                UpdateList();
-            }
-        }
-
-        private void navigatorMoveNextItem_Click(object sender, EventArgs e)
-        {
-            if (_currentPage < _totalPages)
-            {
-                _currentPage += 1;
-                navigatorPositionItem.Text = _currentPage.ToString();
-                UpdateList();
-            }
-        }
-
-        private void navigatorMoveFirstItem_Click(object sender, EventArgs e)
-        {
-            _currentPage = 1;
-            navigatorPositionItem.Text = _currentPage.ToString();
-            UpdateList();
-        }
-
-        private void navigatorMoveLastItem_Click(object sender, EventArgs e)
-        {
-            _currentPage = _totalPages;
-            navigatorPositionItem.Text = _currentPage.ToString();
             UpdateList();
         }
 
@@ -195,57 +165,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private void timerSearch_Tick(object sender, EventArgs e)
         {
             timerSearch.Stop();
-            UpdateList();
+            navigatorPanel.CurrentPage = 1;
         }
-
-        #region Search
 
         private void txtSearchObject_TextChanged(object sender, EventArgs e)
         {
-            //gvObjectsRightsList.MasterTemplate.Refresh();
-
             timerSearch.Stop();
             timerSearch.Start();
         }
-
-        private void gvObjectsRightsList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
-        {
-            //if (string.IsNullOrEmpty(txtSearchObject.Text))
-            //{
-            //    gvObjectsRightsList.BeginUpdate();
-            //    e.Visible = true;
-            //    for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
-            //    {
-            //        e.Row.Cells[i].Style.Reset();
-            //    }
-            //    gvObjectsRightsList.EndUpdate(false);
-            //    return;
-            //}
-
-            //gvObjectsRightsList.BeginUpdate();
-            //e.Visible = false;
-            //for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
-            //{
-            //    //якщо поле пусте
-            //    if (e.Row.Cells[i].Value == null)
-            //        continue;
-
-            //    string text = e.Row.Cells[i].Value.ToString();
-            //    if (text.IndexOf(txtSearchObject.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-            //    {
-            //        e.Visible = true;
-            //        e.Row.Cells[i].Style.CustomizeFill = true;
-            //        e.Row.Cells[i].Style.DrawFill = true;
-            //        e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-            //    }
-            //    else
-            //    {
-            //        e.Row.Cells[i].Style.Reset();
-            //    }
-            //    gvObjectsRightsList.EndUpdate(false);
-            //}
-        }
-
-        #endregion
     }
 }
