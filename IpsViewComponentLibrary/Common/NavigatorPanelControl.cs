@@ -116,6 +116,10 @@ namespace IpsViewComponentLibrary.Common
                 int size;
                 if (int.TryParse(mebCountPerPage.Text, out size))
                 {
+                    // change current page to 1 without raising CurrentPageChanged event
+                    _currentPage = 1;
+                    UpdateCurrentPage();
+
                     if (size < 10)
                     {
                         PageSize = 10;
