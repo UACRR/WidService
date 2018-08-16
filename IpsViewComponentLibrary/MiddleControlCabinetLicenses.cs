@@ -35,8 +35,9 @@ namespace IpsViewComponentLibrary
 
         private void CtrlAgrDetailInfo_OnSaveCommentNeed(object sender, EventArgs e)
         {
-            //TODO result msg
             var result = OnSaveCustomer?.Invoke(_customer);
+            if (result ?? false)
+                ExtensionUtils.ShowInfoMessage("Примітку збережено!", "Успішно", MessageBoxIcon.Information);
         }
 
         /// <summary>
