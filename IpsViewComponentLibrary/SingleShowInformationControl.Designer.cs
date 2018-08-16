@@ -42,32 +42,37 @@
             // 
             // lbltxtName
             // 
-            this.lbltxtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lbltxtName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbltxtName.CausesValidation = false;
+            this.lbltxtName.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lbltxtName.Font = new System.Drawing.Font("Segoe UI", 8.75F);
             this.lbltxtName.Location = new System.Drawing.Point(0, 0);
             this.lbltxtName.Name = "lbltxtName";
-            this.lbltxtName.Size = new System.Drawing.Size(88, 26);
+            this.lbltxtName.Size = new System.Drawing.Size(91, 28);
             this.lbltxtName.TabIndex = 3;
             this.lbltxtName.Text = "Титул текст";
             this.lbltxtName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtShow
             // 
-            this.txtShow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtShow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtShow.AutoSize = false;
+            this.txtShow.CausesValidation = false;
             this.txtShow.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtShow.Location = new System.Drawing.Point(3, 0);
+            this.txtShow.Location = new System.Drawing.Point(0, 0);
             this.txtShow.Name = "txtShow";
-            this.txtShow.Size = new System.Drawing.Size(230, 26);
+            this.txtShow.Size = new System.Drawing.Size(233, 28);
             this.txtShow.TabIndex = 2;
             this.txtShow.ThemeName = "Office2013Light";
             // 
             // splitContainer
             // 
-            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer.CausesValidation = false;
+            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.Location = new System.Drawing.Point(0, 0);
             this.splitContainer.MaximumSize = new System.Drawing.Size(1000, 50);
             this.splitContainer.Name = "splitContainer";
@@ -78,6 +83,8 @@
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.splitContainer.Panel2.CausesValidation = false;
             this.splitContainer.Panel2.Controls.Add(this.radSeparator);
             this.splitContainer.Panel2.Controls.Add(this.txtShow);
             this.splitContainer.Size = new System.Drawing.Size(328, 28);
@@ -129,6 +136,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer);
+            this.DoubleBuffered = true;
             this.MaximumSize = new System.Drawing.Size(1000, 28);
             this.MinimumSize = new System.Drawing.Size(150, 25);
             this.Name = "SingleShowInformationControl";

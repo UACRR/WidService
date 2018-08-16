@@ -41,8 +41,8 @@
             this.btnBack = new Telerik.WinControls.UI.RadButton();
             this.gvConsumerList = new Telerik.WinControls.UI.RadGridView();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlHeaderInfo = new IpsViewComponentLibrary.InformationOfUserControl();
             this.ctrlCabinet = new IpsViewComponentLibrary.MiddleControlCabinet();
+            this.ctrlHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
@@ -147,7 +147,7 @@
             gridViewTextBoxColumn3.HeaderText = "Назва";
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "Name";
-            gridViewTextBoxColumn3.Width = 184;
+            gridViewTextBoxColumn3.Width = 181;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(int);
             gridViewTextBoxColumn4.FieldName = "countAgree";
@@ -196,27 +196,6 @@
             this.gvConsumerList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvConsumerList_CurrentRowChanged);
             this.gvConsumerList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvConsumerList_CustomFiltering);
             // 
-            // ctrlHeaderInfo
-            // 
-            this.ctrlHeaderInfo.Edrpou = "";
-            this.ctrlHeaderInfo.EmailContactPerson = "";
-            this.ctrlHeaderInfo.EmailManager = "";
-            this.ctrlHeaderInfo.GroupOrHolding = "";
-            this.ctrlHeaderInfo.HoldingVisible = false;
-            this.ctrlHeaderInfo.Location = new System.Drawing.Point(315, 29);
-            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
-            this.ctrlHeaderInfo.NameInfo = "";
-            this.ctrlHeaderInfo.OrganisationForm = "";
-            this.ctrlHeaderInfo.OrganisationFormVisible = false;
-            this.ctrlHeaderInfo.PhoneContactPerson = "";
-            this.ctrlHeaderInfo.PhoneManager = "";
-            this.ctrlHeaderInfo.PibContactPerson = "";
-            this.ctrlHeaderInfo.PibManager = "";
-            this.ctrlHeaderInfo.Size = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.TabIndex = 15;
-            // 
             // ctrlCabinet
             // 
             this.ctrlCabinet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -224,10 +203,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlCabinet.AutoScroll = true;
             this.ctrlCabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.GeneralAgreement;
-            this.ctrlCabinet.Location = new System.Drawing.Point(315, 244);
+            this.ctrlCabinet.Location = new System.Drawing.Point(315, 214);
             this.ctrlCabinet.Name = "ctrlCabinet";
-            this.ctrlCabinet.Size = new System.Drawing.Size(1019, 402);
+            this.ctrlCabinet.Size = new System.Drawing.Size(1019, 432);
             this.ctrlCabinet.TabIndex = 14;
+            // 
+            // ctrlHeaderInfo
+            // 
+            this.ctrlHeaderInfo.Location = new System.Drawing.Point(316, 30);
+            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
+            this.ctrlHeaderInfo.Size = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.TabIndex = 15;
             // 
             // GlobalControlConsumerCabinetBR
             // 
@@ -261,6 +249,6 @@
         private Telerik.WinControls.UI.RadGridView gvConsumerList;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         public MiddleControlCabinet ctrlCabinet;
-        private InformationOfUserControl ctrlHeaderInfo;
+        private ConsumerControls.ConsumerHeaderInfo ctrlHeaderInfo;
     }
 }

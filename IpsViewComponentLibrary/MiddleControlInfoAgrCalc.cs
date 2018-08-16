@@ -47,7 +47,6 @@ namespace IpsViewComponentLibrary
         private void ClearData()
         {
             SetDefaultPages();
-            userInfoCtrl.SetEmptyFields();
             ctrlAgrInfoMain.SetEmpty();
             ctrlPaysInfo1.Customer = null;
             gvLicenseAgr.DataSource = new object();
@@ -84,7 +83,7 @@ namespace IpsViewComponentLibrary
         public void SetCustomerData(Customer cust)
         {
             _customer = cust;
-            SetUserInfoData();
+            ctrlHeaderInfo.SetControlTextInfoSmallRight(_customer);
             gvLicenseAgr.DataSource = new object();
             //SetAgrInfoData();
             SetCalculationData();
@@ -193,32 +192,6 @@ namespace IpsViewComponentLibrary
             gvMoreLicenseAgr.DataSource = source;
             gvMoreLicenseAgr.MasterTemplate.Refresh();
             gvMoreLicenseAgr.Update();
-        }
-
-        /// <summary>
-        /// Інформація користувача
-        /// </summary>
-        private void SetUserInfoData()
-        {
-            var userInfo = _customer?.Company?.AnketaCompany?.SingleOrDefault();
-            var contactPerson = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
-            var manager = _customer?.Company?.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
-
-
-            userInfoCtrl.Edrpou = userInfo?.Okpo;
-            userInfoCtrl.NameInfo = userInfo?.Name;
-            userInfoCtrl.PibManager = manager?.Empl?.FirstName + " " +
-                                      manager?.Empl?.LastName + " " +
-                                      manager?.Empl?.SurName;
-            userInfoCtrl.EmailManager = manager?.Empl?.Email;
-
-            userInfoCtrl.PhoneManager = manager?.Empl?.PhoneNumber;
-            userInfoCtrl.PibContactPerson = contactPerson?.Empl?.FirstName + " " +
-                                            contactPerson?.Empl?.LastName + " " +
-                                            contactPerson?.Empl?.SurName;
-            userInfoCtrl.PhoneContactPerson = contactPerson?.Empl?.PhoneNumber;
-            userInfoCtrl.EmailContactPerson = contactPerson?.Empl?.Email;
-            userInfoCtrl.OrganisationForm = "";
         }
 
         /// <summary>
@@ -427,7 +400,8 @@ namespace IpsViewComponentLibrary
                 {
                     newLicense.LicDate = licParam?.DateEnd.Value.AddDays(1);
                     newLicense.DateBegin = licParam?.DateEnd.Value.AddDays(1);
-                    newLicense.DateEnd = licParam.DateEnd.Value.AddYears(1).AddDays(1);
+                    newLicense.DateEnd = new DateTime(licParam.DateEnd.Value.Year, 12, 31);
+                    
                 }
 
                 newLicense.LicVersion = (licVersion ?? 0) + 1;
@@ -495,6 +469,7 @@ namespace IpsViewComponentLibrary
             print.ShowDialog();
         }
 
+        //закрити та видалити неактивний договір
         private void btnDeleteAgr_Click(object sender, EventArgs e)
         {
             if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
@@ -504,6 +479,22 @@ namespace IpsViewComponentLibrary
             if (MessageBox.Show("Ліцензія буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 if (OnChangeLicenseStatus?.Invoke(license, curRow?.LicVersion ?? default(int), 4, false) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
+            }
+        }
+
+        //закривання активного договору
+        private void btnCloseAgr_Click(object sender, EventArgs e)
+        {
+            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
+            if (license == null) return;
+
+            if (MessageBox.Show("Ліцензійний договір буде закритий та автоматично видалений. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                if (OnChangeLicenseStatus?.Invoke(license, license.LicVersion ?? default(int), 4, false) ?? false)
                     ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
                 else
                     ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);

@@ -41,13 +41,12 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public RequestForm(
-            Customer customer,
-            ConsumerBigRightView bigRightView,
-            AnketaDictionaties dictionaties,
-            FormType formType = FormType.Create,
-            int? licId = null,
-            FormMode formMode = FormMode.ForBigRightAdmin)
+        public RequestForm( Customer customer,
+                            ConsumerBigRightView bigRightView,
+                            AnketaDictionaties dictionaties,
+                            FormType formType = FormType.Create,
+                            int? licId = null,
+                            FormMode formMode = FormMode.ForBigRightAdmin)
         {
             InitializeComponent();
             _licId = licId;
@@ -57,7 +56,7 @@ namespace IpsViewComponentLibrary
             _formMode = formMode;
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
-
+            _deleteLicense = formType == FormType.Create;
             dtDate.SetUserCalendarSettingsm();
             dtDate.MinDate = DateTime.Today;
             if (_formType == FormType.Create)

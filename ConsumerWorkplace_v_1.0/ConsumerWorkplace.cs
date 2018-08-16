@@ -38,6 +38,7 @@ namespace ConsumerWorkplace_v_1._0
         public ConsumerWorkplace(TypeRights rights)
         {
             IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
+            
             InitializeComponent();
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
 

@@ -192,6 +192,18 @@
     <Compile Include="Common\PageSelectorControl.Designer.cs">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.Designer.cs">
+      <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerHeaderInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerHeaderInfo.Designer.cs">
+      <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\CreateRatedList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -775,6 +787,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\PageSelectorControl.resx">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerAgrDetailInfo.resx">
+      <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerHeaderInfo.resx">
+      <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
