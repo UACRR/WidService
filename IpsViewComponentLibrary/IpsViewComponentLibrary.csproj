@@ -186,11 +186,35 @@
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\NavigatorPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\NavigatorPanelControl.Designer.cs">
+      <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\PageSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Common\PageSelectorControl.Designer.cs">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.Designer.cs">
+      <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.Designer.cs">
+      <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerHeaderInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerHeaderInfo.Designer.cs">
+      <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\CreateRatedList.cs">
       <SubType>Form</SubType>
@@ -773,8 +797,20 @@
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
+      <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\PageSelectorControl.resx">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
+      <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerAgrDetailInfo.resx">
+      <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerHeaderInfo.resx">
+      <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
@@ -1161,6 +1197,10 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\angle-double-left-solid.ico" />
+    <None Include="Resources\angle-double-right-solid.ico" />
+    <None Include="Resources\angle-left-solid.ico" />
+    <None Include="Resources\angle-right-solid.ico" />
     <Content Include="Resources\link-solid.ico" />
     <Content Include="Resources\plus-square-solid.ico" />
     <Content Include="Resources\unlink-solid.ico" />

@@ -182,7 +182,6 @@
             this.ctrlAgreementNumberDate.AgreementName = "ДОГОВІР";
             this.ctrlAgreementNumberDate.DataSource = this.bsAgreementAddRh;
             this.ctrlAgreementNumberDate.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
-            this.ctrlAgreementNumberDate.DataSourceBrLicNumber = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgreementNumberDate.DateBeginDataMember = "DateBegin";
             this.ctrlAgreementNumberDate.DateDataMember = "AgrDate";
             this.ctrlAgreementNumberDate.DateEndDataMember = "DateEnd";

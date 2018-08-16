@@ -28,6 +28,10 @@ namespace IpsViewComponentLibrary
         public event EventHandler<Register> DeleteRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
+
+        public delegate void UpdateCustomerDataEventHandler(int id);
+        public event UpdateCustomerDataEventHandler UpdateData;
+
         public Func<int, List<RegisterItem>> GetRegisterItems;
         private ButtonEnableControl buttonController;
         private Dictionary<int, PeriodStatus> dicPeriodStatus;
@@ -361,6 +365,7 @@ namespace IpsViewComponentLibrary
                     if (progReportBigRight.ShowDialog() == DialogResult.OK)
                     {
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+                        UpdateData?.Invoke(_customer.CustId);
                     }
                     else
                         period.RegisterRatedList.Remove(ratedList);
@@ -375,10 +380,12 @@ namespace IpsViewComponentLibrary
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+                        UpdateData?.Invoke(_customer.CustId);
                     }
                     else
                         period.RegisterRatedList.Remove(ratedList);
                 }
+                RefreshData();
             }
         }
 

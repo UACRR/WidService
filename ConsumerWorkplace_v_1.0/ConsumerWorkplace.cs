@@ -22,8 +22,6 @@ namespace ConsumerWorkplace_v_1._0
 {
     public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
     {
-        private bool nextPage = false;
-        private sbyte validTabs = 0;
         private SwitchPresenter _presenterSmallRights;
         private SwitchPresenterBigRights _presenterBigRights;
         private ConsumerService _serviceSmallRights, _serviceBigRights;
@@ -38,6 +36,7 @@ namespace ConsumerWorkplace_v_1._0
         public ConsumerWorkplace(TypeRights rights)
         {
             IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
+            
             InitializeComponent();
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
 

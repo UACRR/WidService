@@ -58,23 +58,10 @@ namespace IpsViewComponentLibrary
 
                 bsAgreementAddBr.DataSource = value;
 
-                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsAgreementAddBr, "AgrNumber", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsAgreementAddBr, "AgrNumber", true, DataSourceUpdateMode.OnPropertyChanged));
                 rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "AgrDate", true, DataSourceUpdateMode.OnPropertyChanged));
                 rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged));
                 rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsAgreementAddBr, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged));
-            }
-        }
-
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
-        public object DataSourceBrLicNumber
-        {
-            get => bsLicenseAgrParamBr.DataSource;
-            set
-            {
-                rtxtBoxContrNumber.DataBindings.Clear();
-                bsLicenseAgrParamBr.DataSource = value;
-                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsLicenseAgrParamBr, "LicNum", true, DataSourceUpdateMode.OnPropertyChanged));
             }
         }
 

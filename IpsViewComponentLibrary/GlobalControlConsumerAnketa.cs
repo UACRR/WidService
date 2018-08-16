@@ -101,38 +101,46 @@ namespace IpsViewComponentLibrary
                 case TypeRights.BigRights:
                 {
                     //ініціалізація форми договору великих прав
-                    ctrlAgreementBigRights = new MiddleControlAgreementBigRights
-                    {
-                        Location = _LocationPoint,
-                        MaximumSize = new Size(900, 200),
-                        MinimumSize = new Size(500, 200),
-                        Name = "ctrlAgreementBigRights",
-                        Size = new Size(596, 200),
-                        TabIndex = 0
-                    };
+                    if(ctrlAgreementBigRights == null)
+                        {
+                            ctrlAgreementBigRights = new MiddleControlAgreementBigRights
+                            {
+                                Location = _LocationPoint,
+                                MaximumSize = new Size(900, 200),
+                                MinimumSize = new Size(500, 200),
+                                Name = "ctrlAgreementBigRights",
+                                Size = new Size(596, 200),
+                                TabIndex = 0
+                            };
+                            pvAgreement.Controls.Add(ctrlAgreementBigRights);
+                        }
 
-                    if (_cust?.Client?.LicenseAgreement?.SingleOrDefault()?.LicCode != null)
+                        if (_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicCode != null)
                     {
-                        var item = _cust.Client.LicenseAgreement.SingleOrDefault();
+                        var item = _cust.Client.LicenseAgreement.LastOrDefault();
                         item.LicCode = 28;
                         item.LicClass = 1;
                         item.LicType = 1;
+                        item.LicVersion = 1;
                     }
 
-                    if(!isEdit && _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Count == 0)
-                        _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
+                    if(!isEdit && _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr.Count == 0)
+                        _cust.Client.LicenseAgreement.LastOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
                         {
                             Version = 1,
                             AgrStatus = 2,
                             AnkVersion = _cust.AnkVersion,
+                            AgrNumber = string.Empty,
+                            
                         });
-                    //_cust.Company.AnketaCompany.SingleOrDefault().Name = string.Empty;
-                    pvAgreement.Controls.Add(ctrlAgreementBigRights);
+                        //_cust.Company.AnketaCompany.SingleOrDefault().Name = string.Empty;
+
                     ctrlAgreementBigRights.DictionaryAgrLicTypeDataSource = _anketaDictionaries.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
                     ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
                     ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// typeof(AnketaCompany);
-                    ctrlAgreementBigRights.LicAgrDataSource = _cust.Client.LicenseAgreement;// typeof(LicenseAgreement);
-                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr;
+                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr;
+                    ctrlAgreementBigRights.LicAgrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault();// typeof(LicenseAgreement);
+                    
 
                     }
                     break;
