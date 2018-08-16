@@ -22,6 +22,7 @@ namespace ipsFormsDesign.Interfaces
         int PeriodPayment { get; }
         string PeriodPaymentName { get; }
         decimal Arrears { get; }
+        LicenseAgreement Lic { get;  }
     }
     public static class ActiveAgreementDataFactory
     {
@@ -51,6 +52,7 @@ namespace ipsFormsDesign.Interfaces
         public decimal Arrears { get => _arrears; }
         public string LicenseName { get => _licType.Name; }
         public string Series { get => string.Empty; }
+        public LicenseAgreement Lic { get => _license; }
     }
     internal class AgrementDataSR : baseAgreement, IAgreementData
     {

@@ -279,8 +279,9 @@
             this.gvLicenseAgr.MasterTemplate.AllowDeleteRow = false;
             this.gvLicenseAgr.MasterTemplate.AllowDragToGroup = false;
             this.gvLicenseAgr.MasterTemplate.AllowEditRow = false;
+            this.gvLicenseAgr.MasterTemplate.AutoGenerateColumns = false;
             this.gvLicenseAgr.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn6.FieldName = "Lic.LicCodeNavigation.Name";
+            gridViewTextBoxColumn6.FieldName = "LicenseName";
             gridViewTextBoxColumn6.HeaderText = "Ліцензія";
             gridViewTextBoxColumn6.Name = "License";
             gridViewTextBoxColumn6.Width = 168;
@@ -288,7 +289,7 @@
             gridViewTextBoxColumn7.HeaderText = "Серія";
             gridViewTextBoxColumn7.Name = "Series";
             gridViewTextBoxColumn7.Width = 48;
-            gridViewTextBoxColumn8.FieldName = "LicNum";
+            gridViewTextBoxColumn8.FieldName = "AgrNumber";
             gridViewTextBoxColumn8.HeaderText = "Номер договору";
             gridViewTextBoxColumn8.Name = "AgrNumber";
             gridViewTextBoxColumn8.Width = 116;
@@ -305,19 +306,21 @@
             gridViewTextBoxColumn10.Name = "DateEnd";
             gridViewTextBoxColumn10.Width = 106;
             gridViewDecimalColumn9.DataType = typeof(System.Nullable<decimal>);
-            gridViewDecimalColumn9.FieldName = "MinAmount";
+            gridViewDecimalColumn9.FieldName = "Amount";
             gridViewDecimalColumn9.HeaderText = "Сума";
             gridViewDecimalColumn9.Name = "Amount";
             gridViewDecimalColumn9.Width = 106;
-            gridViewTextBoxColumn11.FieldName = "LicStatusNavigation.Name";
+            gridViewTextBoxColumn11.FieldName = "StateName";
             gridViewTextBoxColumn11.HeaderText = "Стан";
             gridViewTextBoxColumn11.Name = "State";
             gridViewTextBoxColumn11.Width = 106;
-            gridViewTextBoxColumn12.FieldName = "PeriodCodeNavigation.Name";
+            gridViewTextBoxColumn12.FieldName = "PeriodPaymentName";
             gridViewTextBoxColumn12.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn12.Name = "PeriodPayment";
             gridViewTextBoxColumn12.Width = 143;
             gridViewDecimalColumn10.EnableExpressionEditor = false;
+            gridViewDecimalColumn10.FieldName = "Arrears";
+            gridViewDecimalColumn10.FormatString = "{0:# ##0.00}";
             gridViewDecimalColumn10.HeaderText = "Борг";
             gridViewDecimalColumn10.Name = "Debt";
             gridViewDecimalColumn10.ReadOnly = true;
@@ -340,12 +343,11 @@
             this.gvLicenseAgr.Size = new System.Drawing.Size(1017, 181);
             this.gvLicenseAgr.TabIndex = 10;
             this.gvLicenseAgr.ThemeName = "Office2007Silver";
-            this.gvLicenseAgr.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvLicenseAgr_RowFormatting);
             this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
             // 
             // LicAgreementBindingSource
             // 
-            this.LicAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            this.LicAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
             // 
             // radLabel2
             // 

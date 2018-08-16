@@ -162,7 +162,7 @@ namespace IpsViewComponentLibrary
                 if (_customer == null)
                 {
                     AllmoneyReceivedBindingSource.DataSource = typeof(MoneyReceived);
-                    LicAgreementBindingSource.DataSource = typeof(LicenseAgrParam);
+                    LicAgreementBindingSource.DataSource = typeof(IAgreementData);
                     return;
                 }
 
@@ -201,11 +201,11 @@ namespace IpsViewComponentLibrary
 
         private void BindLicAgreements()
         {
-            var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.SingleOrDefault(item => item.LicVersion == rec.LicVersion && rec.LicStatus == 2)).ToList();
+            var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && (rec.LicClass == 1 || rec.LicClass == 0)).Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
             if (licAgr.Count() > 0)
-                LicAgreementBindingSource.DataSource = licAgr?.Where( rec => rec?.LicStatus == 2).ToList();
+                LicAgreementBindingSource.DataSource = licAgr;
             else
-                LicAgreementBindingSource.DataSource = typeof(LicenseAgrParam);
+                LicAgreementBindingSource.DataSource = typeof(IAgreementData);
         }
 
         private void BindAllSum()
@@ -230,7 +230,7 @@ namespace IpsViewComponentLibrary
         {
             if (gvLicenseAgr.CurrentRow != null)
             {
-                var licItem = (LicenseAgrParam)gvLicenseAgr.CurrentRow.DataBoundItem;
+                var licItem = (IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem;
                 var list = licItem.Lic?.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
                 paidPeriodBindingSource.DataSource = list;
             }
@@ -363,24 +363,6 @@ namespace IpsViewComponentLibrary
             SetGrid3DataSource();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void gvLicenseAgr_RowFormatting(object sender, RowFormattingEventArgs e)
-        {
-
-            var ri = e.RowElement?.RowInfo;
-            var licAgreement = (LicenseAgrParam)ri?.DataBoundItem;
-
-            var debt = licAgreement.Lic.PaidPeriod.Where(rec => rec.EndDate <= DateTime.Today).Sum(rec =>
-            {
-                return Math.Max(0, rec.Amount - (rec.Distribamount + rec.Undistribamount));
-                ;
-            });
-            ri.Cells["Debt"].Value = Convert.ToDecimal(debt);
-        }
 
         /// Закрити період
         private void btnClosePeriod_Click(object sender, EventArgs e)
