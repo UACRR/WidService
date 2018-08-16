@@ -192,6 +192,12 @@
     <Compile Include="Common\PageSelectorControl.Designer.cs">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.Designer.cs">
+      <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -787,6 +793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\PageSelectorControl.resx">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
+      <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ConsumerAgrDetailInfo.resx">
       <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>

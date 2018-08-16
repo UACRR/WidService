@@ -30,6 +30,13 @@ namespace IpsViewComponentLibrary
         public MiddleControlCabinetLicenses()
         {
             InitializeComponent();
+            ctrlAgrDetailInfo.OnSaveCommentNeed += CtrlAgrDetailInfo_OnSaveCommentNeed;
+        }
+
+        private void CtrlAgrDetailInfo_OnSaveCommentNeed(object sender, EventArgs e)
+        {
+            //TODO result msg
+            var result = OnSaveCustomer?.Invoke(_customer);
         }
 
         /// <summary>
@@ -69,7 +76,11 @@ namespace IpsViewComponentLibrary
             var agrStatus = (e.CurrentRow?.DataBoundItem as VbrLicense)?.LicStatus ?? -1;
             btnToAccept.Enabled = (agrStatus == 0 || agrStatus == 1);
             SetBtnFunc(agrStatus == 0 ? ButtonFunctionType.Agree : agrStatus == 1 ? ButtonFunctionType.Accept : ButtonFunctionType.None);
-            ctrlInformation.InfoDataSource = e?.CurrentRow?.DataBoundItem as VbrLicense;
+            //оновлення інфи
+            if (!(e?.CurrentRow?.DataBoundItem is VbrLicense lic)) return;
+            var licAgrParam = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == lic.LicId)?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == lic.LicVersion);
+            if(licAgrParam == null) return;
+            ctrlAgrDetailInfo.SetDataInfo(licAgrParam, lic);
         }
 
         private void SetBtnFunc(ButtonFunctionType type)
