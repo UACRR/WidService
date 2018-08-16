@@ -119,12 +119,12 @@ namespace IpsViewComponentLibrary
             if (custId != -1)
             {
                 btnEditAgr.Enabled = true;
-                mсInfoAgrCalc.SetStateWhenChangeAnketaCount(AnketaCount.NotEmpty);
+                mсInfoAgrCalc.SetStateWhenChangeAnketaCount(MiddleControlInfoAgrCalc.AnketaCount.NotEmpty);
                 mсInfoAgrCalc.SetCustomerData(OnGridRowSelectedChaged?.Invoke(custId)); //здійснює оновлення даних
             }
             else
             {
-                mсInfoAgrCalc.SetStateWhenChangeAnketaCount(AnketaCount.Empty);
+                mсInfoAgrCalc.SetStateWhenChangeAnketaCount(MiddleControlInfoAgrCalc.AnketaCount.Empty);
                 btnEditAgr.Enabled = false;
             }
         }
