@@ -240,9 +240,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-
-
-
+        
         private void radButton1_Click(object sender, EventArgs e)
         {
             var currentAgree = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
