@@ -162,12 +162,11 @@ namespace IpsViewComponentLibrary
             ProlongationBigRight prolongation = new ProlongationBigRight(_customer, license, item.Name);
             if (prolongation.ShowDialog() == DialogResult.OK)
             {
-                //license.LicVersion++;
-                var result = OnSaveCustomer?.Invoke(_customer);// TODO: add return message
+                var result = OnSaveCustomer?.Invoke(_customer);
                 if (result ?? false)
-                    ;
+                    ExtensionUtils.ShowInfoMessage("Ліцензійний договір пролонговано!","Успішно", MessageBoxIcon.Information);
                 else
-                    ;
+                    ExtensionUtils.ShowInfoMessage("Неможливо пролонгувати ліцензійний договір!", "Помилка", MessageBoxIcon.Error);
             }
         }
 
