@@ -24,9 +24,6 @@ namespace ipsAnketaClient
 
         public delegate void SaveNewClnPlaceHoll(ClnPlaceHoll clnPlaceHoll);
         public event SaveNewClnPlaceHoll OnSaveNewClnPlaceHoll;
-        //***
-        private ObservableListSource<ClnPlaceHoll> _data;
-        private bool _isEdit = false;
         
 
         /// <summary>
@@ -112,10 +109,8 @@ namespace ipsAnketaClient
         /// <returns></returns>
         private bool Validator()
         {
-            byte count = 0;
             bool isNumber = true;
             bool isNotEmpty = true;
-            Int32 tryparse;
             if (txtPlaceName.Text == string.Empty)
             {
                 isNotEmpty = false;
@@ -133,7 +128,7 @@ namespace ipsAnketaClient
                 lblTitlePlace.ForeColor = Color.Black;
 
 
-            if (!Int32.TryParse(txtPlaceValue.Text, out tryparse))
+            if (!Int32.TryParse(txtPlaceValue.Text, out var tryparse))
             {
                 lblTitlePlace.ForeColor = Color.Crimson;
                 isNumber = false;
