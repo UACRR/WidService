@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls
+﻿using System.Windows.Forms;
+
+namespace IpsViewComponentLibrary.ConsumerControls
 {
     partial class ConsumerAgrDetailInfo
     {
@@ -132,7 +134,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNotation.AutoScroll = true;
-            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceComment, "Comment", true));
+            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceComment, "Comment", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtNotation.Location = new System.Drawing.Point(75, 157);
             this.txtNotation.Multiline = true;
             this.txtNotation.Name = "txtNotation";
@@ -170,14 +172,14 @@
             // txtIsPaid
             // 
             this.txtIsPaid.BorderVisible = true;
-            this.txtIsPaid.Location = new System.Drawing.Point(87, 51);
-            this.txtIsPaid.MinimumSize = new System.Drawing.Size(100, 18);
+            this.txtIsPaid.Location = new System.Drawing.Point(77, 51);
+            this.txtIsPaid.MinimumSize = new System.Drawing.Size(110, 18);
             this.txtIsPaid.Name = "txtIsPaid";
             // 
             // 
             // 
-            this.txtIsPaid.RootElement.MinSize = new System.Drawing.Size(100, 18);
-            this.txtIsPaid.Size = new System.Drawing.Size(100, 18);
+            this.txtIsPaid.RootElement.MinSize = new System.Drawing.Size(110, 18);
+            this.txtIsPaid.Size = new System.Drawing.Size(110, 18);
             this.txtIsPaid.TabIndex = 34;
             this.txtIsPaid.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.txtIsPaid.ThemeName = "Office2013Light";
@@ -207,14 +209,14 @@
             // txtAction
             // 
             this.txtAction.BorderVisible = true;
-            this.txtAction.Location = new System.Drawing.Point(87, 27);
-            this.txtAction.MinimumSize = new System.Drawing.Size(100, 18);
+            this.txtAction.Location = new System.Drawing.Point(77, 27);
+            this.txtAction.MinimumSize = new System.Drawing.Size(110, 18);
             this.txtAction.Name = "txtAction";
             // 
             // 
             // 
-            this.txtAction.RootElement.MinSize = new System.Drawing.Size(100, 18);
-            this.txtAction.Size = new System.Drawing.Size(100, 18);
+            this.txtAction.RootElement.MinSize = new System.Drawing.Size(110, 18);
+            this.txtAction.Size = new System.Drawing.Size(110, 18);
             this.txtAction.TabIndex = 32;
             this.txtAction.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.txtAction.ThemeName = "Office2013Light";
@@ -243,15 +245,16 @@
             // 
             // txtState
             // 
+            this.txtState.AutoSize = false;
             this.txtState.BorderVisible = true;
-            this.txtState.Location = new System.Drawing.Point(87, 3);
+            this.txtState.Location = new System.Drawing.Point(56, 3);
             this.txtState.MinimumSize = new System.Drawing.Size(100, 18);
             this.txtState.Name = "txtState";
             // 
             // 
             // 
             this.txtState.RootElement.MinSize = new System.Drawing.Size(100, 18);
-            this.txtState.Size = new System.Drawing.Size(100, 18);
+            this.txtState.Size = new System.Drawing.Size(131, 18);
             this.txtState.TabIndex = 30;
             this.txtState.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.txtState.ThemeName = "Office2013Light";
@@ -292,6 +295,7 @@
             // 
             // txtMinAmount
             // 
+            this.txtMinAmount.AutoSize = false;
             this.txtMinAmount.BorderVisible = true;
             this.txtMinAmount.Location = new System.Drawing.Point(111, 28);
             this.txtMinAmount.MinimumSize = new System.Drawing.Size(76, 18);
@@ -302,10 +306,10 @@
             this.txtMinAmount.RootElement.MinSize = new System.Drawing.Size(76, 18);
             this.txtMinAmount.Size = new System.Drawing.Size(76, 18);
             this.txtMinAmount.TabIndex = 32;
-            this.txtMinAmount.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.txtMinAmount.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.txtMinAmount.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadLabelElement)(this.txtMinAmount.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtMinAmount.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtMinAmount.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             ((Telerik.WinControls.UI.RadLabelElement)(this.txtMinAmount.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtMinAmount.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtMinAmount.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
@@ -329,20 +333,21 @@
             // 
             // txtRate
             // 
+            this.txtRate.AutoSize = false;
             this.txtRate.BorderVisible = true;
-            this.txtRate.Location = new System.Drawing.Point(142, 4);
+            this.txtRate.Location = new System.Drawing.Point(135, 4);
             this.txtRate.MinimumSize = new System.Drawing.Size(45, 18);
             this.txtRate.Name = "txtRate";
             // 
             // 
             // 
             this.txtRate.RootElement.MinSize = new System.Drawing.Size(45, 18);
-            this.txtRate.Size = new System.Drawing.Size(45, 18);
+            this.txtRate.Size = new System.Drawing.Size(52, 18);
             this.txtRate.TabIndex = 30;
-            this.txtRate.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.txtRate.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.txtRate.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadLabelElement)(this.txtRate.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.txtRate.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.txtRate.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             ((Telerik.WinControls.UI.RadLabelElement)(this.txtRate.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtRate.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.txtRate.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;

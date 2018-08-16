@@ -14,7 +14,6 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
-
     public partial class MiddleControlInfoAgrCalc : UserControl
     {
         private Customer _customer;
