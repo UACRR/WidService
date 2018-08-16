@@ -186,6 +186,12 @@
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\NavigatorPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\NavigatorPanelControl.Designer.cs">
+      <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\PageSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -773,6 +779,9 @@
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
+      <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\PageSelectorControl.resx">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1160,6 +1169,10 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\angle-double-left-solid.ico" />
+    <None Include="Resources\angle-double-right-solid.ico" />
+    <None Include="Resources\angle-left-solid.ico" />
+    <None Include="Resources\angle-right-solid.ico" />
     <Content Include="Resources\link-solid.ico" />
     <Content Include="Resources\plus-square-solid.ico" />
     <Content Include="Resources\unlink-solid.ico" />
