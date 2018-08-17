@@ -16,11 +16,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         private readonly RegisterService _registerService;
         private readonly DialogService _dialogService;
         private Register _register;
+        private bool _saved;
 
         public RegisterPresenter(RegisterView view, RegisterService registerService)
         {
             _view = view;
             _view.Presenter = this;
+
+            _view.FormClosing += View_FormClosing;
 
             _registerService = registerService;
             _dialogService = new DialogService();
@@ -141,6 +144,8 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public void Save()
         {
+            _saved = true;
+
             foreach (var rvm in _view.RegisterItemList)
             {
                 var foundedRegisterItem = _register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
@@ -196,6 +201,14 @@ namespace IpsViewComponentLibrary.RegisterControls
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
 
                 _view.RegisterItemList.Add(rvm);
+            }
+        }
+
+        private void View_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
+            {
+                e.Cancel = true;
             }
         }
     }
