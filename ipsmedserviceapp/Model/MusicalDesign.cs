@@ -1,4 +1,5 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
@@ -16,7 +17,9 @@ namespace ipsmedserviceapp.Model
         public TimeSpan? Duration { get; set; }
         public int? LicVersion { get; set; }
 
+        [JsonIgnore]
         public LicenseBigR Lic { get; set; }
         public ObjectRight Obj { get; set; }
     }
 }
+

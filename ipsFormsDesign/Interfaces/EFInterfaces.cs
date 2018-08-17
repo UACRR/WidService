@@ -1566,6 +1566,8 @@ public interface IRegister
          decimal? AuthRate { get; set; }
          decimal? PaidAmount { get; set; }
          int? LicId { get; set; }
+         int? SchemaId { get; set; }
+         int? AlgorithmId { get; set; }
 }
 public interface IRegisterAuthors
     {
