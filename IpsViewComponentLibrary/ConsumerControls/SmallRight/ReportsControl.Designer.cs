@@ -71,11 +71,14 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
+            this.bindingAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPeriods = new Telerik.WinControls.UI.RadGridView();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.gvPeriodReports = new Telerik.WinControls.UI.RadGridView();
+            this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnAddReport = new Telerik.WinControls.UI.RadButton();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
@@ -87,23 +90,23 @@
             this.splitPanelRatedList = new Telerik.WinControls.UI.SplitPanel();
             this.btnAddRatedList = new Telerik.WinControls.UI.RadButton();
             this.gvRatedList = new Telerik.WinControls.UI.RadGridView();
+            this.bindingRatedList = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanelReports = new Telerik.WinControls.UI.SplitPanel();
             this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.bindingAgreement = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingRatedList = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingReports = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods.MasterTemplate)).BeginInit();
             this.gvPeriods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
@@ -120,14 +123,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddRatedList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRatedList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRatedList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingRatedList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelReports)).BeginInit();
             this.splitPanelReports.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingAgreement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingRatedList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).BeginInit();
             this.SuspendLayout();
             // 
             // gvLicenseAgr
@@ -150,7 +150,7 @@
             gridViewTextBoxColumn1.FieldName = "LicenseName";
             gridViewTextBoxColumn1.HeaderText = "Ліцензія";
             gridViewTextBoxColumn1.Name = "License";
-            gridViewTextBoxColumn1.Width = 173;
+            gridViewTextBoxColumn1.Width = 174;
             gridViewTextBoxColumn2.FieldName = "Series";
             gridViewTextBoxColumn2.HeaderText = "Серія";
             gridViewTextBoxColumn2.Name = "Series";
@@ -183,11 +183,11 @@
             gridViewTextBoxColumn7.FieldName = "PeriodPaymentName";
             gridViewTextBoxColumn7.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn7.Name = "PeriodPayment";
-            gridViewTextBoxColumn7.Width = 145;
+            gridViewTextBoxColumn7.Width = 146;
             gridViewDecimalColumn2.FieldName = "Arrears";
             gridViewDecimalColumn2.HeaderText = "Борг";
             gridViewDecimalColumn2.Name = "Arrears";
-            gridViewDecimalColumn2.Width = 112;
+            gridViewDecimalColumn2.Width = 114;
             this.gvLicenseAgr.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -208,6 +208,10 @@
             this.gvLicenseAgr.TabIndex = 0;
             this.gvLicenseAgr.ThemeName = "Office2013Light";
             this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
+            // 
+            // bindingAgreement
+            // 
+            this.bindingAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
             // 
             // radLabel3
             // 
@@ -240,7 +244,7 @@
             gridViewTextBoxColumn8.FieldName = "PeriodName";
             gridViewTextBoxColumn8.HeaderText = "Період";
             gridViewTextBoxColumn8.Name = "PeriodName";
-            gridViewTextBoxColumn8.Width = 346;
+            gridViewTextBoxColumn8.Width = 347;
             gridViewTextBoxColumn9.FieldName = "StatusNavigation.Name";
             gridViewTextBoxColumn9.HeaderText = "Стан періоду";
             gridViewTextBoxColumn9.Name = "Status";
@@ -256,7 +260,7 @@
             gridViewDecimalColumn4.Width = 144;
             gridViewTextBoxColumn10.HeaderText = "Звітів";
             gridViewTextBoxColumn10.Name = "ReportCounts";
-            gridViewTextBoxColumn10.Width = 119;
+            gridViewTextBoxColumn10.Width = 121;
             gridViewTextBoxColumn11.FieldName = "IsActFormed";
             gridViewTextBoxColumn11.HeaderText = "Сформовано акт";
             gridViewTextBoxColumn11.MaxWidth = 80;
@@ -340,6 +344,10 @@
             // 
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             // 
+            // bindingPaidPeriod
+            // 
+            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
+            // 
             // gvPeriodReports
             // 
             this.gvPeriodReports.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -377,7 +385,7 @@
             gridViewTextBoxColumn15.FieldName = "FileName";
             gridViewTextBoxColumn15.HeaderText = "Назва звіту";
             gridViewTextBoxColumn15.Name = "ReportsName";
-            gridViewTextBoxColumn15.Width = 417;
+            gridViewTextBoxColumn15.Width = 418;
             gridViewTextBoxColumn15.WrapText = true;
             gridViewTextBoxColumn16.EnableExpressionEditor = false;
             gridViewTextBoxColumn16.FieldName = "ReportId";
@@ -413,7 +421,7 @@
             gridViewComboBoxColumn1.FieldName = "RgStatusNavigation.Name";
             gridViewComboBoxColumn1.HeaderText = "Стан";
             gridViewComboBoxColumn1.Name = "RgStatus";
-            gridViewComboBoxColumn1.Width = 167;
+            gridViewComboBoxColumn1.Width = 169;
             gridViewComboBoxColumn1.WrapText = true;
             gridViewCommandColumn3.EnableExpressionEditor = false;
             gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
@@ -452,6 +460,10 @@
             this.gvPeriodReports.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvPeriodReports_CellFormatting);
             this.gvPeriodReports.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodReports_CurrentRowChanged);
             this.gvPeriodReports.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvPeriodReports_CommandCellClick);
+            // 
+            // bindingReports
+            // 
+            this.bindingReports.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
             // radLabel2
             // 
@@ -644,7 +656,7 @@
             gridViewTextBoxColumn19.HeaderText = "Стан";
             gridViewTextBoxColumn19.IsAutoGenerated = true;
             gridViewTextBoxColumn19.Name = "StatusNavigation";
-            gridViewTextBoxColumn19.Width = 194;
+            gridViewTextBoxColumn19.Width = 196;
             gridViewCommandColumn5.EnableExpressionEditor = false;
             gridViewCommandColumn5.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn5.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -673,6 +685,10 @@
             this.gvRatedList.ThemeName = "Office2013Light";
             this.gvRatedList.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvRatedList_RowFormatting);
             this.gvRatedList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRatedList_CommandCellClick);
+            // 
+            // bindingRatedList
+            // 
+            this.bindingRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
             // 
             // radLabel1
             // 
@@ -716,22 +732,6 @@
             this.btnCreateReport.ThemeName = "Office2013Light";
             this.btnCreateReport.Click += new System.EventHandler(this.btnCreateReport_Click);
             // 
-            // bindingAgreement
-            // 
-            this.bindingAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
-            // 
-            // bindingPaidPeriod
-            // 
-            this.bindingPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.PaidPeriod);
-            // 
-            // bindingRatedList
-            // 
-            this.bindingRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
-            // 
-            // bindingReports
-            // 
-            this.bindingReports.DataSource = typeof(ipsFormsDesign.Model.Register);
-            // 
             // ReportsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -742,14 +742,17 @@
             this.Size = new System.Drawing.Size(1082, 642);
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriods)).EndInit();
             this.gvPeriods.ResumeLayout(false);
             this.gvPeriods.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodReports)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
@@ -766,14 +769,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddRatedList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRatedList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRatedList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingRatedList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelReports)).EndInit();
             this.splitPanelReports.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingAgreement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPaidPeriod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingRatedList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingReports)).EndInit();
             this.ResumeLayout(false);
 
         }

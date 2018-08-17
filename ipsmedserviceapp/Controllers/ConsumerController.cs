@@ -1274,6 +1274,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         public async Task<IActionResult> DeleteRegisterDetail(int regId)
         {
             IDbContextTransaction tran = null;
+            int[] validDeleteStatus = { 0, 5 };
             try
             {
 
@@ -1283,7 +1284,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 if (deleteItem == null)
                     throw new ApplicationException("Dont find Register item");
 
-                if (deleteItem.RgStatus > 1)
+                if ( !validDeleteStatus.Contains( deleteItem.RgStatus ?? 0 ) )
                 {
                     throw new ApplicationException("Can not delete Register with status > 1");
                 }

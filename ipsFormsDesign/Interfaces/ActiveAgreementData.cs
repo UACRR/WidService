@@ -2,13 +2,16 @@
 using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Interfaces
 {
-
+    /// <summary>
+    /// Активний договір єдиний інтерфейс для малих та великих прав
+    /// </summary>
     public interface IAgreementData
     {
         string LicenseName { get; }
@@ -68,8 +71,8 @@ namespace ipsFormsDesign.Interfaces
         }
 
         public string AgrNumber { get => _param.LicNum; }
-        public DateTime DateBegin { get => (DateTime)_param.DateBegin; }
-        public DateTime DateEnd { get => (DateTime)_param.DateEnd; }
+        public DateTime DateBegin { get => _param.DateBegin ?? DateTime.Today; }
+        public DateTime DateEnd { get => _param.DateEnd ?? new DateTime(3000,1,1); }
         public decimal Amount { get => _param.MinAmount ?? 0; }
         public int State { get => _param.LicStatus ?? 0; }
         public string StateName { get => _status.Name; }
@@ -99,6 +102,19 @@ namespace ipsFormsDesign.Interfaces
         public string StateName { get => _status.Name; }
         public int PeriodPayment { get => _period.CodeI; }
         public string PeriodPaymentName { get => _period.Name; }
+    }
+
+    public class CurrentAgreementController : Component
+    {
+        public event EventHandler<LicenseAgreement> CurrentLicenseAgreementChanged;
+        private LicenseAgreement _current;
+        public int LicId { get => _current?.LicId ?? 0; }
+        public void ChangeCurrentLicenseAgreement(object sender, LicenseAgreement current )
+        {
+            _current = current;
+            CurrentLicenseAgreementChanged?.Invoke(sender, _current);
+        }
+
     }
 
 }

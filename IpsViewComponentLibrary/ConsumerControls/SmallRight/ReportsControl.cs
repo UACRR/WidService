@@ -39,9 +39,43 @@ namespace IpsViewComponentLibrary
         private Dictionary<int, RegisterListStatus> dicRatedListStatus;
 
         private TypeRights _typeRights = TypeRights.All;
+        /// <summary>
+        /// Керування зміною поточного активного договору
+        /// </summary>
+        private CurrentAgreementController _currentAgreementController = null;
         [EditorBrowsable]
-        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } } 
+        public CurrentAgreementController CurrentAgreementController
+        {
+            get => _currentAgreementController;
+            set
+            {
+                if (_currentAgreementController != null)
+                    _currentAgreementController.CurrentLicenseAgreementChanged -= _currentAgreementController_CurrentLicenseAgreementChanged;
+                _currentAgreementController = value;
+                if (_currentAgreementController != null)
+                    _currentAgreementController.CurrentLicenseAgreementChanged += _currentAgreementController_CurrentLicenseAgreementChanged;
+            }
+        }
+
+        // 
+        private void _currentAgreementController_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
+        {
+            if (inChangeCurrentAgreement == true)
+                return;
+
+            var lic = ActiveAgreementDataFactory.CreateAgreementData(e);
+            var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as IAgreementData)?.Lic.LicId == e.LicId);
+            if (row != null && row.IsCurrent == false)
+            {
+                row.IsCurrent = true;
+                if (row.IsVisible == false) row.IsVisible = true;
+            }
+        }
+
+        [EditorBrowsable]
+        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } }
         private List<int> validClass;
+
 
         private void reinitValidClass()
         {
@@ -80,6 +114,8 @@ namespace IpsViewComponentLibrary
         }
 
         private Customer _customer;
+        private bool inChangeCurrentAgreement;
+
         public Customer Customer
         {
             get { return _customer; }
@@ -151,7 +187,7 @@ namespace IpsViewComponentLibrary
             if (validClass == null)
                 reinitValidClass();
 
-            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && validClass.Contains( rec.LicClass ) )
+            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && validClass.Contains(rec.LicClass))
                             .Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
             bindingAgreement.DataSource = listAgreement;
         }
@@ -161,6 +197,9 @@ namespace IpsViewComponentLibrary
             bindingAgreement.DataSource = typeof(IAgreementData);
             bindingPaidPeriod.DataSource = typeof(PaidPeriod);
             bindingReports.DataSource = typeof(Register);
+            buttonController.SetPeriodState(null, null);
+            btnAddRatedList.Enabled = false;
+
         }
         private void CreateAct()
         {
@@ -180,19 +219,32 @@ namespace IpsViewComponentLibrary
         // * * * [Активні договори]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is LicenseAgrParam))
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
             {
                 bindingPaidPeriod.DataSource = typeof(PaidPeriod);
                 return;
 
             }
 
-            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
+            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
+            if (CurrentAgreementController != null && lic != null && lic.Lic.LicId != CurrentAgreementController.LicId)
+            {
+                inChangeCurrentAgreement = true;
+                CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
+                inChangeCurrentAgreement = false;
+
+            }
 
             if (lic?.Lic?.PaidPeriod.Count > 0)
+            {
                 bindingPaidPeriod.DataSource = lic?.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
+
+            }
             else
-                bindingPaidPeriod.DataSource = new List<PaidPeriod>();
+            {
+                bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+                buttonController.SetPeriodState(null, null);
+            }
 
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             /// Цирк,Філармонія,Концертна діяльність
@@ -286,12 +338,20 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register { RgStatus = 0
-                                , FileName = Path.GetFileName(dialog.FileName)
-                                , CustId = _customer.CustId
-                                , RgStatusNavigation = dicRegStatus[0]
-                                , PeriodId = period.PeriodId
-                                , RegisterRatedList = RatedList  };
+                    Register addRegister = new Register
+                    {
+                        RgStatus = 0
+                                ,
+                        FileName = Path.GetFileName(dialog.FileName)
+                                ,
+                        CustId = _customer.CustId
+                                ,
+                        RgStatusNavigation = dicRegStatus[0]
+                                ,
+                        PeriodId = period.PeriodId
+                                ,
+                        RegisterRatedList = RatedList
+                    };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
@@ -354,10 +414,10 @@ namespace IpsViewComponentLibrary
                     });
                 }
                 var register = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
-                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.UsesKind;
+                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
                 if (register != null && (licKind == 2 || licKind == 3)) // рапортичка
                 {
-                    
+
                     CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register)
                     {
                         StartPosition = FormStartPosition.CenterParent
@@ -401,7 +461,7 @@ namespace IpsViewComponentLibrary
 
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
             var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
-            var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.UsesKind;
+            var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
 
             var list = GetRegisterItems(register.RegId);
 
@@ -450,13 +510,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        //private void gvLicenseAgr_RowFormatting(object sender, Telerik.WinControls.UI.RowFormattingEventArgs e)
-        //{
-        //    var row = e.RowElement.RowInfo;
-        //    var licAgr = row.DataBoundItem as LicenseAgrParam;
-        //    var debt = licAgr?.Lic.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount) ?? 0;
-        //    row.Cells["Arrears"].Value = debt;
-        //}
 
         private void gvPeriodReports_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
@@ -475,6 +528,7 @@ namespace IpsViewComponentLibrary
         private void gvPeriodReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             string Name = e.Column.Name;
+            int[] EditingStatus = { 0, 5 };
             if (Name == "DeleteColumn" || Name == "EditColumn")
             {
                 var register = e.Row.DataBoundItem as Register;
@@ -483,7 +537,7 @@ namespace IpsViewComponentLibrary
                     e.CellElement.Enabled = false;
                 }
 
-                else if (register.RgStatus > 0 && Name == "DeleteColumn")
+                else if (!EditingStatus.Contains(register.RgStatus ?? 0) && Name == "DeleteColumn")
                     e.CellElement.Enabled = false;
                 else
                     e.CellElement.Enabled = true;
@@ -637,7 +691,7 @@ namespace IpsViewComponentLibrary
                 case 6: // Кошти отримані
                     _addReport.Enabled = false;
                     _toAcception.Enabled = regStates[2] > 0; // Нових > 0
-                    _accepted.Enabled = false; 
+                    _accepted.Enabled = false;
                     _create.Enabled = false;
                     break;
                 default: // Зактритий

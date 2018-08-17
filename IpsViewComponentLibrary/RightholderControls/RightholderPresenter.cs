@@ -15,11 +15,15 @@ namespace IpsViewComponentLibrary.RightholderControls
         private readonly RightholderService _rightholderService;
         private readonly DialogService _dialogService;
         private Customer _customer;
+        private bool _saved;
 
         public RightholderPresenter(RightholderView view)
         {
             _view = view;
             _view.Presenter = this;
+
+            _view.FormClosing += View_FormClosing;
+
             _rightholderService = new RightholderService();
             _dialogService = new DialogService();
         }
@@ -54,6 +58,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (_customer == null)
                 return;
 
+            _saved = true;
+
             if (accept)
                 _customer.Status = 2; // Активний
 
@@ -66,6 +72,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
             else
                 _dialogService.ShowError(_view, "Не вдалося зберегти правовласника.");
+        }
+
+        private void View_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
