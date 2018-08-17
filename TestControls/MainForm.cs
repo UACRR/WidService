@@ -22,7 +22,7 @@ namespace TestControls
     {
         private ConsumerService _service;
         private EditPay payForm = null;
-        private ConsumerBigRightView _curItem = null;
+        private ConsumerMainView _curItem = null;
         //private bool isInit = false;
         public MainForm()
         {
@@ -45,8 +45,9 @@ namespace TestControls
 
             payForm = new EditPay();
 
-            var employee = _service.getMainViewBR(TypeBRDocument.All);
+            var employee = _service.getMainView(ConsumerFilterEnum.All);
             bindingSource1.DataSource = employee;
+
             if (radGridView1.RowCount > 0)
             {
                 radGridView1.Rows[0].IsCurrent = true;
@@ -65,7 +66,7 @@ namespace TestControls
 
         private void radGridView2_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            _curItem = (ConsumerBigRightView)radGridView2.CurrentRow.DataBoundItem;
+            _curItem = (ConsumerMainView)radGridView2.CurrentRow.DataBoundItem;
             if (_curItem == null)
                 return;
             var listPays = _service.GetCustomerPays(_curItem.CustId);
