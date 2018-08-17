@@ -33,6 +33,8 @@ namespace ipsFormsDesign.Model
         public decimal? AuthRate { get; set; }
         public decimal? PaidAmount { get; set; }
         public int? LicId { get; set; }
+        public int? SchemaId { get; set; }
+        public int? AlgorithmId { get; set; }
 
         public Client Cust { get; set; }
         public RegisterRatedList RegisterRatedList { get; set; }
