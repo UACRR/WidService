@@ -49,6 +49,8 @@ namespace IpsViewComponentLibrary
                             FormMode formMode = FormMode.ForBigRightAdmin)
         {
             InitializeComponent();
+
+            dictionaties = IpsGlobal.AnketaDictionaties;
             _licId = licId;
             _customer = customer;
             DialogResult = DialogResult.None;
