@@ -45,5 +45,15 @@ namespace IpsViewComponentLibrary.Utilities
         {
             RadMessageBox.Show(parent, message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error, MessageBoxDefaultButton.Button1, RightToLeft.Inherit, details);
         }
+
+        public bool ClosingIsConfirmed()
+        {
+            return ClosingIsConfirmed(null);
+        }
+
+        public bool ClosingIsConfirmed(IWin32Window parent)
+        {
+            return RadMessageBox.Show(parent, "Закрити без збереження?", "Питання", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes;
+        }
     }
 }
