@@ -80,12 +80,31 @@ namespace IpsViewComponentLibrary
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             var row = e?.Row?.DataBoundItem as BigRightRegister;
+            if(row?.Status == 1) return;
+
+            var payslip = GetRatedList(row);
+
+            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
+            if (addform.ShowDialog() == DialogResult.OK)
+            {
+                if (OnSavePayslip?.Invoke(payslip) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно",
+                        MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
+            }
+        }
+
+        private RegisterRatedList GetRatedList(BigRightRegister reg)
+        {
             var customer = OnGetRegisterRatedList?.Invoke(_customer.CustId);
-            var license =
-                customer?.Client?.LicenseAgreement?.SingleOrDefault(
-                    rec => rec?.LicClass == 1 && rec?.LicStatus == 2);
-            var paidPeriod = license?.PaidPeriod?.SingleOrDefault(rec => rec?.PeriodId == row?.PeriodId);
-            var payslip = paidPeriod?.RegisterRatedList?.SingleOrDefault(rec => rec?.RmId == row?.RmId);
+            var license = customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec?.LicClass == 1 && rec?.LicStatus == 2);
+            var paidPeriod = license?.PaidPeriod?.SingleOrDefault(rec => rec?.PeriodId == reg?.PeriodId);
+            var payslip = paidPeriod?.RegisterRatedList?.SingleOrDefault(rec => rec?.RmId == reg?.RmId);
 
             if (payslip != null)
                 foreach (var register in payslip.Register)
@@ -99,36 +118,7 @@ namespace IpsViewComponentLibrary
                     }
                 }
 
-            if (e?.Column?.FieldName == "btnsEdit")
-            {
-                PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
-                {
-                    StartPosition = FormStartPosition.CenterParent
-                };
-                addform.SaveRegisterMethod = AcceptRatedList;
-                addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
-                if (addform.ShowDialog() == DialogResult.OK)
-                {
-                    if (OnSavePayslip?.Invoke(payslip) ?? false)
-                        ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно",
-                            MessageBoxIcon.Information);
-                    else
-                        ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
-                }
-            }
-            else if (e?.Column?.FieldName == "btnsView")
-            {
-                var addform = new PayslipsCrEdForm(FormType.View, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
-                {
-                    StartPosition = FormStartPosition.CenterParent,
-                };
-                addform.ShowDialog();
-            }
-        }
-
-        private bool AcceptRatedList(RegisterRatedList ratedList)
-        {
-            return OnSavePayslip?.Invoke(ratedList) ?? false;
+            return payslip;
         }
 
         private void Addform_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
@@ -228,6 +218,19 @@ namespace IpsViewComponentLibrary
         {
             if (pageView.SelectedPage == pvMusicalDesign)
                 UpdateMusicDesignData();
+        }
+
+        private void btnToAccept_Click(object sender, EventArgs e)
+        {
+            if(gvViewRl.CurrentRow.DataBoundItem is BigRightRegister reg)
+            {
+                var ratedlist = GetRatedList(reg);
+                ratedlist.Status = 1;
+                foreach (var item in ratedlist.Register)
+                    item.RgStatus = 2;
+                
+                var result = OnSavePayslip?.Invoke(ratedlist) ?? false;
+            }
         }
     }
 }

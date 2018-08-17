@@ -25,9 +25,6 @@ namespace IpsViewComponentLibrary
         private FormType _type;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
 
-        public delegate bool SaveRegister(RegisterRatedList ratedList);
-        public SaveRegister SaveRegisterMethod { get; set; }
-
         public PayslipsCrEdForm()
         {
             InitializeComponent();
@@ -123,7 +120,7 @@ namespace IpsViewComponentLibrary
                 case FormType.Edit:
                 {
                     Text = "Редагування Р/Л";
-                    btnAccept.Visible = true;
+                    ddlPeriod.ReadOnly = true;
                 }
                     break;
                 case FormType.View:
@@ -280,13 +277,6 @@ namespace IpsViewComponentLibrary
         private void txtRoyalty_Leave(object sender, EventArgs e)
         {
             UpdFullSum();
-        }
-
-        private void btnAccept_Click(object sender, EventArgs e)
-        {
-            _registerRatedList.Status = 2;
-            if(SaveRegisterMethod?.Invoke(_registerRatedList) ?? false)
-                ExtensionUtils.ShowInfoMessage("Розрахунковий лист погоджено!", "Успішно", MessageBoxIcon.Information);
         }
     }
 
