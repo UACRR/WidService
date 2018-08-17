@@ -199,6 +199,7 @@
             this.ddlPeriod.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRegister, "PeriodId", true));
             this.ddlPeriod.DataSource = this.bsPeriodList;
             this.ddlPeriod.DisplayMember = "PeriodName";
+            this.ddlPeriod.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlPeriod.Location = new System.Drawing.Point(188, 3);
             this.ddlPeriod.Name = "ddlPeriod";
             this.ddlPeriod.Size = new System.Drawing.Size(221, 21);

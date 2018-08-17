@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Drawing;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlCabinetPayslips
     {
@@ -301,7 +303,7 @@
             gridViewTextBoxColumn5.MinWidth = 80;
             gridViewTextBoxColumn5.Name = "PeriodName";
             gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn5.Width = 96;
+            gridViewTextBoxColumn5.Width = 95;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.FieldName = "CreateDate";
             gridViewTextBoxColumn6.FormatString = "{0:d}";
@@ -317,41 +319,41 @@
             gridViewTextBoxColumn7.MinWidth = 100;
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "FullAmount";
-            gridViewTextBoxColumn7.Width = 122;
+            gridViewTextBoxColumn7.Width = 120;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "RAmount";
             gridViewTextBoxColumn8.HeaderText = "Сума авторського гонорару";
             gridViewTextBoxColumn8.MinWidth = 100;
             gridViewTextBoxColumn8.Name = "RAmount";
-            gridViewTextBoxColumn8.Width = 122;
+            gridViewTextBoxColumn8.Width = 120;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "PaidAmount";
             gridViewTextBoxColumn9.HeaderText = "Сума закріплених платежів";
             gridViewTextBoxColumn9.MinWidth = 100;
             gridViewTextBoxColumn9.Multiline = true;
             gridViewTextBoxColumn9.Name = "PaidAmount";
-            gridViewTextBoxColumn9.Width = 122;
+            gridViewTextBoxColumn9.Width = 120;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.FieldName = "DistribAmount";
             gridViewTextBoxColumn10.HeaderText = "Розподілено коштів на об\'єкти права";
             gridViewTextBoxColumn10.MinWidth = 100;
             gridViewTextBoxColumn10.Multiline = true;
             gridViewTextBoxColumn10.Name = "DistribAmount";
-            gridViewTextBoxColumn10.Width = 122;
+            gridViewTextBoxColumn10.Width = 120;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.FieldName = "Borg";
             gridViewTextBoxColumn11.HeaderText = "Борг";
             gridViewTextBoxColumn11.MinWidth = 100;
             gridViewTextBoxColumn11.Multiline = true;
             gridViewTextBoxColumn11.Name = "Borg";
-            gridViewTextBoxColumn11.Width = 122;
+            gridViewTextBoxColumn11.Width = 120;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.FieldName = "PrepaySum";
             gridViewTextBoxColumn12.HeaderText = "За рахунок авансу";
             gridViewTextBoxColumn12.MinWidth = 100;
             gridViewTextBoxColumn12.Multiline = true;
             gridViewTextBoxColumn12.Name = "PrepaySum";
-            gridViewTextBoxColumn12.Width = 122;
+            gridViewTextBoxColumn12.Width = 120;
             gridViewTextBoxColumn12.WrapText = true;
             gridViewTextBoxColumn13.DataType = typeof(double);
             gridViewTextBoxColumn13.FieldName = "StatusName";
@@ -360,7 +362,7 @@
             gridViewTextBoxColumn13.Multiline = true;
             gridViewTextBoxColumn13.Name = "StatusName";
             gridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn13.Width = 157;
+            gridViewTextBoxColumn13.Width = 175;
             gridViewTextBoxColumn13.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
@@ -371,11 +373,11 @@
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn1.MaxWidth = 35;
-            gridViewCommandColumn1.MinWidth = 35;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "btnsEdit";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.Width = 35;
+            gridViewCommandColumn1.Width = 30;
             gridViewCommandColumn1.WrapText = true;
             this.gvViewRl.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn4,
@@ -476,6 +478,7 @@
             this.btnToAccept.TabIndex = 12;
             this.btnToAccept.Text = "Погодити перелік вистав";
             this.btnToAccept.ThemeName = "Office2013Light";
+            this.btnToAccept.Click += new System.EventHandler(this.btnToAccept_Click);
             // 
             // pvMusicalDesign
             // 
