@@ -80,7 +80,10 @@ namespace IpsViewComponentLibrary
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             var row = e?.Row?.DataBoundItem as BigRightRegister;
-            if(row?.Status == 1) return;
+            btnToAccept.Enabled = row?.Status == 0;
+            if (row?.Status == 1)
+                return;
+            
 
             var payslip = GetRatedList(row);
 
@@ -230,6 +233,10 @@ namespace IpsViewComponentLibrary
                     item.RgStatus = 2;
                 
                 var result = OnSavePayslip?.Invoke(ratedlist) ?? false;
+                if (result)
+                    ExtensionUtils.ShowInfoMessage("Перелік вистав погоджено!", "Успішно", MessageBoxIcon.Information);
+                else
+                    ;
             }
         }
     }

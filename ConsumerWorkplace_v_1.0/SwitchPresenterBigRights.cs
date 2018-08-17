@@ -144,8 +144,8 @@ namespace ConsumerWorkplace_v_1._0
         private bool SavePayslips(RegisterRatedList list)
         {
             var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
-            if(outlist?.Period?.CustId != null)
-                UpdateData(outlist.Period.CustId);
+            if(outlist?.Register?.FirstOrDefault()?.CustId is int id)
+                UpdateData(id);
             return result;
         }
 
