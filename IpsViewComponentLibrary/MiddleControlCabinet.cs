@@ -73,11 +73,9 @@ namespace IpsViewComponentLibrary
 
         public MiddleControlCabinet()
         {
-            _anketaDictionaties = new AnketaDictionaties();
-            //_anketaDictionaties = IpsGlobal.AnketaDictionaties;
             InitializeComponent();
-            ctrlReference.SetAnketaDictionary(_anketaDictionaties);
-            ctrlRequest.SetAnketaDictionary(_anketaDictionaties);
+            ctrlReference.SetAnketaDictionary();
+            ctrlRequest.SetAnketaDictionary();
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;

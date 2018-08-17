@@ -45,9 +45,9 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetAnketaDictionary(AnketaDictionaties dictionaties)
+        public void SetAnketaDictionary()
         {
-            _dictionaties = dictionaties;
+            _dictionaties = IpsGlobal.AnketaDictionaties;
             bsDictionary.DataSource = _dictionaties.workType;
         }
 
@@ -135,8 +135,6 @@ namespace IpsViewComponentLibrary
                 btnSave.Enabled = false;
                 btnCancel.Enabled = false;
                 btnToReference.Enabled = false;
-                //створити заявку
-                btnCreate.Enabled = _typeControl != ControlRequestOrReferenceType.Reference;
             }
             else
             {
@@ -161,7 +159,8 @@ namespace IpsViewComponentLibrary
             // (видима в заявках) в стан довідки при статусі активна або на погодження
             btnToReference.Enabled = item?.LicStatus <= 3;
             // створити ліцензію
-            btnCreate.Enabled = item?.LicStatus == 2;
+            //створити заявку
+            btnCreate.Enabled = _typeControl != ControlRequestOrReferenceType.Reference || (_typeControl == ControlRequestOrReferenceType.Reference && item?.LicStatus == 2);
 
             bindingSource1.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
 

@@ -153,8 +153,8 @@ namespace IpsViewComponentLibrary
                 bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
                 bsDictLanguage.DataSource = dictionaties.language;
 
-                ctrlMusicalDesignList.DataSource = _musicalDesignList;
                 SetMusicalDesignData(_licenseAgreement);
+                ctrlMusicalDesignList.DataSource = _musicalDesignList;
                 if (_licenseAgreement.LicStatus != 3)
                 {
                     panelStatusees.Enabled = false;
@@ -230,7 +230,7 @@ namespace IpsViewComponentLibrary
             }
 
             licenseAgreement.LicenseBigR.MusicalDesign.Clear();
-
+            if(_musicalDesignList.Any())
             foreach (var rvm in _musicalDesignList)
             {
                 var musicalDesign = new MusicalDesign
@@ -253,6 +253,33 @@ namespace IpsViewComponentLibrary
                 }
 
                 licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
+            }
+            else
+            {
+                var viewModel = ctrlMusicalDesignList.GetDataSource;
+                foreach (var item in viewModel)
+                {
+                    var musicalDesign = new MusicalDesign
+                    {
+                        MdId = item.MdId,
+                        LicId = item.LicId,
+                        Objid = item.ObjId,
+                        ObjName = item.ItemName,
+                        NameSinger = item.Performer,
+                        NameMusician = item.AuthorMusic,
+                        Duration = item.DurationItem,
+                        NumbPerfom = item.CountUse,
+                        LicVersion = item.LicVersion,
+                    };
+
+                    if (_licId.HasValue)
+                    {
+                        musicalDesign.LicId = licenseAgreement.LicId;
+                        musicalDesign.LicVersion = licenseAgreement.LicVersion;
+                    }
+
+                    licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
+                }
             }
         }
 
