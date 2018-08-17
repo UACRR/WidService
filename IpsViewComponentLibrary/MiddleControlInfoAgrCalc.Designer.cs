@@ -76,6 +76,7 @@
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
             this.reportsControl = new IpsViewComponentLibrary.ReportsControl();
+            this.currentAgreementController1 = new ipsFormsDesign.Interfaces.CurrentAgreementController();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
             this.calculationCtrl = new IpsViewComponentLibrary.CalculationInfoControl();
             this.pvPayments = new Telerik.WinControls.UI.RadPageViewPage();
@@ -595,6 +596,7 @@
             // 
             // reportsControl
             // 
+            this.reportsControl.CurrentAgreementController = this.currentAgreementController1;
             this.reportsControl.Customer = null;
             this.reportsControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reportsControl.Location = new System.Drawing.Point(0, 0);
@@ -602,6 +604,11 @@
             this.reportsControl.Name = "reportsControl";
             this.reportsControl.Size = new System.Drawing.Size(982, 501);
             this.reportsControl.TabIndex = 0;
+            this.reportsControl.TypeRights = ipsFormsDesign.Dictionary.TypeRights.All;
+            // 
+            // currentAgreementController1
+            // 
+            this.currentAgreementController1.CurrentLicenseAgreementChanged += new System.EventHandler<ipsFormsDesign.Model.LicenseAgreement>(this.currentAgreementController1_CurrentLicenseAgreementChanged);
             // 
             // pvCalculation
             // 
@@ -615,6 +622,7 @@
             // calculationCtrl
             // 
             this.calculationCtrl.AutoScroll = true;
+            this.calculationCtrl.CurrentAgreementController = this.currentAgreementController1;
             this.calculationCtrl.Customer = null;
             this.calculationCtrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calculationCtrl.Location = new System.Drawing.Point(0, 0);
@@ -623,6 +631,7 @@
             this.calculationCtrl.Name = "calculationCtrl";
             this.calculationCtrl.Size = new System.Drawing.Size(982, 562);
             this.calculationCtrl.TabIndex = 0;
+            this.calculationCtrl.TypeRights = ipsFormsDesign.Dictionary.TypeRights.All;
             // 
             // pvPayments
             // 
@@ -723,5 +732,6 @@
         private ConsumerControls.ConsumerHeaderInfo ctrlHeaderInfo;
         private ConsumerControls.ConsumerAgrDetailInfo ctrlAgrDetailInfo;
         private ConsumerControls.ConsumerAgrDetailInfo ctrlAgrDetailInfoMore;
+        private ipsFormsDesign.Interfaces.CurrentAgreementController currentAgreementController1;
     }
 }

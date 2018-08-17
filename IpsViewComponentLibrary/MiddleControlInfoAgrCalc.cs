@@ -121,7 +121,7 @@ namespace IpsViewComponentLibrary
         {
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
-                foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass != 1))
+                foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass == 0))
                 {
                     //якщо з малими правами, пропустити
                     if (Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
@@ -141,7 +141,8 @@ namespace IpsViewComponentLibrary
                         MinRate = licenseParam?.RateAmount ?? default(decimal),
                         State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
                         PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
-                        DateLastPayment = ""
+                        DateLastPayment = "",
+                        LicenseAgreement = item
                     });
                 }
             //
@@ -155,6 +156,8 @@ namespace IpsViewComponentLibrary
         {
             if (!(e.CurrentRow.DataBoundItem is GridLicenseAgrView curRow)) return;
             SetAgrInfoData(curRow.LicId, GridCallMethod.ActiveAgreementGrid);
+            if (currentAgreementController1 != null)
+                currentAgreementController1.ChangeCurrentLicenseAgreement(this, curRow.LicenseAgreement);
         }
 
         // кнопка [Пролонгувати договір]
@@ -545,6 +548,13 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
+
+        private void currentAgreementController1_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
+        {
+            var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as GridLicenseAgrView)?.LicId == e.LicId);
+            if (row != null && row.IsCurrent != true)
+                row.IsCurrent = true;
+        }
     }
 
     /// <summary>
@@ -567,5 +577,6 @@ namespace IpsViewComponentLibrary
         public string PeriodPayment { get; set; }
         public string DateLastPayment { get; set; }
         public int LicId { get; set;  }
+        public LicenseAgreement LicenseAgreement;
     }
 }

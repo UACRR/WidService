@@ -72,7 +72,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             _register.RegisterItem.Add(_registerItemCreation);
             RegisterItemDataSource = _registerItemCreation;
             RegisterDataSource = _register;
-            CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 6);
+            CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                 {
                     regExtra.Add(registerExtra as RegisterExtraGridSource);
                     regExtra.LastOrDefault().RoleName = IpsGlobal.AnketaDictionaties.creativeRoleType
-                        .SingleOrDefault(rec => rec.CategoryCode == 6 && rec.CodeI == registerExtra.RoleCode)?.Name;
+                        .SingleOrDefault(rec => (rec.CategoryCode == 5 && rec.Crtype == 1) && rec.CodeI == registerExtra.RoleCode)?.Name;
                 }
             }
             registerItemBindingSource.DataSource = items;
@@ -169,7 +169,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             };
             _register.RegisterItem.Add(_registerItemMusDesign);
             AddAuthRoleForMusDesingBr addAuthRole = new AddAuthRoleForMusDesingBr(_registerItemMusDesign){
-                CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 6)
+                CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1)
             };
             if (addAuthRole.ShowDialog() == DialogResult.OK)
                 CreateDataForHierarchy();
