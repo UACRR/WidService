@@ -458,7 +458,7 @@ namespace IpsViewComponentLibrary
             var register = gvPeriodReports.CurrentRow.DataBoundItem as Register;
             if (register == null)
                 return;
-
+            
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
             var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
             var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
@@ -470,7 +470,7 @@ namespace IpsViewComponentLibrary
 
             if (reg != null && (licKind == 2 || licKind == 3)) // рапортичка
             {
-                CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register, false)
+                CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
@@ -478,7 +478,7 @@ namespace IpsViewComponentLibrary
                 return;
             }
 
-            ReportExcelViewForm viewForm = new ReportExcelViewForm(register);
+            ReportExcelViewForm viewForm = new ReportExcelViewForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
             viewForm.ShowDialog();
         }
 

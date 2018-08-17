@@ -60,6 +60,8 @@ namespace IpsViewComponentLibrary
                 ReportNameBindingSource = register;
                 btn.Text = "Закрити";
                 txtReportPeriod.TextBoxElement.DrawBorder = false;
+                txtReportPeriod.TextBoxElement.IsReadOnly = true;
+                txtReportPeriod.TextBoxElement.IsReadOnlyCaretVisible = false;
                 CanEditRow = false;
             }
         }

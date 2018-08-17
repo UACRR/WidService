@@ -87,20 +87,19 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             _registerItemCreation = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
             RegisterItemDataSource = _registerItemCreation;
             RegisterDataSource = _register;
-            //CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 6);
-            btnAddRegItem.Enabled = false;
-            btnAddCreativeRole.Enabled = false;
-            btnSave.Enabled = false;
-            txtName.ReadOnly = true;
-            txtAuthName.ReadOnly = true;
-            txtAmount.ReadOnly = true;
-            txtAuthRate.ReadOnly = true;
-            txtAuthAmount.ReadOnly = true;
-            ddlCreativeRole.Enabled = false;
-            txtMusicalDesignRate.ReadOnly = true;
-            txtMusicalDesignAmount.ReadOnly = true;
+            CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
+            btnAddRegItem.Enabled = isEdit;
+            btnAddCreativeRole.Enabled = isEdit;
+            btnSave.Enabled = isEdit;
+            txtName.ReadOnly = !isEdit;
+            txtAuthName.ReadOnly = !isEdit;
+            txtAmount.ReadOnly = !isEdit;
+            txtAuthRate.ReadOnly = !isEdit;
+            txtAuthAmount.ReadOnly = !isEdit;
+            ddlCreativeRole.Enabled = isEdit;
+            txtMusicalDesignRate.ReadOnly = !isEdit;
+            txtMusicalDesignAmount.ReadOnly = !isEdit;
             CreateDataForHierarchyView();
-
         }
 
         private void ConvertToRegisterExtra()
