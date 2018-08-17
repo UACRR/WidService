@@ -32,7 +32,11 @@ namespace IpsViewComponentLibrary
             {"pvAvances", CabinetTabType.Prepays},
             {"pvContacts", CabinetTabType.Contacts}
         };
-
+        public MiddleControlCabinetPayslips.MusicDesingDelegate MusicDesignDelegate
+        {
+            get => ctrlPayslips.MusicDesing;
+            set => ctrlPayslips.MusicDesing = value;
+        }
 
         private Customer _customer = null;
         private ConsumerBigRightView _brView;

@@ -340,6 +340,16 @@ namespace ipsFormsDesign.Interfaces
         public decimal? MusicAmount { get; set; }
     }
 
+    public class MusicDesignRatedListView
+    {
+        public TimeSpan? Duration { get; set; }
+        public int RmId { get; set; }
+        public int RegId { get; set; }
+        public int? ObjId { get; set; }
+        public string ObjName { get; set; }
+        public string NameMusician { get; set; }
+        public string NameSinger { get; set; }
+    }
 
 
     #region класи для створення ієрархії
@@ -347,6 +357,7 @@ namespace ipsFormsDesign.Interfaces
     public class ParentTemplate : IParentTemplate
     {
         public int? ObjId { get; set; }
+        public  int? RegId { get; set; }
         public string ItemName { get; set; }
         public decimal? RegAmount { get; set; }
         public int? ActCode { get; set; }

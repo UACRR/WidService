@@ -28,13 +28,13 @@ namespace IpsViewComponentLibrary
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
 
-
+        public delegate List<MusicDesignRatedListView> MusicDesingDelegate();
+        public MusicDesingDelegate MusicDesing { get; set; }
 
         public MiddleControlCabinetPayslips()
         {
             InitializeComponent();
             gvViewSpectacles.MasterTemplate.ShowChildViewCaptions = false;
-            
         }
 
         public void SetAndUpdateData(Customer customer, 
@@ -156,6 +156,7 @@ namespace IpsViewComponentLibrary
                     parent = new ParentTemplate
                     {
                         ObjId = (int)item.ObjId,
+                        RegId = item.RegId,
                         ItemName = item.ItemName,
                         ActCode = item.ActCode,
                         AuthAmount = item.AuthAmount,
@@ -163,7 +164,6 @@ namespace IpsViewComponentLibrary
                         AvanseRest = item.AvanseRest,
                         PrepaySumAuthor = item.PrepaySumAuthor,
                         RegAmount = item.RegAmount,
-                        
                     };
                     dicParent.Add( (int)parent.ObjId, parent);
                     parentList.Add(parent);
@@ -212,9 +212,9 @@ namespace IpsViewComponentLibrary
             cMusAmount.TextValue = musicd?.MusicAmount.ToString();
             cMusRate.TextValue = musicd?.MusicRate.ToString();
 
-            var mus = _customer.Client.LicenseAgreement.SingleOrDefault(item => item.LicId == 0)?.LicenseBigR?.MusicalDesign;
-
-            gvMusicDesignView.DataSource = mus;
+            var musicDesign = MusicDesing?.Invoke();
+            var source = musicDesign?.Where(r => r.RegId == rec?.RegId).ToList();
+            gvMusicDesignView.DataSource = source;
         }
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)

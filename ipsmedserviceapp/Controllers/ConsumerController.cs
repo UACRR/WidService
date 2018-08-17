@@ -739,7 +739,8 @@ namespace ipsmedserviceapp.Controllers
             {"vTsk_1_MoneyUndescrib", "vTsk_1_MoneyUndescrib"},
             {"vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay"},
             {"vTSK_1_BRObjects", "vTSK_1_BRObjects"},
-            {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"}
+            {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"},
+            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"}
         };
 
 

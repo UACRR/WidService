@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
     public delegate void UpdateCustomerDataEventHandler(int id);
 
-
+    
 
     public static class ExtensionUtils
     {
