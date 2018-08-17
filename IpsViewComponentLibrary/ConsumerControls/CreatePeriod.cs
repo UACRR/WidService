@@ -72,7 +72,7 @@ namespace IpsViewComponentLibrary
                 (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0:MMMM} {0:yyyy} року", d )); }, // Місяць 
                 (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0} квартал {1:yyyy} року", d.Month / 3 + 1, d )); }, // Квартал
                 (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0} півріччя {1:yyyy} року", d.Month/6+1, d )); }, // Півріччя
-                (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0:yyyy} рок", d )); }, // Рік
+                (d)=>{ return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(string.Format( "{0:yyyy} рік", d )); }, // Рік
             };
             Func<DateTime, string> namePariod = namePeriods[0];
             int PeriodCode = 0;
