@@ -63,6 +63,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             SetControlEnabled(status);
         }
 
+        public void ExpandAll()
+        {
+            ctrlRegisterItemList.ExpandAll();
+        }
+
         private void SetDictionaries()
         {
             ddlStatus.ValueMember = "CodeI";

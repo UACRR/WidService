@@ -49,7 +49,7 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.registerBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
+            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListExControl();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -289,18 +289,14 @@
             this.ctrlRegisterItemList.AllowLinkCommand = true;
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
-            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
-            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 41);
-            this.ctrlRegisterItemList.MultiSelect = true;
+            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemList.Location = new System.Drawing.Point(33, 51);
+            this.ctrlRegisterItemList.MultiSelect = false;
             this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
             this.ctrlRegisterItemList.ShowObjectInfo = true;
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1294, 425);
-            this.ctrlRegisterItemList.TabIndex = 6;
-            this.ctrlRegisterItemList.FindCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.RegisterItemViewModel>(this.ctrlRegisterItemList_FindCommandExecuted);
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1208, 415);
+            this.ctrlRegisterItemList.TabIndex = 92;
             // 
             // RegisterView
             // 
@@ -309,10 +305,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1292, 568);
+            this.Controls.Add(this.ctrlRegisterItemList);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.gboxSearch);
             this.Controls.Add(this.gboxStatus);
-            this.Controls.Add(this.ctrlRegisterItemList);
             this.Controls.Add(this.txtNumber);
             this.Controls.Add(this.dtCreateDate);
             this.Controls.Add(this.ddlStatus);
@@ -364,7 +360,6 @@
         private Telerik.WinControls.UI.RadDateTimePicker dtCreateDate;
         private Telerik.WinControls.UI.RadTextBox txtNumber;
         private System.Windows.Forms.BindingSource registerBindingSource;
-        private RegisterItemListControl ctrlRegisterItemList;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnSetStatus;
@@ -378,5 +373,6 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadButton btnCreateSelected;
         private Telerik.WinControls.UI.RadPanel radPanel1;
+        private RegisterItemListExControl ctrlRegisterItemList;
     }
 }

@@ -33,6 +33,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             _register = _registerService.GetById(regId);
             UpdateDataBindings();
+            _view.ExpandAll();
             _view.Run();
         }
 
@@ -199,6 +200,8 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 if (r.Obj != null)
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
+
+                rvm.RegisterExtraList.AddRange(r.RegisterExtra);
 
                 _view.RegisterItemList.Add(rvm);
             }

@@ -140,5 +140,7 @@ namespace ipsFormsDesign.Dictionary
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public List<RegisterExtra> RegisterExtraList { get; set; } = new List<RegisterExtra>();
     }
 }
