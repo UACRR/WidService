@@ -33,10 +33,14 @@
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.radButton3 = new Telerik.WinControls.UI.RadButton();
             this.vgvMain = new Telerik.WinControls.UI.RadVirtualGrid();
+            this.btnsSave = new Telerik.WinControls.UI.RadDropDownButton();
+            this.btnSave = new Telerik.WinControls.UI.RadMenuItem();
+            this.btnSaveAndAccept = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vgvMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,14 +96,37 @@
             this.vgvMain.TabIndex = 4;
             this.vgvMain.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadVirtualGridElement)(this.vgvMain.GetChildAt(0))).TextWrap = true;
-            ((Telerik.WinControls.UI.VirtualGridTableElement)(this.vgvMain.GetChildAt(0).GetChildAt(0))).Text = "<html>Hello world!</html>";
-            ((Telerik.WinControls.UI.VirtualRowsContainerElement)(this.vgvMain.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            ((Telerik.WinControls.UI.VirtualGridTableElement)(this.vgvMain.GetChildAt(0).GetChildAt(0))).Text = "No data to display";
+            ((Telerik.WinControls.UI.VirtualRowsContainerElement)(this.vgvMain.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            // 
+            // btnsSave
+            // 
+            this.btnsSave.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnSave,
+            this.btnSaveAndAccept});
+            this.btnsSave.Location = new System.Drawing.Point(362, 461);
+            this.btnsSave.Name = "btnsSave";
+            this.btnsSave.Size = new System.Drawing.Size(175, 24);
+            this.btnsSave.TabIndex = 5;
+            this.btnsSave.Text = "Зберегти";
+            this.btnsSave.ThemeName = "Office2013Light";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Text = "Зберегти";
+            // 
+            // btnSaveAndAccept
+            // 
+            this.btnSaveAndAccept.Name = "btnSaveAndAccept";
+            this.btnSaveAndAccept.Text = "Зберегти та підтвердити договір";
             // 
             // GridTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 496);
+            this.Controls.Add(this.btnsSave);
             this.Controls.Add(this.vgvMain);
             this.Controls.Add(this.radButton3);
             this.Controls.Add(this.radButton2);
@@ -114,6 +141,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vgvMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnsSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -125,5 +153,8 @@
         private Telerik.WinControls.UI.RadButton radButton2;
         private Telerik.WinControls.UI.RadButton radButton3;
         private Telerik.WinControls.UI.RadVirtualGrid vgvMain;
+        private Telerik.WinControls.UI.RadDropDownButton btnsSave;
+        private Telerik.WinControls.UI.RadMenuItem btnSave;
+        private Telerik.WinControls.UI.RadMenuItem btnSaveAndAccept;
     }
 }
