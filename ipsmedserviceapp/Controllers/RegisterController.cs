@@ -107,6 +107,8 @@ namespace ipsmedserviceapp.Controllers
                 .Include(r => r.RegisterItem)
                     .ThenInclude(i => i.Obj)
                         .ThenInclude(o => o.MediaTrack)
+                 .Include(r => r.RegisterItem)
+                    .ThenInclude(i => i.RegisterExtra)
                 .FirstOrDefaultAsync(r => r.RegId == regId);
         }
 
