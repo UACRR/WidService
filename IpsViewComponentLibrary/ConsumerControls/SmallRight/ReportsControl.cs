@@ -225,8 +225,8 @@ namespace IpsViewComponentLibrary
         // * * * [Активні договори]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (inChangeCurrentAgreement == true ) return;
-)
+            if (inChangeCurrentAgreement == true) return;
+
             if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
             {
                 bindingPaidPeriod.DataSource = typeof(PaidPeriod);
