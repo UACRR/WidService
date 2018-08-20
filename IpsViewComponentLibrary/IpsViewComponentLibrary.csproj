@@ -204,6 +204,12 @@
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.Designer.cs">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.Designer.cs">
+      <DependentUpon>GeneralAgrDetailInfoBr.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -808,6 +814,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.resx">
+      <DependentUpon>GeneralAgrDetailInfoBr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ConsumerAgrDetailInfo.resx">
       <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
