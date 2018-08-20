@@ -254,6 +254,12 @@
     <Compile Include="LicenseAgreementListControl.Designer.cs">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegisterControls\RegisterItemListExControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterItemListExControl.Designer.cs">
+      <DependentUpon>RegisterItemListExControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\RightholderPresenter.cs" />
     <Compile Include="RightholderControls\RightholderView.cs">
       <SubType>Form</SubType>
@@ -854,6 +860,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\CreatePeriod.resx">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterControls\RegisterItemListExControl.resx">
+      <DependentUpon>RegisterItemListExControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
