@@ -30,7 +30,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
         //TODO: повернути значення
-        public IList<RegisterItemViewModel> GetDataSource => gvRegisterItemList.DataSource as IList<RegisterItemViewModel>;
+        public IList<RegisterItemViewModel> GetDataSource => ((System.Windows.Forms.BindingSource)gvRegisterItemList.DataSource).List as IList<RegisterItemViewModel>;
 
         private RegisterItemViewModel _registerItem;
         public RegisterItemViewModel SelectedRegisterItem
