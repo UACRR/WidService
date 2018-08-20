@@ -23,6 +23,7 @@ namespace IpsViewComponentLibrary
             _control.DeleteRegisterExecuted += DeleteRegisterExecuted;
             _control.SetRegisterStateExecuted += _control_SetRegisterStateExecuted;
             _control.SetPeriodStateExecuted += _control_SetPeriodStateExecuted;
+            _control.SavePariodCommandExecuted += SavePariodCommandExecuted;
 
 
         }
@@ -65,6 +66,24 @@ namespace IpsViewComponentLibrary
                     item.RegisterItem.Clear();
                     foreach (var sorsItem in sors.RegisterItem)
                         item.RegisterItem.Add(sorsItem);
+                }
+            }
+        }
+
+        private void SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        {
+            int? custId = _control?.Customer?.CustId;
+            if (custId == null)
+                return;
+            List<PaidPeriod> retList = _service.SavePeriods((int)custId, e);
+            if (retList != null)
+            {
+                var dic = retList.ToDictionary(di => di.PeriodName);
+                foreach (var item in e)
+                {
+                    var period = dic[item.PeriodName];
+                    if (item.PeriodId != period.PeriodId)
+                        item.PeriodId = period.PeriodId;
                 }
             }
         }

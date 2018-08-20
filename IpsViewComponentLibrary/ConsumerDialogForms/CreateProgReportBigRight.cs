@@ -19,6 +19,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private Register _register = null;
         private ObservableListSource<RegisterExtraGridSource> _gridSource = new ObservableListSource<RegisterExtraGridSource>();
         private RegisterItem _registerItemCreation = null, _registerItemMusDesign = null;
+        private Dictionary<int, CreativeRoleType> creativeDic; 
         public object RegisterDataSource
         {
             get => bsRegister.DataSource;
@@ -55,6 +56,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         public CreateProgReportBigRight()
         {
             InitializeComponent();
+            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
         }
 
         /// <summary>
@@ -73,6 +75,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             RegisterItemDataSource = _registerItemCreation;
             RegisterDataSource = _register;
             CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
+            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
         }
 
         /// <summary>
@@ -83,6 +86,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         public CreateProgReportBigRight(Register register, bool isEdit)
         {
             InitializeComponent();
+            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
+
             _register = register;
             _registerItemCreation = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
             RegisterItemDataSource = _registerItemCreation;
@@ -111,14 +116,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             {
                 _gridSource.Add(new RegisterExtraGridSource
                 {
-                    RoleName = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).SingleOrDefault(rec => rec.CodeI == item.RoleCode)?.Name,
                     Name = item.Name,
                     RoleCode = item.RoleCode,
                     RegId = item.RegId,
                     RegI = item.RegI,
                     RegExtraId = item.RegExtraId,
                     RegIitemId = item.RegIitemId,
-                    RoleCodeNavigation = item.RoleCodeNavigation,
+                    RoleCodeNavigation = creativeDic[item.RoleCode ],
                 });
             }
 
@@ -136,7 +140,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void CreateDataForHierarchy()
         {
-            var regExtra = new ObservableListSource<RegisterExtraGridSource>();
+            var regExtra = new ObservableListSource<RegisterExtra>();
             var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3);
             foreach (var registerItem in items)
             {
@@ -144,7 +148,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                 foreach (var registerExtra in registerItem.RegisterExtra)
                 {
                     registerExtra.RegId = registerItem.RegId;
-                    regExtra.Add(registerExtra as RegisterExtraGridSource);
+                    regExtra.Add(registerExtra as RegisterExtra);
                 }
             }
             registerItemBindingSource.DataSource = items;
@@ -153,16 +157,16 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void CreateDataForHierarchyView()
         {
-            var regExtra = new ObservableListSource<RegisterExtraGridSource>();
+            var regExtra = new ObservableListSource<RegisterExtra>();
             var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3).ToList();
             if(!items.Any()) return;
             foreach (var registerItem in items)
             {
                 foreach (var registerExtra in registerItem.RegisterExtra)
                 {
-                    regExtra.Add(registerExtra as RegisterExtraGridSource);
-                    regExtra.LastOrDefault().RoleName = IpsGlobal.AnketaDictionaties.creativeRoleType
-                        .SingleOrDefault(rec => (rec.CategoryCode == 5 && rec.Crtype == 1) && rec.CodeI == registerExtra.RoleCode)?.Name;
+
+                    registerExtra.RoleCodeNavigation = creativeDic[registerExtra.RoleCode];
+                    regExtra.Add(registerExtra);
                 }
             }
             registerItemBindingSource.DataSource = items;
@@ -174,11 +178,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             if (txtAuthName.Text != string.Empty)
             {
+                int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
                 _gridSource.Add(new RegisterExtraGridSource
                 {
                     Name = txtAuthName.Text,
-                    RoleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0"),
-                    RoleName = ddlCreativeRole.SelectedItem.Text,
+                    RoleCode = roleCode,
+                    RoleCodeNavigation = creativeDic[roleCode],
                 });
                 gvStaging.DataSource = _gridSource;
             }
@@ -236,6 +241,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
     internal class RegisterExtraGridSource : RegisterExtra
     {
-        public string RoleName { get; set; }
+        public string RoleName { get => RoleCodeNavigation.Name; }
     }
 }

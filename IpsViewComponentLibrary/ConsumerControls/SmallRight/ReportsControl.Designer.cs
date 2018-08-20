@@ -87,6 +87,7 @@
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanelLicense = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanelPeriod = new Telerik.WinControls.UI.SplitPanel();
+            this.btnAddPeriod = new Telerik.WinControls.UI.RadButton();
             this.splitPanelRatedList = new Telerik.WinControls.UI.SplitPanel();
             this.btnAddRatedList = new Telerik.WinControls.UI.RadButton();
             this.gvRatedList = new Telerik.WinControls.UI.RadGridView();
@@ -95,6 +96,7 @@
             this.splitPanelReports = new Telerik.WinControls.UI.SplitPanel();
             this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingAgreement)).BeginInit();
@@ -118,6 +120,7 @@
             this.splitPanelLicense.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelPeriod)).BeginInit();
             this.splitPanelPeriod.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelRatedList)).BeginInit();
             this.splitPanelRatedList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddRatedList)).BeginInit();
@@ -128,6 +131,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelReports)).BeginInit();
             this.splitPanelReports.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             this.SuspendLayout();
             // 
             // gvLicenseAgr
@@ -319,7 +323,7 @@
             this.gvPeriods.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPeriods.ReadOnly = true;
             this.gvPeriods.ShowGroupPanel = false;
-            this.gvPeriods.Size = new System.Drawing.Size(1055, 139);
+            this.gvPeriods.Size = new System.Drawing.Size(1055, 116);
             this.gvPeriods.TabIndex = 0;
             this.gvPeriods.ThemeName = "Office2013Light";
             this.gvPeriods.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriods_CurrentRowChanged);
@@ -555,6 +559,7 @@
             // 
             // splitPanelPeriod
             // 
+            this.splitPanelPeriod.Controls.Add(this.btnAddPeriod);
             this.splitPanelPeriod.Controls.Add(this.radLabel3);
             this.splitPanelPeriod.Controls.Add(this.gvPeriods);
             this.splitPanelPeriod.Location = new System.Drawing.Point(0, 140);
@@ -568,7 +573,18 @@
             this.splitPanelPeriod.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 19);
             this.splitPanelPeriod.TabIndex = 1;
             this.splitPanelPeriod.TabStop = false;
-            this.splitPanelPeriod.Text = "splitPanel2";
+            this.splitPanelPeriod.Text = "Додати період";
+            // 
+            // btnAddPeriod
+            // 
+            this.btnAddPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddPeriod.Location = new System.Drawing.Point(11, 151);
+            this.btnAddPeriod.Name = "btnAddPeriod";
+            this.btnAddPeriod.Size = new System.Drawing.Size(110, 24);
+            this.btnAddPeriod.TabIndex = 16;
+            this.btnAddPeriod.Text = "Додати період";
+            this.btnAddPeriod.ThemeName = "Office2013Light";
+            this.btnAddPeriod.Click += new System.EventHandler(this.btnAddPeriod_Click);
             // 
             // splitPanelRatedList
             // 
@@ -732,6 +748,14 @@
             this.btnCreateReport.ThemeName = "Office2013Light";
             this.btnCreateReport.Click += new System.EventHandler(this.btnCreateReport_Click);
             // 
+            // radButton1
+            // 
+            this.radButton1.Location = new System.Drawing.Point(0, 0);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(110, 24);
+            this.radButton1.TabIndex = 0;
+            this.radButton1.Text = "radButton1";
+            // 
             // ReportsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -764,6 +788,7 @@
             this.splitPanelLicense.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelPeriod)).EndInit();
             this.splitPanelPeriod.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelRatedList)).EndInit();
             this.splitPanelRatedList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnAddRatedList)).EndInit();
@@ -774,6 +799,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelReports)).EndInit();
             this.splitPanelReports.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -804,5 +830,7 @@
         private System.Windows.Forms.BindingSource bindingRatedList;
         private Telerik.WinControls.UI.RadButton btnCreateReport;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadButton btnAddPeriod;
+        private Telerik.WinControls.UI.RadButton radButton1;
     }
 }

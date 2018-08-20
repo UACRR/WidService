@@ -128,7 +128,7 @@ namespace IpsViewComponentLibrary
                         _cust.Client.LicenseAgreement.LastOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
                         {
                             Version = 1,
-                            AgrStatus = 2,
+                            AgrStatus = 0,
                             AnkVersion = _cust.AnkVersion,
                             AgrNumber = string.Empty,
                             

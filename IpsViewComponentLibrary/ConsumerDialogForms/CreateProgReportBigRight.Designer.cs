@@ -176,7 +176,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.childrTemplate.AllowEditRow = false;
             this.childrTemplate.AutoGenerateColumns = false;
             this.childrTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "RoleName";
+            gridViewTextBoxColumn1.FieldName = "RoleCodeNavigation.Name";
             gridViewTextBoxColumn1.HeaderText = "Творча роль";
             gridViewTextBoxColumn1.Name = "RoleName";
             gridViewTextBoxColumn2.FieldName = "Name";

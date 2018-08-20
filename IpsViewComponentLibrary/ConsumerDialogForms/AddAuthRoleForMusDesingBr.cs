@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
@@ -15,6 +17,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     {
         private RegisterItem _registerItem = null;
         private ObservableListSource<RegisterExtraGridSource> _gridSource = new ObservableListSource<RegisterExtraGridSource>();
+        private Dictionary<int, CreativeRoleType> creativeDic;
 
         public object CreativeRoleDataSource
         {
@@ -25,11 +28,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         public AddAuthRoleForMusDesingBr()
         {
             InitializeComponent();
+            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
         }
         public AddAuthRoleForMusDesingBr(RegisterItem registerItem)
         {
             InitializeComponent();
             _registerItem = registerItem;
+            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
         }
 
         private void gvAuthRole_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -42,11 +47,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             if (txtAuthName.Text != string.Empty)
             {
+                int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
                 _gridSource.Add(new RegisterExtraGridSource
                 {
                     Name = txtAuthName.Text,
-                    RoleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0"),
-                    RoleName = ddlCreativeRole.SelectedItem.Text,
+                    RoleCode = roleCode,
+                    RoleCodeNavigation = creativeDic[roleCode]
                 });
                 gvAuthRole.DataSource = _gridSource;
             }

@@ -28,6 +28,8 @@ namespace IpsViewComponentLibrary
         public event EventHandler<Register> DeleteRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+
 
         public delegate void UpdateCustomerDataEventHandler(int id);
         public event UpdateCustomerDataEventHandler UpdateData;
@@ -458,7 +460,7 @@ namespace IpsViewComponentLibrary
             var register = gvPeriodReports.CurrentRow.DataBoundItem as Register;
             if (register == null)
                 return;
-            
+
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
             var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
             var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
@@ -638,6 +640,21 @@ namespace IpsViewComponentLibrary
                     bindingRatedList.CurrencyManager.Refresh();
                     btnAddRatedList.Enabled = false;
                 }
+            }
+        }
+
+        private void btnAddPeriod_Click(object sender, EventArgs e)
+        {
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
+                return;
+            var lic = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData).Lic;
+            CreatePeriod form = new CreatePeriod(lic);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                var list = lic.PaidPeriod.ToList();
+                SavePariodCommandExecuted?.Invoke(this, list);
+                bindingPaidPeriod.DataSource = list;
             }
         }
     }

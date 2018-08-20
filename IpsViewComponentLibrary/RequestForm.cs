@@ -243,13 +243,13 @@ namespace IpsViewComponentLibrary
                     NameMusician = rvm.AuthorMusic,
                     Duration = rvm.DurationItem,
                     NumbPerfom = rvm.CountUse,
-                    LicVersion = rvm.LicVersion,
+                    // LicVersion = rvm.LicVersion,
                 };
 
                 if (_licId.HasValue)
                 {
                     musicalDesign.LicId = licenseAgreement.LicId;
-                    musicalDesign.LicVersion = licenseAgreement.LicVersion;
+                    // musicalDesign.LicVersion = licenseAgreement.LicVersion;
                 }
 
                 licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
@@ -269,13 +269,13 @@ namespace IpsViewComponentLibrary
                         NameMusician = item.AuthorMusic,
                         Duration = item.DurationItem,
                         NumbPerfom = item.CountUse,
-                        LicVersion = item.LicVersion,
+                        // LicVersion = item.LicVersion,
                     };
 
                     if (_licId.HasValue)
                     {
                         musicalDesign.LicId = licenseAgreement.LicId;
-                        musicalDesign.LicVersion = licenseAgreement.LicVersion;
+                        // musicalDesign.LicVersion = licenseAgreement.LicVersion;
                     }
 
                     licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
