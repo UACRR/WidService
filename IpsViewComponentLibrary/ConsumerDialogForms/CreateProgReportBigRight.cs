@@ -160,9 +160,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             {
                 foreach (var registerExtra in registerItem.RegisterExtra)
                 {
-                    regExtra.Add(registerExtra as RegisterExtraGridSource);
-                    regExtra.LastOrDefault().RoleName = IpsGlobal.AnketaDictionaties.creativeRoleType
-                        .SingleOrDefault(rec => (rec.CategoryCode == 5 && rec.Crtype == 1) && rec.CodeI == registerExtra.RoleCode)?.Name;
+                    regExtra.Add(RegisterExtraGridSource.Convert(registerExtra));
                 }
             }
             registerItemBindingSource.DataSource = items;
@@ -234,8 +232,23 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         }
     }
 
+
     internal class RegisterExtraGridSource : RegisterExtra
     {
+        public static RegisterExtraGridSource Convert(RegisterExtra registerExtra)
+        {
+            return new RegisterExtraGridSource
+            {
+                RoleName = IpsGlobal.AnketaDictionaties.creativeRoleType.SingleOrDefault(rec => (rec.CategoryCode == 5 && rec.Crtype == 1) && rec.CodeI == registerExtra.RoleCode)?.Name,
+                RoleCode = registerExtra.RoleCode,
+                Name = registerExtra.Name,
+                RoleCodeNavigation = registerExtra.RoleCodeNavigation,
+                RegI = registerExtra.RegI,
+                RegId = registerExtra.RegId,
+                RegIitemId = registerExtra.RegIitemId,
+                RegExtraId = registerExtra.RegExtraId
+            };
+        }
         public string RoleName { get; set; }
     }
 }

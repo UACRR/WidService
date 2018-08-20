@@ -82,7 +82,9 @@ namespace IpsViewComponentLibrary
         /// </summary>
         internal void SetBigRightsLicenseAgrType()
         {
+            radLabel1.Visible = false;
             ddlLicType.Enabled = false;
+            ddlLicType.Visible = false;
         }
 
         private void txtDayForPay_KeyPress(object sender, KeyPressEventArgs e)
