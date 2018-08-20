@@ -5187,11 +5187,14 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ActNumb).HasColumnName("actNumb");
 
+                entity.Property(e => e.AuthorText)
+                    .HasColumnName("authorText")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Duration).HasColumnName("duration");
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
 
                 entity.Property(e => e.NameMusician)
                     .HasColumnName("nameMusician")

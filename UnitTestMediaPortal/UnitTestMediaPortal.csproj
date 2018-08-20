@@ -169,6 +169,18 @@
     <Compile Include="TestGlobalDic.Designer.cs">
       <DependentUpon>TestGlobalDic.cs</DependentUpon>
     </Compile>
+    <Compile Include="TestLayout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestLayout.Designer.cs">
+      <DependentUpon>TestLayout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestNesttedList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestNesttedList.Designer.cs">
+      <DependentUpon>TestNesttedList.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestTextBoxAuto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +199,9 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -240,6 +255,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestGlobalDic.resx">
       <DependentUpon>TestGlobalDic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestLayout.resx">
+      <DependentUpon>TestLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestNesttedList.resx">
+      <DependentUpon>TestNesttedList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TestTextBoxAuto.resx">
       <DependentUpon>TestTextBoxAuto.cs</DependentUpon>

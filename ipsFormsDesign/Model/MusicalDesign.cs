@@ -13,9 +13,9 @@ namespace ipsFormsDesign.Model
         public string ObjName { get; set; }
         public string NameMusician { get; set; }
         public string NameSinger { get; set; }
-        public int? NumbPerfom { get; set; }
+        public string AuthorText { get; set; }
         public TimeSpan? Duration { get; set; }
-        public int? LicVersion { get; set; }
+        public int? NumbPerfom { get; set; }
 
         public LicenseBigR Lic { get; set; }
         public ObjectRight Obj { get; set; }
