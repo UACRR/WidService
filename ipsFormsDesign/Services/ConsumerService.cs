@@ -155,6 +155,12 @@ namespace ipsFormsDesign.Services
             return _webApi.DeleteItem("consumer/period/register", body.RegId.ToString());
         }
 
+        public Register GetRegister( int regId )
+        {
+            string url = _prefix + "period/register";
+            return _webApi.GetItemById<Register>(url, regId.ToString());
+        }
+
         public enum RegisterState : int
         {
             // Новий

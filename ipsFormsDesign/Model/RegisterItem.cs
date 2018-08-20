@@ -9,7 +9,6 @@ namespace ipsFormsDesign.Model
         public RegisterItem()
         {
             RegisterExtra = new ObservableListSource<RegisterExtra>();
-            Ticks = 0;
         }
 
         public int RegId { get; set; }

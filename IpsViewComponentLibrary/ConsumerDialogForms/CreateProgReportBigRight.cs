@@ -92,20 +92,46 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             btnAddCreativeRole.Enabled = isEdit;
             btnSave.Enabled = isEdit;
             txtName.ReadOnly = !isEdit;
-            txtAuthName.ReadOnly = !isEdit;
+            txtAuthName.Enabled = isEdit;
             txtAmount.ReadOnly = !isEdit;
             txtAuthRate.ReadOnly = !isEdit;
             txtAuthAmount.ReadOnly = !isEdit;
             ddlCreativeRole.Enabled = isEdit;
             txtMusicalDesignRate.ReadOnly = !isEdit;
             txtMusicalDesignAmount.ReadOnly = !isEdit;
+            
             CreateDataForHierarchyView();
+
+            GenerateRegisterExtraList();
+        }
+
+        private void GenerateRegisterExtraList()
+        {
+            foreach (var item in _registerItemCreation.RegisterExtra)
+            {
+                _gridSource.Add(new RegisterExtraGridSource
+                {
+                    RoleName = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).SingleOrDefault(rec => rec.CodeI == item.RoleCode)?.Name,
+                    Name = item.Name,
+                    RoleCode = item.RoleCode,
+                    RegId = item.RegId,
+                    RegI = item.RegI,
+                    RegExtraId = item.RegExtraId,
+                    RegIitemId = item.RegIitemId,
+                    RoleCodeNavigation = item.RoleCodeNavigation,
+                });
+            }
+
+            gvStaging.DataSource = _gridSource;
         }
 
         private void ConvertToRegisterExtra()
         {
             foreach (var source in _gridSource)
-                _registerItemCreation.RegisterExtra.Add((RegisterExtra)source);
+            {
+                if(!_registerItemCreation.RegisterExtra.Contains(source))
+                    _registerItemCreation.RegisterExtra.Add((RegisterExtra)source);
+            }
         }
 
         private void CreateDataForHierarchy()
@@ -128,7 +154,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private void CreateDataForHierarchyView()
         {
             var regExtra = new ObservableListSource<RegisterExtraGridSource>();
-            var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3);
+            var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3).ToList();
+            if(!items.Any()) return;
             foreach (var registerItem in items)
             {
                 foreach (var registerExtra in registerItem.RegisterExtra)

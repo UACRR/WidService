@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
@@ -28,6 +29,8 @@ namespace IpsViewComponentLibrary.RegisterControls
                 }
             }
         }
+        //TODO: повернути значення
+        public IList<RegisterItemViewModel> GetDataSource => ((System.Windows.Forms.BindingSource)gvRegisterItemList.DataSource).List as IList<RegisterItemViewModel>;
 
         private RegisterItemViewModel _registerItem;
         public RegisterItemViewModel SelectedRegisterItem

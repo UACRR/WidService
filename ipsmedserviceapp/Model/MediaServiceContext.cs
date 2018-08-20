@@ -6,6 +6,15 @@ namespace ipsmedserviceapp.Model
 {
     public partial class MediaServiceContext : DbContext
     {
+        public MediaServiceContext()
+        {
+        }
+
+        public MediaServiceContext(DbContextOptions<MediaServiceContext> options)
+            : base(options)
+        {
+        }
+
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<AccountBals> AccountBals { get; set; }
         public virtual DbSet<AccountBalsTr> AccountBalsTr { get; set; }
@@ -298,7 +307,7 @@ namespace ipsmedserviceapp.Model
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer(@"Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+//                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -348,7 +357,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.AccStatusNavigation)
                     .WithMany(p => p.Account)
@@ -401,7 +411,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -437,7 +448,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -473,7 +485,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -802,7 +815,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -843,7 +857,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -900,7 +915,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -935,7 +951,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -957,7 +974,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FirstName)
                     .HasColumnName("firstName")
@@ -1073,7 +1091,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.FaCountry)
                     .HasColumnName("faCountry")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FaRegion).HasColumnName("faRegion");
 
@@ -1089,7 +1108,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.JaCountry)
                     .HasColumnName("jaCountry")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.JaRegion).HasColumnName("jaRegion");
 
@@ -1105,7 +1125,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.LeCountry)
                     .HasColumnName("leCountry")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LePostIndex)
                     .HasColumnName("lePostIndex")
@@ -1235,7 +1256,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.InterCode)
                     .HasColumnName("interCode")
@@ -1298,7 +1320,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Citizenship)
                     .HasColumnName("citizenship")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.EMail)
                     .HasColumnName("eMail")
@@ -1317,7 +1340,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.FaCountry)
                     .HasColumnName("faCountry")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FaRegion).HasColumnName("faRegion");
 
@@ -1333,7 +1357,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LastName)
                     .HasColumnName("lastName")
@@ -1352,7 +1377,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.LeCountry)
                     .HasColumnName("leCountry")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LePostIndex)
                     .HasColumnName("lePostIndex")
@@ -1439,7 +1465,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ReCountry)
                     .HasColumnName("reCountry")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ReRegion).HasColumnName("reRegion");
 
@@ -1552,7 +1579,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -1816,7 +1844,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Currency)
                     .HasColumnName("currency")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -1829,7 +1858,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.MfoOkpo)
                     .HasColumnName("mfoOkpo")
-                    .HasColumnType("char(10)");
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PAddress)
                     .HasColumnName("pAddress")
@@ -1843,7 +1873,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.PCountry)
                     .HasColumnName("pCountry")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PIndex)
                     .HasColumnName("pIndex")
@@ -2058,7 +2089,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -2079,7 +2111,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -2138,7 +2171,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -2175,7 +2209,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -2216,7 +2251,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.PlaceCountry)
                     .HasColumnName("placeCountry")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PlaceName)
                     .HasColumnName("placeName")
@@ -2354,7 +2390,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -2477,7 +2514,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -2513,7 +2551,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -2539,11 +2578,13 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.LangFrom)
                     .HasColumnName("langFrom")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LangTo)
                     .HasColumnName("langTo")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.RoleCode).HasColumnName("roleCode");
 
@@ -2589,7 +2630,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.SymbolN)
                     .HasColumnName("symbolN")
-                    .HasColumnType("char(1)");
+                    .HasMaxLength(1)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TemplYear).HasColumnName("templYear");
             });
@@ -2600,12 +2642,14 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)")
+                    .HasMaxLength(3)
+                    .IsUnicode(false)
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.A2)
                     .HasColumnName("a2")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ContinentCode).HasColumnName("continentCode");
 
@@ -2621,7 +2665,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.KOdLit)
                     .HasColumnName("kOD_LIT")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.OrderBy).HasColumnName("orderBy");
 
@@ -2640,11 +2685,13 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CountryName)
                     .HasColumnName("countryName")
@@ -2699,7 +2746,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -2755,7 +2803,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -2795,7 +2844,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -2815,16 +2865,19 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)")
+                    .HasMaxLength(3)
+                    .IsUnicode(false)
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.A3)
                     .HasColumnName("a3")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.NAim)
                     .HasColumnName("nAIM")
@@ -2861,7 +2914,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CDate)
                     .HasColumnName("cDate")
@@ -2967,7 +3021,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3003,7 +3058,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3033,7 +3089,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.DicType)
                     .HasColumnName("dicType")
-                    .HasColumnType("char(1)");
+                    .HasMaxLength(1)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -3122,7 +3179,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3158,7 +3216,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -3279,7 +3338,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.Dist)
                     .WithMany(p => p.DistributionItem)
                     .HasForeignKey(d => d.DistId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_DISTRIBU");
 
                 entity.HasOne(d => d.Obj)
@@ -3352,7 +3410,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
@@ -3421,7 +3480,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3505,7 +3565,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3637,7 +3698,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CodeOper)
                     .HasColumnName("codeOper")
-                    .HasColumnType("char(10)");
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.DateOper)
                     .HasColumnName("dateOper")
@@ -3658,7 +3720,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Mfo)
                     .HasColumnName("mfo")
-                    .HasColumnType("char(10)");
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MfoCorr)
                     .HasColumnName("mfoCorr")
@@ -3692,7 +3755,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.SCredit)
                     .HasColumnName("sCredit")
@@ -3796,7 +3860,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3840,7 +3905,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3875,7 +3941,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.RecAnk).HasColumnName("recAnk");
 
@@ -3916,7 +3983,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3960,7 +4028,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -3996,7 +4065,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -4032,7 +4102,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -4054,16 +4125,19 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)")
+                    .HasMaxLength(3)
+                    .IsUnicode(false)
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.A3)
                     .HasColumnName("a3")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.NAim)
                     .HasColumnName("nAIM")
@@ -4100,11 +4174,13 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.R030Name)
                     .HasColumnName("r030Name")
@@ -4150,7 +4226,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CodeS)
                     .HasColumnName("codeS")
-                    .HasColumnType("char(2)")
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
@@ -4165,11 +4242,13 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CodeS)
                     .HasColumnName("codeS")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -4189,7 +4268,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CodeS)
                     .HasColumnName("codeS")
-                    .HasColumnType("char(2)")
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
@@ -4201,7 +4281,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.NameSh3)
                     .HasColumnName("nameSh3")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ShortChoise).HasColumnName("shortChoise");
             });
@@ -4228,7 +4309,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -4292,7 +4374,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Rate)
                     .HasColumnName("rate")
@@ -4497,7 +4580,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.LangCode)
                     .HasColumnName("langCode")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LicTerm).HasColumnName("licTerm");
 
@@ -4590,7 +4674,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -4783,7 +4868,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -4834,7 +4920,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -4885,7 +4972,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -4921,7 +5009,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -5074,7 +5163,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -5097,11 +5187,14 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ActNumb).HasColumnName("actNumb");
 
+                entity.Property(e => e.AuthorText)
+                    .HasColumnName("authorText")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Duration).HasColumnName("duration");
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
 
                 entity.Property(e => e.NameMusician)
                     .HasColumnName("nameMusician")
@@ -5235,7 +5328,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(10)");
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -5356,7 +5450,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -5373,6 +5468,10 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PaidPeriod>(entity =>
             {
                 entity.HasKey(e => e.PeriodId);
+
+                entity.HasIndex(e => new { e.PeriodId, e.PeriodName })
+                    .HasName("idx_paidPeriod01")
+                    .IsUnique();
 
                 entity.HasIndex(e => new { e.LicId, e.BeginDate, e.EndDate })
                     .HasName("uipaidperiod_001")
@@ -5585,7 +5684,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -5621,7 +5721,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -5657,7 +5758,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -5732,7 +5834,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
@@ -5781,7 +5884,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -5839,7 +5943,8 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Lang)
                     .IsRequired()
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -5862,7 +5967,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -5900,7 +6006,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -5962,7 +6069,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -6036,7 +6144,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -6072,7 +6181,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -6108,7 +6218,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -6127,6 +6238,8 @@ namespace ipsmedserviceapp.Model
                 entity.HasKey(e => e.RegId);
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
+
+                entity.Property(e => e.AlgorithmId).HasColumnName("algorithmId");
 
                 entity.Property(e => e.AuthAmount)
                     .HasColumnName("authAmount")
@@ -6187,6 +6300,8 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.RgStatus).HasColumnName("rgStatus");
 
                 entity.Property(e => e.RmId).HasColumnName("rmId");
+
+                entity.Property(e => e.SchemaId).HasColumnName("schemaId");
 
                 entity.Property(e => e.UserId)
                     .HasColumnName("userId")
@@ -6438,7 +6553,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -6516,7 +6632,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -7022,11 +7139,13 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.R030)
                     .IsRequired()
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.R030Offer)
                     .HasColumnName("r030Offer")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.RAgrComment)
                     .HasColumnName("rAgrComment")
@@ -7109,7 +7228,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -7154,7 +7274,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
@@ -7201,7 +7322,8 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.R030)
                     .IsRequired()
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.RAgrId).HasColumnName("rAgrId");
 
@@ -7285,7 +7407,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ReqAimCode).HasColumnName("reqAimCode");
 
@@ -7490,7 +7613,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -7635,7 +7759,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -7711,7 +7836,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -7747,7 +7873,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -7787,7 +7914,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -7866,7 +7994,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Rest)
                     .HasColumnName("rest")
@@ -7931,7 +8060,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -7967,7 +8097,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8003,7 +8134,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8019,6 +8151,9 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<TableColumn>(entity =>
             {
+                entity.HasKey(e => e.Id)
+                    .ForSqlServerIsClustered(false);
+
                 entity.HasIndex(e => new { e.Lang, e.TName, e.CName })
                     .HasName("Index_Unique")
                     .ForSqlServerIsClustered();
@@ -8049,7 +8184,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TName)
                     .HasColumnName("tName")
@@ -8098,6 +8234,9 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<TableObject>(entity =>
             {
+                entity.HasKey(e => e.Id)
+                    .ForSqlServerIsClustered(false);
+
                 entity.HasIndex(e => new { e.Lang, e.CName })
                     .HasName("uni_01")
                     .IsUnique();
@@ -8125,7 +8264,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TableType>(entity =>
@@ -8191,7 +8331,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8213,7 +8354,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.CountryCodeNavigation)
                     .WithMany(p => p.TerritoryExclude)
@@ -8236,7 +8378,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
-                    .HasColumnType("char(3)");
+                    .HasMaxLength(3)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.CountryCodeNavigation)
                     .WithMany(p => p.TerritoryInclude)
@@ -8307,7 +8450,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8341,7 +8485,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -8390,7 +8535,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
-                    .HasColumnType("char(100)");
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TypePlaceParamTr>(entity =>
@@ -8401,7 +8547,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -8424,7 +8571,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8464,7 +8612,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8516,7 +8665,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8568,7 +8718,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8651,7 +8802,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -8696,7 +8848,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8733,7 +8886,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -8826,7 +8980,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasColumnType("char(2)");
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")

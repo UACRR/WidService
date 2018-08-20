@@ -33,6 +33,8 @@ namespace ipsmedserviceapp.Model
         public decimal? AuthRate { get; set; }
         public decimal? PaidAmount { get; set; }
         public int? LicId { get; set; }
+        public int? SchemaId { get; set; }
+        public int? AlgorithmId { get; set; }
 
         [JsonIgnore]
         public Client Cust { get; set; }

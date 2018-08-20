@@ -207,7 +207,7 @@ namespace IpsViewComponentLibrary
             this.txtCommentCl.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWorkRh, "WorkCoommentCl", true));
             this.txtCommentCl.Location = new System.Drawing.Point(189, 530);
             this.txtCommentCl.Name = "txtCommentCl";
-            this.txtCommentCl.Size = new System.Drawing.Size(886, 21);
+            this.txtCommentCl.Size = new System.Drawing.Size(872, 21);
             this.txtCommentCl.TabIndex = 6;
             this.txtCommentCl.ThemeName = "Office2013Light";
             this.txtCommentCl.Visible = false;
@@ -223,7 +223,7 @@ namespace IpsViewComponentLibrary
             this.txtCommentRh.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsWorkRh, "WorkCommentRh", true));
             this.txtCommentRh.Location = new System.Drawing.Point(189, 503);
             this.txtCommentRh.Name = "txtCommentRh";
-            this.txtCommentRh.Size = new System.Drawing.Size(886, 21);
+            this.txtCommentRh.Size = new System.Drawing.Size(872, 21);
             this.txtCommentRh.TabIndex = 5;
             this.txtCommentRh.ThemeName = "Office2013Light";
             this.txtCommentRh.Visible = false;
@@ -258,7 +258,7 @@ namespace IpsViewComponentLibrary
             this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(5, 279);
             this.ctrlAuthorRightholderList.Name = "ctrlAuthorRightholderList";
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
-            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1075, 219);
+            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1062, 219);
             this.ctrlAuthorRightholderList.TabIndex = 2;
             // 
             // pvConditions
