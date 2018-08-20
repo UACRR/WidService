@@ -90,7 +90,7 @@ namespace ipsFormsDesign.Dictionary
             Performer = musicalDesign.NameSinger;
             MdId = musicalDesign.MdId;
             LicId = musicalDesign.LicId;
-            LicVersion = musicalDesign.LicVersion;
+            //LicVersion = musicalDesign.LicVersion;
 
             if (musicalDesign.Obj != null)
             {
