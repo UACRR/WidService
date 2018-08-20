@@ -11,6 +11,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Dictionary;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -30,6 +31,9 @@ namespace IpsViewComponentLibrary
             {11, new []{ "< Адреса", "Реквізити >" } },
             {12, new []{ "< Керівники", "Договір >" } }
         };
+        private RadDropDownButton btnsSave = null;
+        private RadMenuItem _btnSave = null;
+        private RadMenuItem _btnSaveAndAccept = null;
 
         private MiddleControlAgreementAnketaType ctrlAgreementSmallRights;
         private MiddleControlAgreementBigRights ctrlAgreementBigRights;
@@ -329,6 +333,50 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        private void CreateDropDownButton()
+        {
+            if(btnsSave != null) return;
+
+            _btnSave = new RadMenuItem
+            {
+                Name = "btnSave",
+                Text = "Зберегти"
+            };
+            _btnSaveAndAccept = new RadMenuItem
+            {
+                Name = "btnSaveAndAccept",
+                Text = "Зберегти та підтвердити договір"
+            };
+            btnsSave = new RadDropDownButton
+            {
+                Location = btnNext.Location,
+                Name = "btnsSave",
+                Size = new Size(175, 24),
+                Text = "Зберегти",
+                ThemeName = "Office2013Light",
+                Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)))
+            };
+            btnsSave.Items.AddRange(_btnSave, _btnSaveAndAccept);
+            Controls.Add(btnsSave);
+            _btnSave.Click += BtnSave_Click;
+            _btnSaveAndAccept.Click += BtnSave_Click;
+            btnsSave.BringToFront();
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            _btnType = ButtonType.None;
+            if(_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicStatus != null)
+            {
+                if ((Telerik.WinControls.RadElement) sender == _btnSave) // зберегти з статусом не підтверджений
+                    _cust.Client.LicenseAgreement.LastOrDefault().LicStatus = 0;
+                else if ((Telerik.WinControls.RadElement) sender == _btnSaveAndAccept) // зберегти з статусом активний
+                    _cust.Client.LicenseAgreement.LastOrDefault().LicStatus = 2;
+            }
+
+            OnBtnSaveClick?.Invoke(_cust);
+        }
+
         // * * * BUTTON BACK
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -572,6 +620,26 @@ namespace IpsViewComponentLibrary
             radWaitingBar1.Visible = false;
 
         }
+
+        private void pageAnketaConsumer_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (pageAnketaConsumer.SelectedPage == pvPrint)
+            {
+                btnNext.Enabled = false;
+                btnNext.Visible = false;
+                CreateDropDownButton();
+                btnsSave.Enabled = true;
+                btnsSave.Visible = true;
+            }
+            else
+            {
+                if (btnsSave == null) return;
+                btnsSave.Enabled = false;
+                btnsSave.Visible = false;
+                btnNext.Enabled = true;
+                btnNext.Visible = true;
+            }
+        }
     }
 
     internal enum ButtonType
@@ -579,5 +647,5 @@ namespace IpsViewComponentLibrary
         None,
         Next,
         Previos
-    };
+    }
 }

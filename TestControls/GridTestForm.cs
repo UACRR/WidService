@@ -126,7 +126,12 @@ namespace TestControls
         private void Met(string item, bool bb)
         {
 
-        } 
+        }
+
+        private void radMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class Test

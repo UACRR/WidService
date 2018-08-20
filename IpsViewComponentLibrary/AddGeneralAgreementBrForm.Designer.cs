@@ -40,6 +40,7 @@
             // ctrlAgreement
             // 
             this.ctrlAgreement.AgreementAddBrDataSource = typeof(ipsFormsDesign.Model.AgreementAddBr);
+            this.ctrlAgreement.AnketaCompanyDataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             this.ctrlAgreement.DictionaryAgrLicTypeDataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
             this.ctrlAgreement.DictionaryPeriodPaymentDataSource = typeof(ipsFormsDesign.Model.Period);
             this.ctrlAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
