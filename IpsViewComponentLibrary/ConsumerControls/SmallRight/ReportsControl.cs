@@ -68,11 +68,13 @@ namespace IpsViewComponentLibrary
 
             var lic = ActiveAgreementDataFactory.CreateAgreementData(e);
             var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as IAgreementData)?.Lic.LicId == e.LicId);
-            if (row == null) return;
-            if (row.IsCurrent == false)
+            if (row != null)
             {
-                row.IsCurrent = true;
-                // if (row.IsVisible == false) row.IsVisible = true;
+                if (row.IsCurrent == false)
+                {
+                    row.IsCurrent = true;
+                    // if (row.IsVisible == false) row.IsVisible = true;
+                }
             }
 
             inChangeCurrentAgreement = false;
@@ -136,8 +138,8 @@ namespace IpsViewComponentLibrary
         {
             normalizeData(_customer);
             gvPeriodReports.MasterTemplate.Refresh();
-            gvPeriods.MasterTemplate.Refresh();
-            gvLicenseAgr.MasterTemplate.Refresh();
+            //gvPeriods.MasterTemplate.Refresh();
+            //gvLicenseAgr.MasterTemplate.Refresh();
         }
 
         #region METHODS
@@ -233,6 +235,7 @@ namespace IpsViewComponentLibrary
                 return;
 
             }
+            inChangeCurrentAgreement = true;
 
             var lic = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
             if (CurrentAgreementController != null && lic != null && lic.Lic.LicId != CurrentAgreementController.LicId)
@@ -259,6 +262,7 @@ namespace IpsViewComponentLibrary
             /// Цирк,Філармонія,Концертна діяльність
             bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
+            inChangeCurrentAgreement = false;
         }
 
         // * * * [Періоди платежів]
