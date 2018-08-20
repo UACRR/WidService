@@ -64,14 +64,18 @@ namespace IpsViewComponentLibrary
         {
             if (inChangeCurrentAgreement == true)
                 return;
+            inChangeCurrentAgreement = true;
 
             var lic = ActiveAgreementDataFactory.CreateAgreementData(e);
             var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as IAgreementData)?.Lic.LicId == e.LicId);
-            if (row != null && row.IsCurrent == false)
+            if (row == null) return;
+            if (row.IsCurrent == false)
             {
                 row.IsCurrent = true;
-                if (row.IsVisible == false) row.IsVisible = true;
+                // if (row.IsVisible == false) row.IsVisible = true;
             }
+
+            inChangeCurrentAgreement = false;
         }
 
         [EditorBrowsable]
@@ -221,6 +225,8 @@ namespace IpsViewComponentLibrary
         // * * * [Активні договори]
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            if (inChangeCurrentAgreement == true ) return;
+)
             if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
             {
                 bindingPaidPeriod.DataSource = typeof(PaidPeriod);
@@ -232,7 +238,8 @@ namespace IpsViewComponentLibrary
             if (CurrentAgreementController != null && lic != null && lic.Lic.LicId != CurrentAgreementController.LicId)
             {
                 inChangeCurrentAgreement = true;
-                CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
+                if(CurrentAgreementController != null )
+                    CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
                 inChangeCurrentAgreement = false;
 
             }

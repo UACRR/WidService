@@ -104,17 +104,6 @@ namespace ipsFormsDesign.Interfaces
         public string PeriodPaymentName { get => _period.Name; }
     }
 
-    public class CurrentAgreementController : Component
-    {
-        public event EventHandler<LicenseAgreement> CurrentLicenseAgreementChanged;
-        private LicenseAgreement _current;
-        public int LicId { get => _current?.LicId ?? 0; }
-        public void ChangeCurrentLicenseAgreement(object sender, LicenseAgreement current )
-        {
-            _current = current;
-            CurrentLicenseAgreementChanged?.Invoke(sender, _current);
-        }
 
-    }
 
 }

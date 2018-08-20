@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     public partial class AddAuthRoleForMusDesingBr : Telerik.WinControls.UI.RadForm
     {
         private RegisterItem _registerItem = null;
-        private ObservableListSource<RegisterExtraGridSource> _gridSource = new ObservableListSource<RegisterExtraGridSource>();
+        private ObservableListSource<RegisterExtra> _gridSource = new ObservableListSource<RegisterExtra>();
         private Dictionary<int, CreativeRoleType> creativeDic;
 
         public object CreativeRoleDataSource
@@ -39,7 +39,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void gvAuthRole_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            if (e.Row.DataBoundItem is RegisterExtraGridSource item)
+            if (e.Row.DataBoundItem is RegisterExtra item)
                 _gridSource.Remove(item);
         }
 
@@ -48,7 +48,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             if (txtAuthName.Text != string.Empty)
             {
                 int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
-                _gridSource.Add(new RegisterExtraGridSource
+                _gridSource.Add(new RegisterExtra
                 {
                     Name = txtAuthName.Text,
                     RoleCode = roleCode,

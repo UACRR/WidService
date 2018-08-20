@@ -13,6 +13,7 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary
 {
