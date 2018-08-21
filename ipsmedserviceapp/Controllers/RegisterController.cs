@@ -54,7 +54,7 @@ namespace ipsmedserviceapp.Controllers
             if (regId == null)
                 BadRequest();
 
-            var register = await GetRegisterById((int)regId);
+            var register = await GetAgreementByRegisterId((int)regId);
 
             if (register == null)
                 NotFound();
@@ -101,15 +101,33 @@ namespace ipsmedserviceapp.Controllers
             return Json(list);
         }
 
+        private async Task<LicenseAgreement> GetAgreementByRegisterId(int regId)
+        {
+            var register = await _dbContext.Register
+                .Include(r => r.RegisterItem)
+                    .ThenInclude(i => i.Obj)
+                        .ThenInclude(o => o.MediaTrack)
+                 .Include(r => r.RegisterItem)
+                    .ThenInclude(i => i.RegisterExtra)
+                .Include(r => r.RegisterRatedList)
+                    .ThenInclude(rl => rl.Period)
+                        .ThenInclude(p => p.Lic)
+                .FirstOrDefaultAsync(r => r.RegId == regId);
+
+            return register.RegisterRatedList.Period.Lic;
+        }
+
         private async Task<Register> GetRegisterById(int regId)
         {
-            return await _dbContext.Register
+            var register = await _dbContext.Register
                 .Include(r => r.RegisterItem)
                     .ThenInclude(i => i.Obj)
                         .ThenInclude(o => o.MediaTrack)
                  .Include(r => r.RegisterItem)
                     .ThenInclude(i => i.RegisterExtra)
                 .FirstOrDefaultAsync(r => r.RegId == regId);
+
+            return register;
         }
 
         [HttpGet("search")]
@@ -162,7 +180,7 @@ namespace ipsmedserviceapp.Controllers
         {
             var rowsAffected = await _dbContext.Database.ExecuteSqlCommandAsync($"exec pTsk_3_AutoLink {@regId}");
 
-            return Ok();
+            return Ok(rowsAffected);
         }
     }
 }

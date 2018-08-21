@@ -2,6 +2,7 @@
 using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -23,8 +24,33 @@ namespace ipsFormsDesign.Services
 
         public Register GetById(int regId)
         {
-            var item = _webApi.GetItemById<Register>("register", regId.ToString());
-            return item;
+            var item = _webApi.GetItemById<LicenseAgreement>("register", regId.ToString());
+            if (item == null)
+                return null;
+
+            foreach ( var period in item.PaidPeriod )
+            {
+                period.Lic = item;
+
+                foreach( var rateList in period.RegisterRatedList )
+                {
+                    rateList.Period = period;
+                    foreach (var register in rateList.Register )
+                    {
+                        register.RegisterRatedList = rateList;
+                        foreach (var items in register.RegisterItem)
+                        {
+                            items.Reg = register;
+                            foreach (var extra in items.RegisterExtra)
+                                extra.RegI = items;
+                        }
+
+                    }
+                }
+
+            }
+
+            return item.PaidPeriod.FirstOrDefault().RegisterRatedList.FirstOrDefault().Register.FirstOrDefault();
         }
 
         public List<RegisterSearchObject> SearchObjects( string name, string authtors, string performers )
