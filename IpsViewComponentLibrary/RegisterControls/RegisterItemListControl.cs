@@ -13,22 +13,42 @@ using System.Drawing;
 using Telerik.WinControls;
 using IpsViewComponentLibrary.AppController;
 using ipsFormsDesign.Events;
+using ipsFormsDesign.Data;
+using System.ComponentModel;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
     public partial class RegisterItemListControl : UserControl
     {
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+        }
+
         public object DataSource
         {
-            get { return registerItemViewModelBindingSource.DataSource; }
+            get { return bsRegisterItemViewModel.DataSource; }
             set
             {
-                if (registerItemViewModelBindingSource.DataSource != value)
+                if (bsRegisterItemViewModel.DataSource != value)
                 {
-                    registerItemViewModelBindingSource.DataSource = value;
+                    bsRegisterItemViewModel.DataSource = value;
                 }
             }
         }
+
+        public object DataSourceRegisterExtra
+        {
+            get { return bsRegisterExtra.DataSource; }
+            set
+            {
+                if (bsRegisterExtra.DataSource != value)
+                {
+                    bsRegisterExtra.DataSource = value;
+                }
+            }
+        }
+
         //TODO: повернути значення
         public IList<RegisterItemViewModel> GetDataSource => ((System.Windows.Forms.BindingSource)gvRegisterItemList.DataSource).List as IList<RegisterItemViewModel>;
 
@@ -175,6 +195,20 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private bool _showAuthors = true;
+        public bool ShowAuthors
+        {
+            get { return _showObjectInfo; }
+            set
+            {
+                _showAuthors = value;
+
+                gvRegisterItemList.SetColumnVisibility("Performer", _showAuthors);
+                gvRegisterItemList.SetColumnVisibility("AuthorMusic", _showAuthors);
+                gvRegisterItemList.SetColumnVisibility("AuthorText", _showAuthors);
+            }
+        }
+
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> CreateObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
@@ -186,7 +220,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             InitializeComponent();
 
-            gvRegisterItemList.DataSource = registerItemViewModelBindingSource;
+            gvRegisterItemList.DataSource = bsRegisterItemViewModel;
             ddlLinkedStatus.SelectedIndex = 0;
 
             gvRegisterItemList.SetCommandColumnImageAlignment("FindColumn", ContentAlignment.MiddleCenter);
@@ -196,6 +230,24 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.SetCommandColumnImageAlignment("ShowObjectColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("CreateObjectColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+
+            if (!IsDesignMode)
+            {
+                SetDictionaries();
+            }
+        }
+
+        private void SetDictionaries()
+        {
+            var col = gvRegisterItemList.Templates[0].Columns["RoleCode"] as GridViewComboBoxColumn;
+            col.DataSource = IpsGlobal.AnketaDictionaties.creativeRoleType;
+            col.ValueMember = "CodeI";
+            col.DisplayMember = "Name";
+        }
+
+        public void ExpandAll()
+        {
+            gvRegisterItemList.MasterTemplate.ExpandAll();
         }
 
         private void gvRegisterItemList_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -293,14 +345,16 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void OnFindCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            using (var view = new SearchObjectView())
-            {
-                var presenter = new SearchObjectPresenter(view, new ipsFormsDesign.Services.RegisterService());
-                presenter.Show(selectedRegisterItem);
-            }
-
             if (_allowFindCommand)
+            {
+                using (var view = new SearchObjectView())
+                {
+                    var presenter = new SearchObjectPresenter(view, new ipsFormsDesign.Services.RegisterService());
+                    presenter.Show(selectedRegisterItem);
+                }
+
                 FindCommandExecuted?.Invoke(this, selectedRegisterItem);
+            }
         }
 
         private void OnLinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
