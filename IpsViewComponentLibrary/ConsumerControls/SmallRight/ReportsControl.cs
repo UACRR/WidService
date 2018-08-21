@@ -422,7 +422,11 @@ namespace IpsViewComponentLibrary
                     registerTemp.SchemaId = 2;
                     var progReportBigRight = new CreateProgReportBigRight(registerTemp)
                     {
-                        StartPosition = FormStartPosition.CenterParent
+                        StartPosition = FormStartPosition.CenterParent,
+                        HeaderInfoCustomerName = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.ShortName,
+                        HeaderInfoLicenseNumberString = ((IAgreementData) gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
+                        HeaderInfoPeriodName = period.PeriodName,
+                        HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
                     };
 
                     if (progReportBigRight.ShowDialog() == DialogResult.OK)
@@ -475,13 +479,16 @@ namespace IpsViewComponentLibrary
             {
                 CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
-                    StartPosition = FormStartPosition.CenterParent
+                    StartPosition = FormStartPosition.CenterParent,
+                    HeaderInfoCustomerName = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.ShortName,
+                    HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
+                    HeaderInfoPeriodName = period.PeriodName,
+                    HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
                 };
 
                 if (progReportBigRight.ShowDialog() == DialogResult.OK)
                 {
                     SaveRegisterExecuted?.Invoke(this, register);
-
                 }
                 return;
             }
