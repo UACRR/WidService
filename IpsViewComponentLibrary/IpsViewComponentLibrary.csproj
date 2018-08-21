@@ -254,11 +254,11 @@
     <Compile Include="LicenseAgreementListControl.Designer.cs">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegisterControls\RegisterItemListExControl.cs">
+    <Compile Include="RegisterControls\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RegisterControls\RegisterItemListExControl.Designer.cs">
-      <DependentUpon>RegisterItemListExControl.cs</DependentUpon>
+    <Compile Include="RegisterControls\RegisterItemListControl.Designer.cs">
+      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\RightholderPresenter.cs" />
     <Compile Include="RightholderControls\RightholderView.cs">
@@ -684,12 +684,6 @@
     <Compile Include="RadioPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RegisterControls\RegisterItemListControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="RegisterControls\RegisterItemListControl.Designer.cs">
-      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="RegisterControls\RegisterListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -861,8 +855,8 @@
     <EmbeddedResource Include="ConsumerControls\CreatePeriod.resx">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegisterControls\RegisterItemListExControl.resx">
-      <DependentUpon>RegisterItemListExControl.cs</DependentUpon>
+    <EmbeddedResource Include="RegisterControls\RegisterItemListControl.resx">
+      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
@@ -1043,9 +1037,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RegisterControls\RegisterItemListControl.resx">
-      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterControls\RegisterListControl.resx">
       <DependentUpon>RegisterListControl.cs</DependentUpon>
