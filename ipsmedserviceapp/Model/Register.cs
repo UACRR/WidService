@@ -37,6 +37,8 @@ namespace ipsmedserviceapp.Model
         public int? AlgorithmId { get; set; }
 
         [JsonIgnore]
+        public AlgorithmType Algorithm { get; set; }
+        [JsonIgnore]
         public Client Cust { get; set; }
         [JsonIgnore]
         public RegisterRatedList RegisterRatedList { get; set; }
