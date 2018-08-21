@@ -147,6 +147,7 @@ namespace IpsViewComponentLibrary
         internal void RefreshData()
         {
             normalizeData(_customer);
+            bindingReports.ResetBindings(false);
             gvPeriodReports.MasterTemplate.Refresh();
             //gvPeriods.MasterTemplate.Refresh();
             //gvLicenseAgr.MasterTemplate.Refresh();
@@ -416,7 +417,6 @@ namespace IpsViewComponentLibrary
                     RgStatusNavigation = dicRegStatus[0],
                 };
 
-                
                 // для визначення рапортички
                 var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
 
@@ -429,6 +429,7 @@ namespace IpsViewComponentLibrary
                     if (progReportBigRight.ShowDialog() == DialogResult.OK)
                     {
                         period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
+                        bindingReports.Add(registerTemp);
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
                     }
                 }
@@ -441,8 +442,8 @@ namespace IpsViewComponentLibrary
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
                         period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
+                        bindingReports.Add(registerTemp);
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
-                        //UpdateData?.Invoke(_customer.CustId);
                     }
                 }
 
