@@ -89,7 +89,9 @@ namespace IpsViewComponentLibrary.RegisterControls
                 foreach (var row in gvRegisterItemList.SelectedRows)
                 {
                     var registerItem = row.DataBoundItem as RegisterItemViewModel;
-                    registerItemsList.Add(registerItem);
+
+                    if (registerItem != null)
+                        registerItemsList.Add(registerItem);
                 }
 
                 return registerItemsList;

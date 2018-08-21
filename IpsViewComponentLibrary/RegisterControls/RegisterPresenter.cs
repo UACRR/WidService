@@ -6,6 +6,7 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace IpsViewComponentLibrary.RegisterControls
@@ -60,39 +61,45 @@ namespace IpsViewComponentLibrary.RegisterControls
             UpdateDataBindings();
         }
 
-        public void SearchObjects(RegisterItemViewModel selectedRegisterItem)
-        {
-            using (var view = new SearchObjectView())
-            {
-                var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(selectedRegisterItem);
-            }
-        }
-
         public void SearchObjectsForAll()
         {
+            var objectList = new List<RegisterItemViewModel>();
+
+            objectList.AddRange(_view.RegisterItemListStage);
+            objectList.AddRange(_view.RegisterItemList);
+
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(_view.RegisterItemList);
+                presenter.Show(objectList);
             }
         }
 
         public void SearchObjectsForNotLinked()
         {
+            var objectList = new List<RegisterItemViewModel>();
+
+            objectList.AddRange(_view.RegisterItemListStage.Where(r => r.ObjId == null));
+            objectList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
+
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(_view.RegisterItemList.Where(r => r.ObjId == null));
+                presenter.Show(objectList);
             }
         }
 
         public void SearchObjectsForSelected()
         {
+            var objectList = new List<RegisterItemViewModel>();
+
+            objectList.AddRange(_view.SelectedRegisterItemsStage);
+            objectList.AddRange(_view.SelectedRegisterItems);
+
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(_view.SelectedRegisterItems);
+                presenter.Show(objectList);
             }
         }
 
@@ -100,9 +107,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             var objectRightService = new ObjectRightService();
 
+            var objectList = new List<RegisterItemViewModel>();
+
+            objectList.AddRange(_view.SelectedRegisterItemsStage);
+            objectList.AddRange(_view.SelectedRegisterItems);
+
             var createdObjectCount = 0;
 
-            foreach (var registerItem in _view.SelectedRegisterItems)
+            foreach (var registerItem in objectList)
             {
                 var newObject = objectRightService.NewObjectRight(5);
                 newObject.SetDataFromRegisterItem(registerItem);
