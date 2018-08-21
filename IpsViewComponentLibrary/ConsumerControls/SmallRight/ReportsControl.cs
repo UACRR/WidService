@@ -462,7 +462,7 @@ namespace IpsViewComponentLibrary
                 return;
 
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
-            var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
+            var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.SingleOrDefault(r => r.RmId == register.RmId);
             var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
 
             var list = GetRegisterItems(register.RegId);

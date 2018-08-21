@@ -17,7 +17,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     {
         private BindingSource _bindingSourceChild = new BindingSource();
         private Register _register = null;
-        private ObservableListSource<RegisterExtraGridSource> _gridSource = new ObservableListSource<RegisterExtraGridSource>();
+        private ObservableListSource<RegisterExtra> _gridSource = new ObservableListSource<RegisterExtra>();
         private RegisterItem _registerItemCreation = null, _registerItemMusDesign = null;
         private Dictionary<int, CreativeRoleType> creativeDic; 
         public object RegisterDataSource
@@ -114,7 +114,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             foreach (var item in _registerItemCreation.RegisterExtra)
             {
-                _gridSource.Add(new RegisterExtraGridSource
+                _gridSource.Add(new RegisterExtra
                 {
                     Name = item.Name,
                     RoleCode = item.RoleCode,
@@ -179,7 +179,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             if (txtAuthName.Text != string.Empty)
             {
                 int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
-                _gridSource.Add(new RegisterExtraGridSource
+                _gridSource.Add(new RegisterExtra
                 {
                     Name = txtAuthName.Text,
                     RoleCode = roleCode,
@@ -215,7 +215,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void gvStaging_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            if (e.Row.DataBoundItem is RegisterExtraGridSource item)
+            if (e.Row.DataBoundItem is RegisterExtra item)
                 _gridSource.Remove(item);
         }
 
@@ -239,8 +239,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         }
     }
 
-    internal class RegisterExtraGridSource : RegisterExtra
-    {
-        public string RoleName { get => RoleCodeNavigation.Name; }
-    }
+    //internal class RegisterExtraGridSource : RegisterExtra
+    //{
+    //    public string RoleName { get => RoleCodeNavigation.Name; }
+    //}
 }

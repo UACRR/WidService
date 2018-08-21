@@ -1773,7 +1773,9 @@ where t1.custId = @custId
                 return BadRequest(e.Message);
             }
 
-        } // PostRegisterDetail
+        } 
+        
+        // PostRegisterDetail
         /// <summary>
         /// Змінити Р/Л
         /// </summary>
