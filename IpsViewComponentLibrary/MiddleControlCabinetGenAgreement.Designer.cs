@@ -41,6 +41,7 @@
             this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
             this.btnAgrClose = new Telerik.WinControls.UI.RadButton();
             this.ctrlGeneralAgrDetailInfoBr = new IpsViewComponentLibrary.ConsumerControls.BigRight.GeneralAgrDetailInfoBr();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnView)).BeginInit();
@@ -120,7 +121,7 @@
             this.gvGenAgrLicences.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvGenAgrLicences.Name = "gvGenAgrLicences";
             this.gvGenAgrLicences.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvGenAgrLicences.Size = new System.Drawing.Size(908, 344);
+            this.gvGenAgrLicences.Size = new System.Drawing.Size(908, 333);
             this.gvGenAgrLicences.TabIndex = 8;
             this.gvGenAgrLicences.ThemeName = "Office2013Light";
             this.gvGenAgrLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvGenAgrLicences_CurrentRowChanged);
@@ -128,11 +129,12 @@
             // btnView
             // 
             this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnView.Location = new System.Drawing.Point(777, 443);
+            this.btnView.Location = new System.Drawing.Point(816, 480);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(134, 24);
+            this.btnView.Size = new System.Drawing.Size(95, 40);
             this.btnView.TabIndex = 9;
             this.btnView.Text = "Друкувати договір";
+            this.btnView.TextWrap = true;
             this.btnView.ThemeName = "Office2013Light";
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
@@ -140,11 +142,12 @@
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAccept.Enabled = false;
-            this.btnAccept.Location = new System.Drawing.Point(777, 353);
+            this.btnAccept.Location = new System.Drawing.Point(816, 342);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(134, 24);
+            this.btnAccept.Size = new System.Drawing.Size(95, 40);
             this.btnAccept.TabIndex = 11;
             this.btnAccept.Text = "Підтвердити договір";
+            this.btnAccept.TextWrap = true;
             this.btnAccept.ThemeName = "Office2013Light";
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
@@ -152,9 +155,9 @@
             // 
             this.btnEditAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditAgr.Enabled = false;
-            this.btnEditAgr.Location = new System.Drawing.Point(777, 383);
+            this.btnEditAgr.Location = new System.Drawing.Point(816, 388);
             this.btnEditAgr.Name = "btnEditAgr";
-            this.btnEditAgr.Size = new System.Drawing.Size(134, 24);
+            this.btnEditAgr.Size = new System.Drawing.Size(95, 40);
             this.btnEditAgr.TabIndex = 12;
             this.btnEditAgr.Text = "Змінити договір";
             this.btnEditAgr.TextWrap = true;
@@ -165,11 +168,12 @@
             // 
             this.btnAgrClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAgrClose.Enabled = false;
-            this.btnAgrClose.Location = new System.Drawing.Point(777, 413);
+            this.btnAgrClose.Location = new System.Drawing.Point(816, 434);
             this.btnAgrClose.Name = "btnAgrClose";
-            this.btnAgrClose.Size = new System.Drawing.Size(134, 24);
+            this.btnAgrClose.Size = new System.Drawing.Size(95, 40);
             this.btnAgrClose.TabIndex = 14;
             this.btnAgrClose.Text = "Закрити договір";
+            this.btnAgrClose.TextWrap = true;
             this.btnAgrClose.ThemeName = "Office2013Light";
             this.btnAgrClose.Click += new System.EventHandler(this.btnAgrClose_Click);
             // 
@@ -177,7 +181,7 @@
             // 
             this.ctrlGeneralAgrDetailInfoBr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ctrlGeneralAgrDetailInfoBr.DataSourceLicense = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            this.ctrlGeneralAgrDetailInfoBr.Location = new System.Drawing.Point(3, 353);
+            this.ctrlGeneralAgrDetailInfoBr.Location = new System.Drawing.Point(3, 342);
             this.ctrlGeneralAgrDetailInfoBr.Name = "ctrlGeneralAgrDetailInfoBr";
             this.ctrlGeneralAgrDetailInfoBr.Size = new System.Drawing.Size(691, 110);
             this.ctrlGeneralAgrDetailInfoBr.TabIndex = 15;
@@ -194,7 +198,7 @@
             this.Controls.Add(this.gvGenAgrLicences);
             this.MinimumSize = new System.Drawing.Size(912, 300);
             this.Name = "MiddleControlCabinetGenAgreement";
-            this.Size = new System.Drawing.Size(915, 470);
+            this.Size = new System.Drawing.Size(915, 523);
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnView)).EndInit();
@@ -212,5 +216,6 @@
         private Telerik.WinControls.UI.RadButton btnEditAgr;
         private Telerik.WinControls.UI.RadButton btnAgrClose;
         private ConsumerControls.BigRight.GeneralAgrDetailInfoBr ctrlGeneralAgrDetailInfoBr;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
