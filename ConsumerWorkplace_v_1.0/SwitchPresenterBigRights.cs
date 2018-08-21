@@ -90,7 +90,7 @@ namespace ConsumerWorkplace_v_1._0
         /// Перейти з гріда до кабінету
         /// </summary>
         /// <param name="id">ID запису який було обрано до переходу</param>
-        public void SwitchToCabinet(int id)
+        public void SwitchToCabinet(int id, CabinetTabType tabType = CabinetTabType.None)
         {
             if (_cabinetBr == null)
             {
@@ -118,6 +118,8 @@ namespace ConsumerWorkplace_v_1._0
 
             _cabinetBr.FilterString = _mainGridBr?.FilterString ?? string.Empty;
             _cabinetBr.SetSelectCustomer(id);
+            if(tabType != CabinetTabType.None)
+                _cabinetBr.SetTab(tabType);
             _currentControl = _cabinetBr;
             _switcher.SwitchView(_cabinetBr);
         }
@@ -142,8 +144,8 @@ namespace ConsumerWorkplace_v_1._0
         private bool SavePayslips(RegisterRatedList list)
         {
             var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
-            if(outlist?.Period?.CustId != null)
-                UpdateData(outlist.Period.CustId);
+            if(outlist?.Register?.FirstOrDefault()?.CustId is int id)
+                UpdateData(id);
             return result;
         }
 
@@ -270,8 +272,9 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr.SetReferanceData(_service.getBRView(typeof(BigRightRequests), "vTsk_1_BRNotice",id));
             _cabinetBr.SetMoneyUndescribsData(_service.getBRView(typeof(BigRightMoneyUndescrib), "vTsk_1_MoneyUndescrib", id));
             _cabinetBr.SetPayslipsDate(_service.getBRView(typeof(BigRightRegister), "vTSK_1_BRRegister", id),
-                                       _service.getBRView(typeof(BigRightPayslipsSpectacleView), "vTsk_1_BRAuthorsDistributed", null));
-            
+                                       _service.getBRView(typeof(BigRightPayslipsSpectacleView), "vTsk_1_BRAuthorsDistributed", null),
+                                       _service.getBRView(typeof(MusicDesignRatedListView), "vTsk_1_BRMusic", null));
+
         }
 
         private void CabinetBr_OnBackToGridNeed(int custId)
@@ -279,9 +282,9 @@ namespace ConsumerWorkplace_v_1._0
             SwitchToGrid(custId);
         }
 
-        private void MainGridBr_OnGridButtonViewClick(int id)
+        private void MainGridBr_OnGridButtonViewClick(int id, CabinetTabType tabType)
         {
-            SwitchToCabinet(id);
+            SwitchToCabinet(id, tabType);
         }
 
         //додавання нового користувача (випадаючі кнопки)

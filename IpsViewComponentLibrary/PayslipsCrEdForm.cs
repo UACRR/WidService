@@ -25,7 +25,6 @@ namespace IpsViewComponentLibrary
         private FormType _type;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
 
-
         public PayslipsCrEdForm()
         {
             InitializeComponent();
@@ -35,7 +34,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             _type = formType;
-            InitFormType(formType);
+            InitFormType(_type);
             ddlPeriod.SelectedValueChanged -= ddlPeriod_SelectedValueChanged;
             DialogResult = DialogResult.None;
             //передача ссилок
@@ -53,7 +52,7 @@ namespace IpsViewComponentLibrary
             bsSpectacleView.DataSource = _spectacleViews.Where(rec => rec.CustId == _customer.CustId);
 
             ddlPeriod.SelectedValueChanged += ddlPeriod_SelectedValueChanged;
-            if(ddlPeriod.Items.Any() && formType == FormType.Create)
+            if(ddlPeriod.Items.Any() && _type == FormType.Create)
                 ddlPeriod.SelectedIndex = ddlPeriod.Items.First.Index;
 
             if(_registerRatedList.Register != null)
@@ -121,6 +120,20 @@ namespace IpsViewComponentLibrary
                 case FormType.Edit:
                 {
                     Text = "Редагування Р/Л";
+                    ddlPeriod.ReadOnly = true;
+                }
+                    break;
+                case FormType.View:
+                {
+                    Text = "Перегляд Р/Л";
+                    btnCancel.Text = "Закрити";
+                    btnSave.Visible = false;
+                    btnAddPeriod.Enabled = false;
+                    btnAddCheckedSpectacle.Enabled = false;
+                    gvViewPayslipsItems.ReadOnly = true;
+                    ddlPeriod.ReadOnly = true;
+                    txtAmount.ReadOnly = true;
+                    txtRoyalty.ReadOnly = true;
                 }
                     break;
             }
@@ -142,7 +155,7 @@ namespace IpsViewComponentLibrary
                 RegisterItem = new ObservableListSource<RegisterItem> { new RegisterItem
                     {
                         Ticks = 1,
-                        CodeItem = 3,
+                        CodeItem = 2,
                     }
                 },
                 RegId = _tempRegId++
@@ -153,6 +166,8 @@ namespace IpsViewComponentLibrary
         //Натискання кнопки видалення на гріду
         private void gvViewPayslipsItems_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
+            if(_type == FormType.View) return;
+
             var item = e.Row.DataBoundItem as PayslipsGridDataSource;
             var delitem = _registerRatedList.Register.SingleOrDefault(rec =>rec.RegId == item?.TempRegId);
            _registerRatedList.Register.Remove(delitem);
@@ -278,6 +293,10 @@ namespace IpsViewComponentLibrary
         /// Редагування Р/Л
         /// </summary>
         Edit,
+        /// <summary>
+        /// Перегляд
+        /// </summary>
+        View,
     }
 
     internal class PayslipsGridDataSource

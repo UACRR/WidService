@@ -167,8 +167,8 @@
             this.managerPibCtrl.StringFormat = "";
             this.managerPibCtrl.TabIndex = 1;
             this.managerPibCtrl.TextTitle = "ПІБ";
-            this.managerPibCtrl.TextValue = "Прізвище КапецьякевеличезнеІм\'я Побатькові";
-            this.managerPibCtrl.ValueDataMemger = "Прізвище КапецьякевеличезнеІм\'я Побатькові";
+            this.managerPibCtrl.TextValue = "";
+            this.managerPibCtrl.ValueDataMemger = "";
             this.managerPibCtrl.ValueDataSource = null;
             // 
             // panelContactPerson

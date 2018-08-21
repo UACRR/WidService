@@ -45,9 +45,9 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetAnketaDictionary(AnketaDictionaties dictionaties)
+        public void SetAnketaDictionary()
         {
-            _dictionaties = dictionaties;
+            _dictionaties = IpsGlobal.AnketaDictionaties;
             bsDictionary.DataSource = _dictionaties.workType;
         }
 
@@ -105,15 +105,22 @@ namespace IpsViewComponentLibrary
         {
             if (e.Row.DataBoundItem is BigRightRequests item)
             {
+                if ((_typeControl == ControlRequestOrReferenceType.Request) && (2 <= item.LicStatus && item.LicStatus <= 4)) return;
+                if ((_typeControl == ControlRequestOrReferenceType.Reference) && (item.LicStatus == 3 || item.LicStatus == 4)) return;
+                bool resetStatus = (_typeControl == ControlRequestOrReferenceType.Request && item.LicStatus == 5)
+                                 ||(_typeControl == ControlRequestOrReferenceType.Reference && (item.LicStatus == 2 || item.LicStatus == 5));
+
                 RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit, item.LicId);
                 if (requestForm.ShowDialog() == DialogResult.OK)
                 {
                     if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
-                        MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                    {
+                        if(resetStatus)
+                            OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
+                        MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     else
-                        MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                        MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -121,6 +128,7 @@ namespace IpsViewComponentLibrary
         //зміна рядка на грід
         private void gvViewRequests_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
+            //нема в наявності записів заявоч чи довідок (залежно від типу ctrl)
             if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)
             {
                 bindingSource1.DataSource = typeof(BigRightRequestBidAuthors);
@@ -130,7 +138,6 @@ namespace IpsViewComponentLibrary
             }
             else
             {
-                btnToReference.Enabled = true;
                 btnSave.Enabled = true;
                 btnCancel.Enabled = true;
             }
@@ -138,26 +145,22 @@ namespace IpsViewComponentLibrary
             var item = e?.CurrentRow?.DataBoundItem as BigRightRequests;
             if (item?.LicStatus == 0 || item?.LicStatus == 1)
             {
-                btnToAccept.Enabled = true;
-                switch (item?.LicStatus)
-                {
-                    case 0:
-                        SetBtnFunc(ButtonFunctionType.Agree);
-                        break;
-
-                    case 1:
-                        SetBtnFunc(ButtonFunctionType.Accept);
-                        break;
-
-                    default:
-                        SetBtnFunc(ButtonFunctionType.None);
-                        break;
-                }
+                if (item?.LicStatus is 0)
+                    SetBtnFunc(ButtonFunctionType.Agree);
+                else if (item?.LicStatus is 1)
+                    SetBtnFunc(ButtonFunctionType.Accept);
+                else
+                    SetBtnFunc(ButtonFunctionType.None);
             }
-            else
-                btnToAccept.Enabled = false;
-
-            btnDelete.Enabled = item?.LicStatus == 0;
+            // на погодження
+            btnToAccept.Enabled = item?.LicStatus == 0 || item?.LicStatus == 1;
+            // видалити
+            btnDelete.Enabled = _typeControl == ControlRequestOrReferenceType.Request && item?.LicStatus == 0;
+            // (видима в заявках) в стан довідки при статусі активна або на погодження
+            btnToReference.Enabled = item?.LicStatus <= 3;
+            // створити ліцензію
+            //створити заявку
+            btnCreate.Enabled = _typeControl != ControlRequestOrReferenceType.Reference || (_typeControl == ControlRequestOrReferenceType.Reference && item?.LicStatus == 2);
 
             bindingSource1.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
 

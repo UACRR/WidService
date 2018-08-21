@@ -7,12 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public AlgorithmType()
         {
-            AlgorithmTypeTr = new HashSet<AlgorithmTypeTr>();
+            AgrLicenseType = new HashSet<AgrLicenseType>();
+            Register = new HashSet<Register>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AlgorithmTypeTr> AlgorithmTypeTr { get; set; }
+        public ICollection<AgrLicenseType> AgrLicenseType { get; set; }
+        public ICollection<Register> Register { get; set; }
     }
 }

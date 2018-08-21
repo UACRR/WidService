@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,8 +22,6 @@ namespace ConsumerWorkplace_v_1._0
 {
     public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
     {
-        //private bool nextPage = false;
-        //private sbyte validTabs = 0;
         private SwitchPresenter _presenterSmallRights;
         private SwitchPresenterBigRights _presenterBigRights;
         private ConsumerService _serviceSmallRights, _serviceBigRights;
@@ -36,37 +33,10 @@ namespace ConsumerWorkplace_v_1._0
             InitializeComponent();
         }
 
-        private void ConsumerWorkplace_Load(object sender, EventArgs e)
-        {
-            int cntObj = 0;
-            setPaintEvent(Controls, ref cntObj );
-
-            Debug.WriteLine($"set event to {cntObj} objects");
-
-        }
-
-        private void setPaintEvent( Control.ControlCollection controls, ref int cntObj )
-        {
-            foreach( Control item in controls )
-            {
-                setPaintEvent(item.Controls, ref cntObj );
-                item.Paint += Item_Paint;
-                cntObj++;
-            }
-        }
-
-        private void Item_Paint(object sender, PaintEventArgs e)
-        {
-            Control control = sender as Control;
-            if (control == null)
-                return;
-
-            Debug.WriteLine($"{DateTime.Now:hh:mm:ss.ffff};{control.Name}");
-        }
-
         public ConsumerWorkplace(TypeRights rights)
         {
             IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
+            
             InitializeComponent();
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
 
@@ -276,13 +246,6 @@ namespace ConsumerWorkplace_v_1._0
         public Func<int, Customer> GetCustomer { get; set; }
         public Func<Customer, bool> SaveCustomer { get; set; }
         public Func<string, IList<AutoCompleteData>> GetAutoCompList { get; set; }
-
-        private void ConsumerWorkplace_Resize(object sender, EventArgs e)
-        {
-            Debug.WriteLine($"Start resizing {DateTime.Now:hh:mm:ss.ffff} ************");
-        }
-
-
 
         public void EndPresenterLink()
         {

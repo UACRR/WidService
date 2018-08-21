@@ -22,19 +22,14 @@ using Telerik.WinControls.UI.Localization;
 
 namespace RightholderWorkplace
 {
-    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm,
-        ISubscriber<RightholderUpdatedEvent>
+    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm
     {
-        RightholderStatusType _rightholderStatusType;
-
         RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
 
         public RightholderWorkplace()
         {
             InitializeComponent();
-
-            ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
@@ -90,8 +85,6 @@ namespace RightholderWorkplace
 
         #region Objectrights page
 
-        private RadPageViewPage _previousPage;
-
         #region Objectrights list event handlers
 
         private void miAddMusicalComposition_Click(object sender, EventArgs e)
@@ -112,16 +105,12 @@ namespace RightholderWorkplace
             if (category == 0)
                 return;
 
-            _previousPage = objectsPageView.SelectedPage; // TODO
-
             using (var view = new ObjectRightSrView())
             {
                 var presenter = new ObjectRightSrPresenter(view);
                 presenter.DefaultRightholder = defaultRightholder;
                 presenter.ShowNew(category);
             }
-
-            UpdateLists(0);
         }
 
         private void ctrlObjectRightList_EditCommandExecuted(object sender, ObjectRightMainView selectedObject)
@@ -136,8 +125,6 @@ namespace RightholderWorkplace
 
         private void EditObjectRight(ObjectRightMainView objectRight)
         {
-            _previousPage = objectsPageView.SelectedPage; // TODO
-
             if (objectRight.Category == "M")
             {
                 using (var view = new ObjectRightSrView())
@@ -154,26 +141,6 @@ namespace RightholderWorkplace
                     presenter.Show(objectRight.ObjId);
                 }
             }
-
-            UpdateLists(objectRight.ObjId);
-        }
-
-        private void UpdateLists(int objId)
-        {
-            // TODO: Update list using broadcast event {
-            if (_previousPage == actualObjectsPage)
-            {
-                ctrlObjectRightList.UpdateList(new ObjectRightMainView { ObjId = objId });
-                ctrlRightholdersObjectsRight.UpdateList();
-            }
-            else if (_previousPage == rightholdersObjectsPage)
-            {
-                ctrlRightholdersObjectsRight.UpdateList(new ObjectRightForRightholder { ObjId = objId });
-                ctrlObjectRightList.UpdateList();
-            }
-
-            ctrlRightholderList.UpdateList();
-            // } TODO
         }
 
         #endregion
@@ -235,14 +202,15 @@ namespace RightholderWorkplace
 
             var objectAuthorRightholder = new ObjectAuthorRightholder(selectedRightholder);
 
+            DialogResult dialogResult;
             using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _objectRightService.GetDictionary(), objectRight.CategoryCode))
             {
-                authorRightholderItemView.ShowDialog();
+                dialogResult = authorRightholderItemView.ShowDialog();
+            }
 
-                if (authorRightholderItemView.DialogResult == DialogResult.OK)
-                {
-                    objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
-                }
+            if (dialogResult == DialogResult.OK)
+            {
+                objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
 
                 if (objectRight.CopyRight.GetTotalRate() > 100)
                 {
@@ -252,14 +220,13 @@ namespace RightholderWorkplace
 
                 var result = _objectRightService.Save(objectRight);
 
-                if (result)
-                {
-                    ctrlRightholdersObjectsRight.UpdateList(new ObjectRightForRightholder { ObjId = objectRight.ObjId });
-                    ctrlObjectRightList.UpdateList();
-                }
-                else
+                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+                ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+
+                if (!result)
                     MessageBox.Show("Не вдалося зберегти зміни. Об'єкт не доданий.", "Помилка");
             }
+
         }
 
         private bool IsRightholderSelected()
@@ -492,7 +459,6 @@ namespace RightholderWorkplace
             MessageBox.Show("Зміна правовласників виконана успішно.");
 
             ctrlRightholdersObjectsForChange.SelectedRightholder = _objectsCopyrightList.FirstOrDefault()?.Rightholder;
-            ctrlRightholderList.UpdateList();
         }
 
         private void btnCancelNewCopyright_Click(object sender, EventArgs e)
@@ -506,10 +472,5 @@ namespace RightholderWorkplace
         }
 
         #endregion
-
-        public void HandleEvent(RightholderUpdatedEvent e)
-        {
-            ctrlRightholderList.UpdateList();
-        }
     }
 }

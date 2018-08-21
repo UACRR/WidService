@@ -48,10 +48,10 @@
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvInformation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlInformation = new IpsViewComponentLibrary.InformationAgrBR();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
+            this.ctrlAgrDetailInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.AgrDetailInfoBr();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
@@ -71,7 +71,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvViewLicences.AutoSizeRows = true;
             this.gvViewLicences.EnableCustomFiltering = true;
-            this.gvViewLicences.Location = new System.Drawing.Point(4, 133);
+            this.gvViewLicences.Location = new System.Drawing.Point(3, 133);
             // 
             // 
             // 
@@ -99,7 +99,7 @@
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 256;
+            gridViewTextBoxColumn3.Width = 257;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ ліцензійного договору";
@@ -183,7 +183,7 @@
             this.gvViewLicences.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewLicences.Name = "gvViewLicences";
             this.gvViewLicences.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewLicences.Size = new System.Drawing.Size(998, 237);
+            this.gvViewLicences.Size = new System.Drawing.Size(999, 237);
             this.gvViewLicences.TabIndex = 7;
             this.gvViewLicences.ThemeName = "Office2013Light";
             this.gvViewLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewLicences_CurrentRowChanged);
@@ -193,9 +193,9 @@
             // 
             this.separator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.separator.Location = new System.Drawing.Point(4, 90);
+            this.separator.Location = new System.Drawing.Point(3, 88);
             this.separator.Name = "separator";
-            this.separator.Size = new System.Drawing.Size(998, 10);
+            this.separator.Size = new System.Drawing.Size(999, 12);
             this.separator.TabIndex = 8;
             this.separator.ThemeName = "Office2013Light";
             // 
@@ -212,10 +212,10 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(4, 107);
+            this.txtSearch.Location = new System.Drawing.Point(3, 107);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.NullText = "Пошук";
-            this.txtSearch.Size = new System.Drawing.Size(479, 20);
+            this.txtSearch.Size = new System.Drawing.Size(480, 20);
             this.txtSearch.TabIndex = 10;
             this.txtSearch.ThemeName = "Office2013Light";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
@@ -278,32 +278,19 @@
             // 
             // pvInformation
             // 
-            this.pvInformation.Controls.Add(this.ctrlInformation);
+            this.pvInformation.Controls.Add(this.ctrlAgrDetailInfo);
             this.pvInformation.ItemSize = new System.Drawing.SizeF(79F, 27F);
             this.pvInformation.Location = new System.Drawing.Point(83, 5);
             this.pvInformation.Name = "pvInformation";
             this.pvInformation.Size = new System.Drawing.Size(910, 209);
             this.pvInformation.Text = "Інформація";
             // 
-            // ctrlInformation
-            // 
-            this.ctrlInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlInformation.InfoDataSource = typeof(ipsFormsDesign.Interfaces.VbrLicense);
-            this.ctrlInformation.Location = new System.Drawing.Point(0, 0);
-            this.ctrlInformation.MaximumSize = new System.Drawing.Size(900, 500);
-            this.ctrlInformation.MinimumSize = new System.Drawing.Size(503, 188);
-            this.ctrlInformation.Name = "ctrlInformation";
-            this.ctrlInformation.Size = new System.Drawing.Size(854, 209);
-            this.ctrlInformation.TabIndex = 0;
-            // 
             // pvAgreement
             // 
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(79F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(83, 5);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(860, 237);
+            this.pvAgreement.Size = new System.Drawing.Size(910, 209);
             this.pvAgreement.Text = "Договір";
             // 
             // pvHistory
@@ -317,12 +304,22 @@
             // ctrlAgrInfo
             // 
             this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            this.ctrlAgrInfo.Location = new System.Drawing.Point(4, 4);
+            this.ctrlAgrInfo.Location = new System.Drawing.Point(3, 3);
             this.ctrlAgrInfo.MaximumSize = new System.Drawing.Size(705, 79);
             this.ctrlAgrInfo.MinimumSize = new System.Drawing.Size(705, 79);
             this.ctrlAgrInfo.Name = "ctrlAgrInfo";
             this.ctrlAgrInfo.Size = new System.Drawing.Size(705, 79);
             this.ctrlAgrInfo.TabIndex = 0;
+            // 
+            // ctrlAgrDetailInfo
+            // 
+            this.ctrlAgrDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ctrlAgrDetailInfo.Location = new System.Drawing.Point(4, 4);
+            this.ctrlAgrDetailInfo.MinimumSize = new System.Drawing.Size(795, 170);
+            this.ctrlAgrDetailInfo.Name = "ctrlAgrDetailInfo";
+            this.ctrlAgrDetailInfo.Size = new System.Drawing.Size(795, 202);
+            this.ctrlAgrDetailInfo.TabIndex = 0;
             // 
             // MiddleControlCabinetLicenses
             // 
@@ -366,6 +363,6 @@
         private Telerik.WinControls.UI.RadPageViewPage pvInformation;
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
         private Telerik.WinControls.UI.RadPageViewPage pvHistory;
-        private InformationAgrBR ctrlInformation;
+        private ConsumerControls.BigRight.AgrDetailInfoBr ctrlAgrDetailInfo;
     }
 }

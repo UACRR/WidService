@@ -34,7 +34,6 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             _bigRightView = bigRightView;
-            ctrlHeaderInfo.SetHeaderInfoBigRight(_customer,_bigRightView);
             SetGridDataSource(_customer?.FileCustomer ?? new ObservableListSource<FileCustomer>());
         }
 

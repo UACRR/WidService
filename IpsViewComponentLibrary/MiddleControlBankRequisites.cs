@@ -26,7 +26,7 @@ namespace IpsViewComponentLibrary
                 cust.BankAccount.Add(new BankAccount { CustId = cust.CustId });
             var bankAccount = cust?.BankAccount.FirstOrDefault();
             ctrlBankAccount.DataSource = bankAccount;
-            lblTitle.Text = anketa?.Name;
+            anketaCompanyBindingSource.DataSource = anketa;
         }
 
         public bool Validator()

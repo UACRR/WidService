@@ -30,7 +30,9 @@ namespace IpsViewComponentLibrary
         private IList<BigRightMoneyUndescrib> _moneyUndescribs;
         private IList<BigRightRegister> _registers;
         private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
+        private IList<MusicDesignRatedListView> _musicDesignRatedListViews;
 
+        
         public delegate void BackToMainGrid(int custId);
         /// <summary>
         /// Виникає при натисканні кнопки [До списку споживачів]
@@ -83,6 +85,7 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnRegisterItemListNeed += CtrlCabinet_OnRegisterItemListNeed;
             ctrlCabinet.SavePariodCommandExecuted += CtrlCabinet_SavePariodCommandExecuted;
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
+            ctrlCabinet.MusicDesignDelegate = () => (List<MusicDesignRatedListView>) _musicDesignRatedListViews;
         }
 
         private void CtrlCabinet_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
@@ -182,7 +185,7 @@ namespace IpsViewComponentLibrary
         /// Дані для вкладки розрахунковий лист
         /// </summary>
         /// <param name="register"></param>
-        public void SetPayslipsDate(IList<object> register, IList<object> spectacleView)
+        public void SetPayslipsDate(IList<object> register, IList<object> spectacleView, IList<object> musicDesign)
         {
             _registers = new List<BigRightRegister>();
             foreach (var temp in register)
@@ -191,6 +194,10 @@ namespace IpsViewComponentLibrary
             _payslipsSpectacleViews = new List<BigRightPayslipsSpectacleView>();
             foreach(var temp in spectacleView)
                 _payslipsSpectacleViews.Add(temp as BigRightPayslipsSpectacleView);
+
+            _musicDesignRatedListViews = new List<MusicDesignRatedListView>();
+            foreach (var temp in musicDesign)
+                _musicDesignRatedListViews.Add(temp as MusicDesignRatedListView);
         }
 
         public void SetMoneyUndescribsData(IList<object> moneyUndescribs)
@@ -242,6 +249,12 @@ namespace IpsViewComponentLibrary
                 gvConsumerList.CurrentRow = gvConsumerList.Rows.SingleOrDefault(rec => (int)rec.Cells["CustId"].Value == custId);
         }
 
+        public void SetTab(CabinetTabType tabType)
+        {
+            ctrlCabinet.CurentTab = tabType;
+            ctrlCabinet.UpdateCurentTab(tabType);
+        }
+
         private void gvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if(gvConsumerList.Rows.Count == 0) return;
@@ -263,8 +276,11 @@ namespace IpsViewComponentLibrary
                     _moneyUndescribs,
                     _registers,
                     _payslipsSpectacleViews);
+                ctrlHeaderInfo.SetControlTextInfoBigRight(_customer, e?.CurrentRow?.DataBoundItem as ConsumerBigRightView);
             }
         }
+
+
 
         #region FILTERING (пошук)
 

@@ -136,49 +136,5 @@ namespace IpsViewComponentLibrary
             _regionCode = rDropListRegion.SelectedItem.Index;
             _nameRegion = rDropListRegion.SelectedItem.Text;
         }
-
-        #region Region dictionary
-
-        //[Category("Dictionaries")]
-        //[AttributeProvider(typeof(IListSource))]
-        //public object RegionsPlacesCtrlDataSource
-        //{
-        //    get => rDropListRegion.DataSource;
-        //    set
-        //    {
-        //        if (rDropListRegion.DataSource != value)
-        //            rDropListRegion.DataSource = value;
-        //    }
-        //}
-        //
-        //[Category("Dictionaries")]
-        //public string RegionsPlacesCtrlDataMember
-        //{
-        //    get => rDropListRegion.DataMember;
-        //    set => rDropListRegion.DataMember = value;
-        //}
-        //
-        //[Category("Dictionaries")]
-        //public string RegionsPlacesCtrlDisplayMember
-        //{
-        //    get => rDropListRegion.DisplayMember;
-        //    set => rDropListRegion.DisplayMember = value;
-        //}
-        //
-        //[Category("Dictionaries")]
-        //public string RegionsPlacesCtrlValueMember
-        //{
-        //    get => rDropListRegion.ValueMember;
-        //    set => rDropListRegion.ValueMember = value;
-        //}
-        //
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public RadDropDownList RegionBind
-        //{
-        //    get => rDropListRegion;
-        //} 
-
-        #endregion
-
     }
 }

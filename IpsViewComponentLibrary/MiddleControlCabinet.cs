@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -31,6 +32,12 @@ namespace IpsViewComponentLibrary
             {"pvAvances", CabinetTabType.Prepays},
             {"pvContacts", CabinetTabType.Contacts}
         };
+        public MiddleControlCabinetPayslips.MusicDesingDelegate MusicDesignDelegate
+        {
+            get => ctrlPayslips.MusicDesing;
+            set => ctrlPayslips.MusicDesing = value;
+        }
+
         private Customer _customer = null;
         private ConsumerBigRightView _brView;
         private IList<VbrLicense> _brLicenses;
@@ -62,15 +69,13 @@ namespace IpsViewComponentLibrary
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
 
-
-
+        private Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
         public MiddleControlCabinet()
         {
-            _anketaDictionaties = IpsGlobal.AnketaDictionaties;
             InitializeComponent();
-            ctrlReference.SetAnketaDictionary(_anketaDictionaties);
-            ctrlRequest.SetAnketaDictionary(_anketaDictionaties);
+            ctrlReference.SetAnketaDictionary();
+            ctrlRequest.SetAnketaDictionary();
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
@@ -91,6 +96,22 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
             ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
+
+            _tab = new Dictionary<CabinetTabType, RadPageViewPage>
+            {
+                {CabinetTabType.None, null},
+                {CabinetTabType.Licenses, pvLicence},
+                { CabinetTabType.Calculations, pvCalculation},
+                {CabinetTabType.Payslips, pvPayslips},
+                {CabinetTabType.Requests, pvRequest},
+                {CabinetTabType.References, pvReference},
+                {CabinetTabType.GeneralAgreement, pvGeneralAgreement},
+                {CabinetTabType.Files, pvFiles},
+                {CabinetTabType.Agent, pvAgent},
+                {CabinetTabType.Payments, pvPays},
+                {CabinetTabType.Prepays, pvAvances},
+                {CabinetTabType.Contacts, pvContacts}
+            };
         }
 
         private void CtrlPayslips_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
@@ -180,8 +201,17 @@ namespace IpsViewComponentLibrary
         }
 
 
+        public CabinetTabType CurentTab
+        {
+            get => _currenCabinetTab;
+            set
+            {
+                _currenCabinetTab = value;
+                pageView.SelectedPage = _tab[value];
+            }
+        }
 
-        private void UpdateCurentTab(CabinetTabType tab)
+        public void UpdateCurentTab(CabinetTabType tab)
         {
             switch (tab)
             {

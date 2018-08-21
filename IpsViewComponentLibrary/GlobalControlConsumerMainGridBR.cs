@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary
             set => txtSearch.Text = value;
         }
 
-        public delegate void GridButtonViewClick(int id);
+        public delegate void GridButtonViewClick(int id, CabinetTabType tabType = CabinetTabType.None);
         public event GridButtonViewClick OnGridButtonViewClick;
 
         public delegate void AddNewCustomer(PersonType person);
@@ -64,7 +64,7 @@ namespace IpsViewComponentLibrary
             {
                 case "btnsFiles":
                 {
-                    ;//TODO: перегляд файлів(великі права основний грід)
+                    OnGridButtonViewClick?.Invoke(_rowId, CabinetTabType.Files);
                 }break;
 
                 case "btnsView":

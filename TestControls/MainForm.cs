@@ -45,8 +45,9 @@ namespace TestControls
 
             payForm = new EditPay();
 
-            var employee = _service.getMainView(ConsumerFilterEnum.Working);
+            var employee = _service.getMainView(ConsumerFilterEnum.All);
             bindingSource1.DataSource = employee;
+
             if (radGridView1.RowCount > 0)
             {
                 radGridView1.Rows[0].IsCurrent = true;

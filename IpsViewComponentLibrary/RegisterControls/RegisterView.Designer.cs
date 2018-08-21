@@ -48,8 +48,14 @@
             this.btnSearchNotLinked = new Telerik.WinControls.UI.RadButton();
             this.btnSearchAuto = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanelStage = new Telerik.WinControls.UI.SplitPanel();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.ctrlRegisterItemListStage = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
+            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -72,6 +78,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchAuto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelStage)).BeginInit();
+            this.splitPanelStage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
+            this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -267,25 +281,6 @@
             this.btnSearchAuto.ThemeName = "Office2013Light";
             this.btnSearchAuto.Click += new System.EventHandler(this.btnSearchAuto_Click);
             // 
-            // ctrlRegisterItemList
-            // 
-            this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
-            this.ctrlRegisterItemList.AllowFindCommand = true;
-            this.ctrlRegisterItemList.AllowLinkCommand = true;
-            this.ctrlRegisterItemList.AllowShowObjectCommand = true;
-            this.ctrlRegisterItemList.AllowUnlinkCommand = true;
-            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
-            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 41);
-            this.ctrlRegisterItemList.MultiSelect = true;
-            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
-            this.ctrlRegisterItemList.SelectedRegisterItem = null;
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1294, 425);
-            this.ctrlRegisterItemList.TabIndex = 6;
-            this.ctrlRegisterItemList.FindCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.RegisterItemViewModel>(this.ctrlRegisterItemList_FindCommandExecuted);
-            // 
             // radPanel1
             // 
             this.radPanel1.BackColor = System.Drawing.Color.Silver;
@@ -300,6 +295,122 @@
             this.radPanel1.TabIndex = 91;
             this.radPanel1.ThemeName = "Office2013Light";
             // 
+            // splitContainer
+            // 
+            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer.Controls.Add(this.splitPanelStage);
+            this.splitContainer.Controls.Add(this.splitPanel2);
+            this.splitContainer.Location = new System.Drawing.Point(0, 26);
+            this.splitContainer.Name = "splitContainer";
+            this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // 
+            // 
+            this.splitContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitContainer.Size = new System.Drawing.Size(1292, 443);
+            this.splitContainer.SplitterWidth = 5;
+            this.splitContainer.TabIndex = 92;
+            this.splitContainer.TabStop = false;
+            this.splitContainer.ThemeName = "Office2013Light";
+            // 
+            // splitPanelStage
+            // 
+            this.splitPanelStage.Controls.Add(this.radLabel5);
+            this.splitPanelStage.Controls.Add(this.ctrlRegisterItemListStage);
+            this.splitPanelStage.Location = new System.Drawing.Point(0, 0);
+            this.splitPanelStage.Name = "splitPanelStage";
+            // 
+            // 
+            // 
+            this.splitPanelStage.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanelStage.Size = new System.Drawing.Size(1292, 167);
+            this.splitPanelStage.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1187215F);
+            this.splitPanelStage.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -52);
+            this.splitPanelStage.TabIndex = 0;
+            this.splitPanelStage.TabStop = false;
+            this.splitPanelStage.Text = "splitPanel1";
+            this.splitPanelStage.ThemeName = "Office2013Light";
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel5.Location = new System.Drawing.Point(297, 3);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(78, 19);
+            this.radLabel5.TabIndex = 3;
+            this.radLabel5.Text = "Постановка";
+            this.radLabel5.ThemeName = "Office2013Light";
+            // 
+            // splitPanel2
+            // 
+            this.splitPanel2.Controls.Add(this.radLabel4);
+            this.splitPanel2.Controls.Add(this.ctrlRegisterItemList);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 172);
+            this.splitPanel2.Name = "splitPanel2";
+            // 
+            // 
+            // 
+            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel2.Size = new System.Drawing.Size(1292, 271);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1187215F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 52);
+            this.splitPanel2.TabIndex = 1;
+            this.splitPanel2.TabStop = false;
+            this.splitPanel2.Text = "splitPanel2";
+            this.splitPanel2.ThemeName = "Office2013Light";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel4.Location = new System.Drawing.Point(297, 3);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(96, 19);
+            this.radLabel4.TabIndex = 2;
+            this.radLabel4.Text = "Музичні твори";
+            this.radLabel4.ThemeName = "Office2013Light";
+            // 
+            // ctrlRegisterItemListStage
+            // 
+            this.ctrlRegisterItemListStage.AllowCreateObjectCommand = true;
+            this.ctrlRegisterItemListStage.AllowEditList = false;
+            this.ctrlRegisterItemListStage.AllowFindCommand = true;
+            this.ctrlRegisterItemListStage.AllowLinkCommand = true;
+            this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
+            this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
+            this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemListStage.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
+            this.ctrlRegisterItemListStage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRegisterItemListStage.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemListStage.MultiSelect = false;
+            this.ctrlRegisterItemListStage.Name = "ctrlRegisterItemListStage";
+            this.ctrlRegisterItemListStage.SelectedRegisterItem = null;
+            this.ctrlRegisterItemListStage.ShowAuthors = true;
+            this.ctrlRegisterItemListStage.ShowObjectInfo = true;
+            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1292, 167);
+            this.ctrlRegisterItemListStage.TabIndex = 0;
+            // 
+            // ctrlRegisterItemList
+            // 
+            this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
+            this.ctrlRegisterItemList.AllowEditList = false;
+            this.ctrlRegisterItemList.AllowFindCommand = true;
+            this.ctrlRegisterItemList.AllowLinkCommand = true;
+            this.ctrlRegisterItemList.AllowShowObjectCommand = true;
+            this.ctrlRegisterItemList.AllowUnlinkCommand = true;
+            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
+            this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemList.MultiSelect = true;
+            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
+            this.ctrlRegisterItemList.SelectedRegisterItem = null;
+            this.ctrlRegisterItemList.ShowAuthors = true;
+            this.ctrlRegisterItemList.ShowObjectInfo = true;
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1292, 271);
+            this.ctrlRegisterItemList.TabIndex = 1;
+            // 
             // RegisterView
             // 
             this.AcceptButton = this.btnSave;
@@ -307,10 +418,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1292, 568);
+            this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.gboxSearch);
             this.Controls.Add(this.gboxStatus);
-            this.Controls.Add(this.ctrlRegisterItemList);
             this.Controls.Add(this.txtNumber);
             this.Controls.Add(this.dtCreateDate);
             this.Controls.Add(this.ddlStatus);
@@ -347,6 +458,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchAuto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelStage)).EndInit();
+            this.splitPanelStage.ResumeLayout(false);
+            this.splitPanelStage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
+            this.splitPanel2.ResumeLayout(false);
+            this.splitPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -362,7 +483,6 @@
         private Telerik.WinControls.UI.RadDateTimePicker dtCreateDate;
         private Telerik.WinControls.UI.RadTextBox txtNumber;
         private System.Windows.Forms.BindingSource registerBindingSource;
-        private RegisterItemListControl ctrlRegisterItemList;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnSetStatus;
@@ -376,5 +496,12 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadButton btnCreateSelected;
         private Telerik.WinControls.UI.RadPanel radPanel1;
+        private Telerik.WinControls.UI.RadSplitContainer splitContainer;
+        private Telerik.WinControls.UI.SplitPanel splitPanelStage;
+        private Telerik.WinControls.UI.SplitPanel splitPanel2;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private RegisterItemListControl ctrlRegisterItemList;
+        private RegisterItemListControl ctrlRegisterItemListStage;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
     }
 }

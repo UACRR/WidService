@@ -42,6 +42,7 @@
             this.gvConsumerList = new Telerik.WinControls.UI.RadGridView();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.ctrlCabinet = new IpsViewComponentLibrary.MiddleControlCabinet();
+            this.ctrlHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
@@ -189,7 +190,7 @@
             this.gvConsumerList.Name = "gvConsumerList";
             this.gvConsumerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvConsumerList.ReadOnly = true;
-            this.gvConsumerList.Size = new System.Drawing.Size(306, 557);
+            this.gvConsumerList.Size = new System.Drawing.Size(306, 617);
             this.gvConsumerList.TabIndex = 9;
             this.gvConsumerList.ThemeName = "Office2013Light";
             this.gvConsumerList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvConsumerList_CurrentRowChanged);
@@ -201,15 +202,26 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlCabinet.AutoScroll = true;
-            this.ctrlCabinet.Location = new System.Drawing.Point(315, 30);
+            this.ctrlCabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.GeneralAgreement;
+            this.ctrlCabinet.Location = new System.Drawing.Point(315, 214);
             this.ctrlCabinet.Name = "ctrlCabinet";
-            this.ctrlCabinet.Size = new System.Drawing.Size(1019, 556);
+            this.ctrlCabinet.Size = new System.Drawing.Size(1019, 432);
             this.ctrlCabinet.TabIndex = 14;
+            // 
+            // ctrlHeaderInfo
+            // 
+            this.ctrlHeaderInfo.Location = new System.Drawing.Point(316, 30);
+            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
+            this.ctrlHeaderInfo.Size = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.TabIndex = 15;
             // 
             // GlobalControlConsumerCabinetBR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ctrlHeaderInfo);
             this.Controls.Add(this.ctrlCabinet);
             this.Controls.Add(this.btnEditAgr);
             this.Controls.Add(this.btnNewConsumer);
@@ -217,7 +229,7 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gvConsumerList);
             this.Name = "GlobalControlConsumerCabinetBR";
-            this.Size = new System.Drawing.Size(1337, 589);
+            this.Size = new System.Drawing.Size(1337, 649);
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
@@ -237,5 +249,6 @@
         private Telerik.WinControls.UI.RadGridView gvConsumerList;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         public MiddleControlCabinet ctrlCabinet;
+        private ConsumerControls.ConsumerHeaderInfo ctrlHeaderInfo;
     }
 }

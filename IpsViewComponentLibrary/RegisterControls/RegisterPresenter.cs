@@ -4,7 +4,9 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace IpsViewComponentLibrary.RegisterControls
@@ -13,20 +15,35 @@ namespace IpsViewComponentLibrary.RegisterControls
     {
         private readonly RegisterView _view;
         private readonly RegisterService _registerService;
+        private readonly DialogService _dialogService;
         private Register _register;
+        private bool _saved;
 
         public RegisterPresenter(RegisterView view, RegisterService registerService)
         {
             _view = view;
             _view.Presenter = this;
 
+            _view.FormClosing += View_FormClosing;
+
             _registerService = registerService;
+            _dialogService = new DialogService();
         }
 
         public void Show(int regId)
         {
             _register = _registerService.GetById(regId);
             UpdateDataBindings();
+
+            if (_register.SchemaId == 1)
+            {
+                _view.SetupViewForSchema1();
+            }
+            else if (_register.SchemaId == 2)
+            {
+                _view.SetupViewForSchema2();
+            }
+
             _view.Run();
         }
 
@@ -36,7 +53,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             if (!result)
             {
-                _view.ShowError("Не вдалося виконати автоматичну прив'язку об'єктів права.");
+                _dialogService.ShowError(_view, "Не вдалося виконати автоматичну прив'язку об'єктів права.");
                 return;
             }
 
@@ -44,39 +61,45 @@ namespace IpsViewComponentLibrary.RegisterControls
             UpdateDataBindings();
         }
 
-        public void SearchObjects(RegisterItemViewModel selectedRegisterItem)
-        {
-            using (var view = new SearchObjectView())
-            {
-                var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(selectedRegisterItem);
-            }
-        }
-
         public void SearchObjectsForAll()
         {
+            var objectList = new List<RegisterItemViewModel>();
+
+            objectList.AddRange(_view.RegisterItemListStage);
+            objectList.AddRange(_view.RegisterItemList);
+
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(_view.RegisterItemList);
+                presenter.Show(objectList);
             }
         }
 
         public void SearchObjectsForNotLinked()
         {
+            var objectList = new List<RegisterItemViewModel>();
+
+            objectList.AddRange(_view.RegisterItemListStage.Where(r => r.ObjId == null));
+            objectList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
+
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(_view.RegisterItemList.Where(r => r.ObjId == null));
+                presenter.Show(objectList);
             }
         }
 
         public void SearchObjectsForSelected()
         {
+            var objectList = new List<RegisterItemViewModel>();
+
+            objectList.AddRange(_view.SelectedRegisterItemsStage);
+            objectList.AddRange(_view.SelectedRegisterItems);
+
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(_view.SelectedRegisterItems);
+                presenter.Show(objectList);
             }
         }
 
@@ -84,9 +107,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             var objectRightService = new ObjectRightService();
 
+            var objectList = new List<RegisterItemViewModel>();
+
+            objectList.AddRange(_view.SelectedRegisterItemsStage);
+            objectList.AddRange(_view.SelectedRegisterItems);
+
             var createdObjectCount = 0;
 
-            foreach (var registerItem in _view.SelectedRegisterItems)
+            foreach (var registerItem in objectList)
             {
                 var newObject = objectRightService.NewObjectRight(5);
                 newObject.SetDataFromRegisterItem(registerItem);
@@ -107,17 +135,23 @@ namespace IpsViewComponentLibrary.RegisterControls
                 }
                 else
                 {
-                    _view.ShowError("Не вдалося створити об'єкт з назвою " + registerItem.ItemName);
+                    _dialogService.ShowError(_view, "Не вдалося створити об'єкт з назвою " + registerItem.ItemName);
                 }
             }
 
-            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightAddedEvent());
+            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
 
-            _view.ShowMessage($"Створено {createdObjectCount} об'єктів.");
+            _dialogService.ShowMessage(_view, $"Створено {createdObjectCount} об'єктів.");
         }
 
         public void SetStatus(RegisterStatusType status)
         {
+            if (status == RegisterStatusType.OnDistribution && _view.RegisterItemList.Any(item => item.ObjId == null))
+            {
+                _dialogService.ShowError(_view, "Не визначені всі об'єкти. Закінчіть роботу зі звітом.");
+                return;
+            }
+
             var result = _registerService.SetStatus(_register.RegId, status);
 
             if (result)
@@ -127,11 +161,13 @@ namespace IpsViewComponentLibrary.RegisterControls
                 _view.SetStatus(status);
             }
             else
-                _view.ShowError("Не вдалося змінити статус.");
+                _dialogService.ShowError(_view, "Не вдалося змінити статус.");
         }
 
         public void Save()
         {
+            _saved = true;
+
             foreach (var rvm in _view.RegisterItemList)
             {
                 var foundedRegisterItem = _register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
@@ -150,16 +186,47 @@ namespace IpsViewComponentLibrary.RegisterControls
                     foundedRegisterItem.RegIitemId = rvm.RegIitemId;
                     foundedRegisterItem.ObjId = rvm.ObjId;
                     foundedRegisterItem.IsAuto = rvm.IsAuto;
+                    foundedRegisterItem.CodeItem = rvm.CodeItem;
+                };
+            }
+
+            foreach (var rvm in _view.RegisterItemListStage)
+            {
+                var foundedRegisterItem = _register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
+
+                if (foundedRegisterItem != null)
+                {
+                    foundedRegisterItem.ItemName = rvm.ItemName;
+                    foundedRegisterItem.AuthorMusic = rvm.AuthorMusic;
+                    foundedRegisterItem.AuthorText = rvm.AuthorText;
+                    foundedRegisterItem.CategoryCode = rvm.CategoryCode;
+                    foundedRegisterItem.CountUse = rvm.CountUse;
+                    foundedRegisterItem.DurationItem = rvm.DurationItem;
+                    foundedRegisterItem.DurationUse = rvm.DurationUse;
+                    foundedRegisterItem.Performer = rvm.Performer;
+                    foundedRegisterItem.RegId = rvm.RegId;
+                    foundedRegisterItem.RegIitemId = rvm.RegIitemId;
+                    foundedRegisterItem.ObjId = rvm.ObjId;
+                    foundedRegisterItem.IsAuto = rvm.IsAuto;
+                    foundedRegisterItem.CodeItem = rvm.CodeItem;
                 };
             }
 
             var result = _registerService.Save(_register);
+
+            ApplicationController.Instance.EventAggregator.PublishEvent(new RegisterUpdatedEvent());
+
+            if (!result)
+                _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
         }
 
         private void UpdateDataBindings()
         {
             _view.Register = _register;
             _view.RegisterItemList.Clear();
+            _view.RegisterExtraList.Clear();
+            _view.RegisterItemListStage.Clear();
+            _view.RegisterExtraListStage.Clear();
 
             foreach (var r in _register.RegisterItem)
             {
@@ -176,12 +243,34 @@ namespace IpsViewComponentLibrary.RegisterControls
                     RegId = r.RegId,
                     RegIitemId = r.RegIitemId,
                     IsAuto = r.IsAuto,
+                    CodeItem = r.CodeItem,
                 };
 
                 if (r.Obj != null)
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
 
-                _view.RegisterItemList.Add(rvm);
+                if (r.CodeItem == 1 || r.CodeItem == 3)
+                {
+                    _view.RegisterItemList.Add(rvm);
+
+                    foreach (var re in r.RegisterExtra)
+                        _view.RegisterExtraList.Add(re);
+                }
+                else if (r.CodeItem == 2)
+                {
+                    _view.RegisterItemListStage.Add(rvm);
+
+                    foreach (var re in r.RegisterExtra)
+                        _view.RegisterExtraListStage.Add(re);
+                }
+            }
+        }
+
+        private void View_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
+            {
+                e.Cancel = true;
             }
         }
     }

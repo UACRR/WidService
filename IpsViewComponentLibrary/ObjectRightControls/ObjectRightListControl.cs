@@ -9,10 +9,12 @@ using Telerik.WinControls.UI;
 using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class ObjectRightListControl : UserControl, ISubscriber<ObjectRightAddedEvent>
+    public partial class ObjectRightListControl : UserControl,
+        ISubscriber<ObjectRightUpdatedEvent>
     {
         protected bool IsDesignMode
         {
@@ -20,6 +22,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         }
 
         private ObjectRightMainView _objectRight;
+
         public ObjectRightMainView SelectedObject
         {
             get
@@ -50,12 +53,34 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public ObjectRightListControl()
         {
             InitializeComponent();
+        }
 
+        private void ObjectRightListControl_Load(object sender, EventArgs e)
+        {
             if (!IsDesignMode)
             {
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
+
+                SetDictionaries();
+
                 UpdateList();
             }
+        }
+
+        private void SetDictionaries()
+        {
+            ddlState.SelectedValueChanged -= ddlState_SelectedValueChanged;
+
+            var states = new[] {
+                    new { CodeI = -1, Name = "Всі" },
+                    new { CodeI = 0, Name = "Не підтверджені" },
+                    new { CodeI = 1, Name = "Не прив'язані" },
+                    new { CodeI = 2, Name = "Не розподілені" },
+                };
+
+            ddlState.SetDataSource(states);
+
+            ddlState.SelectedValueChanged += ddlState_SelectedValueChanged;
         }
 
         public void UpdateList()
@@ -65,11 +90,23 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void UpdateList(ObjectRightMainView currentObject)
         {
-            var service = new ObjectRightService();
-            var list = service.GetMainView();
-            objectRightMainViewBindingSource.DataSource = list;
+            var query = new ObjectRightQuery();
 
-            SelectedObject = currentObject;
+            query.Page = navigatorPanel.CurrentPage;
+            query.PageSize = navigatorPanel.PageSize;
+
+            if (ddlState.SelectedValue != null && (int)ddlState.SelectedValue != -1)
+                query.State = (ObjectRightStates)ddlState.SelectedValue;
+            if (!string.IsNullOrWhiteSpace(txtSearchObject.Text))
+                query.SearchText = txtSearchObject.Text;
+
+            var service = new ObjectRightService();
+            var result = service.GetObjectRights(query);
+            objectRightMainViewBindingSource.DataSource = result.List;
+
+            navigatorPanel.TotalPages = (int) Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
+
+            //SelectedObject = currentObject; // TODO: is it realy need?
         }
 
         private void gvObjectsRightsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
@@ -95,6 +132,21 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             UpdateList();
         }
 
+        private void ddlState_SelectedValueChanged(object sender, EventArgs e)
+        {
+            navigatorPanel.CurrentPage = 1;
+        }
+
+        private void navigatorPanel_CurrentPageChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void navigatorPanel_PageSizeChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
         protected virtual void OnObjectSelected(ObjectRightMainView selectedObject)
         {
             ObjectSelected(this, selectedObject);
@@ -105,56 +157,21 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             EditCommandExecuted(this, selectedObject);
         }
 
-        public void HandleEvent(ObjectRightAddedEvent e)
+        public void HandleEvent(ObjectRightUpdatedEvent e)
         {
             UpdateList();
         }
 
-        #region Search
+        private void timerSearch_Tick(object sender, EventArgs e)
+        {
+            timerSearch.Stop();
+            navigatorPanel.CurrentPage = 1;
+        }
 
         private void txtSearchObject_TextChanged(object sender, EventArgs e)
         {
-            gvObjectsRightsList.MasterTemplate.Refresh();
+            timerSearch.Stop();
+            timerSearch.Start();
         }
-
-        private void gvObjectsRightsList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearchObject.Text))
-            {
-                gvObjectsRightsList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvObjectsRightsList.EndUpdate(false);
-                return;
-            }
-
-            gvObjectsRightsList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvObjectsRightsList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearchObject.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvObjectsRightsList.EndUpdate(false);
-            }
-        }
-
-        #endregion
     }
 }

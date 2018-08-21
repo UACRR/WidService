@@ -70,15 +70,15 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.FileCustomer)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
-                        // .Include(item => item.Client.LicenseAgreement).ThenInclude(agr => agr.LicenseBigR.MusicalDesign)
                         .SingleOrDefaultAsync();
+
             // Отримати дані по Контрактах
             await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                 .Query()
                 .Where(agree => agree.LicStatus < 4)
                 .Include(item => item.Agr)
                 .Include(item => item.LicCodeNavigation)
-                .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign)
+                .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign).ThenInclude(md => md.Obj)
                 .Include(rec => rec.PaidPeriod)
                 .LoadAsync();
 
@@ -111,15 +111,15 @@ namespace ipsmedserviceapp.Controllers
             // Отримати Майданчики
             foreach (var place in cust.Client.ClnBusinessPlace)
             {
-                _dbContext.Entry(place).Collection(item => item.ClnPlaceHoll).Load();
-                _dbContext.Entry(place).Reference(item => item.PlCodeNavigation).Load();
+                await _dbContext.Entry(place).Collection(item => item.ClnPlaceHoll).LoadAsync();
+                await _dbContext.Entry(place).Reference(item => item.PlCodeNavigation).LoadAsync();
 
             }
 
             // Отримати співробітників
             foreach (var relEmp in cust.Company.RelEmployee)
             {
-                _dbContext.Entry(relEmp).Reference(item => item.Empl).Load();
+                await _dbContext.Entry(relEmp).Reference(item => item.Empl).LoadAsync();
             }
 
             return cust;
@@ -215,7 +215,7 @@ namespace ipsmedserviceapp.Controllers
 
             // LicenseAgreement
             {
-                Dictionary<int, ClnBusinessPlace> dicPlace = destCustomer.Client.ClnBusinessPlace.ToDictionary(rec => rec.PlaceId);
+                Dictionary<int, ClnBusinessPlace> dicPlace = destCustomer.Client.ClnBusinessPlace.Where(rec => rec.PlaceId != 0).ToDictionary(rec => rec.PlaceId);
                 Action<License> addLicense = (lic) =>
                 {
                     if (lic.PlaceId == null)
@@ -402,6 +402,8 @@ namespace ipsmedserviceapp.Controllers
 
             license.LicenseBigR.SetFields(item.LicenseBigR);
 
+            _dbContext.UpdateList(item.LicenseBigR.MusicalDesign, license.LicenseBigR.MusicalDesign, i => { }, (l, r) => l.MdId == r.MdId);
+
             if (item.LicenseBigR.Obj != null)
             {
 
@@ -417,7 +419,7 @@ namespace ipsmedserviceapp.Controllers
                 license.LicenseBigR.Obj.SetFields(item.LicenseBigR.Obj);
 
                 _dbContext.UpdateListExtra(item.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Obj.CopyRight,
-                    (isnew,sorsCp, destCp) =>
+                    (isnew, sorsCp, destCp) =>
                     {
                         if (sorsCp.WorkRh != null)
                         {
@@ -430,9 +432,9 @@ namespace ipsmedserviceapp.Controllers
                             destCp.WorkRh.SetFields(sorsCp.WorkRh);
                         }
 
-                        if(sorsCp.LicAuthorBr != null)
+                        if (sorsCp.LicAuthorBr != null)
                         {
-                            if(destCp.LicAuthorBr == null)
+                            if (destCp.LicAuthorBr == null)
                             {
                                 destCp.LicAuthorBr = new LicAuthorBr();
                                 _dbContext.LicAuthorBr.Add(destCp.LicAuthorBr);
@@ -442,7 +444,7 @@ namespace ipsmedserviceapp.Controllers
 
                     }, (l, r) => l.CRightId == r.CRightId);
 
-                _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.CustId == r.CustId);
+                _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
 
             }
         }
@@ -504,11 +506,11 @@ namespace ipsmedserviceapp.Controllers
         {
             foreach (var item in sorsCustomer.Client.LicenseAgreement)
             {
-                item.Agr.AgrStatus = 2;
+                item.Agr.AgrStatus = 0;
                 var param = item.LicenseAgrParam.Where(rec => rec.LicVersion == item.LicVersion).Single();
                 /// ***** Потрібно змінити після підключення кабінету
-                item.LicStatus = 2;
-                param.LicStatus = 2;
+                item.LicStatus = 0;
+                param.LicStatus = 0;
 
 
             }
@@ -609,7 +611,7 @@ namespace ipsmedserviceapp.Controllers
             // Request
             Request = 4,
             // Certificate
-            Reference = 5,
+            Certificate = 5,
             // All documents
             All
 
@@ -671,7 +673,7 @@ namespace ipsmedserviceapp.Controllers
                 { ConsumerFilterEnum.Working, "statusLic2Active=1"  },
                 { ConsumerFilterEnum.NotActive, "statusLic2Noactive=1"}
             } },
-            { TypeBRDocument.Reference, new Dictionary<ConsumerFilterEnum, string> {
+            { TypeBRDocument.Certificate, new Dictionary<ConsumerFilterEnum, string> {
                 { ConsumerFilterEnum.All, "countLic3Active+countLic3NoActive>0"  },
                 { ConsumerFilterEnum.Working, "statusLic3Active=1"  },
                 { ConsumerFilterEnum.NotActive, "statusLic3Noactive=1"}
@@ -737,7 +739,8 @@ namespace ipsmedserviceapp.Controllers
             {"vTsk_1_MoneyUndescrib", "vTsk_1_MoneyUndescrib"},
             {"vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay"},
             {"vTSK_1_BRObjects", "vTSK_1_BRObjects"},
-            {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"}
+            {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"},
+            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"}
         };
 
 
@@ -770,7 +773,6 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        //TODO test method
         [HttpGet("listBR/agrmaster/{custId}")]
         public async Task<IActionResult> GetAgrForCustId(int custId)
         {
@@ -907,8 +909,6 @@ namespace ipsmedserviceapp.Controllers
 
 
 
-            //LicenseAgrParam licParam = licAgreement?.LicenseAgrParam?.SingleOrDefault(rec => rec.LicVersion == licAgreement.LicVersion);
-            //AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == licAgreement.Agr.Version);
             LicenseAgrParam licParam = licAgreement?.LicenseAgrParam?.SingleOrDefault(rec => rec.LicVersion == version);
             AgreementAddBr addBr = licAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == version);
 
@@ -961,9 +961,7 @@ namespace ipsmedserviceapp.Controllers
                     item.LicStatus = status;
                 foreach (var item in licAgreement.Agr.AgreementAddBr)
                     item.AgrStatus = status;
-
             }
-
 
             return licAgreement;
 
@@ -1143,9 +1141,13 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = false;
 
-                _dbContext.UpdateListExtra(sorsItem.RegisterItem, destItem.RegisterItem, 
-                    (isNew, sorsRec, destRec ) => {
+                _dbContext.UpdateListExtra(sorsItem.RegisterItem, destItem.RegisterItem,
+                    (isNew, sorsRec, destRec) =>
+                    {
                         destRec.SetFields(sorsRec);
+                        if (destRec.Ticks == null)
+                            destRec.Ticks = 1;
+
                         if (isNew)
                             destRec.RegIitemId = regItemId++;
                         _dbContext.UpdateList(sorsRec.RegisterExtra, destRec.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
@@ -1155,7 +1157,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
 
                 destItem.CountRows = destItem.RegisterItem.Count();
-                var sumTicks = destItem.RegisterItem.Sum(rec => (long)rec.Ticks);
+                var sumTicks = destItem.RegisterItem.Sum(rec => (long)(rec.Ticks??1));
                 destItem.Durationticks = (int)sumTicks;
             }
 
@@ -1256,14 +1258,15 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             int index = modifyItem.RegisterItem.Max(rec => rec.RegIitemId);
             index++;
 
-            _dbContext.UpdateListExtra(body.RegisterItem, modifyItem.RegisterItem, (isNew, sorsItem, destItem) => {
+            _dbContext.UpdateListExtra(body.RegisterItem, modifyItem.RegisterItem, (isNew, sorsItem, destItem) =>
+            {
 
-                if ( isNew )
-                destItem.RegIitemId = index++;
+                if (isNew)
+                    destItem.RegIitemId = index++;
 
-                _dbContext.UpdateList(sorsItem.RegisterExtra, destItem.RegisterExtra, i => { }, (l, r) =>  l.RegExtraId == r.RegExtraId );
+                _dbContext.UpdateList(sorsItem.RegisterExtra, destItem.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
             }
-            
+
             , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
         }
 
@@ -1276,6 +1279,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         public async Task<IActionResult> DeleteRegisterDetail(int regId)
         {
             IDbContextTransaction tran = null;
+            int[] validDeleteStatus = { 0, 5 };
             try
             {
 
@@ -1285,7 +1289,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 if (deleteItem == null)
                     throw new ApplicationException("Dont find Register item");
 
-                if (deleteItem.RgStatus > 1)
+                if (!validDeleteStatus.Contains(deleteItem.RgStatus ?? 0))
                 {
                     throw new ApplicationException("Can not delete Register with status > 1");
                 }
@@ -1677,9 +1681,10 @@ where t1.custId = @custId
 ", new SqlParameter("@custId", custId))
                 .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
                 .Include(lic => lic.Cust)
+                .Include(lic => lic.Agr)
                 .ToListAsync();
 
-            
+
             if (licenseAgreement.Count() == 0)
                 return Ok();
 
@@ -1691,11 +1696,14 @@ where t1.custId = @custId
                 await _dbContext.Entry(item).Collection(rec => rec.PaidPeriod)
                     .Query()
                     // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
-                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register) // .ThenInclude(regItem => regItem.RegisterItem)
+                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register)
                     .LoadAsync();
 
                 await _dbContext.Entry(item).Collection(rec => rec.LicenseAgrParam).Query()
                     .Where(rec => rec.LicVersion == item.LicVersion).LoadAsync();
+
+                await _dbContext.Entry(item.Agr).Collection(rec => rec.AgreementAddBr).Query()
+                    .Where(rec => rec.Version == item.Agr.Version).LoadAsync();
             }
 
             var customer = licenseAgreement.First().Cust.Cust;
@@ -1728,7 +1736,7 @@ where t1.custId = @custId
         public async Task<IActionResult> GetRegisterItems(int regId)
         {
             var list = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId)
-                .Include(rec => rec.RegisterExtra )
+                .Include(rec => rec.RegisterExtra)
                 .AsNoTracking().ToListAsync();
             return Json(list);
         }
@@ -1765,7 +1773,9 @@ where t1.custId = @custId
                 return BadRequest(e.Message);
             }
 
-        } // PostRegisterDetail
+        } 
+        
+        // PostRegisterDetail
         /// <summary>
         /// Змінити Р/Л
         /// </summary>
@@ -1784,7 +1794,7 @@ where t1.custId = @custId
                     .Include(rec => rec.Register)
                     .Single();
 
-                foreach( var item in body.Register.Where( rec => rec.RegId > 0 && rec.RegisterItem.Count() > 0) )
+                foreach (var item in body.Register.Where(rec => rec.RegId > 0 && rec.RegisterItem.Count() > 0))
                 {
                     await _dbContext.RegisterItem.Where(rec => rec.RegId == item.RegId)
                             .Include(rec => rec.RegisterExtra)

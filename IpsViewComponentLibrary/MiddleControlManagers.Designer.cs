@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
             this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
@@ -40,6 +41,7 @@
             this.ctrlHeadBoss = new IpsViewComponentLibrary.IpsBossNameContactsControl();
             this.ctrlBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
             this.ctrlContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
@@ -64,10 +66,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtSurName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
+            this.lblTitle.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true));
             this.lblTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblTitle.Location = new System.Drawing.Point(35, 3);
             this.lblTitle.Name = "lblTitle";
@@ -232,7 +236,7 @@
             // 
             // 
             // 
-            this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
+            this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
             this.ctrlHeadBoss.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlHeadBoss.TxtSurName.TabIndex = 2;
@@ -317,7 +321,7 @@
             // 
             // 
             // 
-            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
+            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
             this.ctrlBookkeeper.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlBookkeeper.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlBookkeeper.TxtSurName.TabIndex = 2;
@@ -402,10 +406,14 @@
             // 
             // 
             // 
-            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
+            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
             this.ctrlContactPerson.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlContactPerson.TxtSurName.TabIndex = 2;
+            // 
+            // anketaCompanyBindingSource
+            // 
+            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // MiddleControlManagers
             // 
@@ -451,6 +459,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtSurName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,5 +479,6 @@
         private IpsBossNameContactsControl ctrlHeadBoss;
         private IpsBossNameContactsControl ctrlBookkeeper;
         private IpsBossNameContactsControl ctrlContactPerson;
+        private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
     }
 }

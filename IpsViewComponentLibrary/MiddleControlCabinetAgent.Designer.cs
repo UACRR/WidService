@@ -41,7 +41,6 @@
             this.btnCreateNewAgr = new Telerik.WinControls.UI.RadButton();
             this.btnView = new Telerik.WinControls.UI.RadButton();
             this.gvGenAgrLicences = new Telerik.WinControls.UI.RadGridView();
-            this.ctrlHeaderInfo = new IpsViewComponentLibrary.InformationOfUserControl();
             this.ctrlFooterInfo = new IpsViewComponentLibrary.AgentFooterBR();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
@@ -56,7 +55,7 @@
             // btnEditAgr
             // 
             this.btnEditAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditAgr.Location = new System.Drawing.Point(684, 360);
+            this.btnEditAgr.Location = new System.Drawing.Point(684, 337);
             this.btnEditAgr.Name = "btnEditAgr";
             this.btnEditAgr.Size = new System.Drawing.Size(110, 24);
             this.btnEditAgr.TabIndex = 17;
@@ -66,7 +65,7 @@
             // btnAccept
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(800, 360);
+            this.btnAccept.Location = new System.Drawing.Point(800, 337);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(110, 24);
             this.btnAccept.TabIndex = 16;
@@ -76,7 +75,7 @@
             // btnCreateNewAgr
             // 
             this.btnCreateNewAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateNewAgr.Location = new System.Drawing.Point(568, 360);
+            this.btnCreateNewAgr.Location = new System.Drawing.Point(568, 337);
             this.btnCreateNewAgr.Name = "btnCreateNewAgr";
             this.btnCreateNewAgr.Size = new System.Drawing.Size(110, 24);
             this.btnCreateNewAgr.TabIndex = 15;
@@ -86,7 +85,7 @@
             // btnView
             // 
             this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnView.Location = new System.Drawing.Point(3, 360);
+            this.btnView.Location = new System.Drawing.Point(3, 337);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(110, 24);
             this.btnView.TabIndex = 14;
@@ -100,7 +99,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvGenAgrLicences.AutoSizeRows = true;
             this.gvGenAgrLicences.EnableCustomFiltering = true;
-            this.gvGenAgrLicences.Location = new System.Drawing.Point(3, 215);
+            this.gvGenAgrLicences.Location = new System.Drawing.Point(3, 3);
             // 
             // 
             // 
@@ -164,36 +163,14 @@
             this.gvGenAgrLicences.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvGenAgrLicences.Name = "gvGenAgrLicences";
             this.gvGenAgrLicences.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvGenAgrLicences.Size = new System.Drawing.Size(907, 139);
+            this.gvGenAgrLicences.Size = new System.Drawing.Size(907, 328);
             this.gvGenAgrLicences.TabIndex = 13;
             this.gvGenAgrLicences.ThemeName = "Office2013Light";
-            // 
-            // ctrlHeaderInfo
-            // 
-            this.ctrlHeaderInfo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctrlHeaderInfo.Edrpou = "";
-            this.ctrlHeaderInfo.EmailContactPerson = "";
-            this.ctrlHeaderInfo.EmailManager = "";
-            this.ctrlHeaderInfo.GroupOrHolding = "";
-            this.ctrlHeaderInfo.HoldingVisible = false;
-            this.ctrlHeaderInfo.Location = new System.Drawing.Point(0, 0);
-            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
-            this.ctrlHeaderInfo.NameInfo = "";
-            this.ctrlHeaderInfo.OrganisationForm = "";
-            this.ctrlHeaderInfo.OrganisationFormVisible = false;
-            this.ctrlHeaderInfo.PhoneContactPerson = "";
-            this.ctrlHeaderInfo.PhoneManager = "";
-            this.ctrlHeaderInfo.PibContactPerson = "";
-            this.ctrlHeaderInfo.PibManager = "";
-            this.ctrlHeaderInfo.Size = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.TabIndex = 0;
             // 
             // ctrlFooterInfo
             // 
             this.ctrlFooterInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ctrlFooterInfo.Location = new System.Drawing.Point(3, 406);
+            this.ctrlFooterInfo.Location = new System.Drawing.Point(3, 383);
             this.ctrlFooterInfo.MaximumSize = new System.Drawing.Size(625, 174);
             this.ctrlFooterInfo.MinimumSize = new System.Drawing.Size(625, 174);
             this.ctrlFooterInfo.Name = "ctrlFooterInfo";
@@ -204,7 +181,7 @@
             // 
             this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator1.Location = new System.Drawing.Point(3, 390);
+            this.radSeparator1.Location = new System.Drawing.Point(3, 367);
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(907, 10);
             this.radSeparator1.TabIndex = 19;
@@ -221,10 +198,9 @@
             this.Controls.Add(this.btnCreateNewAgr);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.gvGenAgrLicences);
-            this.Controls.Add(this.ctrlHeaderInfo);
             this.MinimumSize = new System.Drawing.Size(913, 527);
             this.Name = "MiddleControlCabinetAgent";
-            this.Size = new System.Drawing.Size(913, 583);
+            this.Size = new System.Drawing.Size(913, 560);
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateNewAgr)).EndInit();
@@ -239,7 +215,6 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private InformationOfUserControl ctrlHeaderInfo;
         private Telerik.WinControls.UI.RadButton btnEditAgr;
         private Telerik.WinControls.UI.RadButton btnAccept;
         private Telerik.WinControls.UI.RadButton btnCreateNewAgr;

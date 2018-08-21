@@ -32,11 +32,18 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.txtCrName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.ddlCreativeRole = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsDictCreativeRole = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtAuthName = new Telerik.WinControls.UI.RadTextBox();
@@ -44,10 +51,12 @@
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.gvAuthRole = new Telerik.WinControls.UI.RadGridView();
+            this.registerExtraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsRegisterItem = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthName)).BeginInit();
@@ -56,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +74,7 @@
             // 
             this.txtCrName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCrName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItem, "ItemName", true));
             this.txtCrName.Location = new System.Drawing.Point(93, 11);
             this.txtCrName.Name = "txtCrName";
             this.txtCrName.Size = new System.Drawing.Size(559, 21);
@@ -81,11 +92,19 @@
             // 
             // ddlCreativeRole
             // 
+            this.ddlCreativeRole.DataSource = this.bsDictCreativeRole;
+            this.ddlCreativeRole.DisplayMember = "Name";
+            this.ddlCreativeRole.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCreativeRole.Location = new System.Drawing.Point(12, 62);
             this.ddlCreativeRole.Name = "ddlCreativeRole";
             this.ddlCreativeRole.Size = new System.Drawing.Size(209, 21);
             this.ddlCreativeRole.TabIndex = 22;
             this.ddlCreativeRole.ThemeName = "Office2013Light";
+            this.ddlCreativeRole.ValueMember = "CodeI";
+            // 
+            // bsDictCreativeRole
+            // 
+            this.bsDictCreativeRole.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
             // 
             // radLabel2
             // 
@@ -163,13 +182,15 @@
             this.gvAuthRole.MasterTemplate.AllowDragToGroup = false;
             this.gvAuthRole.MasterTemplate.AutoGenerateColumns = false;
             this.gvAuthRole.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.FieldName = "RoleCodeNavigation.Name";
             gridViewTextBoxColumn1.HeaderText = "Творча роль";
-            gridViewTextBoxColumn1.MinWidth = 50;
-            gridViewTextBoxColumn1.Name = "column2";
-            gridViewTextBoxColumn1.Width = 317;
+            gridViewTextBoxColumn1.Name = "RoleName";
+            gridViewTextBoxColumn1.Width = 301;
+            gridViewTextBoxColumn2.FieldName = "Name";
             gridViewTextBoxColumn2.HeaderText = "ПІБ автора";
-            gridViewTextBoxColumn2.Name = "column1";
-            gridViewTextBoxColumn2.Width = 269;
+            gridViewTextBoxColumn2.IsAutoGenerated = true;
+            gridViewTextBoxColumn2.Name = "Name";
+            gridViewTextBoxColumn2.Width = 285;
             gridViewCommandColumn1.FieldName = "btnsDelete";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.HeaderText = "";
@@ -182,10 +203,59 @@
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             gridViewCommandColumn1.Width = 30;
+            gridViewDecimalColumn1.DataType = typeof(int);
+            gridViewDecimalColumn1.FieldName = "RegExtraId";
+            gridViewDecimalColumn1.HeaderText = "RegExtraId";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.IsVisible = false;
+            gridViewDecimalColumn1.Name = "RegExtraId";
+            gridViewDecimalColumn1.Width = 30;
+            gridViewDecimalColumn2.DataType = typeof(int);
+            gridViewDecimalColumn2.FieldName = "RegId";
+            gridViewDecimalColumn2.HeaderText = "RegId";
+            gridViewDecimalColumn2.IsAutoGenerated = true;
+            gridViewDecimalColumn2.IsVisible = false;
+            gridViewDecimalColumn2.Name = "RegId";
+            gridViewDecimalColumn2.Width = 31;
+            gridViewDecimalColumn3.DataType = typeof(int);
+            gridViewDecimalColumn3.FieldName = "RegIitemId";
+            gridViewDecimalColumn3.HeaderText = "RegIitemId";
+            gridViewDecimalColumn3.IsAutoGenerated = true;
+            gridViewDecimalColumn3.IsVisible = false;
+            gridViewDecimalColumn3.Name = "RegIitemId";
+            gridViewDecimalColumn3.Width = 33;
+            gridViewDecimalColumn4.DataType = typeof(int);
+            gridViewDecimalColumn4.FieldName = "RoleCode";
+            gridViewDecimalColumn4.HeaderText = "RoleCode";
+            gridViewDecimalColumn4.IsAutoGenerated = true;
+            gridViewDecimalColumn4.IsVisible = false;
+            gridViewDecimalColumn4.Name = "RoleCode";
+            gridViewDecimalColumn4.Width = 35;
+            gridViewTextBoxColumn3.DataType = typeof(ipsFormsDesign.Model.RegisterItem);
+            gridViewTextBoxColumn3.FieldName = "RegI";
+            gridViewTextBoxColumn3.HeaderText = "RegI";
+            gridViewTextBoxColumn3.IsAutoGenerated = true;
+            gridViewTextBoxColumn3.IsVisible = false;
+            gridViewTextBoxColumn3.Name = "RegI";
+            gridViewTextBoxColumn3.Width = 37;
+            gridViewTextBoxColumn4.DataType = typeof(ipsFormsDesign.Model.CreativeRoleType);
+            gridViewTextBoxColumn4.FieldName = "RoleCodeNavigation";
+            gridViewTextBoxColumn4.HeaderText = "RoleCodeNavigation";
+            gridViewTextBoxColumn4.IsAutoGenerated = true;
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.Name = "RoleCodeNavigation";
+            gridViewTextBoxColumn4.Width = 27;
             this.gvAuthRole.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
-            gridViewCommandColumn1});
+            gridViewCommandColumn1,
+            gridViewDecimalColumn1,
+            gridViewDecimalColumn2,
+            gridViewDecimalColumn3,
+            gridViewDecimalColumn4,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
+            this.gvAuthRole.MasterTemplate.DataSource = this.registerExtraBindingSource;
             this.gvAuthRole.MasterTemplate.EnableGrouping = false;
             this.gvAuthRole.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvAuthRole.Name = "gvAuthRole";
@@ -195,6 +265,11 @@
             this.gvAuthRole.TabIndex = 31;
             this.gvAuthRole.ThemeName = "Office2013Light";
             this.gvAuthRole.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvAuthRole_CommandCellClick);
+            // 
+            // registerExtraBindingSource
+            // 
+            this.registerExtraBindingSource.DataMember = "RegisterExtra";
+            this.registerExtraBindingSource.DataSource = this.bsRegisterItem;
             // 
             // bsRegisterItem
             // 
@@ -226,6 +301,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthName)).EndInit();
@@ -234,6 +310,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -255,5 +332,7 @@
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadGridView gvAuthRole;
         private System.Windows.Forms.BindingSource bsRegisterItem;
+        private System.Windows.Forms.BindingSource bsDictCreativeRole;
+        private System.Windows.Forms.BindingSource registerExtraBindingSource;
     }
 }

@@ -55,6 +55,25 @@ namespace UnitTestMediaPortal
 
         }
 
+        [TestMethod]
+        public void TestNestedGrid()
+        {
+            ConsumerService service = new ConsumerService();
+            var register = service.GetRegister(1105);
+
+            TestNesttedList form = new TestNesttedList();
+            form.Register = register;
+
+            form.ShowDialog();
+        }
+
+        [TestMethod]
+        public void TestLayout()
+        {
+            TestLayout form = new TestLayout();
+            form.ShowDialog();
+        }
+
 
     }
 }

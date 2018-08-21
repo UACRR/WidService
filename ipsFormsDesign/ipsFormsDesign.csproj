@@ -80,6 +80,9 @@
     <Compile Include="Dictionary\ObjectAuthorRightholderBrViewModel.cs" />
     <Compile Include="Dictionary\ObjectCopyright.cs" />
     <Compile Include="Dictionary\ObjectRightMainView.cs" />
+    <Compile Include="Dictionary\ObjectRightQuery.cs" />
+    <Compile Include="Dictionary\ObjectRightListResponse.cs" />
+    <Compile Include="Dictionary\ObjectRightStates.cs" />
     <Compile Include="Dictionary\RegisterFilter.cs" />
     <Compile Include="Dictionary\RegisterItemViewModel.cs" />
     <Compile Include="Dictionary\RegisterListViewModel.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="EventAggregator\IEventAggregator.cs" />
     <Compile Include="EventAggregator\ISubscriber.cs" />
     <Compile Include="Events\ObjectRightEvents.cs" />
+    <Compile Include="Events\RegisterEvents.cs" />
     <Compile Include="Events\RightholderEvents.cs" />
     <Compile Include="Interfaces\EFInterfaces.cs" />
     <Compile Include="Interfaces\IAnketaDictionaties.cs" />
@@ -416,6 +420,7 @@
     <Compile Include="Services\RightHolderService.cs" />
     <Compile Include="Services\Utils.cs" />
     <Compile Include="Services\WordEngine.cs" />
+    <Compile Include="Interfaces\ActiveAgreementData.cs" />
     <Compile Include="Utilities\ObjectRightExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

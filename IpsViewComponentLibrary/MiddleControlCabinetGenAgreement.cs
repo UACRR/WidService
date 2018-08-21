@@ -29,8 +29,8 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             _bigRightView = bigRightView;
-            ctrlHeaderInfo.SetHeaderInfoBigRight(_customer,_bigRightView);
-            ctrlFooterInfo.DataSourceLicense = bigRightView;
+            //ctrlHeaderInfo.SetHeaderInfoBigRight(_customer,_bigRightView);
+            ctrlGeneralAgrDetailInfoBr.DataSourceLicense = bigRightView;
             gvGenAgrLicences.DataSource = genAgrs;
         }
 

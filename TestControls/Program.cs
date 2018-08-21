@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IpsViewComponentLibrary.Utilities;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,10 +13,19 @@ namespace TestControls
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-            Application.Run(new GridTestForm());
+            DialogService ds = new DialogService();
+            try
+            {
+                Application.EnableVisualStyles();
+                //Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainForm());
+                //Application.Run(new GridTestForm());
+
+            }
+            catch( Exception ex )
+            {
+                ds.ShowError("Помилка запуску додатку, зверніться до адміністратора",ex.Message);
+            }
         }
     }
 }

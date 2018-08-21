@@ -16,6 +16,7 @@ using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerDialogForms;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -25,14 +26,72 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
+        public event EventHandler<Register> SaveRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
+        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+
+
+        public delegate void UpdateCustomerDataEventHandler(int id);
+        public event UpdateCustomerDataEventHandler UpdateData;
+
         public Func<int, List<RegisterItem>> GetRegisterItems;
         private ButtonEnableControl buttonController;
         private Dictionary<int, PeriodStatus> dicPeriodStatus;
         private Dictionary<int, RegisterStatus> dicRegStatus;
         private Dictionary<int, RegisterListStatus> dicRatedListStatus;
 
+        private TypeRights _typeRights = TypeRights.All;
+        /// <summary>
+        /// Керування зміною поточного активного договору
+        /// </summary>
+        private CurrentAgreementController _currentAgreementController = null;
+        [EditorBrowsable]
+        public CurrentAgreementController CurrentAgreementController
+        {
+            get => _currentAgreementController;
+            set
+            {
+                if (_currentAgreementController != null)
+                    _currentAgreementController.CurrentLicenseAgreementChanged -= _currentAgreementController_CurrentLicenseAgreementChanged;
+                _currentAgreementController = value;
+                if (_currentAgreementController != null)
+                    _currentAgreementController.CurrentLicenseAgreementChanged += _currentAgreementController_CurrentLicenseAgreementChanged;
+            }
+        }
+
+        // 
+        private void _currentAgreementController_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
+        {
+            if (sender == this) return;
+            var lic = ActiveAgreementDataFactory.CreateAgreementData(e);
+            var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as IAgreementData)?.Lic.LicId == e.LicId);
+
+
+            if (row != null)
+            {
+                if (row.IsCurrent == false)
+                {
+                    row.IsCurrent = true;
+                    // if (row.IsVisible == false) row.IsVisible = true;
+                }
+            }
+        }
+
+        [EditorBrowsable]
+        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } }
+        private List<int> validClass;
+
+
+        private void reinitValidClass()
+        {
+            validClass = new List<int>();
+            if (TypeRights == TypeRights.SmallRights || TypeRights == TypeRights.All)
+                validClass.Add(0);
+            if (TypeRights == TypeRights.BigRights || TypeRights == TypeRights.All)
+                validClass.Add(1);
+
+        }
         public ReportsControl()
         {
             InitializeComponent();
@@ -52,11 +111,6 @@ namespace IpsViewComponentLibrary
 
         }
 
-        protected override Rectangle GetScaledBounds(Rectangle bounds, SizeF factor,   BoundsSpecified specified)
-        {
-            return base.GetScaledBounds(bounds, factor, specified);
-        }
-
         private void subscribeDictionary(object sender, EventArgs args)
         {
             dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
@@ -66,6 +120,7 @@ namespace IpsViewComponentLibrary
         }
 
         private Customer _customer;
+
         public Customer Customer
         {
             get { return _customer; }
@@ -79,9 +134,8 @@ namespace IpsViewComponentLibrary
         internal void RefreshData()
         {
             normalizeData(_customer);
+            bindingReports.ResetBindings(false);
             gvPeriodReports.MasterTemplate.Refresh();
-            gvPeriods.MasterTemplate.Refresh();
-            gvLicenseAgr.MasterTemplate.Refresh();
         }
 
         #region METHODS
@@ -94,7 +148,7 @@ namespace IpsViewComponentLibrary
 
             foreach (var item in cust.Client.LicenseAgreement)
             {
-                item.LicCodeNavigation = dicType[item.LicType ?? 1];
+                item.LicCodeNavigation = dicType[item.LicCode];
 
                 foreach (var licParam in item.LicenseAgrParam)
                 {
@@ -134,15 +188,22 @@ namespace IpsViewComponentLibrary
                 return;
             }
             normalizeData(_customer);
-            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2).Select(rec => rec.LicenseAgrParam.Single(item => item.LicVersion == rec.LicVersion));
-            bindingLicAgreement.DataSource = listAgreement.Where(rec => rec.LicStatus == 2);
+            if (validClass == null)
+                reinitValidClass();
+
+            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && validClass.Contains(rec.LicClass))
+                            .Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
+            bindingAgreement.DataSource = listAgreement;
         }
 
         private void ClearBindings()
         {
-            bindingLicAgreement.DataSource = typeof(LicenseAgrParam);
+            bindingAgreement.DataSource = typeof(IAgreementData);
             bindingPaidPeriod.DataSource = typeof(PaidPeriod);
             bindingReports.DataSource = typeof(Register);
+            buttonController.SetPeriodState(null, null);
+            btnAddRatedList.Enabled = false;
+
         }
         private void CreateAct()
         {
@@ -160,33 +221,43 @@ namespace IpsViewComponentLibrary
         #region EVENTS
 
         // * * * [Активні договори]
-        private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        private void gvLicenseAgr_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            if (gvLicenseAgr.CurrentRow == null || !(gvLicenseAgr.CurrentRow.DataBoundItem is LicenseAgrParam))
+
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
             {
                 bindingPaidPeriod.DataSource = typeof(PaidPeriod);
                 return;
 
             }
 
-            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam;
+            var lic = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
 
             if (lic?.Lic?.PaidPeriod.Count > 0)
+            {
                 bindingPaidPeriod.DataSource = lic?.Lic?.PaidPeriod?.OrderBy(rec => rec.BeginDate);
+
+            }
             else
-                bindingPaidPeriod.DataSource = new List<PaidPeriod>();
+            {
+                bindingPaidPeriod.DataSource = typeof(PaidPeriod);
+                buttonController.SetPeriodState(null, null);
+            }
 
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             /// Цирк,Філармонія,Концертна діяльність
-            if ((new int[] { 1, 2, 3, 4 }).Contains((int)agrType.UsesKind))
+            bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
+            splitPanelRatedList.Collapsed = !isCollapsed;
+
+            if (CurrentAgreementController != null
+                && !CurrentAgreementController.Broadcast
+                && lic != null
+                && lic.Lic.LicId != CurrentAgreementController.LicId)
             {
-                splitPanelRatedList.Collapsed = true;
-            }
-            else
-            {
-                splitPanelRatedList.Collapsed = false;
+                CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
 
             }
+
         }
 
         // * * * [Періоди платежів]
@@ -275,7 +346,17 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register { RgStatus = 0, FileName = Path.GetFileName(dialog.FileName), CustId = _customer.CustId, RgStatusNavigation = dicRegStatus[0] };
+                    Register addRegister = new Register
+                    {
+                        RgStatus = 0,
+                        FileName = Path.GetFileName(dialog.FileName),
+                        CustId = _customer.CustId,
+                        RgStatusNavigation = dicRegStatus[0],
+                        PeriodId = period.PeriodId,
+                        RegisterRatedList = RatedList,
+                        SchemaId = 1,
+                        AlgorithmId = 1
+                    };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
@@ -289,6 +370,7 @@ namespace IpsViewComponentLibrary
                             bindingReports.Add(addRegister);
                         radWaitingBar1.StopWaiting();
                         EnableButtons(true);
+                        btnToAcception.Enabled = true;
                     }));
                 });
             }
@@ -304,85 +386,92 @@ namespace IpsViewComponentLibrary
         {
             if (gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period)
             {
-                RegisterRatedList ratedList = null;
                 if (!period.RegisterRatedList.Any())
+                    return;
+
+                //об'єкт звіт
+                var registerTemp = new Register
                 {
-                    ratedList = new RegisterRatedList
-                    {
-                        PeriodId = period.PeriodId,
-                        Period = period,
-                        Status = 0,
-                        Register = new ObservableListSource<Register>
-                        {
-                            new Register
-                            {
-                                RgStatus = 0,
-                                FileName = string.Empty,
-                                CustId = _customer.CustId,
-                                RgStatusNavigation = dicRegStatus[0],
-                            }
-                        }
-                    };
-                    period.RegisterRatedList.Add(ratedList);
-                }
-                else
+                    RgStatus = 0,
+                    RmId = period.RegisterRatedList.SingleOrDefault()?.RmId ?? 0,
+                    FileName = string.Empty,
+                    CustId = _customer.CustId,
+                    RgStatusNavigation = dicRegStatus[0],
+                };
+
+                // для визначення рапортички
+                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
+
+                if (licKind == 2 || licKind == 3) // рапортичка
                 {
-                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(new Register
-                    {
-                        RgStatus = 0,
-                        FileName = string.Empty,
-                        CustId = _customer.CustId,
-                        RgStatusNavigation = dicRegStatus[0],
-                    });
-                }
-                var register = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
-                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as LicenseAgrParam)?.Lic?.LicCodeNavigation?.KindCode;
-                if (register != null && (licKind == 2 || licKind == 3)) // рапортичка
-                {
-                    CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register)
+                    registerTemp.SchemaId = 2;
+                    var progReportBigRight = new CreateProgReportBigRight(registerTemp)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
+
                     if (progReportBigRight.ShowDialog() == DialogResult.OK)
                     {
+                        period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
+                        bindingReports.Add(registerTemp);
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
                     }
-                    else
-                        period.RegisterRatedList.Remove(ratedList);
                 }
-                else if (register != null) // не рапотричка
+                else // не рапотричка
                 {
-                    ReportExcelViewForm viewForm = new ReportExcelViewForm(register, true)
+                    registerTemp.SchemaId = 2;
+                    var viewForm = new ReportExcelViewForm(registerTemp, true)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
 
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
+                        period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
+                        bindingReports.Add(registerTemp);
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
                     }
-                    else
-                        period.RegisterRatedList.Remove(ratedList);
                 }
+
+                RefreshData();
             }
         }
-        // *
 
         // * * * [Переглянути звіт]
         private void RegisterReport()
         {
             if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
+
             var register = gvPeriodReports.CurrentRow.DataBoundItem as Register;
             if (register == null)
                 return;
+
+            var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
+            var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.SingleOrDefault(r => r.RmId == register.RmId && r.RegId == register.RegId);
+            var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
 
             var list = GetRegisterItems(register.RegId);
 
             register.RegisterItem.Clear();
             list.ForEach(item => register.RegisterItem.Add(item));
 
-            ReportExcelViewForm viewForm = new ReportExcelViewForm(register);
+            if (reg != null && (licKind == 2 || licKind == 3)) // рапортичка
+            {
+                CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+
+                if (progReportBigRight.ShowDialog() == DialogResult.OK)
+                {
+                    SaveRegisterExecuted?.Invoke(this, register);
+
+                }
+                return;
+            }
+
+            ReportExcelViewForm viewForm = new ReportExcelViewForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
             viewForm.ShowDialog();
         }
 
@@ -414,14 +503,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void gvLicenseAgr_RowFormatting(object sender, Telerik.WinControls.UI.RowFormattingEventArgs e)
-        {
-            var row = e.RowElement.RowInfo;
-            var licAgr = row.DataBoundItem as LicenseAgrParam;
-            var debt = licAgr?.Lic.PaidPeriod.Where(rec => rec.EndDate < DateTime.Today).Sum(rec => rec.Amount - rec.Undistribamount - rec.Distribamount) ?? 0;
-            row.Cells["Arrears"].Value = debt;
-        }
-
         private void gvPeriodReports_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             var columnName = e.Column.Name;
@@ -439,6 +520,7 @@ namespace IpsViewComponentLibrary
         private void gvPeriodReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             string Name = e.Column.Name;
+            int[] EditingStatus = { 0, 5 };
             if (Name == "DeleteColumn" || Name == "EditColumn")
             {
                 var register = e.Row.DataBoundItem as Register;
@@ -447,7 +529,7 @@ namespace IpsViewComponentLibrary
                     e.CellElement.Enabled = false;
                 }
 
-                else if (register.RgStatus > 0 && Name == "DeleteColumn")
+                else if (!EditingStatus.Contains(register.RgStatus ?? 0) && Name == "DeleteColumn")
                     e.CellElement.Enabled = false;
                 else
                     e.CellElement.Enabled = true;
@@ -551,6 +633,20 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        private void btnAddPeriod_Click(object sender, EventArgs e)
+        {
+            if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
+                return;
+            var lic = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData).Lic;
+            CreatePeriod form = new CreatePeriod(lic);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                var list = lic.PaidPeriod.ToList();
+                SavePariodCommandExecuted?.Invoke(this, list);
+                bindingPaidPeriod.DataSource = list;
+            }
+        }
     }
 
     /// <summary>
@@ -602,7 +698,7 @@ namespace IpsViewComponentLibrary
                 case 6: // Кошти отримані
                     _addReport.Enabled = false;
                     _toAcception.Enabled = regStates[2] > 0; // Нових > 0
-                    _accepted.Enabled = false; 
+                    _accepted.Enabled = false;
                     _create.Enabled = false;
                     break;
                 default: // Зактритий
@@ -615,6 +711,8 @@ namespace IpsViewComponentLibrary
         }
 
     }
+
+
     public class GridPeriodsR
     {
         public int PeriodId { get; set; }

@@ -22,8 +22,7 @@ namespace sysAdminwp
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
         private readonly ApiConnector connector = new ApiConnector();
-        private List<DictBaseTypeI> list;
-        private List<ViewTable> view;
+        private List<DictBaseTypeI> _list;
         public string Url { get; set; }
 
         public RadForm1()
@@ -111,8 +110,8 @@ namespace sysAdminwp
 
             DictBaseTypeI dataI = PackDataI();
             bool retCode = connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
-            list = connector.GetList<DictBaseTypeI>(Url);
-            radGridView1.DataSource = GetData(list);
+            _list = connector.GetList<DictBaseTypeI>(Url);
+            radGridView1.DataSource = GetData(_list);
             UpdateEditPanel();
         }
 
@@ -127,8 +126,8 @@ namespace sysAdminwp
                 {
                     DictBaseTypeI dataI = PackDataI();
                     bool retCode = connector.NewItem(Url, dataI);
-                    list = connector.GetList<DictBaseTypeI>(Url);
-                    radGridView1.DataSource = GetData(list);
+                    _list = connector.GetList<DictBaseTypeI>(Url);
+                    radGridView1.DataSource = GetData(_list);
                     UpdateEditPanel();
                     ChangeEnableElementsWhenAdd(true);
                 }
@@ -271,8 +270,8 @@ namespace sysAdminwp
         {
             var result = connector.DeleteItem(Url, radGridView1.CurrentRow.Cells["Code"].Value.ToString());
             
-            list = connector.GetList<DictBaseTypeI>(Url);
-            radGridView1.DataSource = GetData(list);
+            _list = connector.GetList<DictBaseTypeI>(Url);
+            radGridView1.DataSource = GetData(_list);
             UpdateEditPanel();
 
         }
@@ -320,8 +319,8 @@ namespace sysAdminwp
                          try
                          {
                              Url = catItem.Url;
-                             list = connector.GetList<DictBaseTypeI>(catItem.Url);
-                             radGridView1.DataSource = GetData(list);
+                             _list = connector.GetList<DictBaseTypeI>(catItem.Url);
+                             radGridView1.DataSource = GetData(_list);
                              radPanelChange.Enabled = true;
                              radTxtBoxSearchData.Enabled = true;
                              radBtnAdd.Enabled = true;

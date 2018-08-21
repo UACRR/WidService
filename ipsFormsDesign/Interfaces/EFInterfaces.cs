@@ -142,6 +142,8 @@ public interface IAgrLicenseType
          int? UsesKind { get; set; }
          string TemplateName { get; set; }
          bool? NeedPlace { get; set; }
+         int? SchemaId { get; set; }
+         int? AlgorithmId { get; set; }
 }
 public interface IAgrLicenseTypeTr
     {
@@ -1274,9 +1276,9 @@ public interface IMusicalDesign
          string ObjName { get; set; }
          string NameMusician { get; set; }
          string NameSinger { get; set; }
-         int? NumbPerfom { get; set; }
+         string AuthorText { get; set; }
          TimeSpan? Duration { get; set; }
-         int? LicVersion { get; set; }
+         int? NumbPerfom { get; set; }
 }
 public interface IMyAnketa
     {    int CustId { get; set; }
@@ -1566,6 +1568,8 @@ public interface IRegister
          decimal? AuthRate { get; set; }
          decimal? PaidAmount { get; set; }
          int? LicId { get; set; }
+         int? SchemaId { get; set; }
+         int? AlgorithmId { get; set; }
 }
 public interface IRegisterAuthors
     {

@@ -187,11 +187,41 @@
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\NavigatorPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\NavigatorPanelControl.Designer.cs">
+      <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\PageSelectorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Common\PageSelectorControl.Designer.cs">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.Designer.cs">
+      <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.Designer.cs">
+      <DependentUpon>GeneralAgrDetailInfoBr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.Designer.cs">
+      <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerHeaderInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerHeaderInfo.Designer.cs">
+      <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\CreateRatedList.cs">
       <SubType>Form</SubType>
@@ -231,12 +261,21 @@
     <Compile Include="LicenseAgreementListControl.Designer.cs">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegisterControls\RegisterItemListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterItemListControl.Designer.cs">
+      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\RightholderPresenter.cs" />
     <Compile Include="RightholderControls\RightholderView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RightholderControls\RightholderView.Designer.cs">
       <DependentUpon>RightholderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\CurrentAgreementController.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utilities\DialogService.cs" />
     <Compile Include="MiddleControlCabinetAvances.cs">
@@ -655,12 +694,6 @@
     <Compile Include="RadioPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RegisterControls\RegisterItemListControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="RegisterControls\RegisterItemListControl.Designer.cs">
-      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="RegisterControls\RegisterListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -774,8 +807,23 @@
     <EmbeddedResource Include="AgentFooterBR.resx">
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
+      <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\PageSelectorControl.resx">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
+      <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.resx">
+      <DependentUpon>GeneralAgrDetailInfoBr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerAgrDetailInfo.resx">
+      <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerHeaderInfo.resx">
+      <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
@@ -785,6 +833,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\CreateProgReportBigRight.resx">
       <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\PaysInfo.resx">
       <DependentUpon>PaysInfo.cs</DependentUpon>
@@ -818,6 +867,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\CreatePeriod.resx">
       <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterControls\RegisterItemListControl.resx">
+      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\AnketaAddNamesView.resx">
       <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
@@ -999,9 +1051,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegisterControls\RegisterItemListControl.resx">
-      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="RegisterControls\RegisterListControl.resx">
       <DependentUpon>RegisterListControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1061,6 +1110,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ChildTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
@@ -1092,12 +1142,14 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.PerformType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1158,6 +1210,10 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\angle-double-left-solid.ico" />
+    <None Include="Resources\angle-double-right-solid.ico" />
+    <None Include="Resources\angle-left-solid.ico" />
+    <None Include="Resources\angle-right-solid.ico" />
     <Content Include="Resources\link-solid.ico" />
     <Content Include="Resources\plus-square-solid.ico" />
     <Content Include="Resources\unlink-solid.ico" />

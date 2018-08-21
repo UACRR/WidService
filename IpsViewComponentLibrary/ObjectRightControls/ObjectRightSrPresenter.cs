@@ -1,10 +1,12 @@
 ﻿
 using ipsFormsDesign;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private readonly DialogService _dialogService;
         private ObjectRight _objectRight;
         private ObjectRightDictionaries _dictionaries;
+        private bool _saved;
 
         public RightholderMainView DefaultRightholder { get; set; }
 
@@ -26,6 +29,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             _view = view;
             _view.Presenter = this;
+
+            _view.FormClosing += View_FormClosing;
 
             _objectRightService = new ObjectRightService();
             _dialogService = new DialogService();
@@ -122,31 +127,34 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void Save()
         {
-            if (_objectRight != null)
+            if (_objectRight == null)
+                return;
+
+            _saved = true;
+
+            // map from single table to Authors and Copyright tables
+            _objectRight.Authors.Clear();
+            _objectRight.CopyRight.Clear();
+            foreach (var ar in _view.ObjectAuthorRightholderList)
             {
-                // map from single table to Authors and Copyright tables
-                _objectRight.Authors.Clear();
-                _objectRight.CopyRight.Clear();
-                foreach (var ar in _view.ObjectAuthorRightholderList)
-                {
-                    _objectRight.AddObjectAuthorRightholder(ar);
-                }
-
-                if (_objectRight.CopyRight.GetTotalRate() > 100)
-                {
-                    _dialogService.ShowError(_view, "Загальний відсоток володіння не може бути більше 100.");
-                    return;
-                }
-
-                var result = _objectRightService.Save(_objectRight);
-
-                // TODO: Raise broadcast event object right updated
-
-                if (result)
-                    _view.Close();
-                else
-                    _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
+                _objectRight.AddObjectAuthorRightholder(ar);
             }
+
+            if (_objectRight.CopyRight.GetTotalRate() > 100)
+            {
+                _dialogService.ShowError(_view, "Загальний відсоток володіння не може бути більше 100.");
+                return;
+            }
+
+            var result = _objectRightService.Save(_objectRight);
+
+            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+            ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+
+            if (result)
+                _view.Close();
+            else
+                _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
         }
 
         private void SetObjectRigth(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
@@ -180,6 +188,14 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                     BeginDate = foundedCopyright?.BeginDate,
                     EndDate = foundedCopyright?.EndDate,
                 });
+            }
+        }
+
+        private void View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
+            {
+                e.Cancel = true;
             }
         }
     }

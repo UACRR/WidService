@@ -35,7 +35,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.ctrlHeaderInfo = new IpsViewComponentLibrary.InformationOfUserControl();
             this.agentEmail = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.agentPhone = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.agentPib = new IpsViewComponentLibrary.SingleShowInformationControl();
@@ -50,28 +49,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvListFiles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddFile)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctrlHeaderInfo
-            // 
-            this.ctrlHeaderInfo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctrlHeaderInfo.Edrpou = "";
-            this.ctrlHeaderInfo.EmailContactPerson = "";
-            this.ctrlHeaderInfo.EmailManager = "";
-            this.ctrlHeaderInfo.GroupOrHolding = "Копірайт";
-            this.ctrlHeaderInfo.HoldingVisible = false;
-            this.ctrlHeaderInfo.Location = new System.Drawing.Point(0, 0);
-            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
-            this.ctrlHeaderInfo.NameInfo = "";
-            this.ctrlHeaderInfo.OrganisationForm = "";
-            this.ctrlHeaderInfo.OrganisationFormVisible = false;
-            this.ctrlHeaderInfo.PhoneContactPerson = "";
-            this.ctrlHeaderInfo.PhoneManager = "";
-            this.ctrlHeaderInfo.PibContactPerson = "";
-            this.ctrlHeaderInfo.PibManager = "";
-            this.ctrlHeaderInfo.Size = new System.Drawing.Size(912, 209);
-            this.ctrlHeaderInfo.TabIndex = 0;
             // 
             // agentEmail
             // 
@@ -126,7 +103,7 @@
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(16, 215);
+            this.radLabel1.Location = new System.Drawing.Point(16, 3);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(73, 18);
             this.radLabel1.TabIndex = 2;
@@ -137,7 +114,7 @@
             this.radPanel1.Controls.Add(this.agentEmail);
             this.radPanel1.Controls.Add(this.agentPhone);
             this.radPanel1.Controls.Add(this.agentPib);
-            this.radPanel1.Location = new System.Drawing.Point(3, 224);
+            this.radPanel1.Location = new System.Drawing.Point(3, 12);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(428, 74);
             this.radPanel1.TabIndex = 3;
@@ -151,7 +128,7 @@
             this.gvListFiles.AutoScroll = true;
             this.gvListFiles.AutoSizeRows = true;
             this.gvListFiles.EnableCustomFiltering = true;
-            this.gvListFiles.Location = new System.Drawing.Point(3, 304);
+            this.gvListFiles.Location = new System.Drawing.Point(3, 92);
             // 
             // 
             // 
@@ -219,7 +196,7 @@
             this.gvListFiles.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvListFiles.Name = "gvListFiles";
             this.gvListFiles.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvListFiles.Size = new System.Drawing.Size(907, 99);
+            this.gvListFiles.Size = new System.Drawing.Size(907, 311);
             this.gvListFiles.TabIndex = 7;
             this.gvListFiles.ThemeName = "Office2013Light";
             this.gvListFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvListFiles_CommandCellClick);
@@ -243,7 +220,6 @@
             this.Controls.Add(this.gvListFiles);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radPanel1);
-            this.Controls.Add(this.ctrlHeaderInfo);
             this.MinimumSize = new System.Drawing.Size(913, 436);
             this.Name = "MiddleControlCabinetFiles";
             this.Size = new System.Drawing.Size(913, 436);
@@ -259,8 +235,6 @@
         }
 
         #endregion
-
-        private InformationOfUserControl ctrlHeaderInfo;
         private SingleShowInformationControl agentEmail;
         private SingleShowInformationControl agentPhone;
         private SingleShowInformationControl agentPib;

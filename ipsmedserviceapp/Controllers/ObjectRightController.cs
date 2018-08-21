@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -187,6 +189,77 @@ namespace ipsmedserviceapp.Controllers
                 tran?.Rollback();
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetObjectRights([FromQuery] ObjectRightQueryResource query)
+        {
+            var queryText = "select * from vtsk_3_OR_01";
+
+            queryText = ApplyFiltering(queryText, query);
+
+            var totalItems = (await _dbContext.getViewData(queryText.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
+
+            queryText = ApplyPaging(queryText, query);
+
+            var list = await _dbContext.getViewData(queryText, null);
+
+            return Ok(new { List = list, TotalItems = totalItems });
+        }
+
+        private string ApplyFiltering(string queryText, ObjectRightQueryResource query)
+        {
+            var conditions = new Collection<string>();
+            if (query != null)
+            {
+                if (query.State.HasValue)
+                {
+                    if (query.State == 0) // Not active
+                        conditions.Add($"statusNoActive = 1");
+                    if (query.State == 1) // Not linked
+                        conditions.Add($"statusNoRelate = 1");
+                    if (query.State == 2) // Undistributed
+                        conditions.Add($"statusUnDistrib = 1");
+                }
+
+                if (query.Category.HasValue)
+                    conditions.Add($"categoryCode = {query.Category.Value}");
+
+                if (query.Genre.HasValue)
+                    conditions.Add($"genreType = {query.Genre.Value}");
+
+                if (query.SearchText != null)
+                    conditions.Add($"name like '%{query.SearchText}%'");
+
+                if (conditions.Any())
+                    queryText = queryText + " where " + string.Join(" and ", conditions);
+            }
+
+            return queryText;
+        }
+
+        private static string ApplyPaging(string queryText, ObjectRightQueryResource query)
+        {
+            int page = 0;
+            int pageSize = 0;
+
+            if (query != null)
+            {
+                if (query.Page.HasValue)
+                    page = query.Page.Value;
+
+                if (query.PageSize.HasValue)
+                    pageSize = query.PageSize.Value;
+            }
+
+            if (page <= 0)
+                page = 1;
+
+            if (pageSize <= 0)
+                pageSize = 100;
+
+            queryText += $" ORDER BY ObjId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
+            return queryText;
         }
 
         #region Big right

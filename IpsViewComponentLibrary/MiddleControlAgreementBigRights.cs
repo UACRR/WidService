@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
@@ -15,6 +16,8 @@ namespace IpsViewComponentLibrary
         public MiddleControlAgreementBigRights()
         {
             InitializeComponent();
+            ctrlAgreementMain.AgreementLabelType = TypeRights.BigRights;
+            
         }
 
         [Category("Data")]
@@ -79,7 +82,9 @@ namespace IpsViewComponentLibrary
         /// </summary>
         internal void SetBigRightsLicenseAgrType()
         {
-            ddlLicType.ReadOnly = true;
+            radLabel1.Visible = false;
+            ddlLicType.Enabled = false;
+            ddlLicType.Visible = false;
         }
 
         private void txtDayForPay_KeyPress(object sender, KeyPressEventArgs e)

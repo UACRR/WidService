@@ -12,9 +12,9 @@ namespace ipsmedserviceapp.Model
 {
     public partial class MediaServiceContext : DbContext
     {
-        public MediaServiceContext(DbContextOptions<MediaServiceContext> options) : base(options)
-        {
-        }
+        //public MediaServiceContext(DbContextOptions<MediaServiceContext> options) : base(options)
+        //{
+        //}
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {

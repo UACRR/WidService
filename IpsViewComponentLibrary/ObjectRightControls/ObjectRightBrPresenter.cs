@@ -1,26 +1,36 @@
 ﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
     public class ObjectRightBrPresenter
     {
         private readonly ObjectRightBrView _view;
-        private ObjectRightService _objectRightService;
+        private readonly ObjectRightService _objectRightService;
+        private readonly DialogService _dialogService;
         private ObjectRight _objectRight;
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
+        private bool _saved;
 
         public ObjectRightBrPresenter(ObjectRightBrView view)
         {
             _view = view;
             _view.Presenter = this;
 
+            _view.FormClosing += View_FormClosing;
+
             _objectRightService = new ObjectRightService();
+            _dialogService = new DialogService();
         }
 
         public void Show(int objId)
@@ -67,6 +77,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (_objectRight == null)
                 return;
 
+            _saved = true;
+
             // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
             _objectRight.Authors.Clear();
             _objectRight.CopyRight.Clear();
@@ -78,12 +90,21 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             var result = _objectRightService.SaveObjectBr(_objectRight);
 
-            // TODO: Raise broadcast event object right updated
+            ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+            ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
             if (result)
                 _view.Close();
             else
-                _view.ShowError("Не вдалося зберегти об'єкт.");
+                _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
+        }
+
+        private void View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

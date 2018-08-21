@@ -11,6 +11,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Dictionary;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -30,6 +31,9 @@ namespace IpsViewComponentLibrary
             {11, new []{ "< Адреса", "Реквізити >" } },
             {12, new []{ "< Керівники", "Договір >" } }
         };
+        private RadDropDownButton btnsSave = null;
+        private RadMenuItem _btnSave = null;
+        private RadMenuItem _btnSaveAndAccept = null;
 
         private MiddleControlAgreementAnketaType ctrlAgreementSmallRights;
         private MiddleControlAgreementBigRights ctrlAgreementBigRights;
@@ -37,7 +41,7 @@ namespace IpsViewComponentLibrary
         private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
         private ButtonType _btnType = ButtonType.None;
         private byte _nextPageNumber;
-        private readonly Point _LocationPoint = new Point(4,4);
+        private readonly Point _LocationPoint = new Point(4, 35);
 
         private Customer _cust;
         private AnketaDictionaties _anketaDictionaries;
@@ -77,20 +81,19 @@ namespace IpsViewComponentLibrary
             ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
             ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
             ctrlManagers.SetDataSources(_cust, _anketaDictionaries);   // - - - - - - - -  Керівники
-            ctrlPlaces.SetData(_cust);       //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
-            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0// -  Майданчики (grid)
-                ? _cust?.Client?.ClnBusinessPlace // - - - - - - - - - - - - - - - - - - 
-                : null, _anketaDictionaries );                          // - - - - - - - - - - - - - - - - - -
-            ctrlPlacesTitle.Text =              // - - - - - - - - - - - - - - - - - - -
-                _cust?.Company?.AnketaCompany?. // - - - - - - - - - - - - - - - - - - -
-                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion)?.Name; ;// - -  Майданчики (title)
+            ctrlPlaces.SetData(_cust);        //  - - - - - - - - - - - - - - - - - - - -  Майданчики (source)
+            ctrlPlaces.SetGridDataSource(_cust?.Client?.ClnBusinessPlace?.Count != 0 // -  Майданчики (grid)
+                ? _cust?.Client?.ClnBusinessPlace  // - - - - - - - - - - - - - - - - - - 
+                : null, _anketaDictionaries);  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+            anketaCompanyBindingSource.DataSource = _cust?.Company?.AnketaCompany?.// - - - - - - - - - - - -
+                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion); // - - - - - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
 
             if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
                 InitAgreementType(typeRights);
 
            
-            ctrlClientName.SetDefaultState();
+            //ctrlClientName.SetDefaultState();
 
         }
 
@@ -102,38 +105,46 @@ namespace IpsViewComponentLibrary
                 case TypeRights.BigRights:
                 {
                     //ініціалізація форми договору великих прав
-                    ctrlAgreementBigRights = new MiddleControlAgreementBigRights
-                    {
-                        Location = _LocationPoint,
-                        MaximumSize = new Size(900, 200),
-                        MinimumSize = new Size(500, 200),
-                        Name = "ctrlAgreementBigRights",
-                        Size = new Size(596, 200),
-                        TabIndex = 0
-                    };
+                    if(ctrlAgreementBigRights == null)
+                        {
+                            ctrlAgreementBigRights = new MiddleControlAgreementBigRights
+                            {
+                                Location = _LocationPoint,
+                                MaximumSize = new Size(900, 200),
+                                MinimumSize = new Size(500, 200),
+                                Name = "ctrlAgreementBigRights",
+                                Size = new Size(596, 200),
+                                TabIndex = 0
+                            };
+                            pvAgreement.Controls.Add(ctrlAgreementBigRights);
+                        }
 
-                    if (_cust.Client.LicenseAgreement.SingleOrDefault()?.LicCode != null)
+                        if (_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicCode != null)
                     {
-                        var item = _cust.Client.LicenseAgreement.SingleOrDefault();
+                        var item = _cust.Client.LicenseAgreement.LastOrDefault();
                         item.LicCode = 28;
                         item.LicClass = 1;
-                        
+                        item.LicType = 1;
+                        item.LicVersion = 1;
                     }
 
-                    if(!isEdit && _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Count == 0)
-                        _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
+                    if(!isEdit && _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr.Count == 0)
+                        _cust.Client.LicenseAgreement.LastOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
                         {
                             Version = 1,
-                            AgrStatus = 2,
+                            AgrStatus = 0,
                             AnkVersion = _cust.AnkVersion,
+                            AgrNumber = string.Empty,
+                            
                         });
+                        //_cust.Company.AnketaCompany.SingleOrDefault().Name = string.Empty;
 
-                    pvAgreement.Controls.Add(ctrlAgreementBigRights);
                     ctrlAgreementBigRights.DictionaryAgrLicTypeDataSource = _anketaDictionaries.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
                     ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
-                    ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.AnketaCompany;// typeof(AnketaCompany);
-                    ctrlAgreementBigRights.LicAgrDataSource = _cust.Client.LicenseAgreement;// typeof(LicenseAgreement);
-                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust.Client.LicenseAgreement.SingleOrDefault()?.Agr?.AgreementAddBr;
+                    ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// typeof(AnketaCompany);
+                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr;
+                    ctrlAgreementBigRights.LicAgrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault();// typeof(LicenseAgreement);
+                    
 
                     }
                     break;
@@ -320,6 +331,50 @@ namespace IpsViewComponentLibrary
                     }
                     break;
             }
+        }
+
+        private void CreateDropDownButton()
+        {
+            if(btnsSave != null) return;
+
+            _btnSave = new RadMenuItem
+            {
+                Name = "btnSave",
+                Text = "Зберегти"
+            };
+            _btnSaveAndAccept = new RadMenuItem
+            {
+                Name = "btnSaveAndAccept",
+                Text = "Зберегти та підтвердити договір"
+            };
+            btnsSave = new RadDropDownButton
+            {
+                Location = btnNext.Location,
+                Name = "btnsSave",
+                Size = new Size(175, 24),
+                Text = "Зберегти",
+                ThemeName = "Office2013Light",
+                Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)))
+            };
+            btnsSave.Items.AddRange(_btnSave, _btnSaveAndAccept);
+            Controls.Add(btnsSave);
+            _btnSave.Click += BtnSave_Click;
+            _btnSaveAndAccept.Click += BtnSave_Click;
+            btnsSave.BringToFront();
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            _btnType = ButtonType.None;
+            if(_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicStatus != null)
+            {
+                if ((Telerik.WinControls.RadElement) sender == _btnSave) // зберегти з статусом не підтверджений
+                    _cust.Client.LicenseAgreement.LastOrDefault().LicStatus = 0;
+                else if ((Telerik.WinControls.RadElement) sender == _btnSaveAndAccept) // зберегти з статусом активний
+                    _cust.Client.LicenseAgreement.LastOrDefault().LicStatus = 2;
+            }
+
+            OnBtnSaveClick?.Invoke(_cust);
         }
 
         // * * * BUTTON BACK
@@ -565,6 +620,26 @@ namespace IpsViewComponentLibrary
             radWaitingBar1.Visible = false;
 
         }
+
+        private void pageAnketaConsumer_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (pageAnketaConsumer.SelectedPage == pvPrint)
+            {
+                btnNext.Enabled = false;
+                btnNext.Visible = false;
+                CreateDropDownButton();
+                btnsSave.Enabled = true;
+                btnsSave.Visible = true;
+            }
+            else
+            {
+                if (btnsSave == null) return;
+                btnsSave.Enabled = false;
+                btnsSave.Visible = false;
+                btnNext.Enabled = true;
+                btnNext.Visible = true;
+            }
+        }
     }
 
     internal enum ButtonType
@@ -572,5 +647,5 @@ namespace IpsViewComponentLibrary
         None,
         Next,
         Previos
-    };
+    }
 }

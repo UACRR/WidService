@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn39 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn40 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn41 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn42 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn43 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn44 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn45 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn46 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn47 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn48 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn49 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn50 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn51 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn52 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn53 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn54 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn55 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn56 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn57 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn3 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.bsDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewRequests = new Telerik.WinControls.UI.RadGridView();
             this.btnDelete = new Telerik.WinControls.UI.RadButton();
@@ -91,6 +91,7 @@
             this.gvViewRequests.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvViewRequests.AutoScroll = true;
             this.gvViewRequests.AutoSizeRows = true;
             this.gvViewRequests.EnableCustomFiltering = true;
             this.gvViewRequests.Location = new System.Drawing.Point(3, 130);
@@ -103,106 +104,106 @@
             this.gvViewRequests.MasterTemplate.AllowEditRow = false;
             this.gvViewRequests.MasterTemplate.AutoGenerateColumns = false;
             this.gvViewRequests.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn39.DataType = typeof(int);
-            gridViewTextBoxColumn39.FieldName = "CustId";
-            gridViewTextBoxColumn39.HeaderText = "ID";
-            gridViewTextBoxColumn39.IsVisible = false;
-            gridViewTextBoxColumn39.Name = "CustId";
-            gridViewTextBoxColumn40.FieldName = "Objid";
-            gridViewTextBoxColumn40.HeaderText = "Код вистави";
-            gridViewTextBoxColumn40.MaxWidth = 100;
-            gridViewTextBoxColumn40.MinWidth = 100;
-            gridViewTextBoxColumn40.Multiline = true;
-            gridViewTextBoxColumn40.Name = "Objid";
-            gridViewTextBoxColumn40.Width = 100;
-            gridViewTextBoxColumn40.WrapText = true;
-            gridViewTextBoxColumn41.FieldName = "ObjName";
-            gridViewTextBoxColumn41.HeaderText = "Назва вистави";
-            gridViewTextBoxColumn41.MinWidth = 0;
-            gridViewTextBoxColumn41.Multiline = true;
-            gridViewTextBoxColumn41.Name = "ObjName";
-            gridViewTextBoxColumn41.Width = 397;
-            gridViewTextBoxColumn41.WrapText = true;
-            gridViewTextBoxColumn42.FieldName = "LicNum";
-            gridViewTextBoxColumn42.HeaderText = "№ заявки";
-            gridViewTextBoxColumn42.MaxWidth = 120;
-            gridViewTextBoxColumn42.MinWidth = 120;
-            gridViewTextBoxColumn42.Multiline = true;
-            gridViewTextBoxColumn42.Name = "LicNum";
-            gridViewTextBoxColumn42.Width = 120;
-            gridViewTextBoxColumn42.WrapText = true;
-            gridViewTextBoxColumn43.FieldName = "LicDate";
-            gridViewTextBoxColumn43.FormatString = "{0:d}";
-            gridViewTextBoxColumn43.HeaderText = "Дата заявки";
-            gridViewTextBoxColumn43.MaxWidth = 75;
-            gridViewTextBoxColumn43.MinWidth = 75;
-            gridViewTextBoxColumn43.Multiline = true;
-            gridViewTextBoxColumn43.Name = "LicDate";
-            gridViewTextBoxColumn43.Width = 75;
-            gridViewTextBoxColumn43.WrapText = true;
-            gridViewTextBoxColumn44.FieldName = "Rate";
-            gridViewTextBoxColumn44.HeaderText = "АВ%";
-            gridViewTextBoxColumn44.MaxWidth = 45;
-            gridViewTextBoxColumn44.MinWidth = 45;
-            gridViewTextBoxColumn44.Multiline = true;
-            gridViewTextBoxColumn44.Name = "Rate";
-            gridViewTextBoxColumn44.Width = 45;
-            gridViewTextBoxColumn44.WrapText = true;
-            gridViewTextBoxColumn45.FieldName = "DatePremiere";
-            gridViewTextBoxColumn45.FormatString = "{0:d}";
-            gridViewTextBoxColumn45.HeaderText = "Дата прем\'єри";
-            gridViewTextBoxColumn45.MaxWidth = 75;
-            gridViewTextBoxColumn45.MinWidth = 75;
-            gridViewTextBoxColumn45.Multiline = true;
-            gridViewTextBoxColumn45.Name = "DatePremiere";
-            gridViewTextBoxColumn45.Width = 75;
-            gridViewTextBoxColumn45.WrapText = true;
-            gridViewTextBoxColumn46.FieldName = "LicDateEnd";
-            gridViewTextBoxColumn46.FormatString = "{0:d}";
-            gridViewTextBoxColumn46.HeaderText = "Дата завершення";
-            gridViewTextBoxColumn46.MaxWidth = 75;
-            gridViewTextBoxColumn46.MinWidth = 75;
-            gridViewTextBoxColumn46.Multiline = true;
-            gridViewTextBoxColumn46.Name = "LicDateEnd";
-            gridViewTextBoxColumn46.Width = 75;
-            gridViewTextBoxColumn46.WrapText = true;
-            gridViewTextBoxColumn47.FieldName = "LicStatusName";
-            gridViewTextBoxColumn47.HeaderText = "Статус";
-            gridViewTextBoxColumn47.MaxWidth = 110;
-            gridViewTextBoxColumn47.MinWidth = 110;
-            gridViewTextBoxColumn47.Name = "LicStatusName";
-            gridViewTextBoxColumn47.Width = 110;
-            gridViewTextBoxColumn47.WrapText = true;
-            gridViewCommandColumn3.AllowResize = false;
-            gridViewCommandColumn3.AllowSort = false;
-            gridViewCommandColumn3.DefaultText = "Файли";
-            gridViewCommandColumn3.FieldName = "btnsEdit";
-            gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn3.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn3.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn3.MaxWidth = 35;
-            gridViewCommandColumn3.MinWidth = 35;
-            gridViewCommandColumn3.Name = "btnsDelete";
-            gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewCommandColumn3.Width = 35;
+            gridViewTextBoxColumn1.DataType = typeof(int);
+            gridViewTextBoxColumn1.FieldName = "CustId";
+            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn2.FieldName = "Objid";
+            gridViewTextBoxColumn2.HeaderText = "Код вистави";
+            gridViewTextBoxColumn2.MaxWidth = 100;
+            gridViewTextBoxColumn2.MinWidth = 100;
+            gridViewTextBoxColumn2.Multiline = true;
+            gridViewTextBoxColumn2.Name = "Objid";
+            gridViewTextBoxColumn2.Width = 100;
+            gridViewTextBoxColumn2.WrapText = true;
+            gridViewTextBoxColumn3.FieldName = "ObjName";
+            gridViewTextBoxColumn3.HeaderText = "Назва вистави";
+            gridViewTextBoxColumn3.MinWidth = 0;
+            gridViewTextBoxColumn3.Multiline = true;
+            gridViewTextBoxColumn3.Name = "ObjName";
+            gridViewTextBoxColumn3.Width = 401;
+            gridViewTextBoxColumn3.WrapText = true;
+            gridViewTextBoxColumn4.FieldName = "LicNum";
+            gridViewTextBoxColumn4.HeaderText = "№ заявки";
+            gridViewTextBoxColumn4.MaxWidth = 120;
+            gridViewTextBoxColumn4.MinWidth = 120;
+            gridViewTextBoxColumn4.Multiline = true;
+            gridViewTextBoxColumn4.Name = "LicNum";
+            gridViewTextBoxColumn4.Width = 120;
+            gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.FieldName = "LicDate";
+            gridViewTextBoxColumn5.FormatString = "{0:d}";
+            gridViewTextBoxColumn5.HeaderText = "Дата заявки";
+            gridViewTextBoxColumn5.MaxWidth = 75;
+            gridViewTextBoxColumn5.MinWidth = 75;
+            gridViewTextBoxColumn5.Multiline = true;
+            gridViewTextBoxColumn5.Name = "LicDate";
+            gridViewTextBoxColumn5.Width = 75;
+            gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.FieldName = "Rate";
+            gridViewTextBoxColumn6.HeaderText = "АВ%";
+            gridViewTextBoxColumn6.MaxWidth = 45;
+            gridViewTextBoxColumn6.MinWidth = 45;
+            gridViewTextBoxColumn6.Multiline = true;
+            gridViewTextBoxColumn6.Name = "Rate";
+            gridViewTextBoxColumn6.Width = 45;
+            gridViewTextBoxColumn6.WrapText = true;
+            gridViewTextBoxColumn7.FieldName = "DatePremiere";
+            gridViewTextBoxColumn7.FormatString = "{0:d}";
+            gridViewTextBoxColumn7.HeaderText = "Дата прем\'єри";
+            gridViewTextBoxColumn7.MaxWidth = 75;
+            gridViewTextBoxColumn7.MinWidth = 75;
+            gridViewTextBoxColumn7.Multiline = true;
+            gridViewTextBoxColumn7.Name = "DatePremiere";
+            gridViewTextBoxColumn7.Width = 75;
+            gridViewTextBoxColumn7.WrapText = true;
+            gridViewTextBoxColumn8.FieldName = "LicDateEnd";
+            gridViewTextBoxColumn8.FormatString = "{0:d}";
+            gridViewTextBoxColumn8.HeaderText = "Дата завершення";
+            gridViewTextBoxColumn8.MaxWidth = 75;
+            gridViewTextBoxColumn8.MinWidth = 75;
+            gridViewTextBoxColumn8.Multiline = true;
+            gridViewTextBoxColumn8.Name = "LicDateEnd";
+            gridViewTextBoxColumn8.Width = 75;
+            gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.FieldName = "LicStatusName";
+            gridViewTextBoxColumn9.HeaderText = "Статус";
+            gridViewTextBoxColumn9.MaxWidth = 110;
+            gridViewTextBoxColumn9.MinWidth = 110;
+            gridViewTextBoxColumn9.Name = "LicStatusName";
+            gridViewTextBoxColumn9.Width = 110;
+            gridViewTextBoxColumn9.WrapText = true;
+            gridViewCommandColumn1.AllowResize = false;
+            gridViewCommandColumn1.AllowSort = false;
+            gridViewCommandColumn1.DefaultText = "Файли";
+            gridViewCommandColumn1.FieldName = "btnsEdit";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn1.MaxWidth = 35;
+            gridViewCommandColumn1.MinWidth = 35;
+            gridViewCommandColumn1.Name = "btnsDelete";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            gridViewCommandColumn1.Width = 35;
             this.gvViewRequests.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn39,
-            gridViewTextBoxColumn40,
-            gridViewTextBoxColumn41,
-            gridViewTextBoxColumn42,
-            gridViewTextBoxColumn43,
-            gridViewTextBoxColumn44,
-            gridViewTextBoxColumn45,
-            gridViewTextBoxColumn46,
-            gridViewTextBoxColumn47,
-            gridViewCommandColumn3});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewCommandColumn1});
             this.gvViewRequests.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewRequests.MasterTemplate.EnableFiltering = true;
             this.gvViewRequests.MasterTemplate.EnableGrouping = false;
             this.gvViewRequests.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewRequests.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gvViewRequests.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewRequests.Name = "gvViewRequests";
             this.gvViewRequests.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvViewRequests.Size = new System.Drawing.Size(1054, 183);
@@ -217,7 +218,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(945, 104);
+            this.btnDelete.Location = new System.Drawing.Point(935, 319);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(112, 20);
             this.btnDelete.TabIndex = 13;
@@ -264,7 +265,7 @@
             // btnToReference
             // 
             this.btnToReference.Enabled = false;
-            this.btnToReference.Location = new System.Drawing.Point(607, 104);
+            this.btnToReference.Location = new System.Drawing.Point(130, 319);
             this.btnToReference.Name = "btnToReference";
             this.btnToReference.Size = new System.Drawing.Size(112, 20);
             this.btnToReference.TabIndex = 16;
@@ -274,7 +275,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(489, 104);
+            this.btnCreate.Location = new System.Drawing.Point(12, 319);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(112, 20);
             this.btnCreate.TabIndex = 17;
@@ -286,7 +287,7 @@
             // 
             this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToAccept.Enabled = false;
-            this.btnToAccept.Location = new System.Drawing.Point(827, 104);
+            this.btnToAccept.Location = new System.Drawing.Point(817, 319);
             this.btnToAccept.Name = "btnToAccept";
             this.btnToAccept.Size = new System.Drawing.Size(112, 20);
             this.btnToAccept.TabIndex = 18;
@@ -301,7 +302,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvCreativeRole.AutoSizeRows = true;
             this.gvCreativeRole.EnableCustomFiltering = true;
-            this.gvCreativeRole.Location = new System.Drawing.Point(3, 319);
+            this.gvCreativeRole.Location = new System.Drawing.Point(3, 345);
             // 
             // 
             // 
@@ -310,121 +311,121 @@
             this.gvCreativeRole.MasterTemplate.AllowDragToGroup = false;
             this.gvCreativeRole.MasterTemplate.AutoGenerateColumns = false;
             this.gvCreativeRole.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn48.DataType = typeof(int);
-            gridViewTextBoxColumn48.FieldName = "CustId";
-            gridViewTextBoxColumn48.HeaderText = "ID";
-            gridViewTextBoxColumn48.IsVisible = false;
-            gridViewTextBoxColumn48.Name = "CustId";
-            gridViewTextBoxColumn48.ReadOnly = true;
-            gridViewTextBoxColumn49.FieldName = "RoleName";
-            gridViewTextBoxColumn49.HeaderText = "Творча роль автора";
-            gridViewTextBoxColumn49.MinWidth = 0;
-            gridViewTextBoxColumn49.Multiline = true;
-            gridViewTextBoxColumn49.Name = "RoleName";
-            gridViewTextBoxColumn49.ReadOnly = true;
-            gridViewTextBoxColumn49.Width = 216;
-            gridViewTextBoxColumn49.WrapText = true;
-            gridViewTextBoxColumn50.FieldName = "AuthorName";
-            gridViewTextBoxColumn50.HeaderText = "ПІБ (ориг)";
-            gridViewTextBoxColumn50.MinWidth = 0;
-            gridViewTextBoxColumn50.Multiline = true;
-            gridViewTextBoxColumn50.Name = "AuthorName";
-            gridViewTextBoxColumn50.ReadOnly = true;
-            gridViewTextBoxColumn50.Width = 241;
-            gridViewTextBoxColumn50.WrapText = true;
-            gridViewTextBoxColumn51.FieldName = "InnerCode";
-            gridViewTextBoxColumn51.HeaderText = "Код автора";
-            gridViewTextBoxColumn51.MaxWidth = 100;
-            gridViewTextBoxColumn51.MinWidth = 100;
-            gridViewTextBoxColumn51.Multiline = true;
-            gridViewTextBoxColumn51.Name = "InnerCode";
-            gridViewTextBoxColumn51.ReadOnly = true;
-            gridViewTextBoxColumn51.Width = 100;
-            gridViewTextBoxColumn51.WrapText = true;
-            gridViewTextBoxColumn52.FieldName = "CountryName";
-            gridViewTextBoxColumn52.FormatString = "{0:d}";
-            gridViewTextBoxColumn52.HeaderText = "Країна автора";
-            gridViewTextBoxColumn52.MinWidth = 0;
-            gridViewTextBoxColumn52.Multiline = true;
-            gridViewTextBoxColumn52.Name = "CountryName";
-            gridViewTextBoxColumn52.ReadOnly = true;
-            gridViewTextBoxColumn52.Width = 56;
-            gridViewTextBoxColumn52.WrapText = true;
-            gridViewTextBoxColumn53.DataType = typeof(System.Nullable<decimal>);
-            gridViewTextBoxColumn53.FieldName = "RoleRate";
-            gridViewTextBoxColumn53.HeaderText = "% вин.";
-            gridViewTextBoxColumn53.MaxWidth = 40;
-            gridViewTextBoxColumn53.MinWidth = 40;
-            gridViewTextBoxColumn53.Multiline = true;
-            gridViewTextBoxColumn53.Name = "RoleRate";
-            gridViewTextBoxColumn53.ReadOnly = true;
-            gridViewTextBoxColumn53.Width = 40;
-            gridViewTextBoxColumn53.WrapText = true;
-            gridViewTextBoxColumn54.FieldName = "R030";
-            gridViewTextBoxColumn54.FormatString = "{0:d}";
-            gridViewTextBoxColumn54.HeaderText = "Вал.";
-            gridViewTextBoxColumn54.MaxWidth = 40;
-            gridViewTextBoxColumn54.MinWidth = 40;
-            gridViewTextBoxColumn54.Multiline = true;
-            gridViewTextBoxColumn54.Name = "R030";
-            gridViewTextBoxColumn54.ReadOnly = true;
-            gridViewTextBoxColumn54.Width = 40;
-            gridViewTextBoxColumn54.WrapText = true;
-            gridViewTextBoxColumn55.DataType = typeof(System.Nullable<decimal>);
-            gridViewTextBoxColumn55.FieldName = "PrepaySum";
-            gridViewTextBoxColumn55.HeaderText = "Передоплата";
-            gridViewTextBoxColumn55.MinWidth = 85;
-            gridViewTextBoxColumn55.Multiline = true;
-            gridViewTextBoxColumn55.Name = "PrepaySum";
-            gridViewTextBoxColumn55.ReadOnly = true;
-            gridViewTextBoxColumn55.Width = 87;
-            gridViewTextBoxColumn55.WrapText = true;
-            gridViewTextBoxColumn56.FieldName = "PrepayTypeName";
-            gridViewTextBoxColumn56.HeaderText = "Тип";
-            gridViewTextBoxColumn56.MinWidth = 50;
-            gridViewTextBoxColumn56.Name = "PrepayTypeName";
-            gridViewTextBoxColumn56.ReadOnly = true;
-            gridViewTextBoxColumn56.Width = 52;
-            gridViewTextBoxColumn57.FieldName = "WorkTypeRHName";
-            gridViewTextBoxColumn57.HeaderText = "Статус роботи з Автором";
-            gridViewTextBoxColumn57.MaxWidth = 100;
-            gridViewTextBoxColumn57.MinWidth = 100;
-            gridViewTextBoxColumn57.Name = "WorkTypeRHName";
-            gridViewTextBoxColumn57.ReadOnly = true;
-            gridViewTextBoxColumn57.Width = 100;
-            gridViewTextBoxColumn57.WrapText = true;
-            gridViewComboBoxColumn3.DataSource = this.bsDictionary;
-            gridViewComboBoxColumn3.DataType = typeof(System.Nullable<int>);
-            gridViewComboBoxColumn3.DisplayMember = "Name";
-            gridViewComboBoxColumn3.FieldName = "WorkRh.WorkTypeCl";
-            gridViewComboBoxColumn3.HeaderText = "Статус роботи з Клієнтом";
-            gridViewComboBoxColumn3.MaxWidth = 100;
-            gridViewComboBoxColumn3.MinWidth = 100;
-            gridViewComboBoxColumn3.Name = "WorkTypeCl";
-            gridViewComboBoxColumn3.ValueMember = "CodeI";
-            gridViewComboBoxColumn3.Width = 100;
-            gridViewComboBoxColumn3.WrapText = true;
+            gridViewTextBoxColumn10.DataType = typeof(int);
+            gridViewTextBoxColumn10.FieldName = "CustId";
+            gridViewTextBoxColumn10.HeaderText = "ID";
+            gridViewTextBoxColumn10.IsVisible = false;
+            gridViewTextBoxColumn10.Name = "CustId";
+            gridViewTextBoxColumn10.ReadOnly = true;
+            gridViewTextBoxColumn11.FieldName = "RoleName";
+            gridViewTextBoxColumn11.HeaderText = "Творча роль автора";
+            gridViewTextBoxColumn11.MinWidth = 0;
+            gridViewTextBoxColumn11.Multiline = true;
+            gridViewTextBoxColumn11.Name = "RoleName";
+            gridViewTextBoxColumn11.ReadOnly = true;
+            gridViewTextBoxColumn11.Width = 217;
+            gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn12.FieldName = "AuthorName";
+            gridViewTextBoxColumn12.HeaderText = "ПІБ (ориг)";
+            gridViewTextBoxColumn12.MinWidth = 0;
+            gridViewTextBoxColumn12.Multiline = true;
+            gridViewTextBoxColumn12.Name = "AuthorName";
+            gridViewTextBoxColumn12.ReadOnly = true;
+            gridViewTextBoxColumn12.Width = 242;
+            gridViewTextBoxColumn12.WrapText = true;
+            gridViewTextBoxColumn13.FieldName = "InnerCode";
+            gridViewTextBoxColumn13.HeaderText = "Код автора";
+            gridViewTextBoxColumn13.MaxWidth = 100;
+            gridViewTextBoxColumn13.MinWidth = 100;
+            gridViewTextBoxColumn13.Multiline = true;
+            gridViewTextBoxColumn13.Name = "InnerCode";
+            gridViewTextBoxColumn13.ReadOnly = true;
+            gridViewTextBoxColumn13.Width = 100;
+            gridViewTextBoxColumn13.WrapText = true;
+            gridViewTextBoxColumn14.FieldName = "CountryName";
+            gridViewTextBoxColumn14.FormatString = "{0:d}";
+            gridViewTextBoxColumn14.HeaderText = "Країна автора";
+            gridViewTextBoxColumn14.MinWidth = 0;
+            gridViewTextBoxColumn14.Multiline = true;
+            gridViewTextBoxColumn14.Name = "CountryName";
+            gridViewTextBoxColumn14.ReadOnly = true;
+            gridViewTextBoxColumn14.Width = 56;
+            gridViewTextBoxColumn14.WrapText = true;
+            gridViewTextBoxColumn15.DataType = typeof(System.Nullable<decimal>);
+            gridViewTextBoxColumn15.FieldName = "RoleRate";
+            gridViewTextBoxColumn15.HeaderText = "% вин.";
+            gridViewTextBoxColumn15.MaxWidth = 40;
+            gridViewTextBoxColumn15.MinWidth = 40;
+            gridViewTextBoxColumn15.Multiline = true;
+            gridViewTextBoxColumn15.Name = "RoleRate";
+            gridViewTextBoxColumn15.ReadOnly = true;
+            gridViewTextBoxColumn15.Width = 40;
+            gridViewTextBoxColumn15.WrapText = true;
+            gridViewTextBoxColumn16.FieldName = "R030";
+            gridViewTextBoxColumn16.FormatString = "{0:d}";
+            gridViewTextBoxColumn16.HeaderText = "Вал.";
+            gridViewTextBoxColumn16.MaxWidth = 40;
+            gridViewTextBoxColumn16.MinWidth = 40;
+            gridViewTextBoxColumn16.Multiline = true;
+            gridViewTextBoxColumn16.Name = "R030";
+            gridViewTextBoxColumn16.ReadOnly = true;
+            gridViewTextBoxColumn16.Width = 40;
+            gridViewTextBoxColumn16.WrapText = true;
+            gridViewTextBoxColumn17.DataType = typeof(System.Nullable<decimal>);
+            gridViewTextBoxColumn17.FieldName = "PrepaySum";
+            gridViewTextBoxColumn17.HeaderText = "Передоплата";
+            gridViewTextBoxColumn17.MinWidth = 85;
+            gridViewTextBoxColumn17.Multiline = true;
+            gridViewTextBoxColumn17.Name = "PrepaySum";
+            gridViewTextBoxColumn17.ReadOnly = true;
+            gridViewTextBoxColumn17.Width = 87;
+            gridViewTextBoxColumn17.WrapText = true;
+            gridViewTextBoxColumn18.FieldName = "PrepayTypeName";
+            gridViewTextBoxColumn18.HeaderText = "Тип";
+            gridViewTextBoxColumn18.MinWidth = 50;
+            gridViewTextBoxColumn18.Name = "PrepayTypeName";
+            gridViewTextBoxColumn18.ReadOnly = true;
+            gridViewTextBoxColumn18.Width = 55;
+            gridViewTextBoxColumn19.FieldName = "WorkTypeRHName";
+            gridViewTextBoxColumn19.HeaderText = "Статус роботи з Автором";
+            gridViewTextBoxColumn19.MaxWidth = 100;
+            gridViewTextBoxColumn19.MinWidth = 100;
+            gridViewTextBoxColumn19.Name = "WorkTypeRHName";
+            gridViewTextBoxColumn19.ReadOnly = true;
+            gridViewTextBoxColumn19.Width = 100;
+            gridViewTextBoxColumn19.WrapText = true;
+            gridViewComboBoxColumn1.DataSource = this.bsDictionary;
+            gridViewComboBoxColumn1.DataType = typeof(System.Nullable<int>);
+            gridViewComboBoxColumn1.DisplayMember = "Name";
+            gridViewComboBoxColumn1.FieldName = "WorkRh.WorkTypeCl";
+            gridViewComboBoxColumn1.HeaderText = "Статус роботи з Клієнтом";
+            gridViewComboBoxColumn1.MaxWidth = 100;
+            gridViewComboBoxColumn1.MinWidth = 100;
+            gridViewComboBoxColumn1.Name = "WorkTypeCl";
+            gridViewComboBoxColumn1.ValueMember = "CodeI";
+            gridViewComboBoxColumn1.Width = 100;
+            gridViewComboBoxColumn1.WrapText = true;
             this.gvCreativeRole.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn48,
-            gridViewTextBoxColumn49,
-            gridViewTextBoxColumn50,
-            gridViewTextBoxColumn51,
-            gridViewTextBoxColumn52,
-            gridViewTextBoxColumn53,
-            gridViewTextBoxColumn54,
-            gridViewTextBoxColumn55,
-            gridViewTextBoxColumn56,
-            gridViewTextBoxColumn57,
-            gridViewComboBoxColumn3});
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18,
+            gridViewTextBoxColumn19,
+            gridViewComboBoxColumn1});
             this.gvCreativeRole.MasterTemplate.DataSource = this.bindingSource1;
             this.gvCreativeRole.MasterTemplate.EnableCustomFiltering = true;
             this.gvCreativeRole.MasterTemplate.EnableFiltering = true;
             this.gvCreativeRole.MasterTemplate.EnableGrouping = false;
             this.gvCreativeRole.MasterTemplate.ShowFilteringRow = false;
-            this.gvCreativeRole.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvCreativeRole.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvCreativeRole.Name = "gvCreativeRole";
             this.gvCreativeRole.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvCreativeRole.Size = new System.Drawing.Size(1054, 235);
+            this.gvCreativeRole.Size = new System.Drawing.Size(1054, 209);
             this.gvCreativeRole.TabIndex = 19;
             this.gvCreativeRole.ThemeName = "Office2013Light";
             this.gvCreativeRole.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvCreativeRole_CellBeginEdit);
@@ -437,7 +438,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(3, 560);
+            this.btnSave.Location = new System.Drawing.Point(12, 560);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(112, 24);
             this.btnSave.TabIndex = 21;
@@ -448,7 +449,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(146, 560);
+            this.btnCancel.Location = new System.Drawing.Point(130, 560);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 24);
             this.btnCancel.TabIndex = 20;
