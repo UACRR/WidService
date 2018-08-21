@@ -113,7 +113,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             ddlStatus.SetDataSource(IpsGlobal.ObjectRightDictionaries.RegisterStatuses);
             ddlLicCode.SetDataSource(IpsGlobal.AnketaDictionaties.agrLicenseType);
-            //ddlAlgorithmId.SetDataSource(IpsGlobal.AnketaDictionaties.);
+            ddlAlgorithmId.SetDataSource(IpsGlobal.AnketaDictionaties.algorithmType);
         }
 
         private void SetAllowedStatus(RegisterStatusType status)
