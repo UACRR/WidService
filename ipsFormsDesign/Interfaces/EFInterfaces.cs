@@ -142,6 +142,8 @@ public interface IAgrLicenseType
          int? UsesKind { get; set; }
          string TemplateName { get; set; }
          bool? NeedPlace { get; set; }
+         int? SchemaId { get; set; }
+         int? AlgorithmId { get; set; }
 }
 public interface IAgrLicenseTypeTr
     {

@@ -8,13 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public AlgorithmType()
         {
-            AlgorithmTypeTr = new ObservableListSource<AlgorithmTypeTr>();
+            AgrLicenseType = new ObservableListSource<AgrLicenseType>();
+            Register = new ObservableListSource<Register>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<AlgorithmTypeTr> AlgorithmTypeTr { get; set; }
+        public ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
+        public ObservableListSource<Register> Register { get; set; }
     }
 }
 

@@ -728,8 +728,9 @@ namespace ipsmedserviceapp.Controllers
         {
             Dictionary<string, object> retDictionary = new Dictionary<string, object>();
 
-
+            
             retDictionary.Add("activityType", await _dbContext.ActivityType.AsNoTracking().ToListAsync());
+            retDictionary.Add("algorithmType", await _dbContext.AlgorithmType.AsNoTracking().ToListAsync());
             retDictionary.Add("agrLicenseType", await _dbContext.AgrLicenseType.AsNoTracking().ToListAsync());
             retDictionary.Add("agreementStatus", await _dbContext.AgreementStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("agreementType", await _dbContext.AgreementType.AsNoTracking().ToListAsync());

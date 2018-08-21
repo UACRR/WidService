@@ -66,19 +66,6 @@ namespace IpsViewComponentLibrary
             if (sender == this) return;
             var lic = ActiveAgreementDataFactory.CreateAgreementData(e);
             var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as IAgreementData)?.Lic.LicId == e.LicId);
-            int index = 0;
-            foreach (IAgreementData item in bindingAgreement.List)
-            {
-                if (item.Lic.LicId == e.LicId)
-                {
-                    if (item == bindingAgreement.Current)
-                        return;
-                    bindingAgreement.Position = index;
-                    return;
-                }
-
-                index++;
-            }
 
 
             if (row != null)
@@ -149,8 +136,6 @@ namespace IpsViewComponentLibrary
             normalizeData(_customer);
             bindingReports.ResetBindings(false);
             gvPeriodReports.MasterTemplate.Refresh();
-            //gvPeriods.MasterTemplate.Refresh();
-            //gvLicenseAgr.MasterTemplate.Refresh();
         }
 
         #region METHODS

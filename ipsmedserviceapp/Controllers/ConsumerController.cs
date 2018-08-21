@@ -126,6 +126,13 @@ namespace ipsmedserviceapp.Controllers
 
         }
 
+        [HttpGet("info/{id}")]
+        public async Task<IActionResult> GetConsumerShortInfoById(int id)
+        {
+            var list = await _dbContext.getViewData($"select * from vTsk_1_ListConsumer01 where custId={id}", null);
+            return Ok(list.FirstOrDefault());
+        }
+
         /// <summary>
         /// Отримати Споживача до Id
         /// </summary>

@@ -17,7 +17,6 @@
 "AgrLicenseType",
 "AgrLicenseTypeTr",
 "AlgorithmType",
-"AlgorithmTypeTr",
 "AnketaAddName",
 "AnketaAddNick",
 "AnketaAddParam",

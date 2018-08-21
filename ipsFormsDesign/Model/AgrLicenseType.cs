@@ -20,7 +20,10 @@ namespace ipsFormsDesign.Model
         public int? UsesKind { get; set; }
         public string TemplateName { get; set; }
         public bool? NeedPlace { get; set; }
+        public int? SchemaId { get; set; }
+        public int? AlgorithmId { get; set; }
 
+        public AlgorithmType Algorithm { get; set; }
         public CopyrightKind KindCodeNavigation { get; set; }
         public UsesKind UsesKindNavigation { get; set; }
         public ObservableListSource<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }

@@ -20,6 +20,13 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString());
             return anketaDic;
         }
+
+        public ConsumerMainView GetShortInfoById(int custId)
+        {
+            var consumerInfo = _webApi.GetItemById<ConsumerMainView>("consumer/info", custId.ToString());
+            return consumerInfo;
+        }
+
         public AnketaDictionaties GetDictionary()
         {
             var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
