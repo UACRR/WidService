@@ -403,47 +403,24 @@ namespace IpsViewComponentLibrary
             {
                 if (!period.RegisterRatedList.Any())
                     return;
-                
+
                 //об'єкт звіт
                 var registerTemp = new Register
                 {
-                    ratedList = new RegisterRatedList
-                    {
-                        PeriodId = period.PeriodId,
-                        Period = period,
-                        Status = 0,
-                        Register = new ObservableListSource<Register>
-                        {
-                            new Register
-                            {
-                                RgStatus = 0,
-                                FileName = string.Empty,
-                                CustId = _customer.CustId,
-                                RgStatusNavigation = dicRegStatus[0]
-                            }
-                        }
-                    };
-                    period.RegisterRatedList.Add(ratedList);
-                }
-                else
-                {
-                    period.RegisterRatedList.SingleOrDefault()?.Register.Add(new Register
-                    {
-                        RgStatus = 0,
-                        RmId = period.RegisterRatedList.SingleOrDefault()?.RmId ?? 0,
-                        FileName = string.Empty,
-                        CustId = _customer.CustId,
-                        RgStatusNavigation = dicRegStatus[0],
-                    });
-                }
-                var register = period?.RegisterRatedList?.SingleOrDefault()?.Register.LastOrDefault();
-                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
-                if (register != null && (licKind == 2 || licKind == 3)) // рапортичка
-                {
-                    register.SchemaId = 2;
-                    register.AlgorithmId = 2;
+                    RgStatus = 0,
+                    RmId = period.RegisterRatedList.SingleOrDefault()?.RmId ?? 0,
+                    FileName = string.Empty,
+                    CustId = _customer.CustId,
+                    RgStatusNavigation = dicRegStatus[0],
+                };
 
-                    CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register)
+                // для визначення рапортички
+                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
+
+                if (licKind == 2 || licKind == 3) // рапортичка
+                {
+                    registerTemp.SchemaId = 2;
+                    var progReportBigRight = new CreateProgReportBigRight(registerTemp)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
@@ -455,11 +432,10 @@ namespace IpsViewComponentLibrary
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
                     }
                 }
-                else if (register != null) // не рапотричка
+                else // не рапотричка
                 {
-                    register.SchemaId = 1;
-                    register.AlgorithmId = 1;
-                    ReportExcelViewForm viewForm = new ReportExcelViewForm(register, true)
+                    registerTemp.SchemaId = 2;
+                    var viewForm = new ReportExcelViewForm(registerTemp, true)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
