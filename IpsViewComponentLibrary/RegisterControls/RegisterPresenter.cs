@@ -171,6 +171,12 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public void Save()
         {
+            if (!_view.IsValid)
+            {
+                _dialogService.ShowError(_view, "Не вірно введені дані. Звіт не записаний.");
+                return;
+            }
+
             _saved = true;
 
             foreach (var rvm in _view.RegisterItemList)

@@ -205,5 +205,41 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             _presenter.Save();
         }
+
+        #region Validation
+
+        public bool IsValid
+        {
+            get => ValidateChildren();
+        }
+
+        private void mebRegRate_Validating(object sender, CancelEventArgs e)
+        {
+            var value = int.Parse(mebRegRate.Text);
+
+            if (value > 100)
+            {
+                errorProvider.SetError(mebRegRate, "Відсоток авторської винагороди по звіту не може бути більше 100%.");
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                errorProvider.SetError(mebRegRate, "");
+            }
+
+            var authRate = int.Parse(mebAuthRate.Text);
+            var musicRate = int.Parse(mebMusicRate.Text);
+
+            if (value != authRate + musicRate)
+            {
+                errorProvider.SetError(mebRegRate, "Сума відсотків авторської винагороди постановки і музичного супроводу повинна дорівнювати відсотку винагороди по звіту.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(mebRegRate, "");
+        }
+
+        #endregion
     }
 }

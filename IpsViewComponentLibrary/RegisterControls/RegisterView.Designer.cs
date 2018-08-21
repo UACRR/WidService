@@ -70,6 +70,7 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.ddlAlgorithmId = new Telerik.WinControls.UI.RadDropDownList();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.ctrlRegisterItemListStage = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -120,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlAlgorithmId)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -529,6 +531,7 @@
             this.mebRegRate.TabStop = false;
             this.mebRegRate.Text = "0";
             this.mebRegRate.ThemeName = "Office2013Light";
+            this.mebRegRate.Validating += new System.ComponentModel.CancelEventHandler(this.mebRegRate_Validating);
             // 
             // radLabel9
             // 
@@ -586,6 +589,11 @@
             this.ddlAlgorithmId.TabIndex = 100;
             this.ddlAlgorithmId.ThemeName = "Office2013Light";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            // 
             // ctrlRegisterItemListStage
             // 
             this.ctrlRegisterItemListStage.AllowCreateObjectCommand = true;
@@ -628,9 +636,9 @@
             // 
             // RegisterView
             // 
-            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1292, 664);
             this.Controls.Add(this.ddlAlgorithmId);
@@ -701,6 +709,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlAlgorithmId)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -751,5 +760,6 @@
         private Telerik.WinControls.UI.RadLabel lblMusicRate;
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadDropDownList ddlAlgorithmId;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
