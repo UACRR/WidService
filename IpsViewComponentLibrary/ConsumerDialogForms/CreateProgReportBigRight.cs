@@ -114,16 +114,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             foreach (var item in _registerItemCreation.RegisterExtra)
             {
-                _gridSource.Add(new RegisterExtra
-                {
-                    Name = item.Name,
-                    RoleCode = item.RoleCode,
-                    RegId = item.RegId,
-                    RegI = item.RegI,
-                    RegExtraId = item.RegExtraId,
-                    RegIitemId = item.RegIitemId,
-                    RoleCodeNavigation = creativeDic[item.RoleCode ]
-                });
+                item.RoleCodeNavigation = creativeDic[item.RoleCode];
+                _gridSource.Add(item);
             }
 
             gvStaging.DataSource = _gridSource;
@@ -131,15 +123,15 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void ConvertToRegisterExtra()
         {
-            foreach (var source in _gridSource)
-            {
-                if(!_registerItemCreation.RegisterExtra.Contains(source))
-                {
-                    source.RoleCodeNavigation = creativeDic[source.RoleCode];
-                    _registerItemCreation.RegisterExtra.Add((RegisterExtra)source);
+            //foreach (var source in _gridSource)
+            //{
+            //    if(!_registerItemCreation.RegisterExtra.Contains(source))
+            //    {
+            //        source.RoleCodeNavigation = creativeDic[source.RoleCode];
+            //        _registerItemCreation.RegisterExtra.Add((RegisterExtra)source);
 
-                }
-            }
+            //    }
+            //}
         }
 
         private void CreateDataForHierarchy()
@@ -173,6 +165,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                     regExtra.Add(registerExtra);
                 }
             }
+
             registerItemBindingSource.DataSource = items;
             childrTemplate.DataSource = regExtra;
         }
@@ -183,12 +176,14 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             if (txtAuthName.Text != string.Empty)
             {
                 int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
-                _gridSource.Add(new RegisterExtra
+                var addItem = new RegisterExtra
                 {
                     Name = txtAuthName.Text,
                     RoleCode = roleCode,
                     RoleCodeNavigation = creativeDic[roleCode],
-                });
+                };
+                _registerItemCreation.RegisterExtra.Add(addItem);
+                _gridSource.Add(addItem);
                 gvStaging.DataSource = _gridSource;
             }
             else
@@ -233,13 +228,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void ClearIds()
         {
-            var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3);
-            foreach (var registerItem in items)
-            {
-                registerItem.RegId = 0;
-                foreach (var registerExtra in registerItem.RegisterExtra)
-                    registerExtra.RegId = 0;
-            }
+            //var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3);
+            //foreach (var registerItem in items)
+            //{
+            //    registerItem.RegId = 0;
+            //    foreach (var registerExtra in registerItem.RegisterExtra)
+            //        registerExtra.RegId = 0;
+            //}
         }
     }
 

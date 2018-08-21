@@ -151,17 +151,14 @@ namespace IpsViewComponentLibrary
             gvLicenseAgr.Update();
         }
 
-        bool inCurrentRowChanged = false;
         // при зміні рядка грід
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (inCurrentRowChanged) return;
-            inCurrentRowChanged = true;
             if (!(e.CurrentRow.DataBoundItem is GridLicenseAgrView curRow)) return;
             SetAgrInfoData(curRow.LicId, GridCallMethod.ActiveAgreementGrid);
-            if (currentAgreementController1 != null)
+            if (currentAgreementController1 != null 
+                && !currentAgreementController1.Broadcast )
                 currentAgreementController1.ChangeCurrentLicenseAgreement(this, curRow.LicenseAgreement);
-            inCurrentRowChanged = false;
 
         }
 
@@ -556,14 +553,12 @@ namespace IpsViewComponentLibrary
 
         private void currentAgreementController1_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
         {
-            if (inCurrentRowChanged) return;
-            inCurrentRowChanged = true;
+            if (sender == this) return;
 
             var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as GridLicenseAgrView)?.LicId == e.LicId);
             if (row != null && row.IsCurrent != true)
                 row.IsCurrent = true;
 
-            inCurrentRowChanged = false;
         }
     }
 
