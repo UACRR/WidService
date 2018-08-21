@@ -380,9 +380,11 @@
             gridViewTextBoxColumn13.Name = "PeriodName";
             gridViewTextBoxColumn13.Width = 154;
             gridViewTextBoxColumn13.WrapText = true;
+            gridViewTextBoxColumn14.DataType = typeof(int);
             gridViewTextBoxColumn14.EnableExpressionEditor = false;
+            gridViewTextBoxColumn14.FieldName = "RmId";
             gridViewTextBoxColumn14.HeaderText = "Р/Л";
-            gridViewTextBoxColumn14.Name = "RL";
+            gridViewTextBoxColumn14.Name = "RmId";
             gridViewTextBoxColumn14.Width = 37;
             gridViewTextBoxColumn14.WrapText = true;
             gridViewTextBoxColumn15.EnableExpressionEditor = false;

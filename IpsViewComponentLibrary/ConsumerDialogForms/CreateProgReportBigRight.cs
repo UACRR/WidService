@@ -44,12 +44,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             private set => registerItemBindingSource.DataSource = value;
         }
 
-        public object ChildRegisterExtraDataSource
-        {
-            get => _bindingSourceChild.DataSource;
-            private set => _bindingSourceChild.DataSource = value;
-        }
-
         /// <summary>
         /// Default NOT usable constructor
         /// </summary>
@@ -146,8 +140,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                     RoleCodeNavigation = creativeDic[roleCode],
                 };
                 _registerItemCreation.RegisterExtra.Add(addItem);
-                bindingRegExtraCode2.Add(addItem);
-                // gvStaging.DataSource = _gridSource;
+                bindingRegExtraCode2.ResetBindings(false);
             }
             else
                 MessageBox.Show("ПІБ автора не може бути пустим!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -191,16 +184,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
-
             DialogResult = DialogResult.OK;
         }
-
-
     }
-
-    //internal class RegisterExtraGridSource : RegisterExtra
-    //{
-    //    public string RoleName { get => RoleCodeNavigation.Name; }
-    //}
 }
