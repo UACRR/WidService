@@ -26,6 +26,7 @@ namespace IpsViewComponentLibrary
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
+        public event EventHandler<Register> SaveRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
@@ -62,15 +63,31 @@ namespace IpsViewComponentLibrary
         // 
         private void _currentAgreementController_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
         {
-            if (inChangeCurrentAgreement == true)
-                return;
-
+            if (sender == this) return;
             var lic = ActiveAgreementDataFactory.CreateAgreementData(e);
             var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as IAgreementData)?.Lic.LicId == e.LicId);
-            if (row != null && row.IsCurrent == false)
+            int index = 0;
+            foreach ( IAgreementData item in bindingAgreement.List )
             {
-                row.IsCurrent = true;
-                if (row.IsVisible == false) row.IsVisible = true;
+                if( item.Lic.LicId == e.LicId )
+                {
+                    if (item == bindingAgreement.Current)
+                        return;
+                    bindingAgreement.Position = index;
+                    return;
+                }
+
+                index++;
+            }
+            
+
+            if (row != null)
+            {
+                if (row.IsCurrent == false)
+                {
+                    row.IsCurrent = true;
+                    // if (row.IsVisible == false) row.IsVisible = true;
+                }
             }
         }
 
@@ -116,7 +133,6 @@ namespace IpsViewComponentLibrary
         }
 
         private Customer _customer;
-        private bool inChangeCurrentAgreement;
 
         public Customer Customer
         {
@@ -132,8 +148,8 @@ namespace IpsViewComponentLibrary
         {
             normalizeData(_customer);
             gvPeriodReports.MasterTemplate.Refresh();
-            gvPeriods.MasterTemplate.Refresh();
-            gvLicenseAgr.MasterTemplate.Refresh();
+            //gvPeriods.MasterTemplate.Refresh();
+            //gvLicenseAgr.MasterTemplate.Refresh();
         }
 
         #region METHODS
@@ -219,8 +235,9 @@ namespace IpsViewComponentLibrary
         #region EVENTS
 
         // * * * [Активні договори]
-        private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        private void gvLicenseAgr_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
+
             if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
             {
                 bindingPaidPeriod.DataSource = typeof(PaidPeriod);
@@ -229,13 +246,6 @@ namespace IpsViewComponentLibrary
             }
 
             var lic = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
-            if (CurrentAgreementController != null && lic != null && lic.Lic.LicId != CurrentAgreementController.LicId)
-            {
-                inChangeCurrentAgreement = true;
-                CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
-                inChangeCurrentAgreement = false;
-
-            }
 
             if (lic?.Lic?.PaidPeriod.Count > 0)
             {
@@ -252,6 +262,16 @@ namespace IpsViewComponentLibrary
             /// Цирк,Філармонія,Концертна діяльність
             bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
+
+            if (CurrentAgreementController != null
+                && !CurrentAgreementController.Broadcast
+                && lic != null
+                && lic.Lic.LicId != CurrentAgreementController.LicId)
+            {
+                CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
+
+            }
+
         }
 
         // * * * [Періоди платежів]
@@ -426,8 +446,9 @@ namespace IpsViewComponentLibrary
                     };
                     if (progReportBigRight.ShowDialog() == DialogResult.OK)
                     {
+                        //SaveRegisterExecuted?.Invoke(this, register);
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
-                        UpdateData?.Invoke(_customer.CustId);
+                        //UpdateData?.Invoke(_customer.CustId);
                     }
                     else
                         period.RegisterRatedList.Remove(ratedList);
@@ -441,6 +462,8 @@ namespace IpsViewComponentLibrary
 
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
+                        //                        SaveRegisterExecuted?.Invoke(this, register);
+
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
                         UpdateData?.Invoke(_customer.CustId);
                     }
@@ -476,7 +499,12 @@ namespace IpsViewComponentLibrary
                 {
                     StartPosition = FormStartPosition.CenterParent
                 };
-                progReportBigRight.ShowDialog();
+
+                if( progReportBigRight.ShowDialog() == DialogResult.OK )
+                {
+                    SaveRegisterExecuted?.Invoke(this, register);
+
+                }
                 return;
             }
 

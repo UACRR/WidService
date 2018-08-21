@@ -267,6 +267,9 @@
     <Compile Include="RightholderControls\RightholderView.Designer.cs">
       <DependentUpon>RightholderView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\CurrentAgreementController.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utilities\DialogService.cs" />
     <Compile Include="MiddleControlCabinetAvances.cs">
       <SubType>UserControl</SubType>

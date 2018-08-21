@@ -13,6 +13,7 @@ using Telerik.WinControls.UI;
 using Telerik.WinControls;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary
 {
@@ -56,7 +57,7 @@ namespace IpsViewComponentLibrary
         // 
         private void _currentAgreementController_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
         {
-            if (inChangeCurrentAgreement == true)
+            if (sender == this)
                 return;
 
             var lic = ActiveAgreementDataFactory.CreateAgreementData(e);
@@ -286,12 +287,11 @@ namespace IpsViewComponentLibrary
             {
                 var licItem = (IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem;
                 // Event ChangeCurrentActiveAgreement
-                if (CurrentAgreementController != null && CurrentAgreementController.LicId != licItem.Lic.LicId)
+                if (CurrentAgreementController != null 
+                    && !CurrentAgreementController.Broadcast
+                    && CurrentAgreementController.LicId != licItem.Lic.LicId)
                 {
-                    inChangeCurrentAgreement = true;
                     CurrentAgreementController.ChangeCurrentLicenseAgreement(this, licItem.Lic);
-                    inChangeCurrentAgreement = false;
-
                 }
 
                 var list = licItem.Lic?.PaidPeriod.OrderBy(rec => rec.BeginDate).ToList();
@@ -321,7 +321,6 @@ namespace IpsViewComponentLibrary
         /// 
         /// </summary>
         bool boolRunFromDragDrop = false;
-        private bool inChangeCurrentAgreement;
 
         /// <summary>
         /// 

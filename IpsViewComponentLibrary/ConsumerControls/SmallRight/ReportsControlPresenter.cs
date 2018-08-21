@@ -21,11 +21,17 @@ namespace IpsViewComponentLibrary
             _control.SaveRegisterRatedListExecuted += SaveRegisterRatedListExecuted;
             _control.GetRegisterItems = _service.GetRegisterItems;
             _control.DeleteRegisterExecuted += DeleteRegisterExecuted;
+            _control.SaveRegisterExecuted += SaveRegisterExecuted; ;
             _control.SetRegisterStateExecuted += _control_SetRegisterStateExecuted;
             _control.SetPeriodStateExecuted += _control_SetPeriodStateExecuted;
             _control.SavePariodCommandExecuted += SavePariodCommandExecuted;
 
 
+        }
+
+        private void SaveRegisterExecuted(object sender, Register e)
+        {
+            _service.SaveRegister(e);
         }
 
         private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)

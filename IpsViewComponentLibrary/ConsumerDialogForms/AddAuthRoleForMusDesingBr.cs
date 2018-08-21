@@ -16,7 +16,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     public partial class AddAuthRoleForMusDesingBr : Telerik.WinControls.UI.RadForm
     {
         private RegisterItem _registerItem = null;
-        private ObservableListSource<RegisterExtra> _gridSource = new ObservableListSource<RegisterExtra>();
         private Dictionary<int, CreativeRoleType> creativeDic;
 
         public object CreativeRoleDataSource
@@ -35,12 +34,16 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             InitializeComponent();
             _registerItem = registerItem;
             creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
+            bsRegisterItem.DataSource = _registerItem;
         }
 
         private void gvAuthRole_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.Row.DataBoundItem is RegisterExtra item)
-                _gridSource.Remove(item);
+            {
+                registerExtraBindingSource.Remove(item);
+            }
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -48,13 +51,14 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             if (txtAuthName.Text != string.Empty)
             {
                 int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
-                _gridSource.Add(new RegisterExtra
+                var addRow = new RegisterExtra
                 {
                     Name = txtAuthName.Text,
                     RoleCode = roleCode,
                     RoleCodeNavigation = creativeDic[roleCode]
-                });
-                gvAuthRole.DataSource = _gridSource;
+                };
+
+                registerExtraBindingSource.Add(addRow);
             }
             else
                 MessageBox.Show("ПІБ автора не може бути пустим!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -64,9 +68,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             if(txtCrName.Text != string.Empty)
             {
-                _registerItem.ItemName = txtCrName.Text;
-                foreach (var source in _gridSource)
-                    _registerItem.RegisterExtra.Add((RegisterExtra)source);
                 DialogResult = DialogResult.OK;
             }
             else

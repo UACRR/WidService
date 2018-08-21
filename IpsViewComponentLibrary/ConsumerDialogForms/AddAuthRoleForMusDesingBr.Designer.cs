@@ -43,6 +43,7 @@
             this.txtCrName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.ddlCreativeRole = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsDictCreativeRole = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtAuthName = new Telerik.WinControls.UI.RadTextBox();
@@ -50,12 +51,12 @@
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.gvAuthRole = new Telerik.WinControls.UI.RadGridView();
-            this.bsRegisterItem = new System.Windows.Forms.BindingSource(this.components);
-            this.bsDictCreativeRole = new System.Windows.Forms.BindingSource(this.components);
             this.registerExtraBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRegisterItem = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthName)).BeginInit();
@@ -64,9 +65,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +74,7 @@
             // 
             this.txtCrName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCrName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItem, "ItemName", true));
             this.txtCrName.Location = new System.Drawing.Point(93, 11);
             this.txtCrName.Name = "txtCrName";
             this.txtCrName.Size = new System.Drawing.Size(559, 21);
@@ -100,6 +101,10 @@
             this.ddlCreativeRole.TabIndex = 22;
             this.ddlCreativeRole.ThemeName = "Office2013Light";
             this.ddlCreativeRole.ValueMember = "CodeI";
+            // 
+            // bsDictCreativeRole
+            // 
+            this.bsDictCreativeRole.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
             // 
             // radLabel2
             // 
@@ -177,7 +182,7 @@
             this.gvAuthRole.MasterTemplate.AllowDragToGroup = false;
             this.gvAuthRole.MasterTemplate.AutoGenerateColumns = false;
             this.gvAuthRole.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "RoleName";
+            gridViewTextBoxColumn1.FieldName = "RoleCodeNavigation.Name";
             gridViewTextBoxColumn1.HeaderText = "Творча роль";
             gridViewTextBoxColumn1.Name = "RoleName";
             gridViewTextBoxColumn1.Width = 301;
@@ -261,17 +266,14 @@
             this.gvAuthRole.ThemeName = "Office2013Light";
             this.gvAuthRole.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvAuthRole_CommandCellClick);
             // 
+            // registerExtraBindingSource
+            // 
+            this.registerExtraBindingSource.DataMember = "RegisterExtra";
+            this.registerExtraBindingSource.DataSource = this.bsRegisterItem;
+            // 
             // bsRegisterItem
             // 
             this.bsRegisterItem.DataSource = typeof(ipsFormsDesign.Model.RegisterItem);
-            // 
-            // bsDictCreativeRole
-            // 
-            this.bsDictCreativeRole.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
-            // 
-            // registerExtraBindingSource
-            // 
-            this.registerExtraBindingSource.DataSource = typeof(ipsFormsDesign.Model.RegisterExtra);
             // 
             // AddAuthRoleForMusDesingBr
             // 
@@ -299,6 +301,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthName)).EndInit();
@@ -307,9 +310,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvAuthRole)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
