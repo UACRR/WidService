@@ -67,9 +67,9 @@ namespace IpsViewComponentLibrary
             var lic = ActiveAgreementDataFactory.CreateAgreementData(e);
             var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as IAgreementData)?.Lic.LicId == e.LicId);
             int index = 0;
-            foreach ( IAgreementData item in bindingAgreement.List )
+            foreach (IAgreementData item in bindingAgreement.List)
             {
-                if( item.Lic.LicId == e.LicId )
+                if (item.Lic.LicId == e.LicId)
                 {
                     if (item == bindingAgreement.Current)
                         return;
@@ -79,7 +79,7 @@ namespace IpsViewComponentLibrary
 
                 index++;
             }
-            
+
 
             if (row != null)
             {
@@ -362,17 +362,14 @@ namespace IpsViewComponentLibrary
                     // Створення Звіту
                     Register addRegister = new Register
                     {
-                        RgStatus = 0
-                                ,
-                        FileName = Path.GetFileName(dialog.FileName)
-                                ,
-                        CustId = _customer.CustId
-                                ,
-                        RgStatusNavigation = dicRegStatus[0]
-                                ,
-                        PeriodId = period.PeriodId
-                                ,
-                        RegisterRatedList = RatedList
+                        RgStatus = 0,
+                        FileName = Path.GetFileName(dialog.FileName),
+                        CustId = _customer.CustId,
+                        RgStatusNavigation = dicRegStatus[0],
+                        PeriodId = period.PeriodId,
+                        RegisterRatedList = RatedList,
+                        SchemaId = 1,
+                        AlgorithmId = 1
                     };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
@@ -439,7 +436,7 @@ namespace IpsViewComponentLibrary
                 var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
                 if (register != null && (licKind == 2 || licKind == 3)) // рапортичка
                 {
-
+                    register.SchemaId = 2;
                     CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register)
                     {
                         StartPosition = FormStartPosition.CenterParent
@@ -455,6 +452,7 @@ namespace IpsViewComponentLibrary
                 }
                 else if (register != null) // не рапотричка
                 {
+                    register.SchemaId = 1;
                     ReportExcelViewForm viewForm = new ReportExcelViewForm(register, true)
                     {
                         StartPosition = FormStartPosition.CenterParent
@@ -500,7 +498,7 @@ namespace IpsViewComponentLibrary
                     StartPosition = FormStartPosition.CenterParent
                 };
 
-                if( progReportBigRight.ShowDialog() == DialogResult.OK )
+                if (progReportBigRight.ShowDialog() == DialogResult.OK)
                 {
                     SaveRegisterExecuted?.Invoke(this, register);
 
