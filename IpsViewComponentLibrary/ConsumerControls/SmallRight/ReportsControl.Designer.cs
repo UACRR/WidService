@@ -407,14 +407,14 @@
             gridViewTextBoxColumn17.WrapText = true;
             gridViewDecimalColumn7.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn7.EnableExpressionEditor = false;
-            gridViewDecimalColumn7.FieldName = "AuthAmount";
+            gridViewDecimalColumn7.FieldName = "RegRate";
             gridViewDecimalColumn7.HeaderText = "% авторської винагороди звіту";
             gridViewDecimalColumn7.Name = "Rate";
             gridViewDecimalColumn7.Width = 106;
             gridViewDecimalColumn7.WrapText = true;
             gridViewDecimalColumn8.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn8.EnableExpressionEditor = false;
-            gridViewDecimalColumn8.FieldName = "RegAmount";
+            gridViewDecimalColumn8.FieldName = "RegRoyalty";
             gridViewDecimalColumn8.HeaderText = "Сума звіту";
             gridViewDecimalColumn8.Name = "Amount";
             gridViewDecimalColumn8.Width = 92;

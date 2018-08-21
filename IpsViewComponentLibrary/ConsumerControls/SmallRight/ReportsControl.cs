@@ -415,7 +415,7 @@ namespace IpsViewComponentLibrary
                                 RgStatus = 0,
                                 FileName = string.Empty,
                                 CustId = _customer.CustId,
-                                RgStatusNavigation = dicRegStatus[0],
+                                RgStatusNavigation = dicRegStatus[0]
                             }
                         }
                     };
@@ -437,6 +437,8 @@ namespace IpsViewComponentLibrary
                 if (register != null && (licKind == 2 || licKind == 3)) // рапортичка
                 {
                     register.SchemaId = 2;
+                    register.AlgorithmId = 2;
+
                     CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register)
                     {
                         StartPosition = FormStartPosition.CenterParent
@@ -453,6 +455,7 @@ namespace IpsViewComponentLibrary
                 else if (register != null) // не рапотричка
                 {
                     register.SchemaId = 1;
+                    register.AlgorithmId = 1;
                     ReportExcelViewForm viewForm = new ReportExcelViewForm(register, true)
                     {
                         StartPosition = FormStartPosition.CenterParent
