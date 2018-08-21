@@ -33,6 +33,16 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             _register = _registerService.GetById(regId);
             UpdateDataBindings();
+
+            if (_register.SchemaId == 1)
+            {
+                _view.SetupViewForSchema1();
+            }
+            else if (_register.SchemaId == 2)
+            {
+                _view.SetupViewForSchema2();
+            }
+
             _view.Run();
         }
 
@@ -164,6 +174,29 @@ namespace IpsViewComponentLibrary.RegisterControls
                     foundedRegisterItem.RegIitemId = rvm.RegIitemId;
                     foundedRegisterItem.ObjId = rvm.ObjId;
                     foundedRegisterItem.IsAuto = rvm.IsAuto;
+                    foundedRegisterItem.CodeItem = rvm.CodeItem;
+                };
+            }
+
+            foreach (var rvm in _view.RegisterItemListStage)
+            {
+                var foundedRegisterItem = _register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
+
+                if (foundedRegisterItem != null)
+                {
+                    foundedRegisterItem.ItemName = rvm.ItemName;
+                    foundedRegisterItem.AuthorMusic = rvm.AuthorMusic;
+                    foundedRegisterItem.AuthorText = rvm.AuthorText;
+                    foundedRegisterItem.CategoryCode = rvm.CategoryCode;
+                    foundedRegisterItem.CountUse = rvm.CountUse;
+                    foundedRegisterItem.DurationItem = rvm.DurationItem;
+                    foundedRegisterItem.DurationUse = rvm.DurationUse;
+                    foundedRegisterItem.Performer = rvm.Performer;
+                    foundedRegisterItem.RegId = rvm.RegId;
+                    foundedRegisterItem.RegIitemId = rvm.RegIitemId;
+                    foundedRegisterItem.ObjId = rvm.ObjId;
+                    foundedRegisterItem.IsAuto = rvm.IsAuto;
+                    foundedRegisterItem.CodeItem = rvm.CodeItem;
                 };
             }
 
@@ -179,6 +212,9 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             _view.Register = _register;
             _view.RegisterItemList.Clear();
+            _view.RegisterExtraList.Clear();
+            _view.RegisterItemListStage.Clear();
+            _view.RegisterExtraListStage.Clear();
 
             foreach (var r in _register.RegisterItem)
             {
@@ -195,12 +231,26 @@ namespace IpsViewComponentLibrary.RegisterControls
                     RegId = r.RegId,
                     RegIitemId = r.RegIitemId,
                     IsAuto = r.IsAuto,
+                    CodeItem = r.CodeItem,
                 };
 
                 if (r.Obj != null)
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
 
-                _view.RegisterItemList.Add(rvm);
+                if (r.CodeItem == 1 || r.CodeItem == 3)
+                {
+                    _view.RegisterItemList.Add(rvm);
+
+                    foreach (var re in r.RegisterExtra)
+                        _view.RegisterExtraList.Add(re);
+                }
+                else if (r.CodeItem == 2)
+                {
+                    _view.RegisterItemListStage.Add(rvm);
+
+                    foreach (var re in r.RegisterExtra)
+                        _view.RegisterExtraListStage.Add(re);
+                }
             }
         }
 
