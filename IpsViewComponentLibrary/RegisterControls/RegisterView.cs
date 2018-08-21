@@ -1,6 +1,8 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -21,13 +23,23 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public Register Register
         {
-            get { return registerBindingSource.DataSource as Register; }
+            get { return bsRegister.DataSource as Register; }
             set
             {
-                if (registerBindingSource.DataSource != value)
+                if (bsRegister.DataSource != value)
                 {
-                    registerBindingSource.DataSource = value;
+                    bsRegister.DataSource = value;
+                    txtPeriodName.Text = value?.RegisterRatedList?.Period?.PeriodName;
+                    ddlLicCode.SelectedValue = value?.RegisterRatedList?.Period?.Lic?.LicCode;
                 }
+            }
+        }
+
+        public ConsumerMainView ConsumerInfo
+        {
+            set
+            {
+                txtConsumerName.Text = value.Name;
             }
         }
 
@@ -78,6 +90,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             ctrlRegisterItemList.ShowAuthors = true;
             ctrlRegisterItemListStage.ShowAuthors = true;
+
+            lblMusicRate.Visible = false;
+            mebMusicRate.Visible = false;
         }
 
         // composition and musical design distribution
@@ -89,13 +104,16 @@ namespace IpsViewComponentLibrary.RegisterControls
             ctrlRegisterItemList.ExpandAll();
 
             ctrlRegisterItemListStage.ShowAuthors = false;
+
+            lblMusicRate.Visible = true;
+            mebMusicRate.Visible = true;
         }
 
         private void SetDictionaries()
         {
-            ddlStatus.ValueMember = "CodeI";
-            ddlStatus.DisplayMember = "Name";
-            ddlStatus.DataSource = IpsGlobal.ObjectRightDictionaries.RegisterStatuses;
+            ddlStatus.SetDataSource(IpsGlobal.ObjectRightDictionaries.RegisterStatuses);
+            ddlLicCode.SetDataSource(IpsGlobal.AnketaDictionaties.agrLicenseType);
+            //ddlAlgorithmId.SetDataSource(IpsGlobal.AnketaDictionaties.);
         }
 
         private void SetAllowedStatus(RegisterStatusType status)
