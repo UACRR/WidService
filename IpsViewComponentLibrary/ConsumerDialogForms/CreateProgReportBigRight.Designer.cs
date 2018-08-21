@@ -115,6 +115,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanelMusicalDesign = new Telerik.WinControls.UI.SplitPanel();
             this.cpMusicalDesign = new Telerik.WinControls.UI.RadCollapsiblePanel();
+            this.bindingRegExtraCode2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.childrTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicalDesing)).BeginInit();
@@ -165,6 +166,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             ((System.ComponentModel.ISupportInitialize)(this.cpMusicalDesign)).BeginInit();
             this.cpMusicalDesign.PanelContainer.SuspendLayout();
             this.cpMusicalDesign.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingRegExtraCode2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -236,7 +238,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // registerExtraBindingSource
             // 
-            this.registerExtraBindingSource.DataSource = typeof(ipsFormsDesign.Model.RegisterExtra);
+            this.registerExtraBindingSource.DataMember = "RegisterExtra";
+            this.registerExtraBindingSource.DataSource = this.registerItemBindingSource;
             // 
             // gvMusicalDesing
             // 
@@ -841,6 +844,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             gridViewDecimalColumn16,
             gridViewTextBoxColumn17,
             gridViewTextBoxColumn18});
+            this.gvStaging.MasterTemplate.DataSource = this.bindingRegExtraCode2;
             this.gvStaging.MasterTemplate.EnableGrouping = false;
             this.gvStaging.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvStaging.Name = "gvStaging";
@@ -950,6 +954,11 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.cpMusicalDesign.TabIndex = 19;
             this.cpMusicalDesign.ThemeName = "Office2013Light";
             // 
+            // bindingRegExtraCode2
+            // 
+            this.bindingRegExtraCode2.DataMember = "RegisterExtra";
+            this.bindingRegExtraCode2.DataSource = this.bsRegisterItem;
+            // 
             // CreateProgReportBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1020,6 +1029,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.cpMusicalDesign.PanelContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cpMusicalDesign)).EndInit();
             this.cpMusicalDesign.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingRegExtraCode2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1068,5 +1078,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private System.Windows.Forms.BindingSource registerItemBindingSource;
         private Telerik.WinControls.UI.GridViewTemplate childrTemplate;
         private System.Windows.Forms.BindingSource registerExtraBindingSource;
+        private System.Windows.Forms.BindingSource bindingRegExtraCode2;
     }
 }

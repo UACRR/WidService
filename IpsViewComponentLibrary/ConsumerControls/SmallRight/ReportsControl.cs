@@ -446,8 +446,8 @@ namespace IpsViewComponentLibrary
                     };
                     if (progReportBigRight.ShowDialog() == DialogResult.OK)
                     {
-                        SaveRegisterExecuted?.Invoke(this, register);
-                        //SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+                        //SaveRegisterExecuted?.Invoke(this, register);
+                        SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
                         //UpdateData?.Invoke(_customer.CustId);
                     }
                     else

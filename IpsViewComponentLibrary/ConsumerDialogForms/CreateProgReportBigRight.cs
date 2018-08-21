@@ -19,7 +19,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private Register _register = null;
         private ObservableListSource<RegisterExtra> _gridSource = new ObservableListSource<RegisterExtra>();
         private RegisterItem _registerItemCreation = null, _registerItemMusDesign = null;
-        private Dictionary<int, CreativeRoleType> creativeDic; 
+        private Dictionary<int, CreativeRoleType> creativeDic;
         public object RegisterDataSource
         {
             get => bsRegister.DataSource;
@@ -87,12 +87,14 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             InitializeComponent();
             creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
-
             _register = register;
+            NormalizeData(_register);
             _registerItemCreation = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
             RegisterItemDataSource = _registerItemCreation;
+
             RegisterDataSource = _register;
             CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
+
             btnAddRegItem.Enabled = isEdit;
             btnAddCreativeRole.Enabled = isEdit;
             btnSave.Enabled = isEdit;
@@ -104,70 +106,31 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             ddlCreativeRole.Enabled = isEdit;
             txtMusicalDesignRate.ReadOnly = !isEdit;
             txtMusicalDesignAmount.ReadOnly = !isEdit;
-            
+
             CreateDataForHierarchyView();
 
-            GenerateRegisterExtraList();
         }
 
-        private void GenerateRegisterExtraList()
+        private void NormalizeData(Register register)
         {
-            foreach (var item in _registerItemCreation.RegisterExtra)
-            {
-                item.RoleCodeNavigation = creativeDic[item.RoleCode];
-                _gridSource.Add(item);
-            }
-
-            gvStaging.DataSource = _gridSource;
-        }
-
-        private void ConvertToRegisterExtra()
-        {
-            //foreach (var source in _gridSource)
-            //{
-            //    if(!_registerItemCreation.RegisterExtra.Contains(source))
-            //    {
-            //        source.RoleCodeNavigation = creativeDic[source.RoleCode];
-            //        _registerItemCreation.RegisterExtra.Add((RegisterExtra)source);
-
-            //    }
-            //}
-        }
-
-        private void CreateDataForHierarchy()
-        {
-            var regExtra = new ObservableListSource<RegisterExtra>();
-            var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3);
-            foreach (var registerItem in items)
-            {
-                registerItem.RegId++;
-                foreach (var registerExtra in registerItem.RegisterExtra)
-                {
-                    registerExtra.RegId = registerItem.RegId;
-                    regExtra.Add(registerExtra as RegisterExtra);
-                }
-            }
-            registerItemBindingSource.DataSource = items;
-            childrTemplate.DataSource = regExtra;
+            foreach (var item in register.RegisterItem)
+                foreach (var extra in item.RegisterExtra)
+                    extra.RoleCodeNavigation = creativeDic[extra.RoleCode];
         }
 
         private void CreateDataForHierarchyView()
         {
-            var regExtra = new ObservableListSource<RegisterExtra>();
             var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3).ToList();
-            if(!items.Any()) return;
+            if (!items.Any()) return;
             foreach (var registerItem in items)
             {
                 foreach (var registerExtra in registerItem.RegisterExtra)
                 {
-
                     registerExtra.RoleCodeNavigation = creativeDic[registerExtra.RoleCode];
-                    regExtra.Add(registerExtra);
                 }
             }
 
-            registerItemBindingSource.DataSource = items;
-            childrTemplate.DataSource = regExtra;
+            ParentRegisterItemDataSource = items;
         }
 
         //додати творчу роль
@@ -183,8 +146,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                     RoleCodeNavigation = creativeDic[roleCode],
                 };
                 _registerItemCreation.RegisterExtra.Add(addItem);
-                _gridSource.Add(addItem);
-                gvStaging.DataSource = _gridSource;
+                bindingRegExtraCode2.Add(addItem);
+                // gvStaging.DataSource = _gridSource;
             }
             else
                 MessageBox.Show("ПІБ автора не може бути пустим!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -197,45 +160,43 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             {
                 CodeItem = 3,
             };
-            _register.RegisterItem.Add(_registerItemMusDesign);
-            AddAuthRoleForMusDesingBr addAuthRole = new AddAuthRoleForMusDesingBr(_registerItemMusDesign){
+
+            AddAuthRoleForMusDesingBr addAuthRole = new AddAuthRoleForMusDesingBr(_registerItemMusDesign)
+            {
                 CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1)
             };
             if (addAuthRole.ShowDialog() == DialogResult.OK)
-                CreateDataForHierarchy();
-            else 
-                _register.RegisterItem.Remove(_registerItemMusDesign);
+            {
+                registerItemBindingSource.Add(_registerItemMusDesign);
+                _register.RegisterItem.Add(_registerItemMusDesign);
+            }
         }
 
         private void gvMusicalDesing_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            //e.Row.DataBoundItem
+            var rec = e.Row.DataBoundItem as RegisterItem;
+            registerItemBindingSource.Remove(rec);
+            _register.RegisterItem.Remove(rec);
         }
 
         private void gvStaging_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.Row.DataBoundItem is RegisterExtra item)
-                _gridSource.Remove(item);
+            {
+
+                bindingRegExtraCode2.Remove(item);
+                _registerItemCreation.RegisterExtra.Remove(item);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ConvertToRegisterExtra();
-            ClearIds();
-            var reg = _register;
+
+
             DialogResult = DialogResult.OK;
         }
 
-        private void ClearIds()
-        {
-            //var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3);
-            //foreach (var registerItem in items)
-            //{
-            //    registerItem.RegId = 0;
-            //    foreach (var registerExtra in registerItem.RegisterExtra)
-            //        registerExtra.RegId = 0;
-            //}
-        }
+
     }
 
     //internal class RegisterExtraGridSource : RegisterExtra

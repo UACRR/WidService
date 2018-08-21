@@ -76,12 +76,12 @@
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
             this.reportsControl = new IpsViewComponentLibrary.ReportsControl();
+            this.currentAgreementController1 = new IpsViewComponentLibrary.Utilities.CurrentAgreementController();
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
             this.calculationCtrl = new IpsViewComponentLibrary.CalculationInfoControl();
             this.pvPayments = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPaysInfo1 = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
-            this.currentAgreementController1 = new IpsViewComponentLibrary.Utilities.CurrentAgreementController();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
             this.pvActiveAgr.SuspendLayout();
@@ -606,6 +606,10 @@
             this.reportsControl.TabIndex = 0;
             this.reportsControl.TypeRights = ipsFormsDesign.Dictionary.TypeRights.All;
             // 
+            // currentAgreementController1
+            // 
+            this.currentAgreementController1.CurrentLicenseAgreementChanged += new System.EventHandler<ipsFormsDesign.Model.LicenseAgreement>(this.currentAgreementController1_CurrentLicenseAgreementChanged);
+            // 
             // pvCalculation
             // 
             this.pvCalculation.Controls.Add(this.calculationCtrl);
@@ -657,10 +661,6 @@
             this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
             this.ctrlHeaderInfo.Size = new System.Drawing.Size(836, 178);
             this.ctrlHeaderInfo.TabIndex = 5;
-            // 
-            // currentAgreementController1
-            // 
-            this.currentAgreementController1.CurrentLicenseAgreementChanged += new System.EventHandler<ipsFormsDesign.Model.LicenseAgreement>(this.currentAgreementController1_CurrentLicenseAgreementChanged);
             // 
             // MiddleControlInfoAgrCalc
             // 
