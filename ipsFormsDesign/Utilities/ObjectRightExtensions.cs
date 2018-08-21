@@ -20,6 +20,11 @@ namespace ipsFormsDesign.Utilities
 
             if (!string.IsNullOrEmpty(registerItem.Performer))
                 objectRight.SeekObject.Add(new SeekObject { CodeI = 2, Name = registerItem.Performer });
+
+            foreach (var re in registerItem.RegisterExtraList)
+            {
+                objectRight.Authors.Add(new Authors { AuthorName = re.Name, FolkType = 1, RoleCode = re.RoleCode });
+            }
         }
 
         public static void AddObjectAuthorRightholder(this ObjectRight objectRight, ObjectAuthorRightholder objectAuthorRightholder)

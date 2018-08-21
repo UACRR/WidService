@@ -68,43 +68,43 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public void SearchObjectsForAll()
         {
-            var objectList = new List<RegisterItemViewModel>();
+            var registerItemList = new List<RegisterItemViewModel>();
 
-            objectList.AddRange(_view.RegisterItemListStage);
-            objectList.AddRange(_view.RegisterItemList);
+            registerItemList.AddRange(_view.RegisterItemListStage);
+            registerItemList.AddRange(_view.RegisterItemList);
 
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(objectList);
+                presenter.Show(registerItemList);
             }
         }
 
         public void SearchObjectsForNotLinked()
         {
-            var objectList = new List<RegisterItemViewModel>();
+            var registerItemList = new List<RegisterItemViewModel>();
 
-            objectList.AddRange(_view.RegisterItemListStage.Where(r => r.ObjId == null));
-            objectList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
+            registerItemList.AddRange(_view.RegisterItemListStage.Where(r => r.ObjId == null));
+            registerItemList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
 
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(objectList);
+                presenter.Show(registerItemList);
             }
         }
 
         public void SearchObjectsForSelected()
         {
-            var objectList = new List<RegisterItemViewModel>();
+            var registerItemList = new List<RegisterItemViewModel>();
 
-            objectList.AddRange(_view.SelectedRegisterItemsStage);
-            objectList.AddRange(_view.SelectedRegisterItems);
+            registerItemList.AddRange(_view.SelectedRegisterItemsStage);
+            registerItemList.AddRange(_view.SelectedRegisterItems);
 
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(objectList);
+                presenter.Show(registerItemList);
             }
         }
 
@@ -112,14 +112,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             var objectRightService = new ObjectRightService();
 
-            var objectList = new List<RegisterItemViewModel>();
+            var registerItemList = new List<RegisterItemViewModel>();
 
-            objectList.AddRange(_view.SelectedRegisterItemsStage);
-            objectList.AddRange(_view.SelectedRegisterItems);
+            registerItemList.AddRange(_view.SelectedRegisterItemsStage);
+            registerItemList.AddRange(_view.SelectedRegisterItems);
 
             var createdObjectCount = 0;
 
-            foreach (var registerItem in objectList)
+            foreach (var registerItem in registerItemList)
             {
                 var newObject = objectRightService.NewObjectRight(5);
                 newObject.SetDataFromRegisterItem(registerItem);
@@ -261,6 +261,8 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 if (r.Obj != null)
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
+
+                rvm.RegisterExtraList.AddRange(r.RegisterExtra);
 
                 if (r.CodeItem == 1 || r.CodeItem == 3)
                 {
