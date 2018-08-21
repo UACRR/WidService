@@ -5,11 +5,14 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
     public partial class RegisterView : Telerik.WinControls.UI.RadForm
     {
+        //private RegisterItemListExControl ctrlRegisterItemList;
+
         private RegisterPresenter _presenter;
         public RegisterPresenter Presenter
         {
@@ -33,6 +36,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         }
 
         public BindingList<RegisterItemViewModel> RegisterItemList { get; private set; } = new BindingList<RegisterItemViewModel>();
+        public BindingList<RegisterExtra> RegisterExtraList { get; private set; } = new BindingList<RegisterExtra>();
 
         public Collection<RegisterItemViewModel> SelectedRegisterItems { get => ctrlRegisterItemList.SelectedRegisterItems; }
 
@@ -43,6 +47,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             SetDictionaries();
 
             ctrlRegisterItemList.DataSource = RegisterItemList;
+            ctrlRegisterItemList.DataSourceRegisterExtra = RegisterExtraList;
         }
 
         public void Run()
@@ -63,9 +68,24 @@ namespace IpsViewComponentLibrary.RegisterControls
             SetControlEnabled(status);
         }
 
-        public void ExpandAll()
+        // ordinary distribution
+        public void SetupViewForSchema1()
         {
+            splitPanelStage.Collapsed = true;
+
+            ctrlRegisterItemList.ShowAuthors = true;
+            ctrlRegisterItemListStage.ShowAuthors = true;
+        }
+
+        // composition and musical design distribution
+        public void SetupViewForSchema2()
+        {
+            splitPanelStage.Collapsed = false;
+
+            ctrlRegisterItemList.ShowAuthors = false;
             ctrlRegisterItemList.ExpandAll();
+
+            ctrlRegisterItemListStage.ShowAuthors = false;
         }
 
         private void SetDictionaries()

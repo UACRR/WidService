@@ -33,7 +33,16 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             _register = _registerService.GetById(regId);
             UpdateDataBindings();
-            _view.ExpandAll();
+
+            if (_register.SchemaId == 1)
+            {
+                _view.SetupViewForSchema1();
+            }
+            else if (_register.SchemaId == 2)
+            {
+                _view.SetupViewForSchema2();
+            }
+
             _view.Run();
         }
 
@@ -165,6 +174,7 @@ namespace IpsViewComponentLibrary.RegisterControls
                     foundedRegisterItem.RegIitemId = rvm.RegIitemId;
                     foundedRegisterItem.ObjId = rvm.ObjId;
                     foundedRegisterItem.IsAuto = rvm.IsAuto;
+                    foundedRegisterItem.CodeItem = rvm.CodeItem;
                 };
             }
 
@@ -196,14 +206,22 @@ namespace IpsViewComponentLibrary.RegisterControls
                     RegId = r.RegId,
                     RegIitemId = r.RegIitemId,
                     IsAuto = r.IsAuto,
+                    CodeItem = r.CodeItem,
                 };
 
                 if (r.Obj != null)
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
 
-                rvm.RegisterExtraList.AddRange(r.RegisterExtra);
+                //rvm.RegisterExtraList.AddRange(r.RegisterExtra);
 
                 _view.RegisterItemList.Add(rvm);
+            }
+
+            var registerExtraList = _register.RegisterItem.SelectMany(i => i.RegisterExtra);
+
+            foreach (var re in registerExtraList)
+            {
+                _view.RegisterExtraList.Add(re);
             }
         }
 

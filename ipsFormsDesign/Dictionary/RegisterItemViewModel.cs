@@ -26,6 +26,7 @@ namespace ipsFormsDesign.Dictionary
         public int? CountUse { get; set; }
         public TimeSpan? DurationUse { get; set; }
         public TimeSpan? DurationItem { get; set; }
+        public int CodeItem { get; set; }
 
         private string _objectName;
         public string ObjectName
