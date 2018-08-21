@@ -36,6 +36,7 @@ namespace ipsFormsDesign.Model
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
 
+        public AlgorithmType Algorithm { get; set; }
         public Client Cust { get; set; }
         public RegisterRatedList RegisterRatedList { get; set; }
         public RegisterStatus RgStatusNavigation { get; set; }

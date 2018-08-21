@@ -33,7 +33,6 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<AgrLicenseType> AgrLicenseType { get; set; }
         public virtual DbSet<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
         public virtual DbSet<AlgorithmType> AlgorithmType { get; set; }
-        public virtual DbSet<AlgorithmTypeTr> AlgorithmTypeTr { get; set; }
         public virtual DbSet<AnketaAddName> AnketaAddName { get; set; }
         public virtual DbSet<AnketaAddNick> AnketaAddNick { get; set; }
         public virtual DbSet<AnketaAddParam> AnketaAddParam { get; set; }
@@ -308,7 +307,7 @@ namespace ipsmedserviceapp.Model
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
 //                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
-            }
+//            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -880,6 +879,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.AlgorithmId).HasColumnName("algorithmId");
+
                 entity.Property(e => e.KindCode).HasColumnName("kindCode");
 
                 entity.Property(e => e.Name)
@@ -889,12 +890,19 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.NeedPlace).HasColumnName("needPlace");
 
+                entity.Property(e => e.SchemaId).HasColumnName("schemaId");
+
                 entity.Property(e => e.TemplateName)
                     .HasColumnName("templateName")
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
                 entity.Property(e => e.UsesKind).HasColumnName("usesKind");
+
+                entity.HasOne(d => d.Algorithm)
+                    .WithMany(p => p.AgrLicenseType)
+                    .HasForeignKey(d => d.AlgorithmId)
+                    .HasConstraintName("FK_AGRLICENTYPE_REF_ALGORITH");
 
                 entity.HasOne(d => d.KindCodeNavigation)
                     .WithMany(p => p.AgrLicenseType)
@@ -938,32 +946,10 @@ namespace ipsmedserviceapp.Model
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.Name)
+                    .IsRequired()
                     .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<AlgorithmTypeTr>(entity =>
-            {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
-                    .HasMaxLength(2)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.CodeINavigation)
-                    .WithMany(p => p.AlgorithmTypeTr)
-                    .HasForeignKey(d => d.CodeI)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ALGORITH_REFERENCE_ALGORITH");
             });
 
             modelBuilder.Entity<AnketaAddName>(entity =>
@@ -6306,6 +6292,11 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.UserId)
                     .HasColumnName("userId")
                     .HasMaxLength(48);
+
+                entity.HasOne(d => d.Algorithm)
+                    .WithMany(p => p.Register)
+                    .HasForeignKey(d => d.AlgorithmId)
+                    .HasConstraintName("FK_REGISTER_REFERENCE_ALGORITH");
 
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Register)
