@@ -4,15 +4,11 @@ using ipsFormsDesign.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Windows.Forms;
-using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
     public partial class RegisterView : Telerik.WinControls.UI.RadForm
     {
-        //private RegisterItemListExControl ctrlRegisterItemList;
-
         private RegisterPresenter _presenter;
         public RegisterPresenter Presenter
         {
@@ -38,6 +34,9 @@ namespace IpsViewComponentLibrary.RegisterControls
         public BindingList<RegisterItemViewModel> RegisterItemList { get; private set; } = new BindingList<RegisterItemViewModel>();
         public BindingList<RegisterExtra> RegisterExtraList { get; private set; } = new BindingList<RegisterExtra>();
 
+        public BindingList<RegisterItemViewModel> RegisterItemListStage { get; private set; } = new BindingList<RegisterItemViewModel>();
+        public BindingList<RegisterExtra> RegisterExtraListStage { get; private set; } = new BindingList<RegisterExtra>();
+
         public Collection<RegisterItemViewModel> SelectedRegisterItems { get => ctrlRegisterItemList.SelectedRegisterItems; }
 
         public RegisterView()
@@ -48,6 +47,9 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             ctrlRegisterItemList.DataSource = RegisterItemList;
             ctrlRegisterItemList.DataSourceRegisterExtra = RegisterExtraList;
+
+            ctrlRegisterItemListStage.DataSource = RegisterItemListStage;
+            ctrlRegisterItemListStage.DataSourceRegisterExtra = RegisterExtraListStage;
         }
 
         public void Run()
@@ -117,6 +119,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             ctrlRegisterItemList.AllowLinkCommand = canWork;
             ctrlRegisterItemList.AllowUnlinkCommand = canWork;
             ctrlRegisterItemList.AllowCreateObjectCommand = canWork;
+
+            ctrlRegisterItemListStage.AllowFindCommand = canWork;
+            ctrlRegisterItemListStage.AllowLinkCommand = canWork;
+            ctrlRegisterItemListStage.AllowUnlinkCommand = canWork;
+            ctrlRegisterItemListStage.AllowCreateObjectCommand = canWork;
         }
 
         private void SetControlEnabled(RegisterStatusType status)
@@ -138,11 +145,6 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
 
             btnSetCanceledStatus.Enabled = !((int)status >= 2);
-        }
-
-        private void ctrlRegisterItemList_FindCommandExecuted(object sender, RegisterItemViewModel selectedRegisterItem)
-        {
-            //_presenter.SearchObjects(selectedRegisterItem);
         }
 
         private void btnSearchAuto_Click(object sender, EventArgs e)

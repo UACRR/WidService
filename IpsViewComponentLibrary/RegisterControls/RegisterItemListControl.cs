@@ -345,22 +345,24 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void OnFindCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            if (_allowFindCommand)
-            {
-                using (var view = new SearchObjectView())
-                {
-                    var presenter = new SearchObjectPresenter(view, new ipsFormsDesign.Services.RegisterService());
-                    presenter.Show(selectedRegisterItem);
-                }
+            if (!_allowFindCommand)
+                return;
 
-                FindCommandExecuted?.Invoke(this, selectedRegisterItem);
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, new ipsFormsDesign.Services.RegisterService());
+                presenter.Show(selectedRegisterItem);
             }
+
+            FindCommandExecuted?.Invoke(this, selectedRegisterItem);
         }
 
         private void OnLinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            if (_allowLinkCommand)
-                LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
+            if (!_allowLinkCommand)
+                return;
+
+            LinkCommandExecuted?.Invoke(this, selectedRegisterItem);
 
             // TODO: move to presenter
             using (var selectionView = new ObjectRightSelectionView())
@@ -372,8 +374,10 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void OnUnlinkCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            if (_allowUnlinkCommand)
-                UnlinkCommandExecuted?.Invoke(this, selectedRegisterItem);
+            if (!_allowUnlinkCommand)
+                return;
+
+            UnlinkCommandExecuted?.Invoke(this, selectedRegisterItem);
 
             selectedRegisterItem.ClearObjectData();
         }
@@ -391,8 +395,10 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            if (_allowShowObjectCommand)
-                ShowObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
+            if (!_allowShowObjectCommand)
+                return;
+
+            ShowObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
 
             if (selectedRegisterItem.ObjId != null)
             {
@@ -406,8 +412,10 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void OnCreateObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
         {
-            if (_allowCreateObjectCommand)
-                CreateObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
+            if (!_allowCreateObjectCommand)
+                return;
+
+            CreateObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
 
             var service = new ipsFormsDesign.Services.ObjectRightService(); // TODO: move to presenter or application controller
             var newObject = service.NewObjectRight(5);

@@ -178,6 +178,28 @@ namespace IpsViewComponentLibrary.RegisterControls
                 };
             }
 
+            foreach (var rvm in _view.RegisterItemListStage)
+            {
+                var foundedRegisterItem = _register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
+
+                if (foundedRegisterItem != null)
+                {
+                    foundedRegisterItem.ItemName = rvm.ItemName;
+                    foundedRegisterItem.AuthorMusic = rvm.AuthorMusic;
+                    foundedRegisterItem.AuthorText = rvm.AuthorText;
+                    foundedRegisterItem.CategoryCode = rvm.CategoryCode;
+                    foundedRegisterItem.CountUse = rvm.CountUse;
+                    foundedRegisterItem.DurationItem = rvm.DurationItem;
+                    foundedRegisterItem.DurationUse = rvm.DurationUse;
+                    foundedRegisterItem.Performer = rvm.Performer;
+                    foundedRegisterItem.RegId = rvm.RegId;
+                    foundedRegisterItem.RegIitemId = rvm.RegIitemId;
+                    foundedRegisterItem.ObjId = rvm.ObjId;
+                    foundedRegisterItem.IsAuto = rvm.IsAuto;
+                    foundedRegisterItem.CodeItem = rvm.CodeItem;
+                };
+            }
+
             var result = _registerService.Save(_register);
 
             ApplicationController.Instance.EventAggregator.PublishEvent(new RegisterUpdatedEvent());
@@ -190,6 +212,9 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             _view.Register = _register;
             _view.RegisterItemList.Clear();
+            _view.RegisterExtraList.Clear();
+            _view.RegisterItemListStage.Clear();
+            _view.RegisterExtraListStage.Clear();
 
             foreach (var r in _register.RegisterItem)
             {
@@ -212,16 +237,20 @@ namespace IpsViewComponentLibrary.RegisterControls
                 if (r.Obj != null)
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
 
-                //rvm.RegisterExtraList.AddRange(r.RegisterExtra);
+                if (r.CodeItem == 1 || r.CodeItem == 3)
+                {
+                    _view.RegisterItemList.Add(rvm);
 
-                _view.RegisterItemList.Add(rvm);
-            }
+                    foreach (var re in r.RegisterExtra)
+                        _view.RegisterExtraList.Add(re);
+                }
+                else if (r.CodeItem == 2)
+                {
+                    _view.RegisterItemListStage.Add(rvm);
 
-            var registerExtraList = _register.RegisterItem.SelectMany(i => i.RegisterExtra);
-
-            foreach (var re in registerExtraList)
-            {
-                _view.RegisterExtraList.Add(re);
+                    foreach (var re in r.RegisterExtra)
+                        _view.RegisterExtraListStage.Add(re);
+                }
             }
         }
 

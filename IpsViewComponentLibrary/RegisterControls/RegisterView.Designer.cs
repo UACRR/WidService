@@ -51,11 +51,11 @@
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanelStage = new Telerik.WinControls.UI.SplitPanel();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlRegisterItemListStage = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -82,10 +82,10 @@
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelStage)).BeginInit();
             this.splitPanelStage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -325,13 +325,23 @@
             // 
             // 
             this.splitPanelStage.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelStage.Size = new System.Drawing.Size(1292, 155);
-            this.splitPanelStage.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1461187F);
-            this.splitPanelStage.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -64);
+            this.splitPanelStage.Size = new System.Drawing.Size(1292, 167);
+            this.splitPanelStage.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1187215F);
+            this.splitPanelStage.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -52);
             this.splitPanelStage.TabIndex = 0;
             this.splitPanelStage.TabStop = false;
             this.splitPanelStage.Text = "splitPanel1";
             this.splitPanelStage.ThemeName = "Office2013Light";
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel5.Location = new System.Drawing.Point(297, 3);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(78, 19);
+            this.radLabel5.TabIndex = 3;
+            this.radLabel5.Text = "Постановка";
+            this.radLabel5.ThemeName = "Office2013Light";
             // 
             // ctrlRegisterItemListStage
             // 
@@ -342,6 +352,7 @@
             this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
             this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
             this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemListStage.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlRegisterItemListStage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRegisterItemListStage.Location = new System.Drawing.Point(0, 0);
             this.ctrlRegisterItemListStage.MultiSelect = false;
@@ -349,22 +360,22 @@
             this.ctrlRegisterItemListStage.SelectedRegisterItem = null;
             this.ctrlRegisterItemListStage.ShowAuthors = true;
             this.ctrlRegisterItemListStage.ShowObjectInfo = true;
-            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1292, 155);
+            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1292, 167);
             this.ctrlRegisterItemListStage.TabIndex = 0;
             // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.radLabel4);
             this.splitPanel2.Controls.Add(this.ctrlRegisterItemList);
-            this.splitPanel2.Location = new System.Drawing.Point(0, 160);
+            this.splitPanel2.Location = new System.Drawing.Point(0, 172);
             this.splitPanel2.Name = "splitPanel2";
             // 
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(1292, 283);
-            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1461187F);
-            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 64);
+            this.splitPanel2.Size = new System.Drawing.Size(1292, 271);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1187215F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 52);
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
@@ -389,6 +400,7 @@
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
             this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
             this.ctrlRegisterItemList.MultiSelect = false;
@@ -396,18 +408,8 @@
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
             this.ctrlRegisterItemList.ShowAuthors = true;
             this.ctrlRegisterItemList.ShowObjectInfo = true;
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1292, 283);
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1292, 271);
             this.ctrlRegisterItemList.TabIndex = 1;
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel5.Location = new System.Drawing.Point(297, 3);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(78, 19);
-            this.radLabel5.TabIndex = 3;
-            this.radLabel5.Text = "Постановка";
-            this.radLabel5.ThemeName = "Office2013Light";
             // 
             // RegisterView
             // 
@@ -461,11 +463,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelStage)).EndInit();
             this.splitPanelStage.ResumeLayout(false);
             this.splitPanelStage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
             this.splitPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
