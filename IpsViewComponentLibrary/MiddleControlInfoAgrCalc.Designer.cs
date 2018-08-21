@@ -299,13 +299,13 @@
             this.ctrlAgrDetailInfo.Location = new System.Drawing.Point(3, 3);
             this.ctrlAgrDetailInfo.MinimumSize = new System.Drawing.Size(785, 220);
             this.ctrlAgrDetailInfo.Name = "ctrlAgrDetailInfo";
-            this.ctrlAgrDetailInfo.Size = new System.Drawing.Size(785, 262);
+            this.ctrlAgrDetailInfo.Size = new System.Drawing.Size(785, 276);
             this.ctrlAgrDetailInfo.TabIndex = 17;
             // 
             // btnCloseAgr
             // 
             this.btnCloseAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseAgr.Location = new System.Drawing.Point(531, 118);
+            this.btnCloseAgr.Location = new System.Drawing.Point(821, 132);
             this.btnCloseAgr.Name = "btnCloseAgr";
             this.btnCloseAgr.Size = new System.Drawing.Size(93, 38);
             this.btnCloseAgr.TabIndex = 16;
@@ -317,7 +317,7 @@
             // btnAddAgrNewVersion
             // 
             this.btnAddAgrNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddAgrNewVersion.Location = new System.Drawing.Point(531, 74);
+            this.btnAddAgrNewVersion.Location = new System.Drawing.Point(821, 88);
             this.btnAddAgrNewVersion.Name = "btnAddAgrNewVersion";
             this.btnAddAgrNewVersion.Size = new System.Drawing.Size(93, 38);
             this.btnAddAgrNewVersion.TabIndex = 6;
@@ -329,7 +329,7 @@
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(531, 162);
+            this.btnPrint.Location = new System.Drawing.Point(821, 176);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(93, 38);
             this.btnPrint.TabIndex = 5;
@@ -341,7 +341,7 @@
             // btnAddAgreement
             // 
             this.btnAddAgreement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddAgreement.Location = new System.Drawing.Point(531, -14);
+            this.btnAddAgreement.Location = new System.Drawing.Point(821, 0);
             this.btnAddAgreement.Name = "btnAddAgreement";
             this.btnAddAgreement.Size = new System.Drawing.Size(93, 38);
             this.btnAddAgreement.TabIndex = 4;
@@ -353,7 +353,7 @@
             // btnProlongation
             // 
             this.btnProlongation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProlongation.Location = new System.Drawing.Point(531, 30);
+            this.btnProlongation.Location = new System.Drawing.Point(821, 44);
             this.btnProlongation.Name = "btnProlongation";
             this.btnProlongation.Size = new System.Drawing.Size(93, 38);
             this.btnProlongation.TabIndex = 1;
@@ -397,7 +397,7 @@
             gridViewTextBoxColumn11.FieldName = "License";
             gridViewTextBoxColumn11.HeaderText = "Ліцензія";
             gridViewTextBoxColumn11.Name = "License";
-            gridViewTextBoxColumn11.Width = 210;
+            gridViewTextBoxColumn11.Width = 211;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.FieldName = "Series";
             gridViewTextBoxColumn12.HeaderText = "Серія";
@@ -408,13 +408,13 @@
             gridViewTextBoxColumn13.HeaderText = "Номер майстер договору";
             gridViewTextBoxColumn13.MinWidth = 105;
             gridViewTextBoxColumn13.Name = "AgrMasterNumber";
-            gridViewTextBoxColumn13.Width = 105;
+            gridViewTextBoxColumn13.Width = 106;
             gridViewTextBoxColumn13.WrapText = true;
             gridViewTextBoxColumn14.FieldName = "AgrNumber";
             gridViewTextBoxColumn14.HeaderText = "Номер договору-версії";
             gridViewTextBoxColumn14.MinWidth = 105;
             gridViewTextBoxColumn14.Name = "AgrNumber";
-            gridViewTextBoxColumn14.Width = 105;
+            gridViewTextBoxColumn14.Width = 106;
             gridViewTextBoxColumn14.WrapText = true;
             gridViewTextBoxColumn15.FieldName = "DateBegin";
             gridViewTextBoxColumn15.HeaderText = "Дата початку";
@@ -448,12 +448,12 @@
             gridViewTextBoxColumn19.FieldName = "PeriodPayment";
             gridViewTextBoxColumn19.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn19.Name = "PeriodPayment";
-            gridViewTextBoxColumn19.Width = 133;
+            gridViewTextBoxColumn19.Width = 134;
             gridViewTextBoxColumn19.WrapText = true;
             gridViewTextBoxColumn20.FieldName = "State";
             gridViewTextBoxColumn20.HeaderText = "Статус";
             gridViewTextBoxColumn20.Name = "State";
-            gridViewTextBoxColumn20.Width = 52;
+            gridViewTextBoxColumn20.Width = 53;
             gridViewTextBoxColumn20.WrapText = true;
             gridViewTextBoxColumn21.FieldName = "Id";
             gridViewTextBoxColumn21.HeaderText = "Id";
@@ -514,9 +514,10 @@
             this.radPageViewPage1.Controls.Add(this.btnDeleteAgr);
             this.radPageViewPage1.Controls.Add(this.btnAccept);
             this.radPageViewPage1.Controls.Add(this.btnEditAgreement);
-            this.radPageViewPage1.Location = new System.Drawing.Point(61, 15);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(59F, 27F);
+            this.radPageViewPage1.Location = new System.Drawing.Point(63, 15);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(916, 282);
+            this.radPageViewPage1.Size = new System.Drawing.Size(914, 282);
             this.radPageViewPage1.Text = "Договір";
             // 
             // ctrlAgrDetailInfoMore
@@ -533,7 +534,7 @@
             // btnAddNewAgrMore
             // 
             this.btnAddNewAgrMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNewAgrMore.Location = new System.Drawing.Point(823, 0);
+            this.btnAddNewAgrMore.Location = new System.Drawing.Point(821, 0);
             this.btnAddNewAgrMore.Name = "btnAddNewAgrMore";
             this.btnAddNewAgrMore.Size = new System.Drawing.Size(93, 38);
             this.btnAddNewAgrMore.TabIndex = 16;
@@ -545,7 +546,7 @@
             // btnDeleteAgr
             // 
             this.btnDeleteAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteAgr.Location = new System.Drawing.Point(823, 132);
+            this.btnDeleteAgr.Location = new System.Drawing.Point(821, 132);
             this.btnDeleteAgr.Name = "btnDeleteAgr";
             this.btnDeleteAgr.Size = new System.Drawing.Size(93, 38);
             this.btnDeleteAgr.TabIndex = 15;
@@ -557,7 +558,7 @@
             // btnAccept
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(823, 88);
+            this.btnAccept.Location = new System.Drawing.Point(821, 88);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(93, 38);
             this.btnAccept.TabIndex = 14;
@@ -569,7 +570,7 @@
             // btnEditAgreement
             // 
             this.btnEditAgreement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditAgreement.Location = new System.Drawing.Point(823, 44);
+            this.btnEditAgreement.Location = new System.Drawing.Point(821, 44);
             this.btnEditAgreement.Name = "btnEditAgreement";
             this.btnEditAgreement.Size = new System.Drawing.Size(93, 38);
             this.btnEditAgreement.TabIndex = 13;
@@ -580,6 +581,7 @@
             // 
             // radPageViewPage2
             // 
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(63, 15);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(914, 282);

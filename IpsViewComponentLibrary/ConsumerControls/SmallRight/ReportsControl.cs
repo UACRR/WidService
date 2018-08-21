@@ -147,6 +147,7 @@ namespace IpsViewComponentLibrary
         internal void RefreshData()
         {
             normalizeData(_customer);
+            bindingReports.ResetBindings(false);
             gvPeriodReports.MasterTemplate.Refresh();
             //gvPeriods.MasterTemplate.Refresh();
             //gvLicenseAgr.MasterTemplate.Refresh();
@@ -400,8 +401,11 @@ namespace IpsViewComponentLibrary
         {
             if (gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period)
             {
-                RegisterRatedList ratedList = null;
                 if (!period.RegisterRatedList.Any())
+                    return;
+                
+                //об'єкт звіт
+                var registerTemp = new Register
                 {
                     ratedList = new RegisterRatedList
                     {
@@ -443,14 +447,13 @@ namespace IpsViewComponentLibrary
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
+
                     if (progReportBigRight.ShowDialog() == DialogResult.OK)
                     {
-                        //SaveRegisterExecuted?.Invoke(this, register);
+                        period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
+                        bindingReports.Add(registerTemp);
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
-                        //UpdateData?.Invoke(_customer.CustId);
                     }
-                    else
-                        period.RegisterRatedList.Remove(ratedList);
                 }
                 else if (register != null) // не рапотричка
                 {
@@ -463,14 +466,12 @@ namespace IpsViewComponentLibrary
 
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
-                        //                        SaveRegisterExecuted?.Invoke(this, register);
-
+                        period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
+                        bindingReports.Add(registerTemp);
                         SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
-                        UpdateData?.Invoke(_customer.CustId);
                     }
-                    else
-                        period.RegisterRatedList.Remove(ratedList);
                 }
+
                 RefreshData();
             }
         }
@@ -486,7 +487,7 @@ namespace IpsViewComponentLibrary
                 return;
 
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
-            var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.SingleOrDefault(r => r.RmId == register.RmId);
+            var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.SingleOrDefault(r => r.RmId == register.RmId && r.RegId == register.RegId);
             var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
 
             var list = GetRegisterItems(register.RegId);
@@ -540,7 +541,6 @@ namespace IpsViewComponentLibrary
                 gvPeriodReports.MasterTemplate.Refresh();
             }
         }
-
 
         private void gvPeriodReports_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {

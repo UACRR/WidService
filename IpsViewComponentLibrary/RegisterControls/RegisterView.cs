@@ -38,6 +38,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         public BindingList<RegisterExtra> RegisterExtraListStage { get; private set; } = new BindingList<RegisterExtra>();
 
         public Collection<RegisterItemViewModel> SelectedRegisterItems { get => ctrlRegisterItemList.SelectedRegisterItems; }
+        public Collection<RegisterItemViewModel> SelectedRegisterItemsStage { get => ctrlRegisterItemListStage.SelectedRegisterItems; }
 
         public RegisterView()
         {
