@@ -76,21 +76,21 @@
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
             this.templateRegisterExtra = new Telerik.WinControls.UI.GridViewTemplate();
-            this.bsRegisterItemViewModel = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRegisterExtra = new System.Windows.Forms.BindingSource(this.components);
             this.gvRegisterItemList = new Telerik.WinControls.UI.RadGridView();
+            this.bsRegisterItemViewModel = new System.Windows.Forms.BindingSource(this.components);
             this.ddlLinkedStatus = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
-            this.bsRegisterExtra = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.templateRegisterExtra)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterExtra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLinkedStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterExtra)).BeginInit();
             this.SuspendLayout();
             // 
             // templateRegisterExtra
@@ -101,7 +101,7 @@
             this.templateRegisterExtra.AutoGenerateColumns = false;
             gridViewTextBoxColumn1.HeaderText = "column1";
             gridViewTextBoxColumn1.Name = "empty";
-            gridViewTextBoxColumn1.Width = 150;
+            gridViewTextBoxColumn1.Width = 100;
             gridViewComboBoxColumn1.DataType = typeof(int);
             gridViewComboBoxColumn1.FieldName = "RoleCode";
             gridViewComboBoxColumn1.HeaderText = "Творча роль";
@@ -155,9 +155,9 @@
             this.templateRegisterExtra.ShowColumnHeaders = false;
             this.templateRegisterExtra.ViewDefinition = tableViewDefinition1;
             // 
-            // bsRegisterItemViewModel
+            // bsRegisterExtra
             // 
-            this.bsRegisterItemViewModel.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.bsRegisterExtra.DataSource = typeof(ipsFormsDesign.Model.RegisterExtra);
             // 
             // gvRegisterItemList
             // 
@@ -463,6 +463,10 @@
             this.gvRegisterItemList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRegisterItemList_CommandCellClick);
             this.gvRegisterItemList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRegisterItemList_ToolTipTextNeeded);
             // 
+            // bsRegisterItemViewModel
+            // 
+            this.bsRegisterItemViewModel.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            // 
             // ddlLinkedStatus
             // 
             this.ddlLinkedStatus.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -498,10 +502,6 @@
             this.btnAdd.ThemeName = "Office2013Light";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // bsRegisterExtra
-            // 
-            this.bsRegisterExtra.DataSource = typeof(ipsFormsDesign.Model.RegisterExtra);
-            // 
             // RegisterItemListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,13 +513,13 @@
             this.Name = "RegisterItemListControl";
             this.Size = new System.Drawing.Size(700, 350);
             ((System.ComponentModel.ISupportInitialize)(this.templateRegisterExtra)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterExtra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLinkedStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterExtra)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

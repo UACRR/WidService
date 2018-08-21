@@ -52,9 +52,9 @@
             this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanelStage = new Telerik.WinControls.UI.SplitPanel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlRegisterItemListStage = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.ctrlRegisterItemListStage = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -343,26 +343,6 @@
             this.radLabel5.Text = "Постановка";
             this.radLabel5.ThemeName = "Office2013Light";
             // 
-            // ctrlRegisterItemListStage
-            // 
-            this.ctrlRegisterItemListStage.AllowCreateObjectCommand = true;
-            this.ctrlRegisterItemListStage.AllowEditList = false;
-            this.ctrlRegisterItemListStage.AllowFindCommand = true;
-            this.ctrlRegisterItemListStage.AllowLinkCommand = true;
-            this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
-            this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
-            this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
-            this.ctrlRegisterItemListStage.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
-            this.ctrlRegisterItemListStage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlRegisterItemListStage.Location = new System.Drawing.Point(0, 0);
-            this.ctrlRegisterItemListStage.MultiSelect = false;
-            this.ctrlRegisterItemListStage.Name = "ctrlRegisterItemListStage";
-            this.ctrlRegisterItemListStage.SelectedRegisterItem = null;
-            this.ctrlRegisterItemListStage.ShowAuthors = true;
-            this.ctrlRegisterItemListStage.ShowObjectInfo = true;
-            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1292, 167);
-            this.ctrlRegisterItemListStage.TabIndex = 0;
-            // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.radLabel4);
@@ -391,6 +371,26 @@
             this.radLabel4.Text = "Музичні твори";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
+            // ctrlRegisterItemListStage
+            // 
+            this.ctrlRegisterItemListStage.AllowCreateObjectCommand = true;
+            this.ctrlRegisterItemListStage.AllowEditList = false;
+            this.ctrlRegisterItemListStage.AllowFindCommand = true;
+            this.ctrlRegisterItemListStage.AllowLinkCommand = true;
+            this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
+            this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
+            this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemListStage.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
+            this.ctrlRegisterItemListStage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRegisterItemListStage.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemListStage.MultiSelect = false;
+            this.ctrlRegisterItemListStage.Name = "ctrlRegisterItemListStage";
+            this.ctrlRegisterItemListStage.SelectedRegisterItem = null;
+            this.ctrlRegisterItemListStage.ShowAuthors = true;
+            this.ctrlRegisterItemListStage.ShowObjectInfo = true;
+            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1292, 167);
+            this.ctrlRegisterItemListStage.TabIndex = 0;
+            // 
             // ctrlRegisterItemList
             // 
             this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
@@ -403,7 +403,7 @@
             this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
-            this.ctrlRegisterItemList.MultiSelect = false;
+            this.ctrlRegisterItemList.MultiSelect = true;
             this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
             this.ctrlRegisterItemList.ShowAuthors = true;
