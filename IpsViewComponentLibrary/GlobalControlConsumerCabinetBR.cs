@@ -61,7 +61,7 @@ namespace IpsViewComponentLibrary
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
-        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+        public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
 
         public string FilterString
@@ -88,9 +88,9 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.MusicDesignDelegate = () => (List<MusicDesignRatedListView>) _musicDesignRatedListViews;
         }
 
-        private void CtrlCabinet_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        private List<PaidPeriod> CtrlCabinet_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
         {
-            SavePariodCommandExecuted?.Invoke(sender, e);
+            return SavePariodCommandExecuted?.Invoke(id, e);
         }
 
         private List<RegisterItem> CtrlCabinet_OnRegisterItemListNeed(int regId)

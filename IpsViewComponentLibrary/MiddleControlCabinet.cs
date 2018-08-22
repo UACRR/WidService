@@ -67,7 +67,7 @@ namespace IpsViewComponentLibrary
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
-        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+        public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
         private Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
@@ -114,9 +114,9 @@ namespace IpsViewComponentLibrary
             };
         }
 
-        private void CtrlPayslips_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        private List<PaidPeriod> CtrlPayslips_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
         {
-            SavePariodCommandExecuted?.Invoke(sender, e);
+            return SavePariodCommandExecuted?.Invoke(id, e);
         }
 
         private List<RegisterItem> CtrlPayslips_OnRegisterItemListNeed(int regId)

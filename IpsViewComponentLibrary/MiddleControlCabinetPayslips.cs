@@ -26,7 +26,7 @@ namespace IpsViewComponentLibrary
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
-        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+        public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
         public delegate List<MusicDesignRatedListView> MusicDesingDelegate();
         public MusicDesingDelegate MusicDesing { get; set; }
@@ -60,6 +60,7 @@ namespace IpsViewComponentLibrary
             };
             
             PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Create, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);
+            addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
             if (addform.ShowDialog() == DialogResult.OK)
             {
                 if(OnSavePayslip?.Invoke(ratedList) ?? false)
@@ -124,9 +125,9 @@ namespace IpsViewComponentLibrary
             return payslip;
         }
 
-        private void Addform_SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        private List<PaidPeriod> Addform_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
         {
-            SavePariodCommandExecuted?.Invoke(sender, e);
+            return SavePariodCommandExecuted?.Invoke(id, e);
         }
 
         private void gvViewRl_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)

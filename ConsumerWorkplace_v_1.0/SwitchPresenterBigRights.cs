@@ -124,11 +124,9 @@ namespace ConsumerWorkplace_v_1._0
             _switcher.SwitchView(_cabinetBr);
         }
 
-        private void SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        private List<PaidPeriod> SavePariodCommandExecuted(int id, List<PaidPeriod> e)
         {
-            var id = e?.FirstOrDefault()?.CustId;
-            if(id != null)
-                _service.SavePeriods((int)id, e);
+            return _service.SavePeriods(id, e);
         }
 
         private List<RegisterItem> GetRegisterItems(int regId)

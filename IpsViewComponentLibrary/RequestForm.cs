@@ -112,6 +112,8 @@ namespace IpsViewComponentLibrary
             {
                 bsConsumerBigRightView.DataSource = bigRightView;
                 _licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
+                if (_licenseAgreement != null)
+                    _licenseAgreement.AgrId = bigRightView.AgrId;
                 bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
                 bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
                 bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam

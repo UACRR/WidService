@@ -21,8 +21,11 @@ namespace IpsViewComponentLibrary
     public delegate Customer GetRegisterRatedList(int custId);
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
     public delegate void UpdateCustomerDataEventHandler(int id);
+    public delegate List<PaidPeriod> SaveAndReturnNewPeriodListEventHandler(int custId, List<PaidPeriod> periods);
 
-    
+
+
+
 
     public static class ExtensionUtils
     {

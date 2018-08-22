@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
@@ -23,7 +24,7 @@ namespace IpsViewComponentLibrary
         private RegisterRatedList _registerRatedList;
         private ObservableListSource<PayslipsGridDataSource> _source = null;
         private FormType _type;
-        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+        public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
         public PayslipsCrEdForm()
         {
@@ -216,7 +217,6 @@ namespace IpsViewComponentLibrary
         private void btnAddPeriod_Click(object sender, EventArgs e)
         {
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
-            var currentAgree = license.LicenseAgrParam.SingleOrDefault(rec =>rec.LicVersion == license.LicVersion);
             CreatePeriod dialog = new CreatePeriod(license)
             {
                 StartPosition = FormStartPosition.CenterParent
@@ -224,9 +224,16 @@ namespace IpsViewComponentLibrary
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                SavePariodCommandExecuted?.Invoke(this, license?.PaidPeriod?.ToList());
-                
-                //UpdateData?.Invoke(_customer.CustId);
+                var paidPeriodList = license?.PaidPeriod?.ToList();
+                var periodlist = SavePariodCommandExecuted?.Invoke(_customer.CustId, paidPeriodList)?.Where(lId => lId.LicId == license?.LicId).ToList();
+                if (periodlist != null)
+                {
+                    foreach (var period in paidPeriodList?.Where(rec=>rec.LicId == 0)?.ToList())
+                    {
+                        period.SetFields(periodlist.SingleOrDefault(rec=>rec.PeriodName == period.PeriodName));
+                    }
+                }
+                bsPeriodList.ResetBindings(false);
             }
             UpdFullSum();
         }
