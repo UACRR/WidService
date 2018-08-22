@@ -75,7 +75,7 @@ namespace IpsViewComponentLibrary
                     ObjId = register.RegisterItem.FirstOrDefault()?.ObjId,
                     ObjName = register.RegisterItem.FirstOrDefault()?.ItemName,
                     CountUse = register.RegisterItem.FirstOrDefault()?.CountUse,
-                    Royalty = register.RegRoyalty,
+                    Amount = register.RegAmount,
                     TempRegId = register.RegId,
                     ActCode = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.FirstOrDefault()?.ObjId)?.ActCode,
                     LicId = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.FirstOrDefault()?.ObjId)?.LicId,
@@ -95,17 +95,17 @@ namespace IpsViewComponentLibrary
             foreach (var items in gvViewPayslipsItems.Rows)
             {
                 var item = items.DataBoundItem as PayslipsGridDataSource;
-                royalty += (decimal?)item?.Royalty ?? 0;
-                amount+=(decimal)((item?.MusicAmount + item?.AuthAmount) ?? 0);
+                amount += item?.Amount ?? 0m;
+                royalty += (item?.MusicAmount + item?.AuthAmount) ?? 0;
             }
             
-            lblRoyalty.Text = royalty.ToString("#,###0.00 грн");
-            lblAmount.Text = amount.ToString("#,###0.00 грн");
+            lblRoyalty.Text = amount.ToString("#,###0.00 грн");
+            lblAmount.Text = royalty.ToString("#,###0.00 грн");
 
-            decimal.TryParse(txtRoyalty.Text, out decimal rlt);
             decimal.TryParse(txtAmount.Text, out decimal amnt);
-            lblRoyalty.ForeColor = Math.Abs(rlt - royalty) < 0.01m ? DefaultForeColor : Color.Red;
-            lblAmount.ForeColor = Math.Abs(amnt - amount) < 0.01m ? DefaultForeColor : Color.Red;
+            decimal.TryParse(txtRoyalty.Text, out decimal rlt );
+            lblAmount.ForeColor = Math.Abs(rlt - royalty) < 0.01m ? DefaultForeColor : Color.Red;
+            lblRoyalty.ForeColor = Math.Abs(amnt - amount) < 0.01m ? DefaultForeColor : Color.Red;
 
         }
 
@@ -133,8 +133,8 @@ namespace IpsViewComponentLibrary
                     btnAddCheckedSpectacle.Enabled = false;
                     gvViewPayslipsItems.ReadOnly = true;
                     ddlPeriod.ReadOnly = true;
-                    txtAmount.ReadOnly = true;
                     txtRoyalty.ReadOnly = true;
+                    txtAmount.ReadOnly = true;
                 }
                     break;
             }
@@ -200,9 +200,9 @@ namespace IpsViewComponentLibrary
                     }
                     else if (e.Column.FieldName == "Royalty")
                     {
-                        reg.RegRoyalty = item.Royalty;
-                        reg.AuthAmount = (decimal?)(reg.RegRoyalty/100*reg.AuthRate);
-                        reg.MusicAmount = (decimal?)(reg.RegRoyalty / 100 * reg.MusicRate);
+                        reg.RegAmount = item.Amount;
+                        reg.AuthAmount = (decimal?)(reg.RegAmount / 100 * reg.AuthRate);
+                        reg.MusicAmount = (decimal?)(reg.RegAmount / 100 * reg.MusicRate);
                     }
                     else if (e.Column.FieldName == "CountUse")
                     {
@@ -261,7 +261,7 @@ namespace IpsViewComponentLibrary
             cName.TextValue = rec?.ObjName;
             cActCode.TextValue = _spectacleViews.SingleOrDefault(item => item.ObjId == rec?.ObjId)?.ActCode.ToString();
             cCountUse.TextValue = rec?.CountUse.ToString();
-            cAmount.TextValue = rec?.Royalty.ToString();
+            cAmount.TextValue = rec?.Amount.ToString();
             cAuthorAmount.TextValue = rec?.AuthAmount.ToString();
             cAuthorRate.TextValue = rec?.AuthRate.ToString();
             cMusAmount.TextValue = rec?.MusicAmount.ToString();
@@ -318,7 +318,7 @@ namespace IpsViewComponentLibrary
         public string ObjName { get; set; }
         public int? ActCode { get; set; }
         public int? CountUse { get; set; }
-        public decimal? Royalty { get; set; }
+        public decimal? Amount { get; set; }
         
         public decimal? AuthAmount { get; set; }
         public decimal? AuthRate { get; set; }

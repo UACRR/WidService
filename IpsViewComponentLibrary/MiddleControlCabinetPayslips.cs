@@ -82,24 +82,32 @@ namespace IpsViewComponentLibrary
         {
             var row = e?.Row?.DataBoundItem as BigRightRegister;
             btnToAccept.Enabled = row?.Status == 0;
-            if (row?.Status == 1)
-                return;
-            
-
             var payslip = GetRatedList(row);
 
-            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+            if (row?.Status == 0)
             {
-                StartPosition = FormStartPosition.CenterParent
-            };
-            addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
-            if (addform.ShowDialog() == DialogResult.OK)
+                PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer,
+                    OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+                addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
+                if (addform.ShowDialog() == DialogResult.OK)
+                {
+                    if (OnSavePayslip?.Invoke(payslip) ?? false)
+                        ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно",
+                            MessageBoxIcon.Information);
+                    else
+                        ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
+                }
+            }else if (row?.Status == 1)
             {
-                if (OnSavePayslip?.Invoke(payslip) ?? false)
-                    ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно",
-                        MessageBoxIcon.Information);
-                else
-                    ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
+                PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.View, _customer,
+                    OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+                addform.ShowDialog();
             }
         }
 
