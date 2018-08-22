@@ -143,6 +143,9 @@ namespace IpsViewComponentLibrary
                 }
             }
 
+            ctrlMusicalDesignList.ShowDurationUse = false;
+            ctrlMusicalDesignList.ShowLinked = false;
+
             #endregion
 
             ReadOnly = GetReadOnly();
