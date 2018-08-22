@@ -150,7 +150,7 @@ namespace IpsViewComponentLibrary
 
                 bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
                 bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
-                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault()?.License;
+                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == _licenseAgreement.LicVersion)?.License;
                 _percent = dictionaties.relGenrePercent;
                 bsObjectRight.DataSource = _licenseAgreement?.LicenseBigR?.Obj;
                 bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
