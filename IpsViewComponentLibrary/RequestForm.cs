@@ -43,7 +43,8 @@ namespace IpsViewComponentLibrary
             set
             {
                 _readOnly = value;
-                SetFormReadOnly();
+                SetControlsReadOnly(Controls, _readOnly);
+                SetControlsVisibility();
             }
         }
 
@@ -85,35 +86,6 @@ namespace IpsViewComponentLibrary
                 Text = "Редагування заявки на ліцезнію";
                 btnSave.Text = "Зберегти редаговану заявку";
                 btnSave.Enabled = true;
-            }
-
-            if (_formMode == FormMode.ForSmallRightAdmin)
-            {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
-
-                ctrlMusicalDesignList.AllowEditList = false;
-                ctrlMusicalDesignList.ShowObjectInfo = true;
-                ctrlMusicalDesignList.AllowFindCommand = true;
-                ctrlMusicalDesignList.AllowLinkCommand = true;
-                ctrlMusicalDesignList.AllowShowObjectCommand = true;
-                ctrlMusicalDesignList.AllowUnlinkCommand = true;
-                ctrlMusicalDesignList.AllowCreateObjectCommand = true;
-
-                panelStatusees.Visible = true;
-            }
-            else if (_formMode == FormMode.ForBigRightAdmin)
-            {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
-
-                ctrlMusicalDesignList.AllowEditList = true;
-                ctrlMusicalDesignList.ShowObjectInfo = false;
-                ctrlMusicalDesignList.AllowFindCommand = false;
-                ctrlMusicalDesignList.AllowLinkCommand = false;
-                ctrlMusicalDesignList.AllowShowObjectCommand = false;
-                ctrlMusicalDesignList.AllowUnlinkCommand = false;
-                ctrlMusicalDesignList.AllowCreateObjectCommand = false;
-
-                panelStatusees.Visible = false;
             }
 
             #region BINDING
@@ -205,16 +177,40 @@ namespace IpsViewComponentLibrary
             return true;
         }
 
-        private void SetFormReadOnly()
+        private void SetControlsVisibility()
         {
-            SetControlsReadOnly(Controls, _readOnly);
+            ctrlAuthorRightholderList.AllowEditList = !ReadOnly;
 
             btnSave.Visible = !_readOnly;
 
             if (_formMode == FormMode.ForSmallRightAdmin)
+            {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
+
+                ctrlMusicalDesignList.AllowEditList = false;
+                ctrlMusicalDesignList.AllowCreateObjectCommand = !ReadOnly;
+                ctrlMusicalDesignList.AllowFindCommand = !ReadOnly;
+                ctrlMusicalDesignList.AllowLinkCommand = !ReadOnly;
+                ctrlMusicalDesignList.AllowUnlinkCommand = !ReadOnly;
+                ctrlMusicalDesignList.ShowObjectInfo = true;
+                ctrlMusicalDesignList.AllowShowObjectCommand = true;
+
                 panelStatusees.Visible = !_readOnly;
-            else
+            }
+            else if (_formMode == FormMode.ForBigRightAdmin)
+            {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+
+                ctrlMusicalDesignList.AllowEditList = !ReadOnly;
+                ctrlMusicalDesignList.ShowObjectInfo = false;
+                ctrlMusicalDesignList.AllowFindCommand = false;
+                ctrlMusicalDesignList.AllowLinkCommand = false;
+                ctrlMusicalDesignList.AllowShowObjectCommand = false;
+                ctrlMusicalDesignList.AllowUnlinkCommand = false;
+                ctrlMusicalDesignList.AllowCreateObjectCommand = false;
+
                 panelStatusees.Visible = false;
+            }
         }
 
         private void SetControlsReadOnly(Control.ControlCollection controlCollection, bool isReadOnly)
