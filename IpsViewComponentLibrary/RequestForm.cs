@@ -15,6 +15,7 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
@@ -90,6 +91,8 @@ namespace IpsViewComponentLibrary
                 ctrlMusicalDesignList.AllowCreateObjectCommand = true;
 
                 panelStatusees.Visible = true;
+
+                SetReadOnly(this.Controls);
             }
             else if (_formMode == FormMode.ForBigRightAdmin)
             {
@@ -163,6 +166,45 @@ namespace IpsViewComponentLibrary
 
 
             #endregion
+        }
+
+        private void SetReadOnly(Control.ControlCollection controlCollection)
+        {
+            foreach (Control c in controlCollection)
+            {
+                if (c is RadDropDownList ddl)
+                {
+                    ddl.ReadOnly = true;
+                }
+                else if (c is RadTextBox txt)
+                {
+                    txt.ReadOnly = true;
+                }
+                else if (c is RadDateTimePicker dt)
+                {
+                    dt.ReadOnly = true;
+                }
+                else if (c is RadGridView gv)
+                {
+                    gv.ReadOnly = true;
+                }
+                else if (c is RadCheckBox cb)
+                {
+                    cb.ReadOnly = true;
+                }
+
+                //if ((c is RadPageView) || (c is RadPageViewPage)) { }
+                //else
+                //    c.Enabled = false;
+
+                if (c.HasChildren)
+                {
+                    SetReadOnly(c.Controls);
+                }
+
+            }
+
+            btnSave.Enabled = false;
         }
 
         private void SetMusicalDesignData(LicenseAgreement licenseAgreement)
