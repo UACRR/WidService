@@ -354,6 +354,7 @@ namespace IpsViewComponentLibrary
                         RgStatusNavigation = dicRegStatus[0],
                         PeriodId = period.PeriodId,
                         RegisterRatedList = RatedList,
+                        LicId = period.LicId,
                         SchemaId = 1,
                         AlgorithmId = 1
                     };
@@ -397,6 +398,8 @@ namespace IpsViewComponentLibrary
                     FileName = string.Empty,
                     CustId = _customer.CustId,
                     RgStatusNavigation = dicRegStatus[0],
+                    LicId = period.LicId,
+                    AlgorithmId = 2
                 };
 
                 // для визначення рапортички
@@ -423,7 +426,7 @@ namespace IpsViewComponentLibrary
                 }
                 else // не рапотричка
                 {
-                    registerTemp.SchemaId = 2;
+                    registerTemp.SchemaId = 1;
                     var viewForm = new ReportExcelViewForm(registerTemp, true)
                     {
                         StartPosition = FormStartPosition.CenterParent
