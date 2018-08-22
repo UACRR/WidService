@@ -105,24 +105,42 @@ namespace IpsViewComponentLibrary
         {
             if (e.Row.DataBoundItem is BigRightRequests item)
             {
-                // регулюється властивістю ReadOnly в самій формі
-                //if ((_typeControl == ControlRequestOrReferenceType.Request) && (2 <= item.LicStatus && item.LicStatus <= 4)) return;
-                //if ((_typeControl == ControlRequestOrReferenceType.Reference) && (item.LicStatus == 3 || item.LicStatus == 4)) return;
-                bool resetStatus = (_typeControl == ControlRequestOrReferenceType.Request && item.LicStatus == 5)
-                                 ||(_typeControl == ControlRequestOrReferenceType.Reference && (item.LicStatus == 2 || item.LicStatus == 5));
+                if(item.LicStatus == 4) return;
 
-                RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, FormType.Edit, item.LicId);
-                if (requestForm.ShowDialog() == DialogResult.OK)
+                switch (_typeControl)
                 {
-                    if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
+                    case ControlRequestOrReferenceType.Request:
                     {
-                        if(resetStatus)
-                            OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
-                        MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (!(2 <= item.LicStatus && item.LicStatus <= 3)) // статуси 0, 1, 5 - редагування
+                            CallRequestForm(FormType.Edit, item.LicId);
+                        else                                               //перегляд
+                            CallRequestForm(FormType.View, item.LicId);
                     }
-                    else
-                        MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+
+                    case ControlRequestOrReferenceType.Reference:
+                    {
+
+                        if (!(item.LicStatus == 3 || item.LicStatus == 4)) //0, 1, 2, 5 - редагування
+                            CallRequestForm(FormType.Edit, item.LicId);
+                        else                                               //перегляд
+                            CallRequestForm(FormType.View, item.LicId);
+                    }
+                        break;
                 }
+            }
+        }
+
+        private void CallRequestForm(FormType type, int itemId)
+        {
+            RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, type, itemId) { StartPosition = FormStartPosition.CenterParent };
+
+            if (requestForm.ShowDialog() == DialogResult.OK && type == FormType.Edit)
+            {
+                if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
+                    MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
