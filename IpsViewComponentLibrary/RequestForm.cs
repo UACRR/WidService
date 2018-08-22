@@ -15,6 +15,7 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
@@ -35,6 +36,17 @@ namespace IpsViewComponentLibrary
         private IList<RelGenrePercent> _percent;
         private int? _licId = null;
 
+        private bool _readOnly = false;
+        public bool ReadOnly
+        {
+            get { return _readOnly; }
+            set
+            {
+                _readOnly = value;
+                SetControlsReadOnly(Controls, _readOnly);
+                SetControlsVisibility();
+            }
+        }
 
         public RequestForm()
         {
@@ -66,7 +78,6 @@ namespace IpsViewComponentLibrary
                 ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                 CreateNewRequest();
                 Text = "Створення нової заявки на ліцензію";
-
             }
             else if (_formType == FormType.Edit)
             {
@@ -77,46 +88,12 @@ namespace IpsViewComponentLibrary
                 btnSave.Enabled = true;
             }
 
-            if (_formMode == FormMode.ForSmallRightAdmin)
-            {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
-
-                ctrlMusicalDesignList.AllowEditList = false;
-                ctrlMusicalDesignList.ShowObjectInfo = true;
-                ctrlMusicalDesignList.AllowFindCommand = true;
-                ctrlMusicalDesignList.AllowLinkCommand = true;
-                ctrlMusicalDesignList.AllowShowObjectCommand = true;
-                ctrlMusicalDesignList.AllowUnlinkCommand = true;
-                ctrlMusicalDesignList.AllowCreateObjectCommand = true;
-
-                panelStatusees.Visible = true;
-            }
-            else if (_formMode == FormMode.ForBigRightAdmin)
-            {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
-
-                ctrlMusicalDesignList.AllowEditList = true;
-                ctrlMusicalDesignList.ShowObjectInfo = false;
-                ctrlMusicalDesignList.AllowFindCommand = false;
-                ctrlMusicalDesignList.AllowLinkCommand = false;
-                ctrlMusicalDesignList.AllowShowObjectCommand = false;
-                ctrlMusicalDesignList.AllowUnlinkCommand = false;
-                ctrlMusicalDesignList.AllowCreateObjectCommand = false;
-
-                panelStatusees.Visible = false;
-            }
-
-            ctrlMusicalDesignList.ShowDurationUse = false;
-            ctrlMusicalDesignList.ShowLinked = false;
-
             #region BINDING
 
             if (licId == null)
             {
                 bsConsumerBigRightView.DataSource = bigRightView;
                 _licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
-                if (_licenseAgreement != null)
-                    _licenseAgreement.AgrId = bigRightView.AgrId;
                 bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
                 bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
                 bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam
@@ -145,7 +122,7 @@ namespace IpsViewComponentLibrary
 
                 bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
                 bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
-                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault()?.License;
+                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == _licenseAgreement.LicVersion)?.License;
                 _percent = dictionaties.relGenrePercent;
                 bsObjectRight.DataSource = _licenseAgreement?.LicenseBigR?.Obj;
                 bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
@@ -166,8 +143,107 @@ namespace IpsViewComponentLibrary
                 }
             }
 
-
             #endregion
+
+            ReadOnly = GetReadOnly();
+        }
+
+        private bool GetReadOnly()
+        {
+            if (_formMode == FormMode.ForSmallRightAdmin)
+            {
+                if (_licenseAgreement.LicType == (int)LicenseTypes.Bid && _licenseAgreement.LicStatus == (int)AgreementStatuses.OnNegotiation)
+                {
+                    return false;
+                }
+                else if (_licenseAgreement.LicType == (int)LicenseTypes.Notice && _licenseAgreement.LicStatus == (int)AgreementStatuses.OnNegotiation)
+                {
+                    return false;
+                }
+            }
+
+            if (_formMode == FormMode.ForBigRightAdmin)
+            {
+                if (_licenseAgreement.LicType == (int)LicenseTypes.Bid && (_licenseAgreement.LicStatus == (int)AgreementStatuses.NotAccepted || _licenseAgreement.LicStatus == (int)AgreementStatuses.Canceled))
+                {
+                    return false;
+                }
+                else if (_licenseAgreement.LicType == (int)LicenseTypes.Notice && (_licenseAgreement.LicStatus == (int)AgreementStatuses.NotAccepted || _licenseAgreement.LicStatus == (int)AgreementStatuses.Canceled || _licenseAgreement.LicStatus == (int)AgreementStatuses.Active))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void SetControlsVisibility()
+        {
+            ctrlAuthorRightholderList.AllowEditList = !ReadOnly;
+
+            btnSave.Visible = !_readOnly;
+
+            if (_formMode == FormMode.ForSmallRightAdmin)
+            {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Full;
+
+                ctrlMusicalDesignList.AllowEditList = false;
+                ctrlMusicalDesignList.AllowCreateObjectCommand = !ReadOnly;
+                ctrlMusicalDesignList.AllowFindCommand = !ReadOnly;
+                ctrlMusicalDesignList.AllowLinkCommand = !ReadOnly;
+                ctrlMusicalDesignList.AllowUnlinkCommand = !ReadOnly;
+                ctrlMusicalDesignList.ShowObjectInfo = true;
+                ctrlMusicalDesignList.AllowShowObjectCommand = true;
+
+                panelStatusees.Visible = !_readOnly;
+            }
+            else if (_formMode == FormMode.ForBigRightAdmin)
+            {
+                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+
+                ctrlMusicalDesignList.AllowEditList = !ReadOnly;
+                ctrlMusicalDesignList.ShowObjectInfo = false;
+                ctrlMusicalDesignList.AllowFindCommand = false;
+                ctrlMusicalDesignList.AllowLinkCommand = false;
+                ctrlMusicalDesignList.AllowShowObjectCommand = false;
+                ctrlMusicalDesignList.AllowUnlinkCommand = false;
+                ctrlMusicalDesignList.AllowCreateObjectCommand = false;
+
+                panelStatusees.Visible = false;
+            }
+        }
+
+        private void SetControlsReadOnly(Control.ControlCollection controlCollection, bool isReadOnly)
+        {
+            foreach (Control c in controlCollection)
+            {
+                if (c is RadDropDownList ddl)
+                {
+                    ddl.ReadOnly = isReadOnly;
+                }
+                else if (c is RadTextBox txt)
+                {
+                    txt.ReadOnly = isReadOnly;
+                }
+                else if (c is RadDateTimePicker dt)
+                {
+                    dt.ReadOnly = isReadOnly;
+                }
+                else if (c is RadGridView gv)
+                {
+                    gv.ReadOnly = isReadOnly;
+                }
+                else if (c is RadCheckBox cb)
+                {
+                    cb.ReadOnly = isReadOnly;
+                }
+
+                if (c.HasChildren)
+                {
+                    SetControlsReadOnly(c.Controls, isReadOnly);
+                }
+
+            }
         }
 
         private void SetMusicalDesignData(LicenseAgreement licenseAgreement)
@@ -398,7 +474,7 @@ namespace IpsViewComponentLibrary
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            if (pageView.SelectedPage == pvMusicalArrangement)
+            if (pageView.SelectedPage == pvMusicalArrangement && ReadOnly == false)
                 btnSave.Enabled = true;
         }
 

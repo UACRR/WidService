@@ -49,6 +49,20 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        private bool _allowEditList = false;
+        public bool AllowEditList
+        {
+            get { return _allowEditList; }
+            set
+            {
+                _allowEditList = value;
+
+                gvAuthorRightholderList.ReadOnly = !_allowEditList;
+                gvAuthorRightholderList.Columns["DeleteColumn"].IsVisible = _allowEditList;
+                btnAdd.Visible = _allowEditList;
+            }
+        }
+
         private ObjectAuthorRightholderBrViewModel _authorRightholder;
         public ObjectAuthorRightholderBrViewModel SelectedAuthorRightholder
         {
