@@ -63,14 +63,17 @@ namespace ipsFormsDesign.Utilities
         {
             objectRight.Authors.Add(objectAuthorRightholder.Author);
 
-            var copyRight = objectAuthorRightholder.CopyRight;
-            copyRight.CustId = (int)objectAuthorRightholder.Author.CustId;
-            copyRight.RoleCode = objectAuthorRightholder.Author.RoleCode;
+            if (objectAuthorRightholder.IsRightholder && objectAuthorRightholder.Author.CustId.HasValue)
+            {
+                var copyRight = objectAuthorRightholder.CopyRight;
+                copyRight.CustId = (int)objectAuthorRightholder.Author.CustId;
+                copyRight.RoleCode = objectAuthorRightholder.Author.RoleCode;
 
-            copyRight.LicAuthorBr= objectAuthorRightholder.LicAuthorBr;
-            copyRight.WorkRh = objectAuthorRightholder.WorkRh;
+                copyRight.LicAuthorBr = objectAuthorRightholder.LicAuthorBr;
+                copyRight.WorkRh = objectAuthorRightholder.WorkRh;
 
-            objectRight.CopyRight.Add(objectAuthorRightholder.CopyRight);
+                objectRight.CopyRight.Add(copyRight);
+            }
         }
 
         public static decimal GetTotalRate(this IList<CopyRight> copyrightList)

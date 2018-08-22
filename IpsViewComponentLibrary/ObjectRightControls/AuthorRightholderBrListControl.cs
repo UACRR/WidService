@@ -8,6 +8,7 @@ using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.RightholderControls;
 using System.Linq;
+using Telerik.WinControls.Enumerations;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -130,7 +131,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             var columnName = gvAuthorRightholderList.CurrentColumn.Name;
 
-            if (columnName == "AuthorName")
+            var isRightholder = (gvAuthorRightholderList.CurrentRow.DataBoundItem as ObjectAuthorRightholderBrViewModel).IsRightholder;
+
+            if (isRightholder && columnName == "AuthorName")
             {
                 // set ExtendedRadBrowseEditorElement instead of RadTextBoxEditorElement
                 var browseEditor = new ExtendedBrowseEditor();
@@ -167,6 +170,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private void gvAuthorRightholderList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
+
+        private void gvAuthorRightholderList_ValueChanged(object sender, EventArgs e)
+        {
+            if (sender is RadCheckBoxEditor cbEditor)
+                ((GridCheckBoxCellElement)cbEditor.OwnerElement).Value = cbEditor.Value;
         }
     }
 }
