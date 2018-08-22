@@ -86,6 +86,7 @@ namespace ipsFormsDesign.Dictionary
 
             ItemName = musicalDesign.ObjName;
             AuthorMusic = musicalDesign.NameMusician;
+            AuthorText = musicalDesign.AuthorText;
             CountUse = musicalDesign.NumbPerfom;
             DurationItem = musicalDesign.Duration;
             Performer = musicalDesign.NameSinger;
