@@ -105,8 +105,9 @@ namespace IpsViewComponentLibrary
         {
             if (e.Row.DataBoundItem is BigRightRequests item)
             {
-                if ((_typeControl == ControlRequestOrReferenceType.Request) && (2 <= item.LicStatus && item.LicStatus <= 4)) return;
-                if ((_typeControl == ControlRequestOrReferenceType.Reference) && (item.LicStatus == 3 || item.LicStatus == 4)) return;
+                // регулюється властивістю ReadOnly в самій формі
+                //if ((_typeControl == ControlRequestOrReferenceType.Request) && (2 <= item.LicStatus && item.LicStatus <= 4)) return;
+                //if ((_typeControl == ControlRequestOrReferenceType.Reference) && (item.LicStatus == 3 || item.LicStatus == 4)) return;
                 bool resetStatus = (_typeControl == ControlRequestOrReferenceType.Request && item.LicStatus == 5)
                                  ||(_typeControl == ControlRequestOrReferenceType.Reference && (item.LicStatus == 2 || item.LicStatus == 5));
 
