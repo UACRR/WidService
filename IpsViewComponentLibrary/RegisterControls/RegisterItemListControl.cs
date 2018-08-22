@@ -172,6 +172,28 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private bool _showDurationUse = true;
+        public bool ShowDurationUse
+        {
+            get => _showDurationUse;
+            set
+            {
+                _showDurationUse = value;
+                SetColumnVisible("DurationUse", _showDurationUse);
+            }
+        }
+
+        private bool _showLinked = true;
+        public bool ShowLinked
+        {
+            get => _showLinked;
+            set
+            {
+                _showLinked = value;
+                SetColumnVisible("Linked", _showLinked);
+            }
+        }
+
         public bool MultiSelect
         {
             get => gvRegisterItemList.MultiSelect;

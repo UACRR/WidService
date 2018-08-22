@@ -106,6 +106,9 @@ namespace IpsViewComponentLibrary
                 panelStatusees.Visible = false;
             }
 
+            ctrlMusicalDesignList.ShowDurationUse = false;
+            ctrlMusicalDesignList.ShowLinked = false;
+
             #region BINDING
 
             if (licId == null)
