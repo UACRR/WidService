@@ -22,7 +22,14 @@ namespace ipsFormsDesign.Services
         ~ExcelEngine()
         {
             lock (this)
-                excelApp?.Quit();
+            {
+                if(excelApp != null)
+                {
+                    excelApp.Quit();
+                    Marshal.ReleaseComObject(excelApp);
+                }
+
+            }
             excelApp = null;
         }
 
@@ -80,16 +87,7 @@ namespace ipsFormsDesign.Services
 
                 maxCol = excelRange.Columns.Count;
                 maxRow = excelRange.Rows.Count;
-                //try
-                //{
-                //    maxCol = excelRange.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Column;
-                //    maxRow = excelRange.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
-                //}
-                //catch (Exception)
-                //{
-                //    maxCol = excelRange.Columns.Count;
-                //    maxRow = excelRange.Rows.Count;
-                //}
+
 
                 var dim = excelRange.Value;
                 int regitemid = 0;
