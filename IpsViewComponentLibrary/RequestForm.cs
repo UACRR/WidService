@@ -15,6 +15,7 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
@@ -35,6 +36,16 @@ namespace IpsViewComponentLibrary
         private IList<RelGenrePercent> _percent;
         private int? _licId = null;
 
+        private bool _readOnly = false;
+        public bool ReadOnly
+        {
+            get { return _readOnly; }
+            set
+            {
+                _readOnly = value;
+                SetFormReadOnly();
+            }
+        }
 
         public RequestForm()
         {
@@ -66,7 +77,6 @@ namespace IpsViewComponentLibrary
                 ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                 CreateNewRequest();
                 Text = "Створення нової заявки на ліцензію";
-
             }
             else if (_formType == FormType.Edit)
             {
@@ -161,8 +171,83 @@ namespace IpsViewComponentLibrary
                 }
             }
 
-
             #endregion
+
+            ReadOnly = GetReadOnly();
+        }
+
+        private bool GetReadOnly()
+        {
+            if (_formMode == FormMode.ForSmallRightAdmin)
+            {
+                if (_licenseAgreement.LicType == (int)LicenseTypes.Bid && _licenseAgreement.LicStatus == (int)AgreementStatuses.OnNegotiation)
+                {
+                    return false;
+                }
+                else if (_licenseAgreement.LicType == (int)LicenseTypes.Notice && _licenseAgreement.LicStatus == (int)AgreementStatuses.OnNegotiation)
+                {
+                    return false;
+                }
+            }
+
+            if (_formMode == FormMode.ForBigRightAdmin)
+            {
+                if (_licenseAgreement.LicType == (int)LicenseTypes.Bid && (_licenseAgreement.LicStatus == (int)AgreementStatuses.NotAccepted || _licenseAgreement.LicStatus == (int)AgreementStatuses.Canceled))
+                {
+                    return false;
+                }
+                else if (_licenseAgreement.LicType == (int)LicenseTypes.Notice && (_licenseAgreement.LicStatus == (int)AgreementStatuses.NotAccepted || _licenseAgreement.LicStatus == (int)AgreementStatuses.Canceled || _licenseAgreement.LicStatus == (int)AgreementStatuses.Active))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void SetFormReadOnly()
+        {
+            SetControlsReadOnly(Controls, _readOnly);
+
+            btnSave.Visible = !_readOnly;
+
+            if (_formMode == FormMode.ForSmallRightAdmin)
+                panelStatusees.Visible = !_readOnly;
+            else
+                panelStatusees.Visible = false;
+        }
+
+        private void SetControlsReadOnly(Control.ControlCollection controlCollection, bool isReadOnly)
+        {
+            foreach (Control c in controlCollection)
+            {
+                if (c is RadDropDownList ddl)
+                {
+                    ddl.ReadOnly = isReadOnly;
+                }
+                else if (c is RadTextBox txt)
+                {
+                    txt.ReadOnly = isReadOnly;
+                }
+                else if (c is RadDateTimePicker dt)
+                {
+                    dt.ReadOnly = isReadOnly;
+                }
+                else if (c is RadGridView gv)
+                {
+                    gv.ReadOnly = isReadOnly;
+                }
+                else if (c is RadCheckBox cb)
+                {
+                    cb.ReadOnly = isReadOnly;
+                }
+
+                if (c.HasChildren)
+                {
+                    SetControlsReadOnly(c.Controls, isReadOnly);
+                }
+
+            }
         }
 
         private void SetMusicalDesignData(LicenseAgreement licenseAgreement)
@@ -393,7 +478,7 @@ namespace IpsViewComponentLibrary
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            if (pageView.SelectedPage == pvMusicalArrangement)
+            if (pageView.SelectedPage == pvMusicalArrangement && ReadOnly == false)
                 btnSave.Enabled = true;
         }
 
