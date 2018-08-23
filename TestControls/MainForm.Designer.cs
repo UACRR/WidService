@@ -57,9 +57,7 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn8 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
             this.radButton3 = new Telerik.WinControls.UI.RadButton();
@@ -74,14 +72,14 @@
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindPayPeriod1 = new IpsViewComponentLibrary.CalculationInfoControl();
             this.reportsControl1 = new IpsViewComponentLibrary.ReportsControl();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
@@ -97,6 +95,8 @@
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -249,10 +249,6 @@
             this.radGridView1.TabIndex = 0;
             this.radGridView1.DoubleClick += new System.EventHandler(this.radGridView1_DoubleClick);
             // 
-            // bindingSource2
-            // 
-            this.bindingSource2.DataSource = typeof(ipsFormsDesign.Model.ExternalPay);
-            // 
             // radGridView2
             // 
             this.radGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -327,10 +323,6 @@
             this.radGridView2.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.radGridView2_CurrentRowChanged);
             this.radGridView2.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.radGridView2_CustomFiltering);
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
-            // 
             // radButton1
             // 
             this.radButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -370,7 +362,7 @@
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(0, 0);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage1;
+            this.radPageView1.SelectedPage = this.radPageViewPage2;
             this.radPageView1.Size = new System.Drawing.Size(1101, 382);
             this.radPageView1.TabIndex = 5;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).ShowItemPinButton = false;
@@ -393,9 +385,9 @@
             // 
             this.radPageViewPage2.Controls.Add(this.bindPayPeriod1);
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(96F, 24F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(10, 37);
+            this.radPageViewPage2.Location = new System.Drawing.Point(10, 33);
             this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(1080, 334);
+            this.radPageViewPage2.Size = new System.Drawing.Size(1080, 338);
             this.radPageViewPage2.Text = "Розподіл коштів";
             // 
             // radPageViewPage3
@@ -493,8 +485,17 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
+            // 
+            // bindingSource2
+            // 
+            this.bindingSource2.DataSource = typeof(ipsFormsDesign.Model.ExternalPay);
+            // 
             // bindPayPeriod1
             // 
+            this.bindPayPeriod1.CurrentAgreementController = null;
             this.bindPayPeriod1.Customer = null;
             this.bindPayPeriod1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bindPayPeriod1.Location = new System.Drawing.Point(0, 0);
@@ -503,9 +504,11 @@
             this.bindPayPeriod1.Name = "bindPayPeriod1";
             this.bindPayPeriod1.Size = new System.Drawing.Size(1080, 562);
             this.bindPayPeriod1.TabIndex = 0;
+            this.bindPayPeriod1.TypeRights = ipsFormsDesign.Dictionary.TypeRights.All;
             // 
             // reportsControl1
             // 
+            this.reportsControl1.CurrentAgreementController = null;
             this.reportsControl1.Customer = null;
             this.reportsControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reportsControl1.Location = new System.Drawing.Point(0, 0);
@@ -513,6 +516,7 @@
             this.reportsControl1.Name = "reportsControl1";
             this.reportsControl1.Size = new System.Drawing.Size(1080, 470);
             this.reportsControl1.TabIndex = 0;
+            this.reportsControl1.TypeRights = ipsFormsDesign.Dictionary.TypeRights.All;
             // 
             // MainForm
             // 
@@ -531,10 +535,8 @@
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
@@ -551,6 +553,8 @@
             this.splitPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
