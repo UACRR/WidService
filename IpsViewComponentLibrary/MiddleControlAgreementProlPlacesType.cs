@@ -50,7 +50,11 @@ namespace IpsViewComponentLibrary
 
 
             //TODO: джерело даних з розрахованою сумою
-            SetChoosePlaces();
+            if (places != null && places.Any())
+                SetChoosePlaces();
+            else
+                gvPlaces.Enabled = false;
+
             ctrlAgrMain.DateTimeType = agreementInitType;
             bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
             {

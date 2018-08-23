@@ -168,30 +168,29 @@ namespace IpsViewComponentLibrary
         // кнопка [Пролонгувати договір]
         private void btnProlongation_Click(object sender, EventArgs e)
         {
-            LicenseAgrParam parametr;
-            var licId = (gvLicenseAgr.CurrentRow.DataBoundItem as GridLicenseAgrView)?.LicId;
+            LicenseAgrParam prolongLicense = null;
+            var licId = (gvLicenseAgr?.CurrentRow?.DataBoundItem as GridLicenseAgrView)?.LicId;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == licId).SingleOrDefault();
             if (license == null)
                 return;
 
-
-            var licParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
-
+            //максимальна версія поточної ліцензії
             var licVersion = license?.LicenseAgrParam.Max(rec => rec.LicVersion);
-            LicenseAgrParam newLicense = null;
-            var listDopAgr = license.LicenseAgrParam.Where(rec => rec.LicStatus < 4 && rec.LicVersion > license.LicVersion).ToList();
+
+            prolongLicense = license.LicenseAgrParam.SingleOrDefault(rec => rec?.LicVersion == license.ProlongVersion);
+
             // Кількість доп угод з версією більшою за поточну > 0 //якщо є хоча б одна угода для пролонгації
-            if (listDopAgr.Any() && listDopAgr.Any(rec => rec.LicVersion == license.ProlongVersion))
+            if (prolongLicense != null)
             {
-                parametr = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.ProlongVersion);
-                RunDialogForLicenseAgrParam(license, parametr, DialogGoal.forExistProlongation);
+                RunDialogForLicenseAgrParam(license, prolongLicense, DialogGoal.forExistProlongation);
             }
             // Інакше == 0
             else
             {
                 // -- Створити нову
                 // -- Збільшити версію на 1
-                newLicense = new LicenseAgrParam();
+                var newLicense = new LicenseAgrParam();
+                var licParam = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
 
                 newLicense.SetFields(licParam);
 
@@ -207,8 +206,8 @@ namespace IpsViewComponentLibrary
                 newLicense.License = licParam?.License;
                 license.ProlongVersion = newLicense.LicVersion;
                 license?.LicenseAgrParam?.Add(newLicense);
-                parametr = license?.LicenseAgrParam.LastOrDefault();
-                RunDialogForLicenseAgrParam(license, parametr, DialogGoal.forProlongation);
+                prolongLicense = license?.LicenseAgrParam.LastOrDefault();
+                RunDialogForLicenseAgrParam(license, prolongLicense, DialogGoal.forProlongation);
             }
         }
 
@@ -265,7 +264,7 @@ namespace IpsViewComponentLibrary
         // кнопка [Закрити договір]
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {
-            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            if (!(gvLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
             var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
             if (license == null) return;
 
@@ -489,31 +488,17 @@ namespace IpsViewComponentLibrary
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var licenseName = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name;
 
-            if (_customer.Client.ClnBusinessPlace.Count > 0)
+            ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license,
+                _customer?.Client?.ClnBusinessPlace, _customer, goal, Rights)
             {
-                //з майданчиками * * *
-                ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license,
-                    _customer?.Client?.ClnBusinessPlace, _customer, goal, typeRights: Rights)
-                {
-                    Text = goal == DialogGoal.forEdit || goal == DialogGoal.forChange ? "Редагування договору"
-                        : goal == DialogGoal.forProlongation ? "Пролонгація договору"
-                        : goal == DialogGoal.forNew ? "Додавання нового договору"
-                        : string.Empty,
-                    StartPosition = FormStartPosition.CenterParent
-                };
-                prolongation.OnSaveProlongation += OnSaveCommentNeed;
-                prolongation.ShowDialog();
-            }
-            else
-            {
-                // без майданчиків
-                ProlongationWithoutPlaces prolongation = new ProlongationWithoutPlaces(licenseParam, anketaCompany, _dictionaties, licenseName, license, _customer, goal)
-                {
-                    StartPosition = FormStartPosition.CenterParent
-                };
-                prolongation.OnSaveProlongation += OnSaveCommentNeed;
-                prolongation.ShowDialog();
-            }
+                Text = goal == DialogGoal.forEdit || goal == DialogGoal.forChange ? "Редагування договору"
+                    : goal == DialogGoal.forProlongation ? "Пролонгація договору"
+                    : goal == DialogGoal.forNew ? "Додавання нового договору"
+                    : string.Empty,
+                StartPosition = FormStartPosition.CenterParent
+            };
+            prolongation.OnSaveProlongation += OnSaveCommentNeed;
+            prolongation.ShowDialog();
         }
 
         #endregion

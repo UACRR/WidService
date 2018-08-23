@@ -673,7 +673,7 @@ namespace ipsmedserviceapp.Controllers
                 { ConsumerFilterEnum.All, "countLic1NoActive+countLic1Active>0"  },
                 { ConsumerFilterEnum.Working, "statusLic1Active=1"  },
                 { ConsumerFilterEnum.NotActive, "statusLic1Noactive=1"},
-                { ConsumerFilterEnum.ForProlongation, "statusLic1Prolong=1"}
+                { ConsumerFilterEnum.ForProlongation, "statusLic1ToProlong=1"}
             } },
             { TypeBRDocument.Request, new Dictionary<ConsumerFilterEnum, string> {
                 { ConsumerFilterEnum.All, "countLic2Active+countLic2NoActive>0"  },
