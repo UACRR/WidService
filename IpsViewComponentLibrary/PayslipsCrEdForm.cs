@@ -198,7 +198,7 @@ namespace IpsViewComponentLibrary
                         //var mus = _customer?.Client?.LicenseAgreement?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
 
                     }
-                    else if (e.Column.FieldName == "Royalty")
+                    else if (e.Column.FieldName == "Amount")
                     {
                         reg.RegAmount = item.Amount;
                         reg.AuthAmount = (decimal?)(reg.RegAmount / 100 * reg.AuthRate);

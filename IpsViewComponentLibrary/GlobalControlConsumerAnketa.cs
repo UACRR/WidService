@@ -69,7 +69,6 @@ namespace IpsViewComponentLibrary
             _visiblePage = 1;
             ChangeButtonsName(_visiblePage);
             btnBack.Visible = false;
-
             ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged; // при зміні наявності майданчиків
         }
 
@@ -91,8 +90,8 @@ namespace IpsViewComponentLibrary
 
             if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
                 InitAgreementType(typeRights);
+            ctrlClientName.CheckPlace = typeRights == TypeRights.BigRights;
 
-           
             //ctrlClientName.SetDefaultState();
 
         }
@@ -178,6 +177,7 @@ namespace IpsViewComponentLibrary
             Func<int, Customer> _getCustomerAnketa,
             bool isNew = true)
         {
+            ctrlClientName.CheckPlace = typeRights == TypeRights.BigRights;
             _anketeType = isNew ? ConsumerAnketeType.CreateNewAnketa : ConsumerAnketeType.EditAnketa;
             isEdit = !isNew;
 
