@@ -331,7 +331,7 @@ namespace IpsViewComponentLibrary
         {
 
             MoneyReceived pay = null;
-            LicenseAgreement licParam = null;
+            IAgreementData licParam = null;
             PaidPeriod period = null;
             if (boolRunFromDragDrop)
             {
@@ -355,12 +355,12 @@ namespace IpsViewComponentLibrary
                 {
                     period = destRow.RowInfo.DataBoundItem as PaidPeriod;
 
-                    licParam = period.Lic;
+                    licParam = ActiveAgreementDataFactory.CreateAgreementData( period.Lic );
 
                 }
                 else // Drop to LicenceAgreement
                 {
-                    licParam = (destRow.RowInfo.DataBoundItem as IAgreementData).Lic;
+                    licParam = (destRow.RowInfo.DataBoundItem as IAgreementData);
                     period = null;
 
                 }
@@ -373,7 +373,7 @@ namespace IpsViewComponentLibrary
                     return;
 
                 pay = gvUserMoneys.CurrentRow.DataBoundItem as MoneyReceived;
-                licParam = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData).Lic;
+                licParam = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData);
                 period = gvPeriodsPayment.CurrentRow.DataBoundItem as PaidPeriod;
 
             }
@@ -387,7 +387,7 @@ namespace IpsViewComponentLibrary
             if (form.ShowDialog() == DialogResult.OK)
             {
                 List<MoneyPeriodLink> ListLink = new List<MoneyPeriodLink>();
-                foreach (var item in licParam.PaidPeriod)
+                foreach (var item in licParam.Lic.PaidPeriod)
                 {
                     var itemList = item.MoneyPeriodLink;
                     ListLink.AddRange(itemList);

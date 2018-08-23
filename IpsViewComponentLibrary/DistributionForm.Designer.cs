@@ -45,7 +45,6 @@ namespace IpsViewComponentLibrary
             this.btnExit = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtPayNumber = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtPayDate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtPayAmount = new Telerik.WinControls.UI.RadTextBox();
@@ -55,20 +54,20 @@ namespace IpsViewComponentLibrary
             this.txtPayGoalInvoice = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrNum = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtLicDate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.bindingSourceAgreement = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveDistrib)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayAmount)).BeginInit();
@@ -78,7 +77,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNum)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
@@ -86,6 +84,8 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
             this.radSeparator2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,43 +113,43 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn1.HeaderText = "Період";
             gridViewTextBoxColumn1.Name = "PeriodName";
             gridViewTextBoxColumn1.ReadOnly = true;
-            gridViewTextBoxColumn1.Width = 163;
+            gridViewTextBoxColumn1.Width = 162;
             gridViewTextBoxColumn2.EnableExpressionEditor = false;
             gridViewTextBoxColumn2.FieldName = "Status";
             gridViewTextBoxColumn2.HeaderText = "Стан періоду";
             gridViewTextBoxColumn2.Name = "Status";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 135;
+            gridViewTextBoxColumn2.Width = 134;
             gridViewDecimalColumn1.EnableExpressionEditor = false;
             gridViewDecimalColumn1.FieldName = "Amount";
             gridViewDecimalColumn1.HeaderText = "Вимога";
             gridViewDecimalColumn1.Name = "Amount";
             gridViewDecimalColumn1.ReadOnly = true;
-            gridViewDecimalColumn1.Width = 156;
+            gridViewDecimalColumn1.Width = 155;
             gridViewDecimalColumn2.EnableExpressionEditor = false;
             gridViewDecimalColumn2.FieldName = "AmountBound";
             gridViewDecimalColumn2.HeaderText = "Прив\'язано";
             gridViewDecimalColumn2.Name = "AmountBound";
             gridViewDecimalColumn2.ReadOnly = true;
-            gridViewDecimalColumn2.Width = 156;
+            gridViewDecimalColumn2.Width = 155;
             gridViewDecimalColumn3.EnableExpressionEditor = false;
             gridViewDecimalColumn3.FieldName = "Arrears";
             gridViewDecimalColumn3.HeaderText = "Борг";
             gridViewDecimalColumn3.Name = "Arrears";
             gridViewDecimalColumn3.ReadOnly = true;
-            gridViewDecimalColumn3.Width = 135;
+            gridViewDecimalColumn3.Width = 134;
             gridViewTextBoxColumn3.DataType = typeof(decimal);
             gridViewTextBoxColumn3.EnableExpressionEditor = false;
             gridViewTextBoxColumn3.FieldName = "DistAmount";
             gridViewTextBoxColumn3.HeaderText = "Сума прив\'язки";
             gridViewTextBoxColumn3.Name = "DistAmount";
-            gridViewTextBoxColumn3.Width = 127;
+            gridViewTextBoxColumn3.Width = 126;
             gridViewCheckBoxColumn1.EnableExpressionEditor = false;
             gridViewCheckBoxColumn1.FieldName = "AutoSet";
             gridViewCheckBoxColumn1.HeaderText = "Автоматично";
             gridViewCheckBoxColumn1.MinWidth = 20;
             gridViewCheckBoxColumn1.Name = "AutoSet";
-            gridViewCheckBoxColumn1.Width = 75;
+            gridViewCheckBoxColumn1.Width = 74;
             this.gvDistributionPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -211,10 +211,6 @@ namespace IpsViewComponentLibrary
             this.txtPayNumber.Size = new System.Drawing.Size(224, 20);
             this.txtPayNumber.TabIndex = 15;
             this.txtPayNumber.ThemeName = "Office2007Silver";
-            // 
-            // bindingSource
-            // 
-            this.bindingSource.DataSource = typeof(ipsFormsDesign.Model.MoneyReceived);
             // 
             // txtPayDate
             // 
@@ -294,17 +290,13 @@ namespace IpsViewComponentLibrary
             // 
             // txtAgrNum
             // 
-            this.txtAgrNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAgreement, "LicNum", true));
+            this.txtAgrNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAgreement, "AgrNumber", true));
             this.txtAgrNum.Location = new System.Drawing.Point(112, 77);
             this.txtAgrNum.Name = "txtAgrNum";
             this.txtAgrNum.ReadOnly = true;
             this.txtAgrNum.Size = new System.Drawing.Size(228, 20);
             this.txtAgrNum.TabIndex = 25;
             this.txtAgrNum.ThemeName = "Office2007Silver";
-            // 
-            // bindingSourceAgreement
-            // 
-            this.bindingSourceAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // radLabel6
             // 
@@ -316,7 +308,7 @@ namespace IpsViewComponentLibrary
             // 
             // txtLicDate
             // 
-            this.txtLicDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAgreement, "LicDate", true));
+            this.txtLicDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAgreement, "AgrDate", true));
             this.txtLicDate.Location = new System.Drawing.Point(434, 77);
             this.txtLicDate.Name = "txtLicDate";
             this.txtLicDate.ReadOnly = true;
@@ -359,6 +351,14 @@ namespace IpsViewComponentLibrary
             this.radLabel8.Text = "Періоди та суми прив\'язки";
             this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // bindingSourceAgreement
+            // 
+            this.bindingSourceAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
+            // 
+            // bindingSource
+            // 
+            this.bindingSource.DataSource = typeof(ipsFormsDesign.Model.MoneyReceived);
+            // 
             // DistributionForm
             // 
             this.AcceptButton = this.btnSaveDistrib;
@@ -400,7 +400,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.btnExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayAmount)).EndInit();
@@ -410,7 +409,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNum)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
@@ -418,6 +416,8 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
             this.radSeparator2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
