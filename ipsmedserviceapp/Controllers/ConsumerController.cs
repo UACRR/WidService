@@ -98,7 +98,7 @@ namespace ipsmedserviceapp.Controllers
                 // Лцензії для майданчиків
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
                     .Query()
-                    .Where(rec => rec.LicVersion >= licAgreement.LicVersion)
+                    .Where(rec => rec.LicVersion >= licAgreement.LicVersion || rec.LicVersion == licAgreement.ProlongVersion )
                     .Include(rec => rec.License)
                     .LoadAsync();
 
@@ -912,7 +912,7 @@ namespace ipsmedserviceapp.Controllers
 
             await _dbContext.Entry(licAgreement).Collection(item => item.LicenseAgrParam)
                 .Query()
-                .Where(rec => rec.LicVersion >= version).LoadAsync();
+                .Where(rec => rec.LicVersion >= version || rec.LicVersion == licAgreement.ProlongVersion ).LoadAsync();
 
 
 
