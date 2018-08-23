@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -16,7 +17,7 @@ namespace IpsViewComponentLibrary
     public partial class DistributionForm : Telerik.WinControls.UI.RadForm
     {
         private Calcularor _calculator;
-        private LicenseAgreement _licenseAgr;
+        private IAgreementData _licenseAgr;
         private List<GridPeriods> _source;
         private MoneyReceived _pay;
         public DistributionForm()
@@ -25,7 +26,7 @@ namespace IpsViewComponentLibrary
         }
 
 
-        public DistributionForm(MoneyReceived undistrinbMoney, LicenseAgreement licenseAgr, PaidPeriod period)
+        public DistributionForm(MoneyReceived undistrinbMoney, IAgreementData licenseAgr, PaidPeriod period)
         {
             InitializeComponent();
 
@@ -33,8 +34,8 @@ namespace IpsViewComponentLibrary
             _pay = undistrinbMoney;
 
             bindingSource.DataSource = undistrinbMoney;
-            bindingSourceAgreement.DataSource = licenseAgr.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == licenseAgr.LicVersion );
-            _source = licenseAgr.PaidPeriod.Where(rec => rec.Status < 7 && (period == null || period.PeriodId == rec.PeriodId)).OrderBy(rec => rec.BeginDate)
+            bindingSourceAgreement.DataSource = licenseAgr;
+            _source = licenseAgr.Lic.PaidPeriod.Where(rec => rec.Status < 7 && (period == null || period.PeriodId == rec.PeriodId)).OrderBy(rec => rec.BeginDate)
                 .Select(rec => new GridPeriods
                 {
                     PeriodId = rec.PeriodId,
@@ -65,7 +66,7 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void btnSaveDistrib_Click(object sender, EventArgs e)
         {
-            var paidDic = _licenseAgr.PaidPeriod.ToDictionary(rec => rec.PeriodId);
+            var paidDic = _licenseAgr.Lic.PaidPeriod.ToDictionary(rec => rec.PeriodId);
             foreach( var item in _source.Where(rec => rec.DistAmount > 0) )
             {
                 PaidPeriod period = paidDic[item.PeriodId];
@@ -77,9 +78,9 @@ namespace IpsViewComponentLibrary
                         PaidId = _pay.PaidId,
                         Paid = _pay,
                         Amount = 0,
-                        LicId = _licenseAgr.LicId,
+                        LicId = _licenseAgr.Lic.LicId,
                         Status = 1,
-                        Lic = _licenseAgr,
+                        Lic = _licenseAgr.Lic,
                         Period = period
                     };
 

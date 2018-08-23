@@ -1127,18 +1127,33 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         {
             dest.SetFields(sors);
             var dicDest = dest.Register.ToDictionary(rec => rec.RegId);
+
+            // delete register
+            var listForDelete = dest.Register.Where(rec => !sors.Register.Any(item => item.RegId == rec.RegId)).ToList();
+            foreach (var item in listForDelete)
+            {
+                // delete registerItem
+                _dbContext.RegisterItem.RemoveRange(item.RegisterItem);
+                dest.Register.Remove(item);
+            }
+            // delete from database register
+            _dbContext.Register.RemoveRange(listForDelete);
+            
+
+            // modify and add new item
             foreach (var sorsItem in sors.Register)
             {
                 Register destItem = null;
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
                 {
                     destItem = new Register { CreateDate = DateTime.Today };
-                    destItem.SetFields(sorsItem, new[] { "RegId", "CreateDate" });
                     dest.Register.Add(destItem);
                     _dbContext.Register.Add(destItem);
                 }
                 else
                     destItem = dicDest[sorsItem.RegId];
+
+                destItem.SetFields(sorsItem, new[] { "RegId", "CreateDate" });
 
                 int regItemId = 1;
 
@@ -1167,6 +1182,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 var sumTicks = destItem.RegisterItem.Sum(rec => (long)(rec.Ticks??1));
                 destItem.Durationticks = (int)sumTicks;
             }
+
+
 
 
         }
