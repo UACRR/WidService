@@ -1818,7 +1818,7 @@ where t1.custId = @custId
                     .Include(rec => rec.Register)
                     .Single();
 
-                foreach (var item in body.Register.Where(rec => rec.RegId > 0 && rec.RegisterItem.Count() > 0))
+                foreach (var item in dest.Register )
                 {
                     await _dbContext.RegisterItem.Where(rec => rec.RegId == item.RegId)
                             .Include(rec => rec.RegisterExtra)
