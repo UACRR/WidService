@@ -1147,12 +1147,13 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
                 {
                     destItem = new Register { CreateDate = DateTime.Today };
-                    destItem.SetFields(sorsItem, new[] { "RegId", "CreateDate" });
                     dest.Register.Add(destItem);
                     _dbContext.Register.Add(destItem);
                 }
                 else
                     destItem = dicDest[sorsItem.RegId];
+
+                destItem.SetFields(sorsItem, new[] { "RegId", "CreateDate" });
 
                 int regItemId = 1;
 
