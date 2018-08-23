@@ -87,6 +87,15 @@ namespace IpsViewComponentLibrary
 
             return ButtonFunctionAcceptLicType.None;
         }
+
+        public static void TextBoxPercentRate_KeyPressEvent(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
     }
 
     public interface IMiddleCtrlAnketaConsumer

@@ -61,7 +61,8 @@ namespace IpsViewComponentLibrary
                             FormMode formMode = FormMode.ForBigRightAdmin)
         {
             InitializeComponent();
-
+            txtMusicRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
+            txtVinagoroda.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             dictionaties = IpsGlobal.AnketaDictionaties;
             _licId = licId;
             _customer = customer;
@@ -547,6 +548,13 @@ namespace IpsViewComponentLibrary
         private void ddlLang_Leave(object sender, EventArgs e)
         {
             UpdateGenrePersent();
+        }
+
+        private void txtMusicRate_TextChanged(object sender, EventArgs e)
+        {
+            if (Int32.TryParse(txtMusicRate.Text, out int val))
+                if (val > 100)
+                    txtMusicRate.Text = "100";
         }
     }
 }
