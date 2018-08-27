@@ -183,7 +183,7 @@ namespace IpsViewComponentLibrary
             // Кількість доп угод з версією більшою за поточну > 0 //якщо є хоча б одна угода для пролонгації
             if (prolongLicense != null)
             {
-                if(MessageBox.Show("Пролонгована версія договору вже існує! Відкрити для перегляду/редадагування?", "Повідомлення", MessageBoxButtons.YesNo,
+                if(MessageBox.Show("Пролонгована версія договору вже існує! Відкрити для перегляду/редагування?", "Повідомлення", MessageBoxButtons.YesNo,
                        MessageBoxIcon.Question) == DialogResult.Yes)
                     RunDialogForLicenseAgrParam(license, prolongLicense, DialogGoal.forExistProlongation);
             }
