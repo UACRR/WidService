@@ -65,6 +65,7 @@ namespace IpsViewComponentLibrary
         {
             if(gvViewLicences.Rows.Count == 0 || e?.CurrentRow?.DataBoundItem == null)
             {
+                ctrlAgrDetailInfo.ClearData();
                 pageView.Enabled = false;
                 return;
             }
