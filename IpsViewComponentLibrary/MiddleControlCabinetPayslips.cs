@@ -140,13 +140,19 @@ namespace IpsViewComponentLibrary
 
         private void gvViewRl_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvViewRl.Rows.Count == 0 || gvViewRl?.CurrentRow?.DataBoundItem == null) return;
+            if (pageView.SelectedPage != pvSpectacle)
+                pageView.SelectedPage = pvSpectacle;
+
+            if (gvViewRl.Rows.Count == 0 || gvViewRl?.CurrentRow?.DataBoundItem == null)
+            {
+                gvViewSpectacles.DataSource = new List<ParentTemplate>();
+                bsChildTemplate.DataSource = new List<ChildTemplate>();
+                return;
+            }
 
             if (collapsiblePanel.IsExpanded && (e?.CurrentRow?.DataBoundItem as BigRightRegister)?.RmId != null)
             {
                 SetSpectacleViewGridDataSource(((BigRightRegister) e.CurrentRow.DataBoundItem).RmId);
-                if(pageView.SelectedPage != pvSpectacle)
-                    pageView.SelectedPage = pvSpectacle;
             }
         }
 
