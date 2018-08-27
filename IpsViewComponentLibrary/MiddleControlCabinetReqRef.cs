@@ -112,9 +112,9 @@ namespace IpsViewComponentLibrary
                     case ControlRequestOrReferenceType.Request:
                     {
                         if (!(2 <= item.LicStatus && item.LicStatus <= 3)) // статуси 0, 1, 5 - редагування
-                            CallRequestForm(FormType.Edit, item.LicId);
+                            CallRequestForm(FormType.Edit, item);
                         else                                               //перегляд
-                            CallRequestForm(FormType.View, item.LicId);
+                            CallRequestForm(FormType.View, item);
                     }
                         break;
 
@@ -122,23 +122,26 @@ namespace IpsViewComponentLibrary
                     {
 
                         if (!(item.LicStatus == 3 || item.LicStatus == 4)) //0, 1, 2, 5 - редагування
-                            CallRequestForm(FormType.Edit, item.LicId);
+                            CallRequestForm(FormType.Edit, item);
                         else                                               //перегляд
-                            CallRequestForm(FormType.View, item.LicId);
+                            CallRequestForm(FormType.View, item);
                     }
                         break;
                 }
             }
         }
 
-        private void CallRequestForm(FormType type, int itemId)
+        private void CallRequestForm(FormType type, BigRightRequests item)
         {
-            RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, type, itemId) { StartPosition = FormStartPosition.CenterParent };
+            RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, type, item.LicId) { StartPosition = FormStartPosition.CenterParent };
 
             if (requestForm.ShowDialog() == DialogResult.OK && type == FormType.Edit)
             {
                 if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
+                {
+                    OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
                     MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 else
                     MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
