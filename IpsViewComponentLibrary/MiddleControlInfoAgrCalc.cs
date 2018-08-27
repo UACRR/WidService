@@ -182,7 +182,9 @@ namespace IpsViewComponentLibrary
             // Кількість доп угод з версією більшою за поточну > 0 //якщо є хоча б одна угода для пролонгації
             if (prolongLicense != null)
             {
-                RunDialogForLicenseAgrParam(license, prolongLicense, DialogGoal.forExistProlongation);
+                if(MessageBox.Show("Пролонгована версія договору вже існує! Відкрити для перегляду/редадагування?", "Повідомлення", MessageBoxButtons.YesNo,
+                       MessageBoxIcon.Question) == DialogResult.Yes)
+                    RunDialogForLicenseAgrParam(license, prolongLicense, DialogGoal.forExistProlongation);
             }
             // Інакше == 0
             else
@@ -491,9 +493,11 @@ namespace IpsViewComponentLibrary
             ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license,
                 _customer?.Client?.ClnBusinessPlace, _customer, goal, Rights)
             {
-                Text = goal == DialogGoal.forEdit || goal == DialogGoal.forChange ? "Редагування договору"
+                Text = goal == DialogGoal.forEdit ? "Редагування договору"
                     : goal == DialogGoal.forProlongation ? "Пролонгація договору"
                     : goal == DialogGoal.forNew ? "Додавання нового договору"
+                    : goal == DialogGoal.forExistProlongation ? "Перегляд/редагування пролонгованого договору"
+                    : goal == DialogGoal.forChange || goal == DialogGoal.forExistChange ? "Внесення змін до активного договору"
                     : string.Empty,
                 StartPosition = FormStartPosition.CenterParent
             };
