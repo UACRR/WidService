@@ -66,7 +66,7 @@
             this.radDropDownList1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radDropDownList1.Location = new System.Drawing.Point(138, 54);
             this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(232, 19);
+            this.radDropDownList1.Size = new System.Drawing.Size(232, 25);
             this.radDropDownList1.TabIndex = 1;
             this.radDropDownList1.Text = "radDropDownList1";
             // 
@@ -92,9 +92,9 @@
             // 
             this.radDateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radDateTimePicker1.Location = new System.Drawing.Point(138, 18);
-            this.radDateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radDateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.radDateTimePicker1.Name = "radDateTimePicker1";
-            this.radDateTimePicker1.Size = new System.Drawing.Size(155, 21);
+            this.radDateTimePicker1.Size = new System.Drawing.Size(155, 25);
             this.radDateTimePicker1.TabIndex = 0;
             this.radDateTimePicker1.TabStop = false;
             this.radDateTimePicker1.Text = "21 липня 2018 р.";
@@ -132,6 +132,7 @@
             this.Controls.Add(this.radDropDownList1);
             this.Controls.Add(this.radLabel4);
             this.Name = "CreatePeriod";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Новий період";
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();

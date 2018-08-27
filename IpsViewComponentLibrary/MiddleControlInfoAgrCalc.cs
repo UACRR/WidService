@@ -303,7 +303,7 @@ namespace IpsViewComponentLibrary
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
             {
-                foreach (var license in _customer.Client.LicenseAgreement)
+                foreach (var license in _customer.Client.LicenseAgreement.Where(rec => rec.LicClass == 0).ToList())
                 {
                     if (license.LicenseAgrParam.Count == 1 && license.LicStatus == 2)
                         continue;

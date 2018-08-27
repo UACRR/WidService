@@ -84,10 +84,10 @@ namespace IpsViewComponentLibrary
             List<PaidPeriod> retList = _service.SavePeriods((int)custId, e);
             if (retList != null)
             {
-                var dic = retList.ToDictionary(di => di.PeriodName);
+                var dic = retList.ToDictionary(di => new { di.LicId ,di.PeriodName } );
                 foreach (var item in e)
                 {
-                    var period = dic[item.PeriodName];
+                    var period = dic[new { item.LicId, item.PeriodName}];
                     if (item.PeriodId != period.PeriodId)
                         item.PeriodId = period.PeriodId;
                 }
