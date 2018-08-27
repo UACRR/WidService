@@ -191,7 +191,7 @@ namespace IpsViewComponentLibrary
             if (validClass == null)
                 reinitValidClass();
 
-            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && validClass.Contains(rec.LicClass))
+            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass != 1 && validClass.Contains(rec.LicClass))
                             .Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
             bindingAgreement.DataSource = listAgreement;
         }

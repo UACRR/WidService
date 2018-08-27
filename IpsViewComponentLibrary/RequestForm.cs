@@ -405,6 +405,7 @@ namespace IpsViewComponentLibrary
                 LicType = 2,
                 LicStatus = 0,
                 LicCode = 10,
+                AgrId = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2)?.AgrId ?? default(int),
                 LicenseAgrParam = new ObservableListSource<LicenseAgrParam>
                 {
                     new LicenseAgrParam
@@ -467,6 +468,10 @@ namespace IpsViewComponentLibrary
             _deleteLicense = false;
             ParseAuthors();
             ParseMusicalDisign();
+            //TODO: видалити коли всі agrId будуть коректні
+            var agrid = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2)?.AgrId ?? default(int);
+            if(_licenseAgreement.AgrId != agrid)
+                _licenseAgreement.AgrId = agrid;// прив'язка  до ген. угоди
             DialogResult = DialogResult.OK;
             Close();
         }

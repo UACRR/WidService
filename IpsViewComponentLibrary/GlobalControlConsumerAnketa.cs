@@ -369,9 +369,27 @@ namespace IpsViewComponentLibrary
             if(_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicStatus != null)
             {
                 if ((Telerik.WinControls.RadElement) sender == _btnSave) // зберегти з статусом не підтверджений
+                {
                     _cust.Client.LicenseAgreement.LastOrDefault().LicStatus = 0;
+                }
                 else if ((Telerik.WinControls.RadElement) sender == _btnSaveAndAccept) // зберегти з статусом активний
+                {
                     _cust.Client.LicenseAgreement.LastOrDefault().LicStatus = 2;
+                }
+
+                if (typeRights == TypeRights.BigRights)
+                {
+                    _cust.Client.LicenseAgreement.LastOrDefault().Agr.AgreementAddBr.SingleOrDefault().AgrStatus =
+                        _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
+
+                    _cust.Client.LicenseAgreement.LastOrDefault().Agr.AgrStatus =
+                        _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
+                }
+                else if(typeRights == TypeRights.SmallRights)
+                {
+                    _cust.Client.LicenseAgreement.LastOrDefault().LicenseAgrParam.SingleOrDefault().LicStatus =
+                        _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
+                }
             }
 
             OnBtnSaveClick?.Invoke(_cust);
