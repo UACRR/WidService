@@ -147,12 +147,14 @@ namespace IpsViewComponentLibrary
             {
                 gvViewSpectacles.DataSource = new List<ParentTemplate>();
                 bsChildTemplate.DataSource = new List<ChildTemplate>();
+                btnToAccept.Enabled = false;
                 return;
             }
 
             if (collapsiblePanel.IsExpanded && (e?.CurrentRow?.DataBoundItem as BigRightRegister)?.RmId != null)
             {
                 SetSpectacleViewGridDataSource(((BigRightRegister) e.CurrentRow.DataBoundItem).RmId);
+                btnToAccept.Enabled = ((BigRightRegister) e.CurrentRow.DataBoundItem).Status == 0;
             }
         }
 
