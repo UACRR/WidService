@@ -31,8 +31,17 @@ namespace IpsViewComponentLibrary
         private ButtonController buttonController;
 
         private TypeRights _typeRights = TypeRights.All;
+
         [EditorBrowsable]
-        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } }
+        public TypeRights TypeRights
+        {
+            get => _typeRights;
+            set
+            {
+                _typeRights = value;
+                reinitValidClass();
+            }
+        }
         private List<int> validClass;
 
         /// <summary>
@@ -83,9 +92,9 @@ namespace IpsViewComponentLibrary
         private void reinitValidClass()
         {
             validClass = new List<int>();
-            if (TypeRights == TypeRights.SmallRights || TypeRights == TypeRights.All)
+            if (TypeRights == TypeRights.SmallRights)
                 validClass.Add(0);
-            if (TypeRights == TypeRights.BigRights || TypeRights == TypeRights.All)
+            if (TypeRights == TypeRights.BigRights)
                 validClass.Add(1);
 
         }

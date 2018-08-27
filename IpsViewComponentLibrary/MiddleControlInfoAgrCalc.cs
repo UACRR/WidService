@@ -82,6 +82,7 @@ namespace IpsViewComponentLibrary
             gvLicenseAgr.DataSource = new object();
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
+            calculationCtrl.TypeRights = TypeRights.SmallRights;
             calculationCtrl.Customer = _customer;
             ctrlPaysInfo1.Customer = _customer;
         }
