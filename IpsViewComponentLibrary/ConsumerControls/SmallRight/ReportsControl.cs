@@ -355,7 +355,8 @@ namespace IpsViewComponentLibrary
                         PeriodId = period.PeriodId,
                         RegisterRatedList = RatedList,
                         SchemaId = 1,
-                        AlgorithmId = 1
+                        AlgorithmId = 1,
+                        LicId = period.LicId
                     };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
@@ -397,6 +398,7 @@ namespace IpsViewComponentLibrary
                     FileName = string.Empty,
                     CustId = _customer.CustId,
                     RgStatusNavigation = dicRegStatus[0],
+                    LicId = period.LicId
                 };
 
                 // для визначення рапортички
