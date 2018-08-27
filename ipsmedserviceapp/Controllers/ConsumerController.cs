@@ -1167,8 +1167,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     (isNew, sorsRec, destRec) =>
                     {
                         destRec.SetFields(sorsRec);
-                        if (destRec.Ticks == null)
-                            destRec.Ticks = 1;
+                        if (destRec.DurationItem == null)
+                            destRec.Ticks = 0;
 
                         if (isNew)
                             destRec.RegIitemId = regItemId++;
@@ -1179,8 +1179,13 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
 
                 destItem.CountRows = destItem.RegisterItem.Count();
-                var sumTicks = destItem.RegisterItem.Sum(rec => (long)(rec.Ticks??1));
-                destItem.Durationticks = (int)sumTicks;
+                if (destItem.AlgorithmId == 1)
+                {
+                    var sumTicks = destItem.RegisterItem.Sum(rec => (long)(rec.Ticks ?? 1));
+                    destItem.Durationticks = (int)sumTicks;
+                }
+                else
+                    destItem.Durationticks = destItem.RegisterItem.Count( rec=>rec.Ticks != 0 );
             }
 
 
