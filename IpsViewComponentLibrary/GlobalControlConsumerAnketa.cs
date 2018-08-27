@@ -387,8 +387,8 @@ namespace IpsViewComponentLibrary
                 }
                 else if(typeRights == TypeRights.SmallRights)
                 {
-                    _cust.Client.LicenseAgreement.LastOrDefault().LicenseAgrParam.SingleOrDefault().LicStatus =
-                        _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
+                    _cust.Client.LicenseAgreement.LastOrDefault().LicenseAgrParam.SingleOrDefault().LicStatus = _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
+                    _cust.Client.LicenseAgreement.LastOrDefault().Agr.AgrStatus = _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
                 }
             }
 
