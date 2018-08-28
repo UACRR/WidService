@@ -35,10 +35,6 @@ namespace ConsumerWorkplace_v_1._0
             form.WindowState = FormWindowState.Maximized;
             form.AutoScaleMode = AutoScaleMode.Font;
             Application.Run(form);
-
-            //LoadCabinet(form.ReturnCustomer());
-
-            //LoadTest();
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs exceptionEventArg)

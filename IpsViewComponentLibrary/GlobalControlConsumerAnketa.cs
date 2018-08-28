@@ -90,7 +90,9 @@ namespace IpsViewComponentLibrary
 
             if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
                 InitAgreementType(typeRights);
-            ctrlClientName.CheckPlace = typeRights == TypeRights.BigRights;
+
+            if(typeRights == TypeRights.BigRights)
+                ctrlClientName.CheckPlace = true;
 
             //ctrlClientName.SetDefaultState();
 
