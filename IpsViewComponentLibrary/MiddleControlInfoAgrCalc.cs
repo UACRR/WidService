@@ -79,7 +79,6 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             ctrlHeaderInfo.SetControlTextInfoSmallRight(_customer);
-            gvLicenseAgr.DataSource = new object();
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
             calculationCtrl.TypeRights = TypeRights.SmallRights;
@@ -157,11 +156,14 @@ namespace IpsViewComponentLibrary
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if (inCurrentRowChanged) return;
+            if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow))
+            {
+                ctrlAgrDetailInfo.ClearData();
+                return;
+            }
             inCurrentRowChanged = true;
-            if (!(e.CurrentRow.DataBoundItem is GridLicenseAgrView curRow)) return;
             SetAgrInfoData(curRow.LicId, GridCallMethod.ActiveAgreementGrid);
-            if (currentAgreementController1 != null)
-                currentAgreementController1.ChangeCurrentLicenseAgreement(this, curRow.LicenseAgreement);
+            currentAgreementController1?.ChangeCurrentLicenseAgreement(this, curRow.LicenseAgreement);
             inCurrentRowChanged = false;
 
         }
@@ -362,7 +364,12 @@ namespace IpsViewComponentLibrary
         // при зміні рядка грід
         private void gvMoreLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow))
+            {
+                ctrlAgrDetailInfoMore.ClearData();
+                return;
+            }
+
             btnAccept.Enabled = (curRow.Status == 0 || curRow.Status == 1);
             btnDeleteAgr.Enabled = curRow.Status == 0;
             SetAgrInfoData(curRow.LicId, GridCallMethod.NotActiveAgreementGrid);

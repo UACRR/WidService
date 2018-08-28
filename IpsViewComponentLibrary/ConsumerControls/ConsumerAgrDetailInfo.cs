@@ -37,19 +37,19 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             bindingSourceComment.DataSource = licenseParam;
             //шапка
-            txtAgrNumber.Text = licenseParam?.LicNum;
-            txtAgrDate.Text = licenseParam?.LicDate?.ToShortDateString();
+            txtAgrNumber.Text = licenseParam?.LicNum ?? string.Empty;
+            txtAgrDate.Text = licenseParam?.LicDate?.ToShortDateString() ?? string.Empty;
             txtDelegate.Text = "";// представник
-            txtReportPeriod.Text = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name;
+            txtReportPeriod.Text = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty;
             //блок 1
-            txtDateBegin.Text = licenseParam?.DateBegin?.ToShortDateString();
-            txtDateEnd.Text = licenseParam?.DateEnd?.ToShortDateString();
+            txtDateBegin.Text = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty;
+            txtDateEnd.Text = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty;
             txtIsProlong.Text = licenseParam?.IsAutoprolog ?? false ? "Так" : "Ні";
             //блок 2
-            txtRate.Text = licenseParam?.RateAmount?.ToString();
-            txtMinAmount.Text = licenseParam?.MinAmount.ToString();
+            txtRate.Text = licenseParam?.RateAmount?.ToString() ?? string.Empty;
+            txtMinAmount.Text = licenseParam?.MinAmount?.ToString() ?? string.Empty;
             //блок 3
-            txtState.Text = _dictionaties?.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name;
+            txtState.Text = _dictionaties?.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty;
             //TODO: заповнити відсутні дані
             txtAction.Text = "";
             txtIsPaid.Text = "";
@@ -57,6 +57,31 @@ namespace IpsViewComponentLibrary.ConsumerControls
             txtBank.Text = "";
             txtAmount.Text = "";
             txtDistribAmount.Text = "";
+
+            btnSaveComment.Enabled = true;
+            txtNotation.Enabled = true;
+        }
+
+        public void ClearData()
+        {
+            txtAgrNumber.Text = string.Empty;
+            txtAgrDate.Text = string.Empty;
+            txtDelegate.Text = string.Empty;
+            txtReportPeriod.Text = string.Empty;
+            txtDateBegin.Text = string.Empty;
+            txtDateEnd.Text = string.Empty;
+            txtIsProlong.Text = string.Empty;
+            txtRate.Text = string.Empty;
+            txtMinAmount.Text = string.Empty;
+            txtState.Text = string.Empty;
+            txtAction.Text = string.Empty;
+            txtIsPaid.Text = string.Empty;
+            txtBank.Text = string.Empty;
+            txtAmount.Text = string.Empty;
+            txtDistribAmount.Text = string.Empty;
+            txtNotation.Text = string.Empty;
+            btnSaveComment.Enabled = false;
+            txtNotation.Enabled = false;
         }
 
         private void btnSaveComment_Click(object sender, EventArgs e)
