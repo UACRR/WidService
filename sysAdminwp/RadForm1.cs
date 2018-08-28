@@ -67,8 +67,10 @@ namespace sysAdminwp
             ViewTable temp;
             foreach (var items in l)
             {
-                temp = new ViewTable();
-                temp.Code = items.CodeI;
+                temp = new ViewTable
+                {
+                    Code = items.CodeI
+                };
                 foreach (var itemName in items.DictTrI)
                 {
                     if (itemName.Lang == "Uk")

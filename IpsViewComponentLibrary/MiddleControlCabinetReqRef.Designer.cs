@@ -402,6 +402,7 @@
             gridViewComboBoxColumn1.MaxWidth = 100;
             gridViewComboBoxColumn1.MinWidth = 100;
             gridViewComboBoxColumn1.Name = "WorkTypeCl";
+            gridViewComboBoxColumn1.ReadOnly = true;
             gridViewComboBoxColumn1.ValueMember = "CodeI";
             gridViewComboBoxColumn1.Width = 100;
             gridViewComboBoxColumn1.WrapText = true;
