@@ -212,5 +212,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
+
+        private void gvAuthorRightholderList_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        {
+            var readOnlyColumns = "RoleRate, PrepayType, Currency, PrepaySum, WorkTypeRh, WorkTypeCl";
+
+            if (!SelectedAuthorRightholder.IsRightholder && readOnlyColumns.Contains(e.Column.Name))
+                e.Cancel = true;
+        }
     }
 }
