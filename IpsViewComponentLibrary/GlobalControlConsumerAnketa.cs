@@ -105,7 +105,7 @@ namespace IpsViewComponentLibrary
                 {
                     //ініціалізація форми договору великих прав
                     if(ctrlAgreementBigRights == null)
-                        {
+                    {
                             ctrlAgreementBigRights = new MiddleControlAgreementBigRights
                             {
                                 Location = _LocationPoint,
@@ -116,9 +116,9 @@ namespace IpsViewComponentLibrary
                                 TabIndex = 0
                             };
                             pvAgreement.Controls.Add(ctrlAgreementBigRights);
-                        }
+                    }
 
-                        if (_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicCode != null)
+                    if (_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicCode != null)
                     {
                         var item = _cust.Client.LicenseAgreement.LastOrDefault();
                         item.LicCode = 28;
@@ -128,38 +128,38 @@ namespace IpsViewComponentLibrary
                     }
 
                     if(!isEdit && _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr.Count == 0)
-                        _cust.Client.LicenseAgreement.LastOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr
-                        {
-                            Version = 1,
-                            AgrStatus = 0,
-                            AnkVersion = _cust.AnkVersion,
-                            AgrNumber = string.Empty,
-                            
+                        _cust.Client.LicenseAgreement.LastOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr {
+                        Version = 1,
+                        AgrStatus = 0,
+                        AnkVersion = _cust.AnkVersion,
+                        AgrNumber = string.Empty,
                         });
-                        //_cust.Company.AnketaCompany.SingleOrDefault().Name = string.Empty;
+                    //_cust.Company.AnketaCompany.SingleOrDefault().Name = string.Empty;
 
                     ctrlAgreementBigRights.DictionaryAgrLicTypeDataSource = _anketaDictionaries.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
                     ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
                     ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// typeof(AnketaCompany);
                     ctrlAgreementBigRights.AgreementAddBrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr;
                     ctrlAgreementBigRights.LicAgrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault();// typeof(LicenseAgreement);
-                    
 
-                    }
+                }
                     break;
 
                 case TypeRights.SmallRights:
                 {
                     //Ініціалізація форми договору малих прав
-                    ctrlAgreementSmallRights = new MiddleControlAgreementAnketaType
+                    if(ctrlAgreementSmallRights == null)
                     {
-                        Location = _LocationPoint,
-                        MinimumSize = new Size(490, 218),
-                        Name = "ctrlAgreementSmallRights",
-                        Size = new Size(690, 469),
-                        TabIndex = 0
-                    };
-                    pvAgreement.Controls.Add(ctrlAgreementSmallRights);
+                        ctrlAgreementSmallRights = new MiddleControlAgreementAnketaType
+                        {
+                            Location = _LocationPoint,
+                            MinimumSize = new Size(490, 218),
+                            Name = "ctrlAgreementSmallRights",
+                            Size = new Size(690, 469),
+                            TabIndex = 0
+                        };
+                        pvAgreement.Controls.Add(ctrlAgreementSmallRights);
+                    }
 
                     ctrlAgreementSmallRights.typeRights = typeRights; // - - - - - - - - - - - - - - - - - - - - - - - -  Договір
                     ctrlAgreementSmallRights.SetDataSources(_cust, _anketaDictionaries, _anketeType); // - - - - - - - -  Договір
@@ -387,8 +387,8 @@ namespace IpsViewComponentLibrary
                 }
                 else if(typeRights == TypeRights.SmallRights)
                 {
-                    _cust.Client.LicenseAgreement.LastOrDefault().LicenseAgrParam.SingleOrDefault().LicStatus =
-                        _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
+                    _cust.Client.LicenseAgreement.LastOrDefault().LicenseAgrParam.SingleOrDefault().LicStatus = _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
+                    _cust.Client.LicenseAgreement.LastOrDefault().Agr.AgrStatus = _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
                 }
             }
 

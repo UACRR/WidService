@@ -39,7 +39,7 @@ namespace IpsViewComponentLibrary
             _consumerAnketeType = anketeType;
             _customer = cust;
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
-            var license = cust?.Client?.LicenseAgreement?.FirstOrDefault(rec => rec.LicStatus < 4);
+            var license = cust?.Client?.LicenseAgreement?.LastOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == license?.LicVersion);
             _licenseAgr = licenseParam;
             if(license != null && anketeType == ConsumerAnketeType.CreateNewAnketa)

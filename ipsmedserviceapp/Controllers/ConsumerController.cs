@@ -538,7 +538,7 @@ namespace ipsmedserviceapp.Controllers
                 if (!(sorsCustomer.CustType > 0 && sorsCustomer.CustType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
-                fillLicenseAgreement(sorsCustomer);
+                //fillLicenseAgreement(sorsCustomer); // -> визначається контролом GlobalControlConsumerAnketa >371
                 // Збереження Customer
                 Customer destConsumer = new Customer();
                 _dbContext.Customer.Add(destConsumer);

@@ -47,6 +47,31 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             txtTicketPrice.Text = license.TicketPriceNC.ToString(); // UAH
         }
 
+        /// <summary>
+        /// Очищення даних
+        /// </summary>
+        public void ClearData()
+        {
+            txtAgrNumber.Text = string.Empty;
+            txtAgrDate.Text = string.Empty;
+            txtIsProlong.Text = string.Empty;
+
+            //блок 1
+            txtValuta.Text = string.Empty;
+            txtAmount.Text = string.Empty;
+            //блок 2
+            txtAvanceAgr.Text = string.Empty;
+            txtAvanceRemnant.Text = string.Empty;
+            //блок 3
+            txtDatePremiere.Text = string.Empty;
+            txtCount.Text = string.Empty;
+            //блок 4
+            txtRatePlace.Text = string.Empty;
+            txtTicketPrice.Text = string.Empty;
+            //комент
+            txtNotation.Text = string.Empty;
+        }
+
         private void btnSaveComment_Click(object sender, EventArgs e)
         {
             if (txtNotation.Text != string.Empty)

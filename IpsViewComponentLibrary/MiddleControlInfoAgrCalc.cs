@@ -82,6 +82,7 @@ namespace IpsViewComponentLibrary
             gvLicenseAgr.DataSource = new object();
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
+            calculationCtrl.TypeRights = TypeRights.SmallRights;
             calculationCtrl.Customer = _customer;
             ctrlPaysInfo1.Customer = _customer;
         }
@@ -182,7 +183,7 @@ namespace IpsViewComponentLibrary
             // Кількість доп угод з версією більшою за поточну > 0 //якщо є хоча б одна угода для пролонгації
             if (prolongLicense != null)
             {
-                if(MessageBox.Show("Пролонгована версія договору вже існує! Відкрити для перегляду/редадагування?", "Повідомлення", MessageBoxButtons.YesNo,
+                if(MessageBox.Show("Пролонгована версія договору вже існує! Відкрити для перегляду/редагування?", "Повідомлення", MessageBoxButtons.YesNo,
                        MessageBoxIcon.Question) == DialogResult.Yes)
                     RunDialogForLicenseAgrParam(license, prolongLicense, DialogGoal.forExistProlongation);
             }
@@ -303,7 +304,7 @@ namespace IpsViewComponentLibrary
             List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
             if (_customer?.Client.LicenseAgreement != null)
             {
-                foreach (var license in _customer.Client.LicenseAgreement)
+                foreach (var license in _customer.Client.LicenseAgreement.Where(rec => rec.LicClass == 0).ToList())
                 {
                     if (license.LicenseAgrParam.Count == 1 && license.LicStatus == 2)
                         continue;
