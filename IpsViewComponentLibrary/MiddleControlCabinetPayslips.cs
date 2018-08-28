@@ -57,6 +57,7 @@ namespace IpsViewComponentLibrary
             {
                 CreateDate = DateTime.Today,
                 Status = 0,
+                
             };
             
             PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Create, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);

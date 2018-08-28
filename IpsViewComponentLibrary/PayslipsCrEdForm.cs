@@ -26,6 +26,9 @@ namespace IpsViewComponentLibrary
         private FormType _type;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
+        /// <summary>
+        /// Default NOT usage constructor
+        /// </summary>
         public PayslipsCrEdForm()
         {
             InitializeComponent();
@@ -43,10 +46,10 @@ namespace IpsViewComponentLibrary
             _spectacleViews = spectacleViews;
             _registerRatedList = registerRatedList;
             //список періодів
-            var licAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
+            var licAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2);
             var paidPeriods = licAgr?.PaidPeriod;
             bsPeriodList.DataSource = paidPeriods;
-
+            
             bsRegisterRatedList.DataSource = _registerRatedList;
             bsRegister.DataSource = _registerRatedList.Register;
 
@@ -159,7 +162,7 @@ namespace IpsViewComponentLibrary
                         CodeItem = 2,
                     }
                 },
-                RegId = _tempRegId++
+                RegId = _tempRegId++,
             });
             UpdateRegisterGridDataSource();
         }
@@ -196,7 +199,6 @@ namespace IpsViewComponentLibrary
                         item.LicId = sw?.LicId;
                         reg.LicId = sw?.LicId;
                         //var mus = _customer?.Client?.LicenseAgreement?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
-
                     }
                     else if (e.Column.FieldName == "Amount")
                     {
