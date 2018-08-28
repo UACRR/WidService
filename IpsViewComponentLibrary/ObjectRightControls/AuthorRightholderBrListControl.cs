@@ -192,11 +192,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 {
                     e.Value = selectedRightholder.Name;
 
-                    var current = (ObjectAuthorRightholderBrViewModel)gvAuthorRightholderList.CurrentRow.DataBoundItem;
-                    current.Author.CustId = selectedRightholder.CustId;
-                    current.Author.AuthorName = selectedRightholder.Name;
-                    current.InnerCode = selectedRightholder.InnerCode;
-                    current.Country = selectedRightholder.Country;
+                    var authorRightholder = SelectedAuthorRightholder;
+                    authorRightholder.Author.CustId = selectedRightholder.CustId;
+                    authorRightholder.Author.AuthorName = selectedRightholder.Name;
+                    authorRightholder.InnerCode = selectedRightholder.InnerCode;
+                    authorRightholder.Country = selectedRightholder.Country;
                     objectAuthorRightholderBrViewModelBindingSource.ResetCurrentItem();
                 };
                 selectionView.ShowDialog();
