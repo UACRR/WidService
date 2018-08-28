@@ -77,9 +77,17 @@ namespace WebAPIConnector
             string runUrl = url;
             if (listParam.Count() > 0)
                 runUrl = string.Concat(runUrl, AsQueryString(listParam));
+            string retApiString;
 
- 
-            string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+            try
+            {
+                retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
             JArray array = JArray.Parse(retApiString);
             List<T> list = array.Select(rec =>
             {
@@ -90,6 +98,8 @@ namespace WebAPIConnector
             return list;
 
         }
+
+
         /// <summary>
         /// Получити список об'єктів з серверу додатків
         /// </summary>
@@ -101,8 +111,7 @@ namespace WebAPIConnector
             string runUrl = url;
             if (listParam.Count() > 0)
                 runUrl = string.Concat(runUrl, AsQueryString(listParam));
-
-
+            
             string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
             List<object> list = array.Select(rec =>
