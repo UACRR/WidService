@@ -371,28 +371,11 @@ namespace IpsViewComponentLibrary
         private void SetObjectRightData(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
         {
             // map Authors, Copyright, LicAuthorBr and WorkRh tables into single table
-            var tmpAuthorRightholderList = objectRight.Authors.Select(a =>
-                {
-                    var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
-                    var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
-
-                    return new ObjectAuthorRightholderBrViewModel
-                    {
-                        Author = a,
-                        IsRightholder = a.CustId.HasValue,
-                        Country = foundedRightholder?.Country,
-                        InnerCode = foundedRightholder?.InnerCode,
-                        CopyRight = foundedCopyright ?? new CopyRight(),
-                        LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new LicAuthorBr(),
-                        WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
-                    };
-                })
-                .ToList();
-
-            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(tmpAuthorRightholderList);
+            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(objectRight.GetObjectBrAuthorRightholderList(rightholderList));
 
             ctrlAuthorRightholderList.DataSource = _authorRightholderList;
         }
+
         //створення ліцензійного договору
         private void CreateNewRequest()
         {
