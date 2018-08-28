@@ -27,7 +27,6 @@ namespace IpsViewComponentLibrary
 
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
         private BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
-        private ObjectAuthorRightholderBrViewModel _brViewModel;
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
         private FormType _formType;

@@ -253,7 +253,7 @@ namespace IpsViewComponentLibrary
                 if (result)
                     ExtensionUtils.ShowInfoMessage("Перелік вистав погоджено!", "Успішно", MessageBoxIcon.Information);
                 else
-                    ;
+                    ExtensionUtils.ShowInfoMessage("Неможливо погодити перелік вистав!", "Помилка", MessageBoxIcon.Error);
             }
         }
     }
