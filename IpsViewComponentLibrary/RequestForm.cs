@@ -245,7 +245,6 @@ namespace IpsViewComponentLibrary
                 {
                     SetControlsReadOnly(c.Controls, isReadOnly);
                 }
-
             }
         }
 
@@ -379,10 +378,11 @@ namespace IpsViewComponentLibrary
 
                     return new ObjectAuthorRightholderBrViewModel
                     {
+                        Author = a,
+                        IsRightholder = a.CustId.HasValue,
                         Country = foundedRightholder?.Country,
                         InnerCode = foundedRightholder?.InnerCode,
-                        Author = a,
-                        CopyRight = foundedCopyright,
+                        CopyRight = foundedCopyright ?? new CopyRight(),
                         LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new LicAuthorBr(),
                         WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
                     };
