@@ -1146,7 +1146,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 Register destItem = null;
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
                 {
-                    destItem = new Register { CreateDate = DateTime.Today };
+                    destItem = new Register { CreateDate = DateTime.Today, LicId = sorsItem.LicId };
                     dest.Register.Add(destItem);
                     _dbContext.Register.Add(destItem);
                 }
@@ -1210,7 +1210,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
                 var regRatedList = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId).Single();
-                modifyItem = new Register { CreateDate = DateTime.Now };
+                modifyItem = new Register { CreateDate = DateTime.Now, LicId = body.LicId };
                 regRatedList.Register.Add(modifyItem);
                 _dbContext.Register.Add(modifyItem);
 

@@ -149,10 +149,13 @@ namespace IpsViewComponentLibrary
         //додати виставу
         private void btnAddCheckedSpectacle_Click(object sender, EventArgs e)
         {
+            var curRow = gvViewPayslipsItems.CurrentRow.DataBoundItem as PayslipsGridDataSource;
+
             _registerRatedList.Register.Add(new Register
             {
                 RgStatus = 0,
                 CustId = _customer.CustId,
+                LicId = curRow.LicId,
                 RegisterItem = new ObservableListSource<RegisterItem> { new RegisterItem
                     {
                         Ticks = 1,
