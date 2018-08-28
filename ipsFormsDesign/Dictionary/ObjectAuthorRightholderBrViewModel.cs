@@ -26,12 +26,13 @@ namespace ipsFormsDesign.Dictionary
             set
             {
                 _isRightholder = value;
-                OnPropertyChanged(nameof(IsRightholder));
 
                 if (!_isRightholder)
                 {
                     ClearRightholderData();
                 }
+
+                OnPropertyChanged(nameof(IsRightholder));
             }
         }
 

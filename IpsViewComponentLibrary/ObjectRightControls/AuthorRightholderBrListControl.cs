@@ -142,6 +142,47 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        private void gvAuthorRightholderList_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        {
+            var columnName = gvAuthorRightholderList.CurrentColumn.Name;
+
+            if (columnName == "IsRightholder")
+            {
+                var cbEditor = (RadCheckBoxEditor)e.ActiveEditor;
+                cbEditor.ValueChanged -= IsRightholder_ValueChanged;
+                cbEditor.ValueChanged += IsRightholder_ValueChanged;
+            }
+        }
+
+        private void IsRightholder_ValueChanged(object sender, EventArgs e)
+        {
+            var authorRightholder = SelectedAuthorRightholder;
+            var cbEditor = (RadCheckBoxEditor)sender;
+
+            if ((ToggleState)cbEditor.Value == ToggleState.On)
+            {
+                using (var selectionView = new RightholderSelectionView())
+                {
+                    //selectionView.SelectedRightholder = rightholder; // TODO
+                    selectionView.RightholderSelected += (s, selectedRightholder) =>
+                    {
+                        authorRightholder.Author.CustId = selectedRightholder.CustId;
+                        authorRightholder.Author.AuthorName = selectedRightholder.Name;
+                        authorRightholder.InnerCode = selectedRightholder.InnerCode;
+                        authorRightholder.Country = selectedRightholder.Country;
+                    };
+                    selectionView.SelectionCanceled += (s, ea) =>
+                    {
+                        authorRightholder.IsRightholder = false;
+                        cbEditor.Value = ToggleState.Off;
+                    };
+                    selectionView.SearchText = authorRightholder.Author.AuthorName;
+                    selectionView.ShowDialog();
+                }
+            }
+            gvAuthorRightholderList.EndEdit();
+        }
+
         private void AuthorName_ValueSelection(object sender, ValueSelectionEventArgs e)
         {
             using (var selectionView = new RightholderSelectionView())
@@ -170,12 +211,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private void gvAuthorRightholderList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
-        }
-
-        private void gvAuthorRightholderList_ValueChanged(object sender, EventArgs e)
-        {
-            if (sender is RadCheckBoxEditor cbEditor)
-                ((GridCheckBoxCellElement)cbEditor.OwnerElement).Value = cbEditor.Value;
         }
     }
 }
