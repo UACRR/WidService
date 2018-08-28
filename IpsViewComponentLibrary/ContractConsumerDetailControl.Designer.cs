@@ -101,7 +101,6 @@ namespace IpsViewComponentLibrary
             this.rtxtBoxAuthorPaymentPercent.Size = new System.Drawing.Size(83, 21);
             this.rtxtBoxAuthorPaymentPercent.TabIndex = 0;
             this.rtxtBoxAuthorPaymentPercent.ThemeName = "Office2013Light";
-            this.rtxtBoxAuthorPaymentPercent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtxtBoxAuthorPaymentPercent_KeyPress);
             // 
             // rtxtBoxMinAuthorPayment
             // 
@@ -110,7 +109,7 @@ namespace IpsViewComponentLibrary
             this.rtxtBoxMinAuthorPayment.Size = new System.Drawing.Size(100, 21);
             this.rtxtBoxMinAuthorPayment.TabIndex = 1;
             this.rtxtBoxMinAuthorPayment.ThemeName = "Office2013Light";
-            this.rtxtBoxMinAuthorPayment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtxtBoxMinAuthorPayment_KeyPress);
+            this.rtxtBoxMinAuthorPayment.TextChanged += new System.EventHandler(this.rtxtBoxMinAuthorPayment_TextChanged);
             // 
             // rCheckBoxAutoprolongation
             // 
@@ -134,7 +133,6 @@ namespace IpsViewComponentLibrary
             this.txtPercentAutoProl.Size = new System.Drawing.Size(59, 21);
             this.txtPercentAutoProl.TabIndex = 4;
             this.txtPercentAutoProl.ThemeName = "Office2013Light";
-            this.txtPercentAutoProl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPercentAutoProl_KeyPress);
             // 
             // rddListPeriodPayment
             // 

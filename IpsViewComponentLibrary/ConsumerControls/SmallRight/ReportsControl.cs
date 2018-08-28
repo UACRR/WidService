@@ -31,10 +31,6 @@ namespace IpsViewComponentLibrary
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
 
-
-        public delegate void UpdateCustomerDataEventHandler(int id);
-        public event UpdateCustomerDataEventHandler UpdateData;
-
         public Func<int, List<RegisterItem>> GetRegisterItems;
         private ButtonEnableControl buttonController;
         private Dictionary<int, PeriodStatus> dicPeriodStatus;

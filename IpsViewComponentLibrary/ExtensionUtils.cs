@@ -88,6 +88,11 @@ namespace IpsViewComponentLibrary
             return ButtonFunctionAcceptLicType.None;
         }
 
+        /// <summary>
+        /// Перевірка натиснутої кнопки. Допускаються: цифри, коми, видалення
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void TextBoxPercentRate_KeyPressEvent(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;

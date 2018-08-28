@@ -93,7 +93,6 @@ namespace ConsumerWorkplace_v_1._0
                 cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
                 cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
                 cabinet.mсInfoAgrCalc.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
-                cabinet.mсInfoAgrCalc.reportsControl.UpdateData += CalculationCtrl_UpdateData;
                 cabinet.SetDictionary(_service.GetDictionary());
                 cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;
