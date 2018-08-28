@@ -83,7 +83,7 @@ namespace WebAPIConnector
             {
                 retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

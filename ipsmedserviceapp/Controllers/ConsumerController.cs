@@ -98,7 +98,7 @@ namespace ipsmedserviceapp.Controllers
                 // Лцензії для майданчиків
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
                     .Query()
-                    .Where(rec => rec.LicVersion >= licAgreement.LicVersion || rec.LicVersion == licAgreement.ProlongVersion )
+                    .Where(rec => rec.LicVersion >= licAgreement.LicVersion || rec.LicVersion == licAgreement.ProlongVersion)
                     .Include(rec => rec.License)
                     .LoadAsync();
 
@@ -912,7 +912,7 @@ namespace ipsmedserviceapp.Controllers
 
             await _dbContext.Entry(licAgreement).Collection(item => item.LicenseAgrParam)
                 .Query()
-                .Where(rec => rec.LicVersion >= version || rec.LicVersion == licAgreement.ProlongVersion ).LoadAsync();
+                .Where(rec => rec.LicVersion >= version || rec.LicVersion == licAgreement.ProlongVersion).LoadAsync();
 
 
 
@@ -1067,8 +1067,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     return BadRequest();
 
                 period.Status = stateid;
-                // Закрити
-                if (stateid == 7)
+                // Зафіксувати або Закрити
+                if ((new int[] { 2, 7 }).Contains(stateid))
                 {
                     await _dbContext.Entry(period).Collection(rec => rec.RegisterRatedList).Query()
                         .Include(rec => rec.Register)
@@ -1077,8 +1077,11 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     foreach (var item in period.RegisterRatedList)
                     {
                         item.Status = 1;
-                        foreach (var reg in item.Register)
-                            reg.RgStatus = 4; // Виконано
+                        if (stateid == 7) // Для закритого періоду
+                        {
+                            foreach (var reg in item.Register)
+                                reg.RgStatus = 4; // Виконано
+                        }
                     }
                 }
 
@@ -1138,7 +1141,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
             // delete from database register
             _dbContext.Register.RemoveRange(listForDelete);
-            
+
 
             // modify and add new item
             foreach (var sorsItem in sors.Register)
@@ -1185,7 +1188,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     destItem.Durationticks = (int)sumTicks;
                 }
                 else
-                    destItem.Durationticks = destItem.RegisterItem.Count( rec=>rec.Ticks != 0 );
+                    destItem.Durationticks = destItem.RegisterItem.Count(rec => rec.Ticks != 0);
             }
 
 
@@ -1802,8 +1805,8 @@ where t1.custId = @custId
                 return BadRequest(e.Message);
             }
 
-        } 
-        
+        }
+
         // PostRegisterDetail
         /// <summary>
         /// Змінити Р/Л
@@ -1823,7 +1826,7 @@ where t1.custId = @custId
                     .Include(rec => rec.Register)
                     .Single();
 
-                foreach (var item in dest.Register )
+                foreach (var item in dest.Register)
                 {
                     await _dbContext.RegisterItem.Where(rec => rec.RegId == item.RegId)
                             .Include(rec => rec.RegisterExtra)
