@@ -57,12 +57,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
                 return new ObjectAuthorRightholderBrViewModel
                 {
+                    Author = a,
+                    IsRightholder = a.CustId.HasValue,
                     Country = foundedRightholder?.Country,
                     InnerCode = foundedRightholder?.InnerCode,
-                    Author = a,
-                    CopyRight = foundedCopyright,
-                    LicAuthorBr = foundedCopyright.LicAuthorBr ?? new LicAuthorBr(),
-                    WorkRh = foundedCopyright.WorkRh ?? new WorkRh(),
+                    CopyRight = foundedCopyright ?? new CopyRight(),
+                    LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new LicAuthorBr(),
+                    WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
                 };
             })
             .ToList();

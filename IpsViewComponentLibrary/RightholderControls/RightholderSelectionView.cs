@@ -20,6 +20,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         }
 
         public event EventHandler<RightholderMainView> RightholderSelected;
+        public event EventHandler SelectionCanceled;
 
         public RightholderSelectionView()
         {
@@ -41,6 +42,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+            OnSelectionCanceled();
             Close();
         }
 
@@ -54,9 +56,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             SelectAndClose();
         }
 
-        private void OnRightholderSelected(RightholderMainView item)
+        protected void OnRightholderSelected(RightholderMainView item)
         {
             RightholderSelected?.Invoke(this, item);
+        }
+
+        protected void OnSelectionCanceled()
+        {
+            SelectionCanceled?.Invoke(this, EventArgs.Empty);
         }
 
         private void SelectAndClose()
