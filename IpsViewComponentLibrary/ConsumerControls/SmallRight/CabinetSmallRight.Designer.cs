@@ -30,7 +30,7 @@
         {
             this.btnUpdateData = new Telerik.WinControls.UI.RadButton();
             this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
-            this.mсInfoAgrCalc = new IpsViewComponentLibrary.PagesCabinetControl();
+            this.pagesControl = new IpsViewComponentLibrary.PagesCabinetControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdateData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
             this.SuspendLayout();
@@ -58,18 +58,18 @@
             this.btnEditAgr.ThemeName = "Office2013Light";
             this.btnEditAgr.Click += new System.EventHandler(this.EditExistCustomer_Click);
             // 
-            // mсInfoAgrCalc
+            // pagesControl
             // 
-            this.mсInfoAgrCalc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.pagesControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mсInfoAgrCalc.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.mсInfoAgrCalc.Location = new System.Drawing.Point(3, 29);
-            this.mсInfoAgrCalc.MinimumSize = new System.Drawing.Size(500, 665);
-            this.mсInfoAgrCalc.Name = "mсInfoAgrCalc";
-            this.mсInfoAgrCalc.Rights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
-            this.mсInfoAgrCalc.Size = new System.Drawing.Size(1116, 665);
-            this.mсInfoAgrCalc.TabIndex = 0;
+            this.pagesControl.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.pagesControl.Location = new System.Drawing.Point(3, 29);
+            this.pagesControl.MinimumSize = new System.Drawing.Size(500, 665);
+            this.pagesControl.Name = "pagesControl";
+            this.pagesControl.Rights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
+            this.pagesControl.Size = new System.Drawing.Size(1116, 665);
+            this.pagesControl.TabIndex = 0;
             // 
             // CabinetSmallRight
             // 
@@ -80,7 +80,7 @@
             this.CausesValidation = false;
             this.Controls.Add(this.btnEditAgr);
             this.Controls.Add(this.btnUpdateData);
-            this.Controls.Add(this.mсInfoAgrCalc);
+            this.Controls.Add(this.pagesControl);
             this.DoubleBuffered = true;
             this.Name = "CabinetSmallRight";
             this.Size = new System.Drawing.Size(1122, 696);
@@ -93,6 +93,6 @@
         #endregion
         private Telerik.WinControls.UI.RadButton btnUpdateData;
         private Telerik.WinControls.UI.RadButton btnEditAgr;
-        public PagesCabinetControl mсInfoAgrCalc;
+        public PagesCabinetControl pagesControl;
     }
 }

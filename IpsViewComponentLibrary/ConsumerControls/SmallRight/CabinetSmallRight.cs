@@ -41,20 +41,20 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
 
-            mсInfoAgrCalc.Rights = Rights;
-            mсInfoAgrCalc.OnCustomerSave += SaveCustomer;
-            mсInfoAgrCalc.OnChangeLicenseStatus += MсInfoAgrCalc_OnChangeLicenseStatus;
+            pagesControl.Rights = Rights;
+            pagesControl.OnCustomerSave += SaveCustomer;
+            pagesControl.OnChangeLicenseStatus += PagesControlOnChangeLicenseStatus;
         }
 
         public void SetCustomerData(Customer customer)
         {
             _customer = customer;
             _customerId = _customer.CustId;
-            mсInfoAgrCalc.SetDictionary(IpsGlobal.AnketaDictionaties);
-            mсInfoAgrCalc.SetCustomerData(_customer);
+            pagesControl.SetDictionary(IpsGlobal.AnketaDictionaties);
+            pagesControl.SetCustomerData(_customer);
         }
 
-        private bool MсInfoAgrCalc_OnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
+        private bool PagesControlOnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
             return OnChangeLicenseStatus?.Invoke(agr, version, status, changeVer) ?? false;
         }

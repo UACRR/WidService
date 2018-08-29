@@ -84,15 +84,15 @@ namespace ConsumerWorkplace_v_1._0
             if (cabinet == null)
             {
                 //cabinet = new CabinetSmallRight(TypeRights.SmallRights);
-                var a = new CalculationInfoControlPresenter(cabinet.mсInfoAgrCalc.calculationCtrl, _service);
-                var b = new ReportsControlPresenter(cabinet.mсInfoAgrCalc.reportsControl, _service);
+                var a = new CalculationInfoControlPresenter(cabinet.pagesControl.calculationCtrl, _service);
+                var b = new ReportsControlPresenter(cabinet.pagesControl.reportsControl, _service);
                 //cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 //cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 //cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
                 cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
                 cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
                 cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
-                cabinet.mсInfoAgrCalc.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
+                cabinet.pagesControl.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
                 //cabinet.SetDictionary(_service.GetDictionary());
                 //cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;
@@ -107,8 +107,8 @@ namespace ConsumerWorkplace_v_1._0
 
         private void CalculationCtrl_UpdateData(int id)
         {
-            cabinet.mсInfoAgrCalc.SetCustomerData(_service.GetData(id));
-            cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetRatedListForCust(id);
+            cabinet.pagesControl.SetCustomerData(_service.GetData(id));
+            cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(id);
 
         }
 
@@ -149,7 +149,7 @@ namespace ConsumerWorkplace_v_1._0
 
             //Task.Run(() => {
             //    var Customer = _service.GetCustomerRegisterRatedList(custId);
-            //    cabinet.mсInfoAgrCalc.reportsControl.BeginInvoke((Action)(() => cabinet.mсInfoAgrCalc.reportsControl.Customer = Customer));
+            //    cabinet.pagesControl.reportsControl.BeginInvoke((Action)(() => cabinet.pagesControl.reportsControl.Customer = Customer));
             //});
             var _cust = _service.GetData(custId);
             var _dict = _service.GetDictionary();
@@ -214,9 +214,9 @@ namespace ConsumerWorkplace_v_1._0
             //if (_currentControl == cabinet)
                 //Task.Run(() => {
             //var Customer = _service.GetCustomerRegisterRatedList(id);
-            cabinet.mсInfoAgrCalc.reportsControl.Customer = _service.GetRatedListForCust(id);
+            cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(id);
             
-            //cabinet.mсInfoAgrCalc.reportsControl.BeginInvoke((Action)(() => ));
+            //cabinet.pagesControl.reportsControl.BeginInvoke((Action)(() => ));
         //});
             return _service.GetData(id);
         }
