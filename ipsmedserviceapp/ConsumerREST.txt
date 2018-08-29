@@ -19,9 +19,13 @@ get 	/consumer/{custid}/agreementSR/{licid}
 post 	/consumer/{custid}/agreementSR
 delete 	/consumer/{custid}/agreementSR/{licid}
 put 	/consumer/{custid}/agreementSR/{licid}
-post 	/consumer/{custid}/agreementSR/{licid}/version/{body:version}
-put 	/consumer/{custid}/agreementSR/{licid}/version/{body:version}
-put 	/consumer/{custid}/agreementSR/{licid}/status/{body:version}
+put 	/consumer/{custid}/agreementSR/{licid}/status/(body:stateid)
+get 	/consumer/{custid}/agreementSR/{licid}/version/
+get 	/consumer/{custid}/agreementSR/{licid}/version/{version}
+post 	/consumer/{custid}/agreementSR/{licid}/version/{version}
+put 	/consumer/{custid}/agreementSR/{licid}/version/{version}
+post 	/consumer/{custid}/agreementSR/{licid}/version/{version}/prolong
+put 	/consumer/{custid}/agreementSR/{licid}/version/{version}/status/(body:stateid)
 
 -- dogovor BR
 get 	/consumer/{custid}/agreementBR
@@ -29,8 +33,12 @@ get 	/consumer/{custid}/agreementBR/{licid}
 post 	/consumer/{custid}/agreementBR
 put 	/consumer/{custid}/agreementBR/{licid}
 delete 	/consumer/{custid}/agreementBR/{licid}
-put 	/consumer/{custid}/agreementBR/{id}/version/{version}
 put 	/consumer/{custid}/agreementBR/{id}/status/{version}
+get 	/consumer/{custid}/agreementBR/{id}/version
+get 	/consumer/{custid}/agreementBR/{id}/version/{version}
+post 	/consumer/{custid}/agreementBR/{id}/version/{version}
+put 	/consumer/{custid}/agreementBR/{id}/version/{version}
+delete 	/consumer/{custid}/agreementBR/{id}/version/{version}
 
 -- License BR
 get 	/consumer/{custid}/agreementBR/{id}/license
@@ -38,8 +46,12 @@ get 	/consumer/{custid}/agreementBR/{id}/license/{licid}
 post 	/consumer/{custid}/agreementBR/{id}/license
 put 	/consumer/{custid}/agreementBR/{id}/license/{licid}
 delete 	/consumer/{custid}/agreementBR/{id}/license/{licid}
-put 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}
 put 	/consumer/{custid}/agreementBR/{id}/license/{licid}/status/{version}
+get 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version
+get 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}
+put 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}
+delete 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}
+put 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}/status/{version}
 
 -- paid period 
 get 	/consumer/{custid}/agreement/{licid}/period
