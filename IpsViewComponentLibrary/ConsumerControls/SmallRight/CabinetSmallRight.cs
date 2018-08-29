@@ -23,10 +23,8 @@ namespace IpsViewComponentLibrary
         private int _customerId;
         private Customer _customer;
 
+        // на майбутнє (при зміні рядка оновлення даних)
         public event UpdateCustomerDataEventHandler OnGridRowSelectedChaged;
-
-        public delegate void ButtonBackClick(int custId);
-        public event ButtonBackClick OnButtonBackClick;
 
 
 

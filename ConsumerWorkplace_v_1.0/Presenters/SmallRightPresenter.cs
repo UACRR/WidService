@@ -16,6 +16,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 {
     class SmallRightPresenter
     {
+        private CabinetSmallRightForm _smallRightForm = new CabinetSmallRightForm
+        {
+            StartPosition = FormStartPosition.CenterScreen,
+            WindowState = FormWindowState.Maximized
+        };
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private readonly ConsumerService _service;
         private GlobalControlConsumerMainGrid _mainGrid;
@@ -27,6 +32,10 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid = mainGrid;
             _mainGrid.OnGridButtonClick += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
+
+            _smallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
+            _smallRightForm.cabinet.OnEditCustomer += EditExistCustomerAnketa;
+            _smallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
         }
 
         //зміна фільтра
@@ -40,20 +49,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         //відкрити кабінет користувача
         private void LoadCustomerCabinet(int custId)
         {
-            CabinetSmallRightForm smallRightForm = new CabinetSmallRightForm(_service.GetData(custId))
-            {
-                StartPosition = FormStartPosition.CenterScreen,
-                WindowState = FormWindowState.Maximized
-            };
-            smallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
-            smallRightForm.cabinet.OnEditCustomer += EditExistCustomerAnketa;
-            smallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
+            _smallRightForm.SetCustomer(_service.GetData(custId));
+            if(!_smallRightForm.Visible)
+                _smallRightForm.Show();
 
-
-            smallRightForm.Show();
-            smallRightForm = null;
             GC.Collect();
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
         }
 
         //оновлення customer за вимогою контролів

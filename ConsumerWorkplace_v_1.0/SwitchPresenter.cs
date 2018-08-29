@@ -87,7 +87,7 @@ namespace ConsumerWorkplace_v_1._0
                 var a = new CalculationInfoControlPresenter(cabinet.mсInfoAgrCalc.calculationCtrl, _service);
                 var b = new ReportsControlPresenter(cabinet.mсInfoAgrCalc.reportsControl, _service);
                 //cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
-                cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
+                //cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 //cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
                 cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
                 cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;

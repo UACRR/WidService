@@ -18,18 +18,17 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public delegate Customer GetCustomerEventHandler(int custId);
         public event GetCustomerEventHandler OnGetCustomerNeed;
 
-
         public CabinetSmallRightForm()
         {
             InitializeComponent();
-        }
-        public CabinetSmallRightForm(Customer customer)
-        {
-            InitializeComponent();
-            _customer = customer;
             cabinet.Rights = TypeRights.SmallRights;
-            cabinet.SetCustomerData(_customer);
             cabinet.OnUpdateCustomerNeed += Cabinet_OnUpdateCustomerNeed;
+        }
+
+        public void SetCustomer(Customer customer)
+        {
+            _customer = customer;
+            cabinet.SetCustomerData(_customer);
         }
 
         //оновлення даних
@@ -37,6 +36,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
         {
             _customer = OnGetCustomerNeed?.Invoke(id);
             cabinet.SetCustomerData(_customer);
+        }
+
+        private void CabinetSmallRightForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
     }
 }

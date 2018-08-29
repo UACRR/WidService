@@ -624,11 +624,11 @@
     <Compile Include="MiddleControlClientName.Designer.cs">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlInfoAgrCalc.cs">
+    <Compile Include="ConsumerControls\SmallRight\PagesCabinetControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlInfoAgrCalc.Designer.cs">
-      <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\PagesCabinetControl.Designer.cs">
+      <DependentUpon>PagesCabinetControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlManagers.cs">
       <SubType>UserControl</SubType>
@@ -1029,8 +1029,8 @@
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlInfoAgrCalc.resx">
-      <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\PagesCabinetControl.resx">
+      <DependentUpon>PagesCabinetControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlManagers.resx">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>

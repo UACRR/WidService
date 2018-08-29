@@ -30,7 +30,7 @@
         {
             this.btnUpdateData = new Telerik.WinControls.UI.RadButton();
             this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
-            this.mсInfoAgrCalc = new IpsViewComponentLibrary.MiddleControlInfoAgrCalc();
+            this.mсInfoAgrCalc = new IpsViewComponentLibrary.PagesCabinetControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdateData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +93,6 @@
         #endregion
         private Telerik.WinControls.UI.RadButton btnUpdateData;
         private Telerik.WinControls.UI.RadButton btnEditAgr;
-        public MiddleControlInfoAgrCalc mсInfoAgrCalc;
+        public PagesCabinetControl mсInfoAgrCalc;
     }
 }

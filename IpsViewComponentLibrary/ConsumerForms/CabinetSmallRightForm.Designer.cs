@@ -58,6 +58,7 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Кабінет користувача";
             this.ThemeName = "Office2013Light";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CabinetSmallRightForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

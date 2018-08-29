@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary
 {
-    partial class MiddleControlInfoAgrCalc
+    partial class PagesCabinetControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -662,14 +662,14 @@
             this.ctrlHeaderInfo.Size = new System.Drawing.Size(836, 178);
             this.ctrlHeaderInfo.TabIndex = 5;
             // 
-            // MiddleControlInfoAgrCalc
+            // PagesCabinetControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pvMain);
             this.Controls.Add(this.ctrlHeaderInfo);
             this.MinimumSize = new System.Drawing.Size(962, 665);
-            this.Name = "MiddleControlInfoAgrCalc";
+            this.Name = "PagesCabinetControl";
             this.Size = new System.Drawing.Size(992, 725);
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).EndInit();
             this.pvMain.ResumeLayout(false);

@@ -14,7 +14,7 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class MiddleControlInfoAgrCalc : UserControl
+    public partial class PagesCabinetControl : UserControl
     {
         private Customer _customer;
         private AnketaDictionaties _dictionaties;
@@ -32,7 +32,7 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Default constructor
         /// </summary>
-        public MiddleControlInfoAgrCalc()
+        public PagesCabinetControl()
         {
             InitializeComponent();
             SetDefaultPages();
