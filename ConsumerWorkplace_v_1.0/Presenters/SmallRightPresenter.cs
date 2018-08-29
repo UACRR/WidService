@@ -72,9 +72,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var _dict = _service.GetDictionary();
             AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData) { StartPosition = FormStartPosition.CenterParent };
 
-            //form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
+            form.OnSaveCustomerNeed += SaveCustomer;
             form.ShowDialog();
-            //form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
             if (!form.Disposing)
             {
                 form.Dispose();
@@ -92,9 +91,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var _cust = GetAndReturnCustomer(custId);
             var _dict = _service.GetDictionary();
             AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData, false) { StartPosition = FormStartPosition.CenterParent };
-            //form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
+            form.OnSaveCustomerNeed += SaveCustomer;
             form.ShowDialog();
-            //form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
             if (!form.Disposing)
             {
                 form.Dispose();
