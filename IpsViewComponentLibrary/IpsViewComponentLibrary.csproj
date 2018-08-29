@@ -254,6 +254,18 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ConsumerForms\CabinetBigRightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetBigRightForm.Designer.cs">
+      <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetSmallRightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetSmallRightForm.Designer.cs">
+      <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LicenseAgreementListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -839,6 +851,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\CabinetBigRightForm.resx">
+      <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
+      <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LicenseAgreementListControl.resx">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
