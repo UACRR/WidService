@@ -324,6 +324,8 @@ namespace ipsmedserviceapp.Controllers
                     destCopyRight.WorkRh.WorkDateRh = DateTime.Now;
                 }
 
+                if (destCopyRight.LicAuthorBr == null)
+                    destCopyRight.LicAuthorBr = new LicAuthorBr();
 
                 destCopyRight.LicAuthorBr.SetFields(sourceCopyRight.LicAuthorBr);
             }
