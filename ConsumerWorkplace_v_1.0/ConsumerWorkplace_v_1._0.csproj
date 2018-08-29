@@ -199,6 +199,7 @@
     </Compile>
     <Compile Include="ListConsumers.cs" />
     <Compile Include="PdfEngine.cs" />
+    <Compile Include="Presenters\SmallRightPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SwitchPresenter.cs" />

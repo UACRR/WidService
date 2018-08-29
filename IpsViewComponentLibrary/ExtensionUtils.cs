@@ -15,12 +15,14 @@ namespace IpsViewComponentLibrary
 {
     public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
-    public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
     public delegate bool SavePayslipsEventHandler(RegisterRatedList list);
     public delegate Customer GetRegisterRatedList(int custId);
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
+
+    public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate void UpdateCustomerDataEventHandler(int id);
+
     public delegate List<PaidPeriod> SaveAndReturnNewPeriodListEventHandler(int custId, List<PaidPeriod> periods);
 
 

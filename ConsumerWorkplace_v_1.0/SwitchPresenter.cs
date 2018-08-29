@@ -16,7 +16,7 @@ namespace ConsumerWorkplace_v_1._0
     public class SwitchPresenter
     {
         private readonly MainViewSwitcher _switcher;
-        private GlobalControlConsumerCabinet cabinet = null;
+        private CabinetSmallRight cabinet = null;
         private GlobalControlConsumerMainGrid mainGrid = null;
         private Control _currentControl = null;
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
@@ -38,7 +38,7 @@ namespace ConsumerWorkplace_v_1._0
             _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
             mainGrid?.SetGridDataSource(getMainView());
-            cabinet?.SetGridDataSource(getMainView());
+            //cabinet?.SetGridDataSource(getMainView());
         }
 
 
@@ -66,12 +66,12 @@ namespace ConsumerWorkplace_v_1._0
                 mainGrid = new GlobalControlConsumerMainGrid();
                 mainGrid.OnGridButtonClick += MainGrid_OnGridButtonClick;
                 mainGrid.OnAddNewCustomer += MainGrid_OnAddNewCustomer;
-                mainGrid.SetDictionary(_service.GetDictionary());
+                //mainGrid.SetDictionary(_service.GetDictionary());
                 mainGrid.SetGridDataSource(getMainView());
 
                 mainGrid.Dock = DockStyle.Fill;
             }
-            mainGrid.FilterString = cabinet?.FilterString ?? string.Empty;
+            //mainGrid.FilterString = cabinet?.FilterString ?? string.Empty;
             if (id != 0)
                 mainGrid.SetSelectCustomer(id);
 
@@ -83,24 +83,24 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (cabinet == null)
             {
-                cabinet = new GlobalControlConsumerCabinet(TypeRights.SmallRights);
+                //cabinet = new CabinetSmallRight(TypeRights.SmallRights);
                 var a = new CalculationInfoControlPresenter(cabinet.mсInfoAgrCalc.calculationCtrl, _service);
                 var b = new ReportsControlPresenter(cabinet.mсInfoAgrCalc.reportsControl, _service);
-                cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
+                //cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
-                cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
+                //cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
                 cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
                 cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
                 cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
                 cabinet.mсInfoAgrCalc.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
-                cabinet.SetDictionary(_service.GetDictionary());
-                cabinet.SetGridDataSource(getMainView());
+                //cabinet.SetDictionary(_service.GetDictionary());
+                //cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;
             }
 
             cabinet.Rights = TypeRights.SmallRights;
-            cabinet.FilterString = mainGrid?.FilterString ?? string.Empty;
-            cabinet.SetSelectCustomer(id);
+            //cabinet.FilterString = mainGrid?.FilterString ?? string.Empty;
+            //cabinet.SetSelectCustomer(id);
             _currentControl = cabinet;
             _switcher.SwitchView(cabinet);
         }
@@ -192,8 +192,8 @@ namespace ConsumerWorkplace_v_1._0
         {
             if (_currentControl == cabinet)
             {
-                cabinet?.SetGridDataSource(getMainView());
-                cabinet?.SetSelectCustomer(id);
+                //cabinet?.SetGridDataSource(getMainView());
+                //cabinet?.SetSelectCustomer(id);
             }
 
             if (_currentControl == mainGrid)

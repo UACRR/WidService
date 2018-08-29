@@ -48,11 +48,6 @@ namespace IpsViewComponentLibrary
             OnGridButtonClick?.Invoke(_rowId);
         }
 
-        public void SetDictionary(AnketaDictionaties dictionaties)
-        {
-
-        }
-
         public void SetSelectCustomer(int custId)
         {
             if (gvViewConsumers.Rows.Count != 0)

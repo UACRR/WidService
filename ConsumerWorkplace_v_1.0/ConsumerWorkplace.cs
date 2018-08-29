@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using ConsumerWorkplace_v_1._0.Presenters;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -22,6 +23,7 @@ namespace ConsumerWorkplace_v_1._0
 {
     public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
     {
+        private SmallRightPresenter _smallRightPresenter; // main presenter for small right
         private SwitchPresenter _presenterSmallRights;
         private SwitchPresenterBigRights _presenterBigRights;
         private ConsumerService _serviceSmallRights, _serviceBigRights;
@@ -126,7 +128,8 @@ namespace ConsumerWorkplace_v_1._0
                     }
 
                     _serviceSmallRights = new ConsumerService();
-                    _presenterSmallRights = new SwitchPresenter(mainViewSwitcherSR, _serviceSmallRights, treeViewSR);
+                    _smallRightPresenter = new SmallRightPresenter(_serviceSmallRights, treeViewSR, mainGridSmallRight);
+                    
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
                     // * * * * END CASE
@@ -149,10 +152,11 @@ namespace ConsumerWorkplace_v_1._0
                     }
 
                     _serviceSmallRights = new ConsumerService();
-                    _presenterSmallRights = new SwitchPresenter(mainViewSwitcherSR, _serviceSmallRights, treeViewSR);
+                    _smallRightPresenter = new SmallRightPresenter(_serviceSmallRights, treeViewSR, mainGridSmallRight);
+
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
-                    RadTreeNode[] list2 = new[]{
+                        RadTreeNode[] list2 = new[]{
                     new RadTreeNode{
                         Text = "Ген.Угода", Value = TypeBRDocument.GenAgreement, Selected = true,
                         Nodes  =

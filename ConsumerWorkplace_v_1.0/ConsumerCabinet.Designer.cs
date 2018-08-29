@@ -34,7 +34,7 @@
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
-            this.gcConsumerCabinet = new IpsViewComponentLibrary.GlobalControlConsumerCabinet();
+            this.gcConsumerCabinet = new IpsViewComponentLibrary.CabinetSmallRight();
             this.globalControlConsumerAnketa1 = new IpsViewComponentLibrary.GlobalControlConsumerAnketa();
             ((System.ComponentModel.ISupportInitialize)(this.dtTetsDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
@@ -144,7 +144,7 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
-        private IpsViewComponentLibrary.GlobalControlConsumerCabinet gcConsumerCabinet;
+        private IpsViewComponentLibrary.CabinetSmallRight gcConsumerCabinet;
         private Telerik.WinControls.UI.RadDateTimePicker dtTetsDate;
         private Telerik.WinControls.UI.RadPageView radPageView1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
