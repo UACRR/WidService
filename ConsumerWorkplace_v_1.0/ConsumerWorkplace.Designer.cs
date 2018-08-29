@@ -129,21 +129,22 @@ namespace ConsumerWorkplace_v_1._0
             this.pageBigRights.Controls.Add(this.mainViewSwitcherBR);
             this.pageBigRights.Controls.Add(this.treeViewBR);
             this.pageBigRights.ItemSize = new System.Drawing.SizeF(88F, 27F);
-            this.pageBigRights.Location = new System.Drawing.Point(10, 30);
+            this.pageBigRights.Location = new System.Drawing.Point(10, 32);
             this.pageBigRights.Name = "pageBigRights";
-            this.pageBigRights.Size = new System.Drawing.Size(1254, 630);
+            this.pageBigRights.Size = new System.Drawing.Size(1053, 495);
             this.pageBigRights.Text = "Великі права";
             // 
             // mainViewSwitcherBR
             // 
             this.mainViewSwitcherBR.AutoScroll = true;
+            this.mainViewSwitcherBR.AutoScrollMargin = new System.Drawing.Size(300, 300);
             this.mainViewSwitcherBR.AutoScrollMinSize = new System.Drawing.Size(1000, 600);
             this.mainViewSwitcherBR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainViewSwitcherBR.Location = new System.Drawing.Point(199, 0);
             this.mainViewSwitcherBR.Margin = new System.Windows.Forms.Padding(4);
             this.mainViewSwitcherBR.Name = "mainViewSwitcherBR";
             this.mainViewSwitcherBR.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.mainViewSwitcherBR.Size = new System.Drawing.Size(1055, 630);
+            this.mainViewSwitcherBR.Size = new System.Drawing.Size(854, 495);
             this.mainViewSwitcherBR.TabIndex = 3;
             // 
             // treeViewBR
@@ -153,7 +154,7 @@ namespace ConsumerWorkplace_v_1._0
             this.treeViewBR.LineStyle = Telerik.WinControls.UI.TreeLineStyle.Dash;
             this.treeViewBR.Location = new System.Drawing.Point(0, 0);
             this.treeViewBR.Name = "treeViewBR";
-            this.treeViewBR.Size = new System.Drawing.Size(199, 630);
+            this.treeViewBR.Size = new System.Drawing.Size(199, 495);
             this.treeViewBR.SpacingBetweenNodes = -1;
             this.treeViewBR.TabIndex = 2;
             // 
@@ -170,6 +171,8 @@ namespace ConsumerWorkplace_v_1._0
             // mainViewSwitcherSR
             // 
             this.mainViewSwitcherSR.AutoScroll = true;
+            this.mainViewSwitcherSR.AutoScrollMargin = new System.Drawing.Size(300, 300);
+            this.mainViewSwitcherSR.AutoScrollMinSize = new System.Drawing.Size(1000, 600);
             this.mainViewSwitcherSR.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.mainViewSwitcherSR.BackColor = System.Drawing.Color.Transparent;
             this.mainViewSwitcherSR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
