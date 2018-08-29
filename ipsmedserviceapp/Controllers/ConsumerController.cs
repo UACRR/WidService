@@ -929,6 +929,9 @@ namespace ipsmedserviceapp.Controllers
                         licParam.LicStatus = 4; // Close
                     if (licAgreement.LicCodeNavigation.UsesKindNavigation.UsesType == 2) // малі права
                         licAgreement.Agr.Version = version;
+                    // Видаляємо ліцензії закритої версії
+                    _dbContext.License.RemoveRange(licParam.License);
+
                 }
                 else
                 {
