@@ -168,6 +168,14 @@ namespace ipsmedserviceapp.Controllers
 
                 return Json(destConsumer);
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                tran?.Rollback();
+                //if()
+                string msg = "Спроба видалити майданчик, який включений до діючої ліцензії!";
+                //return BadRequest(ex.Message);
+                return BadRequest(msg);
+            }
             catch (Exception ex)
             {
                 if (tran != null)

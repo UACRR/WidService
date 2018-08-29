@@ -415,7 +415,7 @@ namespace IpsViewComponentLibrary
             {
                 bool actResult = false;
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
-
+                
                 actResult = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, 2, true) ?? false;
 
                 if (actResult)
