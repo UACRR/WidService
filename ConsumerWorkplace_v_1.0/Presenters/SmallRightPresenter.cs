@@ -36,6 +36,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _smallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
             _smallRightForm.cabinet.OnEditCustomer += EditExistCustomerAnketa;
             _smallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
+            _smallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
         }
 
         //зміна фільтра
@@ -50,7 +51,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private void LoadCustomerCabinet(int custId)
         {
             _smallRightForm.SetCustomer(_service.GetData(custId));
-            if(!_smallRightForm.Visible)
+            _smallRightForm.cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(custId);
+            if (!_smallRightForm.Visible)
                 _smallRightForm.Show();
 
             GC.Collect();
@@ -70,9 +72,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var _dict = _service.GetDictionary();
             AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData) { StartPosition = FormStartPosition.CenterParent };
 
-            form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
+            //form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
-            form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
+            //form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
             if (!form.Disposing)
             {
                 form.Dispose();
@@ -90,9 +92,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var _cust = GetAndReturnCustomer(custId);
             var _dict = _service.GetDictionary();
             AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData, false) { StartPosition = FormStartPosition.CenterParent };
-            form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
+            //form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
             form.ShowDialog();
-            form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
+            //form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
             if (!form.Disposing)
             {
                 form.Dispose();
@@ -111,50 +113,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             return relust;
         }
 
-        //public void SwitchToCabinet(int id)
-        //{
-        //    if (cabinet == null)
-        //    {
-        //        cabinet = new CabinetSmallRight(TypeRights.SmallRights);
-        //        var a = new CalculationInfoControlPresenter(cabinet.pagesControl.calculationCtrl, _service);
-        //        var b = new ReportsControlPresenter(cabinet.pagesControl.reportsControl, _service);
-        //        cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
-        //        cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
-        //        cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
-        //        cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
-        //        cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
-        //        cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
-        //        cabinet.pagesControl.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
-        //        cabinet.SetDictionary(_service.GetDictionary());
-        //        cabinet.SetGridDataSource(getMainView());
-        //        cabinet.Dock = DockStyle.Fill;
-        //    }
-
-        //    cabinet.Rights = TypeRights.SmallRights;
-        //    cabinet.FilterString = _mainGrid?.FilterString ?? string.Empty;
-        //    cabinet.SetSelectCustomer(id);
-        //    _currentControl = cabinet;
-        //    _switcher.SwitchView(cabinet);
-        //}
-
-        //private void CalculationCtrl_UpdateData(int id)
-        //{
-        //    cabinet.pagesControl.SetCustomerData(_service.GetData(id));
-        //    cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(id);
-        //}
-
-        private bool Cabinet_OnChangeLicenseStatus(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status, bool changeVer)
+        //змінити статус ліцензії
+        private bool ChangeLicenseStatus(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status, bool changeVer)
         {
             var relust = _service.SetLicAgreementStatus(agr, version, status, changeVer);
             return relust;
-        }
-
-
-
-        private bool Form_OnSaveCustomerNeed(ipsFormsDesign.Model.Customer cust)
-        {
-            var result = _service.Save(cust);
-            return result;
         }
     }
 }

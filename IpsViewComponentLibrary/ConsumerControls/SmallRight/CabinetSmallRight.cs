@@ -26,8 +26,6 @@ namespace IpsViewComponentLibrary
         // на майбутнє (при зміні рядка оновлення даних)
         public event UpdateCustomerDataEventHandler OnGridRowSelectedChaged;
 
-
-
         public delegate void CallEditCustomer(int id);
         public event CallEditCustomer OnEditCustomer;
 
@@ -40,8 +38,8 @@ namespace IpsViewComponentLibrary
         public CabinetSmallRight()
         {
             InitializeComponent();
-
-            pagesControl.Rights = Rights;
+            pagesControl.SetDictionary(IpsGlobal.AnketaDictionaties);
+            pagesControl.Rights = TypeRights.SmallRights;
             pagesControl.OnCustomerSave += SaveCustomer;
             pagesControl.OnChangeLicenseStatus += PagesControlOnChangeLicenseStatus;
         }
@@ -50,15 +48,14 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             _customerId = _customer.CustId;
-            pagesControl.SetDictionary(IpsGlobal.AnketaDictionaties);
             pagesControl.SetCustomerData(_customer);
         }
 
+        //зміна статусу ліцензії
         private bool PagesControlOnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
             return OnChangeLicenseStatus?.Invoke(agr, version, status, changeVer) ?? false;
         }
-
 
         //збереження
         private void SaveCustomer(Customer customer)
