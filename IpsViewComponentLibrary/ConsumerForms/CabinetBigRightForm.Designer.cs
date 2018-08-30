@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -35,13 +36,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(884, 455);
             this.Name = "CabinetBigRightForm";
-            this.Text = "CabinetBigRightForm";
+            // 
+            // 
+            // 
+            this.RootElement.ApplyShapeToControl = true;
+            this.Text = "Кабінет";
+            this.ThemeName = "Office2013Light";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CabinetBigRightForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

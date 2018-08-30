@@ -43,7 +43,7 @@ namespace ConsumerWorkplace_v_1._0
 
 
         //перейти з гріда до кабінету
-        private void MainGrid_OnGridButtonClick(int custId)
+        private void MainGridOnLoadCustomerCabinetNeed(int custId)
         {
             SwitchToCabinet(custId);
         }
@@ -64,7 +64,7 @@ namespace ConsumerWorkplace_v_1._0
             if (mainGrid == null)
             {
                 mainGrid = new GlobalControlConsumerMainGrid();
-                mainGrid.OnGridButtonClick += MainGrid_OnGridButtonClick;
+                mainGrid.OnLoadCustomerCabinetNeed += MainGridOnLoadCustomerCabinetNeed;
                 mainGrid.OnAddNewCustomer += MainGrid_OnAddNewCustomer;
                 //mainGrid.SetDictionary(_service.GetDictionary());
                 mainGrid.SetGridDataSource(getMainView());

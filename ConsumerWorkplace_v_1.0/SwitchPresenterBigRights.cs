@@ -71,8 +71,8 @@ namespace ConsumerWorkplace_v_1._0
             if (_mainGridBr == null)
             {
                 _mainGridBr = new GlobalControlConsumerMainGridBR();
-                _mainGridBr.OnAddNewCustomer += MainGridBr_OnAddNewCustomer;
-                _mainGridBr.OnGridButtonViewClick += MainGridBr_OnGridButtonViewClick;
+                //_mainGridBr.OnAddNewCustomer += MainGridBr_OnAddNewCustomer;
+                //_mainGridBr.OnGridButtonViewClick += MainGridBr_OnGridButtonViewClick;
                 _mainGridBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _mainGridBr.Dock = DockStyle.Fill;
             }

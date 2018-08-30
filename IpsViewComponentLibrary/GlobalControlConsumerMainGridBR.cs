@@ -25,11 +25,10 @@ namespace IpsViewComponentLibrary
             set => txtSearch.Text = value;
         }
 
-        public delegate void GridButtonViewClick(int id, CabinetTabType tabType = CabinetTabType.None);
-        public event GridButtonViewClick OnGridButtonViewClick;
-
-        public delegate void AddNewCustomer(PersonType person);
-        public event AddNewCustomer OnAddNewCustomer;
+        public delegate void LoadCustomerCabinetBrEventHandler(int id, CabinetTabType tabType = CabinetTabType.None);
+        public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
+        
+        public event EventHandler OnAddNewCustomer;
 
 
         public GlobalControlConsumerMainGridBR()
@@ -64,12 +63,12 @@ namespace IpsViewComponentLibrary
             {
                 case "btnsFiles":
                 {
-                    OnGridButtonViewClick?.Invoke(_rowId, CabinetTabType.Files);
+                    OnLoadCustomerCabinetNeed?.Invoke(_rowId, CabinetTabType.Files);
                 }break;
 
                 case "btnsView":
                 {
-                    OnGridButtonViewClick?.Invoke(_rowId);
+                    OnLoadCustomerCabinetNeed?.Invoke(_rowId);
                 }
                     break;
             }
@@ -83,7 +82,7 @@ namespace IpsViewComponentLibrary
 
         private void btnNewConsumer_Click(object sender, EventArgs e)
         {
-            OnAddNewCustomer?.Invoke(PersonType.JuridicalPerson);
+            OnAddNewCustomer?.Invoke(sender, e);
         }
 
         #region ФІЛЬТРАЦІЯ (пошук)

@@ -16,27 +16,27 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 {
     class SmallRightPresenter
     {
-        private CabinetSmallRightForm _smallRightForm = new CabinetSmallRightForm
+        private readonly CabinetSmallRightForm _cabinetSmallRightForm = new CabinetSmallRightForm
         {
-            StartPosition = FormStartPosition.CenterScreen,
+            StartPosition = FormStartPosition.CenterParent,
             WindowState = FormWindowState.Maximized
         };
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private readonly ConsumerService _service;
-        private GlobalControlConsumerMainGrid _mainGrid;
+        private readonly GlobalControlConsumerMainGrid _mainGrid;
 
         public SmallRightPresenter(ConsumerService service, RadTreeView treeView, GlobalControlConsumerMainGrid mainGrid)
         {
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _service = service;
             _mainGrid = mainGrid;
-            _mainGrid.OnGridButtonClick += LoadCustomerCabinet;
+            _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
 
-            _smallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
-            _smallRightForm.cabinet.OnEditCustomer += EditExistCustomerAnketa;
-            _smallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
-            _smallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
+            _cabinetSmallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
+            _cabinetSmallRightForm.cabinet.OnEditCustomer += EditExistCustomerAnketa;
+            _cabinetSmallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
+            _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
         }
 
         //зміна фільтра
@@ -50,10 +50,10 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         //відкрити кабінет користувача
         private void LoadCustomerCabinet(int custId)
         {
-            _smallRightForm.SetCustomer(_service.GetData(custId));
-            _smallRightForm.cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(custId);
-            if (!_smallRightForm.Visible)
-                _smallRightForm.Show();
+            _cabinetSmallRightForm.SetCustomer(_service.GetData(custId));
+            _cabinetSmallRightForm.cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(custId);
+            if (!_cabinetSmallRightForm.Visible)
+                _cabinetSmallRightForm.Show();
 
             GC.Collect();
         }

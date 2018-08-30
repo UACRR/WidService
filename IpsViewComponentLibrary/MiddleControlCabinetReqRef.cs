@@ -47,7 +47,7 @@ namespace IpsViewComponentLibrary
 
         public void SetAnketaDictionary()
         {
-            _dictionaties = IpsGlobal.AnketaDictionaties;
+            // TODO: розкоментувати _dictionaties = IpsGlobal.AnketaDictionaties;
             bsDictionary.DataSource = _dictionaties.workType;
         }
 
