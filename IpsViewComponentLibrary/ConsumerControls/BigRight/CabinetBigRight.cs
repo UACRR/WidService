@@ -11,33 +11,35 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.RightholderControls.Anketa;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
     public partial class CabinetBigRight : UserControl
     {
+        //назви табів
         private readonly Dictionary<string, CabinetTabType> _cabinetTab = new Dictionary<string, CabinetTabType>
         {
             {string.Empty, CabinetTabType.None},
+            {"pvAnketa" , CabinetTabType.Anketa},
+            {"pvGeneralAgreement" , CabinetTabType.GeneralAgreement},
             {"pvLicence" , CabinetTabType.Licenses},
-            {"pvCalculation" , CabinetTabType.Calculations},
-            {"pvPayslips" , CabinetTabType.Payslips},
             {"pvRequest" , CabinetTabType.Requests},
             {"pvReference" , CabinetTabType.References},
-            {"pvGeneralAgreement" , CabinetTabType.GeneralAgreement},
+            {"pvPayslips" , CabinetTabType.Payslips},
+            {"pvCalculation" , CabinetTabType.Calculations},
             {"pvFiles" , CabinetTabType.Files},
             {"pvAgent", CabinetTabType.Agent},
             {"pvPays", CabinetTabType.Payments},
             {"pvAvances", CabinetTabType.Prepays},
             {"pvContacts", CabinetTabType.Contacts}
         };
-        public MiddleControlCabinetPayslips.MusicDesingDelegate MusicDesignDelegate
-        {
-            get => ctrlPayslips.MusicDesing;
-            set => ctrlPayslips.MusicDesing = value;
-        }
+        private AnketaDictionaties _anketaDictionaties;
+        private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
+        private readonly Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
+        //дані
         private Customer _customer;
         private MainGridConsumerBigRightView _gridMainView;
         private IList<GeneralAgreementBigRightView> _generalAgreementView;
@@ -48,36 +50,59 @@ namespace IpsViewComponentLibrary
         private IList<UnattachedMoneyView> _unattachedMoneyView;
         private IList<RatedListMainBigRightView> _registerRatedListView;
         private IList<RatedListSpectacleBigRightView> _rlSpectacleView;
+        private IList<RatedListMusicDesignBigRightView> _rlMusicDesignView;
 
-        private AnketaDictionaties _anketaDictionaties;
-        private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
+        #region events точечного отримання даних
+
+        public delegate List<T> ReturnViewEventHandler<T>(int custId);
+        public delegate T ReturnObjectEventHandler<out T>(int custId);
+        public event ReturnObjectEventHandler<Customer> GetCustomer;
+        public event ReturnObjectEventHandler<MainGridConsumerBigRightView> GetMainGridView;
+        public event ReturnViewEventHandler<GeneralAgreementBigRightView> GetGeneralAgreementView;
+        public event ReturnViewEventHandler<LicenseAgreementBigRightView> GetLicenseAgreementView;
+        public event ReturnViewEventHandler<RequestsOrReferenceBigRightView> GetRequestsView;
+        public event ReturnViewEventHandler<RequestsOrReferenceBigRightView> GetReferenceView;
+        public event ReturnViewEventHandler<AuthorsForLicenseBigRightView> GetAuthorsForLicenseView;
+        public event ReturnViewEventHandler<UnattachedMoneyView> GetUnattachedMoneyView;
+        public event ReturnViewEventHandler<RatedListMainBigRightView> GetRatedListMainView;
+        public event ReturnViewEventHandler<RatedListSpectacleBigRightView> GetRatedListSpectacleView;
+        public event ReturnViewEventHandler<RatedListMusicDesignBigRightView> GetMusicDesignView;
+
+
+        #endregion
+
 
         /// <summary>
         /// Виникиє при необхідності зберегти Customer
         /// </summary>
         public event SaveCustomerEventHandler OnSaveCustomerNeed;
 
-        public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
+        public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
         public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
-        public event SavePayslipsEventHandler OnSavePayslip;
+        public event SaveRegisterRatedListEventHandler OnSaveRegisterRatedList;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
+        
 
-        private readonly Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
         public CabinetBigRight()
         {
             InitializeComponent();
-            ctrlReference.SetAnketaDictionary();
-            ctrlRequest.SetAnketaDictionary();
+            if(IpsGlobal.AnketaDictionaties != null)
+            {
+                ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
+                ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
+            }
+
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
+
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
@@ -96,6 +121,7 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
             ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
+            ctrlPayslips.GetMusicDesing += DataNeedRatedList_GetMusicDesing;
 
             // static pages, call this in constructor
             _tab = new Dictionary<CabinetTabType, RadPageViewPage>
@@ -147,14 +173,102 @@ namespace IpsViewComponentLibrary
             UpdateCurentTab(_currenCabinetTab);
         }
 
-        public void UpdateData<T>(List<T> data) where T : class
+        //оновлення даних обаної вкладки
+        public void UpdateCurentTab(CabinetTabType tab)
         {
-            Type type = typeof(T);
-            switch (type)
+            if (_customer == null) return;
+            int custId = _customer.CustId;
+            _customer = GetCustomer?.Invoke(custId);
+            _gridMainView = GetMainGridView?.Invoke(custId);
+            switch (tab)
             {
-                    
+                case CabinetTabType.None:
+                    break;
+
+                case CabinetTabType.Anketa:
+                    break;
+
+                case CabinetTabType.GeneralAgreement:
+                {
+                    _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
+                    ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
+                }
+                    break;
+
+                case CabinetTabType.Licenses:
+                {
+                    _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
+                    ctrlLicense.SetDataSources(_gridMainView);
+                    ctrlLicense.SetData(_customer, _licenseAgreementView);
+                }
+                    break;
+
+                case CabinetTabType.Payslips:
+                {
+                    _registerRatedListView = GetRatedListMainView?.Invoke(custId);
+                    _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
+                    ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
+                }
+                    break;
+
+                case CabinetTabType.Calculations:
+                {
+                    ctrlCalculation.Customer = _customer;
+                }
+                    break;
+
+                case CabinetTabType.Payments:
+                {
+
+                }
+                    break;
+
+                case CabinetTabType.Prepays:
+                {
+
+                }
+                    break;
+
+                case CabinetTabType.Requests:
+                {
+                    _requestsLicenseView = GetRequestsView?.Invoke(custId);
+                    _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
+                    ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
+                }
+                    break;
+
+                case CabinetTabType.References:
+                {
+                    _referenceLicenseView = GetReferenceView?.Invoke(custId);
+                    _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
+                    ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
+                }
+                    break;
+
+                case CabinetTabType.Contacts:
+                {
+                    ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
+                }
+                    break;
+
+                case CabinetTabType.Files:
+                {
+                    ctrlFiles.SetAndUpdateData(_customer, _gridMainView);
+                }
+                    break;
+
+                case CabinetTabType.Agent:
+                {
+                    _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
+                    ctrlAgent.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
+                }
+                    break;
             }
-            UpdateCurentTab(_currenCabinetTab);
+        }
+
+        private List<RatedListMusicDesignBigRightView> DataNeedRatedList_GetMusicDesing()
+        {
+            return GetMusicDesignView?.Invoke(0);
         }
 
         private List<PaidPeriod> CtrlPayslips_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
@@ -174,7 +288,7 @@ namespace IpsViewComponentLibrary
 
         private bool CtrlPayslips_OnSavePayslip(RegisterRatedList list)
         {
-            return OnSavePayslip?.Invoke(list) ?? false;
+            return OnSaveRegisterRatedList?.Invoke(list) ?? false;
         }
 
         //збереження customer
@@ -195,7 +309,7 @@ namespace IpsViewComponentLibrary
 
         private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            return OnLicenseStatusChanging?.Invoke(agr, version, status, false) ?? false;
+            return OnChangeLicenseStatus?.Invoke(agr, version, status, false) ?? false;
         }
 
         private IList<BigRightSpectacleView> CtrlPayslips_OnSpectacleViewNeed(int custId)
@@ -218,9 +332,6 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-
-
-
         public CabinetTabType CurentTab
         {
             get => _currenCabinetTab;
@@ -230,75 +341,8 @@ namespace IpsViewComponentLibrary
                 pageView.SelectedPage = _tab[value];
             }
         }
-
-        public void UpdateCurentTab(CabinetTabType tab)
-        {
-            switch (tab)
-            {
-                case CabinetTabType.None:
-                    break;
-
-                case CabinetTabType.Anketa:
-                    break;
-
-                case CabinetTabType.GeneralAgreement:
-                {
-                    ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
-                }break;
-
-                case CabinetTabType.Licenses:
-                {
-                    ctrlLicense.SetDataSources(_gridMainView);
-                    ctrlLicense.SetData(_customer,_licenseAgreementView);
-                }break;
-
-                case CabinetTabType.Payslips:
-                {
-                    ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
-                }break;
-
-                case CabinetTabType.Calculations:
-                {
-                    ctrlCalculation.Customer = _customer;
-                }break;
-
-                case CabinetTabType.Payments:
-                {
-
-                }break;
-
-                case CabinetTabType.Prepays:
-                {
-
-                }break;
-
-                case CabinetTabType.Requests:
-                {
-                    ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
-                }break;
-
-                case CabinetTabType.References:
-                {
-                    ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
-                }break;
-
-                case CabinetTabType.Contacts:
-                {
-                    ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
-                }break;
-
-                case CabinetTabType.Files:
-                {
-                    ctrlFiles.SetAndUpdateData(_customer, _gridMainView);
-                }break;
-
-                case CabinetTabType.Agent:
-                {
-                    ctrlAgent.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
-                }break;
-            }
-        }
-
+        
+        //оновлення даних на вкладкі при переході на іншу
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
             string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;

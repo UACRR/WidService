@@ -82,7 +82,6 @@
             this.ctrlCabinet.AutoScroll = true;
             this.ctrlCabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.GeneralAgreement;
             this.ctrlCabinet.Location = new System.Drawing.Point(315, 214);
-            this.ctrlCabinet.MusicDesignDelegate = null;
             this.ctrlCabinet.Name = "ctrlCabinet";
             this.ctrlCabinet.Size = new System.Drawing.Size(1019, 432);
             this.ctrlCabinet.TabIndex = 14;

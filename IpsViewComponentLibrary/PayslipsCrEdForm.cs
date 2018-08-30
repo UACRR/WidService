@@ -158,7 +158,6 @@ namespace IpsViewComponentLibrary
             {
                 RgStatus = 0,
                 CustId = _customer.CustId,
-                LicId = curRow.LicId,
                 RegisterItem = new ObservableListSource<RegisterItem> { new RegisterItem
                     {
                         Ticks = 1,

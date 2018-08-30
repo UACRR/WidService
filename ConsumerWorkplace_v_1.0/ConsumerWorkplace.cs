@@ -97,10 +97,9 @@ namespace ConsumerWorkplace_v_1._0
                     };
 
                     foreach (var item in list)
-                    {
                         treeViewBR.Nodes.Add(item);
-                    }
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewSR, mainGridBigRight);
+                    
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
                     // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
                         
@@ -153,15 +152,15 @@ namespace ConsumerWorkplace_v_1._0
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
                         RadTreeNode[] list2 = new[]{
-                    new RadTreeNode{
-                        Text = "Ген.Угода", Value = TypeBRDocument.GenAgreement, Selected = true,
-                        Nodes  =
-                        {
-                            new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
-                            new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                            new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive },
-                            new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation }
-                        }
+                            new RadTreeNode{
+                            Text = "Ген.Угода", Value = TypeBRDocument.GenAgreement,
+                            Nodes  =
+                            {
+                                new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
+                                new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
+                                new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive },
+                                new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation }
+                            }
                     },
                     new RadTreeNode{
                         Text = "Ліцензії", Value = TypeBRDocument.LicAgreement,
@@ -199,14 +198,12 @@ namespace ConsumerWorkplace_v_1._0
                     };
 
                     foreach (var item in list2)
-                    {
                         treeViewBR.Nodes.Add(item);
+                    
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
+                    treeViewBR.SelectedNode = treeViewBR.Nodes["Ген.Угода"];
+
                     }
-
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewSR, mainGridBigRight);
-
-                     // * * * * END CASE
-                }
                     break;
             }
         }

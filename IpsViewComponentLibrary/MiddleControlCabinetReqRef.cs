@@ -45,10 +45,10 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetAnketaDictionary()
+        public void SetAnketaDictionary(AnketaDictionaties anketaDictionaties)
         {
-            // TODO: розкоментувати _dictionaties = IpsGlobal.AnketaDictionaties;
-            //bsDictionary.DataSource = _dictionaties.workType;
+            _dictionaties = anketaDictionaties;
+            bsDictionary.DataSource = _dictionaties.workType;
         }
 
         /// <summary>

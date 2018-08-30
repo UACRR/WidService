@@ -33,13 +33,100 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         public BigRightPresenter(ConsumerService service, RadTreeView treeView, GlobalControlConsumerMainGridBR mainGrid)
         {
             _service = service;
-            treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _mainGrid = mainGrid;
+            treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
+            SubscribeEvents();
+        }
+
+        //всі підписки на події в контролах
+        private void SubscribeEvents()
+        {
             _mainGrid.OnAddNewCustomer += CreateNewCustomer;
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
 
-
+            _cabinetBigRightForm.cabinet.GetCustomer += DataNeed_GetCustomer;
+            _cabinetBigRightForm.cabinet.GetMainGridView += DataNeed_GetMainGridView;
+            _cabinetBigRightForm.cabinet.GetGeneralAgreementView += DataNeed_GetGeneralAgreementView;
+            _cabinetBigRightForm.cabinet.GetLicenseAgreementView += DataNeed_GetLicenseAgreementView;
+            _cabinetBigRightForm.cabinet.GetAuthorsForLicenseView += DataNeed_GetAuthorsForLicenseView;
+            _cabinetBigRightForm.cabinet.GetRatedListMainView += DataNeed_GetRatedListMainView;
+            _cabinetBigRightForm.cabinet.GetRatedListSpectacleView += DataNeed_GetRatedListSpectacleView;
+            _cabinetBigRightForm.cabinet.GetReferenceView += DataNeed_GetReferenceView;
+            _cabinetBigRightForm.cabinet.GetRequestsView += DataNeed_GetRequestsView;
+            _cabinetBigRightForm.cabinet.GetUnattachedMoneyView += DataNeed_GetUnattachedMoneyView;
+            _cabinetBigRightForm.cabinet.GetMusicDesignView += DataNeed_GetMusicDesignView;
+            _cabinetBigRightForm.cabinet.OnSaveCustomerNeed += SaveCustomer;
+            _cabinetBigRightForm.cabinet.OnAddNewDocument += AddNewDocument;
+            _cabinetBigRightForm.cabinet.OnViewDocumentNeed += ViewExistDocument;
+            _cabinetBigRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
+            _cabinetBigRightForm.cabinet.OnChangeLicenseType += ChangeLicenseType;
+            _cabinetBigRightForm.cabinet.OnGetRegisterRatedList += GetRegisterRatedList;
+            _cabinetBigRightForm.cabinet.OnRegisterItemListNeed += GetRegisterItems;
+            _cabinetBigRightForm.cabinet.OnSaveRegisterRatedList += SaveRegisterRatedLists;
+            _cabinetBigRightForm.cabinet.OnRequestWorkRhSaveNeed += SaveWorkRh;
+            _cabinetBigRightForm.cabinet.SavePariodCommandExecuted += SavePariodCommandExecuted;
+            _cabinetBigRightForm.cabinet.OnGetSpectacleNeed += GetSpectacle;
         }
+
+        #region - - - ОТРИМАННЯ ДАНИХ - - -
+
+        private Customer DataNeed_GetCustomer(int custId)
+        {
+            return _service.GetData(custId);
+        }
+
+        private MainGridConsumerBigRightView DataNeed_GetMainGridView(int custId)
+        {
+            return _mainGrid.ViewRow;
+        }
+
+        private List<GeneralAgreementBigRightView> DataNeed_GetGeneralAgreementView(int custId)
+        {
+            return _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", custId).ToListOfType<GeneralAgreementBigRightView>();
+        }
+
+        private List<LicenseAgreementBigRightView> DataNeed_GetLicenseAgreementView(int custId)
+        {
+            return _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", custId).ToListOfType<LicenseAgreementBigRightView>();
+        }
+
+        private List<RequestsOrReferenceBigRightView> DataNeed_GetRequestsView(int custId)
+        {
+            return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", custId).ToListOfType<RequestsOrReferenceBigRightView>();
+        }
+
+        private List<RequestsOrReferenceBigRightView> DataNeed_GetReferenceView(int custId)
+        {
+            return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", custId).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки   
+        }
+
+        private List<RatedListMainBigRightView> DataNeed_GetRatedListMainView(int custId)
+        {
+            return _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", custId).ToListOfType<RatedListMainBigRightView>();
+        }
+
+        private List<RatedListSpectacleBigRightView> DataNeed_GetRatedListSpectacleView(int custId)
+        {
+            return _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
+        }
+
+        private List<AuthorsForLicenseBigRightView> DataNeed_GetAuthorsForLicenseView(int custId)
+        {
+            return _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", custId).ToListOfType<AuthorsForLicenseBigRightView>();
+        }
+
+        private List<UnattachedMoneyView> DataNeed_GetUnattachedMoneyView(int custId)
+        {
+            return _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", custId).ToListOfType<UnattachedMoneyView>();
+        }
+
+        private List<RatedListMusicDesignBigRightView> DataNeed_GetMusicDesignView(int custId)
+        {
+            return _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();
+        }
+
+        #endregion
+
 
         //зміна даних по фільтру
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
@@ -66,7 +153,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var _cust = _service.NewCustomer(custType);
             var _dict = _service.GetDictionary();
             AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData, true, TypeRights.BigRights) { StartPosition = FormStartPosition.CenterParent };
-            form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
+            form.OnSaveCustomerNeed += SaveCustomer;
             form.ShowDialog();
             if (!form.Disposing)
             {
@@ -90,82 +177,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var moneyUnattachedView = _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id).ToListOfType<UnattachedMoneyView>(); // - - - незакріплені кошти користувачів великих прав
             var ratedListMainView = _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListMainBigRightView>(); // - - - Р/Л основні дані
             var rlSpectacleView = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();// Р/Л вистави
-            var rlMusicDesignView = _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();//- Р/Л музичне оформелння
 
             _cabinetBigRightForm.cabinet.SetAllLoadData(customer, mainGridView, generalAgrView, licenseView,requestView, referenceView, licAutorsView, moneyUnattachedView, ratedListMainView, rlSpectacleView);
             if(!_cabinetBigRightForm.Visible)
                 _cabinetBigRightForm.Show();
         }
-
-        private void UpdateDataForCurentTab(int id, CabinetTabType tabType = CabinetTabType.None)
-        {
-            switch (tabType)
-            {
-                case CabinetTabType.None:
-                    break;
-                case CabinetTabType.Anketa:
-                    break;
-
-                case CabinetTabType.GeneralAgreement:
-                    var generalAgrView = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id); // - - - - генеральні угоди
-                    _cabinetBigRightForm.cabinet.UpdateData(generalAgrView.ToListOfType<GeneralAgreementBigRightView>());
-                    break;
-
-                
-                case CabinetTabType.Licenses:
-                    break;
-                case CabinetTabType.Calculations:
-                    break;
-                case CabinetTabType.Payslips:
-                    break;
-                case CabinetTabType.Requests:
-                    break;
-                case CabinetTabType.References:
-                    break;
-                
-                case CabinetTabType.Files:
-                    break;
-                case CabinetTabType.Agent:
-                    break;
-                case CabinetTabType.Payments:
-                    break;
-                case CabinetTabType.Prepays:
-                    break;
-                case CabinetTabType.Contacts:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(tabType), tabType, null);
-            }
-
-            var customer = _service.GetData(id);
-            var mainGridView = _mainGrid.ViewRow;//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - view основного гріда
-            var licenseView = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();// - - - - - - ліцензії
-            var requestView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>(); //- - - - - - заявки
-            var referenceView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки
-            var licAutorsView = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>(); // - - автори для всіх типів ліцензій
-            var moneyUnattachedView = _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id).ToListOfType<UnattachedMoneyView>(); // - - - незакріплені кошти користувачів великих прав
-            var ratedListMainView = _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListMainBigRightView>(); // - - - Р/Л основні дані
-            var rlSpectacleView = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();// Р/Л вистави
-            var rlMusicDesignView = _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();//- Р/Л музичне оформелння
-        }
-
-        //private void CabinetBr_OnCustomerUpdateDataNeed(int id)
-        //{
-        //    _cabinetBr.SetDataCustomer(_service.GetData(id));
-
-        //    _cabinetBr.SetAgreementViewData(_service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id));
-        //    _cabinetBr.SetRequestData(_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id));
-        //    _cabinetBr.SetBigRightBidAuthors(_service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id));
-        //    _cabinetBr.SetReferanceData(_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id));
-        //    _cabinetBr.SetMoneyUndescribsData(_service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id));
-        //    _cabinetBr.SetPayslipsDate(_service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id),
-        //                               _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null),
-        //                               _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null));
-
-        //}
-
-
-
 
         // Редагування існуючого споживача юридичної особи
         private void EditJuridicalConsumer(int custId)
@@ -173,9 +189,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var _cust = _service.GetData(custId);
             var _dict = _service.GetDictionary();
             AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData, false, TypeRights.BigRights) { StartPosition = FormStartPosition.CenterParent };
-            form.OnSaveCustomerNeed += Form_OnSaveCustomerNeed;
+            form.OnSaveCustomerNeed += SaveCustomer;
             form.ShowDialog();
-            form.OnSaveCustomerNeed -= Form_OnSaveCustomerNeed;
             if (!form.Disposing)
             {
                 form.Dispose();
@@ -185,108 +200,23 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             UpdateData(_cust.CustId);
         }
 
-
-        public IList<MainGridConsumerBigRightView> GetMainView(TypeBRDocument typeDoc, ConsumerFilterEnum what)
+        //ЗБЕРЕЖЕННЯ Customer
+        private bool SaveCustomer(Customer customer)
         {
-            return _service.getMainViewBR(typeDoc, what);
-            // return new List<MainGridConsumerBigRightView>( typeDoc, what );
+            var relust = _service.Save(customer);
+            UpdateData(customer.CustId);
+            return relust;
         }
 
-       
-        //public void SwitchToCabinet(int id, CabinetTabType tabType = CabinetTabType.None)
-        //{
-        //    if (_cabinetBr == null)
-        //    {
-        //        _cabinetBr = new GlobalControlConsumerCabinetBR();
-        //        var a = new CalculationInfoControlPresenter(_cabinetBr.ctrlCabinet.ctrlCalculation, _service);
-        //        _cabinetBr.OnBackToGridNeed += CabinetBr_OnBackToGridNeed;
-        //        _cabinetBr.OnCustomerUpdateDataNeed += CabinetBr_OnCustomerUpdateDataNeed;
-        //        _cabinetBr.OnAddNewCustomer += _cabinetBr_OnAddNewCustomer;
-        //        _cabinetBr.OnEditCustomer += _cabinetBr_OnEditCustomer;
-        //        _cabinetBr.OnSaveCustomer += _cabinetBr_OnSaveCustomer;
-        //        _cabinetBr.OnAddNewDocument += CabinetBr_OnAddNewDocument;
-        //        _cabinetBr.OnViewDocument += CabinetBr_OnViewDocument;
-        //        _cabinetBr.OnGetSpectacleNeed += _cabinetBr_OnGetSpectacleNeed;
-        //        _cabinetBr.OnLicenseStatusChanging += _cabinetBr_OnLicenseStatusChanging;
-        //        _cabinetBr.OnWorkRhSaveNeed += SaveWorkRh;
-        //        _cabinetBr.OnChangeLicenseType += ChangeLicenseType;
-        //        _cabinetBr.OnSavePayslip += SavePayslips;
-        //        _cabinetBr.OnGetRegisterRatedList += _cabinetBr_OnGetRegisterRatedList;
-        //        _cabinetBr.OnRegisterItemListNeed += GetRegisterItems;
-        //        _cabinetBr.SavePariodCommandExecuted += SavePariodCommandExecuted;
-        //        _cabinetBr.SetDataAnketaDictionaties(_service.GetDictionary());
-        //        _cabinetBr.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
-        //        _cabinetBr.Dock = DockStyle.Fill;
-        //    }
-            
-        //    _cabinetBr.SetSelectCustomer(id);
-        //    if (tabType != CabinetTabType.None)
-        //        _cabinetBr.SetTab(tabType);
-        //}
-
-        private List<PaidPeriod> SavePariodCommandExecuted(int id, List<PaidPeriod> e)
-        {
-            return _service.SavePeriods(id, e);
-        }
-
-        private List<RegisterItem> GetRegisterItems(int regId)
-        {
-            return _service.GetRegisterItems(regId);
-        }
-
-        private Customer _cabinetBr_OnGetRegisterRatedList(int custId)
-        {
-            return _service.GetRatedListForCust(custId);
-        }
-
-        private bool SavePayslips(RegisterRatedList list)
-        {
-            var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
-            if (outlist?.Register?.FirstOrDefault()?.CustId is int id)
-                UpdateData(id);
-            return result;
-        }
-
-
-        private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
-        {
-            if (_service.SetLicenseType(agreement, licType))
-            {
-                UpdateData(agreement?.CustId ?? default(int));
-                return true;
-            }
-            return false;
-        }
-
-        private bool SaveWorkRh(int licId, List<WorkRh> workRhList)
-        {
-            if (workRhList == null)
-                return false;
-            return _service.SaveBRWorkRH(licId, workRhList);
-        }
-
-        private bool _cabinetBr_OnLicenseStatusChanging(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status, bool changeVer)
-        {
-            if (_service.SetLicAgreementStatus(agr, version, status, changeVer))
-            {
-                UpdateData((int)agr.CustId);
-                return true;
-            }
-            return false;
-        }
-
-        private IList<BigRightSpectacleView> _cabinetBr_OnGetSpectacleNeed(int custId)
-        {
-            return _service.getBRView(typeof(BigRightSpectacleView), "vTSK_1_BRObjects", custId).Select(item => item as BigRightSpectacleView).ToList();
-        }
-
-        private void CabinetBr_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
+        //додати новий документ
+        private void AddNewDocument(int custId, int typeDocument, string fileName, string comment)
         {
             _service.uploadDocument(custId, typeDocument, comment, fileName);
             UpdateData(custId);
         }
 
-        private void CabinetBr_OnViewDocument(int custId, int typeDocument, string fileName)
+        //переглянути існуючий документ
+        private void ViewExistDocument(int custId, int typeDocument, string fileName)
         {
             try
             {
@@ -336,33 +266,73 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             }
         }
 
-        private bool _cabinetBr_OnSaveCustomer(ipsFormsDesign.Model.Customer customer)
+        //змінити статус ліцензії
+        private bool ChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            var relust = _service.Save(customer);
-            UpdateData(customer.CustId);
-            return relust;
+            if (_service.SetLicAgreementStatus(agr, version, status, changeVer))
+            {
+                UpdateData((int)agr.CustId);
+                return true;
+            }
+            return false;
         }
 
-        private void _cabinetBr_OnEditCustomer(int id)
+        // змінити тип ліцензії (заявка, довідка, ліцензія)
+        private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
         {
-            EditJuridicalConsumer(id);
+            if (_service.SetLicenseType(agreement, licType))
+            {
+                UpdateData(agreement?.CustId ?? default(int));
+                return true;
+            }
+            return false;
         }
 
-        /// <summary>
-        /// Оновлення даних
-        /// </summary>
-        /// <param name="id"></param>
+        //розрахунковий лист в customer об'єкті
+        private Customer GetRegisterRatedList(int custId)
+        {
+            return _service.GetRatedListForCust(custId);
+        }
+        // компоненти розрахункового листа
+        private List<RegisterItem> GetRegisterItems(int regId)
+        {
+            return _service.GetRegisterItems(regId);
+        }
+
+        //збереження розрахункового листа
+        private bool SaveRegisterRatedLists(RegisterRatedList list)
+        {
+            var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
+            if (outlist?.Register?.FirstOrDefault()?.CustId is int id)
+                UpdateData(id);
+            return result;
+        }
+
+        // TODO: ??
+        private bool SaveWorkRh(int licId, List<WorkRh> workRhList)
+        {
+            if (workRhList == null)
+                return false;
+            return _service.SaveBRWorkRH(licId, workRhList);
+        }
+
+        //зберегти періоди
+        private List<PaidPeriod> SavePariodCommandExecuted(int id, List<PaidPeriod> e)
+        {
+            return _service.SavePeriods(id, e);
+        }
+
+        // отримати список вистав
+        private IList<BigRightSpectacleView> GetSpectacle(int custId)
+        {
+            return _service.getBRView(typeof(BigRightSpectacleView), "vTSK_1_BRObjects", custId).Select(item => item as BigRightSpectacleView).ToList();
+        }
+
+        // TODO: перехід на точечне оновлення
         private void UpdateData(int id)
         {
             _mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
         }
 
-
-        // Збереження даних
-        private bool Form_OnSaveCustomerNeed(Customer customer)
-        {
-            var result = _service.Save(customer);
-            return result;
-        }
     }
 }

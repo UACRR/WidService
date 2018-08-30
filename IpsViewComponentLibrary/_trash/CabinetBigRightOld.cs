@@ -58,7 +58,7 @@ namespace IpsViewComponentLibrary
         public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
         public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
-        public event SavePayslipsEventHandler OnSavePayslip;
+        public event SaveRegisterRatedListEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
@@ -77,15 +77,15 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnAddNewDocument += CtrlCabinet_OnAddNewDocument;
             ctrlCabinet.OnViewDocumentNeed += CtrlCabinet_OnViewDocumentNeed;
             ctrlCabinet.OnGetSpectacleNeed += CtrlCabinet_OnGetSpectacleNeed;
-            ctrlCabinet.OnLicenseStatusChanging += CtrlCabinet_OnLicenseStatusChanging;
+            ctrlCabinet.OnChangeLicenseStatus += CtrlCabinetOnChangeLicenseStatus;
             ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
             ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
-            ctrlCabinet.OnSavePayslip += CtrlCabinet_OnSavePayslip;
+            ctrlCabinet.OnSaveRegisterRatedList += CtrlCabinetOnSaveRegisterRatedList;
             ctrlCabinet.OnGetRegisterRatedList += CtrlCabinet_OnGetRegisterRatedList;
             ctrlCabinet.OnRegisterItemListNeed += CtrlCabinet_OnRegisterItemListNeed;
             ctrlCabinet.SavePariodCommandExecuted += CtrlCabinet_SavePariodCommandExecuted;
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
-            ctrlCabinet.MusicDesignDelegate = () => (List<RatedListMusicDesignBigRightView>) _musicDesignRatedListViews;
+            //ctrlCabinet.MusicDesignDelegate = () => (List<RatedListMusicDesignBigRightView>) _musicDesignRatedListViews;
         }
 
         private List<PaidPeriod> CtrlCabinet_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
@@ -103,7 +103,7 @@ namespace IpsViewComponentLibrary
             return OnGetRegisterRatedList?.Invoke(custId);
         }
 
-        private bool CtrlCabinet_OnSavePayslip(RegisterRatedList list)
+        private bool CtrlCabinetOnSaveRegisterRatedList(RegisterRatedList list)
         {
             return OnSavePayslip?.Invoke(list) ?? false;
         }
@@ -118,7 +118,7 @@ namespace IpsViewComponentLibrary
             return OnWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
         }
 
-        private bool CtrlCabinet_OnLicenseStatusChanging(LicenseAgreement agr, int version, int status, bool changeVer)
+        private bool CtrlCabinetOnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
             return OnLicenseStatusChanging?.Invoke(agr, version, status, changeVer) ?? false;
         }

@@ -76,8 +76,7 @@ namespace ConsumerWorkplace_v_1._0
                 _mainGridBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _mainGridBr.Dock = DockStyle.Fill;
             }
-
-            _mainGridBr.FilterString = _cabinetBr?.FilterString ?? string.Empty;
+            
             if(id!=0)
                 _mainGridBr.SetSelectCustomer(id);
 
@@ -115,8 +114,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
             }
-
-            _cabinetBr.FilterString = _mainGridBr?.FilterString ?? string.Empty;
+            
             _cabinetBr.SetSelectCustomer(id);
             if(tabType != CabinetTabType.None)
                 _cabinetBr.SetTab(tabType);

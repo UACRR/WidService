@@ -39,7 +39,6 @@
             this.cabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.None;
             this.cabinet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cabinet.Location = new System.Drawing.Point(0, 0);
-            this.cabinet.MusicDesignDelegate = null;
             this.cabinet.Name = "cabinet";
             this.cabinet.Size = new System.Drawing.Size(1141, 514);
             this.cabinet.TabIndex = 0;

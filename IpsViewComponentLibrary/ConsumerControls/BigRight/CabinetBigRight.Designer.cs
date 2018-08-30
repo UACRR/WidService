@@ -181,7 +181,6 @@
             // 
             this.ctrlPayslips.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlPayslips.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPayslips.MusicDesing = null;
             this.ctrlPayslips.Name = "ctrlPayslips";
             this.ctrlPayslips.Size = new System.Drawing.Size(1136, 584);
             this.ctrlPayslips.TabIndex = 0;

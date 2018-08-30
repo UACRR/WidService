@@ -23,13 +23,16 @@ namespace IpsViewComponentLibrary
         public delegate IList<BigRightSpectacleView> GetSpectacleView(int custId);
 
         public event GetSpectacleView OnSpectacleViewNeed;
-        public event SavePayslipsEventHandler OnSavePayslip;
+        public event SaveRegisterRatedListEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
-        public delegate List<RatedListMusicDesignBigRightView> MusicDesingDelegate();
-        public MusicDesingDelegate MusicDesing { get; set; }
+        public delegate List<RatedListMusicDesignBigRightView> MusicDesingEventHandler();
+        /// <summary>
+        /// Виникає при потребі показати музичне оформлення
+        /// </summary>
+        public event MusicDesingEventHandler GetMusicDesing;
 
         public MiddleControlCabinetPayslips()
         {
@@ -230,7 +233,7 @@ namespace IpsViewComponentLibrary
             cMusAmount.TextValue = musicd?.MusicAmount.ToString();
             cMusRate.TextValue = musicd?.MusicRate.ToString();
 
-            var musicDesign = MusicDesing?.Invoke();
+            var musicDesign = GetMusicDesing?.Invoke();
             var source = musicDesign?.Where(r => r.RegId == rec?.RegId).ToList();
             gvMusicDesignView.DataSource = source;
         }
