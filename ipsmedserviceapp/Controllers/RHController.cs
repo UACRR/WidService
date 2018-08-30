@@ -469,8 +469,6 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         }
         #endregion
 
-        #region Methods for change rightholder status
-
         [HttpPut("setstatus/{rhId}")]
         public async Task<IActionResult> SetStatus(int rhId, [FromBody] int newStatus)
         {
@@ -500,8 +498,6 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
 
             return Ok();
         }
-
-        #endregion
 
         #region inheritance
 
@@ -753,6 +749,13 @@ t2.custId = @custid
 
                 if (sourceCopyright.WorkRh != null)
                 {
+                    if (sourceCopyright.WorkRh.WorkTypeRh == 5) // Відмова
+                    {
+                        // TODO: it is a poorly way to do so
+                        _dbContext.CopyRight.Remove(destCopyright);
+                        continue;
+                    }
+
                     if (destCopyright.WorkRh == null)
                         destCopyright.WorkRh = new WorkRh();
 
