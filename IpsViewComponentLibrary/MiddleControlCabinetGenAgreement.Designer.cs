@@ -180,7 +180,7 @@
             // ctrlGeneralAgrDetailInfoBr
             // 
             this.ctrlGeneralAgrDetailInfoBr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ctrlGeneralAgrDetailInfoBr.DataSourceLicense = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            this.ctrlGeneralAgrDetailInfoBr.DataSourceLicense = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
             this.ctrlGeneralAgrDetailInfoBr.Location = new System.Drawing.Point(3, 342);
             this.ctrlGeneralAgrDetailInfoBr.Name = "ctrlGeneralAgrDetailInfoBr";
             this.ctrlGeneralAgrDetailInfoBr.Size = new System.Drawing.Size(691, 110);

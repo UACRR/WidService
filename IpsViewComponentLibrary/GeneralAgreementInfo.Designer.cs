@@ -91,7 +91,7 @@
             // 
             // bsAgreementAddBR
             // 
-            this.bsAgreementAddBR.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            this.bsAgreementAddBR.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
             // 
             // txtAgrNumberBr
             // 

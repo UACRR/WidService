@@ -670,7 +670,7 @@ namespace IpsViewComponentLibrary
             // 
             // bsConsumerBigRightView
             // 
-            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
             // 
             // radLabel1
             // 

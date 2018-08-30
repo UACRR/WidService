@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -16,16 +17,11 @@ namespace IpsViewComponentLibrary
     {
         private int _rowId;
 
-        /// <summary>
-        /// Рядкове начення фільтра
-        /// </summary>
-        public string FilterString
+        public MainGridConsumerBigRightView ViewRow
         {
-            get => txtSearch.Text;
-            set => txtSearch.Text = value;
+            get => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
         }
-
-        public delegate void LoadCustomerCabinetBrEventHandler(int id, CabinetTabType tabType = CabinetTabType.None);
+        public delegate void LoadCustomerCabinetBrEventHandler(int id);
         public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
         
         public event EventHandler OnAddNewCustomer;
@@ -59,19 +55,7 @@ namespace IpsViewComponentLibrary
 
         private void gvViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            switch (e.Column.FieldName)
-            {
-                case "btnsFiles":
-                {
-                    OnLoadCustomerCabinetNeed?.Invoke(_rowId, CabinetTabType.Files);
-                }break;
-
-                case "btnsView":
-                {
-                    OnLoadCustomerCabinetNeed?.Invoke(_rowId);
-                }
-                    break;
-            }
+            OnLoadCustomerCabinetNeed?.Invoke(_rowId);
         }
 
         private void gvViewConsumers_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)

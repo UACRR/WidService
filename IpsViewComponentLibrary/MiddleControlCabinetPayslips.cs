@@ -17,8 +17,8 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetPayslips : UserControl
     {
         private Customer _customer;
-        private ConsumerBigRightView _bigRightView;
-        private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
+        private MainGridConsumerBigRightView _bigRightView;
+        private IList<RatedListSpectacleBigRightView> _payslipsSpectacleViews;
 
         public delegate IList<BigRightSpectacleView> GetSpectacleView(int custId);
 
@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
-        public delegate List<MusicDesignRatedListView> MusicDesingDelegate();
+        public delegate List<RatedListMusicDesignBigRightView> MusicDesingDelegate();
         public MusicDesingDelegate MusicDesing { get; set; }
 
         public MiddleControlCabinetPayslips()
@@ -38,9 +38,9 @@ namespace IpsViewComponentLibrary
         }
 
         public void SetAndUpdateData(Customer customer, 
-            ConsumerBigRightView bigRightView,
-            IList<BigRightRegister> registers, 
-            IList<BigRightPayslipsSpectacleView> payslipsSpectacleViews)
+            MainGridConsumerBigRightView bigRightView,
+            IList<RatedListMainBigRightView> registers, 
+            IList<RatedListSpectacleBigRightView> payslipsSpectacleViews)
         {
             _customer = customer;
             _bigRightView = bigRightView;
@@ -81,7 +81,7 @@ namespace IpsViewComponentLibrary
         //редагування р/р
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            var row = e?.Row?.DataBoundItem as BigRightRegister;
+            var row = e?.Row?.DataBoundItem as RatedListMainBigRightView;
             btnToAccept.Enabled = row?.Status == 0;
             var payslip = GetRatedList(row);
 
@@ -112,7 +112,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private RegisterRatedList GetRatedList(BigRightRegister reg)
+        private RegisterRatedList GetRatedList(RatedListMainBigRightView reg)
         {
             var customer = OnGetRegisterRatedList?.Invoke(_customer.CustId);
             var license = customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec?.LicClass == 1 && rec?.LicStatus == 2);
@@ -152,10 +152,10 @@ namespace IpsViewComponentLibrary
                 return;
             }
 
-            if (collapsiblePanel.IsExpanded && (e?.CurrentRow?.DataBoundItem as BigRightRegister)?.RmId != null)
+            if (collapsiblePanel.IsExpanded && (e?.CurrentRow?.DataBoundItem as RatedListMainBigRightView)?.RmId != null)
             {
-                SetSpectacleViewGridDataSource(((BigRightRegister) e.CurrentRow.DataBoundItem).RmId);
-                btnToAccept.Enabled = ((BigRightRegister) e.CurrentRow.DataBoundItem).Status == 0;
+                SetSpectacleViewGridDataSource(((RatedListMainBigRightView) e.CurrentRow.DataBoundItem).RmId);
+                btnToAccept.Enabled = ((RatedListMainBigRightView) e.CurrentRow.DataBoundItem).Status == 0;
             }
         }
 
@@ -221,7 +221,7 @@ namespace IpsViewComponentLibrary
             cAuthorAmount.TextValue = rec?.AuthAmount.ToString();
             cAuthorRate.TextValue = rec?.AuthRate.ToString();
 
-            var row = gvViewRl.CurrentRow.DataBoundItem as BigRightRegister;
+            var row = gvViewRl.CurrentRow.DataBoundItem as RatedListMainBigRightView;
 
             var musicd = _payslipsSpectacleViews
                 .Where(r => r.RmId == row?.RmId)
@@ -243,7 +243,7 @@ namespace IpsViewComponentLibrary
 
         private void btnToAccept_Click(object sender, EventArgs e)
         {
-            if(gvViewRl.CurrentRow.DataBoundItem is BigRightRegister reg)
+            if(gvViewRl.CurrentRow.DataBoundItem is RatedListMainBigRightView reg)
             {
                 var ratedlist = GetRatedList(reg);
                 ratedlist.Status = 1;

@@ -434,7 +434,7 @@
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.BigRightRequestBidAuthors);
+            this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.AuthorsForLicenseBigRightView);
             // 
             // btnSave
             // 
@@ -460,7 +460,7 @@
             // 
             // ctrlAgrInfo
             // 
-            this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
             this.ctrlAgrInfo.Location = new System.Drawing.Point(3, 3);
             this.ctrlAgrInfo.MaximumSize = new System.Drawing.Size(705, 79);
             this.ctrlAgrInfo.MinimumSize = new System.Drawing.Size(705, 79);

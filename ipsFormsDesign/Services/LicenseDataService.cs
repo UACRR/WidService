@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Services
             _webApi = new ApiConnector();
         }
 
-        public IList<BigRightRequests> GetLicenseAgreements(LicenseAgreementQuery query)
+        public IList<RequestsOrReferenceBigRightView> GetLicenseAgreements(LicenseAgreementQuery query)
         {
-            var list = _webApi.GetList<BigRightRequests>("licenseAgreements", query.ToKeyValuePair());
+            var list = _webApi.GetList<RequestsOrReferenceBigRightView>("licenseAgreements", query.ToKeyValuePair());
 
             return list;
         }

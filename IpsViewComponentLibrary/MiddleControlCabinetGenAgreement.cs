@@ -17,7 +17,7 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetGenAgreement : UserControl
     {
         private Customer _customer;
-        private ConsumerBigRightView _bigRightView;
+        private MainGridConsumerBigRightView _bigRightView;
         public event LisenseStatusChangeEventHandler OnLicStatusChange;
 
         public MiddleControlCabinetGenAgreement()
@@ -25,18 +25,17 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightMasterGenAgr> genAgrs)
+        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView, IList<GeneralAgreementBigRightView> genAgrs)
         {
             _customer = customer;
             _bigRightView = bigRightView;
-            //ctrlHeaderInfo.SetHeaderInfoBigRight(_customer,_bigRightView);
             ctrlGeneralAgrDetailInfoBr.DataSourceLicense = bigRightView;
             gvGenAgrLicences.DataSource = genAgrs;
         }
 
         private void gvGenAgrLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            var status = (e?.CurrentRow?.DataBoundItem as BigRightMasterGenAgr)?.AgrStatus ?? -1;
+            var status = (e?.CurrentRow?.DataBoundItem as GeneralAgreementBigRightView)?.AgrStatus ?? -1;
 
             if (status != 4)
                 btnEditAgr.Enabled = true;
@@ -56,8 +55,8 @@ namespace IpsViewComponentLibrary
 
         private void btnEditAgr_Click(object sender, EventArgs e)
         {
-            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.LicId;
-            var version = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.Version;
+            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as GeneralAgreementBigRightView)?.LicId;
+            var version = (gvGenAgrLicences.CurrentRow.DataBoundItem as GeneralAgreementBigRightView)?.Version;
 
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == id);
             var agreementBr = license?.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == version);
@@ -74,7 +73,7 @@ namespace IpsViewComponentLibrary
         //перегляд договору
         private void btnView_Click(object sender, EventArgs e)
         {
-            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.LicId;
+            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as GeneralAgreementBigRightView)?.LicId;
             var licence = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == id);
             ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: IpsGlobal.AnketaDictionaties, customer: _customer, licenseAgreement: licence)
             {
@@ -86,7 +85,7 @@ namespace IpsViewComponentLibrary
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            if (gvGenAgrLicences.CurrentRow.DataBoundItem is BigRightMasterGenAgr licrow)
+            if (gvGenAgrLicences.CurrentRow.DataBoundItem is GeneralAgreementBigRightView licrow)
             {
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
                 OnLicStatusChange?.Invoke(license, licrow.Version, 2, false);
@@ -97,7 +96,7 @@ namespace IpsViewComponentLibrary
         {
             if (RadMessageBox.Show("Закрити генеральний договір?", "Підтвердження", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
             {
-                if(gvGenAgrLicences.CurrentRow.DataBoundItem is BigRightMasterGenAgr licrow)
+                if(gvGenAgrLicences.CurrentRow.DataBoundItem is GeneralAgreementBigRightView licrow)
                 {
                     var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
                     OnLicStatusChange?.Invoke(license, licrow.Version, 4, false);

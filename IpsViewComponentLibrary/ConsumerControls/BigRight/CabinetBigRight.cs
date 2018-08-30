@@ -38,16 +38,16 @@ namespace IpsViewComponentLibrary
             set => ctrlPayslips.MusicDesing = value;
         }
 
-        private Customer _customer = null;
-        private ConsumerBigRightView _brView;
-        private IList<VbrLicense> _brLicenses;
-        private IList<BigRightMasterGenAgr> _genAgrs;
-        private IList<BigRightRequests> _requests;
-        private IList<BigRightRequests> _reference;
-        private IList<BigRightRequestBidAuthors> _authors;
-        private IList<BigRightMoneyUndescrib> _moneyUndescribs;
-        private IList<BigRightRegister> _registers;
-        private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
+        private Customer _customer;
+        private MainGridConsumerBigRightView _gridMainView;
+        private IList<GeneralAgreementBigRightView> _generalAgreementView;
+        private IList<LicenseAgreementBigRightView> _licenseAgreementView;
+        private IList<RequestsOrReferenceBigRightView> _requestsLicenseView;
+        private IList<RequestsOrReferenceBigRightView> _referenceLicenseView;
+        private IList<AuthorsForLicenseBigRightView> _authorsForLicenseView;
+        private IList<UnattachedMoneyView> _unattachedMoneyView;
+        private IList<RatedListMainBigRightView> _registerRatedListView;
+        private IList<RatedListSpectacleBigRightView> _rlSpectacleView;
 
         private AnketaDictionaties _anketaDictionaties;
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
@@ -69,7 +69,7 @@ namespace IpsViewComponentLibrary
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
-        private Dictionary<CabinetTabType, RadPageViewPage> _tab;
+        private readonly Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
         public CabinetBigRight()
         {
@@ -97,21 +97,64 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
 
+            // static pages, call this in constructor
             _tab = new Dictionary<CabinetTabType, RadPageViewPage>
             {
                 {CabinetTabType.None, null},
+                {CabinetTabType.Anketa, pvAnketa},
+                {CabinetTabType.GeneralAgreement, pvGeneralAgreement},
                 {CabinetTabType.Licenses, pvLicence},
-                { CabinetTabType.Calculations, pvCalculation},
-                {CabinetTabType.Payslips, pvPayslips},
                 {CabinetTabType.Requests, pvRequest},
                 {CabinetTabType.References, pvReference},
-                {CabinetTabType.GeneralAgreement, pvGeneralAgreement},
+                {CabinetTabType.Calculations, pvCalculation},
+                {CabinetTabType.Payslips, pvPayslips},
                 {CabinetTabType.Files, pvFiles},
                 {CabinetTabType.Agent, pvAgent},
                 {CabinetTabType.Payments, pvPays},
                 {CabinetTabType.Prepays, pvAvances},
                 {CabinetTabType.Contacts, pvContacts}
             };
+        }
+
+        /// <summary>
+        /// Передати та встановити дані 
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="gridMainView"></param>
+        /// <param name="generalAgreementView"></param>
+        /// <param name="licenseAgreementView"></param>
+        /// <param name="requestsLicenseView"></param>
+        /// <param name="referenceLicenseView"></param>
+        /// <param name="authorsForLicenseView"></param>
+        /// <param name="unattachedMoneyView"></param>
+        /// <param name="registerRatedListView"></param>
+        /// <param name="rlSpectacleView"></param>
+        public void SetAllLoadData(Customer customer, MainGridConsumerBigRightView gridMainView, IList<GeneralAgreementBigRightView> generalAgreementView,
+            IList<LicenseAgreementBigRightView> licenseAgreementView, IList<RequestsOrReferenceBigRightView> requestsLicenseView, IList<RequestsOrReferenceBigRightView> referenceLicenseView,
+            IList<AuthorsForLicenseBigRightView> authorsForLicenseView, IList<UnattachedMoneyView> unattachedMoneyView, IList<RatedListMainBigRightView> registerRatedListView,
+            IList<RatedListSpectacleBigRightView> rlSpectacleView)
+        {
+            _customer = customer;
+            _gridMainView = gridMainView;
+            _generalAgreementView = generalAgreementView;
+            _licenseAgreementView = licenseAgreementView;
+            _requestsLicenseView = requestsLicenseView;
+            _referenceLicenseView = referenceLicenseView;
+            _authorsForLicenseView = authorsForLicenseView;
+            _unattachedMoneyView = unattachedMoneyView;
+            _registerRatedListView = registerRatedListView;
+            _rlSpectacleView = rlSpectacleView;
+            UpdateCurentTab(_currenCabinetTab);
+        }
+
+        public void UpdateData<T>(List<T> data) where T : class
+        {
+            Type type = typeof(T);
+            switch (type)
+            {
+                    
+            }
+            UpdateCurentTab(_currenCabinetTab);
         }
 
         private List<PaidPeriod> CtrlPayslips_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
@@ -175,30 +218,7 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public void SetAndUpdateData(Customer customer,
-            ConsumerBigRightView brView,
-            IList<VbrLicense> brLicenses,
-            IList<BigRightMasterGenAgr> genAgrs,
-            IList<BigRightRequests> requests,
-            IList<BigRightRequestBidAuthors> authors,
-            IList<BigRightRequests> reference,
-            IList<BigRightMoneyUndescrib> moneyUndescribs,
-            IList<BigRightRegister> registers,
-            IList<BigRightPayslipsSpectacleView> payslipsSpectacleViews)
-        {
-            _customer = customer;
-            _brView = brView;
-            _brLicenses = brLicenses;
-            _genAgrs = genAgrs;
-            _requests = requests;
-            _reference = reference;
-            _authors = authors;
-            _registers = registers;
-            _moneyUndescribs = moneyUndescribs;
-            _payslipsSpectacleViews = payslipsSpectacleViews;
 
-            UpdateCurentTab(_currenCabinetTab);
-        }
 
 
         public CabinetTabType CurentTab
@@ -223,18 +243,18 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.GeneralAgreement:
                 {
-                    ctrlGeneralAgreement.SetAndUpdateData(_customer, _brView, _genAgrs);
+                    ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
                 }break;
 
                 case CabinetTabType.Licenses:
                 {
-                    ctrlLicense.SetDataSources(_brView);
-                    ctrlLicense.SetData(_customer,_brLicenses);
+                    ctrlLicense.SetDataSources(_gridMainView);
+                    ctrlLicense.SetData(_customer,_licenseAgreementView);
                 }break;
 
                 case CabinetTabType.Payslips:
                 {
-                    ctrlPayslips.SetAndUpdateData(_customer, _brView, _registers, _payslipsSpectacleViews);
+                    ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
                 }break;
 
                 case CabinetTabType.Calculations:
@@ -254,27 +274,27 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.Requests:
                 {
-                    ctrlRequest.SetAndUpdateData(_customer,_brView,_requests,_authors);
+                    ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
                 }break;
 
                 case CabinetTabType.References:
                 {
-                    ctrlReference.SetAndUpdateData(_customer, _brView, _reference, _authors);
+                    ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
                 }break;
 
                 case CabinetTabType.Contacts:
                 {
-                    ctrlContactHeader.SetControlTextInfoBigRight(_customer,_brView);
+                    ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
                 }break;
 
                 case CabinetTabType.Files:
                 {
-                    ctrlFiles.SetAndUpdateData(_customer,_brView);
+                    ctrlFiles.SetAndUpdateData(_customer, _gridMainView);
                 }break;
 
                 case CabinetTabType.Agent:
                 {
-                    ctrlAgent.SetAndUpdateData(_customer,_brView,_genAgrs);
+                    ctrlAgent.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
                 }break;
             }
         }

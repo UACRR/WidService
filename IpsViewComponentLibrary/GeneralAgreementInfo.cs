@@ -19,7 +19,7 @@ namespace IpsViewComponentLibrary
         }
 
         /// <summary>
-        /// Об'єкт ConsumerBigRightView
+        /// Об'єкт MainGridConsumerBigRightView
         /// </summary>
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]

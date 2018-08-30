@@ -78,13 +78,94 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
         //відкрити кабінет
-        private void LoadCustomerCabinet(int id, CabinetTabType tabType = CabinetTabType.None)
+        private void LoadCustomerCabinet(int id)
         {
-            
-            _cabinetBigRightForm.SetCustomerData(_service.GetData(id));
+            var customer = _service.GetData(id);
+            var mainGridView = _mainGrid.ViewRow;//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - view основного гріда
+            var generalAgrView = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>(); // - - - - генеральні угоди
+            var licenseView = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();// - - - - - - ліцензії
+            var requestView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>(); //- - - - - - заявки
+            var referenceView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки
+            var licAutorsView = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>(); // - - автори для всіх типів ліцензій
+            var moneyUnattachedView = _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id).ToListOfType<UnattachedMoneyView>(); // - - - незакріплені кошти користувачів великих прав
+            var ratedListMainView = _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListMainBigRightView>(); // - - - Р/Л основні дані
+            var rlSpectacleView = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();// Р/Л вистави
+            var rlMusicDesignView = _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();//- Р/Л музичне оформелння
+
+            _cabinetBigRightForm.cabinet.SetAllLoadData(customer, mainGridView, generalAgrView, licenseView,requestView, referenceView, licAutorsView, moneyUnattachedView, ratedListMainView, rlSpectacleView);
             if(!_cabinetBigRightForm.Visible)
                 _cabinetBigRightForm.Show();
         }
+
+        private void UpdateDataForCurentTab(int id, CabinetTabType tabType = CabinetTabType.None)
+        {
+            switch (tabType)
+            {
+                case CabinetTabType.None:
+                    break;
+                case CabinetTabType.Anketa:
+                    break;
+
+                case CabinetTabType.GeneralAgreement:
+                    var generalAgrView = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id); // - - - - генеральні угоди
+                    _cabinetBigRightForm.cabinet.UpdateData(generalAgrView.ToListOfType<GeneralAgreementBigRightView>());
+                    break;
+
+                
+                case CabinetTabType.Licenses:
+                    break;
+                case CabinetTabType.Calculations:
+                    break;
+                case CabinetTabType.Payslips:
+                    break;
+                case CabinetTabType.Requests:
+                    break;
+                case CabinetTabType.References:
+                    break;
+                
+                case CabinetTabType.Files:
+                    break;
+                case CabinetTabType.Agent:
+                    break;
+                case CabinetTabType.Payments:
+                    break;
+                case CabinetTabType.Prepays:
+                    break;
+                case CabinetTabType.Contacts:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(tabType), tabType, null);
+            }
+
+            var customer = _service.GetData(id);
+            var mainGridView = _mainGrid.ViewRow;//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - view основного гріда
+            var licenseView = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();// - - - - - - ліцензії
+            var requestView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>(); //- - - - - - заявки
+            var referenceView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки
+            var licAutorsView = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>(); // - - автори для всіх типів ліцензій
+            var moneyUnattachedView = _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id).ToListOfType<UnattachedMoneyView>(); // - - - незакріплені кошти користувачів великих прав
+            var ratedListMainView = _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListMainBigRightView>(); // - - - Р/Л основні дані
+            var rlSpectacleView = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();// Р/Л вистави
+            var rlMusicDesignView = _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();//- Р/Л музичне оформелння
+        }
+
+        //private void CabinetBr_OnCustomerUpdateDataNeed(int id)
+        //{
+        //    _cabinetBr.SetDataCustomer(_service.GetData(id));
+
+        //    _cabinetBr.SetAgreementViewData(_service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id));
+        //    _cabinetBr.SetRequestData(_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id));
+        //    _cabinetBr.SetBigRightBidAuthors(_service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id));
+        //    _cabinetBr.SetReferanceData(_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id));
+        //    _cabinetBr.SetMoneyUndescribsData(_service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id));
+        //    _cabinetBr.SetPayslipsDate(_service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id),
+        //                               _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null),
+        //                               _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null));
+
+        //}
+
+
+
 
         // Редагування існуючого споживача юридичної особи
         private void EditJuridicalConsumer(int custId)
@@ -105,10 +186,10 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
 
-        public IList<ConsumerBigRightView> GetMainView(TypeBRDocument typeDoc, ConsumerFilterEnum what)
+        public IList<MainGridConsumerBigRightView> GetMainView(TypeBRDocument typeDoc, ConsumerFilterEnum what)
         {
             return _service.getMainViewBR(typeDoc, what);
-            // return new List<ConsumerBigRightView>( typeDoc, what );
+            // return new List<MainGridConsumerBigRightView>( typeDoc, what );
         }
 
        
@@ -266,25 +347,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         {
             EditJuridicalConsumer(id);
         }
-
-        //private void CabinetBr_OnCustomerUpdateDataNeed(int id)
-        //{
-        //    _cabinetBr.SetDataCustomer(_service.GetData(id));
-
-        //    _cabinetBr.SetAgrMasterList(_service.getBRView(typeof(BigRightMasterGenAgr), "vTSK_1_BRMaster", id));
-        //    _cabinetBr.SetAgreementViewData(_service.getBRView(typeof(VbrLicense), "vTsk_vBRLicense", id));
-        //    _cabinetBr.SetRequestData(_service.getBRView(typeof(BigRightRequests), "vTsk_1_BRBid", id));
-        //    _cabinetBr.SetBigRightBidAuthors(_service.getBRView(typeof(BigRightRequestBidAuthors), "vTsk_1_BRBidAuthors", id));
-        //    _cabinetBr.SetReferanceData(_service.getBRView(typeof(BigRightRequests), "vTsk_1_BRNotice", id));
-        //    _cabinetBr.SetMoneyUndescribsData(_service.getBRView(typeof(BigRightMoneyUndescrib), "vTsk_1_MoneyUndescrib", id));
-        //    _cabinetBr.SetPayslipsDate(_service.getBRView(typeof(BigRightRegister), "vTSK_1_BRRegister", id),
-        //                               _service.getBRView(typeof(BigRightPayslipsSpectacleView), "vTsk_1_BRAuthorsDistributed", null),
-        //                               _service.getBRView(typeof(MusicDesignRatedListView), "vTsk_1_BRMusic", null));
-
-        //}
-
-
-
 
         /// <summary>
         /// Оновлення даних

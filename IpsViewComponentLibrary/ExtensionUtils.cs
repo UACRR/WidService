@@ -103,6 +103,14 @@ namespace IpsViewComponentLibrary
                 e.Handled = true;
             }
         }
+
+        public static List<T> ToListOfType<T>(this IList<object> listObjects) where T : class 
+        {
+            var itemsList = new List<T>();
+            foreach (var temp in listObjects)
+                itemsList.Add(temp as T);
+            return itemsList;
+        }
     }
 
     public interface IMiddleCtrlAnketaConsumer

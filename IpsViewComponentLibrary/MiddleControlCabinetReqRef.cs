@@ -27,9 +27,9 @@ namespace IpsViewComponentLibrary
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
 
         private Customer _customer;
-        private ConsumerBigRightView _bigRightView;
+        private MainGridConsumerBigRightView _bigRightView;
         private AnketaDictionaties _dictionaties;
-        private IList<BigRightRequestBidAuthors> _authors;
+        private IList<AuthorsForLicenseBigRightView> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
         private SaveNeedStatus _saveNeedStatus = SaveNeedStatus.No;
         private Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
@@ -55,7 +55,7 @@ namespace IpsViewComponentLibrary
         /// Дані для контрола
         /// </summary>
         /// <param name="comsumerBigRightView"></param>
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightRequests> listRequests, IList<BigRightRequestBidAuthors> author)
+        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView, IList<RequestsOrReferenceBigRightView> listRequests, IList<AuthorsForLicenseBigRightView> author)
         {
             _customer = customer;
             _authors = author;
@@ -103,7 +103,7 @@ namespace IpsViewComponentLibrary
         //клік на гріду по кнопкі редагувати
         private void gvViewRequests_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            if (e.Row.DataBoundItem is BigRightRequests item)
+            if (e.Row.DataBoundItem is RequestsOrReferenceBigRightView item)
             {
                 if(item.LicStatus == 4) return;
 
@@ -131,7 +131,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void CallRequestForm(FormType type, BigRightRequests item)
+        private void CallRequestForm(FormType type, RequestsOrReferenceBigRightView item)
         {
             RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, type, item.LicId) { StartPosition = FormStartPosition.CenterParent };
 
@@ -153,7 +153,7 @@ namespace IpsViewComponentLibrary
             //нема в наявності записів заявоч чи довідок (залежно від типу ctrl)
             if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)
             {
-                bindingSource1.DataSource = typeof(BigRightRequestBidAuthors);
+                bindingSource1.DataSource = typeof(AuthorsForLicenseBigRightView);
                 btnSave.Enabled = false;
                 btnCancel.Enabled = false;
                 btnToReference.Enabled = false;
@@ -164,7 +164,7 @@ namespace IpsViewComponentLibrary
                 btnCancel.Enabled = true;
             }
 
-            var item = e?.CurrentRow?.DataBoundItem as BigRightRequests;
+            var item = e?.CurrentRow?.DataBoundItem as RequestsOrReferenceBigRightView;
             if (item?.LicStatus == 0 || item?.LicStatus == 1)
             {
                 if (item?.LicStatus is 0)
@@ -197,7 +197,7 @@ namespace IpsViewComponentLibrary
 
         private void MiddleControlCabinetReqRef_Leave(object sender, EventArgs e)
         {
-            if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+            if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
                 CallSaveRequest(item.LicId);
         }
 
@@ -256,7 +256,7 @@ namespace IpsViewComponentLibrary
         private void gvCreativeRole_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             
-            if (e?.Row?.DataBoundItem is BigRightRequestBidAuthors item/* && _typeControl == ControlRequestOrReferenceType.Request*/)
+            if (e?.Row?.DataBoundItem is AuthorsForLicenseBigRightView item/* && _typeControl == ControlRequestOrReferenceType.Request*/)
             {
                 _saveNeedStatus = SaveNeedStatus.Yes;
                 var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.Obj;
@@ -282,7 +282,7 @@ namespace IpsViewComponentLibrary
 
         private void gvCreativeRole_CellBeginEdit(object sender, Telerik.WinControls.UI.GridViewCellCancelEventArgs e)
         {
-            if (_workRhs == null /*&& _typeControl == ControlRequestOrReferenceType.Request*/ && e?.Row?.DataBoundItem is BigRightRequestBidAuthors item)
+            if (_workRhs == null /*&& _typeControl == ControlRequestOrReferenceType.Request*/ && e?.Row?.DataBoundItem is AuthorsForLicenseBigRightView item)
             {
                 var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.Obj;
                 var copyRight = obj?.CopyRight?.SingleOrDefault(rec => rec.CRightId == item.CRightId);
@@ -325,7 +325,7 @@ namespace IpsViewComponentLibrary
 
                 case ControlRequestOrReferenceType.Reference:
                 {
-                    if (gvViewRequests.CurrentRow.DataBoundItem is BigRightRequests item)
+                    if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
                     {
                         if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.License) ?? false)
                             ExtensionUtils.ShowInfoMessage("Довідка переведена в Ліцензію", "Успішно", MessageBoxIcon.Information);
@@ -340,13 +340,13 @@ namespace IpsViewComponentLibrary
         {
             if (_typeControl == ControlRequestOrReferenceType.Request)
             {
-                if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+                if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
                     CallSaveRequest(item.LicId, true);
             }
             else if (_typeControl == ControlRequestOrReferenceType.Reference)
             {
                 //some code
-                if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+                if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
                     CallSaveRequest(item.LicId, true);
                 //copypast ^ ^ ^
             }
@@ -369,13 +369,13 @@ namespace IpsViewComponentLibrary
 
         private List<WorkRh> _workRhs;
         private ObservableListSource<CopyRight> _copyRightReferense;
-        private IList<BigRightRequestBidAuthors> _authorsTempSerialize;
+        private IList<AuthorsForLicenseBigRightView> _authorsTempSerialize;
         private void Serialization(ObservableListSource<CopyRight> copyRight)
         {
-            _authorsTempSerialize = new List<BigRightRequestBidAuthors>();
+            _authorsTempSerialize = new List<AuthorsForLicenseBigRightView>();
             foreach (var author in _authors)
             {
-                var item = new BigRightRequestBidAuthors();
+                var item = new AuthorsForLicenseBigRightView();
                 item.SetFields(author);
                 item.WorkRh = new WorkRh();
                 item.WorkRh.SetFields(author.WorkRh);
@@ -394,7 +394,7 @@ namespace IpsViewComponentLibrary
         private void Deserialization()
         {
             _workRhList.Clear();
-            var source = gvViewRequests.CurrentRow.DataBoundItem as BigRightRequests;
+            var source = gvViewRequests.CurrentRow.DataBoundItem as RequestsOrReferenceBigRightView;
 
             foreach (var item in _workRhs)
                 _copyRightReferense?.SingleOrDefault(rec => rec.CRightId == item.CRightId)?.WorkRh.SetFields(item);
@@ -402,7 +402,7 @@ namespace IpsViewComponentLibrary
             _workRhs = null;
 
             //оновити грід
-            bindingSource1.DataSource = typeof(BigRightRequestBidAuthors);
+            bindingSource1.DataSource = typeof(AuthorsForLicenseBigRightView);
             _authors.Clear();
             foreach (var authors in _authorsTempSerialize)
                 _authors.Add(authors);
@@ -439,7 +439,7 @@ namespace IpsViewComponentLibrary
 
         private void btnToReference_Click(object sender, EventArgs e)
         {
-            if (gvViewRequests.CurrentRow.DataBoundItem is BigRightRequests item)
+            if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
             {
                 if(OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec=>rec.LicId == item.LicId), ConsumerService.LicType.Reference) ?? false)
                     ExtensionUtils.ShowInfoMessage("Заявка переведена в довідку", "Успішно", MessageBoxIcon.Information);
@@ -452,13 +452,13 @@ namespace IpsViewComponentLibrary
 
         private void gvViewRequests_CurrentRowChanging(object sender, Telerik.WinControls.UI.CurrentRowChangingEventArgs e)
         {
-            if (_saveNeedStatus == SaveNeedStatus.Yes && e?.CurrentRow?.DataBoundItem is BigRightRequests item)
+            if (_saveNeedStatus == SaveNeedStatus.Yes && e?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
                 CallSaveRequest(item.LicId);
         }
 
         private void btnToAccept_Click(object sender, EventArgs e)
         {
-            if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+            if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
                 switch (_functionType)
                 {
                     case ButtonFunctionType.None:
@@ -484,7 +484,7 @@ namespace IpsViewComponentLibrary
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (gvViewRequests?.CurrentRow?.DataBoundItem is BigRightRequests item)
+            if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
             {
                 string reqref = _typeControl == ControlRequestOrReferenceType.Request ? "Заявк" :
                                 _typeControl == ControlRequestOrReferenceType.Reference ? "Довідк" : string.Empty;
