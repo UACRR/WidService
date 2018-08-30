@@ -8,21 +8,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class GlobalControlConsumerCabinetBR : UserControl
+    public partial class CabinetBigRight : UserControl
     {
-        private int _rowId;
+        private readonly Dictionary<string, CabinetTabType> _cabinetTab = new Dictionary<string, CabinetTabType>
+        {
+            {string.Empty, CabinetTabType.None},
+            {"pvLicence" , CabinetTabType.Licenses},
+            {"pvCalculation" , CabinetTabType.Calculations},
+            {"pvPayslips" , CabinetTabType.Payslips},
+            {"pvRequest" , CabinetTabType.Requests},
+            {"pvReference" , CabinetTabType.References},
+            {"pvGeneralAgreement" , CabinetTabType.GeneralAgreement},
+            {"pvFiles" , CabinetTabType.Files},
+            {"pvAgent", CabinetTabType.Agent},
+            {"pvPays", CabinetTabType.Payments},
+            {"pvAvances", CabinetTabType.Prepays},
+            {"pvContacts", CabinetTabType.Contacts}
+        };
+        public MiddleControlCabinetPayslips.MusicDesingDelegate MusicDesignDelegate
+        {
+            get => ctrlPayslips.MusicDesing;
+            set => ctrlPayslips.MusicDesing = value;
+        }
 
-        private readonly TypeRights Rights = TypeRights.BigRights;
-        private AnketaDictionaties _anketaDictionaties;
-        private Customer _customer;
-        private IList<ConsumerBigRightView> _brData;
-        private IList<VbrLicense> _agrData;
+        private Customer _customer = null;
+        private ConsumerBigRightView _brView;
+        private IList<VbrLicense> _brLicenses;
         private IList<BigRightMasterGenAgr> _genAgrs;
         private IList<BigRightRequests> _requests;
         private IList<BigRightRequests> _reference;
@@ -30,322 +48,242 @@ namespace IpsViewComponentLibrary
         private IList<BigRightMoneyUndescrib> _moneyUndescribs;
         private IList<BigRightRegister> _registers;
         private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
-        private IList<MusicDesignRatedListView> _musicDesignRatedListViews;
 
-        
-        public delegate void BackToMainGrid(int custId);
+        private AnketaDictionaties _anketaDictionaties;
+        private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
+
         /// <summary>
-        /// Виникає при натисканні кнопки [До списку споживачів]
+        /// Виникиє при необхідності зберегти Customer
         /// </summary>
-        public event BackToMainGrid OnBackToGridNeed;
+        public event SaveCustomerEventHandler OnSaveCustomerNeed;
 
-        public delegate void UpdateData(int id);
-        /// <summary>
-        /// Виникає при зміні поточного рядка на грід та потребі оновити дані
-        /// </summary>
-        public event UpdateData OnCustomerUpdateDataNeed;
-
-        public event EventHandler OnAddNewCustomer;
-
-        public delegate void EditCustomer(int id);
-        public event EditCustomer OnEditCustomer;
-
-        public event SaveCustomerEventHandler OnSaveCustomer;
+        public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
-        public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocument;
+        public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
-        public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
-        public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
+        public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
         public event SavePayslipsEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
+        private Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
-        public string FilterString
-        {
-            get => txtSearch.Text;
-            set => txtSearch.Text = value;
-        }
-
-        public GlobalControlConsumerCabinetBR()
+        public CabinetBigRight()
         {
             InitializeComponent();
-            ctrlCabinet.OnSaveCustomerNeed += CtrlCabinet_OnSaveCustomerNeed;
-            ctrlCabinet.OnAddNewDocument += CtrlCabinet_OnAddNewDocument;
-            ctrlCabinet.OnViewDocumentNeed += CtrlCabinet_OnViewDocumentNeed;
-            ctrlCabinet.OnGetSpectacleNeed += CtrlCabinet_OnGetSpectacleNeed;
-            ctrlCabinet.OnLicenseStatusChanging += CtrlCabinet_OnLicenseStatusChanging;
-            ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
-            ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
-            ctrlCabinet.OnSavePayslip += CtrlCabinet_OnSavePayslip;
-            ctrlCabinet.OnGetRegisterRatedList += CtrlCabinet_OnGetRegisterRatedList;
-            ctrlCabinet.OnRegisterItemListNeed += CtrlCabinet_OnRegisterItemListNeed;
-            ctrlCabinet.SavePariodCommandExecuted += CtrlCabinet_SavePariodCommandExecuted;
-            ctrlCabinet.SetDictionaries(_anketaDictionaties);
-            ctrlCabinet.MusicDesignDelegate = () => (List<MusicDesignRatedListView>) _musicDesignRatedListViews;
+            ctrlReference.SetAnketaDictionary();
+            ctrlRequest.SetAnketaDictionary();
+            ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
+            ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
+            ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
+            ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
+            ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
+            ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
+            ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+            ctrlReference.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+            ctrlRequest.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
+            ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
+            ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
+            ctrlRequest.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlReference.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
+            ctrlReference.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
+            ctrlPayslips.OnSavePayslip += CtrlPayslips_OnSavePayslip;
+            ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
+            ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
+            ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
+
+            _tab = new Dictionary<CabinetTabType, RadPageViewPage>
+            {
+                {CabinetTabType.None, null},
+                {CabinetTabType.Licenses, pvLicence},
+                { CabinetTabType.Calculations, pvCalculation},
+                {CabinetTabType.Payslips, pvPayslips},
+                {CabinetTabType.Requests, pvRequest},
+                {CabinetTabType.References, pvReference},
+                {CabinetTabType.GeneralAgreement, pvGeneralAgreement},
+                {CabinetTabType.Files, pvFiles},
+                {CabinetTabType.Agent, pvAgent},
+                {CabinetTabType.Payments, pvPays},
+                {CabinetTabType.Prepays, pvAvances},
+                {CabinetTabType.Contacts, pvContacts}
+            };
         }
 
-        private List<PaidPeriod> CtrlCabinet_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
+        private List<PaidPeriod> CtrlPayslips_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
         {
             return SavePariodCommandExecuted?.Invoke(id, e);
         }
 
-        private List<RegisterItem> CtrlCabinet_OnRegisterItemListNeed(int regId)
+        private List<RegisterItem> CtrlPayslips_OnRegisterItemListNeed(int regId)
         {
             return OnRegisterItemListNeed?.Invoke(regId);
         }
 
-        private Customer CtrlCabinet_OnGetRegisterRatedList(int custId)
+        private Customer CtrlPayslips_OnGetRegisterRatedList(int custId)
         {
             return OnGetRegisterRatedList?.Invoke(custId);
         }
 
-        private bool CtrlCabinet_OnSavePayslip(RegisterRatedList list)
+        private bool CtrlPayslips_OnSavePayslip(RegisterRatedList list)
         {
             return OnSavePayslip?.Invoke(list) ?? false;
         }
 
-        private bool CtrlCabinet_OnChangeLicenseType(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
+        //збереження customer
+        private bool Ctrls_OnSaveCustomer(Customer customer)
+        {
+            return OnSaveCustomerNeed?.Invoke(customer) ?? false;
+        }
+
+        private bool CtrlRequest_OnLicenseTypeChange(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
         {
             return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
         }
 
-        private bool CtrlCabinet_OnRequestWorkRhSaveNeed(int licenseId, List<WorkRh> workRhList)
+        private bool CtrlRequest_OnWorkRhSave(int licenseId, List<WorkRh> workRhList)
         {
-            return OnWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
+            return OnRequestWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
         }
 
-        private bool CtrlCabinet_OnLicenseStatusChanging(LicenseAgreement agr, int version, int status, bool changeVer)
+        private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            return OnLicenseStatusChanging?.Invoke(agr, version, status, changeVer) ?? false;
+            return OnLicenseStatusChanging?.Invoke(agr, version, status, false) ?? false;
         }
 
-        private IList<BigRightSpectacleView> CtrlCabinet_OnGetSpectacleNeed(int custId)
+        private IList<BigRightSpectacleView> CtrlPayslips_OnSpectacleViewNeed(int custId)
         {
             return OnGetSpectacleNeed?.Invoke(custId);
         }
 
-        private void CtrlCabinet_OnViewDocumentNeed(int custId, int typeDocument, string fileName)
+        private void CtrlFiles_OnViewDocButtonClick(int custId, int typeDocument, string fileName)
         {
-            OnViewDocument?.Invoke(custId, typeDocument, fileName);
+            OnViewDocumentNeed?.Invoke(custId, typeDocument, fileName);
         }
 
-        private void CtrlCabinet_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
+        private void CtrlFiles_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
         {
-            OnAddNewDocument?.Invoke(custId,typeDocument,fileName,comment);
+            OnAddNewDocument?.Invoke(custId, typeDocument, fileName, comment);
         }
 
-        private bool CtrlCabinet_OnSaveCustomerNeed(Customer customer)
+        public void SetDictionaries(AnketaDictionaties dictionaries)
         {
-            return OnSaveCustomer?.Invoke(_customer) ?? false;
+            _anketaDictionaties = dictionaries;
         }
 
-        /// <summary>
-        /// Встановлення джерела даних для гріда
-        /// </summary>
-        /// <param name="source">Об'єкт джерела даних</param>
-        public void SetGridDataSource(IList<ConsumerBigRightView> source)
-        {
-            _brData = source;
-            gvConsumerList.DataSource = _brData;
-        }
-
-        public void SetDataAnketaDictionaties(AnketaDictionaties aDictionaties)
-        {
-            _anketaDictionaties = aDictionaties;
-        }
-
-        public void SetDataCustomer(Customer customer)
+        public void SetAndUpdateData(Customer customer,
+            ConsumerBigRightView brView,
+            IList<VbrLicense> brLicenses,
+            IList<BigRightMasterGenAgr> genAgrs,
+            IList<BigRightRequests> requests,
+            IList<BigRightRequestBidAuthors> authors,
+            IList<BigRightRequests> reference,
+            IList<BigRightMoneyUndescrib> moneyUndescribs,
+            IList<BigRightRegister> registers,
+            IList<BigRightPayslipsSpectacleView> payslipsSpectacleViews)
         {
             _customer = customer;
+            _brView = brView;
+            _brLicenses = brLicenses;
+            _genAgrs = genAgrs;
+            _requests = requests;
+            _reference = reference;
+            _authors = authors;
+            _registers = registers;
+            _moneyUndescribs = moneyUndescribs;
+            _payslipsSpectacleViews = payslipsSpectacleViews;
+
+            UpdateCurentTab(_currenCabinetTab);
         }
 
-        public void SetBigRightBidAuthors(IList<object> authors)
+
+        public CabinetTabType CurentTab
         {
-            var licDic = _customer.Client.LicenseAgreement.Where(rec=>rec.LicenseBigR!=null).Select(row=>row.LicenseBigR).ToDictionary(rec => rec.LicId);
-            _authors = authors.Select( row =>
+            get => _currenCabinetTab;
+            set
             {
-                BigRightRequestBidAuthors item = (BigRightRequestBidAuthors) row;
-                if (licDic.Keys.Contains(item.LicId))
-                {
-                    item.WorkRh = licDic[item.LicId].Obj?.CopyRight.First(rec => rec.CRightId == item.CRightId)?.WorkRh ?? new WorkRh
-                    {
-                        WorkTypeCl = default(int),
-                        CRightId = item.CRightId
-                    };
-                }
-                return item;
-            }).ToList();
-        }
-
-        /// <summary>
-        /// Дані для вкладки розрахунковий лист
-        /// </summary>
-        /// <param name="register"></param>
-        public void SetPayslipsDate(IList<object> register, IList<object> spectacleView, IList<object> musicDesign)
-        {
-            _registers = new List<BigRightRegister>();
-            foreach (var temp in register)
-                _registers.Add(temp as BigRightRegister);
-
-            _payslipsSpectacleViews = new List<BigRightPayslipsSpectacleView>();
-            foreach(var temp in spectacleView)
-                _payslipsSpectacleViews.Add(temp as BigRightPayslipsSpectacleView);
-
-            _musicDesignRatedListViews = new List<MusicDesignRatedListView>();
-            foreach (var temp in musicDesign)
-                _musicDesignRatedListViews.Add(temp as MusicDesignRatedListView);
-        }
-
-        public void SetMoneyUndescribsData(IList<object> moneyUndescribs)
-        {
-            _moneyUndescribs = new List<BigRightMoneyUndescrib>();
-            foreach (var temp in moneyUndescribs)
-                _moneyUndescribs.Add(temp as BigRightMoneyUndescrib);
-        }
-
-        /// <summary>
-        /// Дані для вкладки заявки, грід заявок
-        /// </summary>
-        /// <param name="requestList"></param>
-        public void SetRequestData(IList<object> requestList)
-        {
-            _requests = new List<BigRightRequests>();
-            foreach (var temp in requestList)
-                _requests.Add(temp as BigRightRequests);
-        }
-
-        /// <summary>
-        /// Дані для вкладки довідки, грід заявок
-        /// </summary>
-        /// <param name="requestList"></param>
-        public void SetReferanceData(IList<object> referanceList)
-        {
-            _reference = new List<BigRightRequests>();
-            foreach (var temp in referanceList)
-                _reference.Add(temp as BigRightRequests);
-        }
-
-        public void SetAgreementViewData(IList<object> agrData)
-        {
-            _agrData = new List<VbrLicense>();
-            foreach (var temp in agrData)
-                _agrData.Add(temp as VbrLicense);
-        }
-
-        public void SetAgrMasterList(IList<object> genAgrs)
-        {
-            _genAgrs = new List<BigRightMasterGenAgr>();
-            foreach (var temp in genAgrs)
-                _genAgrs.Add(temp as BigRightMasterGenAgr);
-        }
-
-        public void SetSelectCustomer(int custId)
-        {
-            if (gvConsumerList.Rows.Count != 0)
-                gvConsumerList.CurrentRow = gvConsumerList.Rows.SingleOrDefault(rec => (int)rec.Cells["CustId"].Value == custId);
-        }
-
-        public void SetTab(CabinetTabType tabType)
-        {
-            ctrlCabinet.CurentTab = tabType;
-            ctrlCabinet.UpdateCurentTab(tabType);
-        }
-
-        private void gvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-            if(gvConsumerList.Rows.Count == 0) return;
-            
-            _rowId = (int?)e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
-
-            if(_rowId != -1)
-            {
-                //отримання даних
-                OnCustomerUpdateDataNeed?.Invoke(_rowId);
-                //передача даних
-                ctrlCabinet.SetAndUpdateData(_customer,
-                    e?.CurrentRow?.DataBoundItem as ConsumerBigRightView,
-                    _agrData,
-                    _genAgrs,
-                    _requests,
-                    _authors,
-                    _reference,
-                    _moneyUndescribs,
-                    _registers,
-                    _payslipsSpectacleViews);
-                ctrlHeaderInfo.SetControlTextInfoBigRight(_customer, e?.CurrentRow?.DataBoundItem as ConsumerBigRightView);
+                _currenCabinetTab = value;
+                pageView.SelectedPage = _tab[value];
             }
         }
 
-
-
-        #region FILTERING (пошук)
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        public void UpdateCurentTab(CabinetTabType tab)
         {
-            gvConsumerList.MasterTemplate.Refresh();
-        }
-
-        private void gvConsumerList_CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
-        {
-            //пустий фільтер - всі дані
-            if (string.IsNullOrEmpty(txtSearch.Text))
+            switch (tab)
             {
-                gvConsumerList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvConsumerList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
+                case CabinetTabType.None:
+                    break;
 
-                gvConsumerList.EndUpdate(false);
-                return;
+                case CabinetTabType.Anketa:
+                    break;
+
+                case CabinetTabType.GeneralAgreement:
+                {
+                    ctrlGeneralAgreement.SetAndUpdateData(_customer, _brView, _genAgrs);
+                }break;
+
+                case CabinetTabType.Licenses:
+                {
+                    ctrlLicense.SetDataSources(_brView);
+                    ctrlLicense.SetData(_customer,_brLicenses);
+                }break;
+
+                case CabinetTabType.Payslips:
+                {
+                    ctrlPayslips.SetAndUpdateData(_customer, _brView, _registers, _payslipsSpectacleViews);
+                }break;
+
+                case CabinetTabType.Calculations:
+                {
+                    ctrlCalculation.Customer = _customer;
+                }break;
+
+                case CabinetTabType.Payments:
+                {
+
+                }break;
+
+                case CabinetTabType.Prepays:
+                {
+
+                }break;
+
+                case CabinetTabType.Requests:
+                {
+                    ctrlRequest.SetAndUpdateData(_customer,_brView,_requests,_authors);
+                }break;
+
+                case CabinetTabType.References:
+                {
+                    ctrlReference.SetAndUpdateData(_customer, _brView, _reference, _authors);
+                }break;
+
+                case CabinetTabType.Contacts:
+                {
+                    ctrlContactHeader.SetControlTextInfoBigRight(_customer,_brView);
+                }break;
+
+                case CabinetTabType.Files:
+                {
+                    ctrlFiles.SetAndUpdateData(_customer,_brView);
+                }break;
+
+                case CabinetTabType.Agent:
+                {
+                    ctrlAgent.SetAndUpdateData(_customer,_brView,_genAgrs);
+                }break;
             }
-
-            //фільтр не пустий
-            gvConsumerList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvConsumerList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-
-                gvConsumerList.EndUpdate(false);
-            }
         }
 
-        #endregion
-
-        private void btnBack_Click(object sender, EventArgs e)
+        private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            OnBackToGridNeed?.Invoke(_rowId);
-        }
-
-        private void btnNewConsumer_Click(object sender, EventArgs e)
-        {
-            OnAddNewCustomer?.Invoke(sender, e);
-        }
-
-        private void btnEditAgr_Click(object sender, EventArgs e)
-        {
-            OnEditCustomer?.Invoke(_rowId);
+            string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
+            _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
+            UpdateCurentTab(_currenCabinetTab);
         }
     }
 }

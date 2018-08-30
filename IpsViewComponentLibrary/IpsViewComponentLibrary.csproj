@@ -420,11 +420,11 @@
     <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.Designer.cs">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\BigRight\CabinetBigRight.cs">
+    <Compile Include="_trash\CabinetBigRightOld.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\BigRight\CabinetBigRight.Designer.cs">
-      <DependentUpon>CabinetBigRight.cs</DependentUpon>
+    <Compile Include="_trash\CabinetBigRightOld.Designer.cs">
+      <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalControlConsumerMainGrid.cs">
       <SubType>UserControl</SubType>
@@ -570,11 +570,11 @@
     <Compile Include="MiddleControlBankRequisites.Designer.cs">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinet.cs">
+    <Compile Include="ConsumerControls\BigRight\CabinetBigRight.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinet.Designer.cs">
-      <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
+    <Compile Include="ConsumerControls\BigRight\CabinetBigRight.Designer.cs">
+      <DependentUpon>CabinetBigRight.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlCabinetAgent.cs">
       <SubType>UserControl</SubType>
@@ -939,8 +939,8 @@
     <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\BigRight\CabinetBigRight.resx">
-      <DependentUpon>CabinetBigRight.cs</DependentUpon>
+    <EmbeddedResource Include="_trash\CabinetBigRightOld.resx">
+      <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GlobalControlConsumerMainGrid.resx">
       <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
@@ -1002,8 +1002,8 @@
     <EmbeddedResource Include="MiddleControlBankRequisites.resx">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinet.resx">
-      <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\BigRight\CabinetBigRight.resx">
+      <DependentUpon>CabinetBigRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetAgent.resx">
       <DependentUpon>MiddleControlCabinetAgent.cs</DependentUpon>

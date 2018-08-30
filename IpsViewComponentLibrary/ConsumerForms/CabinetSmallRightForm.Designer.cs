@@ -42,14 +42,14 @@
             this.cabinet.Location = new System.Drawing.Point(0, 0);
             this.cabinet.Name = "cabinet";
             this.cabinet.Rights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
-            this.cabinet.Size = new System.Drawing.Size(1302, 774);
+            this.cabinet.Size = new System.Drawing.Size(1070, 774);
             this.cabinet.TabIndex = 0;
             // 
             // CabinetSmallRightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1302, 774);
+            this.ClientSize = new System.Drawing.Size(1070, 774);
             this.Controls.Add(this.cabinet);
             this.Name = "CabinetSmallRightForm";
             // 

@@ -29,14 +29,27 @@
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.cabinet = new IpsViewComponentLibrary.CabinetBigRight();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
+            // 
+            // cabinet
+            // 
+            this.cabinet.AutoScroll = true;
+            this.cabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.None;
+            this.cabinet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cabinet.Location = new System.Drawing.Point(0, 0);
+            this.cabinet.MusicDesignDelegate = null;
+            this.cabinet.Name = "cabinet";
+            this.cabinet.Size = new System.Drawing.Size(1141, 514);
+            this.cabinet.TabIndex = 0;
             // 
             // CabinetBigRightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 455);
+            this.ClientSize = new System.Drawing.Size(1141, 514);
+            this.Controls.Add(this.cabinet);
             this.Name = "CabinetBigRightForm";
             // 
             // 
@@ -53,5 +66,6 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        public CabinetBigRight cabinet;
     }
 }

@@ -267,6 +267,10 @@ namespace IpsViewComponentLibrary
         /// </summary>
         None,
         /// <summary>
+        /// Анкета
+        /// </summary>
+        Anketa,
+        /// <summary>
         /// Ліцензії
         /// </summary>
         Licenses,
