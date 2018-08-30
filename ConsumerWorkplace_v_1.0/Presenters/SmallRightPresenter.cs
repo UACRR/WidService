@@ -112,7 +112,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
         //змінити статус ліцензії
-        private bool ChangeLicenseStatus(ipsFormsDesign.Model.LicenseAgreement agr, int version, int status, bool changeVer)
+        private bool ChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
             var relust = _service.SetLicAgreementStatus(agr, version, status, changeVer);
             return relust;
