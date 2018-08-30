@@ -23,10 +23,9 @@ namespace ConsumerWorkplace_v_1._0
 {
     public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
     {
-        private SmallRightPresenter _smallRightPresenter; // main presenter for small right
-        private SwitchPresenter _presenterSmallRights;
-        private SwitchPresenterBigRights _presenterBigRights;
-        private ConsumerService _serviceSmallRights, _serviceBigRights;
+        private SmallRightPresenter _smallRightPresenter;// main presenter for small right
+        private BigRightPresenter _bigRightPresenter;    // main presenter for big right
+        private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
 
         public event Func<bool> Save;
         
@@ -101,9 +100,7 @@ namespace ConsumerWorkplace_v_1._0
                     {
                         treeViewBR.Nodes.Add(item);
                     }
-
-                    _serviceBigRights = new ConsumerService();
-                    _presenterBigRights = new SwitchPresenterBigRights(mainViewSwitcherBR, _serviceBigRights, treeViewBR);
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewSR, mainGridBigRight);
                     // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
                         
@@ -127,8 +124,8 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _serviceSmallRights = new ConsumerService();
-                    _smallRightPresenter = new SmallRightPresenter(_serviceSmallRights, treeViewSR, mainGridSmallRight);
+                    _consumerMainService = new ConsumerService();
+                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
                     
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
@@ -151,8 +148,7 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _serviceSmallRights = new ConsumerService();
-                    _smallRightPresenter = new SmallRightPresenter(_serviceSmallRights, treeViewSR, mainGridSmallRight);
+                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
 
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
@@ -207,30 +203,21 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewBR.Nodes.Add(item);
                     }
 
-                    _serviceBigRights = new ConsumerService();
-                    _presenterBigRights = new SwitchPresenterBigRights(mainViewSwitcherBR, _serviceBigRights, treeViewBR);
-                        
-                    
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewSR, mainGridBigRight);
+
                      // * * * * END CASE
                 }
                     break;
             }
         }
-
-        public Customer ReturnCustomer()
-        {
-            return _cust;
-        }
         
-
-
         Customer _cust = null;
-        LicenseAgrParam curLicAgreement = null;
+        LicenseAgrParam _curLicAgreement;
         public void SetData(ICustomer data)
         {
             _cust = (Customer)data;
             var licAgr = _cust.Client.LicenseAgreement.FirstOrDefault();
-            curLicAgreement = licAgr?.LicenseAgrParam.Where(item => item.LicVersion == licAgr.LicVersion).SingleOrDefault();
+            _curLicAgreement = licAgr?.LicenseAgrParam.Where(item => item.LicVersion == licAgr.LicVersion).SingleOrDefault();
         }
 
         public void GetData(ICustomer data)

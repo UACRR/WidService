@@ -50,7 +50,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvViewConsumers.EnableCustomFiltering = true;
-            this.gvViewConsumers.Location = new System.Drawing.Point(3, 34);
+            this.gvViewConsumers.Location = new System.Drawing.Point(3, 30);
             // 
             // 
             // 
@@ -117,7 +117,7 @@
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
             this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewConsumers.Size = new System.Drawing.Size(725, 335);
+            this.gvViewConsumers.Size = new System.Drawing.Size(725, 339);
             this.gvViewConsumers.TabIndex = 3;
             this.gvViewConsumers.ThemeName = "Office2013Light";
             this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
@@ -127,7 +127,7 @@
             // 
             this.btnNewConsumer.Location = new System.Drawing.Point(488, 4);
             this.btnNewConsumer.Name = "btnNewConsumer";
-            this.btnNewConsumer.Size = new System.Drawing.Size(159, 24);
+            this.btnNewConsumer.Size = new System.Drawing.Size(159, 20);
             this.btnNewConsumer.TabIndex = 4;
             this.btnNewConsumer.Text = "Новий споживач";
             this.btnNewConsumer.ThemeName = "Office2013Light";
@@ -135,7 +135,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(3, 6);
+            this.txtSearch.Location = new System.Drawing.Point(3, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.NullText = "Пошук";
             this.txtSearch.Size = new System.Drawing.Size(479, 20);
