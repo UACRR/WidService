@@ -104,6 +104,7 @@
             this.tvFilters.ThemeName = "Office2013Light";
             this.tvFilters.ToggleMode = Telerik.WinControls.UI.ToggleMode.None;
             this.tvFilters.SelectedNodeChanging += new Telerik.WinControls.UI.RadTreeView.RadTreeViewCancelEventHandler(this.tvFilters_SelectedNodeChanging);
+            this.tvFilters.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.tvFilters_SelectedNodeChanged);
             this.tvFilters.NodeFormatting += new Telerik.WinControls.UI.TreeNodeFormattingEventHandler(this.tvFilters_NodeFormatting);
             // 
             // splitPanel2
@@ -255,6 +256,9 @@
             this.gvRightholdersList.Size = new System.Drawing.Size(649, 369);
             this.gvRightholdersList.TabIndex = 28;
             this.gvRightholdersList.ThemeName = "Office2013Light";
+            this.gvRightholdersList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersList_CellDoubleClick);
+            this.gvRightholdersList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersList_CommandCellClick);
+            this.gvRightholdersList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRightholdersList_ToolTipTextNeeded);
             // 
             // RightholderListControl
             // 

@@ -97,19 +97,19 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             if (!IsDesignMode)
             {
-                PopulateStatusesDropDownList();
+                //PopulateStatusesDropDownList();
+
+                var statusValueNodes = IpsGlobal.AnketaDictionaties.customerStatus.Select(s => new RadTreeNode { Text = s.Name, Value = s.CodeI }).ToArray();
+                var statusNode = new RadTreeNode { Text = "Статус" };
+                statusNode.Nodes.AddRange(statusValueNodes);
+
+                tvFilters.Nodes.Add(statusNode);
+                tvFilters.ExpandAll();
 
                 //ddlStatus.SelectedValue = (int)RightholderStatusType.Active; // to fix
+                // this also cause update list, beacouse of tvFilters_SelectedNodeChanged is handled
+                tvFilters.Nodes[0].Nodes.First(n => (RightholderStatusType)n.Value == RightholderStatusType.Active).Selected = true;
             }
-
-
-
-            var statusValueNodes = IpsGlobal.AnketaDictionaties.customerStatus.Select(s => new RadTreeNode { Text = s.Name, Value = s.CodeI }).ToArray();
-            var statusNode = new RadTreeNode { Text = "Статус" };
-            statusNode.Nodes.AddRange(statusValueNodes);
-
-            tvFilters.Nodes.Add(statusNode);
-            tvFilters.ExpandAll();
         }
 
         /// <summary> 
@@ -152,17 +152,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             var query = new RightholderListQuery
             {
                 //Status = (RightholderStatusType)ddlStatus.SelectedValue, // to fix
+                Status = (RightholderStatusType)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value,
             };
 
             var list = _rightholderService.GetRightholders(query);
             rightholderMainViewBindingSource.DataSource = list;
 
             //SelectedRightholder = currentRightholder; // TODO: is it needed?
-        }
-
-        private void ddlStatus_SelectedValueChanged(object sender, EventArgs e)
-        {
-            UpdateList();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -228,6 +224,11 @@ namespace IpsViewComponentLibrary.RightholderControls
                 else
                     MessageBox.Show("Не вдалося змінити статус.", "Помилка");
             }
+        }
+
+        private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        {
+            UpdateList();
         }
 
         private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
