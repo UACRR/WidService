@@ -132,7 +132,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             var query = new RightholderListQuery
             {
-                Status = (RightholderStatusType)ddlStatus.SelectedValue,
+                //Status = (RightholderStatusType)ddlStatus.SelectedValue, // to fix
             };
 
             var list = _rightholderService.GetRightholders(query);
@@ -147,7 +147,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 PopulateStatusesDropDownList();
 
-                ddlStatus.SelectedValue = (int)RightholderStatusType.Active;
+                //ddlStatus.SelectedValue = (int)RightholderStatusType.Active; // to fix
             }
         }
 
@@ -251,9 +251,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 statuses = statuses.Where(s => _allowedStatuses.Contains((RightholderStatusType)s.CodeI)).ToList();
             }
 
-            ddlStatus.SelectedValueChanged -= ddlStatus_SelectedValueChanged;
-            ddlStatus.SetDataSource(statuses);
-            ddlStatus.SelectedValueChanged += ddlStatus_SelectedValueChanged;
+            //ddlStatus.SelectedValueChanged -= ddlStatus_SelectedValueChanged; // to fix
+            //ddlStatus.SetDataSource(statuses);
+            //ddlStatus.SelectedValueChanged += ddlStatus_SelectedValueChanged;
         }
 
         public void HandleEvent(RightholderUpdatedEvent e)
