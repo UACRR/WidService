@@ -57,6 +57,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             if (!IsDesignMode)
             {
+                gvObjectsRightsList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+
                 var stateNode = new RadTreeNode { Text = "Стан" };
 
                 tvFilters.Nodes.Add(stateNode);
