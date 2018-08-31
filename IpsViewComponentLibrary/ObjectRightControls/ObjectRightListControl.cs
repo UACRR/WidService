@@ -69,18 +69,18 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void SetDictionaries()
         {
-            ddlState.SelectedValueChanged -= ddlState_SelectedValueChanged;
+            //ddlState.SelectedValueChanged -= ddlState_SelectedValueChanged; // to fix
 
-            var states = new[] {
-                    new { CodeI = -1, Name = "Всі" },
-                    new { CodeI = 0, Name = "Не підтверджені" },
-                    new { CodeI = 1, Name = "Не прив'язані" },
-                    new { CodeI = 2, Name = "Не розподілені" },
-                };
+            //var states = new[] {
+            //        new { CodeI = -1, Name = "Всі" },
+            //        new { CodeI = 0, Name = "Не підтверджені" },
+            //        new { CodeI = 1, Name = "Не прив'язані" },
+            //        new { CodeI = 2, Name = "Не розподілені" },
+            //    };
 
-            ddlState.SetDataSource(states);
+            //ddlState.SetDataSource(states);
 
-            ddlState.SelectedValueChanged += ddlState_SelectedValueChanged;
+            //ddlState.SelectedValueChanged += ddlState_SelectedValueChanged;
         }
 
         public void UpdateList()
@@ -95,8 +95,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             query.Page = navigatorPanel.CurrentPage;
             query.PageSize = navigatorPanel.PageSize;
 
-            if (ddlState.SelectedValue != null && (int)ddlState.SelectedValue != -1)
-                query.State = (ObjectRightStates)ddlState.SelectedValue;
+            //if (ddlState.SelectedValue != null && (int)ddlState.SelectedValue != -1) // to fix
+            //    query.State = (ObjectRightStates)ddlState.SelectedValue;
             if (!string.IsNullOrWhiteSpace(txtSearchObject.Text))
                 query.SearchText = txtSearchObject.Text;
 
@@ -134,7 +134,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void ddlState_SelectedValueChanged(object sender, EventArgs e)
         {
-            navigatorPanel.CurrentPage = 1;
+            //navigatorPanel.CurrentPage = 1; // to fix update list
         }
 
         private void navigatorPanel_CurrentPageChanged(object sender, EventArgs e)
