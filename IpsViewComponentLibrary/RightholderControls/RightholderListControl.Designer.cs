@@ -34,9 +34,8 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.tvFilters = new Telerik.WinControls.UI.RadTreeView();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.btnRefresh = new Telerik.WinControls.UI.RadButton();
-            this.txtSearchRightholder = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.gvRightholdersList = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
@@ -46,9 +45,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearchRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
@@ -109,9 +107,8 @@
             // 
             // splitPanel2
             // 
+            this.splitPanel2.Controls.Add(this.txtSearch);
             this.splitPanel2.Controls.Add(this.btnRefresh);
-            this.splitPanel2.Controls.Add(this.txtSearchRightholder);
-            this.splitPanel2.Controls.Add(this.radLabel1);
             this.splitPanel2.Controls.Add(this.gvRightholdersList);
             this.splitPanel2.Location = new System.Drawing.Point(95, 0);
             this.splitPanel2.Name = "splitPanel2";
@@ -127,6 +124,22 @@
             this.splitPanel2.Text = "splitPanel2";
             this.splitPanel2.ThemeName = "Office2013Light";
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(130, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.NullText = "Пошук";
+            this.txtSearch.ShowClearButton = true;
+            this.txtSearch.Size = new System.Drawing.Size(300, 20);
+            this.txtSearch.TabIndex = 32;
+            this.txtSearch.ThemeName = "Office2013Light";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(3, 3);
@@ -135,23 +148,6 @@
             this.btnRefresh.TabIndex = 31;
             this.btnRefresh.Text = "Оновити";
             this.btnRefresh.ThemeName = "Office2013Light";
-            // 
-            // txtSearchRightholder
-            // 
-            this.txtSearchRightholder.Location = new System.Drawing.Point(188, 3);
-            this.txtSearchRightholder.Name = "txtSearchRightholder";
-            this.txtSearchRightholder.Size = new System.Drawing.Size(464, 21);
-            this.txtSearchRightholder.TabIndex = 30;
-            this.txtSearchRightholder.ThemeName = "Office2013Light";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(136, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(45, 19);
-            this.radLabel1.TabIndex = 29;
-            this.radLabel1.Text = "Пошук";
-            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // gvRightholdersList
             // 
@@ -258,6 +254,7 @@
             this.gvRightholdersList.ThemeName = "Office2013Light";
             this.gvRightholdersList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersList_CellDoubleClick);
             this.gvRightholdersList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersList_CommandCellClick);
+            this.gvRightholdersList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvRightholdersList_CustomFiltering);
             this.gvRightholdersList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRightholdersList_ToolTipTextNeeded);
             // 
             // RightholderListControl
@@ -276,10 +273,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
-            this.splitPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearchRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).EndInit();
             this.ResumeLayout(false);
@@ -296,7 +291,6 @@
         private Telerik.WinControls.UI.RadGridView gvRightholdersList;
         private Telerik.WinControls.UI.RadTreeView tvFilters;
         private Telerik.WinControls.UI.RadButton btnRefresh;
-        private Telerik.WinControls.UI.RadTextBox txtSearchRightholder;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
     }
 }

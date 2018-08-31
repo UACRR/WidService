@@ -74,8 +74,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public string SearchText
         {
-            get => txtSearchRightholder.Text;
-            set => txtSearchRightholder.Text = value;
+            get => txtSearch.Text;
+            set => txtSearch.Text = value;
         }
 
         public event EventHandler<RightholderMainView> RightholderSelected;
@@ -309,14 +309,14 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         #region Search rightolder
 
-        private void txtSearchRightholder_TextChanged(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             gvRightholdersList.MasterTemplate.Refresh();
         }
 
         private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchRightholder.Text))
+            if (string.IsNullOrEmpty(txtSearch.Text))
             {
                 gvRightholdersList.BeginUpdate();
                 e.Visible = true;
@@ -337,7 +337,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                     continue;
 
                 string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearchRightholder.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     e.Visible = true;
                     e.Row.Cells[i].Style.CustomizeFill = true;
