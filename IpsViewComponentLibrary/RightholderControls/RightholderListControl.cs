@@ -144,17 +144,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             UpdateList(SelectedRightholder);
         }
 
-        public void UpdateList(RightholderMainView currentRightholder)
+        public async void UpdateList(RightholderMainView currentRightholder)
         {
+            waitingBar.StartWaiting();
+
             var query = new RightholderListQuery
             {
                 Status = (RightholderStatusType)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value,
             };
 
-            var list = _rightholderService.GetRightholders(query);
-            rightholderMainViewBindingSource.DataSource = list;
+            var list = await _rightholderService.GetRightholdersAsync(query);
 
+            rightholderMainViewBindingSource.DataSource = list;
+            
             //SelectedRightholder = currentRightholder; // TODO: is it needed?
+
+            waitingBar.StopWaiting();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
