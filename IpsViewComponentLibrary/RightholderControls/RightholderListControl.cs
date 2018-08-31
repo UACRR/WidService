@@ -66,8 +66,6 @@ namespace IpsViewComponentLibrary.RightholderControls
                     _showCommandColumns = value;
 
                     gvRightholdersList.Columns["EditColumn"].IsVisible = _showCommandColumns;
-                    gvRightholdersList.Columns["ObjectListColumn"].IsVisible = _showCommandColumns;
-                    gvRightholdersList.Columns["SetStatusColumn"].IsVisible = _showCommandColumns;
                 }
             }
         }
@@ -80,7 +78,6 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public event EventHandler<RightholderMainView> RightholderSelected;
         public event EventHandler<RightholderMainView> EditCommandExecuted;
-        public event EventHandler<RightholderMainView> ShowRightholdersObjectsCommandExecuted;
 
         public RightholderListControl()
         {
@@ -88,6 +85,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (!IsDesignMode)
             {
+                gvRightholdersList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
                 _rightholderService = new RightholderService();
 
@@ -175,14 +174,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 OnEditCommandExecuted(SelectedRightholder);
             }
-            else if (currentColumnName == "ObjectListColumn")
-            {
-                OnShowRightholdersObjectsCommandExecuted(SelectedRightholder);
-            }
-            else if (currentColumnName == "SetStatusColumn")
-            {
-                ShowChangeRightholderStatusMenu();
-            }
         }
 
         private void gvRightholdersList_CellDoubleClick(object sender, GridViewCellEventArgs e)
@@ -196,35 +187,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
             Utilities.GridViewHelper.SetTooltipText(sender, e);
-        }
-
-        private void ShowChangeRightholderStatusMenu()
-        {
-            var rightholder = gvRightholdersList.CurrentRow.DataBoundItem as RightholderMainView;
-
-            if (rightholder != null)
-            {
-                Point absolutePosition = gvRightholdersList.CurrentCell.PointToScreen(gvRightholdersList.CurrentCell.Location);
-                absolutePosition.Y += gvRightholdersList.CurrentCell.Size.Height;
-
-                var menu = RightholderStatusMenuFactory.Create((RightholderStatusType)rightholder.Status, RightholderStatusMenu_Click);
-                menu.Show(absolutePosition);
-            }
-        }
-
-        private void RightholderStatusMenu_Click(object sender, EventArgs e)
-        {
-            if (sender is RadMenuItem menuItem)
-            {
-                var newStatus = (RightholderStatusType)menuItem.Tag;
-
-                var result = _rightholderService.SetStatus(SelectedRightholder.CustId, newStatus);
-
-                if (result)
-                    UpdateList();
-                else
-                    MessageBox.Show("Не вдалося змінити статус.", "Помилка");
-            }
         }
 
         private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
@@ -286,11 +248,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
 
             EditCommandExecuted?.Invoke(this, selectedRightholder);
-        }
-
-        private void OnShowRightholdersObjectsCommandExecuted(RightholderMainView selectedRightholder)
-        {
-            ShowRightholdersObjectsCommandExecuted?.Invoke(this, selectedRightholder);
         }
 
         private void PopulateStatusFilterValues()

@@ -369,7 +369,6 @@
             this.ctrlRightholderList.Size = new System.Drawing.Size(1173, 563);
             this.ctrlRightholderList.TabIndex = 5;
             this.ctrlRightholderList.RightholderSelected += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderList_RightholderSelected);
-            this.ctrlRightholderList.ShowRightholdersObjectsCommandExecuted += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderList_ShowRightholdersObjectsCommandExecuted);
             // 
             // ddbNewRightholder
             // 
