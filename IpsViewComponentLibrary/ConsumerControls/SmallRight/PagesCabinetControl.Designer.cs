@@ -82,6 +82,10 @@
             this.pvPayments = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPaysInfo1 = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
+            this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
             this.pvActiveAgr.SuspendLayout();
@@ -112,22 +116,28 @@
             // 
             // pvMain
             // 
+            this.pvMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pvMain.Controls.Add(this.pvAnketa);
             this.pvMain.Controls.Add(this.pvActiveAgr);
             this.pvMain.Controls.Add(this.pvMoreAgreements);
             this.pvMain.Controls.Add(this.pvReports);
             this.pvMain.Controls.Add(this.pvCalculation);
             this.pvMain.Controls.Add(this.pvPayments);
+            this.pvMain.Controls.Add(this.pvContacts);
+            this.pvMain.Controls.Add(this.pvFiles);
+            this.pvMain.Controls.Add(this.pvAgent);
             this.pvMain.DefaultPage = this.pvActiveAgr;
             this.pvMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pvMain.Location = new System.Drawing.Point(0, 178);
             this.pvMain.MinimumSize = new System.Drawing.Size(962, 456);
             this.pvMain.Name = "pvMain";
             this.pvMain.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.pvMain.PageBackColor = System.Drawing.Color.White;
             // 
             // 
             // 
             this.pvMain.RootElement.MinSize = new System.Drawing.Size(962, 456);
-            this.pvMain.SelectedPage = this.pvActiveAgr;
+            this.pvMain.SelectedPage = this.pvAnketa;
             this.pvMain.Size = new System.Drawing.Size(992, 547);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";
@@ -140,7 +150,9 @@
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).DrawBorder = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).DrawBackgroundImage = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).DrawImage = true;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Radial;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).BorderGradientStyle = Telerik.WinControls.GradientStyles.Solid;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).BorderDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).EnableBorderHighlight = true;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).AutoSize = true;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
@@ -514,6 +526,7 @@
             this.radPageViewPage1.Controls.Add(this.btnDeleteAgr);
             this.radPageViewPage1.Controls.Add(this.btnAccept);
             this.radPageViewPage1.Controls.Add(this.btnEditAgreement);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(63, 15);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(914, 282);
@@ -580,6 +593,7 @@
             // 
             // radPageViewPage2
             // 
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(63, 15);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(914, 282);
@@ -662,6 +676,38 @@
             this.ctrlHeaderInfo.Size = new System.Drawing.Size(836, 178);
             this.ctrlHeaderInfo.TabIndex = 5;
             // 
+            // pvAnketa
+            // 
+            this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
+            this.pvAnketa.Location = new System.Drawing.Point(5, 41);
+            this.pvAnketa.Name = "pvAnketa";
+            this.pvAnketa.Size = new System.Drawing.Size(982, 501);
+            this.pvAnketa.Text = "Анкета";
+            // 
+            // pvContacts
+            // 
+            this.pvContacts.ItemSize = new System.Drawing.SizeF(66F, 27F);
+            this.pvContacts.Location = new System.Drawing.Point(0, 0);
+            this.pvContacts.Name = "pvContacts";
+            this.pvContacts.Size = new System.Drawing.Size(200, 100);
+            this.pvContacts.Text = "Контакти";
+            // 
+            // pvFiles
+            // 
+            this.pvFiles.ItemSize = new System.Drawing.SizeF(51F, 27F);
+            this.pvFiles.Location = new System.Drawing.Point(0, 0);
+            this.pvFiles.Name = "pvFiles";
+            this.pvFiles.Size = new System.Drawing.Size(200, 100);
+            this.pvFiles.Text = "Файли";
+            // 
+            // pvAgent
+            // 
+            this.pvAgent.ItemSize = new System.Drawing.SizeF(88F, 27F);
+            this.pvAgent.Location = new System.Drawing.Point(0, 0);
+            this.pvAgent.Name = "pvAgent";
+            this.pvAgent.Size = new System.Drawing.Size(200, 100);
+            this.pvAgent.Text = "Представник";
+            // 
             // PagesCabinetControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -733,5 +779,9 @@
         private ConsumerControls.ConsumerAgrDetailInfo ctrlAgrDetailInfo;
         private ConsumerControls.ConsumerAgrDetailInfo ctrlAgrDetailInfoMore;
         private Utilities.CurrentAgreementController currentAgreementController1;
+        private Telerik.WinControls.UI.RadPageViewPage pvAnketa;
+        private Telerik.WinControls.UI.RadPageViewPage pvContacts;
+        private Telerik.WinControls.UI.RadPageViewPage pvFiles;
+        private Telerik.WinControls.UI.RadPageViewPage pvAgent;
     }
 }
