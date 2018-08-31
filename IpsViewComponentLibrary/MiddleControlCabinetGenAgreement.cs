@@ -38,19 +38,19 @@ namespace IpsViewComponentLibrary
             var status = (e?.CurrentRow?.DataBoundItem as GeneralAgreementBigRightView)?.AgrStatus ?? -1;
 
             if (status != 4)
-                btnEditAgr.Enabled = true;
-            else if (btnEditAgr.Enabled)
-                btnEditAgr.Enabled = false;
+                btnChangeGenAgr.Enabled = true;
+            else if (btnChangeGenAgr.Enabled)
+                btnChangeGenAgr.Enabled = false;
 
             if (status == 0 || status == 1)
-                btnAccept.Enabled = true;
-            else if(btnAccept.Enabled)
-                btnAccept.Enabled = false;
+                btnStatusAcceptGenAgr.Enabled = true;
+            else if(btnStatusAcceptGenAgr.Enabled)
+                btnStatusAcceptGenAgr.Enabled = false;
 
             if (status == 2)
-                btnAgrClose.Enabled = true;
-            else if (btnAgrClose.Enabled)
-                btnAgrClose.Enabled = false;
+                btnStatusClosedGenAgr.Enabled = true;
+            else if (btnStatusClosedGenAgr.Enabled)
+                btnStatusClosedGenAgr.Enabled = false;
         }
 
         private void btnEditAgr_Click(object sender, EventArgs e)
