@@ -17,6 +17,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
     public partial class ObjectRightListControl : UserControl,
         ISubscriber<ObjectRightUpdatedEvent>
     {
+        private readonly ObjectRightService _objectRightService;
+
         protected bool IsDesignMode
         {
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
@@ -59,6 +61,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             {
                 gvObjectsRightsList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
 
+                _objectRightService = new ObjectRightService();
+
                 var stateNode = new RadTreeNode { Text = "Стан" };
 
                 tvFilters.Nodes.Add(stateNode);
@@ -84,8 +88,10 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             UpdateList(SelectedObject);
         }
 
-        public void UpdateList(ObjectRightMainView currentObject)
+        public async void UpdateList(ObjectRightMainView currentObject)
         {
+            waitingBar.StartWaiting();
+
             var query = new ObjectRightQuery();
 
             query.Page = navigatorPanel.CurrentPage;
@@ -96,13 +102,14 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (!string.IsNullOrWhiteSpace(txtSearch.Text))
                 query.SearchText = txtSearch.Text;
 
-            var service = new ObjectRightService();
-            var result = service.GetObjectRights(query);
+            var result = await _objectRightService.GetObjectRightsAsync(query);
             objectRightMainViewBindingSource.DataSource = result.List;
 
             navigatorPanel.TotalPages = (int) Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
 
             //SelectedObject = currentObject; // TODO: is it realy need?
+
+            waitingBar.StopWaiting();
         }
 
         private void gvObjectsRightsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
