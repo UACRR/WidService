@@ -779,7 +779,6 @@
     <Compile Include="Utilities\RadTextBoxAuto.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Utilities\RightholderStatusMenuFactory.cs" />
     <Compile Include="ViewAndPrintAgreement.cs">
       <SubType>Form</SubType>
     </Compile>

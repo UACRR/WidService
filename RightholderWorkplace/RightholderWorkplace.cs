@@ -60,12 +60,6 @@ namespace RightholderWorkplace
             }
         }
 
-        private void ctrlRightholderList_ShowRightholdersObjectsCommandExecuted(object sender, RightholderMainView selectedRightholder)
-        {
-            // TODO: move to rightholder list control
-            ShowObjectsRightsForRightholder(selectedRightholder);
-        }
-
         #endregion
 
         private void RightholderWorkplace_Load(object sender, EventArgs e)
