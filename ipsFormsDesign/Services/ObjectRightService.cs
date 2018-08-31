@@ -3,6 +3,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -27,8 +28,12 @@ namespace ipsFormsDesign.Services
         public ObjectRightListResponse GetObjectRights(ObjectRightQuery query)
         {
             var result = _webApi.GetItemByIdWithParam<ObjectRightListResponse>("objectright", null, query.ToKeyValuePair());
-
             return result;
+        }
+
+        public async Task<ObjectRightListResponse> GetObjectRightsAsync(ObjectRightQuery query)
+        {
+            return await Task.Factory.StartNew(() => GetObjectRights(query));
         }
 
         public List<ObjectRightMainView> GetObjectsByFilter( string filter )
