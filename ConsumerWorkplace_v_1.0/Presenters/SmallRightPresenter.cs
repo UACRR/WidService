@@ -37,6 +37,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetSmallRightForm.cabinet.OnEditCustomer += EditExistCustomerAnketa;
             _cabinetSmallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
             _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
+
+            new CalculationInfoControlPresenter(_cabinetSmallRightForm.cabinet.pagesControl.calculationCtrl, _service);
+            new ReportsControlPresenter(_cabinetSmallRightForm.cabinet.pagesControl.reportsControl, _service);
         }
 
         //зміна фільтра

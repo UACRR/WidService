@@ -84,8 +84,6 @@ namespace ConsumerWorkplace_v_1._0
             if (cabinet == null)
             {
                 //cabinet = new CabinetSmallRight(TypeRights.SmallRights);
-                var a = new CalculationInfoControlPresenter(cabinet.pagesControl.calculationCtrl, _service);
-                var b = new ReportsControlPresenter(cabinet.pagesControl.reportsControl, _service);
                 //cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 //cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 //cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;

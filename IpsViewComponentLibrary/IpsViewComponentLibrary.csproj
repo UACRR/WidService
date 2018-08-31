@@ -1233,6 +1233,7 @@
     <None Include="Resources\angle-right-solid.ico" />
     <Content Include="Resources\link-solid.ico" />
     <Content Include="Resources\plus-square-solid.ico" />
+    <None Include="Resources\print-solid.ico" />
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
