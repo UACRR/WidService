@@ -5,7 +5,7 @@
     <Configurations>Debug;Release</Configurations>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
-    <StartupObject>Program</StartupObject>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
