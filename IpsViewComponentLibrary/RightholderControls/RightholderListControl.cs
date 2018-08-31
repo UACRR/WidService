@@ -74,8 +74,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public string SearchText
         {
-            get => txtSearchRightholder.Text;
-            set => txtSearchRightholder.Text = value;
+            get => txtSearch.Text;
+            set => txtSearch.Text = value;
         }
 
         public event EventHandler<RightholderMainView> RightholderSelected;
@@ -90,6 +90,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
                 _rightholderService = new RightholderService();
+
+                var statusNode = new RadTreeNode { Text = "Статус" };
+
+                tvFilters.Nodes.Add(statusNode);
+                tvFilters.ExpandAll();
+            }
+        }
+
+        private void RightholderListControl_Load(object sender, EventArgs e)
+        {
+            if (!IsDesignMode)
+            {
+                PopulateStatusFilterValues();
+
+                // set default status filter as Active, this also cause update list, beacouse of tvFilters_SelectedNodeChanged is handled
+                tvFilters.Nodes[0].Nodes.First(n => (RightholderStatusType)n.Value == RightholderStatusType.Active).Selected = true;
             }
         }
 
@@ -113,14 +129,14 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _allowedStatuses = statuses;
 
-            PopulateStatusesDropDownList();
+            PopulateStatusFilterValues();
         }
 
-        public void ClearAllowedStatuses()
+        public void ResetAllowedStatuses()
         {
             _allowedStatuses = null;
 
-            PopulateStatusesDropDownList();
+            PopulateStatusFilterValues();
         }
 
         public void UpdateList()
@@ -128,32 +144,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             UpdateList(SelectedRightholder);
         }
 
-        public void UpdateList(RightholderMainView currentRightholder)
+        public async void UpdateList(RightholderMainView currentRightholder)
         {
+            waitingBar.StartWaiting();
+
             var query = new RightholderListQuery
             {
-                Status = (RightholderStatusType)ddlStatus.SelectedValue,
+                Status = (RightholderStatusType)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value,
             };
 
-            var list = _rightholderService.GetRightholders(query);
+            var list = await _rightholderService.GetRightholdersAsync(query);
+
             rightholderMainViewBindingSource.DataSource = list;
-
+            
             //SelectedRightholder = currentRightholder; // TODO: is it needed?
-        }
 
-        private void RightholderListControl_Load(object sender, EventArgs e)
-        {
-            if (!IsDesignMode)
-            {
-                PopulateStatusesDropDownList();
-
-                ddlStatus.SelectedValue = (int)RightholderStatusType.Active;
-            }
-        }
-
-        private void ddlStatus_SelectedValueChanged(object sender, EventArgs e)
-        {
-            UpdateList();
+            waitingBar.StopWaiting();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -221,6 +227,51 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
+        {
+            if (e.Node.Nodes.Any())
+            {
+                // set font to bold for parent nodes
+                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
+
+                if (e.NodeElement.IsMouseOver)
+                {
+                    // prevent hover highligting parent nodes
+                    e.NodeElement.BackColor = Color.White;
+                    e.NodeElement.BorderColor = Color.White;
+                }
+            }
+            else
+            {
+                // blue highlight (instead of gray) selected node even if tree veiw is inactive
+                bool isInactive = (bool)e.NodeElement.GetValue(TreeNodeElement.IsControlInactiveProperty);
+                if (isInactive && e.NodeElement.IsSelected)
+                {
+                    e.NodeElement.BackColor = Color.FromArgb(255, 146, 192, 224);
+                    e.NodeElement.BorderColor = Color.FromArgb(255, 146, 192, 224);
+                }
+                else
+                {
+                    e.NodeElement.ResetValue(LightVisualElement.BackColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                    e.NodeElement.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                }
+            }
+        }
+
+        private void tvFilters_SelectedNodeChanging(object sender, RadTreeViewCancelEventArgs e)
+        {
+            if (e.Node.Nodes.Any())
+            {
+                // prevent selecting parent nodes
+                e.Cancel = true;
+            }
+        }
+
         private void OnRightholderSelected(RightholderMainView selectedRightholder)
         {
             RightholderSelected?.Invoke(this, selectedRightholder);
@@ -242,7 +293,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ShowRightholdersObjectsCommandExecuted?.Invoke(this, selectedRightholder);
         }
 
-        private void PopulateStatusesDropDownList()
+        private void PopulateStatusFilterValues()
         {
             var statuses = IpsGlobal.AnketaDictionaties.customerStatus;
 
@@ -251,9 +302,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 statuses = statuses.Where(s => _allowedStatuses.Contains((RightholderStatusType)s.CodeI)).ToList();
             }
 
-            ddlStatus.SelectedValueChanged -= ddlStatus_SelectedValueChanged;
-            ddlStatus.SetDataSource(statuses);
-            ddlStatus.SelectedValueChanged += ddlStatus_SelectedValueChanged;
+            var statusValueNodes = statuses.Select(s => new RadTreeNode { Text = s.Name, Value = s.CodeI }).ToArray();
+            tvFilters.Nodes[0].Nodes.Clear();
+            tvFilters.Nodes[0].Nodes.AddRange(statusValueNodes);
         }
 
         public void HandleEvent(RightholderUpdatedEvent e)
@@ -263,14 +314,14 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         #region Search rightolder
 
-        private void txtSearchRightholder_TextChanged(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             gvRightholdersList.MasterTemplate.Refresh();
         }
 
         private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtSearchRightholder.Text))
+            if (string.IsNullOrEmpty(txtSearch.Text))
             {
                 gvRightholdersList.BeginUpdate();
                 e.Visible = true;
@@ -291,7 +342,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                     continue;
 
                 string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearchRightholder.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     e.Visible = true;
                     e.Row.Cells[i].Style.CustomizeFill = true;
