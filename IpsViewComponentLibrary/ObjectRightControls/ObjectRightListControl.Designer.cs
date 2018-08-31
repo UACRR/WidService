@@ -41,8 +41,6 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectRightListControl));
-            this.txtSearchObject = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnUpdateList = new Telerik.WinControls.UI.RadButton();
@@ -71,8 +69,7 @@
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.tvFilters = new Telerik.WinControls.UI.RadTreeView();
             this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearchObject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).BeginInit();
+            this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).BeginInit();
@@ -90,25 +87,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtSearchObject
-            // 
-            this.txtSearchObject.Location = new System.Drawing.Point(199, 3);
-            this.txtSearchObject.Name = "txtSearchObject";
-            this.txtSearchObject.Size = new System.Drawing.Size(490, 21);
-            this.txtSearchObject.TabIndex = 24;
-            this.txtSearchObject.ThemeName = "Office2013Light";
-            this.txtSearchObject.TextChanged += new System.EventHandler(this.txtSearchObject_TextChanged);
-            // 
-            // radLabel23
-            // 
-            this.radLabel23.Location = new System.Drawing.Point(144, 3);
-            this.radLabel23.Name = "radLabel23";
-            this.radLabel23.Size = new System.Drawing.Size(47, 19);
-            this.radLabel23.TabIndex = 23;
-            this.radLabel23.Text = "Пошук:";
-            this.radLabel23.ThemeName = "Office2013Light";
             // 
             // gvObjectsRightsList
             // 
@@ -217,23 +197,23 @@
             // 
             // ddlCategory
             // 
-            this.ddlCategory.Location = new System.Drawing.Point(392, 30);
+            this.ddlCategory.Location = new System.Drawing.Point(199, 30);
             this.ddlCategory.Name = "ddlCategory";
-            this.ddlCategory.Size = new System.Drawing.Size(125, 21);
+            this.ddlCategory.Size = new System.Drawing.Size(204, 21);
             this.ddlCategory.TabIndex = 27;
             this.ddlCategory.ThemeName = "Office2013Light";
             // 
             // ddlGenre
             // 
-            this.ddlGenre.Location = new System.Drawing.Point(570, 30);
+            this.ddlGenre.Location = new System.Drawing.Point(456, 30);
             this.ddlGenre.Name = "ddlGenre";
-            this.ddlGenre.Size = new System.Drawing.Size(119, 21);
+            this.ddlGenre.Size = new System.Drawing.Size(234, 21);
             this.ddlGenre.TabIndex = 28;
             this.ddlGenre.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(323, 30);
+            this.radLabel2.Location = new System.Drawing.Point(130, 30);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(63, 19);
             this.radLabel2.TabIndex = 30;
@@ -242,7 +222,7 @@
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(523, 30);
+            this.radLabel3.Location = new System.Drawing.Point(409, 30);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(41, 19);
             this.radLabel3.TabIndex = 30;
@@ -430,12 +410,11 @@
             // 
             // splitPanel2
             // 
+            this.splitPanel2.Controls.Add(this.txtSearch);
             this.splitPanel2.Controls.Add(this.btnUpdateList);
             this.splitPanel2.Controls.Add(this.gvObjectsRightsList);
             this.splitPanel2.Controls.Add(this.radLabel2);
-            this.splitPanel2.Controls.Add(this.radLabel23);
             this.splitPanel2.Controls.Add(this.radLabel3);
-            this.splitPanel2.Controls.Add(this.txtSearchObject);
             this.splitPanel2.Controls.Add(this.ddlGenre);
             this.splitPanel2.Controls.Add(this.ddlCategory);
             this.splitPanel2.Location = new System.Drawing.Point(107, 0);
@@ -479,6 +458,22 @@
             this.navigatorPanel.CurrentPageChanged += new System.EventHandler(this.navigatorPanel_CurrentPageChanged);
             this.navigatorPanel.PageSizeChanged += new System.EventHandler(this.navigatorPanel_PageSizeChanged);
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(130, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.NullText = "Пошук";
+            this.txtSearch.ShowClearButton = true;
+            this.txtSearch.Size = new System.Drawing.Size(300, 20);
+            this.txtSearch.TabIndex = 33;
+            this.txtSearch.ThemeName = "Office2013Light";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearchObject_TextChanged);
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            // 
             // ObjectRightListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,8 +483,6 @@
             this.Name = "ObjectRightListControl";
             this.Size = new System.Drawing.Size(800, 380);
             this.Load += new System.EventHandler(this.ObjectRightListControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearchObject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).EndInit();
@@ -508,14 +501,12 @@
             this.splitPanel2.ResumeLayout(false);
             this.splitPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadTextBox txtSearchObject;
-        private Telerik.WinControls.UI.RadLabel radLabel23;
         private Telerik.WinControls.UI.RadGridView gvObjectsRightsList;
         private System.Windows.Forms.BindingSource objectRightMainViewBindingSource;
         private Telerik.WinControls.UI.RadButton btnUpdateList;
@@ -544,5 +535,6 @@
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
         private Telerik.WinControls.UI.RadTreeView tvFilters;
+        private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
     }
 }

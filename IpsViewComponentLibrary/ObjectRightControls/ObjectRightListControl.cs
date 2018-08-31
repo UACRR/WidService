@@ -91,8 +91,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             if ((int)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value != -1)
                 query.State = (ObjectRightStates)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value;
-            if (!string.IsNullOrWhiteSpace(txtSearchObject.Text))
-                query.SearchText = txtSearchObject.Text;
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                query.SearchText = txtSearch.Text;
 
             var service = new ObjectRightService();
             var result = service.GetObjectRights(query);
