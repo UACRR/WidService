@@ -90,6 +90,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
                 _rightholderService = new RightholderService();
+
+                var statusNode = new RadTreeNode { Text = "Статус" };
+
+                tvFilters.Nodes.Add(statusNode);
+                tvFilters.ExpandAll();
             }
         }
 
@@ -97,17 +102,9 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             if (!IsDesignMode)
             {
-                //PopulateStatusesDropDownList();
+                PopulateStatusFilterValues();
 
-                var statusValueNodes = IpsGlobal.AnketaDictionaties.customerStatus.Select(s => new RadTreeNode { Text = s.Name, Value = s.CodeI }).ToArray();
-                var statusNode = new RadTreeNode { Text = "Статус" };
-                statusNode.Nodes.AddRange(statusValueNodes);
-
-                tvFilters.Nodes.Add(statusNode);
-                tvFilters.ExpandAll();
-
-                //ddlStatus.SelectedValue = (int)RightholderStatusType.Active; // to fix
-                // this also cause update list, beacouse of tvFilters_SelectedNodeChanged is handled
+                // set default status filter as Active, this also cause update list, beacouse of tvFilters_SelectedNodeChanged is handled
                 tvFilters.Nodes[0].Nodes.First(n => (RightholderStatusType)n.Value == RightholderStatusType.Active).Selected = true;
             }
         }
@@ -132,14 +129,14 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _allowedStatuses = statuses;
 
-            PopulateStatusesDropDownList();
+            PopulateStatusFilterValues();
         }
 
-        public void ClearAllowedStatuses()
+        public void ResetAllowedStatuses()
         {
             _allowedStatuses = null;
 
-            PopulateStatusesDropDownList();
+            PopulateStatusFilterValues();
         }
 
         public void UpdateList()
@@ -151,7 +148,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             var query = new RightholderListQuery
             {
-                //Status = (RightholderStatusType)ddlStatus.SelectedValue, // to fix
                 Status = (RightholderStatusType)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value,
             };
 
@@ -292,7 +288,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ShowRightholdersObjectsCommandExecuted?.Invoke(this, selectedRightholder);
         }
 
-        private void PopulateStatusesDropDownList()
+        private void PopulateStatusFilterValues()
         {
             var statuses = IpsGlobal.AnketaDictionaties.customerStatus;
 
@@ -301,9 +297,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 statuses = statuses.Where(s => _allowedStatuses.Contains((RightholderStatusType)s.CodeI)).ToList();
             }
 
-            //ddlStatus.SelectedValueChanged -= ddlStatus_SelectedValueChanged; // to fix
-            //ddlStatus.SetDataSource(statuses);
-            //ddlStatus.SelectedValueChanged += ddlStatus_SelectedValueChanged;
+            var statusValueNodes = statuses.Select(s => new RadTreeNode { Text = s.Name, Value = s.CodeI }).ToArray();
+            tvFilters.Nodes[0].Nodes.Clear();
+            tvFilters.Nodes[0].Nodes.AddRange(statusValueNodes);
         }
 
         public void HandleEvent(RightholderUpdatedEvent e)
