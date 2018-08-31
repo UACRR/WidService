@@ -34,9 +34,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             ctrlRightholderList.SetAllowedStatuses(statuses);
         }
 
-        public void ClearAllowedStatuses()
+        public void ResetAllowedStatuses()
         {
-            ctrlRightholderList.ClearAllowedStatuses();
+            ctrlRightholderList.ResetAllowedStatuses();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
