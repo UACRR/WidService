@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary
 {
-    partial class GlobalControlConsumerAnketa
+    partial class AnketaConsumer
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GlobalControlConsumerAnketa));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnketaConsumer));
             this.pageAnketaConsumer = new Telerik.WinControls.UI.RadPageView();
             this.pvClientName = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClientName = new IpsViewComponentLibrary.MiddleControlClientName();
@@ -349,14 +349,14 @@
             this.btnBack.ThemeName = "Office2013Light";
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // GlobalControlConsumerAnketa
+            // AnketaConsumer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.pageAnketaConsumer);
-            this.Name = "GlobalControlConsumerAnketa";
+            this.Name = "AnketaConsumer";
             this.Size = new System.Drawing.Size(1149, 664);
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).EndInit();
             this.pageAnketaConsumer.ResumeLayout(false);

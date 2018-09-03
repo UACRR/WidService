@@ -35,7 +35,7 @@
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
             this.gcConsumerCabinet = new IpsViewComponentLibrary.CabinetSmallRight();
-            this.globalControlConsumerAnketa1 = new IpsViewComponentLibrary.GlobalControlConsumerAnketa();
+            this.globalControlConsumerAnketa1 = new IpsViewComponentLibrary.AnketaConsumer();
             ((System.ComponentModel.ISupportInitialize)(this.dtTetsDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
@@ -149,7 +149,7 @@
         private Telerik.WinControls.UI.RadPageView radPageView1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
-        private IpsViewComponentLibrary.GlobalControlConsumerAnketa globalControlConsumerAnketa1;
+        private IpsViewComponentLibrary.AnketaConsumer globalControlConsumerAnketa1;
         private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
     }
 }

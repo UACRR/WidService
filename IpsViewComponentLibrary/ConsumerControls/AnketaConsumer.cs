@@ -16,7 +16,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class GlobalControlConsumerAnketa : UserControl
+    public partial class AnketaConsumer : UserControl
     {
         private int _visiblePage;
         private bool isEdit = false;
@@ -63,7 +63,7 @@ namespace IpsViewComponentLibrary
         public delegate void ReturnSaveCustomer(Customer cust);
         public event ReturnSaveCustomer OnBtnSaveClick;
 
-        public GlobalControlConsumerAnketa()
+        public AnketaConsumer()
         {
             InitializeComponent();
             pageAnketaConsumer.SelectedPage = pvClientName;

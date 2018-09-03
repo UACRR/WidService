@@ -408,11 +408,11 @@
     <Compile Include="GeneralAgreementInfo.Designer.cs">
       <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalControlConsumerAnketa.cs">
+    <Compile Include="ConsumerControls\AnketaConsumer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GlobalControlConsumerAnketa.Designer.cs">
-      <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
+    <Compile Include="ConsumerControls\AnketaConsumer.Designer.cs">
+      <DependentUpon>AnketaConsumer.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.cs">
       <SubType>UserControl</SubType>
@@ -933,8 +933,8 @@
     <EmbeddedResource Include="GeneralAgreementInfo.resx">
       <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalControlConsumerAnketa.resx">
-      <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\AnketaConsumer.resx">
+      <DependentUpon>AnketaConsumer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
