@@ -70,18 +70,18 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (result)
             {
                 ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
-                _view.Close();
+                _view.Hide();
             }
             else
                 _dialogService.ShowError((IWin32Window)_view, "Не вдалося зберегти правовласника.");
         }
 
-        private void View_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        public void Close()
         {
-            //if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
-            //{
-            //    e.Cancel = true;
-            //}
+            if (!_saved && !_dialogService.ClosingIsConfirmed((IWin32Window)_view))
+                return;
+
+            _view.Hide();
         }
     }
 }

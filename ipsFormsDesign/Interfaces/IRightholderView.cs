@@ -12,6 +12,6 @@
         object TermsOfServiceDataSource { get; set; }
 
         void Run();
-        void Close();
+        void Hide();
     }
 }

@@ -201,5 +201,11 @@ namespace IpsViewComponentLibrary.RightholderControls
                 anketaPageView.Pages[i].Enabled = false;
             }
         }
+
+        private void RightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            _presenter.Close();
+            e.Cancel = true;
+        }
     }
 }
