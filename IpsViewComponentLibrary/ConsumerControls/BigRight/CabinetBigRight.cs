@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.RightholderControls.Anketa;
@@ -170,7 +171,9 @@ namespace IpsViewComponentLibrary
             _unattachedMoneyView = unattachedMoneyView;
             _registerRatedListView = registerRatedListView;
             _rlSpectacleView = rlSpectacleView;
-            UpdateCurentTab(_currenCabinetTab);
+
+            if (pageView.SelectedPage != pvAnketa)
+                pageView.SelectedPage = pvAnketa;
         }
 
         //оновлення даних обаної вкладки
@@ -186,6 +189,9 @@ namespace IpsViewComponentLibrary
                     break;
 
                 case CabinetTabType.Anketa:
+                    ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _anketaDictionaties);
+                    ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
+
                     break;
 
                 case CabinetTabType.GeneralAgreement:
@@ -348,12 +354,6 @@ namespace IpsViewComponentLibrary
             string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
             _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
             UpdateCurentTab(_currenCabinetTab);
-        }
-
-        private void CabinetBigRight_Load(object sender, EventArgs e)
-        {
-            if (pageView.SelectedPage != pvAnketa)
-                pageView.SelectedPage = pvAnketa;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             _customer = GetCustomer(id);
             globalControlConsumerAnketa1.SetDataAndDictionaries(_customer, _dic); // передати дані та словники
-            globalControlConsumerAnketa1.InitializeControl(GetAutoCompList, GetCustomer, false);                // ініціалізація редагування (false), () або створення нового (true)
+            //globalControlConsumerAnketa1.InitializeControl(GetAutoCompList, GetCustomer, false);                // ініціалізація редагування (false), () або створення нового (true)
             return GetCustomer(id);
         }
 

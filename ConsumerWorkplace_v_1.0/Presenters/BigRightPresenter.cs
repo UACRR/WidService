@@ -181,6 +181,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.SetAllLoadData(customer, mainGridView, generalAgrView, licenseView,requestView, referenceView, licAutorsView, moneyUnattachedView, ratedListMainView, rlSpectacleView);
             if(!_cabinetBigRightForm.Visible)
                 _cabinetBigRightForm.Show();
+
+            _cabinetBigRightForm.cabinet.UpdateCurentTab(CabinetTabType.Anketa);
+
         }
 
         // Редагування існуючого споживача юридичної особи

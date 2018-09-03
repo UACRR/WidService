@@ -58,9 +58,9 @@ namespace IpsViewComponentLibrary
             ctrlConsumerAnketa.OnBtnSaveClick += CtrlConsumerAnketa_OnBtnSaveClick;
             _customer = customer;
             _dictionaties = dictionaties;
-            ctrlConsumerAnketa.typeRights = typeRights;
+            ctrlConsumerAnketa.TypeRights = typeRights;
             ctrlConsumerAnketa.SetDataAndDictionaries(customer, dictionaties);
-            ctrlConsumerAnketa.InitializeControl(getAutoCompList, getExistsCustomer, isNew);
+            ctrlConsumerAnketa.InitializeControl(getAutoCompList, getExistsCustomer, isNew ? ConsumerAnketeType.CreateNewAnketa : ConsumerAnketeType.EditAnketa);
             if (!isNew)
             {
                 btnSave.Visible = true;

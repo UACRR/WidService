@@ -53,8 +53,10 @@
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgent = new IpsViewComponentLibrary.MiddleControlCabinetAgent();
+            this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
+            this.pvAnketa.SuspendLayout();
             this.pvGeneralAgreement.SuspendLayout();
             this.pvLicence.SuspendLayout();
             this.pvRequest.SuspendLayout();
@@ -98,6 +100,7 @@
             // 
             // pvAnketa
             // 
+            this.pvAnketa.Controls.Add(this.ctrlAnketaConsumer);
             this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvAnketa.Location = new System.Drawing.Point(5, 31);
             this.pvAnketa.Name = "pvAnketa";
@@ -305,6 +308,16 @@
             this.ctrlAgent.Size = new System.Drawing.Size(1136, 584);
             this.ctrlAgent.TabIndex = 0;
             // 
+            // ctrlAnketaConsumer
+            // 
+            this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlAnketaConsumer.IsContainPlaces = false;
+            this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
+            this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
+            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlAnketaConsumer.TabIndex = 0;
+            this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
+            // 
             // CabinetBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,9 +326,9 @@
             this.Controls.Add(this.pageView);
             this.Name = "CabinetBigRight";
             this.Size = new System.Drawing.Size(1146, 620);
-            this.Load += new System.EventHandler(this.CabinetBigRight_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
+            this.pvAnketa.ResumeLayout(false);
             this.pvGeneralAgreement.ResumeLayout(false);
             this.pvLicence.ResumeLayout(false);
             this.pvRequest.ResumeLayout(false);
@@ -358,5 +371,6 @@
         public CalculationInfoControl ctrlCalculation;
         private Telerik.WinControls.UI.RadPageViewPage pvAnketa;
         private ConsumerControls.ConsumerHeaderInfo ctrlContactHeader;
+        private AnketaConsumer ctrlAnketaConsumer;
     }
 }

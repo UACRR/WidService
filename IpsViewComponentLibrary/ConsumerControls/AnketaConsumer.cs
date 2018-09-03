@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary
     {
         private int _visiblePage;
         private bool isEdit = false;
-        private Dictionary<int, string[]> _buttonsName = new Dictionary<int, string[]>
+        private readonly Dictionary<int, string[]> _buttonsName = new Dictionary<int, string[]>
         {
             {1, new []{"","Адреса >"} },
             {2, new []{"< Назва","Керівники >"} },
@@ -40,14 +40,15 @@ namespace IpsViewComponentLibrary
         private MiddleControlAgreementBigRights ctrlAgreementBigRights;
 
         private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
+
         private ButtonType _btnType = ButtonType.None;
         private byte _nextPageNumber;
-        private readonly Point _LocationPoint = new Point(4, 35);
+        private readonly Point _locationPoint = new Point(4, 35);
 
         private Customer _cust;
         private AnketaDictionaties _anketaDictionaries;
 
-        public TypeRights typeRights { get; set; } = TypeRights.SmallRights;
+        public TypeRights TypeRights { get; set; } = TypeRights.SmallRights;
         //властивість наявності майданчиків
         public bool IsContainPlaces
         {
@@ -63,6 +64,7 @@ namespace IpsViewComponentLibrary
         public delegate void ReturnSaveCustomer(Customer cust);
         public event ReturnSaveCustomer OnBtnSaveClick;
 
+        //default constructor
         public AnketaConsumer()
         {
             InitializeComponent();
@@ -73,11 +75,25 @@ namespace IpsViewComponentLibrary
             ctrlClientName.OnContainPlacesChanged += CtrlClientName_OnContainPlacesChanged; // при зміні наявності майданчиків
         }
 
+        /// <summary>
+        /// Ініціалізація даних для контрола (DATABINDING)
+        /// </summary>
+        /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
+        public void InitializeControl(Func<string, IList<AutoCompleteData>> getAutoCompList, Func<int, Customer> getCustomerAnketa, ConsumerAnketeType anketeType)
+        {
+            _anketeType = anketeType;
+            ctrlClientName.CheckPlace = TypeRights == TypeRights.BigRights;
+
+            if (_anketeType == ConsumerAnketeType.CreateNewAnketa)
+                ctrlClientName.SetAutoComplete(getAutoCompList, getCustomerAnketa);
+
+            ReInitControl();
+        }
+
 
         public void ReInitControl()
         {
-            SetTypePages(!isEdit);
-            SetColorTabs(!isEdit);
+            SetColorTabs(_anketeType);
             ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
             ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
             ctrlManagers.SetDataSources(_cust, _anketaDictionaries);   // - - - - - - - -  Керівники
@@ -90,13 +106,13 @@ namespace IpsViewComponentLibrary
             ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
 
             if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
-                InitAgreementType(typeRights);
+                InitAgreementType(TypeRights);
 
-            if(typeRights == TypeRights.BigRights)
+            if(TypeRights == TypeRights.BigRights)
                 ctrlClientName.CheckPlace = true;
 
             //ctrlClientName.SetDefaultState();
-            if (isEdit)
+            if (_anketeType == ConsumerAnketeType.EditAnketa)
             {
                 pageAnketaConsumer.Pages["pvPrint"].Item.Visibility = ElementVisibility.Collapsed;
                 pageAnketaConsumer.Pages["pvAgreement"].Item.Visibility = ElementVisibility.Collapsed;
@@ -118,7 +134,7 @@ namespace IpsViewComponentLibrary
                     {
                             ctrlAgreementBigRights = new MiddleControlAgreementBigRights
                             {
-                                Location = _LocationPoint,
+                                Location = _locationPoint,
                                 MaximumSize = new Size(900, 200),
                                 MinimumSize = new Size(500, 200),
                                 Name = "ctrlAgreementBigRights",
@@ -162,7 +178,7 @@ namespace IpsViewComponentLibrary
                     {
                         ctrlAgreementSmallRights = new MiddleControlAgreementAnketaType
                         {
-                            Location = _LocationPoint,
+                            Location = _locationPoint,
                             MinimumSize = new Size(490, 218),
                             Name = "ctrlAgreementSmallRights",
                             Size = new Size(690, 469),
@@ -171,48 +187,13 @@ namespace IpsViewComponentLibrary
                         pvAgreement.Controls.Add(ctrlAgreementSmallRights);
                     }
 
-                    ctrlAgreementSmallRights.typeRights = typeRights; // - - - - - - - - - - - - - - - - - - - - - - - -  Договір
+                    ctrlAgreementSmallRights.typeRights = TypeRights; // - - - - - - - - - - - - - - - - - - - - - - - -  Договір
                     ctrlAgreementSmallRights.SetDataSources(_cust, _anketaDictionaries, _anketeType); // - - - - - - - -  Договір
                 }
                     break;
             }
         }
 
-        /// <summary>
-        /// Ініціалізація даних для контрола (DATABINDING)
-        /// </summary>
-        /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
-        public void InitializeControl(
-            Func<string, IList<AutoCompleteData>> _getAutoCompList,
-            Func<int, Customer> _getCustomerAnketa,
-            bool isNew = true)
-        {
-            ctrlClientName.CheckPlace = typeRights == TypeRights.BigRights;
-            _anketeType = isNew ? ConsumerAnketeType.CreateNewAnketa : ConsumerAnketeType.EditAnketa;
-            isEdit = !isNew;
-
-            if (isNew)
-            {
-                ctrlClientName.SetAutoComplete(_getAutoCompList, _getCustomerAnketa);
-            }
-
-            ReInitControl();
-        }
-
-        /// <summary>
-        /// Ввімкненість вкладок 'договору' та 'друку'
-        /// </summary>
-        /// <param name="isnew">true(default) - новий споживач, стандартна фарма, false - редагування існуючого споживача</param>
-        private void SetTypePages(bool isnew)
-        {
-            if (isnew)
-            {
-                return;
-            }
-
-            pvAgreement.Enabled = false;
-            pvPrint.Enabled = false;
-        }
 
         /// <summary>
         /// Обов'язковий метод 
@@ -268,9 +249,9 @@ namespace IpsViewComponentLibrary
 
                 case 6: // - Договір
                     {
-                        if(typeRights == TypeRights.SmallRights)
+                        if(TypeRights == TypeRights.SmallRights)
                             isValid = ctrlAgreementSmallRights.Validator();
-                        if (typeRights == TypeRights.BigRights)
+                        if (TypeRights == TypeRights.BigRights)
                             isValid = ctrlAgreementBigRights.Validator();
                     }
                     break;
@@ -315,17 +296,11 @@ namespace IpsViewComponentLibrary
                     break;
                 case 5:
                     {
-                        if (isEdit)
-                        {
-                            _btnType = ButtonType.None;
-                            OnBtnSaveClick?.Invoke(_cust);
-                            return;
-                        }
                         pageAnketaConsumer.SelectedPage = pvAgreement;
 
-                        if(typeRights == TypeRights.SmallRights)
+                        if(TypeRights == TypeRights.SmallRights)
                             ctrlAgreementSmallRights.SetDefaultListItem();
-                        if(typeRights == TypeRights.BigRights)
+                        if(TypeRights == TypeRights.BigRights)
                             ctrlAgreementBigRights.SetBigRightsLicenseAgrType();
                     }
                     break;
@@ -387,7 +362,7 @@ namespace IpsViewComponentLibrary
                     _cust.Client.LicenseAgreement.LastOrDefault().LicStatus = 2;
                 }
 
-                if (typeRights == TypeRights.BigRights)
+                if (TypeRights == TypeRights.BigRights)
                 {
                     _cust.Client.LicenseAgreement.LastOrDefault().Agr.AgreementAddBr.SingleOrDefault().AgrStatus =
                         _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
@@ -395,7 +370,7 @@ namespace IpsViewComponentLibrary
                     _cust.Client.LicenseAgreement.LastOrDefault().Agr.AgrStatus =
                         _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
                 }
-                else if(typeRights == TypeRights.SmallRights)
+                else if(TypeRights == TypeRights.SmallRights)
                 {
                     _cust.Client.LicenseAgreement.LastOrDefault().LicenseAgrParam.SingleOrDefault().LicStatus = _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
                     _cust.Client.LicenseAgreement.LastOrDefault().Agr.AgrStatus = _cust.Client.LicenseAgreement.LastOrDefault().LicStatus;
@@ -479,11 +454,11 @@ namespace IpsViewComponentLibrary
         /// Set color page view tabs
         /// </summary>
         /// <param name="isNew">If new item set 'true' - set gray color, else 'false' - set default color</param>
-        private void SetColorTabs(bool isNew)
+        private void SetColorTabs(ConsumerAnketeType anketeType)
         {
-            switch (isNew)
+            switch (anketeType)
             {
-                case true:
+                case ConsumerAnketeType.CreateNewAnketa:
                     {
                         foreach (var page in pageAnketaConsumer.Pages)
                         {
@@ -494,7 +469,7 @@ namespace IpsViewComponentLibrary
                     }
                     break;
 
-                case false:
+                case ConsumerAnketeType.EditAnketa:
                     {
                         foreach (var page in pageAnketaConsumer.Pages)
                         {
@@ -544,7 +519,7 @@ namespace IpsViewComponentLibrary
                             {
                                 ChangeButtonsName(_visiblePage + 1);
                                 if (_visiblePage == 1)
-                                    btnBack.Visible = true;
+                                    btnBack.Visible = true && _anketeType == ConsumerAnketeType.CreateNewAnketa;
                                 if (_visiblePage != 7)
                                     _visiblePage++;
                                 _btnType = ButtonType.None;
@@ -599,7 +574,7 @@ namespace IpsViewComponentLibrary
                             {
                                 _visiblePage = e.Page.TabIndex + 1;
                                 ChangeButtonsName(_visiblePage);
-                                btnBack.Visible = e.Page.TabIndex > 0;
+                                btnBack.Visible = e.Page.TabIndex > 0 && _anketeType == ConsumerAnketeType.CreateNewAnketa;
                             }
                             else
                             {
