@@ -59,6 +59,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (_customer == null)
                 return;
 
+            if (!_view.IsValid)
+            {
+                _dialogService.ShowError((IWin32Window)_view, "Не корректно введені дані.");
+                return;
+            }
+
             _saved = true;
 
             if (accept)

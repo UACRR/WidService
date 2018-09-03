@@ -83,32 +83,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             ShowDialog();
         }
 
-        private void mainPageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
+        public bool IsValid
         {
-            // TODO: move to presenter
-            var selectedPage = anketaPageView.SelectedPage;
-            var isValid = true;
-
-            if (selectedPage == rightholderPage)
+            get
             {
-                isValid = ctrlAnketaPerson.Validator() && ctrlServiceComissionControl.ValidateChildren();
-            }
-            else if (selectedPage == contactsPage)
-            {
-                isValid = ctrlContacts.Validator() & ctrlRegistrations.Validator();
-            }
-
-            if (isValid)
-            {
-                e.Page.Enabled = true;
-                if (e.Page == anketaPageView.Pages.Last())
-                {
-                    sbSave.Enabled = true;
-                }
-            }
-            else
-            {
-                e.Cancel = true;
+                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrations.Validator();
             }
         }
 

@@ -775,6 +775,7 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Анкета правовласника";
             this.ThemeName = "Office2013Light";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewRightholderView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).EndInit();
             this.mainPageView.ResumeLayout(false);
             this.rightholderPage.ResumeLayout(false);

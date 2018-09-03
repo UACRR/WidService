@@ -85,6 +85,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             ShowDialog();
         }
 
+        public bool IsValid
+        {
+            get
+            {
+                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrations.Validator();
+            }
+        }
+
         private void mainPageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
         {
             // TODO: move to presenter
@@ -93,11 +101,15 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (selectedPage == rightholderPage)
             {
-                isValid = ctrlAnketaPerson.Validator() && ctrlServiceComissionControl.ValidateChildren();
+                isValid = ctrlAnketaPerson.Validator() & ctrlRegistrations.Validator() & ctrlServiceComissionControl.ValidateChildren();
             }
             else if (selectedPage == contactsPage)
             {
-                isValid = ctrlContacts.Validator() & ctrlRegistrations.Validator();
+                isValid = ctrlContacts.Validator();
+            }
+            else if (selectedPage == agreementPage)
+            {
+                isValid = ctrlServiceComissionControl.ValidateChildren();
             }
 
             if (isValid)
