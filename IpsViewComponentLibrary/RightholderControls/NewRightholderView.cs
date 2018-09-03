@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
@@ -9,10 +10,10 @@ using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class NewRightholderView : Telerik.WinControls.UI.RadForm
+    public partial class NewRightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
     {
-        private RightholderPresenter _presenter;
-        public RightholderPresenter Presenter
+        private IRightholderPresenter _presenter;
+        public IRightholderPresenter Presenter
         {
             get { return _presenter; }
             set

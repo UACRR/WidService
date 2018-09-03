@@ -514,7 +514,6 @@
             // createRightholderRoyaltyBankPage
             // 
             this.createRightholderRoyaltyBankPage.Controls.Add(this.ctrlBankAccount);
-            this.createRightholderRoyaltyBankPage.ItemSize = new System.Drawing.SizeF(27F, 206F);
             this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyBankPage.Name = "createRightholderRoyaltyBankPage";
             this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(810, 388);
@@ -535,7 +534,6 @@
             // 
             // createRightholderRoyaltyCashPage
             // 
-            this.createRightholderRoyaltyCashPage.ItemSize = new System.Drawing.SizeF(27F, 178F);
             this.createRightholderRoyaltyCashPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyCashPage.Name = "createRightholderRoyaltyCashPage";
             this.createRightholderRoyaltyCashPage.Size = new System.Drawing.Size(810, 388);
@@ -547,7 +545,6 @@
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel9);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.radLabel10);
             this.createRightholderRoyaltyPostalTransfer.Controls.Add(this.txtPostalIndex);
-            this.createRightholderRoyaltyPostalTransfer.ItemSize = new System.Drawing.SizeF(27F, 229F);
             this.createRightholderRoyaltyPostalTransfer.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyPostalTransfer.Name = "createRightholderRoyaltyPostalTransfer";
             this.createRightholderRoyaltyPostalTransfer.Size = new System.Drawing.Size(810, 388);
@@ -721,7 +718,7 @@
             this.sbSave.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.miSave,
             this.miAcceptAndSave});
-            this.sbSave.Location = new System.Drawing.Point(820, 4);
+            this.sbSave.Location = new System.Drawing.Point(639, 4);
             this.sbSave.Name = "sbSave";
             this.sbSave.Size = new System.Drawing.Size(175, 24);
             this.sbSave.TabIndex = 53;
@@ -744,9 +741,8 @@
             // 
             // ctrlPageSelector
             // 
-            this.ctrlPageSelector.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ctrlPageSelector.BackColor = System.Drawing.Color.Transparent;
-            this.ctrlPageSelector.Location = new System.Drawing.Point(329, 1);
+            this.ctrlPageSelector.Location = new System.Drawing.Point(0, 1);
             this.ctrlPageSelector.Name = "ctrlPageSelector";
             this.ctrlPageSelector.RelatedPageView = this.mainPageView;
             this.ctrlPageSelector.Size = new System.Drawing.Size(362, 30);
@@ -754,9 +750,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(3, 4);
+            this.btnCancel.Location = new System.Drawing.Point(820, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(175, 24);
             this.btnCancel.TabIndex = 17;
