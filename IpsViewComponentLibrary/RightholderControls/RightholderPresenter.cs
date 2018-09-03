@@ -34,7 +34,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _customer = _rightholderService.NewCustomer(customerType);
             SetViewData();
-            _view.IsNew = true;
             _view.Run();
         }
 

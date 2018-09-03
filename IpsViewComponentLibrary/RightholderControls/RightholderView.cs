@@ -25,22 +25,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        private bool _isNew = false;
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set
-            {
-                if (_isNew != value)
-                {
-                    _isNew = value;
-
-                    if (_isNew)
-                        DisablePagesAndSaveButton();
-                }
-            }
-        }
-
         #region Data sources
 
         public object AgreementAddRhDataSource
@@ -191,15 +175,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void miAcceptAndSave_Click(object sender, EventArgs e)
         {
             _presenter.Save(accept: true);
-        }
-
-        private void DisablePagesAndSaveButton()
-        {
-            sbSave.Enabled = false;
-            for (int i = 1; i < anketaPageView.Pages.Count; i++)
-            {
-                anketaPageView.Pages[i].Enabled = false;
-            }
         }
 
         private void RightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)

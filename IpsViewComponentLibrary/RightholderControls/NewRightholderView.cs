@@ -25,22 +25,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        private bool _isNew = false;
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set
-            {
-                if (_isNew != value)
-                {
-                    _isNew = value;
-
-                    if (_isNew)
-                        DisablePagesAndSaveButton();
-                }
-            }
-        }
-
         #region Data sources
 
         public object AgreementAddRhDataSource
@@ -92,6 +76,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             sbSave.Text = miSave.Text;
 
             ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
+
+            DisablePagesAndSaveButton();
         }
 
         public void Run()

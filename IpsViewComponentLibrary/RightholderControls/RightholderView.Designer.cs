@@ -444,6 +444,7 @@
             this.royaltyPage.Controls.Add(this.radLabel8);
             this.royaltyPage.Controls.Add(this.createRightholderRoyaltyPageView);
             this.royaltyPage.Controls.Add(this.ddlTypeMethodGet);
+            this.royaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.royaltyPage.Location = new System.Drawing.Point(141, 5);
             this.royaltyPage.Name = "royaltyPage";
             this.royaltyPage.Size = new System.Drawing.Size(908, 435);
@@ -569,6 +570,7 @@
             // rigthLimitationsPage
             // 
             this.rigthLimitationsPage.Controls.Add(this.ctrlRightLimitations);
+            this.rigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.rigthLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.rigthLimitationsPage.Name = "rigthLimitationsPage";
             this.rigthLimitationsPage.Size = new System.Drawing.Size(908, 435);
@@ -589,6 +591,7 @@
             // territoryLimitationsPage
             // 
             this.territoryLimitationsPage.Controls.Add(this.ctrlTerritoryIncludeExclude);
+            this.territoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.territoryLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.territoryLimitationsPage.Name = "territoryLimitationsPage";
             this.territoryLimitationsPage.Size = new System.Drawing.Size(908, 435);
@@ -606,9 +609,10 @@
             // 
             this.agreementPrintPage.Controls.Add(this.btnGenerateRightholderAgreement);
             this.agreementPrintPage.Controls.Add(this.pdfvRightholderAgreement);
-            this.agreementPrintPage.Location = new System.Drawing.Point(139, 5);
+            this.agreementPrintPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
+            this.agreementPrintPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPrintPage.Name = "agreementPrintPage";
-            this.agreementPrintPage.Size = new System.Drawing.Size(910, 435);
+            this.agreementPrintPage.Size = new System.Drawing.Size(863, 435);
             this.agreementPrintPage.Text = "Друк";
             // 
             // btnGenerateRightholderAgreement
@@ -629,7 +633,7 @@
             this.pdfvRightholderAgreement.Controls.Add(this.waitbarAgreement);
             this.pdfvRightholderAgreement.Location = new System.Drawing.Point(3, 34);
             this.pdfvRightholderAgreement.Name = "pdfvRightholderAgreement";
-            this.pdfvRightholderAgreement.Size = new System.Drawing.Size(904, 398);
+            this.pdfvRightholderAgreement.Size = new System.Drawing.Size(857, 398);
             this.pdfvRightholderAgreement.TabIndex = 0;
             this.pdfvRightholderAgreement.ThemeName = "Office2013Light";
             this.pdfvRightholderAgreement.ThumbnailsScaleFactor = 0.15F;
@@ -719,9 +723,10 @@
             this.radPageView1.Controls.Add(this.radPageViewPage2);
             this.radPageView1.Controls.Add(this.radPageViewPage3);
             this.radPageView1.Controls.Add(this.radPageViewPage4);
+            this.radPageView1.DefaultPage = this.radPageViewPage1;
             this.radPageView1.Location = new System.Drawing.Point(0, 1);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage1;
+            this.radPageView1.SelectedPage = this.radPageViewPage2;
             this.radPageView1.Size = new System.Drawing.Size(1019, 481);
             this.radPageView1.TabIndex = 20;
             this.radPageView1.ThemeName = "Office2013Light";
@@ -742,7 +747,7 @@
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(1054, 445);
+            this.radPageViewPage2.Size = new System.Drawing.Size(1009, 445);
             this.radPageViewPage2.Text = "Договір";
             // 
             // agreementPageView
@@ -755,10 +760,11 @@
             this.agreementPageView.Controls.Add(this.rigthLimitationsPage);
             this.agreementPageView.Controls.Add(this.territoryLimitationsPage);
             this.agreementPageView.Controls.Add(this.agreementPrintPage);
+            this.agreementPageView.DefaultPage = this.agreementPage;
             this.agreementPageView.Location = new System.Drawing.Point(1, 0);
             this.agreementPageView.Name = "agreementPageView";
             this.agreementPageView.SelectedPage = this.agreementPrintPage;
-            this.agreementPageView.Size = new System.Drawing.Size(1054, 445);
+            this.agreementPageView.Size = new System.Drawing.Size(1009, 445);
             this.agreementPageView.TabIndex = 3;
             this.agreementPageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.agreementPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -769,9 +775,10 @@
             // 
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
+            this.agreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPage.Name = "agreementPage";
-            this.agreementPage.Size = new System.Drawing.Size(908, 435);
+            this.agreementPage.Size = new System.Drawing.Size(863, 435);
             this.agreementPage.Text = "Договір";
             // 
             // ctrlAgreementNumberDate

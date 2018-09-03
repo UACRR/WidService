@@ -6,7 +6,6 @@
         object AnketaPersonDataSource { get; set; }
         object BankAccountDataSource { get; set; }
         object CustomerDataSource { get; set; }
-        bool IsNew { get; set; }
         IRightholderPresenter Presenter { get; set; }
         object RightholderDataSource { get; set; }
         object TermsOfServiceDataSource { get; set; }

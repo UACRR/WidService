@@ -156,7 +156,7 @@
             this.mainPageView.DefaultPage = this.rightholderPage;
             this.mainPageView.Location = new System.Drawing.Point(1, 1);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.rightholderPage;
+            this.mainPageView.SelectedPage = this.agreementPage;
             this.mainPageView.Size = new System.Drawing.Size(995, 437);
             this.mainPageView.TabIndex = 2;
             this.mainPageView.ThemeName = "Office2013Light";
