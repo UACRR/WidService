@@ -84,7 +84,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             InitializeComponent();
 
-            createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+            passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             sbSave.DefaultItem = miSave;
@@ -101,14 +101,14 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void mainPageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
         {
             // TODO: move to presenter
-            var selectedPage = mainPageView.SelectedPage;
+            var selectedPage = anketaPageView.SelectedPage;
             var isValid = true;
 
-            if (selectedPage == createRightholderFullNameComissionPage)
+            if (selectedPage == rightholderPage)
             {
                 isValid = ctrlAnketaPerson.Validator() && ctrlServiceComissionControl.ValidateChildren();
             }
-            else if (selectedPage == createRightholderAnketaPage)
+            else if (selectedPage == contactsPage)
             {
                 isValid = ctrlContacts.Validator() & ctrlRegistrations.Validator();
             }
@@ -116,7 +116,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (isValid)
             {
                 e.Page.Enabled = true;
-                if (e.Page == mainPageView.Pages.Last())
+                if (e.Page == anketaPageView.Pages.Last())
                 {
                     sbSave.Enabled = true;
                 }
@@ -135,12 +135,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (anketa == null)
                 return;
 
-            if (mainPageView.SelectedPage == createRightholderPassportPage)
+            if (anketaPageView.SelectedPage == createRightholderPassportPage)
             {
                 if (anketa.Citizenship == "804")
-                    createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
+                    passportPageView.SelectedPage = createRightholderInternalPasportPage;
                 else
-                    createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
+                    passportPageView.SelectedPage = createRightholderForeignPassportPage;
             }
         }
 
@@ -195,9 +195,9 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void DisablePagesAndSaveButton()
         {
             sbSave.Enabled = false;
-            for (int i = 1; i < mainPageView.Pages.Count; i++)
+            for (int i = 1; i < anketaPageView.Pages.Count; i++)
             {
-                mainPageView.Pages[i].Enabled = false;
+                anketaPageView.Pages[i].Enabled = false;
             }
         }
     }
