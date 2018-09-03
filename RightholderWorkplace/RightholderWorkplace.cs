@@ -43,7 +43,7 @@ namespace RightholderWorkplace
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
             // TODO: move to rightholder list control + add AllowAdd property
-            using (var rightholderView = new RightholderView())
+            using (var rightholderView = new NewRightholderView())
             {
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
                 rightholderPresenter.ShowNew(1);
