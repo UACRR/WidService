@@ -104,11 +104,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             var selectedPage = mainPageView.SelectedPage;
             var isValid = true;
 
-            if (selectedPage == createRightholderFullNameComissionPage)
+            if (selectedPage == rightholderPage)
             {
                 isValid = ctrlAnketaPerson.Validator() && ctrlServiceComissionControl.ValidateChildren();
             }
-            else if (selectedPage == createRightholderAnketaPage)
+            else if (selectedPage == contactsPage)
             {
                 isValid = ctrlContacts.Validator() & ctrlRegistrations.Validator();
             }
@@ -135,10 +135,10 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (anketa == null)
                 return;
 
-            if (mainPageView.SelectedPage == createRightholderPassportPage)
+            if (mainPageView.SelectedPage == passportPage)
             {
                 if (anketa.Citizenship == "804")
-                    createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
+                    createRightholderPassportPageView.SelectedPage = pasportPage;
                 else
                     createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
             }
