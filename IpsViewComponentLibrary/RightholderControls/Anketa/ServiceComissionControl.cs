@@ -62,28 +62,30 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
         private void mtxtRateCommission_Validating(object sender, CancelEventArgs e)
         {
-            var value = decimal.Parse(mtxtRateCommission.Text);
-
-            if (value > 100)
+            if (decimal.TryParse(mtxtRateCommission.Text, out decimal value))
             {
-                errorProvider.SetError(mtxtRateCommission, "Відсоток комісії не може бути більше 100%.");
-                e.Cancel = true;
+                if (value > 100)
+                {
+                    errorProvider.SetError(mtxtRateCommission, "Відсоток комісії не може бути більше 100%.");
+                    e.Cancel = true;
+                }
+                else
+                    errorProvider.SetError(mtxtRateCommission, "");
             }
-            else
-                errorProvider.SetError(mtxtRateCommission, "");
         }
 
         private void mtxtRateCourt_Validating(object sender, CancelEventArgs e)
         {
-            var value = decimal.Parse(mtxtRateCourt.Text);
-
-            if (value > 100)
+            if (decimal.TryParse(mtxtRateCourt.Text, out decimal value))
             {
-                errorProvider.SetError(mtxtRateCourt, "Відсоток комісії не може бути більше 100%.");
-                e.Cancel = true;
+                if (value > 100)
+                {
+                    errorProvider.SetError(mtxtRateCourt, "Відсоток комісії не може бути більше 100%.");
+                    e.Cancel = true;
+                }
+                else
+                    errorProvider.SetError(mtxtRateCourt, "");
             }
-            else
-                errorProvider.SetError(mtxtRateCourt, "");
         }
 
         #endregion
