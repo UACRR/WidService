@@ -30,6 +30,7 @@
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
+            this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
             this.pvLicence = new Telerik.WinControls.UI.RadPageViewPage();
@@ -47,12 +48,11 @@
             this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
             this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlContactHeader = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgent = new IpsViewComponentLibrary.MiddleControlCabinetAgent();
-            this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlContactHeader = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvGeneralAgreement.SuspendLayout();
@@ -86,7 +86,7 @@
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvAnketa;
+            this.pageView.SelectedPage = this.pvGeneralAgreement;
             this.pageView.Size = new System.Drawing.Size(1146, 620);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
@@ -95,6 +95,14 @@
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ShowItemCloseButton = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ItemSizeMode = Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight;
+            // 
+            // pvAnketa
+            // 
+            this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
+            this.pvAnketa.Location = new System.Drawing.Point(5, 31);
+            this.pvAnketa.Name = "pvAnketa";
+            this.pvAnketa.Size = new System.Drawing.Size(1136, 584);
+            this.pvAnketa.Text = "Анкета";
             // 
             // pvGeneralAgreement
             // 
@@ -251,6 +259,16 @@
             this.pvContacts.Size = new System.Drawing.Size(1136, 584);
             this.pvContacts.Text = "Контакти";
             // 
+            // ctrlContactHeader
+            // 
+            this.ctrlContactHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctrlContactHeader.Location = new System.Drawing.Point(0, 0);
+            this.ctrlContactHeader.MaximumSize = new System.Drawing.Size(836, 178);
+            this.ctrlContactHeader.MinimumSize = new System.Drawing.Size(836, 178);
+            this.ctrlContactHeader.Name = "ctrlContactHeader";
+            this.ctrlContactHeader.Size = new System.Drawing.Size(836, 178);
+            this.ctrlContactHeader.TabIndex = 6;
+            // 
             // pvFiles
             // 
             this.pvFiles.Controls.Add(this.ctrlFiles);
@@ -287,24 +305,6 @@
             this.ctrlAgent.Size = new System.Drawing.Size(1136, 584);
             this.ctrlAgent.TabIndex = 0;
             // 
-            // pvAnketa
-            // 
-            this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
-            this.pvAnketa.Location = new System.Drawing.Point(5, 31);
-            this.pvAnketa.Name = "pvAnketa";
-            this.pvAnketa.Size = new System.Drawing.Size(1136, 584);
-            this.pvAnketa.Text = "Анкета";
-            // 
-            // ctrlContactHeader
-            // 
-            this.ctrlContactHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctrlContactHeader.Location = new System.Drawing.Point(0, 0);
-            this.ctrlContactHeader.MaximumSize = new System.Drawing.Size(836, 178);
-            this.ctrlContactHeader.MinimumSize = new System.Drawing.Size(836, 178);
-            this.ctrlContactHeader.Name = "ctrlContactHeader";
-            this.ctrlContactHeader.Size = new System.Drawing.Size(836, 178);
-            this.ctrlContactHeader.TabIndex = 6;
-            // 
             // CabinetBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +313,7 @@
             this.Controls.Add(this.pageView);
             this.Name = "CabinetBigRight";
             this.Size = new System.Drawing.Size(1146, 620);
+            this.Load += new System.EventHandler(this.CabinetBigRight_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvGeneralAgreement.ResumeLayout(false);

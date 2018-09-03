@@ -39,6 +39,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -54,32 +55,38 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.bsDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewRequests = new Telerik.WinControls.UI.RadGridView();
-            this.btnDelete = new Telerik.WinControls.UI.RadButton();
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.separator = new Telerik.WinControls.UI.RadSeparator();
-            this.btnToReference = new Telerik.WinControls.UI.RadButton();
             this.btnCreate = new Telerik.WinControls.UI.RadButton();
-            this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.gvCreativeRole = new Telerik.WinControls.UI.RadGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ddBtnStateChange = new Telerik.WinControls.UI.RadDropDownButton();
+            this.btnChangeToReference = new Telerik.WinControls.UI.RadMenuItem();
+            this.btnChangeToLicense = new Telerik.WinControls.UI.RadMenuItem();
+            this.ddBtnStatusChange = new Telerik.WinControls.UI.RadDropDownButton();
+            this.btnStatusAccept = new Telerik.WinControls.UI.RadMenuItem();
+            this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
+            this.spHeader = new Telerik.WinControls.UI.SplitPanel();
+            this.spFooter = new Telerik.WinControls.UI.SplitPanel();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnToReference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddBtnStateChange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddBtnStatusChange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spHeader)).BeginInit();
+            this.spHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spFooter)).BeginInit();
+            this.spFooter.SuspendLayout();
             this.SuspendLayout();
             // 
             // bsDictionary
@@ -122,7 +129,7 @@
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 401;
+            gridViewTextBoxColumn3.Width = 372;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ заявки";
@@ -177,17 +184,25 @@
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Файли";
-            gridViewCommandColumn1.FieldName = "btnsEdit";
+            gridViewCommandColumn1.FieldName = "editBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn1.MaxWidth = 35;
-            gridViewCommandColumn1.MinWidth = 35;
-            gridViewCommandColumn1.Name = "btnsDelete";
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "editBtn";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewCommandColumn1.Width = 35;
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn2.FieldName = "deleteBtn";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "deleteBtn";
+            gridViewCommandColumn2.Width = 30;
             this.gvViewRequests.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -198,7 +213,8 @@
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
-            gridViewCommandColumn1});
+            gridViewCommandColumn1,
+            gridViewCommandColumn2});
             this.gvViewRequests.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewRequests.MasterTemplate.EnableFiltering = true;
             this.gvViewRequests.MasterTemplate.EnableGrouping = false;
@@ -206,25 +222,13 @@
             this.gvViewRequests.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewRequests.Name = "gvViewRequests";
             this.gvViewRequests.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewRequests.Size = new System.Drawing.Size(1054, 183);
+            this.gvViewRequests.Size = new System.Drawing.Size(1054, 192);
             this.gvViewRequests.TabIndex = 8;
             this.gvViewRequests.ThemeName = "Office2013Light";
             this.gvViewRequests.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRequests_CurrentRowChanged);
             this.gvViewRequests.CurrentRowChanging += new Telerik.WinControls.UI.CurrentRowChangingEventHandler(this.gvViewRequests_CurrentRowChanging);
             this.gvViewRequests.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRequests_CommandCellClick);
             this.gvViewRequests.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewRequests_CustomFiltering);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(935, 319);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(112, 20);
-            this.btnDelete.TabIndex = 13;
-            this.btnDelete.Text = "Вилучити заявку";
-            this.btnDelete.ThemeName = "Office2013Light";
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // txtSearch
             // 
@@ -262,20 +266,10 @@
             this.separator.TabIndex = 15;
             this.separator.ThemeName = "Office2013Light";
             // 
-            // btnToReference
-            // 
-            this.btnToReference.Enabled = false;
-            this.btnToReference.Location = new System.Drawing.Point(130, 319);
-            this.btnToReference.Name = "btnToReference";
-            this.btnToReference.Size = new System.Drawing.Size(112, 20);
-            this.btnToReference.TabIndex = 16;
-            this.btnToReference.Text = "В стан Довідка";
-            this.btnToReference.ThemeName = "Office2013Light";
-            this.btnToReference.Click += new System.EventHandler(this.btnToReference_Click);
-            // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(12, 319);
+            this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCreate.Location = new System.Drawing.Point(3, 328);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(112, 20);
             this.btnCreate.TabIndex = 17;
@@ -283,26 +277,12 @@
             this.btnCreate.ThemeName = "Office2013Light";
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // btnToAccept
-            // 
-            this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToAccept.Enabled = false;
-            this.btnToAccept.Location = new System.Drawing.Point(817, 319);
-            this.btnToAccept.Name = "btnToAccept";
-            this.btnToAccept.Size = new System.Drawing.Size(112, 20);
-            this.btnToAccept.TabIndex = 18;
-            this.btnToAccept.Text = "На погодження";
-            this.btnToAccept.ThemeName = "Office2013Light";
-            this.btnToAccept.Click += new System.EventHandler(this.btnToAccept_Click);
-            // 
             // gvCreativeRole
             // 
-            this.gvCreativeRole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvCreativeRole.AutoSizeRows = true;
+            this.gvCreativeRole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvCreativeRole.EnableCustomFiltering = true;
-            this.gvCreativeRole.Location = new System.Drawing.Point(3, 345);
+            this.gvCreativeRole.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
@@ -331,7 +311,7 @@
             gridViewTextBoxColumn12.Multiline = true;
             gridViewTextBoxColumn12.Name = "AuthorName";
             gridViewTextBoxColumn12.ReadOnly = true;
-            gridViewTextBoxColumn12.Width = 242;
+            gridViewTextBoxColumn12.Width = 105;
             gridViewTextBoxColumn12.WrapText = true;
             gridViewTextBoxColumn13.FieldName = "InnerCode";
             gridViewTextBoxColumn13.HeaderText = "Код автора";
@@ -349,7 +329,7 @@
             gridViewTextBoxColumn14.Multiline = true;
             gridViewTextBoxColumn14.Name = "CountryName";
             gridViewTextBoxColumn14.ReadOnly = true;
-            gridViewTextBoxColumn14.Width = 56;
+            gridViewTextBoxColumn14.Width = 57;
             gridViewTextBoxColumn14.WrapText = true;
             gridViewTextBoxColumn15.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn15.FieldName = "RoleRate";
@@ -378,14 +358,14 @@
             gridViewTextBoxColumn17.Multiline = true;
             gridViewTextBoxColumn17.Name = "PrepaySum";
             gridViewTextBoxColumn17.ReadOnly = true;
-            gridViewTextBoxColumn17.Width = 87;
+            gridViewTextBoxColumn17.Width = 108;
             gridViewTextBoxColumn17.WrapText = true;
             gridViewTextBoxColumn18.FieldName = "PrepayTypeName";
             gridViewTextBoxColumn18.HeaderText = "Тип";
             gridViewTextBoxColumn18.MinWidth = 50;
             gridViewTextBoxColumn18.Name = "PrepayTypeName";
             gridViewTextBoxColumn18.ReadOnly = true;
-            gridViewTextBoxColumn18.Width = 55;
+            gridViewTextBoxColumn18.Width = 171;
             gridViewTextBoxColumn19.FieldName = "WorkTypeRHName";
             gridViewTextBoxColumn19.HeaderText = "Статус роботи з Автором";
             gridViewTextBoxColumn19.MaxWidth = 100;
@@ -426,7 +406,7 @@
             this.gvCreativeRole.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvCreativeRole.Name = "gvCreativeRole";
             this.gvCreativeRole.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvCreativeRole.Size = new System.Drawing.Size(1054, 209);
+            this.gvCreativeRole.Size = new System.Drawing.Size(1060, 220);
             this.gvCreativeRole.TabIndex = 19;
             this.gvCreativeRole.ThemeName = "Office2013Light";
             this.gvCreativeRole.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvCreativeRole_CellBeginEdit);
@@ -436,27 +416,139 @@
             // 
             this.bindingSource1.DataSource = typeof(ipsFormsDesign.Interfaces.AuthorsForLicenseBigRightView);
             // 
-            // btnSave
+            // ddBtnStateChange
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(12, 560);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(112, 24);
-            this.btnSave.TabIndex = 21;
-            this.btnSave.Text = "Зберегти зміни";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.ddBtnStateChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddBtnStateChange.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnChangeToReference,
+            this.btnChangeToLicense});
+            this.ddBtnStateChange.Location = new System.Drawing.Point(917, 328);
+            this.ddBtnStateChange.Name = "ddBtnStateChange";
+            this.ddBtnStateChange.Size = new System.Drawing.Size(140, 20);
+            this.ddBtnStateChange.TabIndex = 22;
+            this.ddBtnStateChange.Text = "Змінити стан";
+            this.ddBtnStateChange.ThemeName = "Office2013Light";
             // 
-            // btnCancel
+            // btnChangeToReference
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(130, 560);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(112, 24);
-            this.btnCancel.TabIndex = 20;
-            this.btnCancel.Text = "Скасувати зміни";
-            this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnChangeToReference.Name = "btnChangeToReference";
+            this.btnChangeToReference.Text = "В \"Довідка\"";
+            this.btnChangeToReference.Click += new System.EventHandler(this.btnChangeToReference_Click);
+            // 
+            // btnChangeToLicense
+            // 
+            this.btnChangeToLicense.Name = "btnChangeToLicense";
+            this.btnChangeToLicense.Text = "В \"Ліцензія\"";
+            this.btnChangeToLicense.Click += new System.EventHandler(this.btnChangeToLicense_Click);
+            // 
+            // ddBtnStatusChange
+            // 
+            this.ddBtnStatusChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddBtnStatusChange.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnStatusAccept});
+            this.ddBtnStatusChange.Location = new System.Drawing.Point(771, 328);
+            this.ddBtnStatusChange.Name = "ddBtnStatusChange";
+            this.ddBtnStatusChange.Size = new System.Drawing.Size(140, 20);
+            this.ddBtnStatusChange.TabIndex = 23;
+            this.ddBtnStatusChange.Text = "Змінити статус";
+            this.ddBtnStatusChange.ThemeName = "Office2013Light";
+            // 
+            // btnStatusAccept
+            // 
+            this.btnStatusAccept.Name = "btnStatusAccept";
+            this.btnStatusAccept.Text = "На погодження";
+            this.btnStatusAccept.UseCompatibleTextRendering = false;
+            // 
+            // splitContainer
+            // 
+            this.splitContainer.Controls.Add(this.spHeader);
+            this.splitContainer.Controls.Add(this.spFooter);
+            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer.EnableCollapsing = true;
+            this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Name = "splitContainer";
+            this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // 
+            // 
+            this.splitContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitContainer.Size = new System.Drawing.Size(1060, 587);
+            this.splitContainer.SplitterWidth = 16;
+            this.splitContainer.TabIndex = 24;
+            this.splitContainer.TabStop = false;
+            this.splitContainer.ThemeName = "Office2013Light";
+            this.splitContainer.UseSplitterButtons = true;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).SplitterWidth = 16;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).EnableCollapsing = true;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).UseSplitterButtons = true;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).Text = "";
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).EnableElementShadow = false;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).FocusBorderWidth = 3;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).EnableHighlight = false;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).EnableBorderHighlight = false;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).RightToLeft = false;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).ClickMode = Telerik.WinControls.ClickMode.Release;
+            ((Telerik.WinControls.UI.SplitterElement)(this.splitContainer.GetChildAt(1).GetChildAt(0))).SplitterWidth = 16;
+            ((Telerik.WinControls.UI.SplitterElement)(this.splitContainer.GetChildAt(1).GetChildAt(0))).SplitterAlignment = Telerik.WinControls.UI.RadDirection.Up;
+            ((Telerik.WinControls.UI.SplitterElement)(this.splitContainer.GetChildAt(1).GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.SplitterElement)(this.splitContainer.GetChildAt(1).GetChildAt(0))).AutoSize = false;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(0))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(0))).MinSize = new System.Drawing.Size(0, 0);
+            ((Telerik.WinControls.UI.SplitterElementLayout)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1))).UseSplitterButtons = true;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0))).MinSize = new System.Drawing.Size(0, 0);
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).Tag = "";
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(4))).Direction = Telerik.WinControls.ArrowDirection.Down;
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(4))).MinSize = new System.Drawing.Size(8, 6);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).EnableFocusBorder = false;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).FocusBorderWidth = 3;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).MinSize = new System.Drawing.Size(0, 0);
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1).GetChildAt(4))).Direction = Telerik.WinControls.ArrowDirection.Up;
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1).GetChildAt(4))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1).GetChildAt(4))).MinSize = new System.Drawing.Size(8, 6);
+            // 
+            // spHeader
+            // 
+            this.spHeader.Controls.Add(this.btnCreate);
+            this.spHeader.Controls.Add(this.separator);
+            this.spHeader.Controls.Add(this.ddBtnStatusChange);
+            this.spHeader.Controls.Add(this.txtSearch);
+            this.spHeader.Controls.Add(this.ddBtnStateChange);
+            this.spHeader.Controls.Add(this.ctrlAgrInfo);
+            this.spHeader.Controls.Add(this.gvViewRequests);
+            this.spHeader.Location = new System.Drawing.Point(0, 0);
+            this.spHeader.Name = "spHeader";
+            // 
+            // 
+            // 
+            this.spHeader.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.spHeader.Size = new System.Drawing.Size(1060, 351);
+            this.spHeader.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.114711F);
+            this.spHeader.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 11);
+            this.spHeader.TabIndex = 0;
+            this.spHeader.TabStop = false;
+            this.spHeader.Text = "splitPanel1";
+            this.spHeader.ThemeName = "Office2013Light";
+            // 
+            // spFooter
+            // 
+            this.spFooter.Controls.Add(this.gvCreativeRole);
+            this.spFooter.Location = new System.Drawing.Point(0, 367);
+            this.spFooter.Name = "spFooter";
+            // 
+            // 
+            // 
+            this.spFooter.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.spFooter.Size = new System.Drawing.Size(1060, 220);
+            this.spFooter.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.114711F);
+            this.spFooter.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -11);
+            this.spFooter.TabIndex = 1;
+            this.spFooter.TabStop = false;
+            this.spFooter.Text = "splitPanel2";
+            this.spFooter.ThemeName = "Office2013Light";
             // 
             // ctrlAgrInfo
             // 
@@ -472,34 +564,28 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.gvCreativeRole);
-            this.Controls.Add(this.btnToAccept);
-            this.Controls.Add(this.btnCreate);
-            this.Controls.Add(this.btnToReference);
-            this.Controls.Add(this.separator);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.gvViewRequests);
-            this.Controls.Add(this.ctrlAgrInfo);
+            this.Controls.Add(this.splitContainer);
             this.Name = "MiddleControlCabinetReqRef";
             this.Size = new System.Drawing.Size(1060, 587);
+            this.Load += new System.EventHandler(this.MiddleControlCabinetReqRef_Load);
             this.Leave += new System.EventHandler(this.MiddleControlCabinetReqRef_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnToReference)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddBtnStateChange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddBtnStatusChange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spHeader)).EndInit();
+            this.spHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spFooter)).EndInit();
+            this.spFooter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -508,17 +594,20 @@
 
         private GeneralAgreementInfo ctrlAgrInfo;
         private Telerik.WinControls.UI.RadGridView gvViewRequests;
-        private Telerik.WinControls.UI.RadButton btnDelete;
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private Telerik.WinControls.UI.RadSeparator separator;
-        private Telerik.WinControls.UI.RadButton btnToReference;
         private Telerik.WinControls.UI.RadButton btnCreate;
-        private Telerik.WinControls.UI.RadButton btnToAccept;
         private Telerik.WinControls.UI.RadGridView gvCreativeRole;
         private System.Windows.Forms.BindingSource bsDictionary;
         private System.Windows.Forms.BindingSource bindingSource1;
-        private Telerik.WinControls.UI.RadButton btnSave;
-        private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadDropDownButton ddBtnStateChange;
+        private Telerik.WinControls.UI.RadMenuItem btnChangeToReference;
+        private Telerik.WinControls.UI.RadMenuItem btnChangeToLicense;
+        private Telerik.WinControls.UI.RadDropDownButton ddBtnStatusChange;
+        private Telerik.WinControls.UI.RadMenuItem btnStatusAccept;
+        private Telerik.WinControls.UI.RadSplitContainer splitContainer;
+        private Telerik.WinControls.UI.SplitPanel spHeader;
+        private Telerik.WinControls.UI.SplitPanel spFooter;
     }
 }

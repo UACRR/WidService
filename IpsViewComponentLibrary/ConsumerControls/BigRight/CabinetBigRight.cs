@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary
             {"pvContacts", CabinetTabType.Contacts}
         };
         private AnketaDictionaties _anketaDictionaties;
-        private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
+        private CabinetTabType _currenCabinetTab = CabinetTabType.Anketa;
         private readonly Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
         //дані
@@ -348,6 +348,12 @@ namespace IpsViewComponentLibrary
             string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
             _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
             UpdateCurentTab(_currenCabinetTab);
+        }
+
+        private void CabinetBigRight_Load(object sender, EventArgs e)
+        {
+            if (pageView.SelectedPage != pvAnketa)
+                pageView.SelectedPage = pvAnketa;
         }
     }
 }

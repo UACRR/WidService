@@ -16,6 +16,7 @@ using ipsFormsDesign;
 using ipsFormsDesign.Services;
 using Microsoft.Office.Interop.Excel;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -43,6 +44,39 @@ namespace IpsViewComponentLibrary
         public MiddleControlCabinetReqRef()
         {
             InitializeComponent();
+            splitContainer.PanelCollapsing += SplitContainer_PanelCollapsing;
+        }
+
+        private void MiddleControlCabinetReqRef_Load(object sender, EventArgs e)
+        {
+            splitContainer.Splitters.First().NextNavigationButton.PropertyChanged += NextNavigationButton_PropertyChanged;
+            splitContainer.Splitters.First().NextNavigationButton.Visibility = ElementVisibility.Collapsed;
+            splitContainer.Splitters.First().PrevNavigationButton.PropertyChanged += NextNavigationButton_PropertyChanged;
+            splitContainer.Splitters.First().PrevNavigationButton.Visibility = ElementVisibility.Visible;
+        }
+
+        private void SplitContainer_PanelCollapsing(object sender, RadSplitContainer.PanelCollapsingEventArgs e)
+        {
+            var splitter = splitContainer.Splitters.First();
+            splitter.PrevNavigationButton.AngleTransform = 180f;
+        }
+
+        private void NextNavigationButton_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            RadButtonElement btn = sender as RadButtonElement;
+            if (e.PropertyName == "Visibility" && btn?.Class == "PrevDownSplitterThumb")
+            {
+                if (btn.Visibility == ElementVisibility.Collapsed)
+                {
+                    btn.Visibility = ElementVisibility.Visible;
+                    btn.AngleTransform = 0f;
+                }
+            }
+
+            if (e.PropertyName == "Visibility" && btn?.Visibility == ElementVisibility.Visible && btn.Class == "NextUpSplitterThumb")
+            {
+                btn.Visibility = ElementVisibility.Collapsed;
+            }
         }
 
         public void SetAnketaDictionary(AnketaDictionaties anketaDictionaties)
@@ -85,50 +119,51 @@ namespace IpsViewComponentLibrary
                     break;
                 case ControlRequestOrReferenceType.Request:
                 {
-                    btnToReference.Visible = true;
+                    btnChangeToLicense.Visibility = ElementVisibility.Collapsed;
                     btnCreate.Text = "Нова заявка";
-                    btnDelete.Text = "Вилучити заявку";
                 }
                     break;
                 case ControlRequestOrReferenceType.Reference:
                 {
-                    btnToReference.Visible = false;
+                    btnChangeToReference.Visibility = ElementVisibility.Collapsed;
                     btnCreate.Text = "Створити ліцензію";
-                    btnDelete.Text = "Вилучити довідку";
                 }
                     break;
             }
         }
 
-        //клік на гріду по кнопкі редагувати
+        //клік на гріду по кнопках
         private void gvViewRequests_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            if (e.Row.DataBoundItem is RequestsOrReferenceBigRightView item)
-            {
-                if(item.LicStatus == 4) return;
-
-                switch (_typeControl)
+            if (e.Row.DataBoundItem is RequestsOrReferenceBigRightView item && item.LicStatus != 4)
+                switch (e.Column.FieldName)
                 {
-                    case ControlRequestOrReferenceType.Request:
+                    case "editBtn":
                     {
-                        if (!(2 <= item.LicStatus && item.LicStatus <= 3)) // статуси 0, 1, 5 - редагування
-                            CallRequestForm(FormType.Edit, item);
-                        else                                               //перегляд
-                            CallRequestForm(FormType.View, item);
+                        switch (_typeControl)
+                        {
+                            case ControlRequestOrReferenceType.Request:
+                            {
+                                if (!(2 <= item.LicStatus && item.LicStatus <= 3)) // статуси 0, 1, 5 - редагування
+                                    CallRequestForm(FormType.Edit, item);
+                                else                                               //перегляд
+                                    CallRequestForm(FormType.View, item);
+                            }
+                                break;
+
+                            case ControlRequestOrReferenceType.Reference:
+                            {
+                                CallRequestForm(item.LicStatus != 3 ? FormType.Edit : FormType.View, item);
+                            }
+                                break;
+                        }
                     }
                         break;
-
-                    case ControlRequestOrReferenceType.Reference:
-                    {
-
-                        if (!(item.LicStatus == 3 || item.LicStatus == 4)) //0, 1, 2, 5 - редагування
-                            CallRequestForm(FormType.Edit, item);
-                        else                                               //перегляд
-                            CallRequestForm(FormType.View, item);
-                    }
+                    case "deleteBtn":
+                        if(_typeControl == ControlRequestOrReferenceType.Request && item?.LicStatus == 0)
+                            DeleteLicense();
                         break;
                 }
-            }
         }
 
         private void CallRequestForm(FormType type, RequestsOrReferenceBigRightView item)
@@ -154,14 +189,8 @@ namespace IpsViewComponentLibrary
             if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)
             {
                 bindingSource1.DataSource = typeof(AuthorsForLicenseBigRightView);
-                btnSave.Enabled = false;
-                btnCancel.Enabled = false;
-                btnToReference.Enabled = false;
-            }
-            else
-            {
-                btnSave.Enabled = true;
-                btnCancel.Enabled = true;
+                btnChangeToReference.Enabled = false;
+                btnChangeToLicense.Enabled = false;
             }
 
             var item = e?.CurrentRow?.DataBoundItem as RequestsOrReferenceBigRightView;
@@ -175,14 +204,13 @@ namespace IpsViewComponentLibrary
                     SetBtnFunc(ButtonFunctionType.None);
             }
             // на погодження
-            btnToAccept.Enabled = item?.LicStatus == 0 || item?.LicStatus == 1;
-            // видалити
-            btnDelete.Enabled = _typeControl == ControlRequestOrReferenceType.Request && item?.LicStatus == 0;
+            btnStatusAccept.Enabled = item?.LicStatus == 0 || item?.LicStatus == 1;
             // (видима в заявках) в стан довідки при статусі активна або на погодження
-            btnToReference.Enabled = item?.LicStatus <= 3;
+            btnChangeToReference.Enabled = item?.LicStatus <= 3;
             // створити ліцензію
+            btnChangeToLicense.Enabled = _typeControl == ControlRequestOrReferenceType.Reference && item?.LicStatus == 2;
             //створити заявку
-            btnCreate.Enabled = _typeControl != ControlRequestOrReferenceType.Reference || (_typeControl == ControlRequestOrReferenceType.Reference && item?.LicStatus == 2);
+            btnCreate.Visible = _typeControl == ControlRequestOrReferenceType.Request;
 
             bindingSource1.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
 
@@ -192,7 +220,7 @@ namespace IpsViewComponentLibrary
         {
             _functionType = type;
             if(type != ButtonFunctionType.None)
-                btnToAccept.Text = _btnDictionary[type];
+                btnStatusAccept.Text = _btnDictionary[type];
         }
 
         private void MiddleControlCabinetReqRef_Leave(object sender, EventArgs e)
@@ -325,13 +353,7 @@ namespace IpsViewComponentLibrary
 
                 case ControlRequestOrReferenceType.Reference:
                 {
-                    if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
-                    {
-                        if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.License) ?? false)
-                            ExtensionUtils.ShowInfoMessage("Довідка переведена в Ліцензію", "Успішно", MessageBoxIcon.Information);
-                        else
-                            ExtensionUtils.ShowInfoMessage("Не можливо створити ліцензію з довідки", "Помилка", MessageBoxIcon.Error);
-                    }
+
                 }break;
             }
         }
@@ -448,8 +470,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-
-
         private void gvViewRequests_CurrentRowChanging(object sender, Telerik.WinControls.UI.CurrentRowChangingEventArgs e)
         {
             if (_saveNeedStatus == SaveNeedStatus.Yes && e?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
@@ -482,7 +502,7 @@ namespace IpsViewComponentLibrary
                 }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void DeleteLicense()
         {
             if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
             {
@@ -501,6 +521,24 @@ namespace IpsViewComponentLibrary
                 }
             }
         }
+
+        private void btnChangeToReference_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnChangeToLicense_Click(object sender, EventArgs e)
+        {
+            if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
+            {
+                if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.License) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Довідка переведена в Ліцензію", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Не можливо створити ліцензію з довідки", "Помилка", MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 
     public enum SaveNeedStatus

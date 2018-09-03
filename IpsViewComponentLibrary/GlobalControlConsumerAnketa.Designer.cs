@@ -126,6 +126,7 @@
             // 
             // ctrlClientName
             // 
+            this.ctrlClientName.CheckPlace = false;
             this.ctrlClientName.IsPlaceIn = false;
             this.ctrlClientName.Location = new System.Drawing.Point(4, 35);
             this.ctrlClientName.MaximumSize = new System.Drawing.Size(800, 194);

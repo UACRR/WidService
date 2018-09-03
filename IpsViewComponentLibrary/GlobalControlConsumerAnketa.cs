@@ -11,6 +11,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Dictionary;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -95,6 +96,13 @@ namespace IpsViewComponentLibrary
                 ctrlClientName.CheckPlace = true;
 
             //ctrlClientName.SetDefaultState();
+            if (isEdit)
+            {
+                pageAnketaConsumer.Pages["pvPrint"].Item.Visibility = ElementVisibility.Collapsed;
+                pageAnketaConsumer.Pages["pvAgreement"].Item.Visibility = ElementVisibility.Collapsed;
+                btnBack.Visible = false;
+                btnNext.Visible = false;
+            }
 
         }
 

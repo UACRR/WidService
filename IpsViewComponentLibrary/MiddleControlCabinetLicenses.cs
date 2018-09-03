@@ -198,5 +198,10 @@ namespace IpsViewComponentLibrary
                         break;
                 }
         }
+
+        private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+
+        }
     }
 }
