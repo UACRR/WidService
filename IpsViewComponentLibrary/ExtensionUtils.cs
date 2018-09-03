@@ -111,6 +111,35 @@ namespace IpsViewComponentLibrary
                 itemsList.Add(temp as T);
             return itemsList;
         }
+
+        public static void ShowMessage(bool result, MessageType messageType)
+        {
+            string msgText = string.Empty;
+            string headerText = result ? "Успішно" : "Помилка";
+            MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
+            switch (messageType)
+            {
+                case MessageType.GeneralAgreementChange:
+                    msgText = result ? "Зміни генерального договору збережено!" : "Неможливо зберегти зміни генерального договору!";
+                    break;
+                case MessageType.LicenseAgreementChange:
+                    msgText = result ? "Зміни ліцензійного договору збережено!" : "Неможливо зберегти зміни ліцензійного договору!";
+                    break;
+                case MessageType.LicenseStatus:
+                    msgText = result ? "Статус ліцензії зміненно!" : "Неможливо змінити статус ліцензії!";
+                    break;
+            }
+
+            MessageBox.Show(msgText, headerText, MessageBoxButtons.OK, icon);
+        }
+    }
+
+    public enum MessageType
+    {
+        GeneralAgreementChange,
+        LicenseAgreementChange,
+        LicenseStatus,
+        
     }
 
     public interface IMiddleCtrlAnketaConsumer

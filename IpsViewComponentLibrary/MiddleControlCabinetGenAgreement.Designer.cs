@@ -145,6 +145,7 @@
             this.gvGenAgrLicences.TabIndex = 8;
             this.gvGenAgrLicences.ThemeName = "Office2013Light";
             this.gvGenAgrLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvGenAgrLicences_CurrentRowChanged);
+            this.gvGenAgrLicences.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvGenAgrLicences_CommandCellClick);
             // 
             // ctrlGeneralAgrDetailInfoBr
             // 
@@ -172,11 +173,13 @@
             // 
             this.btnProlongationGenAgr.Name = "btnProlongationGenAgr";
             this.btnProlongationGenAgr.Text = "Пролонгувати договір";
+            this.btnProlongationGenAgr.Click += new System.EventHandler(this.btnProlongationGenAgr_Click);
             // 
             // btnChangeGenAgr
             // 
             this.btnChangeGenAgr.Name = "btnChangeGenAgr";
             this.btnChangeGenAgr.Text = "Змінити договір";
+            this.btnChangeGenAgr.Click += new System.EventHandler(this.btnChangeGenAgr_Click);
             // 
             // ddBtnStatusChangeGenAgr
             // 
@@ -196,12 +199,14 @@
             this.btnStatusAcceptGenAgr.Name = "btnStatusAcceptGenAgr";
             this.btnStatusAcceptGenAgr.Text = "Підтверджений";
             this.btnStatusAcceptGenAgr.UseCompatibleTextRendering = false;
+            this.btnStatusAcceptGenAgr.Click += new System.EventHandler(this.btnStatusAcceptGenAgr_Click);
             // 
             // btnStatusClosedGenAgr
             // 
             this.btnStatusClosedGenAgr.Name = "btnStatusClosedGenAgr";
             this.btnStatusClosedGenAgr.Text = "Закритий";
             this.btnStatusClosedGenAgr.UseCompatibleTextRendering = false;
+            this.btnStatusClosedGenAgr.Click += new System.EventHandler(this.btnStatusClosedGenAgr_Click);
             // 
             // MiddleControlCabinetGenAgreement
             // 

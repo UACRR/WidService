@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary
             DialogResult = DialogResult.None;
             ctrlAgreement.DictionaryAgrLicTypeDataSource = dictionaties.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
             ctrlAgreement.DictionaryPeriodPaymentDataSource = dictionaties.period;// typeof(Period);
-            ctrlAgreement.LicAgrDataSource = agreement;// typeof(LicenseAgreement);
+            ctrlAgreement.LicAgrDataSource = agreement;// typeof(LicenseAgreementChange);
             ctrlAgreement.AgreementAddBrDataSource = agreementAddBr;
             ctrlAgreement.AnketaCompanyDataSource = company;
 

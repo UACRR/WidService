@@ -46,12 +46,12 @@ namespace ConsumerWorkplace_v_1._0
             form.GetField("Employee.name").SetValue($"{relEmployy.Empl.LastName} {relEmployy.Empl.FirstName} {relEmployy.Empl.SurName ?? string.Empty }", font, 10);
             form.GetField("RelEmployee.RelDocument").SetValue(relEmployy.RelDocument ?? string.Empty, font, 10);
 
-            var field = form.GetField("LicenseAgreement.rateAmount");
+            var field = form.GetField("LicenseAgreementChange.rateAmount");
             field?.SetValue(licenseParam.RateAmount?.ToString() ?? "1", font, 10);
-            field = form.GetField("LicenseAgreement.minAmount#0");
+            field = form.GetField("LicenseAgreementChange.minAmount#0");
             field?.SetValue(licenseParam.MinAmount?.ToString() ?? "2 000", font, 10);
 
-            field = form.GetField("LicenseAgreement.minAmount");
+            field = form.GetField("LicenseAgreementChange.minAmount");
             field?.SetValue((licenseParam.MinAmount % 100)?.ToString() ?? "00", font, 10);
             field = form.GetField("Period.name");
             field?.SetValue(period?.Name ?? string.Empty, font, 10);
@@ -59,7 +59,7 @@ namespace ConsumerWorkplace_v_1._0
             field?.SetValue(period?.NameR ?? string.Empty, font, 10);
             field = form.GetField("year");
             field?.SetValue(DateTime.Today.Year.ToString(), font, 10);
-            field = form.GetField("LicenseAgreement.addRate");
+            field = form.GetField("LicenseAgreementChange.addRate");
             field?.SetValue(licenseParam.AddRate?.ToString() ?? "5", font, 10);
             field = form.GetField("AnketaPerson.Name");
             field?.SetValue(anketa.Name, font, 10);

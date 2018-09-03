@@ -142,7 +142,7 @@ namespace IpsViewComponentLibrary
                     ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
                     ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// typeof(AnketaCompany);
                     ctrlAgreementBigRights.AgreementAddBrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr;
-                    ctrlAgreementBigRights.LicAgrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault();// typeof(LicenseAgreement);
+                    ctrlAgreementBigRights.LicAgrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault();// typeof(LicenseAgreementChange);
 
                 }
                     break;
