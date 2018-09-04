@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using ConsumerWorkplace_v_1._0.Presenters;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -22,9 +23,9 @@ namespace ConsumerWorkplace_v_1._0
 {
     public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
     {
-        private SwitchPresenter _presenterSmallRights;
-        private SwitchPresenterBigRights _presenterBigRights;
-        private ConsumerService _serviceSmallRights, _serviceBigRights;
+        private SmallRightPresenter _smallRightPresenter;// main presenter for small right
+        private BigRightPresenter _bigRightPresenter;    // main presenter for big right
+        private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
 
         public event Func<bool> Save;
         
@@ -96,12 +97,9 @@ namespace ConsumerWorkplace_v_1._0
                     };
 
                     foreach (var item in list)
-                    {
                         treeViewBR.Nodes.Add(item);
-                    }
-
-                    _serviceBigRights = new ConsumerService();
-                    _presenterBigRights = new SwitchPresenterBigRights(mainViewSwitcherBR, _serviceBigRights, treeViewBR);
+                    
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
                     // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
                         
@@ -125,8 +123,9 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _serviceSmallRights = new ConsumerService();
-                    _presenterSmallRights = new SwitchPresenter(mainViewSwitcherSR, _serviceSmallRights, treeViewSR);
+                    _consumerMainService = new ConsumerService();
+                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
+                    
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
                     // * * * * END CASE
@@ -148,20 +147,20 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _serviceSmallRights = new ConsumerService();
-                    _presenterSmallRights = new SwitchPresenter(mainViewSwitcherSR, _serviceSmallRights, treeViewSR);
+                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
+
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
-                    RadTreeNode[] list2 = new[]{
-                    new RadTreeNode{
-                        Text = "Ген.Угода", Value = TypeBRDocument.GenAgreement, Selected = true,
-                        Nodes  =
-                        {
-                            new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
-                            new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                            new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive },
-                            new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation }
-                        }
+                        RadTreeNode[] list2 = new[]{
+                            new RadTreeNode{
+                            Text = "Ген.Угода", Value = TypeBRDocument.GenAgreement,
+                            Nodes  =
+                            {
+                                new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
+                                new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
+                                new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive },
+                                new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation }
+                            }
                     },
                     new RadTreeNode{
                         Text = "Ліцензії", Value = TypeBRDocument.LicAgreement,
@@ -199,34 +198,23 @@ namespace ConsumerWorkplace_v_1._0
                     };
 
                     foreach (var item in list2)
-                    {
                         treeViewBR.Nodes.Add(item);
-                    }
-
-                    _serviceBigRights = new ConsumerService();
-                    _presenterBigRights = new SwitchPresenterBigRights(mainViewSwitcherBR, _serviceBigRights, treeViewBR);
-                        
                     
-                     // * * * * END CASE
-                }
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
+                    treeViewBR.SelectedNode = treeViewBR.Nodes["Ген.Угода"];
+
+                    }
                     break;
             }
         }
-
-        public Customer ReturnCustomer()
-        {
-            return _cust;
-        }
         
-
-
         Customer _cust = null;
-        LicenseAgrParam curLicAgreement = null;
+        LicenseAgrParam _curLicAgreement;
         public void SetData(ICustomer data)
         {
             _cust = (Customer)data;
             var licAgr = _cust.Client.LicenseAgreement.FirstOrDefault();
-            curLicAgreement = licAgr?.LicenseAgrParam.Where(item => item.LicVersion == licAgr.LicVersion).SingleOrDefault();
+            _curLicAgreement = licAgr?.LicenseAgrParam.Where(item => item.LicVersion == licAgr.LicVersion).SingleOrDefault();
         }
 
         public void GetData(ICustomer data)

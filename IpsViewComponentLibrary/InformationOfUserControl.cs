@@ -136,7 +136,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="customer"></param>
         /// <param name="rightView"></param>
-        public void SetHeaderInfoBigRight(Customer customer, ConsumerBigRightView rightView)
+        public void SetHeaderInfoBigRight(Customer customer, MainGridConsumerBigRightView rightView)
         {
             var head = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1);
             var contactPerson = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3);

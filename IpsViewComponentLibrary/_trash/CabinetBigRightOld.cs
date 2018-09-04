@@ -21,16 +21,16 @@ namespace IpsViewComponentLibrary
         private readonly TypeRights Rights = TypeRights.BigRights;
         private AnketaDictionaties _anketaDictionaties;
         private Customer _customer;
-        private IList<ConsumerBigRightView> _brData;
-        private IList<VbrLicense> _agrData;
-        private IList<BigRightMasterGenAgr> _genAgrs;
-        private IList<BigRightRequests> _requests;
-        private IList<BigRightRequests> _reference;
-        private IList<BigRightRequestBidAuthors> _authors;
-        private IList<BigRightMoneyUndescrib> _moneyUndescribs;
-        private IList<BigRightRegister> _registers;
-        private IList<BigRightPayslipsSpectacleView> _payslipsSpectacleViews;
-        private IList<MusicDesignRatedListView> _musicDesignRatedListViews;
+        private IList<MainGridConsumerBigRightView> _brData;
+        private IList<LicenseAgreementBigRightView> _agrData;
+        private IList<GeneralAgreementBigRightView> _genAgrs;
+        private IList<RequestsOrReferenceBigRightView> _requests;
+        private IList<RequestsOrReferenceBigRightView> _reference;
+        private IList<AuthorsForLicenseBigRightView> _authors;
+        private IList<UnattachedMoneyView> _moneyUndescribs;
+        private IList<RatedListMainBigRightView> _registers;
+        private IList<RatedListSpectacleBigRightView> _payslipsSpectacleViews;
+        private IList<RatedListMusicDesignBigRightView> _musicDesignRatedListViews;
 
         
         public delegate void BackToMainGrid(int custId);
@@ -58,7 +58,7 @@ namespace IpsViewComponentLibrary
         public event LisenseStatusChangeEventHandler OnLicenseStatusChanging;
         public event WorkRhSaveEventHandler OnWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
-        public event SavePayslipsEventHandler OnSavePayslip;
+        public event SaveRegisterRatedListEventHandler OnSavePayslip;
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
@@ -77,15 +77,15 @@ namespace IpsViewComponentLibrary
             ctrlCabinet.OnAddNewDocument += CtrlCabinet_OnAddNewDocument;
             ctrlCabinet.OnViewDocumentNeed += CtrlCabinet_OnViewDocumentNeed;
             ctrlCabinet.OnGetSpectacleNeed += CtrlCabinet_OnGetSpectacleNeed;
-            ctrlCabinet.OnLicenseStatusChanging += CtrlCabinet_OnLicenseStatusChanging;
+            ctrlCabinet.OnChangeLicenseStatus += CtrlCabinetOnChangeLicenseStatus;
             ctrlCabinet.OnRequestWorkRhSaveNeed += CtrlCabinet_OnRequestWorkRhSaveNeed;
             ctrlCabinet.OnChangeLicenseType += CtrlCabinet_OnChangeLicenseType;
-            ctrlCabinet.OnSavePayslip += CtrlCabinet_OnSavePayslip;
+            ctrlCabinet.OnSaveRegisterRatedList += CtrlCabinetOnSaveRegisterRatedList;
             ctrlCabinet.OnGetRegisterRatedList += CtrlCabinet_OnGetRegisterRatedList;
             ctrlCabinet.OnRegisterItemListNeed += CtrlCabinet_OnRegisterItemListNeed;
             ctrlCabinet.SavePariodCommandExecuted += CtrlCabinet_SavePariodCommandExecuted;
             ctrlCabinet.SetDictionaries(_anketaDictionaties);
-            ctrlCabinet.MusicDesignDelegate = () => (List<MusicDesignRatedListView>) _musicDesignRatedListViews;
+            //ctrlCabinet.MusicDesignDelegate = () => (List<RatedListMusicDesignBigRightView>) _musicDesignRatedListViews;
         }
 
         private List<PaidPeriod> CtrlCabinet_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
@@ -103,7 +103,7 @@ namespace IpsViewComponentLibrary
             return OnGetRegisterRatedList?.Invoke(custId);
         }
 
-        private bool CtrlCabinet_OnSavePayslip(RegisterRatedList list)
+        private bool CtrlCabinetOnSaveRegisterRatedList(RegisterRatedList list)
         {
             return OnSavePayslip?.Invoke(list) ?? false;
         }
@@ -118,7 +118,7 @@ namespace IpsViewComponentLibrary
             return OnWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
         }
 
-        private bool CtrlCabinet_OnLicenseStatusChanging(LicenseAgreement agr, int version, int status, bool changeVer)
+        private bool CtrlCabinetOnChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
             return OnLicenseStatusChanging?.Invoke(agr, version, status, changeVer) ?? false;
         }
@@ -147,7 +147,7 @@ namespace IpsViewComponentLibrary
         /// Встановлення джерела даних для гріда
         /// </summary>
         /// <param name="source">Об'єкт джерела даних</param>
-        public void SetGridDataSource(IList<ConsumerBigRightView> source)
+        public void SetGridDataSource(IList<MainGridConsumerBigRightView> source)
         {
             _brData = source;
             gvConsumerList.DataSource = _brData;
@@ -168,7 +168,7 @@ namespace IpsViewComponentLibrary
             var licDic = _customer.Client.LicenseAgreement.Where(rec=>rec.LicenseBigR!=null).Select(row=>row.LicenseBigR).ToDictionary(rec => rec.LicId);
             _authors = authors.Select( row =>
             {
-                BigRightRequestBidAuthors item = (BigRightRequestBidAuthors) row;
+                AuthorsForLicenseBigRightView item = (AuthorsForLicenseBigRightView) row;
                 if (licDic.Keys.Contains(item.LicId))
                 {
                     item.WorkRh = licDic[item.LicId].Obj?.CopyRight.First(rec => rec.CRightId == item.CRightId)?.WorkRh ?? new WorkRh
@@ -187,24 +187,24 @@ namespace IpsViewComponentLibrary
         /// <param name="register"></param>
         public void SetPayslipsDate(IList<object> register, IList<object> spectacleView, IList<object> musicDesign)
         {
-            _registers = new List<BigRightRegister>();
+            _registers = new List<RatedListMainBigRightView>();
             foreach (var temp in register)
-                _registers.Add(temp as BigRightRegister);
+                _registers.Add(temp as RatedListMainBigRightView);
 
-            _payslipsSpectacleViews = new List<BigRightPayslipsSpectacleView>();
+            _payslipsSpectacleViews = new List<RatedListSpectacleBigRightView>();
             foreach(var temp in spectacleView)
-                _payslipsSpectacleViews.Add(temp as BigRightPayslipsSpectacleView);
+                _payslipsSpectacleViews.Add(temp as RatedListSpectacleBigRightView);
 
-            _musicDesignRatedListViews = new List<MusicDesignRatedListView>();
+            _musicDesignRatedListViews = new List<RatedListMusicDesignBigRightView>();
             foreach (var temp in musicDesign)
-                _musicDesignRatedListViews.Add(temp as MusicDesignRatedListView);
+                _musicDesignRatedListViews.Add(temp as RatedListMusicDesignBigRightView);
         }
 
         public void SetMoneyUndescribsData(IList<object> moneyUndescribs)
         {
-            _moneyUndescribs = new List<BigRightMoneyUndescrib>();
+            _moneyUndescribs = new List<UnattachedMoneyView>();
             foreach (var temp in moneyUndescribs)
-                _moneyUndescribs.Add(temp as BigRightMoneyUndescrib);
+                _moneyUndescribs.Add(temp as UnattachedMoneyView);
         }
 
         /// <summary>
@@ -213,9 +213,9 @@ namespace IpsViewComponentLibrary
         /// <param name="requestList"></param>
         public void SetRequestData(IList<object> requestList)
         {
-            _requests = new List<BigRightRequests>();
+            _requests = new List<RequestsOrReferenceBigRightView>();
             foreach (var temp in requestList)
-                _requests.Add(temp as BigRightRequests);
+                _requests.Add(temp as RequestsOrReferenceBigRightView);
         }
 
         /// <summary>
@@ -224,23 +224,23 @@ namespace IpsViewComponentLibrary
         /// <param name="requestList"></param>
         public void SetReferanceData(IList<object> referanceList)
         {
-            _reference = new List<BigRightRequests>();
+            _reference = new List<RequestsOrReferenceBigRightView>();
             foreach (var temp in referanceList)
-                _reference.Add(temp as BigRightRequests);
+                _reference.Add(temp as RequestsOrReferenceBigRightView);
         }
 
         public void SetAgreementViewData(IList<object> agrData)
         {
-            _agrData = new List<VbrLicense>();
+            _agrData = new List<LicenseAgreementBigRightView>();
             foreach (var temp in agrData)
-                _agrData.Add(temp as VbrLicense);
+                _agrData.Add(temp as LicenseAgreementBigRightView);
         }
 
         public void SetAgrMasterList(IList<object> genAgrs)
         {
-            _genAgrs = new List<BigRightMasterGenAgr>();
+            _genAgrs = new List<GeneralAgreementBigRightView>();
             foreach (var temp in genAgrs)
-                _genAgrs.Add(temp as BigRightMasterGenAgr);
+                _genAgrs.Add(temp as GeneralAgreementBigRightView);
         }
 
         public void SetSelectCustomer(int custId)
@@ -266,17 +266,17 @@ namespace IpsViewComponentLibrary
                 //отримання даних
                 OnCustomerUpdateDataNeed?.Invoke(_rowId);
                 //передача даних
-                ctrlCabinet.SetAndUpdateData(_customer,
-                    e?.CurrentRow?.DataBoundItem as ConsumerBigRightView,
-                    _agrData,
-                    _genAgrs,
-                    _requests,
-                    _authors,
-                    _reference,
-                    _moneyUndescribs,
-                    _registers,
-                    _payslipsSpectacleViews);
-                ctrlHeaderInfo.SetControlTextInfoBigRight(_customer, e?.CurrentRow?.DataBoundItem as ConsumerBigRightView);
+                //ctrlCabinet.SetAllLoadData(_customer,
+                //    e?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView,
+                //    _agrData,
+                //    _genAgrs,
+                //    _requests,
+                //    _authors,
+                //    _reference,
+                //    _moneyUndescribs,
+                //    _registers,
+                //    _payslipsSpectacleViews);
+                //ctrlHeaderInfo.SetControlTextInfoBigRight(_customer, e?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView);
             }
         }
 

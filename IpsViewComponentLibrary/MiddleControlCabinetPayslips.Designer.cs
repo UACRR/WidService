@@ -737,7 +737,7 @@ namespace IpsViewComponentLibrary
             // 
             // ctrlHeaderInfo
             // 
-            this.ctrlHeaderInfo.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            this.ctrlHeaderInfo.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
             this.ctrlHeaderInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.ctrlHeaderInfo.Location = new System.Drawing.Point(0, 0);
             this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(705, 79);

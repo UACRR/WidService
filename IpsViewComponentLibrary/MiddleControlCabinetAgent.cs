@@ -15,13 +15,13 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetAgent : UserControl
     {
         private Customer _customer;
-        private ConsumerBigRightView _bigRightView;
+        private MainGridConsumerBigRightView _bigRightView;
         public MiddleControlCabinetAgent()
         {
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightMasterGenAgr> genAgrs)
+        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView, IList<GeneralAgreementBigRightView> genAgrs)
         {
             _customer = customer;
             _bigRightView = bigRightView;

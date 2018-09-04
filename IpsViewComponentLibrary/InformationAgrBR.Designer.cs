@@ -180,7 +180,7 @@ namespace IpsViewComponentLibrary
             // 
             // bsAgreementView
             // 
-            this.bsAgreementView.DataSource = typeof(ipsFormsDesign.Interfaces.VbrLicense);
+            this.bsAgreementView.DataSource = typeof(ipsFormsDesign.Interfaces.LicenseAgreementBigRightView);
             // 
             // singleShowInformationControl3
             // 

@@ -254,6 +254,18 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ConsumerForms\CabinetBigRightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetBigRightForm.Designer.cs">
+      <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetSmallRightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetSmallRightForm.Designer.cs">
+      <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LicenseAgreementListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -402,23 +414,23 @@
     <Compile Include="GeneralAgreementInfo.Designer.cs">
       <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalControlConsumerAnketa.cs">
+    <Compile Include="ConsumerControls\AnketaConsumer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GlobalControlConsumerAnketa.Designer.cs">
-      <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
+    <Compile Include="ConsumerControls\AnketaConsumer.Designer.cs">
+      <DependentUpon>AnketaConsumer.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalControlConsumerCabinet.cs">
+    <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GlobalControlConsumerCabinet.Designer.cs">
-      <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.Designer.cs">
+      <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalControlConsumerCabinetBR.cs">
+    <Compile Include="_trash\CabinetBigRightOld.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GlobalControlConsumerCabinetBR.Designer.cs">
-      <DependentUpon>GlobalControlConsumerCabinetBR.cs</DependentUpon>
+    <Compile Include="_trash\CabinetBigRightOld.Designer.cs">
+      <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalControlConsumerMainGrid.cs">
       <SubType>UserControl</SubType>
@@ -564,11 +576,11 @@
     <Compile Include="MiddleControlBankRequisites.Designer.cs">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinet.cs">
+    <Compile Include="ConsumerControls\BigRight\CabinetBigRight.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinet.Designer.cs">
-      <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
+    <Compile Include="ConsumerControls\BigRight\CabinetBigRight.Designer.cs">
+      <DependentUpon>CabinetBigRight.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlCabinetAgent.cs">
       <SubType>UserControl</SubType>
@@ -618,11 +630,11 @@
     <Compile Include="MiddleControlClientName.Designer.cs">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlInfoAgrCalc.cs">
+    <Compile Include="ConsumerControls\SmallRight\PagesCabinetControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlInfoAgrCalc.Designer.cs">
-      <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\PagesCabinetControl.Designer.cs">
+      <DependentUpon>PagesCabinetControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlManagers.cs">
       <SubType>UserControl</SubType>
@@ -845,6 +857,12 @@
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\CabinetBigRightForm.resx">
+      <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
+      <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LicenseAgreementListControl.resx">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -920,14 +938,14 @@
     <EmbeddedResource Include="GeneralAgreementInfo.resx">
       <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalControlConsumerAnketa.resx">
-      <DependentUpon>GlobalControlConsumerAnketa.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\AnketaConsumer.resx">
+      <DependentUpon>AnketaConsumer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalControlConsumerCabinet.resx">
-      <DependentUpon>GlobalControlConsumerCabinet.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
+      <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalControlConsumerCabinetBR.resx">
-      <DependentUpon>GlobalControlConsumerCabinetBR.cs</DependentUpon>
+    <EmbeddedResource Include="_trash\CabinetBigRightOld.resx">
+      <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GlobalControlConsumerMainGrid.resx">
       <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
@@ -989,8 +1007,8 @@
     <EmbeddedResource Include="MiddleControlBankRequisites.resx">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinet.resx">
-      <DependentUpon>MiddleControlCabinet.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\BigRight\CabinetBigRight.resx">
+      <DependentUpon>CabinetBigRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetAgent.resx">
       <DependentUpon>MiddleControlCabinetAgent.cs</DependentUpon>
@@ -1016,8 +1034,8 @@
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlInfoAgrCalc.resx">
-      <DependentUpon>MiddleControlInfoAgrCalc.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\PagesCabinetControl.resx">
+      <DependentUpon>PagesCabinetControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlManagers.resx">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
@@ -1223,6 +1241,7 @@
     <None Include="Resources\angle-right-solid.ico" />
     <Content Include="Resources\link-solid.ico" />
     <Content Include="Resources\plus-square-solid.ico" />
+    <None Include="Resources\print-solid.ico" />
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>

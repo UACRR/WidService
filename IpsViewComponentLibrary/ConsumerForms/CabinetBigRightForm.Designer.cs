@@ -1,6 +1,6 @@
-﻿namespace ConsumerWorkplace_v_1._0
+﻿namespace IpsViewComponentLibrary.ConsumerForms
 {
-    partial class TestForm
+    partial class CabinetBigRightForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.globalControlConsumerAnketa1 = new IpsViewComponentLibrary.GlobalControlConsumerAnketa();
-            this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.cabinet = new IpsViewComponentLibrary.CabinetBigRight();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // globalControlConsumerAnketa1
+            // cabinet
             // 
-            this.globalControlConsumerAnketa1.Location = new System.Drawing.Point(12, 12);
-            this.globalControlConsumerAnketa1.Name = "globalControlConsumerAnketa1";
-            this.globalControlConsumerAnketa1.Size = new System.Drawing.Size(1321, 655);
-            this.globalControlConsumerAnketa1.TabIndex = 0;
+            this.cabinet.AutoScroll = true;
+            this.cabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.None;
+            this.cabinet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cabinet.Location = new System.Drawing.Point(0, 0);
+            this.cabinet.Name = "cabinet";
+            this.cabinet.Size = new System.Drawing.Size(1141, 514);
+            this.cabinet.TabIndex = 0;
             // 
-            // TestForm
+            // CabinetBigRightForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1345, 679);
-            this.Controls.Add(this.globalControlConsumerAnketa1);
-            this.Name = "TestForm";
+            this.ClientSize = new System.Drawing.Size(1141, 514);
+            this.Controls.Add(this.cabinet);
+            this.Name = "CabinetBigRightForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "TestForm";
-            this.ThemeName = "Office2007Silver";
+            this.Text = "Кабінет";
+            this.ThemeName = "Office2013Light";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CabinetBigRightForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -60,7 +64,7 @@
 
         #endregion
 
-        private IpsViewComponentLibrary.GlobalControlConsumerAnketa globalControlConsumerAnketa1;
-        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        public CabinetBigRight cabinet;
     }
 }

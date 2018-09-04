@@ -15,7 +15,7 @@ using Telerik.WinControls.UI;
 
 namespace ConsumerWorkplace_v_1._0
 {
-    public partial class ConsumerCabinet : Telerik.WinControls.UI.RadForm, IConsumerForm
+    public partial class ConsumerCabinet : Telerik.WinControls.UI.RadForm
     {
         private Customer _customer;
         private AnketaDictionaties _dic;
@@ -25,7 +25,6 @@ namespace ConsumerWorkplace_v_1._0
         public ConsumerCabinet()
         {
             InitializeComponent();
-            gcConsumerCabinet.OnGridRowSelectedChaged += GcConsumerCabinet_OnGridRowSelectedChaged;
             globalControlConsumerAnketa1.OnDocumentNeedGenerate += GlobalControlConsumerAnketa1_OnDocumentNeedGenerate;
             globalControlConsumerAnketa1.OnBtnSaveClick += GlobalControlConsumerAnketa1_OnBtnSaveClick; ;
             
@@ -45,7 +44,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             _customer = GetCustomer(id);
             globalControlConsumerAnketa1.SetDataAndDictionaries(_customer, _dic); // передати дані та словники
-            globalControlConsumerAnketa1.InitializeControl(GetAutoCompList, GetCustomer, false);                // ініціалізація редагування (false), () або створення нового (true)
+            //globalControlConsumerAnketa1.InitializeControl(GetAutoCompList, GetCustomer, false);                // ініціалізація редагування (false), () або створення нового (true)
             return GetCustomer(id);
         }
 
@@ -56,32 +55,10 @@ namespace ConsumerWorkplace_v_1._0
         public Func<Customer, bool> SaveCustomer { get; set; }
         public Func<string, IList<AutoCompleteData>> GetAutoCompList { get; set; }
 
-        public void EndPresenterLink()
-        {
-            if (getMainViewData != null)
-            {
-                var list = getMainViewData();
-                gcConsumerCabinet.SetGridDataSource(list); // передати в грід джерело даних
-
-            }
-        }
 
         public void SetData(ICustomer data)
         {
             _customer = (Customer) data;// тут
         }
-
-        public void GetData(ICustomer data)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetDictionary(AnketaDictionaties dic)
-        {
-            _dic = dic;
-            gcConsumerCabinet.SetDictionary(_dic);
-        }
-
-
     }
 }

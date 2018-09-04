@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary
 {
     public partial class ReportsControl : UserControl
     {
-        ExcelEngine _excel = new ExcelEngine();
+        private readonly ExcelEngine _excel = new ExcelEngine();
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
@@ -201,6 +201,8 @@ namespace IpsViewComponentLibrary
             btnAddRatedList.Enabled = false;
 
         }
+
+
         private void CreateAct()
         {
             MessageBox.Show("Створення акту");
@@ -597,13 +599,15 @@ namespace IpsViewComponentLibrary
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
 
             RegisterRatedList addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0, StatusNavigation = dicRatedListStatus[0] };
-            CreateRatedList form = new CreateRatedList();
-            form.RatedList = addRatedList;
+            CreateRatedList form = new CreateRatedList
+            {
+                RatedList = addRatedList
+            };
 
             if (form.ShowDialog() == DialogResult.OK)
             {
                 period.RegisterRatedList.Add(addRatedList);
-                SaveRegisterRatedListExecuted(this, addRatedList);
+                SaveRegisterRatedListExecuted?.Invoke(this, addRatedList);
                 bindingRatedList.Add(addRatedList);
                 btnAddRatedList.Enabled = false;
             }

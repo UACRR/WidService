@@ -25,26 +25,26 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 _dictionaties = IpsGlobal.AnketaDictionaties;
         }
 
-        public void SetDataInfo(LicenseAgrParam licenseParam, VbrLicense license)
+        public void SetDataInfo(LicenseAgrParam licenseParam, LicenseAgreementBigRightView licenseAgreementBigRightView)
         {
             bindingSourceComment.DataSource = licenseParam;
             //шапка
-            txtAgrNumber.Text = license.AgrNumber ?? string.Empty;
-            txtAgrDate.Text = license.AgrDate?.ToShortDateString() ?? string.Empty;
-            txtIsProlong.Text = license.ToProlong;
+            txtAgrNumber.Text = licenseAgreementBigRightView.AgrNumber ?? string.Empty;
+            txtAgrDate.Text = licenseAgreementBigRightView.AgrDate?.ToShortDateString() ?? string.Empty;
+            txtIsProlong.Text = licenseAgreementBigRightView.ToProlong;
             
             //блок 1
-            txtValuta.Text = license.R030;
-            txtAmount.Text = license.PrepayPaush?.ToString("F");
+            txtValuta.Text = licenseAgreementBigRightView.R030;
+            txtAmount.Text = licenseAgreementBigRightView.PrepayPaush?.ToString("F");
             //блок 2
-            txtAvanceAgr.Text = license.PrepayAvans?.ToString("F");
-            txtAvanceRemnant.Text = license.PrepayRest?.ToString("F");
+            txtAvanceAgr.Text = licenseAgreementBigRightView.PrepayAvans?.ToString("F");
+            txtAvanceRemnant.Text = licenseAgreementBigRightView.PrepayRest?.ToString("F");
             //блок 3
-            txtDatePremiere.Text = license.DatePremiere?.ToShortDateString();
-            txtCount.Text = license.PerformNumb?.ToString();
+            txtDatePremiere.Text = licenseAgreementBigRightView.DatePremiere?.ToShortDateString();
+            txtCount.Text = licenseAgreementBigRightView.PerformNumb?.ToString();
             //блок 4
-            txtRatePlace.Text = license.FillingRate?.ToString(); // %
-            txtTicketPrice.Text = license.TicketPriceNC.ToString(); // UAH
+            txtRatePlace.Text = licenseAgreementBigRightView.FillingRate?.ToString(); // %
+            txtTicketPrice.Text = licenseAgreementBigRightView.TicketPriceNC.ToString(); // UAH
         }
 
         /// <summary>

@@ -36,19 +36,19 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
-            this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
-            this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.btnBack = new Telerik.WinControls.UI.RadButton();
-            this.gvConsumerList = new Telerik.WinControls.UI.RadGridView();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlCabinet = new IpsViewComponentLibrary.MiddleControlCabinet();
+            this.ctrlCabinet = new IpsViewComponentLibrary.CabinetBigRight();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
+            this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
+            this.gvConsumerList = new Telerik.WinControls.UI.RadGridView();
+            this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumerList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEditAgr
@@ -62,44 +62,6 @@
             this.btnEditAgr.ThemeName = "Office2013Light";
             this.btnEditAgr.Click += new System.EventHandler(this.btnEditAgr_Click);
             // 
-            // btnNewConsumer
-            // 
-            this.btnNewConsumer.Location = new System.Drawing.Point(531, 3);
-            this.btnNewConsumer.Name = "btnNewConsumer";
-            this.btnNewConsumer.Size = new System.Drawing.Size(210, 20);
-            this.btnNewConsumer.TabIndex = 12;
-            this.btnNewConsumer.Text = "Новий споживач";
-            this.btnNewConsumer.TextWrap = true;
-            this.btnNewConsumer.ThemeName = "Office2013Light";
-            this.btnNewConsumer.Visible = false;
-            this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(3, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.NullText = "Пошук";
-            this.txtSearch.Size = new System.Drawing.Size(306, 20);
-            this.txtSearch.TabIndex = 11;
-            this.txtSearch.ThemeName = "Office2013Light";
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImage = null;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).HorizontalLineWidth = 0;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).RightToLeft = false;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ScaleTransform = new System.Drawing.SizeF(1F, 1F);
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Image = null;
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
-            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            // 
             // btnBack
             // 
             this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -111,6 +73,39 @@
             this.btnBack.TextWrap = true;
             this.btnBack.ThemeName = "Office2013Light";
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // ctrlCabinet
+            // 
+            this.ctrlCabinet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlCabinet.AutoScroll = true;
+            this.ctrlCabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.GeneralAgreement;
+            this.ctrlCabinet.Location = new System.Drawing.Point(315, 214);
+            this.ctrlCabinet.Name = "ctrlCabinet";
+            this.ctrlCabinet.Size = new System.Drawing.Size(1019, 432);
+            this.ctrlCabinet.TabIndex = 14;
+            // 
+            // ctrlHeaderInfo
+            // 
+            this.ctrlHeaderInfo.Location = new System.Drawing.Point(316, 30);
+            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
+            this.ctrlHeaderInfo.Size = new System.Drawing.Size(836, 178);
+            this.ctrlHeaderInfo.TabIndex = 15;
+            // 
+            // btnNewConsumer
+            // 
+            this.btnNewConsumer.Location = new System.Drawing.Point(531, 3);
+            this.btnNewConsumer.Name = "btnNewConsumer";
+            this.btnNewConsumer.Size = new System.Drawing.Size(210, 20);
+            this.btnNewConsumer.TabIndex = 12;
+            this.btnNewConsumer.Text = "Новий споживач";
+            this.btnNewConsumer.TextWrap = true;
+            this.btnNewConsumer.ThemeName = "Office2013Light";
+            this.btnNewConsumer.Visible = false;
+            this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 
             // gvConsumerList
             // 
@@ -196,26 +191,31 @@
             this.gvConsumerList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvConsumerList_CurrentRowChanged);
             this.gvConsumerList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvConsumerList_CustomFiltering);
             // 
-            // ctrlCabinet
+            // txtSearch
             // 
-            this.ctrlCabinet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlCabinet.AutoScroll = true;
-            this.ctrlCabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.GeneralAgreement;
-            this.ctrlCabinet.Location = new System.Drawing.Point(315, 214);
-            this.ctrlCabinet.Name = "ctrlCabinet";
-            this.ctrlCabinet.Size = new System.Drawing.Size(1019, 432);
-            this.ctrlCabinet.TabIndex = 14;
-            // 
-            // ctrlHeaderInfo
-            // 
-            this.ctrlHeaderInfo.Location = new System.Drawing.Point(316, 30);
-            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(836, 178);
-            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(836, 178);
-            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
-            this.ctrlHeaderInfo.Size = new System.Drawing.Size(836, 178);
-            this.ctrlHeaderInfo.TabIndex = 15;
+            this.txtSearch.Location = new System.Drawing.Point(3, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.NullText = "Пошук";
+            this.txtSearch.Size = new System.Drawing.Size(306, 20);
+            this.txtSearch.TabIndex = 11;
+            this.txtSearch.ThemeName = "Office2013Light";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImage = null;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).HorizontalLineWidth = 0;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).RightToLeft = false;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ScaleTransform = new System.Drawing.SizeF(1F, 1F);
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Image = null;
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
+            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
             // 
             // GlobalControlConsumerCabinetBR
             // 
@@ -231,11 +231,11 @@
             this.Name = "GlobalControlConsumerCabinetBR";
             this.Size = new System.Drawing.Size(1337, 649);
             ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumerList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,12 +243,12 @@
         #endregion
 
         private Telerik.WinControls.UI.RadButton btnEditAgr;
-        private Telerik.WinControls.UI.RadButton btnNewConsumer;
-        private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private Telerik.WinControls.UI.RadButton btnBack;
-        private Telerik.WinControls.UI.RadGridView gvConsumerList;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        public MiddleControlCabinet ctrlCabinet;
+        public CabinetBigRight ctrlCabinet;
         private ConsumerControls.ConsumerHeaderInfo ctrlHeaderInfo;
+        private Telerik.WinControls.UI.RadButton btnNewConsumer;
+        private Telerik.WinControls.UI.RadGridView gvConsumerList;
+        private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
     }
 }

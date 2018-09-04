@@ -53,7 +53,7 @@ namespace IpsViewComponentLibrary
         }
 
         public RequestForm( Customer customer,
-                            ConsumerBigRightView bigRightView,
+                            MainGridConsumerBigRightView bigRightView,
                             AnketaDictionaties dictionaties,
                             FormType formType = FormType.Create,
                             int? licId = null,

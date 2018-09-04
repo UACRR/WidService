@@ -43,14 +43,14 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
         #region BigRight
-        public IList<ConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
+        public IList<MainGridConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listBR";
             KeyValuePair<string, string>[] param = new[] {
                 new KeyValuePair<string, string>("whatId", ((int)what).ToString()),
                 new KeyValuePair<string, string>("typeDocId", ((int)typeDoc).ToString())
             };
-            var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param);
+            var anketaDic = _webApi.GetList<MainGridConsumerBigRightView>(url, param);
             return anketaDic;
         }
 
@@ -59,11 +59,11 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
-        public IList<VbrLicense> GetAgreementsBigRight(string custId)
+        public IList<LicenseAgreementBigRightView> GetAgreementsBigRight(string custId)
         {
             string url = $"consumer/viewBR/" + custId;
 
-            var agr = _webApi.GetListAgreement<VbrLicense>(url);
+            var agr = _webApi.GetListAgreement<LicenseAgreementBigRightView>(url);
             return agr;
         }
 

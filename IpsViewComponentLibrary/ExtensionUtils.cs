@@ -15,12 +15,14 @@ namespace IpsViewComponentLibrary
 {
     public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
-    public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
-    public delegate bool SavePayslipsEventHandler(RegisterRatedList list);
+    public delegate bool SaveRegisterRatedListEventHandler(RegisterRatedList list);
     public delegate Customer GetRegisterRatedList(int custId);
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
+
+    public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate void UpdateCustomerDataEventHandler(int id);
+
     public delegate List<PaidPeriod> SaveAndReturnNewPeriodListEventHandler(int custId, List<PaidPeriod> periods);
 
 
@@ -101,6 +103,43 @@ namespace IpsViewComponentLibrary
                 e.Handled = true;
             }
         }
+
+        public static List<T> ToListOfType<T>(this IList<object> listObjects) where T : class 
+        {
+            var itemsList = new List<T>();
+            foreach (var temp in listObjects)
+                itemsList.Add(temp as T);
+            return itemsList;
+        }
+
+        public static void ShowMessage(bool result, MessageType messageType)
+        {
+            string msgText = string.Empty;
+            string headerText = result ? "Успішно" : "Помилка";
+            MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
+            switch (messageType)
+            {
+                case MessageType.GeneralAgreementChange:
+                    msgText = result ? "Зміни генерального договору збережено!" : "Неможливо зберегти зміни генерального договору!";
+                    break;
+                case MessageType.LicenseAgreementChange:
+                    msgText = result ? "Зміни ліцензійного договору збережено!" : "Неможливо зберегти зміни ліцензійного договору!";
+                    break;
+                case MessageType.LicenseStatus:
+                    msgText = result ? "Статус ліцензії зміненно!" : "Неможливо змінити статус ліцензії!";
+                    break;
+            }
+
+            MessageBox.Show(msgText, headerText, MessageBoxButtons.OK, icon);
+        }
+    }
+
+    public enum MessageType
+    {
+        GeneralAgreementChange,
+        LicenseAgreementChange,
+        LicenseStatus,
+        
     }
 
     public interface IMiddleCtrlAnketaConsumer
@@ -264,6 +303,10 @@ namespace IpsViewComponentLibrary
         /// Empty
         /// </summary>
         None,
+        /// <summary>
+        /// Анкета
+        /// </summary>
+        Anketa,
         /// <summary>
         /// Ліцензії
         /// </summary>

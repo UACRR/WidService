@@ -23,7 +23,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             set
             {
                 bsVbrLicense.DataSource = value;
-                if (value is ipsFormsDesign.Interfaces.ConsumerBigRightView view)
+                if (value is ipsFormsDesign.Interfaces.MainGridConsumerBigRightView view)
                     txtActiveReqAndRef.Text = (view.CountLic2Active + view.CountLic3Active).ToString();
             }
         }
