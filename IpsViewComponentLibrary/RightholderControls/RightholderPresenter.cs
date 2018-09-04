@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Events;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.AppController;
@@ -9,20 +11,20 @@ using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public class RightholderPresenter
+    public class RightholderPresenter : IRightholderPresenter
     {
-        private readonly RightholderView _view;
+        private readonly IRightholderView _view;
         private readonly RightholderService _rightholderService;
         private readonly DialogService _dialogService;
         private Customer _customer;
         private bool _saved;
 
-        public RightholderPresenter(RightholderView view)
+        public RightholderPresenter(IRightholderView view)
         {
             _view = view;
             _view.Presenter = this;
 
-            _view.FormClosing += View_FormClosing;
+            //_view.FormClosing += View_FormClosing; // to fix
 
             _rightholderService = new RightholderService();
             _dialogService = new DialogService();
@@ -32,7 +34,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _customer = _rightholderService.NewCustomer(customerType);
             SetViewData();
-            _view.IsNew = true;
             _view.Run();
         }
 
@@ -53,10 +54,16 @@ namespace IpsViewComponentLibrary.RightholderControls
             _view.TermsOfServiceDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
         }
 
-        internal void Save(bool accept)
+        public void Save(bool accept)
         {
             if (_customer == null)
                 return;
+
+            if (!_view.IsValid)
+            {
+                _dialogService.ShowError((IWin32Window)_view, "Не корректно введені дані.");
+                return;
+            }
 
             _saved = true;
 
@@ -68,18 +75,18 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (result)
             {
                 ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
-                _view.Close();
+                _view.Hide();
             }
             else
-                _dialogService.ShowError(_view, "Не вдалося зберегти правовласника.");
+                _dialogService.ShowError((IWin32Window)_view, "Не вдалося зберегти правовласника.");
         }
 
-        private void View_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        public void Close()
         {
-            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
-            {
-                e.Cancel = true;
-            }
+            if (!_saved && !_dialogService.ClosingIsConfirmed((IWin32Window)_view))
+                return;
+
+            _view.Hide();
         }
     }
 }

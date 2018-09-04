@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
@@ -9,10 +10,10 @@ using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholderView : Telerik.WinControls.UI.RadForm
+    public partial class RightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
     {
-        private RightholderPresenter _presenter;
-        public RightholderPresenter Presenter
+        private IRightholderPresenter _presenter;
+        public IRightholderPresenter Presenter
         {
             get { return _presenter; }
             set
@@ -20,22 +21,6 @@ namespace IpsViewComponentLibrary.RightholderControls
                 if (_presenter == null)
                 {
                     _presenter = value;
-                }
-            }
-        }
-
-        private bool _isNew = false;
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set
-            {
-                if (_isNew != value)
-                {
-                    _isNew = value;
-
-                    if (_isNew)
-                        DisablePagesAndSaveButton();
                 }
             }
         }
@@ -84,7 +69,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             InitializeComponent();
 
-            createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+            passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             sbSave.DefaultItem = miSave;
@@ -98,32 +83,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             ShowDialog();
         }
 
-        private void mainPageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
+        public bool IsValid
         {
-            // TODO: move to presenter
-            var selectedPage = mainPageView.SelectedPage;
-            var isValid = true;
-
-            if (selectedPage == createRightholderFullNameComissionPage)
+            get
             {
-                isValid = ctrlAnketaPerson.Validator() && ctrlServiceComissionControl.ValidateChildren();
-            }
-            else if (selectedPage == createRightholderAnketaPage)
-            {
-                isValid = ctrlContacts.Validator() & ctrlRegistrations.Validator();
-            }
-
-            if (isValid)
-            {
-                e.Page.Enabled = true;
-                if (e.Page == mainPageView.Pages.Last())
-                {
-                    sbSave.Enabled = true;
-                }
-            }
-            else
-            {
-                e.Cancel = true;
+                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrations.Validator();
             }
         }
 
@@ -135,12 +99,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (anketa == null)
                 return;
 
-            if (mainPageView.SelectedPage == createRightholderPassportPage)
+            if (anketaPageView.SelectedPage == createRightholderPassportPage)
             {
                 if (anketa.Citizenship == "804")
-                    createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
+                    passportPageView.SelectedPage = createRightholderInternalPasportPage;
                 else
-                    createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
+                    passportPageView.SelectedPage = createRightholderForeignPassportPage;
             }
         }
 
@@ -192,13 +156,10 @@ namespace IpsViewComponentLibrary.RightholderControls
             _presenter.Save(accept: true);
         }
 
-        private void DisablePagesAndSaveButton()
+        private void RightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
-            sbSave.Enabled = false;
-            for (int i = 1; i < mainPageView.Pages.Count; i++)
-            {
-                mainPageView.Pages[i].Enabled = false;
-            }
+            _presenter.Close();
+            e.Cancel = true;
         }
     }
 }

@@ -267,6 +267,12 @@
       <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\RightholderPresenter.cs" />
+    <Compile Include="RightholderControls\NewRightholderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\NewRightholderView.Designer.cs">
+      <DependentUpon>NewRightholderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\RightholderView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1081,6 +1087,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterControls\SearchObjectView.resx">
       <DependentUpon>SearchObjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\NewRightholderView.resx">
+      <DependentUpon>NewRightholderView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\RightholderView.resx">
       <DependentUpon>RightholderView.cs</DependentUpon>
