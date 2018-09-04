@@ -149,6 +149,7 @@
             this.btnRefresh.TabIndex = 31;
             this.btnRefresh.Text = "Оновити";
             this.btnRefresh.ThemeName = "Office2013Light";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // gvRightholdersList
             // 

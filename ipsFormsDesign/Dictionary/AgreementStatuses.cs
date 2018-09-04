@@ -9,5 +9,7 @@ namespace ipsFormsDesign.Dictionary
         OnNegotiation = 3,
         Closed = 4,
         Canceled = 5,
+        Inheritance = 7,
+        Blocked = 8,
     }
 }

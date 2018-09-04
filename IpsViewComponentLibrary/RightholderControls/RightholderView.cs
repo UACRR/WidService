@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -69,13 +70,13 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             InitializeComponent();
 
+            SetDictionaries();
+
             passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
-
-            ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
         }
 
         public void Run()
@@ -156,10 +157,70 @@ namespace IpsViewComponentLibrary.RightholderControls
             _presenter.Save(accept: true);
         }
 
+        private void btnSetAgreementRightholderStatus_Click(object sender, EventArgs e)
+        {
+            _presenter.SetAgreementRightholderStatus((AgreementStatuses)btnSetAgreementRightholderStatus.Tag);
+            bsAgreementAddRh.ResetCurrentItem();
+        }
+
+        private void btnSetAgreementRightholderStatusInheritance_Click(object sender, EventArgs e)
+        {
+            _presenter.SetAgreementRightholderStatus(AgreementStatuses.Inheritance);
+            bsAgreementAddRh.ResetCurrentItem();
+        }
+
+        private void btnSetStatusClosed_Click(object sender, EventArgs e)
+        {
+            _presenter.SetAgreementRightholderStatus(AgreementStatuses.Closed);
+            bsAgreementAddRh.ResetCurrentItem();
+        }
+
         private void RightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
             _presenter.Close();
             e.Cancel = true;
+        }
+
+        private void bsAgreementAddRh_BindingComplete(object sender, System.Windows.Forms.BindingCompleteEventArgs e)
+        {
+            SetAllowedStatuses();
+        }
+
+        private void SetDictionaries()
+        {
+            ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
+            ddlAgreementStatus.SetDataSource(IpsGlobal.AnketaDictionaties.agreementStatus);
+        }
+
+        private void SetAllowedStatuses()
+        {
+            if (bsAgreementAddRh.Current != null)
+            {
+                var rightholderStatus = (AgreementStatuses)((AgreementAddRh)bsAgreementAddRh.Current).AgrStatus;
+
+                if (rightholderStatus == AgreementStatuses.Active)
+                {
+                    gboxRightholderStatus.Enabled = true;
+                    btnSetStatusInheritance.Enabled = true;
+                    btnSetStatusClosed.Enabled = true;
+
+                    btnSetAgreementRightholderStatus.Text = "Заблокувати";
+                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Blocked;
+                }
+                else if (rightholderStatus == AgreementStatuses.Blocked)
+                {
+                    gboxRightholderStatus.Enabled = true;
+                    btnSetStatusInheritance.Enabled = false;
+                    btnSetStatusClosed.Enabled = false;
+
+                    btnSetAgreementRightholderStatus.Text = "Розблокувати";
+                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
+                }
+                else
+                {
+                    gboxRightholderStatus.Enabled = false;
+                }
+            }
         }
     }
 }
