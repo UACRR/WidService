@@ -49,23 +49,25 @@ namespace ConsumerWorkplace_v_1._0
                     {
                         new RadTreeNode
                         {
-                            Text = "Ген.Угода", Value = TypeBRDocument.GenAgreement, Selected = true,
+                            Text = "Генеральні договори", Value = TypeBRDocument.GenAgreement, Selected = true,
                             Nodes  =
                             {
                                 new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
                                 new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                                new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive },
-                                new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation }
+                                new RadTreeNode { Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
+                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.None },
+                                new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation },
+                                new RadTreeNode { Text = "Закриті", Value = ConsumerFilterEnum.None},
                             }
                         },
                         new RadTreeNode
                         {
-                            Text = "Ліцензії", Value = TypeBRDocument.LicAgreement,
+                            Text = "Ліцензійні договори", Value = TypeBRDocument.LicAgreement,
                             Nodes  =
                             {
                                 new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
                                 new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                                new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive },
+                                new RadTreeNode { Text = "Не активні", Value = ConsumerFilterEnum.NotActive },
                                 new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation }
                             }
                         },
@@ -76,7 +78,10 @@ namespace ConsumerWorkplace_v_1._0
                             {
                                 new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
                                 new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                                new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive }
+                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.NotActive },
+                                new RadTreeNode { Text = "На акцепті", Value = ConsumerFilterEnum.None },
+                                new RadTreeNode { Text = "На погодженні", Value = ConsumerFilterEnum.None},
+                                new RadTreeNode { Text = "Відхилені", Value = ConsumerFilterEnum.None },
                             }
 
                         },
@@ -87,7 +92,10 @@ namespace ConsumerWorkplace_v_1._0
                             {
                                 new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
                                 new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                                new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive }
+                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.NotActive },
+                                new RadTreeNode { Text = "На акцепті", Value = ConsumerFilterEnum.None },
+                                new RadTreeNode { Text = "На погодженні", Value = ConsumerFilterEnum.None},
+                                new RadTreeNode { Text = "Відхилені", Value = ConsumerFilterEnum.None },
                             }
 
                         },
@@ -151,47 +159,59 @@ namespace ConsumerWorkplace_v_1._0
 
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
-                        RadTreeNode[] list2 = new[]{
-                            new RadTreeNode{
-                            Text = "Ген.Угода", Value = TypeBRDocument.GenAgreement,
+                    RadTreeNode[] list2 = new[]{
+                        new RadTreeNode
+                        {
+                            Text = "Генеральні договори", Value = TypeBRDocument.GenAgreement, Selected = true,
                             Nodes  =
                             {
                                 new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
                                 new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                                new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive },
+                                new RadTreeNode { Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
+                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.None },
+                                new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation },
+                                new RadTreeNode { Text = "Закриті", Value = ConsumerFilterEnum.None},
+                            }
+                        },
+                        new RadTreeNode
+                        {
+                            Text = "Ліцензійні договори", Value = TypeBRDocument.LicAgreement,
+                            Nodes  =
+                            {
+                                new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
+                                new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
+                                new RadTreeNode { Text = "Не активні", Value = ConsumerFilterEnum.NotActive },
                                 new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation }
                             }
-                    },
-                    new RadTreeNode{
-                        Text = "Ліцензії", Value = TypeBRDocument.LicAgreement,
-                        Nodes  =
+                        },
+                        new RadTreeNode
                         {
-                            new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
-                            new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                            new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive },
-                            new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation }
-                        }
-                    },
-                    new RadTreeNode{
-                        Text = "Заявки", Value = TypeBRDocument.Request,
-                        Nodes  =
-                        {
-                            new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
-                            new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                            new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive }
-                        }
+                            Text = "Заявки", Value = TypeBRDocument.Request,
+                            Nodes  =
+                            {
+                                new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
+                                new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
+                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.NotActive },
+                                new RadTreeNode { Text = "На акцепті", Value = ConsumerFilterEnum.None },
+                                new RadTreeNode { Text = "На погодженні", Value = ConsumerFilterEnum.None},
+                                new RadTreeNode { Text = "Відхилені", Value = ConsumerFilterEnum.None },
+                            }
 
-                    },
-                    new RadTreeNode{
-                        Text = "Довідки", Value = TypeBRDocument.Reference,
-                        Nodes  =
+                        },
+                        new RadTreeNode
                         {
-                            new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
-                            new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
-                            new RadTreeNode { Text = "Не Активні", Value = ConsumerFilterEnum.NotActive }
-                        }
+                            Text = "Довідки", Value = TypeBRDocument.Reference,
+                            Nodes  =
+                            {
+                                new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
+                                new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
+                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.NotActive },
+                                new RadTreeNode { Text = "На акцепті", Value = ConsumerFilterEnum.None },
+                                new RadTreeNode { Text = "На погодженні", Value = ConsumerFilterEnum.None},
+                                new RadTreeNode { Text = "Відхилені", Value = ConsumerFilterEnum.None },
+                            }
 
-                    },
+                        },
                     new RadTreeNode {Text = "Не розподіленні", Value = ConsumerFilterEnum.ForDistribution},
                     new RadTreeNode {Text = "Борг", Value = ConsumerFilterEnum.Debt},
                     new RadTreeNode {Text = "Відсутні Роз.Листи", Value = ConsumerFilterEnum.UnattachData}
