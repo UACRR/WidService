@@ -87,7 +87,7 @@ namespace ConsumerWorkplace_v_1._0
                 //cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 //cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 //cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
-                cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
+                //cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
                 cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
                 cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
                 cabinet.pagesControl.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;

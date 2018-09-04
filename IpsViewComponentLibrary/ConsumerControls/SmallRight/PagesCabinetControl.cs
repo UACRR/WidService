@@ -23,6 +23,7 @@ namespace IpsViewComponentLibrary
         public delegate void CustomerSave(Customer customer);
         public event CustomerSave OnCustomerSave;
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
+        public event UpdateCustomerDataEventHandler OnUpdateCustomerNeed;
 
         /// <summary>
         /// Тип прав (великі або малі права)
@@ -35,7 +36,7 @@ namespace IpsViewComponentLibrary
         public PagesCabinetControl()
         {
             InitializeComponent();
-            SetDefaultPages();
+            pvMain.SelectedPage = pvAnketa;
             ctrlAgrDetailInfo.OnSaveCommentNeed += OnSaveCommentNeed;
             ctrlAgrDetailInfoMore.OnSaveCommentNeed += OnSaveCommentNeed;
         }
@@ -78,6 +79,8 @@ namespace IpsViewComponentLibrary
         public void SetCustomerData(Customer customer)
         {
             _customer = customer;
+            ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _dictionaties);
+            ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
             ctrlHeaderInfo.SetControlTextInfoSmallRight(_customer);
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();

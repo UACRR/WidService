@@ -34,7 +34,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
 
             _cabinetSmallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
-            _cabinetSmallRightForm.cabinet.OnEditCustomer += EditExistCustomerAnketa;
             _cabinetSmallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
             _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
 

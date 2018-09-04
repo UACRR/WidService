@@ -27,7 +27,6 @@ namespace IpsViewComponentLibrary
         public event UpdateCustomerDataEventHandler OnGridRowSelectedChaged;
 
         public delegate void CallEditCustomer(int id);
-        public event CallEditCustomer OnEditCustomer;
 
         public event UpdateCustomerDataEventHandler OnUpdateCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
@@ -42,6 +41,12 @@ namespace IpsViewComponentLibrary
             pagesControl.Rights = TypeRights.SmallRights;
             pagesControl.OnCustomerSave += SaveCustomer;
             pagesControl.OnChangeLicenseStatus += PagesControlOnChangeLicenseStatus;
+            pagesControl.OnUpdateCustomerNeed += PagesControl_OnUpdateCustomerNeed;
+        }
+
+        private void PagesControl_OnUpdateCustomerNeed(int id)
+        {
+            OnUpdateCustomerNeed?.Invoke(_customerId);
         }
 
         public void SetCustomerData(Customer customer)
@@ -71,16 +76,5 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        //оновлення 
-        private void UpdateCustomer_Click(object sender, EventArgs e)
-        {
-            OnUpdateCustomerNeed?.Invoke(_customerId);
-        }
-
-        //редагування 
-        private void EditExistCustomer_Click(object sender, EventArgs e)
-        {
-            OnEditCustomer?.Invoke(_customerId);
-        }
     }
 }

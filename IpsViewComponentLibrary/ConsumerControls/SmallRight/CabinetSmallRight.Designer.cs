@@ -28,47 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnUpdateData = new Telerik.WinControls.UI.RadButton();
-            this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
             this.pagesControl = new IpsViewComponentLibrary.PagesCabinetControl();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdateData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnUpdateData
-            // 
-            this.btnUpdateData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateData.Location = new System.Drawing.Point(978, 3);
-            this.btnUpdateData.Name = "btnUpdateData";
-            this.btnUpdateData.Size = new System.Drawing.Size(141, 20);
-            this.btnUpdateData.TabIndex = 5;
-            this.btnUpdateData.Text = "Оновити";
-            this.btnUpdateData.TextWrap = true;
-            this.btnUpdateData.ThemeName = "Office2013Light";
-            this.btnUpdateData.Click += new System.EventHandler(this.UpdateCustomer_Click);
-            // 
-            // btnEditAgr
-            // 
-            this.btnEditAgr.Location = new System.Drawing.Point(3, 3);
-            this.btnEditAgr.Name = "btnEditAgr";
-            this.btnEditAgr.Size = new System.Drawing.Size(210, 20);
-            this.btnEditAgr.TabIndex = 8;
-            this.btnEditAgr.Text = "Редагувати анкету споживача";
-            this.btnEditAgr.TextWrap = true;
-            this.btnEditAgr.ThemeName = "Office2013Light";
-            this.btnEditAgr.Click += new System.EventHandler(this.EditExistCustomer_Click);
             // 
             // pagesControl
             // 
-            this.pagesControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pagesControl.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.pagesControl.Location = new System.Drawing.Point(3, 29);
+            this.pagesControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pagesControl.Location = new System.Drawing.Point(0, 0);
             this.pagesControl.MinimumSize = new System.Drawing.Size(500, 665);
             this.pagesControl.Name = "pagesControl";
             this.pagesControl.Rights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
-            this.pagesControl.Size = new System.Drawing.Size(1116, 665);
+            this.pagesControl.Size = new System.Drawing.Size(1122, 696);
             this.pagesControl.TabIndex = 0;
             // 
             // CabinetSmallRight
@@ -78,21 +49,15 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CausesValidation = false;
-            this.Controls.Add(this.btnEditAgr);
-            this.Controls.Add(this.btnUpdateData);
             this.Controls.Add(this.pagesControl);
             this.DoubleBuffered = true;
             this.Name = "CabinetSmallRight";
             this.Size = new System.Drawing.Size(1122, 696);
-            ((System.ComponentModel.ISupportInitialize)(this.btnUpdateData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Telerik.WinControls.UI.RadButton btnUpdateData;
-        private Telerik.WinControls.UI.RadButton btnEditAgr;
         public PagesCabinetControl pagesControl;
     }
 }

@@ -201,7 +201,7 @@ namespace IpsViewComponentLibrary
 
         private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-
+            //TODO method view call
         }
     }
 }

@@ -94,6 +94,7 @@ namespace IpsViewComponentLibrary
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
+            this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
             this.pvContacts.SuspendLayout();
             this.pvPayments.SuspendLayout();
             this.pvCalculation.SuspendLayout();
@@ -115,6 +116,7 @@ namespace IpsViewComponentLibrary
             this.pvSecond.SuspendLayout();
             this.pvAgreement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).BeginInit();
+            this.pvAnketa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
             this.SuspendLayout();
@@ -655,7 +657,6 @@ namespace IpsViewComponentLibrary
             // 
             this.pvAgreement.AutoScroll = true;
             this.pvAgreement.Controls.Add(this.ctrlAgrDetailInfo);
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(63, 15);
             this.pvAgreement.Name = "pvAgreement";
             this.pvAgreement.Size = new System.Drawing.Size(1004, 282);
@@ -674,7 +675,6 @@ namespace IpsViewComponentLibrary
             // 
             // pvHistory
             // 
-            this.pvHistory.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.pvHistory.Location = new System.Drawing.Point(63, 15);
             this.pvHistory.Name = "pvHistory";
             this.pvHistory.Size = new System.Drawing.Size(914, 282);
@@ -694,6 +694,7 @@ namespace IpsViewComponentLibrary
             // 
             // pvAnketa
             // 
+            this.pvAnketa.Controls.Add(this.ctrlAnketaConsumer);
             this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvAnketa.Location = new System.Drawing.Point(5, 41);
             this.pvAnketa.Name = "pvAnketa";
@@ -723,7 +724,7 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.pvMain.RootElement.MinSize = new System.Drawing.Size(962, 456);
-            this.pvMain.SelectedPage = this.pvActiveAgr;
+            this.pvMain.SelectedPage = this.pvAnketa;
             this.pvMain.Size = new System.Drawing.Size(1082, 725);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";
@@ -744,6 +745,16 @@ namespace IpsViewComponentLibrary
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.Auto;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
+            // 
+            // ctrlAnketaConsumer
+            // 
+            this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlAnketaConsumer.IsContainPlaces = false;
+            this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
+            this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
+            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1072, 679);
+            this.ctrlAnketaConsumer.TabIndex = 0;
+            this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             // 
             // PagesCabinetControl
             // 
@@ -774,6 +785,7 @@ namespace IpsViewComponentLibrary
             this.pvSecond.ResumeLayout(false);
             this.pvAgreement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).EndInit();
+            this.pvAnketa.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).EndInit();
             this.pvMain.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -815,5 +827,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadDropDownButton btnActionOfAgr;
         private Telerik.WinControls.UI.RadMenuItem btnProlongation;
         private Telerik.WinControls.UI.RadMenuItem btnAddAgrNewVersion;
+        private AnketaConsumer ctrlAnketaConsumer;
     }
 }
