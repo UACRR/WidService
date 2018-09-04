@@ -170,14 +170,11 @@ namespace IpsViewComponentLibrary
             boolRunFromDragDrop = true;
             e.Handled = true;
 
-            btnDistribute.BeginInvoke((Action)(() =>
+            ddBtnAction.BeginInvoke((Action)(() =>
             {
                 btnDistribute.PerformClick();
             }));
         }
-
-
-
 
         /// <summary>
         /// 
@@ -201,10 +198,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-
-
         #endregion
-
 
         /// <summary>
         /// 
@@ -336,7 +330,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dtnDistribute_Click(object sender, EventArgs e)
+        private void btnDistribute_Click(object sender, EventArgs e)
         {
 
             MoneyReceived pay = null;
@@ -460,9 +454,10 @@ namespace IpsViewComponentLibrary
     class ButtonController
     {
         private RadButton _btnNewPeriod,
-                            _btnDistribute,
                             _btnClosePeriod;
-        public ButtonController(RadButton btnNewPeriod, RadButton btnDistribute, RadButton btnClosePeriod)
+        private RadMenuItem _btnDistribute;
+
+        public ButtonController(RadButton btnNewPeriod, RadMenuItem btnDistribute, RadButton btnClosePeriod)
         {
             _btnNewPeriod = btnNewPeriod;
             _btnDistribute = btnDistribute;
