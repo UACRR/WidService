@@ -285,11 +285,11 @@ namespace RightholderWorkplace
 
             using (var selectionView = new RightholderSelectionView())
             {
-                selectionView.SetAllowedStatuses(new[] {
-                    RightholderStatusType.Active,
-                    RightholderStatusType.Inheritance,
-                    RightholderStatusType.New,
-                    RightholderStatusType.NotAccepted,
+                selectionView.SetAllowedStates(new[] {
+                    RightholderStates.NotAccepted,
+                    RightholderStates.OnAcception,
+                    RightholderStates.Active,
+                    RightholderStates.Inheritance,
                 });
                 selectionView.RightholderSelected += SelectionView_RightholderSelected;
                 selectionView.ShowDialog();

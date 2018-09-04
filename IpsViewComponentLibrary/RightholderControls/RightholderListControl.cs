@@ -7,6 +7,7 @@ using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         ISubscriber<RightholderUpdatedEvent>
     {
         private RightholderService _rightholderService;
-        private RightholderStatusType[] _allowedStatuses;
+        private RightholderStates[] _allowedStatuses;
 
         protected bool IsDesignMode
         {
@@ -90,9 +91,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
                 _rightholderService = new RightholderService();
 
-                var statusNode = new RadTreeNode { Text = "Статус" };
+                var stateNode = new RadTreeNode { Text = "Стан" };
 
-                tvFilters.Nodes.Add(statusNode);
+                tvFilters.Nodes.Add(stateNode);
                 tvFilters.ExpandAll();
             }
         }
@@ -101,10 +102,10 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             if (!IsDesignMode)
             {
-                PopulateStatusFilterValues();
+                PopulateFiltersValues();
 
                 // set default status filter as Active, this also cause update list, beacouse of tvFilters_SelectedNodeChanged is handled
-                tvFilters.Nodes[0].Nodes.First(n => (RightholderStatusType)n.Value == RightholderStatusType.Active).Selected = true;
+                tvFilters.Nodes[0].Nodes.First(n => (RightholderStates)n.Value == RightholderStates.Active).Selected = true;
             }
         }
 
@@ -124,18 +125,18 @@ namespace IpsViewComponentLibrary.RightholderControls
             base.Dispose(disposing);
         }
 
-        public void SetAllowedStatuses(RightholderStatusType[] statuses)
+        public void SetAllowedStates(RightholderStates[] states)
         {
-            _allowedStatuses = statuses;
+            _allowedStatuses = states;
 
-            PopulateStatusFilterValues();
+            PopulateFiltersValues();
         }
 
         public void ResetAllowedStatuses()
         {
             _allowedStatuses = null;
 
-            PopulateStatusFilterValues();
+            PopulateFiltersValues();
         }
 
         public void UpdateList()
@@ -147,10 +148,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             waitingBar.StartWaiting();
 
-            var query = new RightholderListQuery
-            {
-                Status = (RightholderStatusType)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value,
-            };
+            var query = CreateRightholderQuery();
 
             var list = await _rightholderService.GetRightholdersAsync(query);
 
@@ -250,18 +248,42 @@ namespace IpsViewComponentLibrary.RightholderControls
             EditCommandExecuted?.Invoke(this, selectedRightholder);
         }
 
-        private void PopulateStatusFilterValues()
+        private void PopulateFiltersValues()
         {
-            var statuses = IpsGlobal.AnketaDictionaties.customerStatus;
+            var states = new List<RadTreeNode> {
+                new RadTreeNode { Value = RightholderStates.All,         Text = "Всі" },
+                new RadTreeNode { Value = RightholderStates.NotAccepted, Text = "Не підтверджені" },
+                new RadTreeNode { Value = RightholderStates.OnAcception, Text = "На акцепті" },
+                new RadTreeNode { Value = RightholderStates.Active,      Text = "Активний" },
+                new RadTreeNode { Value = RightholderStates.Closed,      Text = "Закритий" },
+                new RadTreeNode { Value = RightholderStates.Inheritance, Text = "Оформлення спадщини" },
+                new RadTreeNode { Value = RightholderStates.Blocked,     Text = "Заблокований" },
+            };
 
             if (_allowedStatuses != null)
             {
-                statuses = statuses.Where(s => _allowedStatuses.Contains((RightholderStatusType)s.CodeI)).ToList();
+                states = states.Where(node => _allowedStatuses.Contains((RightholderStates)node.Value)).ToList();
             }
 
-            var statusValueNodes = statuses.Select(s => new RadTreeNode { Text = s.Name, Value = s.CodeI }).ToArray();
             tvFilters.Nodes[0].Nodes.Clear();
-            tvFilters.Nodes[0].Nodes.AddRange(statusValueNodes);
+            tvFilters.Nodes[0].Nodes.AddRange(states);
+        }
+
+        private RightholderListQuery CreateRightholderQuery()
+        {
+            var query = new RightholderListQuery();
+
+            var state = (RightholderStates)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value;
+
+            if (state != RightholderStates.All)
+            {
+                if ((int)state <= 5)
+                    query.AgreementStatus = (AgreementStatuses)state;
+                else
+                    query.RightholderStatus = (RightholderStatusType)state;
+            }
+
+            return query;
         }
 
         public void HandleEvent(RightholderUpdatedEvent e)
