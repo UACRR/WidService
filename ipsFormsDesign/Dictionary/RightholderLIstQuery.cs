@@ -6,14 +6,18 @@ namespace ipsFormsDesign.Dictionary
 {
     public class RightholderListQuery
     {
-        public RightholderStatusType? Status { get; set; }
+        public RightholderStatusType? RightholderStatus { get; set; }
+        public AgreementStatuses? AgreementStatus { get; set; }
 
         public KeyValuePair<string, string>[] ToKeyValuePair()
         {
             var parameters = new Collection<KeyValuePair<string, string>>();
 
-            if (Status.HasValue)
-                parameters.Add(new KeyValuePair<string, string>("status", ((int)Status.Value).ToString()));
+            if (RightholderStatus.HasValue)
+                parameters.Add(new KeyValuePair<string, string>("rightholderStatus", ((int)RightholderStatus.Value).ToString()));
+
+            if (AgreementStatus.HasValue)
+                parameters.Add(new KeyValuePair<string, string>("agreementStatus", ((int)AgreementStatus.Value).ToString()));
 
             return parameters.ToArray();
         }

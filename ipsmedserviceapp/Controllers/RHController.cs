@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -151,12 +152,17 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         {
             var queryText = "select * from vTsk_1_ListRightHolder01";
 
+            var conditions = new Collection<string>();
             if (query != null)
             {
-                if (query.Status != null)
-                {
-                    queryText = queryText + $" where status = {query.Status}";
-                }
+                if (query.RightholderStatus.HasValue)
+                    conditions.Add($"custStatus = {query.RightholderStatus.Value}");
+
+                if (query.AgreementStatus.HasValue)
+                    conditions.Add($"agrStatus = {query.AgreementStatus.Value}");
+
+                if (conditions.Any())
+                    queryText = queryText + " where " + string.Join(" and ", conditions);
             }
 
             var List = await _dbContext.getViewData(queryText, null);

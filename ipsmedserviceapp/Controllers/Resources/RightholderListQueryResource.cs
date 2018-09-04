@@ -3,6 +3,7 @@ namespace ipsmedserviceapp.Controllers.Resources
 {
     public class RightholderListQueryResource
     {
-        public int? Status { get; set; }
+        public int? RightholderStatus { get; set; }
+        public int? AgreementStatus { get; set; }
     }
 }
