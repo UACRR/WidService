@@ -17,14 +17,13 @@ namespace IpsViewComponentLibrary.RightholderControls
         private readonly RightholderService _rightholderService;
         private readonly DialogService _dialogService;
         private Customer _customer;
+        private AgreementAddRh _agreementAddRh;
         private bool _saved;
 
         public RightholderPresenter(IRightholderView view)
         {
             _view = view;
             _view.Presenter = this;
-
-            //_view.FormClosing += View_FormClosing; // to fix
 
             _rightholderService = new RightholderService();
             _dialogService = new DialogService();
@@ -48,10 +47,21 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _view.CustomerDataSource = _customer;
             _view.AnketaPersonDataSource = _customer.Person.AnketaPerson;
-            _view.AgreementAddRhDataSource = _customer.AgreementMaster.FirstOrDefault()?.AgreementAddRh;
+            _agreementAddRh = _customer.AgreementMaster.FirstOrDefault()?.AgreementAddRh?.FirstOrDefault();
+            _view.AgreementAddRhDataSource = _agreementAddRh;
             _view.RightholderDataSource = _customer.RightHolder;
             _view.BankAccountDataSource = _customer.BankAccount;
             _view.TermsOfServiceDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
+        }
+
+        public void SetAgreementRightholderStatus(AgreementStatuses newStatus)
+        {
+            _agreementAddRh.AgrStatus = (int)newStatus;
+
+            if (newStatus == AgreementStatuses.Closed)
+                _customer.Status = (int)RightholderStatusType.Closed;
+            else
+                _customer.Status = (int)((RightholderStatusType)newStatus);
         }
 
         public void Save(bool accept)
