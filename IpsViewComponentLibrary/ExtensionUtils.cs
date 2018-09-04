@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,10 +25,6 @@ namespace IpsViewComponentLibrary
     public delegate void UpdateCustomerDataEventHandler(int id);
 
     public delegate List<PaidPeriod> SaveAndReturnNewPeriodListEventHandler(int custId, List<PaidPeriod> periods);
-
-
-
-
 
     public static class ExtensionUtils
     {
@@ -131,6 +128,24 @@ namespace IpsViewComponentLibrary
             }
 
             MessageBox.Show(msgText, headerText, MessageBoxButtons.OK, icon);
+        }
+
+        //для колапс панелі
+        public static void NavigationButtonPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            RadButtonElement btn = sender as RadButtonElement;
+            if (e.PropertyName == "Visibility" && btn?.Class == "PrevDownSplitterThumb")
+            {
+                if (btn.Visibility == ElementVisibility.Collapsed)
+                {
+                    btn.Visibility = ElementVisibility.Visible;
+                    btn.AngleTransform = 0f;
+                }
+            }
+            if (e.PropertyName == "Visibility" && btn?.Visibility == ElementVisibility.Visible && btn.Class == "NextUpSplitterThumb")
+            {
+                btn.Visibility = ElementVisibility.Collapsed;
+            }
         }
     }
 

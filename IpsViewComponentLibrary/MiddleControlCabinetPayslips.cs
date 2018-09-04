@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -38,6 +39,15 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             gvViewSpectacles.MasterTemplate.ShowChildViewCaptions = false;
+            splitContainer.Splitters.First().NextNavigationButton.PropertyChanged += ExtensionUtils.NavigationButtonPropertyChanged;
+            splitContainer.Splitters.First().NextNavigationButton.Visibility = ElementVisibility.Collapsed;
+            splitContainer.Splitters.First().PrevNavigationButton.PropertyChanged += ExtensionUtils.NavigationButtonPropertyChanged;
+            splitContainer.Splitters.First().PrevNavigationButton.Visibility = ElementVisibility.Visible;
+        }
+        private void SplitContainer_PanelCollapsing(object sender, RadSplitContainer.PanelCollapsingEventArgs e)
+        {
+            var splitter = splitContainer.Splitters.First();
+            splitter.PrevNavigationButton.AngleTransform = 180f;
         }
 
         public void SetAndUpdateData(Customer customer, 
@@ -75,44 +85,48 @@ namespace IpsViewComponentLibrary
 
         }
 
-        //видалення р/р
-        private void btnDeleteRl_Click(object sender, EventArgs e)
-        {
-
-        }
-
         //редагування р/р
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            var row = e?.Row?.DataBoundItem as RatedListMainBigRightView;
-            btnToAccept.Enabled = row?.Status == 0;
-            var payslip = GetRatedList(row);
+            switch (e.Column.FieldName)
+            {
+                case "editBtn":
+                    var row = e?.Row?.DataBoundItem as RatedListMainBigRightView;
+                    btnToAccept.Enabled = row?.Status == 0;
+                    var payslip = GetRatedList(row);
 
-            if (row?.Status == 0)
-            {
-                PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer,
-                    OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
-                {
-                    StartPosition = FormStartPosition.CenterParent
-                };
-                addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
-                if (addform.ShowDialog() == DialogResult.OK)
-                {
-                    if (OnSavePayslip?.Invoke(payslip) ?? false)
-                        ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно",
-                            MessageBoxIcon.Information);
-                    else
-                        ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
-                }
-            }else if (row?.Status == 1)
-            {
-                PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.View, _customer,
-                    OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
-                {
-                    StartPosition = FormStartPosition.CenterParent
-                };
-                addform.ShowDialog();
+                    if (row?.Status == 0)
+                    {
+                        PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer,
+                            OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                        {
+                            StartPosition = FormStartPosition.CenterParent
+                        };
+                        addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
+                        if (addform.ShowDialog() == DialogResult.OK)
+                        {
+                            if (OnSavePayslip?.Invoke(payslip) ?? false)
+                                ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно",
+                                    MessageBoxIcon.Information);
+                            else
+                                ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
+                        }
+                    }
+                    else if (row?.Status == 1)
+                    {
+                        PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.View, _customer,
+                            OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                        {
+                            StartPosition = FormStartPosition.CenterParent
+                        };
+                        addform.ShowDialog();
+                    }
+                    break;
+                case "deleteBtn":
+                    //TODO : реалізація видалення р/л
+                    break;
             }
+            
         }
 
         private RegisterRatedList GetRatedList(RatedListMainBigRightView reg)
@@ -155,7 +169,7 @@ namespace IpsViewComponentLibrary
                 return;
             }
 
-            if (collapsiblePanel.IsExpanded && (e?.CurrentRow?.DataBoundItem as RatedListMainBigRightView)?.RmId != null)
+            if ((e?.CurrentRow?.DataBoundItem as RatedListMainBigRightView)?.RmId != null)
             {
                 SetSpectacleViewGridDataSource(((RatedListMainBigRightView) e.CurrentRow.DataBoundItem).RmId);
                 btnToAccept.Enabled = ((RatedListMainBigRightView) e.CurrentRow.DataBoundItem).Status == 0;
@@ -244,15 +258,16 @@ namespace IpsViewComponentLibrary
                 UpdateMusicDesignData();
         }
 
-        private void btnToAccept_Click(object sender, EventArgs e)
+        //погодити перелік вистав
+        private void btnAcceptSpectacles_Click(object sender, EventArgs e)
         {
-            if(gvViewRl.CurrentRow.DataBoundItem is RatedListMainBigRightView reg)
+            if (gvViewRl.CurrentRow.DataBoundItem is RatedListMainBigRightView reg)
             {
                 var ratedlist = GetRatedList(reg);
                 ratedlist.Status = 1;
                 foreach (var item in ratedlist.Register)
                     item.RgStatus = 2;
-                
+
                 var result = OnSavePayslip?.Invoke(ratedlist) ?? false;
                 if (result)
                     ExtensionUtils.ShowInfoMessage("Перелік вистав погоджено!", "Успішно", MessageBoxIcon.Information);

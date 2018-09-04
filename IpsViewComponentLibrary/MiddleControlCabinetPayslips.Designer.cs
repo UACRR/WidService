@@ -61,6 +61,7 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -75,8 +76,13 @@ namespace IpsViewComponentLibrary
             this.gvViewSpectacles = new Telerik.WinControls.UI.RadGridView();
             this.gvViewRl = new Telerik.WinControls.UI.RadGridView();
             this.btnAddNewRl = new Telerik.WinControls.UI.RadButton();
-            this.btnDeleteRl = new Telerik.WinControls.UI.RadButton();
-            this.collapsiblePanel = new Telerik.WinControls.UI.RadCollapsiblePanel();
+            this.ctrlHeaderInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
+            this.spHeader = new Telerik.WinControls.UI.SplitPanel();
+            this.ddBtnStatusChange = new Telerik.WinControls.UI.RadDropDownButton();
+            this.btnAcceptSpectacles = new Telerik.WinControls.UI.RadMenuItem();
+            this.spFooter = new Telerik.WinControls.UI.SplitPanel();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvSpectacle = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
@@ -90,9 +96,6 @@ namespace IpsViewComponentLibrary
             this.cCountUse = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cActCode = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cName = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.ctrlHeaderInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.childTempl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsChildTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).BeginInit();
@@ -100,10 +103,13 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.collapsiblePanel)).BeginInit();
-            this.collapsiblePanel.PanelContainer.SuspendLayout();
-            this.collapsiblePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spHeader)).BeginInit();
+            this.spHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddBtnStatusChange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spFooter)).BeginInit();
+            this.spFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvSpectacle.SuspendLayout();
@@ -111,8 +117,6 @@ namespace IpsViewComponentLibrary
             this.pvMusicalDesign.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-            this.radPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // childTempl
@@ -174,11 +178,9 @@ namespace IpsViewComponentLibrary
             // 
             // gvViewSpectacles
             // 
-            this.gvViewSpectacles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvViewSpectacles.AutoScroll = true;
             this.gvViewSpectacles.AutoSizeRows = true;
+            this.gvViewSpectacles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvViewSpectacles.EnableCustomFiltering = true;
             this.gvViewSpectacles.Location = new System.Drawing.Point(0, 0);
             // 
@@ -194,54 +196,54 @@ namespace IpsViewComponentLibrary
             gridViewDecimalColumn6.HeaderText = "Код вистави";
             gridViewDecimalColumn6.IsAutoGenerated = true;
             gridViewDecimalColumn6.Name = "ObjId";
-            gridViewDecimalColumn6.Width = 137;
+            gridViewDecimalColumn6.Width = 126;
             gridViewDecimalColumn6.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "ItemName";
             gridViewTextBoxColumn3.HeaderText = "Назва вистави";
             gridViewTextBoxColumn3.IsAutoGenerated = true;
             gridViewTextBoxColumn3.Name = "ItemName";
-            gridViewTextBoxColumn3.Width = 137;
+            gridViewTextBoxColumn3.Width = 126;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewDecimalColumn7.DataType = typeof(System.Nullable<int>);
             gridViewDecimalColumn7.FieldName = "ActCode";
             gridViewDecimalColumn7.HeaderText = "К-сть актів";
             gridViewDecimalColumn7.IsAutoGenerated = true;
             gridViewDecimalColumn7.Name = "ActCode";
-            gridViewDecimalColumn7.Width = 137;
+            gridViewDecimalColumn7.Width = 126;
             gridViewDecimalColumn7.WrapText = true;
             gridViewDecimalColumn8.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn8.FieldName = "RegAmount";
             gridViewDecimalColumn8.HeaderText = "Сума збору";
             gridViewDecimalColumn8.IsAutoGenerated = true;
             gridViewDecimalColumn8.Name = "RegAmount";
-            gridViewDecimalColumn8.Width = 137;
+            gridViewDecimalColumn8.Width = 126;
             gridViewDecimalColumn8.WrapText = true;
             gridViewDecimalColumn9.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn9.FieldName = "AuthRate";
             gridViewDecimalColumn9.HeaderText = "% Нарахувань";
             gridViewDecimalColumn9.IsAutoGenerated = true;
             gridViewDecimalColumn9.Name = "AuthRate";
-            gridViewDecimalColumn9.Width = 137;
+            gridViewDecimalColumn9.Width = 126;
             gridViewDecimalColumn9.WrapText = true;
             gridViewDecimalColumn10.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn10.FieldName = "AuthAmount";
             gridViewDecimalColumn10.HeaderText = "Сума авторської винагороди";
             gridViewDecimalColumn10.IsAutoGenerated = true;
             gridViewDecimalColumn10.Name = "AuthAmount";
-            gridViewDecimalColumn10.Width = 137;
+            gridViewDecimalColumn10.Width = 126;
             gridViewDecimalColumn10.WrapText = true;
             gridViewDecimalColumn11.FieldName = "PrepaySumAuthor";
             gridViewDecimalColumn11.HeaderText = "Аванс";
             gridViewDecimalColumn11.IsAutoGenerated = true;
             gridViewDecimalColumn11.Name = "PrepaySumAuthor";
-            gridViewDecimalColumn11.Width = 137;
+            gridViewDecimalColumn11.Width = 126;
             gridViewDecimalColumn11.WrapText = true;
             gridViewDecimalColumn12.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn12.FieldName = "AvanseRest";
             gridViewDecimalColumn12.HeaderText = "Залишок авансу";
             gridViewDecimalColumn12.IsAutoGenerated = true;
             gridViewDecimalColumn12.Name = "AvanseRest";
-            gridViewDecimalColumn12.Width = 119;
+            gridViewDecimalColumn12.Width = 106;
             gridViewDecimalColumn12.WrapText = true;
             this.gvViewSpectacles.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn6,
@@ -269,7 +271,7 @@ namespace IpsViewComponentLibrary
             gridViewRelation1.RelationName = "masterRelation";
             this.gvViewSpectacles.Relations.AddRange(new Telerik.WinControls.UI.GridViewRelation[] {
             gridViewRelation1});
-            this.gvViewSpectacles.Size = new System.Drawing.Size(1121, 241);
+            this.gvViewSpectacles.Size = new System.Drawing.Size(1031, 182);
             this.gvViewSpectacles.TabIndex = 11;
             this.gvViewSpectacles.ThemeName = "Office2013Light";
             // 
@@ -281,7 +283,7 @@ namespace IpsViewComponentLibrary
             this.gvViewRl.AutoScroll = true;
             this.gvViewRl.AutoSizeRows = true;
             this.gvViewRl.EnableCustomFiltering = true;
-            this.gvViewRl.Location = new System.Drawing.Point(0, 85);
+            this.gvViewRl.Location = new System.Drawing.Point(5, 88);
             // 
             // 
             // 
@@ -304,7 +306,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn5.MinWidth = 80;
             gridViewTextBoxColumn5.Name = "PeriodName";
             gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn5.Width = 95;
+            gridViewTextBoxColumn5.Width = 82;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.FieldName = "CreateDate";
             gridViewTextBoxColumn6.FormatString = "{0:d}";
@@ -320,41 +322,41 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn7.MinWidth = 100;
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "FullAmount";
-            gridViewTextBoxColumn7.Width = 120;
+            gridViewTextBoxColumn7.Width = 104;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "RAmount";
             gridViewTextBoxColumn8.HeaderText = "Сума авторського гонорару";
             gridViewTextBoxColumn8.MinWidth = 100;
             gridViewTextBoxColumn8.Name = "RAmount";
-            gridViewTextBoxColumn8.Width = 120;
+            gridViewTextBoxColumn8.Width = 104;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "PaidAmount";
             gridViewTextBoxColumn9.HeaderText = "Сума закріплених платежів";
             gridViewTextBoxColumn9.MinWidth = 100;
             gridViewTextBoxColumn9.Multiline = true;
             gridViewTextBoxColumn9.Name = "PaidAmount";
-            gridViewTextBoxColumn9.Width = 120;
+            gridViewTextBoxColumn9.Width = 104;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.FieldName = "DistribAmount";
             gridViewTextBoxColumn10.HeaderText = "Розподілено коштів на об\'єкти права";
             gridViewTextBoxColumn10.MinWidth = 100;
             gridViewTextBoxColumn10.Multiline = true;
             gridViewTextBoxColumn10.Name = "DistribAmount";
-            gridViewTextBoxColumn10.Width = 120;
+            gridViewTextBoxColumn10.Width = 104;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.FieldName = "Borg";
             gridViewTextBoxColumn11.HeaderText = "Борг";
             gridViewTextBoxColumn11.MinWidth = 100;
             gridViewTextBoxColumn11.Multiline = true;
             gridViewTextBoxColumn11.Name = "Borg";
-            gridViewTextBoxColumn11.Width = 120;
+            gridViewTextBoxColumn11.Width = 104;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.FieldName = "PrepaySum";
             gridViewTextBoxColumn12.HeaderText = "За рахунок авансу";
             gridViewTextBoxColumn12.MinWidth = 100;
             gridViewTextBoxColumn12.Multiline = true;
             gridViewTextBoxColumn12.Name = "PrepaySum";
-            gridViewTextBoxColumn12.Width = 120;
+            gridViewTextBoxColumn12.Width = 104;
             gridViewTextBoxColumn12.WrapText = true;
             gridViewTextBoxColumn13.DataType = typeof(double);
             gridViewTextBoxColumn13.FieldName = "StatusName";
@@ -363,12 +365,12 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn13.Multiline = true;
             gridViewTextBoxColumn13.Name = "StatusName";
             gridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn13.Width = 175;
+            gridViewTextBoxColumn13.Width = 154;
             gridViewTextBoxColumn13.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";
-            gridViewCommandColumn1.FieldName = "btnsEdit";
+            gridViewCommandColumn1.FieldName = "editBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
@@ -376,10 +378,22 @@ namespace IpsViewComponentLibrary
             gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
-            gridViewCommandColumn1.Name = "btnsEdit";
+            gridViewCommandColumn1.Name = "editBtn";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 30;
             gridViewCommandColumn1.WrapText = true;
+            gridViewCommandColumn2.AllowResize = false;
+            gridViewCommandColumn2.AllowSort = false;
+            gridViewCommandColumn2.DefaultText = "Видалити";
+            gridViewCommandColumn2.FieldName = "deleteBtn";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "deleteBtn";
+            gridViewCommandColumn2.Width = 30;
             this.gvViewRl.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
@@ -391,7 +405,8 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn11,
             gridViewTextBoxColumn12,
             gridViewTextBoxColumn13,
-            gridViewCommandColumn1});
+            gridViewCommandColumn1,
+            gridViewCommandColumn2});
             this.gvViewRl.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewRl.MasterTemplate.EnableFiltering = true;
             this.gvViewRl.MasterTemplate.EnableGrouping = false;
@@ -399,7 +414,7 @@ namespace IpsViewComponentLibrary
             this.gvViewRl.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvViewRl.Name = "gvViewRl";
             this.gvViewRl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewRl.Size = new System.Drawing.Size(1132, 202);
+            this.gvViewRl.Size = new System.Drawing.Size(1031, 179);
             this.gvViewRl.TabIndex = 7;
             this.gvViewRl.ThemeName = "Office2013Light";
             this.gvViewRl.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRl_CurrentRowChanged);
@@ -408,42 +423,131 @@ namespace IpsViewComponentLibrary
             // btnAddNewRl
             // 
             this.btnAddNewRl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddNewRl.Location = new System.Drawing.Point(5, 293);
+            this.btnAddNewRl.Location = new System.Drawing.Point(5, 273);
             this.btnAddNewRl.Name = "btnAddNewRl";
-            this.btnAddNewRl.Size = new System.Drawing.Size(130, 24);
+            this.btnAddNewRl.Size = new System.Drawing.Size(140, 24);
             this.btnAddNewRl.TabIndex = 8;
             this.btnAddNewRl.Text = "Додати новий Р/Л";
             this.btnAddNewRl.ThemeName = "Office2013Light";
             this.btnAddNewRl.Click += new System.EventHandler(this.btnAddNewRl_Click);
             // 
-            // btnDeleteRl
+            // ctrlHeaderInfo
             // 
-            this.btnDeleteRl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteRl.Location = new System.Drawing.Point(141, 293);
-            this.btnDeleteRl.Name = "btnDeleteRl";
-            this.btnDeleteRl.Size = new System.Drawing.Size(130, 24);
-            this.btnDeleteRl.TabIndex = 10;
-            this.btnDeleteRl.Text = "Вилучити Р/Л";
-            this.btnDeleteRl.ThemeName = "Office2013Light";
-            this.btnDeleteRl.Click += new System.EventHandler(this.btnDeleteRl_Click);
+            this.ctrlHeaderInfo.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
+            this.ctrlHeaderInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctrlHeaderInfo.Location = new System.Drawing.Point(0, 0);
+            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(705, 79);
+            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(705, 79);
+            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
+            this.ctrlHeaderInfo.Size = new System.Drawing.Size(705, 79);
+            this.ctrlHeaderInfo.TabIndex = 0;
             // 
-            // collapsiblePanel
+            // splitContainer
             // 
-            this.collapsiblePanel.AnimationType = Telerik.WinControls.UI.CollapsiblePanelAnimationType.Slide;
-            this.collapsiblePanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.collapsiblePanel.HeaderText = "Інформація по розрахунковому листу";
-            this.collapsiblePanel.HorizontalHeaderAlignment = Telerik.WinControls.UI.RadHorizontalAlignment.Right;
-            this.collapsiblePanel.Location = new System.Drawing.Point(0, 323);
-            this.collapsiblePanel.Name = "collapsiblePanel";
-            this.collapsiblePanel.OwnerBoundsCache = new System.Drawing.Rectangle(0, 324, 997, 287);
+            this.splitContainer.Controls.Add(this.spHeader);
+            this.splitContainer.Controls.Add(this.spFooter);
+            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer.EnableCollapsing = true;
+            this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Name = "splitContainer";
+            this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // collapsiblePanel.PanelContainer
             // 
-            this.collapsiblePanel.PanelContainer.Controls.Add(this.pageView);
-            this.collapsiblePanel.PanelContainer.Size = new System.Drawing.Size(1130, 307);
-            this.collapsiblePanel.Size = new System.Drawing.Size(1132, 335);
-            this.collapsiblePanel.TabIndex = 12;
-            this.collapsiblePanel.ThemeName = "Office2013Light";
+            // 
+            this.splitContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitContainer.Size = new System.Drawing.Size(1041, 539);
+            this.splitContainer.SplitterWidth = 16;
+            this.splitContainer.TabIndex = 25;
+            this.splitContainer.TabStop = false;
+            this.splitContainer.ThemeName = "Office2013Light";
+            this.splitContainer.UseSplitterButtons = true;
+            this.splitContainer.PanelCollapsing += new Telerik.WinControls.UI.RadSplitContainer.PanelCollapsingEventHandler(this.SplitContainer_PanelCollapsing);
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).SplitterWidth = 16;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).EnableCollapsing = true;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).UseSplitterButtons = true;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).Text = "";
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).EnableElementShadow = false;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).FocusBorderWidth = 3;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).EnableHighlight = false;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).EnableBorderHighlight = false;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).RightToLeft = false;
+            ((Telerik.WinControls.UI.SplitContainerElement)(this.splitContainer.GetChildAt(1))).ClickMode = Telerik.WinControls.ClickMode.Release;
+            ((Telerik.WinControls.UI.SplitterElement)(this.splitContainer.GetChildAt(1).GetChildAt(0))).SplitterWidth = 16;
+            ((Telerik.WinControls.UI.SplitterElement)(this.splitContainer.GetChildAt(1).GetChildAt(0))).SplitterAlignment = Telerik.WinControls.UI.RadDirection.Up;
+            ((Telerik.WinControls.UI.SplitterElement)(this.splitContainer.GetChildAt(1).GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.UI.SplitterElement)(this.splitContainer.GetChildAt(1).GetChildAt(0))).AutoSize = false;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(0))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(0))).MinSize = new System.Drawing.Size(0, 0);
+            ((Telerik.WinControls.UI.SplitterElementLayout)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1))).UseSplitterButtons = true;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0))).MinSize = new System.Drawing.Size(0, 0);
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).Tag = "";
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(4))).Direction = Telerik.WinControls.ArrowDirection.Down;
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(0).GetChildAt(4))).MinSize = new System.Drawing.Size(8, 6);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).EnableFocusBorder = false;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).FocusBorderWidth = 3;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            ((Telerik.WinControls.UI.RadButtonElement)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1))).MinSize = new System.Drawing.Size(0, 0);
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1).GetChildAt(4))).Direction = Telerik.WinControls.ArrowDirection.Up;
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1).GetChildAt(4))).Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+            ((Telerik.WinControls.Primitives.ArrowPrimitive)(this.splitContainer.GetChildAt(1).GetChildAt(0).GetChildAt(1).GetChildAt(1).GetChildAt(4))).MinSize = new System.Drawing.Size(8, 6);
+            // 
+            // spHeader
+            // 
+            this.spHeader.Controls.Add(this.ddBtnStatusChange);
+            this.spHeader.Controls.Add(this.ctrlHeaderInfo);
+            this.spHeader.Controls.Add(this.gvViewRl);
+            this.spHeader.Controls.Add(this.btnAddNewRl);
+            this.spHeader.Location = new System.Drawing.Point(0, 0);
+            this.spHeader.Name = "spHeader";
+            // 
+            // 
+            // 
+            this.spHeader.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.spHeader.Size = new System.Drawing.Size(1041, 305);
+            this.spHeader.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.083174F);
+            this.spHeader.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -100);
+            this.spHeader.TabIndex = 0;
+            this.spHeader.TabStop = false;
+            this.spHeader.Text = "splitPanel1";
+            this.spHeader.ThemeName = "Office2013Light";
+            // 
+            // ddBtnStatusChange
+            // 
+            this.ddBtnStatusChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddBtnStatusChange.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnAcceptSpectacles});
+            this.ddBtnStatusChange.Location = new System.Drawing.Point(896, 273);
+            this.ddBtnStatusChange.Name = "ddBtnStatusChange";
+            this.ddBtnStatusChange.Size = new System.Drawing.Size(140, 24);
+            this.ddBtnStatusChange.TabIndex = 9;
+            this.ddBtnStatusChange.Text = "Змінити статус";
+            this.ddBtnStatusChange.ThemeName = "Office2013Light";
+            // 
+            // btnAcceptSpectacles
+            // 
+            this.btnAcceptSpectacles.Name = "btnAcceptSpectacles";
+            this.btnAcceptSpectacles.Text = "Погоджений";
+            this.btnAcceptSpectacles.Click += new System.EventHandler(this.btnAcceptSpectacles_Click);
+            // 
+            // spFooter
+            // 
+            this.spFooter.Controls.Add(this.pageView);
+            this.spFooter.Location = new System.Drawing.Point(0, 321);
+            this.spFooter.Name = "spFooter";
+            // 
+            // 
+            // 
+            this.spFooter.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.spFooter.Size = new System.Drawing.Size(1041, 218);
+            this.spFooter.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.083174F);
+            this.spFooter.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 100);
+            this.spFooter.TabIndex = 1;
+            this.spFooter.TabStop = false;
+            this.spFooter.Text = "splitPanel2";
+            this.spFooter.ThemeName = "Office2013Light";
             // 
             // pageView
             // 
@@ -454,8 +558,8 @@ namespace IpsViewComponentLibrary
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvSpectacle;
-            this.pageView.Size = new System.Drawing.Size(1130, 307);
-            this.pageView.TabIndex = 0;
+            this.pageView.Size = new System.Drawing.Size(1041, 218);
+            this.pageView.TabIndex = 1;
             this.pageView.ThemeName = "Office2013Light";
             this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -467,19 +571,18 @@ namespace IpsViewComponentLibrary
             this.pvSpectacle.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvSpectacle.Location = new System.Drawing.Point(5, 31);
             this.pvSpectacle.Name = "pvSpectacle";
-            this.pvSpectacle.Size = new System.Drawing.Size(1120, 271);
+            this.pvSpectacle.Size = new System.Drawing.Size(1031, 182);
             this.pvSpectacle.Text = "Вистави";
             // 
             // btnToAccept
             // 
             this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToAccept.Location = new System.Drawing.Point(948, 247);
+            this.btnToAccept.Location = new System.Drawing.Point(859, 330);
             this.btnToAccept.Name = "btnToAccept";
             this.btnToAccept.Size = new System.Drawing.Size(170, 24);
             this.btnToAccept.TabIndex = 12;
             this.btnToAccept.Text = "Погодити перелік вистав";
             this.btnToAccept.ThemeName = "Office2013Light";
-            this.btnToAccept.Click += new System.EventHandler(this.btnToAccept_Click);
             // 
             // pvMusicalDesign
             // 
@@ -495,7 +598,7 @@ namespace IpsViewComponentLibrary
             this.pvMusicalDesign.ItemSize = new System.Drawing.SizeF(141F, 27F);
             this.pvMusicalDesign.Location = new System.Drawing.Point(5, 31);
             this.pvMusicalDesign.Name = "pvMusicalDesign";
-            this.pvMusicalDesign.Size = new System.Drawing.Size(1120, 271);
+            this.pvMusicalDesign.Size = new System.Drawing.Size(1031, 182);
             this.pvMusicalDesign.Text = "Музичне оформлення";
             // 
             // gvMusicDesignView
@@ -530,7 +633,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn16.MinWidth = 0;
             gridViewTextBoxColumn16.Multiline = true;
             gridViewTextBoxColumn16.Name = "ObjName";
-            gridViewTextBoxColumn16.Width = 554;
+            gridViewTextBoxColumn16.Width = 509;
             gridViewTextBoxColumn16.WrapText = true;
             gridViewTextBoxColumn17.FieldName = "NameMusician";
             gridViewTextBoxColumn17.HeaderText = "ПІБ композитора";
@@ -538,7 +641,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn17.MinWidth = 100;
             gridViewTextBoxColumn17.Multiline = true;
             gridViewTextBoxColumn17.Name = "NameMusician";
-            gridViewTextBoxColumn17.Width = 220;
+            gridViewTextBoxColumn17.Width = 202;
             gridViewTextBoxColumn17.WrapText = true;
             gridViewTextBoxColumn18.FieldName = "NameSinger";
             gridViewTextBoxColumn18.HeaderText = "ПІБ виконавця";
@@ -546,7 +649,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn18.MinWidth = 100;
             gridViewTextBoxColumn18.Multiline = true;
             gridViewTextBoxColumn18.Name = "NameSinger";
-            gridViewTextBoxColumn18.Width = 220;
+            gridViewTextBoxColumn18.Width = 194;
             gridViewTextBoxColumn18.WrapText = true;
             gridViewTextBoxColumn19.FieldName = "Duration";
             gridViewTextBoxColumn19.HeaderText = "Тривалість звучання (хв)";
@@ -579,7 +682,7 @@ namespace IpsViewComponentLibrary
             this.gvMusicDesignView.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.gvMusicDesignView.Name = "gvMusicDesignView";
             this.gvMusicDesignView.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvMusicDesignView.Size = new System.Drawing.Size(1117, 202);
+            this.gvMusicDesignView.Size = new System.Drawing.Size(1028, 113);
             this.gvMusicDesignView.TabIndex = 28;
             this.gvMusicDesignView.ThemeName = "Office2013Light";
             // 
@@ -719,41 +822,13 @@ namespace IpsViewComponentLibrary
             this.cName.ValueDataMemger = "";
             this.cName.ValueDataSource = null;
             // 
-            // radPanel1
-            // 
-            this.radPanel1.Controls.Add(this.ctrlHeaderInfo);
-            this.radPanel1.Controls.Add(this.gvViewRl);
-            this.radPanel1.Controls.Add(this.btnDeleteRl);
-            this.radPanel1.Controls.Add(this.btnAddNewRl);
-            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanel1.Location = new System.Drawing.Point(0, 0);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(1132, 323);
-            this.radPanel1.TabIndex = 15;
-            this.radPanel1.Text = "radPanel1";
-            this.radPanel1.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel1.GetChildAt(0))).Text = "radPanel1";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel1.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            // 
-            // ctrlHeaderInfo
-            // 
-            this.ctrlHeaderInfo.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
-            this.ctrlHeaderInfo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctrlHeaderInfo.Location = new System.Drawing.Point(0, 0);
-            this.ctrlHeaderInfo.MaximumSize = new System.Drawing.Size(705, 79);
-            this.ctrlHeaderInfo.MinimumSize = new System.Drawing.Size(705, 79);
-            this.ctrlHeaderInfo.Name = "ctrlHeaderInfo";
-            this.ctrlHeaderInfo.Size = new System.Drawing.Size(705, 79);
-            this.ctrlHeaderInfo.TabIndex = 0;
-            // 
             // MiddleControlCabinetPayslips
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radPanel1);
-            this.Controls.Add(this.collapsiblePanel);
+            this.Controls.Add(this.splitContainer);
             this.Name = "MiddleControlCabinetPayslips";
-            this.Size = new System.Drawing.Size(1132, 658);
+            this.Size = new System.Drawing.Size(1041, 539);
             ((System.ComponentModel.ISupportInitialize)(this.childTempl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsChildTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).EndInit();
@@ -761,10 +836,13 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteRl)).EndInit();
-            this.collapsiblePanel.PanelContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.collapsiblePanel)).EndInit();
-            this.collapsiblePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.spHeader)).EndInit();
+            this.spHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ddBtnStatusChange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spFooter)).EndInit();
+            this.spFooter.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvSpectacle.ResumeLayout(false);
@@ -772,8 +850,6 @@ namespace IpsViewComponentLibrary
             this.pvMusicalDesign.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-            this.radPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -783,14 +859,20 @@ namespace IpsViewComponentLibrary
         private GeneralAgreementInfo ctrlHeaderInfo;
         private Telerik.WinControls.UI.RadGridView gvViewRl;
         private Telerik.WinControls.UI.RadButton btnAddNewRl;
-        private Telerik.WinControls.UI.RadButton btnDeleteRl;
-        private Telerik.WinControls.UI.RadGridView gvViewSpectacles;
-        private Telerik.WinControls.UI.RadCollapsiblePanel collapsiblePanel;
+        private System.Windows.Forms.BindingSource bsChildTemplate;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadSplitContainer splitContainer;
+        private Telerik.WinControls.UI.SplitPanel spHeader;
+        private Telerik.WinControls.UI.RadDropDownButton ddBtnStatusChange;
+        private Telerik.WinControls.UI.RadMenuItem btnAcceptSpectacles;
+        private Telerik.WinControls.UI.SplitPanel spFooter;
         private Telerik.WinControls.UI.RadPageView pageView;
         private Telerik.WinControls.UI.RadPageViewPage pvSpectacle;
-        private Telerik.WinControls.UI.RadPageViewPage pvMusicalDesign;
-        private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadButton btnToAccept;
+        private Telerik.WinControls.UI.RadGridView gvViewSpectacles;
+        private Telerik.WinControls.UI.GridViewTemplate childTempl;
+        private Telerik.WinControls.UI.RadPageViewPage pvMusicalDesign;
+        private Telerik.WinControls.UI.RadGridView gvMusicDesignView;
         private SingleShowInformationControl cMusRate;
         private SingleShowInformationControl cMusAmount;
         private SingleShowInformationControl cAuthorRate;
@@ -799,9 +881,5 @@ namespace IpsViewComponentLibrary
         private SingleShowInformationControl cCountUse;
         private SingleShowInformationControl cActCode;
         private SingleShowInformationControl cName;
-        private Telerik.WinControls.UI.RadGridView gvMusicDesignView;
-        private Telerik.WinControls.UI.GridViewTemplate childTempl;
-        private System.Windows.Forms.BindingSource bsChildTemplate;
-        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
