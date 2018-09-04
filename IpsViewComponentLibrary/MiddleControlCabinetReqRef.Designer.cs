@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Drawing;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlCabinetReqRef
     {
@@ -203,6 +205,7 @@
             gridViewCommandColumn2.MinWidth = 30;
             gridViewCommandColumn2.Name = "deleteBtn";
             gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn2.ImageAlignment = ContentAlignment.MiddleCenter;
             this.gvViewRequests.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

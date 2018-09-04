@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Drawing;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlCabinetLicenses
     {
@@ -175,6 +177,7 @@
             gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "viewBtn";
             gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
             this.gvViewLicences.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

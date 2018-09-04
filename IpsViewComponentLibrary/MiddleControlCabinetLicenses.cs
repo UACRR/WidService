@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary
         private AnketaDictionaties _dictionaties;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
         public event SaveCustomerEventHandler OnSaveCustomer;
+        private MainGridConsumerBigRightView _gridMainView;
+
 
         private ButtonFunctionType _functionType;
         private Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
@@ -44,9 +46,10 @@ namespace IpsViewComponentLibrary
         /// Джерело даних шапки
         /// </summary>
         /// <param name="comsumerBigRightView"></param>
-        public void SetDataSources(object comsumerBigRightView)
+        public void SetDataSources(MainGridConsumerBigRightView comsumerBigRightView)
         {
-            ctrlAgrInfo.DataSource = comsumerBigRightView;
+            _gridMainView = comsumerBigRightView;
+            ctrlAgrInfo.DataSource = _gridMainView;
         }
 
         public void SetDictionary(AnketaDictionaties dictionaties)
@@ -201,7 +204,12 @@ namespace IpsViewComponentLibrary
 
         private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            //TODO method view call
+            var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
+            RequestForm viewLicenseForm = new RequestForm(_customer, _gridMainView, _dictionaties, FormType.View, licId)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+            viewLicenseForm.ShowDialog();
         }
     }
 }

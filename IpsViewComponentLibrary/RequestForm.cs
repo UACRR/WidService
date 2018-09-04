@@ -73,19 +73,25 @@ namespace IpsViewComponentLibrary
             _deleteLicense = formType == FormType.Create;
             dtDate.SetUserCalendarSettingsm();
             dtDate.MinDate = DateTime.Today;
-            if (_formType == FormType.Create)
+            switch (_formType)
             {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
-                CreateNewRequest();
-                Text = "Створення нової заявки на ліцензію";
-            }
-            else if (_formType == FormType.Edit)
-            {
-                ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
-                //ctrlAuthorRightholderList.OnGetWorkRh += CtrlAuthorRightholderList_OnGetWorkRh;
-                Text = "Редагування заявки на ліцезнію";
-                btnSave.Text = "Зберегти редаговану заявку";
-                btnSave.Enabled = true;
+                case FormType.Create:
+                    ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+                    CreateNewRequest();
+                    Text = "Створення нової заявки на ліцензію";
+                    break;
+                case FormType.Edit:
+                    ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+                    //ctrlAuthorRightholderList.OnGetWorkRh += CtrlAuthorRightholderList_OnGetWorkRh;
+                    Text = "Редагування заявки на ліцезнію";
+                    btnSave.Text = "Зберегти редаговану заявку";
+                    btnSave.Enabled = true;
+                    break;
+                case FormType.View:
+                    ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
+                    Text = "Перегляд ліцензії";
+                    btnCancel.Text = "Закрити";
+                    break;
             }
 
             #region BINDING
@@ -254,14 +260,6 @@ namespace IpsViewComponentLibrary
             {
                 _musicalDesignList.Add(new RegisterItemViewModel(m));
             }
-        }
-
-        private void SetVisible()
-        {
-            lblComCl.Visible = _formType == FormType.Edit;
-            lblComRh.Visible = _formType == FormType.Edit;
-            txtCommentCl.Visible = _formType == FormType.Edit;
-            txtCommentRh.Visible = _formType == FormType.Edit;
         }
 
         private void CtrlAuthorRightholderList_OnGetWorkRh(WorkRh workRh)
@@ -450,7 +448,6 @@ namespace IpsViewComponentLibrary
             _deleteLicense = false;
             ParseAuthors();
             ParseMusicalDisign();
-            //TODO: видалити коли всі agrId будуть коректні
             var agrid = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2)?.AgrId ?? default(int);
             if(_licenseAgreement.AgrId != agrid)
                 _licenseAgreement.AgrId = agrid;// прив'язка  до ген. угоди

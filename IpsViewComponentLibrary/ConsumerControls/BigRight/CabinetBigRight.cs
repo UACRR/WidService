@@ -143,6 +143,7 @@ namespace IpsViewComponentLibrary
             };
         }
 
+
         /// <summary>
         /// Передати та встановити дані 
         /// </summary>
