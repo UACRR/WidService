@@ -83,7 +83,7 @@
             this.btnAddReport = new Telerik.WinControls.UI.RadButton();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.btnToAcception = new Telerik.WinControls.UI.RadButton();
-            this.btnAccept = new Telerik.WinControls.UI.RadButton();
+            this.btnAcceptType1 = new Telerik.WinControls.UI.RadButton();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanelLicense = new Telerik.WinControls.UI.SplitPanel();
             this.splitPanelPeriod = new Telerik.WinControls.UI.SplitPanel();
@@ -97,6 +97,7 @@
             this.btnCreateReport = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.btnAcceptType2 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingAgreement)).BeginInit();
@@ -113,7 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToAcception)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAcceptType1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelLicense)).BeginInit();
@@ -132,6 +133,7 @@
             this.splitPanelReports.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAcceptType2)).BeginInit();
             this.SuspendLayout();
             // 
             // gvLicenseAgr
@@ -460,7 +462,7 @@
             this.gvPeriodReports.ReadOnly = true;
             this.gvPeriodReports.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvPeriodReports.ShowGroupPanel = false;
-            this.gvPeriodReports.Size = new System.Drawing.Size(1055, 128);
+            this.gvPeriodReports.Size = new System.Drawing.Size(1055, 129);
             this.gvPeriodReports.TabIndex = 0;
             this.gvPeriodReports.ThemeName = "Office2013Light";
             this.gvPeriodReports.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvPeriodReports_CellFormatting);
@@ -484,7 +486,7 @@
             // btnAddReport
             // 
             this.btnAddReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddReport.Location = new System.Drawing.Point(11, 161);
+            this.btnAddReport.Location = new System.Drawing.Point(11, 159);
             this.btnAddReport.Name = "btnAddReport";
             this.btnAddReport.Size = new System.Drawing.Size(176, 24);
             this.btnAddReport.TabIndex = 1;
@@ -505,7 +507,7 @@
             // btnToAcception
             // 
             this.btnToAcception.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToAcception.Location = new System.Drawing.Point(708, 161);
+            this.btnToAcception.Location = new System.Drawing.Point(890, 159);
             this.btnToAcception.Name = "btnToAcception";
             this.btnToAcception.Size = new System.Drawing.Size(176, 24);
             this.btnToAcception.TabIndex = 2;
@@ -513,16 +515,16 @@
             this.btnToAcception.ThemeName = "Office2013Light";
             this.btnToAcception.Click += new System.EventHandler(this.btnToAcception_Click);
             // 
-            // btnAccept
+            // btnAcceptType1
             // 
-            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(890, 161);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(176, 24);
-            this.btnAccept.TabIndex = 3;
-            this.btnAccept.Text = "Зафіксувати перелік звітів";
-            this.btnAccept.ThemeName = "Office2013Light";
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            this.btnAcceptType1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAcceptType1.Location = new System.Drawing.Point(890, 149);
+            this.btnAcceptType1.Name = "btnAcceptType1";
+            this.btnAcceptType1.Size = new System.Drawing.Size(176, 24);
+            this.btnAcceptType1.TabIndex = 3;
+            this.btnAcceptType1.Text = "Зафіксувати перелік звітів";
+            this.btnAcceptType1.ThemeName = "Office2013Light";
+            this.btnAcceptType1.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // radSplitContainer1
             // 
@@ -563,6 +565,7 @@
             // 
             this.splitPanelPeriod.Controls.Add(this.btnAddPeriod);
             this.splitPanelPeriod.Controls.Add(this.radLabel3);
+            this.splitPanelPeriod.Controls.Add(this.btnAcceptType1);
             this.splitPanelPeriod.Controls.Add(this.gvPeriods);
             this.splitPanelPeriod.Location = new System.Drawing.Point(0, 140);
             this.splitPanelPeriod.Name = "splitPanelPeriod";
@@ -580,7 +583,7 @@
             // btnAddPeriod
             // 
             this.btnAddPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddPeriod.Location = new System.Drawing.Point(11, 151);
+            this.btnAddPeriod.Location = new System.Drawing.Point(11, 149);
             this.btnAddPeriod.Name = "btnAddPeriod";
             this.btnAddPeriod.Size = new System.Drawing.Size(110, 24);
             this.btnAddPeriod.TabIndex = 16;
@@ -590,6 +593,7 @@
             // 
             // splitPanelRatedList
             // 
+            this.splitPanelRatedList.Controls.Add(this.btnAcceptType2);
             this.splitPanelRatedList.Controls.Add(this.btnAddRatedList);
             this.splitPanelRatedList.Controls.Add(this.gvRatedList);
             this.splitPanelRatedList.Controls.Add(this.radLabel1);
@@ -722,7 +726,6 @@
             // 
             this.splitPanelReports.Controls.Add(this.btnToAcception);
             this.splitPanelReports.Controls.Add(this.btnCreateReport);
-            this.splitPanelReports.Controls.Add(this.btnAccept);
             this.splitPanelReports.Controls.Add(this.radLabel2);
             this.splitPanelReports.Controls.Add(this.btnAddReport);
             this.splitPanelReports.Controls.Add(this.gvPeriodReports);
@@ -742,7 +745,7 @@
             // btnCreateReport
             // 
             this.btnCreateReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCreateReport.Location = new System.Drawing.Point(193, 161);
+            this.btnCreateReport.Location = new System.Drawing.Point(193, 159);
             this.btnCreateReport.Name = "btnCreateReport";
             this.btnCreateReport.Size = new System.Drawing.Size(176, 24);
             this.btnCreateReport.TabIndex = 18;
@@ -757,6 +760,17 @@
             this.radButton1.Size = new System.Drawing.Size(110, 24);
             this.radButton1.TabIndex = 0;
             this.radButton1.Text = "radButton1";
+            // 
+            // btnAcceptType2
+            // 
+            this.btnAcceptType2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAcceptType2.Location = new System.Drawing.Point(890, 102);
+            this.btnAcceptType2.Name = "btnAcceptType2";
+            this.btnAcceptType2.Size = new System.Drawing.Size(176, 24);
+            this.btnAcceptType2.TabIndex = 19;
+            this.btnAcceptType2.Text = "Зафіксувати перелік звітів";
+            this.btnAcceptType2.ThemeName = "Office2013Light";
+            this.btnAcceptType2.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // ReportsControl
             // 
@@ -783,7 +797,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToAcception)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAcceptType1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanelLicense)).EndInit();
@@ -802,6 +816,7 @@
             this.splitPanelReports.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCreateReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAcceptType2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -820,7 +835,7 @@
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.UI.RadButton btnToAcception;
-        private Telerik.WinControls.UI.RadButton btnAccept;
+        private Telerik.WinControls.UI.RadButton btnAcceptType1;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.SplitPanel splitPanelLicense;
         private Telerik.WinControls.UI.SplitPanel splitPanelPeriod;
@@ -834,5 +849,6 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadButton btnAddPeriod;
         private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadButton btnAcceptType2;
     }
 }

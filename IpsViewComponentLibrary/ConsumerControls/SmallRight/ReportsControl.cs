@@ -96,7 +96,7 @@ namespace IpsViewComponentLibrary
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
-            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept, btnCreateReport);
+            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
 
             if (IpsGlobal.AnketaDictionaties != null)
             {
@@ -171,8 +171,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -201,7 +199,6 @@ namespace IpsViewComponentLibrary
             btnAddRatedList.Enabled = false;
 
         }
-
 
         private void CreateAct()
         {
@@ -246,7 +243,7 @@ namespace IpsViewComponentLibrary
             /// Цирк,Філармонія,Концертна діяльність
             bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
-
+            btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
             if (CurrentAgreementController != null
                 && !CurrentAgreementController.Broadcast
                 && lic != null
@@ -582,7 +579,7 @@ namespace IpsViewComponentLibrary
             period.Status = 2;
             period.StatusNavigation = dicPeriodStatus[2];
             SetPeriodStateExecuted?.Invoke(this, period);
-            btnAccept.Enabled = false;
+            btnAcceptType1.Enabled = false;
             RefreshData();
         }
 
@@ -667,13 +664,15 @@ namespace IpsViewComponentLibrary
         private RadButton _addReport,
                           _create,
                           _toAcception,
-                          _accepted;
+                          _acceptedType1,
+                          _acceptedType2;
 
-        public ButtonEnableControl(RadButton addReport, RadButton toAcception, RadButton Accepted, RadButton create)
+        public ButtonEnableControl(RadButton addReport, RadButton toAcception, RadButton acceptedType1, RadButton acceptedType2, RadButton create)
         {
             _addReport = addReport;
             _toAcception = toAcception;
-            _accepted = Accepted;
+            _acceptedType1 = acceptedType1;
+            _acceptedType2 = acceptedType2;
             _create = create;
         }
         public void SetPeriodState(int? state, List<Register> list)
@@ -682,7 +681,8 @@ namespace IpsViewComponentLibrary
             {
                 _addReport.Enabled = false;
                 _toAcception.Enabled = false;
-                _accepted.Enabled = false;
+                _acceptedType1.Enabled = false;
+                _acceptedType2.Enabled = false;
                 _create.Enabled = false;
                 return;
             }
@@ -700,21 +700,25 @@ namespace IpsViewComponentLibrary
                 case 4: // Судова робота
                     _addReport.Enabled = true;
                     _create.Enabled = true;
-                    _toAcception.Enabled = regStates[0] > 0; // Нових > 0
-                    _accepted.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
+                    _toAcception.Enabled = regStates[0] > 0; // Нових > 0;
+                    _acceptedType1.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
+                    _acceptedType2.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
+
                     break;
                 case 2: // Прийом поштів
                 case 5: // 
                 case 6: // Кошти отримані
                     _addReport.Enabled = false;
-                    _toAcception.Enabled = regStates[2] > 0; // Нових > 0
-                    _accepted.Enabled = false;
+                    _toAcception.Enabled = regStates[2] > 0; // Нових > 0;
+                    _acceptedType1.Enabled = false;
+                    _acceptedType2.Enabled = false;
                     _create.Enabled = false;
                     break;
                 default: // Зактритий
                     _addReport.Enabled = false;
                     _toAcception.Enabled = false;
-                    _accepted.Enabled = false;
+                    _acceptedType1.Enabled = false;
+                    _acceptedType2.Enabled = false;
                     _create.Enabled = false;
                     break;
             }
