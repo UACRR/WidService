@@ -29,9 +29,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             StartPosition = FormStartPosition.CenterParent;
         }
 
-        public void SetAllowedStates(RightholderStates[] statuses)
+        public void SetAllowedStatuses(AgreementStatuses[] statuses)
         {
-            ctrlRightholderList.SetAllowedStates(statuses);
+            ctrlRightholderList.SetAllowedStatuses(statuses);
         }
 
         public void ResetAllowedStatuses()

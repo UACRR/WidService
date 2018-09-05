@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         ISubscriber<RightholderUpdatedEvent>
     {
         private RightholderService _rightholderService;
-        private RightholderStates[] _allowedStatuses;
+        private AgreementStatuses[] _allowedStatuses;
 
         protected bool IsDesignMode
         {
@@ -91,9 +91,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
                 _rightholderService = new RightholderService();
 
-                var stateNode = new RadTreeNode { Text = "Стан" };
+                var statusNode = new RadTreeNode { Text = "Статус" };
 
-                tvFilters.Nodes.Add(stateNode);
+                tvFilters.Nodes.Add(statusNode);
                 tvFilters.ExpandAll();
             }
         }
@@ -125,7 +125,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             base.Dispose(disposing);
         }
 
-        public void SetAllowedStates(RightholderStates[] states)
+        public void SetAllowedStatuses(AgreementStatuses[] states)
         {
             _allowedStatuses = states;
 
@@ -250,37 +250,34 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void PopulateFiltersValues()
         {
-            var states = new List<RadTreeNode> {
-                new RadTreeNode { Value = RightholderStates.All,         Text = "Всі" },
-                new RadTreeNode { Value = RightholderStates.NotAccepted, Text = "Не підтверджені" },
-                new RadTreeNode { Value = RightholderStates.OnAcception, Text = "На акцепті" },
-                new RadTreeNode { Value = RightholderStates.Active,      Text = "Активний" },
-                new RadTreeNode { Value = RightholderStates.Closed,      Text = "Закритий" },
-                new RadTreeNode { Value = RightholderStates.Inheritance, Text = "Оформлення спадщини" },
-                new RadTreeNode { Value = RightholderStates.Blocked,     Text = "Заблокований" },
+            var filters = new List<RadTreeNode> {
+                new RadTreeNode { Value = -1,                            Text = "Всі" },
+                new RadTreeNode { Value = AgreementStatuses.NotAccepted, Text = "Не підтверджені" },
+                new RadTreeNode { Value = AgreementStatuses.OnAcception, Text = "На акцепті" },
+                new RadTreeNode { Value = AgreementStatuses.Active,      Text = "Активний" },
+                new RadTreeNode { Value = AgreementStatuses.Closed,      Text = "Закритий" },
+                new RadTreeNode { Value = AgreementStatuses.Inheritance, Text = "Оформлення спадщини" },
+                new RadTreeNode { Value = AgreementStatuses.Blocked,     Text = "Заблокований" },
             };
 
             if (_allowedStatuses != null)
             {
-                states = states.Where(node => _allowedStatuses.Contains((RightholderStates)node.Value)).ToList();
+                filters = filters.Where(node => _allowedStatuses.Contains((AgreementStatuses)node.Value)).ToList();
             }
 
             tvFilters.Nodes[0].Nodes.Clear();
-            tvFilters.Nodes[0].Nodes.AddRange(states);
+            tvFilters.Nodes[0].Nodes.AddRange(filters);
         }
 
         private RightholderListQuery CreateRightholderQuery()
         {
             var query = new RightholderListQuery();
 
-            var state = (RightholderStates)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value;
+            var agreementStatus = (AgreementStatuses)tvFilters.Nodes[0].Nodes.First(n => n.Selected).Value;
 
-            if (state != RightholderStates.All)
+            if ((int)agreementStatus != -1)
             {
-                if ((int)state <= 5)
-                    query.AgreementStatus = (AgreementStatuses)state;
-                else
-                    query.RightholderStatus = (RightholderStatusType)state;
+                query.AgreementStatus = agreementStatus;
             }
 
             return query;
