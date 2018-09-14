@@ -24,15 +24,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 _dictionaties = IpsGlobal.AnketaDictionaties;
         }
 
-        /// <summary>
-        /// Закріпляти, навіть якщо прострочений
-        /// </summary>
-        public bool IsAttached
-        {
-            get => checkAttach.Checked;
-            set => checkAttach.Checked = value;
-        }
-
         public void SetDataInfo(LicenseAgrParam licenseParam)
         {
             bindingSourceComment.DataSource = licenseParam;

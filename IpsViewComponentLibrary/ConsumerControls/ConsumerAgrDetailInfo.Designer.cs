@@ -61,7 +61,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtDateBegin = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
             this.txtAgrNumber = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrDate = new Telerik.WinControls.UI.RadLabel();
@@ -105,7 +104,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDateBegin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrDate)).BeginInit();
@@ -134,7 +132,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNotation.AutoScroll = true;
-            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceComment, "Comment", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceComment, "Comment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtNotation.Location = new System.Drawing.Point(75, 157);
             this.txtNotation.Multiline = true;
             this.txtNotation.Name = "txtNotation";
@@ -619,16 +617,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radLabel10.Text = "Початок дії";
             this.radLabel10.ThemeName = "Office2013Light";
             // 
-            // checkAttach
-            // 
-            this.checkAttach.AutoSize = false;
-            this.checkAttach.Location = new System.Drawing.Point(241, 28);
-            this.checkAttach.Name = "checkAttach";
-            this.checkAttach.Size = new System.Drawing.Size(308, 19);
-            this.checkAttach.TabIndex = 15;
-            this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
-            this.checkAttach.ThemeName = "Office2013Light";
-            // 
             // txtAgrNumber
             // 
             this.txtAgrNumber.BorderVisible = true;
@@ -796,7 +784,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.Controls.Add(this.radPanel2);
             this.Controls.Add(this.radPanel4);
             this.Controls.Add(this.radPanel1);
-            this.Controls.Add(this.checkAttach);
             this.MinimumSize = new System.Drawing.Size(785, 220);
             this.Name = "ConsumerAgrDetailInfo";
             this.Size = new System.Drawing.Size(785, 220);
@@ -838,7 +825,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDateBegin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrDate)).EndInit();
@@ -862,7 +848,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.RadPanel radPanel2;
         private Telerik.WinControls.UI.RadPanel radPanel4;
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadCheckBox checkAttach;
         private Telerik.WinControls.UI.RadLabel txtIsPaid;
         private Telerik.WinControls.UI.RadLabel radLabel24;
         private Telerik.WinControls.UI.RadLabel txtAction;

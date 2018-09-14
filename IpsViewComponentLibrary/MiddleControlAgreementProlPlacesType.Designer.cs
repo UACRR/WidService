@@ -51,6 +51,7 @@
             this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).BeginInit();
@@ -66,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -100,13 +102,16 @@
             // 
             // ctrlAgrMain
             // 
+            this.ctrlAgrMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DataSource = this.bindingSourceAgr;
+            this.ctrlAgrMain.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
             this.ctrlAgrMain.DateBeginDataMember = "";
             this.ctrlAgrMain.DateDataMember = "";
             this.ctrlAgrMain.DateEndDataMember = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgrMain.DateEndNullText = "";
+            this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
             this.ctrlAgrMain.Location = new System.Drawing.Point(14, 31);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";
@@ -147,11 +152,12 @@
             // 
             this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel.Controls.Add(this.checkAttach);
             this.panel.Controls.Add(this.btnPrint);
             this.panel.Controls.Add(this.ctrlAgrSecond);
-            this.panel.Location = new System.Drawing.Point(4, 285);
+            this.panel.Location = new System.Drawing.Point(4, 275);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(683, 125);
+            this.panel.Size = new System.Drawing.Size(683, 150);
             this.panel.TabIndex = 26;
             // 
             // btnPrint
@@ -169,7 +175,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(570, 416);
+            this.btnSave.Location = new System.Drawing.Point(570, 431);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(117, 24);
             this.btnSave.TabIndex = 27;
@@ -180,7 +186,7 @@
             // radLabel3
             // 
             this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel3.Location = new System.Drawing.Point(14, 275);
+            this.radLabel3.Location = new System.Drawing.Point(14, 265);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(116, 18);
             this.radLabel3.TabIndex = 25;
@@ -241,7 +247,7 @@
             this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvPlaces.Name = "gvPlaces";
             this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvPlaces.Size = new System.Drawing.Size(684, 155);
+            this.gvPlaces.Size = new System.Drawing.Size(684, 145);
             this.gvPlaces.TabIndex = 28;
             this.gvPlaces.ThemeName = "Office2007Silver";
             this.gvPlaces.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPlaces_CellValueChanged);
@@ -279,6 +285,16 @@
             this.radLabel2.TabIndex = 31;
             this.radLabel2.Text = "Тип ліцензії";
             // 
+            // checkAttach
+            // 
+            this.checkAttach.AutoSize = false;
+            this.checkAttach.Location = new System.Drawing.Point(6, 125);
+            this.checkAttach.Name = "checkAttach";
+            this.checkAttach.Size = new System.Drawing.Size(308, 19);
+            this.checkAttach.TabIndex = 22;
+            this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
+            this.checkAttach.ThemeName = "Office2013Light";
+            // 
             // MiddleControlAgreementProlPlacesType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,7 +310,7 @@
             this.Controls.Add(this.btnSave);
             this.MinimumSize = new System.Drawing.Size(690, 390);
             this.Name = "MiddleControlAgreementProlPlacesType";
-            this.Size = new System.Drawing.Size(690, 443);
+            this.Size = new System.Drawing.Size(690, 461);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).EndInit();
@@ -310,6 +326,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,5 +352,6 @@
         private System.Windows.Forms.BindingSource licenseAgreementBindingSource;
         private System.Windows.Forms.BindingSource bindingSourceDictionary;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadCheckBox checkAttach;
     }
 }

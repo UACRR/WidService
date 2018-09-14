@@ -261,8 +261,8 @@ namespace IpsViewComponentLibrary
                 var licVersion = license?.LicenseAgrParam.Max(rec => rec.LicVersion);
                 changeLicense.LicVersion = (licVersion ?? 0) + 1;
                 changeLicense.License = licParam?.License;
-                license?.LicenseAgrParam?.Add(changeLicense);
-                parametr = license?.LicenseAgrParam.LastOrDefault();
+                license.LicenseAgrParam?.Add(changeLicense);
+                parametr = license.LicenseAgrParam.LastOrDefault();
             }
 
             //newLicense.LicId = 0;

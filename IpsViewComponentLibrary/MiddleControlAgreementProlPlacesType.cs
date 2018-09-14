@@ -69,7 +69,14 @@ namespace IpsViewComponentLibrary
             });
         }
 
-
+        /// <summary>
+        /// Закріпляти, навіть якщо прострочений
+        /// </summary>
+        public bool IsAttached
+        {
+            get => checkAttach.Checked;
+            set => checkAttach.Checked = value;
+        }
 
         public bool CanChangeLicense
         {
