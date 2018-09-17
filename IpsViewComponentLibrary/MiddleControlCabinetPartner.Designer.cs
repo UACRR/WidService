@@ -43,13 +43,9 @@
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.lblAgrDateEnd = new Telerik.WinControls.UI.RadLabel();
             this.lblFullName = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.btnSaveChange = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.ddlPartnersList = new Telerik.WinControls.UI.RadDropDownList();
-            this.btnViewAnketa = new Telerik.WinControls.UI.RadButton();
-            this.btnAddNew = new Telerik.WinControls.UI.RadButton();
+            this.btnChangePartner = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.bsPartnerList = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
@@ -68,13 +64,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAgrDateEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSaveChange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPartnersList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnViewAnketa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNew)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnChangePartner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPartnerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
@@ -85,9 +77,9 @@
             // 
             this.separator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.separator.Location = new System.Drawing.Point(3, 268);
+            this.separator.Location = new System.Drawing.Point(41, 274);
             this.separator.Name = "separator";
-            this.separator.Size = new System.Drawing.Size(851, 10);
+            this.separator.Size = new System.Drawing.Size(525, 10);
             this.separator.TabIndex = 19;
             this.separator.ThemeName = "Office2013Light";
             // 
@@ -103,11 +95,9 @@
             this.radPanel1.Controls.Add(this.radLabel7);
             this.radPanel1.Controls.Add(this.radLabel11);
             this.radPanel1.Controls.Add(this.lblAgrDateEnd);
-            this.radPanel1.Controls.Add(this.lblFullName);
-            this.radPanel1.Controls.Add(this.radLabel9);
             this.radPanel1.Location = new System.Drawing.Point(4, 37);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(663, 90);
+            this.radPanel1.Size = new System.Drawing.Size(645, 64);
             this.radPanel1.TabIndex = 22;
             this.radPanel1.ThemeName = "Office2013Light";
             // 
@@ -151,7 +141,7 @@
             // 
             this.lblEmail.AutoSize = false;
             this.lblEmail.BorderVisible = true;
-            this.lblEmail.Location = new System.Drawing.Point(224, 65);
+            this.lblEmail.Location = new System.Drawing.Point(224, 40);
             this.lblEmail.Name = "lblEmail";
             // 
             // 
@@ -186,7 +176,7 @@
             // 
             // radLabel13
             // 
-            this.radLabel13.Location = new System.Drawing.Point(177, 65);
+            this.radLabel13.Location = new System.Drawing.Point(177, 40);
             this.radLabel13.Name = "radLabel13";
             this.radLabel13.Size = new System.Drawing.Size(41, 19);
             this.radLabel13.TabIndex = 41;
@@ -225,7 +215,7 @@
             // 
             this.lblMobile.AutoSize = false;
             this.lblMobile.BorderVisible = true;
-            this.lblMobile.Location = new System.Drawing.Point(64, 65);
+            this.lblMobile.Location = new System.Drawing.Point(64, 40);
             this.lblMobile.Name = "lblMobile";
             // 
             // 
@@ -253,14 +243,14 @@
             // 
             this.radLabel7.Location = new System.Drawing.Point(418, 15);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(161, 19);
+            this.radLabel7.Size = new System.Drawing.Size(89, 19);
             this.radLabel7.TabIndex = 35;
-            this.radLabel7.Text = "Дата завершення договору";
+            this.radLabel7.Text = "Стан договору";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
             // radLabel11
             // 
-            this.radLabel11.Location = new System.Drawing.Point(3, 65);
+            this.radLabel11.Location = new System.Drawing.Point(3, 40);
             this.radLabel11.Name = "radLabel11";
             this.radLabel11.Size = new System.Drawing.Size(55, 19);
             this.radLabel11.TabIndex = 39;
@@ -271,13 +261,13 @@
             // 
             this.lblAgrDateEnd.AutoSize = false;
             this.lblAgrDateEnd.BorderVisible = true;
-            this.lblAgrDateEnd.Location = new System.Drawing.Point(585, 15);
+            this.lblAgrDateEnd.Location = new System.Drawing.Point(513, 15);
             this.lblAgrDateEnd.Name = "lblAgrDateEnd";
             // 
             // 
             // 
             this.lblAgrDateEnd.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.lblAgrDateEnd.Size = new System.Drawing.Size(72, 19);
+            this.lblAgrDateEnd.Size = new System.Drawing.Size(129, 19);
             this.lblAgrDateEnd.TabIndex = 36;
             this.lblAgrDateEnd.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblAgrDateEnd.ThemeName = "Office2013Light";
@@ -299,7 +289,7 @@
             // 
             this.lblFullName.AutoSize = false;
             this.lblFullName.BorderVisible = true;
-            this.lblFullName.Location = new System.Drawing.Point(35, 40);
+            this.lblFullName.Location = new System.Drawing.Point(142, 4);
             this.lblFullName.Name = "lblFullName";
             // 
             // 
@@ -322,35 +312,6 @@
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblFullName.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblFullName.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             // 
-            // radLabel9
-            // 
-            this.radLabel9.Location = new System.Drawing.Point(3, 40);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(26, 19);
-            this.radLabel9.TabIndex = 37;
-            this.radLabel9.Text = "ПІБ";
-            this.radLabel9.ThemeName = "Office2013Light";
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(407, 311);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(112, 21);
-            this.btnCancel.TabIndex = 29;
-            this.btnCancel.Text = "Скасувати зміни";
-            this.btnCancel.TextWrap = true;
-            this.btnCancel.ThemeName = "Office2013Light";
-            // 
-            // btnSaveChange
-            // 
-            this.btnSaveChange.Location = new System.Drawing.Point(291, 311);
-            this.btnSaveChange.Name = "btnSaveChange";
-            this.btnSaveChange.Size = new System.Drawing.Size(112, 21);
-            this.btnSaveChange.TabIndex = 28;
-            this.btnSaveChange.Text = "Записати зміни";
-            this.btnSaveChange.TextWrap = true;
-            this.btnSaveChange.ThemeName = "Office2013Light";
-            // 
             // radLabel2
             // 
             this.radLabel2.Location = new System.Drawing.Point(3, 4);
@@ -362,47 +323,37 @@
             // 
             // ddlPartnersList
             // 
-            this.ddlPartnersList.Location = new System.Drawing.Point(142, 3);
+            this.ddlPartnersList.Location = new System.Drawing.Point(41, 216);
             this.ddlPartnersList.Name = "ddlPartnersList";
             this.ddlPartnersList.Size = new System.Drawing.Size(525, 21);
             this.ddlPartnersList.TabIndex = 26;
             this.ddlPartnersList.ThemeName = "Office2013Light";
             this.ddlPartnersList.SelectedValueChanged += new System.EventHandler(this.ddlPartnersList_SelectedValueChanged);
             // 
-            // btnViewAnketa
+            // btnChangePartner
             // 
-            this.btnViewAnketa.Location = new System.Drawing.Point(3, 284);
-            this.btnViewAnketa.Name = "btnViewAnketa";
-            this.btnViewAnketa.Size = new System.Drawing.Size(146, 21);
-            this.btnViewAnketa.TabIndex = 25;
-            this.btnViewAnketa.Text = "Обрати представником";
-            this.btnViewAnketa.TextWrap = true;
-            this.btnViewAnketa.ThemeName = "Office2013Light";
-            // 
-            // btnAddNew
-            // 
-            this.btnAddNew.Location = new System.Drawing.Point(291, 284);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(185, 21);
-            this.btnAddNew.TabIndex = 24;
-            this.btnAddNew.Text = "Додати нового представника";
-            this.btnAddNew.TextWrap = true;
-            this.btnAddNew.ThemeName = "Office2013Light";
+            this.btnChangePartner.Location = new System.Drawing.Point(17, 107);
+            this.btnChangePartner.Name = "btnChangePartner";
+            this.btnChangePartner.Size = new System.Drawing.Size(146, 21);
+            this.btnChangePartner.TabIndex = 25;
+            this.btnChangePartner.Text = "Змінити представника";
+            this.btnChangePartner.TextWrap = true;
+            this.btnChangePartner.ThemeName = "Office2013Light";
             // 
             // radLabel1
             // 
             this.radLabel1.Location = new System.Drawing.Point(17, 28);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(76, 19);
+            this.radLabel1.Size = new System.Drawing.Size(113, 19);
             this.radLabel1.TabIndex = 21;
-            this.radLabel1.Text = "Анкетні дані";
+            this.radLabel1.Text = "Дані представника";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel14
             // 
             this.radLabel14.AutoSize = false;
             this.radLabel14.BorderVisible = true;
-            this.radLabel14.Location = new System.Drawing.Point(455, 478);
+            this.radLabel14.Location = new System.Drawing.Point(124, 243);
             this.radLabel14.Name = "radLabel14";
             // 
             // 
@@ -427,7 +378,7 @@
             // 
             // radLabel15
             // 
-            this.radLabel15.Location = new System.Drawing.Point(372, 478);
+            this.radLabel15.Location = new System.Drawing.Point(41, 243);
             this.radLabel15.Name = "radLabel15";
             this.radLabel15.Size = new System.Drawing.Size(66, 19);
             this.radLabel15.TabIndex = 43;
@@ -442,16 +393,14 @@
             this.Controls.Add(this.radLabel15);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radPanel1);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSaveChange);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.ddlPartnersList);
-            this.Controls.Add(this.btnViewAnketa);
-            this.Controls.Add(this.btnAddNew);
+            this.Controls.Add(this.btnChangePartner);
+            this.Controls.Add(this.lblFullName);
             this.Controls.Add(this.separator);
             this.MinimumSize = new System.Drawing.Size(913, 527);
             this.Name = "MiddleControlCabinetPartner";
-            this.Size = new System.Drawing.Size(913, 560);
+            this.Size = new System.Drawing.Size(913, 566);
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
@@ -467,13 +416,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAgrDateEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSaveChange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPartnersList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnViewAnketa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddNew)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnChangePartner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPartnerList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
@@ -488,12 +433,9 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadSeparator separator;
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadButton btnCancel;
-        private Telerik.WinControls.UI.RadButton btnSaveChange;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadDropDownList ddlPartnersList;
-        private Telerik.WinControls.UI.RadButton btnViewAnketa;
-        private Telerik.WinControls.UI.RadButton btnAddNew;
+        private Telerik.WinControls.UI.RadButton btnChangePartner;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.BindingSource bsPartnerList;
         private Telerik.WinControls.UI.RadLabel lblAgrNumber;
@@ -503,7 +445,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadLabel lblAgrDateEnd;
         private Telerik.WinControls.UI.RadLabel lblFullName;
-        private Telerik.WinControls.UI.RadLabel radLabel9;
         private Telerik.WinControls.UI.RadLabel lblMobile;
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadLabel lblEmail;
