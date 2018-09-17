@@ -31,6 +31,7 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
             this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
             this.pvLicence = new Telerik.WinControls.UI.RadPageViewPage();
@@ -52,8 +53,7 @@
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgent = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
-            this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
+            this.ctrlPartner = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -88,7 +88,7 @@
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvGeneralAgreement;
+            this.pageView.SelectedPage = this.pvAnketa;
             this.pageView.Size = new System.Drawing.Size(1146, 620);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
@@ -106,6 +106,16 @@
             this.pvAnketa.Name = "pvAnketa";
             this.pvAnketa.Size = new System.Drawing.Size(1136, 584);
             this.pvAnketa.Text = "Анкета";
+            // 
+            // ctrlAnketaConsumer
+            // 
+            this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlAnketaConsumer.IsContainPlaces = false;
+            this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
+            this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
+            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlAnketaConsumer.TabIndex = 0;
+            this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             // 
             // pvGeneralAgreement
             // 
@@ -292,31 +302,21 @@
             // 
             // pvAgent
             // 
-            this.pvAgent.Controls.Add(this.ctrlAgent);
+            this.pvAgent.Controls.Add(this.ctrlPartner);
             this.pvAgent.ItemSize = new System.Drawing.SizeF(88F, 27F);
             this.pvAgent.Location = new System.Drawing.Point(5, 31);
             this.pvAgent.Name = "pvAgent";
             this.pvAgent.Size = new System.Drawing.Size(1136, 584);
             this.pvAgent.Text = "Представник";
             // 
-            // ctrlAgent
+            // ctrlPartner
             // 
-            this.ctrlAgent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlAgent.Location = new System.Drawing.Point(0, 0);
-            this.ctrlAgent.MinimumSize = new System.Drawing.Size(913, 527);
-            this.ctrlAgent.Name = "ctrlAgent";
-            this.ctrlAgent.Size = new System.Drawing.Size(1136, 584);
-            this.ctrlAgent.TabIndex = 0;
-            // 
-            // ctrlAnketaConsumer
-            // 
-            this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlAnketaConsumer.IsContainPlaces = false;
-            this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
-            this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
-            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1136, 584);
-            this.ctrlAnketaConsumer.TabIndex = 0;
-            this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
+            this.ctrlPartner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPartner.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPartner.MinimumSize = new System.Drawing.Size(913, 527);
+            this.ctrlPartner.Name = "ctrlPartner";
+            this.ctrlPartner.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlPartner.TabIndex = 0;
             // 
             // CabinetBigRight
             // 
@@ -358,7 +358,7 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private MiddleControlCabinetLicenses ctrlLicense;
         private MiddleControlCabinetGenAgreement ctrlGeneralAgreement;
-        private MiddleControlCabinetPartner ctrlAgent;
+        private MiddleControlCabinetPartner ctrlPartner;
         private MiddleControlCabinetFiles ctrlFiles;
         private MiddleControlCabinetReqRef ctrlRequest;
         private MiddleControlCabinetReqRef ctrlReference;

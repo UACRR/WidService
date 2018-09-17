@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols;
+// ReSharper disable All
 
 
 namespace ipsmedserviceapp.Controllers
@@ -1891,11 +1892,15 @@ where t1.custId = @custId
         }
         #endregion
 
-        /// <summary>
-        /// Отримати записи зі звіту
-        /// </summary>
-        /// <param name="regId"></param>
-        /// <returns></returns>
+        //список представників
+        [HttpGet("partner/list")]
+        public async Task<IActionResult> GetPartnersList()
+        {
+            var partner = await _dbContext.Partner.AsNoTracking().ToListAsync();
+            var list = await _dbContext.AnketaPerson.Where(rec => partner.Select(r => r.CustId).Contains(rec.CustId)).AsNoTracking().ToListAsync();
+            return Json(list);
+        }
+
 
     } // public class ConsumerController : Controller
 

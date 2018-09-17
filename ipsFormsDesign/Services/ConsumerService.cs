@@ -421,5 +421,11 @@ namespace ipsFormsDesign.Services
         #endregion
 
 
+        public List<AnketaPerson> GetPartnerList()
+        {
+            string url = _prefix + "partner/list";
+            return _webApi.GetList<AnketaPerson>(url);
+        }
+
     }
 }

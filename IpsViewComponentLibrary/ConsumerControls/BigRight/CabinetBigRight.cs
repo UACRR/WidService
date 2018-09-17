@@ -68,6 +68,7 @@ namespace IpsViewComponentLibrary
         public event ReturnViewEventHandler<RatedListMainBigRightView> GetRatedListMainView;
         public event ReturnViewEventHandler<RatedListSpectacleBigRightView> GetRatedListSpectacleView;
         public event ReturnViewEventHandler<RatedListMusicDesignBigRightView> GetMusicDesignView;
+        public event GetPartnerList OnGetPartnerListNeed;
 
 
         #endregion
@@ -266,8 +267,7 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.Agent:
                 {
-                    _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
-                    ctrlAgent.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
+                    ctrlPartner.SetPartnerList(OnGetPartnerListNeed?.Invoke());
                 }
                     break;
             }

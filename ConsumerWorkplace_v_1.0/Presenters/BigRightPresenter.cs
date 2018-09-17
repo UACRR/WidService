@@ -66,6 +66,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnRequestWorkRhSaveNeed += SaveWorkRh;
             _cabinetBigRightForm.cabinet.SavePariodCommandExecuted += SavePariodCommandExecuted;
             _cabinetBigRightForm.cabinet.OnGetSpectacleNeed += GetSpectacle;
+            _cabinetBigRightForm.cabinet.OnGetPartnerListNeed += GetPartnerList;
         }
 
         #region - - - ОТРИМАННЯ ДАНИХ - - -
@@ -329,6 +330,12 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private IList<BigRightSpectacleView> GetSpectacle(int custId)
         {
             return _service.getBRView(typeof(BigRightSpectacleView), "vTSK_1_BRObjects", custId).Select(item => item as BigRightSpectacleView).ToList();
+        }
+
+        //отримати список партнерів
+        private List<AnketaPerson> GetPartnerList()
+        {
+            return _service.GetPartnerList();
         }
 
         // TODO: перехід на точечне оновлення
