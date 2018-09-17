@@ -21,7 +21,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private readonly DialogService _dialogService;
         private ObjectRight _objectRight;
         private ObjectRightDictionaries _dictionaries;
-        private bool _saved;
+        private bool _canClose;
 
         public RightholderMainView DefaultRightholder { get; set; }
 
@@ -130,7 +130,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (_objectRight == null)
                 return;
 
-            _saved = true;
+            _canClose = true;
 
             // map from single table to Authors and Copyright tables
             _objectRight.Authors.Clear();
@@ -193,10 +193,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
-            {
-                e.Cancel = true;
-            }
+            if (!_canClose)
+                _canClose = _dialogService.ClosingIsConfirmed(_view);
+
+            if (_canClose)
+                _view.Hide();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private readonly DialogService _dialogService;
         private ObjectRight _objectRight;
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
-        private bool _saved;
+        private bool _canClose;
 
         public ObjectRightBrPresenter(ObjectRightBrView view)
         {
@@ -60,7 +60,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (_objectRight == null)
                 return;
 
-            _saved = true;
+            _canClose = true;
 
             // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
             _objectRight.Authors.Clear();
@@ -84,10 +84,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
-            {
-                e.Cancel = true;
-            }
+            if (!_canClose)
+                _canClose = _dialogService.ClosingIsConfirmed(_view);
+
+            if (_canClose)
+                _view.Hide();
         }
     }
 }

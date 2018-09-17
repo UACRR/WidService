@@ -18,7 +18,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private readonly DialogService _dialogService;
         private Customer _customer;
         private AgreementAddRh _agreementAddRh;
-        private bool _saved;
+        private bool _canClose;
 
         public RightholderPresenter(IRightholderView view)
         {
@@ -79,7 +79,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             //    return;
             //}
 
-            _saved = true;
+            _canClose = true;
 
             if (accept)
                 _customer.Status = 2; // Активний
@@ -97,10 +97,11 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void Close()
         {
-            if (!_saved && !_dialogService.ClosingIsConfirmed((IWin32Window)_view))
-                return;
-
-            _view.Hide();
+            if (!_canClose)
+                _canClose = _dialogService.ClosingIsConfirmed((IWin32Window)_view);
+            
+            if (_canClose)
+                _view.Hide();
         }
     }
 }
