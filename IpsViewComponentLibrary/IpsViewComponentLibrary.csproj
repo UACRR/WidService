@@ -179,12 +179,6 @@
     <Compile Include="AddressLetter.Designer.cs">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </Compile>
-    <Compile Include="AgentFooterBR.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AgentFooterBR.Designer.cs">
-      <DependentUpon>AgentFooterBR.cs</DependentUpon>
-    </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
     <Compile Include="Common\NavigatorPanelControl.cs">
       <SubType>UserControl</SubType>
@@ -582,11 +576,11 @@
     <Compile Include="ConsumerControls\BigRight\CabinetBigRight.Designer.cs">
       <DependentUpon>CabinetBigRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetAgent.cs">
+    <Compile Include="MiddleControlCabinetPartner.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinetAgent.Designer.cs">
-      <DependentUpon>MiddleControlCabinetAgent.cs</DependentUpon>
+    <Compile Include="MiddleControlCabinetPartner.Designer.cs">
+      <DependentUpon>MiddleControlCabinetPartner.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlCabinetCalculation.cs">
       <SubType>UserControl</SubType>
@@ -820,9 +814,6 @@
     <EmbeddedResource Include="AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AgentFooterBR.resx">
-      <DependentUpon>AgentFooterBR.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
       <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1010,8 +1001,8 @@
     <EmbeddedResource Include="ConsumerControls\BigRight\CabinetBigRight.resx">
       <DependentUpon>CabinetBigRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetAgent.resx">
-      <DependentUpon>MiddleControlCabinetAgent.cs</DependentUpon>
+    <EmbeddedResource Include="MiddleControlCabinetPartner.resx">
+      <DependentUpon>MiddleControlCabinetPartner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetCalculation.resx">
       <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>

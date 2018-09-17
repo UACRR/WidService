@@ -12,11 +12,11 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class MiddleControlCabinetAgent : UserControl
+    public partial class MiddleControlCabinetPartner : UserControl
     {
         private Customer _customer;
         private MainGridConsumerBigRightView _bigRightView;
-        public MiddleControlCabinetAgent()
+        public MiddleControlCabinetPartner()
         {
             InitializeComponent();
         }
@@ -25,7 +25,6 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             _bigRightView = bigRightView;
-            gvGenAgrLicences.DataSource = genAgrs;
         }
     }
 }

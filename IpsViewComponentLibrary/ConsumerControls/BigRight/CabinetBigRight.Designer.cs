@@ -52,7 +52,7 @@
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgent = new IpsViewComponentLibrary.MiddleControlCabinetAgent();
+            this.ctrlAgent = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
             this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
@@ -358,7 +358,7 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private MiddleControlCabinetLicenses ctrlLicense;
         private MiddleControlCabinetGenAgreement ctrlGeneralAgreement;
-        private MiddleControlCabinetAgent ctrlAgent;
+        private MiddleControlCabinetPartner ctrlAgent;
         private MiddleControlCabinetFiles ctrlFiles;
         private MiddleControlCabinetReqRef ctrlRequest;
         private MiddleControlCabinetReqRef ctrlReference;
