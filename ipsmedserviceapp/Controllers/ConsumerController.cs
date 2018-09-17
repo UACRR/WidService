@@ -168,7 +168,7 @@ namespace ipsmedserviceapp.Controllers
 
                 return Json(destConsumer);
             }
-            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            catch (DbUpdateException)
             {
                 tran?.Rollback();
                 //if()
