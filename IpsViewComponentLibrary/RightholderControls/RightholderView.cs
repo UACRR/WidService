@@ -154,6 +154,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void miAcceptAndSave_Click(object sender, EventArgs e)
         {
+            _presenter.SetAgreementRightholderStatus(AgreementStatuses.Active);
             _presenter.Save(accept: true);
         }
 
