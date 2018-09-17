@@ -91,6 +91,7 @@
             this.agreementPageView = new Telerik.WinControls.UI.RadPageView();
             this.agreementPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.gboxRightholderStatus = new Telerik.WinControls.UI.RadGroupBox();
+            this.btnSetStatusClosed = new Telerik.WinControls.UI.RadButton();
             this.btnSetStatusInheritance = new Telerik.WinControls.UI.RadButton();
             this.btnSetAgreementRightholderStatus = new Telerik.WinControls.UI.RadButton();
             this.ddlAgreementStatus = new Telerik.WinControls.UI.RadDropDownList();
@@ -99,7 +100,6 @@
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.btnSetStatusClosed = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPage.SuspendLayout();
@@ -156,11 +156,11 @@
             this.agreementPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gboxRightholderStatus)).BeginInit();
             this.gboxRightholderStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusClosed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusInheritance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetAgreementRightholderStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusClosed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,7 +175,7 @@
             this.anketaPageView.DefaultPage = this.rightholderPage;
             this.anketaPageView.Location = new System.Drawing.Point(0, 0);
             this.anketaPageView.Name = "anketaPageView";
-            this.anketaPageView.SelectedPage = this.contactsPage;
+            this.anketaPageView.SelectedPage = this.rightholderPage;
             this.anketaPageView.Size = new System.Drawing.Size(1006, 444);
             this.anketaPageView.TabIndex = 2;
             this.anketaPageView.ThemeName = "Office2013Light";
@@ -813,6 +813,16 @@
             this.gboxRightholderStatus.Text = "Cтатус";
             this.gboxRightholderStatus.ThemeName = "Office2013Light";
             // 
+            // btnSetStatusClosed
+            // 
+            this.btnSetStatusClosed.Location = new System.Drawing.Point(288, 21);
+            this.btnSetStatusClosed.Name = "btnSetStatusClosed";
+            this.btnSetStatusClosed.Size = new System.Drawing.Size(110, 24);
+            this.btnSetStatusClosed.TabIndex = 2;
+            this.btnSetStatusClosed.Text = "Закрити";
+            this.btnSetStatusClosed.ThemeName = "Office2013Light";
+            this.btnSetStatusClosed.Click += new System.EventHandler(this.btnSetStatusClosed_Click);
+            // 
             // btnSetStatusInheritance
             // 
             this.btnSetStatusInheritance.Location = new System.Drawing.Point(121, 21);
@@ -898,16 +908,6 @@
             this.radPageViewPage4.Size = new System.Drawing.Size(1054, 447);
             this.radPageViewPage4.Text = "Файли";
             // 
-            // btnSetStatusClosed
-            // 
-            this.btnSetStatusClosed.Location = new System.Drawing.Point(288, 21);
-            this.btnSetStatusClosed.Name = "btnSetStatusClosed";
-            this.btnSetStatusClosed.Size = new System.Drawing.Size(110, 24);
-            this.btnSetStatusClosed.TabIndex = 2;
-            this.btnSetStatusClosed.Text = "Зактрити";
-            this.btnSetStatusClosed.ThemeName = "Office2013Light";
-            this.btnSetStatusClosed.Click += new System.EventHandler(this.btnSetStatusClosed_Click);
-            // 
             // RightholderView
             // 
             this.AcceptButton = this.miSave;
@@ -987,11 +987,11 @@
             this.agreementPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gboxRightholderStatus)).EndInit();
             this.gboxRightholderStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusClosed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusInheritance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetAgreementRightholderStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusClosed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
