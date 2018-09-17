@@ -69,11 +69,15 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (_customer == null)
                 return;
 
-            if (!_view.IsValid)
-            {
-                _dialogService.ShowError((IWin32Window)_view, "Не корректно введені дані.");
-                return;
-            }
+            // TODO: fix it. temporarily disable validation on saving rightholder.
+            // the controls doesn't update data until the controls are made visible.
+            // so if control is situated on invisible tabs, the text property = ""
+            // and _view.IsValid returns a false, though it is valid.
+            //if (!_view.IsValid)
+            //{
+            //    _dialogService.ShowError((IWin32Window)_view, "Не корректно введені дані.");
+            //    return;
+            //}
 
             _saved = true;
 
