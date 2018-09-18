@@ -248,6 +248,12 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ConsumerDialogForms\SelectPartner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\SelectPartner.Designer.cs">
+      <DependentUpon>SelectPartner.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerForms\CabinetBigRightForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +271,12 @@
     </Compile>
     <Compile Include="LicenseAgreementListControl.Designer.cs">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerControl.Designer.cs">
+      <DependentUpon>PartnerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterControls\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
@@ -848,6 +860,9 @@
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\SelectPartner.resx">
+      <DependentUpon>SelectPartner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\CabinetBigRightForm.resx">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -874,6 +889,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightBrView.resx">
       <DependentUpon>ObjectRightBrView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
+      <DependentUpon>PartnerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>

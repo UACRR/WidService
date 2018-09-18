@@ -54,11 +54,8 @@ namespace ipsmedserviceapp.Controllers
 
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
+        //отримати всі дані
         private async Task<Customer> GetConsumerAllData(int id)
         {
             // Отримати основну інформацію
@@ -1901,6 +1898,14 @@ where t1.custId = @custId
             return Json(list);
         }
 
+        //представник по ID клієнта (не представника)
+        [HttpGet("partner/list/{clientId}")]
+        public async Task<IActionResult> GetPartnerByClientId(int clientId)
+        {
+            var partnerId = await _dbContext.PartnerClient.SingleOrDefaultAsync(rec=>rec.ClCustId == clientId);
+            var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec=>rec.CustId == partnerId.CustId);
+            return Json(anketaPerson);
+        }
 
     } // public class ConsumerController : Controller
 

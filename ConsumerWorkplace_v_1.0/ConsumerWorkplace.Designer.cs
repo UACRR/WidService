@@ -241,7 +241,6 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // radPageViewPage4
             // 
-            this.radPageViewPage4.Enabled = false;
             this.radPageViewPage4.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.radPageViewPage4.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage4.Name = "radPageViewPage4";

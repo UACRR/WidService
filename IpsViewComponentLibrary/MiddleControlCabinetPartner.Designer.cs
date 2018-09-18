@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.separator = new Telerik.WinControls.UI.RadSeparator();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.lblAgrNumber = new Telerik.WinControls.UI.RadLabel();
@@ -44,13 +43,9 @@
             this.lblAgrDateEnd = new Telerik.WinControls.UI.RadLabel();
             this.lblFullName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlPartnersList = new Telerik.WinControls.UI.RadDropDownList();
             this.btnChangePartner = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.bsPartnerList = new System.Windows.Forms.BindingSource(this.components);
-            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
@@ -65,23 +60,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblAgrDateEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlPartnersList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePartner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPartnerList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             this.SuspendLayout();
-            // 
-            // separator
-            // 
-            this.separator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.separator.Location = new System.Drawing.Point(41, 274);
-            this.separator.Name = "separator";
-            this.separator.Size = new System.Drawing.Size(525, 10);
-            this.separator.TabIndex = 19;
-            this.separator.ThemeName = "Office2013Light";
             // 
             // radPanel1
             // 
@@ -321,15 +303,6 @@
             this.radLabel2.Text = "Обраний представник";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
-            // ddlPartnersList
-            // 
-            this.ddlPartnersList.Location = new System.Drawing.Point(41, 216);
-            this.ddlPartnersList.Name = "ddlPartnersList";
-            this.ddlPartnersList.Size = new System.Drawing.Size(525, 21);
-            this.ddlPartnersList.TabIndex = 26;
-            this.ddlPartnersList.ThemeName = "Office2013Light";
-            this.ddlPartnersList.SelectedValueChanged += new System.EventHandler(this.ddlPartnersList_SelectedValueChanged);
-            // 
             // btnChangePartner
             // 
             this.btnChangePartner.Location = new System.Drawing.Point(17, 107);
@@ -339,6 +312,7 @@
             this.btnChangePartner.Text = "Змінити представника";
             this.btnChangePartner.TextWrap = true;
             this.btnChangePartner.ThemeName = "Office2013Light";
+            this.btnChangePartner.Click += new System.EventHandler(this.btnChangePartner_Click);
             // 
             // radLabel1
             // 
@@ -349,59 +323,17 @@
             this.radLabel1.Text = "Дані представника";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
-            // radLabel14
-            // 
-            this.radLabel14.AutoSize = false;
-            this.radLabel14.BorderVisible = true;
-            this.radLabel14.Location = new System.Drawing.Point(124, 243);
-            this.radLabel14.Name = "radLabel14";
-            // 
-            // 
-            // 
-            this.radLabel14.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.radLabel14.Size = new System.Drawing.Size(153, 19);
-            this.radLabel14.TabIndex = 44;
-            this.radLabel14.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.radLabel14.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel14.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.radLabel14.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radLabel14.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            // 
-            // radLabel15
-            // 
-            this.radLabel15.Location = new System.Drawing.Point(41, 243);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(66, 19);
-            this.radLabel15.TabIndex = 43;
-            this.radLabel15.Text = "donorlabel";
-            this.radLabel15.ThemeName = "Office2013Light";
-            // 
             // MiddleControlCabinetPartner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radLabel14);
-            this.Controls.Add(this.radLabel15);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radLabel2);
-            this.Controls.Add(this.ddlPartnersList);
             this.Controls.Add(this.btnChangePartner);
             this.Controls.Add(this.lblFullName);
-            this.Controls.Add(this.separator);
-            this.MinimumSize = new System.Drawing.Size(913, 527);
             this.Name = "MiddleControlCabinetPartner";
-            this.Size = new System.Drawing.Size(913, 566);
-            ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
+            this.Size = new System.Drawing.Size(655, 135);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
@@ -417,12 +349,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblAgrDateEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlPartnersList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePartner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPartnerList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,10 +360,8 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private Telerik.WinControls.UI.RadSeparator separator;
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadDropDownList ddlPartnersList;
         private Telerik.WinControls.UI.RadButton btnChangePartner;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.BindingSource bsPartnerList;
@@ -449,7 +376,5 @@
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadLabel lblEmail;
         private Telerik.WinControls.UI.RadLabel radLabel13;
-        private Telerik.WinControls.UI.RadLabel radLabel14;
-        private Telerik.WinControls.UI.RadLabel radLabel15;
     }
 }

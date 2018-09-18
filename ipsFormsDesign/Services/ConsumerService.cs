@@ -420,11 +420,23 @@ namespace ipsFormsDesign.Services
         }
         #endregion
 
-
+        /// <summary>
+        /// Отримати список представників
+        /// </summary>
+        /// <returns></returns>
         public List<AnketaPerson> GetPartnerList()
         {
             string url = _prefix + "partner/list";
             return _webApi.GetList<AnketaPerson>(url);
+        }
+
+        /// <summary>
+        /// Отримати дані по одному представнику
+        /// </summary>
+        public AnketaPerson GetPartner(int clientId)
+        {
+            var anketaPerson = _webApi.GetItemById<AnketaPerson>(_prefix + "partner/list", clientId.ToString());
+            return anketaPerson;
         }
 
     }

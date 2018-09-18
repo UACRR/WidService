@@ -1,7 +1,10 @@
-Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
-Telerik.WinControls.UI.RadDateTimePicker, Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
-Telerik.WinControls.Themes.AquaTheme, Telerik.WinControls.Themes.Aqua, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
-Telerik.WinControls.UI.RadTreeView, Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
-Telerik.WinControls.Themes.Office2010BlueTheme, Telerik.WinControls.Themes.Office2010Blue, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
-Telerik.WinControls.Themes.Office2007SilverTheme, Telerik.WinControls.Themes.Office2007Silver, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
 Telerik.WinControls.Themes.Office2013LightTheme, Telerik.WinControls.Themes.Office2013Light, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.Themes.Office2010BlueTheme, Telerik.WinControls.Themes.Office2010Blue, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadTreeView, Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadTreeView, Telerik.WinControls.UI, Version=2018.3.911.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.Themes.AquaTheme, Telerik.WinControls.Themes.Aqua, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.Themes.Office2013LightTheme, Telerik.WinControls.Themes.Office2013Light, Version=2018.3.911.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadDateTimePicker, Telerik.WinControls.UI, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.UI.RadPageView, Telerik.WinControls.UI, Version=2018.3.911.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e
+Telerik.WinControls.Themes.Office2007SilverTheme, Telerik.WinControls.Themes.Office2007Silver, Version=2018.2.621.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e

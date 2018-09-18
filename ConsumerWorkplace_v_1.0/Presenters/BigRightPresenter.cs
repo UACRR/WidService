@@ -67,6 +67,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.SavePariodCommandExecuted += SavePariodCommandExecuted;
             _cabinetBigRightForm.cabinet.OnGetSpectacleNeed += GetSpectacle;
             _cabinetBigRightForm.cabinet.OnGetPartnerListNeed += GetPartnerList;
+            _cabinetBigRightForm.cabinet.GetPartner += GetPartner;
         }
 
         #region - - - ОТРИМАННЯ ДАНИХ - - -
@@ -337,6 +338,13 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         {
             return _service.GetPartnerList();
         }
+
+        //отримати партнера по ID слієнта
+        private AnketaPerson GetPartner(int clientId)
+        {
+            return _service.GetPartner(clientId);
+        }
+
 
         // TODO: перехід на точечне оновлення
         private void UpdateData(int id)
