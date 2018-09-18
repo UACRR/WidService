@@ -63,7 +63,7 @@
             this.btnNewObject = new Telerik.WinControls.UI.RadButton();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
-            this.txtTotalPersent = new Telerik.WinControls.UI.RadTextBox();
+            this.txtTotalPersent = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.gvObjectAuthorsRightholders = new Telerik.WinControls.UI.RadGridView();
@@ -892,7 +892,7 @@
         private RadTextBoxAuto autoObjectName;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
-        private Telerik.WinControls.UI.RadTextBox txtTotalPersent;
+        private IpsViewComponentLibrary.Common.Editors.IpsTextBox txtTotalPersent;
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadLabel radLabel19;
         private Telerik.WinControls.UI.RadGridView gvObjectAuthorsRightholders;
