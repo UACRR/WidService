@@ -186,6 +186,9 @@
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\IpsDropDownList.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Common\NavigatorPanelControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
