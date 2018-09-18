@@ -34,7 +34,6 @@ namespace IpsViewComponentLibrary
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAuthors = new Telerik.WinControls.UI.RadPageViewPage();
-            this.bsWorkRh = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAuthorRightholderList = new IpsViewComponentLibrary.ObjectRightControls.AuthorRightholderBrListControl();
             this.pvConditions = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -67,6 +66,7 @@ namespace IpsViewComponentLibrary
             this.label13 = new System.Windows.Forms.Label();
             this.txtMusicRate = new Telerik.WinControls.UI.RadTextBox();
             this.ctrlMusicalDesignList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
+            this.bsWorkRh = new System.Windows.Forms.BindingSource(this.components);
             this.panelStatusees = new System.Windows.Forms.Panel();
             this.btnSetCenceledStatus = new Telerik.WinControls.UI.RadButton();
             this.btnSetActiveStatus = new Telerik.WinControls.UI.RadButton();
@@ -111,7 +111,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAuthors.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsWorkRh)).BeginInit();
             this.pvConditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
@@ -133,6 +132,7 @@ namespace IpsViewComponentLibrary
             this.pvMusicalArrangement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMusicRate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWorkRh)).BeginInit();
             this.panelStatusees.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetCenceledStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetActiveStatus)).BeginInit();
@@ -192,10 +192,6 @@ namespace IpsViewComponentLibrary
             this.pvAuthors.Name = "pvAuthors";
             this.pvAuthors.Size = new System.Drawing.Size(1067, 667);
             this.pvAuthors.Text = "Автори";
-            // 
-            // bsWorkRh
-            // 
-            this.bsWorkRh.DataSource = typeof(ipsFormsDesign.Model.WorkRh);
             // 
             // ctrlAuthorRightholderList
             // 
@@ -471,9 +467,9 @@ namespace IpsViewComponentLibrary
             this.pvMusicalArrangement.Controls.Add(this.txtMusicRate);
             this.pvMusicalArrangement.Controls.Add(this.ctrlMusicalDesignList);
             this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(141F, 27F);
-            this.pvMusicalArrangement.Location = new System.Drawing.Point(143, 5);
+            this.pvMusicalArrangement.Location = new System.Drawing.Point(145, 5);
             this.pvMusicalArrangement.Name = "pvMusicalArrangement";
-            this.pvMusicalArrangement.Size = new System.Drawing.Size(1069, 667);
+            this.pvMusicalArrangement.Size = new System.Drawing.Size(1067, 667);
             this.pvMusicalArrangement.Text = "Музичне оформлення";
             // 
             // radSeparator1
@@ -525,8 +521,12 @@ namespace IpsViewComponentLibrary
             this.ctrlMusicalDesignList.ShowDurationUse = true;
             this.ctrlMusicalDesignList.ShowLinked = true;
             this.ctrlMusicalDesignList.ShowObjectInfo = true;
-            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1066, 308);
+            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1064, 308);
             this.ctrlMusicalDesignList.TabIndex = 30;
+            // 
+            // bsWorkRh
+            // 
+            this.bsWorkRh.DataSource = typeof(ipsFormsDesign.Model.WorkRh);
             // 
             // panelStatusees
             // 
@@ -1011,7 +1011,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvAuthors.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bsWorkRh)).EndInit();
             this.pvConditions.ResumeLayout(false);
             this.pvConditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -1036,6 +1035,7 @@ namespace IpsViewComponentLibrary
             this.pvMusicalArrangement.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMusicRate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsWorkRh)).EndInit();
             this.panelStatusees.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSetCenceledStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetActiveStatus)).EndInit();

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
@@ -14,13 +12,12 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class RequestForm : Telerik.WinControls.UI.RadForm
+    public partial class RequestForm : IpsViewComponentLibrary.Common.Form.IpsForm
     {
         private readonly ConsumerService _consumerService = new ConsumerService();
         private readonly DialogService _dialogService = new DialogService();
@@ -34,18 +31,6 @@ namespace IpsViewComponentLibrary
         private bool _deleteLicense = true;
         private IList<RelGenrePercent> _percent;
         private int? _licId = null;
-
-        private bool _readOnly = false;
-        public bool ReadOnly
-        {
-            get { return _readOnly; }
-            set
-            {
-                _readOnly = value;
-                SetControlsReadOnly(Controls, _readOnly);
-                SetControlsVisibility();
-            }
-        }
 
         public RequestForm()
         {
@@ -155,6 +140,7 @@ namespace IpsViewComponentLibrary
             #endregion
 
             ReadOnly = GetReadOnly();
+            SetControlsVisibility();
         }
 
         private bool GetReadOnly()
@@ -190,7 +176,7 @@ namespace IpsViewComponentLibrary
         {
             ctrlAuthorRightholderList.AllowEditList = !ReadOnly;
 
-            btnSave.Visible = !_readOnly;
+            btnSave.Visible = !ReadOnly;
 
             if (_formMode == FormMode.ForSmallRightAdmin)
             {
@@ -204,7 +190,7 @@ namespace IpsViewComponentLibrary
                 ctrlMusicalDesignList.ShowObjectInfo = true;
                 ctrlMusicalDesignList.AllowShowObjectCommand = true;
 
-                panelStatusees.Visible = !_readOnly;
+                panelStatusees.Visible = !ReadOnly;
             }
             else if (_formMode == FormMode.ForBigRightAdmin)
             {
@@ -219,38 +205,6 @@ namespace IpsViewComponentLibrary
                 ctrlMusicalDesignList.AllowCreateObjectCommand = false;
 
                 panelStatusees.Visible = false;
-            }
-        }
-
-        private void SetControlsReadOnly(Control.ControlCollection controlCollection, bool isReadOnly)
-        {
-            foreach (Control c in controlCollection)
-            {
-                if (c is RadDropDownList ddl)
-                {
-                    ddl.ReadOnly = isReadOnly;
-                }
-                else if (c is RadTextBox txt)
-                {
-                    txt.ReadOnly = isReadOnly;
-                }
-                else if (c is RadDateTimePicker dt)
-                {
-                    dt.ReadOnly = isReadOnly;
-                }
-                else if (c is RadGridView gv)
-                {
-                    gv.ReadOnly = isReadOnly;
-                }
-                else if (c is RadCheckBox cb)
-                {
-                    cb.ReadOnly = isReadOnly;
-                }
-
-                if (c.HasChildren)
-                {
-                    SetControlsReadOnly(c.Controls, isReadOnly);
-                }
             }
         }
 
