@@ -49,6 +49,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             InitializeComponent();
 
+            gvObjectAuthorsRightholders.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvObjectAuthorsRightholders.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+
             InitializeGridFilters();
         }
 

@@ -9,6 +9,7 @@ using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.RightholderControls;
 using System.Linq;
 using Telerik.WinControls.Enumerations;
+using System.Drawing;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -83,6 +84,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public AuthorRightholderBrListControl()
         {
             InitializeComponent();
+
+            gvAuthorRightholderList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvAuthorRightholderList.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             if (!IsDesignMode)
             {

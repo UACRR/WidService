@@ -10,6 +10,8 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Utilities;
+using System.Drawing;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -64,6 +66,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             InitializeComponent();
 
+            gvRightholdersObjectsRights.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+
             ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
         }
 
@@ -108,6 +112,11 @@ namespace IpsViewComponentLibrary.RightholderControls
                 return;
 
             OnEditObjectCommandExecuted(SelectedObject);
+        }
+
+        private void gvRightholdersObjectsRights_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         #endregion

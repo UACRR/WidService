@@ -63,6 +63,8 @@ namespace IpsViewComponentLibrary.RegisterControls
             dtCreateDateFrom.SetUserCalendarSettingsm();
             dtCreateDateTill.SetUserCalendarSettingsm();
 
+            gvRegisterList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+
             if (!IsDesignMode)
             {
                 _registerService = new RegisterService();
