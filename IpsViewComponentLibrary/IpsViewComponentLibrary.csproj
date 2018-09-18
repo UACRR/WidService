@@ -186,6 +186,18 @@
       <DependentUpon>AgentFooterBR.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\Editors\IpsDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Editors\IpsDropDownList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Editors\IpsMaskedEditBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Editors\IpsTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Common\NavigatorPanelControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -56,6 +56,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             InitializeComponent();
 
+            dtCreateDate.SetReadOnly(true);
+
             SetDictionaries();
 
             ctrlRegisterItemList.DataSource = RegisterItemList;
