@@ -43,6 +43,7 @@
             // 
             // panelCommand
             // 
+            this.panelCommand.BackColor = System.Drawing.Color.Silver;
             this.panelCommand.Controls.Add(this.btnCancel);
             this.panelCommand.Controls.Add(this.btnOk);
             this.panelCommand.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -81,8 +82,12 @@
             // 
             // ctrlRightholderList
             // 
+            this.ctrlRightholderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRightholderList.Location = new System.Drawing.Point(0, 2);
             this.ctrlRightholderList.Name = "ctrlRightholderList";
+            this.ctrlRightholderList.SearchText = "";
             this.ctrlRightholderList.SelectedRightholder = null;
             this.ctrlRightholderList.ShowCommandColumns = false;
             this.ctrlRightholderList.Size = new System.Drawing.Size(803, 358);

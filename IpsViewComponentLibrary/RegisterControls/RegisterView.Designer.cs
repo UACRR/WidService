@@ -48,10 +48,12 @@
             this.bsRegister = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.ctrlRegisterItemListStage = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.mebMusicRate = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.lblMusicRate = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.txtPeriodName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -71,8 +73,6 @@
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.ddlAlgorithmId = new Telerik.WinControls.UI.RadDropDownList();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ctrlRegisterItemListStage = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
-            this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gboxStatus)).BeginInit();
@@ -127,9 +127,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(3, 4);
+            this.btnCancel.Location = new System.Drawing.Point(1114, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(175, 24);
             this.btnCancel.TabIndex = 16;
@@ -140,7 +140,7 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSave.Location = new System.Drawing.Point(1114, 4);
+            this.btnSave.Location = new System.Drawing.Point(933, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(175, 24);
             this.btnSave.TabIndex = 17;
@@ -339,6 +339,28 @@
             this.radLabel5.Text = "Постановка";
             this.radLabel5.ThemeName = "Office2013Light";
             // 
+            // ctrlRegisterItemListStage
+            // 
+            this.ctrlRegisterItemListStage.AllowCreateObjectCommand = true;
+            this.ctrlRegisterItemListStage.AllowEditList = false;
+            this.ctrlRegisterItemListStage.AllowFindCommand = true;
+            this.ctrlRegisterItemListStage.AllowLinkCommand = true;
+            this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
+            this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
+            this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemListStage.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
+            this.ctrlRegisterItemListStage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRegisterItemListStage.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemListStage.MultiSelect = false;
+            this.ctrlRegisterItemListStage.Name = "ctrlRegisterItemListStage";
+            this.ctrlRegisterItemListStage.SelectedRegisterItem = null;
+            this.ctrlRegisterItemListStage.ShowAuthors = true;
+            this.ctrlRegisterItemListStage.ShowDurationUse = true;
+            this.ctrlRegisterItemListStage.ShowLinked = true;
+            this.ctrlRegisterItemListStage.ShowObjectInfo = true;
+            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1292, 163);
+            this.ctrlRegisterItemListStage.TabIndex = 0;
+            // 
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.mebMusicRate);
@@ -390,6 +412,28 @@
             this.radLabel4.TabIndex = 2;
             this.radLabel4.Text = "Музичні твори";
             this.radLabel4.ThemeName = "Office2013Light";
+            // 
+            // ctrlRegisterItemList
+            // 
+            this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
+            this.ctrlRegisterItemList.AllowEditList = false;
+            this.ctrlRegisterItemList.AllowFindCommand = true;
+            this.ctrlRegisterItemList.AllowLinkCommand = true;
+            this.ctrlRegisterItemList.AllowShowObjectCommand = true;
+            this.ctrlRegisterItemList.AllowUnlinkCommand = true;
+            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
+            this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemList.MultiSelect = true;
+            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
+            this.ctrlRegisterItemList.SelectedRegisterItem = null;
+            this.ctrlRegisterItemList.ShowAuthors = true;
+            this.ctrlRegisterItemList.ShowDurationUse = true;
+            this.ctrlRegisterItemList.ShowLinked = true;
+            this.ctrlRegisterItemList.ShowObjectInfo = true;
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1292, 265);
+            this.ctrlRegisterItemList.TabIndex = 1;
             // 
             // radGroupBox1
             // 
@@ -593,46 +637,6 @@
             // 
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
-            // 
-            // ctrlRegisterItemListStage
-            // 
-            this.ctrlRegisterItemListStage.AllowCreateObjectCommand = true;
-            this.ctrlRegisterItemListStage.AllowEditList = false;
-            this.ctrlRegisterItemListStage.AllowFindCommand = true;
-            this.ctrlRegisterItemListStage.AllowLinkCommand = true;
-            this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
-            this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
-            this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
-            this.ctrlRegisterItemListStage.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
-            this.ctrlRegisterItemListStage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlRegisterItemListStage.Location = new System.Drawing.Point(0, 0);
-            this.ctrlRegisterItemListStage.MultiSelect = false;
-            this.ctrlRegisterItemListStage.Name = "ctrlRegisterItemListStage";
-            this.ctrlRegisterItemListStage.SelectedRegisterItem = null;
-            this.ctrlRegisterItemListStage.ShowAuthors = true;
-            this.ctrlRegisterItemListStage.ShowObjectInfo = true;
-            this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1292, 163);
-            this.ctrlRegisterItemListStage.TabIndex = 0;
-            // 
-            // ctrlRegisterItemList
-            // 
-            this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
-            this.ctrlRegisterItemList.AllowEditList = false;
-            this.ctrlRegisterItemList.AllowFindCommand = true;
-            this.ctrlRegisterItemList.AllowLinkCommand = true;
-            this.ctrlRegisterItemList.AllowShowObjectCommand = true;
-            this.ctrlRegisterItemList.AllowUnlinkCommand = true;
-            this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
-            this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
-            this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
-            this.ctrlRegisterItemList.MultiSelect = true;
-            this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
-            this.ctrlRegisterItemList.SelectedRegisterItem = null;
-            this.ctrlRegisterItemList.ShowAuthors = true;
-            this.ctrlRegisterItemList.ShowObjectInfo = true;
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(1292, 265);
-            this.ctrlRegisterItemList.TabIndex = 1;
             // 
             // RegisterView
             // 
