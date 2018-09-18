@@ -39,11 +39,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void Run(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
         {
-            //_view.RightholderList = rightholderList;
-            //_view.ObjectRight = objectRight;
-
             _view.SetDictionaries(_dictionaries, objectRight.CategoryCode);
             SetObjectRigth(objectRight, rightholderList);
+
+            var header = objectRight.ObjId == 0 ? "(Новий)" : objectRight.Name;
+            _view.SetHeader(header);
+
             _view.Run();
         }
 

@@ -39,6 +39,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             SetObjectRightData(objectContainer.objectRight, objectContainer.rhList);
 
+            var header = objectContainer.objectRight.ObjId == 0 ? "(Новий)" : objectContainer.objectRight.Name;
+            _view.SetHeader(header);
+
             _view.Run();
         }
 

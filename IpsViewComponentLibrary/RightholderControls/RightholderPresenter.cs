@@ -18,6 +18,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private readonly DialogService _dialogService;
         private Customer _customer;
         private AgreementAddRh _agreementAddRh;
+        private AnketaPerson _anketaPerson;
         private bool _canClose;
 
         public RightholderPresenter(IRightholderView view)
@@ -33,6 +34,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _customer = _rightholderService.NewCustomer(customerType);
             SetViewData();
+            _view.SetHeader("(Новий)");
             _view.Run();
         }
 
@@ -40,13 +42,15 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _customer = _rightholderService.GetData(custId);
             SetViewData();
+            _view.SetHeader(String.Format("{0} {1} {2}", _anketaPerson.LastName, _anketaPerson.FirstName, _anketaPerson.SurName));
             _view.Run();
         }
 
         private void SetViewData()
         {
             _view.CustomerDataSource = _customer;
-            _view.AnketaPersonDataSource = _customer.Person.AnketaPerson;
+            _anketaPerson = _customer.Person.AnketaPerson.FirstOrDefault();
+            _view.AnketaPersonDataSource = _anketaPerson;
             _agreementAddRh = _customer.AgreementMaster.FirstOrDefault()?.AgreementAddRh?.FirstOrDefault();
             _view.AgreementAddRhDataSource = _agreementAddRh;
             _view.RightholderDataSource = _customer.RightHolder;
