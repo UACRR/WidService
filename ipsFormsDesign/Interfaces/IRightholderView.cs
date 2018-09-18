@@ -13,5 +13,6 @@
 
         void Run();
         void Hide();
+        void SetHeader(string header);
     }
 }

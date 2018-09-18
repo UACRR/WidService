@@ -93,6 +93,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        public void SetHeader(string header)
+        {
+            Text = header + " - Анкета правовласника";
+        }
+
         private void mainPageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
         {
             // TODO: move to presenter

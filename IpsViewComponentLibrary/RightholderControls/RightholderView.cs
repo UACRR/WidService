@@ -92,6 +92,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        public void SetHeader(string header)
+        {
+            Text = header + " - Анкета правовласника";
+        }
+
         private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
         {
             // TODO: move to presenter

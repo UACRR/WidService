@@ -156,7 +156,7 @@
             this.mainPageView.DefaultPage = this.rightholderPage;
             this.mainPageView.Location = new System.Drawing.Point(1, 1);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.agreementPage;
+            this.mainPageView.SelectedPage = this.rightholderPage;
             this.mainPageView.Size = new System.Drawing.Size(995, 437);
             this.mainPageView.TabIndex = 2;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -773,7 +773,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Анкета правовласника";
+            this.Text = "(Новий) - Анкета правовласника";
             this.ThemeName = "Office2013Light";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewRightholderView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).EndInit();
