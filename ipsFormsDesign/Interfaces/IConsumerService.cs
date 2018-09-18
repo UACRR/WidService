@@ -369,6 +369,20 @@ namespace ipsFormsDesign.Interfaces
         public string NameSinger { get; set; }
     }
 
+    public class PartnerView
+    {
+        public DateTime? AgrDate { get; set; }
+        public int? CustId { get; set; }
+        public int AgrId { get; set; }
+        public int? AgrStatus { get; set; }
+        public int? ClnCount { get; set; }
+        public int? AgrCount { get; set; }
+        public string INNOKPO { get; set; }
+        public string Name { get; set; }
+        public string AgrNumber { get; set; }
+        public string JaCity { get; set; }
+        public string StatusName { get; set; }
+    }
 
     #region класи для створення ієрархії
 

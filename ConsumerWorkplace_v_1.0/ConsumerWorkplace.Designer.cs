@@ -44,10 +44,10 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage7 = new Telerik.WinControls.UI.RadPageViewPage();
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pageViewOwner = new Telerik.WinControls.UI.RadPageView();
-            this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvConsumers = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvPartners = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage5 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage6 = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
@@ -66,6 +66,7 @@ namespace ConsumerWorkplace_v_1._0
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlPartner = new IpsViewComponentLibrary.PartnerControls.PartnerControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pageBigRights.SuspendLayout();
@@ -75,7 +76,8 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).BeginInit();
             this.pageViewOwner.SuspendLayout();
-            this.radPageViewPage1.SuspendLayout();
+            this.pvConsumers.SuspendLayout();
+            this.pvPartners.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).BeginInit();
@@ -194,32 +196,33 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // pageViewOwner
             // 
-            this.pageViewOwner.Controls.Add(this.radPageViewPage1);
+            this.pageViewOwner.Controls.Add(this.pvConsumers);
             this.pageViewOwner.Controls.Add(this.radPageViewPage2);
             this.pageViewOwner.Controls.Add(this.radPageViewPage3);
-            this.pageViewOwner.Controls.Add(this.radPageViewPage4);
+            this.pageViewOwner.Controls.Add(this.pvPartners);
             this.pageViewOwner.Controls.Add(this.radPageViewPage5);
             this.pageViewOwner.Controls.Add(this.radPageViewPage6);
-            this.pageViewOwner.DefaultPage = this.radPageViewPage1;
+            this.pageViewOwner.DefaultPage = this.pvConsumers;
             this.pageViewOwner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewOwner.Location = new System.Drawing.Point(0, 0);
             this.pageViewOwner.Name = "pageViewOwner";
-            this.pageViewOwner.SelectedPage = this.radPageViewPage1;
+            this.pageViewOwner.SelectedPage = this.pvConsumers;
             this.pageViewOwner.Size = new System.Drawing.Size(1276, 637);
             this.pageViewOwner.TabIndex = 1;
             this.pageViewOwner.ThemeName = "Office2013Light";
+            this.pageViewOwner.SelectedPageChanged += new System.EventHandler(this.pageViewOwner_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewOwner.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewOwner.GetChildAt(0))).ShowItemCloseButton = false;
             ((Telerik.WinControls.UI.StripViewItemLayout)(this.pageViewOwner.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
             // 
-            // radPageViewPage1
+            // pvConsumers
             // 
-            this.radPageViewPage1.Controls.Add(this.pageParentConsumers);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(76F, 27F);
-            this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1266, 601);
-            this.radPageViewPage1.Text = "Споживачі";
+            this.pvConsumers.Controls.Add(this.pageParentConsumers);
+            this.pvConsumers.ItemSize = new System.Drawing.SizeF(76F, 27F);
+            this.pvConsumers.Location = new System.Drawing.Point(5, 31);
+            this.pvConsumers.Name = "pvConsumers";
+            this.pvConsumers.Size = new System.Drawing.Size(1266, 601);
+            this.pvConsumers.Text = "Споживачі";
             // 
             // radPageViewPage2
             // 
@@ -239,13 +242,14 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage3.Size = new System.Drawing.Size(1266, 601);
             this.radPageViewPage3.Text = "Об\'єкти права";
             // 
-            // radPageViewPage4
+            // pvPartners
             // 
-            this.radPageViewPage4.ItemSize = new System.Drawing.SizeF(95F, 27F);
-            this.radPageViewPage4.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage4.Name = "radPageViewPage4";
-            this.radPageViewPage4.Size = new System.Drawing.Size(1266, 601);
-            this.radPageViewPage4.Text = "Представники";
+            this.pvPartners.Controls.Add(this.ctrlPartner);
+            this.pvPartners.ItemSize = new System.Drawing.SizeF(95F, 27F);
+            this.pvPartners.Location = new System.Drawing.Point(5, 31);
+            this.pvPartners.Name = "pvPartners";
+            this.pvPartners.Size = new System.Drawing.Size(1266, 601);
+            this.pvPartners.Text = "Представники";
             // 
             // radPageViewPage5
             // 
@@ -325,6 +329,14 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
             // 
+            // ctrlPartner
+            // 
+            this.ctrlPartner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPartner.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPartner.Name = "ctrlPartner";
+            this.ctrlPartner.Size = new System.Drawing.Size(1266, 601);
+            this.ctrlPartner.TabIndex = 0;
+            // 
             // ConsumerWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,7 +362,8 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.iConsumerMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).EndInit();
             this.pageViewOwner.ResumeLayout(false);
-            this.radPageViewPage1.ResumeLayout(false);
+            this.pvConsumers.ResumeLayout(false);
+            this.pvPartners.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).EndInit();
@@ -395,10 +408,10 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadTreeView treeViewSR;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage7;
         private Telerik.WinControls.UI.RadPageView pageViewOwner;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
+        private Telerik.WinControls.UI.RadPageViewPage pvConsumers;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage4;
+        private Telerik.WinControls.UI.RadPageViewPage pvPartners;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage5;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage6;
         private System.Windows.Forms.BindingSource licenseAgrParamBindingSource;
@@ -406,5 +419,6 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadTreeView treeViewBR;
         private IpsViewComponentLibrary.GlobalControlConsumerMainGrid mainGridSmallRight;
         private IpsViewComponentLibrary.GlobalControlConsumerMainGridBR mainGridBigRight;
+        private IpsViewComponentLibrary.PartnerControls.PartnerControl ctrlPartner;
     }
 }

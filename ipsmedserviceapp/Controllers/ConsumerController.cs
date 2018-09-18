@@ -753,7 +753,10 @@ namespace ipsmedserviceapp.Controllers
             {"vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay"},
             {"vTSK_1_BRObjects", "vTSK_1_BRObjects"},
             {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"},
-            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"}
+            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"},
+            {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
+            {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
+
         };
 
 
@@ -1906,6 +1909,28 @@ where t1.custId = @custId
             var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec=>rec.CustId == partnerId.CustId);
             return Json(anketaPerson);
         }
+
+        //[HttpGet("BR/view/list")]
+        //public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
+        //{
+        //    if (viewName == null || !listBrView.Keys.Contains(viewName))
+        //        return BadRequest();
+
+        //    string QueryStr = string.Concat("select * from ", listBrView[viewName]);
+        //    // Немає параметру по Споживачу
+        //    if (custId == null)
+        //    {
+        //        var list = await _dbContext.getViewData(QueryStr, null);
+        //        return Json(list);
+        //    }
+        //    else
+        //    {
+        //        QueryStr = string.Concat(QueryStr, " where custId = @custId");
+        //        var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId) });
+        //        return Json(list);
+
+        //    }
+        //}
 
     } // public class ConsumerController : Controller
 

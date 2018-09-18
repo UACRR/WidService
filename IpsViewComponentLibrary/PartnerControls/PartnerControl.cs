@@ -7,14 +7,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class PartnerControl : UserControl
     {
+        public delegate List<T> ReturnViewEventHandler<T>();
+        public event ReturnViewEventHandler<PartnerView> GetPartnersView;
+
         public PartnerControl()
         {
             InitializeComponent();
+            InitTemplate();
+        }
+
+        public void LoadData()
+        {
+            treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
+            treeView.SelectedNode = treeView.Nodes[0];
+
+        }
+
+        private void InitTemplate()
+        {
+            RadTreeNode[] list = 
+            {
+                new RadTreeNode {Text = "Всі", Value = PartnerFilter.All},
+                new RadTreeNode {Text = "Активні", Value = PartnerFilter.Active},
+                new RadTreeNode {Text = "На акцепті", Value = PartnerFilter.OnAccept},
+                new RadTreeNode {Text = "Не підтверджені", Value = PartnerFilter.NotAccept}
+            };
+
+            foreach (var item in list)
+                treeView.Nodes.Add(item);   
+        }
+
+        private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        {
+            var partnerList = GetPartnersView?.Invoke();
+            if (partnerList == null) return;
+
+            switch (e.Node.Value is PartnerFilter @enum ? @enum : PartnerFilter.None)
+            {
+                case PartnerFilter.None:
+                    break;
+                case PartnerFilter.All:
+                    gvViewPartners.DataSource = partnerList;
+                    break;
+                case PartnerFilter.Active:
+                    gvViewPartners.DataSource = partnerList.Where(rec => rec.AgrStatus == 2);
+                    break;
+                case PartnerFilter.OnAccept:
+                    gvViewPartners.DataSource = partnerList.Where(rec => rec.AgrStatus == 1);
+                    break;
+                case PartnerFilter.NotAccept:
+                    gvViewPartners.DataSource = partnerList.Where(rec => rec.AgrStatus == 0);
+                    break;
+            }
         }
 
         private void btnNewPartnerJur_Click(object sender, EventArgs e)
@@ -26,6 +78,8 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
 
         }
+
+
 
         #region ФІЛЬТРАЦІЯ (пошук)
 
@@ -74,5 +128,29 @@ namespace IpsViewComponentLibrary.PartnerControls
         }
 
         #endregion
+    }
+
+    public enum PartnerFilter
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Всі
+        /// </summary>
+        All,
+        /// <summary>
+        /// Активні
+        /// </summary>
+        Active,
+        /// <summary>
+        /// На акцепті
+        /// </summary>
+        OnAccept,
+        /// <summary>
+        /// Не підтверджені
+        /// </summary>
+        NotAccept
     }
 }

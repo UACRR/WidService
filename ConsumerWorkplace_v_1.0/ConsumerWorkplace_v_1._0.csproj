@@ -172,6 +172,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presenters\PartnerPresenter.cs" />
     <Compile Include="Trash\ConsumerCabinet.cs">
       <SubType>Form</SubType>
     </Compile>
