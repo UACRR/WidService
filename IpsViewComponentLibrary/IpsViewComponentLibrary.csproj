@@ -266,6 +266,18 @@
     <Compile Include="ConsumerForms\CabinetSmallRightForm.Designer.cs">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerForms\PartnerPhisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\PartnerPhisForm.Designer.cs">
+      <DependentUpon>PartnerPhisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\PartnerJurForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\PartnerJurForm.Designer.cs">
+      <DependentUpon>PartnerJurForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LicenseAgreementListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -277,6 +289,12 @@
     </Compile>
     <Compile Include="PartnerControls\PartnerControl.Designer.cs">
       <DependentUpon>PartnerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerNameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerNameControl.Designer.cs">
+      <DependentUpon>PartnerNameControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterControls\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
@@ -869,6 +887,12 @@
     <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\PartnerPhisForm.resx">
+      <DependentUpon>PartnerPhisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\PartnerJurForm.resx">
+      <DependentUpon>PartnerJurForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LicenseAgreementListControl.resx">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -892,6 +916,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
       <DependentUpon>PartnerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerNameControl.resx">
+      <DependentUpon>PartnerNameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
