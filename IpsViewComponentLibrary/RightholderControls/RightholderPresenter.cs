@@ -18,7 +18,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         private readonly DialogService _dialogService;
         private Customer _customer;
         private AgreementAddRh _agreementAddRh;
-        private bool _saved;
+        private AnketaPerson _anketaPerson;
+        private bool _canClose;
 
         public RightholderPresenter(IRightholderView view)
         {
@@ -33,6 +34,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _customer = _rightholderService.NewCustomer(customerType);
             SetViewData();
+            _view.SetHeader("(Новий)");
             _view.Run();
         }
 
@@ -40,13 +42,15 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _customer = _rightholderService.GetData(custId);
             SetViewData();
+            _view.SetHeader(String.Format("{0} {1} {2}", _anketaPerson.LastName, _anketaPerson.FirstName, _anketaPerson.SurName));
             _view.Run();
         }
 
         private void SetViewData()
         {
             _view.CustomerDataSource = _customer;
-            _view.AnketaPersonDataSource = _customer.Person.AnketaPerson;
+            _anketaPerson = _customer.Person.AnketaPerson.FirstOrDefault();
+            _view.AnketaPersonDataSource = _anketaPerson;
             _agreementAddRh = _customer.AgreementMaster.FirstOrDefault()?.AgreementAddRh?.FirstOrDefault();
             _view.AgreementAddRhDataSource = _agreementAddRh;
             _view.RightholderDataSource = _customer.RightHolder;
@@ -69,13 +73,17 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (_customer == null)
                 return;
 
-            if (!_view.IsValid)
-            {
-                _dialogService.ShowError((IWin32Window)_view, "Не корректно введені дані.");
-                return;
-            }
+            // TODO: fix it. temporarily disable validation on saving rightholder.
+            // the controls doesn't update data until the controls are made visible.
+            // so if control is situated on invisible tabs, the text property = ""
+            // and _view.IsValid returns a false, though it is valid.
+            //if (!_view.IsValid)
+            //{
+            //    _dialogService.ShowError((IWin32Window)_view, "Не корректно введені дані.");
+            //    return;
+            //}
 
-            _saved = true;
+            _canClose = true;
 
             if (accept)
                 _customer.Status = 2; // Активний
@@ -93,10 +101,11 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void Close()
         {
-            if (!_saved && !_dialogService.ClosingIsConfirmed((IWin32Window)_view))
-                return;
-
-            _view.Hide();
+            if (!_canClose)
+                _canClose = _dialogService.ClosingIsConfirmed((IWin32Window)_view);
+            
+            if (_canClose)
+                _view.Hide();
         }
     }
 }

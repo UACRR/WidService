@@ -92,6 +92,7 @@
             // 
             // panelCommand
             // 
+            this.panelCommand.BackColor = System.Drawing.Color.Silver;
             this.panelCommand.Controls.Add(this.btnCancel);
             this.panelCommand.Controls.Add(this.btnSave);
             this.panelCommand.Dock = System.Windows.Forms.DockStyle.Bottom;

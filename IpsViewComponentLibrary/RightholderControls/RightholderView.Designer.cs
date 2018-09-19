@@ -94,7 +94,7 @@
             this.btnSetStatusClosed = new Telerik.WinControls.UI.RadButton();
             this.btnSetStatusInheritance = new Telerik.WinControls.UI.RadButton();
             this.btnSetAgreementRightholderStatus = new Telerik.WinControls.UI.RadButton();
-            this.ddlAgreementStatus = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlAgreementStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
@@ -846,7 +846,6 @@
             this.ddlAgreementStatus.Size = new System.Drawing.Size(175, 21);
             this.ddlAgreementStatus.TabIndex = 27;
             this.ddlAgreementStatus.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadDropDownListArrowButtonElement)(this.ddlAgreementStatus.GetChildAt(0).GetChildAt(2).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // radLabel3
             // 
@@ -1058,7 +1057,7 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage4;
         private Telerik.WinControls.UI.RadPageView agreementPageView;
         private Telerik.WinControls.UI.RadPageViewPage agreementPage;
-        private Telerik.WinControls.UI.RadDropDownList ddlAgreementStatus;
+        private IpsViewComponentLibrary.Common.Editors.IpsDropDownList ddlAgreementStatus;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadGroupBox gboxRightholderStatus;
         private Telerik.WinControls.UI.RadButton btnSetStatusInheritance;

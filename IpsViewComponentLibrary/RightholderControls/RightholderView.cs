@@ -92,6 +92,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        public void SetHeader(string header)
+        {
+            Text = header + " - Анкета правовласника";
+        }
+
         private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
         {
             // TODO: move to presenter
@@ -154,6 +159,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void miAcceptAndSave_Click(object sender, EventArgs e)
         {
+            _presenter.SetAgreementRightholderStatus(AgreementStatuses.Active);
             _presenter.Save(accept: true);
         }
 
@@ -196,9 +202,9 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             if (bsAgreementAddRh.Current != null)
             {
-                var rightholderStatus = (AgreementStatuses)((AgreementAddRh)bsAgreementAddRh.Current).AgrStatus;
+                var agreementStatus = (AgreementStatuses)((AgreementAddRh)bsAgreementAddRh.Current).AgrStatus;
 
-                if (rightholderStatus == AgreementStatuses.Active)
+                if (agreementStatus == AgreementStatuses.Active)
                 {
                     gboxRightholderStatus.Enabled = true;
                     btnSetStatusInheritance.Enabled = true;
@@ -207,13 +213,22 @@ namespace IpsViewComponentLibrary.RightholderControls
                     btnSetAgreementRightholderStatus.Text = "Заблокувати";
                     btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Blocked;
                 }
-                else if (rightholderStatus == AgreementStatuses.Blocked)
+                else if (agreementStatus == AgreementStatuses.Blocked)
                 {
                     gboxRightholderStatus.Enabled = true;
                     btnSetStatusInheritance.Enabled = false;
                     btnSetStatusClosed.Enabled = false;
 
                     btnSetAgreementRightholderStatus.Text = "Розблокувати";
+                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
+                }
+                else if (agreementStatus == AgreementStatuses.NotAccepted || agreementStatus == AgreementStatuses.OnAcception)
+                {
+                    gboxRightholderStatus.Enabled = true;
+                    btnSetStatusInheritance.Enabled = false;
+                    btnSetStatusClosed.Enabled = false;
+
+                    btnSetAgreementRightholderStatus.Text = "Активний";
                     btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
                 }
                 else
