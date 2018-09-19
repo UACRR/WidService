@@ -108,6 +108,7 @@ namespace IpsViewComponentLibrary
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAuthors.SuspendLayout();
@@ -172,10 +173,10 @@ namespace IpsViewComponentLibrary
             this.pageView.Controls.Add(this.pvConditions);
             this.pageView.Controls.Add(this.pvMusicalArrangement);
             this.pageView.DefaultPage = this.pvAuthors;
-            this.pageView.Location = new System.Drawing.Point(0, 224);
+            this.pageView.Location = new System.Drawing.Point(0, 384);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvMusicalArrangement;
-            this.pageView.Size = new System.Drawing.Size(1217, 333);
+            this.pageView.SelectedPage = this.pvAuthors;
+            this.pageView.Size = new System.Drawing.Size(1217, 254);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
             this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
@@ -187,9 +188,9 @@ namespace IpsViewComponentLibrary
             // 
             this.pvAuthors.Controls.Add(this.ctrlAuthorRightholderList);
             this.pvAuthors.ItemSize = new System.Drawing.SizeF(56F, 27F);
-            this.pvAuthors.Location = new System.Drawing.Point(145, 5);
+            this.pvAuthors.Location = new System.Drawing.Point(5, 31);
             this.pvAuthors.Name = "pvAuthors";
-            this.pvAuthors.Size = new System.Drawing.Size(1067, 338);
+            this.pvAuthors.Size = new System.Drawing.Size(1207, 218);
             this.pvAuthors.Text = "Автори";
             // 
             // ctrlAuthorRightholderList
@@ -203,7 +204,7 @@ namespace IpsViewComponentLibrary
             this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(4, 12);
             this.ctrlAuthorRightholderList.Name = "ctrlAuthorRightholderList";
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
-            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1059, 284);
+            this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1199, 164);
             this.ctrlAuthorRightholderList.TabIndex = 2;
             // 
             // pvConditions
@@ -211,9 +212,9 @@ namespace IpsViewComponentLibrary
             this.pvConditions.Controls.Add(this.radLabel2);
             this.pvConditions.Controls.Add(this.radPanel1);
             this.pvConditions.ItemSize = new System.Drawing.SizeF(51F, 27F);
-            this.pvConditions.Location = new System.Drawing.Point(145, 5);
+            this.pvConditions.Location = new System.Drawing.Point(5, 31);
             this.pvConditions.Name = "pvConditions";
-            this.pvConditions.Size = new System.Drawing.Size(1067, 338);
+            this.pvConditions.Size = new System.Drawing.Size(1207, 218);
             this.pvConditions.Text = "Умови";
             // 
             // radLabel2
@@ -467,7 +468,7 @@ namespace IpsViewComponentLibrary
             this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(141F, 27F);
             this.pvMusicalArrangement.Location = new System.Drawing.Point(5, 31);
             this.pvMusicalArrangement.Name = "pvMusicalArrangement";
-            this.pvMusicalArrangement.Size = new System.Drawing.Size(1207, 297);
+            this.pvMusicalArrangement.Size = new System.Drawing.Size(1207, 218);
             this.pvMusicalArrangement.Text = "Музичне оформлення";
             // 
             // radSeparator1
@@ -519,7 +520,7 @@ namespace IpsViewComponentLibrary
             this.ctrlMusicalDesignList.ShowDurationUse = true;
             this.ctrlMusicalDesignList.ShowLinked = true;
             this.ctrlMusicalDesignList.ShowObjectInfo = true;
-            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1204, 209);
+            this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1204, 130);
             this.ctrlMusicalDesignList.TabIndex = 30;
             // 
             // bsWorkRh
@@ -528,16 +529,17 @@ namespace IpsViewComponentLibrary
             // 
             // panelStatusees
             // 
+            this.panelStatusees.BackColor = System.Drawing.Color.Transparent;
             this.panelStatusees.Controls.Add(this.btnSetCenceledStatus);
             this.panelStatusees.Controls.Add(this.btnSetActiveStatus);
-            this.panelStatusees.Location = new System.Drawing.Point(160, 563);
+            this.panelStatusees.Location = new System.Drawing.Point(3, 3);
             this.panelStatusees.Name = "panelStatusees";
-            this.panelStatusees.Size = new System.Drawing.Size(289, 36);
+            this.panelStatusees.Size = new System.Drawing.Size(289, 26);
             this.panelStatusees.TabIndex = 35;
             // 
             // btnSetCenceledStatus
             // 
-            this.btnSetCenceledStatus.Location = new System.Drawing.Point(171, 5);
+            this.btnSetCenceledStatus.Location = new System.Drawing.Point(171, 1);
             this.btnSetCenceledStatus.Name = "btnSetCenceledStatus";
             this.btnSetCenceledStatus.Size = new System.Drawing.Size(110, 24);
             this.btnSetCenceledStatus.TabIndex = 1;
@@ -547,7 +549,7 @@ namespace IpsViewComponentLibrary
             // 
             // btnSetActiveStatus
             // 
-            this.btnSetActiveStatus.Location = new System.Drawing.Point(4, 5);
+            this.btnSetActiveStatus.Location = new System.Drawing.Point(4, 1);
             this.btnSetActiveStatus.Name = "btnSetActiveStatus";
             this.btnSetActiveStatus.Size = new System.Drawing.Size(161, 24);
             this.btnSetActiveStatus.TabIndex = 0;
@@ -567,7 +569,7 @@ namespace IpsViewComponentLibrary
             // 
             this.dtDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicAgrParam, "LicDate", true));
             this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDate.Location = new System.Drawing.Point(330, 6);
+            this.dtDate.Location = new System.Drawing.Point(359, 10);
             this.dtDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.dtDate.Name = "dtDate";
             this.dtDate.NullText = "Оберіть дату";
@@ -584,7 +586,7 @@ namespace IpsViewComponentLibrary
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(302, 8);
+            this.label2.Location = new System.Drawing.Point(331, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(22, 15);
             this.label2.TabIndex = 15;
@@ -593,7 +595,7 @@ namespace IpsViewComponentLibrary
             // txtLicNum
             // 
             this.txtLicNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicAgrParam, "LicNum", true));
-            this.txtLicNum.Location = new System.Drawing.Point(79, 6);
+            this.txtLicNum.Location = new System.Drawing.Point(119, 10);
             this.txtLicNum.Name = "txtLicNum";
             this.txtLicNum.Size = new System.Drawing.Size(206, 21);
             this.txtLicNum.TabIndex = 14;
@@ -602,7 +604,7 @@ namespace IpsViewComponentLibrary
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 8);
+            this.label1.Location = new System.Drawing.Point(54, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 15);
             this.label1.TabIndex = 13;
@@ -610,7 +612,7 @@ namespace IpsViewComponentLibrary
             // 
             // lblClientTitle
             // 
-            this.lblClientTitle.Location = new System.Drawing.Point(688, -1);
+            this.lblClientTitle.Location = new System.Drawing.Point(546, 37);
             this.lblClientTitle.Name = "lblClientTitle";
             this.lblClientTitle.Size = new System.Drawing.Size(38, 18);
             this.lblClientTitle.TabIndex = 12;
@@ -624,7 +626,7 @@ namespace IpsViewComponentLibrary
             this.panelClient.Controls.Add(this.cAdress);
             this.panelClient.Controls.Add(this.cInnokpo);
             this.panelClient.Controls.Add(this.cClientName);
-            this.panelClient.Location = new System.Drawing.Point(673, 8);
+            this.panelClient.Location = new System.Drawing.Point(531, 46);
             this.panelClient.MinimumSize = new System.Drawing.Size(661, 105);
             this.panelClient.Name = "panelClient";
             // 
@@ -632,7 +634,7 @@ namespace IpsViewComponentLibrary
             // 
             this.panelClient.RootElement.MaxSize = new System.Drawing.Size(0, 0);
             this.panelClient.RootElement.MinSize = new System.Drawing.Size(661, 105);
-            this.panelClient.Size = new System.Drawing.Size(661, 105);
+            this.panelClient.Size = new System.Drawing.Size(661, 233);
             this.panelClient.TabIndex = 11;
             this.panelClient.ThemeName = "Office2013Light";
             // 
@@ -761,6 +763,7 @@ namespace IpsViewComponentLibrary
             this.panelInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelInfo.Controls.Add(this.label18);
             this.panelInfo.Controls.Add(this.label8);
             this.panelInfo.Controls.Add(this.ddlLang);
             this.panelInfo.Controls.Add(this.label7);
@@ -781,14 +784,14 @@ namespace IpsViewComponentLibrary
             // 
             this.panelInfo.RootElement.MaxSize = new System.Drawing.Size(0, 0);
             this.panelInfo.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.panelInfo.Size = new System.Drawing.Size(662, 105);
+            this.panelInfo.Size = new System.Drawing.Size(520, 151);
             this.panelInfo.TabIndex = 17;
             this.panelInfo.ThemeName = "Office2013Light";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(415, 75);
+            this.label8.Location = new System.Drawing.Point(9, 97);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(99, 15);
             this.label8.TabIndex = 27;
@@ -799,7 +802,7 @@ namespace IpsViewComponentLibrary
             this.ddlLang.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "LangCode", true));
             this.ddlLang.DataSource = this.bsDictLanguage;
             this.ddlLang.DisplayMember = "Name";
-            this.ddlLang.Location = new System.Drawing.Point(520, 74);
+            this.ddlLang.Location = new System.Drawing.Point(114, 96);
             this.ddlLang.Name = "ddlLang";
             this.ddlLang.Size = new System.Drawing.Size(138, 21);
             this.ddlLang.TabIndex = 26;
@@ -814,7 +817,7 @@ namespace IpsViewComponentLibrary
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(155, 75);
+            this.label7.Location = new System.Drawing.Point(170, 125);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(199, 15);
             this.label7.TabIndex = 24;
@@ -823,7 +826,7 @@ namespace IpsViewComponentLibrary
             // txtVinagoroda
             // 
             this.txtVinagoroda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "Rate", true));
-            this.txtVinagoroda.Location = new System.Drawing.Point(360, 73);
+            this.txtVinagoroda.Location = new System.Drawing.Point(375, 123);
             this.txtVinagoroda.Name = "txtVinagoroda";
             this.txtVinagoroda.ReadOnly = true;
             this.txtVinagoroda.Size = new System.Drawing.Size(49, 21);
@@ -833,7 +836,7 @@ namespace IpsViewComponentLibrary
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 75);
+            this.label6.Location = new System.Drawing.Point(9, 125);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(85, 15);
             this.label6.TabIndex = 22;
@@ -842,7 +845,7 @@ namespace IpsViewComponentLibrary
             // txtActCode
             // 
             this.txtActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "ActCode", true));
-            this.txtActCode.Location = new System.Drawing.Point(100, 73);
+            this.txtActCode.Location = new System.Drawing.Point(114, 123);
             this.txtActCode.MaxLength = 1;
             this.txtActCode.Name = "txtActCode";
             this.txtActCode.Size = new System.Drawing.Size(49, 21);
@@ -859,7 +862,7 @@ namespace IpsViewComponentLibrary
             this.ddlPerformType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "PerformType", true));
             this.ddlPerformType.DataSource = this.bsDictPerformType;
             this.ddlPerformType.DisplayMember = "Name";
-            this.ddlPerformType.Location = new System.Drawing.Point(435, 46);
+            this.ddlPerformType.Location = new System.Drawing.Point(375, 96);
             this.ddlPerformType.Name = "ddlPerformType";
             this.ddlPerformType.Size = new System.Drawing.Size(136, 21);
             this.ddlPerformType.TabIndex = 21;
@@ -874,7 +877,7 @@ namespace IpsViewComponentLibrary
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 47);
+            this.label5.Location = new System.Drawing.Point(9, 70);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 15);
             this.label5.TabIndex = 20;
@@ -885,9 +888,9 @@ namespace IpsViewComponentLibrary
             this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectRight, "GenreType", true));
             this.ddlGenreType.DataSource = this.bsDictGenreType;
             this.ddlGenreType.DisplayMember = "Name";
-            this.ddlGenreType.Location = new System.Drawing.Point(75, 46);
+            this.ddlGenreType.Location = new System.Drawing.Point(114, 69);
             this.ddlGenreType.Name = "ddlGenreType";
-            this.ddlGenreType.Size = new System.Drawing.Size(354, 21);
+            this.ddlGenreType.Size = new System.Drawing.Size(397, 21);
             this.ddlGenreType.TabIndex = 19;
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
@@ -901,7 +904,7 @@ namespace IpsViewComponentLibrary
             // 
             this.dtPremiereDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicenseBigR, "DatePremiere", true));
             this.dtPremiereDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtPremiereDate.Location = new System.Drawing.Point(540, 15);
+            this.dtPremiereDate.Location = new System.Drawing.Point(114, 42);
             this.dtPremiereDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.dtPremiereDate.Name = "dtPremiereDate";
             this.dtPremiereDate.NullText = "Оберіть дату";
@@ -914,7 +917,7 @@ namespace IpsViewComponentLibrary
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(447, 17);
+            this.label4.Location = new System.Drawing.Point(9, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 15);
             this.label4.TabIndex = 17;
@@ -932,9 +935,9 @@ namespace IpsViewComponentLibrary
             // txtName
             // 
             this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "Name", true));
-            this.txtName.Location = new System.Drawing.Point(100, 15);
+            this.txtName.Location = new System.Drawing.Point(114, 15);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(344, 21);
+            this.txtName.Size = new System.Drawing.Size(397, 21);
             this.txtName.TabIndex = 16;
             this.txtName.ThemeName = "Office2013Light";
             // 
@@ -943,6 +946,7 @@ namespace IpsViewComponentLibrary
             this.radPanel2.BackColor = System.Drawing.Color.Silver;
             this.radPanel2.Controls.Add(this.btnCancel);
             this.radPanel2.Controls.Add(this.btnSave);
+            this.radPanel2.Controls.Add(this.panelStatusees);
             this.radPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radPanel2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.radPanel2.Location = new System.Drawing.Point(0, 646);
@@ -975,6 +979,15 @@ namespace IpsViewComponentLibrary
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(280, 97);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(89, 15);
+            this.label18.TabIndex = 28;
+            this.label18.Text = "Вид виконання";
+            // 
             // RequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -988,7 +1001,6 @@ namespace IpsViewComponentLibrary
             this.Controls.Add(this.txtLicNum);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblClientTitle);
-            this.Controls.Add(this.panelStatusees);
             this.Controls.Add(this.panelClient);
             this.Controls.Add(this.pageView);
             this.Name = "RequestForm";
@@ -1144,5 +1156,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadPanel radPanel2;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadButton btnSave;
+        private Label label18;
     }
 }
