@@ -25,6 +25,7 @@ namespace ConsumerWorkplace_v_1._0
     {
         private SmallRightPresenter _smallRightPresenter;// main presenter for small right
         private BigRightPresenter _bigRightPresenter;    // main presenter for big right
+        private PartnerPresenter _partnerPresenter;      // main presenter for partner
         private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
 
         public event Func<bool> Save;
@@ -221,11 +222,13 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewBR.Nodes.Add(item);
                     
                     _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
-                    treeViewBR.SelectedNode = treeViewBR.Nodes["Ген.Угода"];
+                    treeViewBR.SelectedNode = treeViewBR.Nodes[0];
 
                     }
                     break;
             }
+
+            _partnerPresenter = new PartnerPresenter(_consumerMainService, ctrlPartner);
         }
         
         Customer _cust = null;
@@ -261,6 +264,14 @@ namespace ConsumerWorkplace_v_1._0
             {
                 var list = getMainViewData();
                 consumerMainViewBindingSource.DataSource = list;
+            }
+        }
+
+        private void pageViewOwner_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (pageViewOwner.SelectedPage == pvPartners)
+            {
+                // TODO: maybe need update -> ctrlPartner.LoadData();
             }
         }
     }

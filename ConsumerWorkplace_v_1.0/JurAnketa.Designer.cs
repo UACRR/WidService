@@ -1159,7 +1159,6 @@
             // 
             // bankRequisitesCtrlBankAccount
             // 
-            this.bankRequisitesCtrlBankAccount.DataMember = "";
             this.bankRequisitesCtrlBankAccount.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
             this.bankRequisitesCtrlBankAccount.Location = new System.Drawing.Point(3, 71);
             this.bankRequisitesCtrlBankAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

@@ -76,6 +76,7 @@
     <item Name="AgreementMaster">
         <noignore>AgreementAddRh</noignore>
         <noignore>AgreementAddBr</noignore>
+        <noignore>AgreementAddPartner</noignore>
     </item>
     <item Name="Register">
         <noignore>Distribution</noignore>

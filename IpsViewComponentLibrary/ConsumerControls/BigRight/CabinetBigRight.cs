@@ -68,6 +68,9 @@ namespace IpsViewComponentLibrary
         public event ReturnViewEventHandler<RatedListMainBigRightView> GetRatedListMainView;
         public event ReturnViewEventHandler<RatedListSpectacleBigRightView> GetRatedListSpectacleView;
         public event ReturnViewEventHandler<RatedListMusicDesignBigRightView> GetMusicDesignView;
+        public event GetPartnerList OnGetPartnerListNeed;
+        public event ReturnObjectEventHandler<AnketaPerson> GetPartner;
+
 
 
         #endregion
@@ -123,6 +126,7 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
             ctrlPayslips.GetMusicDesing += DataNeedRatedList_GetMusicDesing;
+            ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
 
             // static pages, call this in constructor
             _tab = new Dictionary<CabinetTabType, RadPageViewPage>
@@ -266,11 +270,15 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.Agent:
                 {
-                    _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
-                    ctrlAgent.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
+                    ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId));
                 }
                     break;
             }
+        }
+
+        private List<AnketaPerson> CtrlPartner_OnGetPartnerListNeed()
+        {
+            return OnGetPartnerListNeed?.Invoke();
         }
 
         private List<RatedListMusicDesignBigRightView> DataNeedRatedList_GetMusicDesing()

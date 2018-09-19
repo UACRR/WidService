@@ -179,12 +179,6 @@
     <Compile Include="AddressLetter.Designer.cs">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </Compile>
-    <Compile Include="AgentFooterBR.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AgentFooterBR.Designer.cs">
-      <DependentUpon>AgentFooterBR.cs</DependentUpon>
-    </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
     <Compile Include="Common\NavigatorPanelControl.cs">
       <SubType>UserControl</SubType>
@@ -228,6 +222,12 @@
     <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\TabNavigationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\TabNavigationControl.Designer.cs">
+      <DependentUpon>TabNavigationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +254,12 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ConsumerDialogForms\SelectPartner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\SelectPartner.Designer.cs">
+      <DependentUpon>SelectPartner.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerForms\CabinetBigRightForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,11 +272,35 @@
     <Compile Include="ConsumerForms\CabinetSmallRightForm.Designer.cs">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerForms\PartnerPhisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\PartnerPhisForm.Designer.cs">
+      <DependentUpon>PartnerPhisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\PartnerJurForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\PartnerJurForm.Designer.cs">
+      <DependentUpon>PartnerJurForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LicenseAgreementListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="LicenseAgreementListControl.Designer.cs">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerControl.Designer.cs">
+      <DependentUpon>PartnerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerNameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerNameControl.Designer.cs">
+      <DependentUpon>PartnerNameControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterControls\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
@@ -582,11 +612,11 @@
     <Compile Include="ConsumerControls\BigRight\CabinetBigRight.Designer.cs">
       <DependentUpon>CabinetBigRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetAgent.cs">
+    <Compile Include="MiddleControlCabinetPartner.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinetAgent.Designer.cs">
-      <DependentUpon>MiddleControlCabinetAgent.cs</DependentUpon>
+    <Compile Include="MiddleControlCabinetPartner.Designer.cs">
+      <DependentUpon>MiddleControlCabinetPartner.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlCabinetCalculation.cs">
       <SubType>UserControl</SubType>
@@ -820,9 +850,6 @@
     <EmbeddedResource Include="AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AgentFooterBR.resx">
-      <DependentUpon>AgentFooterBR.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
       <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -844,6 +871,9 @@
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\TabNavigationControl.resx">
+      <DependentUpon>TabNavigationControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx">
       <DependentUpon>AddAuthRoleForMusDesingBr.cs</DependentUpon>
     </EmbeddedResource>
@@ -857,11 +887,20 @@
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\SelectPartner.resx">
+      <DependentUpon>SelectPartner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\CabinetBigRightForm.resx">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\PartnerPhisForm.resx">
+      <DependentUpon>PartnerPhisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\PartnerJurForm.resx">
+      <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LicenseAgreementListControl.resx">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
@@ -883,6 +922,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightBrView.resx">
       <DependentUpon>ObjectRightBrView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
+      <DependentUpon>PartnerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerNameControl.resx">
+      <DependentUpon>PartnerNameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
@@ -1010,8 +1055,8 @@
     <EmbeddedResource Include="ConsumerControls\BigRight\CabinetBigRight.resx">
       <DependentUpon>CabinetBigRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetAgent.resx">
-      <DependentUpon>MiddleControlCabinetAgent.cs</DependentUpon>
+    <EmbeddedResource Include="MiddleControlCabinetPartner.resx">
+      <DependentUpon>MiddleControlCabinetPartner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetCalculation.resx">
       <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>

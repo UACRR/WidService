@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols;
+// ReSharper disable All
 
 
 namespace ipsmedserviceapp.Controllers
@@ -53,11 +54,8 @@ namespace ipsmedserviceapp.Controllers
 
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
+        //отримати всі дані
         private async Task<Customer> GetConsumerAllData(int id)
         {
             // Отримати основну інформацію
@@ -755,7 +753,10 @@ namespace ipsmedserviceapp.Controllers
             {"vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay"},
             {"vTSK_1_BRObjects", "vTSK_1_BRObjects"},
             {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"},
-            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"}
+            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"},
+            {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
+            {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
+
         };
 
 
@@ -1890,12 +1891,6 @@ where t1.custId = @custId
             return Ok();
         }
         #endregion
-
-        /// <summary>
-        /// Отримати записи зі звіту
-        /// </summary>
-        /// <param name="regId"></param>
-        /// <returns></returns>
 
     } // public class ConsumerController : Controller
 
