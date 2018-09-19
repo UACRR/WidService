@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
+using IpsViewComponentLibrary.ConsumerForms;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.PartnerControls
@@ -76,7 +77,11 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void btnNewPartnerPhis_Click(object sender, EventArgs e)
         {
-
+            PartnerPhisForm partnerPhis = new PartnerPhisForm()
+            {
+                StartPosition = FormStartPosition.CenterScreen,
+            };
+            partnerPhis.Show();
         }
 
 
