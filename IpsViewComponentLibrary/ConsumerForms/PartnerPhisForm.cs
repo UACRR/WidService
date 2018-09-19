@@ -6,67 +6,65 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Model;
 using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class PartnerPhisForm : Telerik.WinControls.UI.RadForm
     {
-        private bool _buttonClick = false;
-        public PartnerPhisForm()
+        private Customer _customer;
+        public PartnerPhisForm(Customer customer)
         {
             InitializeComponent();
-            btnBack.Text = "< ";
-            btnBack.Enabled = false;
-            btnNext.Text = pageView.Pages[1].Text + " >";
+            _customer = customer;
+            ctrlTabNavigation.SetDefaultState(pageView);
+            ctrlTabNavigation.OnSave += CtrlTabNavigation_OnSave;
+            CancelButton = ctrlTabNavigation.CancelButton;
+
+            #region BINDINGS
+
+            var anketaPerson = _customer.AnketaPerson.SingleOrDefault();
+            //представник
+            ctrlPartnerName.DataSourceAnketa = anketaPerson;
+
+            //контакти
+            // - проживання
+            ctrlAddressLive.DataSource = anketaPerson;
+            ctrlAddressLive.AddressDataMember = "ReAddress";
+            ctrlAddressLive.CityDataMember = "ReCity";
+            ctrlAddressLive.CountryDataMember = "ReCountry";
+            ctrlAddressLive.RegionDataMember = "ReRegion";
+            // - фактична
+            ctrlAddressRegister.DataSource = anketaPerson;
+            ctrlAddressRegister.AddressDataMember = "FaAddress";
+            ctrlAddressRegister.CityDataMember = "FaCity";
+            ctrlAddressRegister.CountryDataMember = "FaCountry";
+            ctrlAddressRegister.RegionDataMember = "FaRegion";
+            //- -поштова
+            ctrlAddressLetter.DataSource = anketaPerson;
+            ctrlAddressLetter.AddressDataMember = "LeAddress";
+            ctrlAddressLetter.CityDataMember = "LeCity";
+            ctrlAddressLetter.CountryDataMember = "LeCountry";
+            ctrlAddressLetter.RegionDataMember = "LeRegion";
+            ctrlAddressLetter.PostIndexDataMember = "LePostIndex";
+
+
+            //паспортні дані
+            ctrlInternalPassport.DataSource = anketaPerson;
+
+            //банківські реквізити
+            //
+            bsBankAccount.DataSource = _customer?.BankAccount.FirstOrDefault();
+            
+
+            #endregion
+
         }
 
-        private void TabNavigateAction(NavigateType navigateType)
+        private void CtrlTabNavigation_OnSave(object sender, EventArgs e)
         {
-            int index = pageView.SelectedPage.TabIndex;
-            _buttonClick = true;
-            switch (navigateType)
-            {
-                case NavigateType.Next:
-                    if(index == pageView.Pages.Last().TabIndex) break;
-                    pageView.SelectedPage = pageView.Pages[index + 1];
-                    break;
-                case NavigateType.Previous:
-                    if(index == 0) break;
-                    pageView.SelectedPage = pageView.Pages[index - 1];
-                    break;
-            }
-            index = pageView.SelectedPage.TabIndex;
-
-            btnBack.Enabled = index != 0;
-            btnBack.Text = btnBack.Enabled ? "< " + pageView.Pages[index - 1].Text : "< ";
-
-            btnNext.Enabled = index != pageView.Pages.Last().TabIndex;
-            btnNext.Text = btnNext.Enabled ? pageView.Pages[index + 1].Text + " >" : " >";
+            DialogResult = DialogResult.OK;
         }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            TabNavigateAction(NavigateType.Previous);
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            TabNavigateAction(NavigateType.Next);
-        }
-
-        private void pageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
-        {
-            if (!_buttonClick)
-                e.Cancel = true;
-            else
-                _buttonClick = false;
-        }
-    }
-
-    public enum NavigateType
-    {
-        Next,
-        Previous
     }
 }

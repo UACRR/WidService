@@ -222,6 +222,12 @@
     <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\TabNavigationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\TabNavigationControl.Designer.cs">
+      <DependentUpon>TabNavigationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -864,6 +870,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\TabNavigationControl.resx">
+      <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx">
       <DependentUpon>AddAuthRoleForMusDesingBr.cs</DependentUpon>

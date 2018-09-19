@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -24,6 +26,11 @@ namespace IpsViewComponentLibrary
         public AddressLetter()
         {
             InitializeComponent();
+            if (IpsGlobal.AnketaDictionaties != null)
+            {
+                ddlCountry.SetDataSource(IpsGlobal.AnketaDictionaties.country, "CountryCode", "CountryName");
+                ddlRegion.SetDataSource(IpsGlobal.AnketaDictionaties.region);
+            }
         }
 
         [Category("Data")]

@@ -493,7 +493,6 @@
             // 
             // ctrlBankAccount
             // 
-            this.ctrlBankAccount.DataMember = "";
             this.ctrlBankAccount.DataSource = this.bsBankAccount;
             this.ctrlBankAccount.Location = new System.Drawing.Point(3, 3);
             this.ctrlBankAccount.Name = "ctrlBankAccount";
