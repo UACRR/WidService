@@ -1892,46 +1892,6 @@ where t1.custId = @custId
         }
         #endregion
 
-        //список представників
-        [HttpGet("partner/list")]
-        public async Task<IActionResult> GetPartnersList()
-        {
-            var partner = await _dbContext.Partner.AsNoTracking().ToListAsync();
-            var list = await _dbContext.AnketaPerson.Where(rec => partner.Select(r => r.CustId).Contains(rec.CustId)).AsNoTracking().ToListAsync();
-            return Json(list);
-        }
-
-        //представник по ID клієнта (не представника)
-        [HttpGet("partner/list/{clientId}")]
-        public async Task<IActionResult> GetPartnerByClientId(int clientId)
-        {
-            var partnerId = await _dbContext.PartnerClient.SingleOrDefaultAsync(rec=>rec.ClCustId == clientId);
-            var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec=>rec.CustId == partnerId.CustId);
-            return Json(anketaPerson);
-        }
-
-        //[HttpGet("BR/view/list")]
-        //public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
-        //{
-        //    if (viewName == null || !listBrView.Keys.Contains(viewName))
-        //        return BadRequest();
-
-        //    string QueryStr = string.Concat("select * from ", listBrView[viewName]);
-        //    // Немає параметру по Споживачу
-        //    if (custId == null)
-        //    {
-        //        var list = await _dbContext.getViewData(QueryStr, null);
-        //        return Json(list);
-        //    }
-        //    else
-        //    {
-        //        QueryStr = string.Concat(QueryStr, " where custId = @custId");
-        //        var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId) });
-        //        return Json(list);
-
-        //    }
-        //}
-
     } // public class ConsumerController : Controller
 
     public class CloseAgreementWithActiveLicense : Exception

@@ -8,6 +8,7 @@ using WebAPIConnector;
 using System.IO;
 using System.Dynamic;
 using System.Threading.Tasks;
+// ReSharper disable All
 
 namespace ipsFormsDesign.Services
 {
@@ -264,8 +265,9 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<AutoCompleteData>(url);
             return list;
         }
+
         /// <summary>
-        /// 
+        /// отримати шаблон customer
         /// </summary>
         /// <param name="custType"></param>
         /// <returns></returns>
@@ -274,8 +276,9 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetItemById<Customer>("consumer/newconsumer", custType.ToString());
             return anketaDic;
         }
+
         /// <summary>
-        /// 
+        /// Зберегти customer
         /// </summary>
         /// <param name="cust"></param>
         /// <returns></returns>
@@ -288,6 +291,7 @@ namespace ipsFormsDesign.Services
 
             return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
+
         /// <summary>
         /// Запис файла на сервер
         /// </summary>
@@ -420,13 +424,26 @@ namespace ipsFormsDesign.Services
         }
         #endregion
 
+        // * * * ПРЕДСТАВНИКИ
+
+        /// <summary>
+        /// Отримати шаблон представника customer
+        /// </summary>
+        /// <param name="custType"></param>
+        /// <returns></returns>
+        public Customer GetPartnerTemplate(int custType)
+        {
+            var customer = _webApi.GetItemById<Customer>("partner/newpartner", custType.ToString());
+            return customer;
+        }
+
         /// <summary>
         /// Отримати список представників
         /// </summary>
         /// <returns></returns>
         public List<AnketaPerson> GetPartnerList()
         {
-            string url = _prefix + "partner/list";
+            string url = "partner/list";
             return _webApi.GetList<AnketaPerson>(url);
         }
 
@@ -435,8 +452,28 @@ namespace ipsFormsDesign.Services
         /// </summary>
         public AnketaPerson GetPartner(int clientId)
         {
-            var anketaPerson = _webApi.GetItemById<AnketaPerson>(_prefix + "partner/list", clientId.ToString());
+            var anketaPerson = _webApi.GetItemById<AnketaPerson>("partner/list", clientId.ToString());
             return anketaPerson;
+        }
+
+        /// <summary>
+        /// Збереження представника (customer)
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <returns></returns>
+        public bool SavePartner(Customer cust)
+        {
+            if (cust.CustId == 0)
+            {
+                if (cust.CustType == 1)
+                    return _webApi.NewItem<Customer>("partner/newpartnerphis", cust);
+                else if (cust.CustType == 3)
+                    return _webApi.NewItem<Customer>("partner/newpartnerjur", cust);
+            }
+
+            return false;
+            // TODO: save exist customer
+            // return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
 
     }

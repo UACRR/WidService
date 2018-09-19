@@ -24,7 +24,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             #region BINDINGS
 
-            var anketaPerson = _customer.AnketaPerson.SingleOrDefault();
+            var anketaPerson = _customer.Person.AnketaPerson.SingleOrDefault();
             //представник
             ctrlPartnerName.DataSourceAnketa = anketaPerson;
 

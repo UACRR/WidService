@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerForms;
 using Telerik.WinControls.UI;
 
@@ -18,6 +19,9 @@ namespace IpsViewComponentLibrary.PartnerControls
     {
         public delegate List<T> ReturnViewEventHandler<T>();
         public event ReturnViewEventHandler<PartnerView> GetPartnersView;
+
+        public delegate Customer CreateNewCustomerEventHandler(int customerType);
+        public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
 
         public PartnerControl()
         {
@@ -72,16 +76,21 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void btnNewPartnerJur_Click(object sender, EventArgs e)
         {
+            var customer = OnCreateNewCustomerNeed?.Invoke(3);
 
         }
 
         private void btnNewPartnerPhis_Click(object sender, EventArgs e)
         {
-            PartnerPhisForm partnerPhis = new PartnerPhisForm()
+            var customer = OnCreateNewCustomerNeed?.Invoke(1);
+            PartnerPhisForm partnerPhis = new PartnerPhisForm(customer)
             {
                 StartPosition = FormStartPosition.CenterScreen,
             };
-            partnerPhis.Show();
+            if (partnerPhis.ShowDialog() == DialogResult.OK)
+            {
+                //TODO: save customer;
+            }
         }
 
 
