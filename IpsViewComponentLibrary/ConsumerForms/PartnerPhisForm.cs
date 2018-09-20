@@ -20,15 +20,14 @@ namespace IpsViewComponentLibrary.ConsumerForms
             DialogResult = DialogResult.None;
             _customer = customer;
             ctrlTabNavigation.SetDefaultState(pageView);
-            //CancelButton = ctrlTabNavigation.CancelButton;
 
             #region BINDINGS
 
             var anketaPerson = _customer.Person.AnketaPerson.SingleOrDefault();
-            //представник
+            // представник
             ctrlPartnerName.DataSourceAnketa = anketaPerson;
 
-            //контакти
+            // контакти
             ctrlContacts.DataSource = anketaPerson;
             // - проживання
             ctrlAddressLive.DataSource = anketaPerson;
@@ -51,17 +50,18 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlAddressLetter.PostIndexDataMember = "LePostIndex";
 
 
-            //паспортні дані
+            // паспортні дані
             ctrlInternalPassport.DataSource = anketaPerson;
 
-            //банківські реквізити
+            // банківські реквізити
             bsBankAccount.DataSource = _customer?.BankAccount.FirstOrDefault();
             
-            //договір
+            // договір
             ctrlAgreement.AgreementDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
+            // умови договору
+            ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
 
             #endregion
-
         }
     }
 }

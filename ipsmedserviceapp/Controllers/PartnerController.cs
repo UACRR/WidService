@@ -241,6 +241,31 @@ namespace ipsmedserviceapp.Controllers
             return Json(anketaPerson);
         }
 
+        [HttpGet("{custId}")]
+        public async Task<IActionResult> GetPartnerAllData(int custId)
+        {
+
+            return null;
+        }
+
+        [HttpPost("{clientId}/set/{custId}")]
+        public async Task<IActionResult> SetPartnerOnClient(int clientId, int custId)
+        {
+            return null;
+        }
+
+        [HttpPut("{clientId}/change/{custId}")]
+        public async Task<IActionResult> ChangePartnerOnClient(int clientId, int custId)
+        {
+            return null;
+        }
+
+        [HttpDelete("{clientId}/set/{custId}")]
+        public async Task<IActionResult> RemovePartnerOnClient(int clientId, int custId)
+        {
+            return null;
+        }
+
         // ТЕСТ МЕТОД
         //[HttpGet("newpartnerphis/1")]
         //public async Task<IActionResult> Hello()

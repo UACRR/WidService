@@ -51,6 +51,7 @@
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
+            this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
@@ -69,6 +70,7 @@
             this.pvBank.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             this.pvAgreement.SuspendLayout();
+            this.pvTerms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -366,6 +368,7 @@
             // 
             // pvTerms
             // 
+            this.pvTerms.Controls.Add(this.ctrlConditions);
             this.pvTerms.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvTerms.Location = new System.Drawing.Point(134, 5);
             this.pvTerms.Name = "pvTerms";
@@ -381,6 +384,14 @@
             this.ctrlTabNavigation.Name = "ctrlTabNavigation";
             this.ctrlTabNavigation.Size = new System.Drawing.Size(1000, 31);
             this.ctrlTabNavigation.TabIndex = 11;
+            // 
+            // ctrlConditions
+            // 
+            this.ctrlConditions.AgreementAddPartnerDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlConditions.Location = new System.Drawing.Point(22, 6);
+            this.ctrlConditions.Name = "ctrlConditions";
+            this.ctrlConditions.Size = new System.Drawing.Size(702, 357);
+            this.ctrlConditions.TabIndex = 0;
             // 
             // PartnerPhisForm
             // 
@@ -415,6 +426,7 @@
             this.pvBank.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             this.pvAgreement.ResumeLayout(false);
+            this.pvTerms.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -444,5 +456,6 @@
         private System.Windows.Forms.BindingSource bsBankAccount;
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
         private PartnerControls.AgreementPartnerControl ctrlAgreement;
+        private PartnerControls.ConditionsControl ctrlConditions;
     }
 }
