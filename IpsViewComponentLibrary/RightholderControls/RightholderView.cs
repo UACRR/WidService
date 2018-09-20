@@ -8,6 +8,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -254,6 +255,31 @@ namespace IpsViewComponentLibrary.RightholderControls
                     gboxRightholderStatus.Enabled = false;
                 }
             }
+        }
+
+        private void pageViewMain_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (pageViewMain.SelectedPage == pageObjects && ctrlRightholdersObjectsRight.SelectedRightholder == null)
+            {
+                ctrlRightholdersObjectsRight.SelectedRightholder = new RightholderMainView { CustId = ((RightHolder)bsRightHolder.Current).CustId };
+            }
+        }
+
+        private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
+        {
+            if (sender is RadMenuItem menuItem)
+            {
+                int category;
+                if (int.TryParse(menuItem.Tag.ToString(), out category))
+                {
+                    _presenter.AddNewObject(category);
+                }
+            }
+        }
+
+        private void btnAddExistingObjectRightForRightholder_Click(object sender, EventArgs e)
+        {
+            _presenter.AddExistingObject();
         }
     }
 }
