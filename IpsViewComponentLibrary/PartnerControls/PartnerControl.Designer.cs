@@ -172,7 +172,7 @@
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";
-            gridViewCommandColumn1.FieldName = "btnsView";
+            gridViewCommandColumn1.FieldName = "viewBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
@@ -180,13 +180,13 @@
             gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewCommandColumn1.MaxWidth = 35;
             gridViewCommandColumn1.MinWidth = 35;
-            gridViewCommandColumn1.Name = "btnsView";
+            gridViewCommandColumn1.Name = "viewBtn";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 35;
             gridViewCommandColumn2.AllowResize = false;
             gridViewCommandColumn2.AllowSort = false;
             gridViewCommandColumn2.DefaultText = "Файли";
-            gridViewCommandColumn2.FieldName = "btnDelete";
+            gridViewCommandColumn2.FieldName = "deleteBtn";
             gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn2.HeaderText = "";
             gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
@@ -194,7 +194,7 @@
             gridViewCommandColumn2.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewCommandColumn2.MaxWidth = 35;
             gridViewCommandColumn2.MinWidth = 35;
-            gridViewCommandColumn2.Name = "btnDelete";
+            gridViewCommandColumn2.Name = "deleteBtn";
             gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewCommandColumn2.Width = 35;
             this.gvViewPartners.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
@@ -219,6 +219,7 @@
             this.gvViewPartners.Size = new System.Drawing.Size(1066, 512);
             this.gvViewPartners.TabIndex = 9;
             this.gvViewPartners.ThemeName = "Office2013Light";
+            this.gvViewPartners.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewPartners_CommandCellClick);
             this.gvViewPartners.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewConsumers_CustomFiltering);
             // 
             // rddBtnNewPartner

@@ -87,7 +87,7 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        //основний метод збереження 
+        //основний метод збереження нових представників
         private async Task<IActionResult> SavePartner(Customer sourceCustomer, int? customerType)
         {
             IDbContextTransaction tran = null;
@@ -122,14 +122,47 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        // збереження представника юридичної особи
+        // збереження нового представника фізичної особи
         [HttpPost("newpartnerphis")]
         public async Task<IActionResult> SaveNewPartnerPhis([FromBody] Customer sourceCustomer)
         {
             return await SavePartner(sourceCustomer, sourceCustomer.CustType);
         }
 
-        //збереження представника юридичної особи
+        // збереження існуючого представника фізичної особи
+        [HttpPut("partnerphis/{custId}")]
+        public async Task<IActionResult> SaveExistPartnerPhis(int custId, [FromBody] Customer sourceCustomer)
+        {
+            IDbContextTransaction tran = null;
+            // основна інформація
+            var destinationCustomer = await _dbContext.Customer.Where(item => item.CustId == custId)
+                .Include(item => item.AgreementMaster).ThenInclude(agr => agr.AgreementAddPartner)
+                .Include(item => item.Partner).ThenInclude(pcl => pcl.PartnerClient)
+                .Include(item => item.BankAccount)
+                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .Include(item => item.Client)
+                .SingleOrDefaultAsync();
+            try
+            {
+                // Customer
+                UpdatePartnerDataP(sourceCustomer, destinationCustomer);
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+                return Json(destinationCustomer);
+            }
+            catch (Exception ex)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //збереження нового представника юридичної особи
         [HttpPost("newpartnerjur")]
         public async Task<IActionResult> SaveNewPartnerJur([FromBody] Customer sourceCustomer)
         {
@@ -244,8 +277,16 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("{custId}")]
         public async Task<IActionResult> GetPartnerAllData(int custId)
         {
+            // основна інформація
+            var customer = await _dbContext.Customer.Where(item => item.CustId == custId)
+                .Include(item => item.AgreementMaster).ThenInclude(agr => agr.AgreementAddPartner)
+                .Include(item => item.Partner).ThenInclude(pcl => pcl.PartnerClient)
+                .Include(item => item.BankAccount)
+                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .Include(item => item.Client)
+                .SingleOrDefaultAsync();
 
-            return null;
+            return Json(customer);
         }
 
         [HttpPost("{clientId}/set/{custId}")]

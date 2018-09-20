@@ -301,6 +301,7 @@ namespace WebAPIConnector
             var retCode = result.IsSuccessStatusCode;
             return retCode;
         }
+
         /// <summary>
         /// змінити об'єкт на сервері додатків
         /// </summary>

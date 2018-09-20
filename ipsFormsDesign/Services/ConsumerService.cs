@@ -450,10 +450,16 @@ namespace ipsFormsDesign.Services
         /// <summary>
         /// Отримати дані по одному представнику
         /// </summary>
-        public AnketaPerson GetPartner(int clientId)
+        public AnketaPerson GetPartnerAnketa(int clientId)
         {
             var anketaPerson = _webApi.GetItemById<AnketaPerson>("partner/list", clientId.ToString());
             return anketaPerson;
+        }
+
+        public Customer GetPartner(int custId)
+        {
+            var customerPartner = _webApi.GetItemById<Customer>("partner", custId.ToString());
+            return customerPartner;
         }
 
         /// <summary>
@@ -470,10 +476,13 @@ namespace ipsFormsDesign.Services
                 else if (cust.CustType == 3)
                     return _webApi.NewItem<Customer>("partner/newpartnerjur", cust);
             }
+            else
+            {
+                // TODO: save exist customer
+                return _webApi.UpdateItem<Customer>("partner/partnerphis", cust.CustId.ToString(), cust);
+            }
 
             return false;
-            // TODO: save exist customer
-            // return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
 
     }

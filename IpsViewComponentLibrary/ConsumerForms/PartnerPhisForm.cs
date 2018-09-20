@@ -14,12 +14,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
     public partial class PartnerPhisForm : Telerik.WinControls.UI.RadForm
     {
         private Customer _customer;
-        public PartnerPhisForm(Customer customer)
+        public PartnerPhisForm(Customer customer, FLoadType loadType)
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
             _customer = customer;
-            ctrlTabNavigation.SetDefaultState(pageView);
+            ctrlTabNavigation.SetDefaultState(pageView, loadType);
 
             #region BINDINGS
 
@@ -62,6 +62,13 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
 
             #endregion
+
+            SetFormType(loadType);
+        }
+
+        private void SetFormType(FLoadType loadType)
+        {
+
         }
     }
 }

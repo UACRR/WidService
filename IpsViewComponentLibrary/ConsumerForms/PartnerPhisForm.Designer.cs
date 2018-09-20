@@ -50,8 +50,8 @@
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
@@ -375,6 +375,14 @@
             this.pvTerms.Size = new System.Drawing.Size(861, 557);
             this.pvTerms.Text = "Умои представника";
             // 
+            // ctrlConditions
+            // 
+            this.ctrlConditions.AgreementAddPartnerDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlConditions.Location = new System.Drawing.Point(22, 6);
+            this.ctrlConditions.Name = "ctrlConditions";
+            this.ctrlConditions.Size = new System.Drawing.Size(702, 357);
+            this.ctrlConditions.TabIndex = 0;
+            // 
             // ctrlTabNavigation
             // 
             this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -384,14 +392,6 @@
             this.ctrlTabNavigation.Name = "ctrlTabNavigation";
             this.ctrlTabNavigation.Size = new System.Drawing.Size(1000, 31);
             this.ctrlTabNavigation.TabIndex = 11;
-            // 
-            // ctrlConditions
-            // 
-            this.ctrlConditions.AgreementAddPartnerDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
-            this.ctrlConditions.Location = new System.Drawing.Point(22, 6);
-            this.ctrlConditions.Name = "ctrlConditions";
-            this.ctrlConditions.Size = new System.Drawing.Size(702, 357);
-            this.ctrlConditions.TabIndex = 0;
             // 
             // PartnerPhisForm
             // 

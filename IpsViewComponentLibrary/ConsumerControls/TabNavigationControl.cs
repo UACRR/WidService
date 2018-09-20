@@ -23,13 +23,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
             btnCancel.DialogResult = DialogResult.Cancel;
         }
 
-        public void SetDefaultState(RadPageView pageView)
+        public void SetDefaultState(RadPageView pageView, FLoadType loadType)
         {
             _pageView = pageView;
-            _pageView.SelectedPageChanging += pageView_SelectedPageChanging;
-            btnBack.Text = "< ";
-            btnBack.Enabled = false;
-            btnNext.Text = _pageView.Pages[1].Text + " >";
+            switch (loadType)
+            {
+                case FLoadType.Create:
+                    _pageView.SelectedPageChanging += pageView_SelectedPageChanging;
+                    btnBack.Text = "< ";
+                    btnBack.Enabled = false;
+                    btnNext.Text = _pageView.Pages[1].Text + " >";
+                    break;
+                case FLoadType.View:
+                    break;
+                case FLoadType.Edit:
+                    btnBack.Visible = false;
+                    btnNext.Visible = false;
+                    btnSave.Enabled = true;
+                    break;
+            }
+
         }
 
         private void TabNavigateAction(NavigateType navigateType)

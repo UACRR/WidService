@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary
     public delegate Customer GetRegisterRatedList(int custId);
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
     public delegate List<AnketaPerson> GetPartnerList();
+    public delegate Customer GetCustomerEventHandler(int custId);
 
     public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate void UpdateCustomerDataEventHandler(int id);
@@ -386,6 +387,29 @@ namespace IpsViewComponentLibrary
         /// Довідка
         /// </summary>
         Reference
+    }
+
+    /// <summary>
+    /// Тип ініціалізованої форми
+    /// </summary>
+    public enum FLoadType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Створення нового об'єкту
+        /// </summary>
+        Create,
+        /// <summary>
+        /// Перегляд існуючого об'єкту
+        /// </summary>
+        View,
+        /// <summary>
+        /// Редагування існуючого об'єкту
+        /// </summary>
+        Edit,
     }
 
     public enum ButtonFunctionAcceptLicType

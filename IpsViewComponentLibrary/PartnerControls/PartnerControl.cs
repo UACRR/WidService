@@ -23,6 +23,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
+        public event GetCustomerEventHandler GetPartnerById;
 
         public PartnerControl()
         {
@@ -78,22 +79,39 @@ namespace IpsViewComponentLibrary.PartnerControls
         private void btnNewPartnerJur_Click(object sender, EventArgs e)
         {
             var customer = OnCreateNewCustomerNeed?.Invoke(3);
-
+            LoadForm(customer, FLoadType.Create);
         }
 
         private void btnNewPartnerPhis_Click(object sender, EventArgs e)
         {
             var customer = OnCreateNewCustomerNeed?.Invoke(1);
-            PartnerPhisForm partnerPhis = new PartnerPhisForm(customer)
-            {
-                StartPosition = FormStartPosition.CenterScreen,
-            };
-            if (partnerPhis.ShowDialog() == DialogResult.OK)
-            {
-                var result = OnSaveCustomer?.Invoke(customer);
-            }
+            LoadForm(customer, FLoadType.Create);
         }
 
+        private void LoadForm(Customer customer, FLoadType loadFormType)
+        {
+            if (customer.CustType == 1)
+            {
+                PartnerPhisForm partnerPhis = new PartnerPhisForm(customer, loadFormType)
+                {
+                    StartPosition = FormStartPosition.CenterScreen,
+                };
+                if (partnerPhis.ShowDialog() == DialogResult.OK)
+                {
+                    //додавання/збереження
+                    var result = OnSaveCustomer?.Invoke(customer);
+                    if (result ?? false)
+                        ExtensionUtils.ShowInfoMessage("Нового представника додано!", "Успішно", MessageBoxIcon.Information);
+                    else
+                        ExtensionUtils.ShowInfoMessage("Неможливо додати нового представника!", "Помилка", MessageBoxIcon.Error);
+                }
+            }
+            else if (customer.CustType == 3)
+            {
+                //some code
+                //call juridical form
+            }
+        }
 
 
         #region ФІЛЬТРАЦІЯ (пошук)
@@ -143,6 +161,24 @@ namespace IpsViewComponentLibrary.PartnerControls
         }
 
         #endregion
+
+        private void gvViewPartners_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var row = e.Row.DataBoundItem as PartnerView;
+            switch (e.Column.FieldName)
+            {
+                case "viewBtn":
+                    var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
+                    LoadForm(customer, FLoadType.Edit);
+                    break;
+                case "deleteBtn":
+                    if (MessageBox.Show("Закрити анкету та договір обраного представника?", "Повідомлення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        //action
+                    }
+                    break;
+            }
+        }
     }
 
     public enum PartnerFilter

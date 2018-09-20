@@ -28,6 +28,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _partner.LoadData();
             _partner.OnCreateNewCustomerNeed += CreateNewCustomer;
             _partner.OnSaveCustomer += SaveCustomer;
+            _partner.GetPartnerById += GetPartner;
         }
 
         private List<PartnerView> GetPartnersView()
@@ -48,6 +49,12 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var relust = _service.SavePartner(customer);
             //UpdateData(customer.CustId);
             return relust;
+        }
+
+        //отримати представника по його ID
+        private Customer GetPartner(int custId)
+        {
+            return _service.GetPartner(custId);
         }
     }
 }
