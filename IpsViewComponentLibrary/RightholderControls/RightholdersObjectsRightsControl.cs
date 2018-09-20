@@ -58,6 +58,17 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        private bool _showRightholderSelector = true;
+        public bool ShowRightholderSelector
+        {
+            get { return _showRightholderSelector; }
+            set
+            {
+                _showRightholderSelector = value;
+                ctrlRightholderSelector.Visible = _showRightholderSelector;
+            }
+        }
+
         public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted = delegate { };
         public event EventHandler<RightholderMainView> RightholderChanged = delegate { };
         public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted = delegate { };
@@ -69,6 +80,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             gvRightholdersObjectsRights.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
 
             ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
+
+            ctrlRightholderSelector.Visible = false;
         }
 
         public void UpdateList()
