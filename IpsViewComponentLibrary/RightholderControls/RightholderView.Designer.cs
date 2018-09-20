@@ -45,8 +45,11 @@
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.ctrlFaAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.btnCopyAddressReLe = new Telerik.WinControls.UI.RadButton();
+            this.btnCopyAddressFaLe = new Telerik.WinControls.UI.RadButton();
             this.ctrlLeAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.btnCopyAddressFaRe = new Telerik.WinControls.UI.RadButton();
             this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
             this.createRightholderPassportPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -94,8 +97,8 @@
             this.btnSetStatusClosed = new Telerik.WinControls.UI.RadButton();
             this.btnSetStatusInheritance = new Telerik.WinControls.UI.RadButton();
             this.btnSetAgreementRightholderStatus = new Telerik.WinControls.UI.RadButton();
-            this.ddlAgreementStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlAgreementStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
@@ -115,8 +118,11 @@
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressReLe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressFaLe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressFaRe)).BeginInit();
             this.createRightholderPassportPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.passportPageView)).BeginInit();
             this.passportPageView.SuspendLayout();
@@ -159,8 +165,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusClosed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusInheritance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetAgreementRightholderStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,8 +181,8 @@
             this.anketaPageView.DefaultPage = this.rightholderPage;
             this.anketaPageView.Location = new System.Drawing.Point(0, 0);
             this.anketaPageView.Name = "anketaPageView";
-            this.anketaPageView.SelectedPage = this.rightholderPage;
-            this.anketaPageView.Size = new System.Drawing.Size(1006, 444);
+            this.anketaPageView.SelectedPage = this.contactsPage;
+            this.anketaPageView.Size = new System.Drawing.Size(1006, 446);
             this.anketaPageView.TabIndex = 2;
             this.anketaPageView.ThemeName = "Office2013Light";
             this.anketaPageView.SelectedPageChanged += new System.EventHandler(this.mainPageView_SelectedPageChanged);
@@ -195,7 +201,7 @@
             this.rightholderPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
             this.rightholderPage.Location = new System.Drawing.Point(103, 5);
             this.rightholderPage.Name = "rightholderPage";
-            this.rightholderPage.Size = new System.Drawing.Size(898, 434);
+            this.rightholderPage.Size = new System.Drawing.Size(898, 436);
             this.rightholderPage.Text = "Правовласник";
             // 
             // radLabel1
@@ -273,7 +279,7 @@
             this.contactsPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
             this.contactsPage.Location = new System.Drawing.Point(103, 5);
             this.contactsPage.Name = "contactsPage";
-            this.contactsPage.Size = new System.Drawing.Size(898, 434);
+            this.contactsPage.Size = new System.Drawing.Size(898, 436);
             this.contactsPage.Text = "Контакти";
             // 
             // radGroupBox1
@@ -306,14 +312,36 @@
             // radGroupBox3
             // 
             this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox3.Controls.Add(this.btnCopyAddressReLe);
+            this.radGroupBox3.Controls.Add(this.btnCopyAddressFaLe);
             this.radGroupBox3.Controls.Add(this.ctrlLeAddress);
             this.radGroupBox3.HeaderText = "Адреса листування";
-            this.radGroupBox3.Location = new System.Drawing.Point(3, 181);
+            this.radGroupBox3.Location = new System.Drawing.Point(3, 199);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(841, 79);
+            this.radGroupBox3.Size = new System.Drawing.Size(841, 105);
             this.radGroupBox3.TabIndex = 27;
             this.radGroupBox3.Text = "Адреса листування";
             this.radGroupBox3.ThemeName = "Office2013Light";
+            // 
+            // btnCopyAddressReLe
+            // 
+            this.btnCopyAddressReLe.Location = new System.Drawing.Point(310, 17);
+            this.btnCopyAddressReLe.Name = "btnCopyAddressReLe";
+            this.btnCopyAddressReLe.Size = new System.Drawing.Size(164, 24);
+            this.btnCopyAddressReLe.TabIndex = 3;
+            this.btnCopyAddressReLe.Text = "Вставити з реєстрації";
+            this.btnCopyAddressReLe.ThemeName = "Office2013Light";
+            this.btnCopyAddressReLe.Click += new System.EventHandler(this.btnCopyAddressReLe_Click);
+            // 
+            // btnCopyAddressFaLe
+            // 
+            this.btnCopyAddressFaLe.Location = new System.Drawing.Point(140, 17);
+            this.btnCopyAddressFaLe.Name = "btnCopyAddressFaLe";
+            this.btnCopyAddressFaLe.Size = new System.Drawing.Size(164, 24);
+            this.btnCopyAddressFaLe.TabIndex = 3;
+            this.btnCopyAddressFaLe.Text = "Вставити з проживання";
+            this.btnCopyAddressFaLe.ThemeName = "Office2013Light";
+            this.btnCopyAddressFaLe.Click += new System.EventHandler(this.btnCopyAddressFaLe_Click);
             // 
             // ctrlLeAddress
             // 
@@ -324,7 +352,7 @@
             this.ctrlLeAddress.CountryDataMember = "LeCountry";
             this.ctrlLeAddress.DataMember = "";
             this.ctrlLeAddress.DataSource = this.bsAnketaPerson;
-            this.ctrlLeAddress.Location = new System.Drawing.Point(140, 23);
+            this.ctrlLeAddress.Location = new System.Drawing.Point(140, 52);
             this.ctrlLeAddress.Name = "ctrlLeAddress";
             this.ctrlLeAddress.RegionDataMember = "LeRegion";
             this.ctrlLeAddress.Size = new System.Drawing.Size(696, 48);
@@ -333,14 +361,25 @@
             // radGroupBox2
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.btnCopyAddressFaRe);
             this.radGroupBox2.Controls.Add(this.ctrlReAddress);
             this.radGroupBox2.HeaderText = "Адреса реєстрації";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 88);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(841, 79);
+            this.radGroupBox2.Size = new System.Drawing.Size(841, 105);
             this.radGroupBox2.TabIndex = 26;
             this.radGroupBox2.Text = "Адреса реєстрації";
             this.radGroupBox2.ThemeName = "Office2013Light";
+            // 
+            // btnCopyAddressFaRe
+            // 
+            this.btnCopyAddressFaRe.Location = new System.Drawing.Point(140, 17);
+            this.btnCopyAddressFaRe.Name = "btnCopyAddressFaRe";
+            this.btnCopyAddressFaRe.Size = new System.Drawing.Size(164, 24);
+            this.btnCopyAddressFaRe.TabIndex = 2;
+            this.btnCopyAddressFaRe.Text = "Вставити з проживання";
+            this.btnCopyAddressFaRe.ThemeName = "Office2013Light";
+            this.btnCopyAddressFaRe.Click += new System.EventHandler(this.btnCopyAddressFaRe_Click);
             // 
             // ctrlReAddress
             // 
@@ -351,7 +390,7 @@
             this.ctrlReAddress.CountryDataMember = "ReCountry";
             this.ctrlReAddress.DataMember = "";
             this.ctrlReAddress.DataSource = this.bsAnketaPerson;
-            this.ctrlReAddress.Location = new System.Drawing.Point(140, 23);
+            this.ctrlReAddress.Location = new System.Drawing.Point(140, 52);
             this.ctrlReAddress.Name = "ctrlReAddress";
             this.ctrlReAddress.RegionDataMember = "ReRegion";
             this.ctrlReAddress.Size = new System.Drawing.Size(696, 48);
@@ -360,7 +399,7 @@
             // ctrlContacts
             // 
             this.ctrlContacts.DataSource = this.bsAnketaPerson;
-            this.ctrlContacts.Location = new System.Drawing.Point(143, 278);
+            this.ctrlContacts.Location = new System.Drawing.Point(143, 333);
             this.ctrlContacts.MaximumSize = new System.Drawing.Size(625, 50);
             this.ctrlContacts.Name = "ctrlContacts";
             this.ctrlContacts.Size = new System.Drawing.Size(625, 50);
@@ -486,9 +525,9 @@
             // createRightholderRoyaltyBankPage
             // 
             this.createRightholderRoyaltyBankPage.Controls.Add(this.ctrlBankAccount);
-            this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(29, 5);
+            this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyBankPage.Name = "createRightholderRoyaltyBankPage";
-            this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(826, 401);
+            this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(824, 401);
             this.createRightholderRoyaltyBankPage.Text = "createRightholderRoyaltyBankPage";
             // 
             // ctrlBankAccount
@@ -782,8 +821,8 @@
             // agreementPage
             // 
             this.agreementPage.Controls.Add(this.gboxRightholderStatus);
-            this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.radLabel3);
+            this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
             this.agreementPage.Location = new System.Drawing.Point(141, 5);
@@ -837,6 +876,15 @@
             this.btnSetAgreementRightholderStatus.ThemeName = "Office2013Light";
             this.btnSetAgreementRightholderStatus.Click += new System.EventHandler(this.btnSetAgreementRightholderStatus_Click);
             // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(99, 213);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(45, 19);
+            this.radLabel3.TabIndex = 26;
+            this.radLabel3.Text = "Статус:";
+            this.radLabel3.ThemeName = "Office2013Light";
+            // 
             // ddlAgreementStatus
             // 
             this.ddlAgreementStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAgreementAddRh, "AgrStatus", true));
@@ -846,15 +894,6 @@
             this.ddlAgreementStatus.Size = new System.Drawing.Size(175, 21);
             this.ddlAgreementStatus.TabIndex = 27;
             this.ddlAgreementStatus.ThemeName = "Office2013Light";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(99, 213);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(45, 19);
-            this.radLabel3.TabIndex = 26;
-            this.radLabel3.Text = "Статус:";
-            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // ctrlServiceComissionControl
             // 
@@ -934,8 +973,11 @@
             this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressReLe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressFaLe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressFaRe)).EndInit();
             this.createRightholderPassportPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.passportPageView)).EndInit();
             this.passportPageView.ResumeLayout(false);
@@ -983,8 +1025,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusClosed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetStatusInheritance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSetAgreementRightholderStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1063,5 +1105,8 @@
         private Telerik.WinControls.UI.RadButton btnSetStatusInheritance;
         private Telerik.WinControls.UI.RadButton btnSetAgreementRightholderStatus;
         private Telerik.WinControls.UI.RadButton btnSetStatusClosed;
+        private Telerik.WinControls.UI.RadButton btnCopyAddressReLe;
+        private Telerik.WinControls.UI.RadButton btnCopyAddressFaLe;
+        private Telerik.WinControls.UI.RadButton btnCopyAddressFaRe;
     }
 }
