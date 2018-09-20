@@ -21,6 +21,17 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private RegisterFormType _formType;
+        public RegisterFormType FormType
+        {
+            get { return _formType; }
+            set
+            {
+                _formType = value;
+                SetUpViewForFormType();
+            }
+        }
+
         public Register Register
         {
             get { return bsRegister.DataSource as Register; }
@@ -85,30 +96,30 @@ namespace IpsViewComponentLibrary.RegisterControls
             SetControlEnabled(status);
         }
 
-        // ordinary distribution
-        public void SetupViewForSchema1()
+        private void SetUpViewForFormType()
         {
-            splitPanelStage.Collapsed = true;
+            if (FormType == RegisterFormType.OrdinaryDistribution)
+            {
+                splitPanelStage.Collapsed = true;
 
-            ctrlRegisterItemList.ShowAuthors = true;
-            ctrlRegisterItemListStage.ShowAuthors = true;
+                ctrlRegisterItemList.ShowAuthors = true;
+                ctrlRegisterItemListStage.ShowAuthors = true;
 
-            lblMusicRate.Visible = false;
-            mebMusicRate.Visible = false;
-        }
+                lblMusicRate.Visible = false;
+                mebMusicRate.Visible = false;
+            }
+            else if (FormType == RegisterFormType.CompositionAndMusicalDesignDistribution)
+            {
+                splitPanelStage.Collapsed = false;
 
-        // composition and musical design distribution
-        public void SetupViewForSchema2()
-        {
-            splitPanelStage.Collapsed = false;
+                ctrlRegisterItemList.ShowAuthors = false;
+                ctrlRegisterItemList.ExpandAll();
 
-            ctrlRegisterItemList.ShowAuthors = false;
-            ctrlRegisterItemList.ExpandAll();
+                ctrlRegisterItemListStage.ShowAuthors = false;
 
-            ctrlRegisterItemListStage.ShowAuthors = false;
-
-            lblMusicRate.Visible = true;
-            mebMusicRate.Visible = true;
+                lblMusicRate.Visible = true;
+                mebMusicRate.Visible = true;
+            }
         }
 
         private void SetDictionaries()

@@ -11,6 +11,12 @@ using System.Linq;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
+    public enum RegisterFormType
+    {
+        OrdinaryDistribution = 1,
+        CompositionAndMusicalDesignDistribution = 2,
+    }
+
     public class RegisterPresenter
     {
         private readonly RegisterView _view;
@@ -42,11 +48,11 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             if (_register.SchemaId == 1)
             {
-                _view.SetupViewForSchema1();
+                _view.FormType = RegisterFormType.OrdinaryDistribution;
             }
             else if (_register.SchemaId == 2)
             {
-                _view.SetupViewForSchema2();
+                _view.FormType = RegisterFormType.CompositionAndMusicalDesignDistribution;
             }
 
             _view.Run();
