@@ -161,40 +161,28 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
             var selectedRightholder = new RightholderMainView { CustId = _customer.CustId, Name = String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName) }; ;
-            var objectRightContainer = _objectRightService.GetData(selectedObject.ObjId);
-            var objectRight = objectRightContainer.objectRight;
-
-            if (objectRight.CopyRight.GetTotalRate() >= 100)
-            {
-                MessageBox.Show("Спільний відсоток володіння для вибраного об'єкта вже становить 100%.");
-                return;
-            }
 
             var objectAuthorRightholder = new ObjectAuthorRightholder(selectedRightholder);
 
             DialogResult dialogResult;
-            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _objectRightService.GetDictionary(), objectRight.CategoryCode))
+            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _objectRightService.GetDictionary(), selectedObject.CategoryCode))
             {
                 dialogResult = authorRightholderItemView.ShowDialog();
             }
 
             if (dialogResult == DialogResult.OK)
             {
-                objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
+                var result = _objectRightService.AddAuthorRightholderForObject(selectedObject.ObjId, objectAuthorRightholder, out string error);
 
-                if (objectRight.CopyRight.GetTotalRate() > 100)
+                if (result)
                 {
-                    MessageBox.Show("Спільний відсоток володіння з врахуванням доданого перевищує 100%. Об'єкт не доданий.");
-                    return;
+                    ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+                    ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
                 }
-
-                var result = _objectRightService.Save(objectRight);
-
-                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
-                ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
-
-                if (!result)
-                    MessageBox.Show("Не вдалося зберегти зміни. Об'єкт не доданий.", "Помилка");
+                else
+                {
+                    _dialogService.ShowError((IWin32Window)_view, error);
+                }
             }
         }
     }

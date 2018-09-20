@@ -99,7 +99,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
                 objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
 
-                SelectedObject = currentObject;
+                //SelectedObject = currentObject;
             }
             else
             {
