@@ -179,16 +179,14 @@ namespace ipsmedserviceapp.Controllers
                 agrList = sorsAgrList.Where(row => !destAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
                 agrList.ForEach(item =>
                 {
-                    var agreement = new AgreementMaster(); // створено 1
-                    var agreementAddPartner = new AgreementAddPartner(); // створено 2
-                    agreement.AgreementAddPartner.Add(agreementAddPartner); // 2 додано в 1
-
+                    // створено 1
+                    var agreement = new AgreementMaster(); 
                     // оновлення з ресурсу 1
                     agreement.SetFields(item);
-                    // оновлено з ресурсу 2
+                    // оновлення AgreementAddPartner
                     _dbContext.AppendList(item.AgreementAddPartner, agreement.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
 
-                    // в Partner додати в партнер
+                    destination.Partner = new Partner();
                     foreach (var addPartner in agreement.AgreementAddPartner)
                         destination.Partner.AgreementAddPartner.Add(addPartner);
 
