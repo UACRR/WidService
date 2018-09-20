@@ -16,13 +16,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private RadPageView _pageView;
         private bool _buttonClick = false;
 
-
-        public RadButton CancelButton => btnCancel;
-        public event EventHandler OnSave;
-
         public TabNavigationControl()
         {
             InitializeComponent();
+            btnSave.DialogResult = DialogResult.OK;
+            btnCancel.DialogResult = DialogResult.Cancel;
         }
 
         public void SetDefaultState(RadPageView pageView)
@@ -75,11 +73,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private void btnNext_Click(object sender, EventArgs e)
         {
             TabNavigateAction(NavigateType.Next);
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            OnSave?.Invoke(sender, e);
         }
     }
     public enum NavigateType

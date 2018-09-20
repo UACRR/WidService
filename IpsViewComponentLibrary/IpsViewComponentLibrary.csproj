@@ -305,6 +305,12 @@
     <Compile Include="LicenseAgreementListControl.Designer.cs">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PartnerControls\AgreementPartnerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\AgreementPartnerControl.Designer.cs">
+      <DependentUpon>AgreementPartnerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartnerControls\PartnerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -938,6 +944,9 @@
     <EmbeddedResource Include="ObjectRightControls\ObjectRightBrView.resx">
       <DependentUpon>ObjectRightBrView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\AgreementPartnerControl.resx">
+      <DependentUpon>AgreementPartnerControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
       <DependentUpon>PartnerControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1200,6 +1209,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddPartner.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />

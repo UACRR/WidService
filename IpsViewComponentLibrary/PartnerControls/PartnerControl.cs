@@ -22,6 +22,7 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
+        public event SaveCustomerEventHandler OnSaveCustomer;
 
         public PartnerControl()
         {
@@ -89,7 +90,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             };
             if (partnerPhis.ShowDialog() == DialogResult.OK)
             {
-                //TODO: save customer;
+                var result = OnSaveCustomer?.Invoke(customer);
             }
         }
 

@@ -46,6 +46,8 @@
             this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.radTextBox7 = new Telerik.WinControls.UI.RadTextBox();
@@ -85,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             this.pvBank.SuspendLayout();
+            this.pvAgreement.SuspendLayout();
             this.pvTerms.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox7)).BeginInit();
@@ -116,11 +119,12 @@
             this.pageView.Controls.Add(this.pvContact);
             this.pageView.Controls.Add(this.pvPasport);
             this.pageView.Controls.Add(this.pvBank);
+            this.pageView.Controls.Add(this.pvAgreement);
             this.pageView.Controls.Add(this.pvTerms);
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvPartnerName;
+            this.pageView.SelectedPage = this.pvContact;
             this.pageView.Size = new System.Drawing.Size(1000, 567);
             this.pageView.TabIndex = 10;
             this.pageView.ThemeName = "Office2013Light";
@@ -372,11 +376,30 @@
             // 
             // ctrlBankAccount
             // 
-            this.ctrlBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
+            this.ctrlBankAccount.DataSource = this.bsBankAccount;
             this.ctrlBankAccount.Location = new System.Drawing.Point(22, 6);
             this.ctrlBankAccount.Name = "ctrlBankAccount";
             this.ctrlBankAccount.Size = new System.Drawing.Size(409, 127);
             this.ctrlBankAccount.TabIndex = 0;
+            // 
+            // pvAgreement
+            // 
+            this.pvAgreement.Controls.Add(this.ctrlAgreement);
+            this.pvAgreement.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvAgreement.Location = new System.Drawing.Point(134, 5);
+            this.pvAgreement.Name = "pvAgreement";
+            this.pvAgreement.Size = new System.Drawing.Size(861, 557);
+            this.pvAgreement.Text = "Договір";
+            // 
+            // ctrlAgreement
+            // 
+            this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
+            this.ctrlAgreement.MaximumSize = new System.Drawing.Size(394, 140);
+            this.ctrlAgreement.MinimumSize = new System.Drawing.Size(394, 140);
+            this.ctrlAgreement.Name = "ctrlAgreement";
+            this.ctrlAgreement.Size = new System.Drawing.Size(394, 140);
+            this.ctrlAgreement.TabIndex = 0;
             // 
             // pvTerms
             // 
@@ -637,6 +660,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.pvBank.ResumeLayout(false);
+            this.pvAgreement.ResumeLayout(false);
             this.pvTerms.ResumeLayout(false);
             this.pvTerms.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -712,5 +736,7 @@
         private DebugFormForControls.ContactsPersonControl ctrlContacts;
         private ConsumerControls.TabNavigationControl ctrlTabNavigation;
         private System.Windows.Forms.BindingSource bsBankAccount;
+        private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
+        private PartnerControls.AgreementPartnerControl ctrlAgreement;
     }
 }

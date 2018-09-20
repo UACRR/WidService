@@ -17,10 +17,10 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public PartnerPhisForm(Customer customer)
         {
             InitializeComponent();
+            DialogResult = DialogResult.None;
             _customer = customer;
             ctrlTabNavigation.SetDefaultState(pageView);
-            ctrlTabNavigation.OnSave += CtrlTabNavigation_OnSave;
-            CancelButton = ctrlTabNavigation.CancelButton;
+            //CancelButton = ctrlTabNavigation.CancelButton;
 
             #region BINDINGS
 
@@ -29,6 +29,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlPartnerName.DataSourceAnketa = anketaPerson;
 
             //контакти
+            ctrlContacts.DataSource = anketaPerson;
             // - проживання
             ctrlAddressLive.DataSource = anketaPerson;
             ctrlAddressLive.AddressDataMember = "ReAddress";
@@ -54,17 +55,13 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlInternalPassport.DataSource = anketaPerson;
 
             //банківські реквізити
-            //
             bsBankAccount.DataSource = _customer?.BankAccount.FirstOrDefault();
             
+            //договір
+            ctrlAgreement.AgreementDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
 
             #endregion
 
-        }
-
-        private void CtrlTabNavigation_OnSave(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
         }
     }
 }

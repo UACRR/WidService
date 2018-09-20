@@ -27,6 +27,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _partner.GetPartnersView += GetPartnersView;
             _partner.LoadData();
             _partner.OnCreateNewCustomerNeed += CreateNewCustomer;
+            _partner.OnSaveCustomer += SaveCustomer;
         }
 
         private List<PartnerView> GetPartnersView()

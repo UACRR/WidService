@@ -60,7 +60,6 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(445, 4);
             this.btnSave.Name = "btnSave";
@@ -68,12 +67,10 @@
             this.btnSave.TabIndex = 56;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnNext
             // 
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNext.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnNext.Location = new System.Drawing.Point(184, 4);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(175, 24);
@@ -85,7 +82,6 @@
             // btnBack
             // 
             this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBack.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnBack.Location = new System.Drawing.Point(3, 4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(175, 24);
@@ -97,7 +93,6 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(572, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(121, 24);
