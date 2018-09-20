@@ -12,6 +12,7 @@ using ipsFormsDesign.Events;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Drawing;
+using IpsViewComponentLibrary.ObjectRightControls;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -69,9 +70,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted = delegate { };
-        public event EventHandler<RightholderMainView> RightholderChanged = delegate { };
-        public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted = delegate { };
+        public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted;
+        public event EventHandler<RightholderMainView> RightholderChanged;
+        public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted;
 
         public RightholdersObjectsRightsControl()
         {
@@ -150,17 +151,34 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         protected void OnEditObjectCommandExecuted(ObjectRightForRightholder selectedObject)
         {
-            EditObjectCommandExecuted(this, selectedObject);
+            if (selectedObject.Category == "M")
+            {
+                using (var view = new ObjectRightSrView())
+                {
+                    var presenter = new ObjectRightSrPresenter(view);
+                    presenter.Show(selectedObject.ObjId);
+                }
+            }
+            else
+            {
+                using (var view = new ObjectRightBrView())
+                {
+                    var presenter = new ObjectRightBrPresenter(view);
+                    presenter.Show(selectedObject.ObjId);
+                }
+            }
+
+            EditObjectCommandExecuted?.Invoke(this, selectedObject);
         }
 
         protected void OnRightholderChanged(RightholderMainView selectedRightholder)
         {
-            RightholderChanged(this, selectedRightholder);
+            RightholderChanged?.Invoke(this, selectedRightholder);
         }
 
         protected void OnShowAnketaCommandExetuted(RightholderMainView selectedRightholder)
         {
-            ShowAnketaCommandExetuted(this, selectedRightholder);
+            ShowAnketaCommandExetuted?.Invoke(this, selectedRightholder);
         }
 
         #endregion
