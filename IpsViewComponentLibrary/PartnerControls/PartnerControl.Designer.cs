@@ -140,6 +140,7 @@
             gridViewTextBoxColumn5.Name = "AgrNumber";
             gridViewTextBoxColumn5.Width = 110;
             gridViewTextBoxColumn6.FieldName = "AgrDate";
+            gridViewTextBoxColumn6.FormatString = "{0:d}";
             gridViewTextBoxColumn6.HeaderText = "Дата договору";
             gridViewTextBoxColumn6.MaxWidth = 80;
             gridViewTextBoxColumn6.MinWidth = 80;
