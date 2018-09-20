@@ -50,26 +50,6 @@
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radTextBox7 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radTextBox6 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radTextBox5 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radTextBox4 = new Telerik.WinControls.UI.RadTextBox();
-            this.radTextBox3 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
@@ -89,27 +69,6 @@
             this.pvBank.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             this.pvAgreement.SuspendLayout();
-            this.pvTerms.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -407,217 +366,11 @@
             // 
             // pvTerms
             // 
-            this.pvTerms.Controls.Add(this.groupBox5);
-            this.pvTerms.Controls.Add(this.groupBox4);
-            this.pvTerms.Controls.Add(this.groupBox3);
-            this.pvTerms.Controls.Add(this.groupBox2);
-            this.pvTerms.Controls.Add(this.groupBox1);
-            this.pvTerms.Controls.Add(this.radLabel4);
             this.pvTerms.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvTerms.Location = new System.Drawing.Point(134, 5);
             this.pvTerms.Name = "pvTerms";
             this.pvTerms.Size = new System.Drawing.Size(861, 557);
             this.pvTerms.Text = "Умои представника";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.radTextBox7);
-            this.groupBox5.Controls.Add(this.radLabel11);
-            this.groupBox5.Location = new System.Drawing.Point(7, 312);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(694, 51);
-            this.groupBox5.TabIndex = 44;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Винагорода за стягнення компенсації за порушення майнових авторських прав Користу" +
-    "вачем в судовому порядку";
-            // 
-            // radTextBox7
-            // 
-            this.radTextBox7.Location = new System.Drawing.Point(264, 21);
-            this.radTextBox7.Name = "radTextBox7";
-            this.radTextBox7.Size = new System.Drawing.Size(54, 21);
-            this.radTextBox7.TabIndex = 3;
-            this.radTextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.radTextBox7.ThemeName = "Office2013Light";
-            // 
-            // radLabel11
-            // 
-            this.radLabel11.Location = new System.Drawing.Point(7, 23);
-            this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(210, 19);
-            this.radLabel11.TabIndex = 1;
-            this.radLabel11.Text = "Відсоток від суми платежів процесу";
-            this.radLabel11.ThemeName = "Office2013Light";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radTextBox6);
-            this.groupBox4.Controls.Add(this.radLabel10);
-            this.groupBox4.Location = new System.Drawing.Point(7, 238);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(694, 68);
-            this.groupBox4.TabIndex = 43;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Винагорода за послуги із погашення заборгованості у позасудовому порядку";
-            // 
-            // radTextBox6
-            // 
-            this.radTextBox6.Location = new System.Drawing.Point(264, 22);
-            this.radTextBox6.Name = "radTextBox6";
-            this.radTextBox6.Size = new System.Drawing.Size(54, 21);
-            this.radTextBox6.TabIndex = 3;
-            this.radTextBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.radTextBox6.ThemeName = "Office2013Light";
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.AutoSize = false;
-            this.radLabel10.Location = new System.Drawing.Point(7, 23);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(240, 35);
-            this.radLabel10.TabIndex = 1;
-            this.radLabel10.Text = "Відсоток від суми платежів позасудового процесу";
-            this.radLabel10.ThemeName = "Office2013Light";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.radTextBox5);
-            this.groupBox3.Controls.Add(this.radLabel12);
-            this.groupBox3.Location = new System.Drawing.Point(7, 168);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(694, 64);
-            this.groupBox3.TabIndex = 42;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Винагорода за послуги із погашення заборгованості у судовому порядку";
-            // 
-            // radTextBox5
-            // 
-            this.radTextBox5.Location = new System.Drawing.Point(264, 22);
-            this.radTextBox5.Name = "radTextBox5";
-            this.radTextBox5.Size = new System.Drawing.Size(54, 21);
-            this.radTextBox5.TabIndex = 3;
-            this.radTextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.radTextBox5.ThemeName = "Office2013Light";
-            // 
-            // radLabel12
-            // 
-            this.radLabel12.AutoSize = false;
-            this.radLabel12.Location = new System.Drawing.Point(6, 22);
-            this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(241, 35);
-            this.radLabel12.TabIndex = 2;
-            this.radLabel12.Text = "Відсоток від суми платежів судового процесу";
-            this.radLabel12.ThemeName = "Office2013Light";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.radTextBox4);
-            this.groupBox2.Controls.Add(this.radTextBox3);
-            this.groupBox2.Controls.Add(this.radLabel8);
-            this.groupBox2.Controls.Add(this.radLabel7);
-            this.groupBox2.Location = new System.Drawing.Point(7, 109);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(694, 53);
-            this.groupBox2.TabIndex = 41;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "З організаторами концертно-видовищних заходів, гастрольних заходів, театральних т" +
-    "а видовищних постановок, антеприз";
-            // 
-            // radTextBox4
-            // 
-            this.radTextBox4.Location = new System.Drawing.Point(581, 22);
-            this.radTextBox4.Name = "radTextBox4";
-            this.radTextBox4.Size = new System.Drawing.Size(54, 21);
-            this.radTextBox4.TabIndex = 4;
-            this.radTextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.radTextBox4.ThemeName = "Office2013Light";
-            // 
-            // radTextBox3
-            // 
-            this.radTextBox3.Location = new System.Drawing.Point(264, 22);
-            this.radTextBox3.Name = "radTextBox3";
-            this.radTextBox3.Size = new System.Drawing.Size(54, 21);
-            this.radTextBox3.TabIndex = 3;
-            this.radTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.radTextBox3.ThemeName = "Office2013Light";
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.Location = new System.Drawing.Point(376, 23);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(199, 19);
-            this.radLabel8.TabIndex = 2;
-            this.radLabel8.Text = "Відсоток від щомісячних платежів";
-            this.radLabel8.ThemeName = "Office2013Light";
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.Location = new System.Drawing.Point(7, 22);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(240, 19);
-            this.radLabel7.TabIndex = 1;
-            this.radLabel7.Text = "Відсоток від одноразово отриманої суми";
-            this.radLabel7.ThemeName = "Office2013Light";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radTextBox2);
-            this.groupBox1.Controls.Add(this.radTextBox1);
-            this.groupBox1.Controls.Add(this.radLabel6);
-            this.groupBox1.Controls.Add(this.radLabel5);
-            this.groupBox1.Location = new System.Drawing.Point(7, 50);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(694, 53);
-            this.groupBox1.TabIndex = 40;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "З користувачами малих прав";
-            // 
-            // radTextBox2
-            // 
-            this.radTextBox2.Location = new System.Drawing.Point(581, 21);
-            this.radTextBox2.Name = "radTextBox2";
-            this.radTextBox2.Size = new System.Drawing.Size(54, 21);
-            this.radTextBox2.TabIndex = 3;
-            this.radTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.radTextBox2.ThemeName = "Office2013Light";
-            // 
-            // radTextBox1
-            // 
-            this.radTextBox1.Location = new System.Drawing.Point(264, 22);
-            this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(54, 21);
-            this.radTextBox1.TabIndex = 2;
-            this.radTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.radTextBox1.ThemeName = "Office2013Light";
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.Location = new System.Drawing.Point(390, 22);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(185, 19);
-            this.radLabel6.TabIndex = 1;
-            this.radLabel6.Text = "Відсоток від місячного платежу";
-            this.radLabel6.ThemeName = "Office2013Light";
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Location = new System.Drawing.Point(7, 23);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(238, 19);
-            this.radLabel5.TabIndex = 0;
-            this.radLabel5.Text = "Відсоток від першого місячного платежу";
-            this.radLabel5.ThemeName = "Office2013Light";
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel4.Location = new System.Drawing.Point(178, 14);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(284, 30);
-            this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Умови за укладення договорів";
-            this.radLabel4.ThemeName = "Office2013Light";
             // 
             // ctrlTabNavigation
             // 
@@ -662,33 +415,6 @@
             this.pvBank.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             this.pvAgreement.ResumeLayout(false);
-            this.pvTerms.ResumeLayout(false);
-            this.pvTerms.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -705,26 +431,6 @@
         private Telerik.WinControls.UI.RadPageViewPage pvPasport;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
         private PassportControl ctrlInternalPassport;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private Telerik.WinControls.UI.RadTextBox radTextBox7;
-        private Telerik.WinControls.UI.RadLabel radLabel11;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private Telerik.WinControls.UI.RadTextBox radTextBox6;
-        private Telerik.WinControls.UI.RadLabel radLabel10;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private Telerik.WinControls.UI.RadTextBox radTextBox5;
-        private Telerik.WinControls.UI.RadLabel radLabel12;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private Telerik.WinControls.UI.RadTextBox radTextBox4;
-        private Telerik.WinControls.UI.RadTextBox radTextBox3;
-        private Telerik.WinControls.UI.RadLabel radLabel8;
-        private Telerik.WinControls.UI.RadLabel radLabel7;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private Telerik.WinControls.UI.RadTextBox radTextBox2;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
-        private Telerik.WinControls.UI.RadLabel radLabel6;
-        private Telerik.WinControls.UI.RadLabel radLabel5;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
         private PartnerControls.PartnerNameControl ctrlPartnerName;
         private Telerik.WinControls.UI.RadPageViewPage pvContact;
         private AddressLetter ctrlAddressLetter;

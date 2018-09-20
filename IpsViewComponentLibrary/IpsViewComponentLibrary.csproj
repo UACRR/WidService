@@ -311,6 +311,12 @@
     <Compile Include="PartnerControls\AgreementPartnerControl.Designer.cs">
       <DependentUpon>AgreementPartnerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PartnerControls\ConditionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\ConditionsControl.Designer.cs">
+      <DependentUpon>ConditionsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartnerControls\PartnerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -946,6 +952,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\AgreementPartnerControl.resx">
       <DependentUpon>AgreementPartnerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\ConditionsControl.resx">
+      <DependentUpon>ConditionsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
       <DependentUpon>PartnerControl.cs</DependentUpon>
