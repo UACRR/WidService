@@ -68,7 +68,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnGetSpectacleNeed += GetSpectacle;
             _cabinetBigRightForm.cabinet.OnGetPartnerListNeed += GetPartnerList;
             _cabinetBigRightForm.cabinet.GetPartner += GetPartnerAnketa;
+            _cabinetBigRightForm.cabinet.OnSetPartner += SetPartnerForCustomer;
+            _cabinetBigRightForm.cabinet.OnChangePartner += ChangePartnerForCustomer;
+            _cabinetBigRightForm.cabinet.OnRemovePartner += RemovePartnerForCustomer;
         }
+
 
         #region - - - ОТРИМАННЯ ДАНИХ - - -
 
@@ -343,6 +347,20 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private AnketaPerson GetPartnerAnketa(int clientId)
         {
             return _service.GetPartnerAnketa(clientId);
+        }
+
+        //зберегти клієнту обраного представника 
+        private bool SetPartnerForCustomer(int custId, int clientId)
+        {
+            return _service.SetPartnerForCustomer(custId, clientId);
+        }
+        private bool ChangePartnerForCustomer(int custId, int newClientId, int oldClientId)
+        {
+            return _service.ChangePartnerForCustomer(custId, newClientId, oldClientId);
+        }
+        private bool RemovePartnerForCustomer(int custId, int clientId)
+        {
+            return _service.RemovePartnerForCustomer(custId, clientId);
         }
 
 

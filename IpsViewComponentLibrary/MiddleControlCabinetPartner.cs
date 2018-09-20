@@ -15,6 +15,10 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlCabinetPartner : UserControl
     {
+        public event SetPartnerEventHandler OnSetPartner;
+        public event SetPartnerEventHandler OnRemovePartner;
+        public event ChangePartnerEventHandler OnChangePartner;
+
         public event GetPartnerList OnGetPartnerListNeed;
         private List<AnketaPerson> _anketaPersons;
         public MiddleControlCabinetPartner()
@@ -34,7 +38,7 @@ namespace IpsViewComponentLibrary
 
         private void btnChangePartner_Click(object sender, EventArgs e)
         {
-            SelectPartner selectPartner = new SelectPartner()
+            SelectPartner selectPartner = new SelectPartner
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -43,6 +47,22 @@ namespace IpsViewComponentLibrary
             {
                 //TODO: зберегти
             }
+        }
+
+        private void btnset_Click(object sender, EventArgs e)
+        {
+            OnSetPartner?.Invoke(134,300);
+        }
+
+        private void btnUpd_Click(object sender, EventArgs e)
+        {
+            OnChangePartner?.Invoke(142, 302, 135);
+
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            OnRemovePartner?.Invoke(142, 302);
         }
     }
 }

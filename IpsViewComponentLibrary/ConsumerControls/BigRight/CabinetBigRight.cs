@@ -71,10 +71,11 @@ namespace IpsViewComponentLibrary
         public event GetPartnerList OnGetPartnerListNeed;
         public event ReturnObjectEventHandler<AnketaPerson> GetPartner;
 
-
-
         #endregion
 
+        public event SetPartnerEventHandler OnSetPartner;
+        public event SetPartnerEventHandler OnRemovePartner;
+        public event ChangePartnerEventHandler OnChangePartner;
 
         /// <summary>
         /// Виникиє при необхідності зберегти Customer
@@ -127,6 +128,9 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
             ctrlPayslips.GetMusicDesing += DataNeedRatedList_GetMusicDesing;
             ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
+            ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
+            ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
+            ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
 
             // static pages, call this in constructor
             _tab = new Dictionary<CabinetTabType, RadPageViewPage>
@@ -145,6 +149,21 @@ namespace IpsViewComponentLibrary
                 {CabinetTabType.Prepays, pvAvances},
                 {CabinetTabType.Contacts, pvContacts}
             };
+        }
+
+        private bool CtrlPartner_OnRemovePartner(int custId, int clientId)
+        {
+            return OnRemovePartner?.Invoke(custId, clientId) ?? false;
+        }
+
+        private bool CtrlPartner_OnChangePartner(int custId, int clientId, int oldclientId)
+        {
+            return OnChangePartner?.Invoke(custId, clientId, oldclientId) ?? false;
+        }
+
+        private bool CtrlPartner_OnSetPartner(int custId, int clientId)
+        {
+            return OnSetPartner?.Invoke(custId, clientId) ?? false;
         }
 
 

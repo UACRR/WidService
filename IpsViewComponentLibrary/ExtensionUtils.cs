@@ -23,6 +23,9 @@ namespace IpsViewComponentLibrary
     public delegate List<AnketaPerson> GetPartnerList();
     public delegate Customer GetCustomerEventHandler(int custId);
 
+    public delegate bool SetPartnerEventHandler(int custId, int clientId);
+    public delegate bool ChangePartnerEventHandler(int custId, int clientId, int oldclientId);
+
     public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate void UpdateCustomerDataEventHandler(int id);
 

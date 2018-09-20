@@ -302,21 +302,73 @@ namespace ipsmedserviceapp.Controllers
             return Json(customer);
         }
 
-        [HttpPost("{clientId}/set/{custId}")]
-        public async Task<IActionResult> SetPartnerOnClient(int clientId, int custId)
+        /// <summary>
+        /// призначити клієнтові представника
+        /// </summary>
+        /// <param name="clientId">ID КЛІЄНТА</param>
+        /// <param name="partnerId">ID ПРЕДСТАВНИКА</param>
+        /// <returns></returns>
+        [HttpPost("{clientId}/insert/{partnerId}")]
+        public async Task<IActionResult> SetPartnerOnClient(int clientId, int partnerId)
         {
-            return null;
+            IDbContextTransaction tran = null;
+            try
+            {
+                PartnerClient partnerClient = new PartnerClient
+                {
+                    CustId = partnerId,
+                    ClCustId = clientId
+                };
+                _dbContext.PartnerClient.Add(partnerClient);
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+                var partner = await _dbContext.PartnerClient.SingleOrDefaultAsync(rec => rec.CustId == partnerId && rec.ClCustId == clientId);
+                return Json(partner);
+            }
+            catch (Exception ex)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpPut("{clientId}/change/{custId}")]
-        public async Task<IActionResult> ChangePartnerOnClient(int clientId, int custId)
+        //змінити клієнтові представника
+        [HttpPut("{clientId}/update/{clientId}/{oldClientId}")]
+        public async Task<IActionResult> ChangePartnerOnClient(int clientId, int partnerId, int oldPartnerId)
         {
-            return null;
+            IDbContextTransaction tran = null;
+            try
+            {
+                var partnerClient = await _dbContext.PartnerClient.SingleOrDefaultAsync(rec => rec.CustId == oldPartnerId && rec.ClCustId == clientId);
+                partnerClient.CustId = partnerId;
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+                var partner = await _dbContext.PartnerClient.SingleOrDefaultAsync(rec => rec.CustId == partnerId && rec.ClCustId == clientId);
+                return Json(partner);
+            }
+            catch (Exception ex)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpDelete("{clientId}/set/{custId}")]
-        public async Task<IActionResult> RemovePartnerOnClient(int clientId, int custId)
+        //вилучити клієнтові представника
+        [HttpDelete("{custId}/remove/{clientId}")]
+        public async Task<IActionResult> RemovePartnerOnClient(int custId, int clientId)
         {
+            int custid = custId;
+            int clientid = clientId;
             return null;
         }
 

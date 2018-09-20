@@ -478,12 +478,27 @@ namespace ipsFormsDesign.Services
             }
             else
             {
-                // TODO: save exist customer
                 return _webApi.UpdateItem<Customer>("partner/partnerphis", cust.CustId.ToString(), cust);
             }
-
             return false;
         }
 
+        // додати представника клієнту
+        public bool SetPartnerForCustomer(int custId, int clientId)
+        {
+            return _webApi.ChangePartnerForCustomer("insert", custId, clientId);
+        }
+
+        // змінити представника в клієнта
+        public bool ChangePartnerForCustomer(int custId, int newClientId, int oldClientId)
+        {
+            return _webApi.ChangePartnerForCustomer("update", custId, newClientId, oldClientId);
+        }
+
+        //вилучити представника в клієнта
+        public bool RemovePartnerForCustomer(int custId, int clientId)
+        {
+            return _webApi.ChangePartnerForCustomer("remove", custId, clientId);
+        }
     }
 }
