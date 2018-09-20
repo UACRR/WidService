@@ -45,8 +45,11 @@
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.ctrlFaAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.btnCopyAddressReLe = new Telerik.WinControls.UI.RadButton();
+            this.btnCopyAddressFaLe = new Telerik.WinControls.UI.RadButton();
             this.ctrlLeAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.btnCopyAddressFaRe = new Telerik.WinControls.UI.RadButton();
             this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
             this.passportPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -104,8 +107,11 @@
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressReLe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressFaLe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressFaRe)).BeginInit();
             this.passportPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderPassportPageView)).BeginInit();
             this.createRightholderPassportPageView.SuspendLayout();
@@ -265,10 +271,10 @@
             this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox1.Controls.Add(this.ctrlFaAddress);
             this.radGroupBox1.HeaderText = "Адреса проживання";
-            this.radGroupBox1.Location = new System.Drawing.Point(3, 3);
+            this.radGroupBox1.Location = new System.Drawing.Point(3, 6);
             this.radGroupBox1.Name = "radGroupBox1";
             this.radGroupBox1.Size = new System.Drawing.Size(841, 79);
-            this.radGroupBox1.TabIndex = 25;
+            this.radGroupBox1.TabIndex = 28;
             this.radGroupBox1.Text = "Адреса проживання";
             this.radGroupBox1.ThemeName = "Office2013Light";
             // 
@@ -290,14 +296,36 @@
             // radGroupBox3
             // 
             this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox3.Controls.Add(this.btnCopyAddressReLe);
+            this.radGroupBox3.Controls.Add(this.btnCopyAddressFaLe);
             this.radGroupBox3.Controls.Add(this.ctrlLeAddress);
             this.radGroupBox3.HeaderText = "Адреса листування";
-            this.radGroupBox3.Location = new System.Drawing.Point(3, 181);
+            this.radGroupBox3.Location = new System.Drawing.Point(3, 202);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(841, 79);
-            this.radGroupBox3.TabIndex = 27;
+            this.radGroupBox3.Size = new System.Drawing.Size(841, 105);
+            this.radGroupBox3.TabIndex = 30;
             this.radGroupBox3.Text = "Адреса листування";
             this.radGroupBox3.ThemeName = "Office2013Light";
+            // 
+            // btnCopyAddressReLe
+            // 
+            this.btnCopyAddressReLe.Location = new System.Drawing.Point(310, 17);
+            this.btnCopyAddressReLe.Name = "btnCopyAddressReLe";
+            this.btnCopyAddressReLe.Size = new System.Drawing.Size(164, 24);
+            this.btnCopyAddressReLe.TabIndex = 3;
+            this.btnCopyAddressReLe.Text = "Вставити з реєстрації";
+            this.btnCopyAddressReLe.ThemeName = "Office2013Light";
+            this.btnCopyAddressReLe.Click += new System.EventHandler(this.btnCopyAddressReLe_Click);
+            // 
+            // btnCopyAddressFaLe
+            // 
+            this.btnCopyAddressFaLe.Location = new System.Drawing.Point(140, 17);
+            this.btnCopyAddressFaLe.Name = "btnCopyAddressFaLe";
+            this.btnCopyAddressFaLe.Size = new System.Drawing.Size(164, 24);
+            this.btnCopyAddressFaLe.TabIndex = 3;
+            this.btnCopyAddressFaLe.Text = "Вставити з проживання";
+            this.btnCopyAddressFaLe.ThemeName = "Office2013Light";
+            this.btnCopyAddressFaLe.Click += new System.EventHandler(this.btnCopyAddressFaLe_Click);
             // 
             // ctrlLeAddress
             // 
@@ -308,7 +336,7 @@
             this.ctrlLeAddress.CountryDataMember = "LeCountry";
             this.ctrlLeAddress.DataMember = "";
             this.ctrlLeAddress.DataSource = this.bsAnketaPerson;
-            this.ctrlLeAddress.Location = new System.Drawing.Point(140, 23);
+            this.ctrlLeAddress.Location = new System.Drawing.Point(140, 52);
             this.ctrlLeAddress.Name = "ctrlLeAddress";
             this.ctrlLeAddress.RegionDataMember = "LeRegion";
             this.ctrlLeAddress.Size = new System.Drawing.Size(696, 48);
@@ -317,14 +345,25 @@
             // radGroupBox2
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.btnCopyAddressFaRe);
             this.radGroupBox2.Controls.Add(this.ctrlReAddress);
             this.radGroupBox2.HeaderText = "Адреса реєстрації";
-            this.radGroupBox2.Location = new System.Drawing.Point(3, 88);
+            this.radGroupBox2.Location = new System.Drawing.Point(3, 91);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(841, 79);
-            this.radGroupBox2.TabIndex = 26;
+            this.radGroupBox2.Size = new System.Drawing.Size(841, 105);
+            this.radGroupBox2.TabIndex = 29;
             this.radGroupBox2.Text = "Адреса реєстрації";
             this.radGroupBox2.ThemeName = "Office2013Light";
+            // 
+            // btnCopyAddressFaRe
+            // 
+            this.btnCopyAddressFaRe.Location = new System.Drawing.Point(140, 17);
+            this.btnCopyAddressFaRe.Name = "btnCopyAddressFaRe";
+            this.btnCopyAddressFaRe.Size = new System.Drawing.Size(164, 24);
+            this.btnCopyAddressFaRe.TabIndex = 2;
+            this.btnCopyAddressFaRe.Text = "Вставити з проживання";
+            this.btnCopyAddressFaRe.ThemeName = "Office2013Light";
+            this.btnCopyAddressFaRe.Click += new System.EventHandler(this.btnCopyAddressFaRe_Click);
             // 
             // ctrlReAddress
             // 
@@ -335,7 +374,7 @@
             this.ctrlReAddress.CountryDataMember = "ReCountry";
             this.ctrlReAddress.DataMember = "";
             this.ctrlReAddress.DataSource = this.bsAnketaPerson;
-            this.ctrlReAddress.Location = new System.Drawing.Point(140, 23);
+            this.ctrlReAddress.Location = new System.Drawing.Point(140, 52);
             this.ctrlReAddress.Name = "ctrlReAddress";
             this.ctrlReAddress.RegionDataMember = "ReRegion";
             this.ctrlReAddress.Size = new System.Drawing.Size(696, 48);
@@ -344,7 +383,7 @@
             // ctrlContacts
             // 
             this.ctrlContacts.DataSource = this.bsAnketaPerson;
-            this.ctrlContacts.Location = new System.Drawing.Point(143, 278);
+            this.ctrlContacts.Location = new System.Drawing.Point(143, 314);
             this.ctrlContacts.MaximumSize = new System.Drawing.Size(625, 50);
             this.ctrlContacts.Name = "ctrlContacts";
             this.ctrlContacts.Size = new System.Drawing.Size(625, 50);
@@ -791,8 +830,11 @@
             this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressReLe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressFaLe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyAddressFaRe)).EndInit();
             this.passportPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.createRightholderPassportPageView)).EndInit();
             this.createRightholderPassportPageView.ResumeLayout(false);
@@ -883,17 +925,20 @@
         private Telerik.WinControls.UI.RadMenuItem miAcceptAndSave;
         private ContractConsumerMainControl ctrlAgreementNumberDate;
         private System.Windows.Forms.BindingSource bsAgreementAddRh;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
-        private IpsAddressControl ctrlFaAddress;
         private System.Windows.Forms.BindingSource bsAnketaPerson;
-        private IpsAddressControl ctrlLeAddress;
-        private IpsAddressControl ctrlReAddress;
         private IpsAddressControl ctrlBaAddress;
         private System.Windows.Forms.BindingSource bsBankAccount;
         private System.Windows.Forms.BindingSource bsCustomer;
         private System.Windows.Forms.BindingSource bsRightHolder;
         private Telerik.WinControls.UI.RadPageViewPage agreementPage;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
+        private IpsAddressControl ctrlFaAddress;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
+        private Telerik.WinControls.UI.RadButton btnCopyAddressReLe;
+        private Telerik.WinControls.UI.RadButton btnCopyAddressFaLe;
+        private IpsAddressControl ctrlLeAddress;
+        private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
+        private Telerik.WinControls.UI.RadButton btnCopyAddressFaRe;
+        private IpsAddressControl ctrlReAddress;
     }
 }

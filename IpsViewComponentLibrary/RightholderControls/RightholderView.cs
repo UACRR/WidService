@@ -181,6 +181,24 @@ namespace IpsViewComponentLibrary.RightholderControls
             bsAgreementAddRh.ResetCurrentItem();
         }
 
+        private void btnCopyAddressFaRe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressFactToRegister();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
+        private void btnCopyAddressFaLe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressFactToLetter();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
+        private void btnCopyAddressReLe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressRegisterToLetter();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
         private void RightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
             _presenter.Close();

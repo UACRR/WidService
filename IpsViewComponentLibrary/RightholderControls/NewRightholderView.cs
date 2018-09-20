@@ -186,6 +186,24 @@ namespace IpsViewComponentLibrary.RightholderControls
             btnGenerateRightholderAgreement.Enabled = true;
         }
 
+        private void btnCopyAddressFaRe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressFactToRegister();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
+        private void btnCopyAddressFaLe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressFactToLetter();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
+        private void btnCopyAddressReLe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressRegisterToLetter();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
         private void miSave_Click(object sender, EventArgs e)
         {
             _presenter.Save(accept: false);

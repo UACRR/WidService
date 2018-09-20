@@ -9,5 +9,8 @@ namespace ipsFormsDesign.Interfaces
         void SetAgreementRightholderStatus(AgreementStatuses newStatus);
         void Save(bool accept);
         void Close();
+        void CopyAddressFactToRegister();
+        void CopyAddressFactToLetter();
+        void CopyAddressRegisterToLetter();
     }
 }

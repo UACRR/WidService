@@ -107,5 +107,29 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (_canClose)
                 _view.Hide();
         }
+
+        public void CopyAddressFactToRegister()
+        {
+            _anketaPerson.ReAddress = _anketaPerson.FaAddress;
+            _anketaPerson.ReCity = _anketaPerson.FaCity;
+            _anketaPerson.ReCountry = _anketaPerson.FaCountry;
+            _anketaPerson.ReRegion = _anketaPerson.FaRegion;
+        }
+
+        public void CopyAddressFactToLetter()
+        {
+            _anketaPerson.LeAddress = _anketaPerson.FaAddress;
+            _anketaPerson.LeCity = _anketaPerson.FaCity;
+            _anketaPerson.LeCountry = _anketaPerson.FaCountry;
+            _anketaPerson.LeRegion = _anketaPerson.FaRegion;
+        }
+
+        public void CopyAddressRegisterToLetter()
+        {
+            _anketaPerson.LeAddress = _anketaPerson.ReAddress;
+            _anketaPerson.LeCity = _anketaPerson.ReCity;
+            _anketaPerson.LeCountry = _anketaPerson.ReCountry;
+            _anketaPerson.LeRegion = _anketaPerson.ReRegion;
+        }
     }
 }
