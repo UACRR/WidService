@@ -534,8 +534,11 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             if (oldBodyCust == null)
                 return false;
 
-            // Закриваємо Правовласника
+            // Закриваємо Правовласника і його договір
             oldRightHolder.Cust.Status = 9;
+
+            var agreement = _dbContext.AgreementAddRh.FirstOrDefault(a => a.CustId == oldRightHolder.CustId);
+            agreement.AgrStatus = 4;
 
             // Об'єкти правовласника
             var objects = await _dbContext.ObjectRight.FromSql(@"
