@@ -236,7 +236,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.MinimumSize = new System.Drawing.Size(394, 140);
             this.Name = "AgreementWithPartnerControl";
             this.Size = new System.Drawing.Size(394, 140);
-            this.Load += new System.EventHandler(this.AgreementWithPartnerControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).EndInit();

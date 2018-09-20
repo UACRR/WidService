@@ -122,14 +122,23 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        // збереження нового представника фізичної особи
+        /// <summary>
+        /// збереження НОВОГО представника ФІЗИЧНОЇ особи
+        /// </summary>
+        /// <param name="sourceCustomer"></param>
+        /// <returns></returns>
         [HttpPost("newpartnerphis")]
         public async Task<IActionResult> SaveNewPartnerPhis([FromBody] Customer sourceCustomer)
         {
             return await SavePartner(sourceCustomer, sourceCustomer.CustType);
         }
 
-        // збереження існуючого представника фізичної особи
+        /// <summary>
+        /// збереження ІСНУЮЧОГО представника ФІЗИЧНОЇ особи
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="sourceCustomer"></param>
+        /// <returns></returns>
         [HttpPut("partnerphis/{custId}")]
         public async Task<IActionResult> SaveExistPartnerPhis(int custId, [FromBody] Customer sourceCustomer)
         {
@@ -169,7 +178,11 @@ namespace ipsmedserviceapp.Controllers
             return await SavePartner(sourceCustomer, sourceCustomer.CustType);
         }
 
-        // синхронізація для ФІЗИНИХ осіб
+        /// <summary>
+        /// синхронізація даних для ФІЗИНИХ осіб
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
         private void UpdatePartnerDataP(Customer source, Customer destination)
         {
             var excludeFields = new string[] { "CustId" };

@@ -22,19 +22,18 @@ namespace IpsViewComponentLibrary.PartnerControls
         public object AgreementDataSource
         {
             get => bsAgreementAddPartner.DataSource;
-            set => bsAgreementAddPartner.DataSource = value;
+            set
+            {
+                if (IpsGlobal.AnketaDictionaties?.period != null)
+                    bsDictPaidPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
+                bsAgreementAddPartner.DataSource = value;
+            }
         }
 
         private void txtDayForPay_TextChanged(object sender, EventArgs e)
         {
             if (Int32.TryParse(txtDayForPay.Text, out int val) && val > 31)
                 txtDayForPay.Text = "31";
-        }
-
-        private void AgreementWithPartnerControl_Load(object sender, EventArgs e)
-        {
-            if(IpsGlobal.AnketaDictionaties?.period != null)
-                bsDictPaidPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
         }
     }
 }

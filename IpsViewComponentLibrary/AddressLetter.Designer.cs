@@ -131,13 +131,12 @@ namespace IpsViewComponentLibrary
             this.tableLayoutPanel.SetColumnSpan(this.txtAddress, 3);
             this.txtAddress.Location = new System.Drawing.Point(0, 25);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(0);
-            this.txtAddress.MinimumSize = new System.Drawing.Size(438, 0);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.NullText = "Адреса";
             // 
             // 
             // 
-            this.txtAddress.RootElement.MinSize = new System.Drawing.Size(438, 0);
+            this.txtAddress.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.txtAddress.Size = new System.Drawing.Size(460, 20);
             this.txtAddress.TabIndex = 5;
             this.txtAddress.ThemeName = "Office2013Light";

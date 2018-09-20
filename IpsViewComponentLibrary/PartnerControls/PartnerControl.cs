@@ -101,9 +101,9 @@ namespace IpsViewComponentLibrary.PartnerControls
                     //додавання/збереження
                     var result = OnSaveCustomer?.Invoke(customer);
                     if (result ?? false)
-                        ExtensionUtils.ShowInfoMessage("Нового представника додано!", "Успішно", MessageBoxIcon.Information);
+                        ExtensionUtils.ShowInfoMessage("Успішно збережено!", "Успішно", MessageBoxIcon.Information);
                     else
-                        ExtensionUtils.ShowInfoMessage("Неможливо додати нового представника!", "Помилка", MessageBoxIcon.Error);
+                        ExtensionUtils.ShowInfoMessage("Не можливо зберегти!", "Помилка", MessageBoxIcon.Error);
                 }
             }
             else if (customer.CustType == 3)
