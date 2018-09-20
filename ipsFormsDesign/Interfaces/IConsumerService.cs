@@ -377,7 +377,7 @@ namespace ipsFormsDesign.Interfaces
         public int? AgrStatus { get; set; }
         public int? ClnCount { get; set; }
         public int? AgrCount { get; set; }
-        public string INNOKPO { get; set; }
+        public string Innokpo { get; set; }
         public string Name { get; set; }
         public string AgrNumber { get; set; }
         public string JaCity { get; set; }

@@ -46,6 +46,7 @@
             this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
@@ -70,7 +71,6 @@
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
-            this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
@@ -87,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             this.pvBank.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             this.pvAgreement.SuspendLayout();
             this.pvTerms.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -109,7 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,7 +124,7 @@
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvContact;
+            this.pageView.SelectedPage = this.pvPartnerName;
             this.pageView.Size = new System.Drawing.Size(1000, 567);
             this.pageView.TabIndex = 10;
             this.pageView.ThemeName = "Office2013Light";
@@ -382,6 +382,10 @@
             this.ctrlBankAccount.Size = new System.Drawing.Size(409, 127);
             this.ctrlBankAccount.TabIndex = 0;
             // 
+            // bsBankAccount
+            // 
+            this.bsBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
+            // 
             // pvAgreement
             // 
             this.pvAgreement.Controls.Add(this.ctrlAgreement);
@@ -625,10 +629,6 @@
             this.ctrlTabNavigation.Size = new System.Drawing.Size(1000, 31);
             this.ctrlTabNavigation.TabIndex = 11;
             // 
-            // bsBankAccount
-            // 
-            this.bsBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
-            // 
             // PartnerPhisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -660,6 +660,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.pvBank.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             this.pvAgreement.ResumeLayout(false);
             this.pvTerms.ResumeLayout(false);
             this.pvTerms.PerformLayout();
@@ -688,7 +689,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
