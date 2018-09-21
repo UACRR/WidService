@@ -13,15 +13,17 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     public partial class SelectPartner : Telerik.WinControls.UI.RadForm
     {
-
         private List<AnketaPerson> _anketaPersons;
         private List<PartnerList> _partnerList = new List<PartnerList>();
 
-        public SelectPartner()
+        public SelectPartner(int? partnerId)
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
+            PartnerId = partnerId;
         }
+
+        public int? PartnerId { get; private set; }
 
         public void SetPartnerList(List<AnketaPerson> anketaPersons)
         {
@@ -45,7 +47,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             var custId = ((PartnerList)((Telerik.WinControls.UI.RadDropDownList)sender)?.SelectedItem?.Value)?.CustId;
             if (custId != null)
+            {
                 UpdateData((int)custId);
+                PartnerId = (int) custId;
+            }
         }
 
         private void UpdateData(int custId)
@@ -61,12 +66,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private void SelectPartner_Load(object sender, EventArgs e)
         {
             ddlPartnersList.SelectedValueChanged += ddlPartnersList_SelectedValueChanged;
-            ddlPartnersList.SelectedIndex = ddlPartnersList.Items.First.Index;
+            if (PartnerId != null && ddlPartnersList.Items.SingleOrDefault(rec => (rec.DataBoundItem as PartnerList)?.CustId == PartnerId)?.Index is int index)
+                ddlPartnersList.SelectedIndex = index;
         }
 
-        private void btnSavePartner_Click(object sender, EventArgs e)
+        private void btnSelectPartner_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.Yes;
         }
     }
     public class PartnerList

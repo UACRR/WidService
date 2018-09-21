@@ -289,7 +289,7 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.Agent:
                 {
-                    ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId));
+                    ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
                 }
                     break;
             }

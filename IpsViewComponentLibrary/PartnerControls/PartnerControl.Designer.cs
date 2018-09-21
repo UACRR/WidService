@@ -37,6 +37,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewHyperlinkColumn gridViewHyperlinkColumn1 = new Telerik.WinControls.UI.GridViewHyperlinkColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
@@ -133,12 +134,12 @@
             gridViewTextBoxColumn4.HeaderText = "Представник";
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Name = "Name";
-            gridViewTextBoxColumn4.Width = 313;
+            gridViewTextBoxColumn4.Width = 298;
             gridViewTextBoxColumn5.FieldName = "AgrNumber";
             gridViewTextBoxColumn5.HeaderText = "№ договору";
             gridViewTextBoxColumn5.MaxWidth = 110;
             gridViewTextBoxColumn5.Name = "AgrNumber";
-            gridViewTextBoxColumn5.Width = 110;
+            gridViewTextBoxColumn5.Width = 105;
             gridViewTextBoxColumn6.FieldName = "AgrDate";
             gridViewTextBoxColumn6.FormatString = "{0:d}";
             gridViewTextBoxColumn6.HeaderText = "Дата договору";
@@ -153,23 +154,32 @@
             gridViewTextBoxColumn7.MinWidth = 0;
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "JaCity";
-            gridViewTextBoxColumn7.Width = 104;
+            gridViewTextBoxColumn7.Width = 99;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "StatusName";
             gridViewTextBoxColumn8.HeaderText = "Статус договору";
             gridViewTextBoxColumn8.MinWidth = 0;
             gridViewTextBoxColumn8.Multiline = true;
             gridViewTextBoxColumn8.Name = "StatusName";
-            gridViewTextBoxColumn8.Width = 122;
+            gridViewTextBoxColumn8.Width = 88;
             gridViewTextBoxColumn8.WrapText = true;
-            gridViewTextBoxColumn9.FieldName = "ClnCount";
-            gridViewTextBoxColumn9.HeaderText = "К-сть клієнтів";
+            gridViewTextBoxColumn9.FieldName = "AgrCount";
+            gridViewTextBoxColumn9.HeaderText = "К-сть договорів клієнтів";
             gridViewTextBoxColumn9.MaxWidth = 60;
             gridViewTextBoxColumn9.MinWidth = 60;
             gridViewTextBoxColumn9.Multiline = true;
-            gridViewTextBoxColumn9.Name = "ClnCount";
+            gridViewTextBoxColumn9.Name = "AgrCount";
+            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn9.Width = 60;
             gridViewTextBoxColumn9.WrapText = true;
+            gridViewHyperlinkColumn1.FieldName = "ClnCount";
+            gridViewHyperlinkColumn1.HeaderText = "К-сть клієнтів";
+            gridViewHyperlinkColumn1.MaxWidth = 60;
+            gridViewHyperlinkColumn1.MinWidth = 60;
+            gridViewHyperlinkColumn1.Name = "ClnCount";
+            gridViewHyperlinkColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewHyperlinkColumn1.Width = 60;
+            gridViewHyperlinkColumn1.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";
@@ -208,6 +218,7 @@
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
+            gridViewHyperlinkColumn1,
             gridViewCommandColumn1,
             gridViewCommandColumn2});
             this.gvViewPartners.MasterTemplate.EnableCustomFiltering = true;
@@ -222,6 +233,7 @@
             this.gvViewPartners.ThemeName = "Office2013Light";
             this.gvViewPartners.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewPartners_CommandCellClick);
             this.gvViewPartners.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewConsumers_CustomFiltering);
+            this.gvViewPartners.HyperlinkOpening += new Telerik.WinControls.UI.HyperlinkOpeningEventHandler(this.gvViewPartners_HyperlinkOpening);
             // 
             // rddBtnNewPartner
             // 

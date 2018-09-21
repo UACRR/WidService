@@ -21,13 +21,17 @@ namespace IpsViewComponentLibrary
 
         public event GetPartnerList OnGetPartnerListNeed;
         private List<AnketaPerson> _anketaPersons;
+        private AnketaPerson _partner;
+        private int _cientId;
         public MiddleControlCabinetPartner()
         {
             InitializeComponent();
         }
 
-        public void SetPartnerData(AnketaPerson item)
+        public void SetPartnerData(AnketaPerson item, int cientId)
         {
+            _partner = item;
+            _cientId = cientId;
             lblFullName.Text = item?.LastName + " " + item?.FirstName + " " + item?.SurName;
             lblAgrDate.Text = "";
             lblAgrDateEnd.Text = "";
@@ -36,33 +40,32 @@ namespace IpsViewComponentLibrary
             lblEmail.Text = item?.EMail;
         }
 
+        //змінити представника
         private void btnChangePartner_Click(object sender, EventArgs e)
         {
-            SelectPartner selectPartner = new SelectPartner
+            SelectPartner selectPartner = new SelectPartner(_partner?.CustId)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
             selectPartner.SetPartnerList(OnGetPartnerListNeed?.Invoke());
-            if (selectPartner.ShowDialog() == DialogResult.OK)
+            
+            if (selectPartner.ShowDialog() == DialogResult.Yes)
             {
-                //TODO: зберегти
+                if(selectPartner.PartnerId != null)
+                {
+                    if(_partner?.CustId == null) // додати
+                        OnSetPartner?.Invoke(_cientId, (int)selectPartner.PartnerId);
+                    if(_partner?.CustId != null) // змінити
+                        OnChangePartner?.Invoke(_cientId, (int)selectPartner.PartnerId, _partner.CustId);
+                }
             }
         }
 
-        private void btnset_Click(object sender, EventArgs e)
+        //видалити представника
+        private void btnRemovePartner_Click(object sender, EventArgs e)
         {
-            OnSetPartner?.Invoke(134,300);
-        }
-
-        private void btnUpd_Click(object sender, EventArgs e)
-        {
-            OnChangePartner?.Invoke(142, 302, 135);
-
-        }
-
-        private void btnDel_Click(object sender, EventArgs e)
-        {
-            OnRemovePartner?.Invoke(142, 302);
+            if (_partner?.CustId != null)
+                OnRemovePartner?.Invoke(_cientId, _partner.CustId);
         }
     }
 }

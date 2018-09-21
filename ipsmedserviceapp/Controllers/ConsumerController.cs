@@ -985,6 +985,7 @@ namespace ipsmedserviceapp.Controllers
             return licAgreement;
 
         }
+      
         /// <summary>
         /// Акцептувати Ліценз. Договір або Доп договір до нього
         /// </summary>

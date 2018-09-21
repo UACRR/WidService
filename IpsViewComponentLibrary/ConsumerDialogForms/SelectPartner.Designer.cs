@@ -43,7 +43,7 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.lblAgrDateEnd = new Telerik.WinControls.UI.RadLabel();
-            this.btnSavePartner = new Telerik.WinControls.UI.RadButton();
+            this.btnSelectPartner = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPartnersList)).BeginInit();
@@ -60,7 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAgrDateEnd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSavePartner)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSelectPartner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +76,7 @@
             // 
             // ddlPartnersList
             // 
+            this.ddlPartnersList.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlPartnersList.Location = new System.Drawing.Point(108, 12);
             this.ddlPartnersList.Name = "ddlPartnersList";
             this.ddlPartnersList.Size = new System.Drawing.Size(443, 21);
@@ -293,17 +294,17 @@
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             // 
-            // btnSavePartner
+            // btnSelectPartner
             // 
-            this.btnSavePartner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSavePartner.Location = new System.Drawing.Point(12, 129);
-            this.btnSavePartner.Name = "btnSavePartner";
-            this.btnSavePartner.Size = new System.Drawing.Size(146, 21);
-            this.btnSavePartner.TabIndex = 50;
-            this.btnSavePartner.Text = "Обрати представником";
-            this.btnSavePartner.TextWrap = true;
-            this.btnSavePartner.ThemeName = "Office2013Light";
-            this.btnSavePartner.Click += new System.EventHandler(this.btnSavePartner_Click);
+            this.btnSelectPartner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSelectPartner.Location = new System.Drawing.Point(12, 129);
+            this.btnSelectPartner.Name = "btnSelectPartner";
+            this.btnSelectPartner.Size = new System.Drawing.Size(171, 21);
+            this.btnSelectPartner.TabIndex = 50;
+            this.btnSelectPartner.Text = "Призначити представником";
+            this.btnSelectPartner.TextWrap = true;
+            this.btnSelectPartner.ThemeName = "Office2013Light";
+            this.btnSelectPartner.Click += new System.EventHandler(this.btnSelectPartner_Click);
             // 
             // btnCancel
             // 
@@ -324,7 +325,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(667, 162);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSavePartner);
+            this.Controls.Add(this.btnSelectPartner);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radLabel15);
@@ -336,6 +337,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
+            this.RootElement.MaxSize = new System.Drawing.Size(675, 193);
             this.Text = "Обрати представника";
             this.ThemeName = "Office2013Light";
             this.Load += new System.EventHandler(this.SelectPartner_Load);
@@ -355,7 +357,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAgrDateEnd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSavePartner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSelectPartner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -380,7 +382,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadLabel lblAgrDateEnd;
-        private Telerik.WinControls.UI.RadButton btnSavePartner;
+        private Telerik.WinControls.UI.RadButton btnSelectPartner;
         private Telerik.WinControls.UI.RadButton btnCancel;
     }
 }

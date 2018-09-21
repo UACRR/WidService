@@ -179,6 +179,15 @@ namespace IpsViewComponentLibrary.PartnerControls
                     break;
             }
         }
+
+        private void gvViewPartners_HyperlinkOpening(object sender, HyperlinkOpeningEventArgs e)
+        {
+            if (e.Row.DataBoundItem is PartnerView item)
+            {
+                //TODO: call partner cabinet
+            }
+            
+        }
     }
 
     public enum PartnerFilter
