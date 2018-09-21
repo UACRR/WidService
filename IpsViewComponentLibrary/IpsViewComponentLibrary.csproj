@@ -300,6 +300,13 @@
     <Compile Include="ConsumerForms\PartnerJurForm.Designer.cs">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FixationControls\FixationListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FixationControls\FixationListControl.Designer.cs">
+      <DependentUpon>FixationListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FixationControls\FixationListPresenter.cs" />
     <Compile Include="LicenseAgreementListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -929,6 +936,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\PartnerJurForm.resx">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FixationControls\FixationListControl.resx">
+      <DependentUpon>FixationListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LicenseAgreementListControl.resx">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>

@@ -60,6 +60,7 @@
             this.ddbAddObjectRight = new Telerik.WinControls.UI.RadDropDownButton();
             this.miAddMusicalComposition = new Telerik.WinControls.UI.RadMenuItem();
             this.pageReportSR = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -103,7 +104,6 @@
             this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRightholderList = new IpsViewComponentLibrary.RightholderControls.RightholderListControl();
             this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.RadioPanel();
@@ -114,12 +114,15 @@
             this.ctrlObjectRightList = new IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl();
             this.ctrlRegisterList = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
             this.licenseAgreementListControl1 = new IpsViewComponentLibrary.LicenseAgreementListControl();
+            this.fixationListControl1 = new IpsViewComponentLibrary.FixationControls.FixationListControl();
+            this.mainPageViewReportsSR.SuspendLayout();
             this.mainPageRightsObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).BeginInit();
             this.objectsPageView.SuspendLayout();
             this.actualObjectsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRight)).BeginInit();
             this.pageReportSR.SuspendLayout();
+            this.radPageViewPage1.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rightholdersPageView)).BeginInit();
             this.rightholdersPageView.SuspendLayout();
@@ -161,7 +164,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightDictionariesBindingSource)).BeginInit();
-            this.radPageViewPage1.SuspendLayout();
             this.ctrlChangeRightholderOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbTransfer)).BeginInit();
@@ -171,10 +173,11 @@
             // 
             // mainPageViewReportsSR
             // 
+            this.mainPageViewReportsSR.Controls.Add(this.fixationListControl1);
             this.mainPageViewReportsSR.ItemSize = new System.Drawing.SizeF(120F, 25F);
-            this.mainPageViewReportsSR.Location = new System.Drawing.Point(5, 31);
+            this.mainPageViewReportsSR.Location = new System.Drawing.Point(5, 29);
             this.mainPageViewReportsSR.Name = "mainPageViewReportsSR";
-            this.mainPageViewReportsSR.Size = new System.Drawing.Size(1182, 632);
+            this.mainPageViewReportsSR.Size = new System.Drawing.Size(1182, 634);
             this.mainPageViewReportsSR.Text = "Фіксація порушень";
             // 
             // mainPageRightsObjects
@@ -218,7 +221,7 @@
             this.ddbAddObjectRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ddbAddObjectRight.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.miAddMusicalComposition});
-            this.ddbAddObjectRight.Location = new System.Drawing.Point(3, 572);
+            this.ddbAddObjectRight.Location = new System.Drawing.Point(3, 574);
             this.ddbAddObjectRight.Name = "ddbAddObjectRight";
             this.ddbAddObjectRight.Size = new System.Drawing.Size(140, 24);
             this.ddbAddObjectRight.TabIndex = 23;
@@ -241,6 +244,15 @@
             this.pageReportSR.Name = "pageReportSR";
             this.pageReportSR.Size = new System.Drawing.Size(1172, 596);
             this.pageReportSR.Text = "Звіти МП";
+            // 
+            // radPageViewPage1
+            // 
+            this.radPageViewPage1.Controls.Add(this.licenseAgreementListControl1);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(128F, 25F);
+            this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
+            this.radPageViewPage1.Name = "radPageViewPage1";
+            this.radPageViewPage1.Size = new System.Drawing.Size(1172, 596);
+            this.radPageViewPage1.Text = "Заявки / Довідки ВП";
             // 
             // mainPageRightholders
             // 
@@ -287,7 +299,7 @@
             this.ddbNewRightholder.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.miNewRightholderPerson,
             this.miNewRigthholderCompany});
-            this.ddbNewRightholder.Location = new System.Drawing.Point(3, 573);
+            this.ddbNewRightholder.Location = new System.Drawing.Point(3, 575);
             this.ddbNewRightholder.Name = "ddbNewRightholder";
             this.ddbNewRightholder.Size = new System.Drawing.Size(140, 24);
             this.ddbNewRightholder.TabIndex = 4;
@@ -694,7 +706,7 @@
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageRightsObjects;
+            this.MainPageView.SelectedPage = this.mainPageViewReportsSR;
             this.MainPageView.Size = new System.Drawing.Size(1192, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";
@@ -830,15 +842,6 @@
             // 
             this.objectRightDictionariesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ObjectRightDictionaries);
             // 
-            // radPageViewPage1
-            // 
-            this.radPageViewPage1.Controls.Add(this.licenseAgreementListControl1);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(128F, 25F);
-            this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1172, 596);
-            this.radPageViewPage1.Text = "Заявки / Довідки ВП";
-            // 
             // ctrlRightholderList
             // 
             this.ctrlRightholderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -849,7 +852,7 @@
             this.ctrlRightholderList.SearchText = "";
             this.ctrlRightholderList.SelectedRightholder = null;
             this.ctrlRightholderList.ShowCommandColumns = true;
-            this.ctrlRightholderList.Size = new System.Drawing.Size(1173, 567);
+            this.ctrlRightholderList.Size = new System.Drawing.Size(1173, 569);
             this.ctrlRightholderList.TabIndex = 5;
             this.ctrlRightholderList.RightholderSelected += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderList_RightholderSelected);
             // 
@@ -932,7 +935,7 @@
             this.ctrlObjectRightList.Location = new System.Drawing.Point(0, -2);
             this.ctrlObjectRightList.Name = "ctrlObjectRightList";
             this.ctrlObjectRightList.SelectedObject = null;
-            this.ctrlObjectRightList.Size = new System.Drawing.Size(1174, 604);
+            this.ctrlObjectRightList.Size = new System.Drawing.Size(1174, 606);
             this.ctrlObjectRightList.TabIndex = 24;
             this.ctrlObjectRightList.ObjectSelected += new System.EventHandler<ipsFormsDesign.Dictionary.ObjectRightMainView>(this.ctrlObjectRightList_ObjectSelected);
             this.ctrlObjectRightList.EditCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.ObjectRightMainView>(this.ctrlObjectRightList_EditCommandExecuted);
@@ -955,6 +958,14 @@
             this.licenseAgreementListControl1.Size = new System.Drawing.Size(1172, 596);
             this.licenseAgreementListControl1.TabIndex = 0;
             // 
+            // fixationListControl1
+            // 
+            this.fixationListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fixationListControl1.Location = new System.Drawing.Point(0, 0);
+            this.fixationListControl1.Name = "fixationListControl1";
+            this.fixationListControl1.Size = new System.Drawing.Size(1182, 634);
+            this.fixationListControl1.TabIndex = 0;
+            // 
             // RightholderWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -970,12 +981,14 @@
             this.Text = "Робоче місце адмінстратора права";
             this.ThemeName = "Office2013Light";
             this.Load += new System.EventHandler(this.RightholderWorkplace_Load);
+            this.mainPageViewReportsSR.ResumeLayout(false);
             this.mainPageRightsObjects.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).EndInit();
             this.objectsPageView.ResumeLayout(false);
             this.actualObjectsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRight)).EndInit();
             this.pageReportSR.ResumeLayout(false);
+            this.radPageViewPage1.ResumeLayout(false);
             this.mainPageRightholders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rightholdersPageView)).EndInit();
             this.rightholdersPageView.ResumeLayout(false);
@@ -1018,7 +1031,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.objectRightForRightholderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightDictionariesBindingSource)).EndInit();
-            this.radPageViewPage1.ResumeLayout(false);
             this.ctrlChangeRightholderOperation.ResumeLayout(false);
             this.ctrlChangeRightholderOperation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).EndInit();
@@ -1092,5 +1104,6 @@
         private Telerik.WinControls.UI.RadMenuItem miNewRigthholderCompany;
         private IpsViewComponentLibrary.LicenseAgreementListControl licenseAgreementListControl1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
+        private IpsViewComponentLibrary.FixationControls.FixationListControl fixationListControl1;
     }
 }
