@@ -17,6 +17,7 @@ namespace ipsFormsDesign.Interfaces
         string LicenseName { get; }
         string Series { get; }
         string AgrNumber { get; }
+        DateTime AgrDate { get; }
         DateTime DateBegin { get; }
         DateTime DateEnd { get; }
         decimal Amount { get; }
@@ -71,6 +72,7 @@ namespace ipsFormsDesign.Interfaces
         }
 
         public string AgrNumber { get => _param.LicNum; }
+        public DateTime AgrDate { get => _param.LicDate ?? DateTime.Today; }
         public DateTime DateBegin { get => _param.DateBegin ?? DateTime.Today; }
         public DateTime DateEnd { get => _param.DateEnd ?? new DateTime(3000,1,1); }
         public decimal Amount { get => _param.MinAmount ?? 0; }
@@ -95,6 +97,7 @@ namespace ipsFormsDesign.Interfaces
         }
 
         public string AgrNumber { get => (_param?.AgrNumber ?? "") ; }
+        public DateTime AgrDate { get => (_param?.AgrDate ?? DateTime.Today); }
         public DateTime DateBegin { get => (_param?.DateBegin ?? DateTime.Today); }
         public DateTime DateEnd { get => (_param?.DateEnd ?? new DateTime(3000, 1, 1)); }
         public decimal Amount { get => 0; }

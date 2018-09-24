@@ -10,6 +10,9 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Utilities;
+using System.Drawing;
+using IpsViewComponentLibrary.ObjectRightControls;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -56,15 +59,30 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted = delegate { };
-        public event EventHandler<RightholderMainView> RightholderChanged = delegate { };
-        public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted = delegate { };
+        private bool _showRightholderSelector = true;
+        public bool ShowRightholderSelector
+        {
+            get { return _showRightholderSelector; }
+            set
+            {
+                _showRightholderSelector = value;
+                ctrlRightholderSelector.Visible = _showRightholderSelector;
+            }
+        }
+
+        public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted;
+        public event EventHandler<RightholderMainView> RightholderChanged;
+        public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted;
 
         public RightholdersObjectsRightsControl()
         {
             InitializeComponent();
 
+            gvRightholdersObjectsRights.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+
             ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
+
+            ctrlRightholderSelector.Visible = false;
         }
 
         public void UpdateList()
@@ -82,7 +100,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
                 objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
 
-                SelectedObject = currentObject;
+                //SelectedObject = currentObject;
             }
             else
             {
@@ -110,6 +128,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             OnEditObjectCommandExecuted(SelectedObject);
         }
 
+        private void gvRightholdersObjectsRights_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
+
         #endregion
 
         private void ctrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
@@ -128,17 +151,34 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         protected void OnEditObjectCommandExecuted(ObjectRightForRightholder selectedObject)
         {
-            EditObjectCommandExecuted(this, selectedObject);
+            if (selectedObject.Category == "M")
+            {
+                using (var view = new ObjectRightSrView())
+                {
+                    var presenter = new ObjectRightSrPresenter(view);
+                    presenter.Show(selectedObject.ObjId);
+                }
+            }
+            else
+            {
+                using (var view = new ObjectRightBrView())
+                {
+                    var presenter = new ObjectRightBrPresenter(view);
+                    presenter.Show(selectedObject.ObjId);
+                }
+            }
+
+            EditObjectCommandExecuted?.Invoke(this, selectedObject);
         }
 
         protected void OnRightholderChanged(RightholderMainView selectedRightholder)
         {
-            RightholderChanged(this, selectedRightholder);
+            RightholderChanged?.Invoke(this, selectedRightholder);
         }
 
         protected void OnShowAnketaCommandExetuted(RightholderMainView selectedRightholder)
         {
-            ShowAnketaCommandExetuted(this, selectedRightholder);
+            ShowAnketaCommandExetuted?.Invoke(this, selectedRightholder);
         }
 
         #endregion

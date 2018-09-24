@@ -172,6 +172,28 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private bool _showDurationUse = true;
+        public bool ShowDurationUse
+        {
+            get => _showDurationUse;
+            set
+            {
+                _showDurationUse = value;
+                SetColumnVisible("DurationUse", _showDurationUse);
+            }
+        }
+
+        private bool _showLinked = true;
+        public bool ShowLinked
+        {
+            get => _showLinked;
+            set
+            {
+                _showLinked = value;
+                SetColumnVisible("Linked", _showLinked);
+            }
+        }
+
         public bool MultiSelect
         {
             get => gvRegisterItemList.MultiSelect;
@@ -292,6 +314,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void gvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
+            // yellow colour for row with automatically founded object
             var registerItem = e.RowElement.RowInfo.DataBoundItem as RegisterItemViewModel;
 
             if (registerItem != null)
@@ -307,6 +330,18 @@ namespace IpsViewComponentLibrary.RegisterControls
                     e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
                     e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
                     e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                }
+            }
+
+            // gray colour and bold font for row if it is a parent row and there is records in the register extra list
+            if (bsRegisterExtra.List.Count > 0)
+            {
+                if (e.RowElement.ViewTemplate.Parent == null)
+                {
+                    e.RowElement.DrawFill = true;
+                    e.RowElement.GradientStyle = GradientStyles.Solid;
+                    e.RowElement.BackColor = Color.LightGray;
+                    e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
                 }
             }
         }

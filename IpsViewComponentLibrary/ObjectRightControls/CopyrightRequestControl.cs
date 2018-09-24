@@ -86,11 +86,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public CopyrightRequestControl()
         {
             InitializeComponent();
-
-            if (!IsDesignMode)
-            {
-                SetDictionaries();
-            }
         }
 
         private void SetDictionaries()
@@ -101,7 +96,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void CopyrightRequestControl_Load(object sender, EventArgs e)
         {
-            _presenter.UpdateRightholderList();
+            if (!IsDesignMode)
+            {
+                SetDictionaries();
+                _presenter.UpdateRightholderList();
+            }
         }
 
         private void gvRightholdersList_SelectionChanged(object sender, EventArgs e)

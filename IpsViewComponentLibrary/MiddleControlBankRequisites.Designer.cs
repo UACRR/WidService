@@ -51,7 +51,6 @@
             this.ctrlBankAccount.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBankAccount.DataMember = "";
             this.ctrlBankAccount.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
             this.ctrlBankAccount.Location = new System.Drawing.Point(3, 32);
             this.ctrlBankAccount.Name = "ctrlBankAccount";

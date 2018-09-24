@@ -21,8 +21,9 @@ namespace sysAdminwp
 {
     public partial class RadForm1 : Telerik.WinControls.UI.RadForm
     {
-        private readonly ApiConnector connector = new ApiConnector();
+        private readonly ApiConnector _connector = new ApiConnector();
         private List<DictBaseTypeI> _list;
+        private List<DictCategory> _dictionaryCategories = null;
         public string Url { get; set; }
 
         public RadForm1()
@@ -40,17 +41,15 @@ namespace sysAdminwp
             radTxtBoxSearchData.Enabled = false;
             radBtnAdd.Enabled = false;
             radBtnRemove.Enabled = false;
-
+            _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");
         }
-
-
 
         #region Методи
         
         //метод встановлення джерела даних для дерева
         private void SetDataSource()
         {
-            var dictCategory = connector.GetList<DictCategory>("dictionary/list");//дерево
+            var dictCategory = _connector.GetList<DictCategory>("dictionary/list");//дерево
             radTreeViewList.DataSource = dictCategory;
             radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             radTreeViewList.DisplayMember = "Name\\Name";
@@ -67,8 +66,10 @@ namespace sysAdminwp
             ViewTable temp;
             foreach (var items in l)
             {
-                temp = new ViewTable();
-                temp.Code = items.CodeI;
+                temp = new ViewTable
+                {
+                    Code = items.CodeI
+                };
                 foreach (var itemName in items.DictTrI)
                 {
                     if (itemName.Lang == "Uk")
@@ -109,8 +110,8 @@ namespace sysAdminwp
                 radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
 
             DictBaseTypeI dataI = PackDataI();
-            bool retCode = connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
-            _list = connector.GetList<DictBaseTypeI>(Url);
+            bool retCode = _connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
+            _list = _connector.GetList<DictBaseTypeI>(Url);
             radGridView1.DataSource = GetData(_list);
             UpdateEditPanel();
         }
@@ -125,8 +126,8 @@ namespace sysAdminwp
                 try
                 {
                     DictBaseTypeI dataI = PackDataI();
-                    bool retCode = connector.NewItem(Url, dataI);
-                    _list = connector.GetList<DictBaseTypeI>(Url);
+                    bool retCode = _connector.NewItem(Url, dataI);
+                    _list = _connector.GetList<DictBaseTypeI>(Url);
                     radGridView1.DataSource = GetData(_list);
                     UpdateEditPanel();
                     ChangeEnableElementsWhenAdd(true);
@@ -148,30 +149,31 @@ namespace sysAdminwp
         //метод оновлення для панелі редагування
         private void UpdateEditPanel()
         {
-       
             //відписуємось від події - обрали інший рядок, зміни не внесено
-            this.radTBCode.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
-            this.radTBNameUa.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
-            this.radTBNameRu.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
-            this.radTBNameEn.TextChanging -= new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
-                 try
-                 {
-                     radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
-                     radTBNameUa.Text = radGridView1.CurrentRow.Cells["NameUk"].Value.ToString();
-                     radTBNameRu.Text = radGridView1.CurrentRow.Cells["NameRu"].Value.ToString();
-                     radTBNameEn.Text = radGridView1.CurrentRow.Cells["NameEn"].Value.ToString();
-                 }
-                 catch (Exception)
-                 {
-                     radTBCode.Text = default(string);
-                     radTBNameUa.Text = default(string);
-                     radTBNameRu.Text = default(string);
-                     radTBNameEn.Text = default(string);
-                 }
-            this.radTBCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
-            this.radTBNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
-            this.radTBNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
-            this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
+            radTBCode.TextChanging -= TextBox_TextChanging;
+            radTBNameUa.TextChanging -= TextBox_TextChanging;
+            radTBNameRu.TextChanging -= TextBox_TextChanging;
+            radTBNameEn.TextChanging -= TextBox_TextChanging;
+
+            if (radGridView1?.CurrentRow?.DataBoundItem is ViewTable items)
+            {
+                radTBCode.Text = items.Code.ToString();
+                radTBNameUa.Text = items.NameUk;
+                radTBNameRu.Text = items.NameRu;
+                radTBNameEn.Text = items.NameEn;
+            }
+            else
+            {
+                radTBCode.Text = default(string);
+                radTBNameUa.Text = default(string);
+                radTBNameRu.Text = default(string);
+                radTBNameEn.Text = default(string);
+            }
+            
+            radTBCode.TextChanging += TextBox_TextChanging;
+            radTBNameUa.TextChanging += TextBox_TextChanging;
+            radTBNameRu.TextChanging += TextBox_TextChanging;
+            radTBNameEn.TextChanging += TextBox_TextChanging;
         }
 
         /// <summary>
@@ -268,12 +270,11 @@ namespace sysAdminwp
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
-            var result = connector.DeleteItem(Url, radGridView1.CurrentRow.Cells["Code"].Value.ToString());
+            var result = _connector.DeleteItem(Url, radGridView1.CurrentRow.Cells["Code"].Value.ToString());
             
-            _list = connector.GetList<DictBaseTypeI>(Url);
+            _list = _connector.GetList<DictBaseTypeI>(Url);
             radGridView1.DataSource = GetData(_list);
             UpdateEditPanel();
-
         }
 
         //кнопка збереження
@@ -298,7 +299,6 @@ namespace sysAdminwp
             ChangeEnableElementsWhenEdit(true);
         }
 
-
         //фільтр елементів дерева
         private void radTxtBoxFilter_TextChanged(object sender, EventArgs e)
         {
@@ -308,75 +308,50 @@ namespace sysAdminwp
         //зміни при виборі елементу з дерева
         private void radTreeViewList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
-            var urlCategories = connector.GetList<DictCategory>("dictionary/list");
-            
-             foreach (var item in urlCategories)
-             {
-                 foreach (var catItem in item.DicCategoryItems)
-                 {
+            foreach (var item in _dictionaryCategories)
+            {
+                foreach (var catItem in item.DicCategoryItems)
+                {
                     if (catItem.Name == e.Node.Name)
-                     {
-                         try
-                         {
-                             Url = catItem.Url;
-                             _list = connector.GetList<DictBaseTypeI>(catItem.Url);
-                             radGridView1.DataSource = GetData(_list);
-                             radPanelChange.Enabled = true;
-                             radTxtBoxSearchData.Enabled = true;
-                             radBtnAdd.Enabled = true;
-                             radBtnRemove.Enabled = true;
-                             LoadOverviewCfg();
-                             return;
-                        }
-                         catch (Exception ex)
-                         {
-                             radGridView1.DataSource = default(DataGrid);
-                             UpdateEditPanel();
-                             radPanelChange.Enabled = false;
-                             radTxtBoxSearchData.Enabled = false;
-                             radBtnRemove.Enabled = false;
+                    {
+                        Url = catItem.Url;
+                        var returnedList = _connector.GetList<DictBaseTypeI>(catItem.Url);
+                        bool isNotNull = returnedList != null;
+                        radPanelChange.Enabled = isNotNull;
+                        radTxtBoxSearchData.Enabled = isNotNull;
+                        radBtnRemove.Enabled = isNotNull;
 
-                             radBtnAdd.Enabled = true;
-                             return;
+                        if (isNotNull)
+                        {
+                            _list = returnedList;
+                            radGridView1.DataSource = GetData(_list);
+                            LoadOverviewCfg();
                         }
-                     }
-                 }
+                        else
+                        {
+                            radGridView1.DataSource = default(DataGrid);
+                            UpdateEditPanel();
+                        }
+                        
+                        radBtnAdd.Enabled = true;
+                        return;
+                    }
+                }
 
-                 radGridView1.DataSource = null;
-                 UpdateEditPanel();
-                 radPanelChange.Enabled = false;
-                 radTxtBoxSearchData.Enabled = false;
-                 radBtnAdd.Enabled = false;
-                 radBtnRemove.Enabled = false;
+                radGridView1.DataSource = null;
+                UpdateEditPanel();
+                radPanelChange.Enabled = false;
+                radTxtBoxSearchData.Enabled = false;
+                radBtnAdd.Enabled = false;
+                radBtnRemove.Enabled = false;
             }
         }
 
-
-
-
-        #region події при редагуванні даних на панелі
-
-        private void radTBCode_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
+        //подія при редагуванні даних в текстбоксах
+        private void TextBox_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
             ChangeEnableElementsWhenEdit(false);
         }
-
-        private void radTBNameUa_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
-        {
-            ChangeEnableElementsWhenEdit(false);
-        }
-
-        private void radTBNameEn_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
-        {
-            ChangeEnableElementsWhenEdit(false);
-        }
-
-        private void radTBNameRu_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
-        {
-            ChangeEnableElementsWhenEdit(false);
-        }
-
-        #endregion
 
         //збереження конфігурації
         private void radMenuItemSaveConfig_Click(object sender, EventArgs e)

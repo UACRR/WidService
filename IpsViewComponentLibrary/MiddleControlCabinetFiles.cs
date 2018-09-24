@@ -17,7 +17,7 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetFiles : UserControl
     {
         private Customer _customer;
-        private ConsumerBigRightView _bigRightView;
+        private MainGridConsumerBigRightView _bigRightView;
 
         public delegate void AddNewDocumentHandler(int custId, int typeDocument, string fileName, string comment);
         public event AddNewDocumentHandler OnAddNewDocument;
@@ -30,7 +30,7 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView)
+        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView)
         {
             _customer = customer;
             _bigRightView = bigRightView;

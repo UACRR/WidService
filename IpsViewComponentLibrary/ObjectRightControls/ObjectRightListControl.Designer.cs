@@ -41,15 +41,11 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectRightListControl));
-            this.txtSearchObject = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnUpdateList = new Telerik.WinControls.UI.RadButton();
-            this.ddlState = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlCategory = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlGenre = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.timerSearch = new System.Windows.Forms.Timer(this.components);
@@ -64,50 +60,46 @@
             this.commandPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.commandButtonPanel = new System.Windows.Forms.Panel();
+            this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             this.commandBarButton1 = new Telerik.WinControls.UI.CommandBarButton();
             this.commandBarButton2 = new Telerik.WinControls.UI.CommandBarButton();
             this.commandBarButton4 = new Telerik.WinControls.UI.CommandBarButton();
             this.commandBarButton3 = new Telerik.WinControls.UI.CommandBarButton();
-            this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearchObject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).BeginInit();
+            this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.tvFilters = new Telerik.WinControls.UI.RadTreeView();
+            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).BeginInit();
+            this.gvObjectsRightsList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdateList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlGenre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             this.commandPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
+            this.radSplitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
+            this.splitPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
+            this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtSearchObject
-            // 
-            this.txtSearchObject.Location = new System.Drawing.Point(199, 3);
-            this.txtSearchObject.Name = "txtSearchObject";
-            this.txtSearchObject.Size = new System.Drawing.Size(497, 21);
-            this.txtSearchObject.TabIndex = 24;
-            this.txtSearchObject.ThemeName = "Office2013Light";
-            this.txtSearchObject.TextChanged += new System.EventHandler(this.txtSearchObject_TextChanged);
-            // 
-            // radLabel23
-            // 
-            this.radLabel23.Location = new System.Drawing.Point(144, 3);
-            this.radLabel23.Name = "radLabel23";
-            this.radLabel23.Size = new System.Drawing.Size(47, 19);
-            this.radLabel23.TabIndex = 23;
-            this.radLabel23.Text = "Пошук:";
-            this.radLabel23.ThemeName = "Office2013Light";
             // 
             // gvObjectsRightsList
             // 
             this.gvObjectsRightsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvObjectsRightsList.Controls.Add(this.waitingBar);
             this.gvObjectsRightsList.Location = new System.Drawing.Point(3, 57);
             // 
             // 
@@ -122,56 +114,60 @@
             gridViewDecimalColumn1.HeaderText = "Шифр твору";
             gridViewDecimalColumn1.IsAutoGenerated = true;
             gridViewDecimalColumn1.Name = "ObjId";
-            gridViewDecimalColumn1.Width = 63;
+            gridViewDecimalColumn1.Width = 68;
             gridViewTextBoxColumn1.FieldName = "Name";
             gridViewTextBoxColumn1.HeaderText = "Назва твору";
             gridViewTextBoxColumn1.IsAutoGenerated = true;
             gridViewTextBoxColumn1.Name = "Name";
-            gridViewTextBoxColumn1.Width = 138;
+            gridViewTextBoxColumn1.Width = 151;
             gridViewTextBoxColumn2.FieldName = "Category";
             gridViewTextBoxColumn2.HeaderText = "В/М";
             gridViewTextBoxColumn2.IsAutoGenerated = true;
             gridViewTextBoxColumn2.Name = "Category";
-            gridViewTextBoxColumn2.Width = 34;
+            gridViewTextBoxColumn2.Width = 36;
             gridViewTextBoxColumn3.FieldName = "GenreName";
             gridViewTextBoxColumn3.HeaderText = "Жанр";
             gridViewTextBoxColumn3.IsAutoGenerated = true;
             gridViewTextBoxColumn3.Name = "GenreName";
-            gridViewTextBoxColumn3.Width = 70;
+            gridViewTextBoxColumn3.Width = 76;
             gridViewDecimalColumn2.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewDecimalColumn2.FieldName = "Duration";
             gridViewDecimalColumn2.HeaderText = "Час";
             gridViewDecimalColumn2.IsAutoGenerated = true;
             gridViewDecimalColumn2.Name = "Duration";
+            gridViewDecimalColumn2.Width = 55;
             gridViewTextBoxColumn4.FieldName = "SpecName";
             gridViewTextBoxColumn4.HeaderText = "Переклад / обробка / оригінал";
             gridViewTextBoxColumn4.IsAutoGenerated = true;
             gridViewTextBoxColumn4.Name = "SpecName";
-            gridViewTextBoxColumn4.Width = 70;
+            gridViewTextBoxColumn4.Width = 76;
             gridViewDecimalColumn3.DataType = typeof(double);
             gridViewDecimalColumn3.FieldName = "RateTotal";
             gridViewDecimalColumn3.HeaderText = "Спільний % володіння";
             gridViewDecimalColumn3.IsAutoGenerated = true;
             gridViewDecimalColumn3.Name = "RateTotal";
-            gridViewDecimalColumn3.Width = 51;
+            gridViewDecimalColumn3.Width = 55;
             gridViewTextBoxColumn5.FieldName = "Performer";
             gridViewTextBoxColumn5.HeaderText = "Виконавець";
             gridViewTextBoxColumn5.IsAutoGenerated = true;
             gridViewTextBoxColumn5.Name = "Performer";
-            gridViewTextBoxColumn5.Width = 70;
+            gridViewTextBoxColumn5.Width = 76;
             gridViewDecimalColumn4.DataType = typeof(double);
             gridViewDecimalColumn4.FieldName = "Profit";
+            gridViewDecimalColumn4.FormatString = "{0:N2}";
             gridViewDecimalColumn4.HeaderText = "Дохід з початку року";
             gridViewDecimalColumn4.IsAutoGenerated = true;
             gridViewDecimalColumn4.Name = "Profit";
-            gridViewDecimalColumn4.Width = 64;
+            gridViewDecimalColumn4.Width = 71;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.DefaultText = "Редагувати";
             gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "EditColumn";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.UseDefaultText = true;
-            gridViewCommandColumn1.Width = 81;
+            gridViewCommandColumn1.Width = 30;
             this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn1,
             gridViewTextBoxColumn1,
@@ -189,7 +185,7 @@
             this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvObjectsRightsList.Name = "gvObjectsRightsList";
             this.gvObjectsRightsList.ShowGroupPanel = false;
-            this.gvObjectsRightsList.Size = new System.Drawing.Size(693, 286);
+            this.gvObjectsRightsList.Size = new System.Drawing.Size(687, 287);
             this.gvObjectsRightsList.TabIndex = 22;
             this.gvObjectsRightsList.ThemeName = "Office2013Light";
             this.gvObjectsRightsList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvObjectsRightsList_CellDoubleClick);
@@ -209,44 +205,25 @@
             this.btnUpdateList.ThemeName = "Office2013Light";
             this.btnUpdateList.Click += new System.EventHandler(this.btnUpdateList_Click);
             // 
-            // ddlState
-            // 
-            this.ddlState.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlState.Location = new System.Drawing.Point(199, 30);
-            this.ddlState.Name = "ddlState";
-            this.ddlState.Size = new System.Drawing.Size(125, 21);
-            this.ddlState.TabIndex = 26;
-            this.ddlState.ThemeName = "Office2013Light";
-            this.ddlState.SelectedValueChanged += new System.EventHandler(this.ddlState_SelectedValueChanged);
-            // 
             // ddlCategory
             // 
-            this.ddlCategory.Location = new System.Drawing.Point(399, 30);
+            this.ddlCategory.Location = new System.Drawing.Point(199, 30);
             this.ddlCategory.Name = "ddlCategory";
-            this.ddlCategory.Size = new System.Drawing.Size(125, 21);
+            this.ddlCategory.Size = new System.Drawing.Size(204, 21);
             this.ddlCategory.TabIndex = 27;
             this.ddlCategory.ThemeName = "Office2013Light";
             // 
             // ddlGenre
             // 
-            this.ddlGenre.Location = new System.Drawing.Point(577, 30);
+            this.ddlGenre.Location = new System.Drawing.Point(456, 30);
             this.ddlGenre.Name = "ddlGenre";
-            this.ddlGenre.Size = new System.Drawing.Size(119, 21);
+            this.ddlGenre.Size = new System.Drawing.Size(234, 21);
             this.ddlGenre.TabIndex = 28;
             this.ddlGenre.ThemeName = "Office2013Light";
             // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(148, 30);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(35, 19);
-            this.radLabel1.TabIndex = 29;
-            this.radLabel1.Text = "Стан:";
-            this.radLabel1.ThemeName = "Office2013Light";
-            // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(330, 30);
+            this.radLabel2.Location = new System.Drawing.Point(130, 30);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(63, 19);
             this.radLabel2.TabIndex = 30;
@@ -255,7 +232,7 @@
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(530, 30);
+            this.radLabel3.Location = new System.Drawing.Point(409, 30);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(41, 19);
             this.radLabel3.TabIndex = 30;
@@ -339,9 +316,9 @@
             // 
             this.commandPanel.Controls.Add(this.tableLayoutPanel1);
             this.commandPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.commandPanel.Location = new System.Drawing.Point(0, 343);
+            this.commandPanel.Location = new System.Drawing.Point(0, 344);
             this.commandPanel.Name = "commandPanel";
-            this.commandPanel.Size = new System.Drawing.Size(699, 36);
+            this.commandPanel.Size = new System.Drawing.Size(800, 36);
             this.commandPanel.TabIndex = 32;
             // 
             // tableLayoutPanel1
@@ -356,7 +333,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(699, 36);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 36);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // commandButtonPanel
@@ -364,8 +341,21 @@
             this.commandButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.commandButtonPanel.Location = new System.Drawing.Point(3, 3);
             this.commandButtonPanel.Name = "commandButtonPanel";
-            this.commandButtonPanel.Size = new System.Drawing.Size(337, 30);
+            this.commandButtonPanel.Size = new System.Drawing.Size(387, 30);
             this.commandButtonPanel.TabIndex = 0;
+            // 
+            // navigatorPanel
+            // 
+            this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.navigatorPanel.CurrentPage = 1;
+            this.navigatorPanel.Location = new System.Drawing.Point(447, 3);
+            this.navigatorPanel.Name = "navigatorPanel";
+            this.navigatorPanel.PageSize = 20;
+            this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
+            this.navigatorPanel.TabIndex = 1;
+            this.navigatorPanel.TotalPages = 0;
+            this.navigatorPanel.CurrentPageChanged += new System.EventHandler(this.navigatorPanel_CurrentPageChanged);
+            this.navigatorPanel.PageSizeChanged += new System.EventHandler(this.navigatorPanel_PageSizeChanged);
             // 
             // commandBarButton1
             // 
@@ -403,67 +393,155 @@
             this.commandBarButton3.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.commandBarButton3.UseCompatibleTextRendering = false;
             // 
-            // navigatorPanel
+            // radSplitContainer1
             // 
-            this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.navigatorPanel.CurrentPage = 1;
-            this.navigatorPanel.Location = new System.Drawing.Point(346, 3);
-            this.navigatorPanel.Name = "navigatorPanel";
-            this.navigatorPanel.PageSize = 20;
-            this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
-            this.navigatorPanel.TabIndex = 1;
-            this.navigatorPanel.TotalPages = 0;
-            this.navigatorPanel.CurrentPageChanged += new System.EventHandler(this.navigatorPanel_CurrentPageChanged);
-            this.navigatorPanel.PageSizeChanged += new System.EventHandler(this.navigatorPanel_PageSizeChanged);
+            this.radSplitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSplitContainer1.Controls.Add(this.splitPanel1);
+            this.radSplitContainer1.Controls.Add(this.splitPanel2);
+            this.radSplitContainer1.EnableCollapsing = true;
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.radSplitContainer1.Name = "radSplitContainer1";
+            // 
+            // 
+            // 
+            this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.radSplitContainer1.Size = new System.Drawing.Size(800, 344);
+            this.radSplitContainer1.SplitterWidth = 10;
+            this.radSplitContainer1.TabIndex = 34;
+            this.radSplitContainer1.TabStop = false;
+            this.radSplitContainer1.ThemeName = "Office2013Light";
+            this.radSplitContainer1.UseSplitterButtons = true;
+            // 
+            // splitPanel1
+            // 
+            this.splitPanel1.Controls.Add(this.tvFilters);
+            this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+            this.splitPanel1.Name = "splitPanel1";
+            // 
+            // 
+            // 
+            this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel1.Size = new System.Drawing.Size(97, 344);
+            this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3770186F, 0F);
+            this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-238, 0);
+            this.splitPanel1.TabIndex = 0;
+            this.splitPanel1.TabStop = false;
+            this.splitPanel1.Text = "splitPanel1";
+            this.splitPanel1.ThemeName = "Office2013Light";
+            // 
+            // tvFilters
+            // 
+            this.tvFilters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvFilters.Location = new System.Drawing.Point(0, 0);
+            this.tvFilters.Name = "tvFilters";
+            this.tvFilters.ShowExpandCollapse = false;
+            this.tvFilters.Size = new System.Drawing.Size(97, 344);
+            this.tvFilters.TabIndex = 1;
+            this.tvFilters.ThemeName = "Office2013Light";
+            this.tvFilters.ToggleMode = Telerik.WinControls.UI.ToggleMode.None;
+            this.tvFilters.SelectedNodeChanging += new Telerik.WinControls.UI.RadTreeView.RadTreeViewCancelEventHandler(this.tvFilters_SelectedNodeChanging);
+            this.tvFilters.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.tvFilters_SelectedNodeChanged);
+            this.tvFilters.NodeFormatting += new Telerik.WinControls.UI.TreeNodeFormattingEventHandler(this.tvFilters_NodeFormatting);
+            // 
+            // splitPanel2
+            // 
+            this.splitPanel2.Controls.Add(this.txtSearch);
+            this.splitPanel2.Controls.Add(this.btnUpdateList);
+            this.splitPanel2.Controls.Add(this.gvObjectsRightsList);
+            this.splitPanel2.Controls.Add(this.radLabel2);
+            this.splitPanel2.Controls.Add(this.radLabel3);
+            this.splitPanel2.Controls.Add(this.ddlGenre);
+            this.splitPanel2.Controls.Add(this.ddlCategory);
+            this.splitPanel2.Location = new System.Drawing.Point(107, 0);
+            this.splitPanel2.Name = "splitPanel2";
+            // 
+            // 
+            // 
+            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel2.Size = new System.Drawing.Size(693, 344);
+            this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.3770186F, 0F);
+            this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(238, 0);
+            this.splitPanel2.TabIndex = 1;
+            this.splitPanel2.TabStop = false;
+            this.splitPanel2.Text = "splitPanel2";
+            this.splitPanel2.ThemeName = "Office2013Light";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(130, 4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.NullText = "Пошук";
+            this.txtSearch.ShowClearButton = true;
+            this.txtSearch.Size = new System.Drawing.Size(300, 20);
+            this.txtSearch.TabIndex = 33;
+            this.txtSearch.ThemeName = "Office2013Light";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearchObject_TextChanged);
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            // 
+            // waitingBar
+            // 
+            this.waitingBar.AssociatedControl = this.splitPanel2;
+            this.waitingBar.Location = new System.Drawing.Point(315, 81);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 1;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            // 
+            // lineRingWaitingBarIndicatorElement1
+            // 
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             // 
             // ObjectRightListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radSplitContainer1);
             this.Controls.Add(this.commandPanel);
-            this.Controls.Add(this.radLabel2);
-            this.Controls.Add(this.radLabel3);
-            this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.ddlGenre);
-            this.Controls.Add(this.ddlCategory);
-            this.Controls.Add(this.ddlState);
-            this.Controls.Add(this.btnUpdateList);
-            this.Controls.Add(this.txtSearchObject);
-            this.Controls.Add(this.radLabel23);
-            this.Controls.Add(this.gvObjectsRightsList);
             this.Name = "ObjectRightListControl";
-            this.Size = new System.Drawing.Size(699, 379);
+            this.Size = new System.Drawing.Size(800, 380);
             this.Load += new System.EventHandler(this.ObjectRightListControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearchObject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).EndInit();
+            this.gvObjectsRightsList.ResumeLayout(false);
+            this.gvObjectsRightsList.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdateList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlState)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlGenre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             this.commandPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
+            this.radSplitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
+            this.splitPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
+            this.splitPanel2.ResumeLayout(false);
+            this.splitPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadTextBox txtSearchObject;
-        private Telerik.WinControls.UI.RadLabel radLabel23;
         private Telerik.WinControls.UI.RadGridView gvObjectsRightsList;
         private System.Windows.Forms.BindingSource objectRightMainViewBindingSource;
         private Telerik.WinControls.UI.RadButton btnUpdateList;
-        private Telerik.WinControls.UI.RadDropDownList ddlState;
         private Telerik.WinControls.UI.RadDropDownList ddlCategory;
         private Telerik.WinControls.UI.RadDropDownList ddlGenre;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private System.Windows.Forms.Timer timerSearch;
@@ -483,5 +561,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel commandButtonPanel;
         private Common.NavigatorPanelControl navigatorPanel;
+        private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
+        private Telerik.WinControls.UI.SplitPanel splitPanel1;
+        private Telerik.WinControls.UI.SplitPanel splitPanel2;
+        private Telerik.WinControls.UI.RadTreeView tvFilters;
+        private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
     }
 }

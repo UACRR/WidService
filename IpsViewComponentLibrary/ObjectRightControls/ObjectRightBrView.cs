@@ -46,9 +46,20 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ShowDialog();
         }
 
+        public void SetHeader(string header)
+        {
+            Text = header + " - Об'єкт права";
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             _presenter.Save();
+        }
+
+        private void ObjectRightBrView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _presenter.Close();
+            e.Cancel = true;
         }
     }
 }

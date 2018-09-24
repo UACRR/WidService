@@ -61,6 +61,7 @@ namespace IpsViewComponentLibrary
             // 
             // txtNumberVat
             // 
+            this.txtNumberVat.Enabled = false;
             this.txtNumberVat.Location = new System.Drawing.Point(436, 85);
             this.txtNumberVat.MaxLength = 12;
             this.txtNumberVat.Name = "txtNumberVat";

@@ -1,8 +1,10 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -27,8 +29,12 @@ namespace ipsFormsDesign.Services
         public ObjectRightListResponse GetObjectRights(ObjectRightQuery query)
         {
             var result = _webApi.GetItemByIdWithParam<ObjectRightListResponse>("objectright", null, query.ToKeyValuePair());
-
             return result;
+        }
+
+        public async Task<ObjectRightListResponse> GetObjectRightsAsync(ObjectRightQuery query)
+        {
+            return await Task.Factory.StartNew(() => GetObjectRights(query));
         }
 
         public List<ObjectRightMainView> GetObjectsByFilter( string filter )
@@ -78,11 +84,41 @@ namespace ipsFormsDesign.Services
             return item;
         }
 
+        public bool AddAuthorRightholderForObject(int objId, ObjectAuthorRightholder objectAuthorRightholder, out string error)
+        {
+            var objectRightContainer = GetData(objId);
+            var objectRight = objectRightContainer.objectRight;
+
+            if (objectRight.CopyRight.GetTotalRate() >= 100)
+            {
+                error = "Спільний відсоток володіння для вибраного об'єкта вже становить 100%.";
+                return false;
+            }
+
+            objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
+
+            if (objectRight.CopyRight.GetTotalRate() > 100)
+            {
+                error = "Спільний відсоток володіння з врахуванням доданого перевищує 100%. Об'єкт не доданий.";
+                return false;
+            }
+
+            var result = Save(objectRight);
+
+            if (!result)
+                error = "Не вдалося зберегти зміни. Об'єкт не доданий.";
+            else
+                error = "";
+
+            return result;
+        }
+
         public ContainerForObjectRihgt GetDataBr(int objId)
         {
             var item = _webApi.GetItemById<ContainerForObjectRihgt>("objectright/br/detail", objId.ToString());
             return item;
         }
+
         public bool SaveObjectBr(ObjectRight objectRight)
         {
             if (objectRight.ObjId == 0)

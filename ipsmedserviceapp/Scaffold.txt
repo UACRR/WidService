@@ -292,4 +292,4 @@
 "WorkTypeTr"
 );
 
-Scaffold-DbContext -Context MediaServiceContext -Provider Microsoft.EntityFrameworkCore.SqlServer -Connection "Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True" -OutputDir Model -Tables $tables -Force -ErrorAction Ignore
+Scaffold-DbContext -Context MediaServiceContext -UseDatabaseNames -Provider Microsoft.EntityFrameworkCore.SqlServer -Connection "Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True" -OutputDir Model -Tables $tables -Force -ErrorAction Ignore

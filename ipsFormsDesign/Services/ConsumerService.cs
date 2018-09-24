@@ -8,6 +8,7 @@ using WebAPIConnector;
 using System.IO;
 using System.Dynamic;
 using System.Threading.Tasks;
+// ReSharper disable All
 
 namespace ipsFormsDesign.Services
 {
@@ -20,6 +21,13 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString());
             return anketaDic;
         }
+
+        public ConsumerMainView GetShortInfoById(int custId)
+        {
+            var consumerInfo = _webApi.GetItemById<ConsumerMainView>("consumer/info", custId.ToString());
+            return consumerInfo;
+        }
+
         public AnketaDictionaties GetDictionary()
         {
             var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
@@ -36,14 +44,14 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
         #region BigRight
-        public IList<ConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
+        public IList<MainGridConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listBR";
             KeyValuePair<string, string>[] param = new[] {
                 new KeyValuePair<string, string>("whatId", ((int)what).ToString()),
                 new KeyValuePair<string, string>("typeDocId", ((int)typeDoc).ToString())
             };
-            var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param);
+            var anketaDic = _webApi.GetList<MainGridConsumerBigRightView>(url, param);
             return anketaDic;
         }
 
@@ -52,11 +60,11 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
-        public IList<VbrLicense> GetAgreementsBigRight(string custId)
+        public IList<LicenseAgreementBigRightView> GetAgreementsBigRight(string custId)
         {
             string url = $"consumer/viewBR/" + custId;
 
-            var agr = _webApi.GetListAgreement<VbrLicense>(url);
+            var agr = _webApi.GetListAgreement<LicenseAgreementBigRightView>(url);
             return agr;
         }
 
@@ -257,8 +265,9 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<AutoCompleteData>(url);
             return list;
         }
+
         /// <summary>
-        /// 
+        /// отримати шаблон customer
         /// </summary>
         /// <param name="custType"></param>
         /// <returns></returns>
@@ -267,8 +276,9 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetItemById<Customer>("consumer/newconsumer", custType.ToString());
             return anketaDic;
         }
+
         /// <summary>
-        /// 
+        /// Зберегти customer
         /// </summary>
         /// <param name="cust"></param>
         /// <returns></returns>
@@ -281,6 +291,7 @@ namespace ipsFormsDesign.Services
 
             return _webApi.UpdateItem<Customer>("consumer/detail", cust.CustId.ToString(), cust);
         }
+
         /// <summary>
         /// Запис файла на сервер
         /// </summary>
@@ -352,6 +363,7 @@ namespace ipsFormsDesign.Services
             Request = 2,
             Reference = 3
         }
+
         /// <summary>
         /// Перевод типу ліц. договору з Заявки в Довідку та ліц договір.
         /// </summary>
@@ -376,6 +388,7 @@ namespace ipsFormsDesign.Services
         {
             return _webApi.GetItemById<Customer>("consumer/Period/GetCustomerInfo", custId.ToString());
         }
+
         /// <summary>
         /// Зберігання нових періодів
         /// </summary>
@@ -413,6 +426,105 @@ namespace ipsFormsDesign.Services
         }
         #endregion
 
+        // * * * ПРЕДСТАВНИКИ
 
+        /// <summary>
+        /// Отримати шаблон представника customer
+        /// </summary>
+        /// <param name="custType"></param>
+        /// <returns></returns>
+        public Customer GetPartnerTemplate(int custType)
+        {
+            var customer = _webApi.GetItemById<Customer>("partner/newpartner", custType.ToString());
+            return customer;
+        }
+
+        /// <summary>
+        /// Отримати список представників
+        /// </summary>
+        /// <returns></returns>
+        public List<AnketaPerson> GetPartnerList()
+        {
+            string url = "partner/list";
+            return _webApi.GetList<AnketaPerson>(url);
+        }
+
+        /// <summary>
+        /// Отримати дані по одному представнику
+        /// </summary>
+        public AnketaPerson GetPartnerAnketa(int clientId)
+        {
+            var anketaPerson = _webApi.GetItemById<AnketaPerson>("partner/listcl", clientId.ToString());
+            return anketaPerson;
+        }
+
+        public Customer GetPartner(int custId)
+        {
+            var customerPartner = _webApi.GetItemById<Customer>("partner", custId.ToString());
+            return customerPartner;
+        }
+
+        /// <summary>
+        /// Збереження представника (customer)
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <returns></returns>
+        public bool SavePartner(Customer cust)
+        {
+            if (cust.CustId == 0)
+            {
+                if (cust.CustType == 1)
+                    return _webApi.NewItem<Customer>("partner/newpartnerphis", cust);
+                else if (cust.CustType == 3)
+                    return _webApi.NewItem<Customer>("partner/newpartnerjur", cust);
+            }
+            else
+            {
+                return _webApi.UpdateItem<Customer>("partner/partnerphis", cust.CustId.ToString(), cust);
+            }
+            return false;
+        }
+
+        // додати представника клієнту
+        public bool SetPartnerForCustomer(int clientId, int partnerId)
+        {
+            return _webApi.ChangePartnerForCustomer("insert", clientId, partnerId);
+        }
+
+        // змінити представника в клієнта
+        public bool ChangePartnerForCustomer(int clientId, int partnerId, int oldClientId)
+        {
+            return _webApi.ChangePartnerForCustomer("update", clientId, partnerId, oldClientId);
+        }
+
+        //вилучити представника в клієнта
+        public bool RemovePartnerForCustomer(int clientId, int partnerId)
+        {
+            return _webApi.ChangePartnerForCustomer("remove", clientId, partnerId);
+        }
+
+        // змінити поточний статус представника
+        public bool AgreementPartnerStatusChange(int partnerId, CPartnerObjectStatus status)
+        {
+            string url = "partner/" + $"{partnerId}/statuschange";
+            return _webApi.UpdateItem<object>(url, status.ToString("D"), null);
+        }
+    }
+    public enum CPartnerObjectStatus : int
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None = -1,
+
+        /// <summary>
+        /// Активація
+        /// </summary>
+        Activate = 2,
+
+        /// <summary>
+        /// Закрити
+        /// </summary>
+        Close = 4,
     }
 }

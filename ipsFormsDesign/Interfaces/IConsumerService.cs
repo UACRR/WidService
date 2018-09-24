@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Interfaces
     /// <summary>
     /// Дані для GridView Для великих прав
     /// </summary>
-    public class ConsumerBigRightView
+    public class MainGridConsumerBigRightView
     {
         /// <summary>
         /// Тип Ген. угоди
@@ -153,7 +153,10 @@ namespace ipsFormsDesign.Interfaces
         IList<AutoCompleteData> GetAutoCompleteList(string filter);
     }
 
-    public class VbrLicense
+    /// <summary>
+    /// Дані ліцензійних договорів
+    /// </summary>
+    public class LicenseAgreementBigRightView
     {
         public DateTime? AgrDate { get; set; }
         public DateTime? DateBegin { get; set; }
@@ -200,7 +203,7 @@ namespace ipsFormsDesign.Interfaces
     /// <summary>
     /// Дані генеральних угод
     /// </summary>
-    public class BigRightMasterGenAgr
+    public class GeneralAgreementBigRightView
     {
         public DateTime? AgrDate { get; set; }
         public DateTime? DateBegin { get; set; }
@@ -218,7 +221,10 @@ namespace ipsFormsDesign.Interfaces
         public int? LicId { get; set; }
     }
 
-    public class BigRightRequests
+    /// <summary>
+    /// Дані заявок/довідок
+    /// </summary>
+    public class RequestsOrReferenceBigRightView
     {
         public DateTime? LicDate { get; set; }
         public DateTime? LicDateBegin { get; set; }
@@ -250,7 +256,10 @@ namespace ipsFormsDesign.Interfaces
         public string Comment { get; set; }
     }
 
-    public class BigRightRequestBidAuthors
+    /// <summary>
+    /// Автори для ліцензій, довідок, заявок великих прав
+    /// </summary>
+    public class AuthorsForLicenseBigRightView
     {
         public int LicId { get; set; }
         public int LicVersion { get; set; }
@@ -276,7 +285,10 @@ namespace ipsFormsDesign.Interfaces
         public WorkRh WorkRh { get; set; }
     }
 
-    public class BigRightMoneyUndescrib
+    /// <summary>
+    /// Незакріплені кошти користувачів великих/малих прав
+    /// </summary>
+    public class UnattachedMoneyView
     {
         public DateTime DateInvoice { get; set; }
         public int PaidId { get; set; }
@@ -301,7 +313,7 @@ namespace ipsFormsDesign.Interfaces
         public string Name { get; set; }
     }
 
-    public class BigRightRegister
+    public class RatedListMainBigRightView
     {
         public DateTime? CreateDate { get; set; }
         public int? CustId { get; set; }
@@ -318,7 +330,10 @@ namespace ipsFormsDesign.Interfaces
         public string StatusName { get; set; }
     }
 
-    public class BigRightPayslipsSpectacleView : IChildTemplate, IParentTemplate
+    /// <summary>
+    /// Р/Л вистави
+    /// </summary>
+    public class RatedListSpectacleBigRightView : IChildTemplate, IParentTemplate
     {
         public int RmId { get; set; }
         public int RegId { get; set; }
@@ -340,7 +355,10 @@ namespace ipsFormsDesign.Interfaces
         public decimal? MusicAmount { get; set; }
     }
 
-    public class MusicDesignRatedListView
+    /// <summary>
+    /// Р/Л музичне оформлення
+    /// </summary>
+    public class RatedListMusicDesignBigRightView
     {
         public TimeSpan? Duration { get; set; }
         public int RmId { get; set; }
@@ -351,6 +369,45 @@ namespace ipsFormsDesign.Interfaces
         public string NameSinger { get; set; }
     }
 
+    public class PartnerView
+    {
+        public DateTime? AgrDate { get; set; }
+        public int? CustId { get; set; }
+        public int AgrId { get; set; }
+        public int? AgrStatus { get; set; }
+        public int? ClnCount { get; set; }
+        public int? AgrCount { get; set; }
+        public string Innokpo { get; set; }
+        public string Name { get; set; }
+        public string AgrNumber { get; set; }
+        public string JaCity { get; set; }
+        public string StatusName { get; set; }
+    }
+
+    /// <summary>
+    /// Список клієнтів представника
+    /// </summary>
+    public class PartnerClientListView
+    {
+        public int CustId { get; set; }
+        public int ClCustId { get; set; }
+        public int? AgrCount { get; set; }
+        public decimal SumBorg { get; set; }
+        public string Innokpo { get; set; }
+        public string ClientName { get; set; }
+    }
+
+    /// <summary>
+    /// Список вільних клієнтів
+    /// </summary>
+    public class PartnerAllFreeClientsView
+    {
+        public int ClCustId { get; set; }
+        public int? AgrCount { get; set; }
+        public string Innokpo { get; set; }
+        public string ClientName { get; set; }
+        public string Jacity { get; set; }
+    }
 
     #region класи для створення ієрархії
 

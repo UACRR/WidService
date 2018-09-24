@@ -25,8 +25,12 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
             rddListTypeAutoProl.Enabled = false;
             txtPercentAutoProl.Enabled = false;
-        }
 
+            txtPercentAutoProl.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
+            rtxtBoxAuthorPaymentPercent.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
+            rtxtBoxMinAuthorPayment.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
+        }
+        //rtxtBoxMinAuthorPayment
         public void SetDefaultState()
         {
             rddListTypeAutoProl.Enabled = false;
@@ -225,37 +229,14 @@ namespace IpsViewComponentLibrary
             set => rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items[value];
         }
 
-        private void rtxtBoxAuthorPaymentPercent_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
-            {
-                e.Handled = true;
-            }
-        }
-
         /// <summary>
         /// Мінімальна допустима сума
         /// </summary>
         public decimal MinAmount { get; set; }
 
-        private void rtxtBoxMinAuthorPayment_KeyPress(object sender, KeyPressEventArgs e)
+        private void rtxtBoxMinAuthorPayment_TextChanged(object sender, EventArgs e)
         {
-            //TODO контроль мінімальної суми
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtPercentAutoProl_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
-            {
-                e.Handled = true;
-            }
+            //TODO: перевірка мін суми
         }
     }
 }

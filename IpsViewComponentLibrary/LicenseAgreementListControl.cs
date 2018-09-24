@@ -26,15 +26,15 @@ namespace IpsViewComponentLibrary
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
         }
 
-        private BigRightRequests _licenseAgreement;
-        public BigRightRequests SelectedLicenseAgreement
+        private RequestsOrReferenceBigRightView _licenseAgreement;
+        public RequestsOrReferenceBigRightView SelectedLicenseAgreement
         {
             get
             {
                 if (gvLicenseAgreementList.CurrentRow == null)
                     return null;
 
-                return gvLicenseAgreementList.CurrentRow.DataBoundItem as BigRightRequests;
+                return gvLicenseAgreementList.CurrentRow.DataBoundItem as RequestsOrReferenceBigRightView;
             }
             set
             {
@@ -74,7 +74,7 @@ namespace IpsViewComponentLibrary
             UpdateList(SelectedLicenseAgreement);
         }
 
-        public void UpdateList(BigRightRequests currentRightholder)
+        public void UpdateList(RequestsOrReferenceBigRightView currentRightholder)
         {
             var States = chddlState.CheckedItems.Select(item => (LicenseTypes)item.Value);
 
@@ -165,7 +165,7 @@ namespace IpsViewComponentLibrary
             ddlStatus.SelectedValueChanged += ddlStatus_SelectedValueChanged;
         }
 
-        private void ShowObject(BigRightRequests selectedLicenseAgreement)
+        private void ShowObject(RequestsOrReferenceBigRightView selectedLicenseAgreement)
         {
             if (selectedLicenseAgreement.Objid.HasValue)
             {
@@ -177,7 +177,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void EditLicenseAgreement(BigRightRequests selectedLicenseAgreement)
+        private void EditLicenseAgreement(RequestsOrReferenceBigRightView selectedLicenseAgreement)
         {
             if (!selectedLicenseAgreement.CustId.HasValue)
                 return;

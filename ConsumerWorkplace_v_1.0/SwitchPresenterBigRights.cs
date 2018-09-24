@@ -56,10 +56,10 @@ namespace ConsumerWorkplace_v_1._0
             _cabinetBr?.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
         }
 
-        public IList<ConsumerBigRightView> getMainView(TypeBRDocument typeDoc, ConsumerFilterEnum what)
+        public IList<MainGridConsumerBigRightView> getMainView(TypeBRDocument typeDoc, ConsumerFilterEnum what)
         {
             return _service.getMainViewBR(typeDoc, what);
-            // return new List<ConsumerBigRightView>( typeDoc, what );
+            // return new List<MainGridConsumerBigRightView>( typeDoc, what );
         }
 
         /// <summary>
@@ -71,13 +71,12 @@ namespace ConsumerWorkplace_v_1._0
             if (_mainGridBr == null)
             {
                 _mainGridBr = new GlobalControlConsumerMainGridBR();
-                _mainGridBr.OnAddNewCustomer += MainGridBr_OnAddNewCustomer;
-                _mainGridBr.OnGridButtonViewClick += MainGridBr_OnGridButtonViewClick;
+                //_mainGridBr.OnAddNewCustomer += MainGridBr_OnAddNewCustomer;
+                //_mainGridBr.OnGridButtonViewClick += MainGridBr_OnGridButtonViewClick;
                 _mainGridBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _mainGridBr.Dock = DockStyle.Fill;
             }
-
-            _mainGridBr.FilterString = _cabinetBr?.FilterString ?? string.Empty;
+            
             if(id!=0)
                 _mainGridBr.SetSelectCustomer(id);
 
@@ -115,8 +114,7 @@ namespace ConsumerWorkplace_v_1._0
                 _cabinetBr.SetGridDataSource(getMainView(_currentNodeDocType, _currentNodeValue));
                 _cabinetBr.Dock = DockStyle.Fill;
             }
-
-            _cabinetBr.FilterString = _mainGridBr?.FilterString ?? string.Empty;
+            
             _cabinetBr.SetSelectCustomer(id);
             if(tabType != CabinetTabType.None)
                 _cabinetBr.SetTab(tabType);
@@ -124,11 +122,9 @@ namespace ConsumerWorkplace_v_1._0
             _switcher.SwitchView(_cabinetBr);
         }
 
-        private void SavePariodCommandExecuted(object sender, List<PaidPeriod> e)
+        private List<PaidPeriod> SavePariodCommandExecuted(int id, List<PaidPeriod> e)
         {
-            var id = e?.FirstOrDefault()?.CustId;
-            if(id != null)
-                _service.SavePeriods((int)id, e);
+            return _service.SavePeriods(id, e);
         }
 
         private List<RegisterItem> GetRegisterItems(int regId)
@@ -265,15 +261,15 @@ namespace ConsumerWorkplace_v_1._0
         {
             _cabinetBr.SetDataCustomer(_service.GetData(id));
 
-            _cabinetBr.SetAgrMasterList(_service.getBRView(typeof(BigRightMasterGenAgr), "vTSK_1_BRMaster", id));
-            _cabinetBr.SetAgreementViewData(_service.getBRView(typeof(VbrLicense), "vTsk_vBRLicense", id));
-            _cabinetBr.SetRequestData(_service.getBRView(typeof(BigRightRequests), "vTsk_1_BRBid", id));
-            _cabinetBr.SetBigRightBidAuthors(_service.getBRView(typeof(BigRightRequestBidAuthors), "vTsk_1_BRBidAuthors", id));
-            _cabinetBr.SetReferanceData(_service.getBRView(typeof(BigRightRequests), "vTsk_1_BRNotice",id));
-            _cabinetBr.SetMoneyUndescribsData(_service.getBRView(typeof(BigRightMoneyUndescrib), "vTsk_1_MoneyUndescrib", id));
-            _cabinetBr.SetPayslipsDate(_service.getBRView(typeof(BigRightRegister), "vTSK_1_BRRegister", id),
-                                       _service.getBRView(typeof(BigRightPayslipsSpectacleView), "vTsk_1_BRAuthorsDistributed", null),
-                                       _service.getBRView(typeof(MusicDesignRatedListView), "vTsk_1_BRMusic", null));
+            _cabinetBr.SetAgrMasterList(_service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id));
+            _cabinetBr.SetAgreementViewData(_service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id));
+            _cabinetBr.SetRequestData(_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id));
+            _cabinetBr.SetBigRightBidAuthors(_service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id));
+            _cabinetBr.SetReferanceData(_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice",id));
+            _cabinetBr.SetMoneyUndescribsData(_service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id));
+            _cabinetBr.SetPayslipsDate(_service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id),
+                                       _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null),
+                                       _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null));
 
         }
 

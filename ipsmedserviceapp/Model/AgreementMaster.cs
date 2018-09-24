@@ -29,7 +29,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public Customer Cust { get; set; }
         public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
-        [JsonIgnore]
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         [JsonIgnore]

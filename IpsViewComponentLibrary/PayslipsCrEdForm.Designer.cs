@@ -55,9 +55,9 @@
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.lblAmount = new Telerik.WinControls.UI.RadLabel();
             this.lblRoyalty = new Telerik.WinControls.UI.RadLabel();
-            this.txtAmount = new Telerik.WinControls.UI.RadTextBox();
-            this.bsRegisterRatedList = new System.Windows.Forms.BindingSource(this.components);
             this.txtRoyalty = new Telerik.WinControls.UI.RadTextBox();
+            this.bsRegisterRatedList = new System.Windows.Forms.BindingSource(this.components);
+            this.txtAmount = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.ddlPeriod = new Telerik.WinControls.UI.RadDropDownList();
@@ -87,9 +87,9 @@
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRoyalty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterRatedList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoyalty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterRatedList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriod)).BeginInit();
@@ -120,8 +120,8 @@
             // 
             this.panel.Controls.Add(this.lblAmount);
             this.panel.Controls.Add(this.lblRoyalty);
-            this.panel.Controls.Add(this.txtAmount);
             this.panel.Controls.Add(this.txtRoyalty);
+            this.panel.Controls.Add(this.txtAmount);
             this.panel.Controls.Add(this.radLabel3);
             this.panel.Controls.Add(this.radLabel2);
             this.panel.Controls.Add(this.ddlPeriod);
@@ -152,29 +152,29 @@
             this.lblRoyalty.Text = "UAH";
             this.lblRoyalty.ThemeName = "Office2013Light";
             // 
-            // txtAmount
+            // txtRoyalty
             // 
-            this.txtAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterRatedList, "Amount", true));
-            this.txtAmount.Location = new System.Drawing.Point(713, 29);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(144, 21);
-            this.txtAmount.TabIndex = 9;
-            this.txtAmount.ThemeName = "Office2013Light";
-            this.txtAmount.Leave += new System.EventHandler(this.txtRoyalty_Leave);
+            this.txtRoyalty.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterRatedList, "Royalty", true));
+            this.txtRoyalty.Location = new System.Drawing.Point(713, 29);
+            this.txtRoyalty.Name = "txtRoyalty";
+            this.txtRoyalty.Size = new System.Drawing.Size(144, 21);
+            this.txtRoyalty.TabIndex = 9;
+            this.txtRoyalty.ThemeName = "Office2013Light";
+            this.txtRoyalty.Leave += new System.EventHandler(this.txtRoyalty_Leave);
             // 
             // bsRegisterRatedList
             // 
             this.bsRegisterRatedList.DataSource = typeof(ipsFormsDesign.Model.RegisterRatedList);
             // 
-            // txtRoyalty
+            // txtAmount
             // 
-            this.txtRoyalty.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterRatedList, "Royalty", true));
-            this.txtRoyalty.Location = new System.Drawing.Point(713, 3);
-            this.txtRoyalty.Name = "txtRoyalty";
-            this.txtRoyalty.Size = new System.Drawing.Size(144, 21);
-            this.txtRoyalty.TabIndex = 8;
-            this.txtRoyalty.ThemeName = "Office2013Light";
-            this.txtRoyalty.Leave += new System.EventHandler(this.txtRoyalty_Leave);
+            this.txtAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterRatedList, "Amount", true));
+            this.txtAmount.Location = new System.Drawing.Point(713, 3);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(144, 21);
+            this.txtAmount.TabIndex = 8;
+            this.txtAmount.ThemeName = "Office2013Light";
+            this.txtAmount.Leave += new System.EventHandler(this.txtRoyalty_Leave);
             // 
             // radLabel3
             // 
@@ -340,11 +340,11 @@
             gridViewDecimalColumn2.Name = "CountUse";
             gridViewDecimalColumn2.Width = 60;
             gridViewDecimalColumn2.WrapText = true;
-            gridViewDecimalColumn3.FieldName = "Royalty";
+            gridViewDecimalColumn3.FieldName = "Amount";
             gridViewDecimalColumn3.FormatString = "{0:#,###0.00 грн}";
             gridViewDecimalColumn3.HeaderText = "Сума збору";
             gridViewDecimalColumn3.MinWidth = 100;
-            gridViewDecimalColumn3.Name = "Royalty";
+            gridViewDecimalColumn3.Name = "Amount";
             gridViewDecimalColumn3.Width = 105;
             gridViewDecimalColumn3.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "AuthRate";
@@ -359,7 +359,7 @@
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.DataType = typeof(decimal);
             gridViewTextBoxColumn6.EnableExpressionEditor = true;
-            gridViewTextBoxColumn6.Expression = "Royalty/100*AuthRate";
+            gridViewTextBoxColumn6.Expression = "Amount/100*AuthRate";
             gridViewTextBoxColumn6.FieldName = "AuthAmount";
             gridViewTextBoxColumn6.FormatString = "{0:#,###0.00 грн}";
             gridViewTextBoxColumn6.HeaderText = "Сума авторського гонорару";
@@ -380,7 +380,7 @@
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.DataType = typeof(decimal);
             gridViewTextBoxColumn8.EnableExpressionEditor = true;
-            gridViewTextBoxColumn8.Expression = "Royalty/100*MusicRate";
+            gridViewTextBoxColumn8.Expression = "Amount/100*MusicRate";
             gridViewTextBoxColumn8.FieldName = "MusicAmount";
             gridViewTextBoxColumn8.FormatString = "{0:#,###0.00 грн}";
             gridViewTextBoxColumn8.HeaderText = "Сума за муз. супровід";
@@ -427,7 +427,7 @@
             this.gvViewPayslipsItems.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewPayslipsItems.Name = "gvViewPayslipsItems";
             this.gvViewPayslipsItems.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewPayslipsItems.Size = new System.Drawing.Size(996, 333);
+            this.gvViewPayslipsItems.Size = new System.Drawing.Size(996, 335);
             this.gvViewPayslipsItems.TabIndex = 8;
             this.gvViewPayslipsItems.ThemeName = "Office2013Light";
             this.gvViewPayslipsItems.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewPayslipsItems_CellValueChanged);
@@ -716,9 +716,9 @@
             this.panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRoyalty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterRatedList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRoyalty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterRatedList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriod)).EndInit();
@@ -753,8 +753,8 @@
         private Telerik.WinControls.UI.RadGridView gvViewPayslipsItems;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
-        private Telerik.WinControls.UI.RadTextBox txtAmount;
         private Telerik.WinControls.UI.RadTextBox txtRoyalty;
+        private Telerik.WinControls.UI.RadTextBox txtAmount;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadDropDownList ddlPeriod;

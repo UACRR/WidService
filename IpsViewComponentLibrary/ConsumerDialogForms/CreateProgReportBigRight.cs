@@ -15,11 +15,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     public partial class CreateProgReportBigRight : Telerik.WinControls.UI.RadForm
     {
-        private BindingSource _bindingSourceChild = new BindingSource();
         private Register _register = null;
-        private ObservableListSource<RegisterExtra> _gridSource = new ObservableListSource<RegisterExtra>();
         private RegisterItem _registerItemCreation = null, _registerItemMusDesign = null;
         private Dictionary<int, CreativeRoleType> creativeDic;
+
+        #region PROPERTIES
+
         public object RegisterDataSource
         {
             get => bsRegister.DataSource;
@@ -43,6 +44,43 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             get => registerItemBindingSource.DataSource;
             private set => registerItemBindingSource.DataSource = value;
         }
+
+        /// <summary>
+        /// Назва споживача
+        /// </summary>
+        public string HeaderInfoCustomerName
+        {
+            get => lblConsumer.Text;
+            set => lblConsumer.Text = value;
+        }
+        /// <summary>
+        /// Номер ліц. договору
+        /// </summary>
+        public string HeaderInfoLicenseNumberString
+        {
+            get => lblLicenseAgrNumber.Text;
+            set => lblLicenseAgrNumber.Text = value;
+        }
+        /// <summary>
+        /// Найменування періоду
+        /// </summary>
+        public string HeaderInfoPeriodName
+        {
+            get => lblPeriod.Text;
+            set => lblPeriod.Text = value;
+        }
+        /// <summary>
+        /// Номер розрахункового листа
+        /// </summary>
+        public string HeaderInfoRatedListNumber
+        {
+            get => lblRlNumber.Text;
+            set => lblRlNumber.Text = value;
+        }
+
+
+
+        #endregion
 
         /// <summary>
         /// Default NOT usable constructor
@@ -99,10 +137,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             txtAuthAmount.ReadOnly = !isEdit;
             ddlCreativeRole.Enabled = isEdit;
             txtMusicalDesignRate.ReadOnly = !isEdit;
-            txtMusicalDesignAmount.ReadOnly = !isEdit;
 
             CreateDataForHierarchyView();
-
         }
 
         private void NormalizeData(Register register)
@@ -110,6 +146,22 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             foreach (var item in register.RegisterItem)
                 foreach (var extra in item.RegisterExtra)
                     extra.RoleCodeNavigation = creativeDic[extra.RoleCode];
+        }
+
+        private void CalculateAmounts()
+        {
+            decimal.TryParse(txtAmount.Text, out decimal amount);
+            decimal.TryParse(txtStagingRate.Text, out decimal authRate);
+            decimal.TryParse(txtMusicalDesignRate.Text, out decimal musicRate);
+
+            _register.AuthAmount = amount / 100 * authRate;
+            _register.MusicAmount = amount / 100 * musicRate;
+            
+            lblValidAuthAmount.Text = (_register.AuthAmount + _register.MusicAmount).ToString();
+
+            decimal.TryParse(lblValidAuthAmount.Text, out decimal rightResult);
+            decimal.TryParse(txtAuthAmount.Text, out decimal leftResult);
+            lblValidAuthAmount.ForeColor = decimal.Round(leftResult, 2) != decimal.Round(rightResult, 2) ? Color.Red : DefaultForeColor;
         }
 
         private void CreateDataForHierarchyView()
@@ -156,7 +208,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
             AddAuthRoleForMusDesingBr addAuthRole = new AddAuthRoleForMusDesingBr(_registerItemMusDesign)
             {
-                CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1)
+                CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1),
+                StartPosition = FormStartPosition.CenterParent
             };
             if (addAuthRole.ShowDialog() == DialogResult.OK)
             {
@@ -179,6 +232,20 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
                 bindingRegExtraCode2.Remove(item);
                 _registerItemCreation.RegisterExtra.Remove(item);
+            }
+        }
+
+        private void StartCalculateNeed(object sender, EventArgs e)
+        {
+            CalculateAmounts();
+        }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
             }
         }
 

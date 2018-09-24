@@ -1,0 +1,88 @@
+-- consumer
+get 	/consumer
+get 	/consumer/new?{custType}
+get 	/consumer/{custid}
+post 	/consumer
+put 	/consumer/{custid}
+put 	/consumer/{custid}/status/{body:statusid}
+
+-- anketa
+get 	/consumer/{custid}/anketa
+get 	/consumer/{custid}/anketa/{version}
+post	/consumer/{custid}/anketa
+put 	/consumer/{custid}/anketa/{version}
+delete 	/consumer/anketa/{custid}/anketa/{version}
+
+-- dogovor SR
+get 	/consumer/{custid}/agreementSR
+get 	/consumer/{custid}/agreementSR/{licid}
+post 	/consumer/{custid}/agreementSR
+delete 	/consumer/{custid}/agreementSR/{licid}
+put 	/consumer/{custid}/agreementSR/{licid}
+put 	/consumer/{custid}/agreementSR/{licid}/status/(body:stateid)
+get 	/consumer/{custid}/agreementSR/{licid}/version/
+get 	/consumer/{custid}/agreementSR/{licid}/version/{version}
+post 	/consumer/{custid}/agreementSR/{licid}/version/{version}
+put 	/consumer/{custid}/agreementSR/{licid}/version/{version}
+post 	/consumer/{custid}/agreementSR/{licid}/version/{version}/prolong
+put 	/consumer/{custid}/agreementSR/{licid}/version/{version}/status/(body:stateid)
+
+-- dogovor BR
+get 	/consumer/{custid}/agreementBR
+get 	/consumer/{custid}/agreementBR/{licid}
+post 	/consumer/{custid}/agreementBR
+put 	/consumer/{custid}/agreementBR/{licid}
+delete 	/consumer/{custid}/agreementBR/{licid}
+put 	/consumer/{custid}/agreementBR/{id}/status/{version}
+get 	/consumer/{custid}/agreementBR/{id}/version
+get 	/consumer/{custid}/agreementBR/{id}/version/{version}
+post 	/consumer/{custid}/agreementBR/{id}/version/{version}
+put 	/consumer/{custid}/agreementBR/{id}/version/{version}
+delete 	/consumer/{custid}/agreementBR/{id}/version/{version}
+
+-- License BR
+get 	/consumer/{custid}/agreementBR/{id}/license
+get 	/consumer/{custid}/agreementBR/{id}/license/{licid}
+post 	/consumer/{custid}/agreementBR/{id}/license
+put 	/consumer/{custid}/agreementBR/{id}/license/{licid}
+delete 	/consumer/{custid}/agreementBR/{id}/license/{licid}
+put 	/consumer/{custid}/agreementBR/{id}/license/{licid}/status/{version}
+get 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version
+get 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}
+put 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}
+delete 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}
+put 	/consumer/{custid}/agreementBR/{id}/license/{licid}/version/{version}/status/{version}
+
+-- paid period 
+get 	/consumer/{custid}/agreement/{licid}/period
+get 	/consumer/{custid}/agreement/{licid}/period/
+get 	/consumer/{custid}/agreement/{licid}/period/{periodid}
+post 	/consumer/{custid}/agreement/{licid}/period
+put 	/consumer/{custid}/agreement/{licid}/period/{periodid}
+delete 	/consumer/{custid}/agreement/{licid}/period/{periodid}
+patch 	/consumer/{custid}/agreement/{licid}/period/{periodid}
+put 	/consumer/{custid}/agreement/{licid}/period/{id}/state/{periodid}
+
+-- registerRatedList
+get    /consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}
+post   /consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList
+delete /consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}
+put    /consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}
+patch  /consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}
+put    /consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/state/{stateid}
+
+-- register
+get 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register
+get 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register/{regid}
+post 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register
+delete 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register/{regid}
+put 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register/{regid}
+patch 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register/{regid}
+patch 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register
+put 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register/{regid}/state/{stateid}
+
+-- registerItem
+get 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register/{regid}/registerItem
+delete 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register/{regid}/registerItem
+put 	/consumer/{custid}/agreement/{licid}/period/{id}/registerRatedList/{rmid}/register/{regid}/registerItem
+

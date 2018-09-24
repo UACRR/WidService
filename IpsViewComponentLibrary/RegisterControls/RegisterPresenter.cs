@@ -1,22 +1,30 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Events;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
+    public enum RegisterFormType
+    {
+        OrdinaryDistribution = 1,
+        CompositionAndMusicalDesignDistribution = 2,
+    }
+
     public class RegisterPresenter
     {
         private readonly RegisterView _view;
         private readonly RegisterService _registerService;
+        private readonly ConsumerService _consumerService;
         private readonly DialogService _dialogService;
         private Register _register;
+        private ConsumerMainView _consumer;
         private bool _saved;
 
         public RegisterPresenter(RegisterView view, RegisterService registerService)
@@ -27,21 +35,24 @@ namespace IpsViewComponentLibrary.RegisterControls
             _view.FormClosing += View_FormClosing;
 
             _registerService = registerService;
+            _consumerService = new ConsumerService();
             _dialogService = new DialogService();
         }
 
         public void Show(int regId)
         {
             _register = _registerService.GetById(regId);
+            _consumer = _consumerService.GetShortInfoById(_register.CustId);
+
             UpdateDataBindings();
 
             if (_register.SchemaId == 1)
             {
-                _view.SetupViewForSchema1();
+                _view.FormType = RegisterFormType.OrdinaryDistribution;
             }
             else if (_register.SchemaId == 2)
             {
-                _view.SetupViewForSchema2();
+                _view.FormType = RegisterFormType.CompositionAndMusicalDesignDistribution;
             }
 
             _view.Run();
@@ -63,43 +74,43 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public void SearchObjectsForAll()
         {
-            var objectList = new List<RegisterItemViewModel>();
+            var registerItemList = new List<RegisterItemViewModel>();
 
-            objectList.AddRange(_view.RegisterItemListStage);
-            objectList.AddRange(_view.RegisterItemList);
+            registerItemList.AddRange(_view.RegisterItemListStage);
+            registerItemList.AddRange(_view.RegisterItemList);
 
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(objectList);
+                presenter.Show(registerItemList);
             }
         }
 
         public void SearchObjectsForNotLinked()
         {
-            var objectList = new List<RegisterItemViewModel>();
+            var registerItemList = new List<RegisterItemViewModel>();
 
-            objectList.AddRange(_view.RegisterItemListStage.Where(r => r.ObjId == null));
-            objectList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
+            registerItemList.AddRange(_view.RegisterItemListStage.Where(r => r.ObjId == null));
+            registerItemList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
 
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(objectList);
+                presenter.Show(registerItemList);
             }
         }
 
         public void SearchObjectsForSelected()
         {
-            var objectList = new List<RegisterItemViewModel>();
+            var registerItemList = new List<RegisterItemViewModel>();
 
-            objectList.AddRange(_view.SelectedRegisterItemsStage);
-            objectList.AddRange(_view.SelectedRegisterItems);
+            registerItemList.AddRange(_view.SelectedRegisterItemsStage);
+            registerItemList.AddRange(_view.SelectedRegisterItems);
 
             using (var view = new SearchObjectView())
             {
                 var presenter = new SearchObjectPresenter(view, _registerService);
-                presenter.Show(objectList);
+                presenter.Show(registerItemList);
             }
         }
 
@@ -107,14 +118,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             var objectRightService = new ObjectRightService();
 
-            var objectList = new List<RegisterItemViewModel>();
+            var registerItemList = new List<RegisterItemViewModel>();
 
-            objectList.AddRange(_view.SelectedRegisterItemsStage);
-            objectList.AddRange(_view.SelectedRegisterItems);
+            registerItemList.AddRange(_view.SelectedRegisterItemsStage);
+            registerItemList.AddRange(_view.SelectedRegisterItems);
 
             var createdObjectCount = 0;
 
-            foreach (var registerItem in objectList)
+            foreach (var registerItem in registerItemList)
             {
                 var newObject = objectRightService.NewObjectRight(5);
                 newObject.SetDataFromRegisterItem(registerItem);
@@ -166,6 +177,12 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public void Save()
         {
+            if (!_view.IsValid)
+            {
+                _dialogService.ShowError(_view, "Не вірно введені дані. Звіт не записаний.");
+                return;
+            }
+
             _saved = true;
 
             foreach (var rvm in _view.RegisterItemList)
@@ -223,6 +240,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         private void UpdateDataBindings()
         {
             _view.Register = _register;
+            _view.ConsumerInfo = _consumer;
+
             _view.RegisterItemList.Clear();
             _view.RegisterExtraList.Clear();
             _view.RegisterItemListStage.Clear();
@@ -248,6 +267,8 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 if (r.Obj != null)
                     rvm.SetObjectData(r.ObjId, r.Obj.Name, r.Obj.Author, r.Obj.Performer, r.Obj.MediaTrack?.Duration, resetIsAuto: false);
+
+                rvm.RegisterExtraList.AddRange(r.RegisterExtra);
 
                 if (r.CodeItem == 1 || r.CodeItem == 3)
                 {

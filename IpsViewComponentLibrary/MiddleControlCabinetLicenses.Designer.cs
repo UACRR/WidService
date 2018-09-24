@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Drawing;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlCabinetLicenses
     {
@@ -39,6 +41,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvViewLicences = new Telerik.WinControls.UI.RadGridView();
             this.separator = new Telerik.WinControls.UI.RadSeparator();
@@ -48,10 +51,11 @@
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvInformation = new Telerik.WinControls.UI.RadPageViewPage();
+            this.btnPrint = new Telerik.WinControls.UI.RadButton();
+            this.ctrlAgrDetailInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.AgrDetailInfoBr();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
-            this.ctrlAgrDetailInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.AgrDetailInfoBr();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
@@ -62,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvInformation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
             this.SuspendLayout();
             // 
             // gvViewLicences
@@ -99,7 +104,7 @@
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 257;
+            gridViewTextBoxColumn3.Width = 229;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ ліцензійного договору";
@@ -107,7 +112,7 @@
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "LicNum";
-            gridViewTextBoxColumn4.Width = 100;
+            gridViewTextBoxColumn4.Width = 87;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "LicDate";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
@@ -164,6 +169,15 @@
             gridViewTextBoxColumn11.MinWidth = 90;
             gridViewTextBoxColumn11.Name = "LicStatusName";
             gridViewTextBoxColumn11.Width = 90;
+            gridViewCommandColumn1.FieldName = "viewBtn";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "viewBtn";
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
             this.gvViewLicences.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -175,7 +189,8 @@
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11});
+            gridViewTextBoxColumn11,
+            gridViewCommandColumn1});
             this.gvViewLicences.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewLicences.MasterTemplate.EnableFiltering = true;
             this.gvViewLicences.MasterTemplate.EnableGrouping = false;
@@ -183,10 +198,11 @@
             this.gvViewLicences.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewLicences.Name = "gvViewLicences";
             this.gvViewLicences.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewLicences.Size = new System.Drawing.Size(999, 237);
+            this.gvViewLicences.Size = new System.Drawing.Size(987, 180);
             this.gvViewLicences.TabIndex = 7;
             this.gvViewLicences.ThemeName = "Office2013Light";
             this.gvViewLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewLicences_CurrentRowChanged);
+            this.gvViewLicences.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewLicences_CommandCellClick);
             this.gvViewLicences.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewConsumers_CustomFiltering);
             // 
             // separator
@@ -195,18 +211,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.separator.Location = new System.Drawing.Point(3, 88);
             this.separator.Name = "separator";
-            this.separator.Size = new System.Drawing.Size(999, 12);
+            this.separator.Size = new System.Drawing.Size(987, 12);
             this.separator.TabIndex = 8;
             this.separator.ThemeName = "Office2013Light";
             // 
             // btnCloseAgr
             // 
-            this.btnCloseAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseAgr.Location = new System.Drawing.Point(909, 103);
+            this.btnCloseAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCloseAgr.Location = new System.Drawing.Point(810, 47);
             this.btnCloseAgr.Name = "btnCloseAgr";
-            this.btnCloseAgr.Size = new System.Drawing.Size(93, 24);
+            this.btnCloseAgr.Size = new System.Drawing.Size(95, 40);
             this.btnCloseAgr.TabIndex = 9;
-            this.btnCloseAgr.Text = "Закрити";
+            this.btnCloseAgr.Text = "Закрити ліцензію";
+            this.btnCloseAgr.TextWrap = true;
             this.btnCloseAgr.ThemeName = "Office2013Light";
             this.btnCloseAgr.Click += new System.EventHandler(this.btnCloseAgr_Click);
             // 
@@ -238,12 +255,13 @@
             // 
             // btnToProlongation
             // 
-            this.btnToProlongation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToProlongation.Location = new System.Drawing.Point(810, 103);
+            this.btnToProlongation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnToProlongation.Location = new System.Drawing.Point(810, 0);
             this.btnToProlongation.Name = "btnToProlongation";
-            this.btnToProlongation.Size = new System.Drawing.Size(93, 24);
+            this.btnToProlongation.Size = new System.Drawing.Size(95, 40);
             this.btnToProlongation.TabIndex = 11;
-            this.btnToProlongation.Text = "Пролонгувати";
+            this.btnToProlongation.Text = "Пролонгувати ліцензію";
+            this.btnToProlongation.TextWrap = true;
             this.btnToProlongation.ThemeName = "Office2013Light";
             this.btnToProlongation.Click += new System.EventHandler(this.btnToProlongation_Click);
             // 
@@ -251,25 +269,24 @@
             // 
             this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToAccept.Enabled = false;
-            this.btnToAccept.Location = new System.Drawing.Point(701, 103);
+            this.btnToAccept.Location = new System.Drawing.Point(816, 103);
             this.btnToAccept.Name = "btnToAccept";
-            this.btnToAccept.Size = new System.Drawing.Size(103, 24);
+            this.btnToAccept.Size = new System.Drawing.Size(174, 24);
             this.btnToAccept.TabIndex = 12;
-            this.btnToAccept.Text = "На погодження";
+            this.btnToAccept.Text = "Відправити на погодження";
             this.btnToAccept.ThemeName = "Office2013Light";
             this.btnToAccept.Click += new System.EventHandler(this.btnToAccept_Click);
             // 
             // pageView
             // 
-            this.pageView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pageView.Controls.Add(this.pvInformation);
             this.pageView.Controls.Add(this.pvAgreement);
             this.pageView.Controls.Add(this.pvHistory);
-            this.pageView.Location = new System.Drawing.Point(4, 376);
+            this.pageView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pageView.Location = new System.Drawing.Point(0, 319);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvInformation;
-            this.pageView.Size = new System.Drawing.Size(998, 219);
+            this.pageView.Size = new System.Drawing.Size(993, 219);
             this.pageView.TabIndex = 13;
             this.pageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -278,38 +295,26 @@
             // 
             // pvInformation
             // 
+            this.pvInformation.Controls.Add(this.btnPrint);
             this.pvInformation.Controls.Add(this.ctrlAgrDetailInfo);
+            this.pvInformation.Controls.Add(this.btnToProlongation);
+            this.pvInformation.Controls.Add(this.btnCloseAgr);
             this.pvInformation.ItemSize = new System.Drawing.SizeF(79F, 27F);
             this.pvInformation.Location = new System.Drawing.Point(83, 5);
             this.pvInformation.Name = "pvInformation";
-            this.pvInformation.Size = new System.Drawing.Size(910, 209);
+            this.pvInformation.Size = new System.Drawing.Size(905, 209);
             this.pvInformation.Text = "Інформація";
             // 
-            // pvAgreement
+            // btnPrint
             // 
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(79F, 27F);
-            this.pvAgreement.Location = new System.Drawing.Point(83, 5);
-            this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(910, 209);
-            this.pvAgreement.Text = "Договір";
-            // 
-            // pvHistory
-            // 
-            this.pvHistory.ItemSize = new System.Drawing.SizeF(79F, 27F);
-            this.pvHistory.Location = new System.Drawing.Point(83, 5);
-            this.pvHistory.Name = "pvHistory";
-            this.pvHistory.Size = new System.Drawing.Size(864, 237);
-            this.pvHistory.Text = "Історія";
-            // 
-            // ctrlAgrInfo
-            // 
-            this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            this.ctrlAgrInfo.Location = new System.Drawing.Point(3, 3);
-            this.ctrlAgrInfo.MaximumSize = new System.Drawing.Size(705, 79);
-            this.ctrlAgrInfo.MinimumSize = new System.Drawing.Size(705, 79);
-            this.ctrlAgrInfo.Name = "ctrlAgrInfo";
-            this.ctrlAgrInfo.Size = new System.Drawing.Size(705, 79);
-            this.ctrlAgrInfo.TabIndex = 0;
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.Location = new System.Drawing.Point(810, 93);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(95, 40);
+            this.btnPrint.TabIndex = 12;
+            this.btnPrint.Text = "Друкувати ліцензію";
+            this.btnPrint.TextWrap = true;
+            this.btnPrint.ThemeName = "Office2013Light";
             // 
             // ctrlAgrDetailInfo
             // 
@@ -321,21 +326,45 @@
             this.ctrlAgrDetailInfo.Size = new System.Drawing.Size(795, 202);
             this.ctrlAgrDetailInfo.TabIndex = 0;
             // 
+            // pvAgreement
+            // 
+            this.pvAgreement.ItemSize = new System.Drawing.SizeF(79F, 27F);
+            this.pvAgreement.Location = new System.Drawing.Point(83, 5);
+            this.pvAgreement.Name = "pvAgreement";
+            this.pvAgreement.Size = new System.Drawing.Size(917, 209);
+            this.pvAgreement.Text = "Договір";
+            // 
+            // pvHistory
+            // 
+            this.pvHistory.ItemSize = new System.Drawing.SizeF(79F, 27F);
+            this.pvHistory.Location = new System.Drawing.Point(83, 5);
+            this.pvHistory.Name = "pvHistory";
+            this.pvHistory.Size = new System.Drawing.Size(917, 209);
+            this.pvHistory.Text = "Історія";
+            // 
+            // ctrlAgrInfo
+            // 
+            this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
+            this.ctrlAgrInfo.Location = new System.Drawing.Point(3, 3);
+            this.ctrlAgrInfo.MaximumSize = new System.Drawing.Size(705, 79);
+            this.ctrlAgrInfo.MinimumSize = new System.Drawing.Size(705, 79);
+            this.ctrlAgrInfo.Name = "ctrlAgrInfo";
+            this.ctrlAgrInfo.Size = new System.Drawing.Size(705, 79);
+            this.ctrlAgrInfo.TabIndex = 0;
+            // 
             // MiddleControlCabinetLicenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pageView);
             this.Controls.Add(this.btnToAccept);
-            this.Controls.Add(this.btnToProlongation);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.btnCloseAgr);
             this.Controls.Add(this.separator);
             this.Controls.Add(this.gvViewLicences);
             this.Controls.Add(this.ctrlAgrInfo);
-            this.MinimumSize = new System.Drawing.Size(822, 538);
+            this.MinimumSize = new System.Drawing.Size(993, 538);
             this.Name = "MiddleControlCabinetLicenses";
-            this.Size = new System.Drawing.Size(1005, 598);
+            this.Size = new System.Drawing.Size(993, 538);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
@@ -346,6 +375,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvInformation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -364,5 +394,6 @@
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
         private Telerik.WinControls.UI.RadPageViewPage pvHistory;
         private ConsumerControls.BigRight.AgrDetailInfoBr ctrlAgrDetailInfo;
+        private Telerik.WinControls.UI.RadButton btnPrint;
     }
 }

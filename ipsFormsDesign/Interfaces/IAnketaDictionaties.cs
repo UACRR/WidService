@@ -8,14 +8,15 @@ namespace ipsFormsDesign.Interfaces
 {
     public class AnketaDictionaties 
     {
-        public IList<ActivityType> activityType {get; set;}
-        public IList<AgrLicenseType> agrLicenseType {get; set;}
-        public IList<AgreementStatus> agreementStatus {get; set;}
-        public IList<AgreementType> agreementType {get; set;}
-        public IList<AnketaStatus> anketaStatus {get; set;}
-        public IList<CopyrightKind> copyrightKind {get; set;}
-        public IList<CopyrightType> copyrightType {get; set;}
-        public IList<Country> country {get; set;}
+        public IList<ActivityType> activityType { get; set; }
+        public IList<AlgorithmType> algorithmType { get; set; }
+        public IList<AgrLicenseType> agrLicenseType { get; set; }
+        public IList<AgreementStatus> agreementStatus { get; set; }
+        public IList<AgreementType> agreementType { get; set; }
+        public IList<AnketaStatus> anketaStatus { get; set; }
+        public IList<CopyrightKind> copyrightKind { get; set; }
+        public IList<CopyrightType> copyrightType { get; set; }
+        public IList<Country> country { get; set; }
         public IList<CreativeRoleType> creativeRoleType { get; set; }
         public IList<CrkindGroup> crkindGroup {get; set;}
         public IList<CustomerStatus> customerStatus {get; set;}

@@ -31,8 +31,17 @@ namespace IpsViewComponentLibrary
         private ButtonController buttonController;
 
         private TypeRights _typeRights = TypeRights.All;
+
         [EditorBrowsable]
-        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } }
+        public TypeRights TypeRights
+        {
+            get => _typeRights;
+            set
+            {
+                _typeRights = value;
+                reinitValidClass();
+            }
+        }
         private List<int> validClass;
 
         /// <summary>
@@ -83,9 +92,9 @@ namespace IpsViewComponentLibrary
         private void reinitValidClass()
         {
             validClass = new List<int>();
-            if (TypeRights == TypeRights.SmallRights || TypeRights == TypeRights.All)
+            if (TypeRights == TypeRights.SmallRights)
                 validClass.Add(0);
-            if (TypeRights == TypeRights.BigRights || TypeRights == TypeRights.All)
+            if (TypeRights == TypeRights.BigRights)
                 validClass.Add(1);
 
         }
@@ -161,14 +170,11 @@ namespace IpsViewComponentLibrary
             boolRunFromDragDrop = true;
             e.Handled = true;
 
-            btnDistribute.BeginInvoke((Action)(() =>
+            ddBtnAction.BeginInvoke((Action)(() =>
             {
                 btnDistribute.PerformClick();
             }));
         }
-
-
-
 
         /// <summary>
         /// 
@@ -192,10 +198,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-
-
         #endregion
-
 
         /// <summary>
         /// 
@@ -327,11 +330,11 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dtnDistribute_Click(object sender, EventArgs e)
+        private void btnDistribute_Click(object sender, EventArgs e)
         {
 
             MoneyReceived pay = null;
-            LicenseAgreement licParam = null;
+            IAgreementData licParam = null;
             PaidPeriod period = null;
             if (boolRunFromDragDrop)
             {
@@ -355,12 +358,12 @@ namespace IpsViewComponentLibrary
                 {
                     period = destRow.RowInfo.DataBoundItem as PaidPeriod;
 
-                    licParam = period.Lic;
+                    licParam = ActiveAgreementDataFactory.CreateAgreementData( period.Lic );
 
                 }
                 else // Drop to LicenceAgreement
                 {
-                    licParam = (destRow.RowInfo.DataBoundItem as IAgreementData).Lic;
+                    licParam = (destRow.RowInfo.DataBoundItem as IAgreementData);
                     period = null;
 
                 }
@@ -373,7 +376,7 @@ namespace IpsViewComponentLibrary
                     return;
 
                 pay = gvUserMoneys.CurrentRow.DataBoundItem as MoneyReceived;
-                licParam = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData).Lic;
+                licParam = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData);
                 period = gvPeriodsPayment.CurrentRow.DataBoundItem as PaidPeriod;
 
             }
@@ -387,7 +390,7 @@ namespace IpsViewComponentLibrary
             if (form.ShowDialog() == DialogResult.OK)
             {
                 List<MoneyPeriodLink> ListLink = new List<MoneyPeriodLink>();
-                foreach (var item in licParam.PaidPeriod)
+                foreach (var item in licParam.Lic.PaidPeriod)
                 {
                     var itemList = item.MoneyPeriodLink;
                     ListLink.AddRange(itemList);
@@ -451,9 +454,10 @@ namespace IpsViewComponentLibrary
     class ButtonController
     {
         private RadButton _btnNewPeriod,
-                            _btnDistribute,
                             _btnClosePeriod;
-        public ButtonController(RadButton btnNewPeriod, RadButton btnDistribute, RadButton btnClosePeriod)
+        private RadMenuItem _btnDistribute;
+
+        public ButtonController(RadButton btnNewPeriod, RadMenuItem btnDistribute, RadButton btnClosePeriod)
         {
             _btnNewPeriod = btnNewPeriod;
             _btnDistribute = btnDistribute;

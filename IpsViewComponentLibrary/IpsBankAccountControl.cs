@@ -32,14 +32,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string DataMember
-        {
-            get { return bsBankAccount.DataMember; }
-            set { bsBankAccount.DataMember = value; }
-        }
-
         #region Edit controls
 
         public RadTextBox TxtMfo

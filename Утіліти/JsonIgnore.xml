@@ -9,6 +9,7 @@
         <noignore>AnketaAddName</noignore>
         <noignore>AgreementMaster</noignore>
         <noignore>FileCustomer</noignore>
+        <noignore>Partner</noignore>
     </item>
     <item name="Client">
         <noignore>ClnBusinessPlace</noignore>
@@ -76,6 +77,7 @@
     <item Name="AgreementMaster">
         <noignore>AgreementAddRh</noignore>
         <noignore>AgreementAddBr</noignore>
+        <noignore>AgreementAddPartner</noignore>
     </item>
     <item Name="Register">
         <noignore>Distribution</noignore>

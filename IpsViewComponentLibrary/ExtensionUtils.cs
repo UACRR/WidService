@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,24 @@ namespace IpsViewComponentLibrary
 {
     public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
-    public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
-    public delegate bool SavePayslipsEventHandler(RegisterRatedList list);
+    public delegate bool SaveRegisterRatedListEventHandler(RegisterRatedList list);
     public delegate Customer GetRegisterRatedList(int custId);
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
+    public delegate List<AnketaPerson> GetPartnerList();
+    public delegate Customer GetCustomerEventHandler(int custId);
+
+    public delegate bool SetPartnerEventHandler(int clientId, int partnerId);
+    public delegate bool ChangePartnerEventHandler(int clientId, int partnerId, int oldPartnerId);
+
+    public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate void UpdateCustomerDataEventHandler(int id);
 
-    
+    public delegate List<T> ReturnViewEventHandler<T>(int custId);
+    public delegate T ReturnObjectEventHandler<out T>(int custId);
+
+    public delegate bool PartnerAgreementStatusChangeEventHandler(int partnerId, CPartnerObjectStatus status);
+    public delegate List<PaidPeriod> SaveAndReturnNewPeriodListEventHandler(int custId, List<PaidPeriod> periods);
 
     public static class ExtensionUtils
     {
@@ -84,6 +95,75 @@ namespace IpsViewComponentLibrary
 
             return ButtonFunctionAcceptLicType.None;
         }
+
+        /// <summary>
+        /// Перевірка натиснутої кнопки. Допускаються: цифри, коми, видалення
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static void TextBoxPercentRate_KeyPressEvent(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        public static List<T> ToListOfType<T>(this IList<object> listObjects) where T : class 
+        {
+            var itemsList = new List<T>();
+            foreach (var temp in listObjects)
+                itemsList.Add(temp as T);
+            return itemsList;
+        }
+
+        public static void ShowMessage(bool result, MessageType messageType)
+        {
+            string msgText = string.Empty;
+            string headerText = result ? "Успішно" : "Помилка";
+            MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
+            switch (messageType)
+            {
+                case MessageType.GeneralAgreementChange:
+                    msgText = result ? "Зміни генерального договору збережено!" : "Неможливо зберегти зміни генерального договору!";
+                    break;
+                case MessageType.LicenseAgreementChange:
+                    msgText = result ? "Зміни ліцензійного договору збережено!" : "Неможливо зберегти зміни ліцензійного договору!";
+                    break;
+                case MessageType.LicenseStatus:
+                    msgText = result ? "Статус ліцензії зміненно!" : "Неможливо змінити статус ліцензії!";
+                    break;
+            }
+
+            MessageBox.Show(msgText, headerText, MessageBoxButtons.OK, icon);
+        }
+
+        //для колапс панелі
+        public static void NavigationButtonPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            RadButtonElement btn = sender as RadButtonElement;
+            if (e.PropertyName == "Visibility" && btn?.Class == "PrevDownSplitterThumb")
+            {
+                if (btn.Visibility == ElementVisibility.Collapsed)
+                {
+                    btn.Visibility = ElementVisibility.Visible;
+                    btn.AngleTransform = 0f;
+                }
+            }
+            if (e.PropertyName == "Visibility" && btn?.Visibility == ElementVisibility.Visible && btn.Class == "NextUpSplitterThumb")
+            {
+                btn.Visibility = ElementVisibility.Collapsed;
+            }
+        }
+    }
+
+    public enum MessageType
+    {
+        GeneralAgreementChange,
+        LicenseAgreementChange,
+        LicenseStatus,
+        
     }
 
     public interface IMiddleCtrlAnketaConsumer
@@ -248,6 +328,10 @@ namespace IpsViewComponentLibrary
         /// </summary>
         None,
         /// <summary>
+        /// Анкета
+        /// </summary>
+        Anketa,
+        /// <summary>
         /// Ліцензії
         /// </summary>
         Licenses,
@@ -310,6 +394,29 @@ namespace IpsViewComponentLibrary
         /// Довідка
         /// </summary>
         Reference
+    }
+
+    /// <summary>
+    /// Тип ініціалізованої форми
+    /// </summary>
+    public enum FLoadType
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None,
+        /// <summary>
+        /// Створення нового об'єкту
+        /// </summary>
+        Create,
+        /// <summary>
+        /// Перегляд існуючого об'єкту
+        /// </summary>
+        View,
+        /// <summary>
+        /// Редагування існуючого об'єкту
+        /// </summary>
+        Edit,
     }
 
     public enum ButtonFunctionAcceptLicType

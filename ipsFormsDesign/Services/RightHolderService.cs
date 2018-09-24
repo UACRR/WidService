@@ -1,9 +1,8 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -42,6 +41,11 @@ namespace ipsFormsDesign.Services
             var list = _webApi.GetList<RightholderMainView>("rh", query.ToKeyValuePair());
 
             return list;
+        }
+
+        public async Task<IList<RightholderMainView>> GetRightholdersAsync(RightholderListQuery query)
+        {
+            return await Task.Factory.StartNew(() => GetRightholders(query));
         }
 
         public Customer NewCustomer(int custType)

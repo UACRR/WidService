@@ -5,11 +5,8 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -20,14 +17,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private readonly DialogService _dialogService;
         private ObjectRight _objectRight;
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
-        private bool _saved;
+        private bool _canClose;
 
         public ObjectRightBrPresenter(ObjectRightBrView view)
         {
             _view = view;
             _view.Presenter = this;
-
-            _view.FormClosing += View_FormClosing;
 
             _objectRightService = new ObjectRightService();
             _dialogService = new DialogService();
@@ -38,6 +33,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             var objectContainer = _objectRightService.GetDataBr(objId);
 
             SetObjectRightData(objectContainer.objectRight, objectContainer.rhList);
+
+            var header = objectContainer.objectRight.ObjId == 0 ? "(Новий)" : objectContainer.objectRight.Name;
+            _view.SetHeader(header);
 
             _view.Run();
         }
@@ -50,24 +48,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _view.LicenseBigRDataSource = _objectRight.LicenseBigR;
 
             // map Authors, Copyright, LicAuthorBr and WorkRh tables into single table
-            var tmpAuthorRightholderList = _objectRight.Authors.Select(a =>
-            {
-                var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
-                var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
-
-                return new ObjectAuthorRightholderBrViewModel
-                {
-                    Country = foundedRightholder?.Country,
-                    InnerCode = foundedRightholder?.InnerCode,
-                    Author = a,
-                    CopyRight = foundedCopyright,
-                    LicAuthorBr = foundedCopyright.LicAuthorBr ?? new LicAuthorBr(),
-                    WorkRh = foundedCopyright.WorkRh ?? new WorkRh(),
-                };
-            })
-            .ToList();
-
-            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(tmpAuthorRightholderList);
+            _authorRightholderList = new BindingList<ObjectAuthorRightholderBrViewModel>(_objectRight.GetObjectBrAuthorRightholderList(rightholderList));
 
             _view.AuthorRightholderListDataSource = _authorRightholderList;
         }
@@ -77,7 +58,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (_objectRight == null)
                 return;
 
-            _saved = true;
+            _canClose = true;
 
             // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
             _objectRight.Authors.Clear();
@@ -99,12 +80,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
         }
 
-        private void View_FormClosing(object sender, FormClosingEventArgs e)
+        public void Close()
         {
-            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
-            {
-                e.Cancel = true;
-            }
+            if (!_canClose)
+                _canClose = _dialogService.ClosingIsConfirmed(_view);
+
+            if (_canClose)
+                _view.Hide();
         }
     }
 }

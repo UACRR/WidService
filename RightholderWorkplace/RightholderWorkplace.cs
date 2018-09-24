@@ -43,7 +43,7 @@ namespace RightholderWorkplace
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
             // TODO: move to rightholder list control + add AllowAdd property
-            using (var rightholderView = new RightholderView())
+            using (var rightholderView = new NewRightholderView())
             {
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
                 rightholderPresenter.ShowNew(1);
@@ -58,12 +58,6 @@ namespace RightholderWorkplace
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
                 rightholderPresenter.Show(selectedRightholder.CustId);
             }
-        }
-
-        private void ctrlRightholderList_ShowRightholdersObjectsCommandExecuted(object sender, RightholderMainView selectedRightholder)
-        {
-            // TODO: move to rightholder list control
-            ShowObjectsRightsForRightholder(selectedRightholder);
         }
 
         #endregion
@@ -84,8 +78,6 @@ namespace RightholderWorkplace
         }
 
         #region Objectrights page
-
-        #region Objectrights list event handlers
 
         private void miAddMusicalComposition_Click(object sender, EventArgs e)
         {
@@ -145,117 +137,6 @@ namespace RightholderWorkplace
 
         #endregion
 
-        #region Rightholders objectrights list event handlers
-
-        private void ctrlRightholdersObjectsRight_EditObjectCommandExecuted(object sender, ObjectRightForRightholder selectedObject)
-        {
-            EditObjectRight(selectedObject);
-        }
-
-        private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
-        {
-            if (!IsRightholderSelected())
-                return;
-
-            if (sender is RadMenuItem menuItem)
-            {
-                int category;
-                if (int.TryParse(menuItem.Tag.ToString(), out category))
-                {
-                    // TODO: move to presenter
-                    AddObjectRight(category, ctrlRightholdersObjectsRight.SelectedRightholder);
-                }
-            }
-        }
-
-        private void btnAddExistingObjectRightForRightholder_Click(object sender, EventArgs e)
-        {
-            if (!IsRightholderSelected())
-                return;
-
-            // TODO: move to presenter
-            using (var selectionView = new ObjectRightSelectionView())
-            {
-                selectionView.ObjectSelected += SelectionView_ObjectSelected;
-                selectionView.ShowDialog();
-            }
-        }
-
-        private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
-        {
-            var selectedRightholder = ctrlRightholdersObjectsRight.SelectedRightholder;
-            var objectRightContainer = _objectRightService.GetData(selectedObject.ObjId);
-            var objectRight = objectRightContainer.objectRight;
-            
-            if (objectRight.CopyRight.GetTotalRate() >= 100)
-            {
-                MessageBox.Show("Спільний відсоток володіння для вибраного об'єкта вже становить 100%.");
-                return;
-            }
-
-            //if (objectRight.CopyRight.Any(cr => cr.CustId == selectedRightholder.CustId))
-            //{
-            //    // може бути, що додається копірайт для цього ж об'єкта, але по іншій творчій ролі - треба подумати
-            //    MessageBox.Show("");
-            //    return;
-            //}
-
-            var objectAuthorRightholder = new ObjectAuthorRightholder(selectedRightholder);
-
-            DialogResult dialogResult;
-            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _objectRightService.GetDictionary(), objectRight.CategoryCode))
-            {
-                dialogResult = authorRightholderItemView.ShowDialog();
-            }
-
-            if (dialogResult == DialogResult.OK)
-            {
-                objectRight.AddObjectAuthorRightholder(objectAuthorRightholder);
-
-                if (objectRight.CopyRight.GetTotalRate() > 100)
-                {
-                    MessageBox.Show("Спільний відсоток володіння з врахуванням доданого перевищує 100%. Об'єкт не доданий.");
-                    return;
-                }
-
-                var result = _objectRightService.Save(objectRight);
-
-                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
-                ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
-
-                if (!result)
-                    MessageBox.Show("Не вдалося зберегти зміни. Об'єкт не доданий.", "Помилка");
-            }
-
-        }
-
-        private bool IsRightholderSelected()
-        {
-            if (ctrlRightholdersObjectsRight.SelectedRightholder == null)
-            {
-                MessageBox.Show("Оберіть правовласника.");
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
-
-        #region Objectrights page helpers
-
-        private void ShowObjectsRightsForRightholder(RightholderMainView selectedRightholder)
-        {
-            MainPageView.SelectedPage = mainPageRightsObjects;
-            objectsPageView.SelectedPage = rightholdersObjectsPage;
-
-            ctrlRightholdersObjectsRight.SelectedRightholder = selectedRightholder;
-        }
-
-        #endregion
-
-        #endregion
-
         #region Change rightholders page
 
         private BindingList<ObjectCopyright> _objectsCopyrightList = new BindingList<ObjectCopyright>();
@@ -292,10 +173,10 @@ namespace RightholderWorkplace
             using (var selectionView = new RightholderSelectionView())
             {
                 selectionView.SetAllowedStatuses(new[] {
-                    RightholderStatusType.Active,
-                    RightholderStatusType.Inheritance,
-                    RightholderStatusType.New,
-                    RightholderStatusType.NotAccepted,
+                    AgreementStatuses.NotAccepted,
+                    AgreementStatuses.OnAcception,
+                    AgreementStatuses.Active,
+                    AgreementStatuses.Inheritance,
                 });
                 selectionView.RightholderSelected += SelectionView_RightholderSelected;
                 selectionView.ShowDialog();

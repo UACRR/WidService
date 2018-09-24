@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -151,12 +152,17 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         {
             var queryText = "select * from vTsk_1_ListRightHolder01";
 
+            var conditions = new Collection<string>();
             if (query != null)
             {
-                if (query.Status != null)
-                {
-                    queryText = queryText + $" where status = {query.Status}";
-                }
+                if (query.RightholderStatus.HasValue)
+                    conditions.Add($"custStatus = {query.RightholderStatus.Value}");
+
+                if (query.AgreementStatus.HasValue)
+                    conditions.Add($"agrStatus = {query.AgreementStatus.Value}");
+
+                if (conditions.Any())
+                    queryText = queryText + " where " + string.Join(" and ", conditions);
             }
 
             var List = await _dbContext.getViewData(queryText, null);
@@ -469,8 +475,6 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         }
         #endregion
 
-        #region Methods for change rightholder status
-
         [HttpPut("setstatus/{rhId}")]
         public async Task<IActionResult> SetStatus(int rhId, [FromBody] int newStatus)
         {
@@ -501,8 +505,6 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             return Ok();
         }
 
-        #endregion
-
         #region inheritance
 
         /// <summary>
@@ -532,8 +534,11 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             if (oldBodyCust == null)
                 return false;
 
-            // Закриваємо Правовласника
+            // Закриваємо Правовласника і його договір
             oldRightHolder.Cust.Status = 9;
+
+            var agreement = _dbContext.AgreementAddRh.FirstOrDefault(a => a.CustId == oldRightHolder.CustId);
+            agreement.AgrStatus = 4;
 
             // Об'єкти правовласника
             var objects = await _dbContext.ObjectRight.FromSql(@"
@@ -753,6 +758,13 @@ t2.custId = @custid
 
                 if (sourceCopyright.WorkRh != null)
                 {
+                    if (sourceCopyright.WorkRh.WorkTypeRh == 5) // Відмова
+                    {
+                        // TODO: it is a poorly way to do so
+                        _dbContext.CopyRight.Remove(destCopyright);
+                        continue;
+                    }
+
                     if (destCopyright.WorkRh == null)
                         destCopyright.WorkRh = new WorkRh();
 

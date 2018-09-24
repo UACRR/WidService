@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary
 {
     public partial class ReportsControl : UserControl
     {
-        ExcelEngine _excel = new ExcelEngine();
+        private readonly ExcelEngine _excel = new ExcelEngine();
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
@@ -30,10 +30,6 @@ namespace IpsViewComponentLibrary
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
-
-
-        public delegate void UpdateCustomerDataEventHandler(int id);
-        public event UpdateCustomerDataEventHandler UpdateData;
 
         public Func<int, List<RegisterItem>> GetRegisterItems;
         private ButtonEnableControl buttonController;
@@ -100,7 +96,7 @@ namespace IpsViewComponentLibrary
             gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
-            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAccept, btnCreateReport);
+            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
 
             if (IpsGlobal.AnketaDictionaties != null)
             {
@@ -168,14 +164,12 @@ namespace IpsViewComponentLibrary
                         foreach (var reg in regList.Register)
                         {
                             reg.RgStatusNavigation = dicRegStatus[reg.RgStatus ?? 0];
-                            reg.RegisterRatedList = regList;
+                            reg.Rm = regList;
                         }
                     }
                 }
             }
         }
-
-
 
         /// <summary>
         /// 
@@ -191,7 +185,7 @@ namespace IpsViewComponentLibrary
             if (validClass == null)
                 reinitValidClass();
 
-            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && validClass.Contains(rec.LicClass))
+            var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass != 1 && validClass.Contains(rec.LicClass))
                             .Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
             bindingAgreement.DataSource = listAgreement;
         }
@@ -205,6 +199,7 @@ namespace IpsViewComponentLibrary
             btnAddRatedList.Enabled = false;
 
         }
+
         private void CreateAct()
         {
             MessageBox.Show("Створення акту");
@@ -248,7 +243,7 @@ namespace IpsViewComponentLibrary
             /// Цирк,Філармонія,Концертна діяльність
             bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
-
+            btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
             if (CurrentAgreementController != null
                 && !CurrentAgreementController.Broadcast
                 && lic != null
@@ -353,10 +348,10 @@ namespace IpsViewComponentLibrary
                         CustId = _customer.CustId,
                         RgStatusNavigation = dicRegStatus[0],
                         PeriodId = period.PeriodId,
-                        RegisterRatedList = RatedList,
+                        Rm = RatedList,
+                        LicId = period.LicId,
                         SchemaId = 1,
-                        AlgorithmId = 1,
-                        LicId = period.LicId
+                        AlgorithmId = 1
                     };
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
@@ -398,7 +393,8 @@ namespace IpsViewComponentLibrary
                     FileName = string.Empty,
                     CustId = _customer.CustId,
                     RgStatusNavigation = dicRegStatus[0],
-                    LicId = period.LicId
+                    LicId = period.LicId,
+                    AlgorithmId = 2
                 };
 
                 // для визначення рапортички
@@ -409,7 +405,11 @@ namespace IpsViewComponentLibrary
                     registerTemp.SchemaId = 2;
                     var progReportBigRight = new CreateProgReportBigRight(registerTemp)
                     {
-                        StartPosition = FormStartPosition.CenterParent
+                        StartPosition = FormStartPosition.CenterParent,
+                        HeaderInfoCustomerName = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.ShortName,
+                        HeaderInfoLicenseNumberString = ((IAgreementData) gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
+                        HeaderInfoPeriodName = period.PeriodName,
+                        HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
                     };
 
                     if (progReportBigRight.ShowDialog() == DialogResult.OK)
@@ -421,7 +421,7 @@ namespace IpsViewComponentLibrary
                 }
                 else // не рапотричка
                 {
-                    registerTemp.SchemaId = 2;
+                    registerTemp.SchemaId = 1;
                     var viewForm = new ReportExcelViewForm(registerTemp, true)
                     {
                         StartPosition = FormStartPosition.CenterParent
@@ -462,13 +462,16 @@ namespace IpsViewComponentLibrary
             {
                 CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
-                    StartPosition = FormStartPosition.CenterParent
+                    StartPosition = FormStartPosition.CenterParent,
+                    HeaderInfoCustomerName = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.ShortName,
+                    HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
+                    HeaderInfoPeriodName = period.PeriodName,
+                    HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
                 };
 
                 if (progReportBigRight.ShowDialog() == DialogResult.OK)
                 {
                     SaveRegisterExecuted?.Invoke(this, register);
-
                 }
                 return;
             }
@@ -576,7 +579,7 @@ namespace IpsViewComponentLibrary
             period.Status = 2;
             period.StatusNavigation = dicPeriodStatus[2];
             SetPeriodStateExecuted?.Invoke(this, period);
-            btnAccept.Enabled = false;
+            btnAcceptType1.Enabled = false;
             RefreshData();
         }
 
@@ -593,13 +596,15 @@ namespace IpsViewComponentLibrary
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
 
             RegisterRatedList addRatedList = new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0, StatusNavigation = dicRatedListStatus[0] };
-            CreateRatedList form = new CreateRatedList();
-            form.RatedList = addRatedList;
+            CreateRatedList form = new CreateRatedList
+            {
+                RatedList = addRatedList
+            };
 
             if (form.ShowDialog() == DialogResult.OK)
             {
                 period.RegisterRatedList.Add(addRatedList);
-                SaveRegisterRatedListExecuted(this, addRatedList);
+                SaveRegisterRatedListExecuted?.Invoke(this, addRatedList);
                 bindingRatedList.Add(addRatedList);
                 btnAddRatedList.Enabled = false;
             }
@@ -659,13 +664,15 @@ namespace IpsViewComponentLibrary
         private RadButton _addReport,
                           _create,
                           _toAcception,
-                          _accepted;
+                          _acceptedType1,
+                          _acceptedType2;
 
-        public ButtonEnableControl(RadButton addReport, RadButton toAcception, RadButton Accepted, RadButton create)
+        public ButtonEnableControl(RadButton addReport, RadButton toAcception, RadButton acceptedType1, RadButton acceptedType2, RadButton create)
         {
             _addReport = addReport;
             _toAcception = toAcception;
-            _accepted = Accepted;
+            _acceptedType1 = acceptedType1;
+            _acceptedType2 = acceptedType2;
             _create = create;
         }
         public void SetPeriodState(int? state, List<Register> list)
@@ -674,7 +681,8 @@ namespace IpsViewComponentLibrary
             {
                 _addReport.Enabled = false;
                 _toAcception.Enabled = false;
-                _accepted.Enabled = false;
+                _acceptedType1.Enabled = false;
+                _acceptedType2.Enabled = false;
                 _create.Enabled = false;
                 return;
             }
@@ -692,21 +700,25 @@ namespace IpsViewComponentLibrary
                 case 4: // Судова робота
                     _addReport.Enabled = true;
                     _create.Enabled = true;
-                    _toAcception.Enabled = regStates[0] > 0; // Нових > 0
-                    _accepted.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
+                    _toAcception.Enabled = regStates[0] > 0; // Нових > 0;
+                    _acceptedType1.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
+                    _acceptedType2.Enabled = countInList > 0 && regStates[3] + regStates[2] == countInList; // Всі погоджені
+
                     break;
                 case 2: // Прийом поштів
                 case 5: // 
                 case 6: // Кошти отримані
                     _addReport.Enabled = false;
-                    _toAcception.Enabled = regStates[2] > 0; // Нових > 0
-                    _accepted.Enabled = false;
+                    _toAcception.Enabled = regStates[2] > 0; // Нових > 0;
+                    _acceptedType1.Enabled = false;
+                    _acceptedType2.Enabled = false;
                     _create.Enabled = false;
                     break;
                 default: // Зактритий
                     _addReport.Enabled = false;
                     _toAcception.Enabled = false;
-                    _accepted.Enabled = false;
+                    _acceptedType1.Enabled = false;
+                    _acceptedType2.Enabled = false;
                     _create.Enabled = false;
                     break;
             }

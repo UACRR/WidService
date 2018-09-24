@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
@@ -23,8 +24,11 @@ namespace IpsViewComponentLibrary
         private RegisterRatedList _registerRatedList;
         private ObservableListSource<PayslipsGridDataSource> _source = null;
         private FormType _type;
-        public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+        public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
+        /// <summary>
+        /// Default NOT usage constructor
+        /// </summary>
         public PayslipsCrEdForm()
         {
             InitializeComponent();
@@ -42,10 +46,10 @@ namespace IpsViewComponentLibrary
             _spectacleViews = spectacleViews;
             _registerRatedList = registerRatedList;
             //список періодів
-            var licAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
+            var licAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2);
             var paidPeriods = licAgr?.PaidPeriod;
             bsPeriodList.DataSource = paidPeriods;
-
+            
             bsRegisterRatedList.DataSource = _registerRatedList;
             bsRegister.DataSource = _registerRatedList.Register;
 
@@ -74,7 +78,7 @@ namespace IpsViewComponentLibrary
                     ObjId = register.RegisterItem.FirstOrDefault()?.ObjId,
                     ObjName = register.RegisterItem.FirstOrDefault()?.ItemName,
                     CountUse = register.RegisterItem.FirstOrDefault()?.CountUse,
-                    Royalty = register.RegRoyalty,
+                    Amount = register.RegAmount,
                     TempRegId = register.RegId,
                     ActCode = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.FirstOrDefault()?.ObjId)?.ActCode,
                     LicId = _spectacleViews.SingleOrDefault(rec => rec.ObjId == register.RegisterItem.FirstOrDefault()?.ObjId)?.LicId,
@@ -94,17 +98,17 @@ namespace IpsViewComponentLibrary
             foreach (var items in gvViewPayslipsItems.Rows)
             {
                 var item = items.DataBoundItem as PayslipsGridDataSource;
-                royalty += (decimal?)item?.Royalty ?? 0;
-                amount+=(decimal)((item?.MusicAmount + item?.AuthAmount) ?? 0);
+                amount += item?.Amount ?? 0m;
+                royalty += (item?.MusicAmount + item?.AuthAmount) ?? 0;
             }
             
-            lblRoyalty.Text = royalty.ToString("#,###0.00 грн");
-            lblAmount.Text = amount.ToString("#,###0.00 грн");
+            lblRoyalty.Text = amount.ToString("#,###0.00 грн");
+            lblAmount.Text = royalty.ToString("#,###0.00 грн");
 
-            decimal.TryParse(txtRoyalty.Text, out decimal rlt);
             decimal.TryParse(txtAmount.Text, out decimal amnt);
-            lblRoyalty.ForeColor = Math.Abs(rlt - royalty) < 0.01m ? DefaultForeColor : Color.Red;
-            lblAmount.ForeColor = Math.Abs(amnt - amount) < 0.01m ? DefaultForeColor : Color.Red;
+            decimal.TryParse(txtRoyalty.Text, out decimal rlt );
+            lblAmount.ForeColor = Math.Abs(rlt - royalty) < 0.01m ? DefaultForeColor : Color.Red;
+            lblRoyalty.ForeColor = Math.Abs(amnt - amount) < 0.01m ? DefaultForeColor : Color.Red;
 
         }
 
@@ -132,8 +136,8 @@ namespace IpsViewComponentLibrary
                     btnAddCheckedSpectacle.Enabled = false;
                     gvViewPayslipsItems.ReadOnly = true;
                     ddlPeriod.ReadOnly = true;
-                    txtAmount.ReadOnly = true;
                     txtRoyalty.ReadOnly = true;
+                    txtAmount.ReadOnly = true;
                 }
                     break;
             }
@@ -160,7 +164,7 @@ namespace IpsViewComponentLibrary
                         CodeItem = 2,
                     }
                 },
-                RegId = _tempRegId++
+                RegId = _tempRegId++,
             });
             UpdateRegisterGridDataSource();
         }
@@ -195,15 +199,14 @@ namespace IpsViewComponentLibrary
                         reg.AuthRate = sw?.Rate;
                         reg.MusicRate = sw?.RateMusic;
                         item.LicId = sw?.LicId;
-                        reg.LicId = sw?.LicId;
-                        //var mus = _customer?.Client?.LicenseAgreement?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
-
+                        reg.LicId = (int)sw?.LicId;
+                        //var mus = _customer?.Client?.LicenseAgreementChange?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
                     }
-                    else if (e.Column.FieldName == "Royalty")
+                    else if (e.Column.FieldName == "Amount")
                     {
-                        reg.RegRoyalty = item.Royalty;
-                        reg.AuthAmount = (decimal?)(reg.RegRoyalty/100*reg.AuthRate);
-                        reg.MusicAmount = (decimal?)(reg.RegRoyalty / 100 * reg.MusicRate);
+                        reg.RegAmount = item.Amount;
+                        reg.AuthAmount = (decimal?)(reg.RegAmount / 100 * reg.AuthRate);
+                        reg.MusicAmount = (decimal?)(reg.RegAmount / 100 * reg.MusicRate);
                     }
                     else if (e.Column.FieldName == "CountUse")
                     {
@@ -218,7 +221,6 @@ namespace IpsViewComponentLibrary
         private void btnAddPeriod_Click(object sender, EventArgs e)
         {
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
-            var currentAgree = license.LicenseAgrParam.SingleOrDefault(rec =>rec.LicVersion == license.LicVersion);
             CreatePeriod dialog = new CreatePeriod(license)
             {
                 StartPosition = FormStartPosition.CenterParent
@@ -226,9 +228,16 @@ namespace IpsViewComponentLibrary
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                SavePariodCommandExecuted?.Invoke(this, license?.PaidPeriod?.ToList());
-                
-                //UpdateData?.Invoke(_customer.CustId);
+                var paidPeriodList = license?.PaidPeriod?.ToList();
+                var periodlist = SavePariodCommandExecuted?.Invoke(_customer.CustId, paidPeriodList)?.Where(lId => lId.LicId == license?.LicId).ToList();
+                if (periodlist != null)
+                {
+                    foreach (var period in paidPeriodList?.Where(rec=>rec.LicId == 0)?.ToList())
+                    {
+                        period.SetFields(periodlist.SingleOrDefault(rec=>rec.PeriodName == period.PeriodName));
+                    }
+                }
+                bsPeriodList.ResetBindings(false);
             }
             UpdFullSum();
         }
@@ -256,7 +265,7 @@ namespace IpsViewComponentLibrary
             cName.TextValue = rec?.ObjName;
             cActCode.TextValue = _spectacleViews.SingleOrDefault(item => item.ObjId == rec?.ObjId)?.ActCode.ToString();
             cCountUse.TextValue = rec?.CountUse.ToString();
-            cAmount.TextValue = rec?.Royalty.ToString();
+            cAmount.TextValue = rec?.Amount.ToString();
             cAuthorAmount.TextValue = rec?.AuthAmount.ToString();
             cAuthorRate.TextValue = rec?.AuthRate.ToString();
             cMusAmount.TextValue = rec?.MusicAmount.ToString();
@@ -313,7 +322,7 @@ namespace IpsViewComponentLibrary
         public string ObjName { get; set; }
         public int? ActCode { get; set; }
         public int? CountUse { get; set; }
-        public decimal? Royalty { get; set; }
+        public decimal? Amount { get; set; }
         
         public decimal? AuthAmount { get; set; }
         public decimal? AuthRate { get; set; }

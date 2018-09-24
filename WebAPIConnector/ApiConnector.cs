@@ -77,9 +77,17 @@ namespace WebAPIConnector
             string runUrl = url;
             if (listParam.Count() > 0)
                 runUrl = string.Concat(runUrl, AsQueryString(listParam));
+            string retApiString;
 
- 
-            string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+            try
+            {
+                retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
             JArray array = JArray.Parse(retApiString);
             List<T> list = array.Select(rec =>
             {
@@ -90,24 +98,25 @@ namespace WebAPIConnector
             return list;
 
         }
+
+
         /// <summary>
         /// Получити список об'єктів з серверу додатків
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public List<object> GetTypedList(Type typeResult,  string url, params KeyValuePair<string, string>[] listParam)
+        public List<object> GetTypedList(Type typeResult, string url, params KeyValuePair<string, string>[] listParam)
         {
             string runUrl = url;
             if (listParam.Count() > 0)
                 runUrl = string.Concat(runUrl, AsQueryString(listParam));
 
-
             string retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
             JArray array = JArray.Parse(retApiString);
             List<object> list = array.Select(rec =>
             {
-                var item = rec.ToObject( typeResult );
+                var item = rec.ToObject(typeResult);
                 return item;
             }).ToList();
 
@@ -200,7 +209,7 @@ namespace WebAPIConnector
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        public T GetItemByIdWithParam<T>(string url, string id, params KeyValuePair<string,string>[] listParam )
+        public T GetItemByIdWithParam<T>(string url, string id, params KeyValuePair<string, string>[] listParam)
         {
             string idUrl = string.IsNullOrEmpty(id) ? url : $"{url}/{id}";
             if (listParam.Length > 0)
@@ -219,8 +228,6 @@ namespace WebAPIConnector
             return retObj.ToObject<T>();
         }
 
-
-
         /// <summary>
         /// Створити об'єкт на сервері додатків
         /// </summary>
@@ -236,7 +243,7 @@ namespace WebAPIConnector
             return result.IsSuccessStatusCode;
         }
 
-        public T NewItemWithResult<T>(string url, T data) where T: class
+        public T NewItemWithResult<T>(string url, T data) where T : class
         {
             var result = client.PostAsJson(url, data);
 
@@ -248,7 +255,7 @@ namespace WebAPIConnector
                 return null;
         }
 
-        public T UpdateItemWithResult<T>(string url, string id, T data) where T: class
+        public T UpdateItemWithResult<T>(string url, string id, T data) where T : class
         {
             string idUrl = $"{url}/{id}";
 
@@ -277,7 +284,7 @@ namespace WebAPIConnector
             string idUrl = string.IsNullOrEmpty(id) ? url : $"{url}/{id}";
 
             HttpResponseMessage result = null;
-            if( data != null )
+            if (data != null)
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
                 result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
@@ -292,6 +299,7 @@ namespace WebAPIConnector
             var retCode = result.IsSuccessStatusCode;
             return retCode;
         }
+
         /// <summary>
         /// змінити об'єкт на сервері додатків
         /// </summary>
@@ -307,7 +315,7 @@ namespace WebAPIConnector
             StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
             HttpResponseMessage result;
 
-            if( string.IsNullOrEmpty(id) || id == "0" )
+            if (string.IsNullOrEmpty(id) || id == "0")
             {
                 result = client.PostAsync(url, content).GetAwaiter().GetResult();
             }
@@ -345,7 +353,7 @@ namespace WebAPIConnector
             StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
             HttpResponseMessage result;
 
-            if (string.IsNullOrEmpty(id) || id == "0" ) // create
+            if (string.IsNullOrEmpty(id) || id == "0") // create
             {
                 result = client.PostAsync(url, content).GetAwaiter().GetResult();
             }
@@ -385,7 +393,7 @@ namespace WebAPIConnector
             StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
             HttpResponseMessage result;
             // Редагування
-            if (!string.IsNullOrEmpty(id) || id == "0" )
+            if (!string.IsNullOrEmpty(id) || id == "0")
             {
                 idUrl = string.Concat(idUrl, "/", id);
                 result = client.PutAsync(idUrl, content).GetAwaiter().GetResult();
@@ -408,6 +416,40 @@ namespace WebAPIConnector
 
             return retCode;
         }
+
+        /// <summary>
+        /// змінити об'єкт на сервері додатків
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public bool PatchItemWithReturn<T>(string url, string id, T data, out T retData)
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+            string idUrl = url;
+
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data, settings), Encoding.UTF8, "application/json");
+            HttpResponseMessage result;
+            // Редагування
+            idUrl = string.Concat(idUrl, "/", id);
+            result = client.PatchAsync(idUrl, content).GetAwaiter().GetResult();
+
+            var retCode = result.IsSuccessStatusCode;
+            if (retCode)
+            {
+                var retString = result.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var jobject = JObject.Parse(retString);
+                retData = jobject.ToObject<T>();
+            }
+            else
+                retData = default(T);
+
+            return retCode;
+        }
+
         /// <summary>
         /// Видалити об'єкт на сервері додатків
         /// </summary>
@@ -445,6 +487,7 @@ namespace WebAPIConnector
                 var statusString = await statusResult.Content.ReadAsStringAsync();
             }
         }
+
         /// <summary>
         /// Отримати файл із папки Споживача
         /// </summary>
@@ -462,6 +505,27 @@ namespace WebAPIConnector
                 throw ex;
             }
         }
+
+        public bool ChangePartnerForCustomer(string url, int clientId, int partnerId, int? oldClientId = null)
+        {
+            string fullUrl = "partner/" + $"{clientId}/{url}/{partnerId}";
+            HttpResponseMessage result = null;
+            switch (url)
+            {
+                case "insert":
+                    result = client.PostAsync(fullUrl, null).GetAwaiter().GetResult();
+                    break;
+                case "update":
+                    fullUrl += "/" + oldClientId;
+                    result = client.PutAsync(fullUrl, null).GetAwaiter().GetResult();
+                    break;
+                case "remove":
+                    result = client.DeleteAsync(fullUrl).GetAwaiter().GetResult();
+                    break;
+            }
+            return result?.IsSuccessStatusCode ?? false;
+        }
+
 
     }
 }

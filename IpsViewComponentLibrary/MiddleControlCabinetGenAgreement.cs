@@ -17,64 +17,84 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetGenAgreement : UserControl
     {
         private Customer _customer;
-        private ConsumerBigRightView _bigRightView;
+        private MainGridConsumerBigRightView _bigRightView;
         public event LisenseStatusChangeEventHandler OnLicStatusChange;
+        public event SaveCustomerEventHandler OnLicenseSaveNeed;
+
 
         public MiddleControlCabinetGenAgreement()
         {
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<BigRightMasterGenAgr> genAgrs)
+        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView, IList<GeneralAgreementBigRightView> genAgrs)
         {
             _customer = customer;
             _bigRightView = bigRightView;
-            //ctrlHeaderInfo.SetHeaderInfoBigRight(_customer,_bigRightView);
             ctrlGeneralAgrDetailInfoBr.DataSourceLicense = bigRightView;
             gvGenAgrLicences.DataSource = genAgrs;
         }
 
         private void gvGenAgrLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            var status = (e?.CurrentRow?.DataBoundItem as BigRightMasterGenAgr)?.AgrStatus ?? -1;
+            var status = (e?.CurrentRow?.DataBoundItem as GeneralAgreementBigRightView)?.AgrStatus ?? -1;
 
             if (status != 4)
-                btnEditAgr.Enabled = true;
-            else if (btnEditAgr.Enabled)
-                btnEditAgr.Enabled = false;
+                btnChangeGenAgr.Enabled = true;
+            else if (btnChangeGenAgr.Enabled)
+                btnChangeGenAgr.Enabled = false;
 
             if (status == 0 || status == 1)
-                btnAccept.Enabled = true;
-            else if(btnAccept.Enabled)
-                btnAccept.Enabled = false;
+                btnStatusAcceptGenAgr.Enabled = true;
+            else if(btnStatusAcceptGenAgr.Enabled)
+                btnStatusAcceptGenAgr.Enabled = false;
 
             if (status == 2)
-                btnAgrClose.Enabled = true;
-            else if (btnAgrClose.Enabled)
-                btnAgrClose.Enabled = false;
+                btnStatusClosedGenAgr.Enabled = true;
+            else if (btnStatusClosedGenAgr.Enabled)
+                btnStatusClosedGenAgr.Enabled = false;
         }
 
-        private void btnEditAgr_Click(object sender, EventArgs e)
+        // кнопки на [грід]
+        private void gvGenAgrLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.LicId;
-            var version = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.Version;
+            switch (e.Column.FieldName)
+            {
+                case "btnEdit":
+                    ViewAgreemet();
+                    break;
+                case "printBtn":
+                    //TODO: method print call
+                    break;
+            }
+        }
+
+        //редагування догвору
+        private void EditAgreement()
+        {
+            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as GeneralAgreementBigRightView)?.LicId;
+            var version = (gvGenAgrLicences.CurrentRow.DataBoundItem as GeneralAgreementBigRightView)?.Version;
 
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == id);
             var agreementBr = license?.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == version);
             var anketaComp = _customer?.Company?.AnketaCompany.SingleOrDefault(rec => rec.Version == _customer.AnkVersion);
 
-            AddGeneralAgreementBrForm agreementBrForm = new AddGeneralAgreementBrForm(IpsGlobal.AnketaDictionaties, license, agreementBr, anketaComp);
-
+            AddGeneralAgreementBrForm agreementBrForm = new AddGeneralAgreementBrForm(IpsGlobal.AnketaDictionaties, license, agreementBr, anketaComp)
+            {
+                WindowState = FormWindowState.Maximized,
+                StartPosition = FormStartPosition.CenterParent
+            };
             if (agreementBrForm.ShowDialog() == DialogResult.OK)
             {
-                ;
+                var resust = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
+                ExtensionUtils.ShowMessage(resust, MessageType.GeneralAgreementChange);
             }
         }
         
         //перегляд договору
-        private void btnView_Click(object sender, EventArgs e)
+        private void ViewAgreemet()
         {
-            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as BigRightMasterGenAgr)?.LicId;
+            var id = (gvGenAgrLicences.CurrentRow.DataBoundItem as GeneralAgreementBigRightView)?.LicId;
             var licence = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == id);
             ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: IpsGlobal.AnketaDictionaties, customer: _customer, licenseAgreement: licence)
             {
@@ -84,25 +104,45 @@ namespace IpsViewComponentLibrary
             print.ShowDialog();
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
+        //підтвердити договір
+        private void btnStatusAcceptGenAgr_Click(object sender, EventArgs e)
         {
-            if (gvGenAgrLicences.CurrentRow.DataBoundItem is BigRightMasterGenAgr licrow)
+            if (gvGenAgrLicences.CurrentRow.DataBoundItem is GeneralAgreementBigRightView licrow)
             {
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
                 OnLicStatusChange?.Invoke(license, licrow.Version, 2, false);
             }
         }
 
-        private void btnAgrClose_Click(object sender, EventArgs e)
+        //закрити генеральний договір
+        private void btnStatusClosedGenAgr_Click(object sender, EventArgs e)
         {
             if (RadMessageBox.Show("Закрити генеральний договір?", "Підтвердження", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
             {
-                if(gvGenAgrLicences.CurrentRow.DataBoundItem is BigRightMasterGenAgr licrow)
+                if (gvGenAgrLicences.CurrentRow.DataBoundItem is GeneralAgreementBigRightView licrow)
                 {
                     var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
-                    OnLicStatusChange?.Invoke(license, licrow.Version, 4, false);
+                    var result = OnLicStatusChange?.Invoke(license, licrow.Version, 4, false);
                 }
             }
         }
+
+        #region Дії з договором
+
+        //пролонгувати
+        private void btnProlongationGenAgr_Click(object sender, EventArgs e)
+        {
+            //TODO: wait answer of task_28
+        }
+
+        //змінити/редагувати договір
+        private void btnChangeGenAgr_Click(object sender, EventArgs e)
+        {
+            //не підтверджений або відхилений
+            if (gvGenAgrLicences.CurrentRow.DataBoundItem is GeneralAgreementBigRightView item && (item.AgrStatus == 0 || item.AgrStatus == 5))
+                EditAgreement();
+        }
+
+        #endregion
     }
 }

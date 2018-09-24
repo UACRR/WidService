@@ -42,7 +42,6 @@ namespace ipsmedserviceapp.Model
         public Company Company { get; set; }
         [JsonIgnore]
         public MyAnketa MyAnketa { get; set; }
-        [JsonIgnore]
         public Partner Partner { get; set; }
         public Person Person { get; set; }
         public RightHolder RightHolder { get; set; }

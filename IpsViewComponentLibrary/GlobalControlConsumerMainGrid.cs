@@ -16,8 +16,8 @@ namespace IpsViewComponentLibrary
     {
         private int _rowId;
 
-        public delegate void GridButtonClick(int id);
-        public event GridButtonClick OnGridButtonClick;
+        public delegate void LoadCustomerByIdEventHandler(int id);
+        public event LoadCustomerByIdEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
 
         public string FilterString
@@ -45,12 +45,7 @@ namespace IpsViewComponentLibrary
 
         private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            OnGridButtonClick?.Invoke(_rowId);
-        }
-
-        public void SetDictionary(AnketaDictionaties dictionaties)
-        {
-
+            OnLoadCustomerCabinetNeed?.Invoke(_rowId);
         }
 
         public void SetSelectCustomer(int custId)

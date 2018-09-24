@@ -600,7 +600,7 @@
             // 
             // bsVbrLicense
             // 
-            this.bsVbrLicense.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            this.bsVbrLicense.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
             // 
             // GeneralAgrDetailInfoBr
             // 

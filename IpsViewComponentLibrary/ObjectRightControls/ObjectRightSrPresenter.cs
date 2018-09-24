@@ -8,6 +8,7 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -21,7 +22,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private readonly DialogService _dialogService;
         private ObjectRight _objectRight;
         private ObjectRightDictionaries _dictionaries;
-        private bool _saved;
+        private bool _canClose;
 
         public RightholderMainView DefaultRightholder { get; set; }
 
@@ -30,8 +31,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _view = view;
             _view.Presenter = this;
 
-            _view.FormClosing += View_FormClosing;
-
             _objectRightService = new ObjectRightService();
             _dialogService = new DialogService();
             _dictionaries = _objectRightService.GetDictionary();
@@ -39,11 +38,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void Run(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
         {
-            //_view.RightholderList = rightholderList;
-            //_view.ObjectRight = objectRight;
-
             _view.SetDictionaries(_dictionaries, objectRight.CategoryCode);
             SetObjectRigth(objectRight, rightholderList);
+
+            var header = objectRight.ObjId == 0 ? "(Новий)" : objectRight.Name;
+            _view.SetHeader(header);
+
             _view.Run();
         }
 
@@ -130,7 +130,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (_objectRight == null)
                 return;
 
-            _saved = true;
+            _canClose = true;
 
             // map from single table to Authors and Copyright tables
             _objectRight.Authors.Clear();
@@ -191,12 +191,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
-        private void View_FormClosing(object sender, FormClosingEventArgs e)
+        public void Close()
         {
-            if (!_saved && !_dialogService.ClosingIsConfirmed(_view))
-            {
-                e.Cancel = true;
-            }
+            if (!_canClose)
+                _canClose = _dialogService.ClosingIsConfirmed((IWin32Window)_view);
+
+            if (_canClose)
+                _view.Hide();
         }
     }
 }

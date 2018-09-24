@@ -108,7 +108,7 @@ namespace TestControls
         private void radButton2_Click(object sender, EventArgs e)
         {
             var item = _curItem;
-            ExternalPay addRow = new ExternalPay { OkpoCorr = item.Innokpo, NameCorr = item.Name };
+            ExternalPay addRow = new ExternalPay { OkpoCorr = item.Innokpo, NameCorr = item.Name, InputDate = DateTime.Today };
             payForm.bindingSource1.DataSource = addRow;
 
             if (payForm.ShowDialog() == DialogResult.OK)

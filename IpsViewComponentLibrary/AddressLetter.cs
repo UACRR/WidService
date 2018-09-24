@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
+    [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class AddressLetter : UserControl
     {
 
-        BindingSource _bindingSource = new BindingSource();
+        BindingSource _bindingSource;
         private string _countryDataMember;
         private string _regionDataMember;
         private string _cityDataMember;
@@ -24,6 +27,14 @@ namespace IpsViewComponentLibrary
         public AddressLetter()
         {
             InitializeComponent();
+
+            _bindingSource = new BindingSource();
+
+            if (IpsGlobal.AnketaDictionaties != null)
+            {
+                ddlCountry.SetDataSource(IpsGlobal.AnketaDictionaties.country, "CountryCode", "CountryName");
+                ddlRegion.SetDataSource(IpsGlobal.AnketaDictionaties.region);
+            }
         }
 
         [Category("Data")]
@@ -57,7 +68,7 @@ namespace IpsViewComponentLibrary
                 {
                     _countryDataMember = value;
                     ddlCountry.DataBindings.Clear();
-                    ddlCountry.DataBindings.Add("SelectedValue", _bindingSource, _countryDataMember, true, DataSourceUpdateMode.OnPropertyChanged, 0);
+                    ddlCountry.DataBindings.Add("SelectedValue", _bindingSource, _countryDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
                 }
             }
         }
@@ -73,7 +84,7 @@ namespace IpsViewComponentLibrary
                 {
                     _regionDataMember = value;
                     ddlRegion.DataBindings.Clear();
-                    ddlRegion.DataBindings.Add("SelectedValue", _bindingSource, _regionDataMember, true, DataSourceUpdateMode.OnPropertyChanged, 0);
+                    ddlRegion.DataBindings.Add("SelectedValue", _bindingSource, _regionDataMember, true, DataSourceUpdateMode.OnPropertyChanged);
                 }
             }
         }

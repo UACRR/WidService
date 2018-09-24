@@ -1052,6 +1052,28 @@ public interface IKlR031
          string R031NameRu { get; set; }
          string R031NameEn { get; set; }
 }
+public interface IKL_R030
+    {    string r030 { get; set; }
+         short? r031 { get; set; }
+         string countryCode { get; set; }
+         string a3 { get; set; }
+         string r030Name { get; set; }
+         int? nOMIN { get; set; }
+         string nAIM { get; set; }
+         short? pr_work { get; set; }
+}
+public interface IKL_R030Tr
+    {
+         string r030 { get; set; }
+         string lang { get; set; }
+         string r030Name { get; set; }
+}
+public interface IKL_R031
+    {    short r031 { get; set; }
+         string r031NameUk { get; set; }
+         string r031NameRu { get; set; }
+         string r031NameEn { get; set; }
+}
 public interface ILang
     {    string CodeS { get; set; }
          string Name { get; set; }

@@ -2,17 +2,20 @@
 using System.IO;
 using System.Linq;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholderView : Telerik.WinControls.UI.RadForm
+    public partial class RightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
     {
-        private RightholderPresenter _presenter;
-        public RightholderPresenter Presenter
+        private IRightholderPresenter _presenter;
+        public IRightholderPresenter Presenter
         {
             get { return _presenter; }
             set
@@ -20,22 +23,6 @@ namespace IpsViewComponentLibrary.RightholderControls
                 if (_presenter == null)
                 {
                     _presenter = value;
-                }
-            }
-        }
-
-        private bool _isNew = false;
-        public bool IsNew
-        {
-            get { return _isNew; }
-            set
-            {
-                if (_isNew != value)
-                {
-                    _isNew = value;
-
-                    if (_isNew)
-                        DisablePagesAndSaveButton();
                 }
             }
         }
@@ -84,13 +71,13 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             InitializeComponent();
 
-            createRightholderPassportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
+            SetDictionaries();
+
+            passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
             createRightholderRoyaltyPageView.ViewElement.Visibility = ElementVisibility.Hidden;
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
-
-            ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
         }
 
         public void Run()
@@ -98,33 +85,17 @@ namespace IpsViewComponentLibrary.RightholderControls
             ShowDialog();
         }
 
-        private void mainPageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
+        public bool IsValid
         {
-            // TODO: move to presenter
-            var selectedPage = mainPageView.SelectedPage;
-            var isValid = true;
+            get
+            {
+                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrations.Validator();
+            }
+        }
 
-            if (selectedPage == createRightholderFullNameComissionPage)
-            {
-                isValid = ctrlAnketaPerson.Validator() && ctrlServiceComissionControl.ValidateChildren();
-            }
-            else if (selectedPage == createRightholderAnketaPage)
-            {
-                isValid = ctrlContacts.Validator() & ctrlRegistrations.Validator();
-            }
-
-            if (isValid)
-            {
-                e.Page.Enabled = true;
-                if (e.Page == mainPageView.Pages.Last())
-                {
-                    sbSave.Enabled = true;
-                }
-            }
-            else
-            {
-                e.Cancel = true;
-            }
+        public void SetHeader(string header)
+        {
+            Text = header + " - Анкета правовласника";
         }
 
         private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
@@ -135,12 +106,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (anketa == null)
                 return;
 
-            if (mainPageView.SelectedPage == createRightholderPassportPage)
+            if (anketaPageView.SelectedPage == createRightholderPassportPage)
             {
                 if (anketa.Citizenship == "804")
-                    createRightholderPassportPageView.SelectedPage = createRightholderInternalPasportPage;
+                    passportPageView.SelectedPage = createRightholderInternalPasportPage;
                 else
-                    createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
+                    passportPageView.SelectedPage = createRightholderForeignPassportPage;
             }
         }
 
@@ -189,16 +160,126 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void miAcceptAndSave_Click(object sender, EventArgs e)
         {
+            _presenter.SetAgreementRightholderStatus(AgreementStatuses.Active);
             _presenter.Save(accept: true);
         }
 
-        private void DisablePagesAndSaveButton()
+        private void btnSetAgreementRightholderStatus_Click(object sender, EventArgs e)
         {
-            sbSave.Enabled = false;
-            for (int i = 1; i < mainPageView.Pages.Count; i++)
+            _presenter.SetAgreementRightholderStatus((AgreementStatuses)btnSetAgreementRightholderStatus.Tag);
+            bsAgreementAddRh.ResetCurrentItem();
+        }
+
+        private void btnSetAgreementRightholderStatusInheritance_Click(object sender, EventArgs e)
+        {
+            _presenter.SetAgreementRightholderStatus(AgreementStatuses.Inheritance);
+            bsAgreementAddRh.ResetCurrentItem();
+        }
+
+        private void btnSetStatusClosed_Click(object sender, EventArgs e)
+        {
+            _presenter.SetAgreementRightholderStatus(AgreementStatuses.Closed);
+            bsAgreementAddRh.ResetCurrentItem();
+        }
+
+        private void btnCopyAddressFaRe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressFactToRegister();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
+        private void btnCopyAddressFaLe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressFactToLetter();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
+        private void btnCopyAddressReLe_Click(object sender, EventArgs e)
+        {
+            _presenter.CopyAddressRegisterToLetter();
+            bsAnketaPerson.ResetCurrentItem();
+        }
+
+        private void RightholderView_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            _presenter.Close();
+            e.Cancel = true;
+        }
+
+        private void bsAgreementAddRh_BindingComplete(object sender, System.Windows.Forms.BindingCompleteEventArgs e)
+        {
+            SetAllowedStatuses();
+        }
+
+        private void SetDictionaries()
+        {
+            ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
+            ddlAgreementStatus.SetDataSource(IpsGlobal.AnketaDictionaties.agreementStatus);
+        }
+
+        private void SetAllowedStatuses()
+        {
+            if (bsAgreementAddRh.Current != null)
             {
-                mainPageView.Pages[i].Enabled = false;
+                var agreementStatus = (AgreementStatuses)((AgreementAddRh)bsAgreementAddRh.Current).AgrStatus;
+
+                if (agreementStatus == AgreementStatuses.Active)
+                {
+                    gboxRightholderStatus.Enabled = true;
+                    btnSetStatusInheritance.Enabled = true;
+                    btnSetStatusClosed.Enabled = true;
+
+                    btnSetAgreementRightholderStatus.Text = "Заблокувати";
+                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Blocked;
+                }
+                else if (agreementStatus == AgreementStatuses.Blocked)
+                {
+                    gboxRightholderStatus.Enabled = true;
+                    btnSetStatusInheritance.Enabled = false;
+                    btnSetStatusClosed.Enabled = false;
+
+                    btnSetAgreementRightholderStatus.Text = "Розблокувати";
+                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
+                }
+                else if (agreementStatus == AgreementStatuses.NotAccepted || agreementStatus == AgreementStatuses.OnAcception)
+                {
+                    gboxRightholderStatus.Enabled = true;
+                    btnSetStatusInheritance.Enabled = false;
+                    btnSetStatusClosed.Enabled = false;
+
+                    btnSetAgreementRightholderStatus.Text = "Активний";
+                    btnSetAgreementRightholderStatus.Tag = AgreementStatuses.Active;
+                }
+                else
+                {
+                    gboxRightholderStatus.Enabled = false;
+                }
             }
+        }
+
+        private void pageViewMain_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (pageViewMain.SelectedPage == pageObjects && ctrlRightholdersObjectsRight.SelectedRightholder == null)
+            {
+                ctrlRightholdersObjectsRight.SelectedRightholder = new RightholderMainView { CustId = ((RightHolder)bsRightHolder.Current).CustId };
+            }
+        }
+
+        private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
+        {
+            if (sender is RadMenuItem menuItem)
+            {
+                int category;
+                if (int.TryParse(menuItem.Tag.ToString(), out category))
+                {
+                    _presenter.AddNewObject(category);
+                }
+            }
+        }
+
+        private void btnAddExistingObjectRightForRightholder_Click(object sender, EventArgs e)
+        {
+            _presenter.AddExistingObject();
         }
     }
 }

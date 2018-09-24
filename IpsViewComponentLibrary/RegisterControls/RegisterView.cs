@@ -1,6 +1,8 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -19,15 +21,36 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        public Register Register
+        private RegisterFormType _formType;
+        public RegisterFormType FormType
         {
-            get { return registerBindingSource.DataSource as Register; }
+            get { return _formType; }
             set
             {
-                if (registerBindingSource.DataSource != value)
+                _formType = value;
+                SetUpViewForFormType();
+            }
+        }
+
+        public Register Register
+        {
+            get { return bsRegister.DataSource as Register; }
+            set
+            {
+                if (bsRegister.DataSource != value)
                 {
-                    registerBindingSource.DataSource = value;
+                    bsRegister.DataSource = value;
+                    txtPeriodName.Text = value?.Rm?.Period?.PeriodName;
+                    ddlLicCode.SelectedValue = value?.Rm?.Period?.Lic?.LicCode;
                 }
+            }
+        }
+
+        public ConsumerMainView ConsumerInfo
+        {
+            set
+            {
+                txtConsumerName.Text = value.Name;
             }
         }
 
@@ -43,6 +66,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         public RegisterView()
         {
             InitializeComponent();
+
+            dtCreateDate.SetReadOnly(true);
 
             SetDictionaries();
 
@@ -71,31 +96,37 @@ namespace IpsViewComponentLibrary.RegisterControls
             SetControlEnabled(status);
         }
 
-        // ordinary distribution
-        public void SetupViewForSchema1()
+        private void SetUpViewForFormType()
         {
-            splitPanelStage.Collapsed = true;
+            if (FormType == RegisterFormType.OrdinaryDistribution)
+            {
+                splitPanelStage.Collapsed = true;
 
-            ctrlRegisterItemList.ShowAuthors = true;
-            ctrlRegisterItemListStage.ShowAuthors = true;
-        }
+                ctrlRegisterItemList.ShowAuthors = true;
+                ctrlRegisterItemListStage.ShowAuthors = true;
 
-        // composition and musical design distribution
-        public void SetupViewForSchema2()
-        {
-            splitPanelStage.Collapsed = false;
+                lblMusicRate.Visible = false;
+                mebMusicRate.Visible = false;
+            }
+            else if (FormType == RegisterFormType.CompositionAndMusicalDesignDistribution)
+            {
+                splitPanelStage.Collapsed = false;
 
-            ctrlRegisterItemList.ShowAuthors = false;
-            ctrlRegisterItemList.ExpandAll();
+                ctrlRegisterItemList.ShowAuthors = false;
+                ctrlRegisterItemList.ExpandAll();
 
-            ctrlRegisterItemListStage.ShowAuthors = false;
+                ctrlRegisterItemListStage.ShowAuthors = false;
+
+                lblMusicRate.Visible = true;
+                mebMusicRate.Visible = true;
+            }
         }
 
         private void SetDictionaries()
         {
-            ddlStatus.ValueMember = "CodeI";
-            ddlStatus.DisplayMember = "Name";
-            ddlStatus.DataSource = IpsGlobal.ObjectRightDictionaries.RegisterStatuses;
+            ddlStatus.SetDataSource(IpsGlobal.ObjectRightDictionaries.RegisterStatuses);
+            ddlLicCode.SetDataSource(IpsGlobal.AnketaDictionaties.agrLicenseType);
+            ddlAlgorithmId.SetDataSource(IpsGlobal.AnketaDictionaties.algorithmType);
         }
 
         private void SetAllowedStatus(RegisterStatusType status)
@@ -187,5 +218,41 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             _presenter.Save();
         }
+
+        #region Validation
+
+        public bool IsValid
+        {
+            get => ValidateChildren();
+        }
+
+        private void mebRegRate_Validating(object sender, CancelEventArgs e)
+        {
+            var value = int.Parse(mebRegRate.Text);
+
+            if (value > 100)
+            {
+                errorProvider.SetError(mebRegRate, "Відсоток авторської винагороди по звіту не може бути більше 100%.");
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                errorProvider.SetError(mebRegRate, "");
+            }
+
+            var authRate = int.Parse(mebAuthRate.Text);
+            var musicRate = int.Parse(mebMusicRate.Text);
+
+            if (value != authRate + musicRate)
+            {
+                errorProvider.SetError(mebRegRate, "Сума відсотків авторської винагороди постановки і музичного супроводу повинна дорівнювати відсотку винагороди по звіту.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(mebRegRate, "");
+        }
+
+        #endregion
     }
 }

@@ -89,6 +89,7 @@
     <Compile Include="Dictionary\RegisterSearchObject.cs" />
     <Compile Include="Dictionary\RegisterStatusType.cs" />
     <Compile Include="Dictionary\RightholderListQuery.cs" />
+    <Compile Include="Dictionary\RightholderStates.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />
     <Compile Include="Dictionary\TermsOfServiceWrapper.cs" />
     <Compile Include="EventAggregator\EventAggregator.cs" />
@@ -106,7 +107,9 @@
     <Compile Include="Interfaces\IObjectRightItemPresenter.cs" />
     <Compile Include="Interfaces\IObjectRightItemView.cs" />
     <Compile Include="Interfaces\IRightholderForm.cs" />
+    <Compile Include="Interfaces\IRightholderPresenter.cs" />
     <Compile Include="Interfaces\IRightHolderService.cs" />
+    <Compile Include="Interfaces\IRightholderView.cs" />
     <Compile Include="Interfaces\ObservableListSource.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountBals.cs" />
@@ -217,6 +220,10 @@
     <Compile Include="Model\ExternalPay.cs" />
     <Compile Include="Model\FileCustomer.cs" />
     <Compile Include="Model\FileType.cs" />
+    <Compile Include="Model\Fixation.cs" />
+    <Compile Include="Model\FixFile.cs" />
+    <Compile Include="Model\FixStageStatus.cs" />
+    <Compile Include="Model\FixStorageDevice.cs" />
     <Compile Include="Model\FolkType.cs" />
     <Compile Include="Model\FolkTypeTr.cs" />
     <Compile Include="Model\Genre.cs" />
@@ -414,6 +421,7 @@
     <Compile Include="Services\ConsumerService.cs" />
     <Compile Include="Data\Global.cs" />
     <Compile Include="Services\ExcelEngine.cs" />
+    <Compile Include="Services\FixationService.cs" />
     <Compile Include="Services\LicenseDataService.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
     <Compile Include="Services\RegisterService.cs" />
@@ -422,6 +430,10 @@
     <Compile Include="Services\WordEngine.cs" />
     <Compile Include="Interfaces\ActiveAgreementData.cs" />
     <Compile Include="Utilities\ObjectRightExtensions.cs" />
+    <Compile Include="ViewModels\Fixations\FixationListViewModel.cs" />
+    <Compile Include="ViewModels\Fixations\FixationQuery.cs" />
+    <Compile Include="ViewModels\Fixations\FixationStages.cs" />
+    <Compile Include="ViewModels\Fixations\FixationStageStatuses.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">

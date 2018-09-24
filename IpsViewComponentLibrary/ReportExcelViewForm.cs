@@ -16,7 +16,6 @@ namespace IpsViewComponentLibrary
 {
     public partial class ReportExcelViewForm : Telerik.WinControls.UI.RadForm
     {
-        private readonly string _filePath;
         private ObservableListSource<RegisterItem> _datasource = new ObservableListSource<RegisterItem>();
         public bool IsManual { get; private set; }
 

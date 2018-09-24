@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Drawing;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlCabinetGenAgreement
     {
@@ -34,19 +36,22 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvGenAgrLicences = new Telerik.WinControls.UI.RadGridView();
-            this.btnView = new Telerik.WinControls.UI.RadButton();
-            this.btnAccept = new Telerik.WinControls.UI.RadButton();
-            this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
-            this.btnAgrClose = new Telerik.WinControls.UI.RadButton();
             this.ctrlGeneralAgrDetailInfoBr = new IpsViewComponentLibrary.ConsumerControls.BigRight.GeneralAgrDetailInfoBr();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ddlActionOfGenAgr = new Telerik.WinControls.UI.RadDropDownButton();
+            this.btnProlongationGenAgr = new Telerik.WinControls.UI.RadMenuItem();
+            this.btnChangeGenAgr = new Telerik.WinControls.UI.RadMenuItem();
+            this.ddBtnStatusChangeGenAgr = new Telerik.WinControls.UI.RadDropDownButton();
+            this.btnStatusAcceptGenAgr = new Telerik.WinControls.UI.RadMenuItem();
+            this.btnStatusClosedGenAgr = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAgrClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlActionOfGenAgr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddBtnStatusChangeGenAgr)).BeginInit();
             this.SuspendLayout();
             // 
             // gvGenAgrLicences
@@ -76,14 +81,14 @@
             gridViewTextBoxColumn2.MinWidth = 0;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "CustName";
-            gridViewTextBoxColumn2.Width = 415;
+            gridViewTextBoxColumn2.Width = 372;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "AgrNumber";
             gridViewTextBoxColumn3.HeaderText = "№ ген. договору";
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "AgrNumber";
-            gridViewTextBoxColumn3.Width = 150;
+            gridViewTextBoxColumn3.Width = 135;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "DateBegin";
             gridViewTextBoxColumn4.FormatString = "{0:d}";
@@ -91,7 +96,7 @@
             gridViewTextBoxColumn4.MinWidth = 0;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "DateBegin";
-            gridViewTextBoxColumn4.Width = 100;
+            gridViewTextBoxColumn4.Width = 90;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "DateEnd";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
@@ -99,20 +104,40 @@
             gridViewTextBoxColumn5.MinWidth = 0;
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "DateEnd";
-            gridViewTextBoxColumn5.Width = 100;
+            gridViewTextBoxColumn5.Width = 90;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.FieldName = "StatusName";
             gridViewTextBoxColumn6.HeaderText = "Стан";
             gridViewTextBoxColumn6.MinWidth = 0;
             gridViewTextBoxColumn6.Name = "StatusName";
-            gridViewTextBoxColumn6.Width = 121;
+            gridViewTextBoxColumn6.Width = 141;
+            gridViewCommandColumn1.FieldName = "editBtn";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "editBtn";
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.FieldName = "printBtn";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "printBtn";
+            gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn2.ImageAlignment = ContentAlignment.MiddleCenter;
             this.gvGenAgrLicences.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6});
+            gridViewTextBoxColumn6,
+            gridViewCommandColumn1,
+            gridViewCommandColumn2});
             this.gvGenAgrLicences.MasterTemplate.EnableCustomFiltering = true;
             this.gvGenAgrLicences.MasterTemplate.EnableFiltering = true;
             this.gvGenAgrLicences.MasterTemplate.EnableGrouping = false;
@@ -120,97 +145,101 @@
             this.gvGenAgrLicences.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvGenAgrLicences.Name = "gvGenAgrLicences";
             this.gvGenAgrLicences.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvGenAgrLicences.Size = new System.Drawing.Size(908, 344);
+            this.gvGenAgrLicences.Size = new System.Drawing.Size(908, 307);
             this.gvGenAgrLicences.TabIndex = 8;
             this.gvGenAgrLicences.ThemeName = "Office2013Light";
             this.gvGenAgrLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvGenAgrLicences_CurrentRowChanged);
-            // 
-            // btnView
-            // 
-            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnView.Location = new System.Drawing.Point(777, 443);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(134, 24);
-            this.btnView.TabIndex = 9;
-            this.btnView.Text = "Друкувати договір";
-            this.btnView.ThemeName = "Office2013Light";
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // btnAccept
-            // 
-            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Enabled = false;
-            this.btnAccept.Location = new System.Drawing.Point(777, 353);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(134, 24);
-            this.btnAccept.TabIndex = 11;
-            this.btnAccept.Text = "Підтвердити договір";
-            this.btnAccept.ThemeName = "Office2013Light";
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
-            // 
-            // btnEditAgr
-            // 
-            this.btnEditAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditAgr.Enabled = false;
-            this.btnEditAgr.Location = new System.Drawing.Point(777, 383);
-            this.btnEditAgr.Name = "btnEditAgr";
-            this.btnEditAgr.Size = new System.Drawing.Size(134, 24);
-            this.btnEditAgr.TabIndex = 12;
-            this.btnEditAgr.Text = "Змінити договір";
-            this.btnEditAgr.TextWrap = true;
-            this.btnEditAgr.ThemeName = "Office2013Light";
-            this.btnEditAgr.Click += new System.EventHandler(this.btnEditAgr_Click);
-            // 
-            // btnAgrClose
-            // 
-            this.btnAgrClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgrClose.Enabled = false;
-            this.btnAgrClose.Location = new System.Drawing.Point(777, 413);
-            this.btnAgrClose.Name = "btnAgrClose";
-            this.btnAgrClose.Size = new System.Drawing.Size(134, 24);
-            this.btnAgrClose.TabIndex = 14;
-            this.btnAgrClose.Text = "Закрити договір";
-            this.btnAgrClose.ThemeName = "Office2013Light";
-            this.btnAgrClose.Click += new System.EventHandler(this.btnAgrClose_Click);
+            this.gvGenAgrLicences.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvGenAgrLicences_CommandCellClick);
             // 
             // ctrlGeneralAgrDetailInfoBr
             // 
             this.ctrlGeneralAgrDetailInfoBr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ctrlGeneralAgrDetailInfoBr.DataSourceLicense = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            this.ctrlGeneralAgrDetailInfoBr.Location = new System.Drawing.Point(3, 353);
+            this.ctrlGeneralAgrDetailInfoBr.DataSourceLicense = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
+            this.ctrlGeneralAgrDetailInfoBr.Location = new System.Drawing.Point(3, 346);
             this.ctrlGeneralAgrDetailInfoBr.Name = "ctrlGeneralAgrDetailInfoBr";
             this.ctrlGeneralAgrDetailInfoBr.Size = new System.Drawing.Size(691, 110);
             this.ctrlGeneralAgrDetailInfoBr.TabIndex = 15;
+            // 
+            // ddlActionOfGenAgr
+            // 
+            this.ddlActionOfGenAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlActionOfGenAgr.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnProlongationGenAgr,
+            this.btnChangeGenAgr});
+            this.ddlActionOfGenAgr.Location = new System.Drawing.Point(771, 316);
+            this.ddlActionOfGenAgr.Name = "ddlActionOfGenAgr";
+            this.ddlActionOfGenAgr.Size = new System.Drawing.Size(140, 24);
+            this.ddlActionOfGenAgr.TabIndex = 16;
+            this.ddlActionOfGenAgr.Text = "Дії з договором";
+            this.ddlActionOfGenAgr.ThemeName = "Office2013Light";
+            // 
+            // btnProlongationGenAgr
+            // 
+            this.btnProlongationGenAgr.Name = "btnProlongationGenAgr";
+            this.btnProlongationGenAgr.Text = "Пролонгувати договір";
+            this.btnProlongationGenAgr.Click += new System.EventHandler(this.btnProlongationGenAgr_Click);
+            // 
+            // btnChangeGenAgr
+            // 
+            this.btnChangeGenAgr.Name = "btnChangeGenAgr";
+            this.btnChangeGenAgr.Text = "Змінити договір";
+            this.btnChangeGenAgr.Click += new System.EventHandler(this.btnChangeGenAgr_Click);
+            // 
+            // ddBtnStatusChangeGenAgr
+            // 
+            this.ddBtnStatusChangeGenAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddBtnStatusChangeGenAgr.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnStatusAcceptGenAgr,
+            this.btnStatusClosedGenAgr});
+            this.ddBtnStatusChangeGenAgr.Location = new System.Drawing.Point(625, 316);
+            this.ddBtnStatusChangeGenAgr.Name = "ddBtnStatusChangeGenAgr";
+            this.ddBtnStatusChangeGenAgr.Size = new System.Drawing.Size(140, 24);
+            this.ddBtnStatusChangeGenAgr.TabIndex = 17;
+            this.ddBtnStatusChangeGenAgr.Text = "Змінити статус";
+            this.ddBtnStatusChangeGenAgr.ThemeName = "Office2013Light";
+            // 
+            // btnStatusAcceptGenAgr
+            // 
+            this.btnStatusAcceptGenAgr.Name = "btnStatusAcceptGenAgr";
+            this.btnStatusAcceptGenAgr.Text = "Підтверджений";
+            this.btnStatusAcceptGenAgr.UseCompatibleTextRendering = false;
+            this.btnStatusAcceptGenAgr.Click += new System.EventHandler(this.btnStatusAcceptGenAgr_Click);
+            // 
+            // btnStatusClosedGenAgr
+            // 
+            this.btnStatusClosedGenAgr.Name = "btnStatusClosedGenAgr";
+            this.btnStatusClosedGenAgr.Text = "Закритий";
+            this.btnStatusClosedGenAgr.UseCompatibleTextRendering = false;
+            this.btnStatusClosedGenAgr.Click += new System.EventHandler(this.btnStatusClosedGenAgr_Click);
             // 
             // MiddleControlCabinetGenAgreement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnEditAgr);
+            this.Controls.Add(this.ddBtnStatusChangeGenAgr);
+            this.Controls.Add(this.ddlActionOfGenAgr);
             this.Controls.Add(this.ctrlGeneralAgrDetailInfoBr);
-            this.Controls.Add(this.btnAgrClose);
-            this.Controls.Add(this.btnAccept);
-            this.Controls.Add(this.btnView);
             this.Controls.Add(this.gvGenAgrLicences);
             this.MinimumSize = new System.Drawing.Size(912, 300);
             this.Name = "MiddleControlCabinetGenAgreement";
-            this.Size = new System.Drawing.Size(915, 470);
+            this.Size = new System.Drawing.Size(915, 459);
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnEditAgr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAgrClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlActionOfGenAgr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddBtnStatusChangeGenAgr)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private Telerik.WinControls.UI.RadGridView gvGenAgrLicences;
-        private Telerik.WinControls.UI.RadButton btnView;
-        private Telerik.WinControls.UI.RadButton btnAccept;
-        private Telerik.WinControls.UI.RadButton btnEditAgr;
-        private Telerik.WinControls.UI.RadButton btnAgrClose;
         private ConsumerControls.BigRight.GeneralAgrDetailInfoBr ctrlGeneralAgrDetailInfoBr;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadDropDownButton ddlActionOfGenAgr;
+        private Telerik.WinControls.UI.RadMenuItem btnProlongationGenAgr;
+        private Telerik.WinControls.UI.RadMenuItem btnChangeGenAgr;
+        private Telerik.WinControls.UI.RadDropDownButton ddBtnStatusChangeGenAgr;
+        private Telerik.WinControls.UI.RadMenuItem btnStatusAcceptGenAgr;
+        private Telerik.WinControls.UI.RadMenuItem btnStatusClosedGenAgr;
     }
 }

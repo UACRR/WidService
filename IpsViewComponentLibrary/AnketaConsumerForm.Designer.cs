@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlConsumerAnketa = new IpsViewComponentLibrary.GlobalControlConsumerAnketa();
+            this.ctrlConsumerAnketa = new IpsViewComponentLibrary.AnketaConsumer();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
@@ -95,7 +95,7 @@
 
         #endregion
 
-        private GlobalControlConsumerAnketa ctrlConsumerAnketa;
+        private AnketaConsumer ctrlConsumerAnketa;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
     }

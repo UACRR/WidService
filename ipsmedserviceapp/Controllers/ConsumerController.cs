@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols;
+// ReSharper disable All
 
 
 namespace ipsmedserviceapp.Controllers
@@ -53,11 +54,8 @@ namespace ipsmedserviceapp.Controllers
 
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
+        //отримати всі дані
         private async Task<Customer> GetConsumerAllData(int id)
         {
             // Отримати основну інформацію
@@ -78,7 +76,7 @@ namespace ipsmedserviceapp.Controllers
                 .Where(agree => agree.LicStatus < 4)
                 .Include(item => item.Agr)
                 .Include(item => item.LicCodeNavigation)
-                .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign).ThenInclude(md => md.Obj)
+                .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign).ThenInclude(md => md.Obj).ThenInclude(obj => obj.MediaTrack)
                 .Include(rec => rec.PaidPeriod)
                 .LoadAsync();
 
@@ -98,7 +96,7 @@ namespace ipsmedserviceapp.Controllers
                 // Лцензії для майданчиків
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
                     .Query()
-                    .Where(rec => rec.LicVersion >= licAgreement.LicVersion)
+                    .Where(rec => rec.LicVersion >= licAgreement.LicVersion || rec.LicVersion == licAgreement.ProlongVersion)
                     .Include(rec => rec.License)
                     .LoadAsync();
 
@@ -124,6 +122,13 @@ namespace ipsmedserviceapp.Controllers
 
             return cust;
 
+        }
+
+        [HttpGet("info/{id}")]
+        public async Task<IActionResult> GetConsumerShortInfoById(int id)
+        {
+            var list = await _dbContext.getViewData($"select * from vTsk_1_ListConsumer01 where custId={id}", null);
+            return Ok(list.FirstOrDefault());
         }
 
         /// <summary>
@@ -160,6 +165,14 @@ namespace ipsmedserviceapp.Controllers
 
 
                 return Json(destConsumer);
+            }
+            catch (DbUpdateException)
+            {
+                tran?.Rollback();
+                //if()
+                string msg = "Спроба видалити майданчик, який включений до діючої ліцензії!";
+                //return BadRequest(ex.Message);
+                return BadRequest(msg);
             }
             catch (Exception ex)
             {
@@ -531,7 +544,7 @@ namespace ipsmedserviceapp.Controllers
                 if (!(sorsCustomer.CustType > 0 && sorsCustomer.CustType < 4))
                     throw new Exception("Bad customer type for new consumer");
 
-                fillLicenseAgreement(sorsCustomer);
+                //fillLicenseAgreement(sorsCustomer); // -> визначається контролом GlobalControlConsumerAnketa >371
                 // Збереження Customer
                 Customer destConsumer = new Customer();
                 _dbContext.Customer.Add(destConsumer);
@@ -666,7 +679,7 @@ namespace ipsmedserviceapp.Controllers
                 { ConsumerFilterEnum.All, "countLic1NoActive+countLic1Active>0"  },
                 { ConsumerFilterEnum.Working, "statusLic1Active=1"  },
                 { ConsumerFilterEnum.NotActive, "statusLic1Noactive=1"},
-                { ConsumerFilterEnum.ForProlongation, "statusLic1Prolong=1"}
+                { ConsumerFilterEnum.ForProlongation, "statusLic1ToProlong=1"}
             } },
             { TypeBRDocument.Request, new Dictionary<ConsumerFilterEnum, string> {
                 { ConsumerFilterEnum.All, "countLic2Active+countLic2NoActive>0"  },
@@ -740,7 +753,10 @@ namespace ipsmedserviceapp.Controllers
             {"vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay"},
             {"vTSK_1_BRObjects", "vTSK_1_BRObjects"},
             {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"},
-            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"}
+            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"},
+            {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
+            {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
+            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"}
         };
 
 
@@ -905,7 +921,7 @@ namespace ipsmedserviceapp.Controllers
 
             await _dbContext.Entry(licAgreement).Collection(item => item.LicenseAgrParam)
                 .Query()
-                .Where(rec => rec.LicVersion >= version).LoadAsync();
+                .Where(rec => rec.LicVersion >= version || rec.LicVersion == licAgreement.ProlongVersion).LoadAsync();
 
 
 
@@ -922,6 +938,9 @@ namespace ipsmedserviceapp.Controllers
                         licParam.LicStatus = 4; // Close
                     if (licAgreement.LicCodeNavigation.UsesKindNavigation.UsesType == 2) // малі права
                         licAgreement.Agr.Version = version;
+                    // Видаляємо ліцензії закритої версії
+                    _dbContext.License.RemoveRange(licParam.License);
+
                 }
                 else
                 {
@@ -966,6 +985,7 @@ namespace ipsmedserviceapp.Controllers
             return licAgreement;
 
         }
+      
         /// <summary>
         /// Акцептувати Ліценз. Договір або Доп договір до нього
         /// </summary>
@@ -1060,8 +1080,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     return BadRequest();
 
                 period.Status = stateid;
-                // Закрити
-                if (stateid == 7)
+                // Зафіксувати або Закрити
+                if ((new int[] { 2, 7 }).Contains(stateid))
                 {
                     await _dbContext.Entry(period).Collection(rec => rec.RegisterRatedList).Query()
                         .Include(rec => rec.Register)
@@ -1070,8 +1090,11 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     foreach (var item in period.RegisterRatedList)
                     {
                         item.Status = 1;
-                        foreach (var reg in item.Register)
-                            reg.RgStatus = 4; // Виконано
+                        if (stateid == 7) // Для закритого періоду
+                        {
+                            foreach (var reg in item.Register)
+                                reg.RgStatus = 4; // Виконано
+                        }
                     }
                 }
 
@@ -1102,7 +1125,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         {
             var register = await _dbContext.Register.Where(rec => rec.RegId == regid)
                 .Include(rec => rec.RegisterItem)
-                .Include(rec => rec.RegisterRatedList)
+                .Include(rec => rec.Rm)
                 .SingleOrDefaultAsync();
 
             await _dbContext.RegisterExtra.Where(rec => rec.RegId == regid).LoadAsync();
@@ -1120,18 +1143,33 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         {
             dest.SetFields(sors);
             var dicDest = dest.Register.ToDictionary(rec => rec.RegId);
+
+            // delete register
+            var listForDelete = dest.Register.Where(rec => !sors.Register.Any(item => item.RegId == rec.RegId)).ToList();
+            foreach (var item in listForDelete)
+            {
+                // delete registerItem
+                _dbContext.RegisterItem.RemoveRange(item.RegisterItem);
+                dest.Register.Remove(item);
+            }
+            // delete from database register
+            _dbContext.Register.RemoveRange(listForDelete);
+
+
+            // modify and add new item
             foreach (var sorsItem in sors.Register)
             {
                 Register destItem = null;
                 if (!dicDest.Keys.Contains(sorsItem.RegId))
                 {
-                    destItem = new Register { CreateDate = DateTime.Today };
-                    destItem.SetFields(sorsItem, new[] { "RegId", "CreateDate" });
+                    destItem = new Register { CreateDate = DateTime.Today, LicId = sorsItem.LicId };
                     dest.Register.Add(destItem);
                     _dbContext.Register.Add(destItem);
                 }
                 else
                     destItem = dicDest[sorsItem.RegId];
+
+                destItem.SetFields(sorsItem, new[] { "RegId", "CreateDate" });
 
                 int regItemId = 1;
 
@@ -1145,8 +1183,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     (isNew, sorsRec, destRec) =>
                     {
                         destRec.SetFields(sorsRec);
-                        if (destRec.Ticks == null)
-                            destRec.Ticks = 1;
+                        if (destRec.DurationItem == null)
+                            destRec.Ticks = 0;
 
                         if (isNew)
                             destRec.RegIitemId = regItemId++;
@@ -1157,9 +1195,16 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
 
                 destItem.CountRows = destItem.RegisterItem.Count();
-                var sumTicks = destItem.RegisterItem.Sum(rec => (long)(rec.Ticks??1));
-                destItem.Durationticks = (int)sumTicks;
+                if (destItem.AlgorithmId == 1)
+                {
+                    var sumTicks = destItem.RegisterItem.Sum(rec => (long)(rec.Ticks ?? 1));
+                    destItem.Durationticks = (int)sumTicks;
+                }
+                else
+                    destItem.Durationticks = destItem.RegisterItem.Count(rec => rec.Ticks != 0);
             }
+
+
 
 
         }
@@ -1181,7 +1226,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
                 var regRatedList = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId).Single();
-                modifyItem = new Register { CreateDate = DateTime.Now };
+                modifyItem = new Register { CreateDate = DateTime.Now, LicId = body.LicId };
                 regRatedList.Register.Add(modifyItem);
                 _dbContext.Register.Add(modifyItem);
 
@@ -1329,11 +1374,11 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     prop.IsModified = true;
                     if (stateId == 3)
                     {
-                        await _dbContext.Entry(item).Reference(rec => rec.RegisterRatedList).Query()
+                        await _dbContext.Entry(item).Reference(rec => rec.Rm).Query()
                             .Include(rec => rec.Period)
                             .LoadAsync();
-                        item.RegisterRatedList.Status = 1;
-                        item.RegisterRatedList.Period.Status = 2;
+                        item.Rm.Status = 1;
+                        item.Rm.Period.Status = 2;
                     }
 
                 }
@@ -1773,8 +1818,8 @@ where t1.custId = @custId
                 return BadRequest(e.Message);
             }
 
-        } 
-        
+        }
+
         // PostRegisterDetail
         /// <summary>
         /// Змінити Р/Л
@@ -1794,7 +1839,7 @@ where t1.custId = @custId
                     .Include(rec => rec.Register)
                     .Single();
 
-                foreach (var item in body.Register.Where(rec => rec.RegId > 0 && rec.RegisterItem.Count() > 0))
+                foreach (var item in dest.Register)
                 {
                     await _dbContext.RegisterItem.Where(rec => rec.RegId == item.RegId)
                             .Include(rec => rec.RegisterExtra)
@@ -1847,12 +1892,6 @@ where t1.custId = @custId
             return Ok();
         }
         #endregion
-
-        /// <summary>
-        /// Отримати записи зі звіту
-        /// </summary>
-        /// <param name="regId"></param>
-        /// <returns></returns>
 
     } // public class ConsumerController : Controller
 

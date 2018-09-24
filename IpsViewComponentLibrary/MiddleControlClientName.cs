@@ -69,6 +69,16 @@ namespace IpsViewComponentLibrary
 
         }
 
+        public bool CheckPlace
+        {
+            get => checkClientName.Checked;
+            set
+            {
+                checkClientName.Checked = value;
+                checkClientName.Enabled = !value;
+            }
+        }
+
         public bool IsPlaceIn
         {
             get => checkClientName.Checked;

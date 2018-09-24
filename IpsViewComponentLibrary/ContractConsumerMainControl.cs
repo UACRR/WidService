@@ -243,15 +243,8 @@ namespace IpsViewComponentLibrary
 
         private void rdtPickerDateBegin_ValueChanged(object sender, EventArgs e)
         {
-            try
-            {
-                rdtPickerDateEnd.MinDate = rdtPickerDateBegin.Value.Add(new TimeSpan(1, 0, 0, 0));
-
-            }
-            catch (Exception exception)
-            {
-                ;
-            }
+            if(rdtPickerDateBegin.Value.AddDays(1) is DateTime newDate)
+                rdtPickerDateEnd.MinDate =  new DateTime(newDate.Year, newDate.Month, newDate.Day);
         }
 
         /// <summary>

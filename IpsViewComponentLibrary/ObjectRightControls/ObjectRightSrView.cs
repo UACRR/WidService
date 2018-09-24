@@ -31,26 +31,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
-        //private IList<ViewCustomer> _rightholderList = new List<ViewCustomer>();
-        //public IList<ViewCustomer> RightholderList
-        //{
-        //    set
-        //    {
-        //        _rightholderList = value;
-        //    }
-        //}
-
-        //private ObjectRight _objectRight;
-        //public ObjectRight ObjectRight
-        //{
-        //    get { return _objectRight; }
-        //    set
-        //    {
-        //        _objectRight = value;
-        //        UpdateObjectRightDataSources();
-        //    }
-        //}
-
         public IList<ViewCustomer> RightholderList { private get; set; }
         public ObjectRight ObjectRight { get; set; }
 
@@ -68,6 +48,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public ObjectRightSrView()
         {
             InitializeComponent();
+
+            gvObjectAuthorsRightholders.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvObjectAuthorsRightholders.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             InitializeGridFilters();
         }
@@ -131,6 +114,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             seekObjectBindingSource.DataSource = ObjectRight.SeekObject;
 
             objectAuthorRightholderBindingSource.DataSource = _objectAuthorRightholderList;
+        }
+
+        public void SetHeader(string header)
+        {
+            Text = header + " - Об'єкт права";
         }
 
         private void UpdateAutocompliteItems(string filter)
@@ -269,6 +257,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 txtTotalPersent.ForeColor = Color.Red;
             else
                 txtTotalPersent.ForeColor = SystemColors.ControlText;
+        }
+
+        private void ObjectRightSrView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _presenter.Close();
+            e.Cancel = true;
         }
 
         #region Validation

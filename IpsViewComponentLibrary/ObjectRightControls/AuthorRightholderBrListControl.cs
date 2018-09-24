@@ -8,6 +8,8 @@ using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.RightholderControls;
 using System.Linq;
+using Telerik.WinControls.Enumerations;
+using System.Drawing;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -49,6 +51,20 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        private bool _allowEditList = false;
+        public bool AllowEditList
+        {
+            get { return _allowEditList; }
+            set
+            {
+                _allowEditList = value;
+
+                gvAuthorRightholderList.ReadOnly = !_allowEditList;
+                gvAuthorRightholderList.Columns["DeleteColumn"].IsVisible = _allowEditList;
+                btnAdd.Visible = _allowEditList;
+            }
+        }
+
         private ObjectAuthorRightholderBrViewModel _authorRightholder;
         public ObjectAuthorRightholderBrViewModel SelectedAuthorRightholder
         {
@@ -68,6 +84,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public AuthorRightholderBrListControl()
         {
             InitializeComponent();
+
+            gvAuthorRightholderList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvAuthorRightholderList.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             if (!IsDesignMode)
             {
@@ -116,13 +135,56 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             var columnName = gvAuthorRightholderList.CurrentColumn.Name;
 
-            if (columnName == "AuthorName")
+            var isRightholder = (gvAuthorRightholderList.CurrentRow.DataBoundItem as ObjectAuthorRightholderBrViewModel).IsRightholder;
+
+            if (isRightholder && columnName == "AuthorName")
             {
                 // set ExtendedRadBrowseEditorElement instead of RadTextBoxEditorElement
                 var browseEditor = new ExtendedBrowseEditor();
                 (browseEditor.EditorElement as ExtendedRadBrowseEditorElement).ValueSelection += AuthorName_ValueSelection;
                 e.Editor = browseEditor;
             }
+        }
+
+        private void gvAuthorRightholderList_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        {
+            var columnName = gvAuthorRightholderList.CurrentColumn.Name;
+
+            if (columnName == "IsRightholder")
+            {
+                var cbEditor = (RadCheckBoxEditor)e.ActiveEditor;
+                cbEditor.ValueChanged -= IsRightholder_ValueChanged;
+                cbEditor.ValueChanged += IsRightholder_ValueChanged;
+            }
+        }
+
+        private void IsRightholder_ValueChanged(object sender, EventArgs e)
+        {
+            var authorRightholder = SelectedAuthorRightholder;
+            var cbEditor = (RadCheckBoxEditor)sender;
+
+            if ((ToggleState)cbEditor.Value == ToggleState.On)
+            {
+                using (var selectionView = new RightholderSelectionView())
+                {
+                    //selectionView.SelectedRightholder = rightholder; // TODO
+                    selectionView.RightholderSelected += (s, selectedRightholder) =>
+                    {
+                        authorRightholder.Author.CustId = selectedRightholder.CustId;
+                        authorRightholder.Author.AuthorName = selectedRightholder.Name;
+                        authorRightholder.InnerCode = selectedRightholder.InnerCode;
+                        authorRightholder.Country = selectedRightholder.Country;
+                    };
+                    selectionView.SelectionCanceled += (s, ea) =>
+                    {
+                        authorRightholder.IsRightholder = false;
+                        cbEditor.Value = ToggleState.Off;
+                    };
+                    selectionView.SearchText = authorRightholder.Author.AuthorName;
+                    selectionView.ShowDialog();
+                }
+            }
+            gvAuthorRightholderList.EndEdit();
         }
 
         private void AuthorName_ValueSelection(object sender, ValueSelectionEventArgs e)
@@ -134,11 +196,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 {
                     e.Value = selectedRightholder.Name;
 
-                    var current = (ObjectAuthorRightholderBrViewModel)gvAuthorRightholderList.CurrentRow.DataBoundItem;
-                    current.Author.CustId = selectedRightholder.CustId;
-                    current.Author.AuthorName = selectedRightholder.Name;
-                    current.InnerCode = selectedRightholder.InnerCode;
-                    current.Country = selectedRightholder.Country;
+                    var authorRightholder = SelectedAuthorRightholder;
+                    authorRightholder.Author.CustId = selectedRightholder.CustId;
+                    authorRightholder.Author.AuthorName = selectedRightholder.Name;
+                    authorRightholder.InnerCode = selectedRightholder.InnerCode;
+                    authorRightholder.Country = selectedRightholder.Country;
                     objectAuthorRightholderBrViewModelBindingSource.ResetCurrentItem();
                 };
                 selectionView.ShowDialog();
@@ -153,6 +215,14 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private void gvAuthorRightholderList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
+
+        private void gvAuthorRightholderList_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        {
+            var readOnlyColumns = "RoleRate, PrepayType, Currency, PrepaySum, WorkTypeRh, WorkTypeCl";
+
+            if (!SelectedAuthorRightholder.IsRightholder && readOnlyColumns.Contains(e.Column.Name))
+                e.Cancel = true;
         }
     }
 }

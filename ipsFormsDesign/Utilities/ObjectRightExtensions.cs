@@ -20,6 +20,11 @@ namespace ipsFormsDesign.Utilities
 
             if (!string.IsNullOrEmpty(registerItem.Performer))
                 objectRight.SeekObject.Add(new SeekObject { CodeI = 2, Name = registerItem.Performer });
+
+            foreach (var re in registerItem.RegisterExtraList)
+            {
+                objectRight.Authors.Add(new Authors { AuthorName = re.Name, FolkType = 1, RoleCode = re.RoleCode });
+            }
         }
 
         public static void AddObjectAuthorRightholder(this ObjectRight objectRight, ObjectAuthorRightholder objectAuthorRightholder)
@@ -58,14 +63,40 @@ namespace ipsFormsDesign.Utilities
         {
             objectRight.Authors.Add(objectAuthorRightholder.Author);
 
-            var copyRight = objectAuthorRightholder.CopyRight;
-            copyRight.CustId = (int)objectAuthorRightholder.Author.CustId;
-            copyRight.RoleCode = objectAuthorRightholder.Author.RoleCode;
+            if (objectAuthorRightholder.IsRightholder && objectAuthorRightholder.Author.CustId.HasValue)
+            {
+                var copyRight = objectAuthorRightholder.CopyRight;
+                copyRight.CustId = (int)objectAuthorRightholder.Author.CustId;
+                copyRight.RoleCode = objectAuthorRightholder.Author.RoleCode;
 
-            copyRight.LicAuthorBr= objectAuthorRightholder.LicAuthorBr;
-            copyRight.WorkRh = objectAuthorRightholder.WorkRh;
+                copyRight.LicAuthorBr = objectAuthorRightholder.LicAuthorBr;
+                copyRight.WorkRh = objectAuthorRightholder.WorkRh;
 
-            objectRight.CopyRight.Add(objectAuthorRightholder.CopyRight);
+                objectRight.CopyRight.Add(copyRight);
+            }
+        }
+
+        public static List<ObjectAuthorRightholderBrViewModel> GetObjectBrAuthorRightholderList(this ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
+        {
+            var authorRightholderList = objectRight.Authors.Select(a =>
+            {
+                var foundedCopyright = objectRight.CopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
+                var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
+
+                return new ObjectAuthorRightholderBrViewModel
+                {
+                    Author = a,
+                    IsRightholder = a.CustId.HasValue,
+                    Country = foundedRightholder?.Country,
+                    InnerCode = foundedRightholder?.InnerCode,
+                    CopyRight = foundedCopyright ?? new CopyRight(),
+                    LicAuthorBr = foundedCopyright?.LicAuthorBr ?? new LicAuthorBr(),
+                    WorkRh = foundedCopyright?.WorkRh ?? new WorkRh(),
+                };
+            })
+            .ToList();
+
+            return authorRightholderList;
         }
 
         public static decimal GetTotalRate(this IList<CopyRight> copyrightList)

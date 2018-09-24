@@ -241,7 +241,7 @@ namespace sysAdminwp
             this.radTBCode.Name = "radTBCode";
             this.radTBCode.Size = new System.Drawing.Size(727, 20);
             this.radTBCode.TabIndex = 6;
-            this.radTBCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBCode_TextChanging);
+            this.radTBCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
             // radTBNameUa
             // 
@@ -251,7 +251,7 @@ namespace sysAdminwp
             this.radTBNameUa.Name = "radTBNameUa";
             this.radTBNameUa.Size = new System.Drawing.Size(727, 20);
             this.radTBNameUa.TabIndex = 7;
-            this.radTBNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameUa_TextChanging);
+            this.radTBNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
             // radTBNameEn
             // 
@@ -261,7 +261,7 @@ namespace sysAdminwp
             this.radTBNameEn.Name = "radTBNameEn";
             this.radTBNameEn.Size = new System.Drawing.Size(727, 20);
             this.radTBNameEn.TabIndex = 8;
-            this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameEn_TextChanging);
+            this.radTBNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
             // radTBNameRu
             // 
@@ -271,7 +271,7 @@ namespace sysAdminwp
             this.radTBNameRu.Name = "radTBNameRu";
             this.radTBNameRu.Size = new System.Drawing.Size(727, 20);
             this.radTBNameRu.TabIndex = 9;
-            this.radTBNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.radTBNameRu_TextChanging);
+            this.radTBNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
             // radPanelChange
             // 

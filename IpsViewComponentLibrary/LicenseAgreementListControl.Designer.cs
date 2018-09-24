@@ -219,7 +219,7 @@
             // 
             // bsBigRightRequests
             // 
-            this.bsBigRightRequests.DataSource = typeof(ipsFormsDesign.Interfaces.BigRightRequests);
+            this.bsBigRightRequests.DataSource = typeof(ipsFormsDesign.Interfaces.RequestsOrReferenceBigRightView);
             // 
             // txtSearch
             // 

@@ -37,7 +37,7 @@ namespace ipsFormsDesign.Services
                     rateList.Period = period;
                     foreach (var register in rateList.Register )
                     {
-                        register.RegisterRatedList = rateList;
+                        register.Rm = rateList;
                         foreach (var items in register.RegisterItem)
                         {
                             items.Reg = register;

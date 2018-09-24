@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -16,20 +17,14 @@ namespace IpsViewComponentLibrary
     {
         private int _rowId;
 
-        /// <summary>
-        /// Рядкове начення фільтра
-        /// </summary>
-        public string FilterString
+        public MainGridConsumerBigRightView ViewRow
         {
-            get => txtSearch.Text;
-            set => txtSearch.Text = value;
+            get => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
         }
-
-        public delegate void GridButtonViewClick(int id, CabinetTabType tabType = CabinetTabType.None);
-        public event GridButtonViewClick OnGridButtonViewClick;
-
-        public delegate void AddNewCustomer(PersonType person);
-        public event AddNewCustomer OnAddNewCustomer;
+        public delegate void LoadCustomerCabinetBrEventHandler(int id);
+        public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
+        
+        public event EventHandler OnAddNewCustomer;
 
 
         public GlobalControlConsumerMainGridBR()
@@ -60,19 +55,7 @@ namespace IpsViewComponentLibrary
 
         private void gvViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            switch (e.Column.FieldName)
-            {
-                case "btnsFiles":
-                {
-                    OnGridButtonViewClick?.Invoke(_rowId, CabinetTabType.Files);
-                }break;
-
-                case "btnsView":
-                {
-                    OnGridButtonViewClick?.Invoke(_rowId);
-                }
-                    break;
-            }
+            OnLoadCustomerCabinetNeed?.Invoke(_rowId);
         }
 
         private void gvViewConsumers_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
@@ -83,7 +66,7 @@ namespace IpsViewComponentLibrary
 
         private void btnNewConsumer_Click(object sender, EventArgs e)
         {
-            OnAddNewCustomer?.Invoke(PersonType.JuridicalPerson);
+            OnAddNewCustomer?.Invoke(sender, e);
         }
 
         #region ФІЛЬТРАЦІЯ (пошук)
