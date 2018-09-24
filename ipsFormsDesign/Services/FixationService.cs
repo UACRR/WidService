@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.ViewModels.Fixations;
+﻿using ipsFormsDesign.Model;
+using ipsFormsDesign.ViewModels.Fixations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,7 @@ namespace ipsFormsDesign.Services
 
         public List<FixationListViewModel> GetFixations(FixationQuery query)
         {
-            // TODO: pass query as filter
-            var list = _webApi.GetList<FixationListViewModel>("fixations");
+            var list = _webApi.GetList<FixationListViewModel>("fixations", query.ToKeyValuePair());
             return list;
         }
 
@@ -29,10 +29,10 @@ namespace ipsFormsDesign.Services
             return Task.Factory.StartNew(() => GetFixations(query));
         }
 
-        //public Fixation GetById(int fixId)
-        //{
-        //    var item = _webApi.GetItemById<Fixation>("fixations", fixId.ToString());
-        //    return item;
-        //}
+        public Fixation GetById(int fixId)
+        {
+            var item = _webApi.GetItemById<Fixation>("fixations", fixId.ToString());
+            return item;
+        }
     }
 }
