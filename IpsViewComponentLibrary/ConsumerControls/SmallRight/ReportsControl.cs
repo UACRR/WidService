@@ -164,7 +164,7 @@ namespace IpsViewComponentLibrary
                         foreach (var reg in regList.Register)
                         {
                             reg.RgStatusNavigation = dicRegStatus[reg.RgStatus ?? 0];
-                            reg.RegisterRatedList = regList;
+                            reg.Rm = regList;
                         }
                     }
                 }
@@ -348,7 +348,7 @@ namespace IpsViewComponentLibrary
                         CustId = _customer.CustId,
                         RgStatusNavigation = dicRegStatus[0],
                         PeriodId = period.PeriodId,
-                        RegisterRatedList = RatedList,
+                        Rm = RatedList,
                         LicId = period.LicId,
                         SchemaId = 1,
                         AlgorithmId = 1

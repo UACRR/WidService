@@ -1125,7 +1125,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         {
             var register = await _dbContext.Register.Where(rec => rec.RegId == regid)
                 .Include(rec => rec.RegisterItem)
-                .Include(rec => rec.RegisterRatedList)
+                .Include(rec => rec.Rm)
                 .SingleOrDefaultAsync();
 
             await _dbContext.RegisterExtra.Where(rec => rec.RegId == regid).LoadAsync();
@@ -1374,11 +1374,11 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     prop.IsModified = true;
                     if (stateId == 3)
                     {
-                        await _dbContext.Entry(item).Reference(rec => rec.RegisterRatedList).Query()
+                        await _dbContext.Entry(item).Reference(rec => rec.Rm).Query()
                             .Include(rec => rec.Period)
                             .LoadAsync();
-                        item.RegisterRatedList.Status = 1;
-                        item.RegisterRatedList.Period.Status = 2;
+                        item.Rm.Status = 1;
+                        item.Rm.Period.Status = 2;
                     }
 
                 }

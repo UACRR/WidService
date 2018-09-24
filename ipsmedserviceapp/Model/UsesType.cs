@@ -7,6 +7,7 @@ namespace ipsmedserviceapp.Model
     {
         public UsesType()
         {
+            Fixation = new HashSet<Fixation>();
             UsesKind = new HashSet<UsesKind>();
             UsesTypeTr = new HashSet<UsesTypeTr>();
         }
@@ -14,6 +15,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        public ICollection<Fixation> Fixation { get; set; }
         public ICollection<UsesKind> UsesKind { get; set; }
         public ICollection<UsesTypeTr> UsesTypeTr { get; set; }
     }

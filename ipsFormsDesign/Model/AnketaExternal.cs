@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public string InterCode { get; set; }
         public string CountryCode { get; set; }
+        public string InnOkpo { get; set; }
 
         public Country CountryCodeNavigation { get; set; }
         public Customer Cust { get; set; }

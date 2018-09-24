@@ -197,7 +197,7 @@ namespace IpsViewComponentLibrary
                         reg.AuthRate = sw?.Rate;
                         reg.MusicRate = sw?.RateMusic;
                         item.LicId = sw?.LicId;
-                        reg.LicId = sw?.LicId;
+                        reg.LicId = (int)sw?.LicId;
                         //var mus = _customer?.Client?.LicenseAgreementChange?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
                     }
                     else if (e.Column.FieldName == "Amount")

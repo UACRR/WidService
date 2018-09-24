@@ -7,6 +7,7 @@ namespace ipsmedserviceapp.Model
     {
         public RegisterRatedList()
         {
+            Distribution = new HashSet<Distribution>();
             Register = new HashSet<Register>();
         }
 
@@ -18,9 +19,11 @@ namespace ipsmedserviceapp.Model
         public string UserId { get; set; }
         public int? Status { get; set; }
         public int? CntReport { get; set; }
+        public decimal? PaidAmount { get; set; }
 
         public PaidPeriod Period { get; set; }
         public RegisterListStatus StatusNavigation { get; set; }
+        public ICollection<Distribution> Distribution { get; set; }
         public ICollection<Register> Register { get; set; }
     }
 }

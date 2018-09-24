@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         {
             AgreementAddPartner = new HashSet<AgreementAddPartner>();
             Distribution = new HashSet<Distribution>();
+            Fixation = new HashSet<Fixation>();
             PartnerClient = new HashSet<PartnerClient>();
         }
 
@@ -17,6 +18,7 @@ namespace ipsmedserviceapp.Model
         public Customer Cust { get; set; }
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ICollection<Distribution> Distribution { get; set; }
+        public ICollection<Fixation> Fixation { get; set; }
         public ICollection<PartnerClient> PartnerClient { get; set; }
     }
 }

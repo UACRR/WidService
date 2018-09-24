@@ -47,8 +47,8 @@ namespace IpsViewComponentLibrary
             var retList = _service.SetRegisterState((ConsumerService.RegisterState)state, e);
             if (state == 3)
             {
-                first.RegisterRatedList.Status = 1;
-                first.RegisterRatedList.Period.Status = 2;
+                first.Rm.Status = 1;
+                first.Rm.Period.Status = 2;
                 _control.RefreshData();
             }
         }

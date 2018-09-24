@@ -40,8 +40,8 @@ namespace IpsViewComponentLibrary.RegisterControls
                 if (bsRegister.DataSource != value)
                 {
                     bsRegister.DataSource = value;
-                    txtPeriodName.Text = value?.RegisterRatedList?.Period?.PeriodName;
-                    ddlLicCode.SelectedValue = value?.RegisterRatedList?.Period?.Lic?.LicCode;
+                    txtPeriodName.Text = value?.Rm?.Period?.PeriodName;
+                    ddlLicCode.SelectedValue = value?.Rm?.Period?.Lic?.LicCode;
                 }
             }
         }

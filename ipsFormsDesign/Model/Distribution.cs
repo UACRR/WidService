@@ -13,7 +13,7 @@ namespace ipsFormsDesign.Model
 
         public int DistId { get; set; }
         public int? RegId { get; set; }
-        public int? PeriodId { get; set; }
+        public int? RmId { get; set; }
         public int CRkindCode { get; set; }
         public int Status { get; set; }
         public DateTime DistribDate { get; set; }
@@ -29,9 +29,9 @@ namespace ipsFormsDesign.Model
         public CopyrightKind CRkindCodeNavigation { get; set; }
         public Client Cust { get; set; }
         public Partner Partner { get; set; }
-        public PaidPeriod Period { get; set; }
         public Register Reg { get; set; }
         public BrRegister RegIdBrNavigation { get; set; }
+        public RegisterRatedList Rm { get; set; }
         public DistribStatus StatusNavigation { get; set; }
         public ObservableListSource<DistributionItem> DistributionItem { get; set; }
     }
