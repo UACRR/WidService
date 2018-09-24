@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerForms;
 using Telerik.WinControls.UI;
 
@@ -26,6 +27,9 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
         public event SetPartnerEventHandler OnAddClientToPartner;
+        public event SetPartnerEventHandler OnDetachClientInPartner;
+        public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
+
 
 
         public PartnerControl()
@@ -173,10 +177,29 @@ namespace IpsViewComponentLibrary.PartnerControls
                     cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
                     cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
                     cabinetPartner.OnAddClientToPartner += CabinetPartner_OnAddClientToPartner;
+                    cabinetPartner.OnDetachClientInPartner += CabinetPartner_OnDetachClientInPartner;
+                    cabinetPartner.ChangeStatusAgr += CabinetPartner_ChangeStatusAgr;
+                    cabinetPartner.UpdateCustomer += CabinetPartner_UpdateCustomer;
 
                     cabinetPartner.Show();
                     break;
             }
+        }
+
+        private Customer CabinetPartner_UpdateCustomer(int custId)
+        {
+
+            return GetPartnerById?.Invoke(custId);
+        }
+
+        private bool CabinetPartner_ChangeStatusAgr(int partnerId, CPartnerObjectStatus status)
+        {
+            return ChangeStatusAgr?.Invoke(partnerId, status) ?? false;
+        }
+
+        private bool CabinetPartner_OnDetachClientInPartner(int clientId, int partnerId)
+        {
+            return OnDetachClientInPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
         private bool CabinetPartner_OnAddClientToPartner(int clientId, int partnerId)

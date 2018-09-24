@@ -41,25 +41,28 @@
             this.lblPartnerName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
             this.gvViewClientsOfPartner = new Telerik.WinControls.UI.RadGridView();
+            this.btnDetach = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddClient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPartnerName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewClientsOfPartner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewClientsOfPartner.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDetach)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlSearch
             // 
-            this.ctrlSearch.Location = new System.Drawing.Point(128, 28);
+            this.ctrlSearch.Location = new System.Drawing.Point(6, 28);
             this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
             this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
             this.ctrlSearch.Name = "ctrlSearch";
-            this.ctrlSearch.Size = new System.Drawing.Size(567, 20);
+            this.ctrlSearch.Size = new System.Drawing.Size(630, 20);
             this.ctrlSearch.TabIndex = 0;
             // 
             // btnAddClient
             // 
-            this.btnAddClient.Location = new System.Drawing.Point(12, 28);
+            this.btnAddClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddClient.Location = new System.Drawing.Point(3, 537);
             this.btnAddClient.Name = "btnAddClient";
             this.btnAddClient.Size = new System.Drawing.Size(110, 20);
             this.btnAddClient.TabIndex = 2;
@@ -192,15 +195,27 @@
             this.gvViewClientsOfPartner.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewClientsOfPartner.Name = "gvViewClientsOfPartner";
             this.gvViewClientsOfPartner.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewClientsOfPartner.Size = new System.Drawing.Size(956, 503);
+            this.gvViewClientsOfPartner.Size = new System.Drawing.Size(956, 477);
             this.gvViewClientsOfPartner.TabIndex = 34;
             this.gvViewClientsOfPartner.ThemeName = "Office2013Light";
-            this.gvViewClientsOfPartner.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewConsumers_CommandCellClick);
+            this.gvViewClientsOfPartner.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewClientsOfPartner_CommandCellClick);
+            // 
+            // btnDetach
+            // 
+            this.btnDetach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDetach.Location = new System.Drawing.Point(128, 537);
+            this.btnDetach.Name = "btnDetach";
+            this.btnDetach.Size = new System.Drawing.Size(110, 20);
+            this.btnDetach.TabIndex = 35;
+            this.btnDetach.Text = "Відв\'язати клієнта";
+            this.btnDetach.ThemeName = "Office2013Light";
+            this.btnDetach.Click += new System.EventHandler(this.btnDetach_Click);
             // 
             // PartnerClientsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnDetach);
             this.Controls.Add(this.gvViewClientsOfPartner);
             this.Controls.Add(this.lblPartnerName);
             this.Controls.Add(this.radLabel16);
@@ -213,6 +228,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewClientsOfPartner.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewClientsOfPartner)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDetach)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,5 +241,6 @@
         private Telerik.WinControls.UI.RadLabel lblPartnerName;
         private Telerik.WinControls.UI.RadLabel radLabel16;
         private Telerik.WinControls.UI.RadGridView gvViewClientsOfPartner;
+        private Telerik.WinControls.UI.RadButton btnDetach;
     }
 }

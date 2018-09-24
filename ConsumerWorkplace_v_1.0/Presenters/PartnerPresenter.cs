@@ -32,6 +32,13 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _partner.GetFreeClientList += GetClientsView;
             _partner.GetPartnerClientList += GetPartnerClientsView;
             _partner.OnAddClientToPartner += AddClientToPartner;
+            _partner.OnDetachClientInPartner += _partner_OnDetachClientInPartner;
+            _partner.ChangeStatusAgr += AgreementPartnerStatusChange;
+        }
+
+        private bool _partner_OnDetachClientInPartner(int clientId, int partnerId)
+        {
+            return _service.RemovePartnerForCustomer(clientId, partnerId);
         }
 
         private bool AddClientToPartner(int clientId, int partnerId)
@@ -73,6 +80,12 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private Customer GetPartner(int custId)
         {
             return _service.GetPartner(custId);
+        }
+
+        //зміна статусу договору
+        private bool AgreementPartnerStatusChange(int partnerId, CPartnerObjectStatus status)
+        {
+            return _service.AgreementPartnerStatusChange(partnerId, status);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary.PartnerControls
     public partial class PartnerClientsControl : UserControl
     {
         public event SetPartnerEventHandler OnAddClientToPartner;
+        public event SetPartnerEventHandler OnDetachClientInPartner;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
         public event EventHandler UpdateData;
 
@@ -59,9 +60,20 @@ namespace IpsViewComponentLibrary.PartnerControls
             return OnAddClientToPartner?.Invoke(clientId, _partnerId) ?? false;
         }
 
-        private void gvViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvViewClientsOfPartner_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             // open client cabinet
+        }
+
+        private void btnDetach_Click(object sender, EventArgs e)
+        {
+            if (!(gvViewClientsOfPartner.CurrentRow.DataBoundItem is PartnerClientListView item)) return;
+            if (MessageBox.Show("Відв'язати обраного клієнта від представника?","Підтвердження",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var result = OnDetachClientInPartner?.Invoke(item.ClCustId, _partnerId);
+                if (result ?? false)
+                    UpdateData?.Invoke(sender, e);
+            }
         }
     }
 }

@@ -504,7 +504,7 @@ namespace ipsFormsDesign.Services
         }
 
         // змінити поточний статус представника
-        public bool ChangePartnerStatus(int partnerId, CPartnerObjectStatus status)
+        public bool AgreementPartnerStatusChange(int partnerId, CPartnerObjectStatus status)
         {
             string url = "partner/" + $"{partnerId}/statuschange";
             return _webApi.UpdateItem<object>(url, status.ToString("D"), null);
@@ -525,6 +525,6 @@ namespace ipsFormsDesign.Services
         /// <summary>
         /// Закрити
         /// </summary>
-        Closing = 4,
+        Close = 4,
     }
 }

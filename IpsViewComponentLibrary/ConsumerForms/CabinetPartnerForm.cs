@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.ConsumerForms
@@ -20,6 +21,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
         public event SetPartnerEventHandler OnAddClientToPartner;
+        public event SetPartnerEventHandler OnDetachClientInPartner;
+        public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
+        public event GetCustomerEventHandler UpdateCustomer;
 
         public CabinetPartnerForm(Customer customer)
         {
@@ -28,12 +32,16 @@ namespace IpsViewComponentLibrary.ConsumerForms
             DialogResult = DialogResult.None;
             _customer = customer;
 
-            #region BINDINGS
+            
+            BeginBinding();
+            SubscribeEvents();
+        }
 
+        private void BeginBinding()
+        {
             var anketaPerson = _customer.Person.AnketaPerson.SingleOrDefault();
             // представник
             ctrlPartnerName.DataSourceAnketa = anketaPerson;
-            
 
             // контакти
             ctrlContacts.DataSource = anketaPerson;
@@ -50,8 +58,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlAddressRegister.CountryDataMember = "FaCountry";
             ctrlAddressRegister.RegionDataMember = "FaRegion";
             //- -поштова
-
-            //поштова
             ctrlAddressLetter.DataSource = anketaPerson;
             ctrlAddressLetter.AddressDataMember = "LeAddress";
             ctrlAddressLetter.CityDataMember = "LeCity";
@@ -73,15 +79,28 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             // договір
             ctrlAgreement.AgreementDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
+            // статус договору
+            var statusid = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
+            lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
+
             // умови договору
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
 
-            #endregion
-
+            //найменування клієнта
             ctrlPartnerClients.ClientName = anketaPerson;
+        }
+
+        private void SubscribeEvents()
+        {
             ctrlPartnerClients.GetFreeClientList += CtrlPartnerClients_GetFreeClientList;
             ctrlPartnerClients.OnAddClientToPartner += CtrlPartnerClients_OnAddClientToPartner;
+            ctrlPartnerClients.OnDetachClientInPartner += CtrlPartnerClients_OnDetachClientInPartner;
             ctrlPartnerClients.UpdateData += CabinetPartnerForm_Load;
+        }
+
+        private bool CtrlPartnerClients_OnDetachClientInPartner(int clientId, int partnerId)
+        {
+            return OnDetachClientInPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
         private bool CtrlPartnerClients_OnAddClientToPartner(int clientId, int partnerId)
@@ -108,6 +127,28 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private void btnSave_Click(object sender, EventArgs e)
         {
             OnSaveCustomer?.Invoke(_customer);
+        }
+
+        // підтвердити
+        private void btnAcceptAgr_Click(object sender, EventArgs e)
+        {
+            var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Activate);
+            if (result ?? false)
+            {
+                _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                BeginBinding();
+            }
+        }
+
+        // закрити
+        private void btnCloseAgr_Click(object sender, EventArgs e)
+        {
+            var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Close);
+            if (result ?? false)
+            {
+                _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                BeginBinding();
+            }
         }
     }
 }
