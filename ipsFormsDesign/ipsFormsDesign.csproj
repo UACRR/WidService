@@ -417,6 +417,7 @@
     <Compile Include="Services\ConsumerService.cs" />
     <Compile Include="Data\Global.cs" />
     <Compile Include="Services\ExcelEngine.cs" />
+    <Compile Include="Services\FixationService.cs" />
     <Compile Include="Services\LicenseDataService.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
     <Compile Include="Services\RegisterService.cs" />
@@ -425,6 +426,10 @@
     <Compile Include="Services\WordEngine.cs" />
     <Compile Include="Interfaces\ActiveAgreementData.cs" />
     <Compile Include="Utilities\ObjectRightExtensions.cs" />
+    <Compile Include="ViewModels\Fixations\FixationListViewModel.cs" />
+    <Compile Include="ViewModels\Fixations\FixationQuery.cs" />
+    <Compile Include="ViewModels\Fixations\FixationStages.cs" />
+    <Compile Include="ViewModels\Fixations\FixationStageStatuses.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
