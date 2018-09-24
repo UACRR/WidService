@@ -350,17 +350,19 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
         //зберегти клієнту обраного представника 
-        private bool SetPartnerForCustomer(int custId, int clientId)
+        private bool SetPartnerForCustomer(int clientId, int partnerId)
         {
-            return _service.SetPartnerForCustomer(custId, clientId);
+            return _service.SetPartnerForCustomer(clientId, partnerId);
         }
-        private bool ChangePartnerForCustomer(int custId, int newClientId, int oldClientId)
+
+        private bool ChangePartnerForCustomer(int clientId, int partnerId, int oldClientId)
         {
-            return _service.ChangePartnerForCustomer(custId, newClientId, oldClientId);
+            return _service.ChangePartnerForCustomer(clientId, partnerId, oldClientId);
         }
-        private bool RemovePartnerForCustomer(int custId, int clientId)
+
+        private bool RemovePartnerForCustomer(int clientId, int partnerId)
         {
-            return _service.RemovePartnerForCustomer(custId, clientId);
+            return _service.RemovePartnerForCustomer(clientId, partnerId);
         }
 
 

@@ -81,6 +81,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlPartnerClients.ClientName = anketaPerson;
             ctrlPartnerClients.GetFreeClientList += CtrlPartnerClients_GetFreeClientList;
             ctrlPartnerClients.OnAddClientToPartner += CtrlPartnerClients_OnAddClientToPartner;
+            ctrlPartnerClients.UpdateData += CabinetPartnerForm_Load;
         }
 
         private bool CtrlPartnerClients_OnAddClientToPartner(int clientId, int partnerId)

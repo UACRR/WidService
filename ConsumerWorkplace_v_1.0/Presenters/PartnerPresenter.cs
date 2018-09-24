@@ -36,7 +36,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         private bool AddClientToPartner(int clientId, int partnerId)
         {
-            return _service.SetPartnerForCustomer(partnerId, clientId);
+            return _service.SetPartnerForCustomer(clientId, partnerId);
         }
 
         private List<PartnerView> GetPartnersView()

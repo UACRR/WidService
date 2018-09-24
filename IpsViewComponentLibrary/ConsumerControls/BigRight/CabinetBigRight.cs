@@ -150,19 +150,19 @@ namespace IpsViewComponentLibrary
             };
         }
 
-        private bool CtrlPartner_OnRemovePartner(int custId, int clientId)
+        private bool CtrlPartner_OnRemovePartner(int clientId, int partnerId)
         {
-            return OnRemovePartner?.Invoke(custId, clientId) ?? false;
+            return OnRemovePartner?.Invoke(clientId, partnerId) ?? false;
         }
 
-        private bool CtrlPartner_OnChangePartner(int custId, int clientId, int oldclientId)
+        private bool CtrlPartner_OnChangePartner(int clientId, int partnerId, int oldclientId)
         {
-            return OnChangePartner?.Invoke(custId, clientId, oldclientId) ?? false;
+            return OnChangePartner?.Invoke(clientId, partnerId, oldclientId) ?? false;
         }
 
-        private bool CtrlPartner_OnSetPartner(int custId, int clientId)
+        private bool CtrlPartner_OnSetPartner(int clientId, int partnerId)
         {
-            return OnSetPartner?.Invoke(custId, clientId) ?? false;
+            return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
 

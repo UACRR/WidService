@@ -17,6 +17,7 @@ namespace IpsViewComponentLibrary.PartnerControls
     {
         public event SetPartnerEventHandler OnAddClientToPartner;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
+        public event EventHandler UpdateData;
 
         private int _partnerId = default(int);
         public PartnerClientsControl()
@@ -49,7 +50,8 @@ namespace IpsViewComponentLibrary.PartnerControls
             var list = GetFreeClientList?.Invoke(-1);
             SelectClient selectClient = new SelectClient(list);
             selectClient.OnAddSelectedClient += SelectClient_OnAddSelectedClient;
-            selectClient.ShowDialog();
+            if(selectClient.ShowDialog() == DialogResult.OK)
+                UpdateData?.Invoke(sender, e);
         }
 
         private bool SelectClient_OnAddSelectedClient(int clientId)

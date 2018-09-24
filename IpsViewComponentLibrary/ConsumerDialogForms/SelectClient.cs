@@ -18,6 +18,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         public SelectClient(List<PartnerAllFreeClientsView> clientsList)
         {
             InitializeComponent();
+            DialogResult = DialogResult.None;
             gvViewFreeClientList.DataSource = clientsList;
             ctrlSearch.SetUsageGrid(gvViewFreeClientList);
         }
@@ -30,7 +31,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                 if (result ?? false)
                 {
                     ExtensionUtils.ShowInfoMessage("Нового клієнта додано!", "Успішно", MessageBoxIcon.Information);
-                    this.Close();
+                    DialogResult = DialogResult.OK;
                 }
                 else
                     ExtensionUtils.ShowInfoMessage("Неможливо додати клієнта!", "Помилка", MessageBoxIcon.Error);

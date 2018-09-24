@@ -506,9 +506,9 @@ namespace WebAPIConnector
             }
         }
 
-        public bool ChangePartnerForCustomer(string url, int custId, int newClientId, int? oldClientId = null)
+        public bool ChangePartnerForCustomer(string url, int clientId, int partnerId, int? oldClientId = null)
         {
-            string fullUrl = "partner/" + $"{custId}/{url}/{newClientId}";
+            string fullUrl = "partner/" + $"{clientId}/{url}/{partnerId}";
             HttpResponseMessage result = null;
             switch (url)
             {

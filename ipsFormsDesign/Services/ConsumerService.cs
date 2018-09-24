@@ -486,21 +486,21 @@ namespace ipsFormsDesign.Services
         }
 
         // додати представника клієнту
-        public bool SetPartnerForCustomer(int partnerId, int clientId)
+        public bool SetPartnerForCustomer(int clientId, int partnerId)
         {
-            return _webApi.ChangePartnerForCustomer("insert", partnerId, clientId);
+            return _webApi.ChangePartnerForCustomer("insert", clientId, partnerId);
         }
 
         // змінити представника в клієнта
-        public bool ChangePartnerForCustomer(int custId, int newClientId, int oldClientId)
+        public bool ChangePartnerForCustomer(int clientId, int partnerId, int oldClientId)
         {
-            return _webApi.ChangePartnerForCustomer("update", custId, newClientId, oldClientId);
+            return _webApi.ChangePartnerForCustomer("update", clientId, partnerId, oldClientId);
         }
 
         //вилучити представника в клієнта
-        public bool RemovePartnerForCustomer(int custId, int clientId)
+        public bool RemovePartnerForCustomer(int clientId, int partnerId)
         {
-            return _webApi.ChangePartnerForCustomer("remove", custId, clientId);
+            return _webApi.ChangePartnerForCustomer("remove", clientId, partnerId);
         }
 
         // змінити поточний статус представника
