@@ -14,5 +14,16 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _view = view;
         }
+
+        public void Load()
+        {
+            UpdateList();
+        }
+
+        private void UpdateList()
+        {
+            //var list = _fixationService.GetFixations();
+            //_view.FixationsDataSource = list;
+        }
     }
 }
