@@ -36,9 +36,38 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetSmallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
             _cabinetSmallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
             _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
-
+            _cabinetSmallRightForm.cabinet.GetPartner += Cabinet_GetPartner;
+            _cabinetSmallRightForm.cabinet.OnSetPartner += Cabinet_OnSetPartner;
+            _cabinetSmallRightForm.cabinet.OnChangePartner += Cabinet_OnChangePartner;
+            _cabinetSmallRightForm.cabinet.OnRemovePartner += Cabinet_OnRemovePartner;
+            _cabinetSmallRightForm.cabinet.OnGetPartnerListNeed += Cabinet_OnGetPartnerListNeed;
             new CalculationInfoControlPresenter(_cabinetSmallRightForm.cabinet.pagesControl.calculationCtrl, _service);
             new ReportsControlPresenter(_cabinetSmallRightForm.cabinet.pagesControl.reportsControl, _service);
+        }
+
+        private List<AnketaPerson> Cabinet_OnGetPartnerListNeed()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool Cabinet_OnRemovePartner(int clientId, int partnerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool Cabinet_OnChangePartner(int clientId, int partnerId, int oldPartnerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool Cabinet_OnSetPartner(int clientId, int partnerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        private AnketaPerson Cabinet_GetPartner(int custId)
+        {
+            return _service.GetPartnerAnketa(custId);
         }
 
         //зміна фільтра

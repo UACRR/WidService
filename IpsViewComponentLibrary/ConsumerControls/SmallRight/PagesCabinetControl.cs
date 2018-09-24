@@ -22,6 +22,13 @@ namespace IpsViewComponentLibrary
 
         public delegate void CustomerSave(Customer customer);
         public event CustomerSave OnCustomerSave;
+        public event ReturnObjectEventHandler<AnketaPerson> GetPartner;
+
+        public event SetPartnerEventHandler OnSetPartner;
+        public event SetPartnerEventHandler OnRemovePartner;
+        public event ChangePartnerEventHandler OnChangePartner;
+        public event GetPartnerList OnGetPartnerListNeed;
+
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
         public event UpdateCustomerDataEventHandler OnUpdateCustomerNeed;
 
@@ -39,6 +46,34 @@ namespace IpsViewComponentLibrary
             pvMain.SelectedPage = pvAnketa;
             ctrlAgrDetailInfo.OnSaveCommentNeed += OnSaveCommentNeed;
             ctrlAgrDetailInfoMore.OnSaveCommentNeed += OnSaveCommentNeed;
+            ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
+            ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
+            ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
+            ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
+        }
+
+        //присвоїти представника
+        private bool CtrlPartner_OnSetPartner(int clientId, int partnerId)
+        {
+            return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
+        }
+
+        //змінити представника
+        private bool CtrlPartner_OnChangePartner(int clientId, int partnerId, int oldPartnerId)
+        {
+            return OnChangePartner?.Invoke(clientId, partnerId, oldPartnerId) ?? false;
+        }
+
+        //відкріптии представника
+        private bool CtrlPartner_OnRemovePartner(int clientId, int partnerId)
+        {
+            return OnRemovePartner?.Invoke(clientId, partnerId) ?? false;
+        }
+
+
+        private List<AnketaPerson> CtrlPartner_OnGetPartnerListNeed()
+        {
+            return OnGetPartnerListNeed?.Invoke();
         }
 
         // * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -87,6 +122,7 @@ namespace IpsViewComponentLibrary
             calculationCtrl.TypeRights = TypeRights.SmallRights;
             calculationCtrl.Customer = _customer;
             ctrlPaysInfo1.Customer = _customer;
+            ctrlPartner.SetPartnerData(GetPartner?.Invoke(_customer.CustId), _customer.CustId);
         }
 
         #endregion
