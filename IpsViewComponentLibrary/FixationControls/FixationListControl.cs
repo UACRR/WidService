@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.Utilities;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
@@ -85,6 +86,8 @@ namespace IpsViewComponentLibrary.FixationControls
 
             if (!IsDesignMode)
             {
+                gvFixationsList.SetComboboxColumnDataSource("UsesType", IpsGlobal.AnketaDictionaties.usesType);
+
                 PopulateFiltersValues();
 
                 tvFilters.SelectedNode = tvFilters.Nodes[0].Nodes[0];
