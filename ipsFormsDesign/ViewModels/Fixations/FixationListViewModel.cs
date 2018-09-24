@@ -19,6 +19,6 @@ namespace ipsFormsDesign.ViewModels.Fixations
         public DateTime? FixationDate { get; set; }
         public double RewardAmount { get; set; }
         public double CourtFeeAmount { get; set; }
-        public double IncomeFeeAmount { get; set; }
+        public double IncomeAmount { get; set; }
     }
 }

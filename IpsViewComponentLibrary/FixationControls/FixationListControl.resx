@@ -117,7 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="rightholderMainViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="gridViewCommandColumn2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGeSURBVDhPlVFLy0FRFD0MPJMieYzIyIjfgJS4P0WZK48o
+        kVAmDL1mYoRMzc2UkfwH8ozW196uur576+tbtTq7c/ZaZ5+zBP6B6/WKSqUCu92ObDaL0+kEcTgcsFqt
+        sFgsNDmfz7Hb7diAVr/fDyEEzGYzMpkMRCQSgcFggF6v16TX68VkMkGn00G73Ua324XD4WATm81Gq0Ag
+        EEAul0OhUPhisVjEdDpFtVqFxWKB1WpFo9FAr9dDKBRCs9l8G8TjcTweDx5TiefziVqtxmLqI1JNk+z3
+        ez5ng1gsxh+kxO124w+jt37ERKfTidFoJHdB24DqUqkEk8n0JXa5XCx+vV5yp4bB+XxGPp9Xid1uN4bD
+        IS6XC/d9oDKg6H6LPR4P+v0+yuUyr0qoDCgupZhinM1mWC6XMBqNqNfr3PeByoDio/zp84LBIMdIGI/H
+        bEgxKsEG0WgUx+MR9/sdm80Gg8GAb9xut7xHpNE1DXQ6HUeTSCSQTCaRSqUgSRLS6TTXtEcMh8Ns0Gq1
+        ZOkbgm6nkenwL/p8PqzXa1lKAH4AJQcy6iKpkxcAAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="bsFixationListViewModel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>169, 6</value>
   </metadata>
   <metadata name="office2013LightTheme.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

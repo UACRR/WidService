@@ -9,12 +9,68 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.ViewModels.Fixations;
+using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
     public partial class FixationListControl : UserControl
     {
         private FixationListPresenter _presenter;
+
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+        }
+
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        public object FixationDataSource
+        {
+            get { return bsFixationListViewModel.DataSource; }
+            set
+            {
+                if (bsFixationListViewModel.DataSource != value)
+                    bsFixationListViewModel.DataSource = value;
+            }
+        }
+
+        public FixationQuery FixationQuery
+        {
+            get
+            {
+                var selectedNode = tvFilters.SelectedNode;
+                return (FixationQuery)selectedNode.Value;
+            }
+        }
+
+        private FixationListViewModel _selectedFixation;
+        public FixationListViewModel SelectedFixation
+        {
+            get
+            {
+                if (gvFixationsList.CurrentRow == null)
+                    return null;
+
+                return gvFixationsList.CurrentRow.DataBoundItem as FixationListViewModel;
+            }
+            set
+            {
+                if (_selectedFixation != value)
+                {
+                    _selectedFixation = value;
+
+                    if (_selectedFixation != null)
+                    {
+                        var row = gvFixationsList.Rows.FirstOrDefault(r => (int)r.Cells["FixId"].Value == _selectedFixation.FixId);
+                        if (row != null)
+                        {
+                            gvFixationsList.CurrentRow = row;
+                            gvFixationsList.TableElement.ScrollToRow(row);
+                        }
+                    }
+                }
+            }
+        }
 
         public FixationListControl()
         {
@@ -25,15 +81,27 @@ namespace IpsViewComponentLibrary.FixationControls
 
         private void FixationListControl_Load(object sender, EventArgs e)
         {
-            PopulateFiltersValues();
+            gvFixationsList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
 
-            _presenter.Load();
+            if (!IsDesignMode)
+            {
+                PopulateFiltersValues();
+
+                tvFilters.SelectedNode = tvFilters.Nodes[0].Nodes[0];
+            }
+        }
+
+        private void UpdateList()
+        {
+            waitingBar.StartWaiting();
+            _presenter.UpdateList();
+            waitingBar.StopWaiting();
         }
 
         private void PopulateFiltersValues()
         {
             var filters = new List<RadTreeNode> {
-                new RadTreeNode { Text = "Нове", Value = new FixationQuery { Stage = FixationStages.New }},
+                new RadTreeNode { Text = "Нове", Value = new FixationQuery { Stage = FixationStages.New }, Selected = true },
                 new RadTreeNode { Text = "Узгодження до фікації", Value = new FixationQuery { Stage = FixationStages.NegotiationBeforeFixation }, Nodes = {
                     new RadTreeNode { Text = "Для узгодження", Value = new FixationQuery {StageStatus = FixationStageStatuses.NegotiationBeforeFixationOnNegotioation } },
                     new RadTreeNode { Text = "Направлене користувачу", Value = new FixationQuery {StageStatus = FixationStageStatuses.NegotiationBeforeFixationDirectedToConsumer } },
@@ -76,23 +144,28 @@ namespace IpsViewComponentLibrary.FixationControls
             tvFilters.ExpandAll();
         }
 
+        private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        {
+            UpdateList();
+        }
+
         private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
         {
             if (e.Node.Level == 0)
             {
-                // set font to bold for parent nodes
+                // set font to bold for root node
                 e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
 
                 if (e.NodeElement.IsMouseOver)
                 {
-                    // prevent hover highligting parent nodes
+                    // prevent hover highligting root node
                     e.NodeElement.BackColor = Color.White;
                     e.NodeElement.BorderColor = Color.White;
                 }
             }
             else if (e.Node.Level == 1)
             {
-                // set font to bold for parent nodes
+                // set font to bold for nodes with level 1
                 e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
             }
             else
@@ -110,6 +183,11 @@ namespace IpsViewComponentLibrary.FixationControls
                     e.NodeElement.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local);
                 }
             }
+        }
+
+        private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
     }
 }

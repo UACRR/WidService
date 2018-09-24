@@ -18,15 +18,11 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixationService = new FixationService();
         }
 
-        public void Load()
+        public void UpdateList()
         {
-            UpdateList();
-        }
-
-        private void UpdateList()
-        {
-            //var list = _fixationService.GetFixations();
-            //_view.FixationsDataSource = list;
+            var query = _view.FixationQuery;
+            var list = _fixationService.GetFixationsAsync(query);
+            _view.FixationDataSource = list;
         }
     }
 }
