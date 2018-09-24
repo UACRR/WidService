@@ -6,7 +6,9 @@ using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.RightholderControls
@@ -15,6 +17,7 @@ namespace IpsViewComponentLibrary.RightholderControls
     {
         private readonly IRightholderView _view;
         private readonly RightholderService _rightholderService;
+        private readonly ObjectRightService _objectRightService;
         private readonly DialogService _dialogService;
         private Customer _customer;
         private AgreementAddRh _agreementAddRh;
@@ -27,6 +30,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             _view.Presenter = this;
 
             _rightholderService = new RightholderService();
+            _objectRightService = new ObjectRightService();
             _dialogService = new DialogService();
         }
 
@@ -130,6 +134,56 @@ namespace IpsViewComponentLibrary.RightholderControls
             _anketaPerson.LeCity = _anketaPerson.ReCity;
             _anketaPerson.LeCountry = _anketaPerson.ReCountry;
             _anketaPerson.LeRegion = _anketaPerson.ReRegion;
+        }
+
+        public void AddNewObject(int category)
+        {
+            if (category == 0)
+                return;
+
+            using (var view = new ObjectRightSrView())
+            {
+                var presenter = new ObjectRightSrPresenter(view);
+                presenter.DefaultRightholder = new RightholderMainView { CustId = _customer.CustId, Name = String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName) };
+                presenter.ShowNew(category);
+            }
+        }
+
+        public void AddExistingObject()
+        {
+            using (var selectionView = new ObjectRightSelectionView())
+            {
+                selectionView.ObjectSelected += SelectionView_ObjectSelected;
+                selectionView.ShowDialog();
+            }
+        }
+
+        private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
+        {
+            var selectedRightholder = new RightholderMainView { CustId = _customer.CustId, Name = String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName) }; ;
+
+            var objectAuthorRightholder = new ObjectAuthorRightholder(selectedRightholder);
+
+            DialogResult dialogResult;
+            using (var authorRightholderItemView = new AuthorRightholderItemView(objectAuthorRightholder, _objectRightService.GetDictionary(), selectedObject.CategoryCode))
+            {
+                dialogResult = authorRightholderItemView.ShowDialog();
+            }
+
+            if (dialogResult == DialogResult.OK)
+            {
+                var result = _objectRightService.AddAuthorRightholderForObject(selectedObject.ObjId, objectAuthorRightholder, out string error);
+
+                if (result)
+                {
+                    ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+                    ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+                }
+                else
+                {
+                    _dialogService.ShowError((IWin32Window)_view, error);
+                }
+            }
         }
     }
 }

@@ -825,6 +825,7 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Об\'єкт права";
             this.ThemeName = "Office2013Light";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ObjectRightSrView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seekObjectBindingSource)).EndInit();

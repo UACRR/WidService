@@ -259,6 +259,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 txtTotalPersent.ForeColor = SystemColors.ControlText;
         }
 
+        private void ObjectRightSrView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _presenter.Close();
+            e.Cancel = true;
+        }
+
         #region Validation
 
         private void autoObjectName_Validating(object sender, CancelEventArgs e)

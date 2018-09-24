@@ -12,5 +12,7 @@ namespace ipsFormsDesign.Interfaces
         void CopyAddressFactToRegister();
         void CopyAddressFactToLetter();
         void CopyAddressRegisterToLetter();
+        void AddNewObject(int category);
+        void AddExistingObject();
     }
 }

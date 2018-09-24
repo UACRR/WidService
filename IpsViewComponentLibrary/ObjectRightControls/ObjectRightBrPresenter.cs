@@ -5,11 +5,8 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -26,8 +23,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             _view = view;
             _view.Presenter = this;
-
-            _view.FormClosing += View_FormClosing;
 
             _objectRightService = new ObjectRightService();
             _dialogService = new DialogService();
@@ -85,7 +80,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 _dialogService.ShowError(_view, "Не вдалося зберегти об'єкт.");
         }
 
-        private void View_FormClosing(object sender, FormClosingEventArgs e)
+        public void Close()
         {
             if (!_canClose)
                 _canClose = _dialogService.ClosingIsConfirmed(_view);

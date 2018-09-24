@@ -55,5 +55,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             _presenter.Save();
         }
+
+        private void ObjectRightBrView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _presenter.Close();
+            e.Cancel = true;
+        }
     }
 }
