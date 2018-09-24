@@ -538,10 +538,10 @@
     <Compile Include="InformationFooterGenAgrBigRight.Designer.cs">
       <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="InformationOfUserControl.cs">
+    <Compile Include="_trash\InformationOfUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InformationOfUserControl.Designer.cs">
+    <Compile Include="_trash\InformationOfUserControl.Designer.cs">
       <DependentUpon>InformationOfUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsAnketaCompanyControl.cs">
@@ -1068,7 +1068,7 @@
     <EmbeddedResource Include="InformationFooterGenAgrBigRight.resx">
       <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InformationOfUserControl.resx">
+    <EmbeddedResource Include="_trash\InformationOfUserControl.resx">
       <DependentUpon>InformationOfUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsAnketaCompanyControl.resx">

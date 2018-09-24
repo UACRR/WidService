@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
 
@@ -16,10 +17,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
     {
         private Customer _customer;
         public event SaveCustomerEventHandler OnSaveCustomer;
+        public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
+        public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
         public CabinetPartnerForm(Customer customer)
         {
             InitializeComponent();
-
+            Load += CabinetPartnerForm_Load;
             DialogResult = DialogResult.None;
             _customer = customer;
 
@@ -28,6 +31,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             var anketaPerson = _customer.Person.AnketaPerson.SingleOrDefault();
             // представник
             ctrlPartnerName.DataSourceAnketa = anketaPerson;
+            
 
             // контакти
             ctrlContacts.DataSource = anketaPerson;
@@ -71,11 +75,25 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
 
             #endregion
+
+            ctrlPartnerClients.ClientName = anketaPerson;
+            ctrlPartnerClients.GetFreeClientList += CtrlPartnerClients_GetFreeClientList;
+        }
+
+        private List<PartnerAllFreeClientsView> CtrlPartnerClients_GetFreeClientList(int custId)
+        {
+            return GetFreeClientList?.Invoke(custId);
+        }
+
+        private void CabinetPartnerForm_Load(object sender, EventArgs e)
+        {
+            var list = GetPartnerClientList?.Invoke(_customer.CustId);
+            ctrlPartnerClients.SetData(list);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // some code
+            //cancel changes
         }
 
         private void btnSave_Click(object sender, EventArgs e)

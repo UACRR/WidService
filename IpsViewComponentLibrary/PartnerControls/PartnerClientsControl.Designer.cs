@@ -28,18 +28,202 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.btnAddClient = new Telerik.WinControls.UI.RadButton();
+            this.lblPartnerName = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+            this.gvViewConsumers = new Telerik.WinControls.UI.RadGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddClient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPartnerName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ctrlSearch
+            // 
+            this.ctrlSearch.Location = new System.Drawing.Point(128, 28);
+            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
+            this.ctrlSearch.Name = "ctrlSearch";
+            this.ctrlSearch.Size = new System.Drawing.Size(567, 20);
+            this.ctrlSearch.TabIndex = 0;
+            // 
+            // btnAddClient
+            // 
+            this.btnAddClient.Location = new System.Drawing.Point(12, 28);
+            this.btnAddClient.Name = "btnAddClient";
+            this.btnAddClient.Size = new System.Drawing.Size(110, 20);
+            this.btnAddClient.TabIndex = 2;
+            this.btnAddClient.Text = "Додати Клієнта";
+            this.btnAddClient.ThemeName = "Office2013Light";
+            this.btnAddClient.Click += new System.EventHandler(this.btnAddClient_Click);
+            // 
+            // lblPartnerName
+            // 
+            this.lblPartnerName.AutoSize = false;
+            this.lblPartnerName.BorderVisible = true;
+            this.lblPartnerName.Location = new System.Drawing.Point(92, 3);
+            this.lblPartnerName.MinimumSize = new System.Drawing.Size(45, 18);
+            this.lblPartnerName.Name = "lblPartnerName";
+            // 
+            // 
+            // 
+            this.lblPartnerName.RootElement.MinSize = new System.Drawing.Size(45, 18);
+            this.lblPartnerName.Size = new System.Drawing.Size(379, 18);
+            this.lblPartnerName.TabIndex = 32;
+            this.lblPartnerName.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.lblPartnerName.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblPartnerName.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblPartnerName.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblPartnerName.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblPartnerName.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // radLabel16
+            // 
+            this.radLabel16.Location = new System.Drawing.Point(3, 3);
+            this.radLabel16.Name = "radLabel16";
+            this.radLabel16.Size = new System.Drawing.Size(83, 19);
+            this.radLabel16.TabIndex = 31;
+            this.radLabel16.Text = "Представник:";
+            this.radLabel16.ThemeName = "Office2013Light";
+            // 
+            // gvViewConsumers
+            // 
+            this.gvViewConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvViewConsumers.AutoScroll = true;
+            this.gvViewConsumers.EnableCustomFiltering = true;
+            this.gvViewConsumers.Location = new System.Drawing.Point(3, 54);
+            // 
+            // 
+            // 
+            this.gvViewConsumers.MasterTemplate.AllowAddNewRow = false;
+            this.gvViewConsumers.MasterTemplate.AllowDeleteRow = false;
+            this.gvViewConsumers.MasterTemplate.AllowDragToGroup = false;
+            this.gvViewConsumers.MasterTemplate.AllowEditRow = false;
+            this.gvViewConsumers.MasterTemplate.AutoGenerateColumns = false;
+            this.gvViewConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.DataType = typeof(int);
+            gridViewTextBoxColumn1.FieldName = "CustId";
+            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn2.FieldName = "ClCustId";
+            gridViewTextBoxColumn2.HeaderText = "ID клієнта";
+            gridViewTextBoxColumn2.MaxWidth = 100;
+            gridViewTextBoxColumn2.MinWidth = 78;
+            gridViewTextBoxColumn2.Multiline = true;
+            gridViewTextBoxColumn2.Name = "ClCustId";
+            gridViewTextBoxColumn2.Width = 100;
+            gridViewTextBoxColumn2.WrapText = true;
+            gridViewTextBoxColumn3.DataType = typeof(int);
+            gridViewTextBoxColumn3.FieldName = "Innokpo";
+            gridViewTextBoxColumn3.HeaderText = "ЄДРПОУ/ІПН";
+            gridViewTextBoxColumn3.MaxWidth = 100;
+            gridViewTextBoxColumn3.MinWidth = 80;
+            gridViewTextBoxColumn3.Name = "Innokpo";
+            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn3.Width = 100;
+            gridViewTextBoxColumn4.FieldName = "ClientName";
+            gridViewTextBoxColumn4.HeaderText = "Назва клієнта";
+            gridViewTextBoxColumn4.Multiline = true;
+            gridViewTextBoxColumn4.Name = "ClientName";
+            gridViewTextBoxColumn4.Width = 510;
+            gridViewTextBoxColumn4.WrapText = true;
+            gridViewTextBoxColumn5.FieldName = "AgrCount";
+            gridViewTextBoxColumn5.HeaderText = "К-сть діючих договорів";
+            gridViewTextBoxColumn5.MaxWidth = 80;
+            gridViewTextBoxColumn5.MinWidth = 80;
+            gridViewTextBoxColumn5.Multiline = true;
+            gridViewTextBoxColumn5.Name = "AgrCount";
+            gridViewTextBoxColumn5.Width = 80;
+            gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.FieldName = "SumBorg";
+            gridViewTextBoxColumn6.HeaderText = "Заборгованість";
+            gridViewTextBoxColumn6.MaxWidth = 110;
+            gridViewTextBoxColumn6.MinWidth = 110;
+            gridViewTextBoxColumn6.Name = "SumBorg";
+            gridViewTextBoxColumn6.Width = 110;
+            gridViewCommandColumn1.AllowResize = false;
+            gridViewCommandColumn1.AllowSort = false;
+            gridViewCommandColumn1.DefaultText = "Відкрити";
+            gridViewCommandColumn1.FieldName = "btnView";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn1.MaxWidth = 35;
+            gridViewCommandColumn1.MinWidth = 35;
+            gridViewCommandColumn1.Name = "btnView";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.Width = 35;
+            this.gvViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewCommandColumn1});
+            this.gvViewConsumers.MasterTemplate.EnableCustomFiltering = true;
+            this.gvViewConsumers.MasterTemplate.EnableFiltering = true;
+            this.gvViewConsumers.MasterTemplate.EnableGrouping = false;
+            this.gvViewConsumers.MasterTemplate.ShowFilteringRow = false;
+            this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvViewConsumers.Name = "gvViewConsumers";
+            this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvViewConsumers.Size = new System.Drawing.Size(956, 503);
+            this.gvViewConsumers.TabIndex = 34;
+            this.gvViewConsumers.ThemeName = "Office2013Light";
+            this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewConsumers_CommandCellClick);
             // 
             // PartnerClientsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gvViewConsumers);
+            this.Controls.Add(this.lblPartnerName);
+            this.Controls.Add(this.radLabel16);
+            this.Controls.Add(this.btnAddClient);
+            this.Controls.Add(this.ctrlSearch);
             this.Name = "PartnerClientsControl";
-            this.Size = new System.Drawing.Size(1233, 643);
+            this.Size = new System.Drawing.Size(962, 560);
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddClient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblPartnerName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private Common.SearchTextBoxControl ctrlSearch;
+        private Telerik.WinControls.UI.RadButton btnAddClient;
+        private Telerik.WinControls.UI.RadLabel lblPartnerName;
+        private Telerik.WinControls.UI.RadLabel radLabel16;
+        private Telerik.WinControls.UI.RadGridView gvViewConsumers;
     }
 }

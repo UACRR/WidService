@@ -55,8 +55,7 @@ namespace IpsViewComponentLibrary
 
         #region events точечного отримання даних
 
-        public delegate List<T> ReturnViewEventHandler<T>(int custId);
-        public delegate T ReturnObjectEventHandler<out T>(int custId);
+
         public event ReturnObjectEventHandler<Customer> GetCustomer;
         public event ReturnObjectEventHandler<MainGridConsumerBigRightView> GetMainGridView;
         public event ReturnViewEventHandler<GeneralAgreementBigRightView> GetGeneralAgreementView;

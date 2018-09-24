@@ -756,7 +756,7 @@ namespace ipsmedserviceapp.Controllers
             {"vTsk_1_BRMusic", "vTsk_1_BRMusic"},
             {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
             {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
-
+            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"}
         };
 
 

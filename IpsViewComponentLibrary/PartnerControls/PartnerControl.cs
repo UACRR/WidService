@@ -17,13 +17,14 @@ namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class PartnerControl : UserControl
     {
-        public delegate List<T> ReturnViewEventHandler<T>();
-        public event ReturnViewEventHandler<PartnerView> GetPartnersView;
-
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
         public event GetCustomerEventHandler GetPartnerById;
+        public delegate List<T> ReturnPartnerViewEventHandler<T>();
+        public event ReturnPartnerViewEventHandler<PartnerView> GetPartnersView;
+        public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
+        public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
 
         public PartnerControl()
         {
@@ -167,10 +168,22 @@ namespace IpsViewComponentLibrary.PartnerControls
                     var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
                     CabinetPartnerForm cabinetPartner = new CabinetPartnerForm(customer);
                     cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
+                    cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
+                    cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
 
                     cabinetPartner.Show();
                     break;
             }
+        }
+
+        private List<PartnerAllFreeClientsView> CabinetPartner_GetFreeClientList(int custId)
+        {
+            return GetFreeClientList?.Invoke(custId);
+        }
+
+        private List<PartnerClientListView> CabinetPartner_GetPartnerClientList(int custId)
+        {
+            return GetPartnerClientList?.Invoke(custId);
         }
 
         private bool SaveAnketaPartner(Customer customer)

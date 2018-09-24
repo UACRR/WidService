@@ -29,11 +29,23 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _partner.OnCreateNewCustomerNeed += CreateNewCustomer;
             _partner.OnSaveCustomer += SaveCustomer;
             _partner.GetPartnerById += GetPartner;
+            _partner.GetFreeClientList += GetClientsView;
+            _partner.GetPartnerClientList += GetPartnerClientsView;
         }
 
         private List<PartnerView> GetPartnersView()
         {
             return _service.getBRView(typeof(PartnerView), "vTsk_6_ListPartner", null).ToListOfType<PartnerView>();
+        }
+
+        private List<PartnerClientListView> GetPartnerClientsView(int custId)
+        {
+            return _service.getBRView(typeof(PartnerClientListView), "vTsk_6_ListPClient", custId).ToListOfType<PartnerClientListView>();
+        }
+
+        private List<PartnerAllFreeClientsView> GetClientsView(int custid)
+        {
+            return _service.getBRView(typeof(PartnerAllFreeClientsView), "vTsk_6_ListFreeCln", null).ToListOfType<PartnerAllFreeClientsView>();
         }
 
         //створити Customer

@@ -57,8 +57,8 @@
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.pvClients = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartnerClients = new IpsViewComponentLibrary.PartnerControls.PartnerClientsControl();
+            this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -469,6 +469,14 @@
             this.pvClients.Size = new System.Drawing.Size(1065, 510);
             this.pvClients.Text = "Клієнти представника";
             // 
+            // ctrlPartnerClients
+            // 
+            this.ctrlPartnerClients.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPartnerClients.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPartnerClients.Name = "ctrlPartnerClients";
+            this.ctrlPartnerClients.Size = new System.Drawing.Size(1065, 510);
+            this.ctrlPartnerClients.TabIndex = 0;
+            // 
             // pvFiles
             // 
             this.pvFiles.Enabled = false;
@@ -477,14 +485,6 @@
             this.pvFiles.Name = "pvFiles";
             this.pvFiles.Size = new System.Drawing.Size(1065, 510);
             this.pvFiles.Text = "Файли";
-            // 
-            // ctrlPartnerClients
-            // 
-            this.ctrlPartnerClients.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPartnerClients.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPartnerClients.Name = "ctrlPartnerClients";
-            this.ctrlPartnerClients.Size = new System.Drawing.Size(1065, 510);
-            this.ctrlPartnerClients.TabIndex = 0;
             // 
             // CabinetPartnerForm
             // 
