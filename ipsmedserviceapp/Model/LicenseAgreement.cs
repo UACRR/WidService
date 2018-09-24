@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         public LicenseAgreement()
         {
             BrRegItem = new HashSet<BrRegItem>();
+            Fixation = new HashSet<Fixation>();
             LicPlace = new HashSet<LicPlace>();
             LicenseAgrParam = new HashSet<LicenseAgrParam>();
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
@@ -38,6 +39,8 @@ namespace ipsmedserviceapp.Model
         public LicenseBigR LicenseBigR { get; set; }
         [JsonIgnore]
         public ICollection<BrRegItem> BrRegItem { get; set; }
+        [JsonIgnore]
+        public ICollection<Fixation> Fixation { get; set; }
         [JsonIgnore]
         public ICollection<LicPlace> LicPlace { get; set; }
         public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }

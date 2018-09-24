@@ -116,6 +116,10 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<ExternalPay> ExternalPay { get; set; }
         public virtual DbSet<FileCustomer> FileCustomer { get; set; }
         public virtual DbSet<FileType> FileType { get; set; }
+        public virtual DbSet<Fixation> Fixation { get; set; }
+        public virtual DbSet<FixFile> FixFile { get; set; }
+        public virtual DbSet<FixStageStatus> FixStageStatus { get; set; }
+        public virtual DbSet<FixStorageDevice> FixStorageDevice { get; set; }
         public virtual DbSet<FolkType> FolkType { get; set; }
         public virtual DbSet<FolkTypeTr> FolkTypeTr { get; set; }
         public virtual DbSet<GenreType> GenreType { get; set; }
@@ -301,13 +305,15 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<WorkType> WorkType { get; set; }
         public virtual DbSet<WorkTypeTr> WorkTypeTr { get; set; }
 
+        // Unable to generate entity type for table 'dbo.MusicalDesign_old'. Please see the warning messages.
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //if (!optionsBuilder.IsConfigured)
-            //{
+            if (!optionsBuilder.IsConfigured)
+            {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
 //                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
-//            }
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -1243,6 +1249,11 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
                     .HasMaxLength(3)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.InnOkpo)
+                    .HasColumnName("innOkpo")
+                    .HasMaxLength(12)
                     .IsUnicode(false);
 
                 entity.Property(e => e.InterCode)
@@ -3250,11 +3261,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.PartnerId).HasColumnName("partnerId");
 
-                entity.Property(e => e.PeriodId).HasColumnName("periodId");
-
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
                 entity.Property(e => e.RegIdBr).HasColumnName("regIdBr");
+
+                entity.Property(e => e.RmId).HasColumnName("rmId");
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
@@ -3275,11 +3286,6 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.PartnerId)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_PARTNER");
 
-                entity.HasOne(d => d.Period)
-                    .WithMany(p => p.Distribution)
-                    .HasForeignKey(d => d.PeriodId)
-                    .HasConstraintName("FK_DISTRIBU_REFERENCE_PAIDPERI");
-
                 entity.HasOne(d => d.Reg)
                     .WithMany(p => p.Distribution)
                     .HasForeignKey(d => d.RegId)
@@ -3289,6 +3295,11 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.Distribution)
                     .HasForeignKey(d => d.RegIdBr)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_BRREGIST");
+
+                entity.HasOne(d => d.Rm)
+                    .WithMany(p => p.Distribution)
+                    .HasForeignKey(d => d.RmId)
+                    .HasConstraintName("FK_DISTRIBU_REFERENCE_REGISTER");
 
                 entity.HasOne(d => d.StatusNavigation)
                     .WithMany(p => p.Distribution)
@@ -3822,6 +3833,176 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Fixation>(entity =>
+            {
+                entity.HasKey(e => e.FixId);
+
+                entity.Property(e => e.FixId)
+                    .HasColumnName("fixId")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Address)
+                    .HasColumnName("address")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.City)
+                    .HasColumnName("city")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.ClientCustId).HasColumnName("clientCustId");
+
+                entity.Property(e => e.ClientInnOkpo)
+                    .HasColumnName("clientInnOkpo")
+                    .HasMaxLength(12);
+
+                entity.Property(e => e.ClientName)
+                    .HasColumnName("clientName")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.CountPlace).HasColumnName("countPlace");
+
+                entity.Property(e => e.CourtFeeAmount)
+                    .HasColumnName("courtFeeAmount")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.EventDates)
+                    .HasColumnName("eventDates")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.EventName)
+                    .HasColumnName("eventName")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.FixStageStatus).HasColumnName("fixStageStatus");
+
+                entity.Property(e => e.FixationDate)
+                    .HasColumnName("fixationDate")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.LicId).HasColumnName("licId");
+
+                entity.Property(e => e.PartnerCustId).HasColumnName("partnerCustId");
+
+                entity.Property(e => e.Placement)
+                    .HasColumnName("placement")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.RewardAmount)
+                    .HasColumnName("rewardAmount")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.TicketPriceMax)
+                    .HasColumnName("ticketPriceMax")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.TicketPriceMin)
+                    .HasColumnName("ticketPriceMin")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("userId")
+                    .HasMaxLength(48);
+
+                entity.Property(e => e.UsesType).HasColumnName("usesType");
+
+                entity.HasOne(d => d.ClientCust)
+                    .WithMany(p => p.Fixation)
+                    .HasForeignKey(d => d.ClientCustId)
+                    .HasConstraintName("FK_FIXATION_REFERENCE_CLIENT");
+
+                entity.HasOne(d => d.FixStageStatusNavigation)
+                    .WithMany(p => p.Fixation)
+                    .HasForeignKey(d => d.FixStageStatus)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FIXATION_REFERENCE_FIXSTAGE");
+
+                entity.HasOne(d => d.Lic)
+                    .WithMany(p => p.Fixation)
+                    .HasForeignKey(d => d.LicId)
+                    .HasConstraintName("FK_FIXATION_REFERENCE_LICENSEA");
+
+                entity.HasOne(d => d.PartnerCust)
+                    .WithMany(p => p.Fixation)
+                    .HasForeignKey(d => d.PartnerCustId)
+                    .HasConstraintName("FK_FIXATION_REFERENCE_PARTNER");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Fixation)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_FIXATION_REF_ASPNETUSER");
+
+                entity.HasOne(d => d.UsesTypeNavigation)
+                    .WithMany(p => p.Fixation)
+                    .HasForeignKey(d => d.UsesType)
+                    .HasConstraintName("FK_FIXATION_REFERENCE_USESTYPE");
+            });
+
+            modelBuilder.Entity<FixFile>(entity =>
+            {
+                entity.HasKey(e => e.FileId);
+
+                entity.Property(e => e.FileId).HasColumnName("fileId");
+
+                entity.Property(e => e.FixId).HasColumnName("fixId");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.Path)
+                    .IsRequired()
+                    .HasColumnName("path")
+                    .HasMaxLength(255);
+
+                entity.HasOne(d => d.Fix)
+                    .WithMany(p => p.FixFile)
+                    .HasForeignKey(d => d.FixId)
+                    .HasConstraintName("FK_FIXFILE_REF_FIXATION");
+            });
+
+            modelBuilder.Entity<FixStageStatus>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.StageName).HasMaxLength(255);
+
+                entity.Property(e => e.StatusName).HasMaxLength(255);
+            });
+
+            modelBuilder.Entity<FixStorageDevice>(entity =>
+            {
+                entity.HasKey(e => e.StorageId);
+
+                entity.Property(e => e.StorageId).HasColumnName("storageId");
+
+                entity.Property(e => e.Capacity)
+                    .HasColumnName("capacity")
+                    .HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.FixId).HasColumnName("fixId");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.SerialNumber)
+                    .IsRequired()
+                    .HasColumnName("serialNumber")
+                    .HasMaxLength(255);
+
+                entity.HasOne(d => d.Fix)
+                    .WithMany(p => p.FixStorageDevice)
+                    .HasForeignKey(d => d.FixId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_FIXSTORAGE_REF_FIXATION");
             });
 
             modelBuilder.Entity<FolkType>(entity =>
@@ -6309,16 +6490,16 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.RgStatus)
                     .HasConstraintName("FK_REGISTER_REFERENCE_REGISTER2");
 
+                entity.HasOne(d => d.Rm)
+                    .WithMany(p => p.Register)
+                    .HasForeignKey(d => d.RmId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_REG_REF_REGRATELIST");
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Register)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_REGISTER_REFERENCE_ASPNETUS");
-
-                entity.HasOne(d => d.RegisterRatedList)
-                    .WithMany(p => p.Register)
-                    .HasForeignKey(d => new { d.PeriodId, d.RmId })
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_REG_REF_REGRATELIST");
             });
 
             modelBuilder.Entity<RegisterAuthors>(entity =>
@@ -6561,13 +6742,9 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<RegisterRatedList>(entity =>
             {
-                entity.HasKey(e => new { e.PeriodId, e.RmId });
+                entity.HasKey(e => e.RmId);
 
-                entity.Property(e => e.PeriodId).HasColumnName("periodId");
-
-                entity.Property(e => e.RmId)
-                    .HasColumnName("rmId")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.RmId).HasColumnName("rmId");
 
                 entity.Property(e => e.Amount)
                     .HasColumnName("amount")
@@ -6578,6 +6755,12 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.CreateDate)
                     .HasColumnName("createDate")
                     .HasColumnType("date");
+
+                entity.Property(e => e.PaidAmount)
+                    .HasColumnName("paidAmount")
+                    .HasColumnType("money");
+
+                entity.Property(e => e.PeriodId).HasColumnName("periodId");
 
                 entity.Property(e => e.Royalty)
                     .HasColumnName("royalty")

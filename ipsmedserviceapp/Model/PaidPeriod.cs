@@ -9,7 +9,6 @@ namespace ipsmedserviceapp.Model
         public PaidPeriod()
         {
             BrRegister = new HashSet<BrRegister>();
-            Distribution = new HashSet<Distribution>();
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
             RegisterRatedList = new HashSet<RegisterRatedList>();
         }
@@ -37,8 +36,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public PeriodStatus StatusNavigation { get; set; }
         public ICollection<BrRegister> BrRegister { get; set; }
-        [JsonIgnore]
-        public ICollection<Distribution> Distribution { get; set; }
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ICollection<RegisterRatedList> RegisterRatedList { get; set; }
     }

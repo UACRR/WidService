@@ -13,6 +13,7 @@ namespace ipsmedserviceapp.Model
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             BrRegister = new HashSet<BrRegister>();
             Employee = new HashSet<Employee>();
+            Fixation = new HashSet<Fixation>();
             Register = new HashSet<Register>();
             Request = new HashSet<Request>();
             UserRole = new HashSet<UserRole>();
@@ -43,6 +44,7 @@ namespace ipsmedserviceapp.Model
         public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<Employee> Employee { get; set; }
+        public ICollection<Fixation> Fixation { get; set; }
         public ICollection<Register> Register { get; set; }
         public ICollection<Request> Request { get; set; }
         public ICollection<UserRole> UserRole { get; set; }
