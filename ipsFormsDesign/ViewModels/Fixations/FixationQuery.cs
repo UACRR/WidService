@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ipsFormsDesign.ViewModels.Fixations
 {
@@ -10,5 +8,18 @@ namespace ipsFormsDesign.ViewModels.Fixations
     {
         public FixationStages? Stage { get; set; }
         public FixationStageStatuses? StageStatus { get; set; }
+
+        public KeyValuePair<string, string>[] ToKeyValuePair()
+        {
+            var parameters = new Collection<KeyValuePair<string, string>>();
+
+            if (Stage.HasValue)
+                parameters.Add(new KeyValuePair<string, string>("stage", ((int)Stage.Value).ToString()));
+
+            if (StageStatus.HasValue)
+                parameters.Add(new KeyValuePair<string, string>("stageStatus", ((int)StageStatus.Value).ToString()));
+
+            return parameters.ToArray();
+        }
     }
 }

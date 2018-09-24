@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ipsFormsDesign.ViewModels.Fixations
 {
@@ -14,11 +10,12 @@ namespace ipsFormsDesign.ViewModels.Fixations
         public string ClientName { get; set; }
         public string EventDates { get; set; }
         public string EventLocation { get; set; }
+        public string StageName { get; set; }
         public string StatusName { get; set; }
         public string Responsible { get; set; }
         public DateTime? FixationDate { get; set; }
-        public double RewardAmount { get; set; }
-        public double CourtFeeAmount { get; set; }
-        public double IncomeAmount { get; set; }
+        public decimal? RewardAmount { get; set; }
+        public decimal? CourtFeeAmount { get; set; }
+        public decimal? IncomeAmount { get; set; }
     }
 }

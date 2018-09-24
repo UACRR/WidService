@@ -1,9 +1,4 @@
 ﻿using ipsFormsDesign.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
@@ -18,10 +13,10 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixationService = new FixationService();
         }
 
-        public void UpdateList()
+        public async void UpdateList()
         {
             var query = _view.FixationQuery;
-            var list = _fixationService.GetFixationsAsync(query);
+            var list = await _fixationService.GetFixationsAsync(query);
             _view.FixationDataSource = list;
         }
     }
