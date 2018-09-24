@@ -80,12 +80,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             #endregion
 
-            SetFormType(loadType);
-        }
-
-        private void SetFormType(FLoadType loadType)
-        {
-
         }
     }
 }

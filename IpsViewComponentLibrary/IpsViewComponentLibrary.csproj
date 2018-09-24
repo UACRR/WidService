@@ -282,6 +282,12 @@
     <Compile Include="ConsumerForms\CabinetBigRightForm.Designer.cs">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerForms\CabinetPartnerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetPartnerForm.Designer.cs">
+      <DependentUpon>CabinetPartnerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerForms\CabinetSmallRightForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -920,6 +926,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\CabinetBigRightForm.resx">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\CabinetPartnerForm.resx">
+      <DependentUpon>CabinetPartnerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
