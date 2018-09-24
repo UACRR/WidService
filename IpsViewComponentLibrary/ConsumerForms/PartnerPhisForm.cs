@@ -71,7 +71,38 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
 
             #endregion
+        }
 
+        private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)
+        {
+            ctrlAddressRegister.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
+            ctrlAddressRegister.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
+            ctrlAddressRegister.TxtCity.Select();
+            ctrlAddressRegister.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
+            ctrlAddressRegister.TxtAddress.Select();
+            ctrlAddressRegister.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
+        }
+
+        private void btnCopyFromLiveToLett_Click(object sender, EventArgs e)
+        {
+            ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
+            ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
+            ctrlAddressLetter.TxtCity.Select();
+            ctrlAddressLetter.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
+            ctrlAddressLetter.TxtAddress.Select();
+            ctrlAddressLetter.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
+            ctrlAddressLetter.TxtPostIndex.Select();
+        }
+
+        private void btnCopyFromRegToLett_Click(object sender, EventArgs e)
+        {
+            ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressRegister.DdlCountry.SelectedValue;
+            ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressRegister.DdlRegion.SelectedIndex;
+            ctrlAddressLetter.TxtCity.Select();
+            ctrlAddressLetter.TxtCity.Text = ctrlAddressRegister.TxtCity.Text;
+            ctrlAddressLetter.TxtAddress.Select();
+            ctrlAddressLetter.TxtAddress.Text = ctrlAddressRegister.TxtAddress.Text;
+            ctrlAddressLetter.TxtPostIndex.Select();
         }
     }
 }

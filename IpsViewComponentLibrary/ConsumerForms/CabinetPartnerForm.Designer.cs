@@ -39,6 +39,12 @@
             this.pvPartnerName = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartnerName = new IpsViewComponentLibrary.PartnerControls.PartnerNameControl();
             this.pvContact = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
+            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
+            this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
+            this.btnCopyFromRegToLett = new Telerik.WinControls.UI.RadButton();
+            this.btnCopyFromLiveToLett = new Telerik.WinControls.UI.RadButton();
+            this.btnCopyFromLiveToReg = new Telerik.WinControls.UI.RadButton();
             this.ctrlAddressLetter = new IpsViewComponentLibrary.AddressLetter();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -73,6 +79,12 @@
             this.pageViewAnketa.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
             this.pvContact.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromRegToLett)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToLett)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtAddress)).BeginInit();
@@ -181,6 +193,12 @@
             // 
             // pvContact
             // 
+            this.pvContact.Controls.Add(this.radSeparator3);
+            this.pvContact.Controls.Add(this.radSeparator1);
+            this.pvContact.Controls.Add(this.radSeparator2);
+            this.pvContact.Controls.Add(this.btnCopyFromRegToLett);
+            this.pvContact.Controls.Add(this.btnCopyFromLiveToLett);
+            this.pvContact.Controls.Add(this.btnCopyFromLiveToReg);
             this.pvContact.Controls.Add(this.ctrlAddressLetter);
             this.pvContact.Controls.Add(this.radLabel3);
             this.pvContact.Controls.Add(this.radLabel2);
@@ -191,8 +209,68 @@
             this.pvContact.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvContact.Location = new System.Drawing.Point(134, 5);
             this.pvContact.Name = "pvContact";
-            this.pvContact.Size = new System.Drawing.Size(861, 557);
+            this.pvContact.Size = new System.Drawing.Size(926, 469);
             this.pvContact.Text = "Контакти";
+            // 
+            // radSeparator3
+            // 
+            this.radSeparator3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator3.Location = new System.Drawing.Point(152, 191);
+            this.radSeparator3.Name = "radSeparator3";
+            this.radSeparator3.Size = new System.Drawing.Size(771, 19);
+            this.radSeparator3.TabIndex = 46;
+            this.radSeparator3.ThemeName = "Office2013Light";
+            // 
+            // radSeparator1
+            // 
+            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator1.Location = new System.Drawing.Point(150, 87);
+            this.radSeparator1.Name = "radSeparator1";
+            this.radSeparator1.Size = new System.Drawing.Size(773, 19);
+            this.radSeparator1.TabIndex = 45;
+            this.radSeparator1.ThemeName = "Office2013Light";
+            // 
+            // radSeparator2
+            // 
+            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator2.Location = new System.Drawing.Point(152, 8);
+            this.radSeparator2.Name = "radSeparator2";
+            this.radSeparator2.Size = new System.Drawing.Size(771, 19);
+            this.radSeparator2.TabIndex = 44;
+            this.radSeparator2.ThemeName = "Office2013Light";
+            // 
+            // btnCopyFromRegToLett
+            // 
+            this.btnCopyFromRegToLett.Location = new System.Drawing.Point(370, 216);
+            this.btnCopyFromRegToLett.Name = "btnCopyFromRegToLett";
+            this.btnCopyFromRegToLett.Size = new System.Drawing.Size(195, 19);
+            this.btnCopyFromRegToLett.TabIndex = 42;
+            this.btnCopyFromRegToLett.Text = "Копіювати з адреси реєстрації";
+            this.btnCopyFromRegToLett.ThemeName = "Office2013Light";
+            this.btnCopyFromRegToLett.Click += new System.EventHandler(this.btnCopyFromRegToLett_Click);
+            // 
+            // btnCopyFromLiveToLett
+            // 
+            this.btnCopyFromLiveToLett.Location = new System.Drawing.Point(164, 216);
+            this.btnCopyFromLiveToLett.Name = "btnCopyFromLiveToLett";
+            this.btnCopyFromLiveToLett.Size = new System.Drawing.Size(195, 19);
+            this.btnCopyFromLiveToLett.TabIndex = 41;
+            this.btnCopyFromLiveToLett.Text = "Копіювати з адреси проживання";
+            this.btnCopyFromLiveToLett.ThemeName = "Office2013Light";
+            this.btnCopyFromLiveToLett.Click += new System.EventHandler(this.btnCopyFromLiveToLett_Click);
+            // 
+            // btnCopyFromLiveToReg
+            // 
+            this.btnCopyFromLiveToReg.Location = new System.Drawing.Point(164, 112);
+            this.btnCopyFromLiveToReg.Name = "btnCopyFromLiveToReg";
+            this.btnCopyFromLiveToReg.Size = new System.Drawing.Size(195, 19);
+            this.btnCopyFromLiveToReg.TabIndex = 40;
+            this.btnCopyFromLiveToReg.Text = "Копіювати з адреси проживання";
+            this.btnCopyFromLiveToReg.ThemeName = "Office2013Light";
+            this.btnCopyFromLiveToReg.Click += new System.EventHandler(this.btnCopyFromLiveToReg_Click);
             // 
             // ctrlAddressLetter
             // 
@@ -243,7 +321,7 @@
             this.ctrlAddressLetter.DdlRegion.Size = new System.Drawing.Size(190, 20);
             this.ctrlAddressLetter.DdlRegion.TabIndex = 1;
             this.ctrlAddressLetter.DdlRegion.ThemeName = "Office2013Light";
-            this.ctrlAddressLetter.Location = new System.Drawing.Point(152, 116);
+            this.ctrlAddressLetter.Location = new System.Drawing.Point(164, 241);
             this.ctrlAddressLetter.Name = "ctrlAddressLetter";
             this.ctrlAddressLetter.PostIndexDataMember = null;
             this.ctrlAddressLetter.RegionDataMember = null;
@@ -305,7 +383,7 @@
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(24, 116);
+            this.radLabel3.Location = new System.Drawing.Point(24, 191);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(114, 19);
             this.radLabel3.TabIndex = 38;
@@ -314,7 +392,7 @@
             // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(24, 62);
+            this.radLabel2.Location = new System.Drawing.Point(24, 87);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(108, 19);
             this.radLabel2.TabIndex = 37;
@@ -337,7 +415,7 @@
             this.ctrlAddressRegister.CountryDataMember = null;
             this.ctrlAddressRegister.DataMember = "";
             this.ctrlAddressRegister.DataSource = null;
-            this.ctrlAddressRegister.Location = new System.Drawing.Point(152, 62);
+            this.ctrlAddressRegister.Location = new System.Drawing.Point(164, 137);
             this.ctrlAddressRegister.Name = "ctrlAddressRegister";
             this.ctrlAddressRegister.RegionDataMember = null;
             this.ctrlAddressRegister.Size = new System.Drawing.Size(612, 48);
@@ -350,7 +428,7 @@
             this.ctrlAddressLive.CountryDataMember = null;
             this.ctrlAddressLive.DataMember = "";
             this.ctrlAddressLive.DataSource = null;
-            this.ctrlAddressLive.Location = new System.Drawing.Point(152, 8);
+            this.ctrlAddressLive.Location = new System.Drawing.Point(164, 33);
             this.ctrlAddressLive.Name = "ctrlAddressLive";
             this.ctrlAddressLive.RegionDataMember = null;
             this.ctrlAddressLive.Size = new System.Drawing.Size(612, 48);
@@ -359,7 +437,7 @@
             // ctrlContacts
             // 
             this.ctrlContacts.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
-            this.ctrlContacts.Location = new System.Drawing.Point(29, 184);
+            this.ctrlContacts.Location = new System.Drawing.Point(41, 295);
             this.ctrlContacts.MaximumSize = new System.Drawing.Size(625, 50);
             this.ctrlContacts.Name = "ctrlContacts";
             this.ctrlContacts.Size = new System.Drawing.Size(625, 50);
@@ -512,10 +590,10 @@
             // 
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
             this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
-            this.ctrlAgreement.MaximumSize = new System.Drawing.Size(394, 140);
+            this.ctrlAgreement.MaximumSize = new System.Drawing.Size(500, 140);
             this.ctrlAgreement.MinimumSize = new System.Drawing.Size(394, 140);
             this.ctrlAgreement.Name = "ctrlAgreement";
-            this.ctrlAgreement.Size = new System.Drawing.Size(394, 140);
+            this.ctrlAgreement.Size = new System.Drawing.Size(498, 140);
             this.ctrlAgreement.TabIndex = 0;
             // 
             // pvTerms
@@ -607,6 +685,12 @@
             this.pvPartnerName.ResumeLayout(false);
             this.pvContact.ResumeLayout(false);
             this.pvContact.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromRegToLett)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToLett)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtAddress)).EndInit();
@@ -677,5 +761,11 @@
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadPageView pageView;
         private Telerik.WinControls.UI.RadMenuItem btnAcceptAgr;
+        private Telerik.WinControls.UI.RadButton btnCopyFromRegToLett;
+        private Telerik.WinControls.UI.RadButton btnCopyFromLiveToLett;
+        private Telerik.WinControls.UI.RadButton btnCopyFromLiveToReg;
+        private Telerik.WinControls.UI.RadSeparator radSeparator3;
+        private Telerik.WinControls.UI.RadSeparator radSeparator1;
+        private Telerik.WinControls.UI.RadSeparator radSeparator2;
     }
 }

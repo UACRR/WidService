@@ -35,5 +35,11 @@ namespace IpsViewComponentLibrary.PartnerControls
             if (Int32.TryParse(txtDayForPay.Text, out int val) && val > 31)
                 txtDayForPay.Text = "31";
         }
+
+        private void checkForever_CheckStateChanged(object sender, EventArgs e)
+        {
+            dtDateEnd.Value = checkForever.Checked ? dtDateEnd.MaxDate : DateTime.Today;
+            dtDateEnd.Enabled = !checkForever.Checked;
+        }
     }
 }

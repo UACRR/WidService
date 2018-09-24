@@ -46,6 +46,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
+            this.checkForever = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).BeginInit();
@@ -61,6 +62,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkForever)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel2
@@ -219,10 +221,21 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.lblContrNumb.Text = "Договір №";
             this.lblContrNumb.ThemeName = "Office2013Light";
             // 
-            // AgreementWithPartnerControl
+            // checkForever
+            // 
+            this.checkForever.Location = new System.Drawing.Point(394, 28);
+            this.checkForever.Name = "checkForever";
+            this.checkForever.Size = new System.Drawing.Size(80, 19);
+            this.checkForever.TabIndex = 57;
+            this.checkForever.Text = "Назавжди";
+            this.checkForever.ThemeName = "Office2013Light";
+            this.checkForever.CheckStateChanged += new System.EventHandler(this.checkForever_CheckStateChanged);
+            // 
+            // AgreementPartnerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkForever);
             this.Controls.Add(this.lblContrDo);
             this.Controls.Add(this.dtDateEnd);
             this.Controls.Add(this.lblContrDoTo);
@@ -232,10 +245,10 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.Controls.Add(this.txtAgrNumber);
             this.Controls.Add(this.lblContrNumb);
             this.Controls.Add(this.groupBox);
-            this.MaximumSize = new System.Drawing.Size(394, 140);
-            this.MinimumSize = new System.Drawing.Size(394, 140);
-            this.Name = "AgreementWithPartnerControl";
-            this.Size = new System.Drawing.Size(394, 140);
+            this.MaximumSize = new System.Drawing.Size(504, 140);
+            this.MinimumSize = new System.Drawing.Size(485, 140);
+            this.Name = "AgreementPartnerControl";
+            this.Size = new System.Drawing.Size(485, 140);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).EndInit();
@@ -252,6 +265,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkForever)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,5 +287,6 @@ namespace IpsViewComponentLibrary.PartnerControls
         private Telerik.WinControls.UI.RadTextBox txtAgrNumber;
         private Telerik.WinControls.UI.RadLabel lblContrNumb;
         private System.Windows.Forms.BindingSource bsDictPaidPeriod;
+        private Telerik.WinControls.UI.RadCheckBox checkForever;
     }
 }

@@ -53,6 +53,13 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddPartner)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCourtCompRate)).BeginInit();
@@ -74,6 +81,13 @@ namespace IpsViewComponentLibrary.PartnerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             this.SuspendLayout();
             // 
             // bsAgreementAddPartner
@@ -82,6 +96,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.radLabel15);
             this.groupBox5.Controls.Add(this.txtCourtCompRate);
             this.groupBox5.Controls.Add(this.radLabel11);
             this.groupBox5.Location = new System.Drawing.Point(3, 301);
@@ -94,7 +109,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // txtCourtCompRate
             // 
-            this.txtCourtCompRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "CourtCompRate", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.txtCourtCompRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "CourtCompRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtCourtCompRate.Location = new System.Drawing.Point(264, 21);
             this.txtCourtCompRate.Name = "txtCourtCompRate";
             this.txtCourtCompRate.Size = new System.Drawing.Size(54, 21);
@@ -113,6 +128,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.radLabel14);
             this.groupBox4.Controls.Add(this.txtNoCourtRate);
             this.groupBox4.Controls.Add(this.radLabel10);
             this.groupBox4.Location = new System.Drawing.Point(3, 227);
@@ -124,7 +140,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // txtNoCourtRate
             // 
-            this.txtNoCourtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "NoCourtRate", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.txtNoCourtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "NoCourtRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtNoCourtRate.Location = new System.Drawing.Point(264, 23);
             this.txtNoCourtRate.Name = "txtNoCourtRate";
             this.txtNoCourtRate.Size = new System.Drawing.Size(54, 21);
@@ -144,6 +160,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.radLabel13);
             this.groupBox3.Controls.Add(this.txtCourtRate);
             this.groupBox3.Controls.Add(this.radLabel12);
             this.groupBox3.Location = new System.Drawing.Point(3, 157);
@@ -155,7 +172,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // txtCourtRate
             // 
-            this.txtCourtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "CourtRate", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.txtCourtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "CourtRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtCourtRate.Location = new System.Drawing.Point(264, 22);
             this.txtCourtRate.Name = "txtCourtRate";
             this.txtCourtRate.Size = new System.Drawing.Size(54, 21);
@@ -175,6 +192,8 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.radLabel9);
+            this.groupBox2.Controls.Add(this.radLabel3);
             this.groupBox2.Controls.Add(this.txtPfMounthRate);
             this.groupBox2.Controls.Add(this.txtPfFirstRate);
             this.groupBox2.Controls.Add(this.radLabel8);
@@ -189,7 +208,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // txtPfMounthRate
             // 
-            this.txtPfMounthRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "PfMonthRate", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.txtPfMounthRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "PfMonthRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtPfMounthRate.Location = new System.Drawing.Point(581, 22);
             this.txtPfMounthRate.Name = "txtPfMounthRate";
             this.txtPfMounthRate.Size = new System.Drawing.Size(54, 21);
@@ -199,7 +218,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // txtPfFirstRate
             // 
-            this.txtPfFirstRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "PfFirstRate", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.txtPfFirstRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "PfFirstRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtPfFirstRate.Location = new System.Drawing.Point(264, 22);
             this.txtPfFirstRate.Name = "txtPfFirstRate";
             this.txtPfFirstRate.Size = new System.Drawing.Size(54, 21);
@@ -227,6 +246,8 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radLabel2);
+            this.groupBox1.Controls.Add(this.radLabel1);
             this.groupBox1.Controls.Add(this.txtSrMounthRate);
             this.groupBox1.Controls.Add(this.txtSrFirstRate);
             this.groupBox1.Controls.Add(this.radLabel6);
@@ -240,7 +261,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // txtSrMounthRate
             // 
-            this.txtSrMounthRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "SrMonthRate", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.txtSrMounthRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "SrMonthRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtSrMounthRate.Location = new System.Drawing.Point(581, 21);
             this.txtSrMounthRate.Name = "txtSrMounthRate";
             this.txtSrMounthRate.Size = new System.Drawing.Size(54, 21);
@@ -250,7 +271,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // txtSrFirstRate
             // 
-            this.txtSrFirstRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "SrFirstRate", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.txtSrFirstRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddPartner, "SrFirstRate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtSrFirstRate.Location = new System.Drawing.Point(264, 22);
             this.txtSrFirstRate.Name = "txtSrFirstRate";
             this.txtSrFirstRate.Size = new System.Drawing.Size(54, 21);
@@ -286,6 +307,62 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.radLabel4.TabIndex = 45;
             this.radLabel4.Text = "Умови за укладення договорів";
             this.radLabel4.ThemeName = "Office2013Light";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(324, 23);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(15, 18);
+            this.radLabel1.TabIndex = 4;
+            this.radLabel1.Text = "%";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(641, 23);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(15, 18);
+            this.radLabel2.TabIndex = 5;
+            this.radLabel2.Text = "%";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(324, 24);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(15, 18);
+            this.radLabel3.TabIndex = 5;
+            this.radLabel3.Text = "%";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(641, 24);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(15, 18);
+            this.radLabel9.TabIndex = 6;
+            this.radLabel9.Text = "%";
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Location = new System.Drawing.Point(324, 24);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(15, 18);
+            this.radLabel13.TabIndex = 5;
+            this.radLabel13.Text = "%";
+            // 
+            // radLabel14
+            // 
+            this.radLabel14.Location = new System.Drawing.Point(324, 25);
+            this.radLabel14.Name = "radLabel14";
+            this.radLabel14.Size = new System.Drawing.Size(15, 18);
+            this.radLabel14.TabIndex = 5;
+            this.radLabel14.Text = "%";
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(324, 24);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(15, 18);
+            this.radLabel15.TabIndex = 6;
+            this.radLabel15.Text = "%";
             // 
             // ConditionsControl
             // 
@@ -325,6 +402,13 @@ namespace IpsViewComponentLibrary.PartnerControls
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,5 +438,12 @@ namespace IpsViewComponentLibrary.PartnerControls
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel radLabel15;
+        private Telerik.WinControls.UI.RadLabel radLabel14;
+        private Telerik.WinControls.UI.RadLabel radLabel13;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
     }
 }
