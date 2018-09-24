@@ -109,12 +109,12 @@ namespace ipsmedserviceapp.Controllers
                         .ThenInclude(o => o.MediaTrack)
                  .Include(r => r.RegisterItem)
                     .ThenInclude(i => i.RegisterExtra)
-                .Include(r => r.RegisterRatedList)
+                .Include(r => r.Rm)
                     .ThenInclude(rl => rl.Period)
                         .ThenInclude(p => p.Lic)
                 .FirstOrDefaultAsync(r => r.RegId == regId);
 
-            return register.RegisterRatedList.Period.Lic;
+            return register.Rm.Period.Lic;
         }
 
         private async Task<Register> GetRegisterById(int regId)

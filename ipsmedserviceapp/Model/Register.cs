@@ -19,7 +19,7 @@ namespace ipsmedserviceapp.Model
         public int CountRows { get; set; }
         public int CustId { get; set; }
         public DateTime? CreateDate { get; set; }
-        public int? Durationticks { get; set; }
+        public int Durationticks { get; set; }
         public int? RgStatus { get; set; }
         public string FileName { get; set; }
         public string UserId { get; set; }
@@ -32,7 +32,7 @@ namespace ipsmedserviceapp.Model
         public decimal? AuthAmount { get; set; }
         public decimal? AuthRate { get; set; }
         public decimal? PaidAmount { get; set; }
-        public int? LicId { get; set; }
+        public int LicId { get; set; }
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
 
@@ -41,9 +41,9 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public Client Cust { get; set; }
         [JsonIgnore]
-        public RegisterRatedList RegisterRatedList { get; set; }
-        [JsonIgnore]
         public RegisterStatus RgStatusNavigation { get; set; }
+        [JsonIgnore]
+        public RegisterRatedList Rm { get; set; }
         [JsonIgnore]
         public AspNetUsers User { get; set; }
         [JsonIgnore]

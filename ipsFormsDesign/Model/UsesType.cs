@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public UsesType()
         {
+            Fixation = new ObservableListSource<Fixation>();
             UsesKind = new ObservableListSource<UsesKind>();
             UsesTypeTr = new ObservableListSource<UsesTypeTr>();
         }
@@ -15,6 +16,7 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        public ObservableListSource<Fixation> Fixation { get; set; }
         public ObservableListSource<UsesKind> UsesKind { get; set; }
         public ObservableListSource<UsesTypeTr> UsesTypeTr { get; set; }
     }

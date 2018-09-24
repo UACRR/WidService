@@ -220,6 +220,10 @@
     <Compile Include="Model\ExternalPay.cs" />
     <Compile Include="Model\FileCustomer.cs" />
     <Compile Include="Model\FileType.cs" />
+    <Compile Include="Model\Fixation.cs" />
+    <Compile Include="Model\FixFile.cs" />
+    <Compile Include="Model\FixStageStatus.cs" />
+    <Compile Include="Model\FixStorageDevice.cs" />
     <Compile Include="Model\FolkType.cs" />
     <Compile Include="Model\FolkTypeTr.cs" />
     <Compile Include="Model\Genre.cs" />

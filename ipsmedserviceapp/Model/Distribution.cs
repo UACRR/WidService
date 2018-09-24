@@ -13,7 +13,7 @@ namespace ipsmedserviceapp.Model
 
         public int DistId { get; set; }
         public int? RegId { get; set; }
-        public int? PeriodId { get; set; }
+        public int? RmId { get; set; }
         public int CRkindCode { get; set; }
         public int Status { get; set; }
         public DateTime DistribDate { get; set; }
@@ -33,11 +33,11 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public Partner Partner { get; set; }
         [JsonIgnore]
-        public PaidPeriod Period { get; set; }
-        [JsonIgnore]
         public Register Reg { get; set; }
         [JsonIgnore]
         public BrRegister RegIdBrNavigation { get; set; }
+        [JsonIgnore]
+        public RegisterRatedList Rm { get; set; }
         [JsonIgnore]
         public DistribStatus StatusNavigation { get; set; }
         public ICollection<DistributionItem> DistributionItem { get; set; }

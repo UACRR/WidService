@@ -19,7 +19,7 @@ namespace ipsFormsDesign.Model
         public int CountRows { get; set; }
         public int CustId { get; set; }
         public DateTime? CreateDate { get; set; }
-        public int? Durationticks { get; set; }
+        public int Durationticks { get; set; }
         public int? RgStatus { get; set; }
         public string FileName { get; set; }
         public string UserId { get; set; }
@@ -32,14 +32,14 @@ namespace ipsFormsDesign.Model
         public decimal? AuthAmount { get; set; }
         public decimal? AuthRate { get; set; }
         public decimal? PaidAmount { get; set; }
-        public int? LicId { get; set; }
+        public int LicId { get; set; }
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
 
         public AlgorithmType Algorithm { get; set; }
         public Client Cust { get; set; }
-        public RegisterRatedList RegisterRatedList { get; set; }
         public RegisterStatus RgStatusNavigation { get; set; }
+        public RegisterRatedList Rm { get; set; }
         public AspNetUsers User { get; set; }
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }

@@ -10,6 +10,7 @@ namespace ipsFormsDesign.Model
         {
             AgreementAddPartner = new ObservableListSource<AgreementAddPartner>();
             Distribution = new ObservableListSource<Distribution>();
+            Fixation = new ObservableListSource<Fixation>();
             PartnerClient = new ObservableListSource<PartnerClient>();
         }
 
@@ -18,6 +19,7 @@ namespace ipsFormsDesign.Model
         public Customer Cust { get; set; }
         public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
+        public ObservableListSource<Fixation> Fixation { get; set; }
         public ObservableListSource<PartnerClient> PartnerClient { get; set; }
     }
 }

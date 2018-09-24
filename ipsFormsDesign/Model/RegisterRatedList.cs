@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public RegisterRatedList()
         {
+            Distribution = new ObservableListSource<Distribution>();
             Register = new ObservableListSource<Register>();
         }
 
@@ -19,9 +20,11 @@ namespace ipsFormsDesign.Model
         public string UserId { get; set; }
         public int? Status { get; set; }
         public int? CntReport { get; set; }
+        public decimal? PaidAmount { get; set; }
 
         public PaidPeriod Period { get; set; }
         public RegisterListStatus StatusNavigation { get; set; }
+        public ObservableListSource<Distribution> Distribution { get; set; }
         public ObservableListSource<Register> Register { get; set; }
     }
 }
