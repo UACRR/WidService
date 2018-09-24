@@ -55,21 +55,29 @@ namespace IpsViewComponentLibrary
         //присвоїти представника
         private bool CtrlPartner_OnSetPartner(int clientId, int partnerId)
         {
-            return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
+            var result = OnSetPartner?.Invoke(clientId, partnerId) ?? false;
+            if(result)
+                ctrlPartner.SetPartnerData(GetPartner?.Invoke(_customer.CustId), _customer.CustId);
+            return result;
         }
 
         //змінити представника
         private bool CtrlPartner_OnChangePartner(int clientId, int partnerId, int oldPartnerId)
         {
-            return OnChangePartner?.Invoke(clientId, partnerId, oldPartnerId) ?? false;
+            var result = OnChangePartner?.Invoke(clientId, partnerId, oldPartnerId) ?? false;
+            if (result)
+                ctrlPartner.SetPartnerData(GetPartner?.Invoke(_customer.CustId), _customer.CustId);
+            return result;
         }
 
         //відкріптии представника
         private bool CtrlPartner_OnRemovePartner(int clientId, int partnerId)
         {
-            return OnRemovePartner?.Invoke(clientId, partnerId) ?? false;
+            var result = OnRemovePartner?.Invoke(clientId, partnerId) ?? false;
+            if (result)
+                ctrlPartner.SetPartnerData(GetPartner?.Invoke(_customer.CustId), _customer.CustId);
+            return result;
         }
-
 
         private List<AnketaPerson> CtrlPartner_OnGetPartnerListNeed()
         {

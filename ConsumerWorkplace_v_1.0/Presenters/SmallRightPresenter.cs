@@ -47,22 +47,22 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         private List<AnketaPerson> Cabinet_OnGetPartnerListNeed()
         {
-            throw new NotImplementedException();
+            return _service.GetPartnerList();
         }
 
         private bool Cabinet_OnRemovePartner(int clientId, int partnerId)
         {
-            throw new NotImplementedException();
+            return _service.RemovePartnerForCustomer(clientId, partnerId);
         }
 
         private bool Cabinet_OnChangePartner(int clientId, int partnerId, int oldPartnerId)
         {
-            throw new NotImplementedException();
+            return _service.ChangePartnerForCustomer(clientId, partnerId,oldPartnerId);
         }
 
         private bool Cabinet_OnSetPartner(int clientId, int partnerId)
         {
-            throw new NotImplementedException();
+            return _service.SetPartnerForCustomer(clientId, partnerId);
         }
 
         private AnketaPerson Cabinet_GetPartner(int custId)
