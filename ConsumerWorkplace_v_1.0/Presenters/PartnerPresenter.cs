@@ -31,6 +31,12 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _partner.GetPartnerById += GetPartner;
             _partner.GetFreeClientList += GetClientsView;
             _partner.GetPartnerClientList += GetPartnerClientsView;
+            _partner.OnAddClientToPartner += AddClientToPartner;
+        }
+
+        private bool AddClientToPartner(int clientId, int partnerId)
+        {
+            return _service.SetPartnerForCustomer(partnerId, clientId);
         }
 
         private List<PartnerView> GetPartnersView()

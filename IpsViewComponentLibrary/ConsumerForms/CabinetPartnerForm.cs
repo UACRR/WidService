@@ -19,6 +19,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public event SaveCustomerEventHandler OnSaveCustomer;
         public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
+        public event SetPartnerEventHandler OnAddClientToPartner;
+
         public CabinetPartnerForm(Customer customer)
         {
             InitializeComponent();
@@ -78,6 +80,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             ctrlPartnerClients.ClientName = anketaPerson;
             ctrlPartnerClients.GetFreeClientList += CtrlPartnerClients_GetFreeClientList;
+            ctrlPartnerClients.OnAddClientToPartner += CtrlPartnerClients_OnAddClientToPartner;
+        }
+
+        private bool CtrlPartnerClients_OnAddClientToPartner(int clientId, int partnerId)
+        {
+            return OnAddClientToPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
         private List<PartnerAllFreeClientsView> CtrlPartnerClients_GetFreeClientList(int custId)

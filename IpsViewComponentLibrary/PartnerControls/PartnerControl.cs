@@ -25,6 +25,8 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event ReturnPartnerViewEventHandler<PartnerView> GetPartnersView;
         public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
+        public event SetPartnerEventHandler OnAddClientToPartner;
+
 
         public PartnerControl()
         {
@@ -170,10 +172,16 @@ namespace IpsViewComponentLibrary.PartnerControls
                     cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
                     cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
                     cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
+                    cabinetPartner.OnAddClientToPartner += CabinetPartner_OnAddClientToPartner;
 
                     cabinetPartner.Show();
                     break;
             }
+        }
+
+        private bool CabinetPartner_OnAddClientToPartner(int clientId, int partnerId)
+        {
+            return OnAddClientToPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
         private List<PartnerAllFreeClientsView> CabinetPartner_GetFreeClientList(int custId)

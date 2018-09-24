@@ -9,21 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 
 namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class PartnerClientsControl : UserControl
     {
+        public event SetPartnerEventHandler OnAddClientToPartner;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
+
+        private int _partnerId = default(int);
         public PartnerClientsControl()
         {
             InitializeComponent();
-            ctrlSearch.SetUsageGrid(gvViewConsumers);
+            ctrlSearch.SetUsageGrid(gvViewClientsOfPartner);
         }
 
         public void SetData(List<PartnerClientListView> list)
         {
-            gvViewConsumers.DataSource = list;
+            gvViewClientsOfPartner.DataSource = list;
         }
 
         public object ClientName
@@ -33,6 +37,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             {
                 if (value is AnketaPerson anketa)
                 {
+                    _partnerId = anketa.CustId;
                     lblPartnerName.Text = anketa.LastName + " " + anketa.FirstName + " " + anketa.SurName;
                 }
             }
@@ -42,7 +47,14 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             //add client
             var list = GetFreeClientList?.Invoke(-1);
+            SelectClient selectClient = new SelectClient(list);
+            selectClient.OnAddSelectedClient += SelectClient_OnAddSelectedClient;
+            selectClient.ShowDialog();
+        }
 
+        private bool SelectClient_OnAddSelectedClient(int clientId)
+        {
+            return OnAddClientToPartner?.Invoke(clientId, _partnerId) ?? false;
         }
 
         private void gvViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

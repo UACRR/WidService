@@ -486,9 +486,9 @@ namespace ipsFormsDesign.Services
         }
 
         // додати представника клієнту
-        public bool SetPartnerForCustomer(int custId, int clientId)
+        public bool SetPartnerForCustomer(int partnerId, int clientId)
         {
-            return _webApi.ChangePartnerForCustomer("insert", custId, clientId);
+            return _webApi.ChangePartnerForCustomer("insert", partnerId, clientId);
         }
 
         // змінити представника в клієнта
