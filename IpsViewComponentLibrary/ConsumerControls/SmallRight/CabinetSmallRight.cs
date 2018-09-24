@@ -31,6 +31,17 @@ namespace IpsViewComponentLibrary
         public event UpdateCustomerDataEventHandler OnUpdateCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
+        public event ReturnObjectEventHandler<AnketaPerson> GetPartner;
+
+        #region ПРЕДСТАВНИК events
+
+        public event SetPartnerEventHandler OnSetPartner;
+        public event SetPartnerEventHandler OnRemovePartner;
+        public event ChangePartnerEventHandler OnChangePartner;
+        public event GetPartnerList OnGetPartnerListNeed;
+
+        #endregion
+
 
         public TypeRights Rights { get; set; }
 
@@ -42,6 +53,36 @@ namespace IpsViewComponentLibrary
             pagesControl.OnCustomerSave += SaveCustomer;
             pagesControl.OnChangeLicenseStatus += PagesControlOnChangeLicenseStatus;
             pagesControl.OnUpdateCustomerNeed += PagesControl_OnUpdateCustomerNeed;
+            pagesControl.GetPartner += PagesControl_GetPartner;
+            pagesControl.OnSetPartner += PagesControl_OnSetPartner;
+            pagesControl.OnChangePartner += PagesControl_OnChangePartner;
+            pagesControl.OnRemovePartner += PagesControl_OnRemovePartner;
+            pagesControl.OnGetPartnerListNeed += PagesControl_OnGetPartnerListNeed;
+        }
+
+        private List<AnketaPerson> PagesControl_OnGetPartnerListNeed()
+        {
+            return OnGetPartnerListNeed?.Invoke();
+        }
+
+        private bool PagesControl_OnRemovePartner(int clientId, int partnerId)
+        {
+            return OnRemovePartner?.Invoke(clientId, partnerId) ?? false;
+        }
+
+        private bool PagesControl_OnChangePartner(int clientId, int partnerId, int oldPartnerId)
+        {
+            return OnChangePartner?.Invoke(clientId, partnerId, oldPartnerId) ?? false;
+        }
+
+        private bool PagesControl_OnSetPartner(int clientId, int partnerId)
+        {
+            return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
+        }
+
+        private AnketaPerson PagesControl_GetPartner(int custId)
+        {
+            return GetPartner?.Invoke(custId);
         }
 
         private void PagesControl_OnUpdateCustomerNeed(int id)

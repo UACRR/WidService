@@ -46,6 +46,7 @@
             this.btnChangePartner = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.bsPartnerList = new System.Windows.Forms.BindingSource(this.components);
+            this.btnRemovePartner = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
@@ -63,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePartner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPartnerList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemovePartner)).BeginInit();
             this.SuspendLayout();
             // 
             // radPanel1
@@ -305,7 +307,7 @@
             // 
             // btnChangePartner
             // 
-            this.btnChangePartner.Location = new System.Drawing.Point(17, 107);
+            this.btnChangePartner.Location = new System.Drawing.Point(7, 107);
             this.btnChangePartner.Name = "btnChangePartner";
             this.btnChangePartner.Size = new System.Drawing.Size(146, 21);
             this.btnChangePartner.TabIndex = 25;
@@ -323,10 +325,22 @@
             this.radLabel1.Text = "Дані представника";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
+            // btnRemovePartner
+            // 
+            this.btnRemovePartner.Location = new System.Drawing.Point(475, 107);
+            this.btnRemovePartner.Name = "btnRemovePartner";
+            this.btnRemovePartner.Size = new System.Drawing.Size(171, 21);
+            this.btnRemovePartner.TabIndex = 53;
+            this.btnRemovePartner.Text = "Відкріпити представника";
+            this.btnRemovePartner.TextWrap = true;
+            this.btnRemovePartner.ThemeName = "Office2013Light";
+            this.btnRemovePartner.Click += new System.EventHandler(this.btnRemovePartner_Click);
+            // 
             // MiddleControlCabinetPartner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnRemovePartner);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.radLabel2);
@@ -352,6 +366,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnChangePartner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsPartnerList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemovePartner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,5 +391,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadLabel lblEmail;
         private Telerik.WinControls.UI.RadLabel radLabel13;
+        private Telerik.WinControls.UI.RadButton btnRemovePartner;
     }
 }

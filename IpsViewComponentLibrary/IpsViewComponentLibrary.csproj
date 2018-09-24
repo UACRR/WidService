@@ -208,6 +208,12 @@
     <Compile Include="Common\PageSelectorControl.Designer.cs">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\SearchTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\SearchTextBoxControl.Designer.cs">
+      <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -270,6 +276,12 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ConsumerDialogForms\SelectClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\SelectClient.Designer.cs">
+      <DependentUpon>SelectClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerDialogForms\SelectPartner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +293,12 @@
     </Compile>
     <Compile Include="ConsumerForms\CabinetBigRightForm.Designer.cs">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetPartnerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetPartnerForm.Designer.cs">
+      <DependentUpon>CabinetPartnerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerForms\CabinetSmallRightForm.cs">
       <SubType>Form</SubType>
@@ -336,6 +354,12 @@
     </Compile>
     <Compile Include="PartnerControls\PartnerNameControl.Designer.cs">
       <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerClientsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerClientsControl.Designer.cs">
+      <DependentUpon>PartnerClientsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterControls\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
@@ -527,10 +551,10 @@
     <Compile Include="InformationFooterGenAgrBigRight.Designer.cs">
       <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
     </Compile>
-    <Compile Include="InformationOfUserControl.cs">
+    <Compile Include="_trash\InformationOfUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InformationOfUserControl.Designer.cs">
+    <Compile Include="_trash\InformationOfUserControl.Designer.cs">
       <DependentUpon>InformationOfUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsAnketaCompanyControl.cs">
@@ -891,6 +915,9 @@
     <EmbeddedResource Include="Common\PageSelectorControl.resx">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
+      <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
     </EmbeddedResource>
@@ -922,11 +949,17 @@
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\SelectClient.resx">
+      <DependentUpon>SelectClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\SelectPartner.resx">
       <DependentUpon>SelectPartner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\CabinetBigRightForm.resx">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\CabinetPartnerForm.resx">
+      <DependentUpon>CabinetPartnerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
@@ -966,6 +999,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\ConditionsControl.resx">
       <DependentUpon>ConditionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerClientsControl.resx">
+      <DependentUpon>PartnerClientsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
       <DependentUpon>PartnerControl.cs</DependentUpon>
@@ -1051,7 +1087,7 @@
     <EmbeddedResource Include="InformationFooterGenAgrBigRight.resx">
       <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InformationOfUserControl.resx">
+    <EmbeddedResource Include="_trash\InformationOfUserControl.resx">
       <DependentUpon>InformationOfUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsAnketaCompanyControl.resx">

@@ -17,13 +17,16 @@ namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class PartnerControl : UserControl
     {
-        public delegate List<T> ReturnViewEventHandler<T>();
-        public event ReturnViewEventHandler<PartnerView> GetPartnersView;
-
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
         public event GetCustomerEventHandler GetPartnerById;
+        public delegate List<T> ReturnPartnerViewEventHandler<T>();
+        public event ReturnPartnerViewEventHandler<PartnerView> GetPartnersView;
+        public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
+        public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
+        public event SetPartnerEventHandler OnAddClientToPartner;
+
 
         public PartnerControl()
         {
@@ -98,12 +101,8 @@ namespace IpsViewComponentLibrary.PartnerControls
                 };
                 if (partnerPhis.ShowDialog() == DialogResult.OK)
                 {
-                    //додавання/збереження
-                    var result = OnSaveCustomer?.Invoke(customer);
-                    if (result ?? false)
-                        ExtensionUtils.ShowInfoMessage("Успішно збережено!", "Успішно", MessageBoxIcon.Information);
-                    else
-                        ExtensionUtils.ShowInfoMessage("Не можливо зберегти!", "Помилка", MessageBoxIcon.Error);
+                    //додавання
+                    SaveAnketaPartner(customer);
                 }
             }
             else if (customer.CustType == 3)
@@ -169,15 +168,50 @@ namespace IpsViewComponentLibrary.PartnerControls
             {
                 case "viewBtn":
                     var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
-                    LoadForm(customer, FLoadType.Edit);
-                    break;
-                case "deleteBtn":
-                    if (MessageBox.Show("Закрити анкету та договір обраного представника?", "Повідомлення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        //action
-                    }
+                    CabinetPartnerForm cabinetPartner = new CabinetPartnerForm(customer);
+                    cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
+                    cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
+                    cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
+                    cabinetPartner.OnAddClientToPartner += CabinetPartner_OnAddClientToPartner;
+
+                    cabinetPartner.Show();
                     break;
             }
+        }
+
+        private bool CabinetPartner_OnAddClientToPartner(int clientId, int partnerId)
+        {
+            return OnAddClientToPartner?.Invoke(clientId, partnerId) ?? false;
+        }
+
+        private List<PartnerAllFreeClientsView> CabinetPartner_GetFreeClientList(int custId)
+        {
+            return GetFreeClientList?.Invoke(custId);
+        }
+
+        private List<PartnerClientListView> CabinetPartner_GetPartnerClientList(int custId)
+        {
+            return GetPartnerClientList?.Invoke(custId);
+        }
+
+        private bool SaveAnketaPartner(Customer customer)
+        {
+            var result = OnSaveCustomer?.Invoke(customer);
+            if (result ?? false)
+                ExtensionUtils.ShowInfoMessage("Успішно збережено!", "Успішно", MessageBoxIcon.Information);
+            else
+                ExtensionUtils.ShowInfoMessage("Не можливо зберегти!", "Помилка", MessageBoxIcon.Error);
+
+            return result ?? false;
+        }
+
+        private void gvViewPartners_HyperlinkOpening(object sender, HyperlinkOpeningEventArgs e)
+        {
+            if (e.Row.DataBoundItem is PartnerView item)
+            {
+                //TODO: call partner cabinet
+            }
+            
         }
     }
 

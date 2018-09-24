@@ -223,6 +223,7 @@ public interface IAnketaExternal
          string Name { get; set; }
          string InterCode { get; set; }
          string CountryCode { get; set; }
+         string InnOkpo { get; set; }
 }
 public interface IAnketaPerson
     {
@@ -706,7 +707,7 @@ public interface IDistribTypeTr
 public interface IDistribution
     {    int DistId { get; set; }
          int? RegId { get; set; }
-         int? PeriodId { get; set; }
+         int? RmId { get; set; }
          int CRkindCode { get; set; }
          int Status { get; set; }
          DateTime DistribDate { get; set; }
@@ -898,6 +899,50 @@ public interface IFileType
     {    int CodeI { get; set; }
          string Name { get; set; }
 }
+public interface IFixation
+    {    int FixId { get; set; }
+         int? PartnerCustId { get; set; }
+         int FixStageStatus { get; set; }
+         int? ClientCustId { get; set; }
+         int? LicId { get; set; }
+         int? UsesType { get; set; }
+         string EventName { get; set; }
+         string EventDates { get; set; }
+         string City { get; set; }
+         string Address { get; set; }
+         string Placement { get; set; }
+         int? CountPlace { get; set; }
+         decimal? TicketPriceMin { get; set; }
+         decimal? TicketPriceMax { get; set; }
+         DateTime? FixationDate { get; set; }
+         decimal? RewardAmount { get; set; }
+         decimal? CourtFeeAmount { get; set; }
+         string ClientName { get; set; }
+         string ClientInnOkpo { get; set; }
+         string UserId { get; set; }
+}
+public interface IFixFile
+    {
+         int FileId { get; set; }
+         int? FixId { get; set; }
+         string Name { get; set; }
+         string Path { get; set; }
+}
+public interface IFixStageStatus
+    {    int CodeI { get; set; }
+         string StageName { get; set; }
+         string StatusName { get; set; }
+         int? StageCode { get; set; }
+         int? StatusCode { get; set; }
+}
+public interface IFixStorageDevice
+    {
+         int StorageId { get; set; }
+         int FixId { get; set; }
+         string Name { get; set; }
+         string SerialNumber { get; set; }
+         decimal? Capacity { get; set; }
+}
 public interface IFolkType
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1006,6 +1051,28 @@ public interface IKlR031
          string R031NameUk { get; set; }
          string R031NameRu { get; set; }
          string R031NameEn { get; set; }
+}
+public interface IKL_R030
+    {    string r030 { get; set; }
+         short? r031 { get; set; }
+         string countryCode { get; set; }
+         string a3 { get; set; }
+         string r030Name { get; set; }
+         int? nOMIN { get; set; }
+         string nAIM { get; set; }
+         short? pr_work { get; set; }
+}
+public interface IKL_R030Tr
+    {
+         string r030 { get; set; }
+         string lang { get; set; }
+         string r030Name { get; set; }
+}
+public interface IKL_R031
+    {    short r031 { get; set; }
+         string r031NameUk { get; set; }
+         string r031NameRu { get; set; }
+         string r031NameEn { get; set; }
 }
 public interface ILang
     {    string CodeS { get; set; }
@@ -1554,7 +1621,7 @@ public interface IRegister
          int CountRows { get; set; }
          int CustId { get; set; }
          DateTime? CreateDate { get; set; }
-         int? Durationticks { get; set; }
+         int Durationticks { get; set; }
          int? RgStatus { get; set; }
          string FileName { get; set; }
          string UserId { get; set; }
@@ -1567,7 +1634,7 @@ public interface IRegister
          decimal? AuthAmount { get; set; }
          decimal? AuthRate { get; set; }
          decimal? PaidAmount { get; set; }
-         int? LicId { get; set; }
+         int LicId { get; set; }
          int? SchemaId { get; set; }
          int? AlgorithmId { get; set; }
 }
@@ -1645,6 +1712,7 @@ public interface IRegisterRatedList
          string UserId { get; set; }
          int? Status { get; set; }
          int? CntReport { get; set; }
+         decimal? PaidAmount { get; set; }
 }
 public interface IRegisterStatus
     {    int CodeI { get; set; }

@@ -59,14 +59,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlAddressLetter.RegionsDisplayMember = "name";
             ctrlAddressLetter.PostIndexDataMember = "LePostIndex";
 
-            //ctrlAddressLetter.DataSource = anketaPerson;
-            //ctrlAddressLetter.AddressDataMember = "LeAddress";
-            //ctrlAddressLetter.CityDataMember = "LeCity";
-            //ctrlAddressLetter.CountryDataMember = "LeCountry";
-            //ctrlAddressLetter.RegionDataMember = "LeRegion";
-            //ctrlAddressLetter.PostIndexDataMember = "LePostIndex";
-
-
             // паспортні дані
             ctrlInternalPassport.DataSource = anketaPerson;
 
@@ -79,12 +71,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
 
             #endregion
-
-            SetFormType(loadType);
-        }
-
-        private void SetFormType(FLoadType loadType)
-        {
 
         }
     }

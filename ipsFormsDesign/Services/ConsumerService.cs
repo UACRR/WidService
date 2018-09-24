@@ -363,6 +363,7 @@ namespace ipsFormsDesign.Services
             Request = 2,
             Reference = 3
         }
+
         /// <summary>
         /// Перевод типу ліц. договору з Заявки в Довідку та ліц договір.
         /// </summary>
@@ -387,6 +388,7 @@ namespace ipsFormsDesign.Services
         {
             return _webApi.GetItemById<Customer>("consumer/Period/GetCustomerInfo", custId.ToString());
         }
+
         /// <summary>
         /// Зберігання нових періодів
         /// </summary>
@@ -452,7 +454,7 @@ namespace ipsFormsDesign.Services
         /// </summary>
         public AnketaPerson GetPartnerAnketa(int clientId)
         {
-            var anketaPerson = _webApi.GetItemById<AnketaPerson>("partner/list", clientId.ToString());
+            var anketaPerson = _webApi.GetItemById<AnketaPerson>("partner/listcl", clientId.ToString());
             return anketaPerson;
         }
 
@@ -478,12 +480,51 @@ namespace ipsFormsDesign.Services
             }
             else
             {
-                // TODO: save exist customer
                 return _webApi.UpdateItem<Customer>("partner/partnerphis", cust.CustId.ToString(), cust);
             }
-
             return false;
         }
 
+        // додати представника клієнту
+        public bool SetPartnerForCustomer(int clientId, int partnerId)
+        {
+            return _webApi.ChangePartnerForCustomer("insert", clientId, partnerId);
+        }
+
+        // змінити представника в клієнта
+        public bool ChangePartnerForCustomer(int clientId, int partnerId, int oldClientId)
+        {
+            return _webApi.ChangePartnerForCustomer("update", clientId, partnerId, oldClientId);
+        }
+
+        //вилучити представника в клієнта
+        public bool RemovePartnerForCustomer(int clientId, int partnerId)
+        {
+            return _webApi.ChangePartnerForCustomer("remove", clientId, partnerId);
+        }
+
+        // змінити поточний статус представника
+        public bool ChangePartnerStatus(int partnerId, CPartnerObjectStatus status)
+        {
+            string url = "partner/" + $"{partnerId}/statuschange";
+            return _webApi.UpdateItem<object>(url, status.ToString("D"), null);
+        }
+    }
+    public enum CPartnerObjectStatus : int
+    {
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None = -1,
+
+        /// <summary>
+        /// Активація
+        /// </summary>
+        Activate = 2,
+
+        /// <summary>
+        /// Закрити
+        /// </summary>
+        Closing = 4,
     }
 }

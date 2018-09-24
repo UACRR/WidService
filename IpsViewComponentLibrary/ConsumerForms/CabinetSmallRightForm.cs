@@ -18,6 +18,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public delegate Customer GetCustomerEventHandler(int custId);
         public event GetCustomerEventHandler OnGetCustomerNeed;
 
+
         public CabinetSmallRightForm()
         {
             InitializeComponent();

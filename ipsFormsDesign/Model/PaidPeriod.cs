@@ -9,7 +9,6 @@ namespace ipsFormsDesign.Model
         public PaidPeriod()
         {
             BrRegister = new ObservableListSource<BrRegister>();
-            Distribution = new ObservableListSource<Distribution>();
             MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
             RegisterRatedList = new ObservableListSource<RegisterRatedList>();
         }
@@ -33,7 +32,6 @@ namespace ipsFormsDesign.Model
         public Period PeriodTypeNavigation { get; set; }
         public PeriodStatus StatusNavigation { get; set; }
         public ObservableListSource<BrRegister> BrRegister { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
         public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ObservableListSource<RegisterRatedList> RegisterRatedList { get; set; }
     }

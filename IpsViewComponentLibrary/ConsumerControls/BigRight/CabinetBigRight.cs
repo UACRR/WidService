@@ -55,8 +55,7 @@ namespace IpsViewComponentLibrary
 
         #region events точечного отримання даних
 
-        public delegate List<T> ReturnViewEventHandler<T>(int custId);
-        public delegate T ReturnObjectEventHandler<out T>(int custId);
+
         public event ReturnObjectEventHandler<Customer> GetCustomer;
         public event ReturnObjectEventHandler<MainGridConsumerBigRightView> GetMainGridView;
         public event ReturnViewEventHandler<GeneralAgreementBigRightView> GetGeneralAgreementView;
@@ -71,10 +70,11 @@ namespace IpsViewComponentLibrary
         public event GetPartnerList OnGetPartnerListNeed;
         public event ReturnObjectEventHandler<AnketaPerson> GetPartner;
 
-
-
         #endregion
 
+        public event SetPartnerEventHandler OnSetPartner;
+        public event SetPartnerEventHandler OnRemovePartner;
+        public event ChangePartnerEventHandler OnChangePartner;
 
         /// <summary>
         /// Виникиє при необхідності зберегти Customer
@@ -127,6 +127,9 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
             ctrlPayslips.GetMusicDesing += DataNeedRatedList_GetMusicDesing;
             ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
+            ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
+            ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
+            ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
 
             // static pages, call this in constructor
             _tab = new Dictionary<CabinetTabType, RadPageViewPage>
@@ -145,6 +148,21 @@ namespace IpsViewComponentLibrary
                 {CabinetTabType.Prepays, pvAvances},
                 {CabinetTabType.Contacts, pvContacts}
             };
+        }
+
+        private bool CtrlPartner_OnRemovePartner(int clientId, int partnerId)
+        {
+            return OnRemovePartner?.Invoke(clientId, partnerId) ?? false;
+        }
+
+        private bool CtrlPartner_OnChangePartner(int clientId, int partnerId, int oldclientId)
+        {
+            return OnChangePartner?.Invoke(clientId, partnerId, oldclientId) ?? false;
+        }
+
+        private bool CtrlPartner_OnSetPartner(int clientId, int partnerId)
+        {
+            return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
 
@@ -270,7 +288,7 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.Agent:
                 {
-                    ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId));
+                    ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
                 }
                     break;
             }

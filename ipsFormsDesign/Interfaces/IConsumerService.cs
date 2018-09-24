@@ -384,6 +384,31 @@ namespace ipsFormsDesign.Interfaces
         public string StatusName { get; set; }
     }
 
+    /// <summary>
+    /// Список клієнтів представника
+    /// </summary>
+    public class PartnerClientListView
+    {
+        public int CustId { get; set; }
+        public int ClCustId { get; set; }
+        public int? AgrCount { get; set; }
+        public decimal SumBorg { get; set; }
+        public string Innokpo { get; set; }
+        public string ClientName { get; set; }
+    }
+
+    /// <summary>
+    /// Список вільних клієнтів
+    /// </summary>
+    public class PartnerAllFreeClientsView
+    {
+        public int ClCustId { get; set; }
+        public int? AgrCount { get; set; }
+        public string Innokpo { get; set; }
+        public string ClientName { get; set; }
+        public string Jacity { get; set; }
+    }
+
     #region класи для створення ієрархії
 
     public class ParentTemplate : IParentTemplate

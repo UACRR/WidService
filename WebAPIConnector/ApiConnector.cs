@@ -228,8 +228,6 @@ namespace WebAPIConnector
             return retObj.ToObject<T>();
         }
 
-
-
         /// <summary>
         /// Створити об'єкт на сервері додатків
         /// </summary>
@@ -418,6 +416,7 @@ namespace WebAPIConnector
 
             return retCode;
         }
+
         /// <summary>
         /// змінити об'єкт на сервері додатків
         /// </summary>
@@ -488,6 +487,7 @@ namespace WebAPIConnector
                 var statusString = await statusResult.Content.ReadAsStringAsync();
             }
         }
+
         /// <summary>
         /// Отримати файл із папки Споживача
         /// </summary>
@@ -505,6 +505,27 @@ namespace WebAPIConnector
                 throw ex;
             }
         }
+
+        public bool ChangePartnerForCustomer(string url, int clientId, int partnerId, int? oldClientId = null)
+        {
+            string fullUrl = "partner/" + $"{clientId}/{url}/{partnerId}";
+            HttpResponseMessage result = null;
+            switch (url)
+            {
+                case "insert":
+                    result = client.PostAsync(fullUrl, null).GetAwaiter().GetResult();
+                    break;
+                case "update":
+                    fullUrl += "/" + oldClientId;
+                    result = client.PutAsync(fullUrl, null).GetAwaiter().GetResult();
+                    break;
+                case "remove":
+                    result = client.DeleteAsync(fullUrl).GetAwaiter().GetResult();
+                    break;
+            }
+            return result?.IsSuccessStatusCode ?? false;
+        }
+
 
     }
 }
