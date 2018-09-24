@@ -208,6 +208,12 @@
     <Compile Include="Common\PageSelectorControl.Designer.cs">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\SearchTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\SearchTextBoxControl.Designer.cs">
+      <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -335,6 +341,12 @@
     </Compile>
     <Compile Include="PartnerControls\PartnerNameControl.Designer.cs">
       <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerClientsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerClientsControl.Designer.cs">
+      <DependentUpon>PartnerClientsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterControls\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
@@ -890,6 +902,9 @@
     <EmbeddedResource Include="Common\PageSelectorControl.resx">
       <DependentUpon>PageSelectorControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
+      <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
     </EmbeddedResource>
@@ -965,6 +980,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\ConditionsControl.resx">
       <DependentUpon>ConditionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerClientsControl.resx">
+      <DependentUpon>PartnerClientsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
       <DependentUpon>PartnerControl.cs</DependentUpon>

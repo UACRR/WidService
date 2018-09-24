@@ -98,12 +98,8 @@ namespace IpsViewComponentLibrary.PartnerControls
                 };
                 if (partnerPhis.ShowDialog() == DialogResult.OK)
                 {
-                    //додавання/збереження
-                    var result = OnSaveCustomer?.Invoke(customer);
-                    if (result ?? false)
-                        ExtensionUtils.ShowInfoMessage("Успішно збережено!", "Успішно", MessageBoxIcon.Information);
-                    else
-                        ExtensionUtils.ShowInfoMessage("Не можливо зберегти!", "Помилка", MessageBoxIcon.Error);
+                    //додавання
+                    SaveAnketaPartner(customer);
                 }
             }
             else if (customer.CustType == 3)
@@ -169,15 +165,23 @@ namespace IpsViewComponentLibrary.PartnerControls
             {
                 case "viewBtn":
                     var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
-                    LoadForm(customer, FLoadType.Edit);
-                    break;
-                case "deleteBtn":
-                    if (MessageBox.Show("Закрити анкету та договір обраного представника?", "Повідомлення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        //action
-                    }
+                    CabinetPartnerForm cabinetPartner = new CabinetPartnerForm(customer);
+                    cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
+
+                    cabinetPartner.Show();
                     break;
             }
+        }
+
+        private bool SaveAnketaPartner(Customer customer)
+        {
+            var result = OnSaveCustomer?.Invoke(customer);
+            if (result ?? false)
+                ExtensionUtils.ShowInfoMessage("Успішно збережено!", "Успішно", MessageBoxIcon.Information);
+            else
+                ExtensionUtils.ShowInfoMessage("Не можливо зберегти!", "Помилка", MessageBoxIcon.Error);
+
+            return result ?? false;
         }
 
         private void gvViewPartners_HyperlinkOpening(object sender, HyperlinkOpeningEventArgs e)
