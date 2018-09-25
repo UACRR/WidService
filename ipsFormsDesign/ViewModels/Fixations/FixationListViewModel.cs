@@ -10,6 +10,7 @@ namespace ipsFormsDesign.ViewModels.Fixations
         public string ClientName { get; set; }
         public string EventDates { get; set; }
         public string EventLocation { get; set; }
+        public int StageStatusId { get; set; }
         public string StageName { get; set; }
         public string StatusName { get; set; }
         public string Responsible { get; set; }
