@@ -321,6 +321,8 @@
             this.gvFixationsList.Size = new System.Drawing.Size(649, 369);
             this.gvFixationsList.TabIndex = 28;
             this.gvFixationsList.ThemeName = "Office2013Light";
+            this.gvFixationsList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvFixationsList_CellDoubleClick);
+            this.gvFixationsList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvFixationsList_CommandCellClick);
             this.gvFixationsList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRightholdersList_ToolTipTextNeeded);
             // 
             // bsFixationListViewModel

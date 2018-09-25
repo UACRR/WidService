@@ -325,6 +325,13 @@
       <DependentUpon>FixationListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FixationControls\FixationListPresenter.cs" />
+    <Compile Include="FixationControls\FixationPresenter.cs" />
+    <Compile Include="FixationControls\FixationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FixationControls\FixationView.Designer.cs">
+      <DependentUpon>FixationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="LicenseAgreementListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -972,6 +979,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FixationControls\FixationListControl.resx">
       <DependentUpon>FixationListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FixationControls\FixationView.resx">
+      <DependentUpon>FixationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LicenseAgreementListControl.resx">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>

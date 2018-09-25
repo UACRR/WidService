@@ -192,5 +192,32 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
+
+        private void gvFixationsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                OnEditCommandExecuted();
+            }
+        }
+
+        private void gvFixationsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column is GridViewCommandColumn)
+                return;
+
+            OnEditCommandExecuted();
+        }
+
+        protected virtual void OnEditCommandExecuted()
+        {
+            using (var fixationView = new FixationView())
+            {
+                var fixationPresenter = new FixationPresenter(fixationView);
+                fixationPresenter.Show(SelectedFixation.FixId);
+            }
+        }
     }
 }
