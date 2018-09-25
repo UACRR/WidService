@@ -94,6 +94,94 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void tvFilters_SelectedNodeChanging(object sender, RadTreeViewCancelEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                // prevent selecting root node
+                e.Cancel = true;
+            }
+        }
+
+        private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                // set font to bold for root node
+                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
+
+                if (e.NodeElement.IsMouseOver)
+                {
+                    // prevent hover highligting root node
+                    e.NodeElement.BackColor = Color.White;
+                    e.NodeElement.BorderColor = Color.White;
+                }
+            }
+            else if (e.Node.Level == 1)
+            {
+                // set font to bold for nodes with level 1
+                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
+            }
+            else
+            {
+                // blue highlight (instead of gray) selected node even if tree veiw is inactive
+                bool isInactive = (bool)e.NodeElement.GetValue(TreeNodeElement.IsControlInactiveProperty);
+                if (isInactive && e.NodeElement.IsSelected)
+                {
+                    e.NodeElement.BackColor = Color.FromArgb(255, 146, 192, 224);
+                    e.NodeElement.BorderColor = Color.FromArgb(255, 146, 192, 224);
+                }
+                else
+                {
+                    e.NodeElement.ResetValue(LightVisualElement.BackColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                    e.NodeElement.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                }
+            }
+        }
+
+        private void gvFixationsList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
+
+        private void gvFixationsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                OnEditCommandExecuted();
+            }
+        }
+
+        private void gvFixationsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column is GridViewCommandColumn)
+                return;
+
+            OnEditCommandExecuted();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            _presenter.Add();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        protected virtual void OnEditCommandExecuted()
+        {
+            _presenter.Edit();
+        }
+
         private void UpdateList()
         {
             waitingBar.StartWaiting();
@@ -145,94 +233,6 @@ namespace IpsViewComponentLibrary.FixationControls
 
             tvFilters.Nodes.Add(rootNode);
             tvFilters.ExpandAll();
-        }
-
-        private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
-        {
-            UpdateList();
-        }
-
-        private void tvFilters_SelectedNodeChanging(object sender, RadTreeViewCancelEventArgs e)
-        {
-            if (e.Node.Level == 0)
-            {
-                // prevent selecting root node
-                e.Cancel = true;
-            }
-        }
-
-        private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
-        {
-            if (e.Node.Level == 0)
-            {
-                // set font to bold for root node
-                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
-
-                if (e.NodeElement.IsMouseOver)
-                {
-                    // prevent hover highligting root node
-                    e.NodeElement.BackColor = Color.White;
-                    e.NodeElement.BorderColor = Color.White;
-                }
-            }
-            else if (e.Node.Level == 1)
-            {
-                // set font to bold for nodes with level 1
-                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
-            }
-            else
-            {
-                // blue highlight (instead of gray) selected node even if tree veiw is inactive
-                bool isInactive = (bool)e.NodeElement.GetValue(TreeNodeElement.IsControlInactiveProperty);
-                if (isInactive && e.NodeElement.IsSelected)
-                {
-                    e.NodeElement.BackColor = Color.FromArgb(255, 146, 192, 224);
-                    e.NodeElement.BorderColor = Color.FromArgb(255, 146, 192, 224);
-                }
-                else
-                {
-                    e.NodeElement.ResetValue(LightVisualElement.BackColorProperty, Telerik.WinControls.ValueResetFlags.Local);
-                    e.NodeElement.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local);
-                }
-            }
-        }
-
-        private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
-        {
-            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
-        }
-
-        private void gvFixationsList_CommandCellClick(object sender, GridViewCellEventArgs e)
-        {
-            var currentColumnName = e.Column.Name;
-
-            if (currentColumnName == "EditColumn")
-            {
-                OnEditCommandExecuted();
-            }
-        }
-
-        private void gvFixationsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
-        {
-            if (e.Column is GridViewCommandColumn)
-                return;
-
-            OnEditCommandExecuted();
-        }
-
-        protected virtual void OnEditCommandExecuted()
-        {
-            _presenter.Edit();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            _presenter.Add();
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            UpdateList();
         }
     }
 }

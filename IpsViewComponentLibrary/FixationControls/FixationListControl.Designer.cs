@@ -339,7 +339,7 @@
             this.gvFixationsList.ThemeName = "Office2013Light";
             this.gvFixationsList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvFixationsList_CellDoubleClick);
             this.gvFixationsList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvFixationsList_CommandCellClick);
-            this.gvFixationsList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRightholdersList_ToolTipTextNeeded);
+            this.gvFixationsList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvFixationsList_ToolTipTextNeeded);
             // 
             // bsFixationListViewModel
             // 
