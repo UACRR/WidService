@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void ShowNew()
         {
-            _fixation = new Fixation { FixStageStatus = 1, UsesType = 1 };
+            _fixation = new Fixation { StageStatus = 1, UsesType = 1 };
             _view.Fixation = _fixation;
             _view.Run();
         }
