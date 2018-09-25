@@ -1,5 +1,7 @@
-﻿using ipsFormsDesign.Model;
+﻿using ipsFormsDesign.Events;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
@@ -45,9 +47,15 @@ namespace IpsViewComponentLibrary.FixationControls
             var result = _fixationService.Save(_fixation);
 
             if (result)
+            {
                 _view.Close();
+
+                ApplicationController.Instance.EventAggregator.PublishEvent(new FixationUpdatedEvent());
+            }
             else
+            {
                 _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
+            }
         }
     }
 }

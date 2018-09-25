@@ -11,10 +11,13 @@ using Telerik.WinControls.UI;
 using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.EventAggregator;
+using ipsFormsDesign.Events;
+using IpsViewComponentLibrary.AppController;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
-    public partial class FixationListControl : UserControl
+    public partial class FixationListControl : UserControl, ISubscriber<FixationUpdatedEvent>
     {
         private FixationListPresenter _presenter;
 
@@ -76,6 +79,8 @@ namespace IpsViewComponentLibrary.FixationControls
         public FixationListControl()
         {
             InitializeComponent();
+
+            ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
             _presenter = new FixationListPresenter(this);
         }
@@ -233,6 +238,11 @@ namespace IpsViewComponentLibrary.FixationControls
 
             tvFilters.Nodes.Add(rootNode);
             tvFilters.ExpandAll();
+        }
+
+        public void HandleEvent(FixationUpdatedEvent e)
+        {
+            UpdateList();
         }
     }
 }
