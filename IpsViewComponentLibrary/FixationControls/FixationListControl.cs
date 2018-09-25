@@ -152,6 +152,15 @@ namespace IpsViewComponentLibrary.FixationControls
             UpdateList();
         }
 
+        private void tvFilters_SelectedNodeChanging(object sender, RadTreeViewCancelEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                // prevent selecting root node
+                e.Cancel = true;
+            }
+        }
+
         private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
         {
             if (e.Node.Level == 0)
@@ -213,11 +222,12 @@ namespace IpsViewComponentLibrary.FixationControls
 
         protected virtual void OnEditCommandExecuted()
         {
-            using (var fixationView = new FixationView())
-            {
-                var fixationPresenter = new FixationPresenter(fixationView);
-                fixationPresenter.Show(SelectedFixation.FixId);
-            }
+            _presenter.Edit();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            _presenter.Add();
         }
     }
 }
