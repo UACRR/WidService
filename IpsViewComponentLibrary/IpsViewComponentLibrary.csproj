@@ -522,6 +522,7 @@
     <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.Designer.cs">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\FixationStageStatusMenuFactory.cs" />
     <Compile Include="_trash\CabinetBigRightOld.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1380,6 +1381,7 @@
     <Content Include="Resources\link-solid.ico" />
     <Content Include="Resources\plus-square-solid.ico" />
     <None Include="Resources\print-solid.ico" />
+    <Content Include="Resources\status-change.ico" />
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>

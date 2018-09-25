@@ -46,5 +46,10 @@ namespace ipsFormsDesign.Services
                 return _webApi.UpdateItem("fixations", fixation.FixId.ToString(), fixation);
             }
         }
+
+        public bool SetStatus(int fixId, FixationStageStatuses newStageStatus)
+        {
+            return _webApi.UpdateItem($"fixations/{fixId}/stagestatus", null, newStageStatus);
+        }
     }
 }
