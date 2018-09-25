@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             InitializeComponent();
             DialogResult = DialogResult.None;
             PartnerId = partnerId;
+            ctrlSearch.SetUsageGrid(gvPartnerList);
         }
 
         public int? PartnerId { get; private set; }
@@ -38,19 +39,15 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                 });
             }
             _partnerList = listTemp.OrderBy(rec => rec.PartnerName).ToList();
-            ddlPartnersList.DataSource = _partnerList;
-            ddlPartnersList.SelectedValue = "CustId";
-            ddlPartnersList.DisplayMember = "PartnerName";
+            gvPartnerList.DataSource = _partnerList;
         }
 
-        private void ddlPartnersList_SelectedValueChanged(object sender, EventArgs e)
+        private void SelectedPartnerChanged(object sender, EventArgs e)
         {
-            var custId = ((PartnerList)((Telerik.WinControls.UI.RadDropDownList)sender)?.SelectedItem?.Value)?.CustId;
-            if (custId != null)
-            {
-                UpdateData((int)custId);
-                PartnerId = (int) custId;
-            }
+            if (!((gvPartnerList.CurrentRow.DataBoundItem as PartnerList)?.CustId is int custId)) return;
+
+            UpdateData(custId);
+            PartnerId = custId;
         }
 
         private void UpdateData(int custId)
@@ -65,9 +62,11 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void SelectPartner_Load(object sender, EventArgs e)
         {
-            ddlPartnersList.SelectedValueChanged += ddlPartnersList_SelectedValueChanged;
-            if (PartnerId != null && ddlPartnersList.Items.SingleOrDefault(rec => (rec.DataBoundItem as PartnerList)?.CustId == PartnerId)?.Index is int index)
-                ddlPartnersList.SelectedIndex = index;
+            gvPartnerList.CurrentRowChanged += SelectedPartnerChanged;
+            gvPartnerList.CurrentRow = 
+                    PartnerId != null ? 
+                    gvPartnerList.Rows.SingleOrDefault(rec => (rec.DataBoundItem as PartnerList)?.CustId == PartnerId) : 
+                    gvPartnerList.Rows.FirstOrDefault();
         }
 
         private void btnSelectPartner_Click(object sender, EventArgs e)

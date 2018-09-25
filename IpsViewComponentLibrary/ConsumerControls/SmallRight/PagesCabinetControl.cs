@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary
 
         public delegate void CustomerSave(Customer customer);
         public event CustomerSave OnCustomerSave;
-        public event ReturnObjectEventHandler<AnketaPerson> GetPartner;
+        public event ReturnObjectEventHandler<Customer> GetPartner;
 
         public event SetPartnerEventHandler OnSetPartner;
         public event SetPartnerEventHandler OnRemovePartner;

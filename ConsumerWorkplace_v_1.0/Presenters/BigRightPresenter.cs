@@ -345,7 +345,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
         //отримати представника по ID слієнта
-        private AnketaPerson GetPartnerAnketa(int clientId)
+        private Customer GetPartnerAnketa(int clientId)
         {
             return _service.GetPartnerAnketa(clientId);
         }

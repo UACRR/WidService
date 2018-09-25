@@ -288,8 +288,16 @@ namespace ipsmedserviceapp.Controllers
             var partnerId = await _dbContext.PartnerClient.SingleOrDefaultAsync(rec => rec.ClCustId == clientId);
             if (partnerId == null)
                 return Json(null);
-            var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec => rec.CustId == partnerId.CustId);
-            return Json(anketaPerson);
+
+            var partner = await _dbContext.Customer.Where(rec => rec.CustId == partnerId.CustId)
+                .Include(item => item.AgreementMaster).ThenInclude(agr => agr.AgreementAddPartner)
+                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .SingleOrDefaultAsync();
+
+            // old call
+            //var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec => rec.CustId == partnerId.CustId);
+
+            return Json(partner);
         }
 
         //отримати анкету представника по ID представника

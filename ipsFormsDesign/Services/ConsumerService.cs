@@ -452,9 +452,9 @@ namespace ipsFormsDesign.Services
         /// <summary>
         /// Отримати дані по одному представнику
         /// </summary>
-        public AnketaPerson GetPartnerAnketa(int clientId)
+        public Customer GetPartnerAnketa(int clientId)
         {
-            var anketaPerson = _webApi.GetItemById<AnketaPerson>("partner/listcl", clientId.ToString());
+            var anketaPerson = _webApi.GetItemById<Customer>("partner/listcl", clientId.ToString());
             return anketaPerson;
         }
 

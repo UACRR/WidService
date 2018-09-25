@@ -67,7 +67,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             return _service.SetPartnerForCustomer(clientId, partnerId);
         }
 
-        private AnketaPerson Cabinet_GetPartner(int custId)
+        private Customer Cabinet_GetPartner(int custId)
         {
             return _service.GetPartnerAnketa(custId);
         }
