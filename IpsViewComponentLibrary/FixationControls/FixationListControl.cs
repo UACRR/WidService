@@ -128,12 +128,14 @@ namespace IpsViewComponentLibrary.FixationControls
                     e.NodeElement.BorderColor = Color.White;
                 }
             }
-            else if (e.Node.Level == 1)
+
+            if (e.Node.Level == 1)
             {
                 // set font to bold for nodes with level 1
                 e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
             }
-            else
+
+            if (e.Node.Level != 0)
             {
                 // blue highlight (instead of gray) selected node even if tree veiw is inactive
                 bool isInactive = (bool)e.NodeElement.GetValue(TreeNodeElement.IsControlInactiveProperty);
@@ -148,6 +150,7 @@ namespace IpsViewComponentLibrary.FixationControls
                     e.NodeElement.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local);
                 }
             }
+
         }
 
         private void gvFixationsList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
