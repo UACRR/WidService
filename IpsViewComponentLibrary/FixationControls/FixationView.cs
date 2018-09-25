@@ -43,6 +43,8 @@ namespace IpsViewComponentLibrary.FixationControls
             InitializeComponent();
 
             ddlUsesType.SetDataSource(IpsGlobal.AnketaDictionaties.usesType);
+            ddlStage.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StageName");
+            ddlStatus.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StatusName");
         }
         
         public void Run()
