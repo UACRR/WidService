@@ -414,6 +414,7 @@
             this.btnSave.TabIndex = 16;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FixationView
             // 
@@ -429,7 +430,6 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Подання";
             this.ThemeName = "Office2013Light";
-            this.Load += new System.EventHandler(this.FixationView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).EndInit();
             this.mainPageView.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
